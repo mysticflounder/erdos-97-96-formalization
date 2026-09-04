@@ -1116,6 +1116,594 @@ theorem exists_fourHits_strict_cross_distance_oppIndex1
       hradius_pos hρ_pos hne with ⟨H, horder⟩
   exact ⟨H, horder.strict_cross_distance D.convex⟩
 
+/-! ## Source-clean producer at the second non-surplus cap -/
+
+private theorem radialCyclicOrder_of_oppIndex2_direct
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    {radius ρ : ℝ}
+    (G : S.ExactFourTwoRadiusAdjacentCapGrid S.oppIndex2 radius ρ)
+    (H : FourHits G)
+    (hradius_pos : 0 < radius) (hρ_pos : 0 < ρ) (hne : radius ≠ ρ)
+    (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
+    (hu : B.boundary (zeroIndex hn) =
+      S.oppositeVertexByIndex S.surplusIdx)
+    (hv : B.boundary iv = S.oppositeVertexByIndex S.oppIndex1)
+    (hw : B.boundary iw = S.oppositeVertexByIndex S.oppIndex2)
+    (O : DirectBoundaryBlocks S B.boundary hn iv iw) :
+    RadialCyclicOrder H := by
+  classical
+  letI : NeZero B.n := ⟨Nat.ne_of_gt hn⟩
+  let iz : Fin B.n := zeroIndex hn
+  let phi : Fin B.n → ℝ² := fun t => B.boundary (t + iv)
+  let jw : Fin B.n := iw - iv
+  let ju : Fin B.n := iz - iv
+  have hphi0 : phi 0 = S.oppositeVertexByIndex S.oppIndex1 := by
+    simpa only [phi, zero_add] using hv
+  have hphiW : phi jw = S.oppositeVertexByIndex S.oppIndex2 := by
+    simpa only [phi, jw, sub_add_cancel] using hw
+  have hphiU : phi ju = S.oppositeVertexByIndex S.surplusIdx := by
+    simpa only [phi, ju, sub_add_cancel, iz] using hu
+  have hjwpos : (0 : Fin B.n) < jw := by
+    apply Fin.pos_iff_ne_zero.mpr
+    intro hj
+    have hadd := congrArg (fun t : Fin B.n => t + iv) hj
+    have : iw = iv := by
+      simpa only [jw, sub_add_cancel, zero_add] using hadd
+    exact (ne_of_gt O.apex_order.2) this
+  have hjupos : (0 : Fin B.n) < ju := by
+    apply Fin.pos_iff_ne_zero.mpr
+    intro hj
+    have hadd := congrArg (fun t : Fin B.n => t + iv) hj
+    have : iz = iv := by
+      simpa only [ju, sub_add_cancel, zero_add] using hadd
+    exact (ne_of_gt O.apex_order.1) (by simpa only [iz] using this.symm)
+  have hjw_ne_ju : jw ≠ ju := by
+    intro heq
+    have hadd := congrArg (fun t : Fin B.n => t + iv) heq
+    have : iw = iz := by
+      simpa only [jw, ju, sub_add_cancel] using hadd
+    exact (ne_of_gt (lt_trans O.apex_order.1 O.apex_order.2))
+      (by simpa only [iz] using this)
+  have hneg : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (B.boundary i) (B.boundary j) (B.boundary k) < 0 := by
+    intro i j k hij hjk
+    exact signedArea_strict_of_boundaryIndexing B hij hjk
+  have hnegShift : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (phi i) (phi j) (phi k) < 0 := by
+    intro i j k hij hjk
+    exact signedArea_strict_of_cyclicShift hneg iv hij hjk
+  have hjw_lt_ju : jw < ju := by
+    rcases lt_or_gt_of_ne hjw_ne_ju with hlt | hgt
+    · exact hlt
+    · have hs := hnegShift hjupos hgt
+      have ho := hneg O.apex_order.1 O.apex_order.2
+      have hswap :
+          signedArea2 (B.boundary iv) (B.boundary iz) (B.boundary iw) =
+            -signedArea2 (B.boundary iz) (B.boundary iv) (B.boundary iw) := by
+        simp [signedArea2]
+        ring
+      rw [hphi0, hphiU, hphiW] at hs
+      rw [← hv, ← hu, ← hw] at hs
+      rw [hswap] at hs
+      simpa only [iz] using (show False by linarith)
+  have hphiInj : Function.Injective phi :=
+    injective_cyclicShift B.boundary_injective iv
+  have hphiImage : Finset.univ.image phi = D.A := by
+    simpa only [phi, image_univ_cyclicShift B.boundary iv] using B.boundary_image
+  have hphiCcw : EuclideanGeometry.IsCcwConvexPolygon phi :=
+    isCcwConvexPolygon_cyclicShift B.boundary_injective B.boundary_ccw iv
+  let B' : BoundaryIndexing D.A :=
+    boundaryIndexingOfBoundary phi hphiInj hphiImage hphiCcw
+  have hleftInterval : ∀ x : ℝ²,
+      x ∈ S.capByIndex S.surplusIdx ↔
+        ∃ q : Fin B.n, 0 ≤ q ∧ q ≤ jw ∧ phi q = x := by
+    apply S.capByIndex_interval_of_global_indices S.surplusIdx
+      hphiCcw hphiInj hphiImage (by simpa using hjwpos)
+      (Or.inr hjw_lt_ju)
+    · simpa [hphiU] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.surplusIdx).symm
+    · simpa [hphi0] using
+        S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm
+    · simpa [hphiW] using
+        S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hleftBase : signedArea2 (phi ju) (phi 0) (phi jw) < 0 := by
+    have h := hnegShift hjwpos hjw_lt_ju
+    have hcycle : signedArea2 (phi ju) (phi 0) (phi jw) =
+        signedArea2 (phi 0) (phi jw) (phi ju) := by
+      simp [signedArea2]
+      ring
+    rw [hcycle]
+    exact h
+  obtain ⟨mL, LL, PL, HL, BlockL, HordL, hloL, hhiL⟩ :=
+    strictCapBlockData_of_supportCap_on_boundary
+      D.convex (S.capByIndex_subset S.surplusIdx)
+      (S.circPacketByIndex S.surplusIdx)
+      (S.circPacketByIndex S.surplusIdx).inner_at_v1
+      hphiInj hphiImage hjwpos hleftInterval
+      (u := ju) (lo := 0) (hi := jw)
+      (by simpa [hphiU] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.surplusIdx).symm)
+      (Or.inl ⟨
+        by simpa [hphi0] using
+          S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm,
+        by simpa [hphiW] using
+          S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm⟩)
+      hnegShift hleftBase
+  have hrightInterval : ∀ x : ℝ²,
+      x ∈ S.capByIndex S.oppIndex1 ↔
+        ∃ q : Fin B.n, jw ≤ q ∧ q ≤ ju ∧ phi q = x := by
+    apply S.capByIndex_interval_of_global_indices S.oppIndex1
+      hphiCcw hphiInj hphiImage hjw_lt_ju (Or.inl hjwpos)
+    · simpa [hphi0] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm
+    · simpa [hphiW] using
+        S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm
+    · simpa [hphiU] using
+        S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hrightBase : signedArea2 (phi 0) (phi jw) (phi ju) < 0 :=
+    hnegShift hjwpos hjw_lt_ju
+  obtain ⟨mR, LR, PR, HR, BlockR, HordR, hloR, hhiR⟩ :=
+    strictCapBlockData_of_supportCap_on_boundary
+      D.convex (S.capByIndex_subset S.oppIndex1)
+      (S.circPacketByIndex S.oppIndex1)
+      (S.circPacketByIndex S.oppIndex1).inner_at_v1
+      hphiInj hphiImage hjw_lt_ju hrightInterval
+      (u := 0) (lo := jw) (hi := ju)
+      (by simpa [hphi0] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm)
+      (Or.inl ⟨
+        by simpa [hphiW] using
+          S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm,
+        by simpa [hphiU] using
+          S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm⟩)
+      hnegShift hrightBase
+  let BL : CGN.StrictCapBlockData D.A (S.capByIndex S.surplusIdx) :=
+    { n := B.n, m := mL, phi := phi,
+      phi_injective := hphiInj, phi_ccw := hphiCcw,
+      L := LL, Packet := PL, Hside := HL, Block := BlockL, Hord := HordL }
+  let BR : CGN.StrictCapBlockData D.A (S.capByIndex S.oppIndex1) :=
+    { n := B.n, m := mR, phi := phi,
+      phi_injective := hphiInj, phi_ccw := hphiCcw,
+      L := LR, Packet := PR, Hside := HR, Block := BlockR, Hord := HordR }
+  have hleftLast : BL.L.points (CGN.lastIndex BL.Packet.hm) =
+      S.oppositeVertexByIndex S.oppIndex2 := by
+    calc
+      _ = BL.phi (BL.Block.idx (CGN.lastIndex BL.Packet.hm)) :=
+        BL.Block.points_eq _
+      _ = phi jw := by simp only [BL]; rw [BlockL.idx_last, hhiL]
+      _ = _ := hphiW
+  have hrightFirst : BR.L.points (CGN.firstIndex BR.Packet.hm) =
+      S.oppositeVertexByIndex S.oppIndex2 := by
+    calc
+      _ = BR.phi (BR.Block.idx (CGN.firstIndex BR.Packet.hm)) :=
+        BR.Block.points_eq _
+      _ = phi jw := by simp only [BR]; rw [BlockR.idx_first, hloR]
+      _ = _ := hphiW
+  have hleftCap :
+      S.leftAdjacentCapByIndex S.oppIndex2 = S.capByIndex S.surplusIdx := by
+    calc
+      S.leftAdjacentCapByIndex S.oppIndex2 =
+          S.leftAdjacentCapByIndex
+            (SurplusCapPacket.rightAdjacentIndex S.surplusIdx) :=
+        congrArg S.leftAdjacentCapByIndex
+          S.oppIndex2_eq_rightAdjacentIndex_surplusIdx
+      _ = S.capByIndex S.surplusIdx :=
+        S.leftAdjacentCapByIndex_rightAdjacentIndex S.surplusIdx
+  have hmemRL : H.radiusLeft ∈ S.capByIndex S.surplusIdx := by
+    rw [← hleftCap]
+    exact (Finset.mem_inter.mp H.radiusLeft_mem).2
+  have hmemρL : H.rhoLeft ∈ S.capByIndex S.surplusIdx := by
+    rw [← hleftCap]
+    exact (Finset.mem_inter.mp H.rhoLeft_mem).2
+  have hmemRR : H.radiusRight ∈ S.capByIndex S.oppIndex1 := by
+    simpa only [S.rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1] using
+      (Finset.mem_inter.mp H.radiusRight_mem).2
+  have hmemρR : H.rhoRight ∈ S.capByIndex S.oppIndex1 := by
+    simpa only [S.rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1] using
+      (Finset.mem_inter.mp H.rhoRight_mem).2
+  have hdRL : dist (S.oppositeVertexByIndex S.oppIndex2) H.radiusLeft = radius :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.radiusLeft_mem).1).2
+  have hdρL : dist (S.oppositeVertexByIndex S.oppIndex2) H.rhoLeft = ρ :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.rhoLeft_mem).1).2
+  have hdRR : dist (S.oppositeVertexByIndex S.oppIndex2) H.radiusRight = radius :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.radiusRight_mem).1).2
+  have hdρR : dist (S.oppositeVertexByIndex S.oppIndex2) H.rhoRight = ρ :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.rhoRight_mem).1).2
+  have hRL_ne : H.radiusLeft ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdRL
+    linarith
+  have hρL_ne : H.rhoLeft ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdρL
+    linarith
+  have hRR_ne : H.radiusRight ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdRR
+    linarith
+  have hρR_ne : H.rhoRight ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdρR
+    linarith
+  rcases lt_or_gt_of_ne hne with hrρ | hρr
+  · obtain ⟨irL, iρL, hirL, hiρL, hiρLirL⟩ :=
+      ambientIndex_lt_of_dist_lt_from_last BL hmemRL hmemρL (by
+        simpa only [hleftLast, hdRL, hdρL] using hrρ)
+    obtain ⟨irR, iρR, hirR, hiρR, hirRiρR⟩ :=
+      ambientIndex_lt_of_dist_lt_from_first BR hmemRR hmemρR (by
+        simpa only [hrightFirst, hdRR, hdρR] using hrρ)
+    have hleft_lt_jw : BlockL.idx irL < jw := by
+      have hle : BlockL.idx irL ≤ jw := by
+        have h := ((BlockL.idx_range_exact (BlockL.idx irL)).2 ⟨irL, rfl⟩).2
+        simpa only [hhiL] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hRL_ne
+      calc
+        H.radiusLeft = LL.points irL := by simpa only [BL] using hirL.symm
+        _ = phi (BlockL.idx irL) := BlockL.points_eq irL
+        _ = phi jw := congrArg phi heq
+        _ = _ := hphiW
+    have hjw_lt_right : jw < BlockR.idx irR := by
+      have hle : jw ≤ BlockR.idx irR := by
+        have h := ((BlockR.idx_range_exact (BlockR.idx irR)).2 ⟨irR, rfl⟩).1
+        simpa only [hloR] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hRR_ne
+      calc
+        H.radiusRight = LR.points irR := by simpa only [BR] using hirR.symm
+        _ = phi (BlockR.idx irR) := BlockR.points_eq irR
+        _ = phi jw := congrArg phi heq.symm
+        _ = _ := hphiW
+    let P : SharedBoundaryRadialOrder H B' :=
+      { radiusLeftIndex := BlockL.idx irL
+        rhoLeftIndex := BlockL.idx iρL
+        radiusRightIndex := BlockR.idx irR
+        rhoRightIndex := BlockR.idx iρR
+        radiusLeft_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BL] using
+            (BlockL.points_eq irL).symm.trans hirL
+        rhoLeft_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BL] using
+            (BlockL.points_eq iρL).symm.trans hiρL
+        radiusRight_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BR] using
+            (BlockR.points_eq irR).symm.trans hirR
+        rhoRight_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BR] using
+            (BlockR.points_eq iρR).symm.trans hiρR
+        direct_or_mirror := Or.inl ⟨hrρ, Or.inl ⟨hiρLirL,
+          lt_trans hleft_lt_jw hjw_lt_right, hirRiρR⟩⟩ }
+    exact P.radialCyclicOrder
+  · obtain ⟨iρL, irL, hiρL, hirL, hirLiρL⟩ :=
+      ambientIndex_lt_of_dist_lt_from_last BL hmemρL hmemRL (by
+        simpa only [hleftLast, hdRL, hdρL] using hρr)
+    obtain ⟨iρR, irR, hiρR, hirR, hiρRirR⟩ :=
+      ambientIndex_lt_of_dist_lt_from_first BR hmemρR hmemRR (by
+        simpa only [hrightFirst, hdRR, hdρR] using hρr)
+    have hleft_lt_jw : BlockL.idx iρL < jw := by
+      have hle : BlockL.idx iρL ≤ jw := by
+        have h := ((BlockL.idx_range_exact (BlockL.idx iρL)).2 ⟨iρL, rfl⟩).2
+        simpa only [hhiL] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hρL_ne
+      calc
+        H.rhoLeft = LL.points iρL := by simpa only [BL] using hiρL.symm
+        _ = phi (BlockL.idx iρL) := BlockL.points_eq iρL
+        _ = phi jw := congrArg phi heq
+        _ = _ := hphiW
+    have hjw_lt_right : jw < BlockR.idx iρR := by
+      have hle : jw ≤ BlockR.idx iρR := by
+        have h := ((BlockR.idx_range_exact (BlockR.idx iρR)).2 ⟨iρR, rfl⟩).1
+        simpa only [hloR] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hρR_ne
+      calc
+        H.rhoRight = LR.points iρR := by simpa only [BR] using hiρR.symm
+        _ = phi (BlockR.idx iρR) := BlockR.points_eq iρR
+        _ = phi jw := congrArg phi heq.symm
+        _ = _ := hphiW
+    let P : SharedBoundaryRadialOrder H B' :=
+      { radiusLeftIndex := BlockL.idx irL
+        rhoLeftIndex := BlockL.idx iρL
+        radiusRightIndex := BlockR.idx irR
+        rhoRightIndex := BlockR.idx iρR
+        radiusLeft_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BL] using
+            (BlockL.points_eq irL).symm.trans hirL
+        rhoLeft_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BL] using
+            (BlockL.points_eq iρL).symm.trans hiρL
+        radiusRight_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BR] using
+            (BlockR.points_eq irR).symm.trans hirR
+        rhoRight_eq := by
+          simpa only [B', boundaryIndexingOfBoundary, BR] using
+            (BlockR.points_eq iρR).symm.trans hiρR
+        direct_or_mirror := Or.inr ⟨hρr, Or.inl ⟨hirLiρL,
+          lt_trans hleft_lt_jw hjw_lt_right, hiρRirR⟩⟩ }
+    exact P.radialCyclicOrder
+
+private theorem radialCyclicOrder_of_oppIndex2_mirror
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    {radius ρ : ℝ}
+    (G : S.ExactFourTwoRadiusAdjacentCapGrid S.oppIndex2 radius ρ)
+    (H : FourHits G)
+    (hradius_pos : 0 < radius) (hρ_pos : 0 < ρ) (hne : radius ≠ ρ)
+    (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
+    (hu : B.boundary (zeroIndex hn) =
+      S.oppositeVertexByIndex S.surplusIdx)
+    (hv : B.boundary iv = S.oppositeVertexByIndex S.oppIndex1)
+    (hw : B.boundary iw = S.oppositeVertexByIndex S.oppIndex2)
+    (O : MirrorBoundaryBlocks S B.boundary hn iv iw) :
+    RadialCyclicOrder H := by
+  classical
+  let iz : Fin B.n := zeroIndex hn
+  have hneg : ∀ {i j k : Fin B.n}, i < j → j < k →
+      signedArea2 (B.boundary i) (B.boundary j) (B.boundary k) < 0 := by
+    intro i j k hij hjk
+    exact signedArea_strict_of_boundaryIndexing B hij hjk
+  have hleftInterval : ∀ x : ℝ²,
+      x ∈ S.capByIndex S.surplusIdx ↔
+        ∃ q : Fin B.n, iw ≤ q ∧ q ≤ iv ∧ B.boundary q = x := by
+    apply S.capByIndex_reverse_interval_of_global_indices S.surplusIdx
+      B.boundary_ccw B.boundary_injective B.boundary_image O.apex_order.2
+      (Or.inl O.apex_order.1)
+    · simpa [iz, hu] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.surplusIdx).symm
+    · simpa [hv] using
+        S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm
+    · simpa [hw] using
+        S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hleftBase :
+      signedArea2 (B.boundary iz) (B.boundary iw) (B.boundary iv) < 0 := by
+    simpa only [iz] using hneg O.apex_order.1 O.apex_order.2
+  obtain ⟨mL, LL, PL, HL, BlockL, HordL, hloL, hhiL⟩ :=
+    strictCapBlockData_of_supportCap_on_boundary
+      D.convex (S.capByIndex_subset S.surplusIdx)
+      (S.circPacketByIndex S.surplusIdx)
+      (S.circPacketByIndex S.surplusIdx).inner_at_v1
+      B.boundary_injective B.boundary_image O.apex_order.2 hleftInterval
+      (u := iz) (lo := iw) (hi := iv)
+      (by simpa [iz, hu] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.surplusIdx).symm)
+      (Or.inr ⟨
+        by simpa [hw] using
+          S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm,
+        by simpa [hv] using
+          S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm⟩)
+      hneg hleftBase
+  have hrightInterval : ∀ x : ℝ²,
+      x ∈ S.capByIndex S.oppIndex1 ↔
+        ∃ q : Fin B.n, iz ≤ q ∧ q ≤ iw ∧ B.boundary q = x := by
+    apply S.capByIndex_reverse_interval_of_global_indices S.oppIndex1
+      B.boundary_ccw B.boundary_injective B.boundary_image O.apex_order.1
+      (Or.inr O.apex_order.2)
+    · simpa [hv] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm
+    · simpa [hw] using
+        S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm
+    · simpa [iz, hu] using
+        S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hrightBase :
+      signedArea2 (B.boundary iv) (B.boundary iz) (B.boundary iw) < 0 := by
+    have h := hneg O.apex_order.1 O.apex_order.2
+    have hcycle : signedArea2 (B.boundary iv) (B.boundary iz)
+          (B.boundary iw) =
+        signedArea2 (B.boundary iz) (B.boundary iw) (B.boundary iv) := by
+      simp [signedArea2]
+      ring
+    rw [hcycle]
+    simpa only [iz] using h
+  obtain ⟨mR, LR, PR, HR, BlockR, HordR, hloR, hhiR⟩ :=
+    strictCapBlockData_of_supportCap_on_boundary
+      D.convex (S.capByIndex_subset S.oppIndex1)
+      (S.circPacketByIndex S.oppIndex1)
+      (S.circPacketByIndex S.oppIndex1).inner_at_v1
+      B.boundary_injective B.boundary_image O.apex_order.1 hrightInterval
+      (u := iv) (lo := iz) (hi := iw)
+      (by simpa [hv] using
+        (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).symm)
+      (Or.inr ⟨
+        by simpa [iz, hu] using
+          S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm,
+        by simpa [hw] using
+          S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm⟩)
+      hneg hrightBase
+  let BL : CGN.StrictCapBlockData D.A (S.capByIndex S.surplusIdx) :=
+    { n := B.n, m := mL, phi := B.boundary,
+      phi_injective := B.boundary_injective, phi_ccw := B.boundary_ccw,
+      L := LL, Packet := PL, Hside := HL, Block := BlockL, Hord := HordL }
+  let BR : CGN.StrictCapBlockData D.A (S.capByIndex S.oppIndex1) :=
+    { n := B.n, m := mR, phi := B.boundary,
+      phi_injective := B.boundary_injective, phi_ccw := B.boundary_ccw,
+      L := LR, Packet := PR, Hside := HR, Block := BlockR, Hord := HordR }
+  have hleftFirst : BL.L.points (CGN.firstIndex BL.Packet.hm) =
+      S.oppositeVertexByIndex S.oppIndex2 := by
+    calc
+      _ = BL.phi (BL.Block.idx (CGN.firstIndex BL.Packet.hm)) :=
+        BL.Block.points_eq _
+      _ = B.boundary iw := by simp only [BL]; rw [BlockL.idx_first, hloL]
+      _ = _ := hw
+  have hrightLast : BR.L.points (CGN.lastIndex BR.Packet.hm) =
+      S.oppositeVertexByIndex S.oppIndex2 := by
+    calc
+      _ = BR.phi (BR.Block.idx (CGN.lastIndex BR.Packet.hm)) :=
+        BR.Block.points_eq _
+      _ = B.boundary iw := by simp only [BR]; rw [BlockR.idx_last, hhiR]
+      _ = _ := hw
+  have hleftCap :
+      S.leftAdjacentCapByIndex S.oppIndex2 = S.capByIndex S.surplusIdx := by
+    calc
+      S.leftAdjacentCapByIndex S.oppIndex2 =
+          S.leftAdjacentCapByIndex
+            (SurplusCapPacket.rightAdjacentIndex S.surplusIdx) :=
+        congrArg S.leftAdjacentCapByIndex
+          S.oppIndex2_eq_rightAdjacentIndex_surplusIdx
+      _ = S.capByIndex S.surplusIdx :=
+        S.leftAdjacentCapByIndex_rightAdjacentIndex S.surplusIdx
+  have hmemRL : H.radiusLeft ∈ S.capByIndex S.surplusIdx := by
+    rw [← hleftCap]
+    exact (Finset.mem_inter.mp H.radiusLeft_mem).2
+  have hmemρL : H.rhoLeft ∈ S.capByIndex S.surplusIdx := by
+    rw [← hleftCap]
+    exact (Finset.mem_inter.mp H.rhoLeft_mem).2
+  have hmemRR : H.radiusRight ∈ S.capByIndex S.oppIndex1 := by
+    simpa only [S.rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1] using
+      (Finset.mem_inter.mp H.radiusRight_mem).2
+  have hmemρR : H.rhoRight ∈ S.capByIndex S.oppIndex1 := by
+    simpa only [S.rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1] using
+      (Finset.mem_inter.mp H.rhoRight_mem).2
+  have hdRL : dist (S.oppositeVertexByIndex S.oppIndex2) H.radiusLeft = radius :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.radiusLeft_mem).1).2
+  have hdρL : dist (S.oppositeVertexByIndex S.oppIndex2) H.rhoLeft = ρ :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.rhoLeft_mem).1).2
+  have hdRR : dist (S.oppositeVertexByIndex S.oppIndex2) H.radiusRight = radius :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.radiusRight_mem).1).2
+  have hdρR : dist (S.oppositeVertexByIndex S.oppIndex2) H.rhoRight = ρ :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp H.rhoRight_mem).1).2
+  have hRL_ne : H.radiusLeft ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdRL
+    linarith
+  have hρL_ne : H.rhoLeft ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdρL
+    linarith
+  have hRR_ne : H.radiusRight ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdRR
+    linarith
+  have hρR_ne : H.rhoRight ≠ S.oppositeVertexByIndex S.oppIndex2 := by
+    intro heq
+    rw [heq, dist_self] at hdρR
+    linarith
+  rcases lt_or_gt_of_ne hne with hrρ | hρr
+  · obtain ⟨irL, iρL, hirL, hiρL, hirLiρL⟩ :=
+      ambientIndex_lt_of_dist_lt_from_first BL hmemRL hmemρL (by
+        simpa only [hleftFirst, hdRL, hdρL] using hrρ)
+    obtain ⟨irR, iρR, hirR, hiρR, hiρRirR⟩ :=
+      ambientIndex_lt_of_dist_lt_from_last BR hmemRR hmemρR (by
+        simpa only [hrightLast, hdRR, hdρR] using hrρ)
+    have hiw_lt_left : iw < BlockL.idx irL := by
+      have hle : iw ≤ BlockL.idx irL := by
+        have h := ((BlockL.idx_range_exact (BlockL.idx irL)).2 ⟨irL, rfl⟩).1
+        simpa only [hloL] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hRL_ne
+      calc
+        H.radiusLeft = LL.points irL := by simpa only [BL] using hirL.symm
+        _ = B.boundary (BlockL.idx irL) := BlockL.points_eq irL
+        _ = B.boundary iw := congrArg B.boundary heq.symm
+        _ = _ := hw
+    have hright_lt_iw : BlockR.idx irR < iw := by
+      have hle : BlockR.idx irR ≤ iw := by
+        have h := ((BlockR.idx_range_exact (BlockR.idx irR)).2 ⟨irR, rfl⟩).2
+        simpa only [hhiR] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hRR_ne
+      calc
+        H.radiusRight = LR.points irR := by simpa only [BR] using hirR.symm
+        _ = B.boundary (BlockR.idx irR) := BlockR.points_eq irR
+        _ = B.boundary iw := congrArg B.boundary heq
+        _ = _ := hw
+    let P : SharedBoundaryRadialOrder H B :=
+      { radiusLeftIndex := BlockL.idx irL
+        rhoLeftIndex := BlockL.idx iρL
+        radiusRightIndex := BlockR.idx irR
+        rhoRightIndex := BlockR.idx iρR
+        radiusLeft_eq := (BlockL.points_eq irL).symm.trans (by
+          simpa only [BL] using hirL)
+        rhoLeft_eq := (BlockL.points_eq iρL).symm.trans (by
+          simpa only [BL] using hiρL)
+        radiusRight_eq := (BlockR.points_eq irR).symm.trans (by
+          simpa only [BR] using hirR)
+        rhoRight_eq := (BlockR.points_eq iρR).symm.trans (by
+          simpa only [BR] using hiρR)
+        direct_or_mirror := Or.inl ⟨hrρ, Or.inr ⟨hiρRirR,
+          lt_trans hright_lt_iw hiw_lt_left, hirLiρL⟩⟩ }
+    exact P.radialCyclicOrder
+  · obtain ⟨iρL, irL, hiρL, hirL, hiρLirL⟩ :=
+      ambientIndex_lt_of_dist_lt_from_first BL hmemρL hmemRL (by
+        simpa only [hleftFirst, hdRL, hdρL] using hρr)
+    obtain ⟨iρR, irR, hiρR, hirR, hirRiρR⟩ :=
+      ambientIndex_lt_of_dist_lt_from_last BR hmemρR hmemRR (by
+        simpa only [hrightLast, hdRR, hdρR] using hρr)
+    have hiw_lt_left : iw < BlockL.idx iρL := by
+      have hle : iw ≤ BlockL.idx iρL := by
+        have h := ((BlockL.idx_range_exact (BlockL.idx iρL)).2 ⟨iρL, rfl⟩).1
+        simpa only [hloL] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hρL_ne
+      calc
+        H.rhoLeft = LL.points iρL := by simpa only [BL] using hiρL.symm
+        _ = B.boundary (BlockL.idx iρL) := BlockL.points_eq iρL
+        _ = B.boundary iw := congrArg B.boundary heq.symm
+        _ = _ := hw
+    have hright_lt_iw : BlockR.idx iρR < iw := by
+      have hle : BlockR.idx iρR ≤ iw := by
+        have h := ((BlockR.idx_range_exact (BlockR.idx iρR)).2 ⟨iρR, rfl⟩).2
+        simpa only [hhiR] using h
+      apply lt_of_le_of_ne hle
+      intro heq
+      apply hρR_ne
+      calc
+        H.rhoRight = LR.points iρR := by simpa only [BR] using hiρR.symm
+        _ = B.boundary (BlockR.idx iρR) := BlockR.points_eq iρR
+        _ = B.boundary iw := congrArg B.boundary heq
+        _ = _ := hw
+    let P : SharedBoundaryRadialOrder H B :=
+      { radiusLeftIndex := BlockL.idx irL
+        rhoLeftIndex := BlockL.idx iρL
+        radiusRightIndex := BlockR.idx irR
+        rhoRightIndex := BlockR.idx iρR
+        radiusLeft_eq := (BlockL.points_eq irL).symm.trans (by
+          simpa only [BL] using hirL)
+        rhoLeft_eq := (BlockL.points_eq iρL).symm.trans (by
+          simpa only [BL] using hiρL)
+        radiusRight_eq := (BlockR.points_eq irR).symm.trans (by
+          simpa only [BR] using hirR)
+        rhoRight_eq := (BlockR.points_eq iρR).symm.trans (by
+          simpa only [BR] using hiρR)
+        direct_or_mirror := Or.inr ⟨hρr, Or.inr ⟨hirRiρR,
+          lt_trans hright_lt_iw hiw_lt_left, hiρLirL⟩⟩ }
+    exact P.radialCyclicOrder
+/-! The public second-opposite-cap producer is intentionally separate from the
+first-cap producer above: its direct branch recuts at the first opposite apex,
+while its mirror branch consumes the native zero-cut intervals. -/
+theorem exists_fourHits_radialCyclicOrder_oppIndex2
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    {radius ρ : ℝ}
+    (G : S.ExactFourTwoRadiusAdjacentCapGrid S.oppIndex2 radius ρ)
+    (hradius_pos : 0 < radius) (hρ_pos : 0 < ρ) (hne : radius ≠ ρ) :
+    ∃ H : FourHits G, RadialCyclicOrder H := by
+  classical
+  let H : FourHits G := Classical.choice (FourHits.exists G)
+  rcases Census554.ZeroCutBoundaryIndexing.exists_with_capBlocks S with
+    ⟨B, hn, iv, iw, hu, hv, hw, hdirect | hmirror⟩
+  · exact ⟨H, radialCyclicOrder_of_oppIndex2_direct D S G H
+      hradius_pos hρ_pos hne B hn iv iw hu hv hw hdirect⟩
+  · exact ⟨H, radialCyclicOrder_of_oppIndex2_mirror D S G H
+      hradius_pos hρ_pos hne B hn iv iw hu hv hw hmirror⟩
+
+theorem exists_fourHits_strict_cross_distance_oppIndex2
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    {radius ρ : ℝ}
+    (G : S.ExactFourTwoRadiusAdjacentCapGrid S.oppIndex2 radius ρ)
+    (hradius_pos : 0 < radius) (hρ_pos : 0 < ρ) (hne : radius ≠ ρ) :
+    ∃ H : FourHits G,
+      dist H.radiusLeft H.radiusRight + dist H.rhoLeft H.rhoRight <
+        dist H.radiusLeft H.rhoRight + dist H.rhoLeft H.radiusRight := by
+  rcases exists_fourHits_radialCyclicOrder_oppIndex2 D S G
+      hradius_pos hρ_pos hne with ⟨H, horder⟩
+  exact ⟨H, horder.strict_cross_distance D.convex⟩
+
 #print axioms FourHits.exists
 #print axioms ambientIndex_lt_of_dist_lt_from_first
 #print axioms ambientIndex_lt_of_dist_lt_from_last
@@ -1126,6 +1714,8 @@ theorem exists_fourHits_strict_cross_distance_oppIndex1
 #print axioms RadialCyclicOrder.strict_cross_distance
 #print axioms exists_fourHits_radialCyclicOrder_oppIndex1
 #print axioms exists_fourHits_strict_cross_distance_oppIndex1
+#print axioms exists_fourHits_radialCyclicOrder_oppIndex2
+#print axioms exists_fourHits_strict_cross_distance_oppIndex2
 
 end ExactFourAdjacentGridKalmanson
 end Problem97
