@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-opposed-turn-residual-ingress-doc-20260903",
+  "owner": "codex-rigid221",
+  "base_head": "aa768618fe5b3e067b260134f5132592d6253268",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-opposed-turn-residual-ingress-doc-20260903.json",
+    "docs/plans/2026-09-03-exactfive-opposed-turn-source-adapter.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T02:30:41Z",
+  "manifest_sha256": "a86a75dbb6936655c01a53900711e226c2c378c1c220240c8b788cb5acd738c7"
+}
