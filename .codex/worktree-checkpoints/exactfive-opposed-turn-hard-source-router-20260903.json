@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-opposed-turn-hard-source-router-20260903",
+  "owner": "codex-rigid221",
+  "base_head": "0832ec5611b6b8b96f3d7a939a9657f148e310fe",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-opposed-turn-hard-source-router-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctOpposedTurnHardSource.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T02:58:37Z",
+  "manifest_sha256": "a2d5a6628d468d27edba45e204940409218986fb6c2f9a3907f6b4284d50905e"
+}
