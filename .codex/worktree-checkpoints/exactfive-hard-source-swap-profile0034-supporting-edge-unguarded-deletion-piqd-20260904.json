@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-unguarded-deletion-piqd-20260904",
+  "owner": "profile0034-supporting-edge-unguarded-deletion-impl",
+  "base_head": "d07392f52c05c1d2d68abc37c058ffe296e751cd",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-supporting-edge-unguarded-deletion-piqd-20260904.json",
+    "census/card_head/exactfive_hard_source_swap_profile0034_supporting_edge_unguarded_deletion_piqd.py",
+    "census/card_head/tests/test_exactfive_hard_source_swap_profile0034_supporting_edge_unguarded_deletion_piqd.py",
+    "docs/specs/p97-exactfive-hard-source-swap-profile0034-supporting-edge-unguarded-deletion-v1.md",
+    "scripts/run_exactfive_hard_source_swap_profile0034_supporting_edge_unguarded_deletion_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-hard-source-swap-profile0034-supporting-edge-unguarded-deletion-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T17:42:00Z",
+  "manifest_sha256": "8b9bfd4d1c9cdd01705c3dcec1dd7574b1d71216434d5c5c3ed51f7854ed1596"
+}
