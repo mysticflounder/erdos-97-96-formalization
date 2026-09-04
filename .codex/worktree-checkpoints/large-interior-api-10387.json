@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "large-interior-api-10387",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "5a3bccbcd1008775670a18fb54c1078945a1ad16",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/large-interior-api-10387.json",
+    "docs/skeptic-TwoRadiusDoublePartitionLargeInterior-2026-09-03.md",
+    "lean/Erdos9796Proof/P97/ATail/CapInteriorEquidistant.lean",
+    "lean/Erdos9796Proof/P97/ATail/TwoRadiusDoublePartitionLargeInterior.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T01:45:42Z",
+  "manifest_sha256": "866603a8000c9e03b823ba81dfbb9b923472d991f390c253b5d26ded2dc9937e"
+}
