@@ -6134,3 +6134,190 @@ circumradius equations, and all six foreign-hit distance equations explicitly.
 The theorem is axiom-clean and builds under the governed workflow.  It is still
 off-spine: no current D1 producer supplies the three cyclic foreign-hit points,
 so this wrapper does not close either D1 child or section 64.
+
+### 81. Section 64 is not a proof sketch: the reflection bound is one application of proved source (2026-09-03)
+
+Section 64 recorded its reflection argument as **PROOF SKETCH, not formalized**,
+and every section from 67 to 80 carried that label forward as the one
+conjectural link in the chain.  That label is wrong, and this section retires
+it.  The argument does not need to be formalized, because the theorem it needs
+already exists and has existed throughout.
+
+**The theorem.**  `SurplusM44Packet/Shard01.lean:665`:
+
+```lean
+theorem twoCircle_sameSide_reflection_false_of_not_mem_capByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {rq rv : ℝ} {x y : ℝ²}
+    (hxA : x ∈ A) (hyA : y ∈ A)
+    (hx : x ∉ S.capByIndex i) (hy : y ∉ S.capByIndex i)
+    (hne : x ≠ y)
+    (hxq : dist x (S.triangleByIndex i).v2 = rq)
+    (hyq : dist y (S.triangleByIndex i).v2 = rq)
+    (hxv : dist x (S.triangleByIndex i).v3 = rv)
+    (hyv : dist y (S.triangleByIndex i).v3 = rv) :
+    False
+```
+
+Read at the **third** index `k`, its `v2` and `v3` are precisely the two apices
+`Aᵢ` and `Aⱼ` of section 64's unordered pair, and its two `∉ capByIndex k`
+hypotheses are exactly "both points lie in cap interiors other than `k`".  It is
+section 64's conclusion with the indices renamed.
+
+**Every side condition is proved source, and there are only three.**
+
+| section 64 step | source |
+|---|---|
+| the two hits are carrier points | `capInteriorByIndex_subset` (`Cap/PartitionFromMEC.lean:505`) |
+| both avoid cap `k` | `capInteriorByIndex_not_mem_capByIndex_of_ne` (`Shard02.lean:200`) |
+| the two hits are distinct | `capInteriorByIndex_ne_of_mem_of_mem_ne` (`Shard02.lean:242`) |
+
+The chord-separation half that section 64 said would need `OnArcOpposite` is
+internal to the Shard01 theorem, where it comes from
+`signedArea2_mul_pos_of_not_mem_capByIndex` (`Shard01.lean:653`) — pure
+`arc_membership`, with **no `ConvexIndep`, no cardinality bound, and no
+circumscribed-circle data**.
+
+**In Lean.**  New file
+`lean/Erdos9796Proof/P97/ATail/ForeignHitPairBound.lean`, one theorem,
+no `sorry`:
+
+```lean
+theorem twoCircle_capInteriorPair_false_of_shared_apex_radii_of_adjacent
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (k : Fin 3)
+    {ri rj : ℝ} {x y : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex (rightAdjacentIndex k))
+    (hy : y ∈ S.capInteriorByIndex (leftAdjacentIndex k))
+    (hxi : dist x (S.oppositeVertexByIndex (leftAdjacentIndex k)) = ri)
+    (hyi : dist y (S.oppositeVertexByIndex (leftAdjacentIndex k)) = ri)
+    (hxj : dist x (S.oppositeVertexByIndex (rightAdjacentIndex k)) = rj)
+    (hyj : dist y (S.oppositeVertexByIndex (rightAdjacentIndex k)) = rj) :
+    False
+```
+
+The proof is five `have`s that discharge the index arithmetic by `fin_cases`
+plus `decide`/`rfl`, and one `exact`.  Stating the pair at the third index `k`,
+rather than at an arbitrary `i ≠ j`, is what makes the apex identification
+`(triangleByIndex k).v2 = A_{leftAdjacentIndex k}` hold by `rfl` in each case.
+
+**A route that was considered and is not needed.**  The perpendicular-bisector
+form — two points equidistant from two distinct centres have signed areas
+against the centre line that are exact negatives, hence strictly opposite signs
+— reduces to two `linear_combination` certificates in raw coordinates, and both
+were checked to compile.  It is recorded here as a dead end only in the sense
+that the repository already has the result: writing it would duplicate
+`WitnessReflectionKernel` (`U2/WitnessReflectionKernel.lean:61,74,186,200`),
+which is sorry-free and already carries the reflection step.  Nothing was
+committed for it.
+
+**What this does and does not change.**  Section 64's *conclusion* — at most
+one foreign hit per unordered pair, hence at most three overall — is now a Lean
+theorem rather than a sketch.  It does **not** close obligation (i), and the
+scope limits are unchanged and must not be restated more weakly:
+
+* the **one-radius arm** only.  Section 64's pairing needs both hits on the
+  *same* pair of circles, which the one-radius arm supplies by putting cap
+  `j`'s whole interior on the class at `Aⱼ`.  In the two-radii arm that second
+  radius is a disjunction, so two hits in reversed slots need not share a
+  circle pair, and this theorem does not apply as stated;
+* **card fifteen** gated, through the six-slot model;
+* the theorem is **off-spine** — nothing on the D1 leaf's spine imports it —
+  so it carries no promotion claim.
+
+**The remaining work is assembly, not mathematics.**  With this section, all
+four links of the cyclic-exclusion chain are Lean and axiom-clean:
+
+| link | state |
+|---|---|
+| at most one foreign hit per unordered pair | **Lean** (this section) |
+| foreign hit in slot `(i,j)` ⟹ `c⁴ ≤ R²(4c² − a²)` | **Lean** (section 72) |
+| that criterion ⟹ the cubic `a²b ≤ c(a²+b²−c²)` | **Lean** (section 73) |
+| three cubics ⟹ equilateral | **Lean** (section 68) |
+
+What is still not written is the composition against a live packet: the
+apex-versus-foreign dichotomy at each slot (section 79 proves the dichotomy;
+the tally is not assembled), section 67's eight-way counting enumeration, and
+the passage from "some index is escape-free" to obligation (i) through section
+62.  Those are bookkeeping-heavy but need no new geometry.
+
+Leaf unchanged: two open obligations, `M = 18`.
+
+### 82. Housekeeping: an undocumented module, and the reachability picture (2026-09-03)
+
+**A durable module landed without a section.**  Commit `14edf89b6` added
+`lean/Erdos9796Proof/P97/ATail/TwoRadiiAdjacentCapForeignLowerBound.lean`, one
+theorem, no `sorry`, axiom closure `[propext, Classical.choice, Quot.sound]`
+verified directly.  Sections 79 and 80 do not mention it.  Recorded here.
+
+`twoRadii_adjacentCap_foreign_card_ge_two` says: at index `i`, given two
+distinct positive radii each with exactly one occupant in each adjacent closed
+cap — four occupants — at least two of them are strict-interior foreign hits.
+The reason is section 79's dichotomy plus disjointness of the two radius
+classes (`ATailPairedCommonDeletionNormalForm.selectedClass_disjoint_of_radius_ne`):
+each adjacent cap has exactly one surviving Moser endpoint, and at most one of
+the two occupants on that side can be it.
+
+**Which direction it runs.**  This is a *lower* bound on foreign hits.  Section
+63's route to obligation (i) needs an *upper* bound — at most two of the six
+slots foreign — so this theorem is not a step along that route and must not be
+read as one.  It is an ingress for the other consumer: sections 68–81 *consume*
+foreign hits.  It produces two at a single index, not three in cyclic position,
+so it does not by itself feed `false_of_cyclic_foreign_hits_of_ne`.  It also
+lives in the two-radii arm, where section 81 records that section 64's pairing
+does not apply.
+
+**Correction to a reachability claim.**  I recorded during the section 78 work
+that `CyclicSideInequalities.lean` is imported by nothing.  That was true when
+written and is now false: `CyclicForeignHitExclusion.lean` imports it.  Section
+73's reachability paragraph is likewise a snapshot that has been overtaken.
+Current state, from walking `import` lines in the working tree:
+
+| module | importers |
+|---|---|
+| `AdjacentCapContainment` | `TwoRadiiAdjacentCapForeignLowerBound`, `FrontierLiveClosure/AllLargeEndpointRadius` |
+| `CyclicSideInequalities` | `CyclicForeignHitExclusion` |
+| `InDiskCriterion` | `CircumradiusRelation` |
+| `CircumradiusRelation` | `CyclicForeignHitExclusion` |
+| `NonObtusePolarization` | `CyclicForeignHitExclusion` |
+| `SlotOccupantDichotomy` | `TwoRadiiAdjacentCapForeignLowerBound` |
+| `CyclicForeignHitExclusion` | **none** |
+| `TwoRadiiAdjacentCapForeignLowerBound` | **none** |
+| `ForeignHitPairBound` (section 81) | **none** |
+
+So the chain has tips, not orphans.  Section 73's conclusion is unchanged and
+worth restating in its stronger form: **nothing on the D1 leaf's spine imports
+any of these nine**, and `AllLargeEndpointRadius` is not a counterexample —
+section 75 correction 3 records that it imports `TriApexEndpointRetainedOmission`
+and so sits strictly downstream of both `sorry`s.
+
+**The chain had no build coverage; it now does.**
+`lean/Erdos9796Proof.lean` imports only `P97.UpstreamBridge` and
+`P96.UpstreamBridge`, and the Lake default targets are that library root and
+`Erdos9796`.  An import walk puts the default closure at 5155 modules and finds
+**none** of the nine in it, so a green default build was no evidence at all
+about any of them.  Nor did any other target cover them: `Challenge` imports
+mathlib only, `Solution` reduces to the same root closure, the `erase_m1_gate`
+executable adds one unrelated module, and there is no `.github/` directory in
+this repository at all.  The one existing target that does reach outside the
+root closure, `scripts/test-p97-rigid221-card18.sh`, covers a different chain.
+
+The `lean-usage` validation-closeout rule is explicit that this must be fixed
+one of two ways — build every active unimported module explicitly, or add it to
+a real aggregate target — so this section takes the second, following the
+repository's own documented pattern
+(`FrontierLiveClosure/Rigid221Card18Aggregate.lean` and its spec
+`docs/specs/p97-rigid221-card18-cegar-aggregate-v1.md`).  New import-only
+module `lean/Erdos9796Proof/P97/ATail/TriApexCyclicExclusionAggregate.lean`
+imports the chain's three DAG roots — `CyclicForeignHitExclusion`,
+`TwoRadiiAdjacentCapForeignLowerBound`, `ForeignHitPairBound` — which between
+them cover all nine.  It declares nothing.  `scripts/test-p97-d1-triapex-cyclic-exclusion.sh`
+builds it under `LAKE_BUILD_NO_REFRESH=1`, mirroring the Card18 runner.
+
+**What that target is worth, stated exactly.**  It shows the nine modules
+elaborate together against the current tree.  That is the whole claim.  It
+establishes no consumer reachability, discharges nothing, and is not the
+promotion gate: promotion would additionally need an import edge from a named
+on-spine aggregate and a `bind_lean_ingress_record.py` record, and neither
+exists.  The aggregate is deliberately absent from the public root.
+
+Leaf unchanged: two open obligations, `M = 18`.
