@@ -1,0 +1,51 @@
+{
+  "schema": "p97-exactfive-hard-source-swap-profile0034-source-qfnra-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-source-qfnra-piqd-20260903",
+  "run_id": "run-0001",
+  "status": "TARGET_INCONCLUSIVE",
+  "claim_boundary": "two authenticated profile-0034 fixed-order source formulas only",
+  "claims": {
+    "source_realization": false,
+    "live_source_completeness": false,
+    "all_order_elimination": false,
+    "lean_ingress": false,
+    "theorem": false,
+    "promotion": false,
+    "live_closure": false
+  },
+  "run_manifest_sha256": "0d816be5a6fa83e0a2944352d5acd7d311d98853ecb5a44c719aa6bcb2590395",
+  "launch_sha256": "d8c7a9f547cea72953c5c24aa077286a0ae25354a9d88e792565ba51c726d3ae",
+  "terminal_sha256": "456135f6c90c9ea7e29e989db1c350fbc9f4b542e5a6db0ce557099076185922",
+  "queries": [
+    {
+      "key": "control-positive",
+      "z3": {"raw_status": "SAT", "effective_status": "SAT_SEMANTICALLY_REPLAYED", "wall_ms": 1},
+      "cvc5": {"raw_status": "SAT", "effective_status": "SAT_SEMANTICALLY_REPLAYED", "wall_ms": 0},
+      "result_sha256": "d95f7805489e6f04a08557fc1e721b17abb35a6ef5886d3530c295209c6e15b3"
+    },
+    {
+      "key": "control-negative",
+      "z3": {"raw_status": "UNSAT", "effective_status": "UNSAT_DISCOVERY_ONLY", "wall_ms": 0},
+      "cvc5": {"raw_status": "UNSAT", "effective_status": "UNSAT_DISCOVERY_ONLY", "wall_ms": 0},
+      "result_sha256": "58792efd529fac89b0c49eb37f9406e3dfdab1873e6d37a76cf5d02f18b0f04d"
+    },
+    {
+      "key": "parent-z3-mirror",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 60842},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90009},
+      "result_sha256": "1ccbeb27148396a0b8d9ff33ad5652d6c2b9a4ff4461ccc0388a1b22b56afee5"
+    },
+    {
+      "key": "parent-cvc5-direct",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 60933},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90011},
+      "result_sha256": "644d1dde3ed8f137caac61d7bab3a680132fe666d0e3bb83c27fcf3aa8d576fe"
+    }
+  ],
+  "wave_mine": {
+    "new_general_theorem_candidate": false,
+    "lean_corpus_search_triggered": false,
+    "reason": "the target sessions returned only authenticated UNKNOWN records with no model, core, or partial algebraic stream"
+  },
+  "summary_sha256": "9cb296bb39912d5ef7bfb98681999a77fe68cd8afbd7ecd944c7a6e73256fd66"
+}
