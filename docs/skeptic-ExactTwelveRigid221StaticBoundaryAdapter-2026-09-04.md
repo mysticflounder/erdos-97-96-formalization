@@ -132,12 +132,13 @@ construction or a live residual closure.
 
 ## Aggregate reachability
 
-The adapter remains a standalone module.  A probe that imports
-`Erdos9796Proof.P97.ATail.FrontierLiveClosure` and checks
-`terminalStaticDimacs_lit_natAbs_le` fails with Lean `unknownIdentifier`, while
-direct source elaboration of the adapter succeeds.  The aggregate import edge
-is therefore still required; its source file is foreign-modified in the
-shared worktree and was not edited by this lane.
+The adapter is now aggregate-reachable.  Commit `46f6216eb` adds its import to
+`Erdos9796Proof.P97.ATail.FrontierLiveClosure`; the governed targeted build
+completed all 12049 jobs, and a refreshed probe that imports the aggregate and
+checks `terminalStaticDimacs_lit_natAbs_le` succeeds.  The earlier
+`unknownIdentifier` result was produced before that import edge and against a
+stale aggregate artifact; it is retained only as the pre-integration finding,
+not as the current reachability status.
 
 ## Lean sorry graph
 
