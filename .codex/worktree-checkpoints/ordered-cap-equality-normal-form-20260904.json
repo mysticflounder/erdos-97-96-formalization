@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "ordered-cap-equality-normal-form-20260904",
+  "owner": "codex-root",
+  "base_head": "68bb902a330e3cc69fa9e32d0284ebc51b36697f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/ordered-cap-equality-normal-form-20260904.json",
+    "lean/Erdos9796Proof/P97/OrderedCapCardEqualityNormalForm.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T04:05:00Z",
+  "manifest_sha256": "9d57844067f0cae8f0b2500d7d88dc13479f48895ae3fe07415df6464cffefbd"
+}
