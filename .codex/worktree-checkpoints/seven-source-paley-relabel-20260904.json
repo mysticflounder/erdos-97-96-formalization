@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "seven-source-paley-relabel-20260904",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "aa768618fe5b3e067b260134f5132592d6253268",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/seven-source-paley-relabel-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/SevenSourcePaleyRelabel.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T02:29:00Z",
+  "manifest_sha256": "2166aa4eedeebeea233c5ffcfdde2bb0413131f6c450bd4de84072b38d10e881"
+}
