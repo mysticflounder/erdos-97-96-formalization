@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "sharp-turn-boundary-budget-20260903",
+  "owner": "sharp-turn-boundary-budget",
+  "base_head": "d2d559daca1b731452d0107a10ce9150f56e4b70",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/sharp-turn-boundary-budget-20260903.json",
+    "lean/Erdos9796Proof/P97/ConvexCyclicOrder/SharpTurnGeometry.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T19:00:00Z",
+  "manifest_sha256": "b34d9d140f7acea012cdb11614a9af4f50890c3bcc33f4cc18ba0bbd79c247f4"
+}
