@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "infra-d-three-selected-singleton-adapter-20260904",
+  "owner": "infra-d-three-selected-singleton-adapter",
+  "base_head": "e9f4d98246dacd11539446744ee7843fb82fca43",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/infra-d-three-selected-singleton-adapter-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/ThreeSelectedRowsSingletonIntersectionAdapter.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:00:00Z",
+  "manifest_sha256": "76f217c0ddbf80bc1d8a57664662ed406f2bc0828d4ee0c9f3d4067c10906b16"
+}
