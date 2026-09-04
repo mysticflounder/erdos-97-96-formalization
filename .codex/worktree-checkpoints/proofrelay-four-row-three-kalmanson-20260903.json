@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "proofrelay-four-row-three-kalmanson-20260903",
+  "owner": "four-row-kalmanson-cycle",
+  "base_head": "aa768618fe5b3e067b260134f5132592d6253268",
+  "created_utc": "2026-09-04T02:29:26Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/proofrelay-four-row-three-kalmanson-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FourSelectedRowsThreeKalmansonCycle.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "0f5b27466bb905832c5d755e844f518c0933d56a6d787e169ea93899338b3320"
+}
