@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "strict-kalmanson-n11-realizes-adapter-20260903",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "b900d23b5964ed139b04ed11428edc53dba482a5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-n11-realizes-adapter-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ThreeEquilateralChainCollision.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T04:24:53Z",
+  "manifest_sha256": "605f4430b5f5f5c64b2d8799b426ddfd5e4b4d1d5d4597c30461d7d60fb1b541"
+}

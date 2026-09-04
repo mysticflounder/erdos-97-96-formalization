@@ -200,4 +200,38 @@ theorem false_of_three_equilateral_chain_and_f_ne_c
     f_eq_c_of_three_equilateral_chain hAB_AC hAB_AD hBA_BC hBA_BF
       hCA_CD hCA_CE hEC_ED hEC_EF hBD_ne hAE_ne
 
+/-- A realized row pattern containing the four equilateral triples above is
+incompatible with distinct first two apex choices and a distinct terminal
+point. -/
+theorem false_of_realizes_three_equilateral_chain
+    {α : Type*}
+    {P : Census554.EqualityCore.RowPattern α}
+    {pointOf : α → ℝ²}
+    (hreal : Census554.EqualityCore.Realizes P pointOf)
+    {a b c d e f : α}
+    (hbd : b ≠ d) (hae : a ≠ e) (hfc : f ≠ c)
+    (hbA : b ∈ P a) (hcA : c ∈ P a) (hdA : d ∈ P a)
+    (haB : a ∈ P b) (hcB : c ∈ P b) (hfB : f ∈ P b)
+    (haC : a ∈ P c) (hdC : d ∈ P c) (heC : e ∈ P c)
+    (hcE : c ∈ P e) (hdE : d ∈ P e) (hfE : f ∈ P e) : False := by
+  have hbd' : pointOf b ≠ pointOf d := by
+    intro h
+    exact hbd (hreal.injective h)
+  have hae' : pointOf a ≠ pointOf e := by
+    intro h
+    exact hae (hreal.injective h)
+  have hfc' : pointOf f ≠ pointOf c := by
+    intro h
+    exact hfc (hreal.injective h)
+  exact false_of_three_equilateral_chain_and_f_ne_c
+    (hreal.equidist a b hbA c hcA)
+    (hreal.equidist a b hbA d hdA)
+    (hreal.equidist b a haB c hcB)
+    (hreal.equidist b a haB f hfB)
+    (hreal.equidist c a haC d hdC)
+    (hreal.equidist c a haC e heC)
+    (hreal.equidist e c hcE d hdE)
+    (hreal.equidist e c hcE f hfE)
+    hbd' hae' hfc'
+
 end Problem97
