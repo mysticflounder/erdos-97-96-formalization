@@ -3308,6 +3308,9 @@ core dependencies plus native computation trust.
 The adapter also exports `terminalStaticDimacs_length`, fixing the serialized
 formula size at `634859 + bank.length`; this is bookkeeping for future bank
 artifacts and supplies no terminal or coverage result.
+Its `terminalStaticDimacs_lit_natAbs_le` companion bounds every literal in the
+generic endpoint by `44875`, combining the frozen-parent bound with the
+learned-bank bound.  This is a serializer range check only.
 It also exports `terminalStaticPositiveMembershipDimacs_length`, fixing the
 positive-membership endpoint at `634917 + bank.length`: the frozen parent has
 634859 clauses, followed by the 57 compiler implications and one blocking

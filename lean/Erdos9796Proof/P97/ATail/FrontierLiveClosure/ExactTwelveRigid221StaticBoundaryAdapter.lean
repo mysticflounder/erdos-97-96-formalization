@@ -90,6 +90,32 @@ theorem learnedClause_lit_natAbs_le_baseNumVars
         omega
   simpa [SafeCoverIndexBridge.learnedLiteral] using hx
 
+theorem terminalStaticDimacs_lit_natAbs_le
+    (cell : FrozenNextRowCell) (bank : List SourceOrderPositiveNogood)
+    (hencodable :
+      ∀ (nogood : SourceOrderPositiveNogood), nogood ∈ bank →
+        ∀ (choice : RowChoice ExactTwelveCarrierIngress.Label),
+          choice ∈ nogood.choices →
+            FrozenSafeCandidateAt choice.center choice.support)
+    {clause : List Int}
+    (hclause : clause ∈ StaticTerminalConsumer.terminalStaticDimacs cell bank)
+    {literal : Int} (hliteral : literal ∈ clause) :
+    literal.natAbs ≤ 44875 := by
+  change clause ∈ StaticParentIngress.frozenParentDimacs cell ++
+      bank.map fun nogood => SafeCoverIndexBridge.learnedClause nogood.choices
+    at hclause
+  rcases List.mem_append.mp hclause with hparent | hbank
+  · exact StaticPositiveMembershipTerminalConsumer.frozenParentDimacs_lit_bound
+      cell clause hparent literal hliteral
+  · obtain ⟨nogood, hnogood, rfl⟩ := List.mem_map.mp hbank
+    have hlearned :=
+      learnedClause_lit_natAbs_le_baseNumVars
+        (choices := nogood.choices)
+        (fun choice hchoice => hencodable nogood hnogood choice hchoice)
+        hliteral
+    rw [SafeCoverCnf.baseNumVars_eq] at hlearned
+    exact le_trans hlearned (by omega)
+
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in

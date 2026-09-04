@@ -3,7 +3,7 @@
 **Target**: `lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticBoundaryAdapter.lean`
 **Date**: 2026-09-04
 **Verdict**: NEEDS WORK
-**Claims audited**: 9
+**Claims audited**: 10
 
 ## Summary
 
@@ -80,6 +80,16 @@ overall lane open.
 - **Actual label**: PROVEN (Lean-formalized bookkeeping)
 - **Verdict**: OK
 - **Reason**: The proof partitions parent, compiler, blocking, and bank clauses. It uses the parent bound 44,875, native-checked bounds for the 57 compiler clauses and blocking clause, and the learned-clause bound 42,560, then concludes the uniform bound 44,878. It adds no terminal or coverage claim.
+
+### F10: Generic endpoint literal-range interface
+
+- **Location**: `ExactTwelveRigid221StaticBoundaryAdapter.lean:143-163`
+- **Quote**: "every literal in `terminalStaticDimacs` is bounded by `44875`"
+- **Stated label**: Lean-formalized bookkeeping lemma
+- **Evidence present**: `terminalStaticDimacs_lit_natAbs_le`; focused `lake env lean` exits 0; the source-plus-probe audit reports only the standard core dependencies plus native computation trust.
+- **Actual label**: PROVEN (Lean-formalized bookkeeping)
+- **Verdict**: OK
+- **Reason**: The proof partitions the frozen parent and mapped bank clauses, applies the shared parent bound 44,875, and lifts the learned bank bound 42,560 to 44,875. It adds no terminal or coverage claim.
 
 ### F5: Learned-clause variable-range interface
 
