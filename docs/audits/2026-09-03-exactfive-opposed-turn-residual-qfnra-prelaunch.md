@@ -156,3 +156,54 @@ Checkpoint self-hash:
 `36db971d8b2b016799b2cfecdda465985f614a51e68d7eacfa18e1ea71ce8478`.
 The sparse hygiene report validated this audit checkpoint with zero issues.
 Its overall blocking state comes from unrelated shared-worktree state.
+
+## Final re-audit certification — 2026-09-03, run-0005
+
+**CERTIFIED FOR LAUNCH.** This section supersedes the historical prelaunch
+verdict above for the pristine `run-0005` implementation. Certification is
+limited to the two controls and six authenticated residual fixed-order
+formulas; it makes no source-realization, theorem, Lean-closure, or promotion
+claim. No target query or PIQD session was launched during this audit.
+
+The certified producer has SHA-256
+`47a1fbb12d337877197c0293694dcb1d38796b564161f491cef9b209db81a856`;
+the focused test file has SHA-256
+`17bcdad87e2f12dd3ff0226316daab6bf2d85b6dd74af6d7c36ab4d393bc1261`;
+and the run manifest self-hash is
+`c93b7bcf02abb8b90676470863aa8a60210652d6a2edea3ea5e70d93463c2deb`.
+The audited repository revision was
+`bdf0d8b4e4728aad8abf6c6d6c6dfc757b162d5c`.
+
+The final re-audit independently checked the complete prior matrix:
+
+- fresh `run_query` output is absent when handed to the adapter, and immutable
+  resume performs no transport operation;
+- descriptor, SMT, source payload, engine labels, session lifecycle, receipts,
+  solve digest, solver signature, response-loss reconciliation, exact SAT
+  replay, effective outcome, overall outcome, and flat result inventory are
+  all reconstructed from retained bytes;
+- extra result-object and engine-object keys are rejected;
+- terminal resume reconstructs all eight adapter trees before any transport
+  object can be created;
+- initialized, launched, failure, and terminal inventories are exact, `tmp`
+  must be empty, and failure custody cannot coexist with terminal custody;
+- create-once publication handles short writes, fsyncs file and parent, removes
+  only its own created inode after an exceptional write, and preserves a path
+  substituted by another inode;
+- timeout and worker bounds, execution-critical source snapshots, checkpoint
+  ordering, predecessor custody, and quarantine history all pass; and
+- all ten checkpoint, run-manifest, and quarantine self-hashes pass, and all
+  40 current source/input digest pins match their files.
+
+The genuine-adapter fixture suite passed all 32 focused tests in 10.74 seconds,
+and Ruff passed. Manual mutations confirmed that extra result and engine keys
+are rejected. The exceptional-write cleanup and substituted-path probes also
+passed. A silent `--init-only` replay left the five-entry run tree byte- and
+metadata-identical, with snapshot digest
+`892430b1c5c7255e554363de5f4885ed873a8cecfe2d5840943ceb240cf61b38`.
+A read-only PIQD inventory found zero sessions matching the 16 exact current
+query labels.
+
+The implementation-lane sparse hygiene report found zero lane issues. Its
+overall blocking flag reflects foreign shared-worktree entries, not a defect in
+this lane.
