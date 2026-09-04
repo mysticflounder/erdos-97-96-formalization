@@ -11,9 +11,9 @@
     "scripts/run_exactfive_hard_source_swap_profile0034_physical_block_deletion_piqd.py"
   ],
   "generated_roots": [
-    "scratch/runs/exactfive-hard-source-swap-profile0034-physical-block-deletion-piqd-20260904/run-0003"
+    "scratch/runs/exactfive-hard-source-swap-profile0034-physical-block-deletion-piqd-20260904/run-0005"
   ],
   "durable_paths": [],
   "created_utc": "2026-09-04T21:22:00Z",
-  "manifest_sha256": "4ca9e299debdd4c7d2581d2e0b0e1a48cf23c042a87ba2a549928ec2b4563c26"
+  "manifest_sha256": "9d25bd34602bb58bd13283412ba3b12d7a1c579c21f08cab9c0b1d2997a8d2d3"
 }

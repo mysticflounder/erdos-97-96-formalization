@@ -121,7 +121,7 @@ snapshots cover every execution-critical producer, adapter, parent input, and
 generated source record.
 
 The active run root is
-`scratch/runs/exactfive-hard-source-swap-profile0034-physical-block-deletion-piqd-20260904/run-0003`.
+`scratch/runs/exactfive-hard-source-swap-profile0034-physical-block-deletion-piqd-20260904/run-0005`.
 Its manifest repeats the governed lane checkpoint base head. Default CLI success
 is silent; errors are written to standard error.
 

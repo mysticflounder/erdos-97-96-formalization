@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import concurrent.futures
+import json
 import threading
+from collections.abc import Mapping
 from fractions import Fraction
 from pathlib import Path
 from types import SimpleNamespace
@@ -13,6 +15,9 @@ from census.card_head import (
     exactfive_hard_source_swap_profile0034_physical_block_deletion_piqd as lane,
 )
 from census.p97_search import phase3_piqd_smt_source_adapter as adapter
+from census.p97_search.tests import (
+    test_phase3_piqd_smt_source_adapter as adapter_test,
+)
 
 EXPECTED_UNIVERSE = (
     "edge-index-00",
@@ -110,6 +115,33 @@ EXPECTED_WITNESSES = {
 @pytest.fixture(scope="module")
 def custody() -> dict[str, Any]:
     return lane.authenticate_parent_runs()
+
+
+class GenericNamedPiqd(adapter_test.FakeCurrentPiqd):
+    """Adapt the maintained in-memory transport to exact readback variables."""
+
+    def request_json(
+        self,
+        method: str,
+        path: str,
+        body: Mapping[str, object] | None = None,
+    ) -> adapter.JsonResponse:
+        if method == "POST" and path.endswith("/solve") and body is not None:
+            original = json.loads(lane._canonical(body))
+            adapted = dict(body)
+            adapted["get_values"] = ["x"]
+            response = super().request_json(method, path, adapted)
+            session_id = path.split("/")[2]
+            data = self.sessions[session_id]
+            data["solve_request"] = original
+            receipt = data["receipt"]
+            if receipt is not None:
+                receipt["get_values"] = list(original["get_values"])
+                receipt["request_sha256"] = adapter_test._solve_request_sha(
+                    data["journal"], original
+                )
+            return response
+        return super().request_json(method, path, body)
 
 
 def _result(spec: lane.QuerySpec, status: str) -> dict[str, Any]:
@@ -373,7 +405,7 @@ def test_parent_custody_binds_full_source_unsat_journals(
 
 def test_checkpoint_registers_only_the_active_run() -> None:
     checkpoint = lane._load_checkpoint()
-    assert lane.RUN_ID == "run-0003"
+    assert lane.RUN_ID == "run-0005"
     assert checkpoint["generated_roots"] == [
         f"scratch/runs/{lane.LANE_ID}/{lane.RUN_ID}"
     ]
@@ -626,6 +658,30 @@ def test_request_ids_are_dynamic_key_bound_and_repeatable() -> None:
     ids = [lane._query_request_id(spec.key) for spec in specs]
     assert len(set(ids)) == len(ids)
     assert ids == [lane._query_request_id(spec.key) for spec in specs]
+
+
+def test_run_query_publishes_with_real_output_transaction(
+    tmp_path: Path,
+    custody: dict[str, Any],
+) -> None:
+    prepared = lane.prepare_query(lane.anchor_spec("lt"), parent=custody)
+    output = tmp_path / prepared.key
+    transport = GenericNamedPiqd({"z3": "UNSAT"}, unsat_core=[])
+    result = lane.run_query(
+        prepared,
+        output,
+        transport,
+        lane.SemanticVerdictCache(),
+    )
+    assert output.is_dir()
+    assert (output / "result.json").is_file()
+    assert lane.classify_result(result) == "UNSAT_CUSTODY_VALID"
+    assert transport.actual_solves == 1
+    assert transport.active == 0
+    assert {session["state"] for session in transport.sessions.values()} == {"closed"}
+    assert lane.verify_query_tree(prepared, output)["result_sha256"] == (
+        result["result_sha256"]
+    )
 
 
 def test_artifact_records_reject_path_escape_and_digest_drift(tmp_path: Path) -> None:

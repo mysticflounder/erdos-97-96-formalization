@@ -30,7 +30,7 @@ from census.card_head import (
 from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 
 LANE_ID = "exactfive-hard-source-swap-profile0034-physical-block-deletion-piqd-20260904"
-RUN_ID = "run-0003"
+RUN_ID = "run-0005"
 SOLVER = "z3"
 TIMEOUT_MS = 60_000
 DEFAULT_TIMEOUT_S = 60.0
@@ -1763,7 +1763,8 @@ def run_query(
             }
             _validate_engine(prepared, engine, payloads, cache)
             result = _result_record(prepared, engine, custody)
-            transaction.write_bytes("result.json", _json(result), publish=True)
+            transaction.write_bytes("result.json", _json(result))
+            transaction.publish()
         return verify_query_tree(prepared, output, cache)
     except (adapter.SmtSourceAdapterError, OSError) as exc:
         raise Profile0034PhysicalBlockDeletionError("query execution failed") from exc
