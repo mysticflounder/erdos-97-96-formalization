@@ -206,4 +206,61 @@ theorem exists_threeCycle_of_three_of_injective
       · exact (hxy rfl).elim
   · exact hthree
 
+/-- The exact-cover row-map version of the injective classification.  When the
+row assignment is injective, the two-cycle branch is excluded and the three
+named centers contain a directed three-cycle. -/
+theorem exists_threeCycle_of_three_rows_of_injective
+    {α : Type*} {a b c : α}
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    (rowA rowB rowC : Finset α)
+    (hcover : ∀ x : α, x = a ∨ x = b ∨ x = c →
+      x ∈ rowA ∨ x ∈ rowB ∨ x ∈ rowC)
+    (ha : a ∉ rowA) (hb : b ∉ rowB) (hc : c ∉ rowC)
+    (hinjective : Function.Injective (threeRowMap a b c rowA rowB)) :
+    ∃ x y z : α,
+      x ≠ y ∧ x ≠ z ∧ y ≠ z ∧
+      threeRowMap a b c rowA rowB x = y ∧
+      threeRowMap a b c rowA rowB y = z ∧
+      threeRowMap a b c rowA rowB z = x := by
+  let f : α → α := threeRowMap a b c rowA rowB
+  have hmap : ∀ x : α, f x = a ∨ f x = b ∨ f x = c := by
+    intro x
+    by_cases hxa : x ∈ rowA
+    · exact Or.inl (by simp [f, threeRowMap, hxa])
+    by_cases hxb : x ∈ rowB
+    · exact Or.inr (Or.inl (by simp [f, threeRowMap, hxa, hxb]))
+    · exact Or.inr (Or.inr (by simp [f, threeRowMap, hxa, hxb]))
+  have hfa : f a ≠ a := by
+    intro h
+    by_cases hrowA : a ∈ rowA
+    · exact ha hrowA
+    by_cases hrowB : a ∈ rowB
+    · have hba : b = a := by simpa [f, threeRowMap, hrowA, hrowB] using h
+      exact hab hba.symm
+    · have hca : c = a := by simpa [f, threeRowMap, hrowA, hrowB] using h
+      exact hac hca.symm
+  have hfb : f b ≠ b := by
+    intro h
+    by_cases hrowA : b ∈ rowA
+    · have hab' : a = b := by simpa [f, threeRowMap, hrowA] using h
+      exact hab hab'
+    by_cases hrowB : b ∈ rowB
+    · exact hb hrowB
+    · have hcb : c = b := by simpa [f, threeRowMap, hrowA, hrowB] using h
+      exact hbc hcb.symm
+  have hfc : f c ≠ c := by
+    intro h
+    by_cases hrowA : c ∈ rowA
+    · have hac' : a = c := by simpa [f, threeRowMap, hrowA] using h
+      exact hac hac'
+    · rcases hcover c (Or.inr (Or.inr rfl)) with hrowA' | hrowB | hrowC
+      · exact (hrowA hrowA').elim
+      · have hbc' : b = c := by
+          simpa [f, threeRowMap, hrowA, hrowB] using h
+        exact hbc hbc'
+      · exact hc hrowC
+  have hresult := exists_threeCycle_of_three_of_injective
+    hab hac hbc f ⟨hfa, hfb, hfc⟩ hinjective hmap
+  simpa [f] using hresult
+
 end Problem97
