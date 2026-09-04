@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904",
+  "owner": "implement_profile0034_equilateral_frame",
+  "base_head": "8a9e465584be89523b256f9838d40f89a6ff89ae",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904.json",
+    "census/card_head/exactfive_hard_source_swap_profile0034_equilateral_frame_qfnra_piqd.py",
+    "census/card_head/tests/test_exactfive_hard_source_swap_profile0034_equilateral_frame_qfnra_piqd.py",
+    "docs/specs/p97-exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-v1.md",
+    "scripts/run_exactfive_hard_source_swap_profile0034_equilateral_frame_qfnra_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T04:54:07Z",
+  "manifest_sha256": "5974a88723d1795348f6134530269ef1da637fd8982aba073014aee9f64fe9e9"
+}
