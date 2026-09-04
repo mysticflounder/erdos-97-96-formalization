@@ -249,6 +249,22 @@ structure U5QDeletedK4Class (D : CounterexampleData) (q center : ℝ²)
   radius_pos : 0 < radius
   same_radius : ∀ y ∈ B, dist center y = radius
 
+/-- A q-deleted K4 class is itself a surviving four-equidistant witness after
+deleting q.  The class support is contained in the q-deleted skeleton, and its
+stored radius and cardinality supply the existential data directly. -/
+theorem U5QDeletedK4Class.hasNEquidistantPointsAt_erase_q
+    {D : CounterexampleData} {q center : ℝ²} {B : Finset ℝ²}
+    (K : U5QDeletedK4Class D q center B) :
+    HasNEquidistantPointsAt 4 (D.A.erase q) center := by
+  refine ⟨K.radius, K.radius_pos, ?_⟩
+  refine le_trans K.card_four (Finset.card_le_card ?_)
+  intro y hy
+  have hyEraseCenter : y ∈ (D.skeleton q).erase center := K.subset hy
+  have hySkeleton : y ∈ D.skeleton q := (Finset.mem_erase.mp hyEraseCenter).2
+  have hyAeraseQ : y ∈ D.A.erase q := by
+    simpa [CounterexampleData.skeleton] using hySkeleton
+  exact Finset.mem_filter.mpr ⟨hyAeraseQ, K.same_radius y hy⟩
+
 /-- A q-allowed four-point witness class at a center.
 
 This is the same witness shape as `U5QDeletedK4Class`, but it drops the
