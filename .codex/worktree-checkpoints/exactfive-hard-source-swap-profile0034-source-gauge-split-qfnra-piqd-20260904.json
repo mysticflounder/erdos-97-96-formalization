@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-source-gauge-split-qfnra-piqd-20260904",
+  "owner": "implement_profile0034_split_piqd",
+  "base_head": "12c416262e4d390a2623cbc72a5ff4c435f60855",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-source-gauge-split-qfnra-piqd-20260904.json",
+    "census/card_head/exactfive_hard_source_swap_profile0034_source_gauge_split_qfnra_piqd.py",
+    "census/card_head/tests/test_exactfive_hard_source_swap_profile0034_source_gauge_split_qfnra_piqd.py",
+    "docs/specs/p97-exactfive-hard-source-swap-profile0034-source-gauge-split-qfnra-v1.md",
+    "scripts/run_exactfive_hard_source_swap_profile0034_source_gauge_split_qfnra_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-hard-source-swap-profile0034-source-gauge-split-qfnra-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T04:07:43Z",
+  "manifest_sha256": "3fca0a44296b4fafc96a44c61f685315cb146ccd72db3e4d1be286dfce6160c3"
+}
