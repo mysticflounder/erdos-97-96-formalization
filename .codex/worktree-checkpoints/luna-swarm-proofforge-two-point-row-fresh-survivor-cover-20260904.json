@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904",
+  "owner": "luna-swarm-proofforge",
+  "base_head": "817fdebab32ca6002c6b55b383263d74682b4a0b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904.json",
+    "docs/skeptic-TwoPointRowFreshSurvivorOrSupportCover-2026-09-04.md",
+    "lean/Erdos9796Proof/P97/ATail/TwoPointRowFreshSurvivorOrSupportCover.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904/run-0001/axiom_probe.lean",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904/run-0001/axioms.log",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904/run-0001/focused-build.log",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904/run-0001/markers.log",
+    "scratch/runs/luna-swarm-proofforge-two-point-row-fresh-survivor-cover-20260904/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-04T10:02:00Z",
+  "manifest_sha256": "7a2e2c929fb22e07818bf422dee310858a7f5817f4fe42c35a92f3d4a003bc79"
+}
