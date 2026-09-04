@@ -2,7 +2,8 @@
 
 Date: 2026-09-03
 
-Status: residual kernels proved; source-order router in progress.
+Status: one hard exact-grid subcell proved; complementary source cell under
+PIQD diagnosis.
 
 ## Purpose
 
@@ -101,8 +102,32 @@ The implementation order is therefore:
 
 ## Immediate scope
 
-The coordinate-free family-13 kernel is the next checked dependency.  The
-source-order module then supplies the pure cyclic split.  After both compile,
-the remaining work is the signed-area transport and the source packet wrapper.
-The broad admitted endpoint stays unchanged until these adapters compile and
-their source coverage is explicit.
+The finite cyclic-order split, its signed-area transport, the coordinate-free
+family-13 product consumer, and the hard-source wrapper now compile and are
+published.  Commit `7bea392c3` proves
+`HardSourceSwapExactGridRoles.false_of_fourthIncidence_exactGrid`: in the
+fourth-incidence exact-grid branch it closes the subcell where `oppApex2` also
+belongs to row zero.  An independent audit found only core axioms in the two
+new declarations and confirmed every source-role and sign transport.
+
+That theorem does not cover the complementary source cell.  A bounded indexed
+Lean search at worktree revision `7bea392c3`, against the corpus indexed from
+`0832ec561`, found no source-clean terminal.  The closest result,
+`threeFan_shared_support_intersection_normalForm`, exposes
+`oppApex2 ∉ row₀` as a residual.  The direct common-deletion constructor can
+package deletion at `oppApex2`, but no current acyclic consumer closes that
+self-deletion packet.
+
+The prior opposed-turn mine does not test this complement.  Its retained
+predicate requires `c2 ∈ T0`; all six residual profiles therefore lie in the
+already handled membership side.  The parent order census contains 2,104
+profiles with `c2 ∉ T0`, including 80 authenticated SAT/SAT survivors.
+Profile 34 is the first fully determined survivor and has two authenticated
+fixed orders, so it is the next diagnostic target.
+
+The next computation is a PIQD-only, fixed-order source QF_NRA wave for profile
+34.  Each of its two target cells must carry 13 role classes, 26 coordinates,
+four gauge constraints, 13 row equalities, one radius disequality, one
+source-strict inequality, and 286 strict signed-area constraints, together
+with positive and negative controls.  Any result remains diagnostic until a
+Lean source adapter proves that the abstract `T0` row is the live row zero.

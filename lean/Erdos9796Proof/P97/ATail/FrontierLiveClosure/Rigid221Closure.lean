@@ -14,6 +14,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyUnsat
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyReplayIngress
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.RobustApexFourIncidenceCyclicReduction
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactFiveDistinctThreeFanCollision
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactFiveDistinctOpposedTurnHardSource
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
