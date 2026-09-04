@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "convex-indep-strict-support-functional-20260903",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "47d9d140eb65434f336788f1caf093e98e36d7a6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/convex-indep-strict-support-functional-20260903.json",
+    "lean/Erdos9796Proof/P97/ConvexIndepSupportFunctional.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:27:38Z",
+  "manifest_sha256": "454cdaa1315858f939f993908e9631406c27a40950fc445c43026e83de1650a6"
+}
