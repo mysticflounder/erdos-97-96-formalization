@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "atomic-prose-sync-20260904",
+  "owner": "codex-atomic-prose-sync",
+  "base_head": "e91a960183e6f9104d51b52cd5c2963ed9267d3a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/atomic-prose-sync-20260904.json",
+    "docs/archive/2026-09-04-atomic-prose-superseded.md",
+    "docs/erdos-97-descent-prose-proof-atomic.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T20:20:23Z",
+  "manifest_sha256": "7085d854ac59106af13a0e041556139c67fc77b4e0c4e9de495cc64c72831377"
+}
