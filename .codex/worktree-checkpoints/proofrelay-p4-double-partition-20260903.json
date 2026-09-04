@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "proofrelay-p4-double-partition-20260903",
+  "owner": "codex-proofrelay-p4-double-partition",
+  "base_head": "69401d1e7e54fd165efb0a2296cb402ccf6d1011",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/proofrelay-p4-double-partition-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/TwoFourClassesTwoFourShells.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:37:47Z",
+  "manifest_sha256": "c8ed531baa8e523d675442f963d03aa66e0bf52434d9b657f860365472b05458"
+}
