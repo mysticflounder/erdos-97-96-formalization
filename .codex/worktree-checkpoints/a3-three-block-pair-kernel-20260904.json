@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "a3-three-block-pair-kernel-20260904",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "14741550eac919bddd4f52a9fdca7bf6f59a7542",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/a3-three-block-pair-kernel-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ThreeBlockPairRowDomainCertificate.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T15:41:05Z",
+  "manifest_sha256": "58865f53672a17c945d4412d6a27721a6dc67b35a03ae8798a0e75ee1023117e"
+}
