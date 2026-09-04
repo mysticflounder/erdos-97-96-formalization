@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-four-role-k2-collapse-20260904",
+  "owner": "luna-swarm-four-role-k2-collapse-20260904",
+  "base_head": "aa768618fe5b3e067b260134f5132592d6253268",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-four-role-k2-collapse-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FourRoleThreeRowK2Collapse.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T02:24:00Z",
+  "manifest_sha256": "e471dfd618cf69f98c8215ad4ec0678d2b7d7b568d019c60d93a1640c21fa264"
+}
