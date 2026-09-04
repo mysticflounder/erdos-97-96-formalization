@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-exact13-tight-cover-qfnra-piqd-20260904",
+  "owner": "RadiusCartographer",
+  "base_head": "f3a7dbe63bf4b46921b44e7f63ba431ce9f796cb",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-exact13-tight-cover-qfnra-piqd-20260904.json",
+    "docs/audits/2026-09-04-cardge13-exact13-tight-cover-qfnra-piqd.md",
+    "scripts/cardge13_exact13_all_center_k4_lra_piqd.py",
+    "scripts/cardge13_exact13_center9_row_domain_piqd.py",
+    "scripts/cardge13_exact13_retained_first_row_lra_piqd.py",
+    "scripts/cardge13_exact13_tight_cover_lra_piqd.py",
+    "scripts/cardge13_exact13_tight_cover_qfnra_piqd.py",
+    "scripts/test_cardge13_exact13_all_center_k4_lra_piqd.py",
+    "scripts/test_cardge13_exact13_center9_row_domain_piqd.py",
+    "scripts/test_cardge13_exact13_retained_first_row_lra_piqd.py",
+    "scripts/test_cardge13_exact13_tight_cover_lra_piqd.py",
+    "scripts/test_cardge13_exact13_tight_cover_qfnra_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-exact13-tight-cover-qfnra-piqd-20260904/run-0001",
+    "scratch/runs/cardge13-exact13-tight-cover-qfnra-piqd-20260904/run-0002",
+    "scratch/runs/cardge13-exact13-tight-cover-qfnra-piqd-20260904/run-0003",
+    "scratch/runs/cardge13-exact13-tight-cover-qfnra-piqd-20260904/run-0004",
+    "scratch/runs/cardge13-exact13-tight-cover-qfnra-piqd-20260904/run-0005"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T08:19:30Z",
+  "manifest_sha256": "1984869f10e629eef210bada55ad52c1310f4d85f1becf084aca1499efc44aaa"
+}
