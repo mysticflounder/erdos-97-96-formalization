@@ -3291,6 +3291,47 @@ separate compact formulas.  They are not terminal certificates for the twelve
 typed clause-delta jobs.  The new dispatcher selects every matching typed job,
 but terminal certificates and aggregate bank coverage remain absent.
 
+The source module
+`ExactTwelveRigid221StaticBoundaryAdapter` now composes the normalized
+boundary package with `false_of_terminalStaticNextRowSourceOrderBank`.  Its
+`false_of_source_namedNextRowStaticTerminalBank` declaration is a conditional
+all-cell interface: it accepts a proof-carrying static terminal bank and a
+terminal UNSAT result for each dispatched cell, then derives `False` for the
+source branch.  The adapter does not construct or authenticate that bank, and
+it does not close A6 until the terminal coverage is supplied.
+Its companion `false_of_source_namedNextRowStaticTerminalBank_of_cardProfile`
+derives the exact `(5,4,6)` cap profile and corresponding second-cap interior
+boundary from the source normalization theorem while retaining the explicit
+next-row and terminal-bank premises.  After refreshing the cached artifact,
+both declarations compile and their axiom probes report only the standard
+core dependencies plus native computation trust.
+The adapter also exports `terminalStaticDimacs_length`, fixing the serialized
+formula size at `634859 + bank.length`; this is bookkeeping for future bank
+artifacts and supplies no terminal or coverage result.
+It also exports `terminalStaticPositiveMembershipDimacs_length`, fixing the
+positive-membership endpoint at `634917 + bank.length`: the frozen parent has
+634859 clauses, followed by the 57 compiler implications and one blocking
+clause.  The implication count is checked in Lean by `native_decide`; this
+remains a formula-shape invariant, not terminal UNSAT evidence.
+The companion `terminalStaticPositiveMembershipDimacs_lit_natAbs_le` bounds
+every literal in that endpoint by `44878`, combining the frozen-parent bound,
+native-checked bounds for the three fresh-variable clauses, and the learned
+bank bound.  This is a serializer range check only; it does not authenticate
+the bank or establish terminal coverage.
+Its `learnedClause_lit_natAbs_le_baseNumVars` lemma also bounds every learned
+literal by `baseNumVars` from the existing candidate-admissibility premise,
+providing a variable-range check for future serializers without adding a
+terminal result.
+The adapter now also exports
+`false_of_source_namedNextRowStaticPositiveMembershipBank`, composing the
+same source boundary with the existing cell-1 positive-membership consumer;
+its specialized formula, bank, and per-cell UNSAT results remain explicit
+premises.
+The companion
+`false_of_source_namedNextRowStaticPositiveMembershipBank_of_cardProfile`
+derives the `(5,4,6)` profile and interior boundary before forwarding to that
+endpoint; it likewise leaves the terminal evidence conditional.
+
 ### 2026-09-04 source-clean Rigid221 reductions
 
 The current `Rigid221SourceHeavy.lean` source now contains checked local

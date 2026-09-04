@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact12-static-boundary-adapter-20260904",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "e846707a8a319fd097dbb4282773d001b3520c00",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact12-static-boundary-adapter-20260904.json",
+    "docs/closure-matrix-2026-07-09.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticBoundaryAdapter.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "docs/skeptic-ExactTwelveRigid221StaticBoundaryAdapter-2026-09-04.md"
+  ],
+  "created_utc": "2026-09-04T12:35:00Z",
+  "manifest_sha256": "489d851cc5930d967aefd4dcc4115c786421355f76093a971861d7982e5f9257"
+}
