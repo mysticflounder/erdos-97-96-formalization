@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-live-signed-area-consumer-20260903",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "a6ca6da55241c5e537bdb6e8fc0a709c4316a21e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-live-signed-area-consumer-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1LiveSignedAreaConsumer.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "scratch/b1-live-signed-area-consumer-20260903-source-only.log"
+  ],
+  "created_utc": "2026-09-04T01:08:53Z",
+  "manifest_sha256": "7662cd0fd6fcc5086b09cd53dc38f17c372c1302ae04bfc9f9fd037cb950dd6b"
+}

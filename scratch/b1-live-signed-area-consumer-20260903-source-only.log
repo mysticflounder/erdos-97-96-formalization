@@ -1,0 +1,21 @@
+Source-only validation for B1LiveSignedAreaConsumer.lean
+
+Command:
+{ sed -n '1,8p' Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1SliceSignedAreaIngress.lean; sed -n '8p' Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1LiveSignedAreaConsumer.lean; sed -n '9,$p' Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1SliceSignedAreaIngress.lean; sed -n '9,$p' Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1LiveSignedAreaConsumer.lean; } | lake env lean -M 16384 --stdin
+
+Exit: 0
+
+Output:
+Not privileged to set domain environment.
+'Problem97.ATailFrontierLiveClosure.b1SliceSameBoundaryArc_iff_signedAreaProductPositive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+<stdin>:126:0: warning: This file has more than one module docstring (`/-! ... -/`). Only the first one is treated as module documentation; convert additional ones to regular comments (`/- ... -/`).
+
+Note: This linter can be disabled with `set_option linter.style.moduleDocstring false`
+'Problem97.ATailFrontierLiveClosure.b1WinningLiveSliceSameBoundaryArc_iff_signedAreaProductPositive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.false_of_b1WinningLiveSliceSignedAreaProductPositive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
