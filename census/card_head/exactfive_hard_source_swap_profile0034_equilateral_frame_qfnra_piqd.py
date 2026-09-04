@@ -34,7 +34,7 @@ from census.card_head import (
 from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 
 LANE_ID = "exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904"
-RUN_ID = "run-0001"
+RUN_ID = "run-0002"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 RUN_ROOT = REPOSITORY_ROOT / "scratch" / "runs" / LANE_ID / RUN_ID
 CHECKPOINT_PATH = (
@@ -46,6 +46,15 @@ SPEC_PATH = REPOSITORY_ROOT / (
 )
 RUNNER_PATH = REPOSITORY_ROOT / (
     "scripts/run_exactfive_hard_source_swap_profile0034_equilateral_frame_qfnra_piqd.py"
+)
+FAILURE_RECEIPT_PATH = REPOSITORY_ROOT / (
+    "docs/audits/2026-09-04-profile0034-equilateral-frame-run0001-failure-receipt.json"
+)
+FAILURE_RECEIPT_FILE_SHA256 = (
+    "f60bc9b1b9559fd03d5a6a5d0150f3611218c251d581b01fad3922a4add2d39a"
+)
+FAILURE_RECEIPT_SHA256 = (
+    "f9c7ed4721da80975fdfe74b06ed34f5cdb710aa102c6feeaf10d177edf87ac0"
 )
 
 PREDECESSOR_ROOT = REPOSITORY_ROOT / (
@@ -237,6 +246,95 @@ def _strict_json(payload: bytes, where: str) -> dict[str, Any]:
     if type(value) is not dict:
         raise Profile0034EquilateralFrameError(f"{where} is not an object")
     return value
+
+
+def authenticate_failure_receipt() -> dict[str, Any]:
+    """Authenticate the bounded record of the quarantined run-0001 attempt."""
+
+    payload = _read_regular(FAILURE_RECEIPT_PATH)
+    receipt = _strict_json(payload, "run-0001 failure receipt")
+    if (
+        _sha(payload) != FAILURE_RECEIPT_FILE_SHA256
+        or receipt.get("schema")
+        != "p97-profile0034-equilateral-frame-run-failure-receipt/v1"
+        or receipt.get("lane_id") != LANE_ID
+        or receipt.get("run_id") != "run-0001"
+        or receipt.get("lane_base_head") != "8a9e465584be89523b256f9838d40f89a6ff89ae"
+        or receipt.get("producer_commit") != "fffc500b0c6e008dbdd8e3831fbc696af201198f"
+        or receipt.get("producer")
+        != {
+            "path": (
+                "census/card_head/exactfive_hard_source_swap_profile0034_"
+                "equilateral_frame_qfnra_piqd.py"
+            ),
+            "sha256": (
+                "f541f6a54a978a4928cd5f77f4f1ac16b44d776b3bef7e711fe192594783190f"
+            ),
+        }
+        or receipt.get("run_manifest")
+        != {
+            "file_sha256": (
+                "1b43ee693ed13e6a9debef099aaaad82e76724ad63a1a025b9fa98de6ed27a2a"
+            ),
+            "self_sha256": (
+                "b332802f9262580a6ee188a2fcc359a28693ab63dd610085d51415117f773c91"
+            ),
+        }
+        or receipt.get("launch")
+        != {
+            "file_sha256": (
+                "1154375b92b624b76ade09f0bd3894e7ecac88c04334c24564fca3dfa9ec8791"
+            ),
+            "self_sha256": (
+                "f6ee0707344a05cefb8dfdacef4a41a59947a61c719a87665e22eb7484648921"
+            ),
+        }
+        or receipt.get("abort")
+        != {
+            "file_sha256": (
+                "ace02798543713703dbf2133a41adcf05ff1e86ea519ed04bca7a0099eab8eb9"
+            ),
+            "self_sha256": (
+                "81c7e47641469fddc69c478e910110cb1b1c35e9e763a6b029b0533e137e6b5a"
+            ),
+            "exit_code": 1,
+            "status": "ABORTED_VALIDATOR_ATTRIBUTE_ERROR",
+            "boundary": "verify_adapter_tree",
+            "missing_attribute": "predecessor.frozen_order",
+        }
+        or receipt.get("submission")
+        != {
+            "submitted_queries": ["control-positive"],
+            "target_queries_submitted": [],
+            "unsubmitted_queries": ["control-negative", *TARGET_KEYS],
+        }
+        or receipt.get("partial_positive_control_custody")
+        != {
+            "result_file_sha256": (
+                "aebe45a4f118740831edbd160b345675f5564908480407d7fdb38df17b9a322d"
+            ),
+            "artifact_file_count": 34,
+            "artifact_digest_map_sha256": (
+                "7c498bc9350611f60b94d0f6b420ab2b27736dd25c84c16d4dff78ee50e70167"
+            ),
+            "raw_statuses": ["SAT", "SAT"],
+            "effective_statuses": [
+                "SAT_SEMANTICALLY_REPLAYED",
+                "SAT_SEMANTICALLY_REPLAYED",
+            ],
+        }
+        or receipt.get("runner_stdout_sha256")
+        != "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        or receipt.get("original_run_path") != f"scratch/runs/{LANE_ID}/run-0001"
+        or receipt.get("quarantine_path")
+        != f"scratch/quarantine/{LANE_ID}-run-0001-aborted"
+        or receipt.get("claims") != FALSE_CLAIMS
+        or type(receipt.get("created_utc")) is not str
+        or receipt.get("receipt_sha256") != FAILURE_RECEIPT_SHA256
+        or receipt.get("receipt_sha256") != _self_hash(receipt, "receipt_sha256")
+    ):
+        raise Profile0034EquilateralFrameError("run-0001 failure receipt drifted")
+    return dict(receipt)
 
 
 def _predecessor_artifact_path(key: str, name: str) -> Path:
@@ -619,7 +717,9 @@ def build_smt_commands(system: Mapping[str, Any]) -> tuple[str, ...]:
     return _build_smt_commands_current(_validate_system_current(system))
 
 
-def _source_record(prior: Mapping[str, Any]) -> dict[str, Any]:
+def _source_record(
+    prior: Mapping[str, Any], failure_receipt: Mapping[str, Any]
+) -> dict[str, Any]:
     return {
         "schema": (
             "p97-exactfive-hard-source-swap-profile0034-"
@@ -628,6 +728,7 @@ def _source_record(prior: Mapping[str, Any]) -> dict[str, Any]:
         "profile_index": PROFILE_INDEX,
         "profile_sha256": PROFILE_SHA256,
         "predecessor_custody": dict(prior),
+        "failure_receipt": dict(failure_receipt),
         "target_matrix": [
             {
                 "key": _target_key(order_id, branch_id),
@@ -649,9 +750,13 @@ def _source_record(prior: Mapping[str, Any]) -> dict[str, Any]:
     }
 
 
-def _source_snapshots(prior: Mapping[str, Any]) -> tuple[adapter.SourceSnapshot, ...]:
+def _source_snapshots(
+    prior: Mapping[str, Any], failure_receipt: Mapping[str, Any]
+) -> tuple[adapter.SourceSnapshot, ...]:
     sources = [
-        adapter.SourceSnapshot("0000-source-record.json", _json(_source_record(prior))),
+        adapter.SourceSnapshot(
+            "0000-source-record.json", _json(_source_record(prior, failure_receipt))
+        ),
         adapter.SourceSnapshot(
             "predecessor-run-manifest.json", _read_regular(PREDECESSOR_MANIFEST_PATH)
         ),
@@ -660,6 +765,9 @@ def _source_snapshots(prior: Mapping[str, Any]) -> tuple[adapter.SourceSnapshot,
         ),
         adapter.SourceSnapshot(
             "predecessor-terminal.json", _read_regular(PREDECESSOR_TERMINAL_PATH)
+        ),
+        adapter.SourceSnapshot(
+            "run-0001-failure-receipt.json", _read_regular(FAILURE_RECEIPT_PATH)
         ),
         adapter.SourceSnapshot(
             "implementation-current.py", _read_regular(Path(__file__))
@@ -688,6 +796,7 @@ def _source_snapshots(prior: Mapping[str, Any]) -> tuple[adapter.SourceSnapshot,
 def _prepare_query_with_prior(
     system: dict[str, Any], prior: Mapping[str, Any], *, timeout_ms: int
 ) -> PreparedQuery:
+    failure_receipt = authenticate_failure_receipt()
     current = _validate_system_current(system, prior)
     commands = _build_smt_commands_current(current)
     journal = b"".join(command.encode("ascii") + b"\n" for command in commands)
@@ -702,9 +811,10 @@ def _prepare_query_with_prior(
         "formula_inventory": formula_inventory(current),
         "journal_sha256": _sha(journal),
         "predecessor_custody_sha256": _sha(_canonical(prior)),
+        "failure_receipt_sha256": _sha(_canonical(failure_receipt)),
         "claims": dict(FALSE_CLAIMS),
     }
-    sources = _source_snapshots(prior)
+    sources = _source_snapshots(prior, failure_receipt)
     variables = sorted(
         (
             {"id": variable.replace("_", "-"), "term": variable, "sort": "Real"}
@@ -986,6 +1096,41 @@ def _verify_artifact(root: Path, record: object, seen: set[str]) -> bytes:
     return payload
 
 
+def _validate_engine_artifact_labels(
+    engine: Mapping[str, Any], labels: set[str]
+) -> None:
+    """Require the complete adapter artifact family for one engine."""
+
+    raw = engine.get("raw_status")
+    response_lost = engine.get("response_lost")
+    reconciled = engine.get("reconciled_from_receipt")
+    if (
+        raw not in {"SAT", "UNSAT", "UNKNOWN"}
+        or type(response_lost) is not bool
+        or type(reconciled) is not bool
+    ):
+        raise Profile0034EquilateralFrameError(
+            "engine status or reconciliation flags are malformed"
+        )
+    solve_label = "reconciled_solve" if response_lost else "solve"
+    expected = {
+        "session",
+        "smt2",
+        "receipts_before",
+        "receipts",
+        solve_label,
+        "closed_session",
+    }
+    if response_lost:
+        expected.add("reconciliation_session")
+    if raw == "SAT":
+        expected.add("semantic")
+    if reconciled is not response_lost or labels != expected:
+        raise Profile0034EquilateralFrameError(
+            "engine artifact inventory is incomplete or cross-bound"
+        )
+
+
 def verify_adapter_tree(
     prepared: PreparedQuery, output_directory: Path
 ) -> dict[str, Any]:
@@ -1056,9 +1201,7 @@ def verify_adapter_tree(
                 "adapter engine artifacts are malformed"
             )
         try:
-            predecessor.frozen_order._validate_engine_artifact_labels(
-                engine, set(artifacts)
-            )
+            _validate_engine_artifact_labels(engine, set(artifacts))
         except Exception as exc:
             raise Profile0034EquilateralFrameError(
                 "adapter artifact labels drifted"
@@ -1233,6 +1376,7 @@ def _manifest_inputs() -> list[Path]:
         PREDECESSOR_MANIFEST_PATH,
         PREDECESSOR_LAUNCH_PATH,
         PREDECESSOR_TERMINAL_PATH,
+        FAILURE_RECEIPT_PATH,
     ]
     for key in predecessor.QUERY_KEYS:
         inputs.extend(
@@ -1250,6 +1394,7 @@ def _expected_run_manifest(created_utc: str) -> dict[str, Any]:
         Path(__file__),
         SPEC_PATH,
         RUNNER_PATH,
+        FAILURE_RECEIPT_PATH,
         PREDECESSOR_PRODUCER_PATH,
         Path(bo_source.__file__),
         Path(adapter.__file__),
@@ -1462,6 +1607,7 @@ def run_diagnostic(
         )
     timeout_ms = int(timeout_s * 1000)
     server = _validate_server(server)
+    authenticate_failure_receipt()
     prior = authenticate_predecessor_run()
     root, manifest = ensure_run_root()
     launch = _launch_record(manifest, server, timeout_ms, workers)
@@ -1551,6 +1697,7 @@ __all__ = [
     "TARGET_KEYS",
     "TARGET_VARIABLES",
     "Profile0034EquilateralFrameError",
+    "authenticate_failure_receipt",
     "authenticate_predecessor_run",
     "build_control_system",
     "build_smt_commands",

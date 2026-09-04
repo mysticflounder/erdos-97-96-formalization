@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import itertools
+from collections.abc import Mapping
 from fractions import Fraction
 
 import pytest
@@ -11,6 +12,57 @@ import sympy
 from census.card_head import (
     exactfive_hard_source_swap_profile0034_equilateral_frame_qfnra_piqd as subject,
 )
+from census.p97_search.tests.test_phase3_piqd_smt_source_adapter import (
+    FakeCurrentPiqd,
+)
+
+
+class _CurrentGetValues(list[str]):
+    """Present the current `t` readback through the legacy fake's test guard."""
+
+    def __eq__(self, other: object) -> bool:
+        return other == ["x"] or super().__eq__(other)
+
+
+class _CurrentPositivePiqd(FakeCurrentPiqd):
+    def _answer(self, solver: str) -> dict[str, object]:
+        assert solver in {"z3", "cvc5"}
+        return {
+            "status": "SAT",
+            "model": "(model (define-fun t () Real 1))",
+            "model_replay": {
+                "outcome": "SATISFIED",
+                "script_sha256": hashlib.sha256(
+                    f"replay:{solver}".encode()
+                ).hexdigest(),
+                "solver_sha256": hashlib.sha256(
+                    f"binary:{solver}".encode()
+                ).hexdigest(),
+                "replay_ms": 2,
+            },
+            "values": "((t 1))",
+        }
+
+
+class _CurrentQueryTransport:
+    def __init__(self) -> None:
+        self.delegate = _CurrentPositivePiqd()
+
+    def request_json(
+        self,
+        method: str,
+        path: str,
+        body: Mapping[str, object] | None = None,
+    ) -> subject.adapter.JsonResponse:
+        if method == "POST" and path.endswith("/solve"):
+            assert body is not None and body["get_values"] == ["t"]
+            adjusted = dict(body)
+            adjusted["get_values"] = _CurrentGetValues(["t"])
+            body = adjusted
+        return self.delegate.request_json(method, path, body)
+
+    def request_bytes(self, method: str, path: str) -> subject.adapter.BytesResponse:
+        return self.delegate.request_bytes(method, path)
 
 
 @pytest.fixture(scope="module")
@@ -42,6 +94,33 @@ def test_predecessor_run_and_current_producer_are_authenticated(
     assert {
         key: tuple(order) for key, order in prior["orders"].items()
     } == subject.EXPECTED_ORDERS
+
+
+def test_run_0001_failure_receipt_is_authenticated() -> None:
+    receipt = subject.authenticate_failure_receipt()
+    assert receipt["producer_commit"] == "fffc500b0c6e008dbdd8e3831fbc696af201198f"
+    assert receipt["producer"]["sha256"] == (
+        "f541f6a54a978a4928cd5f77f4f1ac16b44d776b3bef7e711fe192594783190f"
+    )
+    assert receipt["submission"]["submitted_queries"] == ["control-positive"]
+    assert receipt["submission"]["target_queries_submitted"] == []
+    assert receipt["partial_positive_control_custody"]["artifact_file_count"] == 34
+    assert receipt["abort"]["exit_code"] == 1
+    assert receipt["receipt_sha256"] == subject.FAILURE_RECEIPT_SHA256
+
+
+def test_run_0001_failure_receipt_tampering_fails_closed(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    original = subject._read_regular
+
+    def tampered(path: subject.Path, limit: int = 96 * 1024 * 1024) -> bytes:
+        payload = original(path, limit)
+        return payload + b" " if path == subject.FAILURE_RECEIPT_PATH else payload
+
+    monkeypatch.setattr(subject, "_read_regular", tampered)
+    with pytest.raises(subject.Profile0034EquilateralFrameError, match="receipt"):
+        subject.authenticate_failure_receipt()
 
 
 def test_predecessor_producer_tampering_fails_closed(
@@ -232,6 +311,7 @@ def test_descriptor_has_20_values_and_binds_predecessor_sources(
         "implementation-current.py",
         "implementation-predecessor.py",
         "specification.md",
+        "run-0001-failure-receipt.json",
     } <= paths
     assert {
         f"predecessor-{key}-result.json" for key in subject.predecessor.QUERY_KEYS
@@ -382,6 +462,81 @@ def test_artifact_digest_custody(tmp_path: subject.Path) -> None:
         subject._verify_artifact(tmp_path, dict(record, sha256="0" * 64), set())
 
 
+@pytest.mark.parametrize(
+    ("raw_status", "extra_labels"),
+    [("SAT", {"semantic"}), ("UNSAT", set()), ("UNKNOWN", set())],
+)
+def test_local_engine_artifact_label_families(
+    raw_status: str, extra_labels: set[str]
+) -> None:
+    engine = {
+        "raw_status": raw_status,
+        "response_lost": False,
+        "reconciled_from_receipt": False,
+    }
+    labels = {
+        "session",
+        "smt2",
+        "receipts_before",
+        "receipts",
+        "solve",
+        "closed_session",
+        *extra_labels,
+    }
+    subject._validate_engine_artifact_labels(engine, labels)
+    with pytest.raises(subject.Profile0034EquilateralFrameError, match="inventory"):
+        subject._validate_engine_artifact_labels(engine, labels - {"session"})
+
+
+def test_local_engine_artifact_labels_cover_reconciled_unknown() -> None:
+    engine = {
+        "raw_status": "UNKNOWN",
+        "response_lost": True,
+        "reconciled_from_receipt": True,
+    }
+    subject._validate_engine_artifact_labels(
+        engine,
+        {
+            "session",
+            "smt2",
+            "receipts_before",
+            "receipts",
+            "reconciled_solve",
+            "closed_session",
+            "reconciliation_session",
+        },
+    )
+
+
+def test_fresh_run_query_materializes_and_replays_positive_control(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: subject.Path
+) -> None:
+    prepared = subject.prepare_query(subject.build_control_system("positive"))
+    transport = _CurrentQueryTransport()
+    checked_statuses: list[str] = []
+    validate_labels = subject._validate_engine_artifact_labels
+
+    def counted_validator(engine: Mapping[str, object], labels: set[str]) -> None:
+        checked_statuses.append(str(engine["raw_status"]))
+        validate_labels(engine, labels)
+
+    monkeypatch.setattr(subject, "_validate_engine_artifact_labels", counted_validator)
+    output = tmp_path / "fresh-positive"
+    result = subject.run_query(prepared, output, transport)
+
+    assert result["overall_status"] == "FINITE_DIAGNOSTIC_COMPLETE"
+    assert [engine["raw_status"] for engine in result["engines"]] == ["SAT", "SAT"]
+    assert [engine["effective_status"] for engine in result["engines"]] == [
+        "SAT_SEMANTICALLY_REPLAYED",
+        "SAT_SEMANTICALLY_REPLAYED",
+    ]
+    assert checked_statuses == ["SAT", "SAT"]
+    assert transport.delegate.created_solvers == ["z3", "cvc5"]
+    assert (output / "z3.semantic.json").is_file()
+    assert (output / "cvc5.semantic.json").is_file()
+    assert subject.verify_adapter_tree(prepared, output) == result
+
+
 def test_worker_bound_and_terminal_classification() -> None:
     unknown = {
         "engines": [
@@ -407,6 +562,7 @@ def test_prelaunch_manifest_is_current_and_has_no_solver_outputs() -> None:
     )
     assert manifest == subject._expected_run_manifest(manifest["created_utc"])
     assert manifest["base_head"] == "8a9e465584be89523b256f9838d40f89a6ff89ae"
+    assert len(manifest["input_digests"]) == 16
     assert list((root / "artifacts").iterdir()) == []
     assert list((root / "events").iterdir()) == []
     assert list((root / "tmp").iterdir()) == []

@@ -11,9 +11,11 @@
     "scripts/run_exactfive_hard_source_swap_profile0034_equilateral_frame_qfnra_piqd.py"
   ],
   "generated_roots": [
-    "scratch/runs/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904/run-0001"
+    "scratch/runs/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904/run-0002"
   ],
-  "durable_paths": [],
+  "durable_paths": [
+    "docs/audits/2026-09-04-profile0034-equilateral-frame-run0001-failure-receipt.json"
+  ],
   "created_utc": "2026-09-04T04:54:07Z",
-  "manifest_sha256": "5974a88723d1795348f6134530269ef1da637fd8982aba073014aee9f64fe9e9"
+  "manifest_sha256": "1c36f835994b1c9413b430685f837c6cef9f616c880d44801954e6f23c6703a6"
 }

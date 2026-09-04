@@ -1,0 +1,67 @@
+{
+  "schema": "p97-profile0034-equilateral-frame-run-failure-receipt/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904",
+  "run_id": "run-0001",
+  "lane_base_head": "8a9e465584be89523b256f9838d40f89a6ff89ae",
+  "producer_commit": "fffc500b0c6e008dbdd8e3831fbc696af201198f",
+  "producer": {
+    "path": "census/card_head/exactfive_hard_source_swap_profile0034_equilateral_frame_qfnra_piqd.py",
+    "sha256": "f541f6a54a978a4928cd5f77f4f1ac16b44d776b3bef7e711fe192594783190f"
+  },
+  "run_manifest": {
+    "file_sha256": "1b43ee693ed13e6a9debef099aaaad82e76724ad63a1a025b9fa98de6ed27a2a",
+    "self_sha256": "b332802f9262580a6ee188a2fcc359a28693ab63dd610085d51415117f773c91"
+  },
+  "launch": {
+    "file_sha256": "1154375b92b624b76ade09f0bd3894e7ecac88c04334c24564fca3dfa9ec8791",
+    "self_sha256": "f6ee0707344a05cefb8dfdacef4a41a59947a61c719a87665e22eb7484648921"
+  },
+  "abort": {
+    "file_sha256": "ace02798543713703dbf2133a41adcf05ff1e86ea519ed04bca7a0099eab8eb9",
+    "self_sha256": "81c7e47641469fddc69c478e910110cb1b1c35e9e763a6b029b0533e137e6b5a",
+    "exit_code": 1,
+    "status": "ABORTED_VALIDATOR_ATTRIBUTE_ERROR",
+    "boundary": "verify_adapter_tree",
+    "missing_attribute": "predecessor.frozen_order"
+  },
+  "submission": {
+    "submitted_queries": [
+      "control-positive"
+    ],
+    "target_queries_submitted": [],
+    "unsubmitted_queries": [
+      "control-negative",
+      "parent-z3-mirror-radius-lt",
+      "parent-z3-mirror-radius-gt",
+      "parent-cvc5-direct-radius-lt",
+      "parent-cvc5-direct-radius-gt"
+    ]
+  },
+  "partial_positive_control_custody": {
+    "result_file_sha256": "aebe45a4f118740831edbd160b345675f5564908480407d7fdb38df17b9a322d",
+    "artifact_file_count": 34,
+    "artifact_digest_map_sha256": "7c498bc9350611f60b94d0f6b420ab2b27736dd25c84c16d4dff78ee50e70167",
+    "raw_statuses": [
+      "SAT",
+      "SAT"
+    ],
+    "effective_statuses": [
+      "SAT_SEMANTICALLY_REPLAYED",
+      "SAT_SEMANTICALLY_REPLAYED"
+    ]
+  },
+  "runner_stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "original_run_path": "scratch/runs/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904/run-0001",
+  "quarantine_path": "scratch/quarantine/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904-run-0001-aborted",
+  "claims": {
+    "live_source_completeness": false,
+    "source_realization": false,
+    "all_order_elimination": false,
+    "lean_ingress": false,
+    "live_closure": false,
+    "promotion": false,
+    "theorem": false
+  },
+  "created_utc": "2026-09-04T05:44:47Z",
+  "receipt_sha256": "f9c7ed4721da80975fdfe74b06ed34f5cdb710aa102c6feeaf10d177edf87ac0"
+}

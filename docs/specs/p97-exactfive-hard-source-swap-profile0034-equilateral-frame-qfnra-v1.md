@@ -88,7 +88,8 @@ Predecessor authentication binds raw and self hashes for its run manifest,
 launch, terminal, current producer, and six results. It replays all adapter
 trees and requires every predecessor target to remain `UNKNOWN/UNKNOWN`. The
 successor source manifest includes those records, every predecessor result,
-the current producer, exact numeral parser, PIQD adapter, and this document.
+the current producer, exact numeral parser, PIQD adapter, this document, and
+the authenticated run-0001 failure receipt.
 
 The positive and negative scalar controls retain exact SAT replay and
 discovery-only UNSAT checks. Every target uses fresh named PIQD sessions, with
@@ -103,7 +104,29 @@ parser cannot represent is rejected as inconclusive. UNSAT remains
 `UNSAT_DISCOVERY_ONLY`; `UNKNOWN`, malformed custody, incomplete readback, and
 solver disagreement remain inconclusive.
 
+## Failed run-0001 and repaired run-0002
+
+Run-0001 submitted only `control-positive`. Z3 and cvc5 both returned SAT and
+passed exact semantic replay. The runner then exited 1 inside
+`verify_adapter_tree` because it tried to read the absent Python attribute
+`predecessor.frozen_order`. It had not submitted `control-negative` or any of
+the four target queries.
+
+The compact receipt at
+`docs/audits/2026-09-04-profile0034-equilateral-frame-run0001-failure-receipt.json`
+binds the old producer commit and source hash, manifest and launch hashes, the
+self-hashed abort record, the positive result, and one aggregate over all 34
+positive-control artifacts. Every claim remains false. The full failed tree
+was moved without deleting bytes to
+`scratch/quarantine/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904-run-0001-aborted`.
+It is not an active or resumable run.
+
+Run-0002 owns the repaired launch path. The producer now checks SAT, UNSAT,
+UNKNOWN, and receipt-reconciled artifact label families with a local validator;
+it has no dependency on an unbound helper attribute. Run-0002 creates fresh
+sessions and does not reuse the failed positive-control sessions.
+
 The create-once prelaunch manifest is
-`scratch/runs/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904/run-0001/run_manifest.json`.
-It repeats the lane checkpoint base and binds current source and predecessor
-input bytes. It contains no solver output.
+`scratch/runs/exactfive-hard-source-swap-profile0034-equilateral-frame-qfnra-piqd-20260904/run-0002/run_manifest.json`.
+It repeats the lane checkpoint base and binds current source, the failure
+receipt, and predecessor input bytes. It contains no solver output.
