@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-equilateral-frame-postrun-20260904",
+  "owner": "write_profile0034_equilateral_postrun",
+  "base_head": "30393754d3bf84021134553749a168cade04be95",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-equilateral-frame-postrun-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-equilateral-frame-postrun.md",
+    "docs/computation/exactfive-profile0034-equilateral-frame-20260904/run-0002-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T06:23:49Z",
+  "manifest_sha256": "be989d5f89db9699312fd24db4e3dd9c855e6eca7c5f05904adac533c6347b32"
+}
