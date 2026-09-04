@@ -1,0 +1,13 @@
+{
+  "base_head": "dae2e850eae19dca1fb59a431feacc7beccc8637",
+  "created_utc": "2026-09-04T23:46:06Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "a4-fixed-five-rows-20260904",
+  "manifest_sha256": "5a8bdc1fdf0d0ea9a8415354f35a0f9dc537472570204d95ffba00830dbf15e3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/a4-fixed-five-rows-20260904.json"
+  ],
+  "owner": "luna-swarm-radial-otter",
+  "schema": "worktree-lane-checkpoint/v1"
+}
