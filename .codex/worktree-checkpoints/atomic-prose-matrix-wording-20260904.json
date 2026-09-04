@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "atomic-prose-matrix-wording-20260904",
+  "owner": "codex-project-review",
+  "base_head": "373fb457ccf0565a3d95cb6eb2952807fabff4f0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/atomic-prose-matrix-wording-20260904.json",
+    "docs/erdos-97-descent-prose-proof-atomic.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T23:10:00Z",
+  "manifest_sha256": "a42979351668d93abd46138793de0f7f4473888c8854793bb4945e49f7da54cd"
+}

@@ -1802,8 +1802,8 @@ The table separates complete prose deductions, recorded Lean proofs, and
 required conclusions that remain conjectural. Conditional statements are
 proved only with their displayed hypotheses; they do not upgrade the final
 unconditional theorem. The current source inventory in §11.8 is part of
-this matrix: every one of its 28 named declarations appears as a separate
-open entry there.
+this matrix: each declaration appears as an open entry in §11.8, while the
+matrix aggregates declarations by obligation family.
 
 | Obligation | Rigor and scope | Status | Evidence |
 |---|---|---|---|
