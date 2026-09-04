@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "equilateral-zigzag-10648",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "7bea392c3cdaba14ec88e588241fce9ca99fb070",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/equilateral-zigzag-10648.json",
+    "docs/skeptic-ThreeEquilateralZigzag-2026-09-03.md",
+    "lean/Erdos9796Proof/P97/ATail/ThreeEquilateralZigzag.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T03:25:18Z",
+  "manifest_sha256": "049c2f16c9eca529ae6c2ff9bcb7c4ccbb209fab4d19b0709435668837c6fe03"
+}
