@@ -3267,7 +3267,13 @@ families require bisector/circle/order geometry; the `U` family has an
 exact-eleven five-row normal form.
 
 A6 is a separate OPEN-TERMINAL. It is the `nextRowOnlyHit` complement of A5;
-none of the A5 common-deletion reductions closes it automatically.
+none of the A5 common-deletion reductions closes it automatically.  The
+source-level theorem
+`exists_source_normalized_nextRowOnlyHitJob` now produces an individual
+normalized placement cell with its finite row semantics, and the selector
+assignment lemmas provide the corresponding partial valuation.  Aggregate
+coverage of all cells, a `CompiledNextRowJob` for each exact serialized
+formula, and a terminal certificate remain absent.
 
 ### 2026-09-04 source-clean Rigid221 reductions
 
@@ -3282,9 +3288,10 @@ row after deleting `u`, split an interior next-row center between `u` and
 
 These declarations compile as source-clean Lean consequences and narrow the
 recorded residual freedom.  They do not close the A5/A6 terminals: the exact
-twenty-four-cell A5 coverage and the exact-twelve A6 finite placement,
-whole-formula valuation, and terminal certificate remain absent.  The source
-file therefore remains OPEN-TERMINAL with its five existing `sorry` leaves.
+twenty-four-cell A5 coverage and the exact-twelve A6 aggregate coverage,
+per-cell complete-job valuation, and terminal certificate remain absent.  The
+source file therefore remains OPEN-TERMINAL with its five existing `sorry`
+leaves.
 
 ### Canonical common-deletion formalization register
 
