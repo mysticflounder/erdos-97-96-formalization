@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "pentagon-blocker-deleted-card7-lower-bound-20260904",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "f3a7dbe63bf4b46921b44e7f63ba431ce9f796cb",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/pentagon-blocker-deleted-card7-lower-bound-20260904.json",
+    "docs/skeptic-Rigid221SourceHeavy-2026-09-04-2.md",
+    "docs/skeptic-Rigid221SourceHeavy-blocker-deleted-card7-2026-09-04.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T08:30:00Z",
+  "manifest_sha256": "195a592dfaf28e955b4e3cfb6013d46c11cacb05e38b56b80b674574590706ce"
+}
