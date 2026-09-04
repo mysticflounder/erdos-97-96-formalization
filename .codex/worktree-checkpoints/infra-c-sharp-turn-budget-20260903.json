@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "infra-c-sharp-turn-budget-20260903",
+  "owner": "codex-infra-c-sharp-turn-budget",
+  "base_head": "e9f4d98246dacd11539446744ee7843fb82fca43",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/infra-c-sharp-turn-budget-20260903.json",
+    "lean/Erdos9796Proof/P97/ConvexCyclicOrder/SharpTurnBudget.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T00:00:00Z",
+  "manifest_sha256": "f23c39ec0cfdd5dd00fb4d43c9996ab7a1fcf791bc8b8d1af45ff3782b1ef35f"
+}
