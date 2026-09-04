@@ -1,0 +1,18 @@
+{
+  "base_head": "0a20e8cdde4da113efcddcba1f6095c2fc13e57d",
+  "created_utc": "2026-09-04T07:19:21Z",
+  "durable_paths": [
+    "scratch/rigid221-blockerv-exact17-20260806/three-shell-classification-n6.json"
+  ],
+  "generated_roots": [],
+  "lane_id": "strict-kalmanson-n11-known-clause-census-20260904",
+  "manifest_sha256": "bcd2ac60e37420d1581462863ae7acd2130e2467a698821736ee9745877287dc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-n11-known-clause-census-20260904.json",
+    "docs/audits/2026-09-04-strict-kalmanson-n11-known-clause-census.md",
+    "scripts/generate_strict_kalmanson_known_clause_census.py",
+    "scripts/test_generate_strict_kalmanson_known_clause_census.py"
+  ],
+  "owner": "kalmanson-cartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}
