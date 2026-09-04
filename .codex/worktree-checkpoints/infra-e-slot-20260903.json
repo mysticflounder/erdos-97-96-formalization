@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "infra-e-slot-20260903",
+  "owner": "infra-e-slot-20260903",
+  "base_head": "5a3bccbcd1008775670a18fb54c1078945a1ad16",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/infra-e-slot-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/TwoRadiiAdjacentCapForeignLowerBound.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T00:00:00Z",
+  "manifest_sha256": "46c85414cf4ea75ca8475659d38edf0661911465b7a9ae4592bc893ce5c0f6a9"
+}
