@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "two-full-second-apex-grid-20260903",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "47d9d140eb65434f336788f1caf093e98e36d7a6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/two-full-second-apex-grid-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoFullSecondApexClassesLargeInteriorOrGrid.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:32:00Z",
+  "manifest_sha256": "639c62c7a8d877b5439a96716fd299b19863c5ebdc14bfbecfec7bf9c4136206"
+}
