@@ -3274,6 +3274,12 @@ normalized placement cell with its finite row semantics, and the selector
 assignment lemmas provide the corresponding partial valuation.  Aggregate
 coverage of all cells, a `CompiledNextRowJob` for each exact serialized
 formula, and a terminal certificate remain absent.
+The source ingress also exports the next-row-only-hit row after deleting `u`;
+under `D.A.card = 12`,
+`pentagonOffClassBlocker_nextRowOnlyHit_exactElevenCarrier_or_xuCollision`
+narrows it to an exact-eleven five-survivor boundary or an explicit
+`xu`/next-row center collision.  Neither branch supplies the missing
+all-cell coverage or terminal UNSAT evidence.
 
 ### 2026-09-04 source-clean Rigid221 reductions
 
