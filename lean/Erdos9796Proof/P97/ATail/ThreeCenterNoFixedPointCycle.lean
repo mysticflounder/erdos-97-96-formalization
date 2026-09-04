@@ -81,4 +81,63 @@ theorem exists_twoCycle_or_threeCycle_of_three
     exact exists_twoCycle_or_threeCycle_of_three_choices
       hab hac hbc f hfa hfb hfc
 
+/-- If the three-center assignment is injective, the two-cycle alternative is
+impossible: the unused third center would have to be a fixed point.  Thus an
+injective fixed-point-free assignment has a directed three-cycle. -/
+theorem exists_threeCycle_of_three_of_injective
+    {α : Type*} {a b c : α}
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    (f : α → α)
+    (hfixed : ∀ x : α, f x ≠ x)
+    (hinjective : Function.Injective f)
+    (hcover : ∀ x : α, f x = a ∨ f x = b ∨ f x = c) :
+    ∃ x y z : α,
+      x ≠ y ∧ x ≠ z ∧ y ≠ z ∧
+      f x = y ∧ f y = z ∧ f z = x := by
+  have hno_ab : ¬ (f a = b ∧ f b = a) := by
+    rintro ⟨habf, hbaf⟩
+    rcases hcover c with hca | hcb | hcc
+    · exact hbc (hinjective (hca.trans hbaf.symm)).symm
+    · exact hac (hinjective (hcb.trans habf.symm)).symm
+    · exact hfixed c hcc
+  have hno_ac : ¬ (f a = c ∧ f c = a) := by
+    rintro ⟨hacf, hcaf⟩
+    rcases hcover b with hba | hbb | hbcf
+    · exact hbc (hinjective (hba.trans hcaf.symm))
+    · exact hfixed b hbb
+    · exact hab (hinjective (hbcf.trans hacf.symm)).symm
+  have hno_bc : ¬ (f b = c ∧ f c = b) := by
+    rintro ⟨hbcf, hcbf⟩
+    rcases hcover a with haa | habf | hacf
+    · exact hfixed a haa
+    · exact hac (hinjective (habf.trans hcbf.symm))
+    · exact hab (hinjective (hacf.trans hbcf.symm))
+  rcases exists_twoCycle_or_threeCycle_of_three
+      hab hac hbc f hfixed hcover with htwo | hthree
+  · rcases htwo with ⟨x, y, hxy, hxyf, hyxf⟩
+    have hyNamed : y = a ∨ y = b ∨ y = c := by
+      rcases hcover x with hxa | hxb | hxc
+      · exact Or.inl (hxyf.symm.trans hxa)
+      · exact Or.inr (Or.inl (hxyf.symm.trans hxb))
+      · exact Or.inr (Or.inr (hxyf.symm.trans hxc))
+    have hxNamed : x = a ∨ x = b ∨ x = c := by
+      rcases hcover y with hya | hyb | hyc
+      · exact Or.inl (hyxf.symm.trans hya)
+      · exact Or.inr (Or.inl (hyxf.symm.trans hyb))
+      · exact Or.inr (Or.inr (hyxf.symm.trans hyc))
+    rcases hxNamed with rfl | rfl | rfl
+    · rcases hyNamed with rfl | rfl | rfl
+      · exact (hxy rfl).elim
+      · exact (hno_ab ⟨hxyf, hyxf⟩).elim
+      · exact (hno_ac ⟨hxyf, hyxf⟩).elim
+    · rcases hyNamed with rfl | rfl | rfl
+      · exact (hno_ab ⟨hyxf, hxyf⟩).elim
+      · exact (hxy rfl).elim
+      · exact (hno_bc ⟨hxyf, hyxf⟩).elim
+    · rcases hyNamed with rfl | rfl | rfl
+      · exact (hno_ac ⟨hyxf, hxyf⟩).elim
+      · exact (hno_bc ⟨hyxf, hxyf⟩).elim
+      · exact (hxy rfl).elim
+  · exact hthree
+
 end Problem97
