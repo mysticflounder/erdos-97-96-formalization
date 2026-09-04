@@ -234,15 +234,25 @@ def test_relaxed_system_mutation_is_rejected(
         subject._validate_system_current(changed, prior)
 
 
-def test_prelaunch_manifest_and_checkpoint() -> None:
+def test_run_manifest_checkpoint_and_lifecycle_pairing() -> None:
     root, manifest = subject.ensure_run_root()
     checkpoint = subject._load_checkpoint()
     assert manifest["base_head"] == checkpoint["base_head"]
     assert manifest["base_head"] == "30393754d3bf84021134553749a168cade04be95"
     assert manifest["root"] == root.relative_to(subject.REPOSITORY_ROOT).as_posix()
     assert manifest["manifest_sha256"] == subject._self_hash(manifest, "manifest_sha256")
-    assert not (root / "events" / "launch.json").exists()
-    assert not (root / "events" / "terminal.json").exists()
+    launch_path = root / "events" / "launch.json"
+    terminal_path = root / "events" / "terminal.json"
+    assert launch_path.exists() == terminal_path.exists()
+    if launch_path.exists():
+        launch = subject._strict_json(subject._read_regular(launch_path), "launch")
+        terminal = subject._strict_json(subject._read_regular(terminal_path), "terminal")
+        assert launch["run_manifest_sha256"] == manifest["manifest_sha256"]
+        assert launch["launch_sha256"] == subject._self_hash(launch, "launch_sha256")
+        assert terminal["launch_sha256"] == launch["launch_sha256"]
+        assert terminal["terminal_sha256"] == subject._self_hash(
+            terminal, "terminal_sha256"
+        )
 
 
 def test_execution_commit_custody_accepts_full_sha_and_exact_bound_bytes(

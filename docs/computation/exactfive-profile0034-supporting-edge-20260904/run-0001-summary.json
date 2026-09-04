@@ -1,0 +1,84 @@
+{
+  "schema": "p97-exactfive-profile0034-supporting-edge-postrun-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-qfnra-piqd-20260904",
+  "run_id": "run-0001",
+  "status": "TARGET_INCONCLUSIVE",
+  "claims": {
+    "source_realization": false,
+    "live_source_completeness": false,
+    "all_order_elimination": false,
+    "lean_ingress": false,
+    "theorem": false,
+    "promotion": false,
+    "live_closure": false
+  },
+  "formula_inventory": {
+    "real_variables": 20,
+    "supporting_edge_assertions": 143,
+    "emitted_row_equalities": 11,
+    "radius_assertions": 1,
+    "source_assertions": 1,
+    "target_assertions": 156,
+    "target_commands": 177,
+    "original_orientation_replay_count": 286,
+    "original_row_replay_count": 13
+  },
+  "custody": {
+    "lane_base": "30393754d3bf84021134553749a168cade04be95",
+    "execution_commit": "1c79a5bc0ca4ec2e418ccb095963aa56d744ccfd",
+    "run_manifest_sha256": "6e469b3048aec1f26e1c94e644adf570752eaea49ee1dd91c60b3605d5ac50c4",
+    "run_manifest_file_sha256": "c1192f3afed7e089b8fbb7e49e8c4deec2cda36717e9cec537e3bf63689b96c5",
+    "launch_sha256": "28547a2032ae396844226c89851524a24f4583b8b2824f445fe658bf1bf12997",
+    "launch_file_sha256": "faedccc1afaa8050ac1b5d7a702dcadbbf0be6e7a5cceb8e0ae11bb45b16a250",
+    "terminal_sha256": "db6ec92b4f2047722d3934abdac0d8bd79512768b3dc52b67cbedf71750513a5",
+    "terminal_file_sha256": "09c2e3d4a9839814bf7c2c5dd4fd88b10002188acbb94d10c02be01c0954823f",
+    "runner_stdout_file_sha256": "d4ebc908ad92e4f4369c23cf8cff3ef79ff3443d133947e48c324a53693a0038",
+    "replay_stdout_file_sha256": "d4ebc908ad92e4f4369c23cf8cff3ef79ff3443d133947e48c324a53693a0038",
+    "source_digest_count": 5,
+    "input_digest_count": 9,
+    "fresh_session_count": 12,
+    "unique_session_count": 12,
+    "response_loss_count": 0,
+    "reconciliation_attempt_count": 0,
+    "reconciled_result_count": 0,
+    "producer_replay_verified": true
+  },
+  "results": {
+    "control_positive": {
+      "z3": "SAT_SEMANTICALLY_REPLAYED",
+      "cvc5": "SAT_SEMANTICALLY_REPLAYED",
+      "result_sha256": "e42993df0dcecbd3cb0e77c43c89f695312f7907895eb5a8edc2a4e43fef5b42"
+    },
+    "control_negative": {
+      "z3": "UNSAT_DISCOVERY_ONLY",
+      "cvc5": "UNSAT_DISCOVERY_ONLY",
+      "result_sha256": "87ddb18b3f98d90b6349166417f3f23da223b04f2896e7b1cd52898ff683576d"
+    },
+    "mirror_radius_lt": {
+      "z3": "UNSAT_DISCOVERY_ONLY",
+      "cvc5": "INCONCLUSIVE_UNKNOWN",
+      "result_sha256": "be1f7d987e3da0cdfe2d3219e4b65fd45990915171fb75af942e1ca5678f7ae3"
+    },
+    "mirror_radius_gt": {
+      "z3": "UNSAT_DISCOVERY_ONLY",
+      "cvc5": "INCONCLUSIVE_UNKNOWN",
+      "result_sha256": "0cd5f030409ca464369af8b7123bd07fd4d75bce020bf7b8f1666e23c2dedf5c"
+    },
+    "direct_radius_lt": {
+      "z3": "INCONCLUSIVE_UNKNOWN",
+      "cvc5": "INCONCLUSIVE_UNKNOWN",
+      "result_sha256": "44cd395e4db75d0bf340710e982d003915a2f21d70703f00bad6c266562a259e"
+    },
+    "direct_radius_gt": {
+      "z3": "INCONCLUSIVE_UNKNOWN",
+      "cvc5": "INCONCLUSIVE_UNKNOWN",
+      "result_sha256": "608ac1a197610163fcf2a7bb1073e30c5d640b94469aa242f4b944778b84c683"
+    }
+  },
+  "reuse_preflight": {
+    "candidate": "false_of_six_ccw_mirror_interleaving_row_equalities",
+    "usable": false,
+    "first_missing_antecedent": "a required center-to-center row equality is absent in every cyclic rotation"
+  },
+  "next_step": "Run authenticated PIQD named-assumption core cells for the two mirror radius branches; treat returned cores as discovery-only and require fresh-session deletion checks before any minimality claim."
+}

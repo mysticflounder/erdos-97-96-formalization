@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-postrun-20260904",
+  "owner": "codex-rigid221",
+  "base_head": "a9a6426bb4045b2d2b61abd36b1ee47adb1678fc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-supporting-edge-postrun-20260904.json",
+    "census/card_head/tests/test_exactfive_hard_source_swap_profile0034_supporting_edge_qfnra_piqd.py",
+    "docs/audits/2026-09-04-exactfive-profile0034-supporting-edge-postrun.md",
+    "docs/computation/exactfive-profile0034-supporting-edge-20260904/run-0001-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T15:18:26Z",
+  "manifest_sha256": "650dc9213534e39b901af62d1d039b58d71d31c2dde958ffcdd609c8fbec5f04"
+}
