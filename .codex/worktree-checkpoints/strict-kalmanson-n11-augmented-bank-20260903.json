@@ -1,0 +1,16 @@
+{
+  "base_head": "a064cc226de1946c79101388bfbd0fccd4620899",
+  "created_utc": "2026-09-04T06:00:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "strict-kalmanson-n11-augmented-bank-20260903",
+  "manifest_sha256": "af67c9cf3b99b4d048f019fedaa62f49c984aa59d1cf54706b9913e06967068b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-n11-augmented-bank-20260903.json",
+    "docs/audits/2026-09-03-strict-kalmanson-n11-augmented-bank.md",
+    "scripts/generate_strict_kalmanson_n11_chain_bank.py",
+    "scripts/test_generate_strict_kalmanson_n11_chain_bank.py"
+  ],
+  "owner": "kalmanson-cartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}
