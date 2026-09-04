@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "complementary-arc-chain-20260903",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "a6ca6da55241c5e537bdb6e8fc0a709c4316a21e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/complementary-arc-chain-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ComplementaryArcSelectedRowEqualityChain.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T01:12:12Z",
+  "manifest_sha256": "a5ad0e3d241ca0db89d6deb525c5b50e569b72901a954ffec5cff5e4ae819309"
+}
