@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-slice-ingress-b1-card6-pointconfig-payload-20260904",
+  "owner": "luna-swarm-slice-ingress",
+  "base_head": "03912489fe67f3911de3bfbe7a67b2dc10d46ebe",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-slice-ingress-b1-card6-pointconfig-payload-20260904.json",
+    "docs/audits/2026-09-04-b1-card6-pointconfig-payload.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardSixPointConfigurationIngress.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/luna-swarm-slice-ingress-b1-card6-pointconfig-payload-20260904/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/luna-swarm-slice-ingress-b1-card6-pointconfig-payload-20260904/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-04T03:48:00Z",
+  "manifest_sha256": "b4b6592ed6e7352fe1abb9d9cf96a52959e8d361eadb1e21ffc5c8123a1fddd3"
+}
