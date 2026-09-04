@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-opposed-turn-source-order-20260903",
+  "owner": "residual-adapter-trace",
+  "base_head": "02c0cc17b19acc92b27b69aca46ef046ff0ca1ae",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-opposed-turn-source-order-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctOpposedTurnSourceOrder.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T02:30:51Z",
+  "manifest_sha256": "0d2bde3342dd9b228b143d38133b1126004de21349caeea5f2a3d254656d2738"
+}
