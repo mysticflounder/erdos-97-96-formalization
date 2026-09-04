@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-all-interior-card6-qfnra-prelaunch-20260903",
+  "owner": "luna-swarm-proofforge",
+  "base_head": "29614dfc71e902523fbdbac5191c964a187282b7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-all-interior-card6-qfnra-prelaunch-20260903.json",
+    "docs/audits/2026-09-03-b1-all-interior-card6-qfnra-prelaunch.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/b1-all-interior-card6-qfnra-prelaunch-20260903/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/b1-all-interior-card6-qfnra-prelaunch-20260903/run-0001/PROFILE.json",
+    "scratch/runs/b1-all-interior-card6-qfnra-prelaunch-20260903/run-0001/REPORT.md",
+    "scratch/runs/b1-all-interior-card6-qfnra-prelaunch-20260903/run-0001/SMT2-JOURNAL.smt2",
+    "scratch/runs/b1-all-interior-card6-qfnra-prelaunch-20260903/run-0001/SOURCE-MAP.json",
+    "scratch/runs/b1-all-interior-card6-qfnra-prelaunch-20260903/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-03T23:46:05Z",
+  "manifest_sha256": "d42a5ef0de91ba6dcfa5e1700dfce56d9f3c3eb03eb20bc3133baa48561d87c9"
+}
