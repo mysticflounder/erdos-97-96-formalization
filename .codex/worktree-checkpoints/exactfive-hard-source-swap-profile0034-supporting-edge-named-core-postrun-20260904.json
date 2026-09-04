@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-named-core-postrun-20260904",
+  "owner": "codex-rigid221",
+  "base_head": "a750983f44a1251f672a58d40dc5e3f6c743f247",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-supporting-edge-named-core-postrun-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-supporting-edge-named-core-postrun.md",
+    "docs/computation/exactfive-profile0034-supporting-edge-named-core-20260904/run-0002-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T17:31:48Z",
+  "manifest_sha256": "0177a5f15cf5266bea39a02a70c75a7760d64e9b8e9372f6105fe340d37abae8"
+}

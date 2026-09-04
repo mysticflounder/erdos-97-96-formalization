@@ -1,0 +1,76 @@
+{
+  "schema": "p97-exactfive-profile0034-supporting-edge-named-core-postrun-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-named-core-piqd-20260904",
+  "run_id": "run-0002",
+  "status": "TARGET_UNKNOWN_NO_TERMINAL",
+  "claims": {
+    "live_source_completeness": false,
+    "core_minimality": false,
+    "source_realization": false,
+    "all_profile_execution": false,
+    "lean_ingress": false,
+    "live_closure": false,
+    "promotion": false,
+    "theorem": false
+  },
+  "formula_inventory": {
+    "target_assertions": 156,
+    "supporting_edge_guards": 143,
+    "source_row_equality_guards": 11,
+    "radius_branch_guards": 1,
+    "source_strict_guards": 1,
+    "active_assumptions_per_target": 156,
+    "commands_per_target": 333
+  },
+  "custody": {
+    "lane_base": "a9a6426bb4045b2d2b61abd36b1ee47adb1678fc",
+    "execution_commit": "a750983f44a1251f672a58d40dc5e3f6c743f247",
+    "run_manifest_sha256": "e6bd8f347c2272d8f457d74779dc8fd119265f91e981d2507493afcc8860cc70",
+    "run_manifest_file_sha256": "718d094af3585ca0b29468faf92f35d1cc747055acc69b6ea02be0663376c4cb",
+    "launch_sha256": "ead97eaa0d76268285600bc08e949a494770160540e4dd388884616defb38267",
+    "launch_file_sha256": "89388e1360f489bd793e06da23908f3aabe417a1a767d9e9b2c54a5015fceb2a",
+    "local_control_result_count": 2,
+    "local_target_result_count": 0,
+    "terminal_present": false,
+    "fresh_session_count": 4,
+    "unique_session_count": 4,
+    "response_loss_count": 0
+  },
+  "results": {
+    "control_positive": {
+      "status": "SAT_SEMANTICALLY_REPLAYED",
+      "solve_ms": 1,
+      "result_file_sha256": "91bb1b54f2d68731f80cf74ef0f01d9e89606370bb2c1a6983431d100e6cff8f"
+    },
+    "control_negative": {
+      "status": "UNSAT_DISCOVERY_ONLY",
+      "solve_ms": 0,
+      "core_size": 2,
+      "result_file_sha256": "fcff6338468e252c624db3c9cd5ca0637113ac4e1f116b95088075b33d2e4fb8"
+    },
+    "mirror_radius_lt": {
+      "status": "INCONCLUSIVE_UNKNOWN",
+      "solve_ms": 66524,
+      "assumption_count": 156,
+      "core": null,
+      "request_id": "acdc5521-1f08-5197-9d87-0206afd4449e",
+      "session_id": "3a5a865a-9cb6-4a8d-bb55-48d584c208aa",
+      "receipt_file_sha256": "032923ead0faf1b078b19397328a8a23dd07b177f07cc47fb0f2c819c031478c"
+    },
+    "mirror_radius_gt": {
+      "status": "INCONCLUSIVE_UNKNOWN",
+      "solve_ms": 61530,
+      "assumption_count": 156,
+      "core": null,
+      "request_id": "b4af024e-c3b1-5e22-bbc3-877cf4cae584",
+      "session_id": "d68c4a48-32d3-433c-b996-94f345c83cd2",
+      "receipt_file_sha256": "fe57cbf23f4addfac78e4f38cac9bab811b3f1b80bce0dc6c922ef93b24b7fb6"
+    }
+  },
+  "wave_mine": {
+    "concrete_theorem_candidate": false,
+    "lean_corpus_search_run": false,
+    "reason": "the wave exposed assumption-guard overhead but no new mathematical antecedent pattern"
+  },
+  "next_step": "Use a fresh PIQD campaign with unguarded source-ledger deletion cells; retain exact replay for SAT witnesses and treat UNKNOWN deletions as unresolved."
+}
