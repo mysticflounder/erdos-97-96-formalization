@@ -1,0 +1,140 @@
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.roleCarrier {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) : Finset (EuclideanSpace ℝ (Fin 2))
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.roleCarrier_subset {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) : roleCarrier P ⊆ D.A
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.ambientRoleIndices_card {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) (hsubset : roleCarrier P ⊆ D.A)
+  (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A) :
+  (ambientRoleIndices P hsubset B).card = (roleCarrier P).card
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.orderedRoleEmbedding_image {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) (hsubset : roleCarrier P ⊆ D.A)
+  (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A) :
+  Finset.image (⇑(orderedRoleEmbedding P hsubset B)) Finset.univ = ambientRoleIndices P hsubset B
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.orderedRoleEmbedding_orderedRoleIndex
+  {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) (hsubset : roleCarrier P ⊆ D.A)
+  (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A)
+  (label : Census554.GeneralCarrierBridge.CarrierLabel (roleCarrier P)) :
+  (orderedRoleEmbedding P hsubset B) (orderedRoleIndex P hsubset B label) =
+    B.indexOf (ambientCarrierLabel P hsubset label)
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.roleEmbedding_roleIndex {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A)
+  (role : B1CardSixPointConfigurationIngress.B1CardSixRole) :
+  (roleEmbedding P B) (roleIndex P B role) = B.indexOf (ambientRoleLabel P ⋯ role)
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.RawCardSixBad {n : ℕ}
+  (apex uBlocker vBlocker u0 u1 v0 v1 : Fin n) : Prop
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.raw_btw_iff_ambient {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) (hsubset : roleCarrier P ⊆ D.A)
+  (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A) (i j k : Fin (roleCarrier P).card) :
+  SurplusCOMPGBank.btw ((orderedRoleEmbedding P hsubset B) i) ((orderedRoleEmbedding P hsubset B) j)
+      ((orderedRoleEmbedding P hsubset B) k) ↔
+    SurplusCOMPGBank.btw i j k
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.raw_btw_role_iff_ambient {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A)
+  (r s t : B1CardSixPointConfigurationIngress.B1CardSixRole) :
+  SurplusCOMPGBank.btw (roleIndex P B r) (roleIndex P B s) (roleIndex P B t) ↔
+    SurplusCOMPGBank.btw (B.indexOf (ambientRoleLabel P ⋯ r)) (B.indexOf (ambientRoleLabel P ⋯ s))
+      (B.indexOf (ambientRoleLabel P ⋯ t))
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.rawCardSixBad_iff_ambient {D : CounterexampleData}
+  {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} {C : B1GlobalTransportContext}
+  (P : B1CardSixLocalRolePacket C) (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A) :
+  RawCardSixBad (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.physicalApex)
+      (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.Bu)
+      (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.Bv)
+      (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.u0)
+      (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.u1)
+      (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.v0)
+      (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.v1) ↔
+    ¬((SurplusCOMPGBank.btw
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.physicalApex))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.Bu))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.u0)) ↔
+          SurplusCOMPGBank.btw
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.physicalApex))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.Bu))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.u1))) ∧
+        (SurplusCOMPGBank.btw
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.physicalApex))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.Bv))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.v0)) ↔
+          SurplusCOMPGBank.btw
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.physicalApex))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.Bv))
+            (B.indexOf (ambientRoleLabel P ⋯ B1CardSixPointConfigurationIngress.B1CardSixRole.v1))))
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.b1LiveSlicesSameBoundaryArc_of_not_rawCardSixBad
+  {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} (C : B1GlobalTransportContext)
+  (P : B1CardSixLocalRolePacket C) (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A)
+  (hgood :
+    ¬RawCardSixBad (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.physicalApex)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.Bu)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.Bv)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.u0)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.u1)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.v0)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.v1)) :
+  B1LiveSlicesSameBoundaryArc C
+Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.false_of_b1PhysicalClassFiveSixNormalForm_of_not_rawCardSixBad
+  {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ} {H : CriticalShellSystem D.A}
+  {F : ATailCriticalPairFrontier.CriticalPairFrontier D S radius H} (C : B1GlobalTransportContext)
+  (hnormal : B1PhysicalClassFiveSixNormalForm C) (P : B1CardSixLocalRolePacket C)
+  (B : Census554.GeneralCarrierBridge.BoundaryIndexing D.A)
+  (hgood :
+    ¬RawCardSixBad (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.physicalApex)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.Bu)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.Bv)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.u0)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.u1)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.v0)
+        (roleIndex P B B1CardSixPointConfigurationIngress.B1CardSixRole.v1)) :
+  False
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.roleCarrier' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.roleCarrier_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.ambientRoleIndices_card' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.orderedRoleEmbedding_image' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.orderedRoleEmbedding_orderedRoleIndex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.roleEmbedding_roleIndex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.RawCardSixBad' does not depend on any axioms
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.raw_btw_iff_ambient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.raw_btw_role_iff_ambient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.rawCardSixBad_iff_ambient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.b1LiveSlicesSameBoundaryArc_of_not_rawCardSixBad' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress.false_of_b1PhysicalClassFiveSixNormalForm_of_not_rawCardSixBad' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

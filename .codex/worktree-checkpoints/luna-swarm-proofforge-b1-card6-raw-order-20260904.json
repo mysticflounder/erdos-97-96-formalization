@@ -1,0 +1,22 @@
+{
+  "base_head": "1e651efdae42220efdeb805d9be3245bbd45f069",
+  "created_utc": "2026-09-04T06:00:51Z",
+  "durable_paths": [
+    "scratch/runs/luna-swarm-proofforge-b1-card6-raw-order-20260904/run-0001/axiom_probe.lean",
+    "scratch/runs/luna-swarm-proofforge-b1-card6-raw-order-20260904/run-0001/axiom_probe.log",
+    "scratch/runs/luna-swarm-proofforge-b1-card6-raw-order-20260904/run-0001/governed-build.log",
+    "scratch/runs/luna-swarm-proofforge-b1-card6-raw-order-20260904/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/luna-swarm-proofforge-b1-card6-raw-order-20260904/run-0001"
+  ],
+  "lane_id": "luna-swarm-proofforge-b1-card6-raw-order-20260904",
+  "manifest_sha256": "0c27357160ea9fb6f9ea092ea742c08144cd0136c79554618da36d2211087f35",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-proofforge-b1-card6-raw-order-20260904.json",
+    "docs/audits/2026-09-04-b1-card6-raw-order.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardSixRawOrderIngress.lean"
+  ],
+  "owner": "luna-swarm-proofforge",
+  "schema": "worktree-lane-checkpoint/v1"
+}

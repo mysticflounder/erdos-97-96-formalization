@@ -1,0 +1,24 @@
+{
+  "base_head": "1e651efdae42220efdeb805d9be3245bbd45f069",
+  "created_utc": "2026-09-04T06:29:14Z",
+  "input_digests": {
+    "scratch/b1-roleprojection-dependent-bundle-prototype/DependentBundlePrototype.lean": "155c69a769a9807e4837fc2d5af21a3fed842547d4e1560b899f96c4b77d0d2f"
+  },
+  "lane_id": "luna-swarm-proofforge-b1-card6-raw-order-20260904",
+  "manifest_sha256": "320a5f7509c0c5f086bd01759bc08a91aa0951483de5ecee9f3e3fd72cbf2a43",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "luna-swarm-proofforge",
+  "root": "scratch/runs/luna-swarm-proofforge-b1-card6-raw-order-20260904/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardSixPointConfigurationIngress.lean": "54092c244d718dd579613adf59a534dc6feb7ad03d2857ffa4bbbb71fd874657",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardSixRawOrderIngress.lean": "152fad607cec333337f82ab8617cb86713bc89328845a15cf4f5b3965acf342d",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1LiveSharedPairNonalternationIngress.lean": "3beaf9b421cf3051dbf759f50540b71c2410a0f70def4f8e15a06b31c7525faa",
+    "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean": "357953198533077fb9a268c14e83e8318961a2d3ae10766e80c1debb96b53d79"
+  }
+}

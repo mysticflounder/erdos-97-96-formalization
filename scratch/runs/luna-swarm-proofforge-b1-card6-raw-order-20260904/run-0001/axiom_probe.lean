@@ -1,0 +1,33 @@
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1CardSixRawOrderIngress
+
+/-! # B1 card-six raw-order ingress axiom audit -/
+
+namespace Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress
+
+#check roleCarrier
+#check roleCarrier_subset
+#check ambientRoleIndices_card
+#check orderedRoleEmbedding_image
+#check orderedRoleEmbedding_orderedRoleIndex
+#check roleEmbedding_roleIndex
+#check RawCardSixBad
+#check raw_btw_iff_ambient
+#check raw_btw_role_iff_ambient
+#check rawCardSixBad_iff_ambient
+#check b1LiveSlicesSameBoundaryArc_of_not_rawCardSixBad
+#check false_of_b1PhysicalClassFiveSixNormalForm_of_not_rawCardSixBad
+
+#print axioms roleCarrier
+#print axioms roleCarrier_subset
+#print axioms ambientRoleIndices_card
+#print axioms orderedRoleEmbedding_image
+#print axioms orderedRoleEmbedding_orderedRoleIndex
+#print axioms roleEmbedding_roleIndex
+#print axioms RawCardSixBad
+#print axioms raw_btw_iff_ambient
+#print axioms raw_btw_role_iff_ambient
+#print axioms rawCardSixBad_iff_ambient
+#print axioms b1LiveSlicesSameBoundaryArc_of_not_rawCardSixBad
+#print axioms false_of_b1PhysicalClassFiveSixNormalForm_of_not_rawCardSixBad
+
+end Problem97.ATailFrontierLiveClosure.B1CardSixRawOrderIngress
