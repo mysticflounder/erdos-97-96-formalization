@@ -207,6 +207,67 @@ theorem adjacentEquilateralTriangles_circlePoint_negativeTurns_false
     nlinarith only [hQv_sq, hnorm]
   exact normalized_K2Row_above_left_incompatibility hnorm hr hrow habove hleft
 
+/-- Two adjacent equilateral triangles and a point on the second apex circle
+cannot realize the two displayed opposed signed-area products, independently
+of the base orientation. -/
+theorem adjacentEquilateralTriangles_circlePoint_opposedProducts_false
+    {B O A Q v : ℝ²}
+    (hBO_ne : B ≠ O)
+    (hBA_BO : dist B A = dist B O)
+    (hOA_OB : dist O A = dist O B)
+    (hOQ_OA : dist O Q = dist O A)
+    (hQO_QA : dist Q O = dist Q A)
+    (hQ_ne_B : Q ≠ B)
+    (hQv_QO : dist Q v = dist Q O)
+    (hAQvProduct :
+      signedArea2 B O A * signedArea2 A Q v < 0)
+    (hABvProduct :
+      signedArea2 B O A * signedArea2 A B v < 0) :
+    False := by
+  have hbase_ne : signedArea2 B O A ≠ 0 := by
+    intro hzero
+    rw [hzero, zero_mul] at hAQvProduct
+    linarith
+  by_cases hbase_pos : 0 < signedArea2 B O A
+  · have hAQv : signedArea2 A Q v < 0 := by
+      rcases mul_neg_iff.mp hAQvProduct with hsign | hsign
+      · exact hsign.2
+      · exact False.elim ((not_lt_of_ge hbase_pos.le) hsign.1)
+    have hABv : signedArea2 A B v < 0 := by
+      rcases mul_neg_iff.mp hABvProduct with hsign | hsign
+      · exact hsign.2
+      · exact False.elim ((not_lt_of_ge hbase_pos.le) hsign.1)
+    exact adjacentEquilateralTriangles_circlePoint_negativeTurns_false
+      hBO_ne hBA_BO hOA_OB hOQ_OA hQO_QA hQ_ne_B hQv_QO
+      hbase_pos hAQv hABv
+  · have hbase_neg : signedArea2 B O A < 0 :=
+      lt_of_le_of_ne (le_of_not_gt hbase_pos) hbase_ne
+    have hAQv_pos : 0 < signedArea2 A Q v := by
+      rcases mul_neg_iff.mp hAQvProduct with hsign | hsign
+      · exact False.elim ((not_lt_of_ge hbase_neg.le) hsign.1)
+      · exact hsign.2
+    have hABv_pos : 0 < signedArea2 A B v := by
+      rcases mul_neg_iff.mp hABvProduct with hsign | hsign
+      · exact False.elim ((not_lt_of_ge hbase_neg.le) hsign.1)
+      · exact hsign.2
+    apply adjacentEquilateralTriangles_circlePoint_negativeTurns_false
+      (B := reflectXAxis B) (O := reflectXAxis O)
+      (A := reflectXAxis A) (Q := reflectXAxis Q)
+      (v := reflectXAxis v)
+    · exact fun h => hBO_ne (reflectXAxis_injective h)
+    · simpa only [dist_reflectXAxis] using hBA_BO
+    · simpa only [dist_reflectXAxis] using hOA_OB
+    · simpa only [dist_reflectXAxis] using hOQ_OA
+    · simpa only [dist_reflectXAxis] using hQO_QA
+    · exact fun h => hQ_ne_B (reflectXAxis_injective h)
+    · simpa only [dist_reflectXAxis] using hQv_QO
+    · rw [signedArea2_reflectXAxis]
+      linarith
+    · rw [signedArea2_reflectXAxis]
+      linarith
+    · rw [signedArea2_reflectXAxis]
+      linarith
+
 end EqualityCore
 end Census554
 end Problem97
