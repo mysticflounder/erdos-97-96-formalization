@@ -142,6 +142,7 @@ To upgrade the n=11 finite closure, recover or independently reconstruct all
 42,504 base clauses with per-family provenance; reproduce the original byte
 ordering or publish a new versioned bank; encode the complete fixed-cardinality
 problem to CNF; and retain a solver proof that passes independent DRAT/LRAT
-checking. Until those steps pass, the all-center strict-Kalmanson direction
-remains a conjectural research program, while this one Euclidean motif family
-is proved and reproducible.
+checking. Until those steps pass, the claimed Euclidean-augmented n=11 finite
+closure remains unverified. The pure all-center strict-Kalmanson impossibility
+is already false at n=11 because of the retained survivor; this motif is one
+proved and reproducible Euclidean separator.

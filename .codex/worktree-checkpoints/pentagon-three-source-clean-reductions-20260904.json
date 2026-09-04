@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "pentagon-three-source-clean-reductions-20260904",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "e7b4fd6ea67b17b291f08e080bbbe631d2772d10",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/pentagon-three-source-clean-reductions-20260904.json",
+    "docs/skeptic-Rigid221SourceHeavy-2026-09-04.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T04:50:00Z",
+  "manifest_sha256": "445a7c2b48ab640ef57047cf1ff3ee989d89303a89aa883026c591b6be2cdb66"
+}
