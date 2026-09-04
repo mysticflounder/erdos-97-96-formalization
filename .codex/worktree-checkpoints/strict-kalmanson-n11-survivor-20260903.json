@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "strict-kalmanson-n11-survivor-20260903",
+  "owner": "n11-survivor-verifier",
+  "base_head": "fd3c5e852fcc28e5b539b86af1d6586bcf7653ad",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-n11-survivor-20260903.json",
+    "scripts/test_verify_strict_kalmanson_survivor.py",
+    "scripts/verify_strict_kalmanson_survivor.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/strict-kalmanson-n11-survivor-20260903/run-0001"
+  ],
+  "durable_paths": [
+    "certificates/p97_strict_kalmanson_n11_survivor.json",
+    "docs/audits/2026-09-03-strict-kalmanson-n11-survivor.md"
+  ],
+  "created_utc": "2026-09-04T03:42:53Z",
+  "manifest_sha256": "3a8eeb554577102cc8de751ebc861f35070ecf45f0aabcff2195b693fecc11f2"
+}
