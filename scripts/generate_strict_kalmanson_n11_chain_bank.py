@@ -25,7 +25,14 @@ from collections.abc import Iterable, Iterator, Sequence
 from pathlib import Path
 from typing import BinaryIO
 
+JSONL_FORMAT = "jsonl"
+P97MONOTONE_FORMAT = "p97monotone"
 SERIALIZATION_SCHEMA = "p97-strict-kalmanson-chain-bank-jsonl/v1"
+P97MONOTONE_SCHEMA = "p97monotone/v1"
+P97MONOTONE_SEMANTICS = (
+    "custom monotone no-good bank of forbidden positive membership sets; "
+    "not signed DIMACS CNF"
+)
 SEMANTIC_SOURCE_THEOREM = (
     "Problem97.false_of_realizes_three_equilateral_chain"
 )
@@ -84,6 +91,61 @@ def serialize_clause(clause: Clause) -> bytes:
             "record": "blocking_clause",
         }
     )
+
+
+def membership_var(n: int, center: int, member: int) -> int:
+    """Map a directed membership atom to its one-based p97monotone variable."""
+
+    _validate_n(n)
+    if any(
+        isinstance(label, bool) or not isinstance(label, int)
+        for label in (center, member)
+    ):
+        raise ValueError("center and member must be integers")
+    if not (0 <= center < n and 0 <= member < n):
+        raise ValueError("center and member must lie in range(n)")
+    return 1 + n * center + member
+
+
+def p97monotone_clause_ids(n: int, clause: Iterable[Atom]) -> tuple[int, ...]:
+    """Return sorted variable IDs for one forbidden positive membership set."""
+
+    return tuple(sorted({membership_var(n, center, member) for center, member in clause}))
+
+
+def canonical_p97monotone_clauses(n: int) -> list[tuple[int, ...]]:
+    """Return the globally sorted, duplicate-free compatibility clause bank."""
+
+    clauses = sorted(
+        {p97monotone_clause_ids(n, clause) for clause in iter_clauses(n)}
+    )
+    expected = expected_orbit_size(n)
+    if len(clauses) != expected:
+        raise AssertionError(
+            f"generated {len(clauses)} distinct clauses, expected {expected}"
+        )
+    return clauses
+
+
+def p97monotone_header(n: int, count: int) -> bytes:
+    """Serialize the exact ASCII LF compatibility header."""
+
+    _validate_n(n)
+    if isinstance(count, bool) or not isinstance(count, int) or count < 0:
+        raise ValueError("count must be a nonnegative integer")
+    return f"p97monotone {n} {count}\n".encode("ascii")
+
+
+def serialize_p97monotone_clause(clause_ids: Iterable[int]) -> bytes:
+    """Serialize sorted positive IDs followed by the required terminal zero."""
+
+    canonical = tuple(sorted(set(clause_ids)))
+    if not canonical or any(
+        isinstance(variable, bool) or not isinstance(variable, int) or variable <= 0
+        for variable in canonical
+    ):
+        raise ValueError("p97monotone clause IDs must be positive integers")
+    return (" ".join(map(str, canonical)) + " 0\n").encode("ascii")
 
 
 def _validate_n(n: int) -> None:
@@ -244,6 +306,57 @@ def stream_orbit(n: int, output: BinaryIO | None = None) -> dict[str, object]:
     }
 
 
+def stream_p97monotone(
+    n: int, output: BinaryIO | None = None
+) -> dict[str, object]:
+    """Hash, and optionally write, the p97monotone compatibility stream.
+
+    This is a custom monotone no-good bank.  Each line forbids the simultaneous
+    truth of its listed positive membership variables; it is not signed DIMACS
+    CNF.
+    """
+
+    clauses = canonical_p97monotone_clauses(n)
+    digest = hashlib.sha256()
+    byte_count = 0
+
+    def consume(data: bytes) -> None:
+        nonlocal byte_count
+        digest.update(data)
+        byte_count += len(data)
+        if output is not None:
+            output.write(data)
+
+    consume(p97monotone_header(n, len(clauses)))
+    for clause in clauses:
+        consume(serialize_p97monotone_clause(clause))
+
+    return {
+        "atoms_per_clause": len(MOTIF_ATOMS),
+        "clause_count": len(clauses),
+        "distinct_clause_count": len(clauses),
+        "format": P97MONOTONE_FORMAT,
+        "format_semantics": P97MONOTONE_SEMANTICS,
+        "n": n,
+        "schema": P97MONOTONE_SCHEMA,
+        "semantic_source_theorem": SEMANTIC_SOURCE_THEOREM,
+        "stream_bytes": byte_count,
+        "stream_sha256": digest.hexdigest(),
+    }
+
+
+def stream_bank(
+    n: int, serialization_format: str = JSONL_FORMAT, output: BinaryIO | None = None
+) -> dict[str, object]:
+    """Dispatch to one of the explicitly named serialization formats."""
+
+    if serialization_format == JSONL_FORMAT:
+        return stream_orbit(n, output)
+    if serialization_format == P97MONOTONE_FORMAT:
+        return stream_p97monotone(n, output)
+    raise ValueError(f"unknown serialization format: {serialization_format!r}")
+
+
 def _load_survivor_embeddings(path: Path) -> list[Embedding]:
     with path.open("r", encoding="utf-8") as source:
         document = json.load(source)
@@ -259,9 +372,15 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--n", type=int, default=11)
     parser.add_argument(
+        "--format",
+        choices=(JSONL_FORMAT, P97MONOTONE_FORMAT),
+        default=JSONL_FORMAT,
+        help="serialization format (default: jsonl)",
+    )
+    parser.add_argument(
         "--output",
         type=Path,
-        help="write the JSONL stream; refuses to replace an existing path",
+        help="write the selected stream; refuses to replace an existing path",
     )
     parser.add_argument(
         "--survivor",
@@ -271,10 +390,10 @@ def main() -> int:
     args = parser.parse_args()
 
     if args.output is None:
-        summary = stream_orbit(args.n)
+        summary = stream_bank(args.n, args.format)
     else:
         with args.output.open("xb") as output:
-            summary = stream_orbit(args.n, output)
+            summary = stream_bank(args.n, args.format, output)
         summary["output"] = str(args.output)
     summary["claim_scope"] = "motif orbit only; no augmented-bank or UNSAT claim"
     if args.survivor is not None:

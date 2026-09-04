@@ -88,6 +88,23 @@ This digest authenticates the newly specified motif-only JSONL stream. It is
 not the announced full-bank digest and cannot be compared byte-for-byte with
 that digest until the original serialization and 42,504-clause base arrive.
 
+The later Pro-consult handoff specified a compact compatibility format for the
+same unsigned incidence family: map `(center,member)` to `1+n*center+member`,
+sort IDs within each forbidden positive-membership set, deduplicate and sort
+the sets globally, then write a `p97monotone` header and terminal zeros. This is
+a custom monotone no-good format, not signed DIMACS CNF. The generator now
+matches the n=11 byte count and digest reported by the handoff:
+
+```text
+clauses       332,640
+stream bytes  13,075,798
+stream SHA256 0d6d8a66bc714778daa577f51264d08e146495fc6e6210f81e8d8820b73560d9
+```
+
+Small-n decoding tests confirm that the JSONL and `p97monotone` streams carry
+the same directed atom sets. Neither motif-only digest authenticates the
+missing 375,144-clause bank.
+
 ## Survivor extraction
 
 Running the detector on
@@ -132,9 +149,10 @@ uv run --with ruff ruff check \
   scripts/test_generate_strict_kalmanson_n11_chain_bank.py
 ```
 
-The focused suite has eleven tests. It checks the exact atom pattern, trivial
+The focused suite has sixteen tests. It checks the exact atom pattern, trivial
 automorphism group, ordered-injection counts, duplicate freedom on a complete
-n=7 orbit, pinned n=6 and n=11 stream digests, and the four survivor hits.
+n=7 orbit, pinned JSONL and `p97monotone` stream digests, cross-format semantic
+agreement, and the four survivor hits.
 
 ## Next promotion gate
 

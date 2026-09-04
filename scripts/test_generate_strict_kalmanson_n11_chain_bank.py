@@ -98,6 +98,75 @@ def test_serialized_stream_is_versioned_and_digest_matches_written_bytes() -> No
     )
 
 
+def test_p97monotone_variable_map_and_small_bank_semantics() -> None:
+    n = 6
+    assert mod.membership_var(n, 0, 0) == 1
+    assert mod.membership_var(n, 0, 1) == 2
+    assert mod.membership_var(n, 5, 4) == 35
+
+    compatibility_clauses = mod.canonical_p97monotone_clauses(n)
+    assert compatibility_clauses == sorted(compatibility_clauses)
+    assert len(compatibility_clauses) == len(set(compatibility_clauses)) == 720
+    assert all(clause == tuple(sorted(clause)) for clause in compatibility_clauses)
+
+    decoded = {
+        tuple(sorted(divmod(variable - 1, n) for variable in clause))
+        for clause in compatibility_clauses
+    }
+    assert decoded == set(mod.iter_clauses(n))
+
+
+def test_p97monotone_stream_has_exact_custom_header_lf_and_terminal_zero() -> None:
+    output = io.BytesIO()
+    summary = mod.stream_p97monotone(6, output)
+    payload = output.getvalue()
+    lines = payload.splitlines(keepends=True)
+    assert lines[0] == b"p97monotone 6 720\n"
+    assert all(line.endswith(b" 0\n") for line in lines[1:])
+    assert b"\r" not in payload
+    assert summary["format"] == mod.P97MONOTONE_FORMAT
+    assert summary["format_semantics"] == mod.P97MONOTONE_SEMANTICS
+    assert summary["stream_bytes"] == len(payload)
+    assert summary["stream_sha256"] == hashlib.sha256(payload).hexdigest()
+    assert summary["stream_bytes"] == 25_362
+    assert summary["stream_sha256"] == (
+        "808a8544576fce950e466722ed5aa26f170f91e9f400637062ae4f63c0280349"
+    )
+
+
+def test_small_serialized_streams_carry_the_same_directed_atom_sets() -> None:
+    n = 6
+    jsonl_output = io.BytesIO()
+    p97monotone_output = io.BytesIO()
+    mod.stream_orbit(n, jsonl_output)
+    mod.stream_p97monotone(n, p97monotone_output)
+
+    jsonl_clauses = {
+        tuple(tuple(atom) for atom in json.loads(line)["atoms"])
+        for line in jsonl_output.getvalue().splitlines()[1:]
+    }
+    p97monotone_clauses = set()
+    for line in p97monotone_output.getvalue().splitlines()[1:]:
+        fields = line.split()
+        assert fields[-1] == b"0"
+        p97monotone_clauses.add(
+            tuple(sorted(divmod(int(variable) - 1, n) for variable in fields[:-1]))
+        )
+
+    assert jsonl_clauses == p97monotone_clauses
+
+
+def test_default_dispatch_preserves_jsonl_bytes_and_summary() -> None:
+    direct_output = io.BytesIO()
+    dispatched_output = io.BytesIO()
+
+    direct_summary = mod.stream_orbit(6, direct_output)
+    dispatched_summary = mod.stream_bank(6, output=dispatched_output)
+
+    assert dispatched_summary == direct_summary
+    assert dispatched_output.getvalue() == direct_output.getvalue()
+
+
 def test_n11_stream_digest_and_count_are_pinned() -> None:
     summary = mod.stream_orbit(11)
     assert summary["clause_count"] == 332_640
@@ -105,6 +174,16 @@ def test_n11_stream_digest_and_count_are_pinned() -> None:
     assert summary["stream_bytes"] == 37_649_201
     assert summary["stream_sha256"] == (
         "e78e8db92ff880df312af4bab2bb1d89aed9d43d3cd51e42af1687de743b8925"
+    )
+
+
+def test_n11_p97monotone_compatibility_stream_is_pinned() -> None:
+    summary = mod.stream_p97monotone(11)
+    assert summary["clause_count"] == 332_640
+    assert summary["distinct_clause_count"] == 332_640
+    assert summary["stream_bytes"] == 13_075_798
+    assert summary["stream_sha256"] == (
+        "0d6d8a66bc714778daa577f51264d08e146495fc6e6210f81e8d8820b73560d9"
     )
 
 
