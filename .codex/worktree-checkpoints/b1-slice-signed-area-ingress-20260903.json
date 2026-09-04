@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-slice-signed-area-ingress-20260903",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "dd9fde6abc604e680e17566359238f287af9eec7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-slice-signed-area-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1SliceSignedAreaIngress.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T17:58:00Z",
+  "manifest_sha256": "3de04c3641f0f946f4e35f6a820ac23df9dc8e6be6870ff75fc5ea4149a059cb"
+}
