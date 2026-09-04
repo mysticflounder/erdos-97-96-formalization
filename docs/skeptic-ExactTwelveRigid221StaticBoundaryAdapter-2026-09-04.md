@@ -130,6 +130,15 @@ None found in the proof explanation.
 The file does not conflate a conditional bank consumer with a terminal-bank
 construction or a live residual closure.
 
+## Aggregate reachability
+
+The adapter remains a standalone module.  A probe that imports
+`Erdos9796Proof.P97.ATail.FrontierLiveClosure` and checks
+`terminalStaticDimacs_lit_natAbs_le` fails with Lean `unknownIdentifier`, while
+direct source elaboration of the adapter succeeds.  The aggregate import edge
+is therefore still required; its source file is foreign-modified in the
+shared worktree and was not edited by this lane.
+
 ## Lean sorry graph
 
 The target contains no `sorry`.  The audited target theorem and the imported
