@@ -32,9 +32,16 @@ from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 LANE_ID = (
     "exactfive-hard-source-swap-profile0034-supporting-edge-named-core-piqd-20260904"
 )
-RUN_ID = "run-0001"
+RUN_ID = "run-0002"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 RUN_ROOT = REPOSITORY_ROOT / "scratch/runs" / LANE_ID / RUN_ID
+ABORTED_RUN_ID = "run-0001"
+ABORTED_ROOT = (
+    REPOSITORY_ROOT
+    / "scratch/quarantine"
+    / f"{LANE_ID}-{ABORTED_RUN_ID}-aborted"
+)
+ABORTED_MANIFEST_PATH = ABORTED_ROOT / "run_manifest.json"
 CHECKPOINT_PATH = REPOSITORY_ROOT / ".codex/worktree-checkpoints" / f"{LANE_ID}.json"
 SPEC_PATH = (
     REPOSITORY_ROOT
@@ -47,6 +54,14 @@ TEST_PATH = (
 RUNNER_PATH = (
     REPOSITORY_ROOT
     / "scripts/run_exactfive_hard_source_swap_profile0034_supporting_edge_named_core_piqd.py"
+)
+
+ABORTED_EXECUTION_COMMIT = "17cc137c22d02fdc6cddb781ba6be31a43a7c3a5"
+ABORTED_MANIFEST_FILE_SHA256 = (
+    "95cca22b16e5948f94a4361f910891cc48ad4d178be4c7ea35240fadc92e6cd0"
+)
+ABORTED_MANIFEST_SHA256 = (
+    "c5d80b258a520ea63c171e59e82e04060e5bbec8c06cd6d75070d610ad9ddad1"
 )
 
 PARENT_ROOT = source.RUN_ROOT
@@ -245,7 +260,7 @@ def _strict(payload: bytes, where: str) -> dict[str, Any]:
 
 def _publish_once(path: Path, payload: bytes) -> None:
     try:
-        source._publish_once(path, payload)
+        source._create_once(path, payload)
     except source.Profile0034SupportingEdgeError as exc:
         raise Profile0034SupportingEdgeNamedCoreError(
             f"immutable publication failed: {path}"
@@ -258,6 +273,70 @@ def _repo_path(path: Path) -> str:
 
 def _source_map(paths: Sequence[Path]) -> dict[str, str]:
     return {_repo_path(path): _sha(_read(path)) for path in sorted(paths)}
+
+
+def authenticate_aborted_run() -> dict[str, Any]:
+    """Pin the pre-submission run-0001 failure without treating it as resumable."""
+
+    if ABORTED_ROOT.is_symlink() or not ABORTED_ROOT.is_dir():
+        raise Profile0034SupportingEdgeNamedCoreError("aborted run root is unsafe")
+    if {entry.name for entry in ABORTED_ROOT.iterdir()} != {
+        "run_manifest.json",
+        "artifacts",
+        "events",
+        "tmp",
+    }:
+        raise Profile0034SupportingEdgeNamedCoreError("aborted run inventory drifted")
+    for name in ("artifacts", "events", "tmp"):
+        path = ABORTED_ROOT / name
+        if path.is_symlink() or not path.is_dir() or tuple(path.iterdir()):
+            raise Profile0034SupportingEdgeNamedCoreError(
+                "aborted run contains submitted work"
+            )
+    payload = _read(ABORTED_MANIFEST_PATH)
+    manifest = _strict(payload, "aborted run manifest")
+    if (
+        _sha(payload) != ABORTED_MANIFEST_FILE_SHA256
+        or manifest.get("schema") != RUN_MANIFEST_SCHEMA
+        or manifest.get("lane_id") != LANE_ID
+        or manifest.get("run_id") != ABORTED_RUN_ID
+        or manifest.get("root")
+        != f"scratch/runs/{LANE_ID}/{ABORTED_RUN_ID}"
+        or manifest.get("manifest_sha256") != ABORTED_MANIFEST_SHA256
+        or manifest.get("manifest_sha256")
+        != _self_hash(manifest, "manifest_sha256")
+    ):
+        raise Profile0034SupportingEdgeNamedCoreError(
+            "aborted run manifest custody drifted"
+        )
+    source_digests = manifest.get("source_digests")
+    input_digests = manifest.get("input_digests")
+    if type(source_digests) is not dict or type(input_digests) is not dict:
+        raise Profile0034SupportingEdgeNamedCoreError(
+            "aborted run digest inventory is malformed"
+        )
+    for relative, digest in source_digests.items():
+        if type(relative) is not str or type(digest) is not str:
+            raise Profile0034SupportingEdgeNamedCoreError(
+                "aborted source digest is malformed"
+            )
+        committed = _git_read(
+            ("show", f"{ABORTED_EXECUTION_COMMIT}:{relative}"), relative
+        )
+        if _sha(committed) != digest:
+            raise Profile0034SupportingEdgeNamedCoreError(
+                f"aborted execution source drifted: {relative}"
+            )
+    for relative, digest in input_digests.items():
+        if (
+            type(relative) is not str
+            or type(digest) is not str
+            or _sha(_read(REPOSITORY_ROOT / relative)) != digest
+        ):
+            raise Profile0034SupportingEdgeNamedCoreError(
+                f"aborted run input drifted: {relative}"
+            )
+    return manifest
 
 
 def _authenticate_parent_execution_commit(
@@ -669,6 +748,9 @@ def _source_snapshots(
     snapshots = [
         adapter.SourceSnapshot("0000-parent-custody.json", _json(parent)),
         adapter.SourceSnapshot("0001-named-system.json", _json(system)),
+        adapter.SourceSnapshot(
+            "aborted-run-0001-manifest.json", _read(ABORTED_MANIFEST_PATH)
+        ),
         adapter.SourceSnapshot("parent-run-manifest.json", _read(PARENT_MANIFEST_PATH)),
         adapter.SourceSnapshot("parent-launch.json", _read(PARENT_LAUNCH_PATH)),
         adapter.SourceSnapshot("parent-terminal.json", _read(PARENT_TERMINAL_PATH)),
@@ -1487,6 +1569,7 @@ def _load_checkpoint() -> dict[str, Any]:
 
 def _expected_run_manifest(created_utc: str) -> dict[str, Any]:
     checkpoint = _load_checkpoint()
+    authenticate_aborted_run()
     parent = authenticate_parent_run()
     source_paths = [
         Path(__file__),
@@ -1511,7 +1594,12 @@ def _expected_run_manifest(created_utc: str) -> dict[str, Any]:
         "output_classes": ["artifacts", "events", "tmp"],
         "source_digests": _source_map(source_paths),
         "input_digests": _source_map(
-            [PARENT_MANIFEST_PATH, PARENT_LAUNCH_PATH, PARENT_TERMINAL_PATH]
+            [
+                ABORTED_MANIFEST_PATH,
+                PARENT_MANIFEST_PATH,
+                PARENT_LAUNCH_PATH,
+                PARENT_TERMINAL_PATH,
+            ]
             + parent_result_paths
         ),
         "created_utc": created_utc,

@@ -117,7 +117,16 @@ receipt, open session, extra key, extra file, or unsafe path fails closed.
 
 ## Run custody
 
-The checked-in initial root contains only `run_manifest.json`. Its
+Run `run-0001` stopped before launch publication and before any PIQD query
+because its write-once wrapper referenced a parent helper name that does not
+exist. Its root was moved intact to
+`scratch/quarantine/exactfive-hard-source-swap-profile0034-supporting-edge-named-core-piqd-20260904-run-0001-aborted`.
+It contains the original manifest plus empty `artifacts`, `events`, and `tmp`
+directories. Run `run-0002` authenticates that manifest,
+its source blobs at commit `17cc137c22d02fdc6cddb781ba6be31a43a7c3a5`, and
+the absence of submitted work. It does not resume the failed root.
+
+The initialized `run-0002` root contains only `run_manifest.json`. Its
 `base_head` is the lane checkpoint base, not a later commit.
 
 Before launch, the runner recomputes every source digest in the manifest and

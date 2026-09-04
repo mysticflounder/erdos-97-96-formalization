@@ -411,6 +411,20 @@ def test_target_requires_z3_unsat(
         _genuine_tree(tmp_path, prepared, status=status)
 
 
+def test_aborted_run_is_frozen_before_submission() -> None:
+    manifest = lane.authenticate_aborted_run()
+    assert lane.RUN_ID == "run-0002"
+    assert manifest["run_id"] == "run-0001"
+    assert manifest["manifest_sha256"] == lane.ABORTED_MANIFEST_SHA256
+    assert lane._sha(lane._read(lane.ABORTED_MANIFEST_PATH)) == (
+        lane.ABORTED_MANIFEST_FILE_SHA256
+    )
+    assert all(
+        not tuple((lane.ABORTED_ROOT / name).iterdir())
+        for name in ("artifacts", "events", "tmp")
+    )
+
+
 def test_execution_commit_gate_checks_every_source(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -460,6 +474,17 @@ def test_recorded_execution_commit_survives_unrelated_head_advance(
         )
         == recorded
     )
+
+
+def test_publish_once_calls_the_parent_create_once(tmp_path: Path) -> None:
+    target = tmp_path / "nested" / "record.json"
+    lane._publish_once(target, b"payload\n")
+    assert target.read_bytes() == b"payload\n"
+    with pytest.raises(
+        lane.Profile0034SupportingEdgeNamedCoreError,
+        match="immutable publication failed",
+    ):
+        lane._publish_once(target, b"replacement\n")
 
 
 @pytest.mark.parametrize("workers", [0, 5, True])
