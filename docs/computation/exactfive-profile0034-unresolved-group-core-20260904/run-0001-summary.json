@@ -1,0 +1,91 @@
+{
+  "schema": "p97-exactfive-profile0034-unresolved-group-core-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-unresolved-group-core-piqd-20260904",
+  "run_id": "run-0001",
+  "execution_commit": "200d362ed5abc75312991ba6a2cc52eddcd2d589",
+  "custody": {
+    "run_manifest_file_sha256": "52a0d428846e6a68d995fbfd81b6297fe727d5704d971ad0dc93f65fedaa5e60",
+    "run_manifest_self_sha256": "6805cabc752d31fc980cd32e11c93d39532c8cedba7eb7d0e3bc6823e64c2409",
+    "launch_file_sha256": "ddab36f5af85c654d7cf35431465267caee7d155bb4a43eba6facbf6038735bf",
+    "launch_self_sha256": "6a4db50380ede193a61940a418aa6d5369c5c15a73f39b20f8ba3675f615747a",
+    "terminal_file_sha256": "adf43beb1859600cf163f932883c49f13a25630bcedd1229e11cf78f48b96b5b",
+    "terminal_self_sha256": "c06bd1902fa1c64efa6fd15b04d85ab69de7758fb170d97fc49739061220b491",
+    "independent_postrun_audit_passed": true,
+    "second_full_offline_replay_run": false
+  },
+  "transport": {
+    "daemon": "piqd",
+    "solver": "z3",
+    "timeout_ms": 60000,
+    "worker_limit": 4,
+    "query_count": 4,
+    "fresh_unique_closed_sessions": 4,
+    "solve_count_per_session": 1
+  },
+  "results": {
+    "z3-control-positive": {
+      "raw_status": "SAT",
+      "disposition": "SAT_REPLAYED",
+      "solve_ms": 2,
+      "session_id": "80506978-66bb-418e-90bf-dd14ff70dba2",
+      "result_sha256": "e6d3ae535f1cd4278866a9c77e67f11533780306e6ddde8262211ce54cf134a6"
+    },
+    "z3-control-negative": {
+      "raw_status": "UNSAT",
+      "disposition": "UNSAT_GROUP_CORE",
+      "solve_ms": 2,
+      "session_id": "1dfd66d8-575a-4566-805b-c9de0638adc4",
+      "core_group_ids": ["control-negative"],
+      "result_sha256": "d6722230913b686e6fe6faa8c53084903f5711051cc659a4a907af57dbd9d1f0"
+    },
+    "z3-target-mirror-radius-lt": {
+      "raw_status": "UNKNOWN",
+      "disposition": "UNKNOWN",
+      "solve_ms": 66896,
+      "session_id": "2ca9d259-c9cd-45ed-a2a2-ee3cee34385e",
+      "guarded_group_ids": [
+        "edge-index-00",
+        "edge-index-03",
+        "edge-index-04",
+        "source-row-equality-01",
+        "source-row-equality-05"
+      ],
+      "result_sha256": "fc82f3f04b98c5f37184f3b9fb5101c425f3b5bed99487720f4efb1722cbc608"
+    },
+    "z3-target-mirror-radius-gt": {
+      "raw_status": "UNKNOWN",
+      "disposition": "UNKNOWN",
+      "solve_ms": 62209,
+      "session_id": "563a384d-b2f1-4708-9110-7f1b5fcde881",
+      "guarded_group_ids": [
+        "edge-index-00",
+        "edge-index-03",
+        "source-row-equality-00",
+        "source-row-equality-01",
+        "source-row-equality-03",
+        "source-row-equality-05"
+      ],
+      "result_sha256": "48fbfda3f9950e538337a033257341d3214df5687aa00dc141a4f939111a82fe"
+    }
+  },
+  "performance": {
+    "observed_campaign_wall_note": "about eleven minutes from process launch to exit",
+    "diagnosis": "Repeated exact SAT semantic replay recursively reauthenticated the predecessor chain. Solver time and terminal construction were not the dominant cost.",
+    "safe_followup": "Use self-contained controls and one semantic verification per immutable query result in the next versioned lane."
+  },
+  "interpretation": {
+    "target_core_produced": false,
+    "guard_implication_encoding_helped_z3": false,
+    "next_search": "physical unguarded subset conflict search with the exact reduced base fixed"
+  },
+  "claims": {
+    "live_source_completeness": false,
+    "core_minimality": false,
+    "source_realization": false,
+    "all_profile_execution": false,
+    "lean_ingress": false,
+    "live_closure": false,
+    "promotion": false,
+    "theorem": false
+  }
+}
