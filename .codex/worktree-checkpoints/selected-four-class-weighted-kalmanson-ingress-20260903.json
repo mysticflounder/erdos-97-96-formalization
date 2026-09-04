@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "selected-four-class-weighted-kalmanson-ingress-20260903",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "dd9fde6abc604e680e17566359238f287af9eec7",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/selected-four-class-weighted-kalmanson-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/SelectedFourClassWeightedKalmansonIngress.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T00:57:29Z",
+  "manifest_sha256": "a1dfc4366aefc867d72022b2aba3a21e8f746882a479bab4e05b478ab6f4f9be"
+}
