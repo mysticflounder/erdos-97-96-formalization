@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "three-fan-option-scope-20260903",
+  "owner": "codex",
+  "base_head": "46d92fbad948b6102274fae754d51eb1ca1e783c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/three-fan-option-scope-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ThreeFanOrderMetric.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T23:50:00Z",
+  "manifest_sha256": "85f1b43f03729a7b577b2b03f46d6dc13a324b52092121b1ade3888107f4b3d9"
+}

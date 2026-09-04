@@ -24,8 +24,6 @@ namespace ColoredPaleyThreeFanOrderMetric
 
 abbrev ThreeFanPos := Fin 7
 
-set_option synthInstance.maxHeartbeats 1000000
-set_option maxHeartbeats 1000000
 attribute [local instance] Fintype.decidableForallFintype
   Fintype.decidableExistsFintype
 
@@ -106,6 +104,10 @@ instance (x b c y d z : ThreeFanPos) :
   unfold threeFanOrbit
   infer_instance
 
+set_option synthInstance.maxHeartbeats 1000000 in
+-- Exhaustive Fin 7 enumeration checks all six named positions.
+set_option maxHeartbeats 1000000 in
+-- The finite classifier is intentionally discharged by `decide`.
 /-- All-distinct three-fan separations have exactly the two orbit types,
 up to reversal and permutation of `(X,Y,Z)`. -/
 theorem threeFan_separation_order_classifier :
@@ -122,6 +124,10 @@ abbrev threeFanOneCrossOrder₁ (x b c y z : ThreeFanPos) : Prop :=
 abbrev threeFanOneCrossOrder₂ (x b c y z : ThreeFanPos) : Prop :=
   0 < z ∧ z < c ∧ c < x ∧ x < b ∧ b < y
 
+set_option synthInstance.maxHeartbeats 1000000 in
+-- Exhaustive Fin 7 enumeration checks all five named positions.
+set_option maxHeartbeats 1000000 in
+-- The finite classifier is intentionally discharged by `decide`.
 /-- If the sole alias is `X = D`, the six remaining named positions have the
 order `A,Y,B,D,C,Z`, up to reversal. -/
 theorem threeFan_one_cross_alias_order_classifier :
@@ -133,6 +139,10 @@ theorem threeFan_one_cross_alias_order_classifier :
         threeFanOneCrossOrder₂ x b c y z := by
   decide
 
+set_option synthInstance.maxHeartbeats 1000000 in
+-- Exhaustive Fin 7 enumeration checks the six-position alias cases.
+set_option maxHeartbeats 1000000 in
+-- The finite classifier is intentionally discharged by `decide`.
 /-- Any two of `X = D`, `Y = C`, and `Z = B` contradict the three
 separation facts, even after retaining distinctness of the other names. -/
 theorem threeFan_two_cross_aliases_false :
