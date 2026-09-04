@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-physical-block-deletion-postrun-20260904",
+  "owner": "codex-rigid221",
+  "base_head": "373fb457ccf0565a3d95cb6eb2952807fabff4f0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-physical-block-deletion-postrun-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-physical-block-deletion-postrun.md",
+    "docs/computation/exactfive-profile0034-physical-block-deletion-20260904/run-0005-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T23:05:26Z",
+  "manifest_sha256": "1ffcb8cacf96da923ec41bed822aa604d6dc8a1b4e3a707d46dd4a8b5910d7c3"
+}

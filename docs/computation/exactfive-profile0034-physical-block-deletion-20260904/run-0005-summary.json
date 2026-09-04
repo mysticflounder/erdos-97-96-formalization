@@ -1,0 +1,83 @@
+{
+  "schema": "p97-exactfive-profile0034-physical-block-deletion-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-physical-block-deletion-piqd-20260904",
+  "run_id": "run-0005",
+  "execution_commit": "373fb457ccf0565a3d95cb6eb2952807fabff4f0",
+  "custody": {
+    "run_manifest_file_sha256": "f323eb8971dda4cb326a0910b6a5a6e0622a54c6207e7f5beee95640fe40af9e",
+    "run_manifest_self_sha256": "5d22048cc8618d178980222073ee0ffc432b9e9ea99ce515bf27d14024a0e9c5",
+    "launch_file_sha256": "9a33f09b319d5b4139357475ba3d8db04594885eb532decbd7e25b51c0e37056",
+    "launch_self_sha256": "b48486c3382c162ce7dd19ee50b968e5aafa15a2168d25e83960dd4b81efe072",
+    "terminal_file_sha256": "b57c389e46f5b23adc4b6bd1c7e8056bb6ca3eed25b66933e0ab143a27129047",
+    "terminal_self_sha256": "e389129fc08420de819ba94d2e1eb2cada434604447f5414fb828a61c56e9c40",
+    "independent_postrun_audit_passed": true,
+    "offline_query_records_verified": 64
+  },
+  "transport": {
+    "daemon": "piqd",
+    "solver": "z3",
+    "timeout_ms": 90000,
+    "worker_limit": 20,
+    "query_count": 64,
+    "fresh_unique_closed_sessions": 64,
+    "solve_count_per_session": 1
+  },
+  "disposition_counts": {
+    "SAT_REPLAYED": 1,
+    "SAT_REPLAY_UNRESOLVED": 38,
+    "UNKNOWN": 6,
+    "UNSAT_CUSTODY_VALID": 19
+  },
+  "common_final_system": {
+    "retained_group_ids": [
+      "edge-index-00",
+      "edge-index-01",
+      "edge-index-03",
+      "edge-index-04",
+      "source-row-equality-00",
+      "source-row-equality-01",
+      "source-row-equality-03",
+      "source-row-equality-05"
+    ],
+    "retained_set_sha256": "b87f28e24a17ce52e7f9b45b761730befa82807937b49152b04247f0306130e9",
+    "assertion_count": 48,
+    "physical_journal_sha256": "145c725971e9eed706e19aca36768c73842047ead6c33dacdb47040d09307786",
+    "contains_radius_branch": false,
+    "contains_source_strict": false,
+    "branch_formulas_byte_identical": true
+  },
+  "selected_results": {
+    "gt": {
+      "key": "z3-gt-r005-17c3849855d03604-drop-ddd0d111fc3179ea",
+      "raw_status": "UNSAT",
+      "disposition": "UNSAT_CUSTODY_VALID",
+      "solve_ms": 16358,
+      "session_id": "3957a941-473b-442c-98b6-3592cc091c5b",
+      "result_sha256": "73bb7338ded61e9a96f67eceeb162605cff123dd36269cee9f921c17deec54bf"
+    },
+    "lt": {
+      "key": "z3-lt-r014-17c3849855d03604-drop-ddd0d111fc3179ea",
+      "raw_status": "UNSAT",
+      "disposition": "UNSAT_CUSTODY_VALID",
+      "solve_ms": 15662,
+      "session_id": "613acfcc-a332-446a-a75c-486a866e354e",
+      "result_sha256": "3f29cd80181ef3709de4cd8e85c2b9447a96e4b194ea950e08a49f5885929c16"
+    }
+  },
+  "interpretation": {
+    "common_branch_free_obstruction_found": true,
+    "deletion_stable": false,
+    "core_minimality": false,
+    "next_search": "physical assertion-granularity deletion through PIQD"
+  },
+  "claims": {
+    "live_source_completeness": false,
+    "core_minimality": false,
+    "source_realization": false,
+    "all_profile_execution": false,
+    "lean_ingress": false,
+    "live_closure": false,
+    "promotion": false,
+    "theorem": false
+  }
+}
