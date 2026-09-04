@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-three-center-cycle-20260904",
+  "owner": "codex-root",
+  "base_head": "59342b9b5eb0e4f5469789b6d528e84198a4b40a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-three-center-cycle-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/ThreeCenterNoFixedPointCycle.lean"
+  ],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T09:26:00Z",
+  "durable_paths": [],
+  "manifest_sha256": "120cd6fb768b94f9cfe689f0b6c490b56f5b6f7877c43e0ed5989a8e22fe12da"
+}
