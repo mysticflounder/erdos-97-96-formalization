@@ -3280,6 +3280,10 @@ under `D.A.card = 12`,
 narrows it to an exact-eleven five-survivor boundary or an explicit
 `xu`/next-row center collision.  Neither branch supplies the missing
 all-cell coverage or terminal UNSAT evidence.
+Four cell-specific next-row arm modules (`Cell0052`, `Cell0058`, `Cell0065`,
+and `Cell0071`) do provide checked `DimacsUnsatisfiable` declarations.  They
+are not an all-12 coverage theorem, and no source ingress currently selects
+one of those concrete jobs for every normalized placement cell.
 
 ### 2026-09-04 source-clean Rigid221 reductions
 
