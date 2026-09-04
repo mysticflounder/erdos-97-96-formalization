@@ -1,0 +1,18 @@
+{
+  "base_head": "f3a7dbe63bf4b46921b44e7f63ba431ce9f796cb",
+  "created_utc": "2026-09-04T08:56:16Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "strict-kalmanson-n11-remainder-forensics-20260904",
+  "manifest_sha256": "f7e31d15df34b76dd83dcf658f0e505ee19bede8491611603458081bb2093308",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-n11-remainder-forensics-20260904.json",
+    "docs/audits/2026-09-04-strict-kalmanson-n11-remainder-forensics.md",
+    "docs/skeptic-2026-09-04-strict-kalmanson-n11-remainder-forensics-2026-09-04-2.md",
+    "docs/skeptic-2026-09-04-strict-kalmanson-n11-remainder-forensics-2026-09-04.md",
+    "scripts/audit_strict_kalmanson_n11_remainder.py",
+    "scripts/test_audit_strict_kalmanson_n11_remainder.py"
+  ],
+  "owner": "kalmanson-cartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}
