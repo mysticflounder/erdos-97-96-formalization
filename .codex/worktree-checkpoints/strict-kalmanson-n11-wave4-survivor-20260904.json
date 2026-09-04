@@ -1,0 +1,16 @@
+{
+  "base_head": "7b2c713c16fbaca62de8353d1c6cda1511681d70",
+  "created_utc": "2026-09-04T06:40:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "strict-kalmanson-n11-wave4-survivor-20260904",
+  "manifest_sha256": "ff2eae024fde114d1fceaa55a3fd179c3c6c397b0b3ffc81793d12dd45a75e94",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-n11-wave4-survivor-20260904.json",
+    "certificates/p97_strict_kalmanson_n11_wave4_survivor.json",
+    "docs/audits/2026-09-04-strict-kalmanson-n11-wave4-survivor.md",
+    "scripts/test_verify_strict_kalmanson_n11_wave4_survivor.py"
+  ],
+  "owner": "kalmanson-cartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}
