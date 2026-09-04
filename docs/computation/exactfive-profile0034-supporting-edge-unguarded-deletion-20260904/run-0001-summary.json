@@ -1,0 +1,127 @@
+{
+  "schema": "p97-exactfive-profile0034-supporting-edge-unguarded-deletion-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-unguarded-deletion-piqd-20260904",
+  "run_id": "run-0001",
+  "execution_commit": "35e24a0e141ea7e3bb3099e503bbc88d31fe5414",
+  "custody": {
+    "run_manifest_self_sha256": "12ebeaf41cb6fe8a79c11f37f3143a33379e71a88f9274dc3edcad2bd133a342",
+    "launch_self_sha256": "45c4f3767df769f025e8473dde05c59e7d4c63462a6a4b59608b419226241002",
+    "terminal_self_sha256": "bcc34f7e5c76ba9d0debd10532d875c83eb62139b120c01b7e23b38b4e6d9098",
+    "run_manifest_file_sha256": "f83e04a9c74a5e96bbf45b85b3e1e84d379b9901791c9dbc2934dd46b4f1cefb",
+    "launch_file_sha256": "103e1be490e7086ec20541a50148d3d3982ddcaf024bcfc0b8b7b8c7e4590f91",
+    "terminal_file_sha256": "a637a02559c019bdf1f10d50539df6e4ea00c649b73151343aa035f778ec011a"
+  },
+  "transport": {
+    "daemon": "piqd",
+    "solver": "z3",
+    "timeout_ms": 60000,
+    "worker_limit": 20,
+    "query_count": 55,
+    "fresh_unique_closed_sessions": 55,
+    "solve_count_per_session": 1,
+    "offline_replay_passed": true,
+    "solve_ms": {
+      "mean": 23248.945454545454,
+      "min": 0,
+      "max": 64853,
+      "at_least_60000_count": 11
+    }
+  },
+  "terminal_dispositions": {
+    "SAT_REPLAYED": 1,
+    "SAT_REPLAY_UNRESOLVED": 2,
+    "UNKNOWN": 11,
+    "UNSAT_CUSTODY_VALID": 41
+  },
+  "probe_summary": {
+    "probe_count": 51,
+    "unsat_count": 40,
+    "unknown_count": 11,
+    "lt_unknown_group_ids": [
+      "edge-index-00",
+      "edge-index-03",
+      "edge-index-04",
+      "source-row-equality-01",
+      "source-row-equality-05"
+    ],
+    "gt_unknown_group_ids": [
+      "edge-index-00",
+      "edge-index-03",
+      "source-row-equality-00",
+      "source-row-equality-01",
+      "source-row-equality-03",
+      "source-row-equality-05"
+    ]
+  },
+  "postrun_exact_rational_witnesses": {
+    "artifact_status_note": "The immutable run records both reduced candidates as SAT_REPLAY_UNRESOLVED because solver algebraic readback was unsupported. These exact rational witnesses were checked after the run and do not alter that terminal record.",
+    "lt": {
+      "accepted": true,
+      "retained_group_ids": [
+        "edge-index-00",
+        "edge-index-03",
+        "edge-index-04",
+        "source-row-equality-01",
+        "source-row-equality-05"
+      ],
+      "coordinates": {
+        "c000": ["0", "0"],
+        "c001": ["1", "0"],
+        "c002": ["9/8", "-3/8"],
+        "c003": ["1/2", "-1/2"],
+        "c004": ["1", "-1/2"],
+        "c005": ["6/67", "-16/67"],
+        "c006": ["1", "0"],
+        "c007": ["0", "1"],
+        "c008": ["1", "0"],
+        "c009": ["0", "1"],
+        "c010": ["1", "0"],
+        "c011": ["0", "1"],
+        "c012": ["1", "0"]
+      },
+      "supporting_edge_assertion_count": 33,
+      "row_equality_assertion_count": 2,
+      "minimum_supporting_edge_area": "1/16",
+      "row_residuals": ["0", "0"]
+    },
+    "gt": {
+      "accepted": true,
+      "retained_group_ids": [
+        "edge-index-00",
+        "edge-index-03",
+        "source-row-equality-00",
+        "source-row-equality-01",
+        "source-row-equality-03",
+        "source-row-equality-05"
+      ],
+      "coordinates": {
+        "c000": ["0", "0"],
+        "c001": ["1", "0"],
+        "c002": ["3/4", "-1/4"],
+        "c003": ["1/2", "-1/2"],
+        "c004": ["2", "0"],
+        "c005": ["6/67", "-16/67"],
+        "c006": ["1", "0"],
+        "c007": ["1/97", "56/97"],
+        "c008": ["1", "0"],
+        "c009": ["0", "1"],
+        "c010": ["1", "0"],
+        "c011": ["0", "1"],
+        "c012": ["1", "0"]
+      },
+      "supporting_edge_assertion_count": 22,
+      "row_equality_assertion_count": 4,
+      "minimum_supporting_edge_area": "352/6499",
+      "row_residuals": ["0", "0", "0", "0"]
+    }
+  },
+  "claims": {
+    "theorem": false,
+    "universal": false,
+    "lean": false,
+    "source_entitlement": false,
+    "euclidean": false,
+    "promotion": false
+  },
+  "next_step": "Run an authenticated named-assumption core query with only the branch-specific unknown groups guarded and every other group hard asserted."
+}

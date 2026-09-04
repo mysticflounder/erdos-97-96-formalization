@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-supporting-edge-unguarded-deletion-postrun-20260904",
+  "owner": "codex-rigid221",
+  "base_head": "35e24a0e141ea7e3bb3099e503bbc88d31fe5414",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-supporting-edge-unguarded-deletion-postrun-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-supporting-edge-unguarded-deletion-postrun.md",
+    "docs/computation/exactfive-profile0034-supporting-edge-unguarded-deletion-20260904/run-0001-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T19:21:00Z",
+  "manifest_sha256": "28160eb1519ef8f7ba5ee5b665bae8f9ef5a05b5edbbf42f10935ad450ca5932"
+}
