@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-seven-good-source-network-20260903",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "47d9d140eb65434f336788f1caf093e98e36d7a6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-seven-good-source-network-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/GoodMutualOmissionTwoDeletionNetwork.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T17:30:00Z",
+  "manifest_sha256": "6bb230cc7d4d685e65f2c4de36ede9db849b7607bffdaab09dbfe2601daf10fa"
+}

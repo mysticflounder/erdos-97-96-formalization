@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cyclic-pair-signed-area-bridge-20260903",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "6d5d94c6de738279ec7ed353d9ebac39e7442d3d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cyclic-pair-signed-area-bridge-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CyclicPairSignedArea.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-03T17:43:00Z",
+  "manifest_sha256": "6ebc81fc2ad36d8f72a32fc69972ec54e1dd31b2e8d120854e2122d19a8be9b7"
+}
