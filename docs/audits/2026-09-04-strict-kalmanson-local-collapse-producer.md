@@ -42,7 +42,10 @@ The repository's diagnostic JSONL catalog is 41,163 bytes with SHA-256
 That is an internal serialization pin, not the author-reported catalog identity
 `dbbae6a503866379882765aab8bfacb9c8ec9c179a21d4a637ecac5b239daf37`.
 The latter remains unreproduced because the exact hashed catalog byte schema
-has not been delivered.
+has not been delivered. The bounded artifact and serializer investigation is
+recorded in
+`docs/audits/2026-09-04-strict-kalmanson-catalog-identity.md`; the Wave-6
+delivery is prose only despite referring to an absent replay archive.
 
 ## Correction to the historical 142-record subset
 
