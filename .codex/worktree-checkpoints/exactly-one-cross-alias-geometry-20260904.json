@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactly-one-cross-alias-geometry-20260904",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "8540e4baed9b9640394bc78ecaa654e7688a32ba",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactly-one-cross-alias-geometry-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/ExactlyOneCrossAliasGeometry.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T10:20:00Z",
+  "manifest_sha256": "bf6b713b5932b5750b1badc557217183d5410f458e0b7e2b3e919c3a23b20d65"
+}
