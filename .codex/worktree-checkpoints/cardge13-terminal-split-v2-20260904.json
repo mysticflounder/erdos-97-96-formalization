@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-terminal-split-v2-20260904",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "68bb902a330e3cc69fa9e32d0284ebc51b36697f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-terminal-split-v2-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTerminalSplitV2.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T03:58:55Z",
+  "manifest_sha256": "cadb53bddc1e21609583a04e70d8b015b28daa0fed0ebc784082adbd0cba7f01"
+}
