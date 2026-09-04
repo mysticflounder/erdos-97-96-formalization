@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "strict-kalmanson-local-collapse-producer-20260904",
+  "owner": "KalmansonCartographer",
+  "base_head": "14741550eac919bddd4f52a9fdca7bf6f59a7542",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-local-collapse-producer-20260904.json",
+    "docs/audits/2026-09-04-strict-kalmanson-local-collapse-producer.md",
+    "docs/skeptic-2026-09-04-strict-kalmanson-local-collapse-producer-2026-09-04-2.md",
+    "docs/skeptic-2026-09-04-strict-kalmanson-local-collapse-producer-2026-09-04.md",
+    "scripts/generate_strict_kalmanson_local_collapse_bank.py",
+    "scripts/test_generate_strict_kalmanson_local_collapse_bank.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T15:28:37Z",
+  "manifest_sha256": "e4d4b617af4816b5221643f59e191f40740feb5f866dcd6cff823cd5f03e019a"
+}
