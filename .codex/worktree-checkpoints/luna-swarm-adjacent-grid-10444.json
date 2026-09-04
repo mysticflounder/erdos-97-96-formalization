@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-adjacent-grid-10444",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "14edf89b66ff1f3582956707074216b2b61b8e56",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-adjacent-grid-10444.json",
+    "docs/skeptic-TwoRadiusDoublePartitionAdjacentGrid-2026-09-03.md",
+    "lean/Erdos9796Proof/P97/ATail/TwoRadiusGridNestedEscapeTerminal.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T02:12:00Z",
+  "manifest_sha256": "5a05db4ad26224f30913debe40716f84b316b3262ef7fd9b8fabd7b4e201cc8e"
+}
