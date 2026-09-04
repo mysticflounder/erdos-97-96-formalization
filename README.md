@@ -2,7 +2,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/p97-architecture-dark.svg">
-  <img alt="Three panels showing the architecture of the Problem 97 proof: a vertex with four equidistant points and the isosceles primitive behind the counting engine; twelve points in convex position with three on the minimum enclosing circle, the Moser triangle they span, and the three caps its sides cut off; and a convex polygon with one vertex marked removable." src="docs/assets/p97-architecture-light.svg">
+  <img alt="Three panels showing the architecture of the Problem 97 proof: a vertex with four equidistant points and the isosceles primitive behind the counting engine; twelve points in convex position with three on the minimum enclosing circle, the Moser triangle they span, and the three caps its sides cut off; and a non-minimal counterexample reduced to a minimal one by vertex deletion." src="docs/assets/p97-architecture-light.svg">
 </picture>
 
 This repository is an attempt to prove two Erdős problems about convex point

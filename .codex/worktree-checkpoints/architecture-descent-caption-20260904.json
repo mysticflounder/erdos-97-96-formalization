@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "architecture-descent-caption-20260904",
+  "owner": "codex-project-review",
+  "base_head": "6313dc0fa6981c443b9dd7e0e85fbf7705129b9a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/architecture-descent-caption-20260904.json",
+    "README.md",
+    "docs/assets/p97-architecture-dark.svg",
+    "docs/assets/p97-architecture-light.svg"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T20:54:22.972226Z",
+  "manifest_sha256": "647bfb1e6f19f27381d46be12b31d009e15d7722e3f9e268bcd921496eda8018"
+}
