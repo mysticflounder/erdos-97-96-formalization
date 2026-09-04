@@ -4304,6 +4304,732 @@ theorem exactFourRigid221_sourceHeavy_pentagon_tagged_offClass_strictCap_row_cen
       rcases hcdBetween' with hcd | hcd <;>
       rcases hforced with hforced | hforced <;> omega
 
+/- The exact six-point cap subcase of the deleted-blocker leaf is already
+   closed by the tagged center split: each returned center is off the physical
+   class but remains in the strict interior, while the four named class points
+   occupy that interior. -/
+theorem false_of_exactFourRigid221_sourceHeavy_pentagonBlockerDeleted_card_eq_six
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet : ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (hcap : S.oppCap2.card = 6)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)
+    (huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt packet.xv hxvA).toCriticalFourShell.support)
+    (huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hxvNotXuRow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hxuNotDeletedRow :
+      packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hxvNotDeletedRow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hclassFive : ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+      q = P.u.1 ∨ q = packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+        q = P.v.1 ∨ q = packet.xv)
+    (hxvInterior : packet.xv ∈ S.capInteriorByIndex S.oppIndex2)
+    (hblockerInterior :
+      (lateFirstApexSystem R).centerAt packet.xv hxvA ∈
+        S.capInteriorByIndex S.oppIndex2)
+    (hblockerEqDeleted :
+      (lateFirstApexSystem R).centerAt packet.xv hxvA =
+        P.jointDeletion.deleted.1)
+    (htraceBound : ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt packet.xv hxvA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xv ∨ x = P.u.1)
+    (htraceBoundXu : ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xu ∨ x = P.jointDeletion.deleted.1) :
+    False := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  let I := S.capInteriorByIndex S.oppIndex2
+  have hsecond : 6 ≤ S.oppCap2.card := by omega
+  have hIcard : I.card = 4 := by
+    have hcard := ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+      S S.oppIndex2
+    rw [capByIndex_oppIndex2_eq_oppCap2_sourceHeavy S] at hcard
+    change (S.capInteriorByIndex S.oppIndex2).card = 4
+    omega
+  have huI : P.u.1 ∈ I := by
+    have hmem : P.u.1 ∈ ({P.u.1, packet.xu} : Finset ℝ²) ∩ I := by
+      rw [packet.source_pair_interior]
+      simp [I]
+    exact (Finset.mem_inter.mp hmem).2
+  have hxuI : packet.xu ∈ I := by
+    have hmem : packet.xu ∈ ({P.u.1, packet.xu} : Finset ℝ²) ∩ I := by
+      rw [packet.source_pair_interior]
+      simp [I]
+    exact (Finset.mem_inter.mp hmem).2
+  have hdeletedI : P.jointDeletion.deleted.1 ∈ I := by
+    have h := exactFourRigid221_sourceHeavy_pentagon_blocker_mem_secondCapInterior
+      P packet hxvA huXvRow
+    simpa [I, hblockerEqDeleted] using h
+  have hxvI : packet.xv ∈ I := by simpa [I] using hxvInterior
+  have hxuInter : packet.xu ∈
+      ((Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩ C) := by
+    have h : packet.xu ∈
+        ((lateFirstApexSystem R).selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+      rw [packet.source_row_trace]
+      simp
+    simpa [Hlate, C] using h
+  have hxvInter : packet.xv ∈
+      ((Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C) := by
+    have h : packet.xv ∈
+        ((lateFirstApexSystem R).selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩
+          SelectedClass D.A S.oppApex2 P.rho := by
+      rw [packet.opposite_row_trace]
+      simp
+    simpa [Hlate, C] using h
+  have huC : P.u.1 ∈ C := by simpa [C] using P.huClass
+  have hxuC : packet.xu ∈ C := (Finset.mem_inter.mp hxuInter).2
+  have hdeletedC : P.jointDeletion.deleted.1 ∈ C := by
+    simpa [C] using P.jointDeletion.deleted_mem_class
+  have hxvC : packet.xv ∈ C := (Finset.mem_inter.mp hxvInter).2
+  have hxuNeU : packet.xu ≠ P.u.1 := packet.xu_ne_u
+  have hdeletedNeU : P.jointDeletion.deleted.1 ≠ P.u.1 := by
+    intro h
+    exact P.jointDeletion.deleted_ne_u (Subtype.ext h)
+  have hdeletedNeXu : P.jointDeletion.deleted.1 ≠ packet.xu := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_uRow
+    rw [h]
+    exact (Finset.mem_inter.mp hxuInter).1
+  have hdeletedNeXv : P.jointDeletion.deleted.1 ≠ packet.xv := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_vRow
+    rw [h]
+    exact (Finset.mem_inter.mp hxvInter).1
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    have hcenterU : Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+      simpa only [Hlate, P.huSource] using packet.blocker_eq_xv
+    let Ku := (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
+    have hxvSupport : packet.xv ∈ Ku.support := by
+      simpa [h] using Ku.q_mem_support
+    have hm := congrArg (fun z : ℝ² => z ∈ Ku.support) hcenterU
+    exact Ku.center_not_mem_support (Eq.mp hm.symm hxvSupport)
+  have hxuNeXv : packet.xu ≠ packet.xv := by
+    intro h
+    apply hxvNotXuRow
+    have hq := (Hlate.selectedAt packet.xu hxuA).toCriticalFourShell.q_mem_support
+    simpa [Hlate, h] using hq
+  have false_of_new_offClass {c : ℝ²} (hcOff : c ∉ C)
+      (hcI : c ∈ I) : False := by
+    have hcU : c ≠ P.u.1 := by
+      intro h
+      apply hcOff
+      simpa [h, C] using P.huClass
+    have hcXu : c ≠ packet.xu := by
+      intro h
+      apply hcOff
+      simpa [h] using hxuC
+    have hcDeleted : c ≠ P.jointDeletion.deleted.1 := by
+      intro h
+      apply hcOff
+      simpa [h] using hdeletedC
+    have hcXv : c ≠ packet.xv := by
+      intro h
+      apply hcOff
+      simpa [h] using hxvC
+    have huNeXu : P.u.1 ≠ packet.xu := hxuNeU.symm
+    have huNeDeleted : P.u.1 ≠ P.jointDeletion.deleted.1 := hdeletedNeU.symm
+    have hxuNeDeleted' : packet.xu ≠ P.jointDeletion.deleted.1 :=
+      hdeletedNeXu.symm
+    have hxvNeDeleted : packet.xv ≠ P.jointDeletion.deleted.1 :=
+      hdeletedNeXv.symm
+    have hxvNeU : packet.xv ≠ P.u.1 := huNeXv.symm
+    have hxvNeXu : packet.xv ≠ packet.xu := hxuNeXv.symm
+    have hcNeU : P.u.1 ≠ c := hcU.symm
+    have hcNeXu : packet.xu ≠ c := hcXu.symm
+    have hcNeDeleted : P.jointDeletion.deleted.1 ≠ c := hcDeleted.symm
+    have hcNeXv : packet.xv ≠ c := hcXv.symm
+    have hsubset :
+        ({P.u.1, packet.xu, P.jointDeletion.deleted.1, packet.xv, c} :
+          Finset ℝ²) ⊆ I := by
+      intro z hz
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+      rcases hz with rfl | rfl | rfl | rfl | rfl
+      · exact huI
+      · exact hxuI
+      · exact hdeletedI
+      · exact hxvI
+      · exact hcI
+    have hle := Finset.card_le_card hsubset
+    have hfive :
+      ({P.u.1, packet.xu, P.jointDeletion.deleted.1, packet.xv, c} :
+          Finset ℝ²).card = 5 := by
+      simp [huNeXu, huNeDeleted, huNeXv, hcNeU, hxuNeDeleted',
+        hxuNeXv, hcNeXu, hdeletedNeXv, hcNeDeleted, hxvNeDeleted,
+        hxvNeU, hxvNeXu, hcNeXv]
+    rw [hfive, hIcard] at hle
+    omega
+  have htag := exactFourRigid221_sourceHeavy_pentagon_tagged_offClass_strictCap_row_center
+    P packet hsecond hxuA hxvA huXvRow huNotXuRow hxvNotXuRow hdeletedXuRow
+      hvDeletedRow huNotDeletedRow hxuNotDeletedRow hxvNotDeletedRow hclassFive
+      hxvInterior hblockerInterior hblockerEqDeleted htraceBound htraceBoundXu
+  rcases htag with h | h | h
+  · exact false_of_new_offClass h.1 h.2.1
+  · exact false_of_new_offClass h.1 h.2.1
+  · exact false_of_new_offClass h.1 h.2.1
+
+/-- The deleted-blocker pentagon cannot stop at the exact-six boundary.
+
+This is the direct numerical corollary of the checked exact-six leaf: under
+the live blocker-deleted hypotheses, the second opposite cap has cardinality
+at least seven.  The open geometric leaf below is deliberately not used. -/
+theorem exactFourRigid221_sourceHeavy_pentagonBlockerDeleted_card_ge_seven
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet : ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)
+    (huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt packet.xv hxvA).toCriticalFourShell.support)
+    (huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hxvNotXuRow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hxuNotDeletedRow :
+      packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hxvNotDeletedRow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hclassFive : ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+      q = P.u.1 ∨ q = packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+        q = P.v.1 ∨ q = packet.xv)
+    (hxvInterior : packet.xv ∈ S.capInteriorByIndex S.oppIndex2)
+    (hblockerInterior :
+      (lateFirstApexSystem R).centerAt packet.xv hxvA ∈
+        S.capInteriorByIndex S.oppIndex2)
+    (hblockerEqDeleted :
+      (lateFirstApexSystem R).centerAt packet.xv hxvA =
+        P.jointDeletion.deleted.1)
+    (htraceBound : ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt packet.xv hxvA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xv ∨ x = P.u.1)
+    (htraceBoundXu : ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xu ∨ x = P.jointDeletion.deleted.1) :
+    7 ≤ S.oppCap2.card := by
+  by_contra hnot
+  have hcap : S.oppCap2.card = 6 := by omega
+  exact false_of_exactFourRigid221_sourceHeavy_pentagonBlockerDeleted_card_eq_six
+    P packet hcap hxuA hxvA huXvRow huNotXuRow hxvNotXuRow hdeletedXuRow
+    hvDeletedRow huNotDeletedRow hxuNotDeletedRow hxvNotDeletedRow hclassFive
+    hxvInterior hblockerInterior hblockerEqDeleted htraceBound htraceBoundXu
+
+/-- At cardinality seven, the deleted-blocker pentagon has a sharp interior
+normal form.  The `xu` center is off the physical class, `v` is absent from
+the strict interior, and the five displayed points exhaust that interior.
+The row pair and the forced four-point order are returned for downstream
+consumers. -/
+theorem exactFourRigid221_sourceHeavy_pentagonBlockerDeleted_card_eq_seven_normal_form
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet : ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (_hsecond : 6 ≤ S.oppCap2.card)
+    (hcap : S.oppCap2.card = 7)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvA : packet.xv ∈ D.A)
+    (huXvRow :
+      P.u.1 ∈
+        ((lateFirstApexSystem R).selectedAt packet.xv hxvA).toCriticalFourShell.support)
+    (huNotXuRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hxvNotXuRow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hdeletedXuRow :
+      P.jointDeletion.deleted.1 ∈
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hvDeletedRow :
+      P.v.1 ∈
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (huNotDeletedRow :
+      P.u.1 ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hxuNotDeletedRow :
+      packet.xu ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hxvNotDeletedRow :
+      packet.xv ∉
+        ((lateFirstApexSystem R).selectedAt
+          P.jointDeletion.deleted.1 P.jointDeletion.deleted.2).toCriticalFourShell.support)
+    (hclassFive : ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+      q = P.u.1 ∨ q = packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+        q = P.v.1 ∨ q = packet.xv)
+    (hxvInterior : packet.xv ∈ S.capInteriorByIndex S.oppIndex2)
+    (hblockerInterior :
+      (lateFirstApexSystem R).centerAt packet.xv hxvA ∈
+        S.capInteriorByIndex S.oppIndex2)
+    (hblockerEqDeleted :
+      (lateFirstApexSystem R).centerAt packet.xv hxvA =
+        P.jointDeletion.deleted.1)
+    (htraceBound : ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt packet.xv hxvA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xv ∨ x = P.u.1)
+    (htraceBoundXu : ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xu ∨ x = P.jointDeletion.deleted.1) :
+    (lateFirstApexSystem R).centerAt packet.xu hxuA ∉
+        SelectedClass D.A S.oppApex2 P.rho ∧
+      (lateFirstApexSystem R).centerAt packet.xu hxuA ∈
+        S.capInteriorByIndex S.oppIndex2 ∧
+      P.v.1 ∉ S.capInteriorByIndex S.oppIndex2 ∧
+      S.capInteriorByIndex S.oppIndex2 =
+        ({P.u.1, P.jointDeletion.deleted.1, packet.xv, packet.xu,
+          (lateFirstApexSystem R).centerAt packet.xu hxuA} : Finset ℝ²) ∧
+      (∀ x ∈
+        ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support,
+        x ∈ SelectedClass D.A S.oppApex2 P.rho →
+          x = packet.xu ∨ x = P.jointDeletion.deleted.1) ∧
+      (∃ (B : CGN.StrictCapBlockData D.A (S.capByIndex S.oppIndex2))
+          (iu id ixv ixu : Fin B.m),
+        ((B.L.points (CGN.firstIndex B.Packet.hm) =
+              (S.triangleByIndex S.oppIndex2).v2 ∧
+            B.L.points (CGN.lastIndex B.Packet.hm) =
+              (S.triangleByIndex S.oppIndex2).v3) ∨
+          (B.L.points (CGN.firstIndex B.Packet.hm) =
+              (S.triangleByIndex S.oppIndex2).v3 ∧
+            B.L.points (CGN.lastIndex B.Packet.hm) =
+              (S.triangleByIndex S.oppIndex2).v2)) ∧
+        B.L.points iu = P.u.1 ∧
+        B.L.points id = P.jointDeletion.deleted.1 ∧
+        B.L.points ixv = packet.xv ∧
+        B.L.points ixu = packet.xu ∧
+        ((iu < id ∧ id < ixv ∧ ixv < ixu) ∨
+          (ixu < ixv ∧ ixv < id ∧ id < iu))) := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  let I := S.capInteriorByIndex S.oppIndex2
+  let Ku := (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
+  let Kxu := (Hlate.selectedAt packet.xu hxuA).toCriticalFourShell
+  have hIcard : I.card = 5 := by
+    have hcard := ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two
+      S S.oppIndex2
+    rw [capByIndex_oppIndex2_eq_oppCap2_sourceHeavy S] at hcard
+    change (S.capInteriorByIndex S.oppIndex2).card = 5
+    omega
+  have huI : P.u.1 ∈ I := by
+    have hmem : P.u.1 ∈ ({P.u.1, packet.xu} : Finset ℝ²) ∩ I := by
+      rw [packet.source_pair_interior]
+      simp
+    exact (Finset.mem_inter.mp hmem).2
+  have hxuI : packet.xu ∈ I := by
+    have hmem : packet.xu ∈ ({P.u.1, packet.xu} : Finset ℝ²) ∩ I := by
+      rw [packet.source_pair_interior]
+      simp
+    exact (Finset.mem_inter.mp hmem).2
+  have hdeletedI : P.jointDeletion.deleted.1 ∈ I := by
+    have h := exactFourRigid221_sourceHeavy_pentagon_blocker_mem_secondCapInterior
+      P packet hxvA huXvRow
+    simpa only [I, hblockerEqDeleted] using h
+  have hxvI : packet.xv ∈ I := by
+    simpa only [I] using hxvInterior
+  have hxuInter : packet.xu ∈ Ku.support ∩ C := by
+    rw [packet.source_row_trace]
+    simp [Hlate, Ku, C]
+  have hxuClass : packet.xu ∈ C := (Finset.mem_inter.mp hxuInter).2
+  have hxuURow : packet.xu ∈ Ku.support :=
+    (Finset.mem_inter.mp hxuInter).1
+  have hxuNeDeleted : packet.xu ≠ P.jointDeletion.deleted.1 := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_uRow
+    rw [← h]
+    exact hxuURow
+  have hdeletedInterior : P.jointDeletion.deleted.1 ∈ I := by
+    exact hdeletedI
+  have hcxEq :
+      dist (Hlate.centerAt packet.xu hxuA) packet.xu =
+        dist (Hlate.centerAt packet.xu hxuA) P.jointDeletion.deleted.1 :=
+    (Kxu.support_eq_radius _ Kxu.q_mem_support).trans
+      (Kxu.support_eq_radius _ hdeletedXuRow).symm
+  have hphysicalXuDeleted :
+      dist S.oppApex2 packet.xu =
+        dist S.oppApex2 P.jointDeletion.deleted.1 :=
+    (mem_selectedClass.mp hxuClass).2.trans
+      (mem_selectedClass.mp P.jointDeletion.deleted_mem_class).2.symm
+  have hcxInterior : Hlate.centerAt packet.xu hxuA ∈ I :=
+    commonPhysicalPair_center_mem_secondCapInterior
+      (Finset.mem_of_mem_erase Kxu.center_mem)
+      (P.surface.secondApex_robust.centerAt_ne Hlate packet.xu hxuA)
+      hxuI hdeletedInterior hxuNeDeleted hcxEq hphysicalXuDeleted
+  have huNeXu : P.u.1 ≠ packet.xu := packet.xu_ne_u.symm
+  have hdeletedNeU : P.jointDeletion.deleted.1 ≠ P.u.1 := by
+    intro h
+    exact P.jointDeletion.deleted_ne_u (Subtype.ext h)
+  have hdeletedNeXu : P.jointDeletion.deleted.1 ≠ packet.xu := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_uRow
+    rw [h]
+    exact hxuURow
+  have hdeletedNeXv : P.jointDeletion.deleted.1 ≠ packet.xv := by
+    intro h
+    apply P.jointDeletion.deleted_not_mem_vRow
+    rw [h]
+    have hxvInter : packet.xv ∈
+        ((Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C) := by
+      rw [packet.opposite_row_trace]
+      simp [Hlate, C]
+    exact (Finset.mem_inter.mp hxvInter).1
+  have huNeXv : P.u.1 ≠ packet.xv := by
+    intro h
+    have hcenterU : Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+      simpa only [Hlate, P.huSource] using packet.blocker_eq_xv
+    have hxvSupport : packet.xv ∈ Ku.support := by
+      simpa [h] using Ku.q_mem_support
+    have hm := congrArg (fun z : ℝ² => z ∈ Ku.support) hcenterU
+    exact Ku.center_not_mem_support (Eq.mp hm.symm hxvSupport)
+  have hxuNeXv : packet.xu ≠ packet.xv := by
+    intro h
+    apply hxvNotXuRow
+    have hq := Kxu.q_mem_support
+    simpa only [Hlate, Kxu, h] using hq
+  have hvNeU : P.v.1 ≠ P.u.1 := by
+    intro h
+    exact P.huNeV (Subtype.ext h.symm)
+  have hvNeXu : P.v.1 ≠ packet.xu := by
+    intro h
+    apply P.hvOmitted
+    rw [h]
+    exact hxuURow
+  have hvNeDeleted : P.v.1 ≠ P.jointDeletion.deleted.1 := by
+    intro h
+    exact P.jointDeletion.deleted_ne_v (Subtype.ext h.symm)
+  have hvNeXv : P.v.1 ≠ packet.xv := packet.xv_ne_v.symm
+  have hxuPair : ∀ x ∈ Kxu.support, x ∈ C →
+      x = packet.xu ∨ x = P.jointDeletion.deleted.1 := by
+    exact exactFourRigid221_sourceHeavy_pentagon_xuRow_trace_bound
+      P packet hxuA hdeletedXuRow hxuNotDeletedRow
+  have false_of_v_and_offClass {c : ℝ²} (hcOff : c ∉ C)
+      (hcI : c ∈ I) (hvI : P.v.1 ∈ I) : False := by
+    have hcU : c ≠ P.u.1 := by
+      intro h
+      apply hcOff
+      simpa [h, C] using P.huClass
+    have hcXu : c ≠ packet.xu := by
+      intro h
+      apply hcOff
+      simpa [h] using hxuClass
+    have hcDeleted : c ≠ P.jointDeletion.deleted.1 := by
+      intro h
+      apply hcOff
+      simpa [h, C] using P.jointDeletion.deleted_mem_class
+    have hcXv : c ≠ packet.xv := by
+      intro h
+      apply hcOff
+      have hxvClass : packet.xv ∈ C := by
+        have hxvInter : packet.xv ∈
+            ((Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C) := by
+          rw [packet.opposite_row_trace]
+          simp [Hlate, C]
+        exact (Finset.mem_inter.mp hxvInter).2
+      simpa [h] using hxvClass
+    have hcV : c ≠ P.v.1 := by
+      intro h
+      apply hcOff
+      simpa [h, C] using P.hvClass
+    have hsubset :
+        ({P.u.1, packet.xu, P.jointDeletion.deleted.1, packet.xv,
+          P.v.1, c} : Finset ℝ²) ⊆ I := by
+      intro z hz
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+      rcases hz with rfl | rfl | rfl | rfl | rfl | rfl
+      · exact huI
+      · exact hxuI
+      · exact hdeletedI
+      · exact hxvI
+      · exact hvI
+      · exact hcI
+    have huNeDeleted : P.u.1 ≠ P.jointDeletion.deleted.1 :=
+      hdeletedNeU.symm
+    have hxvNeDeleted : packet.xv ≠ P.jointDeletion.deleted.1 :=
+      hdeletedNeXv.symm
+    have hxvNeU : packet.xv ≠ P.u.1 := huNeXv.symm
+    have hxvNeXu : packet.xv ≠ packet.xu := hxuNeXv.symm
+    have huNeV : P.u.1 ≠ P.v.1 := hvNeU.symm
+    have hxuNeV : packet.xu ≠ P.v.1 := hvNeXu.symm
+    have hdeletedNeV : P.jointDeletion.deleted.1 ≠ P.v.1 :=
+      hvNeDeleted.symm
+    have hxvNeV : packet.xv ≠ P.v.1 := hvNeXv.symm
+    have huNeC : P.u.1 ≠ c := hcU.symm
+    have hxuNeC : packet.xu ≠ c := hcXu.symm
+    have hdeletedNeC : P.jointDeletion.deleted.1 ≠ c := hcDeleted.symm
+    have hxvNeC : packet.xv ≠ c := hcXv.symm
+    have hvNeC : P.v.1 ≠ c := hcV.symm
+    have hsix :
+        ({P.u.1, packet.xu, P.jointDeletion.deleted.1, packet.xv,
+          P.v.1, c} : Finset ℝ²).card = 6 := by
+      simp [huNeXu, huNeDeleted, hdeletedNeU, hxuNeDeleted, hdeletedNeXu,
+        hdeletedNeXv, hxvNeDeleted, huNeXv, hxvNeU, hxuNeXv, hxvNeXu,
+        hvNeU, huNeV, hvNeXu, hxuNeV, hvNeDeleted, hdeletedNeV, hvNeXv,
+        hxvNeV, hcU, huNeC, hcXu, hxuNeC, hcDeleted, hdeletedNeC, hcXv,
+        hxvNeC, hcV, hvNeC]
+    have hle := Finset.card_le_card hsubset
+    rw [hsix, hIcard] at hle
+    omega
+  have hcxOff : Hlate.centerAt packet.xu hxuA ∉ C := by
+    intro hcxClass
+    have hcxData := exactFourRigid221_sourceHeavy_pentagon_xu_center_class_reduction
+      P packet hxuA hxvA huXvRow huNotXuRow hdeletedXuRow
+        hxuNotDeletedRow hblockerEqDeleted htraceBound hclassFive hcxClass
+    have hvI : P.v.1 ∈ I := by
+      rw [← hcxData.1]
+      exact hcxData.2
+    have htag := exactFourRigid221_sourceHeavy_pentagon_tagged_offClass_strictCap_row_center
+      P packet _hsecond hxuA hxvA huXvRow huNotXuRow hxvNotXuRow hdeletedXuRow
+        hvDeletedRow huNotDeletedRow hxuNotDeletedRow hxvNotDeletedRow hclassFive
+        hxvInterior hblockerInterior hblockerEqDeleted htraceBound htraceBoundXu
+    rcases htag with h | h | h
+    · exact false_of_v_and_offClass h.1 h.2.1 hvI
+    · exact false_of_v_and_offClass h.1 h.2.1 hvI
+    · exact false_of_v_and_offClass h.1 h.2.1 hvI
+  have hvNotI : P.v.1 ∉ I := by
+    intro hvI
+    exact false_of_v_and_offClass hcxOff hcxInterior hvI
+  have hFsubset :
+      ({P.u.1, P.jointDeletion.deleted.1, packet.xv, packet.xu,
+        Hlate.centerAt packet.xu hxuA} : Finset ℝ²) ⊆ I := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl | rfl | rfl | rfl
+    · exact huI
+    · exact hdeletedI
+    · exact hxvI
+    · exact hxuI
+    · exact hcxInterior
+  have hcxNeU : Hlate.centerAt packet.xu hxuA ≠ P.u.1 := by
+    intro h
+    apply hcxOff
+    simpa [h, C] using P.huClass
+  have hcxNeXu : Hlate.centerAt packet.xu hxuA ≠ packet.xu :=
+    centerAt_ne_source Hlate packet.xu hxuA
+  have hcxNeDeleted :
+      Hlate.centerAt packet.xu hxuA ≠ P.jointDeletion.deleted.1 := by
+    intro h
+    apply hcxOff
+    simpa [h, C] using P.jointDeletion.deleted_mem_class
+  have hcxNeXv : Hlate.centerAt packet.xu hxuA ≠ packet.xv := by
+    intro h
+    apply hcxOff
+    have hxvClass : packet.xv ∈ C := by
+      have hxvInter : packet.xv ∈
+          ((Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C) := by
+        rw [packet.opposite_row_trace]
+        simp [Hlate, C]
+      exact (Finset.mem_inter.mp hxvInter).2
+    simpa [h] using hxvClass
+  have hFcard :
+      ({P.u.1, P.jointDeletion.deleted.1, packet.xv, packet.xu,
+        Hlate.centerAt packet.xu hxuA} : Finset ℝ²).card = 5 := by
+    have huNeDeleted : P.u.1 ≠ P.jointDeletion.deleted.1 :=
+      hdeletedNeU.symm
+    have hxvNeDeleted : packet.xv ≠ P.jointDeletion.deleted.1 :=
+      hdeletedNeXv.symm
+    have hxvNeXu : packet.xv ≠ packet.xu := hxuNeXv.symm
+    have huNeCx : P.u.1 ≠ Hlate.centerAt packet.xu hxuA := hcxNeU.symm
+    have hdeletedNeCx :
+        P.jointDeletion.deleted.1 ≠ Hlate.centerAt packet.xu hxuA :=
+      hcxNeDeleted.symm
+    have hxvNeCx : packet.xv ≠ Hlate.centerAt packet.xu hxuA :=
+      hcxNeXv.symm
+    have hxuNeCx : packet.xu ≠ Hlate.centerAt packet.xu hxuA :=
+      hcxNeXu.symm
+    simp [huNeXu, huNeDeleted, hdeletedNeU, hxuNeDeleted, hdeletedNeXu,
+      hdeletedNeXv, hxvNeDeleted, huNeXv, hxuNeXv, hxvNeXu, hcxNeU,
+      huNeCx, hcxNeXu, hxuNeCx, hcxNeDeleted, hdeletedNeCx, hcxNeXv,
+      hxvNeCx]
+  have hset :
+      ({P.u.1, P.jointDeletion.deleted.1, packet.xv, packet.xu,
+        Hlate.centerAt packet.xu hxuA} : Finset ℝ²) = I := by
+    apply Finset.eq_of_subset_of_card_le hFsubset
+    rw [hIcard, hFcard]
+  have horder := exactFourRigid221_sourceHeavy_pentagon_deleted_exists_forced_secondCap_order
+    P packet hxuA hxvA huXvRow hblockerEqDeleted
+  refine ⟨?_, ?_, ?_, ?_, ?_, horder⟩
+  · simpa only [Hlate, C] using hcxOff
+  · simpa only [Hlate, I] using hcxInterior
+  · simpa only [I] using hvNotI
+  · simpa only [Hlate, I] using hset.symm
+  · simpa only [Hlate, C, Kxu] using hxuPair
+
+/-- The deleted-blocker branch exposes the next `v`-row center as three
+surviving arms: the two named source points, or a center outside the
+physical class.  The first two arms retain strict-interior membership. -/
+theorem exactFourRigid221_sourceHeavy_pentagonBlockerDeleted_v_center_dichotomy
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet : ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (hxvA : packet.xv ∈ D.A)
+    (hblockerEqDeleted :
+      (lateFirstApexSystem R).centerAt packet.xv hxvA =
+        P.jointDeletion.deleted.1)
+    (htraceBound : ∀ x ∈
+      ((lateFirstApexSystem R).selectedAt packet.xv hxvA).toCriticalFourShell.support,
+      x ∈ SelectedClass D.A S.oppApex2 P.rho →
+        x = packet.xv ∨ x = P.u.1)
+    (hclassFive : ∀ q ∈ SelectedClass D.A S.oppApex2 P.rho,
+      q = P.u.1 ∨ q = packet.xu ∨ q = P.jointDeletion.deleted.1 ∨
+        q = P.v.1 ∨ q = packet.xv) :
+    ((lateFirstApexSystem R).centerAt P.v.1 P.v.2 = P.u.1 ∧
+        (lateFirstApexSystem R).centerAt P.v.1 P.v.2 ∈
+          S.capInteriorByIndex S.oppIndex2) ∨
+      ((lateFirstApexSystem R).centerAt P.v.1 P.v.2 = packet.xu ∧
+        (lateFirstApexSystem R).centerAt P.v.1 P.v.2 ∈
+          S.capInteriorByIndex S.oppIndex2) ∨
+      (lateFirstApexSystem R).centerAt P.v.1 P.v.2 ∉
+        SelectedClass D.A S.oppApex2 P.rho := by
+  classical
+  by_cases hcenterVClass :
+      (lateFirstApexSystem R).centerAt P.v.1 P.v.2 ∈
+        SelectedClass D.A S.oppApex2 P.rho
+  · have hcenterVData :=
+      exactFourRigid221_sourceHeavy_pentagon_v_center_class_reduction
+        P packet hxvA hblockerEqDeleted htraceBound hclassFive hcenterVClass
+    rcases hcenterVData.1 with hcenterVU | hcenterVXu
+    · exact Or.inl ⟨hcenterVU, hcenterVData.2⟩
+    · exact Or.inr (Or.inl ⟨hcenterVXu, hcenterVData.2⟩)
+  · exact Or.inr (Or.inr hcenterVClass)
+
+/-- In the card-seven normal form, an off-class center on the `v` row cannot
+   be one of the five strict-interior points.  The only possible off-class
+   candidate is the `xu` center, but equal centers transfer the selected
+   supports and violate the retained `xv` omission from the `xu` row. -/
+theorem exactFourRigid221_sourceHeavy_pentagon_card_seven_offClass_v_center_not_interior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    (P : ExactFourRigid221PhysicalApexSourceEqUContext R)
+    (packet : ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P)
+    (hxuA : packet.xu ∈ D.A)
+    (hxvNotXuRow : packet.xv ∉
+      ((lateFirstApexSystem R).selectedAt packet.xu hxuA).toCriticalFourShell.support)
+    (hinterior_eq :
+      S.capInteriorByIndex S.oppIndex2 =
+        ({P.u.1, P.jointDeletion.deleted.1, packet.xv, packet.xu,
+          (lateFirstApexSystem R).centerAt packet.xu hxuA} : Finset ℝ²))
+    (hcenterVOff :
+      (lateFirstApexSystem R).centerAt P.v.1 P.v.2 ∉
+        SelectedClass D.A S.oppApex2 P.rho) :
+    (lateFirstApexSystem R).centerAt P.v.1 P.v.2 ∉
+      S.capInteriorByIndex S.oppIndex2 := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let C := SelectedClass D.A S.oppApex2 P.rho
+  have huClass : P.u.1 ∈ C := by
+    simpa only [C] using P.huClass
+  have hdeletedClass : P.jointDeletion.deleted.1 ∈ C := by
+    simpa only [C] using P.jointDeletion.deleted_mem_class
+  have hxuClass : packet.xu ∈ C := by
+    have hxuInter : packet.xu ∈
+        ((Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell.support ∩ C) := by
+      rw [packet.source_row_trace]
+      simp [Hlate, C]
+    exact (Finset.mem_inter.mp hxuInter).2
+  have hxvClass : packet.xv ∈ C := by
+    have hxvInter : packet.xv ∈
+        ((Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C) := by
+      rw [packet.opposite_row_trace]
+      simp [Hlate, C]
+    exact (Finset.mem_inter.mp hxvInter).2
+  have hcenterVNeXuCenter :
+      Hlate.centerAt P.v.1 P.v.2 ≠ Hlate.centerAt packet.xu hxuA := by
+    intro hcenterEq
+    have hsupports :=
+      ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+        Hlate P.v.2 hxuA hcenterEq
+    have hxvInter : packet.xv ∈
+        ((Hlate.selectedAt P.v.1 P.v.2).toCriticalFourShell.support ∩ C) := by
+      rw [packet.opposite_row_trace]
+      simp [Hlate, C]
+    have hxvSupportXu : packet.xv ∈
+        (Hlate.selectedAt packet.xu hxuA).toCriticalFourShell.support := by
+      rw [← hsupports]
+      exact (Finset.mem_inter.mp hxvInter).1
+    exact hxvNotXuRow (by simpa [Hlate] using hxvSupportXu)
+  intro hcenterVI
+  rw [hinterior_eq] at hcenterVI
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hcenterVI
+  rcases hcenterVI with hcenterVU | hcenterVDeleted | hcenterVXv |
+    hcenterVXu | hcenterVCx
+  · apply hcenterVOff
+    rw [hcenterVU]
+    exact huClass
+  · apply hcenterVOff
+    rw [hcenterVDeleted]
+    exact hdeletedClass
+  · apply hcenterVOff
+    rw [hcenterVXv]
+    exact hxvClass
+  · apply hcenterVOff
+    rw [hcenterVXu]
+    exact hxuClass
+  · exact hcenterVNeXuCenter hcenterVCx
+
 /-- Pentagon blocker leaf: the `xv`-row blocker is the deleted point.
 Narrowing over the parent pentagon: the blocker is pinned to a named class
 point, which also puts the deleted point in the strict second-cap interior
@@ -13331,6 +14057,56 @@ structure ExactFourRigid221PentagonOffClassBlockerResidual
       x ∈ SelectedClass D.A S.oppApex2 P.rho →
         x = packet.xu ∨ x = P.jointDeletion.deleted.1
 
+/-- An `xu`-row center in the erased physical-class slice can only be the
+remaining named source `v`. -/
+theorem pentagonOffClassBlocker_xu_center_erase_u_class_eq_v
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (hcenterBO :
+      (lateFirstApexSystem R).centerAt packet.xu Q.hxuA ∈
+        SelectedClass (D.A.erase P.u.1) S.oppApex2 P.rho) :
+    (lateFirstApexSystem R).centerAt packet.xu Q.hxuA = P.v.1 := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let Ku :=
+    (Hlate.selectedAt P.u.1 P.u.2).toCriticalFourShell
+  let Kxu :=
+    (Hlate.selectedAt packet.xu Q.hxuA).toCriticalFourShell
+  have hcenterBOData := mem_selectedClass.mp hcenterBO
+  have hcenterA : Hlate.centerAt packet.xu Q.hxuA ∈ D.A := by
+    exact (Finset.mem_erase.mp hcenterBOData.1).2
+  have hcenterClass :
+      Hlate.centerAt packet.xu Q.hxuA ∈
+        SelectedClass D.A S.oppApex2 P.rho := by
+    apply mem_selectedClass.mpr
+    exact ⟨hcenterA, hcenterBOData.2⟩
+  have hcenterU : Hlate.centerAt P.u.1 P.u.2 = packet.xv := by
+    simpa [Hlate, P.huSource] using packet.blocker_eq_xv
+  rcases Q.hclassFive _ hcenterClass with hcu | hcxu | hcd | hcv | hxv
+  · exact ((Finset.mem_erase.mp hcenterBOData.1).1 hcu).elim
+  · exact ((centerAt_ne_source Hlate packet.xu Q.hxuA) hcxu).elim
+  · exfalso
+    apply Kxu.center_not_mem_support
+    simpa [Kxu, hcd] using Q.hdeletedXuRow
+  · exact hcv
+  · have hcenterUXu :
+        Hlate.centerAt P.u.1 P.u.2 = Hlate.centerAt packet.xu Q.hxuA := by
+      exact hcenterU.trans hxv.symm
+    have hsupports : Ku.support = Kxu.support := by
+      simpa [Ku, Kxu] using
+        (ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq
+          Hlate P.u.2 Q.hxuA hcenterUXu)
+    exfalso
+    apply Q.huNotXuRow
+    rw [← hsupports]
+    exact Ku.q_mem_support
+
 /-- The exact selected row at `xu` contains the joint-deletion point, so a
 four-point row at the same center cannot survive erasing that point.  This is
 the source-level adapter behind the direct collision rejected by the exact-12
@@ -16727,6 +17503,183 @@ theorem pentagonOffClassBlocker_xu_commonDeletionFans_or_nextRow_onlyHit
     · simpa only [Hlate, Kxv, c, hcA, Kc] using
         (pentagonOffClassBlocker_physicalClass_commonDeletionFan Q).2
           packet.xu hxuPhysicalFan
+
+/-- The `nextRowOnlyHit` arm exports an exact four-point row after deleting
+`u`, together with its three named support incidences. -/
+theorem pentagonOffClassBlocker_nextRowOnlyHit_uDeletion_exactRow
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (hnextRowOnlyHit :
+      let Hlate := lateFirstApexSystem R
+      let Kxv :=
+        (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+      let c := Hlate.centerAt packet.xv Q.hxvA
+      let hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+      let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+      packet.xu ∈ Kc.support ∧
+        P.u.1 ∉ Kc.support ∧ packet.xv ∉ Kc.support) :
+    let Hlate := lateFirstApexSystem R
+    let Kxv :=
+      (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+    let c := Hlate.centerAt packet.xv Q.hxvA
+    let hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+    let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+    Nonempty (U5QDeletedK4Class D P.u.1 (Hlate.centerAt c hcA) Kc.support) ∧
+      packet.xu ∈ Kc.support ∧
+      P.u.1 ∉ Kc.support ∧
+      packet.xv ∉ Kc.support := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let Kxv :=
+    (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+  let c := Hlate.centerAt packet.xv Q.hxvA
+  have hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+  let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+  change
+    packet.xu ∈ Kc.support ∧
+      P.u.1 ∉ Kc.support ∧ packet.xv ∉ Kc.support at hnextRowOnlyHit
+  change
+    Nonempty (U5QDeletedK4Class D P.u.1 (Hlate.centerAt c hcA) Kc.support) ∧
+      packet.xu ∈ Kc.support ∧
+      P.u.1 ∉ Kc.support ∧
+      packet.xv ∉ Kc.support
+  have hrow :
+      U5QDeletedK4Class D P.u.1 (Hlate.centerAt c hcA) Kc.support :=
+    criticalFourShellToQDeletedK4ClassOfNotMem Kc hnextRowOnlyHit.2.1
+  exact ⟨⟨hrow⟩, hnextRowOnlyHit.1, hnextRowOnlyHit.2.1,
+    hnextRowOnlyHit.2.2⟩
+
+/-- Under the exact four-point interior normal form, an interior next-row
+center in the `nextRowOnlyHit` arm is one of the two omitted named points. -/
+theorem pentagonOffClassBlocker_nextRowOnlyHit_interior_center_eq_u_or_xv
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (hinterior_eq :
+      S.capInteriorByIndex S.oppIndex2 =
+        {P.u.1,
+          (lateFirstApexSystem R).centerAt packet.xv Q.hxvA,
+          packet.xv, packet.xu})
+    (hnextRowOnlyHit :
+      let Hlate := lateFirstApexSystem R
+      let Kxv :=
+        (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+      let c := Hlate.centerAt packet.xv Q.hxvA
+      let hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+      let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+      packet.xu ∈ Kc.support ∧
+        P.u.1 ∉ Kc.support ∧ packet.xv ∉ Kc.support) :
+    let Hlate := lateFirstApexSystem R
+    let Kxv :=
+      (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+    let c := Hlate.centerAt packet.xv Q.hxvA
+    let hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+    let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+    Hlate.centerAt c hcA ∈ S.capInteriorByIndex S.oppIndex2 →
+      Hlate.centerAt c hcA = P.u.1 ∨
+        Hlate.centerAt c hcA = packet.xv := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let Kxv :=
+    (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+  let c := Hlate.centerAt packet.xv Q.hxvA
+  have hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+  let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+  let KcSupport : Finset ℝ² := Kc.support
+  change
+    packet.xu ∈ Kc.support ∧
+      P.u.1 ∉ Kc.support ∧ packet.xv ∉ Kc.support at hnextRowOnlyHit
+  change
+    Hlate.centerAt c hcA ∈ S.capInteriorByIndex S.oppIndex2 →
+      Hlate.centerAt c hcA = P.u.1 ∨
+        Hlate.centerAt c hcA = packet.xv
+  intro hcenterInterior
+  have hcenterNamed :
+      Hlate.centerAt c hcA ∈
+        ({P.u.1, c, packet.xv, packet.xu} : Finset ℝ²) := by
+    rw [← hinterior_eq]
+    exact hcenterInterior
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hcenterNamed
+  rcases hcenterNamed with hcenterU | hcenterC | hcenterXv | hcenterXu
+  · exact Or.inl hcenterU
+  · exact (centerAt_ne_source Hlate c hcA hcenterC).elim
+  · exact Or.inr hcenterXv
+  · exfalso
+    apply Kc.center_not_mem_support
+    have hxuSupport : packet.xu ∈ KcSupport := by
+      simpa only [KcSupport] using hnextRowOnlyHit.1
+    have hcenterSupport : Hlate.centerAt c hcA ∈ KcSupport := by
+      exact hcenterXu.symm ▸ hxuSupport
+    simpa only [KcSupport] using hcenterSupport
+
+/- The exact next-row arm has one named physical-class hit, namely `xu`.
+This set-level form is useful when transporting the arm into a finite row
+pattern; it records the support residue without making a claim about the
+next center or a terminal contradiction. -/
+theorem pentagonOffClassBlocker_nextRowOnlyHit_namedTriple_inter_eq_xu
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F}
+    {P : ExactFourRigid221PhysicalApexSourceEqUContext R}
+    {packet :
+      ExactFourRigid221SourceEqUBlockerVRowOtherSourceHeavyPacket P}
+    (Q : ExactFourRigid221PentagonOffClassBlockerResidual P packet)
+    (hnextRowOnlyHit :
+      let Hlate := lateFirstApexSystem R
+      let Kxv :=
+        (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+      let c := Hlate.centerAt packet.xv Q.hxvA
+      let hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+      let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+      packet.xu ∈ Kc.support ∧
+        P.u.1 ∉ Kc.support ∧ packet.xv ∉ Kc.support) :
+    let Hlate := lateFirstApexSystem R
+    let Kxv :=
+      (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+    let c := Hlate.centerAt packet.xv Q.hxvA
+    let hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+    let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+    Kc.support ∩ {P.u.1, packet.xu, packet.xv} = {packet.xu} := by
+  classical
+  let Hlate := lateFirstApexSystem R
+  let Kxv :=
+    (Hlate.selectedAt packet.xv Q.hxvA).toCriticalFourShell
+  let c := Hlate.centerAt packet.xv Q.hxvA
+  have hcA : c ∈ D.A := (Finset.mem_erase.mp Kxv.center_mem).2
+  let Kc := (Hlate.selectedAt c hcA).toCriticalFourShell
+  change
+    Kc.support ∩ {P.u.1, packet.xu, packet.xv} = {packet.xu} at ⊢
+  change
+    packet.xu ∈ Kc.support ∧
+      P.u.1 ∉ Kc.support ∧ packet.xv ∉ Kc.support at hnextRowOnlyHit
+  ext z
+  constructor
+  · intro hz
+    have hzSupport : z ∈ Kc.support := (Finset.mem_inter.mp hz).1
+    have hzTriple : z ∈ ({P.u.1, packet.xu, packet.xv} : Finset ℝ²) :=
+      (Finset.mem_inter.mp hz).2
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hzTriple
+    rcases hzTriple with hzU | hzXu | hzXv
+    · exact (hnextRowOnlyHit.2.1 (hzU ▸ hzSupport)).elim
+    · simpa only [Finset.mem_singleton] using hzXu
+    · exact (hnextRowOnlyHit.2.2 (hzXv ▸ hzSupport)).elim
+  · intro hz
+    have hzXu : z = packet.xu := by
+      simpa only [Finset.mem_singleton] using hz
+    subst z
+    exact Finset.mem_inter.mpr ⟨hnextRowOnlyHit.1, by simp⟩
 
 /-- The common-deletion arm can be represented by three concrete exact
 `xu`-deleted rows: the selected rows at the `xv` blocker and its next blocker,
