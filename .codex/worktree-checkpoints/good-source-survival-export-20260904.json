@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "good-source-survival-export-20260904",
+  "owner": "codex-root",
+  "base_head": "24540587735310476b32d69017d8353f3e29ba0a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/good-source-survival-export-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/ExactFourPhysicalConsumer.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T04:33:40Z",
+  "manifest_sha256": "f3700902a0f42138e719acc42530a3c5e6a94f6f969b073dcb39da000c0cdc05"
+}

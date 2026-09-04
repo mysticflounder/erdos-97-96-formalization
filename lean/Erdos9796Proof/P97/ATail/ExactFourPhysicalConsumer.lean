@@ -472,6 +472,21 @@ private theorem good_source_survives_one
     exact hnotBad
       (Finset.mem_filter.mpr ⟨houtside, hq, hw⟩)
 
+/-- Every good outside source survives at least one of the two frontier
+deletions at its actual late blocker.  This is the public source-faithful
+ingress shared by the C3, exact-five, B1, and TwoSource consumers. -/
+theorem goodOutsideSources_survives_frontier_pair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    {source : CarrierVertex D.A}
+    (hsource : source ∈ goodOutsideSources R) :
+    HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
+        ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
+      HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+        ((lateFirstApexSystem R).centerAt source.1 source.2) := by
+  exact good_source_survives_one R hsource
+
 /-- Full source-faithful common-deletion ingress produced by exact four.
 The original residual remains an index, while the packet records a late
 actual blocker distinct from the physical second apex. -/
