@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-two-canonical-k4-fixed-cell-20260904",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "17cc137c22d02fdc6cddb781ba6be31a43a7c3a5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-two-canonical-k4-fixed-cell-20260904.json",
+    "docs/skeptic-CardGeThirteenTwoCanonicalK4FixedCell-2026-09-04.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTwoCanonicalK4FixedCell.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTwoCanonicalK4FixedCellCertificateBank.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTwoCanonicalK4FixedCellData.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTwoCanonicalK4FixedCellNormalizers.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T16:55:00Z",
+  "manifest_sha256": "d7e4ab486aeec35f09b635d4406a063cb1ff94c8599aa2d1c366252a615c1fb4"
+}
