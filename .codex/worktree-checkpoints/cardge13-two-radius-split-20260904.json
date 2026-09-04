@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-two-radius-split-20260904",
+  "owner": "c3_split_adapter",
+  "base_head": "6207fd591e23c01c5195758595fcedb91876fd2b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-two-radius-split-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTwoRadiusSplit.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T03:35:00Z",
+  "manifest_sha256": "09403fe5bdf03209530b0e5904a7657504aa908e5433bad3fad85d752af0a198"
+}
