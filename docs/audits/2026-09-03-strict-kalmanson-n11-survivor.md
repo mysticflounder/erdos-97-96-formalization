@@ -108,13 +108,15 @@ with the required memberships
 {C,D,F} subset row(E).
 ```
 
-The committed theorem
-`Problem97.false_of_three_equilateral_chain_and_f_ne_c` in
+The theorem `Problem97.false_of_three_equilateral_chain_and_f_ne_c` in
 `P97/ATail/ThreeEquilateralChainCollision.lean` proves that these equal-distance
-relations cannot be realized by six distinct planar points. The remaining Lean
-work is only a row-membership adapter using
-`Census554.EqualityCore.Realizes.equidist` and injectivity; that bounded lane was
-dispatched in conversation message `#10779`.
+relations cannot be realized by six distinct planar points. Commit
+`ab8480418f33090742afd7606ee5018f7be4361d` adds the row-facing theorem
+`Problem97.false_of_realizes_three_equilateral_chain`, which obtains the eight
+metric equalities from the twelve memberships with
+`Census554.EqualityCore.Realizes.equidist` and obtains point distinctness from
+injectivity. Focused Lean compilation and an independent elaboration passed;
+`#print axioms` reports only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Claim boundary
 
