@@ -123,11 +123,18 @@ predicate requires `c2 ∈ T0`; all six residual profiles therefore lie in the
 already handled membership side.  The parent order census contains 2,104
 profiles with `c2 ∉ T0`, including 80 authenticated SAT/SAT survivors.
 Profile 34 is the first fully determined survivor and has two authenticated
-fixed orders, so it is the next diagnostic target.
+fixed orders, so it is the next diagnostic target.  The indexed preflight also
+found the existing exact-five reconstruction
+`tightPhysical_firstApexClass_eq_insert_deleted`; the hard-source module now
+specializes that fact to the live row-zero support.  Thus row-zero omission and
+the explicit second-apex/deleted distinctness place `oppApex2` outside the
+original five-point first-apex class.  The remaining source-coverage work is
+the finite role naming and alias partition, not the `T0`/row-zero identity.
 
 The next computation is a PIQD-only, fixed-order source QF_NRA wave for profile
 34.  Each of its two target cells must carry 13 role classes, 26 coordinates,
 four gauge constraints, 13 row equalities, one radius disequality, one
 source-strict inequality, and 286 strict signed-area constraints, together
-with positive and negative controls.  Any result remains diagnostic until a
-Lean source adapter proves that the abstract `T0` row is the live row zero.
+with positive and negative controls.  Any result remains diagnostic until the
+profile's complete finite role and alias partition is connected to the live
+source packet.

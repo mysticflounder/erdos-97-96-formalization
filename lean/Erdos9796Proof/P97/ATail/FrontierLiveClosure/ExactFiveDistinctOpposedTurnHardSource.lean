@@ -33,6 +33,56 @@ open FirstApexUniqueRadiusResidual
 
 attribute [local instance] Classical.propDecidable
 
+/-- Re-inserting the deleted source into the live row-zero support recovers
+the exact five-point first-apex class. -/
+theorem ExactFiveDistinctThreeCenterNormalForm.firstApexFive_eq_insert_deleted_rowZero
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (I : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support) :
+    SelectedClass D.A S.oppApex1 radius =
+      insert deleted I.surface.row₀.support := by
+  calc
+    SelectedClass D.A S.oppApex1 radius =
+        insert deleted
+          ((SelectedClass D.A S.oppApex1 radius).erase deleted) :=
+      (Finset.insert_erase (deleted_mem_firstApex_selectedClass N)).symm
+    _ = insert deleted N.firstApexClass.support := by
+      rw [← N.firstApexClass_support_eq]
+    _ = insert deleted I.surface.row₀.support := by
+      rw [I.row₀_support_eq]
+
+/-- Row-zero omission, together with the source-role distinctness, places the
+second physical apex outside the original exact five-point first-apex class. -/
+theorem ExactFiveDistinctThreeCenterNormalForm.secondApex_not_mem_firstApexFive_of_not_mem_rowZero
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (I : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hc₂K₀ : S.oppApex2 ∉ I.surface.row₀.support)
+    (hc₂_ne_deleted : S.oppApex2 ≠ deleted) :
+    S.oppApex2 ∉ SelectedClass D.A S.oppApex1 radius := by
+  intro hc₂Five
+  apply hc₂K₀
+  rw [I.row₀_support_eq, N.firstApexClass_support_eq]
+  exact Finset.mem_erase.mpr ⟨hc₂_ne_deleted, hc₂Five⟩
+
 /-- The old interior representative of a hard exact grid realizes either the
 old opposed-turn products or the family-13 products. -/
 theorem HardSourceSwapExactGridRoles.old_or_family13_products
