@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-card-six-boundary-role-ingress-20260903",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "a46769de126b7c93f42a4a452b5038b06142a1e5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-card-six-boundary-role-ingress-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardSixBoundaryRoleIngress.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:04:35Z",
+  "manifest_sha256": "4c01e6aaef3b26a5992fde6b6d2ebfce1505579d2902daf833db2e45ff0f2d4f"
+}
