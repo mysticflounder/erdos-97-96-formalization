@@ -3275,9 +3275,10 @@ assignment lemmas provide the corresponding partial valuation.  All twelve
 normalized schedule cells now have embedded clause-delta modules, checked
 delta-equality theorems, and typed `CompiledNextRowJob` wrappers; the complete
 collection is imported by `ExactTwelveRigid221NextRowClauseDeltaArtifacts`.
-The source producer still returns only existential representative membership:
-the consumer-facing dispatcher from that result into the named job collection,
-with a corresponding terminal bank, remains absent.
+The focused module
+`ExactTwelveRigid221NextRowDispatcher` now proves exhaustive twelve-cell
+coverage, selects the matching typed job, and lifts the source producer's
+existential witness to that named job.  It does not supply a terminal bank.
 The source ingress also exports the next-row-only-hit row after deleting `u`;
 under `D.A.card = 12`,
 `pentagonOffClassBlocker_nextRowOnlyHit_exactElevenCarrier_or_xuCollision`
@@ -3287,8 +3288,8 @@ all-cell coverage or terminal UNSAT evidence.
 Four cell-specific next-row arm modules (`Cell0052`, `Cell0058`, `Cell0065`,
 and `Cell0071`) do provide checked `DimacsUnsatisfiable` declarations for
 separate compact formulas.  They are not terminal certificates for the twelve
-typed clause-delta jobs, and no source ingress currently dispatches every
-normalized source representative to a matching typed job and terminal bank.
+typed clause-delta jobs.  The new dispatcher selects every matching typed job,
+but terminal certificates and aggregate bank coverage remain absent.
 
 ### 2026-09-04 source-clean Rigid221 reductions
 
@@ -3303,8 +3304,9 @@ row after deleting `u`, split an interior next-row center between `u` and
 
 These declarations compile as source-clean Lean consequences and narrow the
 recorded residual freedom.  They do not close the A5/A6 terminals: the exact
-twenty-four-cell A5 coverage and the exact-twelve A6 source-to-job dispatcher,
-aggregate terminal coverage, and typed-job terminal certificates remain absent.
+twenty-four-cell A5 coverage, aggregate terminal coverage, and typed-job
+terminal certificates remain absent.  The separate exact-twelve source-to-job
+dispatcher narrows the A6 interface but does not close its terminal.
 The
 source file therefore remains OPEN-TERMINAL with its five existing `sorry`
 leaves.
