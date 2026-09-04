@@ -149,16 +149,9 @@ private theorem good_source_survives_one_local
     (hsource : source ∈ goodOutsideSources R) :
     HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
         ((lateFirstApexSystem R).centerAt source.1 source.2) ∨
-      HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
+    HasNEquidistantPointsAt 4 (D.A.erase F.pair.w)
         ((lateFirstApexSystem R).centerAt source.1 source.2) := by
-  have houtside := (Finset.mem_sdiff.mp hsource).1
-  have hnotBad := (Finset.mem_sdiff.mp hsource).2
-  by_cases hq : HasNEquidistantPointsAt 4 (D.A.erase F.pair.q)
-      ((lateFirstApexSystem R).centerAt source.1 source.2)
-  · exact Or.inl hq
-  · right
-    by_contra hw
-    exact hnotBad (Finset.mem_filter.mpr ⟨houtside, hq, hw⟩)
+  exact goodOutsideSources_survives_frontier_pair R hsource
 
 private theorem source_not_mem_firstClass_of_mem_outside_local
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
