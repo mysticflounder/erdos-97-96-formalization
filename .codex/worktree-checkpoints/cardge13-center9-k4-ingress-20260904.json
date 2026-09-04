@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-center9-k4-ingress-20260904",
+  "owner": "luna-swarm-proofforge",
+  "base_head": "56d88e19c7074d89c04c443d7c2a548fe6251f25",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-center9-k4-ingress-20260904.json",
+    "docs/audits/2026-09-04-cardge13-center9-k4-ingress.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenCenter9K4Ingress.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T10:55:00Z",
+  "manifest_sha256": "086158595f9f45d1d4f490a4c24f54947cdc4417d9b67070a3c4107a18bb95b6"
+}
