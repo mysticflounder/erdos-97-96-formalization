@@ -1,0 +1,14 @@
+{
+  "base_head": "69401d1e7e54fd165efb0a2296cb402ccf6d1011",
+  "created_utc": "2026-09-04T00:39:54Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "proofrelay-p2-deletion-split-20260903",
+  "manifest_sha256": "d6f368c0b8eff432faba04819355bc2a94cbc4be0aada02372989a317be4992e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/proofrelay-p2-deletion-split-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GoodMutualOmissionDeletionOutcome.lean"
+  ],
+  "owner": "proofrelay-p2-deletion-split",
+  "schema": "worktree-lane-checkpoint/v1"
+}
