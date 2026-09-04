@@ -2,7 +2,7 @@
   "schema": "worktree-lane-checkpoint/v1",
   "lane_id": "cardge13-uncovered-strict-interior-normal-form-repair-20260904",
   "owner": "luna-swarm-radial-lemmas",
-  "base_head": "e6a47de496e42bce4ce4c7aaff50edc3b1e44bcb",
+  "base_head": "c9786aefc7436081be00f9c7ced4a92258b44f38",
   "owned_paths": [
     ".codex/worktree-checkpoints/cardge13-uncovered-strict-interior-normal-form-repair-20260904.json",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenUncoveredStrictInterior.lean"
@@ -10,5 +10,5 @@
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-03T23:44:00Z",
-  "manifest_sha256": "1b16854fd2ef51d1794bb63238d862fd2395972bbc6474ce98f66965af21aedb"
+  "manifest_sha256": "398f892c37797c56be54328e50d3557e5cd52ada98771a3a3d5eb2db24b60e72"
 }
