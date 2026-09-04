@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "proofrelay-three-equilateral-chain-20260903",
+  "owner": "codex",
+  "base_head": "efea19c3344db55b4bc4a083c4a66af501625574",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/proofrelay-three-equilateral-chain-20260903.json",
+    "lean/Erdos9796Proof/P97/ATail/ThreeEquilateralChainCollision.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T02:37:55Z",
+  "manifest_sha256": "23d9403df94dd3a9983a0dd427f201f473bb264edca407183f62446d9a8c8a69"
+}
