@@ -42,15 +42,25 @@ the following producer and dispatch chain:
 3. `b1_thirdJointDeletion_or_physicalClassFiveSixNormalForm` exhaustively
    produces either that third deletion or the retained five/six normal form.
 4. `false_of_b1_distinctBlocker_jointDeletions` sends the third-deletion arm
-   through the checked directed cross-omission and four-center split to the
-   two existing B2/B3 terminal leaves.
+   through the checked directed cross-omission and four-center split to two
+   older terminal leaves.  Those leaves remain open; the split and dispatch
+   are source-clean, but their terminal `False` theorems are not.
 5. `false_of_b1ThirdJointDeletionOrPhysicalClassFiveSixNormalForm` consumes the
    split, and `false_of_b1GlobalTransportContext` composes producer and
    consumer.
-6. `b1_globalGapOrClosedTerminal_of_counterexample` is now a source-closed
-   compatibility wrapper over that coordinator.
+6. `b1_globalGapOrClosedTerminal_of_counterexample` is syntactically a
+   compatibility wrapper over that coordinator.  It is not source-closed:
+   its transitive axiom closure still reaches the three open declarations
+   listed below.
 
-Only `false_of_b1PhysicalClassFiveSixNormalForm` is a new open declaration.
+The exact-five/six reduction introduced one new open declaration,
+`false_of_b1PhysicalClassFiveSixNormalForm`.  The headline also continues to
+depend on the pre-existing
+`false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence`
+and
+`false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare`
+leaves.  Closing only the new normal-form leaf would therefore not yet make
+the headline promotable.
 
 ## Frontier measure
 
@@ -823,3 +833,284 @@ The card-six refinement passed focused compilation, independent axiom and
 circularity audit, and the governed 10,871-job module build.  Its dependency
 closure contains only Lean's standard `propext`, `Classical.choice`, and
 `Quot.sound` axioms.
+
+## 2026-09-05 transitive-frontier reconciliation
+
+The current source contains exactly three textual `sorry`s on the proof path
+used by `b1_globalGapOrClosedTerminal_of_counterexample`:
+
+1. the blocker-coincidence leaf at the common-deletion split;
+2. the four-center survival-square leaf; and
+3. `false_of_b1PhysicalClassFiveSixNormalForm`.
+
+The actual-blocker refinement in
+`TwoDeletion/ActualBlockerSquareRefinement.lean` source-cleanly recovers, for
+an erased center `X`, the canonical actual blocker `pX := centerAt X`, the
+directed omission `X ∉ selectedAt(q).support`, and the exhaustive alternative
+that `pX` is one of the three named square centers or is fresh from all three.
+`TwoDeletionCollision.lean` specializes this to the physical-apex square.  In
+the `pX = bu` cell it derives the positive reverse incidence
+`oppApex2 ∈ selectedAt(u).support`.
+
+This is a genuine provenance improvement for the survival-square branch, but
+it does not close that branch and does not feed the separate five/six
+normal-form branch.  The exact rational local certificate in
+`B1ApexUBlockerCell.lean` realizes the currently encoded apex/`bu` incidences,
+deletion survivals, convex independence, convex boundary order, and an
+alternating placement.  It does not construct `CounterexampleData`, so it is
+a local negative control rather than a satisfiability result for the full
+source cell.  Consequently no unconditional terminal may be inferred from
+the refined packet alone.
+
+An exact squared-distance census of that 13-point rational carrier makes the
+missing global content concrete.  Only the physical apex (multiplicity six),
+the `u` blocker (multiplicity four), and the common blocker (multiplicity
+four) have four equidistant carrier points.  At each of the other ten carrier
+points all twelve squared distances are distinct.  This shows that the local
+cell omits the source-centered rows forced by `D.K4`, but a follow-up source
+audit also rules out generic `D.K4` access as a sufficient next theorem.  The
+available card-six dichotomy gives deletion survival at each live mate's
+actual blocker, while `B1EscapeSourceContext` gives `q`/`w`-deletion survival
+at an existential source.  Neither result has an on-spine consumer, and the
+clean shared-pair contradiction instead requires a positive
+`B1SliceSameBoundaryArc` witness; the rational cell realizes its negation.
+The missing ingress must therefore relate a source-centered row to the live
+pair through genuinely joint global incidence/order data.  Adding more
+blocker-centered selected-row or cyclic-order atoms to this fixed pattern
+would not test that missing `CounterexampleData` obligation.
+
+The nearest raw-order bridge is also not an import-ready consumer chain.
+`B1CardSixRawOrderBridge.RawCardSixBad` and
+`B1CardSixRawOrderIngress.RawCardSixBad` are distinct namespace declarations
+with different role-index encodings.  The bridge theorem
+`rawCardSixBad_of_b1PhysicalClassFiveSixNormalForm` uses the former only in an
+internal contradiction from `rawCardSixGood`; the ingress theorem
+`false_of_b1PhysicalClassFiveSixNormalForm_of_not_rawCardSixBad` assumes the
+negation of the latter.  No adapter connects them, and no producer exists for
+`RoleBoundaryRestriction`.  Similar theorem names must not be treated as a
+source-clean call chain without checking their fully qualified types.
+
+Current frontier measure:
+
+```text
+(normal-form global producer absent,
+ blocker-coincidence consumer absent,
+ survival-square named/fresh consumer absent)
+```
+
+Production work must reduce one of these entries on the kernel-reachable
+spine.  Repackaging the actual-blocker alternatives or adding another
+conditional card-arc/source-context wrapper does not count.  The active
+bounded searches are (a) a consumer for a named actual-blocker row hit or the
+fresh-center arm, and (b) a genuinely global producer from the five/six wave
+ingress.  The latter may use live-pair order, a third deleted-pair bisector
+carrier, or the escape/common-row overlap terminal, but must retain the source
+field that proves it.
+
+### Auxiliary-leaf audit
+
+Independent source audits and Luna lanes C/D found no terminal consumer for
+either auxiliary leaf.  The blocker-coincidence disjunction
+`first.deleted = blocker(u) ∨ first.deleted = blocker(v) ∨
+first.deleted = blocker(second.deleted)` source-cleanly normalizes to a row
+centered at the collided source, with the source omitted from that row.  This
+is a coherent local normal form, not a contradiction obtainable by unpacking
+the current packet.  Excluding it first requires a global cap, blocker-fibre,
+or cyclic-incidence obstruction.
+
+Applying `actualBlocker_alias_or_fresh_of_survivalSquare` to all four square
+centers removes the three self-alias cases by `centerAt_ne_source`, but leaves
+thirteen genuine subbranches: four for the physical apex and three each for
+the `u` blocker, `v` blocker, and second-deletion blocker.  Every remaining
+branch needs either a terminal for a named positive row incidence or a way to
+exclude a fresh actual blocker.  The original `u`/`v` mutual omissions do not
+constrain those centers.  The theorem-bank reuse preflight found no compatible
+consumer: `BiSurvivalCanonicalRows` needs a two-deletion rectangle at the same
+two centers, `interiorPairBad_source_blockers_eq` needs two deletion-failure
+memberships, and the apparent six-center and retained-omission consumers are
+both data-incompatible and downstream-circular.
+
+Accordingly, all three textual leaves now share the same strict frontier:
+global source/row incidence or order has not yet been connected to the local
+normal forms.  The next computational refinement must include the relevant
+source-centered `D.K4` rows and their incidences with the named live/blocker
+roles, then mine a concrete minimal obstruction with an immediate geometric
+consumer.  A proof that merely dispatches the three collision arms or the
+thirteen square subbranches without adding such an obstruction does not reduce
+the frontier.
+
+This common information gap does not make the branch packets composable.
+The survival-square and blocker-coincidence leaves occur in the explicit
+third-joint-deletion arm.  By definition,
+`B1PhysicalClassFiveSixNormalForm` is the opposite arm and retains the
+negation of any such third deletion.  Consequently its five/six wave ingress,
+escape star, and card-specific slice packets cannot be imported into either
+third-deletion terminal.  Any shared theorem must be produced upstream from
+`B1GlobalTransportContext` or proved separately in both branches.
+
+The representative physical-apex alias `centerAt(oppApex2) = blocker(u)`
+cannot be closed by the existing shared-pair theorem.  The selected row at the
+physical apex, the first joint-deletion row at `blocker(u)`, and the canonical
+row selected from source `u` all identify with the same support and the same
+geometric center `blocker(u)`.  Their common points therefore do not furnish
+the two distinct center labels required by
+`selectedFourClass_shared_pair_separated`.  The other immediately available
+rows omit one of the candidate pair points.  A useful refinement must produce
+a genuinely second center whose row contains the same two named carriers; a
+second presentation of the canonical `u` row is not new incidence.
+
+### Declarative computational boundary
+
+The deployed PIQD `PointConfiguration/v1` ingress now covers source-labelled
+roles, strict convexity, named metric constraints, exact SAT-model replay, and
+`piqc campaign run` custody.  It must be used for subsequent finite metric
+probes instead of another wave-specific Python runner.  Its current schema,
+however, takes `common_radius.members` as a static JSON array, and campaign
+axes substitute only scalar strings.  It cannot declaratively select four
+distinct equidistant witnesses from the boundary or enumerate their aliases.
+Consequently a full `D.K4` refinement still requires an external support-case
+generator, which is precisely the behavior this lane must avoid.
+
+The active exact-thirteen campaign already carries one existential K4 witness
+row per raw center, but its sole terminal core is pinned to a different role
+cell and cannot project source-faithfully onto the three collision plus
+thirteen square branches.  Its unpinned runs remain SAT-refining.  A focused
+PIQD follow-up request was posted as conversation message `#14877`: add a
+typed existential equidistant-witness-set constraint, deterministic witness
+selection/replay, and source-bound alias handling so the sixteen cells can be
+expressed as one declarative campaign plan.  Formula results remain diagnostic
+until a label-polymorphic Lean kernel and source bridge are identified.
+
+### Survival-square recurrence audit
+
+The survival square does not currently yield a useful two-core recurrence.
+For a square center `X`, its second conjunct does construct a source-clean
+`JointDeletionCore` with source `first.deleted`, deleted point `X`, and blocker
+`centerAt(first.deleted)`.  The attempted reverse core, with source `X` and
+deleted point `first.deleted`, fails first at
+`omitted_of_mem_fixedOmissions`: that core's canonical blocker is
+`pX := centerAt X`, while the square supplies survival after deleting
+`first.deleted` at the geometric point `X`, not at `pX`.
+
+`actualBlocker_alias_or_fresh_of_survivalSquare` can repair this mismatch in
+the named-alias branches, where `pX` is one of the existing packet blockers,
+but not in the fresh-blocker branch.  Moreover, the current theorem bank has
+no consumer of two mutually oriented `JointDeletionCore` packets:
+`JointDeletionCore.Agree` requires the same source and deletion, while
+`BiSurvivalCanonicalRows` requires a full two-deletion rectangle rather than
+the two crossed survivals supplied here.  A one-way or conditionally paired
+core constructor would therefore be off-spine.  Do not formalize it unless a
+new immediate consumer excludes the fresh blocker or turns the crossed
+survivals into a strict frontier reduction.
+
+The exact-five physical omission-cycle bank does not repair this recurrence.
+`PhysicalActualCriticalMutualOmissionEdge` is indexed by a
+`LargeCapUniqueFiveSecondApexRadius` profile, and both endpoints of its cycle
+edge are `PhysicalVertex` values in that profile.  The survival square gives
+neither this physical source typing for `first.deleted` and `X` nor the
+reverse selected-row omission required by the edge.  The cycle module also
+has no decreasing on-spine consumer for such a square pair.  Transporting the
+square into a generic cycle packet would therefore add another unsupported
+producer rather than reduce the terminal.
+
+There is likewise no existing source-clean theorem excluding the fresh
+actual blocker `pX`.  The strongest compatible contradiction exposes the
+missing data precisely:
+`false_of_centerAt_selectedFourClass_inter_card_ge_three` would close from a
+three-point overlap with a selected four-class.
+`b1_liveRowBlocker_mem_secondCapInterior_of_two_points` is weaker: it would
+only localize `pX` from two distinct strict-cap physical points in its
+selected row, and there is no follow-on terminal for that conclusion in the
+third-deletion branch.  The square packet supplies neither overlap/incidence
+antecedent.  Other cap-localization bounds require the same absent common-pair
+data, and downstream Rigid221 or headline consumers are import-circular.  The
+fresh branch must therefore be attacked by producing new source/row
+incidence, not by further alias or cycle packaging.
+
+Per square center this gap is sharp.  The physical apex is not in the
+positive-radius physical class; `u` and `v` contribute only their canonical
+self-hit and the square's deletion omission; the second deleted source also
+contributes only its self-hit/class membership.  None is known strict-cap
+interior.  Although `hfive` forces at least three strict-cap points in the
+physical class, no theorem transfers any of them into an arbitrary
+`selectedAt X` support.  A directly sufficient new antecedent is therefore
+cardinality at least two for the intersection of that selected support, the
+physical class, and the strict second-cap interior.
+
+A sharp exact-thirteen incidence model realizes all currently exported
+equal-blocker, third-deletion, survival-square, convex-intersection upper
+bounds, and seven-good-source row data while keeping every fresh
+`selectedAt X` row's physical/strict-interior intersection at cardinality
+one.  This is a combinatorial model of the exported incidence abstraction,
+not a full Euclidean counterexample, but it proves that no Lean argument using
+only those incidence fields can derive the desired two-point lower bound.
+The missing lower bound must come from additional metric/order ingress.
+
+### Card-at-least-thirteen global producer candidate
+
+`exists_good_sources_distinctBlockers_commonDeletion` is a genuine
+source-clean producer available under `12 < D.A.card`.  From the original
+unique-four residual it returns two distinct good outside sources with
+distinct actual blockers, one common deleted frontier point, K4 survival at
+both blockers after that deletion, and the two canonical selected rows
+omitting the deleted point.  Since `B1GlobalTransportContext` retains the
+original residual but only assumes `12 ≤ D.A.card`, this theorem potentially
+splits B1 into an exact-card-twelve branch and a card-at-least-thirteen branch.
+
+That split is not yet ready for formalization.  The current consumers add a
+third row only when it is supplied explicitly, while
+`CardGeThirteenTerminalSplitV2` and
+`CardGeThirteenThreeRowsTightAdapter` stop at uncovered-three-center,
+adjacent-grid, overlap, fresh, or exact-thirteen-tight residuals.  None is an
+existing `False` consumer.  More decisively, the terminal-split route assumes
+the no-five two-radius branch, whereas B1's physical normal form retains a
+positive five/six class.  Its raw/provider continuation still needs checked
+`ProviderWeightedKalmansonCancellationData`; row realization alone does not
+supply that certificate.
+
+The good-source packet's sources and frontier deletion are also unrelated to
+the two joint deletions fixed by the B1 context.  It implies none of the three
+current `B1GlobalGapOrClosedTerminal` arms, and it does not by itself put two
+physical points in the fresh `pX` row or produce a three-point row overlap.
+Thus exact twelve versus card at least thirteen is currently only conditional
+routing, not a strict B1 frontier reduction.  A focused Pro consult,
+`01M1RMRGPBFNRV3GZX19F2ZMX1`, is checking whether a different import-acyclic
+terminal exists.  Until an immediate consumer is identified, do not add a B1
+wrapper for the packet.
+
+### Current full-geometric exact-five and card-six pipelines
+
+The current tree contains a stronger normal-form producer not previously
+recorded here.  `nonempty_b1FullGeometricCoupledSourceResidual` retains
+convex independence, the robust surface, escape provenance, a good source and
+peer in the strict physical cap, their exact rows and omissions, a new joint
+deletion, and the exact-five split.  Its source-context adapter is complete
+and source-clean.
+
+For exact class cardinality five,
+`nonempty_b1ExactFiveBlockerOutcome` classifies this packet into a second
+deletion and four source-equality/third-row, blocker-inside/outside arms.  It
+cannot currently be imported by `TwoDeletionCollision`: the dispatcher
+imports `Rigid221Placement`, whose path through
+`Legacy/TwoDeletionWrappers` returns to `TwoDeletionCollision`.  The five
+placement lemmas used by the dispatcher can be factored into a neutral module
+without any dependency on the three open B1 leaves, but that refactor alone
+would close no arm.  The second-deletion arm still lacks a rebase plus a proof
+that its actual blocker differs from the current one.  Both blocker-outside
+arms terminate only in the existing open minimal-core theorem, and both
+blocker-inside arms terminate only in open Rigid221 placement/closure leaves.
+Do not perform the neutral factor until one of those consumers becomes
+source-clean.
+
+For exact class cardinality six,
+`B1CardSixPointConfigurationPayload.ofSource` already packages the strongest
+source-clean positive boundary, metric, row, role-alias, and physical-support
+data.  Its downstream pipeline is nevertheless diagnostic.  The raw-order
+ingress uses a sixteen-role insertion carrier, the role-projection ingress
+uses an image of `roleUniverse`, and the older raw bridge uses a distinct
+seven-role carrier; no theorem relates these types.  In addition,
+`RoleBoundaryRestriction` has no producer and the payload omits the negative
+metric constraints for carriers absent from a row.  Raw badness yields a
+same-arc conclusion only conditionally and supplies no global-gap terminal.
+No card-six module contains a new sorry, but none currently reduces the open
+B1 terminal to `False`.
