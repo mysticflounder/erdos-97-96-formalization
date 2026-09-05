@@ -116,10 +116,23 @@ there is Z distinct from the old blocker and second apex such that
 deleting a survives at both Z and the second apex.
 ```
 
-Both arms are source-clean and import-acyclic.  Neither has a current terminal:
-the collision uses the two carrier centers permitted by the perpendicular-
-bisector bound, while the external retained-source packet lacks the original
-pair-source blocker orientation required by the downstream exact-five closer.
+The collision arm now has a further checked finite-map reduction.  Full
+deletion robustness at `O` and at the second apex omits both vertices from the
+finite blocker endomap.  Given the known `O,a` blocker fiber, finite counting
+therefore produces either a second collision fiber with a different blocker
+or a third source in the known fiber.  The combined adapter theorem exposes
+the complete residual as one of:
+
+```text
+an external retained-source common-deletion packet;
+a second blocker collision fiber at a different blocker;
+a third source in the first-apex/retained blocker fiber.
+```
+
+These outputs are source-clean and import-acyclic.  None has a current
+terminal: the multiplicity alternatives have no available cap/order consumer,
+while the external retained-source packet lacks the original pair-source
+blocker orientation required by the downstream exact-five closer.
 
 ## Swapped-order analytic theorem
 
