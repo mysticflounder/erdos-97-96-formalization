@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "physical-global-deletion-card-20260905",
+  "owner": "codex-root",
+  "base_head": "601e9ad7b67b1597f23df80f5045717f76a62697",
+  "created_utc": "2026-09-05T23:20:00Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/physical-global-deletion-card-20260905.json",
+    "docs/audits/2026-09-05-physical-global-deletion-card.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/PhysicalGlobalDeletionCard.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "06cd4ee975bd99100133862526c24180a70ead672533212a45dc81ba38e433b5"
+}
