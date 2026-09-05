@@ -1,0 +1,21 @@
+{
+  "base_head": "d9277829cd73cff80d4b2c16f4a001758d5ad142",
+  "created_utc": "2026-09-05T14:21:00Z",
+  "durable_paths": [
+    "scratch/runs/cardge13-exact13-conic-resume-20260905/run-0001/cell-000-direct-z08-k09-10-conic-resume.json",
+    "scratch/runs/cardge13-exact13-conic-resume-20260905/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-exact13-conic-resume-20260905/run-0001"
+  ],
+  "lane_id": "cardge13-exact13-conic-resume-20260905",
+  "manifest_sha256": "2d154be6e910ab56ee83ad8280ade973a6a64eef73497f717980dd0e57781b45",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-exact13-conic-resume-20260905.json",
+    "docs/audits/2026-09-05-cardge13-exact13-conic-resume.md",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py",
+    "scripts/test_cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py"
+  ],
+  "owner": "RadiusCartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}

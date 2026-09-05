@@ -47,3 +47,12 @@ def test_seed_cuts_loads_iterative_batches(tmp_path) -> None:
     cuts, sources = subject.seed_cuts((event,))
     assert cuts == (cut_a, cut_b)
     assert sources[0]["cut_occurrences"] == 3
+
+
+def test_seed_cuts_loads_direct_conic_solve_cut(tmp_path) -> None:
+    event = tmp_path / "conic.json"
+    cut = "(assert (or (not a) (not b)))"
+    event.write_text(json.dumps({"solves": [{"solver": "z3", "cut": cut}]}))
+    cuts, sources = subject.seed_cuts((event,))
+    assert cuts == (cut,)
+    assert sources[0]["cut_occurrences"] == 1

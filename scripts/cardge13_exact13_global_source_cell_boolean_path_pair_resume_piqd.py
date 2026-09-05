@@ -57,6 +57,8 @@ def seed_cuts(paths: tuple[Path, ...]) -> tuple[tuple[str, ...], tuple[dict[str,
             if not isinstance(solve, dict):
                 raise TypeError(f"seed event has malformed solve: {path}")
             iterations = solve.get("iterations")
+            if iterations is None and solve.get("cut") is not None:
+                iterations = [solve]
             if not isinstance(iterations, list):
                 raise TypeError(f"seed event has no iterations array: {path}")
             for iteration in iterations:
