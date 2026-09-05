@@ -346,3 +346,31 @@ It still requires a governed Lean build and final-consumer axiom audit.  More
 importantly, Lean must prove each incidence cut from its recorded weighted
 Kalmanson cancellation data; replay of the Boolean CNF alone does not provide
 that source-level semantic bridge.
+
+The reusable `extract_lrat_verified_core.py` reducer now recovers original core
+input IDs from the raw LRAT's initial deletion, checks their clause multiset
+against the bare `drat-trim -c` core, and optionally checks the same IDs against
+the `drat-trim -r` TRACECHECK graph.  It emits clauses in increasing original-ID
+order, a dense-to-original JSONL map, and a densely renumbered pure-RUP proof;
+an internal ordered-hint replay checks every emitted addition through the empty
+clause.  On run `run-0018`, the reducer retained 4767 of 51580 clauses, remapped
+56077 additions and 1464640 hints, and replayed successfully.  A fresh trace
+generation independently reported 4767 core clauses, 56077 core lemmas, zero
+RAT lemmas, and `s VERIFIED`.  These checks validate the reducer against the
+pinned diagnostic run; they do not make that pinned result source-general.
+The final diagnostic receipt also binds the reducer source and has SHA-256
+`e640912632ddf136a863d007976d69ff9d04fbc728bec5085ec3b940f1b06e55`.
+
+### Run `run-0019`: first unpinned direct wave
+
+Run `run-0019` removed every role and row pin and resumed from the 2912 cuts
+learned in runs `run-0015`--`run-0017`.  It learned exactly 5000 additional
+cuts before reaching its configured refinement budget.  The final solve was
+still `SAT` in the Boolean abstraction and exposed another
+`transitive-incidence-path` conflict, so this is a continuation checkpoint,
+not a satisfiable geometric witness.  The event has SHA-256
+`d7ebb3cb7008d3b501f9fb3b70fedee437d918e4c348633a0138fef23aa40f25`;
+the reconstructed journal has SHA-256
+`d0fabc243217d5da30ae5db4b25aab2d0b6f9397866d544b1e1de7a1a5102022`.
+Registered run `run-0021` resumes the direct orientation cumulatively from all
+7912 prior cuts, again with no role or row pins.

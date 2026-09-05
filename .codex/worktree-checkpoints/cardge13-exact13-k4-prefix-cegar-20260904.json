@@ -6,7 +6,9 @@
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0006/run_manifest.json",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0017/run_manifest.json",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/run_manifest.json",
-    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0019/run_manifest.json"
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0019/run_manifest.json",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0020/run_manifest.json",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0021/run_manifest.json"
   ],
   "generated_roots": [
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0001",
@@ -27,10 +29,12 @@
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0016",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0017",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018",
-    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0019"
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0019",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0020",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0021"
   ],
   "lane_id": "cardge13-exact13-k4-prefix-cegar-20260904",
-  "manifest_sha256": "917b3752ca52b7acc404f560a62e9fa19bf947c2d4e06f74f6dc1cd674e98df1",
+  "manifest_sha256": "ee924b896a5cc152a3a7faca2bcb237902387b188946b32688c5af41ab3a7d78",
   "owned_paths": [
     ".codex/worktree-checkpoints/cardge13-exact13-k4-prefix-cegar-20260904.json",
     "docs/audits/2026-09-04-cardge13-exact13-k4-prefix-cegar.md",
@@ -49,6 +53,7 @@
     "scripts/cardge13_exact13_kalmanson_cone_piqd.py",
     "scripts/cardge13_exact13_residual_domain_csp_piqd.py",
     "scripts/cardge13_literal_qfuf_to_dimacs.py",
+    "scripts/extract_lrat_verified_core.py",
     "scripts/test_cardge13_exact13_global_source_cell_boolean_path_cegar_piqd.py",
     "scripts/test_cardge13_exact13_global_source_cell_boolean_path_pair_cegar_piqd.py",
     "scripts/test_cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py",
@@ -58,7 +63,8 @@
     "scripts/test_cardge13_exact13_global_source_cell_unsat_core_piqd.py",
     "scripts/test_cardge13_exact13_global_source_cell_unsat_core_refine_piqd.py",
     "scripts/test_cardge13_exact13_k4_prefix_cegar_piqd.py",
-    "scripts/test_cardge13_literal_qfuf_to_dimacs.py"
+    "scripts/test_cardge13_literal_qfuf_to_dimacs.py",
+    "scripts/test_extract_lrat_verified_core.py"
   ],
   "owner": "RadiusCartographer",
   "schema": "worktree-lane-checkpoint/v1"
