@@ -30,6 +30,71 @@ def cross (ax ay bx byy cx cy : ℝ) : ℝ :=
 def qdist (ax ay bx byy : ℝ) : ℝ :=
   (ax - bx) ^ 2 + 3 * (ay - byy) ^ 2
 
+/-- The normalized mutual-center circle equations and four strict half-frame
+inequalities force the cross product at the equilateral anchor to be negative.
+This is the division-free scalar certificate for the guarded five-point order
+`U<a<s<d<O`. -/
+theorem normalized_pentagon_cross_neg
+    (x y z w : ℝ)
+    (hs : x ^ 2 + 3 * y ^ 2 = 1)
+    (hd : z ^ 2 + 3 * w ^ 2 = 2 * z)
+    (hx : 1 / 2 < x) (hz : 1 / 2 < z)
+    (hw : w < 0) (hzw : 0 < z + w) :
+    cross (1 / 2) (-1 / 2) x y z w < 0 := by
+  have hz0 : 0 < z := by linarith
+  have hx2 : 0 < 2 * x - 1 := by linarith
+  have hz2 : 0 < 2 * z - 1 := by linarith
+  have hw0 : 0 < -w := by linarith
+  have hp : 0 < 12 * (2 * x - 1) * (-w) * (z + w) :=
+    mul_pos (mul_pos (mul_pos (by norm_num) hx2) hw0) hzw
+  have hsq : 0 ≤ (2 * x - 1) ^ 2 + 3 * (2 * y + 1) ^ 2 := by
+    positivity
+  have hn : 0 ≤ z * (2 * z - 1) *
+      ((2 * x - 1) ^ 2 + 3 * (2 * y + 1) ^ 2) :=
+    mul_nonneg (le_of_lt (mul_pos hz0 hz2)) hsq
+  have hid :
+      24 * z * cross (1 / 2) (-1 / 2) x y z w +
+        12 * (2 * x - 1) * (-w) * (z + w) +
+        z * (2 * z - 1) * ((2 * x - 1) ^ 2 + 3 * (2 * y + 1) ^ 2) = 0 := by
+    calc
+      _ = 4 * z * (2 * z - 1) * (x ^ 2 + 3 * y ^ 2 - 1) -
+          4 * (2 * x - 1) * (z ^ 2 + 3 * w ^ 2 - 2 * z) := by
+            unfold cross
+            ring
+      _ = 0 := by rw [hs, hd]; ring
+  by_contra hc
+  have hc0 : 0 ≤ cross (1 / 2) (-1 / 2) x y z w := le_of_not_gt hc
+  have hnonneg : 0 ≤ 24 * z * cross (1 / 2) (-1 / 2) x y z w :=
+    mul_nonneg (by positivity) hc0
+  linarith
+
+/-- The six positive determinants of the normalized cyclic order
+`U,a,s,d,O` contradict the two mutual-center circle equations. -/
+theorem false_of_normalized_pentagon_order
+    (x y z w : ℝ)
+    (hs : x ^ 2 + 3 * y ^ 2 = 1)
+    (hd : z ^ 2 + 3 * w ^ 2 = 2 * z)
+    (hUas : 0 < cross 0 0 (1 / 2) (-1 / 2) x y)
+    (hasO : 0 < cross (1 / 2) (-1 / 2) x y 1 0)
+    (hUad : 0 < cross 0 0 (1 / 2) (-1 / 2) z w)
+    (hadO : 0 < cross (1 / 2) (-1 / 2) z w 1 0)
+    (hUdO : 0 < cross 0 0 z w 1 0)
+    (hasd : 0 < cross (1 / 2) (-1 / 2) x y z w) : False := by
+  have hx : 1 / 2 < x := by
+    norm_num [cross] at hUas hasO ⊢
+    linarith
+  have hz : 1 / 2 < z := by
+    norm_num [cross] at hUad hadO ⊢
+    linarith
+  have hw : w < 0 := by
+    norm_num [cross] at hUdO ⊢
+    linarith
+  have hzw : 0 < z + w := by
+    norm_num [cross] at hUad ⊢
+    linarith
+  have hneg := normalized_pentagon_cross_neg x y z w hs hd hx hz hw hzw
+  linarith
+
 set_option maxHeartbeats 2000000 in
 -- The normalized nonlinear elimination uses several nested `nlinarith` calls;
 -- the default heartbeat budget is insufficient on a clean build.
