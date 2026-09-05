@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-live-pair-nonneg-consumer-20260905",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "48dab4e47f8b7e38a1ec84d3fc21ad749746ffd6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-live-pair-nonneg-consumer-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1LiveSignedAreaConsumer.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CyclicPairSignedArea.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T17:24:37Z",
+  "manifest_sha256": "d188f82189e32a8d8531e7b5209d1d97b1085aad3ccad55c278c980358bbbfa4"
+}

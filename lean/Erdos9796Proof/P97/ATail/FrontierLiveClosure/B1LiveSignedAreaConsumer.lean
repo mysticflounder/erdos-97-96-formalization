@@ -20,10 +20,32 @@ namespace Problem97
 namespace ATailFrontierLiveClosure
 
 open ATailCriticalPairFrontier
+open ATailExactFourPhysicalConsumer
 open ATailUniqueFourLateChoiceTerminalScratch
 open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
+
+/- The minimal live-pair packet used by the direct two-circle signed-area
+   consumer.  It keeps only the row choice, actual selected-class membership,
+   actual row support membership, and the alleged nonnegative product. -/
+def B1ActualLivePairSignedAreaProductNonnegative
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F)) : Prop :=
+  ∃ row mate : CarrierVertex D.A,
+    (row = C.u ∨ row = C.v) ∧
+    row ≠ mate ∧
+    mate.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+    mate.1 ∈
+      ((lateFirstApexSystem C.R).selectedAt row.1 row.2).toCriticalFourShell.support ∧
+    0 ≤
+      signedArea2 row.1 S.oppApex2
+          ((lateFirstApexSystem C.R).centerAt row.1 row.2) *
+        signedArea2 mate.1 S.oppApex2
+          ((lateFirstApexSystem C.R).centerAt row.1 row.2)
 
 /-- The weakest B1 live-slice packet consumed by the contradiction, with the
 same-arc assertion replaced by positivity of every signed-area product in the
@@ -158,8 +180,69 @@ theorem false_of_b1WinningLiveSliceSignedAreaProductPositive
     ((b1WinningLiveSliceSameBoundaryArc_iff_signedAreaProductPositive C).mpr
       hproducts)
 
+/-- A nonnegative signed-area product cannot occur for an actual distinct
+live-pair in either B1 selected row. -/
+theorem false_of_b1ActualLivePairSignedAreaProductNonnegative
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hpacket : B1ActualLivePairSignedAreaProductNonnegative C) : False := by
+  rcases hpacket with ⟨row, mate, hrow, hne, hclass, hsupport, hnonneg⟩
+  rcases hrow with rfl | rfl
+  · have hrowMate : C.u.1 ≠ mate.1 := by
+      intro h
+      exact hne (Subtype.ext h)
+    have hApexBlocker : S.oppApex2 ≠
+        (lateFirstApexSystem C.R).centerAt C.u.1 C.u.2 := by
+      intro h
+      exact C.surface.secondApex_robust.centerAt_ne
+        (lateFirstApexSystem C.R) C.u.1 C.u.2 h.symm
+    have hApexDist : dist S.oppApex2 C.u.1 = dist S.oppApex2 mate.1 := by
+      exact (mem_selectedClass.mp C.huClass).2.trans
+        (mem_selectedClass.mp hclass).2.symm
+    have hBlockerDist :
+        dist ((lateFirstApexSystem C.R).centerAt C.u.1 C.u.2) C.u.1 =
+          dist ((lateFirstApexSystem C.R).centerAt C.u.1 C.u.2) mate.1 := by
+      exact
+        ((lateFirstApexSystem C.R).selectedAt C.u.1 C.u.2).toCriticalFourShell
+          |>.support_eq_radius C.u.1
+            ((lateFirstApexSystem C.R).selectedAt C.u.1 C.u.2).toCriticalFourShell.q_mem_support
+          |>.trans
+            (((lateFirstApexSystem C.R).selectedAt C.u.1 C.u.2).toCriticalFourShell
+              |>.support_eq_radius mate.1 hsupport).symm
+    exact (not_lt_of_ge hnonneg)
+      (signedArea2_mul_neg_of_two_circle_intersections
+        hApexBlocker hrowMate hApexDist hBlockerDist)
+  · have hrowMate : C.v.1 ≠ mate.1 := by
+      intro h
+      exact hne (Subtype.ext h)
+    have hApexBlocker : S.oppApex2 ≠
+        (lateFirstApexSystem C.R).centerAt C.v.1 C.v.2 := by
+      intro h
+      exact C.surface.secondApex_robust.centerAt_ne
+        (lateFirstApexSystem C.R) C.v.1 C.v.2 h.symm
+    have hApexDist : dist S.oppApex2 C.v.1 = dist S.oppApex2 mate.1 := by
+      exact (mem_selectedClass.mp C.hvClass).2.trans
+        (mem_selectedClass.mp hclass).2.symm
+    have hBlockerDist :
+        dist ((lateFirstApexSystem C.R).centerAt C.v.1 C.v.2) C.v.1 =
+          dist ((lateFirstApexSystem C.R).centerAt C.v.1 C.v.2) mate.1 := by
+      exact
+        ((lateFirstApexSystem C.R).selectedAt C.v.1 C.v.2).toCriticalFourShell
+          |>.support_eq_radius C.v.1
+            ((lateFirstApexSystem C.R).selectedAt C.v.1 C.v.2).toCriticalFourShell.q_mem_support
+          |>.trans
+            (((lateFirstApexSystem C.R).selectedAt C.v.1 C.v.2).toCriticalFourShell
+              |>.support_eq_radius mate.1 hsupport).symm
+    exact (not_lt_of_ge hnonneg)
+      (signedArea2_mul_neg_of_two_circle_intersections
+        hApexBlocker hrowMate hApexDist hBlockerDist)
+
 end ATailFrontierLiveClosure
 end Problem97
 
 #print axioms Problem97.ATailFrontierLiveClosure.b1WinningLiveSliceSameBoundaryArc_iff_signedAreaProductPositive
 #print axioms Problem97.ATailFrontierLiveClosure.false_of_b1WinningLiveSliceSignedAreaProductPositive
+#print axioms Problem97.ATailFrontierLiveClosure.false_of_b1ActualLivePairSignedAreaProductNonnegative

@@ -156,6 +156,63 @@ private theorem iff_not_iff_of_iff
     · intro hQ hP
       exact hQ (h.mp hP)
 
+/-- Two distinct common points of two distinct circles have opposite signed
+areas against their two centres.  The proof is the coordinate kernel: equal
+distances give the perpendicular-bisector dot product, while vanishing one
+signed area would make the difference of the two points both parallel and
+perpendicular to the centre chord. -/
+theorem signedArea2_mul_neg_of_two_circle_intersections
+    {a b x y : ℝ²}
+    (hab : a ≠ b)
+    (hxy : x ≠ y)
+    (haxay : dist a x = dist a y)
+    (hbxby : dist b x = dist b y) :
+    Problem97.signedArea2 x a b * Problem97.signedArea2 y a b < 0 := by
+  have haxay_sq := congrArg (fun t : ℝ => t ^ 2) haxay
+  have hbxby_sq := congrArg (fun t : ℝ => t ^ 2) hbxby
+  change dist a x ^ 2 = dist a y ^ 2 at haxay_sq
+  change dist b x ^ 2 = dist b y ^ 2 at hbxby_sq
+  rw [Problem97.dist_sq_coord, Problem97.dist_sq_coord] at haxay_sq
+  rw [Problem97.dist_sq_coord, Problem97.dist_sq_coord] at hbxby_sq
+  have hsep := SurplusCOMPGBank.sep_signedArea2 x y a b
+    (by simpa [dist_comm] using haxay)
+    (by simpa [dist_comm] using hbxby) hxy
+  have hA_ne : Problem97.signedArea2 x a b ≠ 0 := by
+    intro hA
+    have hB : Problem97.signedArea2 y a b = 0 := by
+      nlinarith [hsep, hA]
+    have hdot :
+        (x 0 - y 0) * (b 0 - a 0) +
+            (x 1 - y 1) * (b 1 - a 1) = 0 := by
+      linear_combination haxay_sq / 2 - hbxby_sq / 2
+    have hdet :
+        (x 0 - y 0) * (b 1 - a 1) -
+            (x 1 - y 1) * (b 0 - a 0) = 0 := by
+      simp only [Problem97.signedArea2] at hA hB
+      linear_combination -(hA - hB)
+    have hsq0 :
+        (x 0 - y 0) * ((b 0 - a 0) ^ 2 + (b 1 - a 1) ^ 2) = 0 := by
+      linear_combination (b 0 - a 0) * hdot + (b 1 - a 1) * hdet
+    have hsq1 :
+        (x 1 - y 1) * ((b 0 - a 0) ^ 2 + (b 1 - a 1) ^ 2) = 0 := by
+      linear_combination (b 1 - a 1) * hdot - (b 0 - a 0) * hdet
+    have hdist_pos : 0 < dist b a ^ 2 :=
+      sq_pos_of_pos (dist_pos.mpr hab.symm)
+    rw [Problem97.dist_sq_coord] at hdist_pos
+    have hsum_ne :
+        (b 0 - a 0) ^ 2 + (b 1 - a 1) ^ 2 ≠ 0 := ne_of_gt hdist_pos
+    have hx0 : x 0 - y 0 = 0 :=
+      (mul_eq_zero.mp hsq0).resolve_right hsum_ne
+    have hx1 : x 1 - y 1 = 0 :=
+      (mul_eq_zero.mp hsq1).resolve_right hsum_ne
+    apply hxy
+    ext i
+    fin_cases i
+    · exact sub_eq_zero.mp hx0
+    · exact sub_eq_zero.mp hx1
+  rw [show Problem97.signedArea2 y a b = -Problem97.signedArea2 x a b by linarith [hsep]]
+  nlinarith [sq_pos_of_ne_zero hA_ne]
+
 theorem cyclicAdjacent_iff_signedArea2_mul_pos
     {n : ℕ} {psi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon psi)
@@ -238,3 +295,4 @@ end Problem97
 
 #print axioms Problem97.ATailFrontierLiveClosure.cyclicAdjacent_iff_signedArea2_mul_pos
 #print axioms Problem97.ATailFrontierLiveClosure.not_cyclicAdjacent_iff_signedArea2_mul_neg
+#print axioms Problem97.ATailFrontierLiveClosure.signedArea2_mul_neg_of_two_circle_intersections
