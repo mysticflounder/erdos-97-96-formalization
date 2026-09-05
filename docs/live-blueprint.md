@@ -10,373 +10,2085 @@
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — the claim being gated)
 approved axioms: core
-open: 136/41745 node(s)
-trusted leaves: 22 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 369758 line(s) of lean across 41745 decl(s)
+open: 379/592 node(s)
+spine source: 25859 line(s) of lean across 592 decl(s)
 
-open obligations (27):
-  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_threeCenter_distinctFresh_physical  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows  [sorry]
-  💧 Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core  [sorry]
-  ❌ Total sorryAx == 27
+open obligations (131):
+  ⏳ Problem97.CGN.CGN6c_oneSidedDistanceInjective  [stale]
+  ⏳ Problem97.CGN.CGN6e5_exists_indexedWitness_of_twoApices  [stale]
+  ⏳ Problem97.CGN.CGN6norm_minorCapChainModel_of_mecCapPacket  [stale]
+  ⏳ Problem97.CGN.CapIndexPairs  [stale]
+  ⏳ Problem97.CGN.HasCapWitness  [stale]
+  ⏳ Problem97.CGN.MecCapPacket  [stale]
+  ⏳ Problem97.CGN.MinorCapChainModel  [stale]
+  ⏳ Problem97.CGN.MinorCapSideHypotheses  [stale]
+  ⏳ Problem97.CGN.NoCapWitness  [stale]
+  ⏳ Problem97.CGN.OrderedCap  [stale]
+  ⏳ Problem97.CGN.OrderedCap.map  [stale]
+  ⏳ Problem97.CGN.SimilarityTransportData  [stale]
+  ⏳ Problem97.CGN.StrictCapOrder  [stale]
+  ⏳ Problem97.CGN.WitnessedPairsAt  [stale]
+  ⏳ Problem97.CGN.WitnessesCapEdgeAt  [stale]
+  ⏳ Problem97.CGN.capPairApexes_mem_edgeAt_packet  [stale]
+  ⏳ Problem97.CGN.edgeAt  [stale]
+  ⏳ Problem97.CGN.edgeAt_injective_on_CapIndexPairs  [stale]
+  ⏳ Problem97.CGN.edgeAt_mem_powersetCard  [stale]
+  ⏳ Problem97.CGN.firstIndex  [stale]
+  ⏳ Problem97.CGN.lastIndex  [stale]
+  ⏳ Problem97.CGN.lastIndex_val  [stale]
+  ⏳ Problem97.CGN.mem_CapIndexPairs  [stale]
+  ⏳ Problem97.CGN.mem_WitnessedPairsAt_iff  [stale]
+  ⏳ Problem97.CGN.point  [stale]
+  ⏳ Problem97.CGN.two_mem_capPairApexes_of_two_le_card  [stale]
+  ⏳ Problem97.CGN.vec2  [stale]
+  ⏳ Problem97.CGN.witnessedPairsAt_sum_le_square_div_four  [stale]
+  ⏳ Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [stale]
+  ⏳ Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [stale]
+  ⏳ Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [stale]
+  ⏳ Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [stale]
+  ⏳ Problem97.FiniteEndpoint.OrderedSideChain  [stale]
+  ⏳ Problem97.FiniteEndpoint.OrderedSideChain.card_le_one_of_subset_sameRadius  [stale]
+  ⏳ Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [stale]
+  ⏳ Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [stale]
+  ⏳ Problem97.FiniteEndpoint.OrderedSideChain.support  [stale]
+  ⏳ Problem97.FiniteEndpoint.one_hit_sameRadius_at_v2_of_supportCap  [stale]
+  ⏳ Problem97.FiniteEndpoint.one_hit_sameRadius_at_v3_of_supportCap  [stale]
+  ⏳ Problem97.FiniteEndpointShell.FormBv1A2Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.FormBv1A2SelectorV2LowerPacket  [stale]
+  ⏳ Problem97.FiniteEndpointShell.FormBv1A2SelectorV2Qv1Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.FormBv1B2Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.I1_card_eq_two  [stale]
+  ⏳ Problem97.FiniteEndpointShell.I2_card_eq_two  [stale]
+  ⏳ Problem97.FiniteEndpointShell.I3_card_eq_two  [stale]
+  ⏳ Problem97.FiniteEndpointShell.IsFormA_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.IsFormB_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.IsFormB_v2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.IsFormC_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormA_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormA_v2_proof  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormA_v3_proof  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormB_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormB_v2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormB_v2_proof  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormB_v3_proof  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormC_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormC_v2_proof  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludesFormC_v3_proof  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludes_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludes_v2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.N4dExcludes_v3  [stale]
+  ⏳ Problem97.FiniteEndpointShell.NormBase  [stale]
+  ⏳ Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.SelectorV3Pv2Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.SelectorV3Qv1Packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.SelectorV3SplitPacket  [stale]
+  ⏳ Problem97.FiniteEndpointShell.SharedCirclePointForcesV3  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V1AnchorFrame  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V1AnchorFrame.bisectorKill_args_a1b1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V1AnchorFrame.bisectorKill_args_v2a1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V1AnchorFrame.bisectorKill_args_v2b1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V2AnchorFrame  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_a2b2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v1a2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v1b2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v1v3  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v3a2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v3b2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [stale]
+  ⏳ Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.c2_vertex_same_open_side_as_v3  [stale]
+  ⏳ Problem97.FiniteEndpointShell.coreSelector_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.formB_v1_split  [stale]
+  ⏳ Problem97.FiniteEndpointShell.formC_v1_split  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4cClassifies_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4cClassifies_v2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4cClassifies_v3  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4dExcludes_v1_of_forms  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4dExcludes_v2_of_forms  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4dExcludes_v3_of_forms  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4d_bA_2_q_eq_C_impossible  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4d_bA_2_q_eq_v1_impossible  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4d_bB_2_q_eq_v1_impossible  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4d_cA_3_q_eq_C_impossible_core  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4d_cB1_impossible_core  [stale]
+  ⏳ Problem97.FiniteEndpointShell.n4eCapContainment_of_n4c_n4d  [stale]
+  ⏳ Problem97.FiniteEndpointShell.normBase  [stale]
+  ⏳ Problem97.FiniteEndpointShell.pEqB_row_impossible_of_equilateral  [stale]
+  ⏳ Problem97.FiniteEndpointShell.qEqE_capOrder_opposite  [stale]
+  ⏳ Problem97.FiniteEndpointShell.qEqE_lowerArc_impossible  [stale]
+  ⏳ Problem97.FiniteEndpointShell.qEqE_lowerArc_impossible_flipped  [stale]
+  ⏳ Problem97.FiniteEndpointShell.qEqE_row_impossible_of_reflection  [stale]
+  ⏳ Problem97.FiniteEndpointShell.selectorShape_v2_q_eq_v1_exact_packet_of_b2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.selectorShape_v2_split  [stale]
+  ⏳ Problem97.FiniteEndpointShell.selectorShape_v3  [stale]
+  ⏳ Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_a2_impossible_of_exact_packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_v1_impossible_of_b2_exact_packet  [stale]
+  ⏳ Problem97.FiniteEndpointShell.selectorShape_v3_split  [stale]
+  ⏳ Problem97.FiniteEndpointShell.v1AnchorFrame_of_hexact  [stale]
+  ⏳ Problem97.FiniteEndpointShell.v2AnchorFrame_of_hexact  [stale]
+  ⏳ Problem97.FiniteEndpointShell.witnessClassAt_v1  [stale]
+  ⏳ Problem97.FiniteEndpointShell.witnessClassAt_v2  [stale]
+  ⏳ Problem97.FiniteEndpointShell.witnessClassAt_v3  [stale]
+  ⏳ Problem97.FiniteEndpointShell.zeroDefectCapLayout  [stale]
+  ⏳ Problem97.MEC.MoserTriangle.toStructural  [stale]
+  ⏳ Problem97.MEC.boundary  [stale]
+  ⏳ Problem97.MEC.boundary_nonempty  [stale]
+  ⏳ Problem97.MEC.cap_partition_from_moser_circumscribed  [stale]
+  ⏳ Problem97.MEC.mec_radius_pos  [stale]
+  ⏳ Problem97.MEC.mem_boundary_iff  [stale]
+  ⏳ Problem97.MEC.sylvester_dichotomy  [stale]
+  ⏳ Problem97.SelectedClass  [stale]
+  ⏳ Problem97.descent_contradicts_minimality  [stale]
+  ⏳ Problem97.dist_self_of_mem_selectedClass  [stale]
+  ⏳ Problem97.exists_isCcwConvexPolygon_of_convexIndep  [stale]
+  ⏳ Problem97.exists_selectedClass_card_ge_four_of_hasNEquidistantProperty  [stale]
+  ⏳ Problem97.mem_selectedClass  [stale]
 
 (open branches only — closed subtrees collapsed; --full for everything)
 └── Problem97.erdos97_rhs
     └── Problem97.UniversalProblem97
-        ├── Problem97.universalReductionHypotheses
-        │   ├── Problem97.descent_contradicts_minimality
-        │   │   ├── Problem97.RemovableVertexOfLarge
-        │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
-        │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
-        │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap
-        │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_criticalPairFrontier
-        │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm
-        │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual
-        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual_of_carrierCard_ge_twelve
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerRobustOutcome
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenRobustSurface_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionBranch_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionLowCrossBranch_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionOmittedPeerBranch_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenInteriorDeletionMutualOmissionBranch_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionJointDeletion_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDeletionIngress
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDeletionOutcome
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.b1_globalGapOrClosedTerminal_of_counterexample
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_b1GlobalTransportContext
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_b1ThirdJointDeletionOrPhysicalClassFiveSixNormalForm
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_b1_distinctBlocker_jointDeletions
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_b1_oneWayCrossOmission
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm  [💧]  ⚓ 01a0601d — Eliminating endpoint and source residuals  ⚓ 01a05123 — Resume source-faithful B1 five/six closure after PiQD campaign/replay delivery; derive declarative source packet and cyclic-placement consumer.
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_globalDeletion_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceBlockerInClass_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceBlockerInClass_placementSplit
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRowOther_sourceRowHeavy
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vXuRow
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_deletedXuRow
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_fiveCycle
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagon_blockerCenterSplit
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 30 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_u
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_missingIncidence
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 23 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_twoDistinctExactFourMutualOmissionJointDeletions (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 18 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore  [💧] (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch
-        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen  [💧]  ⚓ 22c62c72
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
-        │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveResidual
-        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_commonDeletion
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_biApexRobust_postCardEleven
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_threeCenterNormalForm
-        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_threeCenter_distinctFresh_physical  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence  [💧]  ⚓ 01a05123 (YOU) — Rank-3 exact-five five-incidence: preserve positive incidence branches and derive a source-entitled cyclic matching normal form before any consumer wiring.
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual (seen)
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   └── ✓ 13 closed dep(s)
-        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFourResidual (seen)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual (seen)
-        │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
-        │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
-        │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierCommonDeletionPhysicalSecondApex
-        │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierBiApexRobustResidual
-        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierBiApexRobustExactFiveSecondCapResidual
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (seen)
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierLargeOppositeCapsBiApexRobustResidual
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsBiApexRobustResidual
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_originalFrontierUniqueRadiusArm (seen)
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexRobustResidual
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApexUniformMetricResidual
-        │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.exists_criticalShell_oppositeCapClassInterior_card_ge_three_of_frontierAllLargeCapsTriApex
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_frontierAllLargeCapsTriApex_all_low_hits
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorBlockerCollision_and_all_low_hits
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_localizedCollisionMutualOmissionCycle_exactTwo_and_all_low_hits
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_triApexAllLargeContext
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_pairedCommonDeletion_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core  [💧]  ⚓ 592432c3
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 39 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedOmission_reverseHit_jointDeletion_triApexAllLarge_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_apexClassJointDeletion_triApexAllLarge_core (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_secondRadius_and_all_low_hits
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hits
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions_and_all_low_hits
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_exactFourInteriorTwo_distinctRadiusBlockerCollisions
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_of_two_collisionRows_capCross_normalForm
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_three_hit_or_collision_crossHit_of_two_sourceExactCollisionRows
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCollisionGlobalSplit
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSourceThirdCanonicalRowSurface
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_on_surface
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_core
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_residual_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_secondNonHit_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_frame (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 31 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 31 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_collisionFiveCenterDeletion
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 29 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedThreeRowExactSupports_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_crossedSeventhBlockerFaithfulResidual_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshCanonicalRowOverride
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_freshThirdBlockerFiber_normalizedOnly
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_residual (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 59 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 32 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 31 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_core_commonRadius
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining_commonRadius
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshThirdBlockerFiber_normalized_remaining (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.exists_freshThird_commonRadius_distinctCaps_survivingRow_oneArcSharedPairObstruction_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_commonRadius_distinctCaps_survivingRow_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_globalResidual_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 35 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 39 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 41 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 33 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 28 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicIngress_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_commonRadius_mutualCrossMembership_frame
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_sameBlockerAllEndpointOmission (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 35 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 43 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideSecondBlockerFiber_viaAcyclicIngress
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_viaAcyclicIngress (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 21 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 34 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 19 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 44 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_retainedInteriorDirectedOmission_and_all_low_hits (seen)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 13 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 15 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.surplusCap_card_ge_six_of_largeOppositeCaps
-        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm (seen)
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
-        │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.false_of_physicalSecondApexCriticalResidual
-        │   │   │   │   │   │   │   │   │   ├── Problem97.ATailFrontierLiveClosure.Legacy.false_of_originalFrontierUniqueRadiusArm (seen)
-        │   │   │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
+        ├── Problem97.UniversalProblem97_of_reduction
+        │   ├── Problem97.FiniteN9Closure
+        │   │   ├── Problem97.finiteEndpointShellOfCounterexample
+        │   │   │   ├── Problem97.boundary_card_ge_three_of_K4
+        │   │   │   │   ├── Problem97.MEC.no_diameter_under_k4
+        │   │   │   │   │   ├── Problem97.MEC.sylvester_dichotomy  [⏳ stale]
+        │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   ├── Problem97.MEC.exists_nonobtuse_circumscribed_triple
+        │   │   │   │   ├── Problem97.MEC.boundary  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.mec_radius_pos  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.mec_center_mem_convexHull_boundary
+        │   │   │   │   │   ├── Problem97.MEC.boundary  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.mec_radius_pos  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.boundary_nonempty  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.mem_boundary_iff  [⏳ stale]
+        │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   ├── Problem97.MEC.mem_boundary_iff  [⏳ stale]
+        │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   ├── Problem97.Dumitrescu.three_cap_decomposition
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.cap_partition_from_moser_circumscribed  [⏳ stale]
+        │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   ├── Problem97.CircumscribedMECPacket.ofNonObtuse
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.mec_radius_pos  [⏳ stale]
+        │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   └── ✓ 8 closed dep(s)
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludes_v1  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.n4cClassifies_v1  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.n4dExcludes_v1_of_forms  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormA_v1_proof
+        │   │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormB_v2  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormA_v1  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormA_v1_of_layout
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormB_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormA_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormA_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_split  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I1
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.coreSelector_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.c2_vertex_same_open_side_as_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.c1_vertex_same_open_side_as_v3
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g0_globalBoundaryOrder_of_convexIndep
+        │   │   │   │   │   │   ├── Problem97.exists_isCcwConvexPolygon_of_convexIndep  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.formA_v1_endpointPair_impossible
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormA_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.coreSelector_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c3_vertex_same_open_side_as_v2'
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 10 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c1_vertex_same_open_side_as_v2'
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.CGN4g0_globalBoundaryOrder_of_convexIndep (seen)
+        │   │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c2_vertex_same_open_side_as_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.layer4_subshapeB_kill
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.rWindow_general
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c3_same_side_of_v3x_chord
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.same_side_of_chord_capPair
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.boundaryOrder_hneg
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g0_globalBoundaryOrder_of_convexIndep (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.same_side_of_chord_endpoint_thales
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.boundaryOrder_hneg (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c2_arc_swap
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
         │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
-        │   │   │   │   │   │   │   └── ✓ 10 closed dep(s)
-        │   │   │   │   │   │   └── ✓ 9 closed dep(s)
-        │   │   │   │   │   └── ✓ 11 closed dep(s)
-        │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 5 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c1_same_side_of_v1x_chord
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.boundaryOrder_hneg (seen)
+        │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_eq_two  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 13 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.layer4_subshapeA_kill
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_eq_two  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.v1_same_side_of_v3x_chord
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.boundaryOrder_hneg (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c2_arc_swap (seen)
+        │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c3_same_side_of_v3x_chord (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.c1_same_side_of_v1x_chord (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.hu_lt_equilateral_I2
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.equilateral_rWindow
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.metric_pin_v3
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 5 closed dep(s)
+        │   │   │   │   │   └── ✓ 5 closed dep(s)
+        │   │   │   │   └── ✓ 5 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.zeroDefectCapLayout  [⏳ stale]
+        │   │   │   └── ✓ 1 closed dep(s)
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormB_v2_proof  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormB_v1_proof
+        │   │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormB_v1  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.exists_capLayout
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.zeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.formB_v1_split  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_split  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI2  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.AInSBPin
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_bB1_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.AInSBPin (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3SplitPacket  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_split_local
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3SplitPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_split  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qv1Packet  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_v1_impossible_of_pins
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.AInSBPin (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.formBv1B2SelectorV2Qv1Packet_of_pins
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.AInSBPin (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.formBv1B2Packet_of_pins
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2Packet  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_q_eq_v1_exact_packet_of_pins
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.AInSBPin (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1_radius_pos_of_card_ge_four
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.formBv1B2SelectorV2Qv1Packet_of_pins (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_q_eq_v1_exact_packet_of_b2  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_v1_impossible_of_b2_exact_packet  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_a2_impossible_of_pins
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.AInSBPin (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.formBv1B2SelectorV2Qv1Packet_of_pins (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_q_eq_v1_exact_packet_of_pins (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_a2_nonwitness_upperArc_impossible
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.a3_k4_cover
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.v2AnchorFrame_of_hexact  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.v1AnchorFrame_of_hexact  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.classify_I3
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.A_eq_named
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.classify_I1
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.classify_I2
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.classify_I3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card_eq_two  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_eq_two  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card_eq_two  [⏳ stale]
+        │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.kill_KA
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_v1v3
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v1v3  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.hXeq_transport_v2
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_v1a2
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v1a2  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.hXeq_transport_v2 (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_v1b2
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v1b2  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.hXeq_transport_v2 (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_v3a2
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v3a2  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.hXeq_transport_v2 (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_v3b2
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_v3b2  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.hXeq_transport_v2 (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_a2b2
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V2AnchorFrame.bisectorKill_args_a2b2  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.hXeq_transport_v2 (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.kill_KB
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.kill_a1b1
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame.bisectorKill_args_a1b1  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.hXeq_transport_v1
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_v2a1
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame.bisectorKill_args_v2a1  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.hXeq_transport_v1 (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.kill_v2b1
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.V1AnchorFrame.bisectorKill_args_v2b1  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.Qa2Cover::Problem97.FiniteEndpointShell.hXeq_transport_v1 (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qb2Packet
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_b2_impossible_of_pins
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.Xb2Pin (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.AInSBPin (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qb2Packet (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.formBv1B2SelectorV2Qv1Packet_of_pins (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1B2Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1A2SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1A2Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_q_eq_v1_exact_packet_of_pins (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_q_eq_a2_impossible_of_exact_packet  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_lower_forces_v3
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SharedCirclePointForcesV3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.sharedCirclePointForcesV3_of_formB_lower
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SharedCirclePointForcesV3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.coreSelector_v1  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1A2SelectorV2LowerPacket  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_split  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_bA_2_q_eq_v1_impossible  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_bA_2_q_eq_C_impossible  [⏳ stale]
+        │   │   │   ├── Problem97.qEqE_b2_column_pinclash_false
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1A2SelectorV2LowerPacketPublic
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qb2PacketPublic
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   ├── Erdos9796Proof.P97.N4d.QeqEb2PinClash::Problem97.FiniteEndpointShell.pinclash_from_reps
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.v3_lt_v3v2_of_mem_I1
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented
+        │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g0_globalBoundaryOrder_of_convexIndep (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock
+        │   │   │   │   │   │   │   │   │   └── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g1_capBlock_of_supportCap
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g2_consecutiveTurn_nonpos_of_capBlock
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g3_chordProjection_strict_of_capBlock
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.boundaryCap_chordProjection_strict
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock (seen)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g4_subchord_open_side_iff_A_of_capBlock
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.boundaryBlock_openSide_iff_between_indices_of_signedAreaOrder
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock (seen)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g5_strictCapOrder_of_capBlock
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.BoundaryCapBlock (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.v1_lt_v1v3_of_mem_I2
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.v2_lt_v2v1_of_mem_I3
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.pinclash_core
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.NormBase  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.normBase  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.frame_circumcenter_facts
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.QeqEb2PinClash::Problem97.vec2_c0
+        │   │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.QeqEb2PinClash::Problem97.vec2_c1
+        │   │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.frame_below_chord
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.QeqEb2PinClash::Problem97.sa2_chart_base_local
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.frame_disk_pt
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.QeqEb2PinClash::Problem97.vec2_c0 (seen)
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.QeqEb2PinClash::Problem97.vec2_c1 (seen)
+        │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1A2SelectorV2LowerPacketPublic (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.pEqB_column_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormBv1A2SelectorV2LowerPacket  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3PeqBPacket
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Pv2Packet  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.v2_lt_v2v1_of_mem_I3
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormBPEqBProducer::Problem97.FiniteEndpointShell.v1_lt_v1v3_of_mem_I2
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.pEqB_row_impossible_of_equilateral  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3PeqBPacket (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Pv2Packet  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_bB_2_q_eq_v1_impossible  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_bB_5_q_eq_C_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qa2Packet  [⏳ stale]
+        │   │   │   │   ├── Problem97.v1_lt_v1v3_of_mem_I2_local
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.c2_vertex_same_open_side_as_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.v2_lt_v2v1_of_mem_I3_local
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_eq_two  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card_eq_two  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ne_of_mem_I2_of_mem_I3
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.mem_A_of_mem_I2
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.mem_C2_of_mem_I2
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.not_triangle_of_mem_I2
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.mem_C2_of_mem_I2 (seen)
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.mem_C2_of_mem_I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.mem_C3_of_mem_I3
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.qEqE_capOrder_opposite  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.qEqE_lowerArc_impossible  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.qEqE_lowerArc_impossible_flipped  [⏳ stale]
+        │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_bB_4_q_eq_E_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormB_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.v1_lt_v1v3_of_mem_I2_local (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.c2_vertex_same_open_side_as_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.v1_lt_v1v2_of_mem_I3_local
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.qEqE_row_impossible_of_reflection  [⏳ stale]
+        │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   └── ✓ 1 closed dep(s)
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormC_v1_proof
+        │   │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormC_v1  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.zeroDefectCapLayout  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.formC_v1_split  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_split  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.Xa3Pin
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.AInSCPin
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qv1FullPacket
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qv1FullPacket (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cB1_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.Xa3Pin (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.AInSCPin (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV3Qv1FullPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cB1_impossible_core  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v3_lower_forces_v2
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SharedCirclePointForcesV2
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.sharedCirclePointForcesV2_of_formC_lower
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SharedCirclePointForcesV2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.coreSelector_v1  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_split  [⏳ stale]
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cA_3_q_eq_v1_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.v3_lt_v3v1_of_mem_I2_local
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Erdos9796Proof.P97.N4d.ExcludesFormCv1::Problem97.FiniteEndpointShell.v1_lt_v1v2_of_mem_I3_local
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_q_eq_v1_impossible
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_v2_distance_chain
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n5_forced_m44
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n5_forced_m44_of_interior_lower_bounds
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n4b_n5_exact_cap_vector_of_interior_lower_bounds
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.cap1_card_ge_four_of_I1_card_ge_two
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.cap2_card_ge_four_of_I2_card_ge_two
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.cap3_card_ge_four_of_I3_card_ge_two
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card (seen)
+        │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card_ge_two
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.one_hit_sameRadius_at_v3_of_supportCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.one_hit_sameRadius_at_v2_of_supportCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_ge_two
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.one_hit_sameRadius_at_v2_of_supportCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.one_hit_sameRadius_at_v3_of_supportCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card_ge_two
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.one_hit_sameRadius_at_v3_of_supportCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.one_hit_sameRadius_at_v2_of_supportCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card_eq_two  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card_eq_two  [⏳ stale]
+        │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.ExcludesFormCv1::Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI1
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.selectorShape_v2_q_eq_v1_impossible_of_distance_chain
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cA_3_q_eq_C_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qa3Packet
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cA_3_q_eq_C_impossible_core  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.qEqE_b3_column_pinclash_false
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qb3Packet
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.qEqE_b3_column_pinclash_false_core
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.FiniteEndpointShell.pinclash_from_reps
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.v2_lt_v2v3_of_mem_I1
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.FiniteEndpointShell.v1_lt_v1v2_of_mem_I3
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.FiniteEndpointShell.v3_lt_v3v1_of_mem_I2
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.pinclash_core
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.FiniteEndpointShell.exists_v3_normalized_transport
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.exists_base_transportData
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapChainModel  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap.map  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.CGN6norm_minorCapChainModel_of_mecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.point  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.halfShift
+        │   │   │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.similarityTransportComp
+        │   │   │   │   │   │   │   │   │   └── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.halfShiftSimilarityTransportData
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   ├── Problem97.halfShift (seen)
+        │   │   │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.sa2_chart_base_local
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.flipY
+        │   │   │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.flipYSimilarityTransportData
+        │   │   │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   └── Problem97.flipY (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.frame_circumcenter_facts
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.vec2_c0
+        │   │   │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.vec2_c1
+        │   │   │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.frame_below_chord
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.sa2_chart_base_local (seen)
+        │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.frame_disk_pt
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.vec2_c0 (seen)
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCQeqEb3PinClash::Problem97.vec2_c1 (seen)
+        │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.pEqC_column_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2PeqCPacket
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.v3_lt_v3v1_of_mem_I2
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.v1_lt_v1v2_of_mem_I3
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet3 (seen)
+        │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.pEqC_row_impossible_of_equilateral
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.PEqCLowerApexConfig
+        │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.pEqC_lower_apex_config_of_equilateral
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.PEqCLowerApexConfig (seen)
+        │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.exists_base_transportData
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapChainModel  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap.map  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.CGN6norm_minorCapChainModel_of_mecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.point  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.signedArea2_baseChord_vec2
+        │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.halfShift
+        │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.similarityTransportComp
+        │   │   │   │   │   │   │   └── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.halfShiftSimilarityTransportData
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.halfShift (seen)
+        │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.flipY
+        │   │   │   │   │   │   │   └── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.flipYSimilarityTransportData
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   └── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.flipY (seen)
+        │   │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.pEqC_row_impossible_of_lower_witness
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.PEqCLowerApexConfig (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.pEqC_row_impossible_of_normalized_config
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.PEqCLowerApexConfig (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.pEqC_lower_apex_dist_contradiction
+        │   │   │   │   │   │   │   │   ├── Problem97.CGN.vec2  [⏳ stale]
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   ├── Erdos9796Proof.P97.N4d.FormCPEqCProducer::Problem97.FiniteEndpointShell.v1_lt_v1v3_of_mem_I2
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.packet2 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.CGN.lastIndex_val  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_rightEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20b_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_leftEndpoint_capDistance_strict  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.E3L20a_of_cgnCapData  [⏳ stale]
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI3
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1B3SelectorV3LowerPacket
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cB_3_q_eq_v1_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1B3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qv1Packet  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cA_3_q_eq_v1_impossible (seen)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qa3Packet (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cB_5_q_eq_C_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qa3Packet (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qb3Packet (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.qEqE_b3_column_pinclash_false (seen)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cB_4_q_eq_E_impossible
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.IsFormC_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v1  [⏳ stale]
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v3  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qb3Packet (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.FormCv1A3SelectorV3LowerPacket (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ZeroDefectCapLayout.swapI3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.SelectorV2Qa3Packet (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.witnessClassAt_v2  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.n4d_cA_3_q_eq_C_impossible (seen)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   └── ✓ 1 closed dep(s)
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludes_v2  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.n4cClassifies_v2  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.n4dExcludes_v2_of_forms  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormA_v2_proof  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormC_v2_proof  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludes_v3  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.n4cClassifies_v3  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.n4dExcludes_v3_of_forms  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormA_v3_proof  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormB_v3_proof  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4dExcludesFormC_v3_proof  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment
+        │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   └── ✓ 1 closed dep(s)
+        │   │   ├── Problem97.FiniteEndpointShell.n4eCapContainment_of_n4c_n4d  [⏳ stale]
+        │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   ├── Problem97.FiniteEndpointShell.I1_card_ge_two (seen)
+        │   │   ├── Problem97.FiniteEndpointShell.N8k_capInterior_false_of_hasNEquidistantProperty
+        │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.N8SelectedApex.nonempty_of_hasNEquidistantProperty
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex_subset
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   ├── Problem97.exists_selectedClass_card_ge_four_of_hasNEquidistantProperty  [⏳ stale]
+        │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   ├── Problem97.FiniteEndpointShell.N8k_single_apex_false
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.moserCount
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.sameCapCount
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.leftAdjCount
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.leftAdjacentInteriorByIndex
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.rightAdjCount
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.rightAdjacentInteriorByIndex
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.selected_le_groupSum
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.moserCount (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.sameCapCount (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.leftAdjCount (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.rightAdjCount (seen)
+        │   │   │   │   │   ├── Problem97.mem_selectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.leftAdjacentInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.rightAdjacentInteriorByIndex (seen)
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.leftAdjacentInteriorByIndex (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.exists_leftAdjacentArcWitness
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.leftAdjacentInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n7_circle_placement
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v1
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n5_forced_m44 (seen)
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v2
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n5_forced_m44 (seen)
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v3
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n5_forced_m44 (seen)
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n6_equilateral_moser_triangle
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v1 (seen)
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v2 (seen)
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n4b_n5_exact_cap_vector_of_interior_lower_bounds (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card_ge_two (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_ge_two (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card_ge_two (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.build_shell_adjacentArcWitness
+        │   │   │   │   │   │   ├── Problem97.build_adjacentArcWitness
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.support  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict
+        │   │   │   │   │   │   │   │   └── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.exists_adjacentMonotoneChain
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.support  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.twoPointChain
+        │   │   │   │   │   │   │   │   │   └── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.twoPointChain_support
+        │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.support  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   └── Problem97.twoPointChain (seen)
+        │   │   │   │   │   │   │   │   ├── Problem97.n8a3_twoPoint_capU3neg
+        │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.twoPointChain (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.n8a3_normSimChain_capU3_oriented
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.n8a3_normSimChain_capU3
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.n8a3_of_distScalingToCapU3
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.normSim_capU3_strictAnti_of_orient
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 8 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 5 closed dep(s)
+        │   │   │   │   │   │   │   │   ├── Problem97.n8a3_twoPoint_capU2pos
+        │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.twoPointChain (seen)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.n8a3_normSimChain_capU2_oriented
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.n8a3_normSimChain_capU2
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.n8a3_of_distScalingToCapU2
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.N8a3AdjacentCapDistanceStrict (seen)
+        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 6 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.normSim_capU2_strictMono_of_orient
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain  [⏳ stale]
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 9 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N8a3_adjacent_one_hit
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.N8AdjacentArcWitness.selectedClass_inter_card_le_one
+        │   │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpoint.OrderedSideChain.card_le_one_of_subset_sameRadius  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.mem_selectedClass  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.rightAdjacentInteriorByIndex (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.exists_rightAdjacentArcWitness
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.rightAdjacentInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n7_circle_placement (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n4b_n5_exact_cap_vector_of_interior_lower_bounds (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card_ge_two (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_ge_two (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card_ge_two (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.build_shell_adjacentArcWitness (seen)
+        │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ownLeftEndpointByIndex
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.ownRightEndpointByIndex
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.sameCapCount_le_one
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.sameCapCount (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInterior_card_eq_two
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n4b_n5_exact_cap_vector_of_interior_lower_bounds (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1_card_ge_two (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2_card_ge_two (seen)
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3_card_ge_two (seen)
+        │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.exists_apexFrameData
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n7_circle_placement (seen)
+        │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.apexFrame_moserCount_le_two
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.moserCount (seen)
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n7_circle_placement (seen)
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.mem_selectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.n7_circle_placement (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   ├── Problem97.mem_selectedClass  [⏳ stale]
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N8b_endpoint_pair_split
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ownLeftEndpointByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.ownRightEndpointByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n7_circle_placement (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.exact_cap_class_at_v3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.nonOwnPair_index_false
+        │   │   │   │   │   │   └── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.two_caps_nonmoser_false_12
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.mem_oppositeCap_of_selected
+        │   │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   │   └── Problem97.mem_selectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.two_caps_nonmoser_false_13
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.two_caps_nonmoser_false_23
+        │   │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N8SameCapClassPacket
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N8iCapCenterPacket
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N8SameCapClassPacket (seen)
+        │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.N8i_capcenter_fullwidth_false
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N8SameCapClassPacket (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N8iCapCenterPacket (seen)
+        │   │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   ├── Problem97.FiniteEndpointShell.m1_branch_false
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.N4eCapContainment (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.capInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.triangle (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.leftAdjacentInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.rightAdjacentInteriorByIndex (seen)
+        │   │   │   │   │   ├── Problem97.mem_selectedClass  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.n7_circle_placement (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I1 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I2 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.I3 (seen)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.m1_kill_RII
+        │   │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.m1_kill_targeted
+        │   │   │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   │   │   ├── Problem97.m1_adjacent_empty
+        │   │   │   │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   │   │   │   ├── Problem97.dist_self_of_mem_selectedClass  [⏳ stale]
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 6 closed dep(s)
+        │   │   │   │   │   ├── Problem97.FiniteEndpointShell.m1_kill_RI
+        │   │   │   │   │   │   ├── Problem97.SelectedClass  [⏳ stale]
+        │   │   │   │   │   │   ├── Problem97.m1_kill_targeted (seen)
+        │   │   │   │   │   │   └── ✓ 7 closed dep(s)
+        │   │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   │   └── ✓ 13 closed dep(s)
         │   │   │   └── ✓ 2 closed dep(s)
         │   │   └── ✓ 3 closed dep(s)
         │   └── ✓ 3 closed dep(s)
-        └── ✓ 2 closed dep(s)
+        ├── Problem97.universalReductionHypotheses
+        │   ├── Problem97.counterexample_card_ge_nine
+        │   │   ├── Problem97.boundary_card_ge_three_of_K4 (seen)
+        │   │   ├── Problem97.CGN8_circumscribed_iCount_upper_bound
+        │   │   │   ├── Problem97.MEC.exists_nonobtuse_circumscribed_triple (seen)
+        │   │   │   ├── Problem97.MEC.MoserTriangle.toStructural  [⏳ stale]
+        │   │   │   ├── Problem97.CircumscribedMECPacket.ofNonObtuse (seen)
+        │   │   │   ├── Problem97.Dumitrescu.three_cap_decomposition (seen)
+        │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap
+        │   │   │   │   ├── Problem97.CGN.OrderedCap  [⏳ stale]
+        │   │   │   │   ├── Problem97.CGN.MecCapPacket  [⏳ stale]
+        │   │   │   │   ├── Problem97.CGN.MinorCapSideHypotheses  [⏳ stale]
+        │   │   │   │   ├── Problem97.CGN.StrictCapOrder  [⏳ stale]
+        │   │   │   │   ├── Problem97.CGN.firstIndex  [⏳ stale]
+        │   │   │   │   ├── Problem97.CGN.lastIndex  [⏳ stale]
+        │   │   │   │   ├── Problem97.CGN.CGN4g_capData_of_supportCap_oriented (seen)
+        │   │   │   │   └── ✓ 4 closed dep(s)
+        │   │   │   ├── Problem97.CGN.MinorCapChainModel  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.NoCapWitness  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.CapIndexPairs  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.HasCapWitness  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.WitnessesCapEdgeAt  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.CGN6c_oneSidedDistanceInjective  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.WitnessedPairsAt  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.witnessedPairsAt_sum_le_square_div_four  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.mem_WitnessedPairsAt_iff  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.edgeAt  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.edgeAt_mem_powersetCard  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.mem_CapIndexPairs  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.edgeAt_injective_on_CapIndexPairs  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.SimilarityTransportData  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.OrderedCap.map  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.CGN6norm_minorCapChainModel_of_mecCapPacket  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.two_mem_capPairApexes_of_two_le_card  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.capPairApexes_mem_edgeAt_packet  [⏳ stale]
+        │   │   │   ├── Problem97.CGN.CGN6e5_exists_indexedWitness_of_twoApices  [⏳ stale]
+        │   │   │   └── ✓ 14 closed dep(s)
+        │   │   └── ✓ 4 closed dep(s)
+        │   ├── Problem97.descent_contradicts_minimality  [⏳ stale]
+        │   └── ✓ 2 closed dep(s)
+        └── ✓ 1 closed dep(s)
+
+anchors not on this tree (4):
+  ⚓ 01a0601d — Eliminating endpoint and source residuals  Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm  [not on this spine]
+  ⚓ 01a05123 — Resume source-faithful B1 five/six closure after PiQD campaign/replay delivery; derive declarative source packet and cyclic-placement consumer.  Problem97.ATailFrontierLiveClosure.false_of_b1PhysicalClassFiveSixNormalForm  [not on this spine]
+  ⚓ 01a05123 (YOU) — Rank-3 exact-five five-incidence: preserve positive incidence branches and derive a source-entitled cyclic matching normal form before any consumer wiring.  Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence  [not on this spine]
+  ⚓ 22c62c72  Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen  [not on this spine]
+  ⚓ 592432c3  Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core  [not on this spine]
 
 ❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
-  - reaches sorry via 27 symbol(s)
-  - unapproved axiom on spine: sorryAx (Total sorryAx == 27)
+  - 131 stale symbol(s) (build changed since mine — re-run `refs --refresh`)
 
-unimported files (1372 file(s), 12510 symbol(s) — never reached by any lake import chain) — --full to list
+⚠ off-spine sorries (27 symbol(s) in 9 file(s)) — placeholder sorries are no longer allowed; all live work must be wired into the spine:
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean  (5 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_nonphysicalCollision
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean  (5 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_minimalCore
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerDeleted
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerV_sourceRowHeavy
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean  (5 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerDeleted
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_commonDeletion_missingIncidence
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_exactTwelve_interiorDeletion_physicalRadius_nextRowOnlyHit
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_threeCenterDeletion_xv_missingIncidence
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonOffClassBlocker_uDeletion_fixedPhysicalPair_outsideThreeRows
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TriApexEndpointRetainedOmission.lean  (2 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_card_eq_fifteen
+    💧 Problem97.ATailFrontierLiveClosure.false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_card_ge_sixteen
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean  (3 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.false_of_b1CanonicalAdjacentClosedResidual
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_blockerCoincidence
+    💧 Problem97.ATailFrontierLiveClosure.false_of_exactFourMutualOmission_fourCenterCommonDeletion_survivalSquare
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceCanonicalSurface.lean  (1 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_crossBlockerCoincidence
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceClosure.lean  (1 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_twoCapSources_freshOutsideFirstBlockerFiber_acyclicHardResidual
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFirstFiberCollision.lean  (1 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_capSource_firstFiber_outsidePairDeletionExactRows
+  Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoSourceFreshThirdResidual.lean  (4 sorry)
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThirdEqualCenter_noncanonicalInteractions
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_alignedRetained
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_firstNonHit_commonRadius
+    💧 Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.false_of_freshThird_pinnedEndpoint_outsideSeedResidual
 
-name collisions: 83 fully-qualified name(s) declared in ≥2 files
-⚠  off-spine / identical-copy collisions (83):
+unimported files (1423 file(s), 12927 symbol(s) — never reached by any lake import chain) — --full to list
+
+name collisions: 84 fully-qualified name(s) declared in ≥2 files
+⚠  off-spine / identical-copy collisions (84):
   ⚠ main  (98 distinct bodies across 98 files)
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCellExport.lean
        Erdos9796Proof/P97/ATail/BlockerVExactSeventeenCanaryPerpBisectorRefinementPhysicalSliceCellExport.lean
@@ -534,6 +2246,9 @@ name collisions: 83 fully-qualified name(s) declared in ≥2 files
   ⚠ Problem97.ATailFrontierLiveClosure.oppApex2_eq_oppositeVertexByIndex_oppIndex2  (2 distinct bodies across 2 files)
        Erdos9796Proof/P97/ATail/FrontierLiveClosure/Balanced555FiniteConfiguration.lean
        Erdos9796Proof/P97/ATail/FrontierLiveClosure/SurplusCapCutAdjacency.lean
+  ⚠ Problem97.ATailFrontierLiveClosure.oppApex2_mem_carrier  (2 distinct bodies across 2 files)
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/GoodMutualOmissionDeletionOutcome.lean
+       Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/CallerProvenance.lean
   ⚠ Problem97.ATailSurvivalCover.actualBlockerFiber_image_eq_selectedSupport_erase_of_card_eq_three  (2 distinct bodies across 2 files)
        Erdos9796Proof/P97/ATail/FrontierLiveClosure/FreshThirdQFiberThreeSynchronization.lean
        scratch/freshthird-firstnonhit-qfiber-three/QFiberThreeBoundary.lean
@@ -546,7 +2261,4 @@ name collisions: 83 fully-qualified name(s) declared in ≥2 files
   ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e7Polynomial  (2 distinct bodies across 2 files)
        Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
        Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
-  ⚠ Problem97.CrossedArmSevenPointEuclideanObstruction.e8Polynomial  (2 distinct bodies across 2 files)
-       Erdos9796Proof/P97/ATail/CrossedArmQ1G7Producer.lean
-       Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean
-  … and 58 more
+  … and 59 more
