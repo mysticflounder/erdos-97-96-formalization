@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-exact13-chart-normalization-20260904",
+  "owner": "luna-swarm-proof-scout",
+  "base_head": "1303d9c2ba08a63c1ed631d0e9a84b65595fee2a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-exact13-chart-normalization-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13ChartNormalization.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T05:42:55Z",
+  "manifest_sha256": "b45f92a0d8fad54efce99da5464f165a89e1a7e08a4c249afde0a5dc9bae0e83"
+}
