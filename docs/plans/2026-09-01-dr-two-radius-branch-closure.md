@@ -752,8 +752,9 @@ certificate replay is then unnecessary for card 12.
   focused governed build on 2026-09-05
   (`LAKE_BUILD_NO_REFRESH=1 lake-build
   Erdos9796Proof.P97.ATail.FrontierLiveClosure.CardGeThirteenExact13ProviderIngress`,
-  exit 0; target built as job 11984/11984).  It is still uncommitted,
-  aggregate-unimported, and not connected to a `False` consumer.  Its
+  exit 0; target built as job 11984/11984), passed Luna audit #15599, and was
+  committed in `b26dec995`.  It is still aggregate-unimported and not
+  connected to a `False` consumer.  Its
   provider shape represents the two apex rows by the named `k`/`l` and `t`
   providers while the optional global providers range only over raw labels
   `2,...,12`.  This data shape anticipates the consult's apex-0/apex-1 witness
