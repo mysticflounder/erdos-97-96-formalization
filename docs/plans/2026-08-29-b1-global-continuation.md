@@ -1089,12 +1089,28 @@ all role/membership atoms; and require the emitted
 The governed batch artifact now exists at commit `e376c9010`, with 648 cuts
 and 407 novel cuts relative to the corrected prior bank; its file, canonical
 event, manifest, and source-event hashes have been independently checked, and
-the lane hygiene report has zero owned-path issues.  The provider modules and
-compiler surface remain unpromoted.  Luna lane `#15116` is producing a
-concrete `data.check = true` probe in a new certificate module.  Do not call
-this consumer-reachable until the concrete checked data, positive-row proof,
-import edge, build, and axiom audit reach the existing provider cancellation
-terminal.
+the lane hygiene report has zero owned-path issues.  Luna lane `#15116`
+produced the isolated
+`CardGeThirteenExact13ThreeFormCheckProbe` at commit `64b2ec58f`.  Independent
+verification confirms that its three unit terms, six reversed provider paths,
+provider identities, explicit flips, and direct positional transport match the
+authenticated representative; the governed module build succeeds and
+`representativeData_check` and `representativeData_valid` use only Lean's
+standard axioms.  This remains one representative checker certificate: it
+does not bind the source event's `is_b1_12` activation atom, prove live-cell
+coverage or `False`, or enter an aggregate.  The full-cell normalized
+nonnegative-cone run reported in audit lane
+`cardge13-exact13-conic-batch-20260905` independently replays as SAT and
+reduces to one unit-weight form with two provider paths and nine source atoms;
+it rediscovers the outstanding one-form transitive-incidence conflict rather
+than closing the cell.  Its six focused producer tests pass, but its new
+Python orchestration is not itself a Lean or source-coverage result.  The next
+computational step is a Boolean resume with that clause followed by the same
+cone query on the next replayed model.  First determine whether current PIQD
+can own and authenticate that iteration declaratively; do not extend the
+bespoke orchestration surface.  The provider ingress must also compile and
+carry the activation and source-row hypotheses before any emitted certificate
+can reach the cancellation terminal.
 
 ### Card-at-least-thirteen global producer candidate
 
