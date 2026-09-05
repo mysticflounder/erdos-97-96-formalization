@@ -1,0 +1,14 @@
+{
+  "base_head": "a750983f44a1251f672a58d40dc5e3f6c743f247",
+  "created_utc": "2026-09-04T17:45:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "card-ge-thirteen-raw-ingress-20260904",
+  "manifest_sha256": "5f7cd8e106cf551a39710802de0215cbea31bbde1b7f1d5d39d52e8221898aef",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/card-ge-thirteen-raw-ingress-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13RawIngress.lean"
+  ],
+  "owner": "RadiusCartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}

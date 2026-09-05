@@ -1,0 +1,27 @@
+{
+  "base_head": "f8dd9c3d445e1dd9b68ca4d4d7e0d81d785690ca",
+  "created_utc": "2026-09-04T22:45:52Z",
+  "input_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13RawIngress.lean": "80e6dea8b5087a131eb55eec7756bafe9ef549ddd69b04dfa2790891ca8a9945",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0004/events/z3-pinned-source-b0-9-b1-1.json": "1855dd352b532bc7b4965dc4404e8bb5b6e31223e25c15a3cebcdd3c24c78e5d"
+  },
+  "lane_id": "cardge13-exact13-k4-prefix-cegar-20260904",
+  "manifest_sha256": "c52a664ac5daaeb6116f137843c4eb9a9f690a6fb303d2cbc231ca456b87c629",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "RadiusCartographer",
+  "root": "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0005",
+  "run_id": "run-0005",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/cardge13_exact13_fixed_base_k4_scan.py": "3b17eb5da16f18651ed8edf744749dc5adab4de2380ca4979152df7bbbea96bb",
+    "scripts/cardge13_exact13_fixed_base_planar_piqd.py": "b1bced8b1fffa70162c289f6b71143636a8362a7accfef5204c2f62c67e11fdf",
+    "scripts/cardge13_exact13_k4_prefix_cegar_piqd.py": "52e4eef7966854c07f502af9500575e95f6e9be6a5874c858acab3ca328e8a8d",
+    "scripts/cardge13_exact13_kalmanson_cone_piqd.py": "36846f1845dca5827ea503e5f01d2cb69e389998cdbcd78eb85af61160fb6257",
+    "scripts/cardge13_exact13_tight_cover_lra_piqd.py": "5101cdc837cfc0a1e956dae8f27359e0f6e4f2d2a50e8f0319956c047309581b",
+    "scripts/test_cardge13_exact13_k4_prefix_cegar_piqd.py": "5cd0d516e707ebe60279400f7f8a2025fdab36d83afe4070da3696f0092a10af"
+  }
+}
