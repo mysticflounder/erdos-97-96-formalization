@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-separated-residual-heads-20260904",
+  "owner": "codex-profile0034-separated-residual-heads",
+  "base_head": "a8c83dd98ee47ee7452ca8e06538dca9968098ea",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-separated-residual-heads-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-separated-residual-heads.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProfile0034SourceAdapter.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:00:00Z",
+  "manifest_sha256": "9972000f297c67ed9768fe709a6782bdc7bb3375f7810a60e4013c895aebe95c"
+}

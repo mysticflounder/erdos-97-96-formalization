@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctSecondApexSourceSwap
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.RobustApexFourIncidenceCyclicReduction
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactFiveDistinctThreeFanCollision
 import Erdos9796Proof.P97.Census554.ExactFiveProfile0034CommonObstruction
 
 /-!
@@ -103,6 +104,120 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_first_two_support_resid
     exists_residual_pair_of_card_eq_four P.surface.row₁.support
       P.surface.row₁.support_card hOK₁ P.a_mem_row₁ hopp_ne_retained
   exact ⟨p, q, s, t, hrow₀, hrow₁, hpq, hpFresh, hqFresh, hst, hsFresh, htFresh⟩
+
+/-- Under the positive profile-0034 incidences, one can choose residual heads
+  in the first two rows that avoid the second-apex center and each other.  The
+  proof uses only the two residual pairs: if the second-apex center is in the
+  first row, the three-fan restriction rules out an unwanted cross-row equality;
+  otherwise the two distinct row-1 residuals support the finite case split. -/
+theorem RobustApexFourIncidenceContinuationPacket.exists_profile0034_separated_residual_heads
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support) :
+    ∃ p s : ℝ²,
+      p ∈ P.surface.row₀.support ∧
+      s ∈ P.surface.row₁.support ∧
+      p ≠ s ∧
+      p ≠ S.oppApex2 ∧
+      s ≠ S.oppApex2 := by
+  classical
+  obtain ⟨p, q, s, t, hrow₀, hrow₁, hpq, hpFresh, hqFresh, hst, hsFresh, htFresh⟩ :=
+    RobustApexFourIncidenceContinuationPacket.exists_first_two_support_residual_pairs
+      N P hblockerK₀ hOK₁
+  have hpK₀ : p ∈ P.surface.row₀.support := by
+    rw [hrow₀]
+    simp
+  have hqK₀ : q ∈ P.surface.row₀.support := by
+    rw [hrow₀]
+    simp
+  have hsK₁ : s ∈ P.surface.row₁.support := by
+    rw [hrow₁]
+    simp
+  have htK₁ : t ∈ P.surface.row₁.support := by
+    rw [hrow₁]
+    simp
+  by_cases hc₂K₀ : S.oppApex2 ∈ P.surface.row₀.support
+  · have hrestriction :=
+      P.threeFan_shared_support_restriction hblockerK₀ hOK₁ hOK₂
+    rcases hrestriction with hc₂not | hrestriction
+    · exact (hc₂not hc₂K₀).elim
+    · have hpOrq : ∃ x : ℝ²,
+        x ∈ P.surface.row₀.support ∧ x ≠ S.oppApex2 ∧ x ≠ N.retained := by
+        by_cases hp₂ : p = S.oppApex2
+        · have hq₂ : q ≠ S.oppApex2 := by
+            intro hq₂
+            exact hpq (hp₂.trans hq₂.symm)
+          have hqA : q ≠ N.retained := by
+            intro hqA
+            exact hqFresh (by simp [hqA])
+          exact ⟨q, hqK₀, hq₂, hqA⟩
+        · have hpA : p ≠ N.retained := by
+            intro hpA
+            exact hpFresh (by simp [hpA])
+          exact ⟨p, hpK₀, hp₂, hpA⟩
+      have hsOrt : ∃ y : ℝ²,
+        y ∈ P.surface.row₁.support ∧ y ≠ S.oppApex2 := by
+        by_cases hs₂ : s = S.oppApex2
+        · have ht₂ : t ≠ S.oppApex2 := by
+            intro ht₂
+            exact hst (hs₂.trans ht₂.symm)
+          exact ⟨t, htK₁, ht₂⟩
+        · exact ⟨s, hsK₁, hs₂⟩
+      rcases hpOrq with ⟨p, hpK₀, hp₂, hpA⟩
+      rcases hsOrt with ⟨s, hsK₁, hs₂⟩
+      have hps : p ≠ s := by
+        intro hps
+        have hpK₁ : p ∈ P.surface.row₁.support := by
+          simpa [hps] using hsK₁
+        rcases hrestriction hpK₀ hpK₁ with hpa | hp₂'
+        · exact hpA hpa
+        · exact hp₂ hp₂'
+      exact ⟨p, s, hpK₀, hsK₁, hps, hp₂, hs₂⟩
+  · have hp₂ : p ≠ S.oppApex2 := by
+      intro hp₂
+      exact hc₂K₀ (hp₂ ▸ hpK₀)
+    have hq₂ : q ≠ S.oppApex2 := by
+      intro hq₂
+      exact hc₂K₀ (hq₂ ▸ hqK₀)
+    by_cases hs_good : s ≠ p ∧ s ≠ S.oppApex2
+    · exact ⟨p, s, hpK₀, hsK₁, fun h => hs_good.1 h.symm, hp₂, hs_good.2⟩
+    · by_cases ht_good : t ≠ p ∧ t ≠ S.oppApex2
+      · exact ⟨p, t, hpK₀, htK₁, fun h => ht_good.1 h.symm, hp₂, ht_good.2⟩
+      · have hs_bad : s = p ∨ s = S.oppApex2 := by
+          by_contra h
+          apply hs_good
+          exact ⟨fun hsp => (h (Or.inl hsp)).elim,
+            fun hs₂ => (h (Or.inr hs₂)).elim⟩
+        have ht_bad : t = p ∨ t = S.oppApex2 := by
+          by_contra h
+          apply ht_good
+          exact ⟨fun htp => (h (Or.inl htp)).elim,
+            fun ht₂ => (h (Or.inr ht₂)).elim⟩
+        rcases hs_bad with hs_is_p | hs_is₂
+        · rcases ht_bad with ht_is_p | ht_is₂
+          · exact (hst (hs_is_p.trans ht_is_p.symm)).elim
+          · refine ⟨q, s, hqK₀, hsK₁, ?_, hq₂,
+              fun hs₂ => hp₂ (hs_is_p.symm.trans hs₂)⟩
+            intro hqs
+            exact hpq (hqs.trans hs_is_p).symm
+        · rcases ht_bad with ht_is_p | ht_is₂
+          · refine ⟨q, t, hqK₀, htK₁, ?_, hq₂,
+              fun ht₂ => hp₂ (ht_is_p.symm.trans ht₂)⟩
+            intro hqt
+            exact hpq (hqt.trans ht_is_p).symm
+          · exact (hst (hs_is₂.trans ht_is₂.symm)).elim
 
 /-- The residual points from the first two supports have canonical labels and
 indices in the packet boundary enumeration.  The statement records only the
