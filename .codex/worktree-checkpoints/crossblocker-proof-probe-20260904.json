@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "crossblocker-proof-probe-20260904",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "e883c794b0b75ec56889f802831ab0310cb57441",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/crossblocker-proof-probe-20260904.json",
+    "luna-swarm/scratch/crossblocker-proof-probe-20260904.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T21:00:00Z",
+  "manifest_sha256": "e6183deafd77659c96ac159fe2f742b21f04234da8f6212c048d3922617c1116"
+}
