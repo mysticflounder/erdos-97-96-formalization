@@ -9,6 +9,7 @@ import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
 import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
 import Erdos9796Proof.P97.ATail.BiApexBlockerMultiplicity
 import Erdos9796Proof.P97.ATail.ConvexPerpendicularBisectorSides
+import Erdos9796Proof.P97.ATail.SurvivalCover
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.BoundaryIndexingCyclicShift
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CyclicPairSignedArea
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactFiveDistinctSecondApexSourceSwapCyclic
@@ -1281,6 +1282,9 @@ theorem RobustApexFourIncidenceContinuationPacket.firstApexBlocker_eq_blocker_or
     H.centerAt S.oppApex1 P.surface.O_mem_A = blocker ∨
       ∃ external : ℝ²,
         external ∈ D.A ∧ external ≠ blocker ∧ external ≠ S.oppApex2 ∧
+          external ≠ S.oppApex1 ∧
+          (external = H.centerAt S.oppApex1 P.surface.O_mem_A ∨
+            external = H.centerAt fresh Q.q_mem_A) ∧
           Nonempty (CommonDeletionTwoCenterPacket D H N.retained
             external S.oppApex2) := by
   rcases P.freshBlocker_commonDeletion_firstApex_or_retained N Q hOK₁ hOK₂ with
@@ -1299,6 +1303,9 @@ theorem RobustApexFourIncidenceContinuationPacket.firstApexBlocker_eq_blocker_or
       have hfirstBlocker_ne_second :
           H.centerAt S.oppApex1 P.surface.O_mem_A ≠ S.oppApex2 :=
         Cfirst.actual_blocker_ne_center₂
+      have hfirstBlocker_ne_first :
+          H.centerAt S.oppApex1 P.surface.O_mem_A ≠ S.oppApex1 :=
+        (Finset.mem_erase.mp Kfirst.center_mem).1
       have hO_ne_a : S.oppApex1 ≠ N.retained := by
         intro h
         apply P.surface.row₀.center_not_mem
@@ -1334,7 +1341,8 @@ theorem RobustApexFourIncidenceContinuationPacket.firstApexBlocker_eq_blocker_or
         (cross_deletion_survives_iff_not_mem_selected_support
           H P.surface.O_mem_A).mpr hretainedNot
       refine ⟨H.centerAt S.oppApex1 P.surface.O_mem_A,
-        hfirstBlockerA, hcollision, hfirstBlocker_ne_second, ?_⟩
+        hfirstBlockerA, hcollision, hfirstBlocker_ne_second,
+        hfirstBlocker_ne_first, Or.inl rfl, ?_⟩
       exact
         nonempty_commonDeletionTwoCenterPacket H N.retained_mem_A
           hfirstBlockerA P.surface.c₂_mem_A hfirstBlocker_ne_second
@@ -1352,8 +1360,59 @@ theorem RobustApexFourIncidenceContinuationPacket.firstApexBlocker_eq_blocker_or
         H.centerAt fresh Q.q_mem_A ≠ S.oppApex2 :=
       ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
         H Q.q_mem_A Q.row₂.hasNEquidistantPointsAt_erase_q
+    have hfreshBlocker_ne_first :
+        H.centerAt fresh Q.q_mem_A ≠ S.oppApex1 :=
+      ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+        H Q.q_mem_A Q.row₀.hasNEquidistantPointsAt_erase_q
     exact ⟨H.centerAt fresh Q.q_mem_A, hfreshBlockerA,
-      hfreshBlocker_ne_blocker, hfreshBlocker_ne_second, hretained⟩
+      hfreshBlocker_ne_blocker, hfreshBlocker_ne_second,
+      hfreshBlocker_ne_first, Or.inr rfl, hretained⟩
+
+/-- The first row of a source-tagged external retained-deletion packet is the
+canonical critical shell of the tagged source, and contains that source. -/
+theorem RobustApexFourIncidenceContinuationPacket.externalRetainedCommonDeletion_firstRow_sourceShell
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker fresh external : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (Q : ATailThreeCenterCommonDeletion.ThreeCenterCommonDeletionExactRows
+      D fresh S.oppApex1 blocker S.oppApex2
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (G : CommonDeletionTwoCenterPacket D H N.retained
+      external S.oppApex2)
+    (htag : external = H.centerAt S.oppApex1 P.surface.O_mem_A ∨
+      external = H.centerAt fresh Q.q_mem_A) :
+    (G.B₁ =
+          (H.selectedAt S.oppApex1
+            P.surface.O_mem_A).toCriticalFourShell.support ∧
+        S.oppApex1 ∈ G.B₁) ∨
+      (G.B₁ =
+          (H.selectedAt fresh Q.q_mem_A).toCriticalFourShell.support ∧
+        fresh ∈ G.B₁) := by
+  rcases htag with hfirst | hfresh
+  · left
+    have hsupport :=
+      ATailPhysicalSecondApexCommonDeletion.firstRow_support_eq_criticalShell_of_center_eq
+          G P.surface.O_mem_A hfirst
+    exact ⟨hsupport, hsupport.symm ▸
+      (H.selectedAt S.oppApex1
+        P.surface.O_mem_A).toCriticalFourShell.q_mem_support⟩
+  · right
+    have hsupport :=
+      ATailPhysicalSecondApexCommonDeletion.firstRow_support_eq_criticalShell_of_center_eq
+          G Q.q_mem_A hfresh
+    exact ⟨hsupport, hsupport.symm ▸
+      (H.selectedAt fresh Q.q_mem_A).toCriticalFourShell.q_mem_support⟩
 
 /-- When the first apex and retained source have the same actual blocker, the
 two robust apices force more multiplicity in the finite blocker map: either a
@@ -1425,6 +1484,168 @@ theorem RobustApexFourIncidenceContinuationPacket.blockerCollision_multiplicity
     ATailBiApexBlockerMultiplicity.second_fiber_or_larger_first_fiber_of_two_omissions
         H.blockerVertex hfirstOmitted hsecondOmitted hapicesNe
 
+/-- Every source in the known first-apex blocker fiber belongs to the existing
+blocker row, and that row is its complete canonical critical shell. -/
+theorem RobustApexFourIncidenceContinuationPacket.blockerCollision_source_mem_blockerClass_and_shell_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hcollision : H.centerAt S.oppApex1 P.surface.O_mem_A = blocker)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsourceFiber : H.blockerVertex source =
+      H.blockerVertex
+        (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+          CriticalShellSystem.CarrierVertex D.A)) :
+    source.1 ∈ N.blockerClass.support ∧
+      N.blockerClass.support =
+        (H.selectedAt source.1 source.2).toCriticalFourShell.support := by
+  have hsourceCenter : H.centerAt source.1 source.2 = blocker :=
+    (congrArg Subtype.val hsourceFiber).trans hcollision
+  let sourceBlockerClass :
+      SelectedFourClass D.A (H.centerAt source.1 source.2) :=
+    hsourceCenter.symm ▸ N.blockerClass
+  have hsourceBlockerClass_support :
+      sourceBlockerClass.support = N.blockerClass.support := by
+    subst blocker
+    rfl
+  have hsourceMem : source.1 ∈ sourceBlockerClass.support :=
+    H.source_mem_selectedFourClass source.1 source.2 sourceBlockerClass
+  have hsupportEq : sourceBlockerClass.support =
+      (H.selectedAt source.1 source.2).toCriticalFourShell.support :=
+    H.selectedFourClass_support_eq_shell source.1 source.2
+      sourceBlockerClass
+  exact ⟨hsourceBlockerClass_support ▸ hsourceMem,
+    hsourceBlockerClass_support.symm.trans hsupportEq⟩
+
+/-- A third source in the known blocker fiber either exhausts the four-point
+blocker row with that fiber, or leaves a row source whose actual blocker is
+different. -/
+theorem RobustApexFourIncidenceContinuationPacket.largerKnownFiber_row_exhausted_or_escape
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hcollision : H.centerAt S.oppApex1 P.surface.O_mem_A = blocker)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsourceNeFirst : source ≠
+      (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+        CriticalShellSystem.CarrierVertex D.A))
+    (hsourceNeRetained : source ≠
+      (⟨N.retained, N.retained_mem_A⟩ :
+        CriticalShellSystem.CarrierVertex D.A))
+    (hsourceFiber : H.blockerVertex source =
+      H.blockerVertex
+        (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+          CriticalShellSystem.CarrierVertex D.A)) :
+    ((ATailSurvivalCover.actualBlockerFiber H
+          (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+            CriticalShellSystem.CarrierVertex D.A)).card = 4 ∧
+        (ATailSurvivalCover.actualBlockerFiber H
+            (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+              CriticalShellSystem.CarrierVertex D.A)).image
+              (fun vertex => vertex.1) = N.blockerClass.support) ∨
+      ∃ escaping : CriticalShellSystem.CarrierVertex D.A,
+        escaping.1 ∈ N.blockerClass.support ∧
+          H.blockerVertex escaping ≠
+            H.blockerVertex
+              (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+                CriticalShellSystem.CarrierVertex D.A) := by
+  let firstApex : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨S.oppApex1, P.surface.O_mem_A⟩
+  let retained : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨N.retained, N.retained_mem_A⟩
+  let fiber := ATailSurvivalCover.actualBlockerFiber H firstApex
+  have hknownFiber : H.blockerVertex firstApex =
+      H.blockerVertex retained := by
+    apply Subtype.ext
+    exact hcollision.trans
+      (ExactFiveDistinctThreeCenterTightCover.tightPhysical_blocker_eq_centerAt_retained N)
+  have hfirstMem : firstApex ∈ fiber :=
+    Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩
+  have hretainedMem : retained ∈ fiber :=
+    Finset.mem_filter.mpr ⟨Finset.mem_univ _, hknownFiber.symm⟩
+  have hsourceMem : source ∈ fiber :=
+    Finset.mem_filter.mpr ⟨Finset.mem_univ _, hsourceFiber⟩
+  have hfirstNeRetained : firstApex ≠ retained := by
+    intro h
+    apply P.surface.row₀.center_not_mem
+    have hval : S.oppApex1 = N.retained := congrArg Subtype.val h
+    simpa only [hval] using P.surface.a_mem_row₀
+  have hsourceNeFirst' : source ≠ firstApex := by
+    simpa only [firstApex] using hsourceNeFirst
+  have hsourceNeRetained' : source ≠ retained := by
+    simpa only [retained] using hsourceNeRetained
+  have hfirstNeSource : firstApex ≠ source := hsourceNeFirst'.symm
+  have hretainedNeSource : retained ≠ source := hsourceNeRetained'.symm
+  have htripleSubset : ({firstApex, retained, source} :
+      Finset (CriticalShellSystem.CarrierVertex D.A)) ⊆ fiber := by
+    intro vertex hvertex
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hvertex
+    rcases hvertex with rfl | rfl | rfl
+    · exact hfirstMem
+    · exact hretainedMem
+    · exact hsourceMem
+  have htripleCard : ({firstApex, retained, source} :
+      Finset (CriticalShellSystem.CarrierVertex D.A)).card = 3 := by
+    simp [hfirstNeRetained, hfirstNeSource, hretainedNeSource]
+  have hlower : 3 ≤ fiber.card := by
+    rw [← htripleCard]
+    exact Finset.card_le_card htripleSubset
+  have hupper : fiber.card ≤ 4 :=
+    ATailSurvivalCover.actualBlockerFiber_card_le_four H firstApex
+  rcases (show fiber.card = 3 ∨ fiber.card = 4 by omega) with
+    hthree | hfour
+  · right
+    by_contra hnone
+    have hall : ∀ escaping : CriticalShellSystem.CarrierVertex D.A,
+        escaping.1 ∈ N.blockerClass.support →
+          H.blockerVertex escaping = H.blockerVertex firstApex := by
+      intro escaping hescaping
+      by_contra hne
+      exact hnone ⟨escaping, hescaping, hne⟩
+    have hrowSubset : N.blockerClass.support ⊆
+        fiber.image (fun vertex => vertex.1) := by
+      intro point hpoint
+      let escaping : CriticalShellSystem.CarrierVertex D.A :=
+        ⟨point, N.blockerClass.support_subset_A hpoint⟩
+      exact Finset.mem_image.mpr ⟨escaping,
+        Finset.mem_filter.mpr
+          ⟨Finset.mem_univ _, hall escaping hpoint⟩, rfl⟩
+    have hcardLe := Finset.card_le_card hrowSubset
+    have himageCard : (fiber.image (fun vertex => vertex.1)).card = 3 := by
+      rw [Finset.card_image_of_injective _ Subtype.val_injective, hthree]
+    rw [N.blockerClass.support_card, himageCard] at hcardLe
+    omega
+  · left
+    refine ⟨hfour, ?_⟩
+    have hfirstRow :=
+      P.blockerCollision_source_mem_blockerClass_and_shell_eq
+        N hcollision firstApex rfl
+    calc
+      fiber.image (fun vertex => vertex.1) =
+          (H.selectedAt firstApex.1
+            firstApex.2).toCriticalFourShell.support :=
+        ATailSurvivalCover.actualBlockerFiber_image_eq_selectedSupport_of_card_eq_four
+            H firstApex hfour
+      _ = N.blockerClass.support := hfirstRow.2.symm
+
 /-- The fresh fourth-incidence blocker produces either an external
 retained-source common-deletion packet or additional multiplicity beyond the
 known first-apex/retained blocker collision. -/
@@ -1450,6 +1671,9 @@ theorem RobustApexFourIncidenceContinuationPacket.externalRetainedCommonDeletion
     (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support) :
     (∃ external : ℝ²,
         external ∈ D.A ∧ external ≠ blocker ∧ external ≠ S.oppApex2 ∧
+          external ≠ S.oppApex1 ∧
+          (external = H.centerAt S.oppApex1 P.surface.O_mem_A ∨
+            external = H.centerAt fresh Q.q_mem_A) ∧
           Nonempty (CommonDeletionTwoCenterPacket D H N.retained
             external S.oppApex2)) ∨
       (H.blockerVertex
@@ -1475,12 +1699,25 @@ theorem RobustApexFourIncidenceContinuationPacket.externalRetainedCommonDeletion
               H.blockerVertex source =
                 H.blockerVertex
                   (⟨S.oppApex1, P.surface.O_mem_A⟩ :
-                    CriticalShellSystem.CarrierVertex D.A))) := by
+                    CriticalShellSystem.CarrierVertex D.A) ∧
+              source.1 ∈ N.blockerClass.support ∧
+              N.blockerClass.support =
+                (H.selectedAt source.1 source.2).toCriticalFourShell.support)) := by
   rcases
       P.firstApexBlocker_eq_blocker_or_externalRetainedCommonDeletion
         N Q hOK₁ hOK₂ with
     hcollision | hexternal
-  · exact Or.inr (P.blockerCollision_multiplicity N hcollision)
+  · rcases P.blockerCollision_multiplicity N hcollision with
+      ⟨hknownFiber, hsecondFiber | hlargerFiber⟩
+    · exact Or.inr ⟨hknownFiber, Or.inl hsecondFiber⟩
+    · rcases hlargerFiber with
+        ⟨source, hsourceNeFirst, hsourceNeRetained, hsourceFiber⟩
+      have hsourceRow :=
+        P.blockerCollision_source_mem_blockerClass_and_shell_eq
+          N hcollision source hsourceFiber
+      exact Or.inr ⟨hknownFiber, Or.inr
+        ⟨source, hsourceNeFirst, hsourceNeRetained, hsourceFiber,
+          hsourceRow.1, hsourceRow.2⟩⟩
   · exact Or.inl hexternal
 
 /-- A first-row point and a blocker-row point in the profile-0034 order close

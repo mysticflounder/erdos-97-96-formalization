@@ -116,6 +116,14 @@ there is Z distinct from the old blocker and second apex such that
 deleting a survives at both Z and the second apex.
 ```
 
+The external arm retains its source tag: `Z` is the actual blocker of either
+`O` or the strict fresh source.  In both cases `Z` is a carrier point distinct
+from all three original row centers `O,U,c`.  Reusing
+`firstRow_support_eq_criticalShell_of_center_eq` identifies the external
+packet's first row with the tagged source's complete canonical critical shell,
+and in particular places that source in the row.  This provenance would be
+lost by returning only an untagged common-deletion packet.
+
 The collision arm now has a further checked finite-map reduction.  Full
 deletion robustness at `O` and at the second apex omits both vertices from the
 finite blocker endomap.  Given the known `O,a` blocker fiber, finite counting
@@ -133,6 +141,20 @@ These outputs are source-clean and import-acyclic.  None has a current
 terminal: the multiplicity alternatives have no available cap/order consumer,
 while the external retained-source packet lacks the original pair-source
 blocker orientation required by the downstream exact-five closer.
+
+The bounded reuse preflight for the third-source arm selected
+`CriticalShellSystem.selectedFourClass_support_eq_shell` from
+`U1CarrierInjection`.  Its immediate consumer is the combined adapter theorem;
+the source's blocker equality supplies the antecedent with no circular import.
+Consequently the third source lies in `normalForm.blockerClass.support`, and
+that support is its complete canonical critical shell.  The first missing
+antecedent for a terminal remains a boundary-sector or cap placement for this
+source; membership in the blocker row alone does not choose one.  Reusing the
+public actual-blocker-fiber bound from `SurvivalCover` sharpens this arm once
+more: either the four-source blocker fiber exhausts the blocker row, or a
+source in that row has an actual blocker different from the `O,a` blocker.
+This creates a row-local escape source, but still does not place it in a
+specific boundary sector.
 
 ## Swapped-order analytic theorem
 
