@@ -2,8 +2,9 @@
 
 Date: 2026-09-05
 
-Status: kernel-checked direct/reflected outer-order reduction; the remaining
-live ingress is the placement of `d` and the two selectable residual heads.
+Status: kernel-checked direct/reflected outer-order reduction, deleted-point
+sector classification, and a strict second-row distance consequence.  The
+remaining live ingress is a selector or obstruction for the residual heads.
 
 ## Reuse preflight
 
@@ -47,6 +48,31 @@ U < O < c < a
 
 holds in the shifted boundary indexing.  The proof is source-level and uses
 no fixed-order computational witness.
+
+The first-opposite-cap block also puts the retained and deleted points on the
+same cyclic side of the two opposite apices.  Transporting that adjacency to
+the packet boundary and combining it with the outer classifier leaves exactly
+three deleted-point sectors in each orientation:
+
+```text
+d < a < c < O     a < d < c < O     a < c < O < d
+d < O < c < a     O < c < d < a     O < c < a < d
+```
+
+The existing analytic consumers reach only the two middle sectors.  This is a
+complete source-level classification of `d` from the current cap and row
+facts, not a placement of either selectable residual head.
+
+Two further scalar consequences are now kernel checked.  The blocker has
+different distances to the deleted and retained points on the first-apex
+critical shell.  In the positive fourth-incidence prefix, strict Kalmanson on
+`U,a,c,O` or `U,O,c,a` proves
+
+```text
+second-apex row radius < dist second-apex blocker.
+```
+
+Neither statement orders a row-zero or row-one residual on the boundary.
 
 ## Swapped-order analytic theorem
 
@@ -106,9 +132,17 @@ lake env lean Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProf
 All three files contain no `sorry` or `admit`.  The authenticated run-0004
 UNSAT result remains discovery evidence only and is not used by these proofs.
 
-The first missing source fact is now narrower than the full outer cyclic
-placement.  In the direct branch it must put `p` before both `a,s` and put
-`d` between them and `c`; in the reflected branch it must put `d` after `c`
-and put `p` after both `a,s`.  Pairwise distinctness and the relative order of
-`a,c,O` are closed.  No current theorem places `d` and the selected residual
-heads from the selected-row memberships and strict-cap data.
+Exact coordinate realizations and cap-compatible cyclic counterorders show
+that the current row equalities do not force one of the three `d` sectors, and
+that current row membership does not force a row-zero residual or row-one
+residual into the intervals required by the middle-sector consumers.  These
+are limitation witnesses, not counterexamples to the full project source.
+
+The adapter remains outside the anchored proof spine: it is not imported by
+`Rigid221Closure`.  Its intended integration point is
+`false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence`; no B1
+closure is claimed.  The next load-bearing question is whether that target's
+fresh common-deletion packet, or a stronger upstream record derived from it,
+supplies a residual selector or a new obstruction covering the untouched
+sectors.  Pairwise distinctness, the `a,c,O` order, and the six-way `d`
+classification are closed.

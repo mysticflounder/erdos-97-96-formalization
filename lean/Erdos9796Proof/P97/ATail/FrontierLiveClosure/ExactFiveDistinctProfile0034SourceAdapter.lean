@@ -5,8 +5,11 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctSecondApexSourceSwap
+import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
 import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.BoundaryIndexingCyclicShift
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CyclicPairSignedArea
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactFiveDistinctSecondApexSourceSwapCyclic
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.RobustApexFourIncidenceCyclicReduction
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactFiveDistinctThreeFanCollision
 import Erdos9796Proof.P97.Census554.ExactFiveProfile0034CommonObstruction
@@ -682,6 +685,416 @@ theorem RobustApexFourIncidenceContinuationPacket.profile0034_outer_order_cyclic
     D.convex P.boundaryIndexing hUa hUc hUO hac haO hcO
   · simpa only [hU, ha, hO] using hUO_Ua.symm
   · simpa only [hc, hO, ha] using hcOa
+
+/-- The retained and deleted first-opposite-cap sources lie on the same side
+of the cut whose endpoints are the two opposite apices.  The statement is
+transported from the canonical cap-block boundary to the boundary indexing
+stored in the robust incidence packet. -/
+theorem RobustApexFourIncidenceContinuationPacket.profile0034_retained_deleted_cyclicAdjacent
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (iO ic ia id : Fin P.boundaryIndexing.n)
+    (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
+    (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
+    (ha : P.boundaryIndexing.boundary ia = N.retained)
+    (hd : P.boundaryIndexing.boundary id = deleted) :
+    cyclicAdjacent iO ic ia id := by
+  have hO_ne_c : S.oppApex1 ≠ S.oppApex2 := P.surface.O_ne_c₂
+  have ha_ne_O : N.retained ≠ S.oppApex1 := by
+    intro haO
+    have hOmem : S.oppApex1 ∈ P.surface.row₀.support := by
+      simpa only [haO] using P.surface.a_mem_row₀
+    exact P.surface.row₀.center_not_mem hOmem
+  have ha_ne_c : N.retained ≠ S.oppApex2 := by
+    intro hac
+    have hcmem : S.oppApex2 ∈ P.surface.row₂.support := by
+      simpa only [hac] using P.a_mem_row₂
+    exact P.surface.row₂.center_not_mem hcmem
+  have hd_ne_O : deleted ≠ S.oppApex1 :=
+    ExactFiveDistinctThreeCenterNormalForm.deleted_ne_firstApex N
+  have hd_ne_c : deleted ≠ S.oppApex2 :=
+    ExactFiveDistinctThreeCenterNormalForm.deleted_ne_secondApex N
+  have index_ne_of_boundary_ne
+      {i j : Fin P.boundaryIndexing.n} {x y : ℝ²}
+      (hi : P.boundaryIndexing.boundary i = x)
+      (hj : P.boundaryIndexing.boundary j = y) (hxy : x ≠ y) : i ≠ j := by
+    intro hij
+    apply hxy
+    rw [← hi, ← hj, hij]
+  have hiOic : iO ≠ ic := index_ne_of_boundary_ne hO hc hO_ne_c
+  have hiaiO : ia ≠ iO := index_ne_of_boundary_ne ha hO ha_ne_O
+  have hiaic : ia ≠ ic := index_ne_of_boundary_ne ha hc ha_ne_c
+  have hidiO : id ≠ iO := index_ne_of_boundary_ne hd hO hd_ne_O
+  have hidic : id ≠ ic := index_ne_of_boundary_ne hd hc hd_ne_c
+  rcases Census554.ZeroCutBoundaryIndexing.exists_with_capBlocks S with
+    ⟨B, hn, iv, iw, _hzero, hiv, hiw, hblocks⟩
+  let OLabel : CarrierLabel D.A := ⟨S.oppApex1, P.surface.O_mem_A⟩
+  let cLabel : CarrierLabel D.A := ⟨S.oppApex2, P.surface.c₂_mem_A⟩
+  let aLabel : CarrierLabel D.A :=
+    ⟨N.retained,
+      S.capInteriorByIndex_subset S.oppIndex1 (retained_mem_oppInterior1 N)⟩
+  let dLabel : CarrierLabel D.A :=
+    ⟨deleted,
+      S.capInteriorByIndex_subset S.oppIndex1 (deleted_mem_oppInterior1 N)⟩
+  let jO : Fin B.n := B.indexOf OLabel
+  let jc : Fin B.n := B.indexOf cLabel
+  let ja : Fin B.n := B.indexOf aLabel
+  let jd : Fin B.n := B.indexOf dLabel
+  have hlabel_Oc : OLabel ≠ cLabel := by
+    intro h
+    exact hO_ne_c (congrArg Subtype.val h)
+  have hlabel_aO : aLabel ≠ OLabel := by
+    intro h
+    exact ha_ne_O (congrArg Subtype.val h)
+  have hlabel_ac : aLabel ≠ cLabel := by
+    intro h
+    exact ha_ne_c (congrArg Subtype.val h)
+  have hlabel_dO : dLabel ≠ OLabel := by
+    intro h
+    exact hd_ne_O (congrArg Subtype.val h)
+  have hlabel_dc : dLabel ≠ cLabel := by
+    intro h
+    exact hd_ne_c (congrArg Subtype.val h)
+  have hadjB : cyclicAdjacent jO jc ja jd := by
+    simpa [jO, jc, ja, jd, OLabel, cLabel, aLabel, dLabel] using
+      oppInterior1_cyclicAdjacent_across_oppApex1_oppApex2
+        S B hn iv iw hiv hiw hblocks
+          (retained_mem_oppInterior1 N) (deleted_mem_oppInterior1 N)
+  have hprodB :
+      0 < signedArea2 (B.boundary ja) (B.boundary jO) (B.boundary jc) *
+        signedArea2 (B.boundary jd) (B.boundary jO) (B.boundary jc) :=
+    (cyclicAdjacent_iff_signedArea2_mul_pos
+      B.boundary_ccw B.boundary_injective
+      (B.index_injective.ne hlabel_Oc)
+      (B.index_injective.ne hlabel_aO)
+      (B.index_injective.ne hlabel_ac)
+      (B.index_injective.ne hlabel_dO)
+      (B.index_injective.ne hlabel_dc)).mp hadjB
+  apply
+    (cyclicAdjacent_iff_signedArea2_mul_pos
+      P.boundaryIndexing.boundary_ccw P.boundaryIndexing.boundary_injective
+      hiOic hiaiO hiaic hidiO hidic).mpr
+  simpa [jO, jc, ja, jd, OLabel, cLabel, aLabel, dLabel,
+    B.point_eq, pointOf, hO, hc, ha, hd] using hprodB
+
+/-- Combining the live outer-order dichotomy with cap-block adjacency leaves
+three possible slots for the deleted point in each orientation.  The middle
+slot is exactly the one consumed by the current profile-0034 obstruction. -/
+theorem RobustApexFourIncidenceContinuationPacket.profile0034_deleted_outer_slots
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (iO ic ia id : Fin P.boundaryIndexing.n)
+    (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
+    (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
+    (ha : P.boundaryIndexing.boundary ia = N.retained)
+    (hd : P.boundaryIndexing.boundary id = deleted)
+    (houter :
+      (ia < ic ∧ ic < iO) ∨
+        (iO < ic ∧ ic < ia)) :
+    ((ia < ic ∧ ic < iO) ∧
+        (id < ia ∨ (ia < id ∧ id < ic) ∨ iO < id)) ∨
+      ((iO < ic ∧ ic < ia) ∧
+        (id < iO ∨ (ic < id ∧ id < ia) ∨ ia < id)) := by
+  have hadj := P.profile0034_retained_deleted_cyclicAdjacent
+    N iO ic ia id hO hc ha hd
+  have index_ne_of_boundary_ne
+      {i j : Fin P.boundaryIndexing.n} {x y : ℝ²}
+      (hi : P.boundaryIndexing.boundary i = x)
+      (hj : P.boundaryIndexing.boundary j = y) (hxy : x ≠ y) : i ≠ j := by
+    intro hij
+    apply hxy
+    rw [← hi, ← hj, hij]
+  have hda : id ≠ ia :=
+    index_ne_of_boundary_ne hd ha (retained_ne_deleted N).symm
+  have hdc : id ≠ ic :=
+    index_ne_of_boundary_ne hd hc
+      (ExactFiveDistinctThreeCenterNormalForm.deleted_ne_secondApex N)
+  have hdO : id ≠ iO :=
+    index_ne_of_boundary_ne hd hO
+      (ExactFiveDistinctThreeCenterNormalForm.deleted_ne_firstApex N)
+  unfold cyclicAdjacent SurplusCOMPGBank.btw at hadj
+  rcases houter with hdirect | hreversed
+  · exact Or.inl ⟨hdirect, by omega⟩
+  · exact Or.inr ⟨hreversed, by omega⟩
+
+/-- After cutting the packet boundary at the blocker, the live rows and cap
+blocks classify the deleted point into three slots in each outer orientation.
+No order assumption beyond the named boundary witnesses is supplied. -/
+theorem RobustApexFourIncidenceContinuationPacket.profile0034_deleted_outer_slots_cyclicShift
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support)
+    (iU iO ic ia id : Fin P.boundaryIndexing.n)
+    (hU : P.boundaryIndexing.boundary iU = blocker)
+    (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
+    (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
+    (ha : P.boundaryIndexing.boundary ia = N.retained)
+    (hd : P.boundaryIndexing.boundary id = deleted) :
+    (((ia - iU < ic - iU) ∧ (ic - iU < iO - iU)) ∧
+        ((id - iU < ia - iU) ∨
+          ((ia - iU < id - iU) ∧ (id - iU < ic - iU)) ∨
+          (iO - iU < id - iU))) ∨
+      (((iO - iU < ic - iU) ∧ (ic - iU < ia - iU)) ∧
+        ((id - iU < iO - iU) ∨
+          ((ic - iU < id - iU) ∧ (id - iU < ia - iU)) ∨
+          (ia - iU < id - iU))) := by
+  have index_ne_of_boundary_ne
+      {i j : Fin P.boundaryIndexing.n} {x y : ℝ²}
+      (hi : P.boundaryIndexing.boundary i = x)
+      (hj : P.boundaryIndexing.boundary j = y) (hxy : x ≠ y) : i ≠ j := by
+    intro hij
+    apply hxy
+    rw [← hi, ← hj, hij]
+  have hU_ne_a : blocker ≠ N.retained := by
+    intro h
+    apply P.surface.row₁.center_not_mem
+    simpa only [h] using P.a_mem_row₁
+  have ha_ne_c : N.retained ≠ S.oppApex2 := by
+    intro h
+    apply P.surface.row₂.center_not_mem
+    simpa only [h] using P.a_mem_row₂
+  have ha_ne_O : N.retained ≠ S.oppApex1 := by
+    intro h
+    apply P.surface.row₀.center_not_mem
+    simpa only [h] using P.surface.a_mem_row₀
+  have hUia : iU ≠ ia := index_ne_of_boundary_ne hU ha hU_ne_a
+  have hUic : iU ≠ ic :=
+    index_ne_of_boundary_ne hU hc P.surface.c₁_ne_c₂
+  have hUiO : iU ≠ iO :=
+    index_ne_of_boundary_ne hU hO P.surface.O_ne_c₁.symm
+  have hiAic : ia ≠ ic := index_ne_of_boundary_ne ha hc ha_ne_c
+  have hiAiO : ia ≠ iO := index_ne_of_boundary_ne ha hO ha_ne_O
+  have hicO : ic ≠ iO :=
+    index_ne_of_boundary_ne hc hO P.surface.O_ne_c₂.symm
+  have houter := P.profile0034_outer_order_cyclicShift N hOK₁ hOK₂
+    iU ia ic iO hU ha hc hO hUia hUic hUiO hiAic hiAiO hicO
+  let hpos : 0 < P.boundaryIndexing.n :=
+    lt_of_le_of_lt (Nat.zero_le iU.val) iU.isLt
+  letI : NeZero P.boundaryIndexing.n := ⟨Nat.ne_of_gt hpos⟩
+  let shifted := P.boundaryIndexing.cyclicShift iU
+  let shiftedPacket : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support N.blockerClass.support
+        N.secondApexClass.support :=
+    { P with boundaryIndexing := shifted }
+  have shifted_point (i : Fin P.boundaryIndexing.n) (x : ℝ²)
+      (hx : P.boundaryIndexing.boundary i = x) :
+      shifted.boundary (i - iU) = x := by
+    change P.boundaryIndexing.boundary ((i - iU) + iU) = x
+    simpa only [sub_add_cancel] using hx
+  exact shiftedPacket.profile0034_deleted_outer_slots N
+    (iO - iU) (ic - iU) (ia - iU) (id - iU)
+    (shifted_point iO S.oppApex1 hO)
+    (shifted_point ic S.oppApex2 hc)
+    (shifted_point ia N.retained ha)
+    (shifted_point id deleted hd) houter
+
+/-- The original deleted source is genuinely off the retained source's full
+critical blocker circle.  In particular, its blocker distance differs from
+the retained point's blocker distance. -/
+theorem ExactFiveDistinctThreeCenterNormalForm.dist_blocker_deleted_ne_retained
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C) :
+    dist blocker deleted ≠ dist blocker N.retained := by
+  have hdA : deleted ∈ D.A :=
+    (mem_selectedClass.mp (deleted_mem_firstApex_selectedClass N)).1
+  have hdNot : deleted ∉ N.blockerClass.support := by
+    rw [N.blockerClass_support_eq]
+    exact C.row₁.q_not_mem
+  have hdRadius :
+      dist (H.centerAt N.retained N.retained_mem_A) deleted ≠
+        (H.selectedAt N.retained
+          N.retained_mem_A).toCriticalFourShell.radius := by
+    intro hdist
+    exact hdNot
+      ((ExactFiveDistinctThreeCenterTightCover.tightPhysical_mem_blockerClass_iff
+        N hdA).mpr hdist)
+  have haRadius :
+      dist (H.centerAt N.retained N.retained_mem_A) N.retained =
+        (H.selectedAt N.retained
+          N.retained_mem_A).toCriticalFourShell.radius :=
+    (ExactFiveDistinctThreeCenterTightCover.tightPhysical_mem_blockerClass_iff
+      N N.retained_mem_A).mp N.retained_mem_blockerClass
+  have hblocker :=
+    ExactFiveDistinctThreeCenterTightCover.tightPhysical_blocker_eq_centerAt_retained N
+  have hdeletedCenter :
+      dist blocker deleted =
+        dist (H.centerAt N.retained N.retained_mem_A) deleted :=
+    congrArg (fun z : ℝ² ↦ dist z deleted) hblocker
+  have hretainedCenter :
+      dist blocker N.retained =
+        dist (H.centerAt N.retained N.retained_mem_A) N.retained :=
+    congrArg (fun z : ℝ² ↦ dist z N.retained) hblocker
+  intro hdist
+  apply hdRadius
+  calc
+    dist (H.centerAt N.retained N.retained_mem_A) deleted =
+        dist blocker deleted := hdeletedCenter.symm
+    _ = dist blocker N.retained := hdist
+    _ = dist (H.centerAt N.retained N.retained_mem_A) N.retained :=
+      hretainedCenter
+    _ = (H.selectedAt N.retained
+          N.retained_mem_A).toCriticalFourShell.radius := haRadius
+
+/-- In the positive fourth-incidence prefix, the blocker lies strictly beyond
+the second-row radius from the second apex.  This follows from strict
+Kalmanson on the live `blocker,retained,oppApex2,oppApex1` quadrilateral in
+either outer orientation. -/
+theorem RobustApexFourIncidenceContinuationPacket.secondApex_radius_lt_dist_blocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support) :
+    P.surface.row₂.radius < dist S.oppApex2 blocker := by
+  let B := P.boundaryIndexing
+  let ULabel : CarrierLabel D.A :=
+    ⟨blocker, P.surface.row₀.support_subset_A hblockerK₀⟩
+  let aLabel : CarrierLabel D.A := ⟨N.retained, N.retained_mem_A⟩
+  let cLabel : CarrierLabel D.A := ⟨S.oppApex2, P.surface.c₂_mem_A⟩
+  let OLabel : CarrierLabel D.A := ⟨S.oppApex1, P.surface.O_mem_A⟩
+  let iU : Fin B.n := B.indexOf ULabel
+  let ia : Fin B.n := B.indexOf aLabel
+  let ic : Fin B.n := B.indexOf cLabel
+  let iO : Fin B.n := B.indexOf OLabel
+  have hU : B.boundary iU = blocker := by
+    simpa [B, iU, ULabel, pointOf] using B.point_eq ULabel
+  have ha : B.boundary ia = N.retained := by
+    simpa [B, ia, aLabel, pointOf] using B.point_eq aLabel
+  have hc : B.boundary ic = S.oppApex2 := by
+    simpa [B, ic, cLabel, pointOf] using B.point_eq cLabel
+  have hO : B.boundary iO = S.oppApex1 := by
+    simpa [B, iO, OLabel, pointOf] using B.point_eq OLabel
+  have hU_ne_a : blocker ≠ N.retained := by
+    intro h
+    apply P.surface.row₁.center_not_mem
+    simpa only [h] using P.a_mem_row₁
+  have ha_ne_c : N.retained ≠ S.oppApex2 := by
+    intro h
+    apply P.surface.row₂.center_not_mem
+    simpa only [h] using P.a_mem_row₂
+  have ha_ne_O : N.retained ≠ S.oppApex1 := by
+    intro h
+    apply P.surface.row₀.center_not_mem
+    simpa only [h] using P.surface.a_mem_row₀
+  have hUia : iU ≠ ia := B.index_injective.ne (by
+    intro h
+    exact hU_ne_a (congrArg Subtype.val h))
+  have hUic : iU ≠ ic := B.index_injective.ne (by
+    intro h
+    exact P.surface.c₁_ne_c₂ (congrArg Subtype.val h))
+  have hUiO : iU ≠ iO := B.index_injective.ne (by
+    intro h
+    exact P.surface.O_ne_c₁ (congrArg Subtype.val h).symm)
+  have hiAic : ia ≠ ic := B.index_injective.ne (by
+    intro h
+    exact ha_ne_c (congrArg Subtype.val h))
+  have hiAiO : ia ≠ iO := B.index_injective.ne (by
+    intro h
+    exact ha_ne_O (congrArg Subtype.val h))
+  have hicO : ic ≠ iO := B.index_injective.ne (by
+    intro h
+    exact P.surface.O_ne_c₂ (congrArg Subtype.val h).symm)
+  have houter := P.profile0034_outer_order_cyclicShift N hOK₁ hOK₂
+    iU ia ic iO hU ha hc hO hUia hUic hUiO hiAic hiAiO hicO
+  let hpos : 0 < B.n := lt_of_le_of_lt (Nat.zero_le iU.val) iU.isLt
+  letI : NeZero B.n := ⟨Nat.ne_of_gt hpos⟩
+  let shifted := B.cyclicShift iU
+  have shifted_point (i : Fin B.n) :
+      shifted.boundary (i - iU) = B.boundary i := by
+    change B.boundary ((i - iU) + iU) = B.boundary i
+    simp only [sub_add_cancel]
+  have hUaPos : iU - iU < ia - iU :=
+    B.cyclicShift_sub_pos_of_ne hUia.symm
+  have hUOPos : iU - iU < iO - iU :=
+    B.cyclicShift_sub_pos_of_ne hUiO.symm
+  have hUO_Oa : dist blocker S.oppApex1 =
+      dist S.oppApex1 N.retained := by
+    calc
+      dist blocker S.oppApex1 = dist S.oppApex1 blocker := dist_comm _ _
+      _ = dist S.oppApex1 N.retained :=
+        (P.surface.row₀.support_eq_radius blocker hblockerK₀).trans
+          (P.surface.row₀.support_eq_radius
+            N.retained P.surface.a_mem_row₀).symm
+  have hUa_Oa : dist blocker N.retained =
+      dist S.oppApex1 N.retained := by
+    calc
+      dist blocker N.retained = dist blocker S.oppApex1 :=
+        (P.surface.row₁.support_eq_radius
+          N.retained P.a_mem_row₁).trans
+            (P.surface.row₁.support_eq_radius S.oppApex1 hOK₁).symm
+      _ = dist S.oppApex1 N.retained := hUO_Oa
+  have hcO_ca : dist S.oppApex2 S.oppApex1 =
+      dist S.oppApex2 N.retained :=
+    (P.surface.row₂.support_eq_radius S.oppApex1 hOK₂).trans
+      (P.surface.row₂.support_eq_radius N.retained P.a_mem_row₂).symm
+  have hcO_radius : dist S.oppApex2 S.oppApex1 =
+      P.surface.row₂.radius :=
+    P.surface.row₂.support_eq_radius S.oppApex1 hOK₂
+  rcases houter with hdirect | hreversed
+  · have hK :=
+      CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
+        D.convex shifted.boundary_injective shifted.boundary_image
+          shifted.boundary_ccw hUaPos hdirect.1 hdirect.2
+    simp only [shifted_point, hU, ha, hc, hO] at hK
+    rw [dist_comm N.retained S.oppApex2,
+      dist_comm blocker S.oppApex2,
+      dist_comm N.retained S.oppApex1] at hK
+    linarith
+  · have hK :=
+      CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
+        D.convex shifted.boundary_injective shifted.boundary_image
+          shifted.boundary_ccw hUOPos hreversed.1 hreversed.2
+    simp only [shifted_point, hU, ha, hc, hO] at hK
+    rw [dist_comm S.oppApex1 S.oppApex2,
+      dist_comm blocker S.oppApex2] at hK
+    linarith
 
 /-- A first-row point and a blocker-row point in the profile-0034 order close
 the robust three-row source on any authenticated CCW boundary enumeration.
