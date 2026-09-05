@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstrings-cgn6-20260905",
+  "owner": "luna-swarm-slice-ingress",
+  "base_head": "55d3badd0b2e7cdd8f21b5152eb9227e6e2e6357",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstrings-cgn6-20260905.json",
+    "lean/Erdos9796Proof/P97/CGN/CGN6.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-05T22:17:10Z",
+  "manifest_sha256": "c3c945007f0b0f2252ece0d2f3acd4b1c089464f6edf0cd7f4aa01b510862c20"
+}

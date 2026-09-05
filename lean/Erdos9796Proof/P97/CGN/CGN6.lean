@@ -338,11 +338,14 @@ private theorem vec2_dist_sq (x1 y1 x2 y2 : ℝ) :
   simpa [vec2, EuclideanSpace.single_apply] using
     Problem97.dist_sq_coord (vec2 x1 y1) (vec2 x2 y2)
 
+/-- Rewrite a coordinate-indexed point as the corresponding `vec2` value. -/
 private theorem point_eq_vec2 {m : ℕ} (X Y : Fin m → ℝ) (t : Fin m) :
     point X Y t = vec2 (X t) (Y t) := by
   ext i <;> fin_cases i <;>
     simp [point, vec2, EuclideanSpace.single_apply]
 
+/-- Expand the signed area of three coordinate-indexed points into coordinate
+   differences. -/
 private theorem point_signedArea2_eq {m : ℕ} (X Y : Fin m → ℝ) (t0 t1 t2 : Fin m) :
     signedArea2 (point X Y t0) (point X Y t1) (point X Y t2) =
       (X t1 - X t0) * (Y t2 - Y t1) - (Y t1 - Y t0) * (X t2 - X t1) := by
@@ -1880,6 +1883,7 @@ theorem CGN6e1_apex_side_dichotomy
     exact CGN6e0_apex_not_on_subchordLine hconv hmem hrs haA har has hzero
   · exact Or.inl hpos
 
+/-- Swapping the first two arguments of `signedArea2` negates its value. -/
 private theorem signedArea2_swap (x y z : ℝ²) :
     signedArea2 x y z = - signedArea2 y x z := by
   unfold signedArea2
