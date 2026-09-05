@@ -263,3 +263,31 @@ fresh common-deletion packet, or a stronger upstream record derived from it,
 supplies a residual selector or a new obstruction covering the untouched
 sectors.  Pairwise distinctness, the `a,c,O` order, and the six-way `d`
 classification are closed.
+
+## Direct physical-block deletion run
+
+The authenticated PIQD/Z3 `run-0003` campaign completed from execution HEAD
+`53a044df922b4b9723ac51f44372b1f089c08478` with 20 workers and a 60-second
+per-query cap. Its manifest, launch, and terminal self-hashes are respectively
+`c80e09b9fe8b5d15dad8b2403b1023ec0fc8fbdccb04f5a82b3979876e1d71b0`,
+`fe9e795a8df4d2b0f38c24a7c5536a778ae07dd8952e139fb6fa3947e891a568`, and
+`666ed25997beb262efb6a00062aaca64e8211660fc482cb7d5dac51d0dbd1720`.
+Independent offline verification passed.
+
+Both radius branches completed the full 57-query schedule without a
+custody-valid UNSAT result. Each branch produced 55 `UNKNOWN` results, one
+exact-replayed `SAT` result for the 13 cyclic edge blocks alone, and one
+`SAT_REPLAY_REJECTED` result for the metric rows and guards alone. The latter
+rejection is conservative: Z3 returned algebraic `root-obj` coordinates that
+the exact-rational readback parser intentionally does not accept. No current
+set was reduced, and all 26 physical groups remain in each branch's terminal
+record.
+
+This completed-wave mine yields no concrete general theorem candidate and
+therefore does not trigger another theorem-bank search. In particular, the
+run neither proves satisfiability nor shows that every physical group is
+necessary; it establishes only that this bounded deletion schedule found no
+smaller authenticated UNSAT subset. The highest-leverage remaining step is
+still source-facing: derive a live direct or reflected cyclic placement (or an
+equivalent residual selector) from the full fourth-incidence packet, then feed
+it to the already proved boundary-order consumers.
