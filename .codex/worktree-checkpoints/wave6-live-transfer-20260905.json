@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "wave6-live-transfer-20260905",
+  "owner": "KalmansonCartographer",
+  "base_head": "3f006b12b8e8293ed6621e82fecb132e5a47415d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/wave6-live-transfer-20260905.json",
+    "docs/audits/2026-09-05-wave6-live-transfer.json",
+    "docs/audits/2026-09-05-wave6-live-transfer.md",
+    "docs/skeptic-wave6-live-transfer-2026-09-05.md",
+    "scripts/verify_wave6_live_affine_sample.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-05T22:55:00Z",
+  "manifest_sha256": "d8b42500f38d609b2a0dad09343ef2a929fdaf32f0b7b0be0eb9fc530a8f46d8"
+}

@@ -1,0 +1,269 @@
+{
+  "schema": "wave6-live-transfer-audit/v1",
+  "claim_scope": "Finite row-table check only; no new cell closure, source implication, or Lean promotion.",
+  "source_model": {
+    "path": "scratch/runs/cardge13-exact13-conic-resume-20260905/run-0001/cell-000-direct-z08-k09-10-conic-resume.json",
+    "sha256": "c04594d844603f9a7935c9f6b4f337f01bd3655f3be853b0f15ae24b0cc1c5fd",
+    "selector": ".decoded_sat_models[0].cell"
+  },
+  "sample": {
+    "n": 13,
+    "rows": [
+      {
+        "center": 12,
+        "support": [
+          4,
+          5,
+          6,
+          11
+        ]
+      },
+      {
+        "center": 10,
+        "support": [
+          0,
+          2,
+          3,
+          12
+        ]
+      },
+      {
+        "center": 0,
+        "support": [
+          1,
+          7,
+          9,
+          10
+        ]
+      },
+      {
+        "center": 0,
+        "support": [
+          2,
+          8,
+          11,
+          12
+        ]
+      },
+      {
+        "center": 1,
+        "support": [
+          3,
+          6,
+          7,
+          12
+        ]
+      },
+      {
+        "center": 11,
+        "support": [
+          1,
+          2,
+          4,
+          9
+        ]
+      },
+      {
+        "center": 2,
+        "support": [
+          3,
+          4,
+          8,
+          9
+        ]
+      },
+      {
+        "center": 3,
+        "support": [
+          0,
+          6,
+          8,
+          10
+        ]
+      },
+      {
+        "center": 4,
+        "support": [
+          0,
+          5,
+          9,
+          12
+        ]
+      },
+      {
+        "center": 5,
+        "support": [
+          0,
+          1,
+          3,
+          11
+        ]
+      },
+      {
+        "center": 6,
+        "support": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      {
+        "center": 7,
+        "support": [
+          0,
+          2,
+          4,
+          10
+        ]
+      },
+      {
+        "center": 8,
+        "support": [
+          1,
+          5,
+          7,
+          12
+        ]
+      },
+      {
+        "center": 9,
+        "support": [
+          4,
+          7,
+          8,
+          11
+        ]
+      }
+    ]
+  },
+  "collision_certificate": {
+    "terms": [
+      {
+        "coefficient": -1,
+        "relation": [
+          -1,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "coefficient": 2,
+        "relation": [
+          -1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -1,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "coefficient": 1,
+        "relation": [
+          -1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          -1,
+          0,
+          0
+        ]
+      },
+      {
+        "coefficient": -1,
+        "relation": [
+          0,
+          0,
+          -1,
+          0,
+          0,
+          0,
+          1,
+          -1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "coefficient": 3,
+        "relation": [
+          0,
+          0,
+          0,
+          -1,
+          0,
+          0,
+          1,
+          -1,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      }
+    ],
+    "result": [
+      -2,
+      0,
+      2,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "expected": {
+    "rows": 14,
+    "equality_components": 36,
+    "affine_relations": 8,
+    "nine_hit_motifs": 0,
+    "collision_labels": [
+      0,
+      2
+    ]
+  },
+  "source_pins": [
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/AffineNineHitCircleKernel.lean",
+      "sha256": "758d6ab83b48104c416decb2815beb4a544e31c2fa388e3b9ff939a9845e0af7"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctPhysicalFreshRowRadiusDrop.lean",
+      "sha256": "f52ea6f0201b18881e1edb439dc4b1a8b793b23b83841edbbf843d15aa3a193a"
+    }
+  ]
+}
