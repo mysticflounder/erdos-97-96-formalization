@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-outside-fiber-card-split-20260905",
+  "owner": "luna-swarm-radial-lemmas",
+  "base_head": "85ce3ea10174a7c1bbc1a02574b1bbfee08cd13e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-outside-fiber-card-split-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1OutsideFiberCardSplit.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T02:25:00Z",
+  "manifest_sha256": "29d75348b7f4eba4880008f76330ffba4a7660f42848cead1495824508a3f17a"
+}
