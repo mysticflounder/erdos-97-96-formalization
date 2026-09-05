@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-new-mirror-reduced-cell-confirmation-postrun-20260905",
+  "owner": "profile0034-new-mirror-reduced-cell-confirmation-postrun",
+  "base_head": "bffaf8c50100dcd7637f761a3baf6e9c397268e5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-new-mirror-reduced-cell-confirmation-postrun-20260905.json",
+    "docs/audits/2026-09-05-exactfive-profile0034-new-mirror-reduced-cell-confirmation-postrun.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T10:28:08Z",
+  "manifest_sha256": "40ea4c45161a22db2e504a7bfc2d84df7d93ddbbdd28df78be925237b0227aee"
+}
