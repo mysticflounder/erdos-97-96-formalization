@@ -352,3 +352,29 @@ The next wave is adaptive: block these two permutations in the linear profile
 1697 query, request fresh PIQD order witnesses, and test each fresh cell in the
 same planar QF_NRA layer.  MEC/minimality/blocker constraints remain deferred
 until a genuine planar survivor is found.
+
+## Profile-0034 seven-turn refinement
+
+The physical assertion-deletion wave completed at its 160-target-query cap
+with a custody-valid UNSAT residue of seven boundary turns and four row metric
+equations. It removed 37 of the 48 physical assertions. The residue is not
+deletion-stable, and no minimality claim is made.
+
+`Census554.EqualityCore.Profile0034.boundaryOrder_common_obstruction` now proves
+that residue for seven increasing convex-boundary roles. Its proof derives the
+two previously retained turns at `U,p,O` and `a,d,U`, so its assumptions match
+the assertion-deletion result exactly. The theorem's `U` role can be the live
+blocker center; the diagnostic blocker/surplus-apex alias is no longer present
+in the geometric statement.
+
+The source-facing theorem
+`RobustApexFourIncidenceContinuationPacket.false_of_profile0034_boundaryOrder`
+derives all four metric equations from the exact-five normal form and robust
+three-row packet. Its only additional data are a point `p` in the first row, a
+point `s` in the blocker row, and a boundary placement
+`blocker,p,s,retained,deleted,oppApex2,oppApex1`.
+
+The next strict reduction is therefore finite and source-level: construct a
+point-selection/order split that reaches this boundary placement or names its
+complementary placements. Do not wire the broad admitted endpoint to the new
+adapter until those complementary cases have checked consumers.

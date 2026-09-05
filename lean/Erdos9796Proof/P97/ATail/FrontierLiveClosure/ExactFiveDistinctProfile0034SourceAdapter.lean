@@ -1,0 +1,106 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ATail.ExactFiveDistinctSecondApexSourceSwap
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.RobustApexFourIncidenceCyclicReduction
+import Erdos9796Proof.P97.Census554.ExactFiveProfile0034CommonObstruction
+
+/-!
+# Source adapter for the profile-0034 seven-turn obstruction
+
+This module derives all metric assumptions of the seven-turn geometric core
+from the live exact-five source and robust three-row packet. The remaining
+input is an explicit increasing boundary placement for the seven named roles.
+-/
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ATailFrontierLiveClosure
+
+open ATailCriticalPairFrontier
+open ATailCommonDeletionTwoCenter
+open ExactFiveDistinctThreeCenterContinuation
+open ExactFiveDistinctSecondApexSourceSwap
+open FirstApexUniqueRadiusResidual
+
+/-- A first-row point and a blocker-row point in the profile-0034 boundary
+order close the robust three-row source. The deleted point remains on the
+original exact-five first-apex circle even though it is absent from the
+selected four-point first row. -/
+theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_boundaryOrder
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support)
+    {p s : ℝ²}
+    (hpK₀ : p ∈ P.surface.row₀.support)
+    (hsK₁ : s ∈ P.surface.row₁.support)
+    (iU ip is ia id ic iO : Fin P.boundaryIndexing.n)
+    (hU : P.boundaryIndexing.boundary iU = blocker)
+    (hp : P.boundaryIndexing.boundary ip = p)
+    (hs : P.boundaryIndexing.boundary is = s)
+    (ha : P.boundaryIndexing.boundary ia = N.retained)
+    (hd : P.boundaryIndexing.boundary id = deleted)
+    (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
+    (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
+    (hUp : iU < ip) (hps : ip < is) (hsa : is < ia)
+    (had : ia < id) (hdc : id < ic) (hcO : ic < iO) :
+    False := by
+  have hUO_Ua :
+      dist blocker S.oppApex1 = dist blocker N.retained :=
+    (P.surface.row₁.support_eq_radius S.oppApex1 hOK₁).trans
+      (P.surface.row₁.support_eq_radius N.retained P.a_mem_row₁).symm
+  have hUO_Oa :
+      dist blocker S.oppApex1 = dist S.oppApex1 N.retained := by
+    calc
+      dist blocker S.oppApex1 = dist S.oppApex1 blocker := dist_comm _ _
+      _ = dist S.oppApex1 N.retained :=
+        (P.surface.row₀.support_eq_radius blocker hblockerK₀).trans
+          (P.surface.row₀.support_eq_radius
+            N.retained P.surface.a_mem_row₀).symm
+  have hOad :
+      dist S.oppApex1 N.retained = dist S.oppApex1 deleted :=
+    (mem_selectedClass.mp
+        (retained_mem_firstApex_selectedClass N)).2.trans
+      (mem_selectedClass.mp
+        (deleted_mem_firstApex_selectedClass N)).2.symm
+  have hOap : dist S.oppApex1 N.retained = dist S.oppApex1 p :=
+    (P.surface.row₀.support_eq_radius
+      N.retained P.surface.a_mem_row₀).trans
+        (P.surface.row₀.support_eq_radius p hpK₀).symm
+  have hUOs : dist blocker S.oppApex1 = dist blocker s :=
+    (P.surface.row₁.support_eq_radius S.oppApex1 hOK₁).trans
+      (P.surface.row₁.support_eq_radius s hsK₁).symm
+  have hcOa :
+      dist S.oppApex2 S.oppApex1 = dist S.oppApex2 N.retained :=
+    (P.surface.row₂.support_eq_radius S.oppApex1 hOK₂).trans
+      (P.surface.row₂.support_eq_radius N.retained P.a_mem_row₂).symm
+  apply
+    Census554.EqualityCore.Profile0034.boundaryOrder_common_obstruction
+      P.boundaryIndexing.boundary P.boundaryIndexing.boundary_injective
+        P.boundaryIndexing.boundary_ccw iU ip is ia id ic iO
+        hUp hps hsa had hdc hcO
+  · simpa only [hU, hO, ha] using hUO_Ua
+  · simpa only [hU, hO, ha] using hUO_Oa
+  · simpa only [hO, ha, hd] using hOad
+  · simpa only [hO, ha, hp] using hOap
+  · simpa only [hU, hO, hs] using hUOs
+  · simpa only [hc, hO, ha] using hcOa
+
+end ATailFrontierLiveClosure
+end Problem97
