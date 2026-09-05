@@ -153,6 +153,25 @@ theorem false_of_zero_linear_image_of_nonnegative_combination
       nlinarith
   nlinarith [hp, hLp]
 
+/-- The determinant against a fixed normalized ray is a linear functional in
+the second point.  In the normalized coordinates the physical center is the
+origin, so no affine translation is hidden in this definition. -/
+def annularDetLinear (p : Plane) : Plane →ₗ[ℝ] ℝ :=
+  { toFun := fun v => p 0 * v 1 - p 1 * v 0
+    map_add' := by
+      intro u v
+      simp [PiLp.add_apply]
+      ring
+    map_smul' := by
+      intro c v
+      simp [PiLp.smul_apply]
+      ring }
+
+@[simp]
+theorem annularDetLinear_apply (p v : Plane) :
+    annularDetLinear p v = p 0 * v 1 - p 1 * v 0 :=
+  rfl
+
 /-- A point strictly inside the coordinate box bounded by the two inner rays
 cannot have the same radius as either inner endpoint. -/
 theorem false_of_equal_radius_of_open_coordinate_box
