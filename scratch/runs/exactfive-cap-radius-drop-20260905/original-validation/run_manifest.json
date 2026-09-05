@@ -1,0 +1,28 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "exactfive-cap-radius-drop-20260905",
+  "run_id": "original-validation",
+  "root": "scratch/runs/exactfive-cap-radius-drop-20260905/original-validation",
+  "owner": "CapDropAudit",
+  "base_head": "79ee277bc3000d19b6a021d9915d24305f7f6a8c",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/ExactFiveCapRadiusDropScalar.lean": "2032cf69f2b56ebec9c5da0b7eac01cd227e8cf8c32e7db4dd6e7e874b3ac946",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/check_cap_radius_drop.py": "3971ef0e74e76192d5f698345478ec9d3ae4cbcf47cf98585a951d72f531c1a0"
+  },
+  "input_digests": {
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/cap-radius-drop-proofs-and-formalization.md": "23e1c6fd3ade8a16ba0a36e367849ef3e4413910ca1135dc386832f37f221ce8",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/check_cap_radius_drop.out": "576d3a841d4ffee373c1808c21316fab14cb63fcbf1dc89916488bf2890c1316",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/checkpoint.md": "43c345cca969bfffa07995339d1845e6c76e7be2be1b92de7a98f8d7c1c87fa4",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/exact_checks.json": "d7b29201e86644d79bee9609d69033ffe455cd5f9e1f7524904202d34aac646e",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/formalization-request.md": "cb16a07bb29f55bfcb67ffdbf44ae7dbfecb9664acb1da5fa5b41ece67b112b2",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/status.json": "5405db5601386aebbe65e40a4e223a534fde03594a222f8e4c6f1d65324b4d8a",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/SHA256SUMS": "2283515a37c536bb2aed6311f196459d5579d19e1240209a0c1adae16b0b9468"
+  },
+  "created_utc": "2026-09-05T20:17:16Z",
+  "manifest_sha256": "6fe8f8e2ad4fcdf9607fdce32b7d7c6c9c48c683cf19525aeebeb2daa85f5842"
+}

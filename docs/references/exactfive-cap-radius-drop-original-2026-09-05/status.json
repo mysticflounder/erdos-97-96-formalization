@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-05",
+  "repository_head": "2bb06af72f01a0b5cfc422427375c029b3eebc7f",
+  "root_blob": "77e357f15b4c3bc7278f5af5f53d9c8851bfe315",
+  "prose_proved": [
+    "strict cap-pair radius drop",
+    "large-radius interior trace bound one",
+    "fresh double-hit large-radius impossibility",
+    "double-hit exact own-cap support decomposition"
+  ],
+  "lean_build_run": false,
+  "full_physical_leaf_closed": false,
+  "nthdegree_delivery": "NOT_POSTED_NO_CALLABLE_TOOLS",
+  "previous_bundle_hash_replay": "PASS",
+  "local_exact_checker": "PASS"
+}

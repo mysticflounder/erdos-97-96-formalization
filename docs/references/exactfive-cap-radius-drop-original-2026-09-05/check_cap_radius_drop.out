@@ -1,0 +1,8 @@
+PASS: both polynomial identities vanish exactly in SymPy
+PASS: 6174 exact-rational normalized acute-apex sign checks
+PASS: 100 strict-cap rational radius-drop examples; 2400 strict supporting-edge checks
+  family has s^2/r^2=(1-y)/(1+y) -> 1 as y -> 0; no uniform factor <1 follows
+PASS: negative controls show strictness and opposite-apex nonobtuseness are load-bearing
+PASS: old local model cannot share an enclosing boundary circle at O,P
+  q forces lambda >= 5; d forces lambda <= -8/261
+SCOPE: algebra and exact local geometry only; full physical exact-five leaf remains open.

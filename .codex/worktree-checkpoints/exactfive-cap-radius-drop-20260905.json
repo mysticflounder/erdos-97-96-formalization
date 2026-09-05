@@ -1,0 +1,33 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-cap-radius-drop-20260905",
+  "owner": "CapDropAudit",
+  "base_head": "79ee277bc3000d19b6a021d9915d24305f7f6a8c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-cap-radius-drop-20260905.json",
+    "docs/audits/2026-09-05-exactfive-cap-radius-drop-validation.json",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/ExactFiveCapRadiusDropScalar.lean",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/SHA256SUMS",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/cap-radius-drop-proofs-and-formalization.md",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/check_cap_radius_drop.out",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/check_cap_radius_drop.py",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/checkpoint.md",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/exact_checks.json",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/formalization-request.md",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/status.json",
+    "docs/references/exactfive-cap-radius-drop-recovered-2026-09-05/README.md",
+    "docs/references/exactfive-cap-radius-drop-recovered-2026-09-05/SHA256SUMS",
+    "docs/references/exactfive-cap-radius-drop-recovered-2026-09-05/delivery-status.md",
+    "docs/references/exactfive-cap-radius-drop-recovered-2026-09-05/recovered-formalization-request.md",
+    "docs/references/exactfive-cap-radius-drop-recovered-2026-09-05/recovered-proof-and-status.md",
+    "docs/skeptic-cap-radius-drop-proofs-and-formalization-2026-09-05.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-cap-radius-drop-20260905/original-validation"
+  ],
+  "durable_paths": [
+    "scratch/runs/exactfive-cap-radius-drop-20260905/original-validation/run_manifest.json"
+  ],
+  "created_utc": "2026-09-05T20:12:36Z",
+  "manifest_sha256": "3b4856cfa81aa0dbaee55069cfb9f38edf5e7c365e96a57968dac5bbc3650d8f"
+}

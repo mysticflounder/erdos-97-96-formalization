@@ -1,0 +1,152 @@
+{
+  "schema": "exactfive-cap-radius-drop-validation/v1",
+  "created_utc": "2026-09-05T20:22:23Z",
+  "lane_base_head": "79ee277bc3000d19b6a021d9915d24305f7f6a8c",
+  "audit_head": "45c2ae473a1d4887eeb2efa462c7e29d29b59f75",
+  "archive_source_pin": "2bb06af72f01a0b5cfc422427375c029b3eebc7f",
+  "original_zip_sha256": "6195126780b2ccad985f9b5246eb8073c0b59029cfa5752ef311aa97e6756cfa",
+  "recovered_tar_sha256": "fcfc27f192e25485ff8fb009ed9754e6b630d3fe1c297ae5be15423a084c3ed1",
+  "original_checksum_entries_verified": 8,
+  "recovered_checksum_entries_verified": 4,
+  "archive_member_sha256": {
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/ExactFiveCapRadiusDropScalar.lean": "2032cf69f2b56ebec9c5da0b7eac01cd227e8cf8c32e7db4dd6e7e874b3ac946",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/SHA256SUMS": "2283515a37c536bb2aed6311f196459d5579d19e1240209a0c1adae16b0b9468",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/cap-radius-drop-proofs-and-formalization.md": "23e1c6fd3ade8a16ba0a36e367849ef3e4413910ca1135dc386832f37f221ce8",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/check_cap_radius_drop.out": "576d3a841d4ffee373c1808c21316fab14cb63fcbf1dc89916488bf2890c1316",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/check_cap_radius_drop.py": "3971ef0e74e76192d5f698345478ec9d3ae4cbcf47cf98585a951d72f531c1a0",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/checkpoint.md": "43c345cca969bfffa07995339d1845e6c76e7be2be1b92de7a98f8d7c1c87fa4",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/exact_checks.json": "d7b29201e86644d79bee9609d69033ffe455cd5f9e1f7524904202d34aac646e",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/formalization-request.md": "cb16a07bb29f55bfcb67ffdbf44ae7dbfecb9664acb1da5fa5b41ece67b112b2",
+    "docs/references/exactfive-cap-radius-drop-original-2026-09-05/status.json": "5405db5601386aebbe65e40a4e223a534fde03594a222f8e4c6f1d65324b4d8a"
+  },
+  "source_sha256": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean": "1da4880d00cdc6b521bf0be3d5ed4ab00c905b729dfab43159901744804e57e5",
+    "lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean": "70b0d019c004109c6fe2902718a605b4912cf2dbb539187859f9d5c90fbf2591",
+    "lean/Erdos9796Proof/P97/CGN/CGN6.lean": "1f3c5df401cc5d9eb56c0bcf139ee75bfe06c2d7be81ce87af7604e349c40f67",
+    "lean/Erdos9796Proof/P97/CGN/CGN.lean": "ede22516b83858f19ec35c5dd7c57b637acf864b57485c42a0a0f80a96c3e4a6",
+    "lean/Erdos9796Proof/P97/CGN/CGN4g.lean": "c9fd7228554388347cd71352c7cd177d7732cdc7376b9090d52189eb7b03818a",
+    "lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean": "4da9ab7610ec81eb1bdda14f4debe027b28eee0c274e47c784304e7654da81d6",
+    "lean/Erdos9796Proof/P97/CircumscribedMECPacket.lean": "02ff1f784964432d89d8cbd6166a30cc8417a7b0d3b72247d0f8c6a610ba54d4",
+    "lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean": "143f4455fb5a411b97216313631f574fa5f241832b154e7725df8cc8e3917fa5",
+    "docs/plans/2026-09-01-rigid221-exactfive-distinct-three-center.md": "956e942f41edf290112b218e70112599056f360412ba85039ec8d2f21aa27a41"
+  },
+  "toolchain": "leanprover/lean4:v4.27.0",
+  "scalar_validation": {
+    "method": "Lean LSP lean_run_code in this repository Lean project, original source followed by six #print axioms commands",
+    "source_sha256": "2032cf69f2b56ebec9c5da0b7eac01cd227e8cf8c32e7db4dd6e7e874b3ac946",
+    "probe_sha256": "dccc8c9235281acfb88c1938e8f8bfcb2aa4d36ade987e6f6148d2d9d5355aae",
+    "success": true,
+    "errors": [],
+    "warnings": [
+      {
+        "line": 82,
+        "column": 20,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 87,
+        "column": 35,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 88,
+        "column": 35,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 89,
+        "column": 34,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 90,
+        "column": 34,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 60,
+        "column": 34,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 61,
+        "column": 34,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 62,
+        "column": 34,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 63,
+        "column": 34,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 36,
+        "column": 20,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 101,
+        "column": 29,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 104,
+        "column": 29,
+        "kind": "style.whitespace"
+      },
+      {
+        "line": 104,
+        "column": 41,
+        "kind": "style.whitespace"
+      }
+    ],
+    "axiom_reports": [
+      "'Problem97.ExactFiveCapRadiusDropScalar.chord_sq_identity' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "'Problem97.ExactFiveCapRadiusDropScalar.apex_dot_identity' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "'Problem97.ExactFiveCapRadiusDropScalar.apex_dot_pos' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "'Problem97.ExactFiveCapRadiusDropScalar.paired_radius_lt_of_dots' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+      "'Problem97.ExactFiveCapRadiusDropScalar.normalized_cap_pair_radius_lt' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+      "'Problem97.ExactFiveCapRadiusDropScalar.old_local_model_no_common_boundary_disk' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    ],
+    "public_theorem_count": 6
+  },
+  "checker_replay": {
+    "command": "uv run --no-cache --no-sync python scratch/runs/exactfive-cap-radius-drop-20260905/original-validation/artifacts/check_cap_radius_drop.py",
+    "exit_code": 0,
+    "python": "3.13.13",
+    "sympy": "1.14.0",
+    "output_byte_identical_to_original": true,
+    "output_sha256": "d7b29201e86644d79bee9609d69033ffe455cd5f9e1f7524904202d34aac646e",
+    "result": {
+      "sign_checks": 6174,
+      "sharp_family_cases": 100,
+      "supporting_edges": 2400,
+      "disk_parameter_lower": "5",
+      "disk_parameter_upper": "-8/261",
+      "scope": "Algebra/rational checks only; no full source realization or Lean build."
+    }
+  },
+  "source_localization_diagnostics": {
+    "file": "lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairGeometry.lean",
+    "method": "Lean LSP lean_diagnostic_messages",
+    "success": true,
+    "partial": false,
+    "errors": [],
+    "warnings": []
+  },
+  "trust_boundary": {
+    "scalar_only": true,
+    "source_adapter_checked": false,
+    "publication_build_run": false,
+    "consumer_reachable": false,
+    "physical_leaf_closed": false,
+    "new_sorry_count": 0
+  },
+  "first_missing_adapter": "Transport actual opposite Moser apex through endpoint normalization; CGN packet center denotes MEC center, not opposite apex. Then strict-height and metric/index transport bridges remain.",
+  "runtime_manifest": "scratch/runs/exactfive-cap-radius-drop-20260905/original-validation/run_manifest.json",
+  "manifest_sha256": "471b89983d92926dfd8d425e684c3449c0eafde66fc88aea730ea49345100495"
+}
