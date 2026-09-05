@@ -1146,6 +1146,13 @@ the source-row equality `D(O,a) = D(O,p)`, not the B1 blocker-deleted equality
 `centerAt(source) = jointDeletion.deleted`.  They remain discovery-only and
 have no source realization, B1 transport, Lean ingress, or theorem candidate.
 
+Focused Pro consult `01M1RSXD38KCFTCK2AH96PGEF6` is checking the remaining
+source-rich route: iterate
+`exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext` while
+retaining the five/six normal form and exact deleted-source identities, and
+decide whether the no-third-deletion arm forces a finite cycle or which
+additional upstream incidence is missing.
+
 For exact class cardinality six,
 `B1CardSixPointConfigurationPayload.ofSource` already packages the strongest
 source-clean positive boundary, metric, row, role-alias, and physical-support
