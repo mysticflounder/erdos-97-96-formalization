@@ -1102,6 +1102,25 @@ blocker-inside arms terminate only in open Rigid221 placement/closure leaves.
 Do not perform the neutral factor until one of those consumers becomes
 source-clean.
 
+Two independent source audits at revision `7d6bf3e81` ruled out treating
+`false_of_exactFourMutualOmissionRigid221_minimalCore` as such a clean
+consumer.  Its signature retains only an off-physical-apex global deletion
+and a `MinimalDeletionCore`; it has already discarded the equations identifying
+that deletion's center with the source's actual blocker and its deleted set
+with the singleton source.  More importantly, even retaining those equations
+does not supply a contradiction: the source-clean theorem
+`exactFourRigid221_singleton_minimalCore_of_sourceBlocker_outside_class`
+constructs exactly this singleton off-apex core, whose pairwise-disjoint
+condition is vacuous.  The generic core-to-cap bounds require the core center
+to equal an indexed Moser opposite and, for the useful six-point bound, two
+distinct deleted sources; neither antecedent is available here.  No indexed
+theorem-bank search found a source-clean source-facing terminal that excludes
+the outside-class actual blocker.  Therefore do not attack the current
+minimal-core `False` statement or merely restore the discarded equations.
+The next viable use of the outside arms requires a genuinely new geometric
+terminal relating the source blocker/core center to an indexed cap, boundary
+order, or a second source incidence.
+
 For exact class cardinality six,
 `B1CardSixPointConfigurationPayload.ofSource` already packages the strongest
 source-clean positive boundary, metric, row, role-alias, and physical-support
