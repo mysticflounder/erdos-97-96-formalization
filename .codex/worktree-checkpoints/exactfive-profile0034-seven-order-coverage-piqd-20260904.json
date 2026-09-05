@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-seven-order-coverage-piqd-20260904",
+  "owner": "profile0034-seven-order-coverage-piqd",
+  "base_head": "fe863dbf250049945dffc2546f5cd942b6ac551e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-seven-order-coverage-piqd-20260904.json",
+    "census/card_head/exactfive_profile0034_seven_order_coverage_piqd.py",
+    "census/card_head/tests/test_exactfive_profile0034_seven_order_coverage_piqd.py",
+    "docs/specs/p97-exactfive-profile0034-seven-order-coverage-piqd-v1.md",
+    "scripts/run_exactfive_profile0034_seven_order_coverage_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-profile0034-seven-order-coverage-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T00:53:26Z",
+  "manifest_sha256": "4009910151de136b85584c2e3b6593d95e3bde3c7547fd8acd77c2918ca63fab"
+}
