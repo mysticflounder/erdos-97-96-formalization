@@ -1,0 +1,57 @@
+{
+  "schema": "source-order-v27-repair-receipt/v1",
+  "lane_id": "source-order-v27-receipt-20260904",
+  "run_id": "run-0001",
+  "producer": {
+    "command": "UV_CACHE_DIR=scratch/runs/source-order-v27-receipt-20260904/tmp/producer-tmp/uv-cache uv run python -m census.card_head.exact12_next_row_arm_static_canary --repo-root . --workdir scratch/runs/source-order-v27-receipt-20260904/run-0001 --arm-cell-index 6 --timeout-seconds 1 --nice 19 --legacy-local-discovery",
+    "exit": 0,
+    "elapsed_seconds": 269.6,
+    "status": "SAT_WITNESS_REPLAYED",
+    "classification": "STRUCTURALLY_UNRESOLVED",
+    "discovery_verdict": "SAT",
+    "replay": {
+      "candidate": true,
+      "added_constraints": true,
+      "named_deletion_arm": true,
+      "exact_cnf": true,
+      "canonical_static_extension": true
+    }
+  },
+  "identity": {
+    "arm_cell_index": 6,
+    "variables": 47211,
+    "post_arm_clauses": 704400,
+    "source_order_entries": 81,
+    "source_order_bank_sha256": "cedf416274a28e0aaee1fe148986610fe7e0f81ca510cae5a69b43af3aa4348c",
+    "source_order_installation_sha256": "f6860ff742497fcc34a45dddcb7717cdd4b92c3c653ff790adccfdee973be7f2",
+    "post_source_order_clauses": 704481,
+    "post_source_order_cnf_sha256": "82be51273d21d1377692a288b8d5714fb120792cb2e6565834b79f9b228ebd78",
+    "final_clauses": 704710,
+    "final_cnf_sha256": "8da06d5e45d1326fb256d3ca735a802c0bf942ce3e84f5df53125441526f2b5f"
+  },
+  "artifacts": {
+    "source_order_bank.json": {"bytes": 6362792, "sha256": "a0d8d396da07c31ba4fa19694b4d9b1943126b80de84a7a3fd83190c88780892"},
+    "source_order_installation.json": {"bytes": 668, "sha256": "916ca266c4a81a56c09a0044527c2b2ca59ed91d14a35cf8003c2443deaab50a"},
+    "discovery.cnf": {"bytes": 14463719, "sha256": "8da06d5e45d1326fb256d3ca735a802c0bf942ce3e84f5df53125441526f2b5f"},
+    "survivor.json": {"bytes": 340095, "sha256": "6641b1e0ba3c991df462f3fd22572ba4eebfc34964c6170bc00c9f69040e4123"},
+    "summary.json": {"bytes": 9417, "sha256": "e6f2c979a11addc4854d0f331759dcd40bdb7606f2e83fa7d367cb2d6bd334e4"}
+  },
+  "historical_pre_fix_witness": {
+    "exposed_by_current_code": false,
+    "regression_command": "UV_CACHE_DIR=scratch/runs/source-order-v27-receipt-20260904/tmp/producer-tmp/uv-cache uv run --with pytest pytest -q census/card_head/tests/test_exact12_v14_source_order_bank.py -k 'installs_clause_exactly_once or tampering_fails_fresh_rebuild_gate'",
+    "regression_exit": 0,
+    "regression_result": "2 passed, 6 deselected, 6 subtests passed in 1246.14s",
+    "evidence": "test_installs_clause_exactly_once rejects a second installation; test_tampering_fails_fresh_rebuild_gate rejects mutated source-order certificates. No historical witness API or fixture is present in the current source."
+  },
+  "validator_attempt": {
+    "path": "validator.json",
+    "exit": 2,
+    "result": "BLOCKED_AT_MISSING_PIQD_JOURNAL"
+  },
+  "limitations": [
+    "Legacy-local mode does not produce the PIQD descriptor/custody envelope required by v27 validation.",
+    "The bounded SAT result is finite discovery evidence only; it is not terminal UNSAT or Lean closure.",
+    "No final.cnf copy was made because discovery.cnf is already byte-identical to the frozen final CNF digest."
+  ],
+  "receipt_sha256": "9f6b0c07e8f442274dcdce32ac4ea1ae9dfb86cc0bba60b427cb37341774e9e6"
+}

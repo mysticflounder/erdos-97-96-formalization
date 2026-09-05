@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "source-order-v27-receipt-20260904",
+  "owner": "source-order-v27-receipt-20260904",
+  "base_head": "dae2e850eae19dca1fb59a431feacc7beccc8637",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/source-order-v27-receipt-20260904.json",
+    "docs/audits/2026-09-04-source-order-v27-receipt.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/discovery.cnf",
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/receipt.json",
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/run_manifest.json",
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/source_order_bank.json",
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/source_order_installation.json",
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/summary.json",
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/survivor.json",
+    "scratch/runs/source-order-v27-receipt-20260904/run-0001/validator.json"
+  ],
+  "created_utc": "2026-09-04T07:00:00Z",
+  "manifest_sha256": "c2b253244fb5589db1f00a194234363283560874715c9e5125bd85580ccc24ab"
+}

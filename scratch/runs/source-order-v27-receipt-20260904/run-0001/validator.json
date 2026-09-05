@@ -1,0 +1,8 @@
+{
+  "schema": "source-order-v27-validator-attempt/v1",
+  "command": "UV_CACHE_DIR=scratch/runs/source-order-v27-receipt-20260904/tmp/producer-tmp/uv-cache uv run python -m census.card_head.exact12_next_row_arm_static_v27_validator scratch/runs/source-order-v27-receipt-20260904/run-0001 --repo-root .",
+  "exit": 2,
+  "result": "BLOCKED",
+  "first_error": "[Errno 2] No such file or directory: 'piqd-journal'",
+  "meaning": "The legacy-local producer emitted the canary artifacts but no fresh PIQD descriptor/custody journal; the frozen v27 validator therefore failed closed before artifact certification."
+}

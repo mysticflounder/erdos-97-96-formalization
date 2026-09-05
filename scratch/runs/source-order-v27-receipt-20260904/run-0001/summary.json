@@ -1,0 +1,187 @@
+{
+  "arm_cell_index": 6,
+  "artifacts": {
+    "adjacent_apex_cross_block_family_bank": {
+      "bytes": 511287,
+      "path": "adjacent_apex_cross_block_family_bank.json",
+      "sha256": "09e5569a51232fc435edfefc9f51e0a84fbdef013dca7ba41e01f458d55a88ee"
+    },
+    "all_order_common_five_family_bank": {
+      "bytes": 36023549,
+      "path": "all_order_common_five_family_bank.json",
+      "sha256": "077ae2712b8fdb10b505763b1a62b152fb14133bc6c15ad214a99e613b5efad6"
+    },
+    "apex_first_opposite_shared_pair_common_five_family_bank": {
+      "bytes": 2391367,
+      "path": "apex_first_opposite_shared_pair_common_five_family_bank.json",
+      "sha256": "ed531923f0e3b3423e0c6c406759053faf2e4a266f4c3aa4bd1b75cf320c1340"
+    },
+    "apex_first_opposite_shared_pair_second_opposite_common_five_family_bank": {
+      "bytes": 2961063,
+      "path": "apex_first_opposite_shared_pair_second_opposite_common_five_family_bank.json",
+      "sha256": "fc3826d1b8ba1561ba8b5790b834d8e9bf3e211b5985af07d7540472354fcb55"
+    },
+    "apex_first_opposite_shared_pair_surplus_common_five_family_bank": {
+      "bytes": 4843607,
+      "path": "apex_first_opposite_shared_pair_surplus_common_five_family_bank.json",
+      "sha256": "ab52abfaa28366ae3324a275ffd370ba5fc9cae1b16c39b3b87c6ac4821bad8c"
+    },
+    "apex_first_surplus_second_common_five_family_bank": {
+      "bytes": 4042977,
+      "path": "apex_first_surplus_second_common_five_family_bank.json",
+      "sha256": "e0ebcbdc13c47679328746a2ee7a6cd43eeb213991a58edc147cdcf86a857f59"
+    },
+    "apex_internal_shared_pair_common_five_family_bank": {
+      "bytes": 2136351,
+      "path": "apex_internal_shared_pair_common_five_family_bank.json",
+      "sha256": "9b0ac725c33166fcb9f63cec7b2e23bfbd5e87135e7f2be590f43f683d091de3"
+    },
+    "apex_pair_cross_block_family_bank": {
+      "bytes": 1506993,
+      "path": "apex_pair_cross_block_family_bank.json",
+      "sha256": "d50c4a6dcc291ccb5de746c93a723fdb9767f4ea0cc5faa7233c6389b52e80ee"
+    },
+    "apex_shared_pair_cross_block_family_bank": {
+      "bytes": 1737260,
+      "path": "apex_shared_pair_cross_block_family_bank.json",
+      "sha256": "104963c33b1b4d8244eaee89a26516760c9c5d71020a2efa87ecbade152558ec"
+    },
+    "apex_triple_surplus_second_opposite_common_five_family_bank": {
+      "bytes": 3260238,
+      "path": "apex_triple_surplus_second_opposite_common_five_family_bank.json",
+      "sha256": "8c90035018ec70876bff6e8ab580016b0e5cba78908a5ef17857cf0fe3b6699d"
+    },
+    "apex_zero_cross_block_family_bank": {
+      "bytes": 1320216,
+      "path": "apex_zero_cross_block_family_bank.json",
+      "sha256": "43aa86b5851161caf4f9e2678f190779351174d8f112c420cb54c03a681f8e8c"
+    },
+    "arm_suffix": {
+      "bytes": 41404,
+      "path": "arm_suffix.json",
+      "sha256": "ea2c73f5e2da39213fceab3b4779623d2d4d8b8a7cf2ef451064f5b13298762c"
+    },
+    "center_exchange_all_order_common_five_family_bank": {
+      "bytes": 46806802,
+      "path": "center_exchange_all_order_common_five_family_bank.json",
+      "sha256": "5717a24abc71867f80fdefc2c6b6f1c1e138d3b94726cb914c0ddd8738e31b48"
+    },
+    "core_pair_all_order_common_five_family_bank": {
+      "bytes": 121948722,
+      "path": "core_pair_all_order_common_five_family_bank.json",
+      "sha256": "5dde98cea97e87961edb081544ee0e8026219cf90e6c06795d76098bcefdbac1"
+    },
+    "discovery_cnf": {
+      "bytes": 14463719,
+      "path": "discovery.cnf",
+      "sha256": "8da06d5e45d1326fb256d3ca735a802c0bf942ce3e84f5df53125441526f2b5f"
+    },
+    "first_opposite_pair_surplus_second_opposite_common_five_family_bank": {
+      "bytes": 5744797,
+      "path": "first_opposite_pair_surplus_second_opposite_common_five_family_bank.json",
+      "sha256": "36eddb3a314b70ae39f7aeac4df0d23b7d0fe370df807a1d80dbd1f615aaeb1a"
+    },
+    "job": {
+      "bytes": 45345,
+      "path": "job.json",
+      "sha256": "90f67adc56cef580a83395897e7832a967271580068f5cde096c4e001a4eb387"
+    },
+    "physical_class_cut_bank": {
+      "bytes": 187574,
+      "path": "physical_class_cut_bank.json",
+      "sha256": "17149afaa037cd086d01264220ead3eb5d9fd2043baa21e988ec5110dfd82823"
+    },
+    "physical_class_cut_installation": {
+      "bytes": 661,
+      "path": "physical_class_cut_installation.json",
+      "sha256": "527b6cc5d2282725b4cc9afb9e102268cd42344a07e100e69732bf8a9dd9c51d"
+    },
+    "positive_membership_bank": {
+      "bytes": 164184,
+      "path": "positive_membership_bank.json",
+      "sha256": "955555b97abc33384f64a8fb8e31cda463a566954797d7c62f942f7b2bd55ec6"
+    },
+    "proof": null,
+    "reciprocal_first_opposite_surplus_second_opposite_common_five_family_bank": {
+      "bytes": 5255657,
+      "path": "reciprocal_first_opposite_surplus_second_opposite_common_five_family_bank.json",
+      "sha256": "3881e31108a5d8fc30e4750310db7e5f1b4cb1b1a7ad0bdfa292de16434553e7"
+    },
+    "second_apex_surplus_second_first_common_five_family_bank": {
+      "bytes": 4447499,
+      "path": "second_apex_surplus_second_first_common_five_family_bank.json",
+      "sha256": "e2ec1821e9bc02a6055fc0fb59d3cc6325f58ea874bfcfa1e4b460dfcb17766d"
+    },
+    "second_cap_apex_surplus_family_bank": {
+      "bytes": 717128,
+      "path": "second_cap_apex_surplus_family_bank.json",
+      "sha256": "7173d937547f4c7055571911ac2960964b453e4d5bf276db76f37ff98b8c6a68"
+    },
+    "second_opposite_triple_surplus_first_opposite_three_triad_family_bank": {
+      "bytes": 6797527,
+      "path": "second_opposite_triple_surplus_first_opposite_three_triad_family_bank.json",
+      "sha256": "22081dcb556ef6ca7f7c1b59f78e8f596ce850e2d3b83249b2e5cf06cfa42aea"
+    },
+    "source_order_bank": {
+      "bytes": 6362792,
+      "path": "source_order_bank.json",
+      "sha256": "a0d8d396da07c31ba4fa19694b4d9b1943126b80de84a7a3fd83190c88780892"
+    },
+    "source_order_installation": {
+      "bytes": 668,
+      "path": "source_order_installation.json",
+      "sha256": "916ca266c4a81a56c09a0044527c2b2ca59ed91d14a35cf8003c2443deaab50a"
+    },
+    "surplus_apex_pair_family_bank": {
+      "bytes": 316156,
+      "path": "surplus_apex_pair_family_bank.json",
+      "sha256": "18a9f6f0d96586f3631e1081e511aa038b300ec9a9a09f78f68946c4900bf16c"
+    },
+    "surplus_pair_second_opposite_apex_pair_common_five_family_bank": {
+      "bytes": 3591706,
+      "path": "surplus_pair_second_opposite_apex_pair_common_five_family_bank.json",
+      "sha256": "264d34f4aa54e086a09f32cdd1bf521e28fc947b60ec75305f28191a27f049da"
+    },
+    "surplus_three_triad_family_bank": {
+      "bytes": 830853,
+      "path": "surplus_three_triad_family_bank.json",
+      "sha256": "2c7d02dc3fb030a0aa23bb6c879020b84a7e66f71a9fbb52eb12c81e416499e9"
+    },
+    "survivor": {
+      "bytes": 340095,
+      "path": "survivor.json",
+      "sha256": "6641b1e0ba3c991df462f3fd22572ba4eebfc34964c6170bc00c9f69040e4123"
+    },
+    "terminal_cnf": null,
+    "zero_center_cross_block_family_bank": {
+      "bytes": 1085387,
+      "path": "zero_center_cross_block_family_bank.json",
+      "sha256": "0ae7fb493c7ddc4168b3629b5a9042453db0672e0641b4c978cb220383cb6070"
+    }
+  },
+  "classification": "STRUCTURALLY_UNRESOLVED",
+  "discovery_stdout_tail": "47074 -47075 -47076 -47077 -47078 -47079 -47080 -47081 47082 -47083\nv 47084 -47085 47086 -47087 47088 -47089 -47090 -47091 -47092 -47093 -47094\nv -47095 -47096 -47097 -47098 -47099 -47100 -47101 -47102 -47103 -47104 -47105\nv -47106 -47107 -47108 -47109 -47110 -47111 -47112 -47113 -47114 47115 -47116\nv -47117 -47118 -47119 -47120 -47121 -47122 -47123 -47124 -47125 -47126 47127\nv 47128 47129 -47130 -47131 47132 -47133 -47134 47135 -47136 -47137 -47138\nv -47139 47140 -47141 -47142 -47143 -47144 -47145 -47146 -47147 -47148 -47149\nv -47150 47151 -47152 -47153 -47154 47155 -47156 47157 -47158 -47159 47160\nv 47161 47162 -47163 47164 47165 47166 47167 -47168 47169 -47170 -47171 -47172\nv -47173 -47174 -47175 47176 47177 -47178 47179 -47180 47181 -47182 47183\nv -47184 -47185 47186 -47187 -47188 47189 47190 47191 -47192 47193 47194\nv -47195 -47196 47197 -47198 47199 -47200 -47201 -47202 -47203 -47204 -47205\nv -47206 -47207 -47208 -47209 -47210 -47211 0\n\nnice: setpriority: Operation not permitted\n",
+  "discovery_verdict": "SAT",
+  "error": null,
+  "job_id": "e12b8200387eba2c135af2512e37466dc1e0cf72d45ea0a6f880cf055842b939",
+  "job_sha256": "90f67adc56cef580a83395897e7832a967271580068f5cde096c4e001a4eb387",
+  "lean_ingress_theorem": "Problem97.ATailFrontierLiveClosure.ExactTwelveRigid221Ingress.FullMembershipPrefixTerminalConsumer.false_of_terminalFullMembershipNamedDeletionArmPhysicalClassBank",
+  "lean_terminal_ingress_ready": true,
+  "nice": 19,
+  "replay": {
+    "added_constraints": true,
+    "candidate": true,
+    "canonical_static_extension": true,
+    "exact_cnf": true,
+    "named_deletion_arm": true
+  },
+  "schema": "p97_rigid221_exact12_next_row_arm_static_canary_run.v15",
+  "scope": "one finite exact-12 placement-1 named-arm static canary; no aggregate arm coverage, universal lift, or Lean closure; the typed terminal consumer is ready, but a verified terminal proof must still be converted into a Lean DimacsUnsatisfiable witness",
+  "status": "SAT_WITNESS_REPLAYED",
+  "terminal_promotion_status": "UNSAT_DRAT_VERIFIED_AWAITING_LEAN_TERMINAL_CERTIFICATE",
+  "terminal_proof_authenticated": false,
+  "terminal_proof_verified": false,
+  "terminal_stdout_tail": null,
+  "terminal_verdict": null,
+  "timeout_seconds": 1
+}

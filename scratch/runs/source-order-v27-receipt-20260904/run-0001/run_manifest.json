@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "source-order-v27-receipt-20260904",
+  "run_id": "run-0001",
+  "root": "scratch/runs/source-order-v27-receipt-20260904/run-0001",
+  "owner": "source-order-v27-receipt-20260904",
+  "base_head": "dae2e850eae19dca1fb59a431feacc7beccc8637",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "census/card_head/exact12_next_row_arm_static_canary.py": "98a433d6bcbd4d55f7d4b61d520537e661c70d61e26b666249c6b21df871c3a1",
+    "census/card_head/exact12_next_row_arm_static_v27_validator.py": "66bc13fbfc71bbf05788ae8a693cd663d04e8b6fcb0ae529e3f5453134705393",
+    "census/card_head/exact12_v14_source_order_bank.py": "fe711a4334fada02ad2505ab828fdffad460265e25653ab47de9a4f754c6a884",
+    "census/card_head/exact12_v14_ordered_cut_adapter.py": "d420833d3af3d9615128a46bad92a2fa28e45e32b73779632b0710f498a182c3"
+  },
+  "input_digests": {
+    "README.md": "ce90c080916717d32097e8342184ffdb087c74f200526a261f36fcf70ecd4a65"
+  },
+  "created_utc": "2026-09-04T07:05:00Z",
+  "manifest_sha256": "e875f00071a9b527ea65b372154075e500a5cd5ed79d44537c854a32866d0f62"
+}
