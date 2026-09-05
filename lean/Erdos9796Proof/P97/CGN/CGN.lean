@@ -89,6 +89,7 @@ def lastIndex {m : ℕ} (hm : 2 ≤ m) : Fin m :=
 
 @[simp] theorem firstIndex_val {m : ℕ} (hm : 2 ≤ m) : (firstIndex hm).val = 0 := rfl
 
+/-- The final endpoint index has underlying natural-number value `m - 1`. -/
 @[simp] theorem lastIndex_val {m : ℕ} (hm : 2 ≤ m) : (lastIndex hm).val = m - 1 := rfl
 
 /-- The two endpoint indices are distinct. -/
@@ -281,6 +282,8 @@ theorem witnessedPairsAt_sum_le_square_div_four {m : ℕ} (L : OrderedCap m)
 def CapIndexPairs (m : ℕ) : Finset (Fin m × Fin m) :=
   Finset.univ.filter fun p => p.1 < p.2
 
+/-- An index pair belongs to `CapIndexPairs m` exactly when it is oriented
+strictly increasingly. -/
 @[simp] theorem mem_CapIndexPairs {m : ℕ} {p : Fin m × Fin m} :
     p ∈ CapIndexPairs m ↔ p.1 < p.2 := by
   simp [CapIndexPairs]

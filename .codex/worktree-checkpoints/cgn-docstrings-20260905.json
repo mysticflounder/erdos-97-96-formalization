@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cgn-docstrings-20260905",
+  "owner": "luna-swarm-cgn-docstrings",
+  "base_head": "95482f45bc46821dce867844413ec7255781155b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cgn-docstrings-20260905.json",
+    "lean/Erdos9796Proof/P97/CGN/CGN.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T03:59:14Z",
+  "manifest_sha256": "8814cd21ffbfc1f5fca3a7b08389d1c3ab1efe273e1726a0162c3b130a0da435"
+}
