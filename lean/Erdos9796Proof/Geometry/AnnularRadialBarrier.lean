@@ -153,6 +153,54 @@ theorem false_of_zero_linear_image_of_nonnegative_combination
       nlinarith
   nlinarith [hp, hLp]
 
+/-- If a point on the zero level of a linear functional is forced into the
+nonnegative cone of two strict same-sign points, it must be one of the two
+cone generators. -/
+theorem annular_inner_point_mem_of_barrier
+    {L : Plane →ₗ[ℝ] ℝ} {p q₁ q₂ : Plane}
+    (hp : L p = 0) (hLq₁ : 0 < L q₁) (hLq₂ : 0 < L q₂)
+    (hbarrier : p ≠ q₁ → p ≠ q₂ →
+      ∃ α β : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 < α + β ∧
+        p = α • q₁ + β • q₂) :
+    p = q₁ ∨ p = q₂ := by
+  by_contra h
+  push_neg at h
+  rcases hbarrier h.1 h.2 with ⟨α, β, hα, hβ, hcoeff, hcomb⟩
+  exact false_of_zero_linear_image_of_nonnegative_combination
+    hLq₁ hLq₂ hα hβ hcoeff hcomb hp
+
+/-- Abstract common-inner-pair conclusion.  The two linear barriers are the
+source-clean interface: geometric ingress must instantiate them for the two
+inner pairs, after which the unordered pairs coincide. -/
+theorem annularFourRow_innerPair_eq
+    {Lneg Lpos : Plane →ₗ[ℝ] ℝ}
+    {pneg ppos qneg qpos : Plane}
+    (hpne : pneg ≠ ppos)
+    (hLposPpos : Lpos ppos = 0) (hLposQneg : 0 < Lpos qneg)
+    (hLposQpos : 0 < Lpos qpos)
+    (hbarrierPos : ppos ≠ qneg → ppos ≠ qpos →
+      ∃ α β : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 < α + β ∧
+        ppos = α • qneg + β • qpos)
+    (hLnegPneg : Lneg pneg = 0) (hLnegQneg : 0 < Lneg qneg)
+    (hLnegQpos : 0 < Lneg qpos)
+    (hbarrierNeg : pneg ≠ qneg → pneg ≠ qpos →
+      ∃ α β : ℝ, 0 ≤ α ∧ 0 ≤ β ∧ 0 < α + β ∧
+        pneg = α • qneg + β • qpos) :
+    ({pneg, ppos} : Finset Plane) = {qneg, qpos} := by
+  have hppos : ppos = qneg ∨ ppos = qpos :=
+    annular_inner_point_mem_of_barrier hLposPpos hLposQneg hLposQpos hbarrierPos
+  have hpneg : pneg = qneg ∨ pneg = qpos :=
+    annular_inner_point_mem_of_barrier hLnegPneg hLnegQneg hLnegQpos hbarrierNeg
+  rcases hppos with hppos | hppos <;> rcases hpneg with hpneg | hpneg
+  · exfalso
+    apply hpne
+    exact Eq.trans hpneg (Eq.symm hppos)
+  · simp [hppos, hpneg, Finset.pair_comm]
+  · simp [hppos, hpneg, Finset.pair_comm]
+  · exfalso
+    apply hpne
+    exact Eq.trans hpneg (Eq.symm hppos)
+
 /-- The determinant against a fixed normalized ray is a linear functional in
 the second point.  In the normalized coordinates the physical center is the
 origin, so no affine translation is hidden in this definition. -/
