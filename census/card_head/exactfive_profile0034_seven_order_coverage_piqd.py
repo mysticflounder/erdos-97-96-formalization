@@ -28,6 +28,7 @@ from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 
 LANE_ID = "exactfive-profile0034-seven-order-coverage-piqd-r2-20260904"
 RUN_ID = "run-0001"
+RUN_OWNER = "profile0034-seven-order-coverage-piqd-r2"
 PARENT_ROOT = (
     parent.REPOSITORY_ROOT
     / "scratch/runs/exactfive-hard-source-swap-order-piqd-r2-20260902/run-0001"
@@ -502,7 +503,7 @@ def _load_run_manifest() -> dict[str, Any]:
         raise SevenOrderCoverageError("coverage run identity drifted")
     if value.get("root") != f"scratch/runs/{LANE_ID}/{RUN_ID}":
         raise SevenOrderCoverageError("coverage run root drifted")
-    if value.get("owner") != "profile0034-seven-order-coverage-piqd":
+    if value.get("owner") != RUN_OWNER:
         raise SevenOrderCoverageError("coverage run owner drifted")
     if value.get("base_head") != BASE_HEAD:
         raise SevenOrderCoverageError("coverage run base head drifted")

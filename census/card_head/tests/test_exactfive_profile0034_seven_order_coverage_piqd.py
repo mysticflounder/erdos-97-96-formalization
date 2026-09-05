@@ -142,7 +142,7 @@ def test_coverage_run_manifest_input_drift_is_rejected(monkeypatch, tmp_path: Pa
         "lane_id": subject.LANE_ID,
         "run_id": subject.RUN_ID,
         "root": f"scratch/runs/{subject.LANE_ID}/{subject.RUN_ID}",
-        "owner": "profile0034-seven-order-coverage-piqd",
+        "owner": subject.RUN_OWNER,
         "base_head": subject.BASE_HEAD,
         "output_classes": ["artifacts", "events", "tmp"],
         "source_digests": {"source.txt": subject._sha(source.read_bytes())},
@@ -159,6 +159,13 @@ def test_coverage_run_manifest_input_drift_is_rejected(monkeypatch, tmp_path: Pa
     monkeypatch.setattr(subject.parent, "REPOSITORY_ROOT", tmp_path)
     with pytest.raises(subject.SevenOrderCoverageError, match="digest drifted"):
         subject._load_run_manifest()
+
+
+def test_current_successor_run_manifest_is_loadable() -> None:
+    manifest = subject._load_run_manifest()
+    assert manifest["lane_id"] == subject.LANE_ID
+    assert manifest["run_id"] == subject.RUN_ID
+    assert manifest["owner"] == subject.RUN_OWNER
 
 
 def test_control_semantics_are_reasserted_after_directory_replay() -> None:
