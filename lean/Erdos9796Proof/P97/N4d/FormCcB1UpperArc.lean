@@ -1327,6 +1327,9 @@ faithful-frame coordinate facts the v₃-anchor `bisectorKill` instantiations ne
 
 From these the v₃-anchor `bisectorKill` hypotheses-minus-`hXeq` follow by
 elementary coordinate algebra (the §4 reductions). -/
+/-- The faithful normalized coordinate data for the `v₃` anchor.  This frame
+bundles the similarity chart, MEC coordinates, circle memberships, disk bounds,
+and cap-sign hypotheses used by the `v₃`-anchor reductions. -/
 structure CB1V3AnchorFrame {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) where
   /-- The similarity chart. -/
