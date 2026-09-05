@@ -30,6 +30,8 @@ def cross (ax ay bx byy cx cy : ℝ) : ℝ :=
 def qdist (ax ay bx byy : ℝ) : ℝ :=
   (ax - bx) ^ 2 + 3 * (ay - byy) ^ 2
 
+-- The normalized nonlinear elimination uses several nested `nlinarith` calls;
+-- the default heartbeat budget is insufficient on a clean build.
 set_option maxHeartbeats 2000000 in
 theorem normalized_first_chain_obstruction
     (px py sx sy : ℝ)
@@ -168,6 +170,8 @@ theorem normalized_first_chain_obstruction
   · exact hsx
   · linarith [hsy]
 
+-- Combining the two normalized chains enlarges the nonlinear context enough
+-- that a clean build needs the same bounded heartbeat allowance.
 set_option maxHeartbeats 2000000 in
 theorem normalized_common_obstruction
     (px py sx sy dx dy cx cy : ℝ)
@@ -273,6 +277,8 @@ theorem normalized_common_obstruction
   rw [hfactor_identity] at hleft_pos
   linarith only [hleft_pos, hright_neg]
 
+-- The swapped-chain proof performs a factored quadratic sign elimination;
+-- the bounded allowance keeps that kernel-checked calculation reproducible.
 set_option maxHeartbeats 2000000 in
 /-- In the normalized equilateral frame, the profile-0034 circle equations
 exclude the swapped chain `U<a<s<d<c<O`. -/
@@ -950,6 +956,193 @@ theorem boundaryOrder_common_obstruction
     (mul_neg_of_pos_of_neg hbase hads)
     (mul_neg_of_pos_of_neg hbase hadc)
     (mul_neg_of_pos_of_neg hbase hdcU)
+    hOad hOap hUOs hcOa
+
+/-- Six increasing positions on a convex boundary cannot carry the swapped
+profile-0034 metric pattern in the reversed order `U<O<c<d<s<a`. -/
+theorem boundaryOrder_a_before_s_obstruction_reversed
+    {n : ℕ} (boundary : Fin n → ℝ²)
+    (hinj : Function.Injective boundary)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (iU iO ic id is ia : Fin n)
+    (hUO : iU < iO) (hOc : iO < ic) (hcd : ic < id)
+    (hds : id < is) (hsa : is < ia)
+    (hUO_Ua : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary ia))
+    (hUO_Oa : dist (boundary iU) (boundary iO) =
+      dist (boundary iO) (boundary ia))
+    (hOad : dist (boundary iO) (boundary ia) =
+      dist (boundary iO) (boundary id))
+    (hUOs : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary is))
+    (hcOa : dist (boundary ic) (boundary iO) =
+      dist (boundary ic) (boundary ia)) :
+    False := by
+  have hOa : iO < ia := lt_trans hOc (lt_trans hcd (lt_trans hds hsa))
+  have hUa : iU < ia := lt_trans hUO hOa
+  have hUs : iU < is := lt_trans hUO (lt_trans hOc (lt_trans hcd hds))
+  have hUd : iU < id := lt_trans hUO (lt_trans hOc hcd)
+  have hUc : iU < ic := lt_trans hUO hOc
+  have hda : id < ia := lt_trans hds hsa
+  have cyclic_area (X Y Z : ℝ²) :
+      signedArea2 X Y Z = signedArea2 Y Z X := by
+    simp only [signedArea2]
+    ring
+  have swap_last (X Y Z : ℝ²) :
+      signedArea2 X Z Y = -signedArea2 X Y Z := by
+    simp only [signedArea2]
+    ring
+  have hbase : signedArea2 (boundary iU) (boundary iO) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hUO hOa
+  have hUsa : signedArea2 (boundary iU) (boundary is) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hUs hsa
+  have hUas : 0 < signedArea2 (boundary iU) (boundary ia) (boundary is) := by
+    rw [swap_last]
+    linarith
+  have hOsa : signedArea2 (boundary iO) (boundary is) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw (lt_trans hOc (lt_trans hcd hds)) hsa
+  have haOs : signedArea2 (boundary ia) (boundary iO) (boundary is) < 0 := by
+    rw [cyclic_area]
+    exact hOsa
+  have hasO : 0 < signedArea2 (boundary ia) (boundary is) (boundary iO) := by
+    rw [swap_last]
+    linarith
+  have hUda : signedArea2 (boundary iU) (boundary id) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hUd hda
+  have hUad : 0 < signedArea2 (boundary iU) (boundary ia) (boundary id) := by
+    rw [swap_last]
+    linarith
+  have hUca : signedArea2 (boundary iU) (boundary ic) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hUc (lt_trans hcd hda)
+  have hUac : 0 < signedArea2 (boundary iU) (boundary ia) (boundary ic) := by
+    rw [swap_last]
+    linarith
+  have hdsa : signedArea2 (boundary id) (boundary is) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hds hsa
+  have hsad : signedArea2 (boundary is) (boundary ia) (boundary id) < 0 := by
+    rw [← cyclic_area]
+    exact hdsa
+  have hsda : 0 < signedArea2 (boundary is) (boundary id) (boundary ia) := by
+    rw [swap_last]
+    linarith
+  have hUcd : signedArea2 (boundary iU) (boundary ic) (boundary id) < 0 :=
+    hneg_of_ccw hinj hccw hUc hcd
+  have hdUc : signedArea2 (boundary id) (boundary iU) (boundary ic) < 0 := by
+    rw [cyclic_area]
+    exact hUcd
+  have hdcU : 0 < signedArea2 (boundary id) (boundary ic) (boundary iU) := by
+    rw [swap_last]
+    linarith
+  exact euclidean_a_before_s_obstruction_opposedProducts
+    (boundary iU) (boundary ia) (boundary is) (boundary id)
+    (boundary ic) (boundary iO)
+    (hinj.ne (ne_of_lt hUO)) hUO_Ua hUO_Oa
+    (mul_neg_of_neg_of_pos hbase hUas)
+    (mul_neg_of_neg_of_pos hbase hasO)
+    (mul_neg_of_neg_of_pos hbase hUad)
+    (mul_neg_of_neg_of_pos hbase hUac)
+    (mul_neg_of_neg_of_pos hbase hsda)
+    (mul_neg_of_neg_of_pos hbase hdcU)
+    hOad hUOs hcOa
+
+/-- Seven increasing positions on a convex boundary cannot carry the common
+profile-0034 metric pattern in the reversed order `U<O<c<d<a<s<p`. -/
+theorem boundaryOrder_common_obstruction_reversed
+    {n : ℕ} (boundary : Fin n → ℝ²)
+    (hinj : Function.Injective boundary)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (iU iO ic id ia is ip : Fin n)
+    (hUO : iU < iO) (hOc : iO < ic) (hcd : ic < id)
+    (hda : id < ia) (has : ia < is) (hsp : is < ip)
+    (hUO_Ua : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary ia))
+    (hUO_Oa : dist (boundary iU) (boundary iO) =
+      dist (boundary iO) (boundary ia))
+    (hOad : dist (boundary iO) (boundary ia) =
+      dist (boundary iO) (boundary id))
+    (hOap : dist (boundary iO) (boundary ia) =
+      dist (boundary iO) (boundary ip))
+    (hUOs : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary is))
+    (hcOa : dist (boundary ic) (boundary iO) =
+      dist (boundary ic) (boundary ia)) :
+    False := by
+  have hOa : iO < ia := lt_trans hOc (lt_trans hcd hda)
+  have hUa : iU < ia := lt_trans hUO hOa
+  have hUs : iU < is := lt_trans hUa has
+  have hUp : iU < ip := lt_trans hUs hsp
+  have hUc : iU < ic := lt_trans hUO hOc
+  have hUd : iU < id := lt_trans hUc hcd
+  have hdp : id < ip := lt_trans hda (lt_trans has hsp)
+  have hcp : ic < ip := lt_trans hcd hdp
+  have cyclic_area (X Y Z : ℝ²) :
+      signedArea2 X Y Z = signedArea2 Y Z X := by
+    simp only [signedArea2]
+    ring
+  have swap_last (X Y Z : ℝ²) :
+      signedArea2 X Z Y = -signedArea2 X Y Z := by
+    simp only [signedArea2]
+    ring
+  have hbase : signedArea2 (boundary iU) (boundary iO) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hUO hOa
+  have hUsp : signedArea2 (boundary iU) (boundary is) (boundary ip) < 0 :=
+    hneg_of_ccw hinj hccw hUs hsp
+  have hUps : 0 < signedArea2 (boundary iU) (boundary ip) (boundary is) := by
+    rw [swap_last]
+    linarith
+  have hUap : signedArea2 (boundary iU) (boundary ia) (boundary ip) < 0 :=
+    hneg_of_ccw hinj hccw hUa (lt_trans has hsp)
+  have hUpa : 0 < signedArea2 (boundary iU) (boundary ip) (boundary ia) := by
+    rw [swap_last]
+    linarith
+  have hUcp : signedArea2 (boundary iU) (boundary ic) (boundary ip) < 0 :=
+    hneg_of_ccw hinj hccw hUc hcp
+  have hUpc : 0 < signedArea2 (boundary iU) (boundary ip) (boundary ic) := by
+    rw [swap_last]
+    linarith
+  have hasp : signedArea2 (boundary ia) (boundary is) (boundary ip) < 0 :=
+    hneg_of_ccw hinj hccw has hsp
+  have hpas : signedArea2 (boundary ip) (boundary ia) (boundary is) < 0 := by
+    rw [cyclic_area]
+    exact hasp
+  have hpsa : 0 < signedArea2 (boundary ip) (boundary is) (boundary ia) := by
+    rw [swap_last]
+    linarith
+  have hdas : signedArea2 (boundary id) (boundary ia) (boundary is) < 0 :=
+    hneg_of_ccw hinj hccw hda has
+  have hasd : signedArea2 (boundary ia) (boundary is) (boundary id) < 0 := by
+    rw [← cyclic_area]
+    exact hdas
+  have hads : 0 < signedArea2 (boundary ia) (boundary id) (boundary is) := by
+    rw [swap_last]
+    linarith
+  have hcda : signedArea2 (boundary ic) (boundary id) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hcd hda
+  have hacd : signedArea2 (boundary ia) (boundary ic) (boundary id) < 0 := by
+    rw [cyclic_area]
+    exact hcda
+  have hadc : 0 < signedArea2 (boundary ia) (boundary id) (boundary ic) := by
+    rw [swap_last]
+    linarith
+  have hUcd : signedArea2 (boundary iU) (boundary ic) (boundary id) < 0 :=
+    hneg_of_ccw hinj hccw hUc hcd
+  have hdUc : signedArea2 (boundary id) (boundary iU) (boundary ic) < 0 := by
+    rw [cyclic_area]
+    exact hUcd
+  have hdcU : 0 < signedArea2 (boundary id) (boundary ic) (boundary iU) := by
+    rw [swap_last]
+    linarith
+  exact euclidean_common_obstruction_opposedProducts
+    (boundary iU) (boundary ip) (boundary is) (boundary ia)
+    (boundary id) (boundary ic) (boundary iO)
+    (hinj.ne (ne_of_lt hUO)) hUO_Ua hUO_Oa
+    (mul_neg_of_neg_of_pos hbase hUps)
+    (mul_neg_of_neg_of_pos hbase hUpa)
+    (mul_neg_of_neg_of_pos hbase hUpc)
+    (mul_neg_of_neg_of_pos hbase hpsa)
+    (mul_neg_of_neg_of_pos hbase hads)
+    (mul_neg_of_neg_of_pos hbase hadc)
+    (mul_neg_of_neg_of_pos hbase hdcU)
     hOad hOap hUOs hcOa
 
 end Profile0034

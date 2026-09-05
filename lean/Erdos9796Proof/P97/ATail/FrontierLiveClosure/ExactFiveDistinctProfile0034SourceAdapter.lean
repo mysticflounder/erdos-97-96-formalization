@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctSecondApexSourceSwap
+import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.BoundaryIndexingCyclicShift
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.RobustApexFourIncidenceCyclicReduction
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ExactFiveDistinctThreeFanCollision
@@ -29,6 +30,76 @@ open ExactFiveDistinctThreeCenterContinuation
 open ExactFiveDistinctSecondApexSourceSwap
 open FirstApexUniqueRadiusResidual
 open Census554.GeneralCarrierBridge
+
+/-- Two equal adjacent-distance pairs force the two compatible cyclic orders
+of four distinct boundary roles after cutting at the first role. -/
+theorem BoundaryIndexing.two_equal_pairs_middle_order_cyclicShift
+    {A : Finset ℝ²} (hA : ConvexIndep A) (B : BoundaryIndexing A)
+    {iU ia ic iO : Fin B.n}
+    (hUa : iU ≠ ia) (hUc : iU ≠ ic) (hUO : iU ≠ iO)
+    (hac : ia ≠ ic) (haO : ia ≠ iO) (hcO : ic ≠ iO)
+    (hUaUO : dist (B.boundary iU) (B.boundary ia) =
+      dist (B.boundary iU) (B.boundary iO))
+    (hcOca : dist (B.boundary ic) (B.boundary iO) =
+      dist (B.boundary ic) (B.boundary ia)) :
+    (ia - iU < ic - iU ∧ ic - iU < iO - iU) ∨
+      (iO - iU < ic - iU ∧ ic - iU < ia - iU) := by
+  let hpos : 0 < B.n :=
+    lt_of_le_of_lt (Nat.zero_le iU.val) iU.isLt
+  letI : NeZero B.n := ⟨Nat.ne_of_gt hpos⟩
+  let shifted := B.cyclicShift iU
+  have shifted_point (i : Fin B.n) :
+      shifted.boundary (i - iU) = B.boundary i := by
+    change B.boundary ((i - iU) + iU) = B.boundary i
+    simp only [sub_add_cancel]
+  have hUaPos : iU - iU < ia - iU :=
+    B.cyclicShift_sub_pos_of_ne hUa.symm
+  have hUcPos : iU - iU < ic - iU :=
+    B.cyclicShift_sub_pos_of_ne hUc.symm
+  have hUOPos : iU - iU < iO - iU :=
+    B.cyclicShift_sub_pos_of_ne hUO.symm
+  have hac' : ia - iU ≠ ic - iU := B.cyclicShift_sub_ne_of_ne hac
+  have haO' : ia - iU ≠ iO - iU := B.cyclicShift_sub_ne_of_ne haO
+  have hcO' : ic - iU ≠ iO - iU := B.cyclicShift_sub_ne_of_ne hcO
+  have hcOca' : dist (B.boundary iO) (B.boundary ic) =
+      dist (B.boundary ia) (B.boundary ic) := by
+    simpa only [dist_comm (B.boundary ic) (B.boundary iO),
+      dist_comm (B.boundary ic) (B.boundary ia)] using hcOca
+  have horders :
+      (ia - iU < ic - iU ∧ ic - iU < iO - iU) ∨
+        (iO - iU < ic - iU ∧ ic - iU < ia - iU) ∨
+        (ia - iU < iO - iU ∧ iO - iU < ic - iU) ∨
+        (ic - iU < ia - iU ∧ ia - iU < iO - iU) ∨
+        (ic - iU < iO - iU ∧ iO - iU < ia - iU) ∨
+        (iO - iU < ia - iU ∧ ia - iU < ic - iU) := by
+    omega
+  rcases horders with h | h | h | h | h | h
+  · exact Or.inl h
+  · exact Or.inr h
+  · have hK :=
+      CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+        hA shifted.boundary_injective shifted.boundary_image shifted.boundary_ccw
+          hUaPos h.1 h.2
+    simp only [shifted_point] at hK
+    linarith [hUaUO, hcOca']
+  · have hK :=
+      CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
+        hA shifted.boundary_injective shifted.boundary_image shifted.boundary_ccw
+          hUcPos h.1 h.2
+    simp only [shifted_point] at hK
+    linarith [hUaUO, hcOca']
+  · have hK :=
+      CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
+        hA shifted.boundary_injective shifted.boundary_image shifted.boundary_ccw
+          hUcPos h.1 h.2
+    simp only [shifted_point] at hK
+    linarith [hUaUO, hcOca']
+  · have hK :=
+      CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw
+        hA shifted.boundary_injective shifted.boundary_image shifted.boundary_ccw
+          hUOPos h.1 h.2
+    simp only [shifted_point] at hK
+    linarith [hUaUO, hcOca']
 
 /-- A four-element finset containing distinct anchors decomposes into the two
 remaining points, which are distinct and outside the anchor pair. -/
@@ -572,6 +643,46 @@ theorem
     hps, hp₂, hpO, hs₂, hsU, hsO, hsa, hpD, hsD, hblockerDeleted,
     hiU, hip, his, hia, hid, hic, hiO, hpairPoints, hpairIndices⟩
 
+/-- The retained point and the two opposite apices have one of two mirror
+orders after cutting the live boundary at the blocker.  The two row circles
+exclude the other four orders by strict Kalmanson inequalities. -/
+theorem RobustApexFourIncidenceContinuationPacket.profile0034_outer_order_cyclicShift
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support)
+    (iU ia ic iO : Fin P.boundaryIndexing.n)
+    (hU : P.boundaryIndexing.boundary iU = blocker)
+    (ha : P.boundaryIndexing.boundary ia = N.retained)
+    (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
+    (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
+    (hUa : iU ≠ ia) (hUc : iU ≠ ic) (hUO : iU ≠ iO)
+    (hac : ia ≠ ic) (haO : ia ≠ iO) (hcO : ic ≠ iO) :
+    (ia - iU < ic - iU ∧ ic - iU < iO - iU) ∨
+      (iO - iU < ic - iU ∧ ic - iU < ia - iU) := by
+  have hUO_Ua :
+      dist blocker S.oppApex1 = dist blocker N.retained :=
+    (P.surface.row₁.support_eq_radius S.oppApex1 hOK₁).trans
+      (P.surface.row₁.support_eq_radius N.retained P.a_mem_row₁).symm
+  have hcOa :
+      dist S.oppApex2 S.oppApex1 = dist S.oppApex2 N.retained :=
+    (P.surface.row₂.support_eq_radius S.oppApex1 hOK₂).trans
+      (P.surface.row₂.support_eq_radius N.retained P.a_mem_row₂).symm
+  apply BoundaryIndexing.two_equal_pairs_middle_order_cyclicShift
+    D.convex P.boundaryIndexing hUa hUc hUO hac haO hcO
+  · simpa only [hU, ha, hO] using hUO_Ua.symm
+  · simpa only [hc, hO, ha] using hcOa
+
 /-- A first-row point and a blocker-row point in the profile-0034 order close
 the robust three-row source on any authenticated CCW boundary enumeration.
 The deleted point remains on the original exact-five first-apex circle even
@@ -763,6 +874,93 @@ theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_middleSwa
       hsK₁ iU ia is id ic iO hU ha hs hd hc hO
       (lt_trans hUp hpa) has hsd hdc hcO
 
+/-- The reversed outer placement `U<O<c<d<{a,s}<p` also closes for either
+strict order of the retained point and the blocker-row residual point. -/
+theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_middleSwap_reversed_onBoundary
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support)
+    {n : ℕ} (boundary : Fin n → ℝ²)
+    (hboundary_injective : Function.Injective boundary)
+    (hboundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {p s : ℝ²}
+    (hpK₀ : p ∈ P.surface.row₀.support)
+    (hsK₁ : s ∈ P.surface.row₁.support)
+    (iU iO ic id ia is ip : Fin n)
+    (hU : boundary iU = blocker)
+    (hO : boundary iO = S.oppApex1)
+    (hc : boundary ic = S.oppApex2)
+    (hd : boundary id = deleted)
+    (ha : boundary ia = N.retained)
+    (hs : boundary is = s)
+    (hp : boundary ip = p)
+    (hUO : iU < iO) (hOc : iO < ic) (hcd : ic < id)
+    (hmiddle :
+      (id < ia ∧ ia < is ∧ is < ip) ∨
+      (id < is ∧ is < ia ∧ ia < ip)) :
+    False := by
+  have hUO_Ua :
+      dist blocker S.oppApex1 = dist blocker N.retained :=
+    (P.surface.row₁.support_eq_radius S.oppApex1 hOK₁).trans
+      (P.surface.row₁.support_eq_radius N.retained P.a_mem_row₁).symm
+  have hUO_Oa :
+      dist blocker S.oppApex1 = dist S.oppApex1 N.retained := by
+    calc
+      dist blocker S.oppApex1 = dist S.oppApex1 blocker := dist_comm _ _
+      _ = dist S.oppApex1 N.retained :=
+        (P.surface.row₀.support_eq_radius blocker hblockerK₀).trans
+          (P.surface.row₀.support_eq_radius
+            N.retained P.surface.a_mem_row₀).symm
+  have hOad :
+      dist S.oppApex1 N.retained = dist S.oppApex1 deleted :=
+    (mem_selectedClass.mp
+        (retained_mem_firstApex_selectedClass N)).2.trans
+      (mem_selectedClass.mp
+        (deleted_mem_firstApex_selectedClass N)).2.symm
+  have hOap : dist S.oppApex1 N.retained = dist S.oppApex1 p :=
+    (P.surface.row₀.support_eq_radius
+      N.retained P.surface.a_mem_row₀).trans
+        (P.surface.row₀.support_eq_radius p hpK₀).symm
+  have hUOs : dist blocker S.oppApex1 = dist blocker s :=
+    (P.surface.row₁.support_eq_radius S.oppApex1 hOK₁).trans
+      (P.surface.row₁.support_eq_radius s hsK₁).symm
+  have hcOa :
+      dist S.oppApex2 S.oppApex1 = dist S.oppApex2 N.retained :=
+    (P.surface.row₂.support_eq_radius S.oppApex1 hOK₂).trans
+      (P.surface.row₂.support_eq_radius N.retained P.a_mem_row₂).symm
+  rcases hmiddle with ⟨hda, has, hsp⟩ | ⟨hds, hsa, hap⟩
+  · apply
+      Census554.EqualityCore.Profile0034.boundaryOrder_common_obstruction_reversed
+        boundary hboundary_injective hboundary_ccw
+        iU iO ic id ia is ip hUO hOc hcd hda has hsp
+    · simpa only [hU, hO, ha] using hUO_Ua
+    · simpa only [hU, hO, ha] using hUO_Oa
+    · simpa only [hO, ha, hd] using hOad
+    · simpa only [hO, ha, hp] using hOap
+    · simpa only [hU, hO, hs] using hUOs
+    · simpa only [hc, hO, ha] using hcOa
+  · apply
+      Census554.EqualityCore.Profile0034.boundaryOrder_a_before_s_obstruction_reversed
+        boundary hboundary_injective hboundary_ccw
+        iU iO ic id is ia hUO hOc hcd hds hsa
+    · simpa only [hU, hO, ha] using hUO_Ua
+    · simpa only [hU, hO, ha] using hUO_Oa
+    · simpa only [hO, ha, hd] using hOad
+    · simpa only [hU, hO, hs] using hUOs
+    · simpa only [hc, hO, ha] using hcOa
+
 /-- Specialization of the profile-0034 order consumer to the boundary
 indexing already stored in the robust continuation packet. -/
 theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_boundaryOrder
@@ -831,7 +1029,7 @@ theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_boundaryO
     (hd : P.boundaryIndexing.boundary id = deleted)
     (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
     (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
-    (hUp : iU - iU < ip - iU) (hps : ip - iU < is - iU)
+    (hUip : iU ≠ ip) (hps : ip - iU < is - iU)
     (hsa : is - iU < ia - iU) (had : ia - iU < id - iU)
     (hdc : id - iU < ic - iU) (hcO : ic - iU < iO - iU) :
     False := by
@@ -839,6 +1037,8 @@ theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_boundaryO
     lt_of_le_of_lt (Nat.zero_le iU.val) iU.isLt
   letI : NeZero P.boundaryIndexing.n := ⟨Nat.ne_of_gt hpos⟩
   let shifted := P.boundaryIndexing.cyclicShift iU
+  have hUp : iU - iU < ip - iU :=
+    P.boundaryIndexing.cyclicShift_sub_pos_of_ne hUip.symm
   have shifted_point (i : Fin P.boundaryIndexing.n) (x : ℝ²)
       (hx : P.boundaryIndexing.boundary i = x) :
       shifted.boundary (i - iU) = x := by
@@ -884,7 +1084,7 @@ theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_middleSwa
     (hd : P.boundaryIndexing.boundary id = deleted)
     (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
     (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
-    (hUp : iU - iU < ip - iU)
+    (hUip : iU ≠ ip)
     (hmiddle :
       (ip - iU < is - iU ∧ is - iU < ia - iU ∧ ia - iU < id - iU) ∨
       (ip - iU < ia - iU ∧ ia - iU < is - iU ∧ is - iU < id - iU))
@@ -894,6 +1094,8 @@ theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_middleSwa
     lt_of_le_of_lt (Nat.zero_le iU.val) iU.isLt
   letI : NeZero P.boundaryIndexing.n := ⟨Nat.ne_of_gt hpos⟩
   let shifted := P.boundaryIndexing.cyclicShift iU
+  have hUp : iU - iU < ip - iU :=
+    P.boundaryIndexing.cyclicShift_sub_pos_of_ne hUip.symm
   have shifted_point (i : Fin P.boundaryIndexing.n) (x : ℝ²)
       (hx : P.boundaryIndexing.boundary i = x) :
       shifted.boundary (i - iU) = x := by
@@ -908,6 +1110,63 @@ theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_middleSwa
       (shifted_point is s hs) (shifted_point ia N.retained ha)
       (shifted_point id deleted hd) (shifted_point ic S.oppApex2 hc)
       (shifted_point iO S.oppApex1 hO) hUp hmiddle hdc hcO
+
+/-- Cyclic-cut form of the reversed two-middle-order profile-0034 consumer.
+The cut fixes `U` first and preserves the decreasing outer chain beginning at
+`O`; the strict order of `a` and `s` may still be chosen by totality. -/
+theorem RobustApexFourIncidenceContinuationPacket.false_of_profile0034_middleSwap_reversed_cyclicShift
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support)
+    {p s : ℝ²}
+    (hpK₀ : p ∈ P.surface.row₀.support)
+    (hsK₁ : s ∈ P.surface.row₁.support)
+    (iU iO ic id ia is ip : Fin P.boundaryIndexing.n)
+    (hU : P.boundaryIndexing.boundary iU = blocker)
+    (hO : P.boundaryIndexing.boundary iO = S.oppApex1)
+    (hc : P.boundaryIndexing.boundary ic = S.oppApex2)
+    (hd : P.boundaryIndexing.boundary id = deleted)
+    (ha : P.boundaryIndexing.boundary ia = N.retained)
+    (hs : P.boundaryIndexing.boundary is = s)
+    (hp : P.boundaryIndexing.boundary ip = p)
+    (hUiO : iU ≠ iO)
+    (hOc : iO - iU < ic - iU) (hcd : ic - iU < id - iU)
+    (hmiddle :
+      (id - iU < ia - iU ∧ ia - iU < is - iU ∧ is - iU < ip - iU) ∨
+      (id - iU < is - iU ∧ is - iU < ia - iU ∧ ia - iU < ip - iU)) :
+    False := by
+  let hpos : 0 < P.boundaryIndexing.n :=
+    lt_of_le_of_lt (Nat.zero_le iU.val) iU.isLt
+  letI : NeZero P.boundaryIndexing.n := ⟨Nat.ne_of_gt hpos⟩
+  let shifted := P.boundaryIndexing.cyclicShift iU
+  have hUO : iU - iU < iO - iU :=
+    P.boundaryIndexing.cyclicShift_sub_pos_of_ne hUiO.symm
+  have shifted_point (i : Fin P.boundaryIndexing.n) (x : ℝ²)
+      (hx : P.boundaryIndexing.boundary i = x) :
+      shifted.boundary (i - iU) = x := by
+    change P.boundaryIndexing.boundary ((i - iU) + iU) = x
+    simpa only [sub_add_cancel] using hx
+  exact P.false_of_profile0034_middleSwap_reversed_onBoundary N
+    hblockerK₀ hOK₁ hOK₂ shifted.boundary shifted.boundary_injective
+      shifted.boundary_ccw hpK₀ hsK₁
+      (iU - iU) (iO - iU) (ic - iU) (id - iU)
+      (ia - iU) (is - iU) (ip - iU)
+      (shifted_point iU blocker hU) (shifted_point iO S.oppApex1 hO)
+      (shifted_point ic S.oppApex2 hc) (shifted_point id deleted hd)
+      (shifted_point ia N.retained ha) (shifted_point is s hs)
+      (shifted_point ip p hp) hUO hOc hcd hmiddle
 
 end ATailFrontierLiveClosure
 end Problem97

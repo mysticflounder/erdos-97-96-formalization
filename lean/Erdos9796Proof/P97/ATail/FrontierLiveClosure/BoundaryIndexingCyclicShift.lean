@@ -61,6 +61,35 @@ theorem BoundaryIndexing.cyclicShift_indexOf_cut_eq_zero
   change B.indexOf label - B.indexOf label = (⟨0, hpos⟩ : Fin B.n)
   exact sub_self _
 
+/-- After cutting at one boundary index, every distinct index is strictly
+positive. -/
+theorem BoundaryIndexing.cyclicShift_sub_pos_of_ne
+    {A : Finset ℝ²} (B : BoundaryIndexing A) {i cut : Fin B.n}
+    (hi : i ≠ cut) :
+    cut - cut < i - cut := by
+  let hpos : 0 < B.n :=
+    lt_of_le_of_lt (Nat.zero_le cut.val) cut.isLt
+  letI : NeZero B.n := ⟨Nat.ne_of_gt hpos⟩
+  have hne : i - cut ≠ (0 : Fin B.n) := by
+    intro hzero
+    apply hi
+    have h := congrArg (fun j : Fin B.n => j + cut) hzero
+    simpa only [sub_add_cancel, zero_add] using h
+  simpa only [sub_self] using (Fin.pos_iff_ne_zero.mpr hne)
+
+/-- Subtracting one cyclic cut preserves inequality of boundary indices. -/
+theorem BoundaryIndexing.cyclicShift_sub_ne_of_ne
+    {A : Finset ℝ²} (B : BoundaryIndexing A) {i j cut : Fin B.n}
+    (hij : i ≠ j) :
+    i - cut ≠ j - cut := by
+  let hpos : 0 < B.n :=
+    lt_of_le_of_lt (Nat.zero_le cut.val) cut.isLt
+  letI : NeZero B.n := ⟨Nat.ne_of_gt hpos⟩
+  intro h
+  apply hij
+  have hadd := congrArg (fun k : Fin B.n => k + cut) h
+  simpa only [sub_add_cancel] using hadd
+
 /-- Looking up a label in a shifted boundary indexing still returns its
 underlying carrier point. -/
 theorem BoundaryIndexing.cyclicShift_boundary_indexOf
