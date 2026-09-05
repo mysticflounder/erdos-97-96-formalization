@@ -61,9 +61,25 @@ def firstOppositeInterior : Profile → Finset (Fin 13)
   | .firstOpposite => Finset.Ico 6 9
 
 def secondOppositeInterior : Profile → Finset (Fin 13)
-  | .secondOpposite => Finset.Ico 8 13
-  | .surplus => Finset.Ico 9 13
-  | .firstOpposite => Finset.Ico 9 13
+  | .secondOpposite => Finset.Icc 8 12
+  | .surplus => Finset.Icc 9 12
+  | .firstOpposite => Finset.Icc 9 12
+
+/- Regression guards for the finite profile tables.  In particular, these
+   checks prevent a `Fin 13` upper endpoint from silently wrapping to zero. -/
+theorem secondOppositeInterior_card_profile :
+    (secondOppositeInterior .secondOpposite).card = 5 ∧
+      (secondOppositeInterior .surplus).card = 4 ∧
+      (secondOppositeInterior .firstOpposite).card = 4 := by
+  decide
+
+theorem nine_mem_secondOppositeInterior (p : Profile) :
+    (9 : Fin 13) ∈ secondOppositeInterior p := by
+  cases p <;> decide
+
+theorem eight_mem_secondOppositeInterior_iff (p : Profile) :
+    (8 : Fin 13) ∈ secondOppositeInterior p ↔ p = .secondOpposite := by
+  cases p <;> decide
 
 /-- The strict-cardinality assertion associated with a finite profile. -/
 def HasStrictProfile {D : CounterexampleData} (S : SurplusCapPacket D.A) :
@@ -239,7 +255,8 @@ theorem directIndex_secondOpposite_order (p : Profile) :
       (0 : Fin 13) < directIndex p z ∧
         directIndex p z < directIndex p firstApex := by
   cases p <;> intro z hz <;> fin_cases z <;>
-    simp [secondOppositeInterior] at hz ⊢
+    simp [secondOppositeInterior, directIndex, directValue,
+      firstApex] at hz ⊢
 
 theorem mirrorIndex_firstOpposite_order (p : Profile) :
     ∀ z ∈ firstOppositeInterior p,
@@ -259,7 +276,8 @@ theorem mirrorIndex_secondOpposite_order (p : Profile) :
     ∀ z ∈ secondOppositeInterior p,
       mirrorIndex p firstApex < mirrorIndex p z := by
   cases p <;> intro z hz <;> fin_cases z <;>
-    simp [secondOppositeInterior] at hz ⊢
+    simp [secondOppositeInterior, mirrorIndex, mirrorValue,
+      firstApex] at hz ⊢
 
 /- ## Label and boundary contracts -/
 
@@ -276,6 +294,90 @@ structure LabelMap (p : Profile) {D : CounterexampleData}
     pt z ∈ S.oppInterior2
   injective : Function.Injective pt
   image_eq : Finset.univ.image pt = D.A
+
+private theorem image_eq_of_mem_of_card
+    {α β : Type*} [DecidableEq β]
+    {I : Finset α} {T : Finset β} {pt : α → β}
+    (hinj : Function.Injective pt)
+    (hmem : ∀ z ∈ I, pt z ∈ T)
+    (hcard : I.card = T.card) :
+    I.image pt = T := by
+  have hsub : I.image pt ⊆ T := by
+    intro x hx
+    rcases Finset.mem_image.mp hx with ⟨z, hz, rfl⟩
+    exact hmem z hz
+  apply Finset.eq_of_subset_of_card_le hsub
+  rw [Finset.card_image_of_injective _ hinj]
+  exact Nat.le_of_eq hcard.symm
+
+/-- Under the strict profile cardinalities, the repaired I2 label interval
+exhausts the physical second-opposite interior. -/
+theorem secondOppositeInterior_image_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {p : Profile} {pt : Fin 13 → ℝ²}
+    (hL : LabelMap p S pt)
+    (hprofile : HasStrictProfile S p) :
+    (secondOppositeInterior p).image pt = S.oppInterior2 := by
+  apply image_eq_of_mem_of_card hL.injective hL.secondOppositeInterior_mem
+  cases p with
+  | secondOpposite =>
+      have hcard := hprofile.2.2
+      simp [secondOppositeInterior] at hcard ⊢
+      omega
+  | surplus =>
+      have hcard := hprofile.2.2
+      simp [secondOppositeInterior] at hcard ⊢
+      omega
+  | firstOpposite =>
+      have hcard := hprofile.2.2
+      simp [secondOppositeInterior] at hcard ⊢
+      omega
+
+/-- Under the strict profile cardinalities, the I1 label interval exhausts
+the physical first-opposite interior. -/
+theorem firstOppositeInterior_image_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {p : Profile} {pt : Fin 13 → ℝ²}
+    (hL : LabelMap p S pt)
+    (hprofile : HasStrictProfile S p) :
+    (firstOppositeInterior p).image pt = S.oppInterior1 := by
+  apply image_eq_of_mem_of_card hL.injective hL.firstOppositeInterior_mem
+  cases p with
+  | secondOpposite =>
+      have hcard := hprofile.2.1
+      simp [firstOppositeInterior] at hcard ⊢
+      omega
+  | surplus =>
+      have hcard := hprofile.2.1
+      simp [firstOppositeInterior] at hcard ⊢
+      omega
+  | firstOpposite =>
+      have hcard := hprofile.2.1
+      simp [firstOppositeInterior] at hcard ⊢
+      omega
+
+/-- Under the strict profile cardinalities, the surplus label interval
+exhausts the physical surplus-cap interior. -/
+theorem surplusInterior_image_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {p : Profile} {pt : Fin 13 → ℝ²}
+    (hL : LabelMap p S pt)
+    (hprofile : HasStrictProfile S p) :
+    (surplusInterior p).image pt = S.capInteriorByIndex S.surplusIdx := by
+  apply image_eq_of_mem_of_card hL.injective hL.surplusInterior_mem
+  cases p with
+  | secondOpposite =>
+      have hcard := hprofile.1
+      simp [surplusInterior] at hcard ⊢
+      omega
+  | surplus =>
+      have hcard := hprofile.1
+      simp [surplusInterior] at hcard ⊢
+      omega
+  | firstOpposite =>
+      have hcard := hprofile.1
+      simp [surplusInterior] at hcard ⊢
+      omega
 
 /- ## Source-localization transports -/
 
