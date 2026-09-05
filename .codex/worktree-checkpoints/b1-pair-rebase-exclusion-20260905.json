@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-pair-rebase-exclusion-20260905",
+  "owner": "luna-swarm-proofforge",
+  "base_head": "e98a2d0120dd0e2b686cf80bdb7d648740700c62",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-pair-rebase-exclusion-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/JointDeletion/PairRebaseExclusion.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T18:04:35Z",
+  "manifest_sha256": "33141a6191cfe33ece327816bf3885b416fc83294ff3fab16b7ccf4d4baa608c"
+}
