@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-new-mirror-reduced-cell-confirmation-piqd-20260905",
+  "owner": "profile0034-new-mirror-reduced-cell-confirmation-piqd",
+  "base_head": "6628bc27d0d23fbbe3969419f66e232dfcb209a4",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-new-mirror-reduced-cell-confirmation-piqd-20260905.json",
+    "census/card_head/exactfive_profile0034_new_mirror_reduced_cell_confirmation_piqd.py",
+    "census/card_head/tests/test_exactfive_profile0034_new_mirror_reduced_cell_confirmation_piqd.py",
+    "docs/specs/p97-exactfive-profile0034-new-mirror-reduced-cell-confirmation-piqd-v1.md",
+    "scripts/run_exactfive_profile0034_new_mirror_reduced_cell_confirmation_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-profile0034-new-mirror-reduced-cell-confirmation-piqd-20260905/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T08:50:42Z",
+  "manifest_sha256": "1e7ce721ddeb6fbbb1c921a52007f74526fd19ec21dadf5c9ca30611b51a4222"
+}
