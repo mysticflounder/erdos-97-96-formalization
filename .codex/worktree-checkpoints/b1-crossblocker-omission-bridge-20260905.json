@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-crossblocker-omission-bridge-20260905",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "85ce3ea10174a7c1bbc1a02574b1bbfee08cd13e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-crossblocker-omission-bridge-20260905.json",
+    "docs/audits/2026-09-05-b1-crossblocker-omission-bridge.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CrossBlockerOmissionBridge.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T03:00:00Z",
+  "manifest_sha256": "534c93053899df044137a78ffe6967e008388f8025c44944cfda42fdf0eac390"
+}
