@@ -1,0 +1,89 @@
+{
+  "schema": "p97-exactfive-profile0034-alternate-order-source-qfnra-postrun-summary/v1",
+  "lane_id": "exactfive-profile0034-alternate-order-source-qfnra-postrun-20260904",
+  "source_lane_id": "exactfive-profile0034-alternate-order-source-qfnra-piqd-20260904",
+  "run_id": "run-0001",
+  "source_run_id": "run-0001",
+  "status": "TARGET_INCONCLUSIVE",
+  "claim_boundary": "two authenticated profile-0034 fixed-order source formulas only",
+  "custody": {
+    "run_manifest_sha256": "46dfcd151204d57e759f6910524bc5a77f1e328aec10c57003f21d062c2600bd",
+    "launch_sha256": "b37a54792c85a18b8793b5aa4c1d16fab69a32b2b9d9aa34983583bedaba0077",
+    "terminal_sha256": "032098cefa906494ae5d0a392d56f4427237e6d8b5cdb1e8673682b7d35ead3b",
+    "independent_postrun_audit_passed": true,
+    "files": 125,
+    "snapshots": 52,
+    "piqd_receipt_envelopes": 8,
+    "sat_semantic_artifacts": 2
+  },
+  "formula_inventory_per_target": {
+    "coordinate_variables": 26,
+    "gauge_assertions": 4,
+    "strict_signed_area_assertions": 286,
+    "row_equality_assertions": 13,
+    "radius_disequality_assertions": 1,
+    "source_strict_assertions": 1
+  },
+  "controls": {
+    "positive": "SAT/SAT",
+    "negative": "UNSAT/UNSAT"
+  },
+  "targets": [
+    {
+      "key": "z3-mirror",
+      "order": "U=c1<p<a<s<d<c2<q=e<O<y<x<v<t<u",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 60959},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90002}
+    },
+    {
+      "key": "cvc5-direct",
+      "order": "U=c1<s<y<p<t<u<x<v<O<q=e<c2<d<a",
+      "z3": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 60959},
+      "cvc5": {"raw_status": "UNKNOWN", "effective_status": "INCONCLUSIVE_UNKNOWN", "wall_ms": 90008}
+    }
+  ],
+  "comparison": {
+    "orders_source": "authenticated producer --check-parent order records",
+    "cvc5_direct_byte_identical_to": {
+      "current_sha256": "9f0095ae2afdcc310482a196452b0c3b64f873468d56c3a5236aefd19aab755a",
+      "prior_path": "scratch/runs/exactfive-hard-source-swap-profile0034-source-qfnra-piqd-20260903/run-0001/artifacts/parent-cvc5-direct/original.smt2",
+      "comparison": "cmp"
+    },
+    "z3_mirror_adjacent_order_change": {
+      "current_sha256": "374ce19ac2ffeee32526d00650c0771fa3416ea1132ed8a868fafe1cdb4e36be",
+      "prior_sha256": "0173ce4756f032ca5c06dd5c5cf45d8b14d6db2afe4475cc7b780735cb39e4ea",
+      "difference": "adjacent s/a order only"
+    },
+    "rerun_unchanged_cvc5_direct": false,
+    "longer_coarse_rerun_recommended": false
+  },
+  "wave_mine": {
+    "new_general_theorem_candidate": false,
+    "lean_corpus_search_triggered": false,
+    "reason": "both target sessions returned authenticated UNKNOWN records without a model, core, or partial algebraic stream"
+  },
+  "claims": {
+    "source_realization": false,
+    "live_source_completeness": false,
+    "all_order_elimination": false,
+    "lean_ingress": false,
+    "theorem": false,
+    "promotion": false,
+    "live_closure": false
+  },
+  "false_claims": [
+    "source realization",
+    "live source completeness",
+    "all-order elimination",
+    "Lean ingress",
+    "theorem",
+    "promotion",
+    "live closure"
+  ],
+  "next_step": {
+    "primary": "separate Lean source-backed boundary/order adapter that proves a contradiction from an explicitly supplied U<p<s<a<d<c2<O chain, which is not one of these tested orders",
+    "secondary": "for the genuinely new U<p<a<s<d<c2<O prefix of the z3/mirror order, split the radius disequality and test 143 supporting-edge relaxation",
+    "policy": "do not lengthen the coarse 26-variable rerun"
+  },
+  "summary_sha256": "cc8cd3ffd76769a3e9ecba486023401c69912aa1b42ce4d24ea75f95f61fa350"
+}

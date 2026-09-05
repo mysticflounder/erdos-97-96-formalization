@@ -379,20 +379,41 @@ point-selection/order split that reaches this boundary placement or names its
 complementary placements. Do not wire the broad admitted endpoint to the new
 adapter until those complementary cases have checked consumers.
 
-## Profile-0034 seven-order coverage postrun (2026-09-04)
+## Profile-0034 alternate-order source QF_NRA postrun (2026-09-04)
 
-The successor PIQD coverage run completed and passed independent postrun
-replay for all 212 unresolved parent profiles. Results were 181 `SAT/SAT`, 21
-`SAT/UNKNOWN`, and 10 `UNSAT/UNSAT`; both controls returned their required
-`SAT/SAT` and `UNSAT/UNSAT` verdicts. All 202 parent SAT profiles survive
-avoidance of every admissible direct or reversed seven-role cycle, including
-the profile-0034 cell.
+The completed PIQD run tested two authenticated fixed-order source formulas.
+It retained 26 coordinate variables, four gauge assertions, 286 strict
+signed-area turns, 13 source row equalities, one radius disequality, and one
+source-strict comparison per target. The positive and negative controls returned
+`SAT/SAT` and `UNSAT/UNSAT`. Custody contains 125 files, 52 snapshots, eight
+PIQD receipt envelopes, and two SAT semantic artifacts, with manifest, launch,
+and terminal self-hashes recorded in the postrun audit and summary.
 
-The two profile-0034 witness orders are recorded in the postrun audit and
-summary. The completed-wave mine found no new universal theorem; the only
-universal rank fact is that `U` has rank zero. Row-pair extraction is already
-present at commit `6964ca328`.
+The producer's authenticated target orders are z3/mirror
+`U=c1<p<a<s<d<c2<q=e<O<y<x<v<t<u` and cvc5/direct
+`U=c1<s<y<p<t<u<x<v<O<q=e<c2<d<a`. Independent `cmp` verifies that the
+current cvc5/direct SMT2 is byte-identical to the named 2026-09-03
+`parent-cvc5-direct/original.smt2` artifact (SHA-256
+`9f0095ae2afdcc310482a196452b0c3b64f873468d56c3a5236aefd19aab755a`). The
+current z3/mirror SHA-256 is
+`374ce19ac2ffeee32526d00650c0771fa3416ea1132ed8a868fafe1cdb4e36be`, differing
+from prior SHA-256
+`0173ce4756f032ca5c06dd5c5cf45d8b14d6db2afe4475cc7b780735cb39e4ea` only by
+the adjacent `s`/`a` order. Do not rerun unchanged cvc5/direct. Both target
+sessions returned `UNKNOWN/UNKNOWN`, and the terminal status is
+`TARGET_INCONCLUSIVE`. No model, core, or partial algebraic stream was
+produced. The completed-wave mine found no concrete general-theorem candidate,
+so no new Lean-corpus search was triggered. This run does not establish source
+realization, source completeness, all-order elimination, a theorem, promotion,
+or live closure.
 
-The next bounded computation is a source-faithful planar QF_NRA canary for
-those two fixed profile-0034 orders. Run it before Lean alias exhaustiveness;
-this computation remains diagnostic and does not assert source closure.
+The highest-leverage next Lean step is the separate source-backed boundary/order
+adapter that proves a contradiction from an explicitly supplied chain
+`U<p<s<a<d<c2<O`; that chain is not one of the two tested orders. Complete the
+finite source point-selection and boundary-order transport that supplies its
+antecedents. As a secondary
+computational refinement, use the genuinely new `U<p<a<s<d<c2<O` prefix of the
+z3/mirror order, split the radius disequality into strict branches, and test
+143 supporting-edge relaxation. Do not rerun unchanged cvc5/direct or lengthen
+the coarse 26-variable rerun; these computations remain diagnostic and do not
+assert source closure.
