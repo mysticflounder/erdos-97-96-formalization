@@ -31,9 +31,9 @@ contradiction and no coverage of the finite classifier’s admissibility cases.
 
 The five-point candidate is accurately stated at
 `Census554/FivePointCircleIsoscelesOrderBridge.lean:68`. Its assumptions include
-convex independence, injective CCW enumeration with exact image, five strict
-index inequalities, and the two selected-row membership packets. The two rows
-yield the four distance equalities used by the core. Any claim that it retires
+convex independence, injective CCW enumeration with exact image, four strict
+index inequalities (`W < F < P < X < Z`), and the two selected-row membership
+packets. The two rows yield the stated distance equalities used by the core. Any claim that it retires
 historical 555/654 cases still needs current case-to-antecedent adapters and a
 fresh source/consumer check; the report correctly labels the historical “230
 cores” figure as coverage evidence rather than current deletion proof.
