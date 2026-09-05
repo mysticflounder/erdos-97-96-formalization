@@ -285,3 +285,64 @@ The replacement raw ingress now elaborates and its refreshed `.olean` contains
 completed all 11975 module jobs; its post-build proof-blueprint resynchronizer
 failed separately on the stale private declaration
 `B1ApexUBlockerRationalTest.chordFunctional_linear` in another active lane.
+
+### Runs `run-0011`–`run-0017`: variable-row incidence CEGAR
+
+The next wave stopped fixing the remaining four retained supports and every
+global `K4` challenge row.  Pure Boolean source and incidence constraints still
+had models, so the CEGAR learner extracted shortest row-equality paths witnessing
+one-form or two-form strict Kalmanson contradictions and excluded only the
+membership atoms used by those paths.  Runs `run-0015` and `run-0016` accumulated
+1500 distinct cuts without reaching a terminal result.
+
+Run `run-0017` resumed from those 1500 cuts under the direct-order pins
+
+```text
+b0=9, b1=2, s0=4, s1=3, d=7, z=9, C0={2,4,6,11}.
+```
+
+It learned 1412 additional cuts and reached `UNSAT` on solve 1413.  The 1412
+new conflicts comprise 807 transitive-incidence paths and 605 two-form
+incidence paths.  None repeats a seeded cut or atom set.  The PIQD journal has
+SHA-256
+`398a05df7723643ab7ec24127b7a9dafdfd1fd452b0c3c57f0d936098c868de5`;
+the event has SHA-256
+`2465ac110ef1371de34e4903ede572d75aa2ca02e29e7d8aba0aaf595956bf30`.
+
+This result is exhaustive for the pinned direct Boolean abstraction.  It is not
+an all-source exact-13 result: the raw ingress fixes none of the six role labels
+or the displayed `C0` support, and there is no mirror or dihedral transport for
+the certificate family.
+
+### Run `run-0018`: clause custody and pure-RUP replay package
+
+The saved run-0017 SMT journal contains the base formula and 1500 seeded cuts;
+its 1412 dynamically asserted cuts live in the event.  Converting the journal
+alone produced a 50168-clause formula that CaDiCaL found `SAT`, providing a
+negative control for event custody.  The fail-closed converter now verifies the
+event schema, journal digest, dense refinement indices, 1412 distinct learned
+cuts, and final cut-free `UNSAT` solve before appending those cuts.
+
+The resulting clause-preserving DIMACS has 286 variables and 51580 clauses,
+with SHA-256
+`e03108c2bf961d48a343da0a132b1de3d76b28773f5658c7e80443f1029181c4`.
+There are no Tseitin variables: each DIMACS clause is one source assertion or
+one event-bound learned cut.  CaDiCaL 3.0.0 returned `UNSAT`; `drat-trim`
+reported `s VERIFIED`, a 4767-clause core, 56077 core lemmas, 1464640
+resolution steps, and zero RAT lemmas.  The DRAT and raw LRAT SHA-256 values are
+`54f1085ae3c094b0084a09997742e6c965bee545a9f5953fe6b6cb11bcdde56f`
+and
+`0fcc5ba4da46462f5c2c60928627e353532cbc3be0392b9ba3d9029a7f9ce2b5`.
+
+The normalized pure-RUP stream has 56077 additions, 31390 deletions, and
+1464640 hints.  The verified checkpointed and windowed package hashes are
+`8ee69015cde2b18b30bf6874060b1c54b6a3c8c5dd3e058aca56fa31a5c2a9e1`
+and
+`18dd25392d4e6c713220645ba6ae075dfb60e755cba53d81688fe28ad0ad3311`.
+The structurally verified compact package has 22 replay windows and package
+hash
+`c0ae0b53227a58e1c1a0fa29dae8fe6ba903a4e43c87cf5f468c25313ae17e63`.
+It still requires a governed Lean build and final-consumer axiom audit.  More
+importantly, Lean must prove each incidence cut from its recorded weighted
+Kalmanson cancellation data; replay of the Boolean CNF alone does not provide
+that source-level semantic bridge.

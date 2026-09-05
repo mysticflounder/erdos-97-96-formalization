@@ -1,0 +1,32 @@
+{
+  "base_head": "f8dd9c3d445e1dd9b68ca4d4d7e0d81d785690ca",
+  "created_utc": "2026-09-05T07:01:57Z",
+  "input_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13DispatchRawBridge.lean": "9006bb07609f6d72ea3e4a3c8204520f2f187fd527e83c2ff9c0066e7333332d",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13RawIngress.lean": "80e6dea8b5087a131eb55eec7756bafe9ef549ddd69b04dfa2790891ca8a9945",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0015/events/global-source-cell-boolean-path-pair-direct-roles-C0-cegar500-z3-piqd.json": "10038e34d1be70e5d0e8bb9043354a55f63443501468dcbc48c6bba546581f21",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0016/events/global-source-cell-boolean-path-pair-resume-direct-roles-C0-cegar1000-z3-piqd.json": "267d296a6e359a93f43e31a01a4bdd20012c098bdfca6491a0cf6fada9c7ac75",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0017/events/global-source-cell-boolean-path-pair-resume-direct-roles-C0-cegar3000-z3-piqd.json": "2465ac110ef1371de34e4903ede572d75aa2ca02e29e7d8aba0aaf595956bf30"
+  },
+  "lane_id": "cardge13-exact13-k4-prefix-cegar-20260904",
+  "manifest_sha256": "4b7d78d908d77d0cd53b634e39e2161fca6c4a9581d9d5ff1f889ccbcbbc20b9",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "RadiusCartographer",
+  "root": "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0019",
+  "run_id": "run-0019",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_cegar_piqd.py": "b916dab1af0e5ac5b421862b5bab5ecd95a945f33fe051625d1bd938b0836092",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_cegar_piqd.py": "b9ebd4869e3df7fde461db5667a62556104b3fe66057b71dfd5fc151296491a6",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py": "53d0dc73267f4bc486bd4773433bb95e8d28fb2e52678a2aabb294a3e5b7a41a",
+    "scripts/cardge13_exact13_global_source_cell_boolean_slice_piqd.py": "d090c8febb743b2769c32ff5d09af0e8555f46a0842d2e2fac37e0cd61c14dd5",
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096",
+    "scripts/cardge13_exact13_global_source_cell_slice_piqd.py": "061210a1b5c826c8e2e874a034502aeead839273da21552c4a1ee7202d543cb6",
+    "scripts/cardge13_exact13_tight_cover_lra_piqd.py": "5101cdc837cfc0a1e956dae8f27359e0f6e4f2d2a50e8f0319956c047309581b",
+    "scripts/test_cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py": "610a786fffe3572a7a20f0c7a8ec807989b60b4b26b71f192ef959d7e26a9aa4"
+  }
+}
