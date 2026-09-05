@@ -29,6 +29,8 @@ open ExactFiveDistinctSecondApexSourceSwap
 open FirstApexUniqueRadiusResidual
 open Census554.GeneralCarrierBridge
 
+/-- A four-element finset containing distinct anchors decomposes into the two
+remaining points, which are distinct and outside the anchor pair. -/
 private theorem exists_residual_pair_of_card_eq_four
     {α : Type*} [DecidableEq α] (K : Finset α) {a b : α}
     (hcard : K.card = 4) (ha : a ∈ K) (hb : b ∈ K) (hab : a ≠ b) :
