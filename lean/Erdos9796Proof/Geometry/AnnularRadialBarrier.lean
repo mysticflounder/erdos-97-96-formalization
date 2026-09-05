@@ -127,6 +127,32 @@ theorem annular_wedge_identity (a b h k x y : ℝ) :
       (b * h - a * k) * (y - h) + (k - h) * (a * y - h * x) := by
   ring
 
+/-- A linear functional with the same strict sign on two cone generators
+cannot vanish on a nonzero nonnegative combination of them.  This is the
+sign-only bridge used by the common-inner-pair argument. -/
+theorem false_of_zero_linear_image_of_nonnegative_combination
+    {L : Plane →ₗ[ℝ] ℝ} {p q₁ q₂ : Plane} {α β : ℝ}
+    (hLq₁ : 0 < L q₁) (hLq₂ : 0 < L q₂)
+    (hα : 0 ≤ α) (hβ : 0 ≤ β) (hcoeff : 0 < α + β)
+    (hcomb : p = α • q₁ + β • q₂) (hp : L p = 0) : False := by
+  have hLp : L p = α * L q₁ + β * L q₂ := by
+    rw [hcomb, map_add, map_smul, map_smul]
+    simp only [smul_eq_mul]
+  have hsum : 0 < α * L q₁ + β * L q₂ := by
+    by_contra hnonpos
+    have hαterm : 0 ≤ α * L q₁ := mul_nonneg hα hLq₁.le
+    have hβterm : 0 ≤ β * L q₂ := mul_nonneg hβ hLq₂.le
+    have hsome : 0 < α ∨ 0 < β := by
+      by_contra h
+      push_neg at h
+      nlinarith [hcoeff]
+    rcases hsome with hαpos | hβpos
+    · have hterm : 0 < α * L q₁ := mul_pos hαpos hLq₁
+      nlinarith
+    · have hterm : 0 < β * L q₂ := mul_pos hβpos hLq₂
+      nlinarith
+  nlinarith [hp, hLp]
+
 /-- A point strictly inside the coordinate box bounded by the two inner rays
 cannot have the same radius as either inner endpoint. -/
 theorem false_of_equal_radius_of_open_coordinate_box
