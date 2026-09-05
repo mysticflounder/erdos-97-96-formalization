@@ -1061,6 +1061,18 @@ bridge consumes either result.  Treat positivity as encoding hardening rather
 than a B1 frontier reduction; retain formula-scoped claim labels until the
 source bridge and a named Lean consumer exist.
 
+The exhaustive two-form batch contributes 317 distinct provider-incidence
+cuts.  Together with the three prior cell-zero events this gives 4,567 unique
+seed clauses; the four one-form batch cuts are already contained in the
+two-form batch.  The proposed cumulative resume has now been run: 501
+replay-checked SAT solves learned 500 further clauses and ended
+`REFINEMENT_BUDGET`, with the last model exposing 175 additional two-form
+clauses.  Therefore do not repeat the old one-solve 4,567-cut experiment.  If
+this formula lane continues, batch the full novel two-form set after each
+replayed model.  This remains formula-scoped, and several hashed producer and
+Lean dependencies are not yet commit-reachable, so the local artifact digests
+are not a publication or source-pinning result.
+
 ### Card-at-least-thirteen global producer candidate
 
 `exists_good_sources_distinctBlockers_commonDeletion` is a genuine
