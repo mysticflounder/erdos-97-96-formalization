@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-direct-physical-block-deletion-piqd-20260905",
+  "owner": "profile0034-direct-physical-block-deletion-impl",
+  "base_head": "ed08027473e9741b2a34fac7d7597d2fe6756085",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-direct-physical-block-deletion-piqd-20260905.json",
+    "census/card_head/exactfive_profile0034_direct_physical_block_deletion_piqd.py",
+    "census/card_head/tests/test_exactfive_profile0034_direct_physical_block_deletion_piqd.py",
+    "docs/specs/p97-exactfive-profile0034-direct-physical-block-deletion-piqd-v1.md",
+    "scripts/run_exactfive_profile0034_direct_physical_block_deletion_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-profile0034-direct-physical-block-deletion-piqd-20260905/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T18:29:46Z",
+  "manifest_sha256": "548b367402de2494180eaea333469c2a709e24b652e09effc460f0a6bb3e21e3"
+}
