@@ -1317,6 +1317,11 @@ shifting transports boundary identities but cannot manufacture any strict
 order inequality.  Therefore an order continuation must prove an exhaustive
 source-faithful placement split, including the complementary deleted-before-
 retained cases, before any current profile0034 order consumer is applicable.
+Commit `974d6126c` nevertheless closes both relative orders of the retained
+point and blocker-row residual once the outer shifted placement
+`U < p < {a,s} < d < c < O` is supplied.  A fresh governed build and direct
+axiom audit verified that theorem-side reduction; the remaining live source
+obligation is precisely the outer placement, not the middle-pair order.
 
 Focused Pro consult `01M1RSXD38KCFTCK2AH96PGEF6` is checking the remaining
 source-rich route: iterate
