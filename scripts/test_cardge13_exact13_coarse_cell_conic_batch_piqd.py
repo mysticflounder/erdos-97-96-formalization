@@ -34,6 +34,23 @@ def test_model_weights_rejects_missing_variable() -> None:
         subject.model_weights(model, 2)
 
 
+def test_selected_forms_can_remove_zero_projection() -> None:
+    zero = ((), {"form": (0, 1, 2, 3, 0)})
+    nonzero = ((((0, 1), 1),), {"form": (0, 1, 2, 3, 1)})
+    forms = (zero, nonzero)
+    assert subject.selected_forms(forms, exclude_zero=False) == forms
+    assert subject.selected_forms(forms, exclude_zero=True) == (nonzero,)
+
+
+def test_primitive_weights_fail_closed_on_certificate_budgets() -> None:
+    with pytest.raises(subject.ConicBatchError, match="denominator exceeds"):
+        subject.primitive_natural_weights((Fraction(1, 1 << 256),))
+    with pytest.raises(subject.ConicBatchError, match="natural weights exceed"):
+        subject.primitive_natural_weights(
+            (Fraction(1, 100_001), Fraction(100_000, 100_001))
+        )
+
+
 def test_cone_commands_are_normalized_and_coordinate_complete() -> None:
     forms = (
         ((((0, 1), 1), ((0, 2), -1)), {"form": (0, 1, 2, 3, 0)}),

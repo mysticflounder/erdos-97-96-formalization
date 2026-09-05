@@ -30,7 +30,7 @@ import cardge13_exact13_global_source_cell_boolean_path_cegar_piqd as path_cegar
 import cardge13_exact13_global_source_cell_csp_piqd as base
 import cardge13_exact13_tight_cover_lra_piqd as piqd_core
 
-SCHEMA = "cardge13-exact13-coarse-cell-conic-batch-piqd/v1"
+SCHEMA = "cardge13-exact13-coarse-cell-conic-batch-piqd/v2"
 SELF_PATH = "scripts/cardge13_exact13_coarse_cell_conic_batch_piqd.py"
 EXTRA_SOURCE_PATHS = (
     SELF_PATH,
@@ -38,12 +38,23 @@ EXTRA_SOURCE_PATHS = (
     "scripts/cardge13_exact13_coarse_cell_three_form_batch_piqd.py",
     "scripts/cardge13_exact13_tight_cover_lra_piqd.py",
 )
+MAX_DENOMINATOR_BITS = 256
+MAX_TOTAL_NATURAL_WEIGHT = 100_000
 Edge = tuple[int, int]
 FormVector = tuple[tuple[Edge, int], ...]
 
 
 class ConicBatchError(RuntimeError):
     """A manifest, PIQD model, or reconstructed cone certificate is invalid."""
+
+
+def selected_forms(
+    forms: tuple[tuple[FormVector, dict[str, object]], ...], *, exclude_zero: bool
+) -> tuple[tuple[FormVector, dict[str, object]], ...]:
+    """Optionally remove ordinary one-form zero projections from a cone query."""
+    if not exclude_zero:
+        return forms
+    return tuple((vector, form) for vector, form in forms if vector)
 
 
 def cone_commands(forms: tuple[tuple[FormVector, dict[str, object]], ...]) -> tuple[str, ...]:
@@ -139,12 +150,17 @@ def model_weights(model: str, count: int) -> tuple[Fraction, ...]:
 
 def primitive_natural_weights(weights: tuple[Fraction, ...]) -> tuple[int, ...]:
     """Scale normalized rational weights to a primitive natural vector."""
+    if any(weight.denominator.bit_length() > MAX_DENOMINATOR_BITS for weight in weights):
+        raise ConicBatchError("cone weight denominator exceeds the certificate budget")
     denominator = math.lcm(*(weight.denominator for weight in weights))
     scaled = tuple(int(weight * denominator) for weight in weights)
     divisor = math.gcd(*scaled)
     if divisor <= 0:
         raise ConicBatchError("cone model has no positive weight")
-    return tuple(weight // divisor for weight in scaled)
+    primitive = tuple(weight // divisor for weight in scaled)
+    if sum(primitive) > MAX_TOTAL_NATURAL_WEIGHT:
+        raise ConicBatchError("cone natural weights exceed the certificate budget")
+    return primitive
 
 
 def replay_weighted_zero(
@@ -271,6 +287,7 @@ def main() -> int:
     parser.add_argument("--event", type=Path, required=True)
     parser.add_argument("--solver", action="append", choices=("z3", "cvc5"), required=True)
     parser.add_argument("--timeout-ms", type=int, default=120_000)
+    parser.add_argument("--exclude-zero", action="store_true")
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
@@ -291,7 +308,8 @@ def main() -> int:
     cell = one_form_batch.final_replayed_cell(source_event)
     coarse.validate_decoded_cell(coarse_cell, cell)
     order = base.DIRECT_ORDER if coarse_cell.orientation == "direct" else base.MIRROR_ORDER
-    forms = three_form.representative_projected_forms(cell, order)
+    all_forms = three_form.representative_projected_forms(cell, order)
+    forms = selected_forms(all_forms, exclude_zero=args.exclude_zero)
     commands = cone_commands(forms)
     journal = ("\n".join(commands) + "\n").encode("ascii")
     journal_path = coarse.require_under_run_root(args.out, run_root, "cone journal")
@@ -337,6 +355,8 @@ def main() -> int:
             "theorem_promotion": False,
         },
         "cell": coarse_cell.to_json(int(source_event["cell"].get("index", 0))),
+        "exclude_zero_projected_forms": args.exclude_zero,
+        "all_projected_form_count": len(all_forms),
         "projected_form_count": len(forms),
         "command_count": len(commands),
         "journal": journal_path.relative_to(repo_root).as_posix(),
