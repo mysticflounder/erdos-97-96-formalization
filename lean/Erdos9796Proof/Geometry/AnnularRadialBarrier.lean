@@ -201,6 +201,42 @@ theorem annularFourRow_innerPair_eq
     apply hpne
     exact Eq.trans hpneg (Eq.symm hppos)
 
+/-- Explicit positive coefficients for a point strictly between the two
+normalized inner rays.  This is the coordinate-side construction needed to
+feed a genuine geometric barrier into `annularFourRow_innerPair_eq`. -/
+theorem exists_strict_cone_coeffs_of_coordinate_wedge
+    {a h x y : ℝ}
+    (ha : 0 < a) (hh : 0 < h) (hx : 0 < x)
+    (hupper : a * y < h * x) (hlower : -h * x < a * y) :
+    ∃ α β : ℝ, 0 < α ∧ 0 < β ∧ 0 < α + β ∧
+      !₂[x, y] = α • !₂[a, -h] + β • !₂[a, h] := by
+  let α : ℝ := (h * x - a * y) / (2 * a * h)
+  let β : ℝ := (h * x + a * y) / (2 * a * h)
+  have hden : 0 < 2 * a * h := by positivity
+  have hα : 0 < α := by
+    dsimp [α]
+    exact div_pos (by nlinarith [hupper]) hden
+  have hβ : 0 < β := by
+    dsimp [β]
+    exact div_pos (by nlinarith [hlower]) hden
+  have hsum_eq : α + β = x / a := by
+    dsimp [α, β]
+    field_simp [ne_of_gt ha, ne_of_gt hh]
+    ring
+  have hsum : 0 < α + β := by
+    rw [hsum_eq]
+    exact div_pos hx ha
+  refine ⟨α, β, hα, hβ, hsum, ?_⟩
+  dsimp [α, β]
+  ext i
+  fin_cases i
+  · dsimp
+    field_simp [ne_of_gt ha, ne_of_gt hh]
+    ring
+  · dsimp
+    field_simp [ne_of_gt ha, ne_of_gt hh]
+    ring
+
 /-- The determinant against a fixed normalized ray is a linear functional in
 the second point.  In the normalized coordinates the physical center is the
 origin, so no affine translation is hidden in this definition. -/
