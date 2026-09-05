@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-new-mirror-physical-block-deletion-recovery-postrun-20260905",
+  "owner": "profile0034-new-mirror-physical-block-deletion-recovery-postrun",
+  "base_head": "eab46043e52350b1ffa805325acb4d2577655659",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-new-mirror-physical-block-deletion-recovery-postrun-20260905.json",
+    "docs/audits/2026-09-05-exactfive-profile0034-new-mirror-physical-block-deletion-recovery-postrun.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T08:39:40Z",
+  "manifest_sha256": "1a3e107324bcc0e4d929106b683689dc3f542c77df8b58798192b9c5e6f8a1d9"
+}
