@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "formcc-a3qeqc-docstrings-20260905",
+  "owner": "luna-swarm-formcc-a3qeqc-docstrings",
+  "base_head": "6604fc4e5343d615fc30e2ae22cfe7a7ea93569c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/formcc-a3qeqc-docstrings-20260905.json",
+    "lean/Erdos9796Proof/P97/N4d/FormCcA3QeqC.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T04:06:52Z",
+  "manifest_sha256": "b604c64b00d79a8e07e03de1928e4ef2dfae0b705e0d8493cc40181219b015c6"
+}

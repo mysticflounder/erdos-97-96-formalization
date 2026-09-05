@@ -1126,6 +1126,8 @@ data the consumer `qEqC_row_impossible_of_lower_witness_v13` requires. -/
 set_option maxHeartbeats 8000000 in
 -- Large heartbeat budget: the proof packages a full similarity transport,
 -- several coordinate `nlinarith` certificates, and the reflection-angle core.
+/-- The shell reflection hypotheses produce the normalized QEqC reflection
+configuration required by the lower-witness row consumer. -/
 theorem qEqC_reflection_config_of_shell_v13
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     {q C : ℝ²}
