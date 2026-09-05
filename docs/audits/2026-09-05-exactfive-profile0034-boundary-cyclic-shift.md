@@ -179,6 +179,18 @@ head placement required by the profile-0034 analytic consumers.  This theorem
 must use the original normal-form deletion packet, not the continuation's
 derived deletion packet.
 
+The bounded direct-order reuse search at indexed revision `0a51fea44` also
+selected the cyclic/decreasing variants of
+`TwoKalmansonEqualityChainBridge.false_of_five_selected_rows_two_kalmanson_chain_of_six_order`.
+Their prospective consumer was the fourth continuation augmented by either the
+physical second-apex replacement or the source-tagged external packet.  The
+route is import-acyclic but fails at its first structural antecedent: it needs
+selected rows at five distinct boundary centers.  The live packet supplies
+rows centered at `O`, `U`, and `c`; the physical replacement repeats `c`, and
+an external packet adds at most one further center.  In the strongest attempted
+role mapping the next required row would be centered at the retained point,
+which is unavailable.  The schema therefore cannot close this leaf as-is.
+
 ## Swapped-order analytic theorem
 
 The reduced profile-0034 solver cell suggested the order `U,p,a,s,d,c,O`.
