@@ -796,6 +796,20 @@ proof-relevant unordered endpoint identification, or strengthen the upstream
 no-third theorem to arbitrary fresh pairs, before dependent packet transport;
 do not mix the disjoint canonical-source and escape-source branches.
 
+There is nevertheless a stronger source-clean split on the fresh pair that
+should replace attempts to identify it prematurely.  At exact card five,
+`exactFourMutualOmissionJointDeletion_exactFive_strongSplit` produces either a
+second distinct joint deletion for that same fresh pair or its rigid disjoint
+`2+2` row cover.  At card six,
+`exists_two_exactFourMutualOmissionJointDeletions` always produces two distinct
+joint deletions from the fresh pair's blocker inequality.  These theorems do
+not yet close the escape arm: distinct actual blockers enter the still-open
+blocker-coincidence/survival-square consumers, while equal actual blockers
+construct another B1 global-transport context and are recursive unless the
+retained noncanonical escape source supplies a strictly new terminal.  Audit
+that source-rich equal-blocker arm and the exact-five rigid `2+2` arm before
+formalizing another adapter.
+
 The fresh-pair/escape-witness gap is now narrowed at the source-selection
 boundary.  `b1_freshV_escapeStar_or_adjacentCap` starts from the fresh
 endpoint `v`, whose source context says it is omitted from a canonical source
