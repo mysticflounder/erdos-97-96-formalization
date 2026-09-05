@@ -19,6 +19,28 @@ import cardge13_exact13_global_source_cell_slice_piqd as sliced
 SCHEMA = "cardge13-exact13-global-source-cell-boolean-path-pair-resume-piqd/v1"
 
 
+def iteration_cuts(iteration: dict[str, object], path: Path) -> tuple[str, ...]:
+    """Read legacy one-cut and iterative batched-cut records uniformly."""
+    candidates: list[object] = []
+    direct = iteration.get("cut")
+    if direct is not None:
+        candidates.append(direct)
+    batch = iteration.get("new_conflicts")
+    if batch is not None:
+        if not isinstance(batch, list):
+            raise TypeError(f"seed event has malformed conflict batch: {path}")
+        for entry in batch:
+            if not isinstance(entry, dict):
+                raise TypeError(f"seed event has malformed batched conflict: {path}")
+            candidates.append(entry.get("cut"))
+    cuts: list[str] = []
+    for cut in candidates:
+        if not isinstance(cut, str) or not cut.startswith("(assert (or "):
+            raise ValueError(f"seed event has malformed learned cut: {path}")
+        cuts.append(cut)
+    return tuple(cuts)
+
+
 def seed_cuts(paths: tuple[Path, ...]) -> tuple[tuple[str, ...], tuple[dict[str, object], ...]]:
     """Load unique learned clauses and bind each seed event by SHA-256."""
     seen: set[str] = set()
@@ -40,15 +62,11 @@ def seed_cuts(paths: tuple[Path, ...]) -> tuple[tuple[str, ...], tuple[dict[str,
             for iteration in iterations:
                 if not isinstance(iteration, dict):
                     raise TypeError(f"seed event has malformed iteration: {path}")
-                cut = iteration.get("cut")
-                if cut is None:
-                    continue
-                if not isinstance(cut, str) or not cut.startswith("(assert (or "):
-                    raise ValueError(f"seed event has malformed learned cut: {path}")
-                source_count += 1
-                if cut not in seen:
-                    seen.add(cut)
-                    cuts.append(cut)
+                for cut in iteration_cuts(iteration, path):
+                    source_count += 1
+                    if cut not in seen:
+                        seen.add(cut)
+                        cuts.append(cut)
         sources.append(
             {
                 "path": str(path),

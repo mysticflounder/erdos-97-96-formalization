@@ -1,0 +1,16 @@
+{
+  "base_head": "32fcf99195c01d490525af123a718d35b5805c4b",
+  "created_utc": "2026-09-05T13:45:34Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "cardge13-exact13-batched-seed-loader-20260905",
+  "manifest_sha256": "c1f77d627adcfab300f8face2d4f2ae98b9b5f7f613556115a9e22c80f2b5281",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-exact13-batched-seed-loader-20260905.json",
+    "docs/audits/2026-09-05-cardge13-exact13-batched-seed-loader.md",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py",
+    "scripts/test_cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py"
+  ],
+  "owner": "RadiusCartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}
