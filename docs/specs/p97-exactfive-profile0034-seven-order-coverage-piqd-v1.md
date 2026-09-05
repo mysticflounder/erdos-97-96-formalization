@@ -1,7 +1,13 @@
 # Exact-five profile 0034 seven-order coverage probe
 
-Status: launch-ready implementation; no campaign has been launched in this
-lane. The default command is a read-only readiness check.
+Status: launch-ready successor implementation; no campaign has been launched
+in this lane. The default command is a read-only readiness check.
+
+The predecessor run-0001 failed before any solver session because its artifact
+category directories were absent; see
+`docs/audits/2026-09-04-exactfive-profile0034-seven-order-coverage-run-0001-failure.md`.
+This successor uses a fresh governed root and creates both category
+directories before any adapter call.
 
 ## Input custody
 
@@ -52,5 +58,7 @@ exhaustiveness, Euclidean realization, a theorem, promotion, or live closure.
 Focused tests cover cyclic wraparound, reversed order, alias collapse,
 avoidance encoding, accepted/rejected SAT replay, parent selection and custody
 failure, controls, terminal false claims, deterministic descriptors, launch
-gating/silence, and the 20-worker cap. The lane checkpoint owns
+gating/silence, the 20-worker cap, and regression coverage proving that nested
+artifact/control/profile directories exist before execution. The successor
+lane checkpoint owns
 `run-0001/run_manifest.json`; this work session did not submit a solver job.

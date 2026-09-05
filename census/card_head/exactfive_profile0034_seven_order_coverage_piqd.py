@@ -26,14 +26,14 @@ from typing import Any, Literal
 from census.card_head import exactfive_hard_source_swap_order_piqd as parent
 from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 
-LANE_ID = "exactfive-profile0034-seven-order-coverage-piqd-20260904"
+LANE_ID = "exactfive-profile0034-seven-order-coverage-piqd-r2-20260904"
 RUN_ID = "run-0001"
 PARENT_ROOT = (
     parent.REPOSITORY_ROOT
     / "scratch/runs/exactfive-hard-source-swap-order-piqd-r2-20260902/run-0001"
 )
 RUN_ROOT = parent.REPOSITORY_ROOT / "scratch/runs" / LANE_ID / RUN_ID
-BASE_HEAD = "fe863dbf250049945dffc2546f5cd942b6ac551e"
+BASE_HEAD = "63f94bd80d720ff2ed6c78f23c96514ca4d99ac1"
 MAX_WORKERS = 20
 EXPECTED_UNRESOLVED = 212
 EXPECTED_PARENT_PROFILES = 2_798
@@ -602,6 +602,8 @@ def run_census(
     manifest = _load_run_manifest()
     for name in ("artifacts", "events", "tmp"):
         (RUN_ROOT / name).mkdir(mode=0o700, exist_ok=True)
+    (RUN_ROOT / "artifacts" / "controls").mkdir(mode=0o700, exist_ok=True)
+    (RUN_ROOT / "artifacts" / "profiles").mkdir(mode=0o700, exist_ok=True)
     launch = _ensure_launch_record(manifest, indexes, workers=workers, timeout_ms=timeout_ms, server=server)
     controls: list[dict[str, Any]] = []
     for control in CONTROL_IDS:

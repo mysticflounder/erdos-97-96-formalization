@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -192,3 +193,36 @@ def test_cli_errors_are_compact(monkeypatch, capsys) -> None:
     monkeypatch.setattr(subject, "unresolved_parent_profiles", lambda: (_ for _ in ()).throw(subject.SevenOrderCoverageError("mutated parent")))
     assert subject.main([]) == 1
     assert capsys.readouterr().err == "error: mutated parent\n"
+
+
+def test_run_census_creates_artifact_parents_before_execution(monkeypatch, tmp_path: Path) -> None:
+    run_root = tmp_path / "run-0001"
+    run_root.mkdir()
+    calls: list[Path] = []
+
+    monkeypatch.setattr(subject, "RUN_ROOT", run_root)
+    monkeypatch.setattr(subject, "unresolved_parent_profiles", lambda: (0,))
+    monkeypatch.setattr(subject, "_load_run_manifest", lambda: {"manifest_sha256": "m"})
+    monkeypatch.setattr(subject, "_ensure_launch_record", lambda *_args, **_kwargs: {"launch_sha256": "l"})
+    monkeypatch.setattr(subject, "prepare_control_query", lambda control, **_kwargs: SimpleNamespace(key=f"control-{control}"))
+    monkeypatch.setattr(subject, "prepare_profile_query", lambda *_args, **_kwargs: SimpleNamespace(key="profile-0000-test"))
+
+    def execute(_prepared, output_directory, **_kwargs):
+        assert (run_root / "artifacts" / "controls").is_dir()
+        assert (run_root / "artifacts" / "profiles").is_dir()
+        assert output_directory.parent.is_dir()
+        calls.append(output_directory)
+        if output_directory.name == "control-positive":
+            statuses = [("SAT", "SAT_SEMANTICALLY_REPLAYED")] * 2
+        elif output_directory.name == "control-negative":
+            statuses = [("UNSAT", "UNSAT_DISCOVERY_ONLY")] * 2
+        else:
+            statuses = [("UNSAT", "UNSAT_DISCOVERY_ONLY")] * 2
+        return {"key": output_directory.name, "result_sha256": "r", "engines": [{"solver": solver, "raw_status": raw, "effective_status": effective} for solver, (raw, effective) in zip(("z3", "cvc5"), statuses, strict=True)]}
+
+    monkeypatch.setattr(subject.parent, "_execute_or_resume", execute)
+    monkeypatch.setattr(subject, "_execute_profile", execute)
+    monkeypatch.setattr(subject, "terminal_record", lambda *_args, **_kwargs: {"summary": {"profiles": 1}})
+    monkeypatch.setattr(subject.parent, "_write_create_once", lambda *_args, **_kwargs: None)
+    subject.run_census(workers=1, timeout_ms=1_000)
+    assert len(calls) == 3
