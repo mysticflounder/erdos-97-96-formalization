@@ -783,9 +783,18 @@ omission and joint-deletion omission to prove that deleting `C.u` forces
 `b1VSlice C = {C.v}`, while deleting `C.v` forces
 `b1USlice C = {C.u}`.  This is the first direct bridge from the fresh-pair
 recurrence back into the card-five trace constructors.  It makes the next
-consumer concrete: combine the forced singleton with the already retained
-escape-source membership/identity split, then analyze whether the escape is
-the deleted original source or lies in the opposite two-point slice.
+consumer concrete inside the canonical-source branch, but it cannot be
+combined directly with the escape-source adapter.  The escape packet proves
+its source is distinct from both canonical deleted sources, whereas
+`b1_freshPair_crossSystem_split` and `b1_cardFive_freshPair_role_split`
+require the fresh-pair source to be one of those canonical deletions.  A fresh
+theorem-mining and import audit found no endpoint identification
+`{u,v} = {C.u,C.v}` and no generalized no-third consumer for arbitrary fresh
+pairs.  The current no-third hypothesis quantifies only joint-deletion packets
+over the fixed pair `C.u,C.v`.  The next valid bridge must therefore produce
+proof-relevant unordered endpoint identification, or strengthen the upstream
+no-third theorem to arbitrary fresh pairs, before dependent packet transport;
+do not mix the disjoint canonical-source and escape-source branches.
 
 The fresh-pair/escape-witness gap is now narrowed at the source-selection
 boundary.  `b1_freshV_escapeStar_or_adjacentCap` starts from the fresh
@@ -1104,9 +1113,22 @@ nonnegative-cone run reported in audit lane
 reduces to one unit-weight form with two provider paths and nine source atoms;
 it rediscovers the outstanding one-form transitive-incidence conflict rather
 than closing the cell.  Its six focused producer tests pass, but its new
-Python orchestration is not itself a Lean or source-coverage result.  The next
-computational step is a Boolean resume with that clause followed by the same
-cone query on the next replayed model.  A direct PIQD capability audit confirms
+Python orchestration is not itself a Lean or source-coverage result.  The
+subsequent authenticated checkpoints have now executed the proposed resume:
+the nine-atom clause excludes its intended model but leaves the Boolean cell
+SAT with a new one-form conflict; excluding zero projected forms then exposes
+a two-unit-weight, two-form cancellation; and requiring support at least four
+produces a dense cone witness with 940 positive terms, total primitive weight
+2,236, 4,472 provider pairings, and a 58-atom clause.  Independent file hashes
+match all three audits and the current 13 focused resume/cone tests pass.
+These remain one-cell, formula-scoped results with no live source coverage or
+Lean terminal.  A final bounded-support PIQD query at commit `fecc059ce`
+replaces the dense witness by 24 positive terms with total primitive weight
+2,388, 4,776 expanded provider pairings, and 38 source atoms.  Its file hashes
+and the updated focused tests have been independently checked.  This witness
+is small enough at the term level for a Lean checker probe, but source binding
+still depends on the broken provider ingress and the expanded pairing payload
+remains large.  A direct PIQD capability audit confirms
 that the daemon can custody and replay a precomputed workflow but cannot yet
 own the model-driven Boolean-to-cone iteration or validate the cone equations,
 primitive-weight reduction, and provider paths.  This needs a durable
