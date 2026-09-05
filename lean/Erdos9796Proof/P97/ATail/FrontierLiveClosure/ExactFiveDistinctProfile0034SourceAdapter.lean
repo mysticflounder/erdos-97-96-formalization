@@ -1099,6 +1099,34 @@ theorem RobustApexFourIncidenceContinuationPacket.secondApex_radius_lt_dist_bloc
       dist_comm blocker S.oppApex2] at hK
     linarith
 
+/-- Squared-distance form of `secondApex_radius_lt_dist_blocker`, matching the
+polynomial guard used by the direct profile-0034 coordinate search. -/
+theorem RobustApexFourIncidenceContinuationPacket.secondApex_sqDist_lt_sqDist_blocker
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support) :
+    (dist S.oppApex2 S.oppApex1) ^ 2 <
+      (dist S.oppApex2 blocker) ^ 2 := by
+  have hradius : P.surface.row₂.radius < dist S.oppApex2 blocker :=
+    P.secondApex_radius_lt_dist_blocker N hblockerK₀ hOK₁ hOK₂
+  have hsquared : P.surface.row₂.radius * P.surface.row₂.radius <
+      dist S.oppApex2 blocker * dist S.oppApex2 blocker :=
+    mul_self_lt_mul_self (le_of_lt P.surface.row₂.radius_pos) hradius
+  rw [P.surface.row₂.support_eq_radius S.oppApex1 hOK₂]
+  simpa only [pow_two] using hsquared
+
 /-- The actual blocker row of a source omitted by all three live rows cannot
 contain both the first apex and the retained source.  Otherwise that blocker,
 the old blocker, and the second apex would be three distinct carrier centers

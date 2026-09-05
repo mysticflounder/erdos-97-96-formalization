@@ -75,6 +75,16 @@ second-apex row radius < dist second-apex blocker.
 
 Neither statement orders a row-zero or row-one residual on the boundary.
 
+For the next direct-cell refinement, the concrete reuse candidate was the
+squared-distance form of the second statement. One project-indexed search and
+one cross-project Lean search found no matching declaration; the latter found
+only the converse-shaped `sqrt_lt_of_sq_lt`. The immediate consumer is the
+PIQD polynomial guard comparing the second-apex distances to `O` and `U`, and
+the source antecedents are already exactly those of
+`secondApex_radius_lt_dist_blocker`. The checked corollary
+`secondApex_sqDist_lt_sqDist_blocker` now converts the positive-radius strict
+inequality with `mul_self_lt_mul_self`; it adds no geometric assumption.
+
 ## Fresh-source blocker split
 
 The strict common-deletion source supplies more than another boundary point.
