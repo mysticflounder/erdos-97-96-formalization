@@ -26,6 +26,7 @@ open ATailCommonDeletionTwoCenter
 open ExactFiveDistinctThreeCenterContinuation
 open ExactFiveDistinctSecondApexSourceSwap
 open FirstApexUniqueRadiusResidual
+open Census554.GeneralCarrierBridge
 
 private theorem exists_residual_pair_of_card_eq_four
     {α : Type*} [DecidableEq α] (K : Finset α) {a b : α}
@@ -102,6 +103,74 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_first_two_support_resid
     exists_residual_pair_of_card_eq_four P.surface.row₁.support
       P.surface.row₁.support_card hOK₁ P.a_mem_row₁ hopp_ne_retained
   exact ⟨p, q, s, t, hrow₀, hrow₁, hpq, hpFresh, hqFresh, hst, hsFresh, htFresh⟩
+
+/-- The residual points from the first two supports have canonical labels and
+indices in the packet boundary enumeration.  The statement records only the
+support equalities and freshness already supplied by the preceding extraction;
+it adds no order or cross-row distinctness. -/
+theorem
+  RobustApexFourIncidenceContinuationPacket.exists_first_two_support_residual_pairs_with_boundary_indices
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support) :
+    ∃ p q s t : ℝ²,
+      ∃ (ip iq is it : Fin P.boundaryIndexing.n),
+        P.surface.row₀.support = {N.retained, blocker, p, q} ∧
+        P.surface.row₁.support = {S.oppApex1, N.retained, s, t} ∧
+        p ≠ q ∧
+        p ∉ ({N.retained, blocker} : Finset ℝ²) ∧
+        q ∉ ({N.retained, blocker} : Finset ℝ²) ∧
+        s ≠ t ∧
+        s ∉ ({S.oppApex1, N.retained} : Finset ℝ²) ∧
+        t ∉ ({S.oppApex1, N.retained} : Finset ℝ²) ∧
+        P.boundaryIndexing.boundary ip = p ∧
+        P.boundaryIndexing.boundary iq = q ∧
+        P.boundaryIndexing.boundary is = s ∧
+        P.boundaryIndexing.boundary it = t := by
+  rcases RobustApexFourIncidenceContinuationPacket.exists_first_two_support_residual_pairs
+      N P hblockerK₀ hOK₁ with
+    ⟨p, q, s, t, hrow₀, hrow₁, hpq, hpFresh, hqFresh, hst, hsFresh, htFresh⟩
+  have hpK₀ : p ∈ P.surface.row₀.support := by
+    rw [hrow₀]
+    simp
+  have hqK₀ : q ∈ P.surface.row₀.support := by
+    rw [hrow₀]
+    simp
+  have hsK₁ : s ∈ P.surface.row₁.support := by
+    rw [hrow₁]
+    simp
+  have htK₁ : t ∈ P.surface.row₁.support := by
+    rw [hrow₁]
+    simp
+  let pLabel : CarrierLabel D.A := ⟨p, P.surface.row₀.support_subset_A hpK₀⟩
+  let qLabel : CarrierLabel D.A := ⟨q, P.surface.row₀.support_subset_A hqK₀⟩
+  let sLabel : CarrierLabel D.A := ⟨s, P.surface.row₁.support_subset_A hsK₁⟩
+  let tLabel : CarrierLabel D.A := ⟨t, P.surface.row₁.support_subset_A htK₁⟩
+  let ip : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf pLabel
+  let iq : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf qLabel
+  let is : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf sLabel
+  let it : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf tLabel
+  have hip : P.boundaryIndexing.boundary ip = p := by
+    simpa [ip, pLabel, pointOf] using P.boundaryIndexing.point_eq pLabel
+  have hiq : P.boundaryIndexing.boundary iq = q := by
+    simpa [iq, qLabel, pointOf] using P.boundaryIndexing.point_eq qLabel
+  have his : P.boundaryIndexing.boundary is = s := by
+    simpa [is, sLabel, pointOf] using P.boundaryIndexing.point_eq sLabel
+  have hit : P.boundaryIndexing.boundary it = t := by
+    simpa [it, tLabel, pointOf] using P.boundaryIndexing.point_eq tLabel
+  exact ⟨p, q, s, t, ip, iq, is, it, hrow₀, hrow₁, hpq, hpFresh, hqFresh,
+    hst, hsFresh, htFresh, hip, hiq, his, hit⟩
 
 /-- A first-row point and a blocker-row point in the profile-0034 boundary
 order close the robust three-row source. The deleted point remains on the
