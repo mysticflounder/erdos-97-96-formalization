@@ -2447,6 +2447,9 @@ abbrev I3V3A2DeltaNormalizationOfExactPacket
 -- The same-side proof uses the full chord-frame algebra for the equilateral
 -- intersection and the MEC center in one theorem.
 set_option maxHeartbeats 2000000 in
+/-- The forced `v₂` selector packet places both `a₂` and `v₃` on the same
+open side of the base chord `v₁v₂`.  This is the signed-area orientation
+fact needed by the subsequent lower-arc exclusion. -/
 theorem C2_same_open_side_of_base_chord_as_v3
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) {r s : ℝ}
@@ -4066,6 +4069,10 @@ identify `a₂` with the upper equilateral intersection, postcompose by the
 fixed half-shift similarity, and package the resulting point on the unit circle
 around `(1,0)` using `δ = arccos ((T(v₃))ₓ - 1) / 2`. -/
 set_option maxHeartbeats 8000000 in
+/-- From the exact Form-`b` selector packet, construct the normalized
+`I₃`/`v₃`/`a₂` configuration used by the N4d lower-apex consumer.  The result
+packages the similarity-frame coordinates and the corresponding angle
+interval into `I3V3A2DeltaNormalizationOfExactPacket`. -/
 theorem i3_v3_a2_delta_normalization_of_exact_packet
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) :
@@ -5318,6 +5325,10 @@ selector radius `dist (T v₂) (T q)`. -/
 set_option maxHeartbeats 8000000 in
 -- Large heartbeat budget: the proof packages a full similarity transport,
 -- several coordinate `nlinarith` certificates, and the lower-apex angle bound.
+/-- Recover the lower-apex equilateral configuration for a witness `q` in
+`I₃` that is equidistant from `v₂` and `v₃`.  The cap-order inequalities
+provide the transported radius and angle bounds required by the `PEqB`
+lower-apex consumer. -/
 theorem pEqB_lower_apex_config_of_equilateral
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     {q : ℝ²}
@@ -5940,6 +5951,10 @@ data the consumer `qEqC_row_impossible_of_lower_witness` requires. -/
 set_option maxHeartbeats 8000000 in
 -- Large heartbeat budget: the proof packages a full similarity transport,
 -- several coordinate `nlinarith` certificates, and the reflection-angle core.
+/-- Recover the reflection configuration for a lower-arc witness `q` and a
+point `C` on the base circle.  The equal-radius hypotheses and same-side
+condition package the reflected point in the `QEqCReflectionConfig` shape
+consumed by the N4d row exclusion. -/
 theorem qEqC_reflection_config_of_shell
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     {q C : ℝ²}
