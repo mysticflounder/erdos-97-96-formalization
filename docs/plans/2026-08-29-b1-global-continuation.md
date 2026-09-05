@@ -1106,11 +1106,18 @@ it rediscovers the outstanding one-form transitive-incidence conflict rather
 than closing the cell.  Its six focused producer tests pass, but its new
 Python orchestration is not itself a Lean or source-coverage result.  The next
 computational step is a Boolean resume with that clause followed by the same
-cone query on the next replayed model.  First determine whether current PIQD
-can own and authenticate that iteration declaratively; do not extend the
-bespoke orchestration surface.  The provider ingress must also compile and
-carry the activation and source-row hypotheses before any emitted certificate
-can reach the cancellation terminal.
+cone query on the next replayed model.  A direct PIQD capability audit confirms
+that the daemon can custody and replay a precomputed workflow but cannot yet
+own the model-driven Boolean-to-cone iteration or validate the cone equations,
+primitive-weight reduction, and provider paths.  This needs a durable
+declarative transition plus a typed certificate verifier bound to the exact
+formula and session digests; the request is recorded in the PIQD coordination
+channel as `#15134`.  Freeze rather than extend the bespoke Python
+orchestration until that capability exists.  The foreign-owned provider
+ingress also still fails its governed module build through parse, import/API,
+and final positive-row proof errors; its owner has the exact diagnostics in
+`#15135`.  It must compile and carry the activation and source-row hypotheses
+before any emitted certificate can reach the cancellation terminal.
 
 ### Card-at-least-thirteen global producer candidate
 
