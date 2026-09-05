@@ -1150,10 +1150,16 @@ declarative transition plus a typed certificate verifier bound to the exact
 formula and session digests; the request is recorded in the PIQD coordination
 channel as `#15134`.  Freeze rather than extend the bespoke Python
 orchestration until that capability exists.  The foreign-owned provider
-ingress also still fails its governed module build through parse, import/API,
-and final positive-row proof errors; its owner has the exact diagnostics in
-`#15135`.  It must compile and carry the activation and source-row hypotheses
-before any emitted certificate can reach the cancellation terminal.
+ingress has a validated nine-part repair: a Luna disposable-copy check at
+`#15278` compiled after supplying executable subtype equality and `Repr`, a
+Prop-to-Type `Classical.choose`/`choice` row selection, the missing namespace,
+explicit dependent binders, qualified positional conversion, and structural
+singleton-list elimination.  The live file remains unmodified and held by an
+inactive owner, so this is empirical file-level repair evidence rather than a
+governed build or promotion.  After handoff, apply the exact patch, run the
+focused governed build and axiom audit, and retain the activation and
+source-row hypotheses before any emitted certificate can reach the
+cancellation terminal.
 
 ### Card-at-least-thirteen global producer candidate
 
