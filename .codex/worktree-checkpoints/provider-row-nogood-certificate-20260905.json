@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "provider-row-nogood-certificate-20260905",
+  "owner": "luna-swarm-radial-lemmas",
+  "base_head": "abab02eb9ffc1b0063731263c2821aa7d3c729e8",
+  "created_utc": "2026-09-05T07:00:00Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/provider-row-nogood-certificate-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ProviderRowNogoodCertificate.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/provider-row-nogood-certificate-20260905/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/provider-row-nogood-certificate-20260905/run-0001/lake-env-lean.log",
+    "scratch/runs/provider-row-nogood-certificate-20260905/run-0001/run_manifest.json"
+  ],
+  "manifest_sha256": "516b9b3ec1f8a9521600fd906c75ff381512e615e4a8fb14b4ebab6cda05678a"
+}

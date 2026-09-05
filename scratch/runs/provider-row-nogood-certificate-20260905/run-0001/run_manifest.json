@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "provider-row-nogood-certificate-20260905",
+  "run_id": "run-0001",
+  "root": "scratch/runs/provider-row-nogood-certificate-20260905/run-0001",
+  "owner": "luna-swarm-radial-lemmas",
+  "base_head": "abab02eb9ffc1b0063731263c2821aa7d3c729e8",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ProviderRowNogoodCertificate.lean": "145d027c10a89b9dcb8100831eb7991433bc4eca2b20527634606c18c6f2671b"
+  },
+  "input_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/GenericRowNogoodCertificate.lean": "7abfcb6e3d0982dc504a29b3771cb634873d995724fd8c87f4811e412b39e84d"
+  },
+  "created_utc": "2026-09-05T07:00:00Z",
+  "manifest_sha256": "a7cf9663e6d4f36dd21b748e12e466853d7907ba741389c67c97b8f6f4b57586"
+}
