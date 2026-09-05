@@ -1,0 +1,21 @@
+{
+  "base_head": "bffaf8c50100dcd7637f761a3baf6e9c397268e5",
+  "created_utc": "2026-09-05T10:11:24Z",
+  "durable_paths": [
+    "scratch/runs/cardge13-core-provenance-projection-20260905/run-0001/core-provenance-receipt.json",
+    "scratch/runs/cardge13-core-provenance-projection-20260905/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-core-provenance-projection-20260905/run-0001"
+  ],
+  "lane_id": "cardge13-core-provenance-projection-20260905",
+  "manifest_sha256": "cb25e7e86f05618e878b855dbe803ce786adb95d26524a30f67e53f4b53c5122",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-core-provenance-projection-20260905.json",
+    "docs/audits/2026-09-05-cardge13-core-provenance-projection.md",
+    "scripts/project_cardge13_verified_core_provenance.py",
+    "scripts/test_project_cardge13_verified_core_provenance.py"
+  ],
+  "owner": "RadiusCartographer",
+  "schema": "worktree-lane-checkpoint/v1"
+}

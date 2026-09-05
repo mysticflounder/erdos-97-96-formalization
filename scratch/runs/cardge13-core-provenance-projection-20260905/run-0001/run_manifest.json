@@ -1,0 +1,34 @@
+{
+  "base_head": "bffaf8c50100dcd7637f761a3baf6e9c397268e5",
+  "created_utc": "2026-09-05T10:11:24Z",
+  "input_digests": {
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/artifacts/global-source-cell-boolean-path-pair-direct-pinned.cnf": "e03108c2bf961d48a343da0a132b1de3d76b28773f5658c7e80443f1029181c4",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/artifacts/global-source-cell-boolean-path-pair-direct-pinned.core.cnf": "7b012afa880a276b8ab94535b9e543138830de8e4074a56b684d5ca7000a3fa3",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/artifacts/global-source-cell-boolean-path-pair-direct-pinned.lrat": "0fcc5ba4da46462f5c2c60928627e353532cbc3be0392b9ba3d9029a7f9ce2b5",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/verified-core-extractor-v2/core.trace": "c73212fe2b3085ae9d0c343cf1b519f5af1f06972d73f2870fef16a4bdfc17e0",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/verified-core-extractor-v4/core-clause-map.jsonl": "fbe70e119d7e79ddaf99851fbb0dcd47618d556bf2622a30ed028b8089f51917",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/verified-core-extractor-v4/dense-core.cnf": "e0dcb0466deca221f7be368e47dd241d4a734548b826d8a7d73482b7eea68504",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/verified-core-extractor-v4/dense-core.lrat": "8e225b70cf2be2b115f1dcb0e97c9c2a338195586015b616e604a778304f5483",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/verified-core-extractor-v4/receipt.json": "109e6f95167a391e64a4cf09822a365da5b29f66b1e11d6cb67aa81cf22eb1f5",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/versioned-converter-v2-snapshot-exec-reviewed/clause-provenance.jsonl": "eae2c135870238f04618d45d2bd385140a8bfb24984150155b1f71b99f126881",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/versioned-converter-v2-snapshot-exec-reviewed/formula.cnf": "9d2c72288ebf97f4bd6462a4711c028449095884568b5cd57317bb1f3fdbf944",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/tmp/versioned-converter-v2-snapshot-exec-reviewed/manifest.json": "a61c81e2608174e03da141f160e266400778336b6259e7f703be4ddfa3feac58"
+  },
+  "lane_id": "cardge13-core-provenance-projection-20260905",
+  "manifest_sha256": "ebcbd566704db656073021c5a6c943cea13193652bdcd60b8d7c6c2d6d2e437d",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "RadiusCartographer",
+  "root": "scratch/runs/cardge13-core-provenance-projection-20260905/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/cardge13_literal_qfuf_to_dimacs_v2.py": "a3bd1691a2e3a87aac6da6cef8245ee2f9354ce90324703527ae33df404f1b45",
+    "scripts/extract_lrat_verified_core.py": "451b6f8fd88586fc110a879173b77337f669d1196f41ead1710f6c5f3237031b",
+    "scripts/project_cardge13_verified_core_provenance.py": "8a6917c589366fe2561fd41bfd906a2baca40b915a607a161e7fa1d3f3b92a1d",
+    "scripts/test_project_cardge13_verified_core_provenance.py": "f353163a4f2f94dd782e7612ea0e2ff10ef1f32294b4d19254ba8872fb709d4d"
+  }
+}
