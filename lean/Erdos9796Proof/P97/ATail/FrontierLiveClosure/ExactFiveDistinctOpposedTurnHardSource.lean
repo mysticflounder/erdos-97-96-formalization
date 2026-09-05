@@ -285,5 +285,53 @@ theorem HardSourceSwapExactGridRoles.false_of_fourthIncidence_exactGrid
     · exact hfamily.1
     · exact hfamily.2
 
+/-- In the fourth continuation branch, membership of the second apex in the
+first row eliminates the non-large hard-source residue.  What remains is a
+physical replacement class omitting both old sources or a five-point second
+opposite-cap interior. -/
+theorem RobustApexFourIncidenceContinuationPacket.physicalSecondApex_or_largeInterior_of_fourthIncidence
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (I : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hc₁K₀ : blocker ∈ I.surface.row₀.support)
+    (hc₂K₀ : S.oppApex2 ∈ I.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ I.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ I.surface.row₂.support)
+    (hc₁K₂ : blocker ∉ I.surface.row₂.support) :
+    (∃ K : SelectedFourClass D.A S.oppApex2,
+        N.retained ∉ K.support ∧ deleted ∉ K.support) ∨
+      5 ≤ S.oppInterior2.card := by
+  have hretained : N.retained ∈ N.secondApexClass.support := by
+    rw [← I.row₂_support_eq]
+    exact I.a_mem_row₂
+  rcases
+      exactFiveDistinct_secondApex_physical_or_hardSourceSwap
+        R C N hretained with
+    hphysical | hhard
+  · exact Or.inl hphysical
+  · obtain ⟨P⟩ := hhard
+    by_cases hlarge : 5 ≤ S.oppInterior2.card
+    · exact Or.inr hlarge
+    · have hfirstApexSecond :
+          S.oppApex1 ∈ N.secondApexClass.support := by
+        rw [← I.row₂_support_eq]
+        exact hOK₂
+      rcases
+          nonempty_hardSourceSwapExactGridRoles_of_not_large
+            R C N P hfirstApexSecond hlarge with
+        ⟨Q⟩
+      exact False.elim
+        (Q.false_of_fourthIncidence_exactGrid
+          I hc₁K₀ hc₂K₀ hOK₁ hOK₂ hc₁K₂)
+
 end ATailFrontierLiveClosure
 end Problem97

@@ -110,6 +110,15 @@ fourth-incidence exact-grid branch it closes the subcell where `oppApex2` also
 belongs to row zero.  An independent audit found only core axioms in the two
 new declarations and confirmed every source-role and sign transport.
 
+The source-swap split is now packaged one level higher by
+`RobustApexFourIncidenceContinuationPacket.physicalSecondApex_or_largeInterior_of_fourthIncidence`.
+Under the same fourth-prefix memberships and `oppApex2 ∈ row₀`, it derives
+only two surviving outcomes: a replacement second-apex selected class omitting
+both the retained and deleted sources, or `5 ≤ |oppInterior2|`.  The hard-source
+non-large arm is discharged internally through the exact-grid roles and the
+preceding geometric terminal.  This wrapper removes that branch from later
+live wiring without claiming a consumer for either surviving outcome.
+
 That theorem does not cover the complementary source cell.  A bounded indexed
 Lean search at worktree revision `7bea392c3`, against the corpus indexed from
 `0832ec561`, found no source-clean terminal.  The closest result,
