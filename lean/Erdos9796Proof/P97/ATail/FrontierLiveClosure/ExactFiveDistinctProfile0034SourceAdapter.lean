@@ -314,6 +314,78 @@ theorem
   exact ⟨p, q, s, t, ip, iq, is, it, hrow₀, hrow₁, hpq, hpFresh, hqFresh,
     hst, hsFresh, htFresh, hip, hiq, his, hit⟩
 
+/-- The separated profile-0034 residual heads and all five fixed source roles
+have canonical indices in the packet boundary enumeration.  This packages the
+entire seven-role ingress expected by the obstruction consumer, but deliberately
+asserts no order between the indices. -/
+theorem
+  RobustApexFourIncidenceContinuationPacket.exists_profile0034_seven_role_boundary_indices
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support) :
+    ∃ p s : ℝ²,
+      ∃ iU ip is ia id ic iO : Fin P.boundaryIndexing.n,
+        p ∈ P.surface.row₀.support ∧
+        s ∈ P.surface.row₁.support ∧
+        p ≠ s ∧
+        p ≠ S.oppApex2 ∧
+        s ≠ S.oppApex2 ∧
+        blocker ≠ deleted ∧
+        P.boundaryIndexing.boundary iU = blocker ∧
+        P.boundaryIndexing.boundary ip = p ∧
+        P.boundaryIndexing.boundary is = s ∧
+        P.boundaryIndexing.boundary ia = N.retained ∧
+        P.boundaryIndexing.boundary id = deleted ∧
+        P.boundaryIndexing.boundary ic = S.oppApex2 ∧
+        P.boundaryIndexing.boundary iO = S.oppApex1 := by
+  rcases P.exists_profile0034_separated_residual_heads N hblockerK₀ hOK₁ hOK₂ with
+    ⟨p, s, hpK₀, hsK₁, hps, hp₂, hs₂⟩
+  have hblockerDeleted : blocker ≠ deleted :=
+    P.blocker_ne_deleted_of_mem_firstRow N hblockerK₀
+  have hblockerA : blocker ∈ D.A :=
+    P.surface.row₀.support_subset_A hblockerK₀
+  have hpA : p ∈ D.A := P.surface.row₀.support_subset_A hpK₀
+  have hsA : s ∈ D.A := P.surface.row₁.support_subset_A hsK₁
+  have haA : N.retained ∈ D.A :=
+    P.surface.row₀.support_subset_A P.surface.a_mem_row₀
+  have hdA : deleted ∈ D.A :=
+    (mem_selectedClass.mp (deleted_mem_firstApex_selectedClass N)).1
+  let ULabel : CarrierLabel D.A := ⟨blocker, hblockerA⟩
+  let pLabel : CarrierLabel D.A := ⟨p, hpA⟩
+  let sLabel : CarrierLabel D.A := ⟨s, hsA⟩
+  let aLabel : CarrierLabel D.A := ⟨N.retained, haA⟩
+  let dLabel : CarrierLabel D.A := ⟨deleted, hdA⟩
+  let cLabel : CarrierLabel D.A := ⟨S.oppApex2, P.surface.c₂_mem_A⟩
+  let OLabel : CarrierLabel D.A := ⟨S.oppApex1, P.surface.O_mem_A⟩
+  let iU : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf ULabel
+  let ip : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf pLabel
+  let is : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf sLabel
+  let ia : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf aLabel
+  let id : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf dLabel
+  let ic : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf cLabel
+  let iO : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf OLabel
+  refine ⟨p, s, iU, ip, is, ia, id, ic, iO, hpK₀, hsK₁, hps, hp₂, hs₂,
+    hblockerDeleted, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simpa [iU, ULabel, pointOf] using P.boundaryIndexing.point_eq ULabel
+  · simpa [ip, pLabel, pointOf] using P.boundaryIndexing.point_eq pLabel
+  · simpa [is, sLabel, pointOf] using P.boundaryIndexing.point_eq sLabel
+  · simpa [ia, aLabel, pointOf] using P.boundaryIndexing.point_eq aLabel
+  · simpa [id, dLabel, pointOf] using P.boundaryIndexing.point_eq dLabel
+  · simpa [ic, cLabel, pointOf] using P.boundaryIndexing.point_eq cLabel
+  · simpa [iO, OLabel, pointOf] using P.boundaryIndexing.point_eq OLabel
+
 /-- A first-row point and a blocker-row point in the profile-0034 boundary
 order close the robust three-row source. The deleted point remains on the
 original exact-five first-apex circle even though it is absent from the

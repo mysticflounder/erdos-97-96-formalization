@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-seven-role-boundary-indices-20260904",
+  "owner": "codex-profile0034-seven-role-boundary-indices",
+  "base_head": "c7d2ff2a0ca8ad311dee665cd5de57fcb4d8127a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-seven-role-boundary-indices-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-seven-role-boundary-indices.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProfile0034SourceAdapter.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T05:48:06Z",
+  "manifest_sha256": "f9c2ed71c05aea8fa868fdcb6b03b93034270acf94187e423f4acbc1920ee60e"
+}
