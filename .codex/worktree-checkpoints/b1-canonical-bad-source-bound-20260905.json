@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-canonical-bad-source-bound-20260905",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "ed08027473e9741b2a34fac7d7597d2fe6756085",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-canonical-bad-source-bound-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CanonicalBadSourceBound.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T18:28:29Z",
+  "manifest_sha256": "e1787d85536b0845d54e466721ad697ba99c90d3407bb61e91c70e94f5af6fa0"
+}
