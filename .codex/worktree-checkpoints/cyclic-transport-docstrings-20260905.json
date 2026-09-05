@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cyclic-transport-docstrings-20260905",
+  "owner": "luna-swarm-cyclic-transport-docstrings",
+  "base_head": "c8230c193f890ded87c97bca8bf0535140a27fe5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cyclic-transport-docstrings-20260905.json",
+    "lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T04:02:53Z",
+  "manifest_sha256": "7124971aa5f69abf2c95d734f00cb3eb9ca4e046f0f1b284f79218170f023b08"
+}

@@ -230,11 +230,15 @@ theorem cyclicShift3_triangle {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).triangle = S.triangle3 := by
   rfl
 
+/-- Shifting the shell's distinguished endpoint transports the witness class
+at the original first endpoint to the class at the second endpoint. -/
 theorem cyclicShift_witnessClassAt_v1 {A : Finset ℝ²}
     (S : FiniteEndpointShell A) (r : ℝ) :
     (S.cyclicShift).witnessClassAt_v1 r = S.witnessClassAt_v2 r := by
   rfl
 
+/-- The direct third-position shift transports the first-endpoint witness
+class to the class at the third endpoint. -/
 theorem cyclicShift3_witnessClassAt_v1 {A : Finset ℝ²}
     (S : FiniteEndpointShell A) (r : ℝ) :
     (S.cyclicShift3).witnessClassAt_v1 r = S.witnessClassAt_v3 r := by
