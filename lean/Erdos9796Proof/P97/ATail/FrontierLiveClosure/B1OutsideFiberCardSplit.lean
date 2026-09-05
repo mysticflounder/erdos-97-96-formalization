@@ -196,6 +196,30 @@ theorem freshOutsideFirst_otherOutsidePoint_blocker_ne_of_card_eq_three
     freshOutsideFirst_otherOutsidePoint_not_mem_actualBlockerFiber_of_card_eq_three
       (P := P) (Pρ := Pρ) Q hcard hmem
 
+/-- The symmetric card-four conclusion, obtained by swapping the two
+collision rows through the canonical outside-fiber adapter. -/
+theorem freshOutsideSecond_otherOutsidePoint_mem_actualBlockerFiber_of_card_eq_four
+    (Q : FreshOutsideSecondBlockerFiber P Pρ)
+    (hcard :
+      (actualBlockerFiber H ⟨Pρ.source₁, Pρ.source₁_mem_A⟩).card = 4) :
+    (⟨Q.otherOutsidePoint, Q.otherOutsidePoint_mem_A⟩ :
+        CriticalShellSystem.CarrierVertex D.A) ∈
+      actualBlockerFiber H ⟨Pρ.source₁, Pρ.source₁_mem_A⟩ :=
+  freshOutsideFirst_otherOutsidePoint_mem_actualBlockerFiber_of_card_eq_four
+    (P := Pρ) (Pρ := P) Q.toSwappedFirst hcard
+
+/-- The symmetric card-three conclusion: the second outside point has a
+different actual blocker from the second collision row's anchor. -/
+theorem freshOutsideSecond_otherOutsidePoint_blocker_ne_of_card_eq_three
+    (Q : FreshOutsideSecondBlockerFiber P Pρ)
+    (hcard :
+      (actualBlockerFiber H ⟨Pρ.source₁, Pρ.source₁_mem_A⟩).card = 3) :
+    H.blockerVertex
+        ⟨Q.otherOutsidePoint, Q.otherOutsidePoint_mem_A⟩ ≠
+      H.blockerVertex ⟨Pρ.source₁, Pρ.source₁_mem_A⟩ :=
+  freshOutsideFirst_otherOutsidePoint_blocker_ne_of_card_eq_three
+    (P := Pρ) (Pρ := P) Q.toSwappedFirst hcard
+
 end
 end ATailFrontierLiveClosure
 end Problem97
