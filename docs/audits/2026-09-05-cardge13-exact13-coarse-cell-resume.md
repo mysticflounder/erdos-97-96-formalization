@@ -43,3 +43,10 @@ conflicts but is not yet an efficient terminal classifier. The next run must
 not merely restart the same learner: it should use a complete or batched
 two-form conflict bank, a stronger multi-form certificate search, or a
 source-faithful support/center split justified by the recorded final model.
+
+The 3,000 new cuts consist of 2,882 transitive one-form incidence paths and
+118 two-form incidence paths. They are all distinct; the one-form cuts cover
+1,154 distinct strict-form identifiers. Together with the preceding wave's
+983 one-form and 17 two-form incidence cuts. HEURISTIC: the immediate
+bottleneck is still saturation of transitive one-form paths, before broad
+multi-form search becomes the dominant issue.
