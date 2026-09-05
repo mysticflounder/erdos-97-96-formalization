@@ -1,0 +1,209 @@
+{
+  "schema": "exactfive-physical-handoff-validation/v1",
+  "created_utc": "2026-09-05T20:43:49Z",
+  "lane_base_head": "c4ac26b1ea8e08dd74d0e1d4f7bf497c315339ba",
+  "audit_head": "181477f179cbb2c3ac4ad6a0a4f09d54ef3f45cc",
+  "archive_sha256": "c957c090eb072ad23ed051ad44f3a795b57be5dbe72681fee493893890a6435b",
+  "archive_checksum_entries_verified": 8,
+  "archive_source_pin": "50cd6586d101df8c27d4cfc2c11ccc3683ffe803",
+  "bypass_draft_source_pin": "493b88dad29f68d5f7dfe35bd3d5e17cd492be33",
+  "strategy_source_pin": "0a51fea446deeae8b6ddd760625e36a22d6c42d4",
+  "source_members_sha256": {
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/ExactFiveCapRadiusDropScalar.lean": "2032cf69f2b56ebec9c5da0b7eac01cd227e8cf8c32e7db4dd6e7e874b3ac946",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/ExactFiveCirclePowerScalar.lean": "a3760091907db03260082642a0d95ed042e5a570286b8ddde48dcaa22a925fe1",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/ExactFiveRetainedDoubleDeletion.lean": "7aa481306c8f67c12445d0f1f36466c45fe0c12f4ed0a127956b1eeff41c7593",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/MANIFEST.md": "12f51c799bb6e8fe900021a6955b6ed8e11feca144e42e2e0a0449c16d06aad7",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/STATUS.md": "c28d2f5fad47597ade006b7733645b440c63f21de0dc7af15e5ef624f9c81fd7",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/exact-evidence.md": "0a42334a5b0eeb4f0a833405b5f396efec4b33886a78cdf146b4fb9d67f5ee06",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/formalization-request.md": "acd9084848764968cfcc8ca0d733e38fe4b5f0c0c51bc2a5257f71023b5ed2a1",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/proofs-and-formalization.md": "1ad82cbdf3ecc883e7d8e40b6bb08eae6fa570d3fa2f6ee7cf8d9d8be76b66fe",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/scalar-checks.md": "0359fe65a8909c8c64a11336d3802888373b4c7f2bd0e49c9fe1c1915c65524e"
+  },
+  "strategy_sha256": "8f0600a3d06c20353f5c0335088fa6d794d4cda861cdbd97df1ec3000fba3eb0",
+  "current_source_sha256": {
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctSecondApexSourceSwap.lean": "27a5074011361f87a0e2f45661cbd19b3991f67712cf0bf59e9ed7d5eaee6c98",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctThreeCenterContinuation.lean": "4122f2e0ef8ddcee4a6b81e6e79c2efdb509b677a0cb7034b6c0c1eac03b8e46",
+    "lean/Erdos9796Proof/P97/ATail/ThreeCenterCommonDeletion.lean": "165f007de445ca86ee8107c9e641dde2ffaf94b2ed8172770ffcfff425f2e1a1",
+    "lean/Erdos9796Proof/P97/ATail/CommonDeletionTwoCenter.lean": "253737b1fb18570c031a80aae4357dbe432adda1220b20aefe3e79d8aef8c6aa",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean": "1da4880d00cdc6b521bf0be3d5ed4ab00c905b729dfab43159901744804e57e5",
+    "lean/Erdos9796Proof/P97/GeneralCarrierAbstractRowSystem.lean": "9a32f54f3c1099d60c2269c3f4ac72d08d28eed42db03b63357e4f77dc6897ed",
+    "lean/Erdos9796Proof/P97/AbstractRowSystemConnectivity.lean": "c892b6cb6dd57d947fe207756e67de967f8ffd351b983514f7653191dfd70648",
+    "lean/Erdos9796Proof/P97/U1CarrierInjection.lean": "0763edd41bef51f9b5ca0c7d98d3178efdbe45f7ad130c723e672f6671379fc2",
+    "lean/Erdos9796Proof/P97/ATail/CriticalPairFrontier.lean": "2b2b381d0833292df28a1fd9d0316999a221623a23ed0cdb5f97c7f98547b959"
+  },
+  "toolchain": "leanprover/lean4:v4.27.0",
+  "python": "3.13.13",
+  "sympy": "1.14.0",
+  "circle_power_lean": {
+    "method": "Lean LSP lean_run_code: original source plus five #print axioms commands",
+    "success": true,
+    "timed_out": false,
+    "axiom_reports": [
+      "'ExactFiveCirclePowerScalar.circle_power_identity' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "'ExactFiveCirclePowerScalar.first_power_eq_of_second_circle' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "'ExactFiveCirclePowerScalar.first_radius_sq_lt_of_second_circle_of_chord_side' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+      "'ExactFiveCirclePowerScalar.first_center_outside_second_disk' depends on axioms: [propext, Classical.choice, Quot.sound]",
+      "'ExactFiveCirclePowerScalar.leg_lt_base_of_nonacute' depends on axioms: [propext, Classical.choice, Quot.sound]"
+    ],
+    "warnings": [
+      {
+        "severity": "warning",
+        "message": "unused variable `hleg`\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+        "line": 50,
+        "column": 6,
+        "lean_tags": null
+      }
+    ],
+    "errors": []
+  },
+  "double_deletion_lean": {
+    "method": "Lean LSP lean_run_code: complete original source, including its five #print axioms commands",
+    "success": true,
+    "timed_out": false,
+    "axiom_reports": [
+      "'Problem97.ExactFiveRetainedDoubleDeletion.exists_selectedFourClass_of_doubleDeletion' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+      "'Problem97.ExactFiveRetainedDoubleDeletion.secondApex_doubleDeletion_of_normalForm' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+      "'Problem97.ExactFiveRetainedDoubleDeletion.exists_secondApex_row_omitting_originalPair' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+      "'Problem97.ExactFiveRetainedDoubleDeletion.exists_third_full_radius_of_hardSourceSwap' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]",
+      "'Problem97.ExactFiveRetainedDoubleDeletion.exists_physicalNormalForm_reselection' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]"
+    ],
+    "warnings": [
+      {
+        "severity": "warning",
+        "message": "This file has no module docstring (`/-! ... -/`). Add one after the imports to document the file.\n\nNote: This linter can be disabled with `set_option linter.style.moduleDocstring false`",
+        "line": 20,
+        "column": 1,
+        "lean_tags": null
+      }
+    ],
+    "errors": []
+  },
+  "prior_radius_drop_scalar": {
+    "byte_identical": true,
+    "prior_validation_record": "docs/audits/2026-09-05-exactfive-cap-radius-drop-validation.json"
+  },
+  "exact_replays": {
+    "negative_control": {
+      "exit_code": 0,
+      "record_matches_embedded_expected": true,
+      "record": {
+        "points": 30,
+        "strict_supporting_edge_tests": 840,
+        "MEC_boundary": [
+          "O",
+          "L",
+          "R"
+        ],
+        "MEC_center_weights": {
+          "O": "13653780/75986089",
+          "L": "62332309/151972178",
+          "R": "62332309/151972178"
+        },
+        "cap_sizes": {
+          "O": 9,
+          "R": 13,
+          "L": 11
+        },
+        "strict_cap_sizes": {
+          "O": 7,
+          "R": 11,
+          "L": 9
+        },
+        "K4_centers": [
+          "L",
+          "O",
+          "R",
+          "a",
+          "d",
+          "e",
+          "z"
+        ],
+        "missing_global_K4_count": 23,
+        "unique_four_centers": [
+          "e",
+          "z"
+        ],
+        "unique_four_support_cover": [
+          "a",
+          "d",
+          "t",
+          "z",
+          "zrow1",
+          "zrow2",
+          "zrow3"
+        ],
+        "r_squared": "21964063703322841/9021531883245025",
+        "s_squared": "89145252562946023968037192046575782827746472051259841932374173/115418580502722756060694825576209683936985769860508195595060625",
+        "fresh_is_blocker_center": true,
+        "claims_full_counterexample": false
+      }
+    },
+    "circle_power": {
+      "exit_code": 0,
+      "symbolic_identities": 2,
+      "rational_circle_cases": 243,
+      "strict_inner_side_cases": 86
+    },
+    "uniform_strategy": {
+      "exit_code": 0,
+      "stdout_byte_identical": true,
+      "record": {
+        "split_inverse_n_range": [
+          4,
+          24
+        ],
+        "split_inverse_coefficient_identities": 2296,
+        "abstract_graphs_checked": 65536,
+        "omitted_anchor_reachability_implications": 165888,
+        "all_omissions_strongly_connected_graphs": 29346,
+        "dual_toy_certificate": {
+          "matrix": [
+            [
+              -1,
+              1,
+              1
+            ],
+            [
+              1,
+              -1,
+              0
+            ]
+          ],
+          "multipliers": [
+            1,
+            1
+          ],
+          "column_sums": [
+            0,
+            0,
+            1
+          ]
+        },
+        "status": "Exact regression checks only; not a physical-terminal proof or an UNSAT certificate."
+      }
+    }
+  },
+  "replay_artifact_sha256": {
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/check_circle_power.py": "450fc821b261a2468d2af667c627d00f501f244cac9f0e80e6d88b5cfa05f196",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/check_strategy.py": "fb8f3419b6cf8bb5c49c934aaf658a84c920334b0ad878d71f39e1dccde7df9f",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/check_strategy_expected.json": "1a00f6308d8b9d8517cf7eb726757822d4dd7b6c7cdc9a2340074e023e0c38ef",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/check_strategy_output.json": "1a00f6308d8b9d8517cf7eb726757822d4dd7b6c7cdc9a2340074e023e0c38ef",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/circle-power-lsp-result.json": "df8f4957a753184abb8661653919e351455d28036bf362942319d94d208c74c8",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/double-deletion-lsp-result.json": "39e95f11c6968bc141d3fd562e70f7e6b098504e436411c1d9d45753969f7f35",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/independent_verification.json": "00bc6414c1f2463fe10016c44bc97e2edc5ccb99fba71e8fc42d324f0292f5f7",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/named_core_exact_model.json": "5da18b79baa270b97efa072a44bbc4bed9862ccbe0802b7b5619f3490cbd278a",
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/artifacts/verify_named_core.py": "9749b0b34ecb9fc6fb8fb9885a0037916357c837324f8464ebec7b671c29462b"
+  },
+  "claim_boundary": {
+    "new_named_theorems_checked": 10,
+    "production_lean_modified": false,
+    "strict_fresh_selector_integrated": false,
+    "source_geometry_bridges_checked": false,
+    "source_uniform_return_barrier_proved": false,
+    "physical_leaf_closed": false,
+    "finite_unsat_certificates_checked": false,
+    "native_trust_claim_for_production_root": false
+  },
+  "runtime_manifest": "scratch/runs/exactfive-physical-handoff-20260905/original-validation/run_manifest.json",
+  "manifest_sha256": "0d0133a0f9e2429217fd3b378575c56bcae636117f42554d704d5bf91427293c"
+}

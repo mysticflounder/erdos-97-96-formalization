@@ -1,0 +1,29 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-physical-handoff-20260905",
+  "owner": "CapDropAudit",
+  "base_head": "c4ac26b1ea8e08dd74d0e1d4f7bf497c315339ba",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-physical-handoff-20260905.json",
+    "docs/audits/2026-09-05-exactfive-physical-handoff-validation.json",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/ExactFiveCapRadiusDropScalar.lean",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/ExactFiveCirclePowerScalar.lean",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/ExactFiveRetainedDoubleDeletion.lean",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/MANIFEST.md",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/STATUS.md",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/exact-evidence.md",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/formalization-request.md",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/proofs-and-formalization.md",
+    "docs/references/exactfive-physical-handoff-original-2026-09-05/scalar-checks.md",
+    "docs/references/exactfive-uniform-closure-strategy-2026-09-05.md",
+    "docs/skeptic-exactfive-physical-handoff-2026-09-05.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation"
+  ],
+  "durable_paths": [
+    "scratch/runs/exactfive-physical-handoff-20260905/original-validation/run_manifest.json"
+  ],
+  "created_utc": "2026-09-05T20:35:34Z",
+  "manifest_sha256": "053c14a0bdf966107b9ec425dea5de132c2ba2fbc8cbf2f19cd03ea81befb447"
+}

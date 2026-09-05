@@ -1,0 +1,14 @@
+# SHA-256 manifest
+
+Hash scope: every delivered file except this manifest itself.
+
+```text
+2032cf69f2b56ebec9c5da0b7eac01cd227e8cf8c32e7db4dd6e7e874b3ac946  ExactFiveCapRadiusDropScalar.lean
+a3760091907db03260082642a0d95ed042e5a570286b8ddde48dcaa22a925fe1  ExactFiveCirclePowerScalar.lean
+7aa481306c8f67c12445d0f1f36466c45fe0c12f4ed0a127956b1eeff41c7593  ExactFiveRetainedDoubleDeletion.lean
+c28d2f5fad47597ade006b7733645b440c63f21de0dc7af15e5ef624f9c81fd7  STATUS.md
+0a42334a5b0eeb4f0a833405b5f396efec4b33886a78cdf146b4fb9d67f5ee06  exact-evidence.md
+acd9084848764968cfcc8ca0d733e38fe4b5f0c0c51bc2a5257f71023b5ed2a1  formalization-request.md
+1ad82cbdf3ecc883e7d8e40b6bb08eae6fa570d3fa2f6ee7cf8d9d8be76b66fe  proofs-and-formalization.md
+0359fe65a8909c8c64a11336d3802888373b4c7f2bd0e49c9fe1c1915c65524e  scalar-checks.md
+```
