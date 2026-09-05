@@ -1153,6 +1153,30 @@ retaining the five/six normal form and exact deleted-source identities, and
 decide whether the no-third-deletion arm forces a finite cycle or which
 additional upstream incidence is missing.
 
+The current escape-source adapter cannot itself enter the canonical B1
+no-third-deletion clause.  It reselects a joint deletion over fresh carrier
+parameters `u, v`, whereas `B1PhysicalClassFiveSixNormalForm` quantifies only
+packets over the fixed `C.u, C.v`.  It supplies no equality identifying the
+fresh pair, deleted source, or actual blocker with the canonical B1 data.
+Luna trace `#15061` and direct source validation found no existing comparison
+theorem that repairs this dependent-type/provenance mismatch.
+
+Three independent source audits, including Luna `#15080`, checked whether the
+mismatch could be bypassed by generalizing the pair-insensitive geometry.
+`b1_third_actualBlocker_ne_common`,
+`false_of_exactFour_twoDeletion_blockerTwoCycle`, and
+`exactFour_twoDeletion_crossOmission` do not use equality of their packets'
+omitted-pair parameters and admit heterogeneous-pair statement variants.
+Those variants do not reduce the B1 frontier.  The first actual consumer,
+`false_of_b1_oneWayCrossOmission`, calls the survival-square split with the
+second blocker's inequalities against the first packet's two row centers;
+the existing packet fields provide these only when both packets share
+`C.u, C.v`.  A heterogeneous call therefore needs new cross-pair blocker
+inequalities.  Even with those added, every branch dispatches to the open
+`blockerCoincidence` or `survivalSquare` auxiliary theorem.  Do not implement
+the heterogeneous helper refactor without a new producer for those
+inequalities and a kernel-clean terminal beyond the two existing leaves.
+
 For exact class cardinality six,
 `B1CardSixPointConfigurationPayload.ofSource` already packages the strongest
 source-clean positive boundary, metric, row, role-alias, and physical-support
