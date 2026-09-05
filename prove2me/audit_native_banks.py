@@ -16,17 +16,19 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sqlite3
 import subprocess
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Iterable
 
 
 TOKEN = "native_decide"
 IDENT_CHARS = frozenset("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_'")
+LITERAL_BOUNDARIES = {"string": re.compile(r'["\\\n]'), "char": re.compile(r"['\\\n]")}
+NORMAL_BOUNDARIES = re.compile(r'''--|/-|"|'|native_decide|\n''')
 
 
 @dataclass(frozen=True)
@@ -62,6 +64,8 @@ def source_scope(path: str) -> str:
 
 def scan_tokens(data: bytes) -> list[Occurrence]:
     """Find identifier tokens while skipping Lean comments and literals."""
+    if TOKEN.encode() not in data:
+        return []
     text = data.decode("utf-8", errors="replace")
     out: list[Occurrence] = []
     i = 0
@@ -70,6 +74,12 @@ def scan_tokens(data: bytes) -> list[Occurrence]:
     state = "normal"
     block_depth = 0
     while i < len(text):
+        if state == "normal":
+            boundary = NORMAL_BOUNDARIES.search(text, i)
+            if boundary is None:
+                break
+            column += boundary.start() - i
+            i = boundary.start()
         ch = text[i]
         nxt = text[i + 1] if i + 1 < len(text) else ""
         if state == "line":
@@ -101,6 +111,14 @@ def scan_tokens(data: bytes) -> list[Occurrence]:
                 i += 1
             continue
         if state in {"string", "char"}:
+            # Certificate payloads can contain megabytes of encoded text. Skip
+            # literal content in bulk while retaining escape and line handling.
+            boundary = LITERAL_BOUNDARIES[state].search(text, i)
+            if boundary is None:
+                break
+            column += boundary.start() - i
+            i = boundary.start()
+            ch = text[i]
             closing = '"' if state == "string" else "'"
             if ch == "\\":
                 step = 2 if i + 1 < len(text) else 1
@@ -208,6 +226,7 @@ def indexed_names(
         rel_to_path = {path.removeprefix("lean/"): path for path in paths}
         for start in range(0, len(paths), 400):
             chunk = paths[start : start + 400]
+            rel_chunk = [path.removeprefix("lean/") for path in chunk]
             marks = ",".join("?" for _ in chunk)
             query = f"""
                 SELECT f.rel_path, f.content_hash, s.line,
@@ -215,10 +234,11 @@ def indexed_names(
                 FROM lean_files AS f JOIN lean_symbols AS s ON s.file_id = f.id
                 WHERE f.rel_path IN ({marks})
             """
-            for rel, stored_hash, line, end_line, name, kind in conn.execute(query, chunk):
+            for rel, stored_hash, line, end_line, name, kind in conn.execute(query, rel_chunk):
                 path = rel_to_path.get(rel)
                 if path is not None and stored_hash == hashes.get(path):
                     matched[path].append((line, end_line, name, kind))
+        out: dict[str, list[str]] = {}
         for path, occurrences in rows.items():
             names: set[str] = set()
             for occurrence in occurrences:
@@ -236,17 +256,30 @@ def main() -> int:
     parser.add_argument("--repo", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--db", type=Path, default=None)
     parser.add_argument("--out", type=Path, default=None)
+    parser.add_argument(
+        "--scope",
+        choices=("lean", "all"),
+        default="lean",
+        help="scan tracked Lean sources under lean/ (default), or every tracked .lean root",
+    )
     args = parser.parse_args()
     repo = args.repo.resolve()
     db = (args.db or repo / "data/proof-blueprint.db").resolve()
     out_path = (args.out or repo / "prove2me/native-bank-inventory.json").resolve()
     tracked = tracked_lean_files(repo)
-    scanned = tracked
+    candidates = [path for path in tracked if args.scope == "all" or path.startswith("lean/")]
+    scanned: list[str] = []
+    missing: list[str] = []
     occurrences: dict[str, list[Occurrence]] = {}
     hashes: dict[str, str] = {}
     bytes_by_path: dict[str, int] = {}
-    for rel in scanned:
-        data = (repo / rel).read_bytes()
+    for rel in candidates:
+        try:
+            data = (repo / rel).read_bytes()
+        except FileNotFoundError:
+            missing.append(rel)
+            continue
+        scanned.append(rel)
         # Avoid decoding and lexing the overwhelmingly large no-hit tail.
         if TOKEN.encode("ascii") not in data:
             continue
@@ -287,14 +320,16 @@ def main() -> int:
         "repository_root": str(repo),
         "scope": {
             "tracked_source_command": "git ls-files --full-name -- ':(top)**.lean'",
-            "primary_first_party": "all tracked paths under lean/, including Generated; lean/scratch is separately labeled",
-            "secondary_scopes": "tracked .lean under attic/, scratch/, prove2me/, and other roots, each separately labeled",
+            "scan_scope": args.scope,
+            "primary_first_party": "all scanned tracked paths under lean/, including Generated",
+            "secondary_scopes": "when --scope all, tracked .lean under attic/, scratch/, prove2me/, and other roots are separately labeled",
             "excluded": "untracked files and .lake dependencies",
             "source_scan": "Lean comments (including nested block comments), strings, and character literals ignored",
         },
         "counts": {
             "tracked_lean_files": len(tracked),
             "scanned_tracked_lean_files": len(scanned),
+            "missing_tracked_lean_files": len(missing),
             "first_party_lean_files": sum(source_scope(path) == "lean-first-party" for path in scanned),
             "native_files": len(occurrences),
             "native_sites": sum(map(len, occurrences.values())),
@@ -312,6 +347,7 @@ def main() -> int:
             "stale_or_absent_native_files": len(occurrences) - len(matched_paths),
         },
         "families": dict(sorted(families.items(), key=lambda item: (-int(item[1]["sites"]), item[0]))),
+        "missing_tracked_paths": missing,
         "files": files,
     }
     out_path.parent.mkdir(parents=True, exist_ok=True)

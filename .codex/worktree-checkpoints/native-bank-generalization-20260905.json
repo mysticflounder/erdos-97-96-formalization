@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "native-bank-generalization-20260905",
+  "owner": "codex-native-bank-generalization",
+  "base_head": "7a54ca3f9e9f10398de1b3e63729abd66125b3ec",
+  "created_utc": "2026-09-05T23:54:48Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/native-bank-generalization-20260905.json",
+    "prove2me/audit_native_banks.py",
+    "prove2me/native-bank-audit-review.md",
+    "prove2me/native-bank-audit.md",
+    "prove2me/native-bank-inventory.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "d42afc6d330fb6b9a281d289950188301f23b0f5fb5bb62dd0607cf5893ffb4f"
+}

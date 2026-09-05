@@ -13,6 +13,43 @@ The accompanying `native-bank-inventory.json` and `audit_native_banks.py` define
 the reproducible census scope and distinguish token occurrences from proof
 dependencies. A token count is not a count of independent mathematical claims.
 
+The completed `--scope all` census (23:51 UTC) scanned **24,774 available tracked
+Lean files**, including generated sources. One tracked file was absent:
+`scratch/B1EndpointProducerFiniteCountermodel.lean`. It is recorded rather than
+silently treated as a file without native calls. Untracked files and `.lake`
+dependencies are outside this census.
+
+| Scope | Scanned files | Files containing native tokens | Native token sites |
+| --- | ---: | ---: | ---: |
+| Main first-party `lean/` (including generated, excluding `lean/scratch`) | 6,496 | 2,549 | 5,035 |
+| `lean/scratch` | 97 | 2 | 2 |
+| Tracked attic archive | 11,795 | 11,755 | 368,006 |
+| Tracked repository scratch | 6,364 | 223 | 5,377 |
+| Other tracked roots, including the Prove2Me packet | 22 | 0 | 0 |
+| Total available tracked files | 24,774 | 14,529 | 378,420 |
+
+The complete file-level inventory includes hashes, site counts, line locations,
+and path-based family labels. Indexed declaration names are attached only when
+the source hash matches the index. These names are navigation aids, not newly
+elaborated theorem spans. Historical/scratch copies are not deduplicated across
+paths; do not add their totals to a count of live proof obligations.
+
+Largest families in the **main first-party** tree:
+
+| Family | Native-bearing files | Native sites | Initial assessment |
+| --- | ---: | ---: | --- |
+| `ATail/CardElevenUniqueFourCertificate` | 1,128 | 1,331 | Replay instances, geometric clause production, and ledger agreement |
+| `ATail/FrontierLiveClosure` | 549 | 767 | Mixed generated/replay leaves and frontier refinements; not one mathematical bank |
+| `EndpointCertificate/ShadowSearchShards` | 124 | 480 | Finite shadow search/classification; coverage needs a structural replacement |
+| `ATail/BlockerVExactSeventeenSixteenthModelRefinements` | 1 | 224 | Many finite refinement checks in one module |
+| `SurplusCertificate/RelaxedSplit` | 137 | 141 | Polynomial identities and aggregate checks |
+| `SurplusCertificate/RowZeros` | 137 | 137 | Rule/mask alignment and semantic zero assignments |
+| `EndpointCertificate/Patterns` | 118 | 118 | Concrete polynomial identity payloads and aggregate checks |
+
+This is a complete lexical inventory of the stated available tracked scope, with
+a targeted mathematical review of the principal families. It is not a completed
+proof-by-proof analysis of all 378,420 historical and current occurrences.
+
 The repository allows `Lean.ofReduceBool` and `Lean.trustCompiler` in
 `.blueprint.toml`. Removing them is a stronger trust requirement than the current
 project's. A theorem quantified over arbitrary finite point sets can still depend
@@ -83,7 +120,7 @@ edges, also visible in source). Prefer extracting the existing proof to a small
 shared combinatorics module rather than coupling these banks to the entire
 exact-17 source module. Check import direction before choosing the shared file.
 
-**Impact:** replaces two native proof sites with one reusable counting argument
+**Candidate impact:** would replace two native proof sites with one reusable counting argument
 and explicit label adapters. It does not remove either bank's separate
 `exists_metricMotif_of_pairwiseSeparated` classification.
 
@@ -252,6 +289,22 @@ same five-point contradiction.
    existing checker-soundness lemmas as native-bank replacements.
 
 ## Validation limits
+
+The independent claim review is in `native-bank-audit-review.md`. It confirms
+the finite-set arguments and identifies the required label/coverage adapters;
+it does not certify a Lean build or the census totals. The census scanner has
+separate checks for comments, nested comments, quoted text, escaped quotes,
+primed names, and large encoded strings.
+
+Reproduce the full tracked-source inventory from this directory with:
+
+```bash
+uv run --no-project python audit_native_banks.py --scope all
+```
+
+Use `--scope lean` for the canonical Lean tree, including generated modules.
+Neither scope scans untracked files or Lake dependencies. Archived and tracked
+scratch files are discovery material; they are not assumed to be imported.
 
 This is a source-and-index audit. No full Lean build, fresh final-root axiom probe,
 certificate refreeze, solver rerun, or Prove2Me proof submission was performed.
