@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-new-mirror-physical-block-deletion-recovery-piqd-20260905",
+  "owner": "profile0034-new-mirror-physical-block-deletion-recovery-piqd",
+  "base_head": "abab02eb9ffc1b0063731263c2821aa7d3c729e8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-new-mirror-physical-block-deletion-recovery-piqd-20260905.json",
+    "census/card_head/exactfive_profile0034_new_mirror_physical_block_deletion_recovery_piqd.py",
+    "census/card_head/tests/test_exactfive_profile0034_new_mirror_physical_block_deletion_recovery_piqd.py",
+    "docs/audits/2026-09-05-exactfive-profile0034-new-mirror-physical-block-deletion-run0001-failure.md",
+    "docs/specs/p97-exactfive-profile0034-new-mirror-physical-block-deletion-recovery-piqd-v1.md",
+    "scripts/run_exactfive_profile0034_new_mirror_physical_block_deletion_recovery_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-profile0034-new-mirror-physical-block-deletion-recovery-piqd-20260905/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T07:53:36Z",
+  "manifest_sha256": "84a2a2a3b7778ae10357c9e77714373b22818017335a78a001dc527c8e5e4099"
+}
