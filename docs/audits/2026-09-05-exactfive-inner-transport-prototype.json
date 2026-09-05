@@ -1,0 +1,38 @@
+{
+  "schema": "lean-lsp-prototype-validation/v1",
+  "lane_id": "exactfive-physical-uniform-execution-20260905",
+  "source": "docs/references/exactfive-source-geometry-2026-09-05/SimilarityInnerTransport.lean",
+  "method": "Standalone Lean LSP lean_run_code; parent independently rechecked the delegated prototype with named axiom probes.",
+  "result": {
+    "success": true,
+    "timed_out": false,
+    "diagnostics": [
+      {
+        "severity": "info",
+        "message": "'Problem97.CGN.SimilarityTransportData.inner_eq_scale_sq' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "line": 44,
+        "column": 1,
+        "lean_tags": null
+      },
+      {
+        "severity": "info",
+        "message": "'Problem97.CGN.SimilarityTransportData.inner_pos_image' depends on axioms: [propext, Classical.choice, Quot.sound]",
+        "line": 45,
+        "column": 1,
+        "lean_tags": null
+      }
+    ]
+  },
+  "production_integrated": false,
+  "actual_apex_strictness_proved": false,
+  "physical_terminal_closed": false,
+  "publication_binding": false,
+  "checked_utc": "2026-09-05T21:54:04Z",
+  "source_head": "ef92909cd65f555b5a19dd3f66d9035f329c492a",
+  "source_sha256": "ae130329d46ae6d66795dd3d17ed7644cd8eeed98f80162d2f21b61a41b3d8e4",
+  "import_source_sha256": {
+    "lean/Erdos9796Proof/P97/CGN/CGN.lean": "ede22516b83858f19ec35c5dd7c57b637acf864b57485c42a0a0f80a96c3e4a6",
+    "lean/Erdos9796Proof/P97/CGN/CGN6.lean": "1f3c5df401cc5d9eb56c0bcf139ee75bfe06c2d7be81ce87af7604e349c40f67"
+  },
+  "self_hash": "c911622cc08a93bac65e50c44d1091b089c0170ff39e49b8e2deb2e85b6351e5"
+}

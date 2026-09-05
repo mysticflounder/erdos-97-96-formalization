@@ -131,6 +131,23 @@ membership to exclude zero heights. A weak cap-Thales inequality alone is
 insufficient. No circular dependence on the physical contradiction was
 identified in this preflight; the source bridge itself remains unproved.
 
+The first transport experiment is now checked in the
+[inner-product prototype](../references/exactfive-source-geometry-2026-09-05/SimilarityInnerTransport.lean).
+`SimilarityTransportData.inner_eq_scale_sq` derives inner-product scaling
+from the existing global `dist_image` field by polarization;
+`inner_pos_image` transfers strict positivity using the positive scale.
+The parent independently replayed both statements with Lean LSP and literal
+axiom probes: only `propext`, `Classical.choice`, and `Quot.sound`, with no
+errors or warnings. The [validation receipt](../audits/2026-09-05-exactfive-inner-transport-prototype.json)
+binds the tested source and current direct import sources.
+
+This is a retained prototype, not production integration or physical closure.
+No extra inner-product field is needed in the normalization interface.
+Next derive the normalized actual-apex coordinate bounds and strict side
+signs from the source packet, then combine them with the existing scalar
+positivity identity. The checked transport preserves strictness once proved;
+it does not supply that strictness.
+
 ### 3. Reconstruct source roles after minimizing the pair
 
 Admissibility means joint deletion preserves the second-apex row; survival
