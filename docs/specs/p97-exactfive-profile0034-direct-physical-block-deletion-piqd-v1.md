@@ -1,16 +1,25 @@
 # Exact-five profile0034 direct physical-block deletion — PIQD v1
 
-This lane is an immutable `run-0001` discovery search over the authenticated
+This lane is an immutable discovery search over the authenticated
 `parent-cvc5-direct` order from the supporting-edge profile0034 run. Both
 radius branches are submitted to Z3 through PIQD HTTP, because Z3 is the
 stronger discovery engine for these cells. No solver is run while scaffolding
 this producer.
 
+The first launch, `run-0001`, stopped before producing a scientific result
+because the standalone SAT verifier omitted the source parser's bound order
+identifier. Its partial root is preserved under
+`scratch/quarantine/exactfive-profile0034-direct-physical-block-deletion-piqd-20260905/failed-run-0001-parser-order-id/`.
+An unlaunched `run-0002` initialization was likewise quarantined when the
+pre-commit hygiene gate exposed its stale relationship to `run-0001`. The
+corrected producer supplies the identifier, covers the target-SAT path with a
+focused regression, and launches only into the fresh immutable `run-0003`
+root.
+
 The lane checkpoint was created before the producer, test, runner, and spec
 paths at observed base HEAD `ed08027473e9741b2a34fac7d7597d2fe6756085`.
-Its generated root is declared but intentionally remains uninitialized until a
-separate launch action; consequently a pre-launch hygiene report notes the
-missing run manifest by design.
+The active `run-0003` generated root is declared in the lane checkpoint and is
+initialized only by its separate launch action.
 
 Each branch starts with exactly 26 retained physical groups: 13 supporting-edge
 blocks, 11 source-row equalities, `radius-branch`, and `source-strict`. The

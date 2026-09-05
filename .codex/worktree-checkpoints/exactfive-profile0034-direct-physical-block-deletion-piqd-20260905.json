@@ -11,9 +11,9 @@
     "scripts/run_exactfive_profile0034_direct_physical_block_deletion_piqd.py"
   ],
   "generated_roots": [
-    "scratch/runs/exactfive-profile0034-direct-physical-block-deletion-piqd-20260905/run-0001"
+    "scratch/runs/exactfive-profile0034-direct-physical-block-deletion-piqd-20260905/run-0003"
   ],
   "durable_paths": [],
   "created_utc": "2026-09-05T18:29:46Z",
-  "manifest_sha256": "548b367402de2494180eaea333469c2a709e24b652e09effc460f0a6bb3e21e3"
+  "manifest_sha256": "a73d3f6719338eeb484f8d49a5b365efb73297088e2753af76df44c6693348cc"
 }

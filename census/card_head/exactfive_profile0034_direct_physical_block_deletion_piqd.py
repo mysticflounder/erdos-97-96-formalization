@@ -30,7 +30,7 @@ from census.card_head import (
 from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 
 LANE_ID = "exactfive-profile0034-direct-physical-block-deletion-piqd-20260905"
-RUN_ID = "run-0001"
+RUN_ID = "run-0003"
 SOLVER = "z3"
 TIMEOUT_MS = 60_000
 DEFAULT_TIMEOUT_S = 60.0
@@ -674,7 +674,9 @@ def verify_sat_model(
                 "control": system["control"],
             }
         else:
-            coords = source._parse_coordinates(values, query.get_values)
+            coords = source._parse_coordinates(
+                values, query.get_values, system["order_id"]
+            )
             evidence = _replay_target(system, coords)
             evidence["exact_coordinate_count"] = len(coords)
     except (ValueError, KeyError, source.Profile0034SupportingEdgeError, source.bo_source.BoSourceQfnraError) as exc:

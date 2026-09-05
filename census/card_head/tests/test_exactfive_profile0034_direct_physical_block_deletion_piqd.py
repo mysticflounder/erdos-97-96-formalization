@@ -107,6 +107,17 @@ def test_queries_are_z3_only_with_fresh_controls(parent_custody: dict[str, objec
     assert positive.query.descriptor["solve"]["assumption_ids"] == []
 
 
+def test_target_sat_readback_supplies_bound_order_id(
+    parent_custody: dict[str, object],
+) -> None:
+    prepared = producer.prepare_query(producer.anchor_spec("lt"), parent=parent_custody)
+    values = "(" + " ".join(f"({term} 0)" for term in prepared.query.get_values) + ")"
+    verdict = producer.verify_sat_model(prepared.query, "z3", "(model)", values)
+    assert not verdict.accepted
+    assert verdict.evidence["reason"] != "exact_readback_unsupported"
+    assert verdict.evidence["exact_coordinate_count"] == len(producer.source.CLASS_IDS)
+
+
 def test_only_custody_valid_unsat_can_mutate_current_set() -> None:
     specs = producer.candidate_specs("gt", 1, producer.GROUP_UNIVERSE, 2)
     unresolved = {
@@ -211,7 +222,7 @@ def test_checkpoint_and_manifest_are_governed_without_creating_run_root() -> Non
     assert checkpoint["owner"] == producer.CHECKPOINT_OWNER
     assert checkpoint["owned_paths"] == producer.OWNED_PATHS
     assert checkpoint["generated_roots"] == [
-        "scratch/runs/exactfive-profile0034-direct-physical-block-deletion-piqd-20260905/run-0001"
+        "scratch/runs/exactfive-profile0034-direct-physical-block-deletion-piqd-20260905/run-0003",
     ]
     assert checkpoint["manifest_sha256"] == producer._self_hash(checkpoint, "manifest_sha256")
     assert not producer.RUN_ROOT.exists()
