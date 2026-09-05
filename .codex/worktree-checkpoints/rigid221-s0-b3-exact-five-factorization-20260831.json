@@ -1,0 +1,36 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "rigid221-s0-b3-exact-five-factorization-20260831",
+  "owner": "codex-rigid221-b3-exactfive-factorization",
+  "base_head": "504a6bcf13a2920fc92e734861e2c7e1dd98f9d5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/rigid221-s0-b3-exact-five-factorization-20260831.json",
+    "docs/audits/2026-08-31-rigid221-s0-b3-exact-five-factorization.md",
+    "docs/specs/p97-rigid221-s0-b3-cyclic-edge-turn-refinement-v1.md",
+    "docs/specs/p97-rigid221-s0-b3-cyclic-order-refinement-v1.md",
+    "docs/specs/p97-rigid221-s0-b3-exact-five-factorization-v1.md",
+    "scripts/rigid221_s0_b3_cyclic_edge_turn_refinement.py",
+    "scripts/rigid221_s0_b3_cyclic_order_refinement.py",
+    "scripts/rigid221_s0_b3_exactfive_factorization.py",
+    "scripts/test_rigid221_s0_b3_cyclic_edge_turn_refinement.py",
+    "scripts/test_rigid221_s0_b3_cyclic_order_refinement.py",
+    "scripts/test_rigid221_s0_b3_exactfive_factorization.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0001",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0002",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0003"
+  ],
+  "durable_paths": [
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0001/factor_manifest.json",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0001/receipt.json",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0001/run_manifest.json",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0002/cyclic_order_refinement_manifest.json",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0002/receipt.json",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0002/run_manifest.json",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0003/cyclic_edge_turn_refinement_manifest.json",
+    "scratch/runs/rigid221-s0-b3-exact-five-factorization-20260831/run-0003/run_manifest.json"
+  ],
+  "created_utc": "2026-08-31T23:02:08Z",
+  "manifest_sha256": "044c373f1dfbd478a2778e666bb615090215533dcc46dfdc76c5f6a756202e92"
+}
