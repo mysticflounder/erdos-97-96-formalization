@@ -7780,6 +7780,12 @@ theorem qEqE_lowerArc_impossible
     hsmall hlong hAElt hEside hqE
   linarith [hsign, hcap_opp]
 
+/-- Flipped lower-arc exclusion for the `q' = E` branch.  The shell
+equalities and same-sign hypothesis force the two squared-distance
+differences to have a nonnegative product, while the cap-order input
+`hcap_opp` supplies the opposite strict sign.  The flipped branch uses the
+strict `v₁`-distance comparison placing `E` beyond the base and its `C₂`
+membership in place of the ordinary lower-arc bound. -/
 theorem qEqE_lowerArc_impossible_flipped
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     {q qs E : ℝ²}

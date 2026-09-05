@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "n4e-qeqe-flipped-docstring-20260905",
+  "owner": "luna-swarm-n4e-qeqe-flipped-docstring",
+  "base_head": "cfea88eb827403251225c02aaacc6e3409d3de27",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/n4e-qeqe-flipped-docstring-20260905.json",
+    "lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T04:55:58Z",
+  "manifest_sha256": "e6bc89127b646808faf201351c67297ea0fc3c45e290423d3bdbafd31b94a904"
+}
