@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-blocker-deleted-separation-20260904",
+  "owner": "codex-profile0034-blocker-deleted-separation",
+  "base_head": "633fd4712614149e2b5d7cd5f68d5263519e8192",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-blocker-deleted-separation-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-separated-residual-heads.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProfile0034SourceAdapter.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T05:35:16Z",
+  "manifest_sha256": "2eb1dc6fb836fda787f691c6039aa9c5b4d2b882f7cdfdc475557a4e87bc2aac"
+}

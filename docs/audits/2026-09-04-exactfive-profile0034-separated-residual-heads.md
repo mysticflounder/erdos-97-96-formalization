@@ -25,10 +25,21 @@ selected center avoidance rule out both.  When `S.oppApex2 ∉ row₀`, the proo
 uses an explicit by-cases split over the two distinct row-1 residuals and
 swaps to the row-0 residual `q` in the only two-forbidden-value cases.
 
-No blocker/deleted identity, boundary order, or seven-role distinctness is
-asserted here.  The remaining `U = deleted` split belongs to the boundary
-consumer: its existing `hU` label is the blocker and its `hd` label is the
-deleted point, so this adapter leaves that source distinction intact.
+The companion declaration
+`RobustApexFourIncidenceContinuationPacket.blocker_ne_deleted_of_mem_firstRow`
+now discharges the apparent `blocker = deleted` collision in the same positive
+branch.  Membership of the blocker in row 0 transports through
+`row₀_support_eq` to the first-apex class, and
+`firstApexClass_support_eq` identifies that class with the original selected
+class after `deleted` has been erased.  `Finset.mem_erase` then supplies the
+strict distinction.
+
+Together, these declarations close the purely combinatorial collision ledger
+for the two residual heads in the final continuation constructor.  They do not
+assert a boundary order or seven-role placement.  The first irreducible
+antecedent remains a source-backed classifier producing indices for the seven
+roles and the strict chain `iU < ip < is < ia < id < ic < iO` consumed by
+`false_of_profile0034_boundaryOrder`.
 
 ## Verification and trust
 

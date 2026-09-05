@@ -105,6 +105,33 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_first_two_support_resid
       P.surface.row₁.support_card hOK₁ P.a_mem_row₁ hopp_ne_retained
   exact ⟨p, q, s, t, hrow₀, hrow₁, hpq, hpFresh, hqFresh, hst, hsFresh, htFresh⟩
 
+/-- A blocker occurring in the first robust row is distinct from the original
+deleted point.  The row is the first-apex selected class after that point has
+been erased. -/
+theorem RobustApexFourIncidenceContinuationPacket.blocker_ne_deleted_of_mem_firstRow
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hblockerK₀ : blocker ∈ P.surface.row₀.support) :
+    blocker ≠ deleted := by
+  have hblockerFirst : blocker ∈ N.firstApexClass.support := by
+    rw [← P.row₀_support_eq]
+    exact hblockerK₀
+  have hblockerErased :
+      blocker ∈ (SelectedClass D.A S.oppApex1 radius).erase deleted := by
+    rw [← N.firstApexClass_support_eq]
+    exact hblockerFirst
+  exact (Finset.mem_erase.mp hblockerErased).1
+
 /-- Under the positive profile-0034 incidences, one can choose residual heads
   in the first two rows that avoid the second-apex center and each other.  The
   proof uses only the two residual pairs: if the second-apex center is in the
