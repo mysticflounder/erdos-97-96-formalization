@@ -1575,13 +1575,16 @@ a contradiction. The
 [distinct-center plan](plans/2026-09-01-rigid221-exactfive-distinct-three-center.md)
 covers this route.
 
-The profile-0034 common scalar obstruction is now proved and independently
-audited in `ExactFiveProfile0034CommonObstruction.lean`. It reduces one fixed
-normalized diagnostic cell to eight signed-area inequalities and four metric
-equations. The result is not yet imported by a live consumer, and the current
-source packet does not supply the profile's fixed alias and role order. Thus
-this low-level theorem does not change the open status of either fresh-source
-contract.
+The profile-0034 common obstruction is now proved and independently audited in
+`ExactFiveProfile0034CommonObstruction.lean`. Its coordinate-free theorem uses
+seven signed-area inequalities and four metric equations. Its
+orientation-invariant wrapper reaches the fixed convex-boundary order
+`U,p,s,a,d,c2,O`. The result is not yet imported by a live consumer,
+and the current source packet does not yet supply the named-point selection
+and role order. The theorem's `U` can be the blocker center, so it does not
+retain the diagnostic blocker/surplus-apex alias. Even so, this geometric
+theorem does not change the open status of
+either fresh-source contract.
 
 The [three-fan source adapter](plans/2026-09-03-exactfive-three-fan-source-adapter.md),
 [opposed-turn adapter](plans/2026-09-03-exactfive-opposed-turn-source-adapter.md),

@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-coordinate-free-wrapper-20260904",
+  "owner": "codex-rigid221",
+  "base_head": "4102716e9ac2d4536911e23f04bc11d0c5a67a4d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-coordinate-free-wrapper-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-common-obstruction-formalization.md",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "lean/Erdos9796Proof/P97/Census554/ExactFiveProfile0034CommonObstruction.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T23:59:20Z",
+  "manifest_sha256": "034777a8066e13299b589e928a3ca6d3e2a0170000990722d61108adcdaaea82"
+}

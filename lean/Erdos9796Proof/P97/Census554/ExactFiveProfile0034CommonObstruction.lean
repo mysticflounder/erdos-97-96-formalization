@@ -4,16 +4,20 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Mathlib
+import Erdos9796Proof.P97.Census554.EqualityCore
+import Erdos9796Proof.P97.ConvexCyclicOrder.Basic
+import Erdos9796Proof.P97.U2.SimilarityNormalization
 
 /-!
 # Exact-five profile 0034 common obstruction
 
 This module isolates the branch-free scalar contradiction mined from the
 common physical core of the direct and mirror profile-0034 cells. The public
-statement deliberately keeps only the eight signed-area inequalities and four
+statement deliberately keeps only the seven signed-area inequalities and four
 metric equations used by the proof.
 -/
+
+open scoped EuclideanGeometry
 
 namespace Problem97
 namespace Census554
@@ -31,18 +35,20 @@ theorem normalized_first_chain_obstruction
     (px py sx sy : ℝ)
     (hUps : 0 < cross 0 0 px py sx sy)
     (hUpa : 0 < cross 0 0 px py (1 / 2) (-1 / 2))
-    (hUpO : 0 < cross 0 0 px py 1 0)
     (hpsa : 0 < cross px py sx sy (1 / 2) (-1 / 2))
     (hOap : qdist 1 0 (1 / 2) (-1 / 2) = qdist 1 0 px py)
     (hUOs : qdist 0 0 1 0 = qdist 0 0 sx sy) :
     sx < 1 / 2 ∧ sy < -1 / 2 := by
   norm_num [cross, qdist] at *
-  have hpy : py < 0 := by
-    exact hUpO
   have hpxpy : px + py < 0 := by
     linarith only [hUpa]
   have hpcircle : px ^ 2 - 2 * px + 3 * py ^ 2 = 0 := by
     nlinarith only [hOap]
+  have hpy : py < 0 := by
+    by_contra hpy_not
+    have hpy_nonneg : 0 ≤ py := by linarith only [hpy_not]
+    have hpx_neg : px < 0 := by linarith only [hpxpy, hpy_nonneg]
+    nlinarith only [hpcircle, hpx_neg, sq_nonneg px, sq_nonneg py]
   have hscircle : sx ^ 2 + 3 * sy ^ 2 = 1 := by
     linarith only [hUOs]
   have hpy_sq : 0 < py ^ 2 := by
@@ -168,10 +174,9 @@ theorem normalized_common_obstruction
     (hUps : 0 < cross 0 0 px py sx sy)
     (hUpa : 0 < cross 0 0 px py (1 / 2) (-1 / 2))
     (hUpc : 0 < cross 0 0 px py cx cy)
-    (hUpO : 0 < cross 0 0 px py 1 0)
     (hpsa : 0 < cross px py sx sy (1 / 2) (-1 / 2))
-    (hadU : 0 < cross (1 / 2) (-1 / 2) dx dy 0 0)
     (hads : 0 < cross (1 / 2) (-1 / 2) dx dy sx sy)
+    (hadc : 0 < cross (1 / 2) (-1 / 2) dx dy cx cy)
     (hdcU : 0 < cross dx dy cx cy 0 0)
     (hOad : qdist 1 0 (1 / 2) (-1 / 2) = qdist 1 0 dx dy)
     (hOap : qdist 1 0 (1 / 2) (-1 / 2) = qdist 1 0 px py)
@@ -179,13 +184,18 @@ theorem normalized_common_obstruction
     (hcOa : qdist cx cy 1 0 = qdist cx cy (1 / 2) (-1 / 2)) :
     False := by
   have hchain := normalized_first_chain_obstruction px py sx sy
-    hUps hUpa hUpO hpsa hOap hUOs
+    hUps hUpa hpsa hOap hUOs
   rcases hchain with ⟨hsx, hsy⟩
-  norm_num [cross, qdist] at hUps hUpa hUpc hUpO hpsa hadU hads hdcU hOad hOap hUOs hcOa hsx hsy
-  have hpy : py < 0 := by
-    exact hUpO
+  norm_num [cross, qdist] at hUps hUpa hUpc hpsa hads hadc hdcU hOad hOap hUOs hcOa hsx hsy
+  have hpcircle : px ^ 2 - 2 * px + 3 * py ^ 2 = 0 := by
+    nlinarith only [hOap]
   have hpxpy : px + py < 0 := by
     linarith only [hUpa]
+  have hpy : py < 0 := by
+    by_contra hpy_not
+    have hpy_nonneg : 0 ≤ py := by linarith only [hpy_not]
+    have hpx_neg : px < 0 := by linarith only [hpxpy, hpy_nonneg]
+    nlinarith only [hpcircle, hpx_neg, sq_nonneg px, sq_nonneg py]
   have hpx3py : px + 3 * py < 0 := by
     linarith only [hpxpy, hpy]
   have hcline : cx + 3 * cy = 0 := by
@@ -202,18 +212,30 @@ theorem normalized_common_obstruction
   have hdc_factored : 0 < cy * (dx + 3 * dy) := by
     rw [hcx] at hdcU
     nlinarith only [hdcU]
+  have hdcircle : dx ^ 2 - 2 * dx + 3 * dy ^ 2 = 0 := by
+    nlinarith only [hOad]
+  have hsupport : 0 ≤ dx + 3 * dy + 1 := by
+    have hsupport_identity :
+        dx + 3 * dy + 1 = (dx - 1 / 2) ^ 2 + 3 * (dy + 1 / 2) ^ 2 := by
+      nlinarith only [hdcircle]
+    rw [hsupport_identity]
+    exact add_nonneg (sq_nonneg _) (mul_nonneg (by norm_num) (sq_nonneg _))
+  have hAdc_expanded :
+      0 < cy * (dx + 3 * dy + 1) + (dx + dy) / 2 := by
+    rw [hcx] at hadc
+    nlinarith only [hadc]
+  have hdxdy : 0 < dx + dy := by
+    have hprod_nonpos : cy * (dx + 3 * dy + 1) ≤ 0 :=
+      mul_nonpos_of_nonpos_of_nonneg (le_of_lt hcy) hsupport
+    linarith only [hAdc_expanded, hprod_nonpos]
   have hdx3dy : dx + 3 * dy < 0 := by
     rcases (mul_pos_iff.mp hdc_factored) with h | h
     · exact (not_lt_of_ge (le_of_lt hcy) h.1).elim
     · exact h.2
-  have hdxdy : 0 < dx + dy := by
-    linarith only [hadU]
   have hdy : dy < 0 := by
     linarith only [hdxdy, hdx3dy]
   have hdx : 0 < dx := by
     linarith only [hdxdy, hdy]
-  have hdcircle : dx ^ 2 - 2 * dx + 3 * dy ^ 2 = 0 := by
-    nlinarith only [hOad]
   have hdx_minus_dy : 0 < dx - dy := by
     linarith
   have hfirst_term_neg :
@@ -250,6 +272,339 @@ theorem normalized_common_obstruction
     exact mul_pos (mul_pos (by norm_num) hdx) hcross_pos
   rw [hfactor_identity] at hleft_pos
   linarith only [hleft_pos, hright_neg]
+
+private theorem scaled_cross_eq_signedArea2_div
+    (r : ℝ) (hr : r ≠ 0) (X Y Z : ℝ²) :
+    cross (X 0) (X 1 / r) (Y 0) (Y 1 / r) (Z 0) (Z 1 / r) =
+      signedArea2 X Y Z / r := by
+  simp only [cross, signedArea2]
+  field_simp
+
+private theorem scaled_qdist_eq_dist_sq
+    (r : ℝ) (hr : r ≠ 0) (hr_sq : r ^ 2 = 3) (X Y : ℝ²) :
+    qdist (X 0) (X 1 / r) (Y 0) (Y 1 / r) = dist X Y ^ 2 := by
+  rw [dist_sq_coord]
+  simp only [qdist]
+  rw [← hr_sq]
+  field_simp
+
+/-- The common obstruction in the standard Euclidean equilateral frame. This
+wrapper converts ordinary signed areas and distances to the rational scalar
+coordinates used by `normalized_common_obstruction`. -/
+theorem normalized_euclidean_common_obstruction
+    (p s d c : ℝ²)
+    (hUps : 0 < signedArea2 (pt 0 0) p s)
+    (hUpa : 0 < signedArea2 (pt 0 0) p
+      (pt (1 / 2) (-Real.sqrt 3 / 2)))
+    (hUpc : 0 < signedArea2 (pt 0 0) p c)
+    (hpsa : 0 < signedArea2 p s (pt (1 / 2) (-Real.sqrt 3 / 2)))
+    (hads : 0 < signedArea2 (pt (1 / 2) (-Real.sqrt 3 / 2)) d s)
+    (hadc : 0 < signedArea2 (pt (1 / 2) (-Real.sqrt 3 / 2)) d c)
+    (hdcU : 0 < signedArea2 d c (pt 0 0))
+    (hOad : dist (pt 1 0) (pt (1 / 2) (-Real.sqrt 3 / 2)) = dist (pt 1 0) d)
+    (hOap : dist (pt 1 0) (pt (1 / 2) (-Real.sqrt 3 / 2)) = dist (pt 1 0) p)
+    (hUOs : dist (pt 0 0) (pt 1 0) = dist (pt 0 0) s)
+    (hcOa : dist c (pt 1 0) = dist c (pt (1 / 2) (-Real.sqrt 3 / 2))) :
+    False := by
+  let r : ℝ := Real.sqrt 3
+  have hr : 0 < r := by
+    dsimp only [r]
+    positivity
+  have hr_ne : r ≠ 0 := ne_of_gt hr
+  have hr_sq : r ^ 2 = 3 := by
+    dsimp only [r]
+    exact Real.sq_sqrt (by norm_num)
+  have hanchor_y : -Real.sqrt 3 / 2 / r = -1 / 2 := by
+    dsimp only [r]
+    field_simp
+  have cross_pos (X Y Z : ℝ²) (h : 0 < signedArea2 X Y Z) :
+      0 < cross (X 0) (X 1 / r) (Y 0) (Y 1 / r) (Z 0) (Z 1 / r) := by
+    rw [scaled_cross_eq_signedArea2_div r hr_ne X Y Z]
+    exact div_pos h hr
+  have qdist_eq (X Y : ℝ²) :
+      qdist (X 0) (X 1 / r) (Y 0) (Y 1 / r) = dist X Y ^ 2 :=
+    scaled_qdist_eq_dist_sq r hr_ne hr_sq X Y
+  have hOad_sq := congrArg (fun x : ℝ ↦ x ^ 2) hOad
+  have hOap_sq := congrArg (fun x : ℝ ↦ x ^ 2) hOap
+  have hUOs_sq := congrArg (fun x : ℝ ↦ x ^ 2) hUOs
+  have hcOa_sq := congrArg (fun x : ℝ ↦ x ^ 2) hcOa
+  apply normalized_common_obstruction
+      (p 0) (p 1 / r) (s 0) (s 1 / r)
+      (d 0) (d 1 / r) (c 0) (c 1 / r)
+  · simpa [pt, r, hr_ne] using cross_pos (pt 0 0) p s hUps
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      cross_pos (pt 0 0) p (pt (1 / 2) (-Real.sqrt 3 / 2)) hUpa
+  · simpa [pt, r, hr_ne] using cross_pos (pt 0 0) p c hUpc
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      cross_pos p s (pt (1 / 2) (-Real.sqrt 3 / 2)) hpsa
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      cross_pos (pt (1 / 2) (-Real.sqrt 3 / 2)) d s hads
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      cross_pos (pt (1 / 2) (-Real.sqrt 3 / 2)) d c hadc
+  · simpa [pt, r, hr_ne] using cross_pos d c (pt 0 0) hdcU
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      (show
+        qdist ((pt 1 0 : ℝ²) 0) ((pt 1 0 : ℝ²) 1 / r)
+            ((pt (1 / 2) (-Real.sqrt 3 / 2) : ℝ²) 0)
+            ((pt (1 / 2) (-Real.sqrt 3 / 2) : ℝ²) 1 / r) =
+          qdist ((pt 1 0 : ℝ²) 0) ((pt 1 0 : ℝ²) 1 / r)
+            (d 0) (d 1 / r) by
+        rw [qdist_eq, qdist_eq]
+        exact hOad_sq)
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      (show
+        qdist ((pt 1 0 : ℝ²) 0) ((pt 1 0 : ℝ²) 1 / r)
+            ((pt (1 / 2) (-Real.sqrt 3 / 2) : ℝ²) 0)
+            ((pt (1 / 2) (-Real.sqrt 3 / 2) : ℝ²) 1 / r) =
+          qdist ((pt 1 0 : ℝ²) 0) ((pt 1 0 : ℝ²) 1 / r)
+            (p 0) (p 1 / r) by
+        rw [qdist_eq, qdist_eq]
+        exact hOap_sq)
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      (show
+        qdist ((pt 0 0 : ℝ²) 0) ((pt 0 0 : ℝ²) 1 / r)
+            ((pt 1 0 : ℝ²) 0) ((pt 1 0 : ℝ²) 1 / r) =
+          qdist ((pt 0 0 : ℝ²) 0) ((pt 0 0 : ℝ²) 1 / r)
+            (s 0) (s 1 / r) by
+        rw [qdist_eq, qdist_eq]
+        exact hUOs_sq)
+  · simpa [pt, r, hr_ne, hanchor_y] using
+      (show
+        qdist (c 0) (c 1 / r)
+            ((pt 1 0 : ℝ²) 0) ((pt 1 0 : ℝ²) 1 / r) =
+          qdist (c 0) (c 1 / r)
+            ((pt (1 / 2) (-Real.sqrt 3 / 2) : ℝ²) 0)
+            ((pt (1 / 2) (-Real.sqrt 3 / 2) : ℝ²) 1 / r) by
+        rw [qdist_eq, qdist_eq]
+        exact hcOa_sq)
+
+/-- A negatively oriented equilateral frame cannot realize the profile-0034
+common signed-area and distance core. -/
+theorem euclidean_common_obstruction
+    (U p s a d c O : ℝ²)
+    (hUO_ne : U ≠ O)
+    (hUO_Ua : dist U O = dist U a)
+    (hUO_Oa : dist U O = dist O a)
+    (hUOa : signedArea2 U O a < 0)
+    (hUps : 0 < signedArea2 U p s)
+    (hUpa : 0 < signedArea2 U p a)
+    (hUpc : 0 < signedArea2 U p c)
+    (hpsa : 0 < signedArea2 p s a)
+    (hads : 0 < signedArea2 a d s)
+    (hadc : 0 < signedArea2 a d c)
+    (hdcU : 0 < signedArea2 d c U)
+    (hOad : dist O a = dist O d)
+    (hOap : dist O a = dist O p)
+    (hUOs : dist U O = dist U s)
+    (hcOa : dist c O = dist c a) :
+    False := by
+  let T : ℝ² → ℝ² := normSim U O
+  have hdist (X Y : ℝ²) :
+      dist (T X) (T Y) = (dist U O)⁻¹ * dist X Y := by
+    simpa [T] using normSim_dist_image U O hUO_ne X Y
+  have map_dist_eq {W X Y Z : ℝ²} (h : dist W X = dist Y Z) :
+      dist (T W) (T X) = dist (T Y) (T Z) := by
+    rw [hdist, hdist, h]
+  have hT_U : T U = pt 0 0 := by
+    simpa [T] using normSim_fst U O
+  have hT_O : T O = pt 1 0 := by
+    simpa [T] using normSim_snd U O hUO_ne
+  have hbase_sq_pos : 0 < (O 0 - U 0) ^ 2 + (O 1 - U 1) ^ 2 := by
+    rw [← dist_sq_coord O U]
+    exact sq_pos_of_pos (dist_pos.mpr hUO_ne.symm)
+  let k : ℝ := ((O 0 - U 0) ^ 2 + (O 1 - U 1) ^ 2)⁻¹
+  have hk : 0 < k := inv_pos.mpr hbase_sq_pos
+  have map_area (X Y Z : ℝ²) :
+      signedArea2 (T X) (T Y) (T Z) = k * signedArea2 X Y Z := by
+    simpa [T, k] using signedArea2_normSim U O hUO_ne X Y Z
+  have map_area_pos {X Y Z : ℝ²} (h : 0 < signedArea2 X Y Z) :
+      0 < signedArea2 (T X) (T Y) (T Z) := by
+    rw [map_area]
+    exact mul_pos hk h
+  have hUa_map : dist (T U) (T a) = dist (T U) (T O) :=
+    map_dist_eq hUO_Ua.symm
+  have hOa_map : dist (T O) (T a) = dist (T U) (T O) :=
+    map_dist_eq hUO_Oa.symm
+  have hUa_sq := congrArg (fun x : ℝ ↦ x ^ 2) hUa_map
+  have hOa_sq := congrArg (fun x : ℝ ↦ x ^ 2) hOa_map
+  change dist (T U) (T a) ^ 2 = dist (T U) (T O) ^ 2 at hUa_sq
+  change dist (T O) (T a) ^ 2 = dist (T U) (T O) ^ 2 at hOa_sq
+  rw [hT_U, hT_O, dist_sq_coord, dist_sq_coord] at hUa_sq
+  rw [hT_O, hT_U, dist_sq_coord, dist_sq_coord] at hOa_sq
+  simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hUa_sq hOa_sq
+  have hTa_x : (T a) 0 = 1 / 2 := by
+    nlinarith only [hUa_sq, hOa_sq]
+  have hTa_y_sq : (T a) 1 ^ 2 = 3 / 4 := by
+    nlinarith only [hUa_sq, hTa_x]
+  have hTa_area : signedArea2 (T U) (T O) (T a) < 0 := by
+    rw [map_area]
+    exact mul_neg_of_pos_of_neg hk hUOa
+  rw [hT_U, hT_O] at hTa_area
+  simp only [signedArea2, pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hTa_area
+  have hsqrt_pos : 0 < Real.sqrt 3 / 2 := by positivity
+  have hsqrt_sq : (Real.sqrt 3 / 2) ^ 2 = 3 / 4 := by
+    rw [div_pow, Real.sq_sqrt (by norm_num)]
+    norm_num
+  have hTa_y : (T a) 1 = -Real.sqrt 3 / 2 := by
+    nlinarith only [hTa_y_sq, hsqrt_sq, hTa_area, hsqrt_pos]
+  have hT_a : T a = pt (1 / 2) (-Real.sqrt 3 / 2) := by
+    apply PiLp.ext
+    intro i
+    fin_cases i
+    · simpa [pt] using hTa_x
+    · simpa [pt] using hTa_y
+  apply normalized_euclidean_common_obstruction (T p) (T s) (T d) (T c)
+  · simpa only [hT_U] using map_area_pos hUps
+  · simpa only [hT_U, hT_a] using map_area_pos hUpa
+  · simpa only [hT_U] using map_area_pos hUpc
+  · simpa only [hT_a] using map_area_pos hpsa
+  · simpa only [hT_a] using map_area_pos hads
+  · simpa only [hT_a] using map_area_pos hadc
+  · simpa only [hT_U] using map_area_pos hdcU
+  · simpa only [hT_O, hT_a] using map_dist_eq hOad
+  · simpa only [hT_O, hT_a] using map_dist_eq hOap
+  · simpa only [hT_U, hT_O] using map_dist_eq hUOs
+  · simpa only [hT_O, hT_a] using map_dist_eq hcOa
+
+/-- Orientation-invariant form of `euclidean_common_obstruction`. Each
+required turn has sign opposite to the equilateral base orientation. -/
+theorem euclidean_common_obstruction_opposedProducts
+    (U p s a d c O : ℝ²)
+    (hUO_ne : U ≠ O)
+    (hUO_Ua : dist U O = dist U a)
+    (hUO_Oa : dist U O = dist O a)
+    (hUps : signedArea2 U O a * signedArea2 U p s < 0)
+    (hUpa : signedArea2 U O a * signedArea2 U p a < 0)
+    (hUpc : signedArea2 U O a * signedArea2 U p c < 0)
+    (hpsa : signedArea2 U O a * signedArea2 p s a < 0)
+    (hads : signedArea2 U O a * signedArea2 a d s < 0)
+    (hadc : signedArea2 U O a * signedArea2 a d c < 0)
+    (hdcU : signedArea2 U O a * signedArea2 d c U < 0)
+    (hOad : dist O a = dist O d)
+    (hOap : dist O a = dist O p)
+    (hUOs : dist U O = dist U s)
+    (hcOa : dist c O = dist c a) :
+    False := by
+  have hbase_ne : signedArea2 U O a ≠ 0 := by
+    intro hzero
+    rw [hzero, zero_mul] at hUps
+    linarith
+  by_cases hbase_neg : signedArea2 U O a < 0
+  · have turn_pos {t : ℝ} (h : signedArea2 U O a * t < 0) : 0 < t := by
+      rcases mul_neg_iff.mp h with hsign | hsign
+      · exact False.elim ((not_lt_of_ge hbase_neg.le) hsign.1)
+      · exact hsign.2
+    exact euclidean_common_obstruction U p s a d c O
+      hUO_ne hUO_Ua hUO_Oa hbase_neg
+      (turn_pos hUps) (turn_pos hUpa) (turn_pos hUpc)
+      (turn_pos hpsa) (turn_pos hads) (turn_pos hadc) (turn_pos hdcU)
+      hOad hOap hUOs hcOa
+  · have hbase_pos : 0 < signedArea2 U O a :=
+      lt_of_le_of_ne (le_of_not_gt hbase_neg) hbase_ne.symm
+    have turn_neg {t : ℝ} (h : signedArea2 U O a * t < 0) : t < 0 := by
+      rcases mul_neg_iff.mp h with hsign | hsign
+      · exact hsign.2
+      · exact False.elim ((not_lt_of_ge hbase_pos.le) hsign.1)
+    have map_turn {X Y Z : ℝ²} (h : signedArea2 X Y Z < 0) :
+        0 < signedArea2 (reflectXAxis X) (reflectXAxis Y) (reflectXAxis Z) := by
+      rw [signedArea2_reflectXAxis]
+      linarith
+    apply euclidean_common_obstruction
+      (reflectXAxis U) (reflectXAxis p) (reflectXAxis s)
+      (reflectXAxis a) (reflectXAxis d) (reflectXAxis c) (reflectXAxis O)
+    · exact fun h => hUO_ne (reflectXAxis_injective h)
+    · simpa only [dist_reflectXAxis] using hUO_Ua
+    · simpa only [dist_reflectXAxis] using hUO_Oa
+    · rw [signedArea2_reflectXAxis]
+      linarith
+    · exact map_turn (turn_neg hUps)
+    · exact map_turn (turn_neg hUpa)
+    · exact map_turn (turn_neg hUpc)
+    · exact map_turn (turn_neg hpsa)
+    · exact map_turn (turn_neg hads)
+    · exact map_turn (turn_neg hadc)
+    · exact map_turn (turn_neg hdcU)
+    · simpa only [dist_reflectXAxis] using hOad
+    · simpa only [dist_reflectXAxis] using hOap
+    · simpa only [dist_reflectXAxis] using hUOs
+    · simpa only [dist_reflectXAxis] using hcOa
+
+/-- Seven increasing positions on a convex boundary cannot carry the common
+profile-0034 metric pattern in the order `U,p,s,a,d,c,O`. -/
+theorem boundaryOrder_common_obstruction
+    {n : ℕ} (boundary : Fin n → ℝ²)
+    (hinj : Function.Injective boundary)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (iU ip is ia id ic iO : Fin n)
+    (hUp : iU < ip) (hps : ip < is) (hsa : is < ia)
+    (had : ia < id) (hdc : id < ic) (hcO : ic < iO)
+    (hUO_Ua : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary ia))
+    (hUO_Oa : dist (boundary iU) (boundary iO) =
+      dist (boundary iO) (boundary ia))
+    (hOad : dist (boundary iO) (boundary ia) =
+      dist (boundary iO) (boundary id))
+    (hOap : dist (boundary iO) (boundary ia) =
+      dist (boundary iO) (boundary ip))
+    (hUOs : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary is))
+    (hcOa : dist (boundary ic) (boundary iO) =
+      dist (boundary ic) (boundary ia)) :
+    False := by
+  have hUiO : iU < iO := lt_trans hUp (lt_trans hps
+    (lt_trans hsa (lt_trans had (lt_trans hdc hcO))))
+  have hUia : iU < ia := lt_trans hUp (lt_trans hps hsa)
+  have hUis : iU < is := lt_trans hUp hps
+  have hUip : iU < ip := hUp
+  have hipa : ip < ia := lt_trans hps hsa
+  have hipc : ip < ic := lt_trans hps (lt_trans hsa (lt_trans had hdc))
+  have hisd : is < id := lt_trans hsa had
+  have hiaO : ia < iO := lt_trans had (lt_trans hdc hcO)
+  have cyclic_area (X Y Z : ℝ²) :
+      signedArea2 X Y Z = signedArea2 Y Z X := by
+    simp only [signedArea2]
+    ring
+  have swap_last (X Y Z : ℝ²) :
+      signedArea2 X Z Y = -signedArea2 X Y Z := by
+    simp only [signedArea2]
+    ring
+  have hUaO : signedArea2 (boundary iU) (boundary ia) (boundary iO) < 0 :=
+    hneg_of_ccw hinj hccw hUia hiaO
+  have hbase : 0 < signedArea2 (boundary iU) (boundary iO) (boundary ia) := by
+    rw [swap_last]
+    linarith
+  have hUps : signedArea2 (boundary iU) (boundary ip) (boundary is) < 0 :=
+    hneg_of_ccw hinj hccw hUip hps
+  have hUpa : signedArea2 (boundary iU) (boundary ip) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hUip hipa
+  have hUpc : signedArea2 (boundary iU) (boundary ip) (boundary ic) < 0 :=
+    hneg_of_ccw hinj hccw hUip hipc
+  have hpsa : signedArea2 (boundary ip) (boundary is) (boundary ia) < 0 :=
+    hneg_of_ccw hinj hccw hps hsa
+  have hsad : signedArea2 (boundary is) (boundary ia) (boundary id) < 0 :=
+    hneg_of_ccw hinj hccw hsa had
+  have hads : signedArea2 (boundary ia) (boundary id) (boundary is) < 0 := by
+    rw [← cyclic_area]
+    exact hsad
+  have hadc : signedArea2 (boundary ia) (boundary id) (boundary ic) < 0 :=
+    hneg_of_ccw hinj hccw had hdc
+  have hUdc : signedArea2 (boundary iU) (boundary id) (boundary ic) < 0 :=
+    hneg_of_ccw hinj hccw (lt_trans hUia had) hdc
+  have hdcU : signedArea2 (boundary id) (boundary ic) (boundary iU) < 0 := by
+    rw [← cyclic_area]
+    exact hUdc
+  exact euclidean_common_obstruction_opposedProducts
+    (boundary iU) (boundary ip) (boundary is) (boundary ia)
+    (boundary id) (boundary ic) (boundary iO)
+    (hinj.ne (ne_of_lt hUiO)) hUO_Ua hUO_Oa
+    (mul_neg_of_pos_of_neg hbase hUps)
+    (mul_neg_of_pos_of_neg hbase hUpa)
+    (mul_neg_of_pos_of_neg hbase hUpc)
+    (mul_neg_of_pos_of_neg hbase hpsa)
+    (mul_neg_of_pos_of_neg hbase hads)
+    (mul_neg_of_pos_of_neg hbase hadc)
+    (mul_neg_of_pos_of_neg hbase hdcU)
+    hOad hOap hUOs hcOa
 
 end Profile0034
 end EqualityCore
