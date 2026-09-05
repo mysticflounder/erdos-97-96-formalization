@@ -1354,6 +1354,14 @@ fresh pair, deleted source, or actual blocker with the canonical B1 data.
 Luna trace `#15061` and direct source validation found no existing comparison
 theorem that repairs this dependent-type/provenance mismatch.
 
+Luna re-audit `#15312` sharpened the interface failure.  The first required
+field is unordered endpoint normalization of the fresh pair to
+`{C.u, C.v}`.  Even with that normalization, the adapter currently hides its
+joint-deletion witness behind an existential and supplies no proof that its
+deleted point differs from both canonical deletions.  Those are separate
+producer obligations; `ExactFourMutualOmissionJointDeletion.swap` preserves
+the deleted point and only reverses the endpoint orientation.
+
 Three independent source audits, including Luna `#15080`, checked whether the
 mismatch could be bypassed by generalizing the pair-insensitive geometry.
 `b1_third_actualBlocker_ne_common`,
