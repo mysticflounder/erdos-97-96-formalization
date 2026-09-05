@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-boundary-cyclic-shift-20260905",
+  "owner": "codex-profile0034-boundary-cyclic-shift",
+  "base_head": "7192901fc232f02e38b805f215e521f4c821bdeb",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-boundary-cyclic-shift-20260905.json",
+    "docs/audits/2026-09-05-exactfive-profile0034-boundary-cyclic-shift.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/BoundaryIndexingCyclicShift.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProfile0034SourceAdapter.lean",
+    "lean/Erdos9796Proof/P97/Census554/ExactFiveProfile0034CommonObstruction.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T14:46:37Z",
+  "manifest_sha256": "6c78daee083dfbb34efd7a6cee2b76ab41f6bf72e18e8a8a7442af162e662b59"
+}
