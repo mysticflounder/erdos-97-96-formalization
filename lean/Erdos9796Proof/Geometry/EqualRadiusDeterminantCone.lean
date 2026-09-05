@@ -23,11 +23,13 @@ open scoped InnerProductSpace
 namespace Erdos9796Proof
 namespace Geometry
 
+/-- Squared Euclidean distance in `Plane` is the sum of the squared coordinate differences. -/
 private theorem dist_sq_coord (p q : Plane) :
     dist p q ^ 2 = (p 0 - q 0) ^ 2 + (p 1 - q 1) ^ 2 := by
   rw [EuclideanSpace.dist_sq_eq]
   simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
 
+/-- The real inner product in `Plane` is the sum of the products of corresponding coordinates. -/
 private theorem inner_eq_coords (u w : Plane) :
     ⟪u, w⟫_ℝ = u 0 * w 0 + u 1 * w 1 := by
   rw [PiLp.inner_apply]

@@ -76,9 +76,12 @@ namespace SimilarityFrame
 instance {q₁ q₂ : Plane} : CoeFun (SimilarityFrame q₁ q₂) (fun _ => Plane → Plane) :=
   ⟨fun F => F.map⟩
 
+/-- Applying a similarity frame as a function agrees with applying its underlying affine map. -/
 @[simp] theorem map_apply {q₁ q₂ : Plane} (F : SimilarityFrame q₁ q₂) (p : Plane) :
     F p = F.map p := rfl
 
+/-- A similarity frame preserves and reflects equality of distances from a common point:
+the strictly positive scale cancels from both distances. -/
 theorem dist_eq_iff {q₁ q₂ : Plane} (F : SimilarityFrame q₁ q₂)
     (p r s : Plane) :
     dist (F p) (F r) = dist (F p) (F s) ↔ dist p r = dist p s := by
@@ -91,6 +94,8 @@ theorem dist_eq_iff {q₁ q₂ : Plane} (F : SimilarityFrame q₁ q₂)
     rw [F.dist_map, F.dist_map]
     rw [h]
 
+/-- A similarity frame is injective, since its strictly positive scale preserves
+nonzero distances. -/
 theorem injective {q₁ q₂ : Plane} (F : SimilarityFrame q₁ q₂) :
     Function.Injective F := by
   intro p r h
@@ -100,6 +105,8 @@ theorem injective {q₁ q₂ : Plane} (F : SimilarityFrame q₁ q₂) :
     exact (mul_eq_zero.mp hdist).resolve_left (ne_of_gt F.scale_pos)
   exact dist_eq_zero.mp this
 
+/-- A point belongs to the convex hull of `S` exactly when its image belongs to the
+convex hull of `F '' S`; the affine map is injective. -/
 theorem convexHull_mem_iff {q₁ q₂ : Plane} (F : SimilarityFrame q₁ q₂)
     {S : Set Plane} {p : Plane} :
     F p ∈ convexHull ℝ (F '' S) ↔ p ∈ convexHull ℝ S := by
@@ -118,11 +125,14 @@ theorem convexHull_mem_iff {q₁ q₂ : Plane} (F : SimilarityFrame q₁ q₂)
 
 end SimilarityFrame
 
+/-- Squared Euclidean distance in `Plane` is the sum of the squared coordinate differences. -/
 private theorem dist_sq_coord (p r : Plane) :
     dist p r ^ 2 = (p 0 - r 0) ^ 2 + (p 1 - r 1) ^ 2 := by
   rw [EuclideanSpace.dist_sq_eq]
   simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
 
+/-- For distinct endpoints, the squared coordinate length used as the normalization
+denominator is strictly positive. -/
 private theorem similarityFrame_den_pos {q₁ q₂ : Plane} (h : q₁ ≠ q₂) :
     0 < (q₂ 0 - q₁ 0) ^ 2 + (q₂ 1 - q₁ 1) ^ 2 := by
   have hdist : 0 < dist q₁ q₂ := dist_pos.mpr h
@@ -130,6 +140,8 @@ private theorem similarityFrame_den_pos {q₁ q₂ : Plane} (h : q₁ ≠ q₂) 
   rw [dist_sq_coord] at hdist_sq
   nlinarith
 
+/-- For distinct endpoints, the explicit normalization multiplies every distance
+by `2 / dist q₁ q₂`. -/
 private theorem similarityFrame_map_dist {q₁ q₂ : Plane} (h : q₁ ≠ q₂) (p r : Plane) :
     dist (similarityFrameMap q₁ q₂ p) (similarityFrameMap q₁ q₂ r) =
       (2 / dist q₁ q₂) * dist p r := by
@@ -216,16 +228,21 @@ noncomputable def ofDistinct {q₁ q₂ : Plane} (h : q₁ ≠ q₂) : Similarit
   · intro p r
     exact similarityFrame_map_dist h p r
 
+/-- The canonical frame based on distinct endpoints sends the first endpoint to `(-1, 0)`. -/
 @[simp] theorem ofDistinct_map_q₁ {q₁ q₂ : Plane} (h : q₁ ≠ q₂) :
     ofDistinct h q₁ = planePoint (-1) 0 := (ofDistinct h).map_q₁
 
+/-- The canonical frame based on distinct endpoints sends the second endpoint to `(1, 0)`. -/
 @[simp] theorem ofDistinct_map_q₂ {q₁ q₂ : Plane} (h : q₁ ≠ q₂) :
     ofDistinct h q₂ = planePoint 1 0 := (ofDistinct h).map_q₂
 
+/-- The canonical frame rescales every distance by `2 / dist q₁ q₂`, the ratio of
+the normalized endpoint separation to the original one. -/
 theorem ofDistinct_dist_map {q₁ q₂ : Plane} (h : q₁ ≠ q₂) (p r : Plane) :
     dist (ofDistinct h p) (ofDistinct h r) =
       (2 / dist q₁ q₂) * dist p r := (ofDistinct h).dist_map p r
 
+/-- Normalization by the canonical frame preserves and reflects convex-hull membership. -/
 theorem ofDistinct_convexHull_mem_iff {q₁ q₂ : Plane} (h : q₁ ≠ q₂)
     {S : Set Plane} {p : Plane} :
     ofDistinct h p ∈ convexHull ℝ (ofDistinct h '' S) ↔ p ∈ convexHull ℝ S := by

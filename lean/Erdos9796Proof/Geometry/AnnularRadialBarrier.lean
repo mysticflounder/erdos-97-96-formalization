@@ -429,6 +429,7 @@ def annularDetLinear (p : Plane) : Plane →ₗ[ℝ] ℝ :=
       simp [PiLp.smul_apply]
       ring }
 
+/-- Evaluating `annularDetLinear p` gives the coordinate determinant of `p` and `v`. -/
 @[simp]
 theorem annularDetLinear_apply (p v : Plane) :
     annularDetLinear p v = p 0 * v 1 - p 1 * v 0 :=

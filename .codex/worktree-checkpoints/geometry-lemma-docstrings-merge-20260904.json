@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "geometry-lemma-docstrings-merge-20260904",
+  "owner": "luna-swarm-geometry-lemma-docstrings",
+  "base_head": "997355253c469b2da9be8261eb1cbfbd6b8d8fa0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/geometry-lemma-docstrings-merge-20260904.json",
+    "lean/Erdos9796Proof/Geometry/AnnularRadialBarrier.lean",
+    "lean/Erdos9796Proof/Geometry/EqualRadiusDeterminantCone.lean",
+    "lean/Erdos9796Proof/Geometry/NormalizedFivePointOrientation.lean",
+    "lean/Erdos9796Proof/Geometry/SimilarityFrame.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T03:49:00Z",
+  "manifest_sha256": "4eb283a4b3333f6c612e55df5780ccc2d80d2754c1436b93e7a8b2f5c6cf61ac"
+}
