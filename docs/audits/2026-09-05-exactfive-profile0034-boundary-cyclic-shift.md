@@ -3,8 +3,9 @@
 Date: 2026-09-05
 
 Status: kernel-checked direct/reflected outer-order reduction, deleted-point
-sector classification, and a strict second-row distance consequence.  The
-remaining live ingress is a selector or obstruction for the residual heads.
+sector classification, strict second-row distance consequence, and a new
+fresh-source blocker split.  The remaining live ingress is a terminal
+consumer for that split or an obstruction for the residual heads.
 
 ## Reuse preflight
 
@@ -73,6 +74,33 @@ second-apex row radius < dist second-apex blocker.
 ```
 
 Neither statement orders a row-zero or row-one residual on the boundary.
+
+## Fresh-source blocker split
+
+The strict common-deletion source supplies more than another boundary point.
+Let `e` be its actual blocker.  Deleting the fresh source survives at the old
+blocker and at the second apex, so `e` is distinct from both.  The old blocker
+and second apex are already equidistant from `O,a`.  If the critical row at
+`e` also contained both `O` and `a`, convex independence would put three
+distinct carrier centers on their perpendicular bisector, contradicting the
+carrier bound of two.
+
+The adapter therefore proves that the fresh critical row omits `O` or `a`.
+The cross-deletion theorem converts this to a source-faithful survival split:
+
+```text
+deleting O survives at e
+or
+deleting a survives at e.
+```
+
+Full deletion robustness at the second apex then packages either arm as a
+new `CommonDeletionTwoCenterPacket`, with centers `e` and the second apex.
+This is the first checked use of the strict fresh source beyond support
+freshness.  It applies to the fourth incidence constructor, where both
+`O ∈ row₁` and `O ∈ row₂` are available.  No existing import-acyclic terminal
+consumes either resulting packet, so this is a source synchronization step,
+not closure of the admitted target.
 
 ## Swapped-order analytic theorem
 
