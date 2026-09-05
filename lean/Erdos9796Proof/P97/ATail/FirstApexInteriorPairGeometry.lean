@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.CriticalPairFrontier
+import Erdos9796Proof.P97.ATail.CapInteriorNonacuteMetric
 import Erdos9796Proof.P97.CapSelectedRowCounting
 import Erdos9796Proof.P97.Dumitrescu.L1
 
@@ -209,6 +210,155 @@ theorem bisectorCenter_mem_firstApexInterior
         hcCap hapexCap hc_ne_opp hqA hwA hqw
         hqOff hwOff hcEq hapexEq
     simpa [hj] using hcInterior
+
+/- The strict form of the cap inscribed-angle inequality at the first
+   opposite apex.  This is the positive antecedent required by the exact-five
+   radius-drop consumer. -/
+theorem inner_pos_of_oppApex1_capInterior_pair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {q w : ℝ²}
+    (hq : q ∈ S.capInteriorByIndex S.oppIndex1)
+    (hw : w ∈ S.capInteriorByIndex S.oppIndex1) :
+    0 < inner ℝ (q - S.oppApex1) (w - S.oppApex1) := by
+  have hqA : q ∈ D.A := S.capInteriorByIndex_subset S.oppIndex1 hq
+  have hwA : w ∈ D.A := S.capInteriorByIndex_subset S.oppIndex1 hw
+  have hq_ne_v1 : q ≠ (S.triangleByIndex S.oppIndex1).v1 := by
+    intro h
+    have hne := S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem
+      (j := S.oppIndex1) hq
+    apply hne
+    calc
+      q = (S.triangleByIndex S.oppIndex1).v1 := h
+      _ = S.oppositeVertexByIndex S.oppIndex1 :=
+        S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1
+  have hw_ne_v1 : w ≠ (S.triangleByIndex S.oppIndex1).v1 := by
+    intro h
+    have hne := S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem
+      (j := S.oppIndex1) hw
+    apply hne
+    calc
+      w = (S.triangleByIndex S.oppIndex1).v1 := h
+      _ = S.oppositeVertexByIndex S.oppIndex1 :=
+        S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1
+  have hq_ne_v2 := S.capInteriorByIndex_ne_triangleByIndex_v2 hq
+  have hq_ne_v3 := S.capInteriorByIndex_ne_triangleByIndex_v3 hq
+  have hw_ne_v2 := S.capInteriorByIndex_ne_triangleByIndex_v2 hw
+  have hw_ne_v3 := S.capInteriorByIndex_ne_triangleByIndex_v3 hw
+  let P := S.circPacketByIndex S.oppIndex1
+  have hcO : ‖(S.triangleByIndex S.oppIndex1).v1 - P.center‖ = P.radius := by
+    simpa [P] using P.moser_on_boundary_1
+  have haO : ‖(S.triangleByIndex S.oppIndex1).v2 - P.center‖ = P.radius := by
+    simpa [P] using P.moser_on_boundary_2
+  have hbO : ‖(S.triangleByIndex S.oppIndex1).v3 - P.center‖ = P.radius := by
+    simpa [P] using P.moser_on_boundary_3
+  have hqO : ‖q - P.center‖ ≤ P.radius := P.disk_contains_A q hqA
+  have hwO : ‖w - P.center‖ ≤ P.radius := P.disk_contains_A w hwA
+  have hMajor :
+      inner ℝ
+        (midpoint ℝ (S.triangleByIndex S.oppIndex1).v2
+          (S.triangleByIndex S.oppIndex1).v3 - P.center)
+        (midpoint ℝ (S.triangleByIndex S.oppIndex1).v2
+          (S.triangleByIndex S.oppIndex1).v3 -
+          (S.triangleByIndex S.oppIndex1).v1) ≥ 0 := by
+    have haOc :
+        ‖(S.triangleByIndex S.oppIndex1).v2 - P.center‖ =
+          ‖(S.triangleByIndex S.oppIndex1).v1 - P.center‖ := by
+      rw [haO, hcO]
+    have hbOc :
+        ‖(S.triangleByIndex S.oppIndex1).v3 - P.center‖ =
+          ‖(S.triangleByIndex S.oppIndex1).v1 - P.center‖ := by
+      rw [hbO, hcO]
+    have hmid := inner_chord_eq_two_mul_inner_midpoint haOc hbOc
+    have hv := P.inner_at_v1
+    linarith
+  have hqSide :
+      signedArea2 q (S.triangleByIndex S.oppIndex1).v2
+          (S.triangleByIndex S.oppIndex1).v3 *
+        signedArea2 (S.triangleByIndex S.oppIndex1).v1
+          (S.triangleByIndex S.oppIndex1).v2
+          (S.triangleByIndex S.oppIndex1).v3 ≤ 0 :=
+    (S.capByIndex_arc_membership S.oppIndex1 q hqA).1
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hq)
+  have hwSide :
+      signedArea2 w (S.triangleByIndex S.oppIndex1).v2
+          (S.triangleByIndex S.oppIndex1).v3 *
+        signedArea2 (S.triangleByIndex S.oppIndex1).v1
+          (S.triangleByIndex S.oppIndex1).v2
+          (S.triangleByIndex S.oppIndex1).v3 ≤ 0 :=
+    (S.capByIndex_arc_membership S.oppIndex1 w hwA).1
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hw)
+  have hpos := ATailCapInteriorNonacuteMetric.inner_pos_of_cap_region_pair_of_convex
+    D.convex
+    (hcA := (S.triangleByIndex S.oppIndex1).v1_mem)
+    (haA := (S.triangleByIndex S.oppIndex1).v2_mem)
+    (hbA := (S.triangleByIndex S.oppIndex1).v3_mem)
+    (hxA := hqA) (hyA := hwA)
+    (hca := (S.triangleByIndex S.oppIndex1).v12_ne)
+    (hcb := (S.triangleByIndex S.oppIndex1).v13_ne)
+    (hab := (S.triangleByIndex S.oppIndex1).v23_ne)
+    (hxc := hq_ne_v1) (hxa := hq_ne_v2) (hxb := hq_ne_v3)
+    (hyc := hw_ne_v1) (hya := hw_ne_v2) (hyb := hw_ne_v3)
+    (hcO := hcO) (haO := haO) (hbO := hbO)
+    (hxO := hqO) (hyO := hwO) (hMajor := hMajor)
+    (hxSide := hqSide) (hySide := hwSide)
+  have happ :
+      (S.triangleByIndex S.oppIndex1).v1 = S.oppApex1 := by
+    exact (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1).trans
+      (oppApex1_eq_oppositeVertexByIndex_oppIndex1' S).symm
+  simpa [happ] using hpos
+
+/- The ordered-cap nonacute inequality is exported at the same frontier
+   interface as the interior localization above, so the later radius-drop
+   consumer need not reconstruct the cap order. -/
+theorem bisectorCenter_inner_nonpos_firstApexInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {q w c : ℝ²}
+    (hq : q ∈ SelectedClass D.A S.oppApex1 r ∩
+      S.capInteriorByIndex S.oppIndex1)
+    (hw : w ∈ SelectedClass D.A S.oppApex1 r ∩
+      S.capInteriorByIndex S.oppIndex1)
+    (hqw : q ≠ w)
+    (hcA : c ∈ D.A)
+    (hcApex : c ≠ S.oppApex1)
+    (hcEq : dist c q = dist c w) :
+    inner ℝ (q - c) (w - c) ≤ 0 := by
+  have hcInterior := bisectorCenter_mem_firstApexInterior
+    hq hw hqw hcA hcApex hcEq
+  exact ATailCapInteriorNonacuteMetric.inner_nonpos_of_capInterior_equidistant
+    S D.convex S.oppIndex1 (Finset.mem_inter.mp hq).2
+      (Finset.mem_inter.mp hw).2 hcInterior hqw hcEq
+
+/-- The two source-side sign bridges combine into the strict radius drop used
+    by the exact-five physical branch. -/
+theorem bisectorCenter_radius_lt_of_selected_pair
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {q w c : ℝ²}
+    (hq : q ∈ SelectedClass D.A S.oppApex1 r ∩
+      S.capInteriorByIndex S.oppIndex1)
+    (hw : w ∈ SelectedClass D.A S.oppApex1 r ∩
+      S.capInteriorByIndex S.oppIndex1)
+    (hqw : q ≠ w)
+    (hr : 0 ≤ r)
+    (hcA : c ∈ D.A)
+    (hcApex : c ≠ S.oppApex1)
+    (hcEq : dist c q = dist c w) :
+    dist c q < r := by
+  have hqInner := (Finset.mem_inter.mp hq).2
+  have hwInner := (Finset.mem_inter.mp hw).2
+  have houter :
+      0 < inner ℝ (q - S.oppApex1) (w - S.oppApex1) :=
+    inner_pos_of_oppApex1_capInterior_pair hqInner hwInner
+  have hinner :
+      inner ℝ (q - c) (w - c) ≤ 0 :=
+    bisectorCenter_inner_nonpos_firstApexInterior
+      hq hw hqw hcA hcApex hcEq
+  have hqRadius : dist S.oppApex1 q = r :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp hq).1).2
+  have hwRadius : dist S.oppApex1 w = r :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp hw).1).2
+  exact ATailCapInteriorNonacuteMetric.paired_equal_radius_drop_of_inner_signs
+    hr (dist_nonneg)
+    hqRadius hwRadius rfl hcEq.symm houter hinner
 
 /-- Every bisector center localized above avoids the surplus cap. -/
 theorem bisectorCenter_not_mem_surplusCap

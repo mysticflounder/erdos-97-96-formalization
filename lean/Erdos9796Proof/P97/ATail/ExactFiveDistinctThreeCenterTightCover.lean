@@ -73,6 +73,52 @@ theorem intersections_of_card_four_union_card_eleven
       (Finset.mem_union_right K₀ hpoint₁) hpoint₂
   exact ⟨hinterEq, hdisjoint₀₂, hdisjoint₁₂⟩
 
+/- The tight exact-twelve slice has only the retained source in the
+   first-row/blocker-row intersection.  This is the source-facing form of the
+   finite cardinality calculation above, and rules out any later argument
+   that needs two distinct points shared by those rows. -/
+theorem tightPhysical_firstApex_blocker_intersection_eq_retained
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11) :
+    N.firstApexClass.support ∩ N.blockerClass.support = {N.retained} := by
+  exact
+    (intersections_of_card_four_union_card_eleven
+      N.firstApexClass.support N.blockerClass.support
+      N.secondApexClass.support N.retained
+      N.firstApexClass.support_card N.blockerClass.support_card
+      N.secondApexClass.support_card N.retained_mem_firstApexClass
+      N.retained_mem_blockerClass hunion).1
+
+/- A convenient contradiction form for the metric radius-drop route: in the
+   tight branch, no two distinct sources can lie in both of the relevant rows. -/
+theorem tightPhysical_no_two_distinct_firstApex_blocker_sources
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (hunion :
+      ((N.firstApexClass.support ∪ N.blockerClass.support) ∪
+        N.secondApexClass.support).card = 11)
+    {q w : ℝ²}
+    (hq : q ∈ N.firstApexClass.support ∩ N.blockerClass.support)
+    (hw : w ∈ N.firstApexClass.support ∩ N.blockerClass.support)
+    (hqw : q ≠ w) : False := by
+  have hinter := tightPhysical_firstApex_blocker_intersection_eq_retained N hunion
+  rw [hinter] at hq hw
+  simp only [Finset.mem_singleton] at hq hw
+  exact hqw (hq.trans hw.symm)
+
 /-- Removing the unique shared point leaves disjoint blocks of cardinalities
 three, three, and four, which partition the other ten union points. -/
 theorem residual_partition_of_card_four_union_card_eleven
