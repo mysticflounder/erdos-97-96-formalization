@@ -53,6 +53,22 @@ theorem cyclicAdjacent_of_common_strict_interval
   unfold cyclicAdjacent SurplusCOMPGBank.btw
   simp [hp_left, hp_right, hq_left, hq_right]
 
+/-- Replacing one separated-pair endpoint by a point on the same side of the
+fixed cut preserves separation.  The geometric cap-order adapter is kept out
+of this low-level theorem: callers need only supply the equality of `btw`
+bits packaged by `cyclicAdjacent`. -/
+theorem separatedPair_congr_left_of_cyclicAdjacent
+    {n : ℕ} {i j p p' q : Fin n}
+    (hadj : cyclicAdjacent i j p p') :
+    separatedPair i j p q ↔ separatedPair i j p' q := by
+  unfold cyclicAdjacent at hadj
+  unfold separatedPair
+  constructor
+  · intro hsep
+    exact hadj.symm.trans hsep
+  · intro hsep
+    exact hadj.trans hsep
+
 /-- Two rotated perfect matchings on four roles cannot both be separated.
 
 The first separation uses the cut `(i,j)` and the pair `(a,b)`; the second
