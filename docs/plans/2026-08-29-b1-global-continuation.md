@@ -1323,6 +1323,28 @@ point and blocker-row residual once the outer shifted placement
 axiom audit verified that theorem-side reduction; the remaining live source
 obligation is precisely the outer placement, not the middle-pair order.
 
+Commit `a7c6860e4` further proves, from the live Kalmanson packet, the direct
+or reflected outer order of the retained point and the two opposite apices
+after cutting at the blocker: `a < c < O` or `O < c < a`.  A fresh focused
+three-module build completed successfully, and direct axiom probes of the new
+reversed obstruction and cyclic consumers reported only `propext`,
+`Classical.choice`, and `Quot.sound`.  This does not yet place the deleted
+point `d` or the residual row points `p,s`.  The cap-block packets place the
+retained and deleted points in the same first-apex cap interval, but neither
+their boundary-order convexity nor cyclic recutting compares the two points.
+Thus the first missing antecedent is now the position of `d` relative to `a`
+and `c`; the next bounded check is an exhaustive classification of the
+remaining `d` positions before introducing stronger ingress.
+
+A separate source trace found one additional partial consumer: in the fourth
+`RobustApexFourIncidenceContinuation` constructor, the hard-source-swap arm
+with `¬ 5 ≤ S.oppInterior2.card` reaches
+`HardSourceSwapExactGridRoles.false_of_fourthIncidence_exactGrid`.  The split
+must use the original normal-form common-deletion packet.  This does not close
+the physical source-swap arm, the large-second-interior arm, or constructors
+one through three, so it is a branch reduction rather than a terminal for the
+five-incidence theorem.
+
 Focused Pro consult `01M1RSXD38KCFTCK2AH96PGEF6` is checking the remaining
 source-rich route: iterate
 `exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext` while
