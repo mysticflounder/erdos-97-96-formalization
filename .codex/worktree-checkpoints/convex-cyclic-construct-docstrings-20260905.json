@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "convex-cyclic-construct-docstrings-20260905",
+  "owner": "luna-swarm-convex-cyclic-docstrings",
+  "base_head": "4f5819e7adc049f14092bfc7f3e5f219a8942704",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/convex-cyclic-construct-docstrings-20260905.json",
+    "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T04:00:44Z",
+  "manifest_sha256": "74af2877f264cb4c74dd70394bc1fde75f9e834cb997f576ff726046e7e8b00d"
+}

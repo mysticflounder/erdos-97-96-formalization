@@ -1024,10 +1024,10 @@ theorem signedArea2_thirdPoint_pos_of_cut_sorted_long_gap
       (A := A) (c := c) (phi := phi) hA hc hphi_inj hphi_image hphi_sorted
       (i := i) (k := k) (t := j) hik hgap1 hgap2 hij hjk)
 
-/- **Spec CGN4g-r6b.** Positive signed areas on the same chord line force the
-two points to lie on the same open side. -/
 set_option maxHeartbeats 1000000 in
 -- Basis expansion plus the affine-side witness construction is elaboration-heavy.
+/-- **Spec CGN4g-r6b.** Positive signed areas on the same chord line force the
+two points to lie on the same open side. -/
 theorem sSameSide_of_signedArea2_pos
     {a b x y : ℝ²}
     (hab : a ≠ b)
@@ -1201,13 +1201,13 @@ theorem sameSide_of_cut_sorted_long_gap
     (hy := Problem97.signedArea2_thirdPoint_pos_of_cut_sorted_long_gap
       hA hc hphi_inj hphi_image hphi_sorted hij hjk hgap1 hgap2)
 
-/-
-**Spec CGN4g-r5b.** In the short-gap branch, the radial open segment from
-the center to the middle vertex meets the endpoint chord segment.
--/
 set_option maxHeartbeats 1000000 in
 -- The Cramer/elimination normalization in the short-gap coordinate proof elaborates
 -- slowly; the theorem is finite-dimensional coordinate algebra, not an unbounded search.
+/--
+**Spec CGN4g-r5b.** In the short-gap branch, the radial open segment from
+the center to the middle vertex meets the endpoint chord segment.
+-/
 theorem shortGap_ray_endpointChord_hit
     {A : Finset ℝ²} {c : ℝ²} {phi : Fin A.card → ℝ²}
     (hA : Problem97.ConvexIndep A)
