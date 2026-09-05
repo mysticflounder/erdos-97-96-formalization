@@ -1,5 +1,7 @@
 """Focused preflight tests for the sequential confirmation producer."""
 
+from pathlib import Path
+
 import pytest
 
 from census.card_head import (
@@ -29,6 +31,15 @@ def test_parent_pins_and_claims() -> None:
     assert subject.PARENT_PINS["manifest"] == "a019d04b982f95b50bc170d059f3266b5cb022072609a1b299debec9b4718e59"
     assert subject.PARENT_PINS["custody"] == "6f70dbf7d81353bfd815df50e43f3e048331aa365178bd8872c9c1f922899a9d"
     assert all(value is False for value in subject.FALSE_CLAIMS.values())
+
+
+def test_source_manifest_directly_pins_replay_modules() -> None:
+    paths = {path.resolve() for path in subject._source_paths()}
+    recovery = subject.parent.parent.parent
+    supporting_edge = recovery.deletion
+    assert Path(recovery.__file__).resolve() in paths
+    assert Path(supporting_edge.__file__).resolve() in paths
+    assert Path(supporting_edge.bo_source.__file__).resolve() in paths
 
 
 def test_target_journal_preflight() -> None:

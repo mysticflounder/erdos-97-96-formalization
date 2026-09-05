@@ -29,7 +29,7 @@ from census.card_head import (
 from census.p97_search import phase3_piqd_smt_source_adapter as adapter
 
 LANE_ID = "exactfive-profile0034-new-mirror-reduced-sequential-confirmation-piqd-20260905"
-RUN_ID = "run-0003"
+RUN_ID = "run-0004"
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
 RUN_ROOT = REPOSITORY_ROOT / "scratch/runs" / LANE_ID / RUN_ID
 CHECKPOINT_PATH = REPOSITORY_ROOT / ".codex/worktree-checkpoints" / f"{LANE_ID}.json"
@@ -157,7 +157,21 @@ def _repo_path(path: Path) -> str:
 
 
 def _source_paths() -> list[Path]:
-    return [Path(__file__), TEST_PATH, SPEC_PATH, RUNNER_PATH, CHECKPOINT_PATH, Path(parent.__file__), Path(parent.parent.__file__), Path(parent.parent.parent.__file__), Path(adapter.__file__)]
+    recovery = parent.parent.parent
+    supporting_edge = recovery.deletion
+    return [
+        Path(__file__),
+        TEST_PATH,
+        SPEC_PATH,
+        RUNNER_PATH,
+        CHECKPOINT_PATH,
+        Path(parent.__file__),
+        Path(parent.parent.__file__),
+        Path(recovery.__file__),
+        Path(supporting_edge.__file__),
+        Path(supporting_edge.bo_source.__file__),
+        Path(adapter.__file__),
+    ]
 
 
 def _snapshots(custody: Mapping[str, Any], system: Mapping[str, Any]) -> tuple[adapter.SourceSnapshot, ...]:

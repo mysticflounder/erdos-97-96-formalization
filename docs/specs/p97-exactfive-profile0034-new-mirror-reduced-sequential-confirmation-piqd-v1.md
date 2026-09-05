@@ -19,9 +19,16 @@ quarantined recoverably at:
 * `scratch/quarantine/exactfive-profile0034-new-mirror-reduced-sequential-confirmation-piqd-20260905-manifest-only-precommit/run-0001`;
 * `scratch/quarantine/exactfive-profile0034-new-mirror-reduced-sequential-confirmation-piqd-20260905-manifest-only-precommit/run-0002`.
 
-The active fresh run is `run-0003`; it is not initialized by this handoff.
-No assumptions or guarded assertions
-are permitted, and cvc5 is outside this lane.
+Run-0003 completed, but its child source manifest reached the supporting-edge
+and `bo_source` replay modules only through the physical-recovery module. It is
+therefore retained as a qualified diagnostic at:
+
+* `scratch/quarantine/exactfive-profile0034-new-mirror-reduced-sequential-confirmation-piqd-20260905-source-manifest-gap/run-0003`.
+
+The active recovery run is `run-0004`. Its source manifest directly pins the
+physical-recovery, supporting-edge, and `bo_source` replay modules. No
+assumptions or guarded assertions are permitted, and cvc5 is outside this
+lane.
 
 SAT targets are `SAT_REPLAYED` only when exact semantic readback succeeds;
 otherwise they remain unresolved. Target UNSAT is finite discovery evidence,
