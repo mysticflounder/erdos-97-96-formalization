@@ -1,0 +1,1 @@
+This file is a durable copy of the update intended for the nthdegree conversation. The authoritative conversation post should cite the two delivered artifacts by file ID.
