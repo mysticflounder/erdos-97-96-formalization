@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-new-mirror-supporting-edge-long-replay-piqd-20260904",
+  "owner": "profile0034-new-mirror-supporting-edge-long-replay-piqd",
+  "base_head": "633fd4712614149e2b5d7cd5f68d5263519e8192",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-new-mirror-supporting-edge-long-replay-piqd-20260904.json",
+    "census/card_head/exactfive_profile0034_new_mirror_supporting_edge_long_replay_piqd.py",
+    "census/card_head/tests/test_exactfive_profile0034_new_mirror_supporting_edge_long_replay_piqd.py",
+    "docs/specs/p97-exactfive-profile0034-new-mirror-supporting-edge-long-replay-piqd-v1.md",
+    "scripts/run_exactfive_profile0034_new_mirror_supporting_edge_long_replay_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-profile0034-new-mirror-supporting-edge-long-replay-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T05:24:05Z",
+  "manifest_sha256": "3d7678fbefa459711238a0193f0c75d995c979e99606299e66f55aff17d1d982"
+}
