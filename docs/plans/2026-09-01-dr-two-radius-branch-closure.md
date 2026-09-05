@@ -703,33 +703,139 @@ certificate replay is then unnecessary for card 12.
   normalizes omissions over the frontier pair and constructs a neutral
   `CommonDeletionTwoCenterPacket` for a prescribed surviving deletion.
 
-  The proof of `five_le_goodOutsideSources_card` exposes a stronger candidate
-  bound. The actual first-apex blocker fiber has cardinality four,
-  `goodOutsideSources` and `badOutsideSources` partition its complement, and
-  `badOutsideSources_card_le_two` is already proved. Factoring that arithmetic
-  should give
-  `D.A.card ≤ (goodOutsideSources R).card + 6`, hence the live
-  `12 < D.A.card` gives seven good outside sources. This statement and its
-  Lean proof are {{NEEDS_PROOF}} until the Luna lane reports a narrow check and
-  axiom audit.
+  This producer chain is now PROVEN in source.  The declarations
+  `carrier_card_le_goodOutsideSources_card_add_six` and
+  `seven_le_goodOutsideSources_card_of_card_gt_twelve` establish seven good
+  outside sources from `12 < D.A.card`.
+  `exists_distinct_blockers_common_color_of_seven` and
+  `exists_good_sources_distinctBlockers_commonDeletion` then retain two good
+  sources with distinct actual blockers and one common omitted member of
+  `{F.pair.q, F.pair.w}`.  The latter producer is used by
+  `nonempty_cardGeThirteenUncoveredStrictInteriorPacket_or_exactAdjacentCapGrid`,
+  so this is no longer an external or orphan classifier.
 
-  A source-neutral finite classifier is then expected to show that seven good
-  sources contain two sources with distinct actual blockers and one common
-  omitted member of `{F.pair.q, F.pair.w}`. Its no-pair analysis has at most
-  two blocker fibers, complementary singleton omission sets, and each fiber
-  of cardinality at most three, contradicting the seven-source bound. This
-  classifier is externally enumerated but not yet kernel-checked. Its source
-  adapter should retain the two good sources and construct three exact rows at
-  their two distinct blockers and `S.oppApex2` after one common deletion.
-  Track this primary frontier by `ν = (s, k, t) ∈ {0,1}³`: `s` records the
-  missing seven-source theorem, `k` the missing kernel-checked classifier and
-  source adapter, and `t` the still-missing terminal for the resulting
-  source-rich three-center packet. The current state is `ν = (1,1,1)`; the
-  accepted source-count producer lowers `s`, the classifier/adapter lowers
-  `k`, and no closure is claimed until a terminal lowers `t`.
+  Track the primary frontier by `ν = (s, k, t) ∈ {0,1}³`: `s` records the
+  seven-source bound, `k` the common-deletion distinct-blocker producer and
+  source adapter, and `t` the terminal for the resulting source-rich
+  three-center packet.  Current source has `ν = (0,0,1)`.  The remaining
+  obligation is the terminal; no further source-count wrapper lowers `ν`.
+
+  Pro consult `01M1S10J39SN5KHCA76SCYX3YX` proposed the reusable strengthening
+
+  `|G| + 2 * |Bq ∩ Bw| ≤ 3 * (|Bq| + |Bw|)`,
+
+  where `Bq` and `Bw` are the actual-blocker images of good sources surviving
+  the two named frontier deletions.  Its fiber-capacity proof is source
+  faithful, and it shows that more than `6k` good sources force `k+1`
+  blockers sharing one deletion.  It also shows that seven good sources do
+  not force three such blockers from these capacity facts alone.  The live
+  route needs two distinct blockers plus `S.oppApex2`, which the existing
+  theorem already supplies, so this strengthening is a reusable counting
+  target rather than a closure priority.
 - Generalizing `exists_fourHits_radialCyclicOrder_oppIndex1` to `oppIndex2`
   is a bounded Lean task, to be done only if the extracted core uses the strict
   cross-distance inequality.
+
+- Step P4.6 (2026-09-05, Pro-consult integration): consults
+  `01M1RR3B3RRW91E711X9YAW5J5` and
+  `01M1S10J39SN5KHCA76SCYX3YX` were checked against the current source and
+  narrow Luna audits.  They do not close a residual, but they replace the next
+  exact-13 solver step and sharpen the strict-above-13 split.  The Pro answers
+  inspected public source pin `9feb76f4f0b109f73cfa5ac5831cdba6dbbc7d71`;
+  the local source recheck used lane base
+  `79ee277bc3000d19b6a021d9915d24305f7f6a8c` and treats every unavailable
+  dirty module as unpromoted.
+
+  **Exact 13.**  The source-clean raw ingress and 100-cell coarse catalog are
+  still classification only.  The local `CardGeThirteenExact13ProviderIngress`
+  interface now has a nine-repair disposable-copy compile check, but it is not
+  committed, aggregate-imported, or connected to a `False` consumer.  Its
+  provider shape represents the two apex rows by the named `k`/`l` and `t`
+  providers while the optional global providers range only over raw labels
+  `2,...,12`.  This data shape anticipates the consult's apex-0/apex-1 witness
+  steering, but current source has no theorem proving that the source's
+  all-center existential family can be anchored at those named rows and
+  covered by `k`/`t` together with `g 2,...,g 12`.  The first Lean obligation
+  is therefore an anchored all-global witness/coverage adapter using the
+  existing blocker-not-apex premises.  Do not count the nine-additional-row
+  reduction until that adapter is source-proved.
+
+  Replace bounded one/two-form CEGAR as the fallback by a complete
+  per-candidate quotient-cone decision.  Quotient the 78 unordered pair
+  distances by the selected provider equalities while retaining a provider
+  provenance graph.  For all 1,430 ordered strict Kalmanson forms, solve over
+  exact rationals
+
+  `A * lambda = 0`, `lambda ≥ 0`, `sum lambda = 1`.
+
+  A feasible solution is exported only after exact replay: clear denominators,
+  retain the positive provider subrows, preserve provider tags and path
+  directions, and emit multiplicity-preserving side/diagonal pairings through
+  `ProviderClosurePathData`.  A basic support reduction gives at most 78
+  positive forms, but does not bound coefficients, path lengths, or expanded
+  certificate bytes.  If the cone is infeasible, require an exactly checked
+  rational dual distance vector with every form value at least one.  Such a
+  dual exhausts this cancellation family for that equality graph; it is not a
+  Euclidean realization and triggers a new source-geometry or terminal lane
+  instead of another cut wave.
+
+  EMPIRICALLY VERIFIED at the consult's pinned representative pattern: none
+  of the 1,430 forms closes alone, no positive two-form cancellation exists
+  even with unequal weights, and the published three unit-weight forms do
+  cancel.  Therefore three forms are minimal for that positive subrow pattern
+  only.  This does not establish all-cell coverage or minimality after further
+  source incidences are fixed.
+
+  Search order: first prove the anchored all-global adapter and audit every
+  source constraint listed by the ingress, split the two blocker labels as an
+  ordered pair (at most 110 cases before exclusions), choose challenged
+  centers by minimum remaining domain, and split complete row supports lazily.
+  Do not divide by a blocker/source swap without a proved symmetry, and do not
+  pre-enumerate all two-form path explanations.  Promotion requires two
+  separate kernel obligations:
+
+  1. every live exact-13 packet yields an anchored finite valuation satisfying
+     the source constraints; and
+  2. every such valuation reaches a checked contradictory leaf, either through
+     an exhaustive finite branch DAG or through kernel-checked coverage whose
+     theory clauses each carry provider certificates.
+
+  External UNSAT plus individually valid learned cuts does not satisfy the
+  second obligation.  For the next production split, use the number of
+  admissible unresolved leaves as the finite measure; every branch must reduce
+  its remaining domain, and every leaf must end in a checked cancellation or
+  an explicit dual-certified exit to a different geometric obligation.
+
+  **Strictly above 13.**  Add a source-clean refinement before treating the
+  current `uncovered` outcome as one undifferentiated branch: three pairwise
+  disjoint four-supports together with the old point `z` and the fresh point
+  `q` outside their union give a 14-point subset of `D.A`.  At card 13 the
+  fresh outcome therefore returns to `rowOverlap`; on the disjoint arm retain
+  all three disjointness proofs and `14 ≤ D.A.card`.  The current `uncovered`
+  constructor does not retain those proofs, so the refinement belongs before
+  that constructor or requires strengthening it.
+
+  Promote the private source theorem
+  `actualShell_inter_selectedInteriorUnion_card_le_two` to the lowest useful
+  public boundary.  It gives an upper bound of two on the trace of an actual
+  nonphysical critical row in the two selected strict-interior slices.  The
+  fresh route would still need a positive three-point trace in one named fresh
+  source row; freshness and existence of a four-support row do not provide
+  those incidences.  This route is therefore secondary until a source-positive
+  lower bound appears.
+
+  The next bounded geometric test is the adjacent-grid/actual-blocker
+  classifier.  Retain the named grid, actual cyclic order or reflected case,
+  anchored good source, its actual blocker, and its exact critical four-row.
+  Split that blocker into source-entitled named-center cases and a fresh case,
+  then run the same complete quotient-cone decision.  A dual-feasible equality
+  graph ends cancellation refinement for that graph and identifies the exact
+  missing opposing metric or incidence relation.  No boundary-label
+  permutation, named-center identity, or extra row incidence may be assumed.
+
+  This leaves four separately tracked mathematical obligations: all-cell
+  exact-13 coverage, `rowOverlap`, the disjoint fresh card-at-least-14 arm, and
+  `adjacentGrid`.  Closing either fresh or grid does not discharge the others.
 
 ## 7. Effort
 
