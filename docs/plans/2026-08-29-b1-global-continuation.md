@@ -1302,6 +1302,16 @@ the source-row equality `D(O,a) = D(O,p)`, not the B1 blocker-deleted equality
 `centerAt(source) = jointDeletion.deleted`.  They remain discovery-only and
 have no source realization, B1 transport, Lean ingress, or theorem candidate.
 
+The live seven-role source adapter now proves pairwise distinct carrier roles
+and pairwise distinct boundary indices, but intentionally proves no order.
+Both the retained and deleted points lie in the same first-apex cap interior,
+and the exact-five orientation merely swaps which is `q` and which is `w`;
+both relative orders remain possible from the current source fields.  Cyclic
+shifting transports boundary identities but cannot manufacture any strict
+order inequality.  Therefore an order continuation must prove an exhaustive
+source-faithful placement split, including the complementary deleted-before-
+retained cases, before any current profile0034 order consumer is applicable.
+
 Focused Pro consult `01M1RSXD38KCFTCK2AH96PGEF6` is checking the remaining
 source-rich route: iterate
 `exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext` while
