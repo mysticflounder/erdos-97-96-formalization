@@ -1196,6 +1196,16 @@ by the checked five-role and cap-crossing Kalmanson terminals.  The first
 honest adjacent-grid ingress is therefore a source-derived packet placing two
 chosen grid hits in the source actual row together with their boundary roles;
 do not add a downstream adapter until that producer exists.
+The closest existing positive ingress,
+`nonempty_radiusAnchoredPhysicalRowCrossHit`, supplies only one carrier source
+shared by a late blocker row and an unspecified second-apex row.  It neither
+identifies that row with a grid-radius row nor supplies a second common hit.
+Consequently the smallest direct Kalmanson producer must strengthen this to
+two hits from one grid-radius row lying in one late selected row and retain
+their boundary order relative to the second apex and late blocker.  The richer
+paired-grid/tri-apex terminal cannot be used backward: the generic adjacent
+grid has no source-clean adapter to its shell-partition and cap-placement
+hypotheses.
 
 The good-source packet's sources and frontier deletion are also unrelated to
 the two joint deletions fixed by the B1 context.  It implies none of the three
