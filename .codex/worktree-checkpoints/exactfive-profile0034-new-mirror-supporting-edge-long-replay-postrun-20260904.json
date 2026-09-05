@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-new-mirror-supporting-edge-long-replay-postrun-20260904",
+  "owner": "codex-profile0034-new-mirror-supporting-edge-long-replay-postrun",
+  "base_head": "fd8ff11a60bcb01d7f6a2042a210ea2774a8fe7b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-new-mirror-supporting-edge-long-replay-postrun-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-new-mirror-supporting-edge-long-replay-postrun.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T06:42:31Z",
+  "manifest_sha256": "d040d8b2ce0c746b36e62d4c8a2d86f93713a78fc52cad6ce8bf9c628a69bb8e"
+}
