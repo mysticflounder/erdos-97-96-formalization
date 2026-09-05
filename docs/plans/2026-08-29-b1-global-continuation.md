@@ -1308,42 +1308,36 @@ the source-row equality `D(O,a) = D(O,p)`, not the B1 blocker-deleted equality
 `centerAt(source) = jointDeletion.deleted`.  They remain discovery-only and
 have no source realization, B1 transport, Lean ingress, or theorem candidate.
 
-The live seven-role source adapter now proves pairwise distinct carrier roles
-and pairwise distinct boundary indices, but intentionally proves no order.
-Both the retained and deleted points lie in the same first-apex cap interior,
-and the exact-five orientation merely swaps which is `q` and which is `w`;
-both relative orders remain possible from the current source fields.  Cyclic
-shifting transports boundary identities but cannot manufacture any strict
-order inequality.  Therefore an order continuation must prove an exhaustive
-source-faithful placement split, including the complementary deleted-before-
-retained cases, before any current profile0034 order consumer is applicable.
-Commit `974d6126c` nevertheless closes both relative orders of the retained
-point and blocker-row residual once the outer shifted placement
-`U < p < {a,s} < d < c < O` is supplied.  A fresh governed build and direct
-axiom audit verified that theorem-side reduction; the remaining live source
-obligation is precisely the outer placement, not the middle-pair order.
+The profile0034 source-adapter work belongs to a separate Rigid exact-five
+branch, not to the anchored B1 chain.  Direct source and import tracing at
+revision `10e4d33f8` found no call edge from
+`false_of_b1PhysicalClassFiveSixNormalForm` into `Rigid221Closure`,
+`ExactFiveDistinctThreeCenterNormalForm`, or the profile0034 adapter; indeed,
+the adapter is not imported by any Lean module.  A complete profile0034
+classifier would integrate at
+`false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence` in
+`Rigid221Closure.lean`, while B1 would still require a new source-clean bridge
+from `B1PhysicalClassFiveSixNormalForm` to that Rigid packet.  Do not count the
+profile0034 consumers as progress on the B1 `sorry` without such a bridge.
 
-Commit `a7c6860e4` further proves, from the live Kalmanson packet, the direct
-or reflected outer order of the retained point and the two opposite apices
-after cutting at the blocker: `a < c < O` or `O < c < a`.  A fresh focused
-three-module build completed successfully, and direct axiom probes of the new
-reversed obstruction and cyclic consumers reported only `propext`,
-`Classical.choice`, and `Quot.sound`.  This does not yet place the deleted
-point `d` or the residual row points `p,s`.  The cap-block packets place the
-retained and deleted points in the same first-apex cap interval, but neither
-their boundary-order convexity nor cyclic recutting compares the two points.
-Thus the first missing antecedent is now the position of `d` relative to `a`
-and `c`; the next bounded check is an exhaustive classification of the
-remaining `d` positions before introducing stronger ingress.
+Within that off-spine Rigid branch, commits `974d6126c` and `a7c6860e4` are
+nevertheless checked reductions: they handle the direct and reflected middle
+orders and prove `a < c < O` or `O < c < a` after cutting at the blocker.
+Focused builds pass, and direct axiom probes report only `propext`,
+`Classical.choice`, and `Quot.sound`.  They do not place deleted point `d` or
+the residual row points `p,s`.  Exact coordinate examples realize every
+cyclic slot for `d` under the current metric equalities, so the desired
+between-position is not a consequence of that packet.  The cap-block packets
+also place retained and deleted points only in one common interval and do not
+order them.  This Rigid branch therefore needs genuinely stronger
+source-faithful order ingress.
 
-A separate source trace found one additional partial consumer: in the fourth
+The same off-spine trace found one partial Rigid consumer: in the fourth
 `RobustApexFourIncidenceContinuation` constructor, the hard-source-swap arm
 with `¬ 5 ≤ S.oppInterior2.card` reaches
-`HardSourceSwapExactGridRoles.false_of_fourthIncidence_exactGrid`.  The split
-must use the original normal-form common-deletion packet.  This does not close
-the physical source-swap arm, the large-second-interior arm, or constructors
-one through three, so it is a branch reduction rather than a terminal for the
-five-incidence theorem.
+`HardSourceSwapExactGridRoles.false_of_fourthIncidence_exactGrid` using the
+original normal-form common-deletion packet.  The physical source-swap arm,
+large-second-interior arm, and constructors one through three remain open.
 
 Focused Pro consult `01M1RSXD38KCFTCK2AH96PGEF6` is checking the remaining
 source-rich route: iterate
