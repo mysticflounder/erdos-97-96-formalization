@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-paired-grid-rho-identification-20260905",
+  "owner": "luna-swarm-proofforge",
+  "base_head": "fe37974250f2fd21c443b2d2fbdb22ad97454408",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-paired-grid-rho-identification-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1PairedGridRhoSourceIdentification.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T02:12:00Z",
+  "manifest_sha256": "f9cd2105391855c2205a248708f497e1dc1f2a459e3e0dbb9ea3fda00882d09e"
+}
