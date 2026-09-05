@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-canonical-exhaustion-20260905",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "c8e467ff0533028e322631407fa446908b3f1ff6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-canonical-exhaustion-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CanonicalExhaustion.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T18:13:00Z",
+  "manifest_sha256": "4f762695126edbb43a961745fa8f85a1b346e0c183aec506c16d6262794e46c4"
+}
