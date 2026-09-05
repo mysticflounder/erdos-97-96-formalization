@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-physical-assertion-deletion-piqd-20260904",
+  "owner": "profile0034-physical-assertion-deletion-impl",
+  "base_head": "dae2e850eae19dca1fb59a431feacc7beccc8637",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-physical-assertion-deletion-piqd-20260904.json",
+    "census/card_head/exactfive_hard_source_swap_profile0034_physical_assertion_deletion_piqd.py",
+    "census/card_head/tests/test_exactfive_hard_source_swap_profile0034_physical_assertion_deletion_piqd.py",
+    "docs/specs/p97-exactfive-hard-source-swap-profile0034-physical-assertion-deletion-v1.md",
+    "scripts/run_exactfive_hard_source_swap_profile0034_physical_assertion_deletion_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-hard-source-swap-profile0034-physical-assertion-deletion-piqd-20260904/run-0002"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T23:21:38Z",
+  "manifest_sha256": "23de77272d7f76d79940ab1d8e205b38f3f0f071c5da0a718490726d6b84bb28"
+}
