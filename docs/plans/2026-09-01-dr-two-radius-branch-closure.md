@@ -748,8 +748,12 @@ certificate replay is then unnecessary for card 12.
 
   **Exact 13.**  The source-clean raw ingress and 100-cell coarse catalog are
   still classification only.  The local `CardGeThirteenExact13ProviderIngress`
-  interface now has a nine-repair disposable-copy compile check, but it is not
-  committed, aggregate-imported, or connected to a `False` consumer.  Its
+  interface now contains the nine reviewed compile repairs and passed the
+  focused governed build on 2026-09-05
+  (`LAKE_BUILD_NO_REFRESH=1 lake-build
+  Erdos9796Proof.P97.ATail.FrontierLiveClosure.CardGeThirteenExact13ProviderIngress`,
+  exit 0; target built as job 11984/11984).  It is still uncommitted,
+  aggregate-unimported, and not connected to a `False` consumer.  Its
   provider shape represents the two apex rows by the named `k`/`l` and `t`
   providers while the optional global providers range only over raw labels
   `2,...,12`.  This data shape anticipates the consult's apex-0/apex-1 witness

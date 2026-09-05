@@ -1,0 +1,345 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate
+
+/-!
+# Provider-indexed checked row-nogood certificates
+
+This module keeps concrete rows indexed by their source provider.  That is
+strictly more expressive than a `RowPattern`: two providers may name distinct
+rows with the same geometric center.  The weighted Kalmanson terms and their
+strict geometric inequality are reused from the generic certificate module;
+only the equality-closure checker is provider-indexed here.
+-/
+
+namespace Problem97
+namespace ATailFrontierLiveClosure
+namespace ProviderRowNogoodCertificate
+
+open Census554.EqualityCore
+open GenericRowNogoodCertificate
+open scoped EuclideanGeometry
+
+/-- A finite family of source rows, retaining the provider that emitted each
+row even when two providers have the same center label. -/
+structure ProviderRowPattern (Provider Label : Type*) where
+  centerOf : Provider → Label
+  supportOf : Provider → Finset Label
+
+/-- A geometric realization of every provider row. -/
+structure ProviderRealizes {Provider Label : Type*}
+    (P : ProviderRowPattern Provider Label) (pointOf : Label → ℝ²) : Prop where
+  equidist : ∀ provider, ∀ first ∈ P.supportOf provider,
+    ∀ second ∈ P.supportOf provider,
+      dist (pointOf (P.centerOf provider)) (pointOf first) =
+        dist (pointOf (P.centerOf provider)) (pointOf second)
+  injective : Function.Injective pointOf
+
+/-- One concrete provider row used by a checked certificate. -/
+structure ProviderRowChoice (Provider Label : Type*) where
+  provider : Provider
+  support : Finset Label
+deriving DecidableEq
+
+/-- Every listed support is contained in the row named by its provider. -/
+def ProviderPositiveRowsMatch {Provider Label : Type*}
+    (P : ProviderRowPattern Provider Label)
+    (choices : List (ProviderRowChoice Provider Label)) : Prop :=
+  ∀ choice, choice ∈ choices → choice.support ⊆ P.supportOf choice.provider
+
+/-- One elementary equality step, with its row center recovered through the
+provider pattern. -/
+inductive ProviderPrimitiveEqualityStep (Provider Label : Type*) where
+  | row (provider : Provider) (first second : Label)
+  | flip (first second : Label)
+deriving DecidableEq, Repr
+
+def ProviderPrimitiveEqualityStep.source
+    {Provider Label : Type*} (P : ProviderRowPattern Provider Label) :
+    ProviderPrimitiveEqualityStep Provider Label → Edge Label
+  | .row provider first _ => (P.centerOf provider, first)
+  | .flip first second => (first, second)
+
+def ProviderPrimitiveEqualityStep.target
+    {Provider Label : Type*} (P : ProviderRowPattern Provider Label) :
+    ProviderPrimitiveEqualityStep Provider Label → Edge Label
+  | .row provider _ second => (P.centerOf provider, second)
+  | .flip first second => (second, first)
+
+/-- One executable provider-indexed equality-closure path. -/
+structure ProviderClosurePathData (Provider Label : Type*) where
+  first : Edge Label
+  steps : List (ProviderPrimitiveEqualityStep Provider Label)
+  last : Edge Label
+deriving DecidableEq, Repr
+
+/-- Check that a provider row step is supported by one listed concrete row. -/
+def checkProviderPrimitiveStep {Provider Label : Type*}
+    [DecidableEq Provider] [DecidableEq Label]
+    (choices : List (ProviderRowChoice Provider Label)) :
+    ProviderPrimitiveEqualityStep Provider Label → Bool
+  | .row provider first second =>
+      choices.any fun choice =>
+        decide (choice.provider = provider ∧
+          first ∈ choice.support ∧ second ∈ choice.support)
+  | .flip _ _ => true
+
+/-- Check composability and provider-row support for every path step. -/
+def checkProviderStepChain {Provider Label : Type*}
+    [DecidableEq Provider] [DecidableEq Label]
+    (choices : List (ProviderRowChoice Provider Label))
+    (P : ProviderRowPattern Provider Label) :
+    Edge Label → List (ProviderPrimitiveEqualityStep Provider Label) →
+      Edge Label → Bool
+  | first, [], last => decide (first = last)
+  | first, step :: steps, last =>
+      decide (first = ProviderPrimitiveEqualityStep.source P step) &&
+        checkProviderPrimitiveStep choices step &&
+        checkProviderStepChain choices P
+          (ProviderPrimitiveEqualityStep.target P step) steps last
+
+/-- Check a provider path's stated endpoints and all of its primitive steps. -/
+def checkProviderPath {Provider Label : Type*}
+    [DecidableEq Provider] [DecidableEq Label]
+    (choices : List (ProviderRowChoice Provider Label))
+    (P : ProviderRowPattern Provider Label)
+    (path : ProviderClosurePathData Provider Label)
+    (first last : Edge Label) : Bool :=
+  (decide (path.first = first) && decide (path.last = last)) &&
+    checkProviderStepChain choices P path.first path.steps path.last
+
+/-- The provider-indexed equality closure generated by row incidences and edge
+reversal. -/
+inductive ProviderEdgeClosure {Provider Label : Type*}
+    (P : ProviderRowPattern Provider Label) : Edge Label → Edge Label → Prop
+  | row (provider : Provider) (first second : Label)
+      (hfirst : first ∈ P.supportOf provider)
+      (hsecond : second ∈ P.supportOf provider) :
+      ProviderEdgeClosure P (P.centerOf provider, first)
+        (P.centerOf provider, second)
+  | flip (first second : Label) :
+      ProviderEdgeClosure P (first, second) (second, first)
+  | refl (edge : Edge Label) : ProviderEdgeClosure P edge edge
+  | symm {first last : Edge Label} :
+      ProviderEdgeClosure P first last → ProviderEdgeClosure P last first
+  | trans {first middle last : Edge Label} :
+      ProviderEdgeClosure P first middle →
+      ProviderEdgeClosure P middle last →
+      ProviderEdgeClosure P first last
+
+/-- Every provider closure equality is valid in a provider-row realization. -/
+theorem ProviderEdgeClosure.sound
+    {Provider Label : Type*} {P : ProviderRowPattern Provider Label}
+    {pointOf : Label → ℝ²} (hreal : ProviderRealizes P pointOf)
+    {first last : Edge Label} (hclosure : ProviderEdgeClosure P first last) :
+    edgeDist pointOf first = edgeDist pointOf last := by
+  induction hclosure with
+  | row provider first second hfirst hsecond =>
+      simpa [edgeDist] using hreal.equidist provider first hfirst second hsecond
+  | flip first second =>
+      simpa [edgeDist] using (dist_comm (pointOf first) (pointOf second))
+  | refl edge => rfl
+  | symm _ ih => exact ih.symm
+  | trans _ _ ih₁ ih₂ => exact ih₁.trans ih₂
+
+/-- A checked primitive provider step is an equality in the provider closure. -/
+theorem providerEdgeClosure_of_checkPrimitiveStep
+    {Provider Label : Type*} [DecidableEq Provider] [DecidableEq Label]
+    {P : ProviderRowPattern Provider Label}
+    {choices : List (ProviderRowChoice Provider Label)}
+    (hpositive : ProviderPositiveRowsMatch P choices)
+    (step : ProviderPrimitiveEqualityStep Provider Label)
+    (hcheck : checkProviderPrimitiveStep choices step = true) :
+    ProviderEdgeClosure P (ProviderPrimitiveEqualityStep.source P step)
+      (ProviderPrimitiveEqualityStep.target P step) := by
+  cases step with
+  | row provider first second =>
+      rw [checkProviderPrimitiveStep, List.any_eq_true] at hcheck
+      rcases hcheck with ⟨choice, hchoice, hdata⟩
+      have hdata' : choice.provider = provider ∧
+          first ∈ choice.support ∧ second ∈ choice.support :=
+        of_decide_eq_true hdata
+      rw [← hdata'.1]
+      have hrow := hpositive choice hchoice
+      exact ProviderEdgeClosure.row choice.provider first second
+        (hrow hdata'.2.1) (hrow hdata'.2.2)
+  | flip first second =>
+      exact ProviderEdgeClosure.flip first second
+
+/-- A checked composable provider step chain is an equality in the provider
+closure. -/
+theorem providerEdgeClosure_of_checkStepChain
+    {Provider Label : Type*} [DecidableEq Provider] [DecidableEq Label]
+    {P : ProviderRowPattern Provider Label}
+    {choices : List (ProviderRowChoice Provider Label)}
+    (hpositive : ProviderPositiveRowsMatch P choices)
+    {first last : Edge Label}
+    {steps : List (ProviderPrimitiveEqualityStep Provider Label)}
+    (hcheck : checkProviderStepChain choices P first steps last = true) :
+    ProviderEdgeClosure P first last := by
+  induction steps generalizing first with
+  | nil =>
+      simp only [checkProviderStepChain, decide_eq_true_eq] at hcheck
+      subst last
+      exact ProviderEdgeClosure.refl first
+  | cons step steps ih =>
+      simp only [checkProviderStepChain, Bool.and_eq_true,
+        decide_eq_true_eq] at hcheck
+      rcases hcheck with ⟨⟨hfirst, hstep⟩, htail⟩
+      subst first
+      exact ProviderEdgeClosure.trans
+        (providerEdgeClosure_of_checkPrimitiveStep hpositive step hstep)
+        (ih htail)
+
+/-- A checked provider path connects its declared endpoint edges in the
+provider closure. -/
+theorem providerEdgeClosure_of_checkPath
+    {Provider Label : Type*} [DecidableEq Provider] [DecidableEq Label]
+    {P : ProviderRowPattern Provider Label}
+    {choices : List (ProviderRowChoice Provider Label)}
+    (hpositive : ProviderPositiveRowsMatch P choices)
+    (path : ProviderClosurePathData Provider Label) {first last : Edge Label}
+    (hcheck : checkProviderPath choices P path first last = true) :
+    ProviderEdgeClosure P first last := by
+  simp only [checkProviderPath, Bool.and_eq_true, decide_eq_true_eq] at hcheck
+  rcases hcheck with ⟨⟨hfirst, hlast⟩, hsteps⟩
+  subst first
+  subst last
+  exact providerEdgeClosure_of_checkStepChain hpositive hsteps
+
+/-- One weighted Kalmanson pairing whose equality path is provider-indexed. -/
+structure ProviderWeightedEdgePairingData (Provider : Type*) (n : ℕ) where
+  left : Edge (Fin n)
+  right : Edge (Fin n)
+  path : ProviderClosurePathData Provider (Fin n)
+deriving DecidableEq, Repr
+
+/-- A checked positive weighted cancellation certificate with provider rows. -/
+structure ProviderWeightedKalmansonCancellationData
+    (Provider : Type*) (n : ℕ) where
+  terms : List (WeightedKalmansonTerm (Fin n))
+  pairings : List (ProviderWeightedEdgePairingData Provider n)
+deriving DecidableEq, Repr
+
+def ProviderWeightedKalmansonCancellationData.leftEdges
+    {Provider : Type*} {n : ℕ}
+    (data : ProviderWeightedKalmansonCancellationData Provider n) :
+    List (Edge (Fin n)) :=
+  data.terms.flatMap WeightedKalmansonTerm.leftEdges
+
+def ProviderWeightedKalmansonCancellationData.rightEdges
+    {Provider : Type*} {n : ℕ}
+    (data : ProviderWeightedKalmansonCancellationData Provider n) :
+    List (Edge (Fin n)) :=
+  data.terms.flatMap WeightedKalmansonTerm.rightEdges
+
+def ProviderWeightedKalmansonCancellationData.Valid {Provider : Type*}
+    [DecidableEq Provider] {n : ℕ}
+    (choices : List (ProviderRowChoice Provider (Fin n)))
+    (P : ProviderRowPattern Provider (Fin n))
+    (data : ProviderWeightedKalmansonCancellationData Provider n) : Prop :=
+  data.terms ≠ [] ∧
+  (∀ term ∈ data.terms, term.check = true) ∧
+  (data.pairings.map ProviderWeightedEdgePairingData.left).Perm data.leftEdges ∧
+  (data.pairings.map ProviderWeightedEdgePairingData.right).Perm data.rightEdges ∧
+  ∀ pairing ∈ data.pairings,
+    checkProviderPath choices P pairing.path pairing.left pairing.right = true
+
+def ProviderWeightedKalmansonCancellationData.check {Provider : Type*}
+    [DecidableEq Provider] {n : ℕ}
+    (choices : List (ProviderRowChoice Provider (Fin n)))
+    (P : ProviderRowPattern Provider (Fin n))
+    (data : ProviderWeightedKalmansonCancellationData Provider n) : Bool :=
+  decide (data.terms ≠ []) &&
+  data.terms.all WeightedKalmansonTerm.check &&
+  decide ((data.pairings.map ProviderWeightedEdgePairingData.left).Perm
+    data.leftEdges) &&
+  decide ((data.pairings.map ProviderWeightedEdgePairingData.right).Perm
+    data.rightEdges) &&
+  data.pairings.all (fun pairing =>
+    checkProviderPath choices P pairing.path pairing.left pairing.right)
+
+/-- The executable provider cancellation checker implies its proposition-level
+validity predicate. -/
+theorem ProviderWeightedKalmansonCancellationData.valid_of_check
+    {Provider : Type*} [DecidableEq Provider] {n : ℕ}
+    (choices : List (ProviderRowChoice Provider (Fin n)))
+    (P : ProviderRowPattern Provider (Fin n))
+    (data : ProviderWeightedKalmansonCancellationData Provider n)
+    (hcheck : data.check choices P = true) : data.Valid choices P := by
+  simp only [ProviderWeightedKalmansonCancellationData.check,
+    ProviderWeightedKalmansonCancellationData.Valid, Bool.and_eq_true,
+    decide_eq_true_eq, List.all_eq_true] at hcheck ⊢
+  rcases hcheck with ⟨⟨⟨⟨hne, hterms⟩, hleft⟩, hright⟩, hpairings⟩
+  exact ⟨hne, hterms, hleft, hright, hpairings⟩
+
+/-- Provider-indexed equality paths make every checked pairing sum cancel. -/
+theorem sum_providerWeightedEdgePairings_eq
+    {Provider : Type*} [DecidableEq Provider] {n : ℕ}
+    {boundary : Fin n → ℝ²} {P : ProviderRowPattern Provider (Fin n)}
+    (hreal : ProviderRealizes P boundary)
+    (choices : List (ProviderRowChoice Provider (Fin n)))
+    (hpositive : ProviderPositiveRowsMatch P choices)
+    (pairings : List (ProviderWeightedEdgePairingData Provider n))
+    (hall : ∀ pairing ∈ pairings,
+      checkProviderPath choices P pairing.path pairing.left pairing.right = true) :
+    (pairings.map (fun pairing => edgeDist boundary pairing.left)).sum =
+      (pairings.map (fun pairing => edgeDist boundary pairing.right)).sum := by
+  induction pairings with
+  | nil => simp
+  | cons head tail ih =>
+      have hhead : edgeDist boundary head.left = edgeDist boundary head.right :=
+        ProviderEdgeClosure.sound hreal
+          (providerEdgeClosure_of_checkPath hpositive head.path
+            (hall head (by simp)))
+      have htail := ih (fun pairing hpairing =>
+        hall pairing (by simp [hpairing]))
+      simp only [List.map_cons, List.sum_cons]
+      rw [hhead, htail]
+
+/-- Any checked nonempty positive weighted Kalmanson cancellation with
+provider-indexed equality rows is impossible. -/
+theorem false_of_providerWeightedKalmansonCancellationData_of_check
+    {A : Finset ℝ²} (hA : ConvexIndep A)
+    {Provider : Type*} [DecidableEq Provider] {n : ℕ}
+    {boundary : Fin n → ℝ²}
+    (himage : Finset.univ.image boundary = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    {P : ProviderRowPattern Provider (Fin n)}
+    (hreal : ProviderRealizes P boundary)
+    (choices : List (ProviderRowChoice Provider (Fin n)))
+    (hpositive : ProviderPositiveRowsMatch P choices)
+    (data : ProviderWeightedKalmansonCancellationData Provider n)
+    (hcheck : data.check choices P = true) : False := by
+  have hvalid : data.Valid choices P := data.valid_of_check choices P hcheck
+  rcases hvalid with ⟨hne, hterms, hleft, hright, hpairings⟩
+  have hlt := sum_lt_of_weightedKalmansonTerms hA hreal.injective
+    himage hccw data.terms hne hterms
+  have hpairingEq := sum_providerWeightedEdgePairings_eq hreal choices hpositive
+    data.pairings (fun pairing hpairing => hpairings pairing hpairing)
+  have hleftEq :
+      (data.leftEdges.map (edgeDist boundary)).sum =
+        (data.pairings.map
+          (fun pairing => edgeDist boundary pairing.left)).sum := by
+    symm
+    simpa [Function.comp_def] using
+      (hleft.map (edgeDist boundary)).sum_eq
+  have hrightEq :
+      (data.pairings.map
+          (fun pairing => edgeDist boundary pairing.right)).sum =
+        (data.rightEdges.map (edgeDist boundary)).sum := by
+    simpa [Function.comp_def] using
+      (hright.map (edgeDist boundary)).sum_eq
+  have heq :
+      (data.leftEdges.map (edgeDist boundary)).sum =
+        (data.rightEdges.map (edgeDist boundary)).sum :=
+    hleftEq.trans (hpairingEq.trans hrightEq)
+  exact (ne_of_lt hlt) heq
+
+end ProviderRowNogoodCertificate
+end ATailFrontierLiveClosure
+end Problem97
