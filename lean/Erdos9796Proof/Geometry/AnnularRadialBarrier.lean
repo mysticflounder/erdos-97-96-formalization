@@ -127,6 +127,30 @@ theorem annular_wedge_identity (a b h k x y : ℝ) :
       (b * h - a * k) * (y - h) + (k - h) * (a * y - h * x) := by
   ring
 
+/-- The positive annular determinant and the upper inner-wedge condition force
+the outer wedge expression to be strict once the test point is above the
+inner horizontal level.  This is the radial-barrier consequence of
+`annular_wedge_identity`; all geometric packet identification remains in the
+caller-facing hypotheses.
+-/
+theorem annular_wedge_pos_of_outer_height_and_inner_wedge
+    {a b h k x y : ℝ}
+    (hh : 0 < h) (hT : 0 < b * h - a * k) (hhk : h < k)
+    (hy : h < y) (hxy : h * x ≤ a * y) :
+    0 < (b - a) * (y - h) - (k - h) * (x - a) := by
+  have hfirst : 0 < (b * h - a * k) * (y - h) :=
+    mul_pos hT (by linarith)
+  have hsecond : 0 ≤ (k - h) * (a * y - h * x) := by
+    exact mul_nonneg (by linarith) (by linarith)
+  have hsum : 0 <
+      (b * h - a * k) * (y - h) + (k - h) * (a * y - h * x) :=
+    add_pos_of_pos_of_nonneg hfirst hsecond
+  have hmul : 0 < h *
+      ((b - a) * (y - h) - (k - h) * (x - a)) := by
+    rw [annular_wedge_identity a b h k x y]
+    exact hsum
+  nlinarith
+
 /-- A linear functional with the same strict sign on two cone generators
 cannot vanish on a nonzero nonnegative combination of them.  This is the
 sign-only bridge used by the common-inner-pair argument. -/
