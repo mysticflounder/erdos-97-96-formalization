@@ -1,0 +1,138 @@
+{
+  "schema": "p97-strict-kalmanson-recovered-archives/v1",
+  "retained_n10_archive": "certificates/p97_strict_kalmanson_n10_recovery.tar.xz",
+  "catalog": {"path":"certificates/p97_strict_kalmanson_recovered_catalog.json","file_sha256":"7e50118e6ad930f2f9061d4ff13385911e6f5739532c539df1b93845122b3a19","file_bytes":110303,"identity_sha256":"dbbae6a503866379882765aab8bfacb9c8ec9c179a21d4a637ecac5b239daf37","identity_bytes":23995,"removed_fields":["elapsed_seconds","catalog_sha256"],"serialization":"json.dumps(value, sort_keys=True, separators=(\",\", \":\")) + \"\\n\"","record_count":202,"independent_local_semantics":"PASS: atoms, widths, and collapsed-form sets match"},
+  "run_root": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001",
+  "archive_intake": [
+    {
+      "archive": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03.tar.xz",
+      "bytes": 119284,
+      "extracted_bytes": 1853059,
+      "extracted_root": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03",
+      "file_count": 57,
+      "sha256": "7e494f13689dbd7b5daace2a21b99488c285c958d443430d5eba6f1b45377f7c"
+    },
+    {
+      "archive": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave4-2026-09-03.tar.gz",
+      "bytes": 625980,
+      "extracted_bytes": 4112389,
+      "extracted_root": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave4-2026-09-03",
+      "file_count": 29,
+      "sha256": "2138dc9c9d390db0b18efd4c125d9e42709266b124bcdce2dc43329178b2b72d"
+    },
+    {
+      "archive": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave5-n12-curated-2026-09-04.tar.gz",
+      "bytes": 3346211,
+      "extracted_bytes": 22606581,
+      "extracted_root": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave5-n12-curated-2026-09-04",
+      "file_count": 218,
+      "sha256": "d3fdd5a9619de16c0959fb2c7e0ff38452ddb7ff8e76343afe5171119ad37652"
+    },
+    {
+      "archive": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave6-n12-corrected-curated-2026-09-04.tar.gz",
+      "bytes": 5404121,
+      "extracted_bytes": 37476297,
+      "extracted_root": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave6-n12-corrected-curated-2026-09-04",
+      "file_count": 129,
+      "sha256": "76af03910f8ab519111a17baf569da1bd186ca5ca0582c61e912ca5eae13f7c6"
+    }
+  ],
+  "n10": {
+    "status": "EMPIRICALLY_VERIFIED",
+    "bank_sha256": "dffbade583eb1576055157ef8dbd8c2a703c399816b5179ded2d20a8ed97d8f7",
+    "independent_repo_clause_comparison": "PASS: 9280 exact clauses",
+    "bundle_verifier": "PASS",
+    "replay_command": "PATH=\"$PWD/.venv/bin:$PATH\" CXX=/usr/bin/clang++ bash scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/run_exact_replay.sh --no-symmetry",
+    "results": {
+      "row-csp-nosym.json": {
+        "schema": "p97-row-csp-bitset/v1",
+        "n": 10,
+        "clauses": 9280,
+        "status": "UNSAT",
+        "elapsed_seconds": 13.5543,
+        "nodes": 929250,
+        "row_trials": 118014624,
+        "word_ops": 23937022789,
+        "conflicts": 116156376,
+        "row0_cases": 126,
+        "max_depth": 9,
+        "supports": null
+      },
+      "row-csp-sym.json": {
+        "schema": "p97-row-csp-bitset/v1",
+        "n": 10,
+        "clauses": 9280,
+        "status": "UNSAT",
+        "elapsed_seconds": 2.29276,
+        "nodes": 55629,
+        "row_trials": 4640330,
+        "word_ops": 952326682,
+        "conflicts": 4529204,
+        "row0_cases": 66,
+        "max_depth": 8,
+        "supports": null
+      },
+      "structural-fast.json": {
+        "schema": "p97-structural-row-master-fast-cpp/v1",
+        "n": 10,
+        "clauses": 9280,
+        "kalmanson_inequalities": 420,
+        "status": "EXACT_MASTER_UNSAT",
+        "states": 57228,
+        "transitions": 4744373,
+        "sum_cycle_prunes": 0,
+        "nogood_prunes": 4687211,
+        "row0_cases_tested": 66,
+        "build_seconds": 0.165341,
+        "elapsed_seconds": 2.93786,
+        "wall_seconds": 3.11229,
+        "cycle_length_counts": {},
+        "supports": null
+      },
+      "structural-slow.json": {
+        "schema": "p97-structural-row-master-cpp/v1",
+        "n": 10,
+        "clauses": 9280,
+        "kalmanson_inequalities": 420,
+        "status": "EXACT_MASTER_UNSAT",
+        "states": 57228,
+        "transitions": 4744373,
+        "sum_cycle_prunes": 0,
+        "nogood_prunes": 4687211,
+        "row0_cases_tested": 66,
+        "elapsed_seconds": 3.45479,
+        "cycle_length_counts": {},
+        "supports": null
+      }
+    },
+    "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+    "evidence_sha256": {
+      "artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/replay-results/row-csp-nosym.json": "99b0090aa9923266d9d65bd89cb5db29565ebb308db970364cc17dc5422a47e6",
+      "artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/replay-results/row-csp-sym.json": "6853f275d82e44939c88147e431de2279fae77727feafa493dd834c4cc55a4a0",
+      "artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/replay-results/structural-fast.json": "60b43241310b6ec6f4b05b14f30e4ec269ae6db8dc0805a8237dd4fded8dba1a",
+      "artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/p97-strict-kalmanson-n10-certified-recovery-2026-09-03/replay-results/structural-slow.json": "9206ecf0ac6ecea6648e51e012936ab5b04cf3373bf798a786a075ec8a922332"
+    }
+  },
+  "ledgers": [
+    {
+      "archive": "p97-strict-kalmanson-n10-certified-recovery-2026-09-03",
+      "checked": 56,
+      "mismatches": []
+    },
+    {
+      "archive": "p97-strict-kalmanson-wave4-2026-09-03",
+      "checked": 27,
+      "mismatches": []
+    },
+    {
+      "archive": "p97-strict-kalmanson-wave5-n12-curated-2026-09-04",
+      "checked": 217,
+      "mismatches": []
+    },
+    {
+      "archive": "p97-strict-kalmanson-wave6-n12-corrected-curated-2026-09-04",
+      "checked": 128,
+      "mismatches": []
+    }
+  ]
+}

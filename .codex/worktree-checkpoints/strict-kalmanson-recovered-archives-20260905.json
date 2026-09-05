@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "strict-kalmanson-recovered-archives-20260905",
+  "owner": "KalmansonCartographer",
+  "base_head": "3edb5efe075692330644f19d310b9c2db70c1c2c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/strict-kalmanson-recovered-archives-20260905.json",
+    "certificates/p97_strict_kalmanson_n10_recovery.tar.xz",
+    "certificates/p97_strict_kalmanson_recovered_catalog.json",
+    "docs/audits/2026-09-05-strict-kalmanson-recovered-archives.json",
+    "docs/audits/2026-09-05-strict-kalmanson-recovered-archives.md",
+    "docs/skeptic-recovered-kalmanson-2026-09-05.md",
+    "scripts/intake_strict_kalmanson_archives.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/intake.json",
+    "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001"
+  ],
+  "created_utc": "2026-09-05T21:44:00Z",
+  "manifest_sha256": "0e72abb14db6b44bd6121fe8f75f8a57a9f62a1da93a4b56a38e59ad29151dd9"
+}

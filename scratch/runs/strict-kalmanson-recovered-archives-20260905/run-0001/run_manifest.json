@@ -1,0 +1,24 @@
+{
+  "base_head": "3edb5efe075692330644f19d310b9c2db70c1c2c",
+  "created_utc": "2026-09-05T21:44:00Z",
+  "input_digests": {
+    "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-n10-certified-recovery-2026-09-03.tar.xz": "7e494f13689dbd7b5daace2a21b99488c285c958d443430d5eba6f1b45377f7c",
+    "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave4-2026-09-03.tar.gz": "2138dc9c9d390db0b18efd4c125d9e42709266b124bcdce2dc43329178b2b72d",
+    "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave5-n12-curated-2026-09-04.tar.gz": "d3fdd5a9619de16c0959fb2c7e0ff38452ddb7ff8e76343afe5171119ad37652",
+    "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001/artifacts/p97-strict-kalmanson-wave6-n12-corrected-curated-2026-09-04.tar.gz": "76af03910f8ab519111a17baf569da1bd186ca5ca0582c61e912ca5eae13f7c6"
+  },
+  "lane_id": "strict-kalmanson-recovered-archives-20260905",
+  "manifest_sha256": "b5622fdd89277cdd97c8f3a02d2c8561fa6650e5ba04a0006fb484bd64c5cec7",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "KalmansonCartographer",
+  "root": "scratch/runs/strict-kalmanson-recovered-archives-20260905/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/intake_strict_kalmanson_archives.py": "22fff6ff431abc8ea271fbd32564a627a9781194b34cf5a33d06c7bed40e4ee2"
+  }
+}
