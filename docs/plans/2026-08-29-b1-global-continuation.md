@@ -1177,6 +1177,14 @@ positive five/six class.  Its raw/provider continuation still needs checked
 `ProviderWeightedKalmansonCancellationData`; row realization alone does not
 supply that certificate.
 
+The source-clean `false_of_mecBoundary_selectedRows_sharedPair` terminal does
+not close the common-deletion packet either.  It requires a directional
+center-in-row occurrence and two distinct points in the same pairwise support
+intersection.  The packet retains only pairwise intersection-cardinality
+upper bounds, so the first missing direct-geometric producer is a
+source-faithful occurrence/classification theorem supplying that center
+incidence and shared pair.
+
 Fresh reuse preflights also rule out the tempting existing generic terminals.
 The uncovered packet does not retain the same-shell pair, distance equality,
 deletion-survivor families, or retained-collision inputs required by the
