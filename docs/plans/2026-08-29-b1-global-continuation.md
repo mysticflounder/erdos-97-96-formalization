@@ -1462,3 +1462,18 @@ positivity assumption is needed.  The algebraic negativity lemma and this
 minimal B1 consumer are being formalized.  The hard producer remains global:
 it must derive the nonnegative placement from deletion/escape compatibility.
 The adjacent-cap and blocker-between residuals do not provide that sign.
+
+The existing exact-five physical omission-cycle code does not supply the
+missing producer.  Source audit `#15352` confirms that the successor and
+finite-cycle proofs never use the `unique_K4_radius` field of
+`LargeCapUniqueFiveSecondApexRadius`; they could be refactored over a weak
+profile carrying only a positive radius and exact class cardinality five.
+That is not presently useful enough to implement.  Neither arm of
+`nonempty_mutualOmissionEdge_or_all_reverseMembership` has any concrete
+consumer outside its defining module.  In addition, the cycle vertices carry
+only strict-cap source membership, actual-row omission, and deletion survival;
+they do not identify their endpoints, rows, or deletion packets with
+`C.u,C.v,C.first,C.second`.  A B1 consumer would still need strict-cap
+membership for the canonical endpoints plus this proof-relevant alignment.
+The weak-cycle refactor is therefore deferred until one of those two cycle
+outcomes has an on-spine terminal.
