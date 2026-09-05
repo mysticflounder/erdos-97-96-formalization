@@ -1183,7 +1183,13 @@ center-in-row occurrence and two distinct points in the same pairwise support
 intersection.  The packet retains only pairwise intersection-cardinality
 upper bounds, so the first missing direct-geometric producer is a
 source-faithful occurrence/classification theorem supplying that center
-incidence and shared pair.
+incidence and shared pair.  A terminal-sufficient form can choose one actual
+blocker row `K` and prove: its blocker lies on the relevant MEC boundary,
+`S.oppApex2 ∈ K.support`, and
+`2 ≤ (K.support ∩ thirdRow.support).card`.  The MEC closed-disk facts and two
+distinct shared witnesses can then be recovered for
+`false_of_mecBoundary_selectedRows_sharedPair`; none of these three added
+facts follows from the current packet.
 
 Fresh reuse preflights also rule out the tempting existing generic terminals.
 The uncovered packet does not retain the same-shell pair, distance equality,

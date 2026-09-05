@@ -55,6 +55,9 @@ inductive CardGeThirteenOutcome
   | exactThirteenTight
       (P : CardGeThirteenUncoveredStrictInteriorPacket R firstRow secondRow)
       (ingress : ExactThirteenBranchIngress S)
+      (hdisj01 : Disjoint P.base.W.row₁.support P.base.W.row₂.support)
+      (hdisj0K : Disjoint P.base.W.row₁.support P.base.thirdRow.support)
+      (hdisj1K : Disjoint P.base.W.row₂.support P.base.thirdRow.support)
       (hcover : D.A = insert P.base.z
         ((P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
           P.base.thirdRow.support))
@@ -88,16 +91,23 @@ theorem nonempty_cardGeThirteenOutcome
       R hcard surface rho otherRadius firstRow secondRow hradii hnoFive
         hfirstRadius hsecondRadius hdisjoint with hpacket | hgrid
   · rcases hpacket with ⟨P⟩
-    rcases cardGeThirteenPacket_fresh_or_exactThirteenTight
-        R hcard firstRow secondRow P.base with hoverlap | houtside | htight
-    · exact ⟨.rowOverlap P hoverlap⟩
-    · rcases houtside with ⟨q, hq, houtside⟩
-      exact ⟨.uncovered P q hq houtside⟩
-    · obtain ⟨ingress⟩ :=
+    cases cardGeThirteenPacket_fresh_or_exactThirteenTight_provenance
+        R hcard firstRow secondRow P.base with
+    | overlap01 h =>
+        exact ⟨.rowOverlap P (Or.inl h)⟩
+    | overlap0K h =>
+        exact ⟨.rowOverlap P (Or.inr (Or.inl h))⟩
+    | overlap1K h =>
+        exact ⟨.rowOverlap P (Or.inr (Or.inr h))⟩
+    | fresh q hq houtside =>
+        exact ⟨.uncovered P q hq houtside⟩
+    | tight hdisj01 hdisj0K hdisj1K hcover hcard13 =>
+      obtain ⟨ingress⟩ :=
         ExactThirteenBranchIngress.of_twoRadiusBranch R surface rho otherRadius
           firstRow secondRow hradii hnoFive hfirstRadius hsecondRadius
-            hdisjoint htight.2
-      exact ⟨.exactThirteenTight P ingress htight.1 htight.2⟩
+            hdisjoint hcard13
+      exact ⟨.exactThirteenTight P ingress hdisj01 hdisj0K hdisj1K
+        hcover hcard13⟩
   · exact ⟨.adjacentGrid hgrid⟩
 
 end ATailFrontierLiveClosure

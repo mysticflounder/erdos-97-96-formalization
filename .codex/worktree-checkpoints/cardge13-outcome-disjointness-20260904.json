@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-outcome-disjointness-20260904",
+  "owner": "RadiusCartographer",
+  "base_head": "e883c794b0b75ec56889f802831ab0310cb57441",
+  "created_utc": "2026-09-04T22:12:43Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-outcome-disjointness-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenOutcomeDispatcher.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "2c29be36c7154e7e96e40ae0f11663122435c5693fa6f51c51df0ec2638a2be0"
+}
