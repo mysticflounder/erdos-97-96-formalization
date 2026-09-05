@@ -1,0 +1,29 @@
+{
+  "base_head": "3edbfd4dc78aef3a1930a7b8087e6b38035faa2c",
+  "created_utc": "2026-09-05T13:10:41Z",
+  "input_digests": {
+    "scratch/runs/cardge13-exact13-coarse-cell-resume-20260905/run-0001/events/cell-000-direct-z08-k09-10-resume-3000.json": "ed1fa3dd88f0faf057297414f5ee8ba258398d689d51670c36da4a79bd132c04"
+  },
+  "lane_id": "cardge13-exact13-two-form-batch-20260905",
+  "manifest_sha256": "f7a22d35f009a841d09742d635bce69438ef231574ae2d38d4a2af749a1aea58",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "RadiusCartographer",
+  "root": "scratch/runs/cardge13-exact13-two-form-batch-20260905/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/cardge13_exact13_coarse_cell_batch_piqd.py": "000eae266ed8ea98314465f2877b28e247493c8d078399aa45ae9b58190a3ddd",
+    "scripts/cardge13_exact13_coarse_cell_boolean_piqd.py": "26c0866ce98061d276499452e1b9a4d7f6700f54008996ff31f203b8bca52f20",
+    "scripts/cardge13_exact13_coarse_cell_two_form_batch_piqd.py": "449ee6014201e85355455f9c2fd79a2f541c2a216871e2e484d32f8641b93ddd",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_cegar_piqd.py": "b916dab1af0e5ac5b421862b5bab5ecd95a945f33fe051625d1bd938b0836092",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_cegar_piqd.py": "b9ebd4869e3df7fde461db5667a62556104b3fe66057b71dfd5fc151296491a6",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py": "53d0dc73267f4bc486bd4773433bb95e8d28fb2e52678a2aabb294a3e5b7a41a",
+    "scripts/cardge13_exact13_global_source_cell_boolean_slice_piqd.py": "d090c8febb743b2769c32ff5d09af0e8555f46a0842d2e2fac37e0cd61c14dd5",
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096",
+    "scripts/test_cardge13_exact13_coarse_cell_two_form_batch_piqd.py": "c9ada3532cf5b0490aaebd46677800aa746b9f5ab2af72d73c1e3cdbe762b587"
+  }
+}
