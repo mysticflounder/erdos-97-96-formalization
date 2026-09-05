@@ -1513,6 +1513,53 @@ B1ActualLivePairSignedAreaProductNonnegative C
 from the canonical or escape branch.  Local two-circle incidence proves the
 opposite sign, so this producer must use genuinely global deletion/escape
 placement data.  The direct escape-source Pro consult
-`01M1RSXD38KCFTCK2AH96PGEF6` remains queued.  The duplicate Luna consumer lane
-was stopped after confirming that it had no additional uncommitted delta and
-had released all ownership.
+`01M1RSXD38KCFTCK2AH96PGEF6` subsequently completed as recorded below.  The
+duplicate Luna consumer lane was stopped after confirming that it had no
+additional uncommitted delta and had released all ownership.
+
+### 2026-09-05 producer audits after the signed-area terminal
+
+The escape-source consult `01M1RSXD38KCFTCK2AH96PGEF6` and an independent
+Luna audit agree that the current reselection is not a recursive B1
+transition.  Its fresh joint deletion is parameterized by freshly selected
+endpoints, whereas the no-third-deletion predicate in
+`B1PhysicalClassFiveSixNormalForm` quantifies over the original `C.u, C.v`.
+Fresh-row omissions therefore cannot be passed to the old-pair predicate.
+
+Constructing a next escape context at the fresh deletion would additionally
+need strict second-cap-interior membership, membership in
+`outsideFirstApexFiber C.R`, retained `interior_q`-or-`interior_w` survival, a
+second deletion with the required equal-blocker context, and a well-founded
+progress invariant.  None of these facts is retained for the fresh deletion.
+An incidence-only card-five/card-six stall test can return the original pair
+and a canonical deletion; this refutes the proposed counting recurrence from
+the listed finite incidence data, but is not a Euclidean realization or a
+model of the full counterexample context.
+
+One nontrivial source-clean consequence does survive.  If a fresh joint
+deletion differs from both canonical deletions, the normal-form cover puts it
+in an original live slice.  Equality of either fresh endpoint blocker with
+that slice's old blocker would force equality of selected supports by
+`ATailSurvivalCover.selectedSupports_eq_of_actualBlockers_eq`, contradicting
+the fresh deletion's row omission.  Together with the two fresh blockers being
+distinct, at least one fresh blocker differs from both original live-row
+blockers.  The exact theorem
+`b1_noncanonicalJointDeletion_blocker_escapes_original_pair` was independently
+compiled in isolation at `2bb06af72`; a governed Luna lane is promoting it in
+`JointDeletion/PairRebaseExclusion.lean`.  This is an alias-domain reduction,
+not yet a terminal or a decreasing recurrence.
+
+The canonical producer audit is also negative at the current packet boundary.
+`B1GoodCanonicalDeletionEndpointResidual` orders the canonical deleted labels
+against a canonical deleted-row blocker, while the signed-area consumer needs
+an actual distinct pair in the `C.u` or `C.v` support with a sign conclusion
+against that live row's actual blocker.  The omitted peer's live-slice
+membership does not bridge those two orders.  The first explicit missing
+antecedent remains `B1GoodCanonicalEndpointCardArc C W R`, whose card-five and
+card-six arms retain an actual winning live-slice arc.  Its consumer is checked;
+no producer from the endpoint residual is known.
+
+Canonical producer consult `01M1SBN796N5WN0D8WMEZ47H4M`, now leased, asks
+whether the full global context and cap/extremal provenance can produce either
+that card arc or the minimal nonnegative signed-area packet, and otherwise asks
+for the exact upstream field that must be retained.
