@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "nthdegree-audit-remediation-20260904",
+  "owner": "codex-nthdegree-audit-remediation",
+  "base_head": "373fb457ccf0565a3d95cb6eb2952807fabff4f0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/nthdegree-audit-remediation-20260904.json",
+    "docs/audits/2026-09-04-b1-consult-erratum.md",
+    "docs/audits/2026-09-04-nthdegree-followup-remediation.md",
+    "docs/skeptic-project-2026-09-04.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T23:03:28Z",
+  "manifest_sha256": "8a206eb6f05d0a67a8ad677927e052131ace63e1d7178cc2bd57f7fd6a8c6a0c"
+}

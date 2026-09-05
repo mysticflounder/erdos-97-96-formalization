@@ -431,13 +431,26 @@ not rediscovered. Message #12660 also reports that the raw exact-13 deleted-labe
 first-apex consequences have now been exported: validate and land that work
 with its owner rather than reassigning it as a new proof task.
 
-The historical search found no verified completion for the FR92 P4
-transcription and printed `g(6,8)=18` versus reported `19` discrepancy
-(#2462/#2464/#2466), the arbitrary-Euclidean/MEC adapter for
-`Geometry/ShortestSideBiEquidistance.lean` (#2574), or the BANK001
-publication/export contract (#5043). For the source-order bank, #10351 is later
-evidence of installed v27; the remaining historical question is the authenticated
-repair/replay receipt for #5099, not whether installation ever occurred.
+The FR92 follow-up resolves the historical ambiguity. The P4
+transcription/proof is complete and admitted by the existing visual/source
+audit; do not reopen it. The corpus rendering `k > 3` is an OCR glyph error for
+the visually confirmed `k ≥ 3`. Two independent encoders agree on all 16,478
+forbidden occurrences at 6×8, validate a 19-one P1–P4-free witness, and have a
+DRAT-verified UNSAT upper bound at 20. Thus the paper's printed `g(6,8)=18` is
+an apparent Table-2 typo; use the audited conditional value 19. The normalized
+`Geometry/ShortestSideBiEquidistance.lean` bank is checked but has no production
+caller and is retired from the active proof plan because its intended branch
+now closes through the uniform metric terminal. The exact-17 rich-rotation
+question likewise has no authenticated metric result and is closed as an
+exploratory query, not a theorem. BANK001 (#5043) remains an active PIQD service
+blocker, with the P97 migration adapter intentionally dry-run-only. For the
+source-order bank, current source contains the v27 constants and exact-once unit
+regression, while #10351 remains only an authorization/request pointer. The new
+governed `source-order-v27-receipt-20260904/run-0001` reproduces the repaired
+81-clause installation and bounded SAT witness with immutable artifacts. Its
+full v27 validator still fails closed because legacy-local mode emits no PIQD
+journal/descriptor, so this is a partial repair receipt, not terminal campaign
+certification for #5099.
 These are **unresolved audit leads**, not newly established proof gaps:
 the next action is to identify a live consumer and an authoritative resolution
 or retirement record. Do not spend another proof lane on them solely because a
