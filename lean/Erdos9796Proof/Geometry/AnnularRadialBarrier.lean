@@ -214,6 +214,123 @@ theorem scaledCoordinates_reflect_of_biequidistant_of_opposite_signedArea_signs
   refine ⟨hlong, ?_⟩
   nlinarith [htrans_sq]
 
+set_option maxHeartbeats 800000 in
+/-- Distinct points equidistant from both endpoints of a nondegenerate base
+lie on opposite, nonzero sides of that base. -/
+theorem exists_opposite_signedArea_signs_of_biequidistant_of_ne
+    {o a p q : Plane} (hoa : o ≠ a) (hpq : p ≠ q)
+    (hop : dist o p = dist o q) (hap : dist a p = dist a q) :
+    (0 < signedArea2 p o a ∧ signedArea2 q o a < 0) ∨
+      (signedArea2 p o a < 0 ∧ 0 < signedArea2 q o a) := by
+  have hlong := scaledLongitudinalCoord_eq_of_equidistant hop hap
+  have hnorm : ‖p - o‖ ^ 2 = ‖q - o‖ ^ 2 := by
+    have hdist := congrArg (fun t : ℝ ↦ t ^ 2) hop
+    simpa [dist_eq_norm, norm_sub_rev] using hdist
+  have hcoordP := scaledCoordinate_norm_sq o a p
+  have hcoordQ := scaledCoordinate_norm_sq o a q
+  have hnorm_mul : ‖a - o‖ ^ 2 * ‖p - o‖ ^ 2 =
+      ‖a - o‖ ^ 2 * ‖q - o‖ ^ 2 := by
+    exact congrArg (fun t : ℝ ↦ ‖a - o‖ ^ 2 * t) hnorm
+  have hbase : 0 < ‖a - o‖ ^ 2 :=
+    sq_pos_of_pos (norm_pos_iff.mpr (sub_ne_zero.mpr hoa.symm))
+  have hlong_sq := congrArg (fun t : ℝ ↦ t ^ 2) hlong
+  have htrans_sq :
+      scaledTransverseCoord o a p ^ 2 = scaledTransverseCoord o a q ^ 2 := by
+    nlinarith [hcoordP, hcoordQ, hnorm_mul, hlong_sq, hbase]
+  have hpair_eq : ∀ {r s : Plane},
+      scaledLongitudinalCoord o a r = scaledLongitudinalCoord o a s →
+      scaledTransverseCoord o a r = scaledTransverseCoord o a s →
+      r = s := by
+    intro r s hlongRS htransRS
+    have hlongLin :
+        (a 0 - o 0) * (r 0 - s 0) + (a 1 - o 1) * (r 1 - s 1) = 0 := by
+      have h := hlongRS
+      simp [scaledLongitudinalCoord, PiLp.inner_apply, Fin.sum_univ_two,
+        PiLp.sub_apply] at h
+      nlinarith [h]
+    have htransLin :
+        (a 0 - o 0) * (r 1 - s 1) - (a 1 - o 1) * (r 0 - s 0) = 0 := by
+      have h := htransRS
+      change signedArea2 o a r = signedArea2 o a s at h
+      simp [signedArea2] at h
+      nlinarith [h]
+    have hbaseCoord : 0 <
+        (a 0 - o 0) ^ 2 + (a 1 - o 1) ^ 2 := by
+      have h := hbase
+      rw [EuclideanSpace.norm_sq_eq] at h
+      simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs] at h
+      exact h
+    have hdxMul :
+        ((a 0 - o 0) ^ 2 + (a 1 - o 1) ^ 2) * (r 0 - s 0) = 0 := by
+      linear_combination (a 0 - o 0) * hlongLin - (a 1 - o 1) * htransLin
+    have hdyMul :
+        ((a 0 - o 0) ^ 2 + (a 1 - o 1) ^ 2) * (r 1 - s 1) = 0 := by
+      linear_combination (a 1 - o 1) * hlongLin + (a 0 - o 0) * htransLin
+    have hbaseNe :
+        (a 0 - o 0) ^ 2 + (a 1 - o 1) ^ 2 ≠ 0 := ne_of_gt hbaseCoord
+    have hdx : r 0 - s 0 = 0 := by
+      rcases mul_eq_zero.mp hdxMul with h | h
+      · exact False.elim (hbaseNe h)
+      · exact h
+    have hdy : r 1 - s 1 = 0 := by
+      rcases mul_eq_zero.mp hdyMul with h | h
+      · exact False.elim (hbaseNe h)
+      · exact h
+    ext i
+    fin_cases i
+    · simpa using sub_eq_zero.mp hdx
+    · simpa using sub_eq_zero.mp hdy
+  have htransP_ne : scaledTransverseCoord o a p ≠ 0 := by
+    intro htransP
+    have htransQ : scaledTransverseCoord o a q = 0 := by
+      nlinarith [htrans_sq]
+    exact hpq (hpair_eq hlong (htransP.trans htransQ.symm))
+  have htransP_pos_or_neg :
+      0 < scaledTransverseCoord o a p ∨
+        scaledTransverseCoord o a p < 0 := lt_or_gt_of_ne htransP_ne |>.symm
+  rcases htransP_pos_or_neg with hP | hP
+  · left
+    constructor
+    · rw [scaledTransverseCoord_eq_signedArea2_cyclic] at hP
+      exact hP
+    · have hQ : scaledTransverseCoord o a q < 0 := by
+        by_contra hnot
+        have hQnonneg : 0 ≤ scaledTransverseCoord o a q := le_of_not_gt hnot
+        have heq : scaledTransverseCoord o a p = scaledTransverseCoord o a q := by
+          nlinarith [htrans_sq]
+        exact hpq (hpair_eq hlong heq)
+      rw [scaledTransverseCoord_eq_signedArea2_cyclic] at hQ
+      exact hQ
+  · right
+    constructor
+    · rw [scaledTransverseCoord_eq_signedArea2_cyclic] at hP
+      exact hP
+    · have hQ : 0 < scaledTransverseCoord o a q := by
+        by_contra hnot
+        have hQnonpos : scaledTransverseCoord o a q ≤ 0 := le_of_not_gt hnot
+        have heq : scaledTransverseCoord o a p = scaledTransverseCoord o a q := by
+          nlinarith [htrans_sq]
+        exact hpq (hpair_eq hlong heq)
+      rw [scaledTransverseCoord_eq_signedArea2_cyclic] at hQ
+      exact hQ
+
+/-- Direct reflected-coordinate adapter for a distinct bi-equidistant pair;
+the orientation of the pair is immaterial to the conclusion. -/
+theorem scaledCoordinates_reflect_of_biequidistant_of_ne
+    {o a p q : Plane} (hoa : o ≠ a) (hpq : p ≠ q)
+    (hop : dist o p = dist o q) (hap : dist a p = dist a q) :
+    scaledLongitudinalCoord o a p = scaledLongitudinalCoord o a q ∧
+      scaledTransverseCoord o a p = -scaledTransverseCoord o a q := by
+  have hlong := scaledLongitudinalCoord_eq_of_equidistant hop hap
+  rcases exists_opposite_signedArea_signs_of_biequidistant_of_ne
+      hoa hpq hop hap with hsigns | hsigns
+  · exact scaledCoordinates_reflect_of_biequidistant_of_opposite_signedArea_signs
+      hoa hop hap hsigns.1 hsigns.2
+  · have hswap :=
+      scaledCoordinates_reflect_of_biequidistant_of_opposite_signedArea_signs
+        hoa hop.symm hap.symm hsigns.2 hsigns.1
+    exact ⟨hlong, by nlinarith [hswap.2]⟩
+
 /-- If a point on the zero level of a linear functional is forced into the
 nonnegative cone of two strict same-sign points, it must be one of the two
 cone generators. -/
