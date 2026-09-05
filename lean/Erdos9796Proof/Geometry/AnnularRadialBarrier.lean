@@ -120,4 +120,30 @@ theorem bh_sub_ak_pos_of_convexIndep
     simp at hcoord
     nlinarith
 
+/-- The determinant identity used to turn the upper-wedge inequality into a
+radial comparison. -/
+theorem annular_wedge_identity (a b h k x y : ℝ) :
+    h * ((b - a) * (y - h) - (k - h) * (x - a)) =
+      (b * h - a * k) * (y - h) + (k - h) * (a * y - h * x) := by
+  ring
+
+/-- A point strictly inside the coordinate box bounded by the two inner rays
+cannot have the same radius as either inner endpoint. -/
+theorem false_of_equal_radius_of_open_coordinate_box
+    {a h x y : ℝ}
+    (hxlo : -a < x) (hxhi : x < a)
+    (hylo : -h < y) (hyhi : y < h)
+    (hr : x ^ 2 + y ^ 2 = a ^ 2 + h ^ 2) : False := by
+  have hax : 0 < a + x := by nlinarith [hxlo]
+  have hax' : 0 < a - x := by nlinarith [hxhi]
+  have hhy : 0 < h + y := by nlinarith [hylo]
+  have hhy' : 0 < h - y := by nlinarith [hyhi]
+  have hxsq : x ^ 2 < a ^ 2 := by
+    have hprod : 0 < (a - x) * (a + x) := mul_pos hax' hax
+    nlinarith
+  have hysq : y ^ 2 < h ^ 2 := by
+    have hprod : 0 < (h - y) * (h + y) := mul_pos hhy' hhy
+    nlinarith
+  nlinarith
+
 end Erdos9796Proof.Geometry
