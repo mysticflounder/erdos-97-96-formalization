@@ -1,0 +1,45 @@
+{
+  "status": "STATEMENTS_CHECKED_NOT_PROVED",
+  "toolchain": "leanprover/lean4:v4.33.1",
+  "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+  "item_count": 9,
+  "build_exit": 0,
+  "axiom_probe_exit": 0,
+  "axiom_output": [
+    "'Erdos9796Mission.Plane' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.ConvexIndep' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.HasNEquidistantPointsAt' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.HasNEquidistantPointsOn' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.HasNEquidistantProperty' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.unitDistancePairsCount' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.convexUnitDistanceCounts' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.maxConvexUnitDistances' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.Problem97' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.Problem96' depends on axioms: [propext, Classical.choice, Quot.sound]",
+    "'Erdos9796Mission.combined' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]"
+  ],
+  "definition_axioms": "No sorryAx; exact per-declaration output in statement-axioms.log",
+  "goal_axioms": "sorryAx expected: this is an open mission statement, not a proof",
+  "packet_digests": {
+    "items.json": "a8ca79392de10c30254fa496fbcd80c7c037e2f53785d1df8c19f0fbdcb5dd0f",
+    "proposal.json": "ccc005ad7bff239a7bbd13eeaea270dbc2bf732e04a38b27ba86e50bbbbaa6a4",
+    "mission-description.md": "ce61736153d59b6cb88aefb58e107f48ab1f0b345b78cd33c8a04fe7068b6e41"
+  },
+  "code_digests": {
+    "Erdos9796Mission": "ea0bc3154ca0767a8e7b57ccad31c9d9e8467305c4f7c8f8b5c73e4a523fee71",
+    "Erdos9796Mission.danzer_nine": "6254ceab4d073d2abf3d797f07b4b687100e18357d1949bf131b12329e8736a4",
+    "Erdos9796Mission.counterexample_card_ge_nine": "7800e00b117a69f8730824c2245e02c6689241c1aa4dbb163d4990d59babd62f",
+    "Erdos9796Mission.finite_nine_exclusion": "480f6c03fb78ec48997f8a4aea587db38151c936c4bd91417108ed16e10171b0",
+    "Erdos9796Mission.minimal_counterexample_removable": "8e63023c2e7c107e1f66948e2b63eff2375d6867e087ccd904b83dac1504b895",
+    "Erdos9796Mission.problem97": "286bb9560ce40dc1ca3d7a1d65953cf43c4d31e04c4838aaf4915a8e88bf1f99",
+    "Erdos9796Mission.linear_bound_of_problem97": "f79fcdec0b8682952836d132df97d864ab90079500de6a4367dba0ebc06e54df",
+    "Erdos9796Mission.problem96": "19ddf64f57f8efc3774f9b3e65363b7a9025fcfbba037b221ab268b1ad2bf5a6",
+    "Erdos9796Mission.combined": "94407ba9652fe0b0a7221b19f12d70148cfb263e1c9e12797adb58d898d41102"
+  },
+  "build_log": "scratch/runs/prove2me-p97-p96-mission-20260905/run-0001/events/statements-build.log",
+  "build_log_sha256": "9389540b6cf65679b55f98b7f13603502a5b766513a7d0a5952a8c6b4b31cf94",
+  "axiom_log": "scratch/runs/prove2me-p97-p96-mission-20260905/run-0001/events/statement-axioms.log",
+  "axiom_log_sha256": "82e30aa32b65979f946a034b7f2731f0411ebf74284655024aa4b2f2f60506b0",
+  "source_base_head": "757d852766f377f7c1a0ffeeef6d3526bc0cb7a4",
+  "scope": "Mathlib-only mission statements ported to the platform environment. No existing repository proof or certificate is transplanted or certified by this check."
+}

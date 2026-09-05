@@ -1,0 +1,40 @@
+{
+  "proposal_id": "c63c586d-1908-47a2-afaa-bfc72728b7ab",
+  "status": "Draft",
+  "items": {
+    "Erdos9796Mission": "7fccbb8f-9597-462b-a87e-fffbc02025d4",
+    "Erdos9796Mission.danzer_nine": "a8f401dc-8907-4616-bb27-a0c80adf42ee",
+    "Erdos9796Mission.counterexample_card_ge_nine": "89cf4187-e2e2-4aa3-953d-c8cca63dede8",
+    "Erdos9796Mission.finite_nine_exclusion": "5587e582-56fb-4677-b452-951c41b18a85",
+    "Erdos9796Mission.minimal_counterexample_removable": "f9536214-5ae5-486b-aca6-b9f8870f3727",
+    "Erdos9796Mission.problem97": "064124b6-42d8-4413-aacf-d78701098a05",
+    "Erdos9796Mission.linear_bound_of_problem97": "6e2cdf54-d4a4-4ab2-a8e3-9f627950dea4",
+    "Erdos9796Mission.problem96": "d5ba2740-84b9-4748-8df5-9dc8656c9dc8",
+    "Erdos9796Mission.combined": "d22d0503-0437-4552-88ea-792395937f35"
+  },
+  "review_url": "https://prove2.me/my-missions/c63c586d-1908-47a2-afaa-bfc72728b7ab",
+  "source_base_head": "757d852766f377f7c1a0ffeeef6d3526bc0cb7a4",
+  "main_item_id": "d22d0503-0437-4552-88ea-792395937f35",
+  "item_order": [
+    "7fccbb8f-9597-462b-a87e-fffbc02025d4",
+    "a8f401dc-8907-4616-bb27-a0c80adf42ee",
+    "89cf4187-e2e2-4aa3-953d-c8cca63dede8",
+    "5587e582-56fb-4677-b452-951c41b18a85",
+    "f9536214-5ae5-486b-aca6-b9f8870f3727",
+    "064124b6-42d8-4413-aacf-d78701098a05",
+    "6e2cdf54-d4a4-4ab2-a8e3-9f627950dea4",
+    "d5ba2740-84b9-4748-8df5-9dc8656c9dc8",
+    "d22d0503-0437-4552-88ea-792395937f35"
+  ],
+  "item_count": 9,
+  "milestone_count": 7,
+  "packet_digests": {
+    "items.json": "a8ca79392de10c30254fa496fbcd80c7c037e2f53785d1df8c19f0fbdcb5dd0f",
+    "proposal.json": "ccc005ad7bff239a7bbd13eeaea270dbc2bf732e04a38b27ba86e50bbbbaa6a4",
+    "mission-description.md": "ce61736153d59b6cb88aefb58e107f48ab1f0b345b78cd33c8a04fe7068b6e41"
+  },
+  "readbacks_sha256": "71d4a7e4844d07d41c8414ad5eb0bed0ca3b59185331d8aac48f3eb3e7c21ffe",
+  "local_validation": "STATEMENTS_CHECKED_NOT_PROVED",
+  "submitted": false,
+  "server_content_verified": true
+}

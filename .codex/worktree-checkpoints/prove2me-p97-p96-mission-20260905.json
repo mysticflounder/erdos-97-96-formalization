@@ -1,0 +1,36 @@
+{
+  "base_head": "757d852766f377f7c1a0ffeeef6d3526bc0cb7a4",
+  "created_utc": "2026-09-05T21:28:15Z",
+  "durable_paths": [
+    "scratch/runs/prove2me-p97-p96-mission-20260905/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/prove2me-p97-p96-mission-20260905/run-0001"
+  ],
+  "lane_id": "prove2me-p97-p96-mission-20260905",
+  "manifest_sha256": "944cbd3cd99c68a609b40e1b5269102240f7ec4fd4c1a89e3c6f8433f04504da",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-p97-p96-mission-20260905.json",
+    "prove2me/Definitions/Def_Erdos9796Mission.lean",
+    "prove2me/README.md",
+    "prove2me/Theorems/Thm_Erdos9796Mission_combined.lean",
+    "prove2me/Theorems/Thm_Erdos9796Mission_counterexample_card_ge_nine.lean",
+    "prove2me/Theorems/Thm_Erdos9796Mission_danzer_nine.lean",
+    "prove2me/Theorems/Thm_Erdos9796Mission_finite_nine_exclusion.lean",
+    "prove2me/Theorems/Thm_Erdos9796Mission_linear_bound_of_problem97.lean",
+    "prove2me/Theorems/Thm_Erdos9796Mission_minimal_counterexample_removable.lean",
+    "prove2me/Theorems/Thm_Erdos9796Mission_problem96.lean",
+    "prove2me/Theorems/Thm_Erdos9796Mission_problem97.lean",
+    "prove2me/claim-audit.md",
+    "prove2me/items.json",
+    "prove2me/mission-description.md",
+    "prove2me/mission-receipt.json",
+    "prove2me/prepare_mission.py",
+    "prove2me/proposal.json",
+    "prove2me/readbacks.json",
+    "prove2me/validate_mission.py",
+    "prove2me/validation.json"
+  ],
+  "owner": "codex-prove2me-mission",
+  "schema": "worktree-lane-checkpoint/v1"
+}

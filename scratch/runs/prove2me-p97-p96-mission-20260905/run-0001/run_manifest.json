@@ -1,0 +1,32 @@
+{
+  "base_head": "757d852766f377f7c1a0ffeeef6d3526bc0cb7a4",
+  "created_utc": "2026-09-05T21:28:15Z",
+  "input_digests": {
+    "prove2me/items.json": "a8ca79392de10c30254fa496fbcd80c7c037e2f53785d1df8c19f0fbdcb5dd0f",
+    "prove2me/proposal.json": "ccc005ad7bff239a7bbd13eeaea270dbc2bf732e04a38b27ba86e50bbbbaa6a4"
+  },
+  "lane_id": "prove2me-p97-p96-mission-20260905",
+  "manifest_sha256": "21d615da2db60b34c2eb0ff4e4fefc27ba45548cf75bc992a420b92af35b0457",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "codex-prove2me-mission",
+  "root": "scratch/runs/prove2me-p97-p96-mission-20260905/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "prove2me/Definitions/Def_Erdos9796Mission.lean": "ea0bc3154ca0767a8e7b57ccad31c9d9e8467305c4f7c8f8b5c73e4a523fee71",
+    "prove2me/Theorems/Thm_Erdos9796Mission_combined.lean": "96b5d17d5193a3352a562fe91e4c3ee421032fd2d390bab2063147232d5cddc5",
+    "prove2me/Theorems/Thm_Erdos9796Mission_counterexample_card_ge_nine.lean": "12b76aaabf517b2a4a4a9665f0d247916339ded330d0229e8f90e4686e110871",
+    "prove2me/Theorems/Thm_Erdos9796Mission_danzer_nine.lean": "4cd043f3a80eb8dd6e57960a15516fda451ad518e4d561144e747c789ec027d1",
+    "prove2me/Theorems/Thm_Erdos9796Mission_finite_nine_exclusion.lean": "546015133b0d29fb6d64f512534e7a369da4f828c38cf1b32574b8421c95b483",
+    "prove2me/Theorems/Thm_Erdos9796Mission_linear_bound_of_problem97.lean": "55487f1017b90f02d4fc0e41d284b98ad2e1fe65ce798077d9cf5f6849490b01",
+    "prove2me/Theorems/Thm_Erdos9796Mission_minimal_counterexample_removable.lean": "6dc765d0d21acbb9a4f96e75e500a66de6f13c24c71ef80ecbb3d69cde1f1c50",
+    "prove2me/Theorems/Thm_Erdos9796Mission_problem96.lean": "6ed712657469e06773f7e82dba2c6a7d7d4b67bfb42eb297c362114dc703876a",
+    "prove2me/Theorems/Thm_Erdos9796Mission_problem97.lean": "aa24beaf24f01f1b9775269a576953e46d583e2d05a4dee8570e2b193a4630c4",
+    "prove2me/prepare_mission.py": "640b3e0e855c1e10e6a6b2a07a6d3f3d3b973379d320ea6b4bb78a2338600364",
+    "prove2me/validate_mission.py": "903a47dbf94a15b7cafcdb13b1ba7edc5741991d2dc987cfaf11c80699bbd812"
+  }
+}

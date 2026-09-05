@@ -1,0 +1,47 @@
+{
+  "Erdos9796Mission": {
+    "readback": "`Plane` is the Euclidean plane, namely the real Euclidean space of functions from a two-element finite index set to $\\mathbb{R}$. For a subset $S$ of this plane, `ConvexIndep S` says that every $a\\in S$ is absent from the convex hull over $\\mathbb{R}$ of $S\\setminus\\{a\\}$. For a natural number $n$, finite point set $A$, and point $p$, `HasNEquidistantPointsAt n A p` says that there exists a real radius $r>0$ such that at least $n$ members $q$ of $A$ satisfy $\\operatorname{dist}(p,q)=r$; the point $p$ itself cannot be counted at such a radius, and for $n=0$ the condition is automatic for every $A,p$, while for a positive $n$ it is impossible when $A$ is empty. `HasNEquidistantPointsOn n A B` says that this condition holds for every $p\\in B$ (vacuously when $B$ is empty), and `HasNEquidistantProperty n A` is the special case $B=A$, so it requires every point of $A$ to have some positive radius containing at least $n$ points of $A$ at that exact distance (vacuously when $A$ is empty). `unitDistancePairsCount A` is the number of unordered pairs of distinct points drawn from $A$ whose mutual distance is exactly $1$; the code tests both $0<\\operatorname{dist}(p,q)$ and $\\operatorname{dist}(p,q)=1$, and each unordered pair is counted once, so the count is $0$ for a set with fewer than two points. `convexUnitDistanceCounts n` is the set of natural numbers obtained as `unitDistancePairsCount points` while `points` ranges over finite point sets in the plane with exactly $n$ elements and with `ConvexIndep (points)`; repeated numerical counts from different point sets occur only once because this is a set, and if there are no admissible point sets the set is empty. `maxConvexUnitDistances n` is the natural-number supremum of `convexUnitDistanceCounts n`, using the natural numbers' convention for a supremum of an empty set.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "ea0bc3154ca0767a8e7b57ccad31c9d9e8467305c4f7c8f8b5c73e4a523fee71"
+  },
+  "Erdos9796Mission.problem97": {
+    "readback": "The declaration asserts that for every finite point set $A$ in the Euclidean plane, if $A$ is nonempty and every point of $A$ is absent from the convex hull over $\\mathbb{R}$ of the remaining points $A\\setminus\\{a\\}$, then there is at least one point $p\\in A$ for which no positive real radius $r$ has at least four points $q\\in A$ at distance exactly $r$ from $p$. In expanded form, for that point $p$, every $r>0$ satisfies $\\#\\{q\\in A: \\operatorname{dist}(p,q)=r\\}<4$. The theorem body is `sorry`, so this is an asserted target rather than an established result.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "286bb9560ce40dc1ca3d7a1d65953cf43c4d31e04c4838aaf4915a8e88bf1f99"
+  },
+  "Erdos9796Mission.problem96": {
+    "readback": "The declaration asserts an asymptotic bound for natural numbers $n$: after casting the supremum of the unit-distance-pair counts over all convexly independent $n$-point sets in the Euclidean plane to $\\mathbb{R}$, the function $n\\mapsto\\maxConvexUnitDistances(n)$ is $O$ of the function $n\\mapsto n$ along the filter of sufficiently large natural numbers. Thus there are a constant $C\\ge 0$ and a threshold $N$ such that for every natural $n\\ge N$, $\\maxConvexUnitDistances(n)\\le Cn$ (with the supremum defined from the preceding count set, including its natural-number empty-set convention); no bound is required at the finitely many $n<N$, and in particular no separate assertion is made at $n=0$. The theorem body is `sorry`, so this is an asserted target rather than an established result.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "19ddf64f57f8efc3774f9b3e65363b7a9025fcfbba037b221ab268b1ad2bf5a6"
+  },
+  "Erdos9796Mission.combined": {
+    "readback": "The declaration asserts the conjunction of the two preceding targets. First, for every nonempty finite point set $A$ in the Euclidean plane whose points are all absent from the convex hull over $\\mathbb{R}$ of the other points, at least one $p\\in A$ has fewer than four points of $A$ at every positive exact distance from $p$. Second, there are $C\\ge0$ and $N$ such that for every natural $n\\ge N$, the supremum of the numbers of unordered unit-distance pairs among convexly independent $n$-point sets, cast to $\\mathbb{R}$, is at most $Cn$; the supremum is the natural-number supremum of the set of counts and uses its empty-set convention. The theorem body is `sorry`, so this conjunction is an asserted target rather than an established result.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "94407ba9652fe0b0a7221b19f12d70148cfb263e1c9e12797adb58d898d41102"
+  },
+  "Erdos9796Mission.danzer_nine": {
+    "readback": "There exists a finite set $A$ of points in the real Euclidean plane $\\mathbb{R}^2$ such that $A$ has exactly $9$ elements, every point $a\\in A$ is outside the real convex hull of the set $A\\setminus\\{a\\}$ of all the other points, and every point $p\\in A$ has some positive real radius $r>0$ (the radius may depend on $p$) for which the filtered set $\\{q\\in A : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $3$.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "6254ceab4d073d2abf3d797f07b4b687100e18357d1949bf131b12329e8736a4"
+  },
+  "Erdos9796Mission.counterexample_card_ge_nine": {
+    "readback": "For every finite set $A$ of points in the real Euclidean plane, if $A$ is nonempty, every point $a\\in A$ is outside the real convex hull of $A\\setminus\\{a\\}$, and for every point $p\\in A$ there exists a positive real radius $r>0$ (possibly depending on $p$) such that $\\{q\\in A : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $4$, then $A$ has cardinality at least $9$.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "7800e00b117a69f8730824c2245e02c6689241c1aa4dbb163d4990d59babd62f"
+  },
+  "Erdos9796Mission.finite_nine_exclusion": {
+    "readback": "For every finite set $A$ of points in the real Euclidean plane, if $A$ has exactly $9$ elements and every point $a\\in A$ is outside the real convex hull of $A\\setminus\\{a\\}$, then it is false that every point $p\\in A$ has a positive real radius $r>0$ for which the filtered set $\\{q\\in A : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $4$.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "480f6c03fb78ec48997f8a4aea587db38151c936c4bd91417108ed16e10171b0"
+  },
+  "Erdos9796Mission.minimal_counterexample_removable": {
+    "readback": "For every finite set $A$ of points in the real Euclidean plane, suppose that $A$ is nonempty, every point $a\\in A$ is outside the real convex hull of $A\\setminus\\{a\\}$, every point $p\\in A$ has some positive real radius $r>0$ for which $\\{q\\in A : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $4$, and $9<|A|$. Suppose also that for every finite set $B$ of points in the plane, whenever $|B|<|A|$, $B$ is nonempty, every point of $B$ is outside the real convex hull of the other points of $B$, and every point of $B$ has a positive radius giving at least $4$ points of $B$ at that distance, the proposition $\\mathrm{False}$ holds; this minimality clause quantifies over all such smaller finite sets $B$ and imposes no subset relation between $B$ and $A$. Then there exists a point $x\\in A$ such that, after removing $x$ from $A$, every point $p\\in A\\setminus\\{x\\}$ has some positive real radius $r>0$ (possibly depending on $p$) with at least $4$ points $q\\in A\\setminus\\{x\\}$ at distance $\\operatorname{dist}(p,q)=r$.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "8e63023c2e7c107e1f66948e2b63eff2375d6867e087ccd904b83dac1504b895"
+  },
+  "Erdos9796Mission.linear_bound_of_problem97": {
+    "readback": "Assume that every nonempty finite set $C$ of points in the real Euclidean plane whose points all lie outside the real convex hull of the remaining points fails to have the following property: for every $p\\in C$ there is a positive real radius $r>0$ such that $\\{q\\in C : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $4$. Then both of the following hold: for every finite set $A$ of plane points satisfying the same convex-hull condition, including the possibility that $A$ is empty, the number $\\operatorname{unitDistancePairsCount}(A)$ of unordered two-element pairs from $A$ counted once, where a pair $\\{p,q\\}$ is counted exactly when $0<\\operatorname{dist}(p,q)$ and $\\operatorname{dist}(p,q)=1$, is at most $3|A|$; and the real-valued function sending $n$ to the natural-number supremum of these unit-distance counts over finite convex-independent point sets of cardinality $n$ grows as $O(n)$ along natural numbers tending to infinity.",
+    "readback_model": "gpt-5.6-luna",
+    "code_sha256": "f79fcdec0b8682952836d132df97d864ab90079500de6a4367dba0ebc06e54df"
+  }
+}
