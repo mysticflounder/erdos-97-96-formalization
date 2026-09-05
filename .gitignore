@@ -488,6 +488,7 @@ docs/live-blueprint.md.tmp
 # Per-lane ownership checkpoints are local coordination state.  Their schema is
 # enforced by scripts/check_worktree_hygiene.py before staging/publication.
 /.codex/worktree-checkpoints/
+**/.codex/worktree-checkpoints/
 
 # Remaining replay payloads in the four mixed historical lanes. Curated
 # source/reports plus manifests, receipts, summaries, and checksums are now
@@ -593,3 +594,5 @@ docs/live-blueprint.md.tmp
 # that file (`git add -f -- scratch/...`); never force-add a directory.
 /scratch/**
 docs/live-blueprint.md
+luna-swarm/docs
+luna-swarm/scratch
