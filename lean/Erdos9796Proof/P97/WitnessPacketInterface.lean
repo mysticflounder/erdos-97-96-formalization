@@ -59,6 +59,8 @@ This is the "selected class centred at `s`" / `T_s` of the prose
 noncomputable def SelectedClass (A : Finset ℝ²) (s : ℝ²) (d : ℝ) : Finset ℝ² :=
   A.filter (fun q => dist s q = d)
 
+/-- Membership in a selected class means membership in `A` at the prescribed
+distance from its centre. -/
 @[simp] theorem mem_selectedClass {A : Finset ℝ²} {s : ℝ²} {d : ℝ} {q : ℝ²} :
     q ∈ SelectedClass A s d ↔ q ∈ A ∧ dist s q = d := by
   simp [SelectedClass]

@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "witness-packet-docstrings-20260905",
+  "owner": "luna-swarm-witness-packet-docstrings",
+  "base_head": "dc611c6f72673e2deb2b69a8e635cde172c93172",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/witness-packet-docstrings-20260905.json",
+    "lean/Erdos9796Proof/P97/WitnessPacketInterface.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T04:05:18Z",
+  "manifest_sha256": "81e76dce4907407f396a17ea34b8cd86bd402317a380f0aa9616b2cd46884e63"
+}
