@@ -68,11 +68,22 @@ def test_cone_commands_can_require_higher_support() -> None:
         (((((index, index + 1), 1),)), {"form": (0, 1, 2, 3, index % 2)})
         for index in range(4)
     )
-    commands = subject.cone_commands(forms, min_nonzero_weights=4)
+    commands = subject.cone_commands(
+        forms, min_nonzero_weights=4, max_nonzero_weights=4
+    )
     assert commands[0] == "(set-logic QF_LIRA)"
     assert "(declare-const active_0 Bool)" in commands
     assert "(assert (= active_0 (> w_0 0)))" in commands
     assert any(command.endswith(" 4))") and "(ite active_3 1 0)" in command for command in commands)
+    assert any(command.startswith("(assert (<= ") for command in commands)
+
+
+def test_cone_commands_rejects_inverted_support_bounds() -> None:
+    forms = (((((0, 1), 1),), {"form": (0, 1, 2, 3, 0)}),)
+    with pytest.raises(subject.ConicBatchError, match="maximum nonzero"):
+        subject.cone_commands(
+            forms, min_nonzero_weights=1, max_nonzero_weights=0
+        )
 
 
 def test_actual_replayed_cell_zero_form_compiles_to_provider_cut() -> None:

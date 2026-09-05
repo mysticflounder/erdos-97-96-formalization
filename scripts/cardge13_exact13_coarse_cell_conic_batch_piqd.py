@@ -30,7 +30,7 @@ import cardge13_exact13_global_source_cell_boolean_path_cegar_piqd as path_cegar
 import cardge13_exact13_global_source_cell_csp_piqd as base
 import cardge13_exact13_tight_cover_lra_piqd as piqd_core
 
-SCHEMA = "cardge13-exact13-coarse-cell-conic-batch-piqd/v3"
+SCHEMA = "cardge13-exact13-coarse-cell-conic-batch-piqd/v4"
 SELF_PATH = "scripts/cardge13_exact13_coarse_cell_conic_batch_piqd.py"
 EXTRA_SOURCE_PATHS = (
     SELF_PATH,
@@ -61,26 +61,34 @@ def cone_commands(
     forms: tuple[tuple[FormVector, dict[str, object]], ...],
     *,
     min_nonzero_weights: int = 1,
+    max_nonzero_weights: int | None = None,
 ) -> tuple[str, ...]:
     """Encode a normalized nonnegative dependence among projected forms."""
     if not forms:
         raise ConicBatchError("the projected form family is empty")
     if not 1 <= min_nonzero_weights <= len(forms):
         raise ConicBatchError("minimum nonzero weight count is outside the form family")
+    if max_nonzero_weights is not None and not (
+        min_nonzero_weights <= max_nonzero_weights <= len(forms)
+    ):
+        raise ConicBatchError("maximum nonzero weight count is outside the form family")
     weights = tuple(f"w_{index}" for index in range(len(forms)))
-    commands = ["(set-logic QF_LIRA)" if min_nonzero_weights > 1 else "(set-logic QF_LRA)"]
+    uses_support_flags = min_nonzero_weights > 1 or max_nonzero_weights is not None
+    commands = ["(set-logic QF_LIRA)" if uses_support_flags else "(set-logic QF_LRA)"]
     for weight in weights:
         commands.extend((f"(declare-const {weight} Real)", f"(assert (>= {weight} 0))"))
-    if min_nonzero_weights > 1:
+    if uses_support_flags:
         active = tuple(f"active_{index}" for index in range(len(forms)))
         for flag, weight in zip(active, weights, strict=True):
             commands.extend(
                 (f"(declare-const {flag} Bool)", f"(assert (= {flag} (> {weight} 0)))")
             )
         indicators = (f"(ite {flag} 1 0)" for flag in active)
-        commands.append(
-            f"(assert (>= {base.linear_sum(indicators)} {min_nonzero_weights}))"
-        )
+        support_sum = base.linear_sum(indicators)
+        if min_nonzero_weights > 1:
+            commands.append(f"(assert (>= {support_sum} {min_nonzero_weights}))")
+        if max_nonzero_weights is not None:
+            commands.append(f"(assert (<= {support_sum} {max_nonzero_weights}))")
     commands.append(f"(assert (= {base.linear_sum(weights)} 1))")
     coordinates = sorted({edge for vector, _form in forms for edge, _coefficient in vector})
     for coordinate in coordinates:
@@ -305,6 +313,7 @@ def main() -> int:
     parser.add_argument("--timeout-ms", type=int, default=120_000)
     parser.add_argument("--exclude-zero", action="store_true")
     parser.add_argument("--min-nonzero-weights", type=int, default=1)
+    parser.add_argument("--max-nonzero-weights", type=int)
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
@@ -327,7 +336,11 @@ def main() -> int:
     order = base.DIRECT_ORDER if coarse_cell.orientation == "direct" else base.MIRROR_ORDER
     all_forms = three_form.representative_projected_forms(cell, order)
     forms = selected_forms(all_forms, exclude_zero=args.exclude_zero)
-    commands = cone_commands(forms, min_nonzero_weights=args.min_nonzero_weights)
+    commands = cone_commands(
+        forms,
+        min_nonzero_weights=args.min_nonzero_weights,
+        max_nonzero_weights=args.max_nonzero_weights,
+    )
     journal = ("\n".join(commands) + "\n").encode("ascii")
     journal_path = coarse.require_under_run_root(args.out, run_root, "cone journal")
     event_path = coarse.require_under_run_root(args.event, run_root, "cone event")
@@ -374,6 +387,7 @@ def main() -> int:
         "cell": coarse_cell.to_json(int(source_event["cell"].get("index", 0))),
         "exclude_zero_projected_forms": args.exclude_zero,
         "minimum_nonzero_weight_count": args.min_nonzero_weights,
+        "maximum_nonzero_weight_count": args.max_nonzero_weights,
         "all_projected_form_count": len(all_forms),
         "projected_form_count": len(forms),
         "command_count": len(commands),
