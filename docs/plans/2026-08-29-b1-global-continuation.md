@@ -1213,6 +1213,17 @@ paired-grid/tri-apex terminal cannot be used backward: the generic adjacent
 grid has no source-clean adapter to its shell-partition and cap-placement
 hypotheses.
 
+The high-cardinality `Rigid221SourceHeavy` endpoints are also unavailable to
+this no-five branch.  They first require an
+`ExactFourRigid221PhysicalApexSourceEqUContext`, whose positive-radius
+`hfive` field asserts cardinality at least five and whose `hclassFive` field
+asserts cardinality exactly five.  The dispatcher hypothesis `hnoFive`
+directly rules out `hfive`; `12 < D.A.card` also supplies none of the separate
+cardinality-15/16/17/18 premises.  Moreover the surrounding source-heavy and
+placement modules retain executable `sorry` leaves.  Treat these theorems as
+auxiliary high-cardinality consumers only, not as a reuse path from the
+current card-at-least-thirteen no-five packet or as B1 closure.
+
 The good-source packet's sources and frontier deletion are also unrelated to
 the two joint deletions fixed by the B1 context.  It implies none of the three
 current `B1GlobalGapOrClosedTerminal` arms, and it does not by itself put two
