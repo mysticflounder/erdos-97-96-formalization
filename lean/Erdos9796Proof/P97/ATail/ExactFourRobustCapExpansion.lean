@@ -634,7 +634,7 @@ theorem interiorPairBad_secondClassInterior_card_le_one
   exact hc_not_secondCap
     (S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hcSecond)
 
-private theorem mem_outsideFirstApexFiber_of_not_mem_firstClass
+theorem mem_outsideFirstApexFiber_of_not_mem_firstClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
     (R : OriginalUniqueFourResidual F)
@@ -658,7 +658,7 @@ private theorem mem_outsideFirstApexFiber_of_not_mem_firstClass
       lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
         (frontier_pair_q_mem_firstApexClass F)
 
-private theorem firstSecondClass_inter_card_le_two
+theorem firstSecondClass_inter_card_le_two
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius rho : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -683,7 +683,7 @@ private theorem firstSecondClass_inter_card_le_two
       (frontier_pair_q_mem_firstApexClass F)
   simpa [K, hsupport] using hbound
 
-private theorem exists_mem_not_mem_pair_of_card_gt
+theorem exists_mem_not_mem_pair_of_card_gt
     {α : Type*} (T X Y : Finset α)
     (hcard : X.card + Y.card < T.card) :
     ∃ z ∈ T, z ∉ X ∧ z ∉ Y := by
