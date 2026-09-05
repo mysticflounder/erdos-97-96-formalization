@@ -1419,3 +1419,46 @@ metric constraints for carriers absent from a row.  Raw badness yields a
 same-arc conclusion only conditionally and supplies no global-gap terminal.
 No card-six module contains a new sorry, but none currently reduces the open
 B1 terminal to `False`.
+
+### 2026-09-05 escape recurrence and signed-area checkpoint
+
+The escape-source reselection now retains its first exact cross-system role
+fact in Lean.  Commit `577d39f58` adds
+`B1EscapeSourceContext.exists_freshPair_deletion_role`: the chosen fresh joint
+deletion is exposed proof-relevantly, is distinct from the retained escape
+source, and is either one of the two canonical deletions or lies in one of the
+original live slices.  The proof uses the source-context membership in the
+fresh `u` row, the joint-deletion omission from that row, and the exact
+five/six normal-form cover.  Focused source compilation and the governed
+10,873-job module build pass; its axiom probe reports only `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+This does not create an iteration.  The escape adapter's source remains a
+noncanonical live source, while `b1_freshPair_source_or_mem_original_liveSlices`
+and `b1_freshV_escapeStar_or_adjacentCap` require a canonical deleted source.
+Moreover, the replacement-star theorem relates the new star only to fresh
+`v`; it supplies no inequality, order, rank, or visited-set relation between
+`v` and the old escape source.  The current B1 files contain no recursive
+transition, monotone finite measure, or cycle contradiction.  The reusable
+exact-five physical omission-cycle framework is being audited separately,
+because its proofs appear to use less than the stronger unique-radius profile
+carried by their present signatures.
+
+Pro consult `01M1QSB3Y0CX58HPPWGZ3ZYRHE` gives a smaller terminal contract for
+the missing order producer.  For distinct centers `a,b` and distinct points
+`x,y` equidistant from both centers, the repository's `signedArea2` convention
+satisfies
+
+```text
+signedArea2 x a b * signedArea2 y a b
+  = -dist(a,b)^2 * dist(x,y)^2 / 4 < 0.
+```
+
+A genuine two-point B1 live row supplies both equal-distance premises with
+`a = S.oppApex2` and `b` its actual late-row blocker.  Therefore the clean
+contradiction interface is only one actual live pair whose signed-area product
+is nonnegative; no boundary enumeration, orientation packet, or whole-slice
+positivity assumption is needed.  The algebraic negativity lemma and this
+minimal B1 consumer are being formalized.  The hard producer remains global:
+it must derive the nonnegative placement from deletion/escape compatibility.
+The adjacent-cap and blocker-between residuals do not provide that sign.
