@@ -3,6 +3,15 @@
 Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
 
+The active exact-five execution order is the
+[physical/uniform closure plan](plans/2026-09-05-exactfive-physical-uniform-closure-plan.md):
+validate the committed simultaneous-deletion/strict-fresh integration, derive the
+source geometry needed by radius drop, then address admissible-pair
+reconstruction and the uniform return-path barrier. The recovered scalar and
+graph checks do not close the physical terminal. This targeted plan takes
+precedence over older exact-five next-step proposals below; it does not
+refresh the global obligation counts.
+
 > **Current authority snapshot (2026-08-30).** The obligation registry at
 > source head `020e43bfc328879dfdc7d8a558a80fbdbdff2438` records 27
 > publish-reachable declarations and no off-spine declarations: 16 Rigid221,

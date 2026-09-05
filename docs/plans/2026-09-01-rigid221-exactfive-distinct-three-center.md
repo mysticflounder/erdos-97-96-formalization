@@ -4,6 +4,20 @@ Date: 2026-09-01
 Lane: `rigid221-exactfive-distinct-three-center-20260901`
 Base revision: `b8502b2c065c67aaf670adb0f1bd03bf2c8427a0`
 
+## Active execution order
+
+Use the [physical/uniform closure plan](2026-09-05-exactfive-physical-uniform-closure-plan.md)
+for the current priorities and acceptance gates. The recovered
+simultaneous-deletion draft supports bypassing the five-incidence dispatcher
+by replacing the second row and regenerating strict freshness. Its production
+lane committed the helper and coordinator in `bce36a53c`; both builds pass
+and the unused five-incidence declaration is deleted. A fresh kernel mine
+must confirm the source dependency change. The next independent task is the
+actual-source geometry needed for radius drop. Earlier census and incidence
+execution proposals below remain dated route history, not an instruction to
+restart their solver runs. The physical contradiction and uniform geometric
+barrier remain open.
+
 ## Governed target
 
 - Publish target: `Problem97.erdos97_rhs`.
@@ -108,7 +122,7 @@ Promotion requires a focused module build, a build of the original public
 caller, refreshed spine evidence with the private-edge limitation stated,
 literal axiom audits, hygiene checks, and independent verification.
 
-## Implemented checkpoint
+## Historical initial implementation
 
 The producer and adapter are implemented at the working-tree revision based on
 `b8502b2c065c67aaf670adb0f1bd03bf2c8427a0`.
@@ -130,7 +144,13 @@ not evidence that the successor is disconnected. The publish gate still fails,
 as expected, because `Problem97.erdos97_rhs` reaches `sorryAx` through this and
 other existing open leaves.
 
-## Strict-source correction
+## Historical strict-source correction
+
+The three-way frontier described in this section is the pre-reselection
+baseline. The current source rewrite dispatches directly to physical and
+tight-twelve consumers, and both focused builds pass; acceptance as a
+proof-spine reduction still requires the fresh kernel dependency audit
+specified in the active execution plan.
 
 The first checkpoint's cardinality argument supplied a point outside the three
 row supports, but did not prove that point distinct from `deleted`: the original

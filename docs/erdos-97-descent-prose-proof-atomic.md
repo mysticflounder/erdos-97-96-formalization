@@ -1573,20 +1573,40 @@ terminal, under the declared certificate trust. Its theorem
 and that union, omission of the retained source from the second selected
 class, and the retained physical two-center packet. The
 [tight-cover closure record](plans/2026-09-01-rigid221-exactfive-tight-cover.md)
-gives the scope. Two fresh-source contracts remain:
+gives the scope. The remaining fresh-source contract is
+`false_of_exactFiveDistinct_threeCenter_distinctFresh_physical`, retaining
+the three exact rows, the retained source's omission from the second row,
+and its physical two-center packet.
 
-- `false_of_exactFiveDistinct_threeCenter_distinctFresh_physical`, retaining
-  the three exact rows, the retained source's omission from the second row,
-  and its physical two-center packet;
-- `false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence`,
-  retaining the complete `RobustApexFourIncidenceContinuationPacket`.
-
-**CONJECTURED / OPEN:** both fresh-source contradictions still contain
+**CONJECTURED / OPEN:** this physical contradiction still contains
 `sorry`; `{{NEEDS_PROOF}}`. Source separation such as
 `fresh_not_mem_firstApexSelectedClass` is a useful proved restriction, not
 a contradiction. The
 [distinct-center plan](plans/2026-09-01-rigid221-exactfive-distinct-three-center.md)
 covers this route.
+
+The recovered handoffs now support a different execution order, recorded in
+the [physical/uniform closure plan](plans/2026-09-05-exactfive-physical-uniform-closure-plan.md).
+The six radius-drop scalar lemmas, five circle-power lemmas, and five
+retained-double-deletion lemmas were checked with core axioms in the
+[two handoff audits](skeptic-exactfive-physical-handoff-2026-09-05.md).
+The production reselection lane has implemented the checked bypass in source:
+replace the second row using simultaneous deletion, rebuild the packet, and
+rerun strict-fresh selection. Commit `bce36a53c` includes the source rewrite
+and deletes the now-unused five-incidence declaration. The retained helper
+and `Rigid221Closure` builds are green; all ten production helper theorems
+have core-only axiom closures. A fresh kernel mine and aggregate dependency
+audit remain pending, so this source/build result is not presented as a
+newly verified publication-spine count. The coordinator still reaches
+`sorryAx` through the physical consumer and approved native trust through
+the tight-twelve branch.
+
+The physical terminal still needs the actual-source geometric hypotheses of
+the scalar radius-drop argument. In particular, the opposite Moser apex must
+not be identified with the MEC center. The uniform strategy has an audited
+conditional return-cycle reduction, but no source-derived geometric barrier
+to those cycles. Its finite regressions and local thirty-point control do
+not establish the global contradiction.
 
 The profile-0034 common obstruction is now proved and independently audited in
 `ExactFiveProfile0034CommonObstruction.lean`. Its coordinate-free theorem uses
@@ -1597,15 +1617,15 @@ and the current source packet does not yet supply the named-point selection
 and role order. The theorem's `U` can be the blocker center, so it does not
 retain the diagnostic blocker/surplus-apex alias. Even so, this geometric
 theorem does not change the open status of
-either fresh-source contract.
+the remaining physical fresh-source contract.
 
 The [three-fan source adapter](plans/2026-09-03-exactfive-three-fan-source-adapter.md),
 [opposed-turn adapter](plans/2026-09-03-exactfive-opposed-turn-source-adapter.md),
 and `ExactlyOneCrossAliasGeometry` lemmas supply conditional geometric
 consumers. Their injective convex-order enumerations, signed turns, and
 distance equalities still have to be produced from each applicable source
-case. They do not replace the full five-incidence obligation with a fixed
-solver profile.
+case. Their historical five-incidence applications do not supply a
+contradiction for the remaining physical source packet.
 
 The other current `Rigid221Closure.lean` terminals are the physical-apex
 source-distinct-from-`u` case, the nonphysical equal-distance collision,
@@ -1711,16 +1731,15 @@ use the namespace `TwoSourceExactCollisionRowsTerminal`.
 | `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_oppositeRowHeavy` | [Rigid221Placement:997](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean#L997) |
 | `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceEqU_blockerVRow_sparseRows` | [Rigid221Placement:1022](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Placement.lean#L1022) |
 
-**Rigid221Closure.lean** — 6 declarations.
+**Rigid221Closure.lean** — 5 declarations.
 
 | Current terminal declaration | Source |
 |---|---|
-| `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU` | [Rigid221Closure:63](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L63) |
-| `false_of_exactFourMutualOmissionRigid221_nonphysicalCollision` | [Rigid221Closure:402](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L402) |
-| `false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen` | [Rigid221Closure:1252](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L1252) |
-| `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` | [Rigid221Closure:1364](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L1364) |
-| `false_of_exactFiveDistinct_threeCenter_distinctFresh_physical` | [Rigid221Closure:1533](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L1533) |
-| `false_of_exactFiveDistinct_threeCenter_distinctFresh_fiveIncidence` | [Rigid221Closure:1558](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L1558) |
+| `false_of_exactFourMutualOmissionRigid221_physicalApex_sourceNeU` | [Rigid221Closure:64](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L64) |
+| `false_of_exactFourMutualOmissionRigid221_nonphysicalCollision` | [Rigid221Closure:403](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L403) |
+| `false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen` | [Rigid221Closure:1253](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L1253) |
+| `false_of_exactFourPhysicalConsumerSwappedUniqueFourOutcome` | [Rigid221Closure:1365](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L1365) |
+| `false_of_exactFiveDistinct_threeCenter_distinctFresh_physical` | [Rigid221Closure:1534](../lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean#L1534) |
 
 **TriApexEndpointRetainedOmission.lean** — 2 declarations.
 
@@ -1852,8 +1871,10 @@ matrix aggregates declarations by obligation family.
 | Larger-cardinality two-radius contradiction | CONJECTURED | Open | §11.4 and the exact source row in §11.8 |
 | Exact-thirteen fixed-cell K4 exclusions | PROVEN (Lean-formalized, fixed cells only) | Done for their explicit inputs; source coverage pending | §11.4; these are not the general-carrier terminal |
 | Common-center exact-five adaptive reselection | PROVEN (conditional source reduction) | Reduced to exact-four or distinct-center consumers | §11.5; it still inherits their unresolved conclusions |
+| Recovered exact-five scalar and double-deletion helpers | PROVEN (Lean-formalized at the audited signatures, core axioms) | Reference checks and production helper/coordinator builds done; fresh kernel mine pending | §11.5; [handoff audit](skeptic-exactfive-physical-handoff-2026-09-05.md) and source commit `bce36a53c` |
+| Exact-five source radius drop and uniform return-path barrier | CONJECTURED at the assembled source interface | Open | [Execution plan](plans/2026-09-05-exactfive-physical-uniform-closure-plan.md); conditional scalar/graph reductions alone do not close the physical terminal |
 | Exact-five distinct-center exact-twelve tight physical cover, with the eleven-point union, erase identity, retained-source omission, and retained packet | PROVEN (Lean-formalized under approved native trust) | Done for the full tight-cover contract | §11.5; `false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical` and `Balanced555FiniteUnsat` |
-| Exact-five distinct-center fresh-source contradictions | CONJECTURED | Open | §11.5; both exact declarations in §11.8 |
+| Exact-five distinct-center physical fresh-source contradiction | CONJECTURED | Open | §11.5; the remaining exact-five declaration in §11.8 |
 | TriApex cardinality split and exact-fifteen controls | PROVEN (pen-and-paper cap counting; implemented source reductions) | Done as reductions | §11.6; both terminal conclusions remain open |
 | All other source-heavy, placement, closure, TwoSource, and two-deletion terminals | CONJECTURED | Open individually | Every corresponding declaration in §11.8 |
 | N8–N9: `GlobalNonM44Contradiction` | CONJECTURED | Open | §10; requires the remaining terminal proofs or a proof under the same hypotheses |

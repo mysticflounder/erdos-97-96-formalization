@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-physical-uniform-execution-20260905",
+  "owner": "CapDropAudit",
+  "base_head": "757d852766f377f7c1a0ffeeef6d3526bc0cb7a4",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-physical-uniform-execution-20260905.json",
+    "docs/computational-closure-plan-2026-07-28.md",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "docs/plans/2026-09-01-rigid221-exactfive-distinct-three-center.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-05T21:28:35Z",
+  "manifest_sha256": "1df601fdd372f59c4814ffd10a206f9328ed520b8859bdc6a3e1e8d00d401358"
+}
