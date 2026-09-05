@@ -1526,6 +1526,133 @@ theorem RobustApexFourIncidenceContinuationPacket.blockerCollision_source_mem_bl
   exact ⟨hsourceBlockerClass_support ▸ hsourceMem,
     hsourceBlockerClass_support.symm.trans hsupportEq⟩
 
+/-- Under the two positive shared-source incidences, the blocker row and the
+second-apex row meet in exactly the first apex and the retained source. -/
+theorem RobustApexFourIncidenceContinuationPacket.blockerClass_inter_secondApexClass_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hOK1 : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK2 : S.oppApex1 ∈ P.surface.row₂.support) :
+    N.blockerClass.support ∩ N.secondApexClass.support =
+      {S.oppApex1, N.retained} := by
+  have hOBlocker : S.oppApex1 ∈ N.blockerClass.support := by
+    rw [← P.row₁_support_eq]
+    exact hOK1
+  have hOSecond : S.oppApex1 ∈ N.secondApexClass.support := by
+    rw [← P.row₂_support_eq]
+    exact hOK2
+  have haBlocker : N.retained ∈ N.blockerClass.support := by
+    rw [← P.row₁_support_eq]
+    exact P.a_mem_row₁
+  have haSecond : N.retained ∈ N.secondApexClass.support := by
+    rw [← P.row₂_support_eq]
+    exact P.a_mem_row₂
+  have hOa : S.oppApex1 ≠ N.retained := by
+    intro h
+    exact P.surface.row₀.center_not_mem (by
+      simpa only [h] using P.surface.a_mem_row₀)
+  have hpairSubset :
+      ({S.oppApex1, N.retained} : Finset ℝ²) ⊆
+        N.blockerClass.support ∩ N.secondApexClass.support := by
+    intro point hpoint
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hpoint
+    rcases hpoint with rfl | rfl
+    · exact Finset.mem_inter.mpr ⟨hOBlocker, hOSecond⟩
+    · exact Finset.mem_inter.mpr ⟨haBlocker, haSecond⟩
+  have hinterCard :
+      (N.blockerClass.support ∩ N.secondApexClass.support).card ≤ 2 := by
+    rw [N.blockerClass_support_eq, N.secondApexClass_support_eq]
+    exact C.overlap_le_two
+  exact (Finset.eq_of_subset_of_card_le hpairSubset (by
+    simpa [hOa] using hinterCard)).symm
+
+/-- A third source in the known first-apex blocker fiber occupies one of the
+two unnamed blocker-row slots and is omitted from the second-apex row. -/
+theorem RobustApexFourIncidenceContinuationPacket.knownBlocker_thirdSource_twoSlot_and_omission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hcollision : H.centerAt S.oppApex1 P.surface.O_mem_A = blocker)
+    (hOK1 : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK2 : S.oppApex1 ∈ P.surface.row₂.support)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hsourceNeFirst : source ≠
+      (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+        CriticalShellSystem.CarrierVertex D.A))
+    (hsourceNeRetained : source ≠
+      (⟨N.retained, N.retained_mem_A⟩ :
+        CriticalShellSystem.CarrierVertex D.A))
+    (hsourceFiber : H.blockerVertex source =
+      H.blockerVertex
+        (⟨S.oppApex1, P.surface.O_mem_A⟩ :
+          CriticalShellSystem.CarrierVertex D.A)) :
+    ∃ s t : ℝ²,
+      N.blockerClass.support = {S.oppApex1, N.retained, s, t} ∧
+      s ≠ t ∧
+      s ∉ ({S.oppApex1, N.retained} : Finset ℝ²) ∧
+      t ∉ ({S.oppApex1, N.retained} : Finset ℝ²) ∧
+      (source.1 = s ∨ source.1 = t) ∧
+      source.1 ∉ N.secondApexClass.support := by
+  have hOBlocker : S.oppApex1 ∈ N.blockerClass.support := by
+    rw [← P.row₁_support_eq]
+    exact hOK1
+  have haBlocker : N.retained ∈ N.blockerClass.support := by
+    rw [← P.row₁_support_eq]
+    exact P.a_mem_row₁
+  have hOa : S.oppApex1 ≠ N.retained := by
+    intro h
+    exact P.surface.row₀.center_not_mem (by
+      simpa only [h] using P.surface.a_mem_row₀)
+  rcases exists_residual_pair_of_card_eq_four
+      N.blockerClass.support N.blockerClass.support_card
+        hOBlocker haBlocker hOa with
+    ⟨s, t, hsupport, hst, hsFresh, htFresh⟩
+  have hsourceRow :=
+    (P.blockerCollision_source_mem_blockerClass_and_shell_eq
+      N hcollision source hsourceFiber).1
+  have hsourceNeO : source.1 ≠ S.oppApex1 := by
+    intro h
+    apply hsourceNeFirst
+    apply Subtype.ext
+    exact h
+  have hsourceNeA : source.1 ≠ N.retained := by
+    intro h
+    apply hsourceNeRetained
+    apply Subtype.ext
+    exact h
+  have hslot : source.1 = s ∨ source.1 = t := by
+    rw [hsupport] at hsourceRow
+    simpa only [Finset.mem_insert, Finset.mem_singleton, hsourceNeO,
+      hsourceNeA, false_or] using hsourceRow
+  have hsourceOmitted : source.1 ∉ N.secondApexClass.support := by
+    intro hsourceSecond
+    have hsourceInter :
+        source.1 ∈ N.blockerClass.support ∩ N.secondApexClass.support :=
+      Finset.mem_inter.mpr ⟨hsourceRow, hsourceSecond⟩
+    rw [P.blockerClass_inter_secondApexClass_eq N hOK1 hOK2] at hsourceInter
+    simp only [Finset.mem_insert, Finset.mem_singleton, hsourceNeO,
+      hsourceNeA, false_or] at hsourceInter
+  exact ⟨s, t, hsupport, hst, hsFresh, htFresh, hslot, hsourceOmitted⟩
+
 /-- A third source in the known blocker fiber either exhausts the four-point
 blocker row with that fiber, or leaves a row source whose actual blocker is
 different. -/

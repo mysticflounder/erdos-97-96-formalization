@@ -156,6 +156,29 @@ source in that row has an actual blocker different from the `O,a` blocker.
 This creates a row-local escape source, but still does not place it in a
 specific boundary sector.
 
+A second bounded reuse preflight targeted the concrete intersection candidate
+`blockerClass ∩ secondApexClass = {O,a}`.  The project Lean corpus (indexed at
+`2bb06af72`) contained the general overlap bound but no theorem with this exact
+normal-form conclusion.  The new
+`blockerClass_inter_secondApexClass_eq` proves it directly from
+`C.overlap_le_two` and the two positive shared-source incidences.  Its immediate
+consumer, `knownBlocker_thirdSource_twoSlot_and_omission`, combines that exact
+intersection with the four-point blocker support: a third source in the known
+`O,a` blocker fiber is one of precisely two unnamed blocker-row slots and is
+absent from the second-apex row.  The first missing antecedent remains a cyclic
+placement for either slot; the result does not infer one from row membership.
+
+Pro consult `01M1SAXGH3PEB66AT5FCSGDDCN` and an independent read-only audit
+both rejected blocker counting as a terminal route.  The consult also selected
+the already-landed
+`physicalSecondApex_or_largeInterior_of_fourthIncidence` as the strongest
+existing reduction for the fourth continuation constructor.  It leaves either
+a physical second-apex class omitting the retained and deleted sources or
+`5 ≤ S.oppInterior2.card`; neither alternative currently supplies the residual
+head placement required by the profile-0034 analytic consumers.  This theorem
+must use the original normal-form deletion packet, not the continuation's
+derived deletion packet.
+
 ## Swapped-order analytic theorem
 
 The reduced profile-0034 solver cell suggested the order `U,p,a,s,d,c,O`.
