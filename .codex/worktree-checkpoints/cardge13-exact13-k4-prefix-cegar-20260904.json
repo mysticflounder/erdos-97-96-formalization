@@ -8,7 +8,8 @@
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018/run_manifest.json",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0019/run_manifest.json",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0020/run_manifest.json",
-    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0021/run_manifest.json"
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0021/run_manifest.json",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0022/run_manifest.json"
   ],
   "generated_roots": [
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0001",
@@ -31,10 +32,11 @@
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0018",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0019",
     "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0020",
-    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0021"
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0021",
+    "scratch/runs/cardge13-exact13-k4-prefix-cegar-20260904/run-0022"
   ],
   "lane_id": "cardge13-exact13-k4-prefix-cegar-20260904",
-  "manifest_sha256": "ee924b896a5cc152a3a7faca2bcb237902387b188946b32688c5af41ab3a7d78",
+  "manifest_sha256": "5a2df2f3de597b39b90136b218e7fdc57d10b1f4adfe68b0f8301832a7991232",
   "owned_paths": [
     ".codex/worktree-checkpoints/cardge13-exact13-k4-prefix-cegar-20260904.json",
     "docs/audits/2026-09-04-cardge13-exact13-k4-prefix-cegar.md",
@@ -53,6 +55,7 @@
     "scripts/cardge13_exact13_kalmanson_cone_piqd.py",
     "scripts/cardge13_exact13_residual_domain_csp_piqd.py",
     "scripts/cardge13_literal_qfuf_to_dimacs.py",
+    "scripts/cardge13_literal_qfuf_to_dimacs_v2.py",
     "scripts/extract_lrat_verified_core.py",
     "scripts/test_cardge13_exact13_global_source_cell_boolean_path_cegar_piqd.py",
     "scripts/test_cardge13_exact13_global_source_cell_boolean_path_pair_cegar_piqd.py",
@@ -64,6 +67,7 @@
     "scripts/test_cardge13_exact13_global_source_cell_unsat_core_refine_piqd.py",
     "scripts/test_cardge13_exact13_k4_prefix_cegar_piqd.py",
     "scripts/test_cardge13_literal_qfuf_to_dimacs.py",
+    "scripts/test_cardge13_literal_qfuf_to_dimacs_v2.py",
     "scripts/test_extract_lrat_verified_core.py"
   ],
   "owner": "RadiusCartographer",

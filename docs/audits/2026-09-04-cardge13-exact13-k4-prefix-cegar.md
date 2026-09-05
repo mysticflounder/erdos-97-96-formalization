@@ -374,3 +374,51 @@ the reconstructed journal has SHA-256
 `d0fabc243217d5da30ae5db4b25aab2d0b6f9397866d544b1e1de7a1a5102022`.
 Registered run `run-0021` resumes the direct orientation cumulatively from all
 7912 prior cuts, again with no role or row pins.
+
+### Run `run-0020`: first unpinned mirror wave
+
+Run `run-0020` starts from the mirror cyclic order with no role pins, row pins,
+or inherited cuts.  It learned exactly 5000 cuts before reaching its configured
+refinement budget.  Its final solve remained `SAT` in the Boolean abstraction
+and exposed a `two-form-incidence-path` conflict.  The event and reconstructed
+journal SHA-256 values are
+`f74835278e70c2bfd2aa18dc77b02ee36442f332edd7740f931526bf53f19392`
+and
+`1fbbbf76322e7f5e2b388e6b5cc85e55d78a583dbe04f3695bed749d5badd138`.
+Registered run `run-0022` resumes those 5000 mirror cuts without adding pins.
+
+At the 2026-09-05 checkpoint, both cumulative continuations remain live:
+`run-0021` had completed at least 1241 `SAT` solves and `run-0022` at least 800.
+Neither has emitted a terminal event, so neither supports an UNSAT or source
+closure claim yet.
+
+### Versioned source-reconstructing DIMACS custody
+
+`cardge13_literal_qfuf_to_dimacs_v2.py` reconstructs the Boolean source prefix
+from the current generators, recursively authenticates every seed event and
+its own journal, regenerates every learned clause from its recorded conflict
+atoms, and emits one provenance record per DIMACS clause.  Historical
+`SAT_SURVIVOR` events are admitted as seed history only; the event selected for
+conversion must still end in a durable cut-free `UNSAT` solve.
+
+The real `run-0017` lineage, including the nested seed history through
+`run-0014`, passes this reconstruction.  The v2 output contains 286 variables
+and 51580 clauses: 26826 base combinatorial clauses, 21842 source Kalmanson
+nogoods, and 2912 learned Kalmanson nogoods.  Its comment-free DIMACS SHA-256
+is
+`f1f1c90640674de05372b8116248d6c23aad6fc496d784d35a846ae6796acf8f`,
+which matches the v1 clause sequence exactly.  The full v2 DIMACS SHA-256 is
+`9d2c72288ebf97f4bd6462a4711c028449095884568b5cd57317bb1f3fdbf944`;
+the 51580-row provenance stream SHA-256 is
+`eae2c135870238f04618d45d2bd385140a8bfb24984150155b1f71b99f126881`;
+and the domain hash recorded by the manifest is
+`fda2362399c31c09e6c158b35c5c5aabc4921c2a33c3b3073e5a4dd7fb9faeb7`.
+The manifest snapshot-binds all eight event and journal artifacts in the
+recursive `run-0014`--`run-0017` custody chain.  Reconstruction executes fresh
+module objects compiled from the same six source snapshots recorded in the
+manifest.  Fifteen focused tests and Ruff pass.  They cover terminal-journal
+path binding, nested seed semantics, recursive snapshot consistency, loaded
+generator replacement, and rollback before the atomic directory commit,
+including a concurrent empty-destination race.
+This strengthens byte and lineage custody.  The separate Lean theorem proving
+the source meaning of each retained clause is still required.
