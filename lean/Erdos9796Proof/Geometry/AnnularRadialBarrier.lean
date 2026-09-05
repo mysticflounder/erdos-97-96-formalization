@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 
 import Erdos9796Proof.Geometry.ConvexIndepHull
+import Erdos9796Proof.P97.ATail.TwoRadiusGridCoordinateGeometry
 
 /-!
 # Annular radial-barrier algebra
@@ -17,6 +18,7 @@ upper outer point.
 -/
 
 open scoped EuclideanGeometry
+open Problem97.ATailTwoRadiusGridCoordinateGeometry
 
 namespace Erdos9796Proof.Geometry
 
@@ -176,6 +178,41 @@ theorem false_of_zero_linear_image_of_nonnegative_combination
     · have hterm : 0 < β * L q₂ := mul_pos hβpos hLq₂
       nlinarith
   nlinarith [hp, hLp]
+
+/-- Equal distances from both ends of a directed base, together with strict
+opposite signed-area sides, force reflected scaled coordinates.  This is the
+strict-sign form of the coordinate bridge used when a boundary source gives
+side information but not an exact signed-area equality. -/
+theorem scaledCoordinates_reflect_of_biequidistant_of_opposite_signedArea_signs
+    {o a p q : Plane} (hoa : o ≠ a)
+    (hop : dist o p = dist o q) (hap : dist a p = dist a q)
+    (hpos : 0 < signedArea2 p o a)
+    (hneg : signedArea2 q o a < 0) :
+    scaledLongitudinalCoord o a p = scaledLongitudinalCoord o a q ∧
+      scaledTransverseCoord o a p = -scaledTransverseCoord o a q := by
+  have hlong := scaledLongitudinalCoord_eq_of_equidistant hop hap
+  have hnorm : ‖p - o‖ ^ 2 = ‖q - o‖ ^ 2 := by
+    have hdist := congrArg (fun t : ℝ ↦ t ^ 2) hop
+    simpa [dist_eq_norm, norm_sub_rev] using hdist
+  have hcoordP := scaledCoordinate_norm_sq o a p
+  have hcoordQ := scaledCoordinate_norm_sq o a q
+  have hnorm_mul : ‖a - o‖ ^ 2 * ‖p - o‖ ^ 2 =
+      ‖a - o‖ ^ 2 * ‖q - o‖ ^ 2 := by
+    exact congrArg (fun t : ℝ ↦ ‖a - o‖ ^ 2 * t) hnorm
+  have hbase : 0 < ‖a - o‖ ^ 2 :=
+    sq_pos_of_pos (norm_pos_iff.mpr (sub_ne_zero.mpr hoa.symm))
+  have hlong_sq := congrArg (fun t : ℝ ↦ t ^ 2) hlong
+  have htrans_sq :
+      scaledTransverseCoord o a p ^ 2 = scaledTransverseCoord o a q ^ 2 := by
+    nlinarith [hcoordP, hcoordQ, hnorm_mul, hlong_sq, hbase]
+  have htransP : 0 < scaledTransverseCoord o a p := by
+    rw [scaledTransverseCoord_eq_signedArea2_cyclic]
+    exact hpos
+  have htransQ : scaledTransverseCoord o a q < 0 := by
+    rw [scaledTransverseCoord_eq_signedArea2_cyclic]
+    exact hneg
+  refine ⟨hlong, ?_⟩
+  nlinarith [htrans_sq]
 
 /-- If a point on the zero level of a linear functional is forced into the
 nonnegative cone of two strict same-sign points, it must be one of the two
