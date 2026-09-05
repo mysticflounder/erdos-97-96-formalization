@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "mec-boundary-docstrings-20260905",
+  "owner": "luna-swarm-mec-boundary-docstrings",
+  "base_head": "ffe6f33cca86433bed2b4ae4f09fb4615f9a51ea",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/mec-boundary-docstrings-20260905.json",
+    "lean/Erdos9796Proof/P97/MEC/Boundary.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T03:56:34Z",
+  "manifest_sha256": "734e95bdfbe721194c2800b15f219f1c947dee627c8d286eafd486085bfdb05b"
+}

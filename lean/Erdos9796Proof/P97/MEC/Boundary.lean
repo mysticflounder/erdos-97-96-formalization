@@ -59,9 +59,12 @@ namespace MEC
 
 /- ### Boundary set of the MEC -/
 
+/-- The points of a nonempty finite set lying on its minimum enclosing circle. -/
 noncomputable def boundary (A : Finset ℝ²) (hA : A.Nonempty) : Finset ℝ² :=
   A.filter (fun p => dist p (mec A hA).center = (mec A hA).radius)
 
+/-- Membership in the MEC boundary is membership in `A` together with
+equality to the radius from the MEC centre. -/
 lemma mem_boundary_iff {A : Finset ℝ²} (hA : A.Nonempty) {p : ℝ²} :
     p ∈ boundary A hA ↔ p ∈ A ∧ dist p (mec A hA).center = (mec A hA).radius := by
   classical
@@ -92,7 +95,8 @@ private lemma mec_radius_eq_sup'
     (Finset.sup'_le_iff hA _).mpr (fun p hp => M.enclosing p hp)
   linarith
 
-/- For nonempty `A`, the MEC boundary set is nonempty (a point achieves the sup). -/
+/-- For a nonempty finite set, some point attains the MEC radius and hence
+lies on the boundary. -/
 lemma boundary_nonempty
     (A : Finset ℝ²) (hA : A.Nonempty) :
     (boundary A hA).Nonempty := by
@@ -118,7 +122,7 @@ private lemma not_singleton_of_noncollinear
   rw [this]
   exact collinear_singleton ℝ a
 
-/- Noncollinear ⇒ the MEC radius is positive. -/
+/-- A noncollinear finite set has a strictly positive minimum enclosing radius. -/
 lemma mec_radius_pos
     {A : Finset ℝ²} (hA : A.Nonempty)
     (hncol : ¬ Collinear ℝ (A : Set ℝ²)) :
