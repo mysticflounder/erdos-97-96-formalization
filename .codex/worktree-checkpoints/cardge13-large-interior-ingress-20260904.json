@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-large-interior-ingress-20260904",
+  "owner": "RadiusCartographer",
+  "base_head": "6313dc0fa6981c443b9dd7e0e85fbf7705129b9a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-large-interior-ingress-20260904.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenUncoveredStrictInterior.lean"
+  ],
+  "durable_paths": [
+    "docs/audits/2026-09-04-cardge13-large-interior-ingress.md"
+  ],
+  "generated_roots": [],
+  "created_utc": "2026-09-04T20:56:56Z",
+  "manifest_sha256": "823c351e98bfcb97f38c9f0d5b2b88beb9cce1c776ec675bb2e95d437c835337"
+}

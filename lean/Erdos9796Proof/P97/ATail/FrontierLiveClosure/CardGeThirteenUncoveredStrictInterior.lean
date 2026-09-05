@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CardGeThirteenTerminalSplitV2
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactThirteenBranchIngress
 
 /-!
 # Strict-interior normal form for the card-at-least-thirteen branch
@@ -28,6 +29,7 @@ open ATailCriticalPairFrontier
 open ATailDeletionRobustness
 open ATailExactFourRobustCapExpansion
 open ATailSevenGoodSourceDistinctBlockerCommonDeletion
+open DRExactThirteenValuation
 open ATailThreeCenterCommonDeletion
 open ATailUniqueArmRouteAuditScratch
 open ATailUniqueFourLateChoiceTerminalScratch
@@ -160,7 +162,91 @@ structure CardGeThirteenUncoveredStrictInteriorPacket
     (R : OriginalUniqueFourResidual F)
     (firstRow secondRow : SelectedFourClass D.A S.oppApex2) : Type where
   base : CardGeThirteenUncoveredThreeCenterPacket R firstRow secondRow
+  largeInterior :
+    5 ≤ ((firstRow.support ∩ S.oppInterior2) ∪
+      (secondRow.support ∩ S.oppInterior2)).card
+  firstSlice_card_ge_two :
+    2 ≤ (firstRow.support ∩ S.oppInterior2).card
+  secondSlice_card_ge_two :
+    2 ≤ (secondRow.support ∩ S.oppInterior2).card
+  firstRow_support_eq_selectedClass :
+    firstRow.support = SelectedClass D.A S.oppApex2 firstRow.radius
+  secondRow_support_eq_selectedClass :
+    secondRow.support = SelectedClass D.A S.oppApex2 secondRow.radius
+  row_radii_ne : firstRow.radius ≠ secondRow.radius
   z_mem_oppInterior2 : base.z ∈ S.oppInterior2
+
+/-- In an exact-thirteen ingress, the retained large-interior arm forces the
+second-opposite profile.  The two disjoint full rows then split its five
+strict-interior labels as `2+3`, up to swapping the named rows. -/
+theorem exactThirteen_secondOpposite_largeInterior_two_three
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : OriginalUniqueFourResidual F}
+    {firstRow secondRow : SelectedFourClass D.A S.oppApex2}
+    (P : ExactThirteenBranchIngress S)
+    (Q : CardGeThirteenUncoveredStrictInteriorPacket R firstRow secondRow)
+    (hdisjoint : Disjoint firstRow.support secondRow.support) :
+    P.profile = .secondOpposite ∧
+      (((firstRow.support ∩ S.oppInterior2).card = 2 ∧
+          (secondRow.support ∩ S.oppInterior2).card = 3) ∨
+        ((firstRow.support ∩ S.oppInterior2).card = 3 ∧
+          (secondRow.support ∩ S.oppInterior2).card = 2)) := by
+  classical
+  let U := (firstRow.support ∩ S.oppInterior2) ∪
+    (secondRow.support ∩ S.oppInterior2)
+  have hUsub : U ⊆ S.oppInterior2 := by
+    intro x hx
+    rcases Finset.mem_union.mp hx with hx | hx
+    · exact (Finset.mem_inter.mp hx).2
+    · exact (Finset.mem_inter.mp hx).2
+  have hUlarge : 5 ≤ U.card := by
+    simpa only [U] using Q.largeInterior
+  have hI2ge : 5 ≤ S.oppInterior2.card :=
+    hUlarge.trans (Finset.card_le_card hUsub)
+  have hprofile : P.profile = .secondOpposite := by
+    cases hp : P.profile with
+    | secondOpposite => rfl
+    | surplus =>
+        have hs := P.profile_spec
+        rw [hp] at hs
+        have hcard := hs.2.2
+        omega
+    | firstOpposite =>
+        have hs := P.profile_spec
+        rw [hp] at hs
+        have hcard := hs.2.2
+        omega
+  have hI2card : S.oppInterior2.card = 5 := by
+    have hs := P.profile_spec
+    rw [hprofile] at hs
+    exact hs.2.2
+  have hsliceDisjoint :
+      Disjoint (firstRow.support ∩ S.oppInterior2)
+        (secondRow.support ∩ S.oppInterior2) :=
+    hdisjoint.mono Finset.inter_subset_left Finset.inter_subset_left
+  have hsum :
+      (firstRow.support ∩ S.oppInterior2).card +
+          (secondRow.support ∩ S.oppInterior2).card = U.card := by
+    simpa only [U] using
+      (Finset.card_union_of_disjoint hsliceDisjoint).symm
+  have hUcard : U.card = 5 := by
+    have hUle := Finset.card_le_card hUsub
+    omega
+  have hfirstGe := Q.firstSlice_card_ge_two
+  have hsecondGe := Q.secondSlice_card_ge_two
+  have horient :
+      ((firstRow.support ∩ S.oppInterior2).card = 2 ∧
+          (secondRow.support ∩ S.oppInterior2).card = 3) ∨
+        ((firstRow.support ∩ S.oppInterior2).card = 3 ∧
+          (secondRow.support ∩ S.oppInterior2).card = 2) := by
+    by_cases hfirst : (firstRow.support ∩ S.oppInterior2).card = 2
+    · left
+      exact ⟨hfirst, by omega⟩
+    · right
+      constructor <;> omega
+  exact ⟨hprofile, horient⟩
 
 theorem nonempty_cardGeThirteenUncoveredStrictInteriorPacket_or_exactAdjacentCapGrid
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -187,6 +273,46 @@ theorem nonempty_cardGeThirteenUncoveredStrictInteriorPacket_or_exactAdjacentCap
         hfirstRadius hsecondRadius hdisjoint
   rcases hsplit with hlarge | hgrid
   · obtain ⟨W⟩ := exists_good_sources_distinctBlockers_commonDeletion R hcard
+    have hfirstFull :
+        firstRow.support =
+          SelectedClass D.A S.oppApex2 firstRow.radius :=
+      selectedFourClass_support_eq_selectedClass_of_card_lt_five firstRow
+        (hnoFive firstRow.radius firstRow.radius_pos)
+    have hsecondFull :
+        secondRow.support =
+          SelectedClass D.A S.oppApex2 secondRow.radius :=
+      selectedFourClass_support_eq_selectedClass_of_card_lt_five secondRow
+        (hnoFive secondRow.radius secondRow.radius_pos)
+    have hrowRadiiNe : firstRow.radius ≠ secondRow.radius := by
+      intro h
+      apply hradii
+      exact hsecondRadius.symm.trans (h.symm.trans hfirstRadius)
+    have hfirstClassCard :
+        (SelectedClass D.A S.oppApex2 firstRow.radius).card = 4 := by
+      rw [← hfirstFull]
+      exact firstRow.support_card
+    have hsecondClassCard :
+        (SelectedClass D.A S.oppApex2 secondRow.radius).card = 4 := by
+      rw [← hsecondFull]
+      exact secondRow.support_card
+    have hfirstSlice :
+        2 ≤ (firstRow.support ∩ S.oppInterior2).card := by
+      rw [hfirstFull]
+      simpa only [oppositeVertexByIndex_oppIndex2,
+        SurplusCapPacket.oppInterior2] using
+        (S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex2
+          firstRow.radius_pos (by
+            simpa only [oppositeVertexByIndex_oppIndex2] using
+              hfirstClassCard.symm.le))
+    have hsecondSlice :
+        2 ≤ (secondRow.support ∩ S.oppInterior2).card := by
+      rw [hsecondFull]
+      simpa only [oppositeVertexByIndex_oppIndex2,
+        SurplusCapPacket.oppInterior2] using
+        (S.selectedClass_capInteriorByIndex_card_ge_two D.convex S.oppIndex2
+          secondRow.radius_pos (by
+            simpa only [oppositeVertexByIndex_oppIndex2] using
+              hsecondClassCard.symm.le))
     let C₀ :=
       ((lateFirstApexSystem R).selectedAt W.source₁.1 W.source₁.2).toCriticalFourShell
     let C₁ :=
@@ -245,6 +371,22 @@ theorem nonempty_cardGeThirteenUncoveredStrictInteriorPacket_or_exactAdjacentCap
       simpa [C₁] using
         (lateFirstApexSystem R).selectedFourClass_support_eq_shell
           W.source₂.1 W.source₂.2 W.row₂
+    have hC₀first : (W.row₁.support ∩ firstRow.support).card ≤ 2 := by
+      rw [hrow₁, hfirstFull]
+      simpa [C₀] using
+        (actualLateRow_secondClass_card_le_two R surface W.source₁)
+    have hC₁first : (W.row₂.support ∩ firstRow.support).card ≤ 2 := by
+      rw [hrow₂, hfirstFull]
+      simpa [C₁] using
+        (actualLateRow_secondClass_card_le_two R surface W.source₂)
+    have hC₀second : (W.row₁.support ∩ secondRow.support).card ≤ 2 := by
+      rw [hrow₁, hsecondFull]
+      simpa [C₀] using
+        (actualLateRow_secondClass_card_le_two R surface W.source₁)
+    have hC₁second : (W.row₂.support ∩ secondRow.support).card ≤ 2 := by
+      rw [hrow₂, hsecondFull]
+      simpa [C₁] using
+        (actualLateRow_secondClass_card_le_two R surface W.source₂)
     have hzRow₁ : z ∉ W.row₁.support := by
       rw [hrow₁]
       exact hzC₀
@@ -276,7 +418,17 @@ theorem nonempty_cardGeThirteenUncoveredStrictInteriorPacket_or_exactAdjacentCap
           thirdRow_named := Or.inl ⟨hzFirst, rfl⟩
           thirdRow_survives := hthirdSurvives
           thirdRow_omits := hzSecondNot
+          row₁_firstRow_inter_card_le_two := hC₀first
+          row₂_firstRow_inter_card_le_two := hC₁first
+          row₁_secondRow_inter_card_le_two := hC₀second
+          row₂_secondRow_inter_card_le_two := hC₁second
           exactRows := hexactRows }
+        largeInterior := hlarge
+        firstSlice_card_ge_two := hfirstSlice
+        secondSlice_card_ge_two := hsecondSlice
+        firstRow_support_eq_selectedClass := hfirstFull
+        secondRow_support_eq_selectedClass := hsecondFull
+        row_radii_ne := hrowRadiiNe
         z_mem_oppInterior2 := by
           exact hzOpp }⟩
     · have hzFirstNot : z ∉ firstRow.support := by
@@ -300,7 +452,17 @@ theorem nonempty_cardGeThirteenUncoveredStrictInteriorPacket_or_exactAdjacentCap
           thirdRow_named := Or.inr ⟨hzSecond, rfl⟩
           thirdRow_survives := hthirdSurvives
           thirdRow_omits := hzFirstNot
+          row₁_firstRow_inter_card_le_two := hC₀first
+          row₂_firstRow_inter_card_le_two := hC₁first
+          row₁_secondRow_inter_card_le_two := hC₀second
+          row₂_secondRow_inter_card_le_two := hC₁second
           exactRows := hexactRows }
+        largeInterior := hlarge
+        firstSlice_card_ge_two := hfirstSlice
+        secondSlice_card_ge_two := hsecondSlice
+        firstRow_support_eq_selectedClass := hfirstFull
+        secondRow_support_eq_selectedClass := hsecondFull
+        row_radii_ne := hrowRadiiNe
         z_mem_oppInterior2 := by
           exact hzOpp }⟩
   · exact Or.inr hgrid
