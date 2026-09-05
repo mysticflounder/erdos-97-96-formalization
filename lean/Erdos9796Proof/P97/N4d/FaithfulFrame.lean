@@ -559,6 +559,9 @@ faithful-frame coordinate facts the v₂-anchor `bisectorKill` instantiations ne
 
 From these the v₂-anchor `bisectorKill` hypotheses-minus-`hXeq` follow by
 elementary coordinate algebra (the §4 reductions). -/
+/-- The faithful normalized coordinate data for the `v₂` anchor.  This frame
+bundles the similarity chart, MEC coordinates, circle memberships, disk bounds,
+and cap-sign hypotheses used by the `v₂`-anchor reductions. -/
 structure V2AnchorFrame {A : Finset ℝ²} (S : FiniteEndpointShell A)
     (Z : ZeroDefectCapLayout S) where
   /-- The similarity chart. -/
