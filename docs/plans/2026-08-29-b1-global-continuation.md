@@ -1073,6 +1073,29 @@ replayed model.  This remains formula-scoped, and several hashed producer and
 Lean dependencies are not yet commit-reachable, so the local artifact digests
 are not a publication or source-pinning result.
 
+The next checked-certificate candidate is the equal-weight three-form family.
+On the latest replayed cell-zero model, 1,065 nonzero projected vectors yield
+1,637 zero-sum vector triples; all admit six provider paths and atom-set
+deduplication leaves 648 Boolean cuts.  One triple repeats a form, so terms,
+edge occurrences, and pairing records must remain multiplicity-sensitive.
+Independent and Luna audits agree that one representative raw form per
+projected vector gives a sound cut, but only under a strict Lean compiler
+contract: transport raw labels through the live direct/mirror positional map;
+map the two Kalmanson arms correctly; reverse or swap each Python
+diagonal-to-side path because Lean pairs side edges to diagonal edges; insert
+explicit edge-flip steps after transport; preserve provider identities and
+all role/membership atoms; and require the emitted
+`ProviderWeightedKalmansonCancellationData.check` to evaluate to `true`.
+The governed batch artifact now exists at commit `e376c9010`, with 648 cuts
+and 407 novel cuts relative to the corrected prior bank; its file, canonical
+event, manifest, and source-event hashes have been independently checked, and
+the lane hygiene report has zero owned-path issues.  The provider modules and
+compiler surface remain unpromoted.  Luna lane `#15116` is producing a
+concrete `data.check = true` probe in a new certificate module.  Do not call
+this consumer-reachable until the concrete checked data, positive-row proof,
+import edge, build, and axiom audit reach the existing provider cancellation
+terminal.
+
 ### Card-at-least-thirteen global producer candidate
 
 `exists_good_sources_distinctBlockers_commonDeletion` is a genuine
