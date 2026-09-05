@@ -829,6 +829,190 @@ private theorem false_of_twoCapSources_of_blockers_off_firstCap
       haImageOff hbImageOff
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- A mutually incident first-fiber pair with distinct blockers has exactly
+one blocker center in the first cap.  The two forbidden alternatives are the
+same-cap bisector obstruction and the two-off-cap bisector obstruction above.
+This is the two-color edge lemma for the source graph; it makes no
+common-radius or constructor-closure assumption. -/
+theorem exists_mutualBlocker_firstCap_or_off
+    (source source' : CriticalShellSystem.CarrierVertex D.A)
+    (hsourcesNe : source.1 ≠ source'.1)
+    (hsource : FirstFiberCapSourceWitness P Pρ source)
+    (hsource' : FirstFiberCapSourceWitness P Pρ source')
+    (hmutual :
+      TwoCapSourcesMutualCrossMembership (H := H) source source')
+    (hblockersNe' : H.blockerVertex source ≠ H.blockerVertex source') :
+    (H.centerAt source.1 source.2 ∈ S.capByIndex S.oppIndex1 ∧
+        H.centerAt source'.1 source'.2 ∉ S.capByIndex S.oppIndex1) ∨
+      (H.centerAt source.1 source.2 ∉ S.capByIndex S.oppIndex1 ∧
+        H.centerAt source'.1 source'.2 ∈ S.capByIndex S.oppIndex1) := by
+  have hnotBoth :
+      ¬ (H.centerAt source.1 source.2 ∈ S.capByIndex S.oppIndex1 ∧
+        H.centerAt source'.1 source'.2 ∈ S.capByIndex S.oppIndex1) := by
+    intro h
+    exact false_of_mutualBlockerCenters_both_in_firstCap
+      (P := P) (Pρ := Pρ) source source' hsourcesNe
+      hsource hsource' hmutual hblockersNe' h.1 h.2
+  have hnotNeither :
+      ¬ (H.centerAt source.1 source.2 ∉ S.capByIndex S.oppIndex1 ∧
+        H.centerAt source'.1 source'.2 ∉ S.capByIndex S.oppIndex1) := by
+    intro h
+    exact false_of_twoCapSources_of_blockers_off_firstCap
+      source source' hsourcesNe
+      hsource.2.1 hsource'.2.1 hmutual hblockersNe' h.1 h.2
+  by_cases hfirst : H.centerAt source.1 source.2 ∈ S.capByIndex S.oppIndex1
+  · left
+    refine ⟨hfirst, ?_⟩
+    intro hsecond
+    exact hnotBoth ⟨hfirst, hsecond⟩
+  · right
+    refine ⟨hfirst, ?_⟩
+    by_contra hsecond
+    exact hnotNeither ⟨hfirst, hsecond⟩
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+private theorem false_of_three_firstCap_hits_in_selected_row
+    (center left right : CriticalShellSystem.CarrierVertex D.A)
+    (hcenterCap : center.1 ∈ S.capByIndex S.oppIndex1)
+    (hleftCap : left.1 ∈ S.capByIndex S.oppIndex1)
+    (hrightCap : right.1 ∈ S.capByIndex S.oppIndex1)
+    (hblockerCap :
+      H.centerAt center.1 center.2 ∈ S.capByIndex S.oppIndex1)
+    (hcenterLeft : center.1 ≠ left.1)
+    (hcenterRight : center.1 ≠ right.1)
+    (hleftRight : left.1 ≠ right.1)
+    (hleftMem :
+      left.1 ∈
+        (H.selectedAt center.1 center.2).toCriticalFourShell.support)
+    (hrightMem :
+      right.1 ∈
+        (H.selectedAt center.1 center.2).toCriticalFourShell.support) :
+    False := by
+  classical
+  have htriple :
+      ({center.1, left.1, right.1} : Finset ℝ²) ⊆
+        (H.selectedAt center.1 center.2).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 := by
+    intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
+    rcases hx with rfl | rfl | rfl
+    · exact Finset.mem_inter.mpr ⟨
+        (H.selectedAt center.1 center.2).toCriticalFourShell.q_mem_support,
+        hcenterCap⟩
+    · exact Finset.mem_inter.mpr ⟨hleftMem, hleftCap⟩
+    · exact Finset.mem_inter.mpr ⟨hrightMem, hrightCap⟩
+  have hthree :
+      3 ≤
+        ((H.selectedAt center.1 center.2).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1).card := by
+    have hle := Finset.card_le_card htriple
+    simpa [hcenterLeft, hcenterRight, hleftRight] using hle
+  have htwo :
+      ((H.selectedAt center.1 center.2).toCriticalFourShell.support ∩
+        S.capByIndex S.oppIndex1).card ≤ 2 := by
+    simpa using
+      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+        S D.convex S.oppIndex1
+        (H.selectedAt center.1 center.2).toSelectedFourClass
+        hblockerCap
+  omega
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
+  T hpairsDisjoint hblockersNe
+  LPρ hLPρ MPρ LP hLP MP in
+/-- Four distinct first-fiber cap sources cannot form a mutual path of
+length three when each adjacent pair has distinct blockers.  Every edge is
+forced across the first-cap/off-cap blocker coloring, so one of the two
+middle rows contains three distinct first-cap points, contradicting the
+two-hit bound for a selected four-class centered in that cap.
+
+This is deliberately a source-level graph obstruction.  It does not assert
+that any of the three FreshThird constructors is closed. -/
+theorem false_of_four_firstFiber_sources_mutual_path
+    (source : Fin 4 → CriticalShellSystem.CarrierVertex D.A)
+    (hsource : ∀ i, FirstFiberCapSourceWitness P Pρ (source i))
+    (hsource_injective : Function.Injective (fun i => (source i).1))
+    (hmutual01 :
+      TwoCapSourcesMutualCrossMembership (H := H) (source 0) (source 1))
+    (hmutual12 :
+      TwoCapSourcesMutualCrossMembership (H := H) (source 1) (source 2))
+    (hmutual23 :
+      TwoCapSourcesMutualCrossMembership (H := H) (source 2) (source 3))
+    (hblockersNe01 :
+      H.blockerVertex (source 0) ≠ H.blockerVertex (source 1))
+    (hblockersNe12 :
+      H.blockerVertex (source 1) ≠ H.blockerVertex (source 2))
+    (hblockersNe23 :
+      H.blockerVertex (source 2) ≠ H.blockerVertex (source 3)) :
+    False := by
+  have hsource0 := hsource 0
+  have hsource1 := hsource 1
+  have hsource2 := hsource 2
+  have hsource3 := hsource 3
+  have h01 : (source 0).1 ≠ (source 1).1 := by
+    intro h
+    have hbad : (0 : Fin 4) = 1 := hsource_injective h
+    omega
+  have h02 : (source 0).1 ≠ (source 2).1 := by
+    intro h
+    have hbad : (0 : Fin 4) = 2 := hsource_injective h
+    omega
+  have h12 : (source 1).1 ≠ (source 2).1 := by
+    intro h
+    have hbad : (1 : Fin 4) = 2 := hsource_injective h
+    omega
+  have h13 : (source 1).1 ≠ (source 3).1 := by
+    intro h
+    have hbad : (1 : Fin 4) = 3 := hsource_injective h
+    omega
+  have h23 : (source 2).1 ≠ (source 3).1 := by
+    intro h
+    have hbad : (2 : Fin 4) = 3 := hsource_injective h
+    omega
+  have hsource0Cap :
+      (source 0).1 ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsource0.2.1
+  have hsource1Cap :
+      (source 1).1 ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsource1.2.1
+  have hsource2Cap :
+      (source 2).1 ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsource2.2.1
+  have hsource3Cap :
+      (source 3).1 ∈ S.capByIndex S.oppIndex1 :=
+    S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hsource3.2.1
+  have hxor01 := exists_mutualBlocker_firstCap_or_off
+    (P := P) (Pρ := Pρ) (source 0) (source 1) h01
+    hsource0 hsource1 hmutual01 hblockersNe01
+  have hxor12 := exists_mutualBlocker_firstCap_or_off
+    (P := P) (Pρ := Pρ) (source 1) (source 2) h12
+    hsource1 hsource2 hmutual12 hblockersNe12
+  have hxor23 := exists_mutualBlocker_firstCap_or_off
+    (P := P) (Pρ := Pρ) (source 2) (source 3) h23
+    hsource2 hsource3 hmutual23 hblockersNe23
+  rcases hxor01 with ⟨h0First, h1Off⟩ | ⟨h0Off, h1First⟩
+  · rcases hxor12 with ⟨h1First', h2Off⟩ | ⟨h1Off', h2First⟩
+    · exact (h1Off h1First').elim
+    · rcases hxor23 with ⟨h2First', h3Off⟩ | ⟨h2Off', h3First⟩
+      · exact false_of_three_firstCap_hits_in_selected_row
+          (source 2) (source 1) (source 3)
+          hsource2Cap hsource1Cap hsource3Cap
+          h2First (Ne.symm h12) h23 h13 hmutual12.2 hmutual23.1
+      · exact (h2Off' h2First).elim
+  · rcases hxor12 with ⟨h1First', h2Off⟩ | ⟨h1Off', h2First⟩
+    · rcases hxor23 with ⟨h2First', h3Off⟩ | ⟨h2Off', h3First⟩
+      · exact (h2Off h2First').elim
+      · exact false_of_three_firstCap_hits_in_selected_row
+          (source 1) (source 0) (source 2)
+          hsource1Cap hsource0Cap hsource2Cap
+          h1First (Ne.symm h01) h12 h02 hmutual01.2 hmutual12.1
+    · exact (h1Off' h1First).elim
+
+omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
 /-- Complementary choices from the first collision pair are impossible for
