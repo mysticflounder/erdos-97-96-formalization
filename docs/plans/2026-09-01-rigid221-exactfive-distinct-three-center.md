@@ -378,3 +378,21 @@ The next strict reduction is therefore finite and source-level: construct a
 point-selection/order split that reaches this boundary placement or names its
 complementary placements. Do not wire the broad admitted endpoint to the new
 adapter until those complementary cases have checked consumers.
+
+## Profile-0034 seven-order coverage postrun (2026-09-04)
+
+The successor PIQD coverage run completed and passed independent postrun
+replay for all 212 unresolved parent profiles. Results were 181 `SAT/SAT`, 21
+`SAT/UNKNOWN`, and 10 `UNSAT/UNSAT`; both controls returned their required
+`SAT/SAT` and `UNSAT/UNSAT` verdicts. All 202 parent SAT profiles survive
+avoidance of every admissible direct or reversed seven-role cycle, including
+the profile-0034 cell.
+
+The two profile-0034 witness orders are recorded in the postrun audit and
+summary. The completed-wave mine found no new universal theorem; the only
+universal rank fact is that `U` has rank zero. Row-pair extraction is already
+present at commit `6964ca328`.
+
+The next bounded computation is a source-faithful planar QF_NRA canary for
+those two fixed profile-0034 orders. Run it before Lean alias exhaustiveness;
+this computation remains diagnostic and does not assert source closure.

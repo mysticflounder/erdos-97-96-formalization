@@ -1,0 +1,56 @@
+{
+  "schema": "p97-exactfive-profile0034-seven-order-coverage-postrun-summary/v1",
+  "lane_id": "exactfive-profile0034-seven-order-coverage-postrun-20260904",
+  "source_lane_id": "exactfive-profile0034-seven-order-coverage-piqd-r2-20260904",
+  "run_id": "run-0001",
+  "source_run_id": "run-0001",
+  "custody": {
+    "run_manifest_sha256": "d665a82dd12ae7be8d3ace2f2d1d524efac8d3eae0e43baf0d73edb31a6580cc",
+    "launch_sha256": "b46743497e22c1f982673c6c6fc541b39603d12d4d733f069e02d59d40f3dcd2",
+    "terminal_sha256": "c764c8db500b48262bd1aa1a109d9194f5c6599cc5b261af73c9bdf44d96ee81",
+    "independent_postrun_audit_passed": true,
+    "source_manifests": 214,
+    "snapshots": 856,
+    "custody_artifacts": 4665
+  },
+  "transport": {
+    "daemon": "piqd",
+    "workers_max": 20,
+    "wall_seconds": 297,
+    "solver_sessions": 428,
+    "sat_semantic_replays": 385,
+    "coverage_atom_replays": 383
+  },
+  "controls": {
+    "positive": "SAT/SAT",
+    "negative": "UNSAT/UNSAT"
+  },
+  "disposition_counts": {
+    "SAT_SAT": 181,
+    "SAT_UNKNOWN": 21,
+    "UNSAT_UNSAT": 10,
+    "selected_profiles": 212,
+    "parent_sat_profiles_surviving": 202
+  },
+  "profile_0034": {
+    "status": "SAT/SAT",
+    "z3_order": "U=c1<p<a<s<d<c2<q=e<O<y<x<v<t<u",
+    "cvc5_order": "U=c1<s<y<p<t<u<x<v<O<q=e<c2<d<a"
+  },
+  "interpretation": {
+    "avoidance_scope": "all admissible direct and reversed seven-role cycles",
+    "universal_rank_fact": "U has rank 0",
+    "new_universal_theorem": false,
+    "false_claims_remain_false": true,
+    "conclusion": "order/equality abstraction cannot force the target chain",
+    "next_step": "fixed-order source-faithful planar QF_NRA canaries for the two profile-0034 witness orders"
+  },
+  "claims": {
+    "lean_source_exhaustiveness": false,
+    "euclidean_realization": false,
+    "theorem": false,
+    "promotion": false,
+    "closure": false
+  },
+  "summary_sha256": "b7af63e5636d1fde1cf0bd03214ca154befc7da3ff321b5d4220ed53bff4ebcf"
+}
