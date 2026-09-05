@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-physical-assertion-deletion-postrun-20260904",
+  "owner": "codex-rigid221",
+  "base_head": "5af46ccec3dffe31625314fdcdd2ab89790a9faa",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-hard-source-swap-profile0034-physical-assertion-deletion-postrun-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-physical-assertion-deletion-postrun.md",
+    "docs/computation/exactfive-profile0034-physical-assertion-deletion-20260904/run-0002-summary.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T00:26:05Z",
+  "manifest_sha256": "fbeba27eb8c9644cfd6fd6e5105f3fa1ab9f86fbec4b9951ac95525e92b2e2cf"
+}

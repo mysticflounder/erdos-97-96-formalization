@@ -1,0 +1,94 @@
+{
+  "schema": "p97-exactfive-profile0034-physical-assertion-deletion-summary/v1",
+  "lane_id": "exactfive-hard-source-swap-profile0034-physical-assertion-deletion-piqd-20260904",
+  "run_id": "run-0002",
+  "execution_commit": "83b727c80ff23613bb8f4a8b1d631fb42c256a37",
+  "custody": {
+    "run_manifest_file_sha256": "8c0e33dd28329afd77f03e83d6f87b7924f50c36ace7e2f080b0194b0f5e45f2",
+    "run_manifest_self_sha256": "d68a28fdf0b855468cbe1b6f341fe73dd9c1942704266ec7d24efc3aba911af8",
+    "launch_file_sha256": "0c28869bc9f955c7ce5431c34ba64e2cf42cd23a86aacb5ae699eb80f689fa78",
+    "launch_self_sha256": "c2c14ad458877e969ef77262eccb64f32f91bf380fcecfce0d03de4c3c311bd0",
+    "terminal_file_sha256": "12b15cec55f762836d232fc80ce5a78c7623241c6cf715bfd7eceb8a719e495a",
+    "terminal_self_sha256": "08ebeb6c76dc839b15e56a933983e1899018fdb7a9db8e9df5b502ddbd4c829e",
+    "parent_custody_sha256": "e3522445f23af04596cbeebfd0e401bb7c567a8bf4c9cf45fa0ff475e431e1e6",
+    "independent_postrun_audit_passed": true,
+    "offline_query_records_verified": 162
+  },
+  "transport": {
+    "daemon": "piqd",
+    "solver": "z3",
+    "request_timeout_ms": 60000,
+    "selected_effective_deadline_ms": 90000,
+    "worker_limit": 20,
+    "query_count": 162,
+    "target_query_count": 160,
+    "solves_per_session": 1
+  },
+  "disposition_counts": {
+    "SAT_REPLAYED": 28,
+    "SAT_REPLAY_UNRESOLVED": 113,
+    "UNSAT_CUSTODY_VALID": 21
+  },
+  "final_system": {
+    "initial_assertion_count": 48,
+    "retained_assertion_count": 11,
+    "removed_assertion_count": 37,
+    "retained_set_sha256": "87f6c556381ee2ed6ebb8699c2bd658a5bb8d20dc7184442c137da6c152059c5",
+    "retained_assertion_ids": [
+      "assertion-000",
+      "assertion-001",
+      "assertion-003",
+      "assertion-012",
+      "assertion-024",
+      "assertion-025",
+      "assertion-033",
+      "assertion-044",
+      "assertion-045",
+      "assertion-046",
+      "assertion-047"
+    ],
+    "retained_role_map": {
+      "assertion-000": "turn(U,p,s)>0",
+      "assertion-001": "turn(U,p,a)>0",
+      "assertion-003": "turn(U,p,c2)>0",
+      "assertion-012": "turn(p,s,a)>0",
+      "assertion-024": "turn(s,a,d)>0",
+      "assertion-025": "turn(a,d,c2)>0",
+      "assertion-033": "turn(U,d,c2)>0",
+      "assertion-044": "dist(O,a)=dist(O,d)",
+      "assertion-045": "dist(O,a)=dist(O,p)",
+      "assertion-046": "dist(U,O)=dist(U,s)",
+      "assertion-047": "dist(c2,O)=dist(c2,a)"
+    }
+  },
+  "selected_result": {
+    "key": "z3-r031-c321b8ebbbeb30c7-drop-263fda838a069986",
+    "raw_status": "UNSAT",
+    "disposition": "UNSAT_CUSTODY_VALID",
+    "session_id": "3ec827ac-e3ee-4410-9c6d-72809c6517b0",
+    "solve_ms": 14029,
+    "result_sha256": "1e046ac0ffb35d13b2021cde26164544a8416062e9efcf93b5d74e0aa2e99408"
+  },
+  "interpretation": {
+    "stop_reason": "QUERY_CAP",
+    "deletion_stable": false,
+    "singleton_removals_tested": [
+      "assertion-000",
+      "assertion-001",
+      "assertion-003"
+    ],
+    "core_minimality": false,
+    "new_theorem_candidate": "seven retained turns and four retained metric equations are inconsistent",
+    "lean_formalization_module": "Erdos9796Proof.P97.Census554.ExactFiveProfile0034CommonObstruction"
+  },
+  "claims": {
+    "all_profile_execution": false,
+    "core_minimality": false,
+    "lean_ingress": false,
+    "live_closure": false,
+    "live_source_completeness": false,
+    "promotion": false,
+    "source_realization": false,
+    "theorem": false
+  }
+}
