@@ -1563,3 +1563,66 @@ Canonical producer consult `01M1SBN796N5WN0D8WMEZ47H4M`, now leased, asks
 whether the full global context and cap/extremal provenance can produce either
 that card arc or the minimal nonnegative signed-area packet, and otherwise asks
 for the exact upstream field that must be retained.
+
+### 2026-09-05 exhaustive canonical refinement
+
+Consult `01M1SBN796N5WN0D8WMEZ47H4M` completed with a stronger producer
+boundary.  The present canonical alternative is not exclusive of escape:
+`b1_escapeSourceContext_or_goodCanonicalDeletion` chooses one eligible source,
+so it may return a canonical source even when another eligible noncanonical
+source exists.  The next checked split should instead be exhaustive.  In the
+no-escape arm it must retain both the canonical endpoint residual and the fact
+that every physical, strict-second-cap, outside-first-fiber source whose actual
+blocker survives either retained first-apex deletion is one of the two
+canonical deleted sources.
+
+This exhaustion statement follows directly by classical case split.  In the
+negative arm, any eligible noncanonical source would feed
+`b1EscapeSourceContext_of_normalForm_sourceData` and contradict the assumed
+absence of an escape context.  The source-clean theorem
+`b1_escape_or_canonicalExhaustion` landed in commit `ed0802747`; its module does
+not import `TwoDeletionCollision`.
+
+The exhaustion field has a concrete geometric consequence.  Every
+noncanonical physical source that is strict in the second cap and outside the
+first-apex fiber must fail both retained deletions at its actual blocker.
+The existing exact geometry in `ExactFourRobustCapExpansion` then bounds these
+sources by one.  The theorem
+`b1_noncanonical_strictSecondCap_outsideFirstApexFiber_card_le_one` landed in
+commit `0a51fea44`; it reuses `interiorPairBadOutsideSources` and
+`interiorPairBad_secondClassInterior_card_le_one`, including the required
+convex-independence hypothesis through the original theorem.  The remaining
+lower-bound obligation is therefore to produce two distinct members of this
+exact filtered set.
+
+The pair-rebase audit also produced the source-clean theorem
+`b1_noncanonicalJointDeletion_blocker_escapes_original_pair` in commit
+`0c6632bbb`: a fresh noncanonical joint deletion cannot have both of its
+blockers drawn from the old live-row blocker pair.
+
+For the card-six branch, an isolated Lean audit now closes the no-escape
+subcase in which one canonical deleted point lies in the strict second-cap
+interior and the other lies in either adjacent cap.  A six-point physical
+class supplies at least four strict-second-cap points; at most one lies in the
+first-apex marginal class, and adjacent-cap disjointness leaves at most one
+canonical deletion in that interior.  The project theorem
+`exists_two_mem_not_mem_pair_of_card_gt` therefore supplies two distinct
+noncanonical outside-first-fiber sources, contradicting the new cardinality
+bound.  This candidate compiled in an isolated module.  It is not yet counted
+as on-spine progress: the next step is to connect its placement hypothesis to
+an exhaustive constructor of the canonical endpoint residual and record the
+remaining placement branch.
+
+Outside that card-six adjacent-placement subcase, the current residual still
+does not supply two distinct strict-second-cap/outside-first sources.  The
+remaining endpoint-placement constructor must be stated explicitly before the
+card-six contradiction is wired into `false_of_b1PhysicalClassFiveSixNormalForm`.
+
+The consult also supplied a checked twenty-point rational projection with
+strict convexity, the required cap counts, a six-point physical class,
+canonical endpoint order, and a strict-cap omitted peer, while all three
+displayed live-pair signed-area products are negative.  It deliberately omits
+the exact four-point critical supports, global K4 condition, deletion
+robustness, first-apex residual, minimality, and no-M44 hypotheses.  Its valid
+scope is therefore only to rule out a cap/endpoint/two-point-trace sign
+inference; it is not a model of the full B1 packet or of `CounterexampleData`.
