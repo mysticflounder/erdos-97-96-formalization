@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-escape-fresh-role-20260905",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "48dab4e47f8b7e38a1ec84d3fc21ad749746ffd6",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-escape-fresh-role-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/TwoDeletionCollision.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T17:13:00Z",
+  "manifest_sha256": "84aa0d2fe44bac9eb09d8c0e9fbe470093a46aae7c4597047364f61bfb712685"
+}

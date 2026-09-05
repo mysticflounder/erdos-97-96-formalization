@@ -100,7 +100,26 @@ This is the first checked use of the strict fresh source beyond support
 freshness.  It applies to the fourth incidence constructor, where both
 `O ∈ row₁` and `O ∈ row₂` are available.  No existing import-acyclic terminal
 consumes either resulting packet, so this is a source synchronization step,
-not closure of the admitted target.
+not closure of the open target.
+
+The first-apex-source arm can be normalized further.  Let `f` be the actual
+blocker of `O`.  If `f` is the old blocker, the result is a named actual-blocker
+collision.  Otherwise the same saturated-pair argument forces the critical
+row at `f` to omit `a`, so deletion of `a` survives at `f`.  The second-apex
+robustness packages this as a retained-source common-deletion packet.  The
+complete normalized output is therefore
+
+```text
+actualBlocker(O) = actualBlocker(a)
+or
+there is Z distinct from the old blocker and second apex such that
+deleting a survives at both Z and the second apex.
+```
+
+Both arms are source-clean and import-acyclic.  Neither has a current terminal:
+the collision uses the two carrier centers permitted by the perpendicular-
+bisector bound, while the external retained-source packet lacks the original
+pair-source blocker orientation required by the downstream exact-five closer.
 
 ## Swapped-order analytic theorem
 
@@ -157,7 +176,7 @@ lake env lean Erdos9796Proof/P97/ATail/FrontierLiveClosure/BoundaryIndexingCycli
 lake env lean Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProfile0034SourceAdapter.lean
 ```
 
-All three files contain no `sorry` or `admit`.  The authenticated run-0004
+All three files contain no proof placeholders.  The authenticated run-0004
 UNSAT result remains discovery evidence only and is not used by these proofs.
 
 Exact coordinate realizations and cap-compatible cyclic counterorders show

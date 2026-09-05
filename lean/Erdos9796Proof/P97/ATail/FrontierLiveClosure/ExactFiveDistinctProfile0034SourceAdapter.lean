@@ -1253,6 +1253,107 @@ theorem RobustApexFourIncidenceContinuationPacket.freshBlocker_commonDeletion_fi
           hretainedSurvives
           (N.secondApex_robust.survives N.retained N.retained_mem_A)
 
+/-- The first-apex deletion arm can itself be redirected to the retained
+source unless the first apex and retained source have the same actual blocker.
+Thus the fresh-source split leaves only a blocker collision or a retained-source
+common-deletion packet at a center distinct from both old centers. -/
+theorem RobustApexFourIncidenceContinuationPacket.firstApexBlocker_eq_blocker_or_externalRetainedCommonDeletion
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F}
+    {deleted blocker fresh : ℝ²}
+    {C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2}
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    (P : RobustApexFourIncidenceContinuationPacket
+      D H S.oppApex1 blocker S.oppApex2 N.retained
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (Q : ATailThreeCenterCommonDeletion.ThreeCenterCommonDeletionExactRows
+      D fresh S.oppApex1 blocker S.oppApex2
+        N.firstApexClass.support
+        N.blockerClass.support
+        N.secondApexClass.support)
+    (hOK₁ : S.oppApex1 ∈ P.surface.row₁.support)
+    (hOK₂ : S.oppApex1 ∈ P.surface.row₂.support) :
+    H.centerAt S.oppApex1 P.surface.O_mem_A = blocker ∨
+      ∃ external : ℝ²,
+        external ∈ D.A ∧ external ≠ blocker ∧ external ≠ S.oppApex2 ∧
+          Nonempty (CommonDeletionTwoCenterPacket D H N.retained
+            external S.oppApex2) := by
+  rcases P.freshBlocker_commonDeletion_firstApex_or_retained N Q hOK₁ hOK₂ with
+    hfirst | hretained
+  · obtain ⟨Cfirst⟩ := hfirst
+    by_cases hcollision :
+        H.centerAt S.oppApex1 P.surface.O_mem_A = blocker
+    · exact Or.inl hcollision
+    · right
+      let Kfirst :=
+        (H.selectedAt S.oppApex1
+          P.surface.O_mem_A).toCriticalFourShell
+      have hfirstBlockerA :
+          H.centerAt S.oppApex1 P.surface.O_mem_A ∈ D.A :=
+        (Finset.mem_erase.mp Kfirst.center_mem).2
+      have hfirstBlocker_ne_second :
+          H.centerAt S.oppApex1 P.surface.O_mem_A ≠ S.oppApex2 :=
+        Cfirst.actual_blocker_ne_center₂
+      have hO_ne_a : S.oppApex1 ≠ N.retained := by
+        intro h
+        apply P.surface.row₀.center_not_mem
+        simpa only [h] using P.surface.a_mem_row₀
+      have hblockerEq : dist blocker S.oppApex1 =
+          dist blocker N.retained :=
+        (P.surface.row₁.support_eq_radius S.oppApex1 hOK₁).trans
+          (P.surface.row₁.support_eq_radius
+            N.retained P.a_mem_row₁).symm
+      have hsecondEq : dist S.oppApex2 S.oppApex1 =
+          dist S.oppApex2 N.retained :=
+        (P.surface.row₂.support_eq_radius S.oppApex1 hOK₂).trans
+          (P.surface.row₂.support_eq_radius
+            N.retained P.a_mem_row₂).symm
+      have hretainedNot : N.retained ∉ Kfirst.support := by
+        intro hretainedK
+        have hfirstBlockerEq :
+            dist (H.centerAt S.oppApex1 P.surface.O_mem_A) S.oppApex1 =
+              dist (H.centerAt S.oppApex1 P.surface.O_mem_A) N.retained :=
+          (Kfirst.support_eq_radius S.oppApex1
+            Kfirst.q_mem_support).trans
+              (Kfirst.support_eq_radius N.retained hretainedK).symm
+        exact
+          ConvexPerpendicularBisectorSides.false_of_three_distinct_equidistant_carriers
+            D.convex P.surface.O_mem_A N.retained_mem_A hO_ne_a
+              P.surface.c₁_mem_A P.surface.c₂_mem_A hfirstBlockerA
+              P.surface.c₁_ne_c₂ (Ne.symm hcollision)
+              hfirstBlocker_ne_second.symm hblockerEq hsecondEq
+              hfirstBlockerEq
+      have hretainedSurvives :
+          HasNEquidistantPointsAt 4 (D.A.erase N.retained)
+            (H.centerAt S.oppApex1 P.surface.O_mem_A) :=
+        (cross_deletion_survives_iff_not_mem_selected_support
+          H P.surface.O_mem_A).mpr hretainedNot
+      refine ⟨H.centerAt S.oppApex1 P.surface.O_mem_A,
+        hfirstBlockerA, hcollision, hfirstBlocker_ne_second, ?_⟩
+      exact
+        nonempty_commonDeletionTwoCenterPacket H N.retained_mem_A
+          hfirstBlockerA P.surface.c₂_mem_A hfirstBlocker_ne_second
+            hretainedSurvives
+            (N.secondApex_robust.survives N.retained N.retained_mem_A)
+  · right
+    have hfreshBlockerA : H.centerAt fresh Q.q_mem_A ∈ D.A :=
+      (Finset.mem_erase.mp
+        (H.selectedAt fresh Q.q_mem_A).toCriticalFourShell.center_mem).2
+    have hfreshBlocker_ne_blocker :
+        H.centerAt fresh Q.q_mem_A ≠ blocker :=
+      ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+        H Q.q_mem_A Q.row₁.hasNEquidistantPointsAt_erase_q
+    have hfreshBlocker_ne_second :
+        H.centerAt fresh Q.q_mem_A ≠ S.oppApex2 :=
+      ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+        H Q.q_mem_A Q.row₂.hasNEquidistantPointsAt_erase_q
+    exact ⟨H.centerAt fresh Q.q_mem_A, hfreshBlockerA,
+      hfreshBlocker_ne_blocker, hfreshBlocker_ne_second, hretained⟩
+
 /-- A first-row point and a blocker-row point in the profile-0034 order close
 the robust three-row source on any authenticated CCW boundary enumeration.
 The deleted point remains on the original exact-five first-apex circle even

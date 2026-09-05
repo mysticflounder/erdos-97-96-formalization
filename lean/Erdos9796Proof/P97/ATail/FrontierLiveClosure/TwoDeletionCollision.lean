@@ -1840,6 +1840,68 @@ theorem exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext
       P.source_mem_outsideFirstApexFiber
       P.survives_retained_firstApex_deletion
 
+/-- A favorable B1 source also retains the deletion role of the fresh pair.
+   The source need not be one of the two canonical deletions, so this wrapper
+   repeats the normal-form cover split rather than using the canonical-source
+   residual theorem above. -/
+theorem B1EscapeSourceContext.exists_freshPair_deletion_role
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (hnormal : B1PhysicalClassFiveSixNormalForm C)
+    (P : B1EscapeSourceContext C) :
+    ∃ other u v : CarrierVertex D.A,
+      ∃ jointDeletion : ExactFourMutualOmissionJointDeletion C.R C.rho u v,
+        u ≠ v ∧
+        u.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+        v.1 ∈ SelectedClass D.A S.oppApex2 C.rho ∧
+        v.1 ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            u.1 u.2).toCriticalFourShell.support ∧
+        u.1 ∉
+          ((lateFirstApexSystem C.R).selectedAt
+            v.1 v.2).toCriticalFourShell.support ∧
+        ExactFourMutualOmissionSourceContext C.R C.rho P.source other u v ∧
+        jointDeletion.deleted ≠ P.source ∧
+        ((jointDeletion.deleted = C.first.deleted ∨
+            jointDeletion.deleted = C.second.deleted) ∨
+          jointDeletion.deleted.1 ∈ b1USlice C ∨
+            jointDeletion.deleted.1 ∈ b1VSlice C) := by
+  classical
+  obtain ⟨other, u, v, jointDeletion, huNeV, huClass, hvClass,
+      hvOmitted, huOmitted, context⟩ :=
+    exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext
+      C P
+  have hdeletedNeSource : jointDeletion.deleted ≠ P.source := by
+    intro hdeletedEq
+    apply jointDeletion.deleted_not_mem_uRow
+    rw [hdeletedEq]
+    exact context.source_mem_u_row
+  have hcover :
+      b1PhysicalClass C =
+        {C.first.deleted.1, C.second.deleted.1} ∪
+          (b1USlice C ∪ b1VSlice C) := by
+    simpa [b1PhysicalClass, b1USlice, b1VSlice] using hnormal.2.2
+  have hdeletedRole :
+      ((jointDeletion.deleted = C.first.deleted ∨
+          jointDeletion.deleted = C.second.deleted) ∨
+        jointDeletion.deleted.1 ∈ b1USlice C ∨
+          jointDeletion.deleted.1 ∈ b1VSlice C) := by
+    have hphysical : jointDeletion.deleted.1 ∈ b1PhysicalClass C := by
+      simpa [b1PhysicalClass] using jointDeletion.deleted_mem_class
+    rw [hcover] at hphysical
+    rcases Finset.mem_union.mp hphysical with hcanonical | hlive
+    · left
+      rcases Finset.mem_insert.mp hcanonical with hfirst | hsecond
+      · exact Or.inl (Subtype.ext hfirst)
+      · exact Or.inr (Subtype.ext (Finset.mem_singleton.mp hsecond))
+    · right
+      exact Finset.mem_union.mp hlive
+  exact ⟨other, u, v, jointDeletion, huNeV, huClass, hvClass,
+    hvOmitted, huOmitted, context, hdeletedNeSource, hdeletedRole⟩
+
 /-- **Remaining B1 consumer.**  The source-clean producer has removed every
 case with a third joint deletion.  What remains is the full B1 context together
 with an exact five- or six-point physical class exhausted by the two known
