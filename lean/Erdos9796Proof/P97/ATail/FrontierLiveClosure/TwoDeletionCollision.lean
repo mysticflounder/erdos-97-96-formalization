@@ -10,6 +10,7 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.EqualBlockerContinuation
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.JointDeletionCore
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.SharedFrontierHelpers
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoDeletion.ActualBlockerSquareRefinement
 
 namespace Problem97
 namespace ATailFrontierLiveClosure
@@ -48,6 +49,7 @@ open ATailTwoCenterCapLocalization
 open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
 open Census554.GeneralCarrierBridge
+open ATailActualBlockerSquareRefinement
 
 attribute [local instance] Classical.propDecidable
 
@@ -1235,6 +1237,102 @@ theorem exactFour_fourSurvivingCenters_survivalSquare_split
       ⟨crossPacket.survives₁,
         (cross_deletion_survives_iff_not_mem_selected_support
           (lateFirstApexSystem R) first.deleted.2).mpr hbr⟩)))))
+
+/- A survival square with the physical second apex retains the actual-blocker
+classification of that apex.  This adapter is intentionally separate from the
+four-way splitter above: the splitter supplies the square, while this lemma
+preserves its branch-local selected-row omission. -/
+theorem exactFour_survivalSquare_apex_actualBlocker_refinement
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (u v : CarrierVertex D.A)
+    (first second : ExactFourMutualOmissionJointDeletion R rho u v)
+    (hsquare :
+      HasNEquidistantPointsAt 4 (D.A.erase first.deleted.1) S.oppApex2 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase S.oppApex2)
+          ((lateFirstApexSystem R).centerAt
+            first.deleted.1 first.deleted.2)) :
+    (let pX := (lateFirstApexSystem R).centerAt
+        S.oppApex2 first.uPacket.center₂_mem_A
+     let bu := (lateFirstApexSystem R).centerAt u.1 u.2
+     let bv := (lateFirstApexSystem R).centerAt v.1 v.2
+     let br := (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2
+     let bq := (lateFirstApexSystem R).centerAt first.deleted.1 first.deleted.2
+     IsUniqueFourCenter D.A pX ∧
+     S.oppApex2 ∈ uniqueFourClass D.A pX ∧
+     uniqueFourClass D.A pX =
+       ((lateFirstApexSystem R).selectedAt
+         S.oppApex2 first.uPacket.center₂_mem_A).toCriticalFourShell.support ∧
+     S.oppApex2 ∉
+       ((lateFirstApexSystem R).selectedAt
+         first.deleted.1 first.deleted.2).toCriticalFourShell.support ∧
+     pX ≠ S.oppApex2 ∧ pX ≠ bq ∧
+     ((pX = bu ∧
+         S.oppApex2 ∈
+           ((lateFirstApexSystem R).selectedAt u.1 u.2).toCriticalFourShell.support) ∨
+       (pX = bv ∧
+         S.oppApex2 ∈
+           ((lateFirstApexSystem R).selectedAt v.1 v.2).toCriticalFourShell.support) ∨
+       (pX = br ∧
+         S.oppApex2 ∈
+           ((lateFirstApexSystem R).selectedAt
+             second.deleted.1 second.deleted.2).toCriticalFourShell.support) ∨
+       (pX ≠ bu ∧ pX ≠ bv ∧ pX ≠ br))) := by
+  exact actualBlocker_alias_or_fresh_of_survivalSquare
+    (lateFirstApexSystem R)
+    (a := S.oppApex2)
+    (q := first.deleted.1)
+    (X := S.oppApex2)
+    (u := u.1)
+    (v := v.1)
+    (r := second.deleted.1)
+    first.deleted.2
+    first.uPacket.center₂_mem_A
+    u.2
+    v.2
+    second.deleted.2
+    surface.secondApex_robust
+    hsquare.2
+
+/- The decisive known-center test for the physical-apex arm: if its actual
+blocker is the `u` blocker, the physical apex is in the canonical selected row
+of `u`. -/
+theorem exactFour_survivalSquare_apex_center_eq_u_mem_uRow
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (rho : ℝ)
+    (u v : CarrierVertex D.A)
+    (first second : ExactFourMutualOmissionJointDeletion R rho u v)
+    (hsquare :
+      HasNEquidistantPointsAt 4 (D.A.erase first.deleted.1) S.oppApex2 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase S.oppApex2)
+          ((lateFirstApexSystem R).centerAt
+            first.deleted.1 first.deleted.2))
+    (hcenter :
+      (lateFirstApexSystem R).centerAt S.oppApex2
+          first.uPacket.center₂_mem_A =
+        (lateFirstApexSystem R).centerAt u.1 u.2) :
+    S.oppApex2 ∈
+      ((lateFirstApexSystem R).selectedAt u.1 u.2).toCriticalFourShell.support := by
+  have href := exactFour_survivalSquare_apex_actualBlocker_refinement
+    R surface rho u v first second hsquare
+  rcases href with ⟨_, _, _, _, _, _, hcases⟩
+  rcases hcases with hbu | hbv | hbr | hfresh
+  · exact hbu.2
+  · exfalso
+    exact first.blockers_ne (hcenter.symm.trans hbv.1)
+  · exfalso
+    exact second.uPacket.actual_blocker_ne_center₁
+      (hbr.1.symm.trans hcenter)
+  · exfalso
+    exact hfresh.1 hcenter
 
 /-- A set of cardinality at most two that already contains two distinct
 points cannot contain a third point distinct from both. -/
