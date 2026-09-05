@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-row-pair-extraction-20260904",
+  "owner": "profile0034-row-pair-extraction",
+  "base_head": "f436dca02b64b95f570cbc2b73c3e88341216f47",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-row-pair-extraction-20260904.json",
+    "docs/audits/2026-09-04-exactfive-profile0034-row-pair-extraction.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProfile0034SourceAdapter.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T01:30:10Z",
+  "manifest_sha256": "3bed106c3b1c448054a03a39649e054a8e32412f51d532ab1ea07883ad25da40"
+}
