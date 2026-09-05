@@ -58,6 +58,14 @@ structure CardGeThirteenUncoveredThreeCenterPacket
   thirdRow_survives :
     HasNEquidistantPointsAt 4 (D.A.erase z) S.oppApex2
   thirdRow_omits : z ∉ thirdRow.support
+  row₁_firstRow_inter_card_le_two :
+    (W.row₁.support ∩ firstRow.support).card ≤ 2
+  row₂_firstRow_inter_card_le_two :
+    (W.row₂.support ∩ firstRow.support).card ≤ 2
+  row₁_secondRow_inter_card_le_two :
+    (W.row₁.support ∩ secondRow.support).card ≤ 2
+  row₂_secondRow_inter_card_le_two :
+    (W.row₂.support ∩ secondRow.support).card ≤ 2
   exactRows :
     Nonempty (ThreeCenterCommonDeletionExactRows D z
       ((lateFirstApexSystem R).centerAt W.source₁.1 W.source₁.2)
@@ -228,6 +236,10 @@ theorem nonempty_cardGeThirteenUncoveredThreeCenterPacket_or_exactAdjacentCapGri
           thirdRow_named := Or.inl ⟨hzFirst, rfl⟩
           thirdRow_survives := hthirdSurvives
           thirdRow_omits := hzSecondNot
+          row₁_firstRow_inter_card_le_two := hC₀ρ
+          row₂_firstRow_inter_card_le_two := hC₁ρ
+          row₁_secondRow_inter_card_le_two := hC₀σ
+          row₂_secondRow_inter_card_le_two := hC₁σ
           exactRows := hexactRows }⟩
       · have hzFirstNot : z ∉ firstRow.support := by
           intro hzFirst
@@ -253,6 +265,10 @@ theorem nonempty_cardGeThirteenUncoveredThreeCenterPacket_or_exactAdjacentCapGri
           thirdRow_named := Or.inr ⟨hzSecond, rfl⟩
           thirdRow_survives := hthirdSurvives
           thirdRow_omits := hzFirstNot
+          row₁_firstRow_inter_card_le_two := hC₀ρ
+          row₂_firstRow_inter_card_le_two := hC₁ρ
+          row₁_secondRow_inter_card_le_two := hC₀σ
+          row₂_secondRow_inter_card_le_two := hC₁σ
           exactRows := hexactRows }⟩
     · have hlarge' :
           5 ≤ ((firstRow.support ∩ S.capInteriorByIndex S.oppIndex2) ∪
