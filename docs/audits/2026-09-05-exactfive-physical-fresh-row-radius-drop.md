@@ -56,7 +56,21 @@ The immediate consumer is the double-hit branch of the physical residual.
 6. `actualFreshBlocker_doubleHit_otherCapPlacement`: both exterior points in
    the double-hit child lie in the union of the surplus cap and the second
    opposite cap.  This is the first explicit bridge from the small fresh row
-   to the other Moser caps.
+   to the other Moser caps;
+7. `FirstApexInteriorPairCirclePower.dist_firstApex_lt_of_interiorPair_circlePoint_outsideCap`:
+   a carrier point on the bisector-center circle through the selected
+   interior pair, but outside the first cap, has first-apex distance strictly
+   below the original selected radius; and
+8. `actualFreshBlocker_doubleHit_twoOutside_firstApexDistanceDrop`: in the
+   named double-hit child, both `fresh` and the fourth point `t` satisfy that
+   strict first-apex distance drop, in addition to the blocker-row radius
+   drop.
+
+The circle-power bridge is proved coordinate-free.  The two circle centers
+lie on the chord's perpendicular bisector; strict ordered-cap placement puts
+the interior blocker center opposite the two exterior carrier points; the
+two-dimensional orientation Gram identity then makes the relevant inner
+product negative, and a norm-square expansion gives the distance inequality.
 
 Lean LSP elaborated the complete current file without diagnostics.  Literal
 verification of the trichotomy and other-cap placement reported only
@@ -77,7 +91,7 @@ pair.  The high-radius double-hit branch is now closed.  Remaining cases are:
 - at least one original source is omitted by the actual fresh row; or
 - both occur, but the fresh row has strictly smaller radius and the now-named
   support `{q, w, fresh, t}`, whose latter two points are outside the first
-  cap.
+  cap and strictly inside the original first-apex circle.
 
 The old `normalForm.blockerClass` is not a substitute for the fresh source's
 actual blocker row: its hypotheses force only the retained point in the

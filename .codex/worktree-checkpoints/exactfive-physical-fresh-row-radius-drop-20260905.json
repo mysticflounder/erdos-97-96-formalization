@@ -7,10 +7,11 @@
     ".codex/worktree-checkpoints/exactfive-physical-fresh-row-radius-drop-20260905.json",
     "docs/audits/2026-09-05-exactfive-physical-fresh-row-radius-drop.md",
     "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctPhysicalFreshRowRadiusDrop.lean",
+    "lean/Erdos9796Proof/P97/ATail/FirstApexInteriorPairCirclePower.lean",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-05T22:30:41Z",
-  "manifest_sha256": "95b8d1dbee9ad172a5fba5a69369a1b60188af3247dc1024ef39dc4e7e6306b7"
+  "manifest_sha256": "2e0d6e03a43f6ad5eb193d86e62bf00d0830c31759ba2522a0f25117ef9c21c5"
 }

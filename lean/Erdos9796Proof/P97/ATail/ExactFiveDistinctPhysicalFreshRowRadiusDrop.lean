@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
+import Erdos9796Proof.P97.ATail.FirstApexInteriorPairCirclePower
 import Erdos9796Proof.P97.CapSelectedRowCounting
 
 /-!
@@ -25,6 +26,7 @@ open ATailDeletionRobustness
 open ATailCriticalPairFrontier
 open CapSelectedRowCounting
 open FirstApexInteriorPairGeometry
+open FirstApexInteriorPairCirclePower
 open FirstApexUniqueRadiusResidual
 
 /-- A carrier point outside the first opposite cap belongs to one of the two
@@ -348,6 +350,81 @@ theorem actualFreshBlocker_doubleHit_otherCapPlacement
     mem_surplusOrSecondCap_of_mem_not_firstCap S hfreshA hfreshOutside,
     mem_surplusOrSecondCap_of_mem_not_firstCap S htA htOutside,
     hdrop⟩
+
+/-- Every exterior point of the actual fresh-source double-hit row lies
+strictly inside the original first-apex circle. -/
+theorem actualFreshBlocker_doubleHit_exteriorPoint_dist_firstApex_lt
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    {z : ℝ²}
+    (hzRow : z ∈ (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hzOutside : z ∉ S.capByIndex S.oppIndex1) :
+    dist S.oppApex1 z < radius := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hcenterA : H.centerAt fresh hfreshA ∈ D.A :=
+    (Finset.mem_erase.mp K.center_mem).2
+  have hcenterNe : H.centerAt fresh hfreshA ≠ S.oppApex1 :=
+    R.firstApex_fullyDeletionRobust.centerAt_ne H fresh hfreshA
+  have hqEq :
+      dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q = K.radius :=
+    K.support_eq_radius R.interior.frontier.pair.q hqRow
+  have hwEq :
+      dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.w = K.radius :=
+    K.support_eq_radius R.interior.frontier.pair.w hwRow
+  have hzEq : dist (H.centerAt fresh hfreshA) z = K.radius :=
+    K.support_eq_radius z hzRow
+  exact dist_firstApex_lt_of_interiorPair_circlePoint_outsideCap
+    R.interior.q_mem_interior R.interior.w_mem_interior
+    R.interior.frontier.pair.q_ne_w hcenterA hcenterNe
+    (hqEq.trans hwEq.symm) (K.support_subset_A hzRow) hzOutside
+    (hzEq.trans hqEq.symm)
+
+/-- In the named two-inside/two-outside child, both exterior row points have
+strictly smaller first-apex radius as well as the row's smaller shell radius. -/
+theorem actualFreshBlocker_doubleHit_twoOutside_firstApexDistanceDrop
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hfreshNotFirst : fresh ∉ SelectedClass D.A S.oppApex1 radius)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    ∃ t : ℝ²,
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support =
+        {R.interior.frontier.pair.q, R.interior.frontier.pair.w, fresh, t} ∧
+      ({R.interior.frontier.pair.q, R.interior.frontier.pair.w,
+          fresh, t} : Finset ℝ²).card = 4 ∧
+      fresh ∉ S.capByIndex S.oppIndex1 ∧
+      t ∉ S.capByIndex S.oppIndex1 ∧
+      dist S.oppApex1 fresh < radius ∧
+      dist S.oppApex1 t < radius ∧
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.radius < radius := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  rcases actualFreshBlocker_doubleHit_twoOutside
+      R hfreshA hfreshNotFirst hqRow hwRow with
+    ⟨t, hsupport, hcard, hfreshOutside, htOutside, hrowDrop⟩
+  have hfreshRow : fresh ∈ K.support := K.q_mem_support
+  have htRow : t ∈ K.support := by
+    rw [hsupport]
+    simp
+  have hfreshDrop :=
+    actualFreshBlocker_doubleHit_exteriorPoint_dist_firstApex_lt
+      R hfreshA hqRow hwRow hfreshRow hfreshOutside
+  have htDrop :=
+    actualFreshBlocker_doubleHit_exteriorPoint_dist_firstApex_lt
+      R hfreshA hqRow hwRow htRow htOutside
+  exact ⟨t, hsupport, hcard, hfreshOutside, htOutside,
+    hfreshDrop, htDrop, hrowDrop⟩
 
 end ExactFiveDistinctPhysicalFreshRowRadiusDrop
 end Problem97
