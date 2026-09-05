@@ -63,6 +63,18 @@ def test_cone_commands_are_normalized_and_coordinate_complete() -> None:
     assert sum("(* -1 w_0)" in command for command in commands) == 1
 
 
+def test_cone_commands_can_require_higher_support() -> None:
+    forms = tuple(
+        (((((index, index + 1), 1),)), {"form": (0, 1, 2, 3, index % 2)})
+        for index in range(4)
+    )
+    commands = subject.cone_commands(forms, min_nonzero_weights=4)
+    assert commands[0] == "(set-logic QF_LIRA)"
+    assert "(declare-const active_0 Bool)" in commands
+    assert "(assert (= active_0 (> w_0 0)))" in commands
+    assert any(command.endswith(" 4))") and "(ite active_3 1 0)" in command for command in commands)
+
+
 def test_actual_replayed_cell_zero_form_compiles_to_provider_cut() -> None:
     event = json.loads(SOURCE_EVENT.read_text())
     coarse_cell = one_form_batch.source_coarse_cell(event)
