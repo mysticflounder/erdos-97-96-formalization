@@ -1177,6 +1177,18 @@ positive five/six class.  Its raw/provider continuation still needs checked
 `ProviderWeightedKalmansonCancellationData`; row realization alone does not
 supply that certificate.
 
+Fresh reuse preflights also rule out the tempting existing generic terminals.
+The uncovered packet does not retain the same-shell pair, distance equality,
+deletion-survivor families, or retained-collision inputs required by the
+two-point-row and two-source-fresh-third consumers.  The adjacent-grid packet
+places four hits only in radius classes and adjacent-cap cells: it does not put
+two selected hits in a named source row, retain the radius inequality and
+apex/source boundary placement, or supply the reciprocal incidences required
+by the checked five-role and cap-crossing Kalmanson terminals.  The first
+honest adjacent-grid ingress is therefore a source-derived packet placing two
+chosen grid hits in the source actual row together with their boundary roles;
+do not add a downstream adapter until that producer exists.
+
 The good-source packet's sources and frontier deletion are also unrelated to
 the two joint deletions fixed by the B1 context.  It implies none of the three
 current `B1GlobalGapOrClosedTerminal` arms, and it does not by itself put two
