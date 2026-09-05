@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "proof-scout-scratch-probes-20260905",
+  "owner": "luna-swarm-proof-scout",
+  "base_head": "73be8504cc6439500a24ea4a317ee80c762b9130",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/proof-scout-scratch-probes-20260905.json",
+    "luna-swarm/scratch/probe_b1_inside_arc.lean",
+    "luna-swarm/scratch/probe_source_eq_u_inside_consequences.lean",
+    "luna-swarm/scratch/probe_source_survival.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T21:45:01Z",
+  "manifest_sha256": "36d7fa0ff27e1b13b092566b7e0c12a49810c1be1eceb851d8d28afde5d1ffd0"
+}
