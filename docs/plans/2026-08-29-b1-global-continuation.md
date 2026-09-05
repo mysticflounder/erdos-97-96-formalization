@@ -1362,6 +1362,35 @@ deleted point differs from both canonical deletions.  Those are separate
 producer obligations; `ExactFourMutualOmissionJointDeletion.swap` preserves
 the deleted point and only reverses the endpoint orientation.
 
+The parallel canonical-endpoint audit `#15316` found no hidden arc producer.
+`B1GoodCanonicalDeletionEndpointResidual` carries no live-row-blocker arc
+field.  The only existing cap-to-arc theorem additionally requires a chosen
+live slice to lie in the second cap interior and its row blocker to lie
+outside that interior; neither premise follows from the current ingress, and
+the two-point interior lemma instead puts the blocker inside.  A bounded
+project-index search returned only that known conditional theorem.  The
+canonical arm therefore still needs a genuinely new one-slice boundary-arc
+producer, not an equality or dispatch wrapper.
+
+A separate indexed search suggested reusing the two-deletion collision with
+different fresh and canonical endpoint pairs, but direct signature inspection
+rejected that suggestion: every cited theorem quantifies both joint deletions
+over the same `u,v`.  A source audit of whether the collision proof can be
+generalized to heterogeneous endpoint pairs found the shared pair embedded in
+the joint-deletion packet, two-deletion ingress, outcome packet, coordinator,
+and the first cross-omission reduction.  No heterogeneous consumer exists, and
+the downstream blocker-coincidence and survival-square terminals are
+themselves still `sorry`-backed.  This route cannot presently bypass endpoint
+normalization and would require a new ingress and new geometric proof rather
+than a wrapper generalization.
+
+The finer terminal trace `#15325` shows that the local two-cycle and initial
+cross-omission helpers could accept heterogeneous endpoint pairs, but the next
+survival-square split needs four cross-pair actual-blocker inequalities.  Even
+supplying those would only reach the same open blocker-coincidence and
+survival-square consumers.  Generalizing the local types is therefore not a
+kernel-clean terminal and is not the next B1 proof target.
+
 Three independent source audits, including Luna `#15080`, checked whether the
 mismatch could be bypassed by generalizing the pair-insensitive geometry.
 `b1_third_actualBlocker_ne_common`,
