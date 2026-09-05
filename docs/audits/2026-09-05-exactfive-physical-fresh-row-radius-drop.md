@@ -45,11 +45,23 @@ The immediate consumer is the double-hit branch of the physical residual.
 3. `actualFreshBlocker_doubleHit_sourceConsequences`: in the remaining
    double-hit child, the blocker center lies in the strict first cap, the row
    radius drops strictly, and the row's intersection with the whole first cap
-   is exactly the original source pair.
+   is exactly the original source pair;
+4. `actualFreshBlocker_doubleHit_twoOutside`: once the fresh source's omission
+   from the original first-apex row is supplied, the exact fresh row can be
+   named as `{q, w, fresh, t}`, with both `fresh` and `t` outside the first cap
+   and with the strict radius drop retained;
+5. `actualFreshBlocker_omission_or_twoOutside`: the source-clean trichotomy
+   needed by the physical caller—omit `q`, omit `w`, or enter that named
+   low-radius two-outside configuration.
 
 Lean LSP elaborated the complete file without diagnostics.  A literal theorem
 verification of the strongest consequence reported only `propext`,
 `Classical.choice`, and `Quot.sound`, with no source-scan warnings.
+The governed focused build completed successfully (`8102/8102`).  Its
+best-effort proof-blueprint resync then hit the pre-existing stale private
+`B1CardSixRoleProjectionIngress.ambientRoleIndex_injective` index entry; this
+occurred after the Lean build had succeeded and is not evidence against this
+module.
 
 ## Remaining physical cases
 
@@ -58,8 +70,9 @@ fresh source's actual critical shell and split its incidence with the original
 pair.  The high-radius double-hit branch is now closed.  Remaining cases are:
 
 - at least one original source is omitted by the actual fresh row; or
-- both occur, but the fresh row has strictly smaller radius and exactly two
-  exterior first-cap support points.
+- both occur, but the fresh row has strictly smaller radius and the now-named
+  support `{q, w, fresh, t}`, whose latter two points are outside the first
+  cap.
 
 The old `normalForm.blockerClass` is not a substitute for the fresh source's
 actual blocker row: its hypotheses force only the retained point in the

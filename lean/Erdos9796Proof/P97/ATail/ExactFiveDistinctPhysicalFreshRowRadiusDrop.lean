@@ -144,5 +144,159 @@ theorem actualFreshBlocker_doubleHit_sourceConsequences
       R hfreshA hqRow hwRow,
     hpairEq.symm⟩
 
+/-- Once the fresh source is known to be absent from the original first-apex
+row, the surviving double-hit child has a named two-inside/two-outside
+support.  The fresh source and the fourth point are both outside the first
+cap. -/
+theorem actualFreshBlocker_doubleHit_twoOutside
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hfreshNotFirst : fresh ∉ SelectedClass D.A S.oppApex1 radius)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    ∃ t : ℝ²,
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support =
+        {R.interior.frontier.pair.q, R.interior.frontier.pair.w, fresh, t} ∧
+      ({R.interior.frontier.pair.q, R.interior.frontier.pair.w,
+          fresh, t} : Finset ℝ²).card = 4 ∧
+      fresh ∉ S.capByIndex S.oppIndex1 ∧
+      t ∉ S.capByIndex S.oppIndex1 ∧
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.radius < radius := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hfreshRow : fresh ∈ K.support := K.q_mem_support
+  have hqFirst :
+      R.interior.frontier.pair.q ∈
+        SelectedClass D.A S.oppApex1 radius :=
+    (Finset.mem_inter.mp R.interior.q_mem_interior).1
+  have hwFirst :
+      R.interior.frontier.pair.w ∈
+        SelectedClass D.A S.oppApex1 radius :=
+    (Finset.mem_inter.mp R.interior.w_mem_interior).1
+  have hfreshNeQ : fresh ≠ R.interior.frontier.pair.q := by
+    intro h
+    apply hfreshNotFirst
+    simpa [h] using hqFirst
+  have hfreshNeW : fresh ≠ R.interior.frontier.pair.w := by
+    intro h
+    apply hfreshNotFirst
+    simpa [h] using hwFirst
+  have htripleCard :
+      ({R.interior.frontier.pair.q, R.interior.frontier.pair.w,
+          fresh} : Finset ℝ²).card = 3 := by
+    rw [Finset.card_eq_three]
+    exact ⟨R.interior.frontier.pair.q,
+      R.interior.frontier.pair.w, fresh,
+      R.interior.frontier.pair.q_ne_w,
+      hfreshNeQ.symm, hfreshNeW.symm, rfl⟩
+  have hextra :
+      ∃ t ∈ K.support,
+        t ∉ ({R.interior.frontier.pair.q,
+          R.interior.frontier.pair.w, fresh} : Finset ℝ²) := by
+    by_contra h
+    have hsubset :
+        K.support ⊆
+          ({R.interior.frontier.pair.q,
+            R.interior.frontier.pair.w, fresh} : Finset ℝ²) := by
+      intro z hz
+      by_contra hzNot
+      exact h ⟨z, hz, hzNot⟩
+    have hcardLe := Finset.card_le_card hsubset
+    rw [K.support_card, htripleCard] at hcardLe
+    omega
+  rcases hextra with ⟨t, htRow, htNotTriple⟩
+  have htNeQ : t ≠ R.interior.frontier.pair.q := by
+    intro h
+    apply htNotTriple
+    simp [h]
+  have htNeW : t ≠ R.interior.frontier.pair.w := by
+    intro h
+    apply htNotTriple
+    simp [h]
+  have htNeFresh : t ≠ fresh := by
+    intro h
+    apply htNotTriple
+    simp [h]
+  have hnamedCard :
+      ({R.interior.frontier.pair.q, R.interior.frontier.pair.w,
+          fresh, t} : Finset ℝ²).card = 4 := by
+    rw [Finset.card_eq_four]
+    exact ⟨R.interior.frontier.pair.q,
+      R.interior.frontier.pair.w, fresh, t,
+      R.interior.frontier.pair.q_ne_w,
+      hfreshNeQ.symm, htNeQ.symm,
+      hfreshNeW.symm, htNeW.symm, htNeFresh.symm, rfl⟩
+  have hnamedSubset :
+      ({R.interior.frontier.pair.q, R.interior.frontier.pair.w,
+          fresh, t} : Finset ℝ²) ⊆ K.support := by
+    intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl | rfl | rfl
+    · exact hqRow
+    · exact hwRow
+    · exact hfreshRow
+    · exact htRow
+  have hnamedEq :
+      ({R.interior.frontier.pair.q, R.interior.frontier.pair.w,
+          fresh, t} : Finset ℝ²) = K.support :=
+    Finset.eq_of_subset_of_card_le hnamedSubset (by
+      rw [hnamedCard, K.support_card])
+  rcases actualFreshBlocker_doubleHit_sourceConsequences
+      R hfreshA hqRow hwRow with ⟨_, hdrop, hcapEq⟩
+  have hfreshOutside : fresh ∉ S.capByIndex S.oppIndex1 := by
+    intro hfreshCap
+    have hfreshPair :
+        fresh ∈ ({R.interior.frontier.pair.q,
+          R.interior.frontier.pair.w} : Finset ℝ²) := by
+      rw [← hcapEq]
+      exact Finset.mem_inter.mpr ⟨hfreshRow, hfreshCap⟩
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hfreshPair
+    exact hfreshPair.elim hfreshNeQ hfreshNeW
+  have htOutside : t ∉ S.capByIndex S.oppIndex1 := by
+    intro htCap
+    have htPair :
+        t ∈ ({R.interior.frontier.pair.q,
+          R.interior.frontier.pair.w} : Finset ℝ²) := by
+      rw [← hcapEq]
+      exact Finset.mem_inter.mpr ⟨htRow, htCap⟩
+    simp only [Finset.mem_insert, Finset.mem_singleton] at htPair
+    exact htPair.elim htNeQ htNeW
+  exact ⟨t, hnamedEq.symm, hnamedCard, hfreshOutside, htOutside, hdrop⟩
+
+/-- The actual fresh-source row either omits one of the two original interior
+sources, or it has the fully named two-inside/two-outside form. -/
+theorem actualFreshBlocker_omission_or_twoOutside
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hfreshNotFirst : fresh ∉ SelectedClass D.A S.oppApex1 radius) :
+    R.interior.frontier.pair.q ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∨
+      R.interior.frontier.pair.w ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∨
+      ∃ t : ℝ²,
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support =
+          {R.interior.frontier.pair.q, R.interior.frontier.pair.w, fresh, t} ∧
+        ({R.interior.frontier.pair.q, R.interior.frontier.pair.w,
+            fresh, t} : Finset ℝ²).card = 4 ∧
+        fresh ∉ S.capByIndex S.oppIndex1 ∧
+        t ∉ S.capByIndex S.oppIndex1 ∧
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.radius < radius := by
+  by_cases hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+  · by_cases hwRow : R.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · exact Or.inr (Or.inr
+        (actualFreshBlocker_doubleHit_twoOutside
+          R hfreshA hfreshNotFirst hqRow hwRow))
+    · exact Or.inr (Or.inl hwRow)
+  · exact Or.inl hqRow
+
 end ExactFiveDistinctPhysicalFreshRowRadiusDrop
 end Problem97
