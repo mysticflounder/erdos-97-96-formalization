@@ -43,6 +43,7 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Construct a positive-membership definition from its index and requirement. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
@@ -50,6 +51,7 @@ private def mkDefinition (varIndex : Nat) (center : Label)
 
 /- The 37 genuinely fresh definitions, in compiler allocation order,
 in 64-entry chunks. -/
+/-- Fresh positive-membership definitions allocated for the exact-twelve core-pair family. -/
 def freshDefinitionsChunk000 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47175 0 {3, 4, 5},
@@ -90,11 +92,13 @@ def freshDefinitionsChunk000 : List PositiveMembershipDefinition :=
     mkDefinition 47210 10 {3, 4, 5},
     mkDefinition 47211 11 {3, 4, 5}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve core-pair family. -/
 def freshDefinitions : List PositiveMembershipDefinition :=
   freshDefinitionsChunk000
 
 /- The 2,131 parent-chain definitions reused by the compiler, in compiler
 scan order, with their exact inherited variables. -/
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk000 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44926 0 {1, 3},
@@ -162,6 +166,7 @@ def reusedDefinitionsChunk000 : List PositiveMembershipDefinition :=
     mkDefinition 45248 0 {3, 10},
     mkDefinition 45249 0 {3, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk001 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45535 0 {4, 5},
@@ -229,6 +234,7 @@ def reusedDefinitionsChunk001 : List PositiveMembershipDefinition :=
     mkDefinition 44877 1 {0, 7},
     mkDefinition 45558 1 {0, 7, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk002 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45559 1 {0, 7, 9},
@@ -296,6 +302,7 @@ def reusedDefinitionsChunk002 : List PositiveMembershipDefinition :=
     mkDefinition 45611 1 {4, 10},
     mkDefinition 45612 1 {4, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk003 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45117 1 {5, 6},
@@ -363,6 +370,7 @@ def reusedDefinitionsChunk003 : List PositiveMembershipDefinition :=
     mkDefinition 45678 2 {1, 7, 10},
     mkDefinition 45679 2 {1, 7, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk004 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45680 2 {1, 8},
@@ -430,6 +438,7 @@ def reusedDefinitionsChunk004 : List PositiveMembershipDefinition :=
     mkDefinition 45709 2 {8, 11},
     mkDefinition 45710 2 {9, 10}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk005 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45166 2 {9, 10, 11},
@@ -497,6 +506,7 @@ def reusedDefinitionsChunk005 : List PositiveMembershipDefinition :=
     mkDefinition 45763 3 {1, 4, 11},
     mkDefinition 47140 3 {1, 5}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk006 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45764 3 {1, 5, 6},
@@ -564,6 +574,7 @@ def reusedDefinitionsChunk006 : List PositiveMembershipDefinition :=
     mkDefinition 45818 3 {4, 6},
     mkDefinition 45819 3 {4, 6, 7}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk007 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45820 3 {4, 6, 8},
@@ -631,6 +642,7 @@ def reusedDefinitionsChunk007 : List PositiveMembershipDefinition :=
     mkDefinition 45882 3 {8, 9, 10},
     mkDefinition 45883 3 {8, 9, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk008 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45374 3 {8, 10},
@@ -698,6 +710,7 @@ def reusedDefinitionsChunk008 : List PositiveMembershipDefinition :=
     mkDefinition 45933 4 {1, 3, 7},
     mkDefinition 45934 4 {1, 3, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk009 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45935 4 {1, 3, 9},
@@ -765,6 +778,7 @@ def reusedDefinitionsChunk009 : List PositiveMembershipDefinition :=
     mkDefinition 45988 4 {2, 9, 11},
     mkDefinition 45989 4 {2, 10}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk010 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45990 4 {2, 10, 11},
@@ -832,6 +846,7 @@ def reusedDefinitionsChunk010 : List PositiveMembershipDefinition :=
     mkDefinition 45380 4 {7, 10},
     mkDefinition 46054 4 {7, 10, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk011 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45381 4 {7, 11},
@@ -899,6 +914,7 @@ def reusedDefinitionsChunk011 : List PositiveMembershipDefinition :=
     mkDefinition 46104 5 {1, 2, 10},
     mkDefinition 46105 5 {1, 2, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk012 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47151 5 {1, 3},
@@ -966,6 +982,7 @@ def reusedDefinitionsChunk012 : List PositiveMembershipDefinition :=
     mkDefinition 46158 5 {2, 8, 10},
     mkDefinition 46159 5 {2, 8, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk013 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46160 5 {2, 9},
@@ -1033,6 +1050,7 @@ def reusedDefinitionsChunk013 : List PositiveMembershipDefinition :=
     mkDefinition 46224 5 {7, 8, 11},
     mkDefinition 46225 5 {7, 9}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk014 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46226 5 {7, 9, 10},
@@ -1100,6 +1118,7 @@ def reusedDefinitionsChunk014 : List PositiveMembershipDefinition :=
     mkDefinition 45168 6 {0, 11},
     mkDefinition 45238 6 {1, 2}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk015 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46274 6 {1, 2, 7},
@@ -1167,6 +1186,7 @@ def reusedDefinitionsChunk015 : List PositiveMembershipDefinition :=
     mkDefinition 44971 6 {2, 7},
     mkDefinition 46330 6 {2, 7, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk016 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46331 6 {2, 7, 9},
@@ -1234,6 +1254,7 @@ def reusedDefinitionsChunk016 : List PositiveMembershipDefinition :=
     mkDefinition 44979 6 {5, 7, 8},
     mkDefinition 44980 6 {5, 7, 9}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk017 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45406 6 {5, 7, 10},
@@ -1301,6 +1322,7 @@ def reusedDefinitionsChunk017 : List PositiveMembershipDefinition :=
     mkDefinition 46399 7 {0, 6, 10},
     mkDefinition 46400 7 {0, 6, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk018 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46401 7 {0, 8},
@@ -1368,6 +1390,7 @@ def reusedDefinitionsChunk018 : List PositiveMembershipDefinition :=
     mkDefinition 46458 7 {2, 4, 6},
     mkDefinition 46459 7 {2, 4, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk019 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46460 7 {2, 4, 9},
@@ -1435,6 +1458,7 @@ def reusedDefinitionsChunk019 : List PositiveMembershipDefinition :=
     mkDefinition 45426 7 {4, 8, 10},
     mkDefinition 45427 7 {4, 8, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk020 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45138 7 {4, 9},
@@ -1502,6 +1526,7 @@ def reusedDefinitionsChunk020 : List PositiveMembershipDefinition :=
     mkDefinition 45292 8 {0, 4, 10},
     mkDefinition 45293 8 {0, 4, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk021 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45066 8 {0, 5},
@@ -1569,6 +1594,7 @@ def reusedDefinitionsChunk021 : List PositiveMembershipDefinition :=
     mkDefinition 46591 8 {2, 3, 4},
     mkDefinition 46592 8 {2, 3, 5}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk022 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46593 8 {2, 3, 6},
@@ -1636,6 +1662,7 @@ def reusedDefinitionsChunk022 : List PositiveMembershipDefinition :=
     mkDefinition 46638 8 {4, 5, 10},
     mkDefinition 46639 8 {4, 5, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk023 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45146 8 {4, 6},
@@ -1703,6 +1730,7 @@ def reusedDefinitionsChunk023 : List PositiveMembershipDefinition :=
     mkDefinition 46667 9 {0, 3, 7},
     mkDefinition 46668 9 {0, 3, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk024 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45296 9 {0, 3, 10},
@@ -1770,6 +1798,7 @@ def reusedDefinitionsChunk024 : List PositiveMembershipDefinition :=
     mkDefinition 46720 9 {1, 7},
     mkDefinition 46721 9 {1, 7, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk025 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46722 9 {1, 7, 10},
@@ -1837,6 +1866,7 @@ def reusedDefinitionsChunk025 : List PositiveMembershipDefinition :=
     mkDefinition 44994 9 {3, 7, 8},
     mkDefinition 45468 9 {3, 7, 10}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk026 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45469 9 {3, 7, 11},
@@ -1904,6 +1934,7 @@ def reusedDefinitionsChunk026 : List PositiveMembershipDefinition :=
     mkDefinition 45070 10 {0, 1, 6},
     mkDefinition 45071 10 {0, 1, 7}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk027 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45072 10 {0, 1, 8},
@@ -1971,6 +2002,7 @@ def reusedDefinitionsChunk027 : List PositiveMembershipDefinition :=
     mkDefinition 46842 10 {1, 4, 9},
     mkDefinition 46843 10 {1, 4, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk028 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46844 10 {1, 5},
@@ -2038,6 +2070,7 @@ def reusedDefinitionsChunk028 : List PositiveMembershipDefinition :=
     mkDefinition 46899 10 {3, 5},
     mkDefinition 46900 10 {3, 5, 6}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk029 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46901 10 {3, 5, 7},
@@ -2105,6 +2138,7 @@ def reusedDefinitionsChunk029 : List PositiveMembershipDefinition :=
     mkDefinition 46954 10 {7, 8},
     mkDefinition 46956 10 {7, 8, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk030 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46957 10 {7, 9},
@@ -2172,6 +2206,7 @@ def reusedDefinitionsChunk030 : List PositiveMembershipDefinition :=
     mkDefinition 47003 11 {1, 3, 4},
     mkDefinition 47004 11 {1, 3, 5}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk031 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47005 11 {1, 3, 6},
@@ -2239,6 +2274,7 @@ def reusedDefinitionsChunk031 : List PositiveMembershipDefinition :=
     mkDefinition 47059 11 {2, 7, 10},
     mkDefinition 47060 11 {2, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk032 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47061 11 {2, 8, 9},
@@ -2306,6 +2342,7 @@ def reusedDefinitionsChunk032 : List PositiveMembershipDefinition :=
     mkDefinition 47113 11 {5, 8, 9},
     mkDefinition 47114 11 {5, 8, 10}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitionsChunk033 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45224 11 {5, 9},
@@ -2328,6 +2365,7 @@ def reusedDefinitionsChunk033 : List PositiveMembershipDefinition :=
     mkDefinition 47135 11 {8, 10},
     mkDefinition 47136 11 {9, 10}]
 
+/-- Inherited positive-membership definitions for the exact-twelve core-pair family. -/
 def reusedDefinitions : List PositiveMembershipDefinition :=
   reusedDefinitionsChunk000 ++
     reusedDefinitionsChunk001 ++
@@ -2395,6 +2433,7 @@ def implicationDimacs : List (List Int) :=
       definition.requirement.center (candidateIndicesFor definition) definition
 
 /- BEGIN GENERATED IMPLICATION CLAUSE ANCHOR -/
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs000 : List (List Int) :=
   [
         [-4, 47175], [-17, 47175], [-24, 47175], [-25, 47175],
@@ -2414,6 +2453,7 @@ def expectedImplicationDimacs000 : List (List Int) :=
         [-430, 47179], [-431, 47179], [-432, 47179], [-433, 47179],
         [-434, 47179], [-435, 47179], [-436, 47179], [-437, 47179]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs001 : List (List Int) :=
   [
         [-438, 47179], [-439, 47179], [-440, 47179], [-441, 47179],
@@ -2433,6 +2473,7 @@ def expectedImplicationDimacs001 : List (List Int) :=
         [-555, 47186], [-556, 47186], [-557, 47186], [-558, 47186],
         [-497, 47187], [-609, 47187], [-637, 47187], [-638, 47187]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs002 : List (List Int) :=
   [
         [-639, 47187], [-640, 47187], [-641, 47187], [-642, 47187],
@@ -2452,6 +2493,7 @@ def expectedImplicationDimacs002 : List (List Int) :=
         [-554, 47191], [-638, 47191], [-694, 47191], [-749, 47191],
         [-754, 47191], [-755, 47191], [-756, 47191], [-757, 47191]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs003 : List (List Int) :=
   [
         [-555, 47192], [-639, 47192], [-695, 47192], [-750, 47192],
@@ -2471,6 +2513,7 @@ def expectedImplicationDimacs003 : List (List Int) :=
         [-819, 47199], [-847, 47199], [-875, 47199], [-876, 47199],
         [-877, 47199], [-878, 47199], [-879, 47199], [-880, 47199]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs004 : List (List Int) :=
   [
         [-931, 47199], [-959, 47199], [-960, 47199], [-961, 47199],
@@ -2490,6 +2533,7 @@ def expectedImplicationDimacs004 : List (List Int) :=
         [-1077, 47203], [-1080, 47203], [-1083, 47203], [-1084, 47203],
         [-879, 47204], [-963, 47204], [-1019, 47204], [-1074, 47204]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs005 : List (List Int) :=
   [
         [-1078, 47204], [-1081, 47204], [-1083, 47204], [-1085, 47204],
@@ -2508,6 +2552,7 @@ def expectedImplicationDimacs005 : List (List Int) :=
         [-2775, 47211], [-2859, 47211], [-2915, 47211], [-2971, 47211],
         [-2972, 47211], [-2973, 47211], [-2974, 47211], [-2975, 47211]]
 
+/-- Complete concatenation of the generated implication-clause chunks. -/
 def expectedImplicationDimacs : List (List Int) :=
   expectedImplicationDimacs000 ++
     expectedImplicationDimacs001 ++
@@ -2523,6 +2568,7 @@ theorem implicationDimacs_eq :
     implicationDimacs = expectedImplicationDimacs := by
   native_decide
 
+/-- Validate one positive-membership definition against its variable and candidate-index constraints. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (47174 < definition.varIndex ∧
@@ -2536,6 +2582,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- The finite definition compiler preserves validity for this exact-twelve ingress. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
@@ -2598,6 +2645,7 @@ theorem implicationDimacs_sat
 /- The 23,802 realizable roles, in Python compiler order, in 96-entry
 chunks.  Each record carries the role's own core in `left` and its rotated
 partner `(a, b, c, x, y) = (x, b, a, c, y)` in `right`. -/
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk000 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 1, c := 3, x := 4, y := 5}, right := {a := 4, b := 1, c := 0, x := 3, y := 5}},
@@ -2697,6 +2745,7 @@ def familyDataChunk000 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 3, c := 5, x := 8, y := 7}, right := {a := 8, b := 3, c := 0, x := 5, y := 7}},
     {left := {a := 0, b := 3, c := 5, x := 8, y := 9}, right := {a := 8, b := 3, c := 0, x := 5, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk001 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 3, c := 5, x := 9, y := 4}, right := {a := 9, b := 3, c := 0, x := 5, y := 4}},
@@ -2796,6 +2845,7 @@ def familyDataChunk001 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 3, c := 9, x := 8, y := 10}, right := {a := 8, b := 3, c := 0, x := 9, y := 10}},
     {left := {a := 0, b := 3, c := 9, x := 8, y := 11}, right := {a := 8, b := 3, c := 0, x := 9, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk002 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 3, c := 9, x := 10, y := 4}, right := {a := 10, b := 3, c := 0, x := 9, y := 4}},
@@ -2895,6 +2945,7 @@ def familyDataChunk002 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 4, c := 5, x := 10, y := 3}, right := {a := 10, b := 4, c := 0, x := 5, y := 3}},
     {left := {a := 0, b := 4, c := 5, x := 10, y := 11}, right := {a := 10, b := 4, c := 0, x := 5, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk003 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 4, c := 5, x := 11, y := 3}, right := {a := 11, b := 4, c := 0, x := 5, y := 3}},
@@ -2994,6 +3045,7 @@ def familyDataChunk003 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 4, c := 10, x := 2, y := 3}, right := {a := 2, b := 4, c := 0, x := 10, y := 3}},
     {left := {a := 0, b := 4, c := 10, x := 2, y := 5}, right := {a := 2, b := 4, c := 0, x := 10, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk004 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 4, c := 10, x := 3, y := 5}, right := {a := 3, b := 4, c := 0, x := 10, y := 5}},
@@ -3093,6 +3145,7 @@ def familyDataChunk004 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 5, c := 6, x := 3, y := 4}, right := {a := 3, b := 5, c := 0, x := 6, y := 4}},
     {left := {a := 0, b := 5, c := 6, x := 4, y := 3}, right := {a := 4, b := 5, c := 0, x := 6, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk005 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 5, c := 6, x := 7, y := 1}, right := {a := 7, b := 5, c := 0, x := 6, y := 1}},
@@ -3192,6 +3245,7 @@ def familyDataChunk005 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 5, c := 10, x := 7, y := 3}, right := {a := 7, b := 5, c := 0, x := 10, y := 3}},
     {left := {a := 0, b := 5, c := 10, x := 7, y := 4}, right := {a := 7, b := 5, c := 0, x := 10, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk006 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 5, c := 10, x := 8, y := 3}, right := {a := 8, b := 5, c := 0, x := 10, y := 3}},
@@ -3291,6 +3345,7 @@ def familyDataChunk006 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 6, c := 11, x := 8, y := 4}, right := {a := 8, b := 6, c := 0, x := 11, y := 4}},
     {left := {a := 0, b := 6, c := 11, x := 8, y := 5}, right := {a := 8, b := 6, c := 0, x := 11, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk007 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 6, c := 11, x := 9, y := 3}, right := {a := 9, b := 6, c := 0, x := 11, y := 3}},
@@ -3390,6 +3445,7 @@ def familyDataChunk007 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 8, c := 3, x := 9, y := 5}, right := {a := 9, b := 8, c := 0, x := 3, y := 5}},
     {left := {a := 0, b := 8, c := 4, x := 3, y := 1}, right := {a := 3, b := 8, c := 0, x := 4, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk008 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 8, c := 4, x := 3, y := 5}, right := {a := 3, b := 8, c := 0, x := 4, y := 5}},
@@ -3489,6 +3545,7 @@ def familyDataChunk008 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 9, c := 5, x := 8, y := 3}, right := {a := 8, b := 9, c := 0, x := 5, y := 3}},
     {left := {a := 0, b := 9, c := 5, x := 8, y := 4}, right := {a := 8, b := 9, c := 0, x := 5, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk009 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 9, c := 10, x := 6, y := 3}, right := {a := 6, b := 9, c := 0, x := 10, y := 3}},
@@ -3588,6 +3645,7 @@ def familyDataChunk009 : List CorePairCommonFiveData :=
     {left := {a := 0, b := 11, c := 4, x := 3, y := 6}, right := {a := 3, b := 11, c := 0, x := 4, y := 6}},
     {left := {a := 0, b := 11, c := 4, x := 3, y := 7}, right := {a := 3, b := 11, c := 0, x := 4, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk010 : List CorePairCommonFiveData :=
   [
     {left := {a := 0, b := 11, c := 4, x := 3, y := 8}, right := {a := 3, b := 11, c := 0, x := 4, y := 8}},
@@ -3687,6 +3745,7 @@ def familyDataChunk010 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 2, c := 7, x := 9, y := 10}, right := {a := 9, b := 2, c := 1, x := 7, y := 10}},
     {left := {a := 1, b := 2, c := 7, x := 9, y := 11}, right := {a := 9, b := 2, c := 1, x := 7, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk011 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 2, c := 8, x := 6, y := 7}, right := {a := 6, b := 2, c := 1, x := 8, y := 7}},
@@ -3786,6 +3845,7 @@ def familyDataChunk011 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 3, c := 10, x := 4, y := 8}, right := {a := 4, b := 3, c := 1, x := 10, y := 8}},
     {left := {a := 1, b := 3, c := 10, x := 4, y := 9}, right := {a := 4, b := 3, c := 1, x := 10, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk012 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 3, c := 10, x := 5, y := 6}, right := {a := 5, b := 3, c := 1, x := 10, y := 6}},
@@ -3885,6 +3945,7 @@ def familyDataChunk012 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 4, c := 10, x := 5, y := 8}, right := {a := 5, b := 4, c := 1, x := 10, y := 8}},
     {left := {a := 1, b := 4, c := 10, x := 5, y := 9}, right := {a := 5, b := 4, c := 1, x := 10, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk013 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 4, c := 11, x := 3, y := 6}, right := {a := 3, b := 4, c := 1, x := 11, y := 6}},
@@ -3984,6 +4045,7 @@ def familyDataChunk013 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 5, c := 11, x := 3, y := 8}, right := {a := 3, b := 5, c := 1, x := 11, y := 8}},
     {left := {a := 1, b := 5, c := 11, x := 3, y := 9}, right := {a := 3, b := 5, c := 1, x := 11, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk014 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 5, c := 11, x := 4, y := 6}, right := {a := 4, b := 5, c := 1, x := 11, y := 6}},
@@ -4083,6 +4145,7 @@ def familyDataChunk014 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 6, c := 8, x := 7, y := 10}, right := {a := 7, b := 6, c := 1, x := 8, y := 10}},
     {left := {a := 1, b := 6, c := 8, x := 7, y := 11}, right := {a := 7, b := 6, c := 1, x := 8, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk015 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 6, c := 8, x := 9, y := 3}, right := {a := 9, b := 6, c := 1, x := 8, y := 3}},
@@ -4182,6 +4245,7 @@ def familyDataChunk015 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 7, c := 4, x := 5, y := 6}, right := {a := 5, b := 7, c := 1, x := 4, y := 6}},
     {left := {a := 1, b := 7, c := 4, x := 5, y := 8}, right := {a := 5, b := 7, c := 1, x := 4, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk016 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 7, c := 4, x := 5, y := 9}, right := {a := 5, b := 7, c := 1, x := 4, y := 9}},
@@ -4281,6 +4345,7 @@ def familyDataChunk016 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 7, c := 11, x := 5, y := 9}, right := {a := 5, b := 7, c := 1, x := 11, y := 9}},
     {left := {a := 1, b := 7, c := 11, x := 10, y := 2}, right := {a := 10, b := 7, c := 1, x := 11, y := 2}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk017 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 7, c := 11, x := 10, y := 3}, right := {a := 10, b := 7, c := 1, x := 11, y := 3}},
@@ -4380,6 +4445,7 @@ def familyDataChunk017 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 8, c := 7, x := 11, y := 10}, right := {a := 11, b := 8, c := 1, x := 7, y := 10}},
     {left := {a := 1, b := 8, c := 9, x := 3, y := 4}, right := {a := 3, b := 8, c := 1, x := 9, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk018 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 8, c := 9, x := 3, y := 5}, right := {a := 3, b := 8, c := 1, x := 9, y := 5}},
@@ -4479,6 +4545,7 @@ def familyDataChunk018 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 9, c := 5, x := 3, y := 10}, right := {a := 3, b := 9, c := 1, x := 5, y := 10}},
     {left := {a := 1, b := 9, c := 5, x := 3, y := 11}, right := {a := 3, b := 9, c := 1, x := 5, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk019 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 9, c := 5, x := 4, y := 0}, right := {a := 4, b := 9, c := 1, x := 5, y := 0}},
@@ -4578,6 +4645,7 @@ def familyDataChunk019 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 9, c := 11, x := 5, y := 6}, right := {a := 5, b := 9, c := 1, x := 11, y := 6}},
     {left := {a := 1, b := 9, c := 11, x := 5, y := 7}, right := {a := 5, b := 9, c := 1, x := 11, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk020 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 9, c := 11, x := 5, y := 8}, right := {a := 5, b := 9, c := 1, x := 11, y := 8}},
@@ -4677,6 +4745,7 @@ def familyDataChunk020 : List CorePairCommonFiveData :=
     {left := {a := 1, b := 11, c := 2, x := 10, y := 8}, right := {a := 10, b := 11, c := 1, x := 2, y := 8}},
     {left := {a := 1, b := 11, c := 2, x := 10, y := 9}, right := {a := 10, b := 11, c := 1, x := 2, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk021 : List CorePairCommonFiveData :=
   [
     {left := {a := 1, b := 11, c := 3, x := 10, y := 6}, right := {a := 10, b := 11, c := 1, x := 3, y := 6}},
@@ -4776,6 +4845,7 @@ def familyDataChunk021 : List CorePairCommonFiveData :=
     {left := {a := 2, b := 3, c := 0, x := 4, y := 10}, right := {a := 4, b := 3, c := 2, x := 0, y := 10}},
     {left := {a := 2, b := 3, c := 0, x := 4, y := 11}, right := {a := 4, b := 3, c := 2, x := 0, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk022 : List CorePairCommonFiveData :=
   [
     {left := {a := 2, b := 3, c := 0, x := 5, y := 10}, right := {a := 5, b := 3, c := 2, x := 0, y := 10}},
@@ -4875,6 +4945,7 @@ def familyDataChunk022 : List CorePairCommonFiveData :=
     {left := {a := 2, b := 5, c := 11, x := 4, y := 10}, right := {a := 4, b := 5, c := 2, x := 11, y := 10}},
     {left := {a := 2, b := 5, c := 11, x := 10, y := 0}, right := {a := 10, b := 5, c := 2, x := 11, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk023 : List CorePairCommonFiveData :=
   [
     {left := {a := 2, b := 5, c := 11, x := 10, y := 6}, right := {a := 10, b := 5, c := 2, x := 11, y := 6}},
@@ -4974,6 +5045,7 @@ def familyDataChunk023 : List CorePairCommonFiveData :=
     {left := {a := 2, b := 8, c := 4, x := 7, y := 10}, right := {a := 7, b := 8, c := 2, x := 4, y := 10}},
     {left := {a := 2, b := 8, c := 4, x := 7, y := 11}, right := {a := 7, b := 8, c := 2, x := 4, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk024 : List CorePairCommonFiveData :=
   [
     {left := {a := 2, b := 8, c := 4, x := 9, y := 10}, right := {a := 9, b := 8, c := 2, x := 4, y := 10}},
@@ -5073,6 +5145,7 @@ def familyDataChunk024 : List CorePairCommonFiveData :=
     {left := {a := 2, b := 10, c := 5, x := 0, y := 11}, right := {a := 0, b := 10, c := 2, x := 5, y := 11}},
     {left := {a := 2, b := 10, c := 5, x := 3, y := 0}, right := {a := 3, b := 10, c := 2, x := 5, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk025 : List CorePairCommonFiveData :=
   [
     {left := {a := 2, b := 10, c := 5, x := 3, y := 6}, right := {a := 3, b := 10, c := 2, x := 5, y := 6}},
@@ -5172,6 +5245,7 @@ def familyDataChunk025 : List CorePairCommonFiveData :=
     {left := {a := 2, b := 10, c := 11, x := 4, y := 5}, right := {a := 4, b := 10, c := 2, x := 11, y := 5}},
     {left := {a := 2, b := 10, c := 11, x := 5, y := 3}, right := {a := 5, b := 10, c := 2, x := 11, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk026 : List CorePairCommonFiveData :=
   [
     {left := {a := 2, b := 10, c := 11, x := 5, y := 4}, right := {a := 5, b := 10, c := 2, x := 11, y := 4}},
@@ -5271,6 +5345,7 @@ def familyDataChunk026 : List CorePairCommonFiveData :=
     {left := {a := 2, b := 11, c := 7, x := 8, y := 4}, right := {a := 8, b := 11, c := 2, x := 7, y := 4}},
     {left := {a := 2, b := 11, c := 7, x := 8, y := 5}, right := {a := 8, b := 11, c := 2, x := 7, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk027 : List CorePairCommonFiveData :=
   [
     {left := {a := 2, b := 11, c := 7, x := 8, y := 10}, right := {a := 8, b := 11, c := 2, x := 7, y := 10}},
@@ -5370,6 +5445,7 @@ def familyDataChunk027 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 0, c := 6, x := 7, y := 1}, right := {a := 7, b := 0, c := 3, x := 6, y := 1}},
     {left := {a := 3, b := 0, c := 6, x := 7, y := 4}, right := {a := 7, b := 0, c := 3, x := 6, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk028 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 0, c := 6, x := 7, y := 5}, right := {a := 7, b := 0, c := 3, x := 6, y := 5}},
@@ -5469,6 +5545,7 @@ def familyDataChunk028 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 0, c := 11, x := 10, y := 4}, right := {a := 10, b := 0, c := 3, x := 11, y := 4}},
     {left := {a := 3, b := 0, c := 11, x := 10, y := 5}, right := {a := 10, b := 0, c := 3, x := 11, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk029 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 0, c := 11, x := 10, y := 6}, right := {a := 10, b := 0, c := 3, x := 11, y := 6}},
@@ -5568,6 +5645,7 @@ def familyDataChunk029 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 1, c := 9, x := 6, y := 5}, right := {a := 6, b := 1, c := 3, x := 9, y := 5}},
     {left := {a := 3, b := 1, c := 9, x := 6, y := 7}, right := {a := 6, b := 1, c := 3, x := 9, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk030 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 1, c := 9, x := 6, y := 8}, right := {a := 6, b := 1, c := 3, x := 9, y := 8}},
@@ -5667,6 +5745,7 @@ def familyDataChunk030 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 2, c := 6, x := 9, y := 5}, right := {a := 9, b := 2, c := 3, x := 6, y := 5}},
     {left := {a := 3, b := 2, c := 6, x := 9, y := 7}, right := {a := 9, b := 2, c := 3, x := 6, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk031 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 2, c := 6, x := 9, y := 8}, right := {a := 9, b := 2, c := 3, x := 6, y := 8}},
@@ -5766,6 +5845,7 @@ def familyDataChunk031 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 2, c := 11, x := 8, y := 4}, right := {a := 8, b := 2, c := 3, x := 11, y := 4}},
     {left := {a := 3, b := 2, c := 11, x := 8, y := 5}, right := {a := 8, b := 2, c := 3, x := 11, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk032 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 2, c := 11, x := 9, y := 4}, right := {a := 9, b := 2, c := 3, x := 11, y := 4}},
@@ -5865,6 +5945,7 @@ def familyDataChunk032 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 4, c := 6, x := 0, y := 5}, right := {a := 0, b := 4, c := 3, x := 6, y := 5}},
     {left := {a := 3, b := 4, c := 6, x := 0, y := 7}, right := {a := 0, b := 4, c := 3, x := 6, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk033 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 4, c := 6, x := 0, y := 8}, right := {a := 0, b := 4, c := 3, x := 6, y := 8}},
@@ -5964,6 +6045,7 @@ def familyDataChunk033 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 4, c := 8, x := 10, y := 5}, right := {a := 10, b := 4, c := 3, x := 8, y := 5}},
     {left := {a := 3, b := 4, c := 8, x := 10, y := 6}, right := {a := 10, b := 4, c := 3, x := 8, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk034 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 4, c := 8, x := 10, y := 7}, right := {a := 10, b := 4, c := 3, x := 8, y := 7}},
@@ -6063,6 +6145,7 @@ def familyDataChunk034 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 4, c := 11, x := 6, y := 7}, right := {a := 6, b := 4, c := 3, x := 11, y := 7}},
     {left := {a := 3, b := 4, c := 11, x := 6, y := 8}, right := {a := 6, b := 4, c := 3, x := 11, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk035 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 4, c := 11, x := 6, y := 9}, right := {a := 6, b := 4, c := 3, x := 11, y := 9}},
@@ -6162,6 +6245,7 @@ def familyDataChunk035 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 5, c := 4, x := 8, y := 7}, right := {a := 8, b := 5, c := 3, x := 4, y := 7}},
     {left := {a := 3, b := 5, c := 4, x := 8, y := 9}, right := {a := 8, b := 5, c := 3, x := 4, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk036 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 5, c := 4, x := 8, y := 10}, right := {a := 8, b := 5, c := 3, x := 4, y := 10}},
@@ -6261,6 +6345,7 @@ def familyDataChunk036 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 5, c := 8, x := 0, y := 7}, right := {a := 0, b := 5, c := 3, x := 8, y := 7}},
     {left := {a := 3, b := 5, c := 8, x := 0, y := 9}, right := {a := 0, b := 5, c := 3, x := 8, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk037 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 5, c := 8, x := 4, y := 0}, right := {a := 4, b := 5, c := 3, x := 8, y := 0}},
@@ -6360,6 +6445,7 @@ def familyDataChunk037 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 5, c := 10, x := 9, y := 0}, right := {a := 9, b := 5, c := 3, x := 10, y := 0}},
     {left := {a := 3, b := 5, c := 10, x := 9, y := 4}, right := {a := 9, b := 5, c := 3, x := 10, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk038 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 5, c := 10, x := 9, y := 6}, right := {a := 9, b := 5, c := 3, x := 10, y := 6}},
@@ -6459,6 +6545,7 @@ def familyDataChunk038 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 6, c := 4, x := 2, y := 9}, right := {a := 2, b := 6, c := 3, x := 4, y := 9}},
     {left := {a := 3, b := 6, c := 4, x := 5, y := 0}, right := {a := 5, b := 6, c := 3, x := 4, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk039 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 6, c := 4, x := 5, y := 7}, right := {a := 5, b := 6, c := 3, x := 4, y := 7}},
@@ -6558,6 +6645,7 @@ def familyDataChunk039 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 6, c := 7, x := 11, y := 0}, right := {a := 11, b := 6, c := 3, x := 7, y := 0}},
     {left := {a := 3, b := 6, c := 7, x := 11, y := 4}, right := {a := 11, b := 6, c := 3, x := 7, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk040 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 6, c := 7, x := 11, y := 5}, right := {a := 11, b := 6, c := 3, x := 7, y := 5}},
@@ -6657,6 +6745,7 @@ def familyDataChunk040 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 6, c := 10, x := 9, y := 5}, right := {a := 9, b := 6, c := 3, x := 10, y := 5}},
     {left := {a := 3, b := 6, c := 10, x := 9, y := 11}, right := {a := 9, b := 6, c := 3, x := 10, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk041 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 6, c := 10, x := 11, y := 1}, right := {a := 11, b := 6, c := 3, x := 10, y := 1}},
@@ -6756,6 +6845,7 @@ def familyDataChunk041 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 7, c := 4, x := 6, y := 11}, right := {a := 6, b := 7, c := 3, x := 4, y := 11}},
     {left := {a := 3, b := 7, c := 4, x := 8, y := 1}, right := {a := 8, b := 7, c := 3, x := 4, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk042 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 7, c := 4, x := 8, y := 5}, right := {a := 8, b := 7, c := 3, x := 4, y := 5}},
@@ -6855,6 +6945,7 @@ def familyDataChunk042 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 7, c := 8, x := 5, y := 11}, right := {a := 5, b := 7, c := 3, x := 8, y := 11}},
     {left := {a := 3, b := 7, c := 8, x := 9, y := 1}, right := {a := 9, b := 7, c := 3, x := 8, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk043 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 7, c := 8, x := 9, y := 4}, right := {a := 9, b := 7, c := 3, x := 8, y := 4}},
@@ -6954,6 +7045,7 @@ def familyDataChunk043 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 7, c := 11, x := 9, y := 4}, right := {a := 9, b := 7, c := 3, x := 11, y := 4}},
     {left := {a := 3, b := 7, c := 11, x := 9, y := 5}, right := {a := 9, b := 7, c := 3, x := 11, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk044 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 7, c := 11, x := 9, y := 10}, right := {a := 9, b := 7, c := 3, x := 11, y := 10}},
@@ -7053,6 +7145,7 @@ def familyDataChunk044 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 8, c := 5, x := 4, y := 6}, right := {a := 4, b := 8, c := 3, x := 5, y := 6}},
     {left := {a := 3, b := 8, c := 5, x := 4, y := 7}, right := {a := 4, b := 8, c := 3, x := 5, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk045 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 8, c := 5, x := 4, y := 9}, right := {a := 4, b := 8, c := 3, x := 5, y := 9}},
@@ -7152,6 +7245,7 @@ def familyDataChunk045 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 8, c := 9, x := 4, y := 10}, right := {a := 4, b := 8, c := 3, x := 9, y := 10}},
     {left := {a := 3, b := 8, c := 9, x := 4, y := 11}, right := {a := 4, b := 8, c := 3, x := 9, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk046 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 8, c := 9, x := 5, y := 0}, right := {a := 5, b := 8, c := 3, x := 9, y := 0}},
@@ -7251,6 +7345,7 @@ def familyDataChunk046 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 9, c := 1, x := 6, y := 5}, right := {a := 6, b := 9, c := 3, x := 1, y := 5}},
     {left := {a := 3, b := 9, c := 1, x := 6, y := 10}, right := {a := 6, b := 9, c := 3, x := 1, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk047 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 9, c := 1, x := 6, y := 11}, right := {a := 6, b := 9, c := 3, x := 1, y := 11}},
@@ -7350,6 +7445,7 @@ def familyDataChunk047 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 9, c := 6, x := 1, y := 10}, right := {a := 1, b := 9, c := 3, x := 6, y := 10}},
     {left := {a := 3, b := 9, c := 6, x := 1, y := 11}, right := {a := 1, b := 9, c := 3, x := 6, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk048 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 9, c := 6, x := 2, y := 4}, right := {a := 2, b := 9, c := 3, x := 6, y := 4}},
@@ -7449,6 +7545,7 @@ def familyDataChunk048 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 9, c := 8, x := 11, y := 0}, right := {a := 11, b := 9, c := 3, x := 8, y := 0}},
     {left := {a := 3, b := 9, c := 8, x := 11, y := 4}, right := {a := 11, b := 9, c := 3, x := 8, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk049 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 9, c := 8, x := 11, y := 5}, right := {a := 11, b := 9, c := 3, x := 8, y := 5}},
@@ -7548,6 +7645,7 @@ def familyDataChunk049 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 10, c := 2, x := 11, y := 9}, right := {a := 11, b := 10, c := 3, x := 2, y := 9}},
     {left := {a := 3, b := 10, c := 4, x := 0, y := 5}, right := {a := 0, b := 10, c := 3, x := 4, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk050 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 10, c := 4, x := 0, y := 11}, right := {a := 0, b := 10, c := 3, x := 4, y := 11}},
@@ -7647,6 +7745,7 @@ def familyDataChunk050 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 10, c := 7, x := 6, y := 4}, right := {a := 6, b := 10, c := 3, x := 7, y := 4}},
     {left := {a := 3, b := 10, c := 7, x := 6, y := 5}, right := {a := 6, b := 10, c := 3, x := 7, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk051 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 10, c := 7, x := 6, y := 11}, right := {a := 6, b := 10, c := 3, x := 7, y := 11}},
@@ -7746,6 +7845,7 @@ def familyDataChunk051 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 10, c := 11, x := 4, y := 8}, right := {a := 4, b := 10, c := 3, x := 11, y := 8}},
     {left := {a := 3, b := 10, c := 11, x := 4, y := 9}, right := {a := 4, b := 10, c := 3, x := 11, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk052 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 10, c := 11, x := 5, y := 0}, right := {a := 5, b := 10, c := 3, x := 11, y := 0}},
@@ -7845,6 +7945,7 @@ def familyDataChunk052 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 11, c := 5, x := 4, y := 6}, right := {a := 4, b := 11, c := 3, x := 5, y := 6}},
     {left := {a := 3, b := 11, c := 5, x := 4, y := 7}, right := {a := 4, b := 11, c := 3, x := 5, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk053 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 11, c := 5, x := 4, y := 8}, right := {a := 4, b := 11, c := 3, x := 5, y := 8}},
@@ -7944,6 +8045,7 @@ def familyDataChunk053 : List CorePairCommonFiveData :=
     {left := {a := 3, b := 11, c := 8, x := 7, y := 1}, right := {a := 7, b := 11, c := 3, x := 8, y := 1}},
     {left := {a := 3, b := 11, c := 8, x := 7, y := 2}, right := {a := 7, b := 11, c := 3, x := 8, y := 2}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk054 : List CorePairCommonFiveData :=
   [
     {left := {a := 3, b := 11, c := 8, x := 7, y := 4}, right := {a := 7, b := 11, c := 3, x := 8, y := 4}},
@@ -8043,6 +8145,7 @@ def familyDataChunk054 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 0, c := 3, x := 5, y := 6}, right := {a := 5, b := 0, c := 4, x := 3, y := 6}},
     {left := {a := 4, b := 0, c := 3, x := 5, y := 7}, right := {a := 5, b := 0, c := 4, x := 3, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk055 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 0, c := 3, x := 5, y := 8}, right := {a := 5, b := 0, c := 4, x := 3, y := 8}},
@@ -8142,6 +8245,7 @@ def familyDataChunk055 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 0, c := 9, x := 6, y := 8}, right := {a := 6, b := 0, c := 4, x := 9, y := 8}},
     {left := {a := 4, b := 0, c := 9, x := 6, y := 10}, right := {a := 6, b := 0, c := 4, x := 9, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk056 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 0, c := 9, x := 6, y := 11}, right := {a := 6, b := 0, c := 4, x := 9, y := 11}},
@@ -8241,6 +8345,7 @@ def familyDataChunk056 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 1, c := 7, x := 6, y := 5}, right := {a := 6, b := 1, c := 4, x := 7, y := 5}},
     {left := {a := 4, b := 1, c := 7, x := 8, y := 3}, right := {a := 8, b := 1, c := 4, x := 7, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk057 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 1, c := 7, x := 8, y := 5}, right := {a := 8, b := 1, c := 4, x := 7, y := 5}},
@@ -8340,6 +8445,7 @@ def familyDataChunk057 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 2, c := 3, x := 10, y := 5}, right := {a := 10, b := 2, c := 4, x := 3, y := 5}},
     {left := {a := 4, b := 2, c := 3, x := 11, y := 5}, right := {a := 11, b := 2, c := 4, x := 3, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk058 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 2, c := 5, x := 0, y := 3}, right := {a := 0, b := 2, c := 4, x := 5, y := 3}},
@@ -8439,6 +8545,7 @@ def familyDataChunk058 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 2, c := 9, x := 8, y := 3}, right := {a := 8, b := 2, c := 4, x := 9, y := 3}},
     {left := {a := 4, b := 2, c := 9, x := 8, y := 5}, right := {a := 8, b := 2, c := 4, x := 9, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk059 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 2, c := 9, x := 8, y := 10}, right := {a := 8, b := 2, c := 4, x := 9, y := 10}},
@@ -8538,6 +8645,7 @@ def familyDataChunk059 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 3, c := 5, x := 7, y := 0}, right := {a := 7, b := 3, c := 4, x := 5, y := 0}},
     {left := {a := 4, b := 3, c := 5, x := 7, y := 6}, right := {a := 7, b := 3, c := 4, x := 5, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk060 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 3, c := 5, x := 7, y := 8}, right := {a := 7, b := 3, c := 4, x := 5, y := 8}},
@@ -8637,6 +8745,7 @@ def familyDataChunk060 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 3, c := 7, x := 11, y := 0}, right := {a := 11, b := 3, c := 4, x := 7, y := 0}},
     {left := {a := 4, b := 3, c := 7, x := 11, y := 5}, right := {a := 11, b := 3, c := 4, x := 7, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk061 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 3, c := 7, x := 11, y := 6}, right := {a := 11, b := 3, c := 4, x := 7, y := 6}},
@@ -8736,6 +8845,7 @@ def familyDataChunk061 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 3, c := 10, x := 7, y := 9}, right := {a := 7, b := 3, c := 4, x := 10, y := 9}},
     {left := {a := 4, b := 3, c := 10, x := 7, y := 11}, right := {a := 7, b := 3, c := 4, x := 10, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk062 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 3, c := 10, x := 8, y := 0}, right := {a := 8, b := 3, c := 4, x := 10, y := 0}},
@@ -8835,6 +8945,7 @@ def familyDataChunk062 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 5, c := 2, x := 10, y := 7}, right := {a := 10, b := 5, c := 4, x := 2, y := 7}},
     {left := {a := 4, b := 5, c := 2, x := 10, y := 8}, right := {a := 10, b := 5, c := 4, x := 2, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk063 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 5, c := 2, x := 10, y := 9}, right := {a := 10, b := 5, c := 4, x := 2, y := 9}},
@@ -8934,6 +9045,7 @@ def familyDataChunk063 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 5, c := 7, x := 3, y := 9}, right := {a := 3, b := 5, c := 4, x := 7, y := 9}},
     {left := {a := 4, b := 5, c := 7, x := 3, y := 10}, right := {a := 3, b := 5, c := 4, x := 7, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk064 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 5, c := 7, x := 3, y := 11}, right := {a := 3, b := 5, c := 4, x := 7, y := 11}},
@@ -9033,6 +9145,7 @@ def familyDataChunk064 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 5, c := 9, x := 11, y := 6}, right := {a := 11, b := 5, c := 4, x := 9, y := 6}},
     {left := {a := 4, b := 5, c := 9, x := 11, y := 7}, right := {a := 11, b := 5, c := 4, x := 9, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk065 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 5, c := 9, x := 11, y := 8}, right := {a := 11, b := 5, c := 4, x := 9, y := 8}},
@@ -9132,6 +9245,7 @@ def familyDataChunk065 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 6, c := 1, x := 5, y := 7}, right := {a := 5, b := 6, c := 4, x := 1, y := 7}},
     {left := {a := 4, b := 6, c := 1, x := 5, y := 8}, right := {a := 5, b := 6, c := 4, x := 1, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk066 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 6, c := 1, x := 5, y := 9}, right := {a := 5, b := 6, c := 4, x := 1, y := 9}},
@@ -9231,6 +9345,7 @@ def familyDataChunk066 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 6, c := 7, x := 0, y := 5}, right := {a := 0, b := 6, c := 4, x := 7, y := 5}},
     {left := {a := 4, b := 6, c := 7, x := 1, y := 0}, right := {a := 1, b := 6, c := 4, x := 7, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk067 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 6, c := 7, x := 1, y := 3}, right := {a := 1, b := 6, c := 4, x := 7, y := 3}},
@@ -9330,6 +9445,7 @@ def familyDataChunk067 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 6, c := 9, x := 10, y := 0}, right := {a := 10, b := 6, c := 4, x := 9, y := 0}},
     {left := {a := 4, b := 6, c := 9, x := 10, y := 3}, right := {a := 10, b := 6, c := 4, x := 9, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk068 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 6, c := 9, x := 10, y := 5}, right := {a := 10, b := 6, c := 4, x := 9, y := 5}},
@@ -9429,6 +9545,7 @@ def familyDataChunk068 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 7, c := 1, x := 8, y := 11}, right := {a := 8, b := 7, c := 4, x := 1, y := 11}},
     {left := {a := 4, b := 7, c := 1, x := 9, y := 3}, right := {a := 9, b := 7, c := 4, x := 1, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk069 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 7, c := 1, x := 9, y := 5}, right := {a := 9, b := 7, c := 4, x := 1, y := 5}},
@@ -9528,6 +9645,7 @@ def familyDataChunk069 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 7, c := 6, x := 3, y := 10}, right := {a := 3, b := 7, c := 4, x := 6, y := 10}},
     {left := {a := 4, b := 7, c := 6, x := 3, y := 11}, right := {a := 3, b := 7, c := 4, x := 6, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk070 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 7, c := 6, x := 5, y := 0}, right := {a := 5, b := 7, c := 4, x := 6, y := 0}},
@@ -9627,6 +9745,7 @@ def familyDataChunk070 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 7, c := 10, x := 9, y := 5}, right := {a := 9, b := 7, c := 4, x := 10, y := 5}},
     {left := {a := 4, b := 7, c := 10, x := 9, y := 11}, right := {a := 9, b := 7, c := 4, x := 10, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk071 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 7, c := 10, x := 11, y := 1}, right := {a := 11, b := 7, c := 4, x := 10, y := 1}},
@@ -9726,6 +9845,7 @@ def familyDataChunk071 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 8, c := 3, x := 6, y := 11}, right := {a := 6, b := 8, c := 4, x := 3, y := 11}},
     {left := {a := 4, b := 8, c := 3, x := 7, y := 1}, right := {a := 7, b := 8, c := 4, x := 3, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk072 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 8, c := 3, x := 7, y := 5}, right := {a := 7, b := 8, c := 4, x := 3, y := 5}},
@@ -9825,6 +9945,7 @@ def familyDataChunk072 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 8, c := 7, x := 3, y := 10}, right := {a := 3, b := 8, c := 4, x := 7, y := 10}},
     {left := {a := 4, b := 8, c := 7, x := 3, y := 11}, right := {a := 3, b := 8, c := 4, x := 7, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk073 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 8, c := 7, x := 5, y := 0}, right := {a := 5, b := 8, c := 4, x := 7, y := 0}},
@@ -9924,6 +10045,7 @@ def familyDataChunk073 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 8, c := 11, x := 9, y := 3}, right := {a := 9, b := 8, c := 4, x := 11, y := 3}},
     {left := {a := 4, b := 8, c := 11, x := 9, y := 5}, right := {a := 9, b := 8, c := 4, x := 11, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk074 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 8, c := 11, x := 9, y := 10}, right := {a := 9, b := 8, c := 4, x := 11, y := 10}},
@@ -10023,6 +10145,7 @@ def familyDataChunk074 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 9, c := 5, x := 3, y := 6}, right := {a := 3, b := 9, c := 4, x := 5, y := 6}},
     {left := {a := 4, b := 9, c := 5, x := 3, y := 7}, right := {a := 3, b := 9, c := 4, x := 5, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk075 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 9, c := 5, x := 3, y := 8}, right := {a := 3, b := 9, c := 4, x := 5, y := 8}},
@@ -10122,6 +10245,7 @@ def familyDataChunk075 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 9, c := 8, x := 0, y := 5}, right := {a := 0, b := 9, c := 4, x := 8, y := 5}},
     {left := {a := 4, b := 9, c := 8, x := 1, y := 0}, right := {a := 1, b := 9, c := 4, x := 8, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk076 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 9, c := 8, x := 1, y := 3}, right := {a := 1, b := 9, c := 4, x := 8, y := 3}},
@@ -10221,6 +10345,7 @@ def familyDataChunk076 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 10, c := 0, x := 2, y := 3}, right := {a := 2, b := 10, c := 4, x := 0, y := 3}},
     {left := {a := 4, b := 10, c := 0, x := 2, y := 5}, right := {a := 2, b := 10, c := 4, x := 0, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk077 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 10, c := 0, x := 3, y := 5}, right := {a := 3, b := 10, c := 4, x := 0, y := 5}},
@@ -10320,6 +10445,7 @@ def familyDataChunk077 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 10, c := 6, x := 7, y := 11}, right := {a := 7, b := 10, c := 4, x := 6, y := 11}},
     {left := {a := 4, b := 10, c := 6, x := 8, y := 1}, right := {a := 8, b := 10, c := 4, x := 6, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk078 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 10, c := 6, x := 8, y := 2}, right := {a := 8, b := 10, c := 4, x := 6, y := 2}},
@@ -10419,6 +10545,7 @@ def familyDataChunk078 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 10, c := 9, x := 7, y := 2}, right := {a := 7, b := 10, c := 4, x := 9, y := 2}},
     {left := {a := 4, b := 10, c := 9, x := 7, y := 3}, right := {a := 7, b := 10, c := 4, x := 9, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk079 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 10, c := 9, x := 7, y := 5}, right := {a := 7, b := 10, c := 4, x := 9, y := 5}},
@@ -10518,6 +10645,7 @@ def familyDataChunk079 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 11, c := 3, x := 1, y := 10}, right := {a := 1, b := 11, c := 4, x := 3, y := 10}},
     {left := {a := 4, b := 11, c := 3, x := 2, y := 5}, right := {a := 2, b := 11, c := 4, x := 3, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk080 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 11, c := 3, x := 2, y := 10}, right := {a := 2, b := 11, c := 4, x := 3, y := 10}},
@@ -10617,6 +10745,7 @@ def familyDataChunk080 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 11, c := 7, x := 8, y := 2}, right := {a := 8, b := 11, c := 4, x := 7, y := 2}},
     {left := {a := 4, b := 11, c := 7, x := 8, y := 3}, right := {a := 8, b := 11, c := 4, x := 7, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk081 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 11, c := 7, x := 8, y := 5}, right := {a := 8, b := 11, c := 4, x := 7, y := 5}},
@@ -10716,6 +10845,7 @@ def familyDataChunk081 : List CorePairCommonFiveData :=
     {left := {a := 4, b := 11, c := 10, x := 5, y := 6}, right := {a := 5, b := 11, c := 4, x := 10, y := 6}},
     {left := {a := 4, b := 11, c := 10, x := 5, y := 7}, right := {a := 5, b := 11, c := 4, x := 10, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk082 : List CorePairCommonFiveData :=
   [
     {left := {a := 4, b := 11, c := 10, x := 5, y := 8}, right := {a := 5, b := 11, c := 4, x := 10, y := 8}},
@@ -10815,6 +10945,7 @@ def familyDataChunk082 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 0, c := 7, x := 9, y := 10}, right := {a := 9, b := 0, c := 5, x := 7, y := 10}},
     {left := {a := 5, b := 0, c := 7, x := 9, y := 11}, right := {a := 9, b := 0, c := 5, x := 7, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk083 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 0, c := 8, x := 2, y := 3}, right := {a := 2, b := 0, c := 5, x := 8, y := 3}},
@@ -10914,6 +11045,7 @@ def familyDataChunk083 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 1, c := 4, x := 3, y := 10}, right := {a := 3, b := 1, c := 5, x := 4, y := 10}},
     {left := {a := 5, b := 1, c := 4, x := 3, y := 11}, right := {a := 3, b := 1, c := 5, x := 4, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk084 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 1, c := 4, x := 6, y := 3}, right := {a := 6, b := 1, c := 5, x := 4, y := 3}},
@@ -11013,6 +11145,7 @@ def familyDataChunk084 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 1, c := 11, x := 7, y := 3}, right := {a := 7, b := 1, c := 5, x := 11, y := 3}},
     {left := {a := 5, b := 1, c := 11, x := 7, y := 4}, right := {a := 7, b := 1, c := 5, x := 11, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk085 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 1, c := 11, x := 8, y := 3}, right := {a := 8, b := 1, c := 5, x := 11, y := 3}},
@@ -11112,6 +11245,7 @@ def familyDataChunk085 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 2, c := 8, x := 6, y := 7}, right := {a := 6, b := 2, c := 5, x := 8, y := 7}},
     {left := {a := 5, b := 2, c := 8, x := 6, y := 10}, right := {a := 6, b := 2, c := 5, x := 8, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk086 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 2, c := 8, x := 6, y := 11}, right := {a := 6, b := 2, c := 5, x := 8, y := 11}},
@@ -11211,6 +11345,7 @@ def familyDataChunk086 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 3, c := 1, x := 9, y := 0}, right := {a := 9, b := 3, c := 5, x := 1, y := 0}},
     {left := {a := 5, b := 3, c := 1, x := 9, y := 6}, right := {a := 9, b := 3, c := 5, x := 1, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk087 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 3, c := 1, x := 9, y := 7}, right := {a := 9, b := 3, c := 5, x := 1, y := 7}},
@@ -11310,6 +11445,7 @@ def familyDataChunk087 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 3, c := 6, x := 11, y := 10}, right := {a := 11, b := 3, c := 5, x := 6, y := 10}},
     {left := {a := 5, b := 3, c := 7, x := 0, y := 4}, right := {a := 0, b := 3, c := 5, x := 7, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk088 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 3, c := 7, x := 0, y := 6}, right := {a := 0, b := 3, c := 5, x := 7, y := 6}},
@@ -11409,6 +11545,7 @@ def familyDataChunk088 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 3, c := 9, x := 10, y := 0}, right := {a := 10, b := 3, c := 5, x := 9, y := 0}},
     {left := {a := 5, b := 3, c := 9, x := 10, y := 4}, right := {a := 10, b := 3, c := 5, x := 9, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk089 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 3, c := 9, x := 10, y := 6}, right := {a := 10, b := 3, c := 5, x := 9, y := 6}},
@@ -11508,6 +11645,7 @@ def familyDataChunk089 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 4, c := 0, x := 8, y := 3}, right := {a := 8, b := 4, c := 5, x := 0, y := 3}},
     {left := {a := 5, b := 4, c := 0, x := 9, y := 3}, right := {a := 9, b := 4, c := 5, x := 0, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk090 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 4, c := 0, x := 10, y := 3}, right := {a := 10, b := 4, c := 5, x := 0, y := 3}},
@@ -11607,6 +11745,7 @@ def familyDataChunk090 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 4, c := 6, x := 8, y := 0}, right := {a := 8, b := 4, c := 5, x := 6, y := 0}},
     {left := {a := 5, b := 4, c := 6, x := 8, y := 3}, right := {a := 8, b := 4, c := 5, x := 6, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk091 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 4, c := 6, x := 8, y := 7}, right := {a := 8, b := 4, c := 5, x := 6, y := 7}},
@@ -11706,6 +11845,7 @@ def familyDataChunk091 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 4, c := 9, x := 0, y := 8}, right := {a := 0, b := 4, c := 5, x := 9, y := 8}},
     {left := {a := 5, b := 4, c := 9, x := 3, y := 0}, right := {a := 3, b := 4, c := 5, x := 9, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk092 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 4, c := 9, x := 3, y := 6}, right := {a := 3, b := 4, c := 5, x := 9, y := 6}},
@@ -11805,6 +11945,7 @@ def familyDataChunk092 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 4, c := 11, x := 8, y := 9}, right := {a := 8, b := 4, c := 5, x := 11, y := 9}},
     {left := {a := 5, b := 4, c := 11, x := 8, y := 10}, right := {a := 8, b := 4, c := 5, x := 11, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk093 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 4, c := 11, x := 9, y := 0}, right := {a := 9, b := 4, c := 5, x := 11, y := 0}},
@@ -11904,6 +12045,7 @@ def familyDataChunk093 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 6, c := 4, x := 2, y := 7}, right := {a := 2, b := 6, c := 5, x := 4, y := 7}},
     {left := {a := 5, b := 6, c := 4, x := 2, y := 8}, right := {a := 2, b := 6, c := 5, x := 4, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk094 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 6, c := 4, x := 2, y := 9}, right := {a := 2, b := 6, c := 5, x := 4, y := 9}},
@@ -12003,6 +12145,7 @@ def familyDataChunk094 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 6, c := 8, x := 11, y := 3}, right := {a := 11, b := 6, c := 5, x := 8, y := 3}},
     {left := {a := 5, b := 6, c := 8, x := 11, y := 4}, right := {a := 11, b := 6, c := 5, x := 8, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk095 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 6, c := 8, x := 11, y := 10}, right := {a := 11, b := 6, c := 5, x := 8, y := 10}},
@@ -12102,6 +12245,7 @@ def familyDataChunk095 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 6, c := 11, x := 10, y := 4}, right := {a := 10, b := 6, c := 5, x := 11, y := 4}},
     {left := {a := 5, b := 6, c := 11, x := 10, y := 7}, right := {a := 10, b := 6, c := 5, x := 11, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk096 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 6, c := 11, x := 10, y := 8}, right := {a := 10, b := 6, c := 5, x := 11, y := 8}},
@@ -12201,6 +12345,7 @@ def familyDataChunk096 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 7, c := 4, x := 6, y := 3}, right := {a := 6, b := 7, c := 5, x := 4, y := 3}},
     {left := {a := 5, b := 7, c := 4, x := 6, y := 10}, right := {a := 6, b := 7, c := 5, x := 4, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk097 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 7, c := 4, x := 6, y := 11}, right := {a := 6, b := 7, c := 5, x := 4, y := 11}},
@@ -12300,6 +12445,7 @@ def familyDataChunk097 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 7, c := 9, x := 10, y := 0}, right := {a := 10, b := 7, c := 5, x := 9, y := 0}},
     {left := {a := 5, b := 7, c := 9, x := 10, y := 3}, right := {a := 10, b := 7, c := 5, x := 9, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk098 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 7, c := 9, x := 10, y := 4}, right := {a := 10, b := 7, c := 5, x := 9, y := 4}},
@@ -12399,6 +12545,7 @@ def familyDataChunk098 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 8, c := 1, x := 7, y := 11}, right := {a := 7, b := 8, c := 5, x := 1, y := 11}},
     {left := {a := 5, b := 8, c := 1, x := 9, y := 3}, right := {a := 9, b := 8, c := 5, x := 1, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk099 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 8, c := 1, x := 9, y := 4}, right := {a := 9, b := 8, c := 5, x := 1, y := 4}},
@@ -12498,6 +12645,7 @@ def familyDataChunk099 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 8, c := 6, x := 3, y := 10}, right := {a := 3, b := 8, c := 5, x := 6, y := 10}},
     {left := {a := 5, b := 8, c := 6, x := 3, y := 11}, right := {a := 3, b := 8, c := 5, x := 6, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk100 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 8, c := 6, x := 4, y := 0}, right := {a := 4, b := 8, c := 5, x := 6, y := 0}},
@@ -12597,6 +12745,7 @@ def familyDataChunk100 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 8, c := 10, x := 9, y := 4}, right := {a := 9, b := 8, c := 5, x := 10, y := 4}},
     {left := {a := 5, b := 8, c := 10, x := 9, y := 11}, right := {a := 9, b := 8, c := 5, x := 10, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk101 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 8, c := 10, x := 11, y := 1}, right := {a := 11, b := 8, c := 5, x := 10, y := 1}},
@@ -12696,6 +12845,7 @@ def familyDataChunk101 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 9, c := 3, x := 6, y := 11}, right := {a := 6, b := 9, c := 5, x := 3, y := 11}},
     {left := {a := 5, b := 9, c := 3, x := 7, y := 1}, right := {a := 7, b := 9, c := 5, x := 3, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk102 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 9, c := 3, x := 7, y := 4}, right := {a := 7, b := 9, c := 5, x := 3, y := 4}},
@@ -12795,6 +12945,7 @@ def familyDataChunk102 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 9, c := 7, x := 1, y := 11}, right := {a := 1, b := 9, c := 5, x := 7, y := 11}},
     {left := {a := 5, b := 9, c := 7, x := 2, y := 3}, right := {a := 2, b := 9, c := 5, x := 7, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk103 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 9, c := 7, x := 2, y := 4}, right := {a := 2, b := 9, c := 5, x := 7, y := 4}},
@@ -12894,6 +13045,7 @@ def familyDataChunk103 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 9, c := 11, x := 0, y := 4}, right := {a := 0, b := 9, c := 5, x := 11, y := 4}},
     {left := {a := 5, b := 9, c := 11, x := 1, y := 3}, right := {a := 1, b := 9, c := 5, x := 11, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk104 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 9, c := 11, x := 1, y := 4}, right := {a := 1, b := 9, c := 5, x := 11, y := 4}},
@@ -12993,6 +13145,7 @@ def familyDataChunk104 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 10, c := 4, x := 3, y := 8}, right := {a := 3, b := 10, c := 5, x := 4, y := 8}},
     {left := {a := 5, b := 10, c := 4, x := 3, y := 9}, right := {a := 3, b := 10, c := 5, x := 4, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk105 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 10, c := 4, x := 3, y := 11}, right := {a := 3, b := 10, c := 5, x := 4, y := 11}},
@@ -13092,6 +13245,7 @@ def familyDataChunk105 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 10, c := 8, x := 7, y := 3}, right := {a := 7, b := 10, c := 5, x := 8, y := 3}},
     {left := {a := 5, b := 10, c := 8, x := 7, y := 4}, right := {a := 7, b := 10, c := 5, x := 8, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk106 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 10, c := 8, x := 7, y := 11}, right := {a := 7, b := 10, c := 5, x := 8, y := 11}},
@@ -13191,6 +13345,7 @@ def familyDataChunk106 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 11, c := 0, x := 6, y := 3}, right := {a := 6, b := 11, c := 5, x := 0, y := 3}},
     {left := {a := 5, b := 11, c := 0, x := 6, y := 4}, right := {a := 6, b := 11, c := 5, x := 0, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk107 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 11, c := 0, x := 7, y := 3}, right := {a := 7, b := 11, c := 5, x := 0, y := 3}},
@@ -13290,6 +13445,7 @@ def familyDataChunk107 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 11, c := 6, x := 8, y := 4}, right := {a := 8, b := 11, c := 5, x := 6, y := 4}},
     {left := {a := 5, b := 11, c := 6, x := 8, y := 7}, right := {a := 8, b := 11, c := 5, x := 6, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk108 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 11, c := 6, x := 8, y := 10}, right := {a := 8, b := 11, c := 5, x := 6, y := 10}},
@@ -13389,6 +13545,7 @@ def familyDataChunk108 : List CorePairCommonFiveData :=
     {left := {a := 5, b := 11, c := 9, x := 7, y := 10}, right := {a := 7, b := 11, c := 5, x := 9, y := 10}},
     {left := {a := 5, b := 11, c := 9, x := 8, y := 1}, right := {a := 8, b := 11, c := 5, x := 9, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk109 : List CorePairCommonFiveData :=
   [
     {left := {a := 5, b := 11, c := 9, x := 8, y := 2}, right := {a := 8, b := 11, c := 5, x := 9, y := 2}},
@@ -13488,6 +13645,7 @@ def familyDataChunk109 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 0, c := 4, x := 3, y := 9}, right := {a := 3, b := 0, c := 6, x := 4, y := 9}},
     {left := {a := 6, b := 0, c := 4, x := 5, y := 3}, right := {a := 5, b := 0, c := 6, x := 4, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk110 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 0, c := 4, x := 5, y := 7}, right := {a := 5, b := 0, c := 6, x := 4, y := 7}},
@@ -13587,6 +13745,7 @@ def familyDataChunk110 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 1, c := 3, x := 2, y := 9}, right := {a := 2, b := 1, c := 6, x := 3, y := 9}},
     {left := {a := 6, b := 1, c := 3, x := 4, y := 0}, right := {a := 4, b := 1, c := 6, x := 3, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk111 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 1, c := 3, x := 4, y := 5}, right := {a := 4, b := 1, c := 6, x := 3, y := 5}},
@@ -13686,6 +13845,7 @@ def familyDataChunk111 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 1, c := 11, x := 7, y := 9}, right := {a := 7, b := 1, c := 6, x := 11, y := 9}},
     {left := {a := 6, b := 1, c := 11, x := 8, y := 9}, right := {a := 8, b := 1, c := 6, x := 11, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk112 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 1, c := 11, x := 10, y := 2}, right := {a := 10, b := 1, c := 6, x := 11, y := 2}},
@@ -13785,6 +13945,7 @@ def familyDataChunk112 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 2, c := 7, x := 5, y := 8}, right := {a := 5, b := 2, c := 6, x := 7, y := 8}},
     {left := {a := 6, b := 2, c := 7, x := 5, y := 9}, right := {a := 5, b := 2, c := 6, x := 7, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk113 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 2, c := 7, x := 10, y := 8}, right := {a := 10, b := 2, c := 6, x := 7, y := 8}},
@@ -13884,6 +14045,7 @@ def familyDataChunk113 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 3, c := 4, x := 1, y := 5}, right := {a := 1, b := 3, c := 6, x := 4, y := 5}},
     {left := {a := 6, b := 3, c := 4, x := 1, y := 7}, right := {a := 1, b := 3, c := 6, x := 4, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk114 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 3, c := 4, x := 1, y := 8}, right := {a := 1, b := 3, c := 6, x := 4, y := 8}},
@@ -13983,6 +14145,7 @@ def familyDataChunk114 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 3, c := 7, x := 1, y := 9}, right := {a := 1, b := 3, c := 6, x := 7, y := 9}},
     {left := {a := 6, b := 3, c := 7, x := 2, y := 4}, right := {a := 2, b := 3, c := 6, x := 7, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk115 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 3, c := 7, x := 2, y := 5}, right := {a := 2, b := 3, c := 6, x := 7, y := 5}},
@@ -14082,6 +14245,7 @@ def familyDataChunk115 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 3, c := 10, x := 11, y := 2}, right := {a := 11, b := 3, c := 6, x := 10, y := 2}},
     {left := {a := 6, b := 3, c := 10, x := 11, y := 4}, right := {a := 11, b := 3, c := 6, x := 10, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk116 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 3, c := 10, x := 11, y := 5}, right := {a := 11, b := 3, c := 6, x := 10, y := 5}},
@@ -14181,6 +14345,7 @@ def familyDataChunk116 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 4, c := 3, x := 5, y := 0}, right := {a := 5, b := 4, c := 6, x := 3, y := 0}},
     {left := {a := 6, b := 4, c := 3, x := 5, y := 7}, right := {a := 5, b := 4, c := 6, x := 3, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk117 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 4, c := 3, x := 5, y := 8}, right := {a := 5, b := 4, c := 6, x := 3, y := 8}},
@@ -14280,6 +14445,7 @@ def familyDataChunk117 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 4, c := 7, x := 3, y := 9}, right := {a := 3, b := 4, c := 6, x := 7, y := 9}},
     {left := {a := 6, b := 4, c := 7, x := 3, y := 10}, right := {a := 3, b := 4, c := 6, x := 7, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk118 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 4, c := 7, x := 3, y := 11}, right := {a := 3, b := 4, c := 6, x := 7, y := 11}},
@@ -14379,6 +14545,7 @@ def familyDataChunk118 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 4, c := 11, x := 0, y := 9}, right := {a := 0, b := 4, c := 6, x := 11, y := 9}},
     {left := {a := 6, b := 4, c := 11, x := 1, y := 7}, right := {a := 1, b := 4, c := 6, x := 11, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk119 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 4, c := 11, x := 1, y := 8}, right := {a := 1, b := 4, c := 6, x := 11, y := 8}},
@@ -14478,6 +14645,7 @@ def familyDataChunk119 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 5, c := 3, x := 7, y := 8}, right := {a := 7, b := 5, c := 6, x := 3, y := 8}},
     {left := {a := 6, b := 5, c := 3, x := 7, y := 9}, right := {a := 7, b := 5, c := 6, x := 3, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk120 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 5, c := 3, x := 7, y := 10}, right := {a := 7, b := 5, c := 6, x := 3, y := 10}},
@@ -14577,6 +14745,7 @@ def familyDataChunk120 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 5, c := 7, x := 4, y := 11}, right := {a := 4, b := 5, c := 6, x := 7, y := 11}},
     {left := {a := 6, b := 5, c := 7, x := 10, y := 3}, right := {a := 10, b := 5, c := 6, x := 7, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk121 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 5, c := 7, x := 10, y := 4}, right := {a := 10, b := 5, c := 6, x := 7, y := 4}},
@@ -14676,6 +14845,7 @@ def familyDataChunk121 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 5, c := 11, x := 3, y := 8}, right := {a := 3, b := 5, c := 6, x := 11, y := 8}},
     {left := {a := 6, b := 5, c := 11, x := 3, y := 9}, right := {a := 3, b := 5, c := 6, x := 11, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk122 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 5, c := 11, x := 3, y := 10}, right := {a := 3, b := 5, c := 6, x := 11, y := 10}},
@@ -14775,6 +14945,7 @@ def familyDataChunk122 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 7, c := 5, x := 10, y := 3}, right := {a := 10, b := 7, c := 6, x := 5, y := 3}},
     {left := {a := 6, b := 7, c := 5, x := 10, y := 4}, right := {a := 10, b := 7, c := 6, x := 5, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk123 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 7, c := 5, x := 10, y := 11}, right := {a := 10, b := 7, c := 6, x := 5, y := 11}},
@@ -14874,6 +15045,7 @@ def familyDataChunk123 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 8, c := 4, x := 1, y := 7}, right := {a := 1, b := 8, c := 6, x := 4, y := 7}},
     {left := {a := 6, b := 8, c := 4, x := 3, y := 1}, right := {a := 3, b := 8, c := 6, x := 4, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk124 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 8, c := 4, x := 3, y := 5}, right := {a := 3, b := 8, c := 6, x := 4, y := 5}},
@@ -14973,6 +15145,7 @@ def familyDataChunk124 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 9, c := 0, x := 4, y := 10}, right := {a := 4, b := 9, c := 6, x := 0, y := 10}},
     {left := {a := 6, b := 9, c := 0, x := 4, y := 11}, right := {a := 4, b := 9, c := 6, x := 0, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk125 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 9, c := 0, x := 5, y := 1}, right := {a := 5, b := 9, c := 6, x := 0, y := 1}},
@@ -15072,6 +15245,7 @@ def familyDataChunk125 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 9, c := 5, x := 4, y := 8}, right := {a := 4, b := 9, c := 6, x := 5, y := 8}},
     {left := {a := 6, b := 9, c := 5, x := 4, y := 10}, right := {a := 4, b := 9, c := 6, x := 5, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk126 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 9, c := 5, x := 4, y := 11}, right := {a := 4, b := 9, c := 6, x := 5, y := 11}},
@@ -15171,6 +15345,7 @@ def familyDataChunk126 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 10, c := 2, x := 5, y := 9}, right := {a := 5, b := 10, c := 6, x := 2, y := 9}},
     {left := {a := 6, b := 10, c := 2, x := 7, y := 11}, right := {a := 7, b := 10, c := 6, x := 2, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk127 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 10, c := 2, x := 8, y := 11}, right := {a := 8, b := 10, c := 6, x := 2, y := 11}},
@@ -15270,6 +15445,7 @@ def familyDataChunk127 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 10, c := 5, x := 7, y := 9}, right := {a := 7, b := 10, c := 6, x := 5, y := 9}},
     {left := {a := 6, b := 10, c := 5, x := 7, y := 11}, right := {a := 7, b := 10, c := 6, x := 5, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk128 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 10, c := 5, x := 8, y := 9}, right := {a := 8, b := 10, c := 6, x := 5, y := 9}},
@@ -15369,6 +15545,7 @@ def familyDataChunk128 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 10, c := 11, x := 7, y := 8}, right := {a := 7, b := 10, c := 6, x := 11, y := 8}},
     {left := {a := 6, b := 10, c := 11, x := 7, y := 9}, right := {a := 7, b := 10, c := 6, x := 11, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk129 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 10, c := 11, x := 8, y := 1}, right := {a := 8, b := 10, c := 6, x := 11, y := 1}},
@@ -15468,6 +15645,7 @@ def familyDataChunk129 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 11, c := 4, x := 5, y := 3}, right := {a := 5, b := 11, c := 6, x := 4, y := 3}},
     {left := {a := 6, b := 11, c := 4, x := 5, y := 7}, right := {a := 5, b := 11, c := 6, x := 4, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk130 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 11, c := 4, x := 5, y := 8}, right := {a := 5, b := 11, c := 6, x := 4, y := 8}},
@@ -15567,6 +15745,7 @@ def familyDataChunk130 : List CorePairCommonFiveData :=
     {left := {a := 6, b := 11, c := 9, x := 10, y := 3}, right := {a := 10, b := 11, c := 6, x := 9, y := 3}},
     {left := {a := 6, b := 11, c := 9, x := 10, y := 4}, right := {a := 10, b := 11, c := 6, x := 9, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk131 : List CorePairCommonFiveData :=
   [
     {left := {a := 6, b := 11, c := 9, x := 10, y := 5}, right := {a := 10, b := 11, c := 6, x := 9, y := 5}},
@@ -15666,6 +15845,7 @@ def familyDataChunk131 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 0, c := 5, x := 1, y := 8}, right := {a := 1, b := 0, c := 7, x := 5, y := 8}},
     {left := {a := 7, b := 0, c := 5, x := 1, y := 9}, right := {a := 1, b := 0, c := 7, x := 5, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk132 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 0, c := 5, x := 3, y := 4}, right := {a := 3, b := 0, c := 7, x := 5, y := 4}},
@@ -15765,6 +15945,7 @@ def familyDataChunk132 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 1, c := 3, x := 5, y := 4}, right := {a := 5, b := 1, c := 7, x := 3, y := 4}},
     {left := {a := 7, b := 1, c := 3, x := 5, y := 6}, right := {a := 5, b := 1, c := 7, x := 3, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk133 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 1, c := 3, x := 5, y := 8}, right := {a := 5, b := 1, c := 7, x := 3, y := 8}},
@@ -15864,6 +16045,7 @@ def familyDataChunk133 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 2, c := 1, x := 11, y := 6}, right := {a := 11, b := 2, c := 7, x := 1, y := 6}},
     {left := {a := 7, b := 2, c := 1, x := 11, y := 8}, right := {a := 11, b := 2, c := 7, x := 1, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk134 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 2, c := 1, x := 11, y := 9}, right := {a := 11, b := 2, c := 7, x := 1, y := 9}},
@@ -15963,6 +16145,7 @@ def familyDataChunk134 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 2, c := 9, x := 6, y := 5}, right := {a := 6, b := 2, c := 7, x := 9, y := 5}},
     {left := {a := 7, b := 2, c := 9, x := 6, y := 10}, right := {a := 6, b := 2, c := 7, x := 9, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk135 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 2, c := 9, x := 6, y := 11}, right := {a := 6, b := 2, c := 7, x := 9, y := 11}},
@@ -16062,6 +16245,7 @@ def familyDataChunk135 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 3, c := 4, x := 6, y := 5}, right := {a := 6, b := 3, c := 7, x := 4, y := 5}},
     {left := {a := 7, b := 3, c := 4, x := 6, y := 10}, right := {a := 6, b := 3, c := 7, x := 4, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk136 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 3, c := 4, x := 6, y := 11}, right := {a := 6, b := 3, c := 7, x := 4, y := 11}},
@@ -16161,6 +16345,7 @@ def familyDataChunk136 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 3, c := 6, x := 11, y := 4}, right := {a := 11, b := 3, c := 7, x := 6, y := 4}},
     {left := {a := 7, b := 3, c := 6, x := 11, y := 5}, right := {a := 11, b := 3, c := 7, x := 6, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk137 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 3, c := 8, x := 0, y := 4}, right := {a := 0, b := 3, c := 7, x := 8, y := 4}},
@@ -16260,6 +16445,7 @@ def familyDataChunk137 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 3, c := 11, x := 4, y := 6}, right := {a := 4, b := 3, c := 7, x := 11, y := 6}},
     {left := {a := 7, b := 3, c := 11, x := 4, y := 8}, right := {a := 4, b := 3, c := 7, x := 11, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk138 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 3, c := 11, x := 4, y := 9}, right := {a := 4, b := 3, c := 7, x := 11, y := 9}},
@@ -16359,6 +16545,7 @@ def familyDataChunk138 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 4, c := 3, x := 10, y := 1}, right := {a := 10, b := 4, c := 7, x := 3, y := 1}},
     {left := {a := 7, b := 4, c := 3, x := 10, y := 5}, right := {a := 10, b := 4, c := 7, x := 3, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk139 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 4, c := 3, x := 10, y := 6}, right := {a := 10, b := 4, c := 7, x := 3, y := 6}},
@@ -16458,6 +16645,7 @@ def familyDataChunk139 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 4, c := 8, x := 3, y := 5}, right := {a := 3, b := 4, c := 7, x := 8, y := 5}},
     {left := {a := 7, b := 4, c := 8, x := 3, y := 9}, right := {a := 3, b := 4, c := 7, x := 8, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk140 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 4, c := 8, x := 3, y := 10}, right := {a := 3, b := 4, c := 7, x := 8, y := 10}},
@@ -16557,6 +16745,7 @@ def familyDataChunk140 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 4, c := 11, x := 8, y := 5}, right := {a := 8, b := 4, c := 7, x := 11, y := 5}},
     {left := {a := 7, b := 4, c := 11, x := 8, y := 9}, right := {a := 8, b := 4, c := 7, x := 11, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk141 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 4, c := 11, x := 9, y := 3}, right := {a := 9, b := 4, c := 7, x := 11, y := 3}},
@@ -16656,6 +16845,7 @@ def familyDataChunk141 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 5, c := 4, x := 0, y := 1}, right := {a := 0, b := 5, c := 7, x := 4, y := 1}},
     {left := {a := 7, b := 5, c := 4, x := 0, y := 3}, right := {a := 0, b := 5, c := 7, x := 4, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk142 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 5, c := 4, x := 0, y := 6}, right := {a := 0, b := 5, c := 7, x := 4, y := 6}},
@@ -16755,6 +16945,7 @@ def familyDataChunk142 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 5, c := 8, x := 6, y := 10}, right := {a := 6, b := 5, c := 7, x := 8, y := 10}},
     {left := {a := 7, b := 5, c := 8, x := 6, y := 11}, right := {a := 6, b := 5, c := 7, x := 8, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk143 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 5, c := 8, x := 10, y := 3}, right := {a := 10, b := 5, c := 7, x := 8, y := 3}},
@@ -16854,6 +17045,7 @@ def familyDataChunk143 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 6, c := 0, x := 3, y := 4}, right := {a := 3, b := 6, c := 7, x := 0, y := 4}},
     {left := {a := 7, b := 6, c := 0, x := 3, y := 5}, right := {a := 3, b := 6, c := 7, x := 0, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk144 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 6, c := 0, x := 3, y := 10}, right := {a := 3, b := 6, c := 7, x := 0, y := 10}},
@@ -16953,6 +17145,7 @@ def familyDataChunk144 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 6, c := 5, x := 3, y := 8}, right := {a := 3, b := 6, c := 7, x := 5, y := 8}},
     {left := {a := 7, b := 6, c := 5, x := 3, y := 9}, right := {a := 3, b := 6, c := 7, x := 5, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk145 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 6, c := 5, x := 3, y := 10}, right := {a := 3, b := 6, c := 7, x := 5, y := 10}},
@@ -17052,6 +17245,7 @@ def familyDataChunk145 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 8, c := 2, x := 10, y := 1}, right := {a := 10, b := 8, c := 7, x := 2, y := 1}},
     {left := {a := 7, b := 8, c := 2, x := 10, y := 3}, right := {a := 10, b := 8, c := 7, x := 2, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk146 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 8, c := 2, x := 10, y := 4}, right := {a := 10, b := 8, c := 7, x := 2, y := 4}},
@@ -17151,6 +17345,7 @@ def familyDataChunk146 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 8, c := 10, x := 11, y := 1}, right := {a := 11, b := 8, c := 7, x := 10, y := 1}},
     {left := {a := 7, b := 8, c := 10, x := 11, y := 3}, right := {a := 11, b := 8, c := 7, x := 10, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk147 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 8, c := 10, x := 11, y := 4}, right := {a := 11, b := 8, c := 7, x := 10, y := 4}},
@@ -17250,6 +17445,7 @@ def familyDataChunk147 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 9, c := 4, x := 3, y := 6}, right := {a := 3, b := 9, c := 7, x := 4, y := 6}},
     {left := {a := 7, b := 9, c := 4, x := 3, y := 8}, right := {a := 3, b := 9, c := 7, x := 4, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk148 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 9, c := 4, x := 3, y := 10}, right := {a := 3, b := 9, c := 7, x := 4, y := 10}},
@@ -17349,6 +17545,7 @@ def familyDataChunk148 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 9, c := 11, x := 5, y := 8}, right := {a := 5, b := 9, c := 7, x := 11, y := 8}},
     {left := {a := 7, b := 9, c := 11, x := 5, y := 10}, right := {a := 5, b := 9, c := 7, x := 11, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk149 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 9, c := 11, x := 10, y := 1}, right := {a := 10, b := 9, c := 7, x := 11, y := 1}},
@@ -17448,6 +17645,7 @@ def familyDataChunk149 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 10, c := 4, x := 8, y := 11}, right := {a := 8, b := 10, c := 7, x := 4, y := 11}},
     {left := {a := 7, b := 10, c := 4, x := 9, y := 11}, right := {a := 9, b := 10, c := 7, x := 4, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk150 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 10, c := 4, x := 11, y := 3}, right := {a := 11, b := 10, c := 7, x := 4, y := 3}},
@@ -17547,6 +17745,7 @@ def familyDataChunk150 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 10, c := 11, x := 0, y := 9}, right := {a := 0, b := 10, c := 7, x := 11, y := 9}},
     {left := {a := 7, b := 10, c := 11, x := 1, y := 6}, right := {a := 1, b := 10, c := 7, x := 11, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk151 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 10, c := 11, x := 1, y := 8}, right := {a := 1, b := 10, c := 7, x := 11, y := 8}},
@@ -17646,6 +17845,7 @@ def familyDataChunk151 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 11, c := 3, x := 5, y := 9}, right := {a := 5, b := 11, c := 7, x := 3, y := 9}},
     {left := {a := 7, b := 11, c := 3, x := 5, y := 10}, right := {a := 5, b := 11, c := 7, x := 3, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk152 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 11, c := 3, x := 6, y := 10}, right := {a := 6, b := 11, c := 7, x := 3, y := 10}},
@@ -17745,6 +17945,7 @@ def familyDataChunk152 : List CorePairCommonFiveData :=
     {left := {a := 7, b := 11, c := 8, x := 2, y := 10}, right := {a := 2, b := 11, c := 7, x := 8, y := 10}},
     {left := {a := 7, b := 11, c := 8, x := 3, y := 9}, right := {a := 3, b := 11, c := 7, x := 8, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk153 : List CorePairCommonFiveData :=
   [
     {left := {a := 7, b := 11, c := 8, x := 3, y := 10}, right := {a := 3, b := 11, c := 7, x := 8, y := 10}},
@@ -17844,6 +18045,7 @@ def familyDataChunk153 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 0, c := 3, x := 5, y := 9}, right := {a := 5, b := 0, c := 8, x := 3, y := 9}},
     {left := {a := 8, b := 0, c := 3, x := 7, y := 6}, right := {a := 7, b := 0, c := 8, x := 3, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk154 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 0, c := 3, x := 10, y := 6}, right := {a := 10, b := 0, c := 8, x := 3, y := 6}},
@@ -17943,6 +18145,7 @@ def familyDataChunk154 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 0, c := 11, x := 3, y := 6}, right := {a := 3, b := 0, c := 8, x := 11, y := 6}},
     {left := {a := 8, b := 0, c := 11, x := 3, y := 7}, right := {a := 3, b := 0, c := 8, x := 11, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk155 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 0, c := 11, x := 3, y := 9}, right := {a := 3, b := 0, c := 8, x := 11, y := 9}},
@@ -18042,6 +18245,7 @@ def familyDataChunk155 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 1, c := 9, x := 7, y := 11}, right := {a := 7, b := 1, c := 8, x := 9, y := 11}},
     {left := {a := 8, b := 1, c := 10, x := 0, y := 6}, right := {a := 0, b := 1, c := 8, x := 10, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk156 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 1, c := 10, x := 0, y := 7}, right := {a := 0, b := 1, c := 8, x := 10, y := 7}},
@@ -18141,6 +18345,7 @@ def familyDataChunk156 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 2, c := 6, x := 9, y := 1}, right := {a := 9, b := 2, c := 8, x := 6, y := 1}},
     {left := {a := 8, b := 2, c := 6, x := 9, y := 3}, right := {a := 9, b := 2, c := 8, x := 6, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk157 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 2, c := 6, x := 9, y := 4}, right := {a := 9, b := 2, c := 8, x := 6, y := 4}},
@@ -18240,6 +18445,7 @@ def familyDataChunk157 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 3, c := 1, x := 10, y := 7}, right := {a := 10, b := 3, c := 8, x := 1, y := 7}},
     {left := {a := 8, b := 3, c := 1, x := 10, y := 9}, right := {a := 10, b := 3, c := 8, x := 1, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk158 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 3, c := 1, x := 11, y := 6}, right := {a := 11, b := 3, c := 8, x := 1, y := 6}},
@@ -18339,6 +18545,7 @@ def familyDataChunk158 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 3, c := 5, x := 11, y := 10}, right := {a := 11, b := 3, c := 8, x := 5, y := 10}},
     {left := {a := 8, b := 3, c := 6, x := 0, y := 4}, right := {a := 0, b := 3, c := 8, x := 6, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk159 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 3, c := 6, x := 0, y := 5}, right := {a := 0, b := 3, c := 8, x := 6, y := 5}},
@@ -18438,6 +18645,7 @@ def familyDataChunk159 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 3, c := 10, x := 5, y := 6}, right := {a := 5, b := 3, c := 8, x := 10, y := 6}},
     {left := {a := 8, b := 3, c := 10, x := 5, y := 7}, right := {a := 5, b := 3, c := 8, x := 10, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk160 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 3, c := 10, x := 5, y := 9}, right := {a := 5, b := 3, c := 8, x := 10, y := 9}},
@@ -18537,6 +18745,7 @@ def familyDataChunk160 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 4, c := 3, x := 1, y := 5}, right := {a := 1, b := 4, c := 8, x := 3, y := 5}},
     {left := {a := 8, b := 4, c := 3, x := 1, y := 6}, right := {a := 1, b := 4, c := 8, x := 3, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk161 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 4, c := 3, x := 1, y := 7}, right := {a := 1, b := 4, c := 8, x := 3, y := 7}},
@@ -18636,6 +18845,7 @@ def familyDataChunk161 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 4, c := 6, x := 5, y := 3}, right := {a := 5, b := 4, c := 8, x := 6, y := 3}},
     {left := {a := 8, b := 4, c := 6, x := 5, y := 10}, right := {a := 5, b := 4, c := 8, x := 6, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk162 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 4, c := 6, x := 5, y := 11}, right := {a := 5, b := 4, c := 8, x := 6, y := 11}},
@@ -18735,6 +18945,7 @@ def familyDataChunk162 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 4, c := 10, x := 11, y := 2}, right := {a := 11, b := 4, c := 8, x := 10, y := 2}},
     {left := {a := 8, b := 4, c := 10, x := 11, y := 3}, right := {a := 11, b := 4, c := 8, x := 10, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk163 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 4, c := 10, x := 11, y := 5}, right := {a := 11, b := 4, c := 8, x := 10, y := 5}},
@@ -18834,6 +19045,7 @@ def familyDataChunk163 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 5, c := 3, x := 4, y := 10}, right := {a := 4, b := 5, c := 8, x := 3, y := 10}},
     {left := {a := 8, b := 5, c := 3, x := 4, y := 11}, right := {a := 4, b := 5, c := 8, x := 3, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk164 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 5, c := 3, x := 6, y := 1}, right := {a := 6, b := 5, c := 8, x := 3, y := 1}},
@@ -18933,6 +19145,7 @@ def familyDataChunk164 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 5, c := 7, x := 0, y := 3}, right := {a := 0, b := 5, c := 8, x := 7, y := 3}},
     {left := {a := 8, b := 5, c := 7, x := 0, y := 4}, right := {a := 0, b := 5, c := 8, x := 7, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk165 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 5, c := 7, x := 0, y := 6}, right := {a := 0, b := 5, c := 8, x := 7, y := 6}},
@@ -19032,6 +19245,7 @@ def familyDataChunk165 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 5, c := 11, x := 2, y := 3}, right := {a := 2, b := 5, c := 8, x := 11, y := 3}},
     {left := {a := 8, b := 5, c := 11, x := 2, y := 4}, right := {a := 2, b := 5, c := 8, x := 11, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk166 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 5, c := 11, x := 3, y := 4}, right := {a := 3, b := 5, c := 8, x := 11, y := 4}},
@@ -19131,6 +19345,7 @@ def familyDataChunk166 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 6, c := 4, x := 3, y := 9}, right := {a := 3, b := 6, c := 8, x := 4, y := 9}},
     {left := {a := 8, b := 6, c := 4, x := 3, y := 10}, right := {a := 3, b := 6, c := 8, x := 4, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk167 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 6, c := 4, x := 3, y := 11}, right := {a := 3, b := 6, c := 8, x := 4, y := 11}},
@@ -19230,6 +19445,7 @@ def familyDataChunk167 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 6, c := 11, x := 5, y := 10}, right := {a := 5, b := 6, c := 8, x := 11, y := 10}},
     {left := {a := 8, b := 6, c := 11, x := 10, y := 1}, right := {a := 10, b := 6, c := 8, x := 11, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk168 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 6, c := 11, x := 10, y := 3}, right := {a := 10, b := 6, c := 8, x := 11, y := 3}},
@@ -19329,6 +19545,7 @@ def familyDataChunk168 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 7, c := 5, x := 10, y := 1}, right := {a := 10, b := 7, c := 8, x := 5, y := 1}},
     {left := {a := 8, b := 7, c := 5, x := 10, y := 3}, right := {a := 10, b := 7, c := 8, x := 5, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk169 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 7, c := 5, x := 10, y := 4}, right := {a := 10, b := 7, c := 8, x := 5, y := 4}},
@@ -19428,6 +19645,7 @@ def familyDataChunk169 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 9, c := 3, x := 4, y := 7}, right := {a := 4, b := 9, c := 8, x := 3, y := 7}},
     {left := {a := 8, b := 9, c := 3, x := 4, y := 10}, right := {a := 4, b := 9, c := 8, x := 3, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk170 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 9, c := 3, x := 4, y := 11}, right := {a := 4, b := 9, c := 8, x := 3, y := 11}},
@@ -19527,6 +19745,7 @@ def familyDataChunk170 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 9, c := 10, x := 5, y := 7}, right := {a := 5, b := 9, c := 8, x := 10, y := 7}},
     {left := {a := 8, b := 9, c := 10, x := 5, y := 11}, right := {a := 5, b := 9, c := 8, x := 10, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk171 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 9, c := 10, x := 11, y := 1}, right := {a := 11, b := 9, c := 8, x := 10, y := 1}},
@@ -19626,6 +19845,7 @@ def familyDataChunk171 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 10, c := 3, x := 11, y := 5}, right := {a := 11, b := 10, c := 8, x := 3, y := 5}},
     {left := {a := 8, b := 10, c := 3, x := 11, y := 6}, right := {a := 11, b := 10, c := 8, x := 3, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk172 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 10, c := 3, x := 11, y := 7}, right := {a := 11, b := 10, c := 8, x := 3, y := 7}},
@@ -19725,6 +19945,7 @@ def familyDataChunk172 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 10, c := 7, x := 11, y := 2}, right := {a := 11, b := 10, c := 8, x := 7, y := 2}},
     {left := {a := 8, b := 10, c := 7, x := 11, y := 3}, right := {a := 11, b := 10, c := 8, x := 7, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk173 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 10, c := 7, x := 11, y := 4}, right := {a := 11, b := 10, c := 8, x := 7, y := 4}},
@@ -19824,6 +20045,7 @@ def familyDataChunk173 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 11, c := 2, x := 7, y := 10}, right := {a := 7, b := 11, c := 8, x := 2, y := 10}},
     {left := {a := 8, b := 11, c := 2, x := 9, y := 10}, right := {a := 9, b := 11, c := 8, x := 2, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk174 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 11, c := 2, x := 10, y := 3}, right := {a := 10, b := 11, c := 8, x := 2, y := 3}},
@@ -19923,6 +20145,7 @@ def familyDataChunk174 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 11, c := 5, x := 10, y := 7}, right := {a := 10, b := 11, c := 8, x := 5, y := 7}},
     {left := {a := 8, b := 11, c := 5, x := 10, y := 9}, right := {a := 10, b := 11, c := 8, x := 5, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk175 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 11, c := 6, x := 0, y := 10}, right := {a := 0, b := 11, c := 8, x := 6, y := 10}},
@@ -20022,6 +20245,7 @@ def familyDataChunk175 : List CorePairCommonFiveData :=
     {left := {a := 8, b := 11, c := 10, x := 7, y := 4}, right := {a := 7, b := 11, c := 8, x := 10, y := 4}},
     {left := {a := 8, b := 11, c := 10, x := 7, y := 5}, right := {a := 7, b := 11, c := 8, x := 10, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk176 : List CorePairCommonFiveData :=
   [
     {left := {a := 8, b := 11, c := 10, x := 7, y := 6}, right := {a := 7, b := 11, c := 8, x := 10, y := 6}},
@@ -20121,6 +20345,7 @@ def familyDataChunk176 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 0, c := 8, x := 11, y := 7}, right := {a := 11, b := 0, c := 9, x := 8, y := 7}},
     {left := {a := 9, b := 0, c := 10, x := 1, y := 6}, right := {a := 1, b := 0, c := 9, x := 10, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk177 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 0, c := 10, x := 1, y := 7}, right := {a := 1, b := 0, c := 9, x := 10, y := 7}},
@@ -20220,6 +20445,7 @@ def familyDataChunk177 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 1, c := 5, x := 4, y := 7}, right := {a := 4, b := 1, c := 9, x := 5, y := 7}},
     {left := {a := 9, b := 1, c := 5, x := 4, y := 8}, right := {a := 4, b := 1, c := 9, x := 5, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk178 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 1, c := 5, x := 4, y := 10}, right := {a := 4, b := 1, c := 9, x := 5, y := 10}},
@@ -20319,6 +20545,7 @@ def familyDataChunk178 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 2, c := 4, x := 5, y := 3}, right := {a := 5, b := 2, c := 9, x := 4, y := 3}},
     {left := {a := 9, b := 2, c := 4, x := 5, y := 6}, right := {a := 5, b := 2, c := 9, x := 4, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk179 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 2, c := 4, x := 5, y := 7}, right := {a := 5, b := 2, c := 9, x := 4, y := 7}},
@@ -20418,6 +20645,7 @@ def familyDataChunk179 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 3, c := 0, x := 2, y := 4}, right := {a := 2, b := 3, c := 9, x := 0, y := 4}},
     {left := {a := 9, b := 3, c := 0, x := 2, y := 5}, right := {a := 2, b := 3, c := 9, x := 0, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk180 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 3, c := 0, x := 4, y := 5}, right := {a := 4, b := 3, c := 9, x := 0, y := 5}},
@@ -20517,6 +20745,7 @@ def familyDataChunk180 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 3, c := 5, x := 1, y := 8}, right := {a := 1, b := 3, c := 9, x := 5, y := 8}},
     {left := {a := 9, b := 3, c := 5, x := 2, y := 4}, right := {a := 2, b := 3, c := 9, x := 5, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk181 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 3, c := 5, x := 2, y := 6}, right := {a := 2, b := 3, c := 9, x := 5, y := 6}},
@@ -20616,6 +20845,7 @@ def familyDataChunk181 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 3, c := 8, x := 4, y := 7}, right := {a := 4, b := 3, c := 9, x := 8, y := 7}},
     {left := {a := 9, b := 3, c := 8, x := 4, y := 10}, right := {a := 4, b := 3, c := 9, x := 8, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk182 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 3, c := 8, x := 4, y := 11}, right := {a := 4, b := 3, c := 9, x := 8, y := 11}},
@@ -20715,6 +20945,7 @@ def familyDataChunk182 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 4, c := 0, x := 5, y := 3}, right := {a := 5, b := 4, c := 9, x := 0, y := 3}},
     {left := {a := 9, b := 4, c := 0, x := 5, y := 6}, right := {a := 5, b := 4, c := 9, x := 0, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk183 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 4, c := 0, x := 5, y := 7}, right := {a := 5, b := 4, c := 9, x := 0, y := 7}},
@@ -20814,6 +21045,7 @@ def familyDataChunk183 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 4, c := 5, x := 3, y := 8}, right := {a := 3, b := 4, c := 9, x := 5, y := 8}},
     {left := {a := 9, b := 4, c := 5, x := 3, y := 10}, right := {a := 3, b := 4, c := 9, x := 5, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk184 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 4, c := 5, x := 3, y := 11}, right := {a := 3, b := 4, c := 9, x := 5, y := 11}},
@@ -20913,6 +21145,7 @@ def familyDataChunk184 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 4, c := 8, x := 5, y := 11}, right := {a := 5, b := 4, c := 9, x := 8, y := 11}},
     {left := {a := 9, b := 4, c := 8, x := 10, y := 3}, right := {a := 10, b := 4, c := 9, x := 8, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk185 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 4, c := 8, x := 10, y := 5}, right := {a := 10, b := 4, c := 9, x := 8, y := 5}},
@@ -21012,6 +21245,7 @@ def familyDataChunk185 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 5, c := 0, x := 7, y := 3}, right := {a := 7, b := 5, c := 9, x := 0, y := 3}},
     {left := {a := 9, b := 5, c := 0, x := 7, y := 4}, right := {a := 7, b := 5, c := 9, x := 0, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk186 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 5, c := 0, x := 8, y := 3}, right := {a := 8, b := 5, c := 9, x := 0, y := 3}},
@@ -21111,6 +21345,7 @@ def familyDataChunk186 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 5, c := 4, x := 7, y := 3}, right := {a := 7, b := 5, c := 9, x := 4, y := 3}},
     {left := {a := 9, b := 5, c := 4, x := 7, y := 6}, right := {a := 7, b := 5, c := 9, x := 4, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk187 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 5, c := 4, x := 7, y := 10}, right := {a := 7, b := 5, c := 9, x := 4, y := 10}},
@@ -21210,6 +21445,7 @@ def familyDataChunk187 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 5, c := 8, x := 11, y := 7}, right := {a := 11, b := 5, c := 9, x := 8, y := 7}},
     {left := {a := 9, b := 5, c := 10, x := 0, y := 6}, right := {a := 0, b := 5, c := 9, x := 10, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk188 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 5, c := 10, x := 0, y := 7}, right := {a := 0, b := 5, c := 9, x := 10, y := 7}},
@@ -21309,6 +21545,7 @@ def familyDataChunk188 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 6, c := 2, x := 10, y := 4}, right := {a := 10, b := 6, c := 9, x := 2, y := 4}},
     {left := {a := 9, b := 6, c := 2, x := 10, y := 5}, right := {a := 10, b := 6, c := 9, x := 2, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk189 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 6, c := 2, x := 10, y := 11}, right := {a := 10, b := 6, c := 9, x := 2, y := 11}},
@@ -21408,6 +21645,7 @@ def familyDataChunk189 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 6, c := 10, x := 3, y := 4}, right := {a := 3, b := 6, c := 9, x := 10, y := 4}},
     {left := {a := 9, b := 6, c := 10, x := 3, y := 5}, right := {a := 3, b := 6, c := 9, x := 10, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk190 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 6, c := 10, x := 3, y := 7}, right := {a := 3, b := 6, c := 9, x := 10, y := 7}},
@@ -21507,6 +21745,7 @@ def familyDataChunk190 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 7, c := 3, x := 10, y := 8}, right := {a := 10, b := 7, c := 9, x := 3, y := 8}},
     {left := {a := 9, b := 7, c := 3, x := 10, y := 11}, right := {a := 10, b := 7, c := 9, x := 3, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk191 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 7, c := 3, x := 11, y := 1}, right := {a := 11, b := 7, c := 9, x := 3, y := 1}},
@@ -21606,6 +21845,7 @@ def familyDataChunk191 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 7, c := 11, x := 10, y := 8}, right := {a := 10, b := 7, c := 9, x := 11, y := 8}},
     {left := {a := 9, b := 8, c := 0, x := 3, y := 1}, right := {a := 3, b := 8, c := 9, x := 0, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk192 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 8, c := 0, x := 3, y := 4}, right := {a := 3, b := 8, c := 9, x := 0, y := 4}},
@@ -21705,6 +21945,7 @@ def familyDataChunk192 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 8, c := 10, x := 11, y := 5}, right := {a := 11, b := 8, c := 9, x := 10, y := 5}},
     {left := {a := 9, b := 8, c := 11, x := 1, y := 10}, right := {a := 1, b := 8, c := 9, x := 11, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk193 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 8, c := 11, x := 3, y := 1}, right := {a := 3, b := 8, c := 9, x := 11, y := 1}},
@@ -21804,6 +22045,7 @@ def familyDataChunk193 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 10, c := 4, x := 3, y := 5}, right := {a := 3, b := 10, c := 9, x := 4, y := 5}},
     {left := {a := 9, b := 10, c := 4, x := 3, y := 6}, right := {a := 3, b := 10, c := 9, x := 4, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk194 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 10, c := 4, x := 3, y := 7}, right := {a := 3, b := 10, c := 9, x := 4, y := 7}},
@@ -21903,6 +22145,7 @@ def familyDataChunk194 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 10, c := 8, x := 4, y := 11}, right := {a := 4, b := 10, c := 9, x := 8, y := 11}},
     {left := {a := 9, b := 10, c := 8, x := 5, y := 6}, right := {a := 5, b := 10, c := 9, x := 8, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk195 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 10, c := 8, x := 5, y := 7}, right := {a := 5, b := 10, c := 9, x := 8, y := 7}},
@@ -22002,6 +22245,7 @@ def familyDataChunk195 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 11, c := 3, x := 1, y := 8}, right := {a := 1, b := 11, c := 9, x := 3, y := 8}},
     {left := {a := 9, b := 11, c := 3, x := 2, y := 6}, right := {a := 2, b := 11, c := 9, x := 3, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk196 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 11, c := 3, x := 2, y := 7}, right := {a := 2, b := 11, c := 9, x := 3, y := 7}},
@@ -22101,6 +22345,7 @@ def familyDataChunk196 : List CorePairCommonFiveData :=
     {left := {a := 9, b := 11, c := 6, x := 3, y := 10}, right := {a := 3, b := 11, c := 9, x := 6, y := 10}},
     {left := {a := 9, b := 11, c := 6, x := 4, y := 10}, right := {a := 4, b := 11, c := 9, x := 6, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk197 : List CorePairCommonFiveData :=
   [
     {left := {a := 9, b := 11, c := 6, x := 5, y := 10}, right := {a := 5, b := 11, c := 9, x := 6, y := 10}},
@@ -22200,6 +22445,7 @@ def familyDataChunk197 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 0, c := 2, x := 5, y := 11}, right := {a := 5, b := 0, c := 10, x := 2, y := 11}},
     {left := {a := 10, b := 0, c := 3, x := 2, y := 11}, right := {a := 2, b := 0, c := 10, x := 3, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk198 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 0, c := 3, x := 4, y := 5}, right := {a := 4, b := 0, c := 10, x := 3, y := 5}},
@@ -22299,6 +22545,7 @@ def familyDataChunk198 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 0, c := 9, x := 8, y := 3}, right := {a := 8, b := 0, c := 10, x := 9, y := 3}},
     {left := {a := 10, b := 0, c := 9, x := 8, y := 4}, right := {a := 8, b := 0, c := 10, x := 9, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk199 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 0, c := 9, x := 8, y := 5}, right := {a := 8, b := 0, c := 10, x := 9, y := 5}},
@@ -22398,6 +22645,7 @@ def familyDataChunk199 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 2, c := 3, x := 4, y := 0}, right := {a := 4, b := 2, c := 10, x := 3, y := 0}},
     {left := {a := 10, b := 2, c := 3, x := 4, y := 5}, right := {a := 4, b := 2, c := 10, x := 3, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk200 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 2, c := 3, x := 4, y := 6}, right := {a := 4, b := 2, c := 10, x := 3, y := 6}},
@@ -22497,6 +22745,7 @@ def familyDataChunk200 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 2, c := 8, x := 9, y := 11}, right := {a := 9, b := 2, c := 10, x := 8, y := 11}},
     {left := {a := 10, b := 2, c := 9, x := 0, y := 11}, right := {a := 0, b := 2, c := 10, x := 9, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk201 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 2, c := 9, x := 6, y := 1}, right := {a := 6, b := 2, c := 10, x := 9, y := 1}},
@@ -22596,6 +22845,7 @@ def familyDataChunk201 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 3, c := 5, x := 0, y := 7}, right := {a := 0, b := 3, c := 10, x := 5, y := 7}},
     {left := {a := 10, b := 3, c := 5, x := 0, y := 8}, right := {a := 0, b := 3, c := 10, x := 5, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk202 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 3, c := 5, x := 0, y := 9}, right := {a := 0, b := 3, c := 10, x := 5, y := 9}},
@@ -22695,6 +22945,7 @@ def familyDataChunk202 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 3, c := 7, x := 6, y := 11}, right := {a := 6, b := 3, c := 10, x := 7, y := 11}},
     {left := {a := 10, b := 3, c := 7, x := 8, y := 0}, right := {a := 8, b := 3, c := 10, x := 7, y := 0}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk203 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 3, c := 7, x := 8, y := 1}, right := {a := 8, b := 3, c := 10, x := 7, y := 1}},
@@ -22794,6 +23045,7 @@ def familyDataChunk203 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 3, c := 11, x := 5, y := 8}, right := {a := 5, b := 3, c := 10, x := 11, y := 8}},
     {left := {a := 10, b := 3, c := 11, x := 5, y := 9}, right := {a := 5, b := 3, c := 10, x := 11, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk204 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 3, c := 11, x := 6, y := 4}, right := {a := 6, b := 3, c := 10, x := 11, y := 4}},
@@ -22893,6 +23145,7 @@ def familyDataChunk204 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 4, c := 5, x := 3, y := 7}, right := {a := 3, b := 4, c := 10, x := 5, y := 7}},
     {left := {a := 10, b := 4, c := 5, x := 3, y := 8}, right := {a := 3, b := 4, c := 10, x := 5, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk205 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 4, c := 5, x := 3, y := 9}, right := {a := 3, b := 4, c := 10, x := 5, y := 9}},
@@ -22992,6 +23245,7 @@ def familyDataChunk205 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 4, c := 7, x := 9, y := 8}, right := {a := 9, b := 4, c := 10, x := 7, y := 8}},
     {left := {a := 10, b := 4, c := 7, x := 9, y := 11}, right := {a := 9, b := 4, c := 10, x := 7, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk206 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 4, c := 7, x := 11, y := 3}, right := {a := 11, b := 4, c := 10, x := 7, y := 3}},
@@ -23091,6 +23345,7 @@ def familyDataChunk206 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 5, c := 0, x := 1, y := 3}, right := {a := 1, b := 5, c := 10, x := 0, y := 3}},
     {left := {a := 10, b := 5, c := 0, x := 1, y := 4}, right := {a := 1, b := 5, c := 10, x := 0, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk207 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 5, c := 0, x := 2, y := 11}, right := {a := 2, b := 5, c := 10, x := 0, y := 11}},
@@ -23190,6 +23445,7 @@ def familyDataChunk207 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 5, c := 4, x := 7, y := 2}, right := {a := 7, b := 5, c := 10, x := 4, y := 2}},
     {left := {a := 10, b := 5, c := 4, x := 7, y := 3}, right := {a := 7, b := 5, c := 10, x := 4, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk208 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 5, c := 4, x := 7, y := 6}, right := {a := 7, b := 5, c := 10, x := 4, y := 6}},
@@ -23289,6 +23545,7 @@ def familyDataChunk208 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 5, c := 8, x := 3, y := 7}, right := {a := 3, b := 5, c := 10, x := 8, y := 7}},
     {left := {a := 10, b := 5, c := 8, x := 3, y := 9}, right := {a := 3, b := 5, c := 10, x := 8, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk209 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 5, c := 8, x := 3, y := 11}, right := {a := 3, b := 5, c := 10, x := 8, y := 11}},
@@ -23388,6 +23645,7 @@ def familyDataChunk209 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 6, c := 1, x := 7, y := 11}, right := {a := 7, b := 6, c := 10, x := 1, y := 11}},
     {left := {a := 10, b := 6, c := 1, x := 8, y := 3}, right := {a := 8, b := 6, c := 10, x := 1, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk210 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 6, c := 1, x := 8, y := 4}, right := {a := 8, b := 6, c := 10, x := 1, y := 4}},
@@ -23487,6 +23745,7 @@ def familyDataChunk210 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 6, c := 5, x := 4, y := 11}, right := {a := 4, b := 6, c := 10, x := 5, y := 11}},
     {left := {a := 10, b := 6, c := 5, x := 7, y := 3}, right := {a := 7, b := 6, c := 10, x := 5, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk211 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 6, c := 5, x := 7, y := 4}, right := {a := 7, b := 6, c := 10, x := 5, y := 4}},
@@ -23586,6 +23845,7 @@ def familyDataChunk211 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 6, c := 9, x := 5, y := 4}, right := {a := 5, b := 6, c := 10, x := 9, y := 4}},
     {left := {a := 10, b := 6, c := 9, x := 5, y := 11}, right := {a := 5, b := 6, c := 10, x := 9, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk212 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 6, c := 9, x := 7, y := 1}, right := {a := 7, b := 6, c := 10, x := 9, y := 1}},
@@ -23685,6 +23945,7 @@ def familyDataChunk212 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 7, c := 3, x := 8, y := 11}, right := {a := 8, b := 7, c := 10, x := 3, y := 11}},
     {left := {a := 10, b := 7, c := 3, x := 9, y := 4}, right := {a := 9, b := 7, c := 10, x := 3, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk213 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 7, c := 3, x := 9, y := 5}, right := {a := 9, b := 7, c := 10, x := 3, y := 5}},
@@ -23784,6 +24045,7 @@ def familyDataChunk213 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 7, c := 8, x := 1, y := 5}, right := {a := 1, b := 7, c := 10, x := 8, y := 5}},
     {left := {a := 10, b := 7, c := 8, x := 1, y := 11}, right := {a := 1, b := 7, c := 10, x := 8, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk214 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 7, c := 8, x := 2, y := 11}, right := {a := 2, b := 7, c := 10, x := 8, y := 11}},
@@ -23883,6 +24145,7 @@ def familyDataChunk214 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 8, c := 1, x := 7, y := 11}, right := {a := 7, b := 8, c := 10, x := 1, y := 11}},
     {left := {a := 10, b := 8, c := 1, x := 9, y := 3}, right := {a := 9, b := 8, c := 10, x := 1, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk215 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 8, c := 1, x := 9, y := 4}, right := {a := 9, b := 8, c := 10, x := 1, y := 4}},
@@ -23982,6 +24245,7 @@ def familyDataChunk215 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 8, c := 5, x := 7, y := 3}, right := {a := 7, b := 8, c := 10, x := 5, y := 3}},
     {left := {a := 10, b := 8, c := 5, x := 7, y := 4}, right := {a := 7, b := 8, c := 10, x := 5, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk216 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 8, c := 5, x := 7, y := 11}, right := {a := 7, b := 8, c := 10, x := 5, y := 11}},
@@ -24081,6 +24345,7 @@ def familyDataChunk216 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 8, c := 11, x := 2, y := 9}, right := {a := 2, b := 8, c := 10, x := 11, y := 9}},
     {left := {a := 10, b := 8, c := 11, x := 3, y := 6}, right := {a := 3, b := 8, c := 10, x := 11, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk217 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 8, c := 11, x := 3, y := 7}, right := {a := 3, b := 8, c := 10, x := 11, y := 7}},
@@ -24180,6 +24445,7 @@ def familyDataChunk217 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 9, c := 4, x := 5, y := 8}, right := {a := 5, b := 9, c := 10, x := 4, y := 8}},
     {left := {a := 10, b := 9, c := 4, x := 5, y := 11}, right := {a := 5, b := 9, c := 10, x := 4, y := 11}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk218 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 9, c := 4, x := 6, y := 3}, right := {a := 6, b := 9, c := 10, x := 4, y := 3}},
@@ -24279,6 +24545,7 @@ def familyDataChunk218 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 9, c := 7, x := 5, y := 11}, right := {a := 5, b := 9, c := 10, x := 7, y := 11}},
     {left := {a := 10, b := 9, c := 7, x := 6, y := 1}, right := {a := 6, b := 9, c := 10, x := 7, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk219 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 9, c := 7, x := 6, y := 3}, right := {a := 6, b := 9, c := 10, x := 7, y := 3}},
@@ -24378,6 +24645,7 @@ def familyDataChunk219 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 11, c := 0, x := 5, y := 7}, right := {a := 5, b := 11, c := 10, x := 0, y := 7}},
     {left := {a := 10, b := 11, c := 0, x := 5, y := 8}, right := {a := 5, b := 11, c := 10, x := 0, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk220 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 11, c := 0, x := 5, y := 9}, right := {a := 5, b := 11, c := 10, x := 0, y := 9}},
@@ -24477,6 +24745,7 @@ def familyDataChunk220 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 11, c := 4, x := 8, y := 3}, right := {a := 8, b := 11, c := 10, x := 4, y := 3}},
     {left := {a := 10, b := 11, c := 4, x := 8, y := 5}, right := {a := 8, b := 11, c := 10, x := 4, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk221 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 11, c := 4, x := 8, y := 6}, right := {a := 8, b := 11, c := 10, x := 4, y := 6}},
@@ -24576,6 +24845,7 @@ def familyDataChunk221 : List CorePairCommonFiveData :=
     {left := {a := 10, b := 11, c := 7, x := 4, y := 5}, right := {a := 4, b := 11, c := 10, x := 7, y := 5}},
     {left := {a := 10, b := 11, c := 7, x := 4, y := 6}, right := {a := 4, b := 11, c := 10, x := 7, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk222 : List CorePairCommonFiveData :=
   [
     {left := {a := 10, b := 11, c := 7, x := 4, y := 8}, right := {a := 4, b := 11, c := 10, x := 7, y := 8}},
@@ -24675,6 +24945,7 @@ def familyDataChunk222 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 0, c := 3, x := 2, y := 10}, right := {a := 2, b := 0, c := 11, x := 3, y := 10}},
     {left := {a := 11, b := 0, c := 3, x := 4, y := 5}, right := {a := 4, b := 0, c := 11, x := 3, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk223 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 0, c := 3, x := 4, y := 10}, right := {a := 4, b := 0, c := 11, x := 3, y := 10}},
@@ -24774,6 +25045,7 @@ def familyDataChunk223 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 0, c := 9, x := 8, y := 4}, right := {a := 8, b := 0, c := 11, x := 9, y := 4}},
     {left := {a := 11, b := 0, c := 9, x := 8, y := 5}, right := {a := 8, b := 0, c := 11, x := 9, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk224 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 0, c := 9, x := 8, y := 10}, right := {a := 8, b := 0, c := 11, x := 9, y := 10}},
@@ -24873,6 +25145,7 @@ def familyDataChunk224 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 2, c := 3, x := 4, y := 5}, right := {a := 4, b := 2, c := 11, x := 3, y := 5}},
     {left := {a := 11, b := 2, c := 3, x := 4, y := 6}, right := {a := 4, b := 2, c := 11, x := 3, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk225 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 2, c := 3, x := 4, y := 7}, right := {a := 4, b := 2, c := 11, x := 3, y := 7}},
@@ -24972,6 +25245,7 @@ def familyDataChunk225 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 2, c := 9, x := 0, y := 10}, right := {a := 0, b := 2, c := 11, x := 9, y := 10}},
     {left := {a := 11, b := 2, c := 9, x := 6, y := 1}, right := {a := 6, b := 2, c := 11, x := 9, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk226 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 2, c := 9, x := 6, y := 3}, right := {a := 6, b := 2, c := 11, x := 9, y := 3}},
@@ -25071,6 +25345,7 @@ def familyDataChunk226 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 3, c := 5, x := 0, y := 8}, right := {a := 0, b := 3, c := 11, x := 5, y := 8}},
     {left := {a := 11, b := 3, c := 5, x := 0, y := 9}, right := {a := 0, b := 3, c := 11, x := 5, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk227 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 3, c := 5, x := 0, y := 10}, right := {a := 0, b := 3, c := 11, x := 5, y := 10}},
@@ -25170,6 +25445,7 @@ def familyDataChunk227 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 3, c := 7, x := 8, y := 0}, right := {a := 8, b := 3, c := 11, x := 7, y := 0}},
     {left := {a := 11, b := 3, c := 7, x := 8, y := 1}, right := {a := 8, b := 3, c := 11, x := 7, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk228 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 3, c := 7, x := 8, y := 4}, right := {a := 8, b := 3, c := 11, x := 7, y := 4}},
@@ -25269,6 +25545,7 @@ def familyDataChunk228 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 3, c := 10, x := 5, y := 9}, right := {a := 5, b := 3, c := 11, x := 10, y := 9}},
     {left := {a := 11, b := 3, c := 10, x := 6, y := 4}, right := {a := 6, b := 3, c := 11, x := 10, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk229 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 3, c := 10, x := 6, y := 5}, right := {a := 6, b := 3, c := 11, x := 10, y := 5}},
@@ -25368,6 +25645,7 @@ def familyDataChunk229 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 4, c := 5, x := 3, y := 8}, right := {a := 3, b := 4, c := 11, x := 5, y := 8}},
     {left := {a := 11, b := 4, c := 5, x := 3, y := 9}, right := {a := 3, b := 4, c := 11, x := 5, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk230 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 4, c := 5, x := 3, y := 10}, right := {a := 3, b := 4, c := 11, x := 5, y := 10}},
@@ -25467,6 +25745,7 @@ def familyDataChunk230 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 4, c := 7, x := 9, y := 10}, right := {a := 9, b := 4, c := 11, x := 7, y := 10}},
     {left := {a := 11, b := 4, c := 7, x := 10, y := 3}, right := {a := 10, b := 4, c := 11, x := 7, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk231 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 4, c := 7, x := 10, y := 5}, right := {a := 10, b := 4, c := 11, x := 7, y := 5}},
@@ -25566,6 +25845,7 @@ def familyDataChunk231 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 5, c := 0, x := 1, y := 4}, right := {a := 1, b := 5, c := 11, x := 0, y := 4}},
     {left := {a := 11, b := 5, c := 0, x := 2, y := 10}, right := {a := 2, b := 5, c := 11, x := 0, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk232 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 5, c := 0, x := 3, y := 4}, right := {a := 3, b := 5, c := 11, x := 0, y := 4}},
@@ -25665,6 +25945,7 @@ def familyDataChunk232 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 5, c := 4, x := 7, y := 3}, right := {a := 7, b := 5, c := 11, x := 4, y := 3}},
     {left := {a := 11, b := 5, c := 4, x := 7, y := 6}, right := {a := 7, b := 5, c := 11, x := 4, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk233 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 5, c := 4, x := 7, y := 8}, right := {a := 7, b := 5, c := 11, x := 4, y := 8}},
@@ -25764,6 +26045,7 @@ def familyDataChunk233 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 5, c := 8, x := 3, y := 9}, right := {a := 3, b := 5, c := 11, x := 8, y := 9}},
     {left := {a := 11, b := 5, c := 8, x := 3, y := 10}, right := {a := 3, b := 5, c := 11, x := 8, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk234 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 5, c := 8, x := 4, y := 3}, right := {a := 4, b := 5, c := 11, x := 8, y := 3}},
@@ -25863,6 +26145,7 @@ def familyDataChunk234 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 6, c := 1, x := 8, y := 3}, right := {a := 8, b := 6, c := 11, x := 1, y := 3}},
     {left := {a := 11, b := 6, c := 1, x := 8, y := 4}, right := {a := 8, b := 6, c := 11, x := 1, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk235 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 6, c := 1, x := 8, y := 5}, right := {a := 8, b := 6, c := 11, x := 1, y := 5}},
@@ -25962,6 +26245,7 @@ def familyDataChunk235 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 6, c := 5, x := 7, y := 3}, right := {a := 7, b := 6, c := 11, x := 5, y := 3}},
     {left := {a := 11, b := 6, c := 5, x := 7, y := 4}, right := {a := 7, b := 6, c := 11, x := 5, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk236 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 6, c := 5, x := 7, y := 10}, right := {a := 7, b := 6, c := 11, x := 5, y := 10}},
@@ -26061,6 +26345,7 @@ def familyDataChunk236 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 6, c := 9, x := 5, y := 10}, right := {a := 5, b := 6, c := 11, x := 9, y := 10}},
     {left := {a := 11, b := 6, c := 9, x := 7, y := 1}, right := {a := 7, b := 6, c := 11, x := 9, y := 1}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk237 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 6, c := 9, x := 7, y := 3}, right := {a := 7, b := 6, c := 11, x := 9, y := 3}},
@@ -26160,6 +26445,7 @@ def familyDataChunk237 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 7, c := 3, x := 9, y := 4}, right := {a := 9, b := 7, c := 11, x := 3, y := 4}},
     {left := {a := 11, b := 7, c := 3, x := 9, y := 5}, right := {a := 9, b := 7, c := 11, x := 3, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk238 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 7, c := 3, x := 9, y := 10}, right := {a := 9, b := 7, c := 11, x := 3, y := 10}},
@@ -26259,6 +26545,7 @@ def familyDataChunk238 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 7, c := 8, x := 1, y := 10}, right := {a := 1, b := 7, c := 11, x := 8, y := 10}},
     {left := {a := 11, b := 7, c := 8, x := 2, y := 10}, right := {a := 2, b := 7, c := 11, x := 8, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk239 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 7, c := 8, x := 3, y := 2}, right := {a := 3, b := 7, c := 11, x := 8, y := 2}},
@@ -26358,6 +26645,7 @@ def familyDataChunk239 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 8, c := 1, x := 9, y := 3}, right := {a := 9, b := 8, c := 11, x := 1, y := 3}},
     {left := {a := 11, b := 8, c := 1, x := 9, y := 4}, right := {a := 9, b := 8, c := 11, x := 1, y := 4}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk240 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 8, c := 1, x := 9, y := 5}, right := {a := 9, b := 8, c := 11, x := 1, y := 5}},
@@ -26457,6 +26745,7 @@ def familyDataChunk240 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 8, c := 5, x := 7, y := 4}, right := {a := 7, b := 8, c := 11, x := 5, y := 4}},
     {left := {a := 11, b := 8, c := 5, x := 7, y := 10}, right := {a := 7, b := 8, c := 11, x := 5, y := 10}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk241 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 8, c := 5, x := 9, y := 3}, right := {a := 9, b := 8, c := 11, x := 5, y := 3}},
@@ -26556,6 +26845,7 @@ def familyDataChunk241 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 8, c := 10, x := 3, y := 6}, right := {a := 3, b := 8, c := 11, x := 10, y := 6}},
     {left := {a := 11, b := 8, c := 10, x := 3, y := 7}, right := {a := 3, b := 8, c := 11, x := 10, y := 7}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk242 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 8, c := 10, x := 3, y := 9}, right := {a := 3, b := 8, c := 11, x := 10, y := 9}},
@@ -26655,6 +26945,7 @@ def familyDataChunk242 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 9, c := 4, x := 5, y := 10}, right := {a := 5, b := 9, c := 11, x := 4, y := 10}},
     {left := {a := 11, b := 9, c := 4, x := 6, y := 3}, right := {a := 6, b := 9, c := 11, x := 4, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk243 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 9, c := 4, x := 6, y := 5}, right := {a := 6, b := 9, c := 11, x := 4, y := 5}},
@@ -26754,6 +27045,7 @@ def familyDataChunk243 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 9, c := 7, x := 6, y := 1}, right := {a := 6, b := 9, c := 11, x := 7, y := 1}},
     {left := {a := 11, b := 9, c := 7, x := 6, y := 3}, right := {a := 6, b := 9, c := 11, x := 7, y := 3}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk244 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 9, c := 7, x := 6, y := 4}, right := {a := 6, b := 9, c := 11, x := 7, y := 4}},
@@ -26853,6 +27145,7 @@ def familyDataChunk244 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 10, c := 0, x := 5, y := 8}, right := {a := 5, b := 10, c := 11, x := 0, y := 8}},
     {left := {a := 11, b := 10, c := 0, x := 5, y := 9}, right := {a := 5, b := 10, c := 11, x := 0, y := 9}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk245 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 10, c := 1, x := 6, y := 2}, right := {a := 6, b := 10, c := 11, x := 1, y := 2}},
@@ -26952,6 +27245,7 @@ def familyDataChunk245 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 10, c := 4, x := 8, y := 5}, right := {a := 8, b := 10, c := 11, x := 4, y := 5}},
     {left := {a := 11, b := 10, c := 4, x := 8, y := 6}, right := {a := 8, b := 10, c := 11, x := 4, y := 6}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk246 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 10, c := 4, x := 8, y := 7}, right := {a := 8, b := 10, c := 11, x := 4, y := 7}},
@@ -27051,6 +27345,7 @@ def familyDataChunk246 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 10, c := 7, x := 4, y := 6}, right := {a := 4, b := 10, c := 11, x := 7, y := 6}},
     {left := {a := 11, b := 10, c := 7, x := 4, y := 8}, right := {a := 4, b := 10, c := 11, x := 7, y := 8}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyDataChunk247 : List CorePairCommonFiveData :=
   [
     {left := {a := 11, b := 10, c := 7, x := 4, y := 9}, right := {a := 4, b := 10, c := 11, x := 7, y := 9}},
@@ -27144,6 +27439,7 @@ def familyDataChunk247 : List CorePairCommonFiveData :=
     {left := {a := 11, b := 10, c := 9, x := 8, y := 4}, right := {a := 8, b := 10, c := 11, x := 9, y := 4}},
     {left := {a := 11, b := 10, c := 9, x := 8, y := 5}, right := {a := 8, b := 10, c := 11, x := 9, y := 5}}]
 
+/-- Finite exact-twelve core-pair all-order common-five CNF data for this binding. -/
 def familyData : List CorePairCommonFiveData :=
   familyDataChunk000 ++
     familyDataChunk001 ++
@@ -27415,25 +27711,30 @@ def familyChoices (data : CorePairCommonFiveData) :
       (insertByCenter {center := data.left.c, support := {data.left.b, data.left.x, data.left.y}}
         [{center := data.left.a, support := {data.left.b, data.left.c, data.left.y}}]))
 
+/-- Look up the installed positive-membership definition for a row requirement. -/
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD (mkDefinition 47175 0 {3, 4, 5})
 
+/-- One finite family entry couples a data certificate with its membership definitions. -/
 structure FamilyEntry where
   data : CorePairCommonFiveData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Family entries assembled from the finite data and their row choices. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Blocking clauses derived from each finite family entry. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
 /- BEGIN GENERATED BLOCKING CLAUSE ANCHOR -/
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses000 : List (List Int) :=
   [
         [-45494, -47177, -45887, -44893], [-45495, -45758, -45887, -46237], [-45496, -45759, -45887, -46376],
@@ -27453,6 +27754,7 @@ def expectedBlockingClauses000 : List (List Int) :=
         [-45516, -45090, -45894, -47198], [-45519, -45090, -46139, -46793], [-45520, -45090, -46140, -46966],
         [-45513, -45720, -45091, -47198], [-45519, -45091, -46145, -46794], [-45520, -45091, -46146, -46967]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses001 : List (List Int) :=
   [
         [-47175, -45055, -47187, -44892], [-47175, -45662, -47188, -46068], [-45522, -47190, -45246, -46247],
@@ -27472,6 +27774,7 @@ def expectedBlockingClauses001 : List (List Int) :=
         [-45531, -46173, -45061, -46529], [-45532, -46174, -45061, -46667], [-47175, -45900, -47202, -45064],
         [-45529, -46168, -46249, -45064], [-45530, -46173, -46388, -45064], [-45532, -46178, -45064, -46668]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses002 : List (List Int) :=
   [
         [-47175, -45901, -47203, -45067], [-45529, -46169, -46250, -45067], [-45530, -46174, -46389, -45067],
@@ -27491,6 +27794,7 @@ def expectedBlockingClauses002 : List (List Int) :=
         [-45530, -46074, -46489, -45064], [-45013, -45420, -45064, -44943], [-45014, -45421, -45064, -44955],
         [-45496, -45081, -46421, -45067], [-45523, -45901, -46484, -45067], [-45530, -46075, -46490, -45067]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses003 : List (List Int) :=
   [
         [-45013, -45422, -45067, -44944], [-45014, -45423, -45067, -44956], [-45523, -45902, -46485, -46797],
@@ -27510,6 +27814,7 @@ def expectedBlockingClauses003 : List (List Int) :=
         [-45018, -45061, -45469, -44954], [-45498, -45080, -45064, -46701], [-45525, -45900, -45064, -46764],
         [-45532, -46074, -45064, -46770], [-45017, -45064, -45470, -44943], [-45018, -45064, -45471, -44955]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses004 : List (List Int) :=
   [
         [-45525, -45902, -46765, -46797], [-45532, -46076, -46771, -46797], [-45525, -45903, -46766, -46970],
@@ -27529,6 +27834,7 @@ def expectedBlockingClauses004 : List (List Int) :=
         [-47175, -45056, -47177, -44893], [-47175, -45665, -47178, -46069], [-45522, -47180, -45247, -46251],
         [-45523, -47181, -45247, -46390], [-45524, -47182, -45247, -46531], [-45525, -47183, -45247, -46669]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses005 : List (List Int) :=
   [
         [-45526, -47184, -45247, -46802], [-45527, -47185, -45247, -46975], [-47175, -47180, -46078, -45059],
@@ -27548,6 +27854,7 @@ def expectedBlockingClauses005 : List (List Int) :=
         [-47175, -45727, -47203, -45068], [-45536, -46190, -46254, -45068], [-45537, -46195, -46393, -45068],
         [-45538, -46199, -46534, -45068], [-47175, -45728, -47204, -46801], [-45541, -46206, -46801, -46976]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses006 : List (List Int) :=
   [
         [-47175, -45729, -47205, -46974], [-45540, -46206, -46803, -46974], [-45522, -45056, -44880, -46279],
@@ -27567,6 +27874,7 @@ def expectedBlockingClauses006 : List (List Int) :=
         [-45021, -45428, -45068, -44948], [-45022, -45429, -45068, -44960], [-45523, -45728, -46485, -46801],
         [-45537, -46082, -46498, -46801], [-45523, -45729, -46486, -46974], [-45537, -46083, -46499, -46974]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses007 : List (List Int) :=
   [
         [-45524, -45056, -44880, -46558], [-45538, -45056, -44893, -46565], [-45538, -45242, -47196, -47208],
@@ -27586,6 +27894,7 @@ def expectedBlockingClauses007 : List (List Int) :=
         [-45525, -45728, -46765, -46801], [-45539, -46082, -46777, -46801], [-45525, -45729, -46766, -46974],
         [-45539, -46083, -46778, -46974], [-45526, -45665, -45720, -46860], [-45540, -45665, -46069, -46867]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses008 : List (List Int) :=
   [
         [-45540, -45242, -47196, -47210], [-45526, -47176, -45247, -47210], [-45526, -45724, -45059, -46894],
@@ -27605,6 +27914,7 @@ def expectedBlockingClauses008 : List (List Int) :=
         [-45533, -47184, -45245, -46802], [-45534, -47185, -45245, -46975], [-47175, -47180, -45904, -45060],
         [-45530, -45840, -45060, -46394], [-45531, -45841, -45060, -46535], [-45532, -45842, -45060, -46673]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses009 : List (List Int) :=
   [
         [-47175, -47181, -45905, -45063], [-45529, -45840, -46255, -45063], [-45531, -45846, -45063, -46536],
@@ -27624,6 +27934,7 @@ def expectedBlockingClauses009 : List (List Int) :=
         [-47175, -45735, -47195, -46977], [-45540, -46032, -46805, -46977], [-45529, -45057, -44881, -46280],
         [-45536, -45057, -44887, -46286], [-45536, -45243, -47186, -47206], [-45529, -47176, -45245, -47206]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses010 : List (List Int) :=
   [
         [-45504, -45087, -46292, -45063], [-45529, -45731, -46350, -45063], [-45536, -45905, -46356, -45063],
@@ -27643,6 +27954,7 @@ def expectedBlockingClauses010 : List (List Int) :=
         [-45531, -45057, -44881, -46559], [-45538, -45057, -44887, -46565], [-45538, -45243, -47186, -47208],
         [-45531, -47176, -45245, -47208], [-45506, -45086, -45060, -46571], [-45531, -45730, -45060, -46629]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses011 : List (List Int) :=
   [
         [-45538, -45904, -45060, -46635], [-45031, -45060, -45454, -44949], [-45032, -45060, -45455, -44961],
@@ -27662,6 +27974,7 @@ def expectedBlockingClauses011 : List (List Int) :=
         [-45540, -45243, -47186, -47210], [-45533, -47176, -45245, -47210], [-45533, -45730, -45060, -46900],
         [-45540, -45904, -45060, -46917], [-45533, -45731, -45063, -46901], [-45540, -45905, -45063, -46918]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses012 : List (List Int) :=
   [
         [-45533, -45732, -45066, -46902], [-45540, -45906, -45066, -46919], [-45533, -45733, -45069, -46903],
@@ -27681,6 +27994,7 @@ def expectedBlockingClauses012 : List (List Int) :=
         [-45012, -45823, -44888, -44957], [-45495, -45086, -45764, -44894], [-45522, -47180, -45904, -44894],
         [-45011, -45843, -44894, -44949], [-45012, -45844, -44894, -44961], [-45522, -45819, -45910, -46397]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses013 : List (List Int) :=
   [
         [-45529, -45840, -46084, -46397], [-45522, -45820, -45911, -46538], [-45529, -45841, -46085, -46538],
@@ -27700,6 +28014,7 @@ def expectedBlockingClauses013 : List (List Int) :=
         [-45012, -45736, -46397, -47078], [-45020, -45910, -46397, -47095], [-45028, -46084, -46397, -47106],
         [-45012, -45737, -46538, -47079], [-45020, -45911, -46538, -47096], [-45028, -46085, -46538, -47107]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses014 : List (List Int) :=
   [
         [-45012, -45738, -46676, -47080], [-45020, -45912, -46676, -47097], [-45028, -46086, -46676, -47108],
@@ -27719,6 +28034,7 @@ def expectedBlockingClauses014 : List (List Int) :=
         [-45029, -44883, -46175, -44942], [-45030, -44883, -46176, -44954], [-45505, -45083, -44889, -46113],
         [-45530, -45725, -44889, -47201], [-45029, -44889, -46196, -44946], [-45030, -44889, -46197, -44958]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses015 : List (List Int) :=
   [
         [-45530, -45736, -46167, -46258], [-45537, -45910, -46188, -46258], [-45530, -45741, -46173, -46542],
@@ -27738,6 +28054,7 @@ def expectedBlockingClauses015 : List (List Int) :=
         [-45531, -45841, -46085, -46263], [-45524, -45825, -45915, -46401], [-45531, -45846, -46089, -46401],
         [-45524, -45830, -45919, -46685], [-45531, -45851, -46093, -46685], [-45502, -45080, -44884, -45934]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses016 : List (List Int) :=
   [
         [-45538, -44884, -47192, -46074], [-45023, -44884, -46005, -44943], [-45024, -44884, -46006, -44955],
@@ -27757,6 +28074,7 @@ def expectedBlockingClauses016 : List (List Int) :=
         [-45016, -45745, -46685, -47085], [-45024, -45919, -46685, -47102], [-45032, -46093, -46685, -47113],
         [-45498, -45583, -45738, -46267], [-45503, -45599, -45912, -46267], [-45507, -45615, -46086, -46267]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses017 : List (List Int) :=
   [
         [-45498, -45587, -45742, -46405], [-45503, -45603, -45916, -46405], [-45507, -45619, -46090, -46405],
@@ -27776,6 +28094,7 @@ def expectedBlockingClauses017 : List (List Int) :=
         [-45532, -45738, -46169, -46267], [-45539, -45912, -46190, -46267], [-45532, -45742, -46174, -46405],
         [-45539, -45916, -46195, -46405], [-45532, -45745, -46178, -46546], [-45539, -45919, -46199, -46546]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses018 : List (List Int) :=
   [
         [-45017, -45738, -46267, -46907], [-45025, -45912, -46267, -46924], [-45033, -46086, -46267, -46935],
@@ -27795,6 +28114,7 @@ def expectedBlockingClauses018 : List (List Int) :=
         [-45526, -45734, -47194, -45336], [-45019, -46017, -45336, -45282], [-45021, -46022, -45336, -45288],
         [-45023, -46026, -45336, -45294], [-45025, -46029, -45336, -45300], [-45526, -45750, -46011, -45176]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses019 : List (List Int) :=
   [
         [-45540, -46032, -46098, -45176], [-45519, -45663, -45332, -46139], [-45540, -45332, -45902, -47204],
@@ -27814,6 +28134,7 @@ def expectedBlockingClauses019 : List (List Int) :=
         [-45527, -45837, -45924, -45175], [-45534, -45858, -46098, -45175], [-45518, -45664, -45333, -45966],
         [-45541, -45333, -47195, -46077], [-45020, -45333, -45997, -45279], [-45022, -45333, -46002, -45285]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses020 : List (List Int) :=
   [
         [-45024, -45333, -46006, -45291], [-45026, -45333, -46009, -45297], [-45518, -45670, -45972, -45337],
@@ -27833,6 +28154,7 @@ def expectedBlockingClauses020 : List (List Int) :=
         [-45555, -46259, -46379, -46515], [-45078, -45717, -46250, -46653], [-45082, -45891, -46254, -46653],
         [-45086, -46065, -46257, -46653], [-45555, -46260, -46380, -46653], [-45556, -46264, -46521, -46653]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses021 : List (List Int) :=
   [
         [-45079, -45714, -46235, -46387], [-45083, -45888, -46235, -46391], [-45087, -46062, -46235, -46394],
@@ -27852,6 +28174,7 @@ def expectedBlockingClauses021 : List (List Int) :=
         [-45571, -45238, -46471, -46997], [-45570, -46473, -45240, -46826], [-45571, -46474, -45240, -46999],
         [-45568, -46472, -46555, -45241], [-45570, -46476, -45241, -46827], [-45571, -46477, -45241, -47000]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses022 : List (List Int) :=
   [
         [-45568, -45238, -46412, -46610], [-45574, -45238, -46611, -46824], [-45575, -45238, -46612, -46997],
@@ -27871,6 +28194,7 @@ def expectedBlockingClauses022 : List (List Int) :=
         [-45581, -47145, -46279, -46482], [-45586, -47145, -46483, -46558], [-45587, -47145, -46484, -46697],
         [-45581, -47151, -46280, -46488], [-45586, -47151, -46489, -46559], [-45587, -47151, -46490, -46698]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses023 : List (List Int) :=
   [
         [-45495, -45079, -44929, -46387], [-45588, -44929, -45418, -46832], [-45589, -44929, -45419, -47005],
@@ -27890,6 +28214,7 @@ def expectedBlockingClauses023 : List (List Int) :=
         [-45593, -44935, -45470, -46834], [-45594, -44935, -45471, -47007], [-45584, -47145, -46279, -46894],
         [-45588, -47145, -46417, -46895], [-45591, -47145, -46558, -46896], [-45593, -47145, -46697, -46897]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses024 : List (List Int) :=
   [
         [-45584, -47151, -46280, -46900], [-45588, -47151, -46418, -46901], [-45591, -47151, -46559, -46902],
@@ -27909,6 +28234,7 @@ def expectedBlockingClauses024 : List (List Int) :=
         [-45602, -47152, -46496, -46565], [-45603, -47152, -46497, -46704], [-45500, -45083, -44930, -46391],
         [-45604, -44930, -45424, -46839], [-45605, -44930, -45425, -47012], [-45502, -45083, -46392, -44936]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses025 : List (List Int) :=
   [
         [-45604, -45426, -44936, -46841], [-45605, -45427, -44936, -47014], [-45503, -45083, -46393, -44939],
@@ -27928,6 +28254,7 @@ def expectedBlockingClauses025 : List (List Int) :=
         [-45607, -47139, -46558, -46896], [-45609, -47139, -46697, -46897], [-45600, -47152, -46286, -46917],
         [-45604, -47152, -46424, -46918], [-45607, -47152, -46565, -46919], [-45609, -47152, -46704, -46920]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses026 : List (List Int) :=
   [
         [-45601, -47139, -46279, -47067], [-45605, -47139, -46417, -47068], [-45608, -47139, -46558, -47069],
@@ -27947,6 +28274,7 @@ def expectedBlockingClauses026 : List (List Int) :=
         [-45621, -44931, -45431, -47018], [-45506, -45087, -46395, -44937], [-45620, -45432, -44937, -46847],
         [-45621, -45433, -44937, -47020], [-45507, -45087, -46396, -44940], [-45618, -44985, -46573, -44940]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses027 : List (List Int) :=
   [
         [-45620, -45434, -44940, -46848], [-45621, -45435, -44940, -47021], [-45614, -47140, -46280, -46629],
@@ -27966,6 +28294,7 @@ def expectedBlockingClauses027 : List (List Int) :=
         [-45623, -47146, -46565, -46919], [-45625, -47146, -46704, -46920], [-45617, -47140, -46280, -47073],
         [-45621, -47140, -46418, -47074], [-45624, -47140, -46559, -47075], [-45626, -47140, -46698, -47076]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses028 : List (List Int) :=
   [
         [-45617, -47146, -46286, -47090], [-45621, -47146, -46424, -47091], [-45624, -47146, -46565, -47092],
@@ -27985,6 +28314,7 @@ def expectedBlockingClauses028 : List (List Int) :=
         [-45599, -46044, -46718, -45047], [-45597, -46038, -46439, -45051], [-45598, -46042, -46580, -45051],
         [-45599, -46045, -46719, -45051], [-45508, -45613, -46084, -46378], [-45508, -45614, -46085, -46519]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses029 : List (List Int) :=
   [
         [-45508, -45615, -46086, -46657], [-45495, -45086, -45035, -46072], [-45613, -45035, -46167, -46419],
@@ -28004,6 +28334,7 @@ def expectedBlockingClauses029 : List (List Int) :=
         [-45598, -45938, -45043, -46635], [-45582, -45770, -46435, -44987], [-45598, -45944, -46435, -44988],
         [-45614, -46118, -46435, -44989], [-45636, -46435, -45460, -46850], [-45637, -46435, -45461, -47023]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses030 : List (List Int) :=
   [
         [-45582, -45772, -45007, -46715], [-45598, -45946, -45008, -46715], [-45614, -46120, -45009, -46715],
@@ -28023,6 +28354,7 @@ def expectedBlockingClauses030 : List (List Int) :=
         [-45636, -46580, -46950, -45051], [-45639, -46719, -46952, -45051], [-45633, -45674, -46412, -47052],
         [-45637, -45674, -46553, -47053], [-45640, -45674, -46692, -47054], [-45633, -45035, -46419, -47078]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses031 : List (List Int) :=
   [
         [-45637, -45035, -46560, -47079], [-45640, -45035, -46699, -47080], [-45633, -45039, -46425, -47095],
@@ -28042,6 +28374,7 @@ def expectedBlockingClauses031 : List (List Int) :=
         [-45603, -45036, -46000, -46700], [-45604, -45036, -46001, -46833], [-45605, -45036, -46002, -47006],
         [-45505, -45083, -45905, -45044], [-45597, -46014, -45044, -46292], [-45602, -46020, -45044, -46572]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses032 : List (List Int) :=
   [
         [-45603, -46021, -45044, -46711], [-45604, -46022, -45044, -46846], [-45605, -46023, -45044, -47019],
@@ -28061,6 +28394,7 @@ def expectedBlockingClauses032 : List (List Int) :=
         [-45586, -45765, -45044, -46630], [-45602, -45939, -45044, -46636], [-45586, -45776, -45144, -46720],
         [-45602, -45950, -45148, -46720], [-45618, -46124, -45152, -46720], [-45645, -45464, -46720, -46855]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses033 : List (List Int) :=
   [
         [-45646, -45465, -46720, -47028], [-45646, -46647, -45048, -47029], [-45645, -46647, -46856, -45052],
@@ -28080,6 +28414,7 @@ def expectedBlockingClauses033 : List (List Int) :=
         [-45646, -45040, -46567, -47099], [-45649, -45040, -46706, -47100], [-45633, -45044, -46292, -47106],
         [-45646, -45044, -46572, -47110], [-45649, -45044, -46711, -47111], [-45571, -45678, -45048, -47059]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses034 : List (List Int) :=
   [
         [-45589, -45777, -45048, -47084], [-45605, -45951, -45048, -47101], [-45621, -46125, -45048, -47112],
@@ -28099,6 +28434,7 @@ def expectedBlockingClauses034 : List (List Int) :=
         [-45598, -46041, -46304, -45049], [-45602, -46049, -46442, -45049], [-45606, -46056, -46725, -45049],
         [-45598, -46042, -46305, -45053], [-45602, -46050, -46443, -45053], [-45606, -46057, -46726, -45053]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses035 : List (List Int) :=
   [
         [-45510, -45614, -46085, -46240], [-45510, -45618, -46089, -46379], [-45510, -45622, -46093, -46659],
@@ -28118,6 +28454,7 @@ def expectedBlockingClauses035 : List (List Int) :=
         [-45618, -46119, -46302, -45006], [-45645, -46302, -45436, -46851], [-45646, -46302, -45437, -47024],
         [-45646, -46509, -45049, -47031], [-45645, -46509, -46858, -45053], [-45606, -45037, -45934, -46764]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses036 : List (List Int) :=
   [
         [-45622, -45037, -46108, -46770], [-45590, -45760, -45041, -46764], [-45622, -45041, -46114, -46776],
@@ -28137,6 +28474,7 @@ def expectedBlockingClauses036 : List (List Int) :=
         [-45637, -46304, -45049, -47123], [-45646, -46442, -45049, -47129], [-45654, -46725, -45049, -47134],
         [-45511, -45583, -45738, -46241], [-45511, -45587, -45742, -46380], [-45511, -45590, -45745, -46521]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses037 : List (List Int) :=
   [
         [-45503, -45081, -45727, -45042], [-45583, -45821, -45042, -46289], [-45587, -45826, -45042, -46427],
@@ -28156,6 +28494,7 @@ def expectedBlockingClauses037 : List (List Int) :=
         [-45498, -45089, -45038, -46075], [-45615, -45038, -46169, -46283], [-45619, -45038, -46174, -46421],
         [-45622, -45038, -46178, -46562], [-45625, -45038, -46182, -46835], [-45626, -45038, -46183, -47008]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses038 : List (List Int) :=
   [
         [-45503, -45089, -45042, -46081], [-45615, -45042, -46190, -46289], [-45619, -45042, -46195, -46427],
@@ -28175,6 +28514,7 @@ def expectedBlockingClauses038 : List (List Int) :=
         [-45603, -45953, -44984, -46585], [-45619, -46127, -44985, -46585], [-45648, -45440, -46585, -46857],
         [-45649, -45441, -46585, -47030], [-45649, -46512, -45050, -47032], [-45648, -46512, -46859, -45054]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses039 : List (List Int) :=
   [
         [-45606, -45038, -45935, -46625], [-45622, -45038, -46109, -46631], [-45590, -45761, -45042, -46625],
@@ -28194,6 +28534,7 @@ def expectedBlockingClauses039 : List (List Int) :=
         [-45654, -45038, -46562, -47085], [-45640, -45042, -46289, -47097], [-45649, -45042, -46427, -47100],
         [-45654, -45042, -46568, -47102], [-45640, -45046, -46294, -47108], [-45649, -45046, -46432, -47111]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses040 : List (List Int) :=
   [
         [-45654, -45046, -46573, -47113], [-45578, -45684, -45050, -47064], [-45594, -45782, -45050, -47087],
@@ -28213,6 +28554,7 @@ def expectedBlockingClauses040 : List (List Int) :=
         [-45570, -45675, -46309, -46470], [-45588, -45773, -46309, -45418], [-45604, -45947, -46309, -45424],
         [-45620, -46121, -46309, -45430], [-45570, -45681, -46473, -46588], [-45588, -45780, -45420, -46588]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses041 : List (List Int) :=
   [
         [-45604, -45954, -45426, -46588], [-45620, -46128, -45432, -46588], [-45570, -45684, -46476, -46727],
@@ -28232,6 +28574,7 @@ def expectedBlockingClauses041 : List (List Int) :=
         [-45648, -46448, -46785, -47174], [-45653, -46589, -46788, -47174], [-45566, -45163, -46310, -47172],
         [-45571, -45164, -46448, -47172], [-45575, -45165, -46589, -47172], [-45578, -45166, -46728, -47172]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses042 : List (List Int) :=
   [
         [-45585, -45872, -46310, -47172], [-45589, -45880, -46448, -47172], [-45592, -45884, -46589, -47172],
@@ -28251,6 +28594,7 @@ def expectedBlockingClauses042 : List (List Int) :=
         [-45646, -45441, -46587, -46729], [-45633, -46310, -46505, -47172], [-45646, -46509, -46589, -47172],
         [-45649, -46512, -46728, -47172], [-45575, -45676, -46311, -46612], [-45592, -45774, -46311, -45443]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses043 : List (List Int) :=
   [
         [-45608, -45948, -46311, -45449], [-45624, -46122, -46311, -45455], [-45646, -46311, -46439, -45461],
@@ -28270,6 +28614,7 @@ def expectedBlockingClauses043 : List (List Int) :=
         [-45676, -46277, -46820, -47026], [-45679, -46415, -46820, -47029], [-45682, -46556, -46820, -47031],
         [-45685, -46695, -46820, -47032], [-45526, -45663, -47147, -46860], [-45527, -45664, -47147, -47033]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses044 : List (List Int) :=
   [
         [-45533, -45663, -47153, -46861], [-45534, -45664, -47153, -47034], [-45308, -47147, -46347, -46860],
@@ -28289,6 +28634,7 @@ def expectedBlockingClauses044 : List (List Int) :=
         [-45318, -47154, -46498, -46867], [-45319, -47154, -46499, -47040], [-45320, -47141, -46626, -46860],
         [-45321, -47141, -46627, -47033], [-45320, -47154, -46638, -46867], [-45321, -47154, -46639, -47040]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses045 : List (List Int) :=
   [
         [-45322, -47141, -46765, -46860], [-45323, -47141, -46766, -47033], [-45322, -47154, -46777, -46867],
@@ -28308,6 +28654,7 @@ def expectedBlockingClauses045 : List (List Int) :=
         [-45326, -46467, -46939, -45307], [-45328, -46608, -46941, -45307], [-45330, -46747, -46942, -45307],
         [-45703, -47142, -46861, -47077], [-45703, -47148, -46867, -47094], [-45519, -45670, -45304, -46978]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses046 : List (List Int) :=
   [
         [-45325, -46328, -45304, -47109], [-45327, -46466, -45304, -47112], [-45329, -46607, -45304, -47114],
@@ -28327,6 +28674,7 @@ def expectedBlockingClauses046 : List (List Int) :=
         [-45632, -45678, -44971, -46879], [-45633, -45679, -44971, -47052], [-45645, -45678, -44986, -46884],
         [-45646, -45679, -44986, -47057], [-45648, -45678, -44990, -46885], [-45649, -45679, -44990, -47058]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses047 : List (List Int) :=
   [
         [-45310, -45863, -44971, -46879], [-45311, -45864, -44971, -47052], [-45310, -45875, -44986, -46884],
@@ -28346,6 +28694,7 @@ def expectedBlockingClauses047 : List (List Int) :=
         [-45312, -45882, -44991, -46888], [-45313, -45883, -44991, -47061], [-45320, -46041, -44972, -46880],
         [-45321, -46042, -44972, -47053], [-45320, -46049, -44982, -46884], [-45321, -46050, -44982, -47057]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses048 : List (List Int) :=
   [
         [-45320, -46056, -44991, -46888], [-45321, -46057, -44991, -47061], [-45328, -46215, -44972, -46880],
@@ -28365,6 +28714,7 @@ def expectedBlockingClauses048 : List (List Int) :=
         [-45330, -46226, -46475, -46885], [-45331, -46227, -46475, -47058], [-45330, -46230, -46616, -46888],
         [-45331, -46231, -46616, -47061], [-45166, -46337, -46952, -47054], [-45166, -46475, -46958, -47058]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses049 : List (List Int) :=
   [
         [-45166, -46616, -46961, -47061], [-45578, -45684, -46859, -47063], [-45314, -45814, -46914, -47063],
@@ -28384,6 +28734,7 @@ def expectedBlockingClauses049 : List (List Int) :=
         [-45698, -46046, -46340, -47055], [-45698, -46054, -46478, -47059], [-45698, -46058, -46619, -47062],
         [-45698, -46059, -46758, -47064], [-45338, -45703, -46098, -46969], [-45514, -45669, -45815, -46076]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses050 : List (List Int) :=
   [
         [-45324, -45815, -46170, -46317], [-45326, -45815, -46175, -46455], [-45328, -45815, -46179, -46596],
@@ -28403,6 +28754,7 @@ def expectedBlockingClauses050 : List (List Int) :=
         [-45164, -46340, -46505, -47055], [-45574, -45678, -46442, -46619], [-45310, -45810, -45420, -46619],
         [-45318, -45984, -45426, -46619], [-45326, -46158, -45432, -46619], [-45164, -46509, -46619, -47062]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses051 : List (List Int) :=
   [
         [-45577, -45678, -46445, -46758], [-45310, -45813, -45422, -46758], [-45318, -45987, -45428, -46758],
@@ -28422,6 +28774,7 @@ def expectedBlockingClauses051 : List (List Int) :=
         [-45166, -46619, -46788, -47062], [-45698, -45815, -45965, -47071], [-45703, -45815, -46139, -47077],
         [-45693, -45791, -45989, -47071], [-45703, -45989, -46145, -47094], [-45693, -45797, -46163, -47077]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses052 : List (List Int) :=
   [
         [-45698, -45971, -46163, -47094], [-45164, -46340, -46470, -47120], [-45165, -46340, -46611, -47123],
@@ -28441,6 +28794,7 @@ def expectedBlockingClauses052 : List (List Int) :=
         [-45698, -46032, -46165, -46877], [-45698, -46046, -46342, -46882], [-45698, -46054, -46480, -46886],
         [-45698, -46058, -46621, -46889], [-45698, -46059, -46760, -46891], [-45339, -45703, -46098, -46796]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses053 : List (List Int) :=
   [
         [-45515, -45670, -45817, -46077], [-45325, -45817, -46171, -46318], [-45327, -45817, -46176, -46456],
@@ -28460,6 +28814,7 @@ def expectedBlockingClauses053 : List (List Int) :=
         [-45327, -46152, -46342, -45431], [-45164, -46342, -46505, -46882], [-45575, -45679, -46443, -46621],
         [-45311, -45811, -45421, -46621], [-45319, -45985, -45427, -46621], [-45327, -46159, -45433, -46621]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses054 : List (List Int) :=
   [
         [-45164, -46509, -46621, -46889], [-45578, -45679, -46446, -46760], [-45311, -45814, -45423, -46760],
@@ -28479,6 +28834,7 @@ def expectedBlockingClauses054 : List (List Int) :=
         [-45331, -46159, -46621, -45483], [-45166, -46621, -46788, -46889], [-45698, -45817, -45966, -46898],
         [-45703, -45817, -46140, -46904], [-45693, -45792, -45991, -46898], [-45703, -45991, -46146, -46921]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses055 : List (List Int) :=
   [
         [-45693, -45798, -46165, -46904], [-45698, -45972, -46165, -46921], [-45164, -46342, -46471, -46947],
@@ -28498,6 +28854,7 @@ def expectedBlockingClauses055 : List (List Int) :=
         [-45662, -45724, -45894, -45347], [-45662, -45730, -46068, -45348], [-45730, -45244, -47196, -46251],
         [-45724, -47186, -45246, -46251], [-45079, -45714, -46239, -45061], [-45724, -45899, -46252, -45061]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses056 : List (List Int) :=
   [
         [-45730, -46073, -46255, -45061], [-45739, -46261, -45061, -44942], [-45740, -46262, -45061, -44954],
@@ -28517,6 +28874,7 @@ def expectedBlockingClauses056 : List (List Int) :=
         [-45732, -46072, -45058, -46535], [-45741, -45058, -46387, -46539], [-45746, -45058, -46540, -44941],
         [-45747, -45058, -46541, -44953], [-45079, -45716, -45061, -46520], [-45726, -45899, -45061, -46533]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses057 : List (List Int) :=
   [
         [-45732, -46073, -45061, -46536], [-45746, -45061, -46544, -44942], [-45747, -45061, -46545, -44954],
@@ -28536,6 +28894,7 @@ def expectedBlockingClauses057 : List (List Int) :=
         [-45055, -45735, -44892, -45126], [-45735, -45244, -47196, -46975], [-45729, -47186, -45246, -46975],
         [-45663, -45723, -46797, -46969], [-45729, -45902, -46797, -46976], [-45735, -46076, -46797, -46978]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses058 : List (List Int) :=
   [
         [-45740, -45278, -46797, -46983], [-45744, -45284, -46797, -46987], [-45747, -45290, -46797, -46990],
@@ -28555,6 +28914,7 @@ def expectedBlockingClauses058 : List (List Int) :=
         [-44926, -45758, -44886, -46237], [-44926, -45764, -44892, -46238], [-45764, -47145, -47197, -46286],
         [-45758, -47187, -47151, -46286], [-45758, -45933, -46287, -44932], [-45764, -46107, -46292, -44932]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses059 : List (List Int) :=
   [
         [-45758, -45934, -46288, -44935], [-45764, -46108, -46293, -44935], [-45770, -46298, -46420, -44935],
@@ -28574,6 +28934,7 @@ def expectedBlockingClauses059 : List (List Int) :=
         [-44926, -45767, -44892, -46656], [-45767, -47145, -47197, -46704], [-45761, -47187, -47151, -46704],
         [-45761, -45932, -44929, -46705], [-45767, -46106, -44929, -46710], [-45776, -44929, -46419, -46716]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses060 : List (List Int) :=
   [
         [-45779, -44929, -46560, -46717], [-45761, -45933, -44932, -46706], [-45767, -46107, -44932, -46711],
@@ -28593,6 +28954,7 @@ def expectedBlockingClauses060 : List (List Int) :=
         [-45774, -46284, -46829, -47026], [-45778, -46422, -46829, -47029], [-45781, -46563, -46829, -47031],
         [-45783, -46702, -46829, -47032], [-45516, -45721, -47147, -47198], [-45516, -45720, -47188, -47153]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses061 : List (List Int) :=
   [
         [-45517, -45720, -45965, -45302], [-45519, -45721, -46139, -45302], [-45518, -45720, -45966, -45305],
@@ -28612,6 +28974,7 @@ def expectedBlockingClauses061 : List (List Int) :=
         [-45800, -46330, -46453, -44912], [-45803, -46335, -44912, -46864], [-45804, -46336, -44912, -47037],
         [-45787, -45964, -46322, -44915], [-45793, -46138, -46327, -44915], [-45800, -46331, -46454, -44915]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses062 : List (List Int) :=
   [
         [-45801, -46334, -46595, -44915], [-45803, -46338, -44915, -46865], [-45804, -46339, -44915, -47038],
@@ -28631,6 +28994,7 @@ def expectedBlockingClauses062 : List (List Int) :=
         [-45795, -46138, -46606, -44915], [-45810, -46617, -44915, -46865], [-45811, -46618, -44915, -47038],
         [-45789, -45965, -46602, -45302], [-45795, -46139, -46607, -45302], [-45789, -45966, -46603, -45305]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses063 : List (List Int) :=
   [
         [-45795, -46140, -46608, -45305], [-44903, -45790, -45894, -45356], [-44903, -45796, -46068, -45357],
@@ -28650,6 +29014,7 @@ def expectedBlockingClauses063 : List (List Int) :=
         [-45792, -45961, -44906, -47041], [-45798, -46135, -44906, -47046], [-45792, -45962, -44909, -47042],
         [-45798, -46136, -44909, -47047], [-45792, -45963, -44912, -47043], [-45798, -46137, -44912, -47048]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses064 : List (List Int) :=
   [
         [-45792, -45964, -44915, -47044], [-45798, -46138, -44915, -47049], [-45792, -45965, -45302, -47045],
@@ -28669,6 +29034,7 @@ def expectedBlockingClauses064 : List (List Int) :=
         [-45318, -45788, -46485, -46893], [-45320, -45789, -46626, -46893], [-45322, -45790, -46765, -46893],
         [-45698, -45792, -46893, -47071], [-45527, -45667, -45720, -47066], [-45317, -45787, -46348, -47066]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses065 : List (List Int) :=
   [
         [-45319, -45788, -46486, -47066], [-45321, -45789, -46627, -47066], [-45323, -45790, -46766, -47066],
@@ -28688,6 +29054,7 @@ def expectedBlockingClauses065 : List (List Int) :=
         [-47181, -46197, -46486, -47066], [-47182, -46201, -46627, -47066], [-47183, -46204, -46766, -47066],
         [-47184, -46206, -46898, -47066], [-45521, -47180, -47196, -46251], [-45521, -45819, -46252, -46385]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses066 : List (List Int) :=
   [
         [-45521, -45820, -46253, -46526], [-45521, -45821, -46254, -46664], [-47175, -45724, -47199, -46251],
@@ -28707,6 +29074,7 @@ def expectedBlockingClauses066 : List (List Int) :=
         [-45826, -47199, -46497, -47209], [-45827, -47199, -46498, -47210], [-45828, -47199, -46499, -47211],
         [-45522, -45725, -46343, -46391], [-47181, -47200, -46343, -46495], [-45827, -46343, -45424, -46894]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses067 : List (List Int) :=
   [
         [-45828, -46343, -45425, -47067], [-45524, -45725, -46392, -46622], [-47181, -47202, -46496, -46622],
@@ -28726,6 +29094,7 @@ def expectedBlockingClauses067 : List (List Int) :=
         [-47182, -47203, -46637, -46761], [-45831, -45452, -46761, -46897], [-45832, -45453, -46761, -47070],
         [-45526, -45726, -45292, -46893], [-47182, -47204, -46638, -46893], [-45820, -46347, -45448, -46893]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses068 : List (List Int) :=
   [
         [-45825, -46485, -45450, -46893], [-45830, -45452, -46765, -46893], [-45832, -45365, -46893, -47071],
@@ -28745,6 +29114,7 @@ def expectedBlockingClauses068 : List (List Int) :=
         [-45821, -46348, -45473, -47066], [-45826, -46486, -45475, -47066], [-45830, -46627, -45477, -47066],
         [-45834, -45368, -46898, -47066], [-45521, -47184, -47196, -46802], [-45521, -45837, -46803, -46971]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses069 : List (List Int) :=
   [
         [-47175, -45728, -47199, -46802], [-45822, -47199, -47206, -46917], [-45827, -47199, -47207, -46918],
@@ -28764,6 +29134,7 @@ def expectedBlockingClauses069 : List (List Int) :=
         [-45835, -47199, -47209, -47093], [-45837, -47199, -47210, -47094], [-45522, -45729, -46343, -44957],
         [-47185, -47200, -46343, -47090], [-45828, -46343, -46482, -47095], [-45832, -46343, -46623, -47096]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses070 : List (List Int) :=
   [
         [-45835, -46343, -46762, -47097], [-45837, -46343, -46894, -47098], [-45523, -45729, -46481, -44958],
@@ -28783,6 +29154,7 @@ def expectedBlockingClauses070 : List (List Int) :=
         [-45616, -45768, -46349, -46900], [-45617, -45769, -46349, -47073], [-45530, -45087, -44881, -46487],
         [-45613, -45764, -46350, -46487], [-45618, -45766, -46487, -46630], [-45619, -45767, -46487, -46769]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses071 : List (List Int) :=
   [
         [-45620, -45768, -46487, -46901], [-45621, -45769, -46487, -47074], [-45531, -45088, -44881, -46628],
@@ -28802,6 +29174,7 @@ def expectedBlockingClauses071 : List (List Int) :=
         [-47184, -46022, -46487, -46901], [-47185, -46023, -46487, -47074], [-45531, -47176, -45906, -46628],
         [-47180, -46015, -46351, -46628], [-47181, -46020, -46489, -46628], [-47183, -46025, -46628, -46770]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses072 : List (List Int) :=
   [
         [-47184, -46026, -46628, -46902], [-47185, -46027, -46628, -47075], [-45532, -47176, -45907, -46767],
@@ -28821,6 +29194,7 @@ def expectedBlockingClauses072 : List (List Int) :=
         [-45841, -44981, -46631, -46767], [-45843, -45410, -46767, -46903], [-45844, -45411, -46767, -47076],
         [-45533, -45730, -45282, -46899], [-47180, -47194, -46359, -46899], [-45840, -45406, -46491, -46899]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses073 : List (List Int) :=
   [
         [-45841, -45408, -46632, -46899], [-45842, -45410, -46771, -46899], [-45844, -45360, -46899, -47077],
@@ -28840,6 +29214,7 @@ def expectedBlockingClauses073 : List (List Int) :=
         [-45847, -45435, -46772, -47072], [-45848, -45363, -46904, -47072], [-45528, -47182, -47186, -46531],
         [-45528, -45841, -46247, -46535], [-45528, -45846, -46386, -46536], [-45528, -45851, -46537, -46665]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses074 : List (List Int) :=
   [
         [-47175, -45732, -47189, -46531], [-45841, -47189, -47206, -46635], [-45846, -47189, -47207, -46636],
@@ -28859,6 +29234,7 @@ def expectedBlockingClauses074 : List (List Int) :=
         [-47183, -47190, -46349, -46774], [-45847, -46349, -46488, -44998], [-45851, -46349, -46629, -44999],
         [-45855, -46349, -45478, -46900], [-45856, -46349, -45479, -47073], [-45530, -45733, -46487, -46674]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses075 : List (List Int) :=
   [
         [-47183, -47191, -46487, -46775], [-45851, -46487, -46630, -45000], [-45855, -46487, -45480, -46901],
@@ -28878,6 +29254,7 @@ def expectedBlockingClauses075 : List (List Int) :=
         [-45843, -46351, -46628, -46934], [-45848, -46489, -46628, -46937], [-45855, -46628, -46770, -46940],
         [-45858, -46628, -46941, -47075], [-45532, -45734, -46767, -44952], [-47184, -47193, -46767, -46920]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses076 : List (List Int) :=
   [
         [-45843, -46352, -46767, -46935], [-45848, -46490, -46767, -46938], [-45852, -46631, -46767, -46940],
@@ -28897,6 +29274,7 @@ def expectedBlockingClauses076 : List (List Int) :=
         [-45533, -45735, -46899, -46978], [-47185, -47194, -46899, -47094], [-45844, -46353, -46899, -47109],
         [-45849, -46491, -46899, -47112], [-45853, -46632, -46899, -47114], [-45856, -46771, -46899, -47115]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses077 : List (List Int) :=
   [
         [-45500, -45109, -45724, -45932], [-45504, -45109, -45730, -46106], [-45536, -45730, -45992, -47200],
@@ -28916,6 +29294,7 @@ def expectedBlockingClauses077 : List (List Int) :=
         [-45109, -45821, -45946, -46699], [-45689, -47180, -45967, -46135], [-45689, -45819, -45974, -46452],
         [-45689, -45820, -45975, -46593], [-45689, -45821, -45976, -46732], [-45529, -45724, -45904, -46166]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses078 : List (List Int) :=
   [
         [-45819, -46014, -46166, -46488], [-45820, -46015, -46166, -46629], [-45821, -46016, -46166, -46768],
@@ -28935,6 +29314,7 @@ def expectedBlockingClauses078 : List (List Int) :=
         [-45844, -45992, -46192, -47067], [-45581, -45764, -46118, -45133], [-47180, -45993, -46188, -45133],
         [-45843, -46211, -45133, -46905], [-45844, -46212, -45133, -47078], [-45582, -45764, -46119, -45142]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses079 : List (List Int) :=
   [
         [-47180, -45994, -46189, -45142], [-45843, -46215, -45142, -46906], [-45844, -46216, -45142, -47079],
@@ -28954,6 +29334,7 @@ def expectedBlockingClauses079 : List (List Int) :=
         [-45011, -45736, -46399, -45201], [-45819, -45996, -45424, -45201], [-45840, -46170, -45430, -45201],
         [-45864, -46505, -45201, -47081], [-45012, -45736, -46400, -45213], [-45819, -45997, -45425, -45213]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses080 : List (List Int) :=
   [
         [-45840, -46171, -45431, -45213], [-45863, -46505, -46908, -45213], [-45097, -45820, -45898, -46532],
@@ -28973,6 +29354,7 @@ def expectedBlockingClauses080 : List (List Int) :=
         [-45109, -45870, -46718, -46832], [-45109, -45871, -46719, -47005], [-45689, -45821, -45961, -46738],
         [-45689, -45842, -46135, -46743], [-45522, -45738, -45992, -46670], [-45842, -45992, -47200, -46774]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses081 : List (List Int) :=
   [
         [-45870, -45992, -45472, -46894], [-45871, -45992, -45473, -47067], [-45529, -45738, -46166, -46673],
@@ -28992,6 +29374,7 @@ def expectedBlockingClauses081 : List (List Int) :=
         [-45822, -45994, -45142, -46923], [-45843, -46168, -45142, -46934], [-45872, -45142, -46950, -47079],
         [-45822, -45995, -45154, -46924], [-45843, -46169, -45154, -46935], [-45872, -45154, -46952, -47080]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses082 : List (List Int) :=
   [
         [-45585, -45773, -46853, -45213], [-45309, -45803, -46882, -45213], [-45822, -45997, -46925, -45213],
@@ -29011,6 +29394,7 @@ def expectedBlockingClauses082 : List (List Int) :=
         [-45021, -45725, -46001, -45202], [-45029, -45731, -46175, -45202], [-45022, -45725, -46002, -45214],
         [-45030, -45731, -46176, -45214], [-45098, -45083, -45759, -45899], [-45098, -45087, -45765, -46073]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses083 : List (List Int) :=
   [
         [-45562, -45690, -45770, -46314], [-45568, -45690, -45775, -46594], [-45569, -45690, -45776, -46733],
@@ -29030,6 +29414,7 @@ def expectedBlockingClauses083 : List (List Int) :=
         [-45828, -46023, -46172, -47074], [-45581, -45759, -45944, -45127], [-47181, -46014, -46167, -45127],
         [-45827, -46037, -45127, -46905], [-45828, -46038, -45127, -47078], [-45586, -45759, -45949, -45143]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses084 : List (List Int) :=
   [
         [-47181, -46020, -46173, -45143], [-45827, -46049, -45143, -46909], [-45828, -46050, -45143, -47082],
@@ -29049,6 +29434,7 @@ def expectedBlockingClauses084 : List (List Int) :=
         [-47181, -46000, -46195, -45155], [-45848, -46226, -45155, -46910], [-45849, -46227, -45155, -47083],
         [-47181, -46001, -46196, -45202], [-45840, -46211, -45394, -45202], [-45846, -46223, -45444, -45202]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses085 : List (List Int) :=
   [
         [-45847, -46226, -45468, -45202], [-47181, -46002, -46197, -45214], [-45840, -46212, -45395, -45214],
@@ -29068,6 +29454,7 @@ def expectedBlockingClauses085 : List (List Int) :=
         [-45876, -45998, -45451, -47068], [-45530, -45741, -46172, -46536], [-45825, -47191, -46172, -46636],
         [-45875, -46172, -45456, -46901], [-45876, -46172, -45457, -47074], [-45587, -45775, -46582, -45155]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses086 : List (List Int) :=
   [
         [-45825, -46000, -45148, -45155], [-45846, -46174, -45152, -45155], [-45875, -45464, -45155, -46910],
@@ -29087,6 +29474,7 @@ def expectedBlockingClauses086 : List (List Int) :=
         [-45098, -45827, -45899, -44946], [-45098, -45848, -46073, -44950], [-45110, -45827, -45933, -46840],
         [-45110, -45848, -46107, -46846], [-45690, -45863, -46314, -46879], [-45690, -45875, -46594, -46884]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses087 : List (List Int) :=
   [
         [-45690, -45878, -46733, -46885], [-45848, -45998, -47201, -46918], [-45863, -45998, -46344, -46922],
@@ -29106,6 +29494,7 @@ def expectedBlockingClauses087 : List (List Int) :=
         [-45880, -45127, -46905, -47120], [-45828, -45999, -45143, -47099], [-45849, -46173, -45143, -47110],
         [-45880, -45143, -46909, -47129], [-45828, -46000, -45155, -47100], [-45849, -46174, -45155, -47111]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses088 : List (List Int) :=
   [
         [-45880, -45155, -46910, -47131], [-45588, -45778, -45202, -47029], [-45310, -45808, -45202, -47059],
@@ -29125,6 +29514,7 @@ def expectedBlockingClauses088 : List (List Int) :=
         [-45624, -45766, -46180, -45215], [-45099, -47182, -45906, -46074], [-45099, -45820, -45911, -46249],
         [-45099, -45825, -45915, -46388], [-45099, -45830, -45919, -46668], [-45111, -47182, -45940, -46108]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses089 : List (List Int) :=
   [
         [-45111, -45820, -45945, -46282], [-45111, -45825, -45949, -46420], [-45111, -45830, -45953, -46701],
@@ -29144,6 +29534,7 @@ def expectedBlockingClauses089 : List (List Int) :=
         [-45691, -45841, -46149, -46315], [-45691, -45846, -46153, -46453], [-45691, -45851, -46157, -46734],
         [-45524, -45732, -46003, -46080], [-45841, -46003, -46189, -46345], [-45846, -46003, -46194, -46483]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses090 : List (List Int) :=
   [
         [-45851, -46003, -46199, -46764], [-45852, -46003, -46200, -46896], [-45853, -46003, -46201, -47069],
@@ -29163,6 +29554,7 @@ def expectedBlockingClauses090 : List (List Int) :=
         [-45841, -46173, -44979, -45134], [-45867, -45412, -45134, -46909], [-45868, -45413, -45134, -47082],
         [-45015, -45737, -46265, -45203], [-45820, -46005, -45402, -45203], [-45841, -46179, -45408, -45203]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses091 : List (List Int) :=
   [
         [-45868, -46368, -45203, -47086], [-45016, -45737, -46266, -45215], [-45820, -46006, -45403, -45215],
@@ -29182,6 +29574,7 @@ def expectedBlockingClauses091 : List (List Int) :=
         [-45691, -45830, -45963, -46740], [-45691, -45851, -46137, -46745], [-45524, -45745, -46003, -46672],
         [-45851, -46003, -47202, -46776], [-45882, -46003, -45476, -46896], [-45883, -46003, -45477, -47069]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses092 : List (List Int) :=
   [
         [-45531, -45745, -46177, -46675], [-45830, -47192, -46177, -46776], [-45882, -46177, -45482, -46902],
@@ -29201,6 +29594,7 @@ def expectedBlockingClauses092 : List (List Int) :=
         [-45882, -45471, -46961, -45215], [-45099, -45832, -45900, -44959], [-45099, -45853, -46074, -44963],
         [-45111, -45832, -45934, -47014], [-45111, -45853, -46108, -47020], [-45691, -45868, -46315, -47053]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses093 : List (List Int) :=
   [
         [-45691, -45876, -46453, -47057], [-45691, -45883, -46734, -47061], [-45853, -46003, -47202, -47092],
@@ -29220,6 +29614,7 @@ def expectedBlockingClauses093 : List (List Int) :=
         [-45615, -45772, -46181, -46352], [-45619, -45776, -46181, -46490], [-45622, -45779, -46181, -46631],
         [-45599, -45761, -45995, -45001], [-45615, -45767, -46169, -45001], [-45639, -45782, -45001, -46907]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses094 : List (List Int) :=
   [
         [-45640, -45783, -45001, -47080], [-45603, -45761, -46000, -45135], [-45619, -45767, -46174, -45135],
@@ -29239,6 +29634,7 @@ def expectedBlockingClauses094 : List (List Int) :=
         [-45835, -46057, -45145, -47085], [-47183, -46029, -46182, -45204], [-45821, -46044, -45398, -45204],
         [-45826, -46052, -45422, -45204], [-45830, -46056, -45446, -45204], [-47183, -46030, -46183, -45216]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses095 : List (List Int) :=
   [
         [-45821, -46045, -45399, -45216], [-45826, -46053, -45423, -45216], [-45830, -46057, -45447, -45216],
@@ -29258,6 +29654,7 @@ def expectedBlockingClauses095 : List (List Int) :=
         [-45100, -45842, -46075, -46257], [-45498, -45112, -45738, -46241], [-45112, -45821, -45935, -46289],
         [-45112, -45842, -46109, -46294], [-45112, -45870, -46307, -46835], [-45112, -45871, -46308, -47008]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses096 : List (List Int) :=
   [
         [-45692, -45821, -45964, -46322], [-45692, -45842, -46138, -46327], [-45525, -45738, -46007, -46254],
@@ -29277,6 +29674,7 @@ def expectedBlockingClauses096 : List (List Int) :=
         [-45826, -47193, -46181, -46497], [-45878, -46181, -45434, -46903], [-45879, -46181, -45435, -47076],
         [-45583, -45776, -45001, -46437], [-45826, -45995, -45001, -46500], [-45847, -46169, -45001, -46501]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses097 : List (List Int) :=
   [
         [-45878, -45001, -45438, -46907], [-45879, -45001, -45439, -47080], [-45590, -45776, -46441, -45145],
@@ -29296,6 +29694,7 @@ def expectedBlockingClauses097 : List (List Int) :=
         [-45017, -45745, -46547, -45204], [-45830, -46008, -45452, -45204], [-45851, -46182, -45458, -45204],
         [-45883, -46650, -45204, -47087], [-45018, -45745, -46548, -45216], [-45830, -46009, -45453, -45216]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses098 : List (List Int) :=
   [
         [-45851, -46183, -45459, -45216], [-45882, -46650, -46914, -45216], [-45100, -45834, -45901, -44948],
@@ -29315,6 +29714,7 @@ def expectedBlockingClauses098 : List (List Int) :=
         [-45879, -46007, -46484, -47100], [-45883, -46007, -46625, -47102], [-45835, -47193, -46181, -47093],
         [-45871, -46181, -46352, -47108], [-45879, -46181, -46490, -47111], [-45883, -46181, -46631, -47113]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses099 : List (List Int) :=
   [
         [-45835, -45995, -45001, -47097], [-45856, -46169, -45001, -47108], [-45885, -45001, -46907, -47125],
@@ -29334,6 +29734,7 @@ def expectedBlockingClauses099 : List (List Int) :=
         [-45703, -45797, -46185, -47088], [-45163, -45803, -45358, -47088], [-45164, -45807, -45361, -47088],
         [-45165, -45810, -45364, -47088], [-45166, -45813, -45367, -47088], [-45248, -47184, -45908, -46076]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses100 : List (List Int) :=
   [
         [-45248, -45837, -45924, -46973], [-45595, -47184, -45942, -46110], [-45595, -45837, -45959, -47009],
@@ -29353,6 +29754,7 @@ def expectedBlockingClauses100 : List (List Int) :=
         [-45858, -46232, -45266, -47086], [-47184, -46008, -46203, -45272], [-45858, -46233, -45272, -47087],
         [-45693, -45797, -46164, -47088], [-47184, -46011, -46206, -47088], [-45843, -46220, -45358, -47088]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses101 : List (List Int) :=
   [
         [-45848, -46228, -45361, -47088], [-45852, -46232, -45364, -47088], [-45855, -46233, -45367, -47088],
@@ -29372,6 +29774,7 @@ def expectedBlockingClauses101 : List (List Int) :=
         [-45827, -47194, -46184, -46498], [-45880, -46184, -45363, -47077], [-45584, -45777, -45254, -46438],
         [-45308, -45807, -45254, -46470], [-45827, -45996, -45254, -45424], [-45848, -46170, -45254, -45430]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses102 : List (List Int) :=
   [
         [-45880, -45254, -46505, -47081], [-45591, -45777, -46442, -45266], [-45312, -45807, -46473, -45266],
@@ -29391,6 +29794,7 @@ def expectedBlockingClauses102 : List (List Int) :=
         [-45831, -46011, -45365, -47088], [-45852, -46185, -45366, -47088], [-45867, -45358, -46643, -47088],
         [-45875, -45361, -46647, -47088], [-45882, -46650, -45367, -47088], [-45248, -45834, -45902, -45298]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses103 : List (List Int) :=
   [
         [-45248, -45855, -46076, -45300], [-45595, -45885, -46728, -47009], [-45340, -45834, -45965, -46741],
@@ -29410,6 +29814,7 @@ def expectedBlockingClauses103 : List (List Int) :=
         [-45526, -45750, -46010, -46976], [-45858, -46010, -47204, -47094], [-45872, -46010, -46347, -47098],
         [-45880, -46010, -46485, -47101], [-45884, -46010, -46626, -47103], [-45885, -46010, -46765, -47104]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses104 : List (List Int) :=
   [
         [-45533, -45750, -46184, -46978], [-45837, -47194, -46184, -47094], [-45872, -46184, -46353, -47109],
@@ -29429,6 +29834,7 @@ def expectedBlockingClauses104 : List (List Int) :=
         [-45249, -45667, -45792, -45903], [-45249, -45670, -45798, -46077], [-45596, -45687, -45816, -46836],
         [-45698, -45816, -46012, -46898], [-45703, -45816, -46186, -46904], [-45317, -45792, -45997, -45255]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses105 : List (List Int) :=
   [
         [-45325, -45798, -46171, -45255], [-45319, -45792, -46002, -45261], [-45327, -45798, -46176, -45261],
@@ -29448,6 +29854,7 @@ def expectedBlockingClauses105 : List (List Int) :=
         [-45596, -45858, -46133, -46836], [-45341, -47185, -45966, -46146], [-45341, -45858, -46164, -46866],
         [-45527, -45735, -46012, -46083], [-45844, -46012, -46192, -46348], [-45849, -46012, -46197, -46486]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses106 : List (List Int) :=
   [
         [-45853, -46012, -46201, -46627], [-45856, -46012, -46204, -46766], [-45858, -46012, -46206, -46898],
@@ -29467,6 +29874,7 @@ def expectedBlockingClauses106 : List (List Int) :=
         [-45868, -45417, -45447, -45273], [-45872, -46371, -45273, -46914], [-45823, -46011, -45359, -46915],
         [-45844, -46185, -45360, -46915], [-45864, -46364, -45361, -46915], [-45868, -46368, -45364, -46915]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses107 : List (List Int) :=
   [
         [-45871, -46371, -45367, -46915], [-45249, -45828, -45903, -45287], [-45249, -45849, -46077, -45289],
@@ -29486,6 +29894,7 @@ def expectedBlockingClauses107 : List (List Int) :=
         [-45832, -45997, -45255, -45449], [-45853, -46171, -45255, -45455], [-45876, -45255, -45419, -45461],
         [-45884, -45255, -46643, -46908], [-45589, -45781, -45261, -46584], [-45311, -45811, -45261, -46615]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses108 : List (List Int) :=
   [
         [-45832, -46002, -45261, -45451], [-45853, -46176, -45261, -45457], [-45884, -45261, -46647, -46911],
@@ -29505,6 +29914,7 @@ def expectedBlockingClauses108 : List (List Int) :=
         [-45871, -45358, -46781, -46915], [-45879, -45361, -46785, -46915], [-45883, -45364, -46788, -46915],
         [-45249, -45837, -45903, -46803], [-45249, -45858, -46077, -46805], [-45596, -45837, -45937, -46843]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses109 : List (List Int) :=
   [
         [-45596, -45858, -46111, -46849], [-45515, -45341, -45750, -46796], [-45341, -45837, -45966, -46872],
@@ -29524,6 +29934,7 @@ def expectedBlockingClauses109 : List (List Int) :=
         [-45880, -45423, -45273, -46958], [-45884, -45447, -45273, -46961], [-45056, -44881, -47186, -44893],
         [-45665, -45721, -47186, -46069], [-45730, -45898, -45247, -46251], [-45731, -45899, -45247, -46390]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses110 : List (List Int) :=
   [
         [-45732, -45900, -45247, -46531], [-45733, -45901, -45247, -46669], [-45734, -45902, -45247, -46802],
@@ -29543,6 +29954,7 @@ def expectedBlockingClauses110 : List (List Int) :=
         [-45910, -46260, -46393, -45068], [-45911, -46264, -46534, -45068], [-45913, -46268, -45068, -44948],
         [-45914, -46269, -45068, -44960], [-45665, -45720, -45899, -45349], [-45665, -45905, -46069, -45351]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses111 : List (List Int) :=
   [
         [-45242, -45905, -47196, -46386], [-47176, -45899, -45247, -46386], [-45082, -45889, -45059, -46378],
@@ -29562,6 +29974,7 @@ def expectedBlockingClauses111 : List (List Int) :=
         [-45082, -45891, -45059, -46657], [-45724, -45901, -45059, -46666], [-45907, -46078, -45059, -46673],
         [-45916, -45059, -46391, -46677], [-45919, -45059, -46532, -46678], [-45922, -45059, -46679, -44945]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses112 : List (List Int) :=
   [
         [-45923, -45059, -46680, -44957], [-45083, -45891, -45062, -46658], [-45725, -45901, -45062, -46667],
@@ -29581,6 +29994,7 @@ def expectedBlockingClauses112 : List (List Int) :=
         [-45498, -45761, -44886, -44939], [-45507, -44887, -46115, -44939], [-44927, -44881, -47187, -44893],
         [-45499, -44881, -44886, -47152], [-45764, -45932, -47152, -46286], [-45765, -45933, -47152, -46424]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses113 : List (List Int) :=
   [
         [-45766, -45934, -47152, -46565], [-45767, -45935, -47152, -46704], [-45768, -45936, -47152, -46838],
@@ -29600,6 +30014,7 @@ def expectedBlockingClauses113 : List (List Int) :=
         [-44927, -45939, -44893, -46377], [-47139, -45939, -47197, -46418], [-47177, -45933, -47152, -46418],
         [-45758, -45933, -44930, -46419], [-45939, -46112, -44930, -46430], [-45760, -45933, -46420, -44936]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses114 : List (List Int) :=
   [
         [-45939, -46114, -46431, -44936], [-45761, -45933, -46421, -44939], [-45939, -46115, -46432, -44939],
@@ -29619,6 +30034,7 @@ def expectedBlockingClauses114 : List (List Int) :=
         [-47139, -45942, -47197, -46831], [-47177, -45936, -47152, -46831], [-45758, -45936, -44930, -46832],
         [-45942, -46112, -44930, -46845], [-45759, -45936, -44933, -46833], [-45942, -46113, -44933, -46846]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses115 : List (List Int) :=
   [
         [-45760, -45936, -44936, -46834], [-45942, -46114, -44936, -46847], [-45761, -45936, -44939, -46835],
@@ -29638,6 +30054,7 @@ def expectedBlockingClauses115 : List (List Int) :=
         [-45793, -47188, -46141, -44907], [-45794, -47188, -46142, -44910], [-45795, -47188, -46143, -44913],
         [-45796, -47188, -46144, -44916], [-45797, -47188, -46145, -45303], [-45798, -47188, -46146, -45306]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses116 : List (List Int) :=
   [
         [-44904, -45720, -47188, -46068], [-45512, -47141, -45895, -46068], [-47141, -45967, -46135, -46312],
@@ -29657,6 +30074,7 @@ def expectedBlockingClauses116 : List (List Int) :=
         [-45968, -46141, -44907, -46463], [-45981, -44907, -46470, -46868], [-45982, -44907, -46471, -47041],
         [-45789, -45962, -46453, -44913], [-45968, -46143, -46464, -44913], [-45981, -46473, -44913, -46870]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses117 : List (List Int) :=
   [
         [-45982, -46474, -44913, -47043], [-45790, -45962, -46454, -44916], [-45968, -46144, -46465, -44916],
@@ -29676,6 +30094,7 @@ def expectedBlockingClauses117 : List (List Int) :=
         [-45970, -46142, -44910, -46744], [-45983, -44910, -46600, -46753], [-45987, -44910, -46754, -46869],
         [-45988, -44910, -46755, -47042], [-45789, -45964, -44913, -46734], [-45970, -46143, -44913, -46745]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses118 : List (List Int) :=
   [
         [-45987, -44913, -46756, -46870], [-45988, -44913, -46757, -47043], [-45791, -45964, -46735, -45303],
@@ -29695,6 +30114,7 @@ def expectedBlockingClauses118 : List (List Int) :=
         [-45531, -47186, -47202, -46622], [-45532, -47186, -47203, -46761], [-45533, -47186, -47204, -46893],
         [-45534, -47186, -47205, -47066], [-45522, -45078, -44886, -46343], [-45581, -45933, -46343, -46482]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses119 : List (List Int) :=
   [
         [-45582, -45934, -46343, -46623], [-45583, -45935, -46343, -46762], [-45584, -45936, -46343, -46894],
@@ -29714,6 +30134,7 @@ def expectedBlockingClauses119 : List (List Int) :=
         [-47192, -46168, -46343, -46623], [-47193, -46169, -46343, -46762], [-47194, -46170, -46343, -46894],
         [-47195, -46171, -46343, -47067], [-45523, -47186, -46073, -46481], [-47190, -46167, -46344, -46481]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses120 : List (List Int) :=
   [
         [-47192, -46173, -46481, -46624], [-47193, -46174, -46481, -46763], [-47194, -46175, -46481, -46895],
@@ -29733,6 +30154,7 @@ def expectedBlockingClauses120 : List (List Int) :=
         [-45524, -45898, -46249, -46622], [-47190, -47202, -46351, -46622], [-45993, -44973, -46483, -46622],
         [-45996, -45396, -46622, -46896], [-45997, -45397, -46622, -47069], [-45525, -45898, -46250, -46761]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses121 : List (List Int) :=
   [
         [-47190, -47203, -46352, -46761], [-45993, -44974, -46484, -46761], [-45994, -44975, -46625, -46761],
@@ -29752,6 +30174,7 @@ def expectedBlockingClauses121 : List (List Int) :=
         [-45993, -46347, -45418, -46893], [-45999, -45420, -46626, -46893], [-46000, -45422, -46765, -46893],
         [-46002, -45361, -46893, -47071], [-45527, -45899, -45285, -47066], [-47191, -47205, -46492, -47066]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses122 : List (List Int) :=
   [
         [-45993, -46348, -45419, -47066], [-45999, -45421, -46627, -47066], [-46000, -45423, -46766, -47066],
@@ -29771,6 +30194,7 @@ def expectedBlockingClauses122 : List (List Int) :=
         [-45521, -46004, -46526, -46668], [-47175, -45901, -47199, -46665], [-45995, -47199, -47206, -46768],
         [-46000, -47199, -47207, -46769], [-46004, -47199, -47208, -46770], [-46008, -47199, -46771, -47210]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses123 : List (List Int) :=
   [
         [-46009, -47199, -46772, -47211], [-45522, -45901, -46343, -46666], [-47193, -47200, -46343, -46768],
@@ -29790,6 +30214,7 @@ def expectedBlockingClauses123 : List (List Int) :=
         [-45523, -45902, -46481, -44942], [-47194, -47201, -46481, -46901], [-45996, -46344, -46481, -46905],
         [-46005, -46481, -46624, -46909], [-46008, -46481, -46763, -46910], [-46011, -46481, -46911, -47068]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses124 : List (List Int) :=
   [
         [-45524, -45902, -46622, -44943], [-47194, -47202, -46622, -46902], [-45996, -46345, -46622, -46906],
@@ -29809,6 +30234,7 @@ def expectedBlockingClauses124 : List (List Int) :=
         [-46009, -46622, -46764, -47085], [-46011, -46622, -46896, -47086], [-45525, -45903, -46761, -44956],
         [-47195, -47203, -46761, -47076], [-45997, -46346, -46761, -47080], [-46002, -46484, -46761, -47083]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses125 : List (List Int) :=
   [
         [-46006, -46625, -46761, -47085], [-46011, -46761, -46897, -47087], [-45526, -45903, -46893, -46973],
@@ -29828,6 +30254,7 @@ def expectedBlockingClauses125 : List (List Int) :=
         [-45625, -45942, -46773, -46920], [-45626, -45943, -46773, -47093], [-45540, -45669, -45895, -46916],
         [-45324, -45967, -46359, -46916], [-45326, -45968, -46498, -46916], [-45328, -45969, -46638, -46916]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses126 : List (List Int) :=
   [
         [-45330, -45970, -46777, -46916], [-45703, -45972, -46916, -47094], [-45541, -45670, -45895, -47089],
@@ -29847,6 +30274,7 @@ def expectedBlockingClauses126 : List (List Int) :=
         [-45855, -47193, -46777, -46916], [-45858, -47195, -46916, -47094], [-45541, -45735, -47186, -47089],
         [-45844, -47190, -46360, -47089], [-45849, -47191, -46499, -47089], [-45853, -47192, -46639, -47089]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses127 : List (List Int) :=
   [
         [-45856, -47193, -46778, -47089], [-45858, -47194, -46921, -47089], [-45535, -47176, -47190, -46247],
@@ -29866,6 +30294,7 @@ def expectedBlockingClauses127 : List (List Int) :=
         [-45535, -46021, -46396, -46669], [-47175, -47179, -45905, -46386], [-47179, -46014, -47206, -46488],
         [-47179, -46020, -46489, -47208], [-47179, -46021, -46490, -47209], [-47179, -46022, -46491, -47210]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses128 : List (List Int) :=
   [
         [-47179, -46023, -46492, -47211], [-45536, -45905, -46355, -46394], [-47180, -47191, -46355, -46488],
@@ -29885,6 +30314,7 @@ def expectedBlockingClauses128 : List (List Int) :=
         [-47181, -47192, -46494, -46630], [-46026, -46494, -45456, -46918], [-46027, -46494, -45457, -47091],
         [-45539, -45906, -46537, -46773], [-47183, -47192, -46631, -46773], [-46026, -45458, -46773, -46920]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses129 : List (List Int) :=
   [
         [-46027, -45459, -46773, -47093], [-45540, -45906, -45294, -46916], [-47184, -47192, -46632, -46916],
@@ -29904,6 +30334,7 @@ def expectedBlockingClauses129 : List (List Int) :=
         [-46025, -46638, -45482, -46916], [-46030, -45369, -46916, -47094], [-45541, -45907, -45301, -47089],
         [-47185, -47193, -46772, -47089], [-46016, -46360, -45479, -47089], [-46021, -46499, -45481, -47089]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses130 : List (List Int) :=
   [
         [-46025, -46639, -45483, -47089], [-46029, -45369, -46921, -47089], [-45535, -47176, -47194, -46799],
@@ -29923,6 +30354,7 @@ def expectedBlockingClauses130 : List (List Int) :=
         [-47175, -47179, -45909, -46972], [-47179, -46018, -47206, -47073], [-47179, -46023, -47207, -47074],
         [-47179, -46027, -47208, -47075], [-47179, -46030, -47209, -47076], [-47179, -46032, -47210, -47077]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses131 : List (List Int) :=
   [
         [-45536, -45909, -46355, -44961], [-47180, -47195, -46355, -47073], [-46023, -46355, -46495, -47106],
@@ -29942,6 +30374,7 @@ def expectedBlockingClauses131 : List (List Int) :=
         [-45564, -45694, -45946, -46738], [-45581, -45818, -45944, -46482], [-45582, -45818, -45945, -46623],
         [-45583, -45818, -45946, -46762], [-45613, -45944, -46187, -46495], [-45614, -45945, -46187, -46635]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses132 : List (List Int) :=
   [
         [-45615, -45946, -46187, -46774], [-45581, -45819, -45932, -45136], [-45613, -45938, -46188, -45136],
@@ -29961,6 +30394,7 @@ def expectedBlockingClauses132 : List (List Int) :=
         [-45868, -45997, -45146, -47096], [-45599, -45772, -45932, -45157], [-45842, -47190, -46190, -45157],
         [-45870, -45996, -45157, -46924], [-45871, -45997, -45157, -47097], [-45843, -47190, -46191, -45205]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses133 : List (List Int) :=
   [
         [-45863, -45993, -45424, -45205], [-45867, -45994, -45448, -45205], [-45870, -45995, -45472, -45205],
@@ -29980,6 +30414,7 @@ def expectedBlockingClauses133 : List (List Int) :=
         [-46014, -46212, -45425, -45217], [-46015, -46216, -45449, -45217], [-46016, -46219, -45473, -45217],
         [-45101, -45724, -45993, -46387], [-45101, -46014, -46078, -46394], [-45500, -45113, -45910, -46378]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses134 : List (List Int) :=
   [
         [-45113, -45758, -45993, -46419], [-45113, -46014, -46112, -46430], [-45113, -46037, -46438, -46839],
@@ -29999,6 +30434,7 @@ def expectedBlockingClauses134 : List (List Int) :=
         [-45818, -46015, -47200, -46629], [-45818, -46041, -45442, -46894], [-45818, -46042, -45443, -47067],
         [-45536, -45911, -46187, -46535], [-47180, -45994, -46187, -46629], [-46041, -46187, -45454, -46917]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses135 : List (List Int) :=
   [
         [-46042, -46187, -45455, -47090], [-45597, -45945, -45136, -46577], [-45819, -45994, -45136, -44987],
@@ -30018,6 +30454,7 @@ def expectedBlockingClauses135 : List (List Int) :=
         [-45820, -45995, -45146, -44993], [-46016, -46189, -45146, -44999], [-46044, -45146, -45486, -46923],
         [-46045, -45146, -45487, -47096], [-45019, -45912, -46679, -45205], [-45822, -45995, -45466, -45205]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses136 : List (List Int) :=
   [
         [-46016, -46191, -45478, -45205], [-46045, -46781, -45205, -47098], [-45020, -45912, -46680, -45217],
@@ -30037,6 +30474,7 @@ def expectedBlockingClauses136 : List (List Int) :=
         [-45694, -46042, -46599, -47053], [-45694, -46045, -46738, -47054], [-45818, -46018, -47200, -47073],
         [-45818, -46038, -46482, -47078], [-45818, -46042, -46623, -47079], [-45818, -46045, -46762, -47080]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses137 : List (List Int) :=
   [
         [-47180, -45997, -46187, -47073], [-46038, -46187, -46495, -47106], [-46042, -46187, -46635, -47107],
@@ -30056,6 +30494,7 @@ def expectedBlockingClauses137 : List (List Int) :=
         [-45633, -45952, -45129, -47095], [-45586, -45825, -45933, -45147], [-45618, -45939, -46194, -45147],
         [-45645, -45951, -45147, -46926], [-45646, -45952, -45147, -47099], [-45587, -45826, -45933, -45158]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses138 : List (List Int) :=
   [
         [-45619, -45939, -46195, -45158], [-45648, -45951, -45158, -46927], [-45649, -45952, -45158, -47100],
@@ -30075,6 +30514,7 @@ def expectedBlockingClauses138 : List (List Int) :=
         [-45864, -45993, -45401, -45218], [-45876, -45999, -45451, -45218], [-45879, -46000, -45475, -45218],
         [-45102, -45725, -47191, -46073], [-45102, -46014, -46084, -46252], [-45102, -46020, -46089, -46533]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses139 : List (List Int) :=
   [
         [-45102, -46021, -46090, -46671], [-45114, -45759, -47191, -46107], [-45114, -46014, -46118, -46287],
@@ -30094,6 +30534,7 @@ def expectedBlockingClauses139 : List (List Int) :=
         [-45695, -45788, -45993, -46314], [-45695, -46014, -46142, -46325], [-45523, -45824, -45910, -46248],
         [-45824, -46014, -47201, -46350], [-45824, -46037, -45394, -46895], [-45824, -46038, -45395, -47068]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses140 : List (List Int) :=
   [
         [-45537, -45910, -46193, -46255], [-47181, -45993, -46193, -46350], [-46037, -46193, -45406, -46918],
@@ -30113,6 +30554,7 @@ def expectedBlockingClauses140 : List (List Int) :=
         [-45102, -45725, -46000, -46667], [-45102, -46021, -46079, -46674], [-45501, -45114, -45916, -46658],
         [-45114, -45759, -46000, -46700], [-45114, -46021, -46113, -46711], [-45114, -46052, -46722, -46840]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses141 : List (List Int) :=
   [
         [-45114, -46053, -46723, -47013], [-45695, -45788, -46000, -46733], [-45695, -46021, -46142, -46744],
@@ -30132,6 +30574,7 @@ def expectedBlockingClauses141 : List (List Int) :=
         [-45825, -46001, -45147, -46909], [-46022, -46194, -45147, -46937], [-46054, -45147, -46956, -47099],
         [-45826, -46001, -45158, -46910], [-46022, -46195, -45158, -46938], [-46054, -45158, -46958, -47100]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses142 : List (List Int) :=
   [
         [-45605, -45951, -46856, -45218], [-45319, -45981, -46886, -45218], [-45828, -46001, -46911, -45218],
@@ -30151,6 +30594,7 @@ def expectedBlockingClauses142 : List (List Int) :=
         [-45015, -45831, -45900, -45207], [-45031, -45906, -46200, -45207], [-45016, -45832, -45900, -45219],
         [-45032, -45906, -46201, -45219], [-45103, -45080, -45726, -45934], [-45103, -45088, -45940, -46080]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses143 : List (List Int) :=
   [
         [-45563, -45696, -45945, -46321], [-45568, -45696, -45949, -46459], [-45573, -45696, -45953, -46740],
@@ -30170,6 +30614,7 @@ def expectedBlockingClauses143 : List (List Int) :=
         [-45853, -46006, -46198, -47092], [-45598, -45771, -45934, -45130], [-45841, -47192, -46189, -45130],
         [-45867, -46005, -45130, -46923], [-45868, -46006, -45130, -47096], [-45602, -45775, -45934, -45137]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses144 : List (List Int) :=
   [
         [-45846, -47192, -46194, -45137], [-45875, -46005, -45137, -46926], [-45876, -46006, -45137, -47099],
@@ -30189,6 +30634,7 @@ def expectedBlockingClauses144 : List (List Int) :=
         [-45830, -47192, -46178, -45159], [-46026, -46230, -45159, -46929], [-46027, -46231, -45159, -47102],
         [-45831, -47192, -46179, -45207], [-46015, -46215, -45402, -45207], [-46020, -46223, -45426, -45207]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses145 : List (List Int) :=
   [
         [-46025, -46230, -45476, -45207], [-45832, -47192, -46180, -45219], [-46015, -46216, -45403, -45219],
@@ -30208,6 +30654,7 @@ def expectedBlockingClauses145 : List (List Int) :=
         [-45696, -45789, -45999, -46453], [-45696, -46020, -46143, -46464], [-45524, -45829, -45915, -46388],
         [-45829, -46020, -47202, -46489], [-45829, -46049, -45420, -46896], [-45829, -46050, -45421, -47069]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses146 : List (List Int) :=
   [
         [-45538, -45915, -46198, -46395], [-47182, -45999, -46198, -46489], [-46049, -46198, -45432, -46919],
@@ -30227,6 +30674,7 @@ def expectedBlockingClauses146 : List (List Int) :=
         [-45103, -45726, -46005, -44943], [-45103, -46026, -46080, -44951], [-45115, -45760, -46005, -46834],
         [-45115, -46026, -46114, -46847], [-45696, -46041, -46321, -46880], [-45696, -46049, -46459, -46884]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses147 : List (List Int) :=
   [
         [-45696, -46056, -46740, -46888], [-45829, -46026, -47202, -46902], [-45829, -46041, -46345, -46906],
@@ -30246,6 +30694,7 @@ def expectedBlockingClauses147 : List (List Int) :=
         [-46058, -45130, -46923, -47123], [-45825, -46006, -45137, -47082], [-46027, -46194, -45137, -47110],
         [-46058, -45137, -46926, -47129], [-45830, -46006, -45159, -47085], [-46027, -46199, -45159, -47113]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses148 : List (List Int) :=
   [
         [-46058, -45159, -46929, -47134], [-45607, -45955, -45207, -47031], [-45320, -45985, -45207, -47062],
@@ -30265,6 +30714,7 @@ def expectedBlockingClauses148 : List (List Int) :=
         [-45626, -45941, -46204, -45220], [-45104, -45733, -47193, -46081], [-45104, -45738, -45995, -46254],
         [-45104, -45742, -46000, -46393], [-45104, -45745, -46004, -46534], [-45116, -45767, -47193, -46115]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses149 : List (List Int) :=
   [
         [-45116, -45772, -45995, -46289], [-45116, -45776, -46000, -46427], [-45116, -45779, -46004, -46568],
@@ -30284,6 +30734,7 @@ def expectedBlockingClauses149 : List (List Int) :=
         [-45697, -46016, -46150, -46322], [-45697, -46021, -46154, -46460], [-45697, -46025, -46157, -46601],
         [-45525, -45833, -45907, -46075], [-45833, -46016, -46169, -46346], [-45833, -46021, -46174, -46484]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses150 : List (List Int) :=
   [
         [-45833, -46025, -46178, -46625], [-45833, -46029, -46182, -46897], [-45833, -46030, -46183, -47070],
@@ -30303,6 +30754,7 @@ def expectedBlockingClauses150 : List (List Int) :=
         [-46016, -46195, -44980, -45138], [-46044, -45414, -45138, -46927], [-46045, -45415, -45138, -47100],
         [-45606, -45946, -46303, -45149], [-45830, -45995, -44975, -45149], [-46016, -46199, -44981, -45149]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses151 : List (List Int) :=
   [
         [-46044, -45416, -45149, -46929], [-46045, -45417, -45149, -47102], [-45025, -45912, -46268, -45208],
@@ -30322,6 +30774,7 @@ def expectedBlockingClauses151 : List (List Int) :=
         [-45835, -46000, -45423, -45220], [-46021, -46204, -45435, -45220], [-46052, -46512, -46931, -45220],
         [-45104, -45727, -46004, -46530], [-45104, -46025, -46081, -46537], [-45503, -45116, -45919, -46521]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses152 : List (List Int) :=
   [
         [-45116, -45761, -46004, -46562], [-45116, -46025, -46115, -46573], [-45116, -46056, -46586, -46842],
@@ -30341,6 +30794,7 @@ def expectedBlockingClauses152 : List (List Int) :=
         [-45833, -46056, -46625, -46912], [-47183, -46008, -46202, -46903], [-46044, -46202, -46358, -46935],
         [-46052, -46202, -46497, -46938], [-46056, -46202, -46637, -46940], [-45821, -46008, -45002, -46907]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses153 : List (List Int) :=
   [
         [-46029, -46190, -45002, -46935], [-46059, -45002, -46952, -47097], [-45826, -46008, -45138, -46910],
@@ -30360,6 +30814,7 @@ def expectedBlockingClauses153 : List (List Int) :=
         [-46030, -46203, -45208, -47115], [-46045, -45404, -45208, -47125], [-46053, -45428, -45208, -47131],
         [-46057, -45452, -45208, -47134], [-45514, -45342, -45791, -45902], [-45519, -45342, -45908, -46145]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses154 : List (List Int) :=
   [
         [-45533, -45836, -45908, -47204], [-45533, -47184, -45902, -46205], [-45011, -45822, -45902, -45256],
@@ -30379,6 +30834,7 @@ def expectedBlockingClauses154 : List (List Int) :=
         [-45872, -46011, -45256, -47098], [-45848, -47194, -46196, -45262], [-45880, -46011, -45262, -47101],
         [-45852, -47194, -46200, -45268], [-45884, -46011, -45268, -47103], [-45855, -47194, -46203, -45274]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses155 : List (List Int) :=
   [
         [-45885, -46011, -45274, -47104], [-45698, -45816, -45965, -47105], [-45858, -47194, -46206, -47105],
@@ -30398,6 +30854,7 @@ def expectedBlockingClauses155 : List (List Int) :=
         [-45604, -45947, -46300, -45262], [-45318, -45977, -46332, -45262], [-45827, -45996, -45394, -45262],
         [-46017, -46196, -45406, -45262], [-46046, -46364, -45262, -47101], [-45607, -45947, -46304, -45268]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses156 : List (List Int) :=
   [
         [-45320, -45977, -46335, -45268], [-45831, -45996, -45396, -45268], [-46017, -46200, -45408, -45268],
@@ -30417,6 +30874,7 @@ def expectedBlockingClauses156 : List (List Int) :=
         [-45837, -46001, -45361, -47105], [-46022, -46206, -45363, -47105], [-46037, -45359, -46505, -47105],
         [-46049, -46509, -45365, -47105], [-46052, -46512, -45368, -47105], [-45250, -45728, -46005, -45290]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses157 : List (List Int) :=
   [
         [-45250, -46026, -46082, -45294], [-45611, -46058, -46589, -47016], [-45342, -45791, -46005, -46596],
@@ -30436,6 +30894,7 @@ def expectedBlockingClauses157 : List (List Int) :=
         [-46052, -45256, -45424, -45484], [-46056, -45256, -45448, -45486], [-46059, -45256, -46781, -47098],
         [-45604, -45956, -45262, -46722], [-45318, -45987, -45262, -46754], [-45827, -46008, -45262, -45468]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses158 : List (List Int) :=
   [
         [-46029, -46196, -45262, -45480], [-46056, -45262, -45450, -45488], [-46059, -45262, -46785, -47101],
@@ -30455,6 +30914,7 @@ def expectedBlockingClauses158 : List (List Int) :=
         [-45021, -45924, -45262, -46987], [-45827, -46011, -45262, -47084], [-46032, -46196, -45262, -47112],
         [-46046, -45400, -45262, -47120], [-46058, -45262, -45450, -47129], [-46059, -45262, -45474, -47131]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses159 : List (List Int) :=
   [
         [-45023, -45924, -45268, -46990], [-45831, -46011, -45268, -47086], [-46032, -46200, -45268, -47114],
@@ -30474,6 +30934,7 @@ def expectedBlockingClauses159 : List (List Int) :=
         [-45166, -45988, -45368, -46932], [-45251, -45735, -47195, -46083], [-45251, -45750, -46011, -46803],
         [-45612, -45769, -47195, -46117], [-45612, -45785, -46011, -46843], [-45343, -45798, -47195, -46146]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses160 : List (List Int) :=
   [
         [-45343, -45816, -46011, -46872], [-45541, -45735, -45903, -46207], [-45844, -45997, -46207, -46360],
@@ -30493,6 +30954,7 @@ def expectedBlockingClauses160 : List (List Int) :=
         [-45837, -47195, -46185, -46932], [-46018, -46220, -45359, -46932], [-46023, -46228, -45362, -46932],
         [-46027, -46232, -45365, -46932], [-46030, -46233, -45368, -46932], [-45251, -45729, -45997, -45279]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses161 : List (List Int) :=
   [
         [-45251, -46018, -46083, -45283], [-45612, -46046, -46310, -46843], [-45343, -45792, -45997, -46318],
@@ -30512,6 +30974,7 @@ def expectedBlockingClauses161 : List (List Int) :=
         [-45823, -46002, -45257, -45419], [-46023, -46192, -45257, -45431], [-46054, -45257, -46505, -46925],
         [-45608, -45952, -46443, -45269], [-45321, -45982, -46474, -45269], [-45832, -46002, -45421, -45269]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses162 : List (List Int) :=
   [
         [-46023, -46201, -45433, -45269], [-46054, -46509, -45269, -46930], [-45610, -45952, -46446, -45275],
@@ -30531,6 +30994,7 @@ def expectedBlockingClauses162 : List (List Int) :=
         [-46057, -46650, -45368, -46932], [-45251, -45729, -46009, -45297], [-45251, -46030, -46083, -45301],
         [-45612, -46059, -46728, -46843], [-45343, -45792, -46009, -46736], [-45343, -46030, -46146, -46747]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses163 : List (List Int) :=
   [
         [-45838, -46030, -47205, -46772], [-45838, -46059, -45367, -46898], [-47185, -46009, -46207, -46772],
@@ -30550,6 +31014,7 @@ def expectedBlockingClauses163 : List (List Int) :=
         [-45838, -46058, -46627, -46913], [-45838, -46059, -46766, -46914], [-45541, -45924, -46207, -46805],
         [-47185, -46011, -46207, -46904], [-46046, -46207, -46360, -46936], [-46054, -46207, -46499, -46939]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses164 : List (List Int) :=
   [
         [-46058, -46207, -46639, -46941], [-46059, -46207, -46778, -46942], [-45020, -45924, -45257, -46810],
@@ -30569,6 +31034,7 @@ def expectedBlockingClauses164 : List (List Int) :=
         [-45243, -45898, -46078, -46247], [-45243, -45899, -46079, -46386], [-45243, -45900, -46080, -46527],
         [-45243, -45901, -46081, -46665], [-45243, -45902, -46082, -46799], [-45243, -45903, -46083, -46972]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses165 : List (List Int) :=
   [
         [-45730, -45898, -47196, -45060], [-45731, -45899, -47196, -45063], [-45732, -45900, -47196, -45066],
@@ -30588,6 +31054,7 @@ def expectedBlockingClauses165 : List (List Int) :=
         [-45089, -46063, -46380, -45069], [-45733, -46073, -46389, -45069], [-45907, -46079, -46393, -45069],
         [-46089, -46402, -46537, -45069], [-46091, -46406, -45069, -44952], [-46092, -46407, -45069, -44964]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses166 : List (List Int) :=
   [
         [-45668, -45721, -46074, -45352], [-45668, -45895, -46080, -45353], [-45243, -47186, -46080, -46526],
@@ -30607,6 +31074,7 @@ def expectedBlockingClauses166 : List (List Int) :=
         [-45057, -44881, -46076, -45121], [-45057, -44887, -46082, -45122], [-45243, -47186, -46082, -46798],
         [-47176, -45245, -46076, -46798], [-45670, -46070, -46796, -46977], [-45735, -46076, -46800, -46977]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses167 : List (List Int) :=
   [
         [-45909, -46082, -46803, -46977], [-46087, -45283, -46810, -46977], [-46091, -45289, -46814, -46977],
@@ -30626,6 +31094,7 @@ def expectedBlockingClauses167 : List (List Int) :=
         [-47140, -45932, -46112, -46280], [-47140, -45933, -46113, -46418], [-47140, -45934, -46114, -46559],
         [-47140, -45935, -46115, -46698], [-47140, -45936, -46116, -46831], [-47140, -45937, -46117, -47004]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses168 : List (List Int) :=
   [
         [-45764, -45932, -47197, -44931], [-45765, -45933, -47197, -44934], [-45766, -45934, -47197, -44937],
@@ -30645,6 +31114,7 @@ def expectedBlockingClauses168 : List (List Int) :=
         [-45764, -46108, -44931, -46560], [-45938, -46114, -44931, -46566], [-46123, -44931, -46430, -46577],
         [-45765, -46108, -44934, -46561], [-45939, -46114, -44934, -46567], [-45767, -46108, -46562, -44940]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses169 : List (List Int) :=
   [
         [-45941, -46114, -46568, -44940], [-45768, -46108, -46563, -46844], [-45942, -46114, -46569, -46844],
@@ -30664,6 +31134,7 @@ def expectedBlockingClauses169 : List (List Int) :=
         [-47140, -47187, -46117, -47003], [-47177, -47146, -46111, -47003], [-45764, -46111, -44931, -47005],
         [-45938, -46117, -44931, -47012], [-45765, -46111, -44934, -47006], [-45939, -46117, -44934, -47013]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses170 : List (List Int) :=
   [
         [-45766, -46111, -44937, -47007], [-45940, -46117, -44937, -47014], [-45767, -46111, -44940, -47008],
@@ -30683,6 +31154,7 @@ def expectedBlockingClauses170 : List (List Int) :=
         [-45797, -45965, -47198, -45304], [-45798, -45966, -47198, -45307], [-44905, -45721, -46135, -45346],
         [-44905, -45895, -46141, -45347], [-47142, -47188, -46141, -46312], [-47178, -47148, -46135, -46312]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses171 : List (List Int) :=
   [
         [-45794, -46135, -46314, -44911], [-45968, -46141, -46320, -44911], [-46151, -46332, -44911, -46874],
@@ -30702,6 +31174,7 @@ def expectedBlockingClauses171 : List (List Int) :=
         [-47142, -47188, -46143, -46591], [-47178, -47148, -46137, -46591], [-45793, -46137, -44908, -46593],
         [-45967, -46143, -44908, -46599], [-46153, -44908, -46463, -46610], [-46158, -44908, -46611, -46873]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses172 : List (List Int) :=
   [
         [-46159, -44908, -46612, -47046], [-45794, -46137, -44911, -46594], [-45968, -46143, -44911, -46600],
@@ -30721,6 +31194,7 @@ def expectedBlockingClauses172 : List (List Int) :=
         [-45794, -46139, -44911, -46863], [-45968, -46145, -44911, -46869], [-45795, -46139, -44914, -46864],
         [-45969, -46145, -44914, -46870], [-45796, -46139, -44917, -46865], [-45970, -46145, -44917, -46871]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses173 : List (List Int) :=
   [
         [-45798, -46139, -46866, -45307], [-45972, -46145, -46872, -45307], [-44905, -45721, -46140, -46966],
@@ -30740,6 +31214,7 @@ def expectedBlockingClauses173 : List (List Int) :=
         [-45586, -46107, -46489, -46628], [-45590, -46109, -46628, -46770], [-45591, -46110, -46628, -46902],
         [-45592, -46111, -46628, -47075], [-45532, -45081, -44892, -46767], [-45583, -46106, -46352, -46767]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses174 : List (List Int) :=
   [
         [-45587, -46107, -46490, -46767], [-45590, -46108, -46631, -46767], [-45593, -46110, -46767, -46903],
@@ -30759,6 +31234,7 @@ def expectedBlockingClauses174 : List (List Int) :=
         [-46000, -47201, -46490, -46767], [-46004, -47202, -46631, -46767], [-46008, -47204, -46767, -46903],
         [-46009, -47205, -46767, -47076], [-45533, -45902, -47196, -46899], [-45996, -47200, -46353, -46899]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses175 : List (List Int) :=
   [
         [-46001, -47201, -46491, -46899], [-46005, -47202, -46632, -46899], [-46008, -47203, -46771, -46899],
@@ -30778,6 +31254,7 @@ def expectedBlockingClauses175 : List (List Int) :=
         [-47195, -47200, -46348, -47072], [-46167, -45395, -46492, -47072], [-46168, -45397, -46633, -47072],
         [-46169, -45399, -46772, -47072], [-46170, -45358, -46904, -47072], [-45528, -47186, -47201, -46385]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses176 : List (List Int) :=
   [
         [-45528, -46167, -46247, -46387], [-45528, -46173, -46388, -46527], [-45528, -46174, -46389, -46665],
@@ -30797,6 +31274,7 @@ def expectedBlockingClauses176 : List (List Int) :=
         [-47189, -46179, -46626, -47210], [-47189, -46180, -46627, -47211], [-45529, -46074, -46349, -46528],
         [-47190, -47202, -46349, -46623], [-46173, -46349, -46488, -44987], [-46179, -46349, -45442, -46900]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses177 : List (List Int) :=
   [
         [-46180, -46349, -45443, -47073], [-45530, -46074, -46487, -46529], [-47191, -47202, -46487, -46624],
@@ -30816,6 +31294,7 @@ def expectedBlockingClauses177 : List (List Int) :=
         [-45531, -46075, -46628, -46668], [-47192, -47203, -46628, -46764], [-46182, -46628, -45470, -46902],
         [-46183, -46628, -45471, -47075], [-45533, -46075, -45296, -46899], [-47194, -47203, -46765, -46899]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses178 : List (List Int) :=
   [
         [-46169, -46353, -45466, -46899], [-46174, -46491, -45468, -46899], [-46178, -46632, -45470, -46899],
@@ -30835,6 +31314,7 @@ def expectedBlockingClauses178 : List (List Int) :=
         [-45534, -46076, -46800, -47072], [-47195, -47204, -46898, -47072], [-46170, -46354, -46908, -47072],
         [-46175, -46492, -46911, -47072], [-46179, -46633, -46913, -47072], [-46182, -46772, -46914, -47072]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses179 : List (List Int) :=
   [
         [-45528, -47186, -47205, -46971], [-45528, -46185, -46799, -46973], [-47175, -47189, -46077, -46971],
@@ -30854,6 +31334,7 @@ def expectedBlockingClauses179 : List (List Int) :=
         [-45526, -47179, -46082, -47210], [-45527, -47179, -46083, -47211], [-45522, -47180, -47196, -46355],
         [-45523, -47181, -47196, -46494], [-45524, -47182, -47196, -46634], [-45525, -47183, -47196, -46773]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses180 : List (List Int) :=
   [
         [-45526, -47184, -47196, -46916], [-45527, -47185, -47196, -47089], [-45536, -45082, -44893, -46355],
@@ -30873,6 +31354,7 @@ def expectedBlockingClauses180 : List (List Int) :=
         [-45535, -45728, -47204, -46802], [-45535, -45729, -47205, -46975], [-45536, -45724, -47196, -46355],
         [-45819, -47201, -46355, -46495], [-45820, -47202, -46355, -46635], [-45821, -47203, -46355, -46774]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses181 : List (List Int) :=
   [
         [-45822, -47204, -46355, -46917], [-45823, -47205, -46355, -47090], [-45537, -45725, -47196, -46494],
@@ -30892,6 +31374,7 @@ def expectedBlockingClauses181 : List (List Int) :=
         [-45537, -46078, -46252, -46494], [-47181, -47200, -46344, -46494], [-46191, -45400, -46494, -46918],
         [-46192, -45401, -46494, -47091], [-45538, -46078, -46253, -46634], [-47182, -47200, -46345, -46634]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses182 : List (List Int) :=
   [
         [-46188, -44976, -46496, -46634], [-46191, -45402, -46634, -46919], [-46192, -45403, -46634, -47092],
@@ -30911,6 +31394,7 @@ def expectedBlockingClauses182 : List (List Int) :=
         [-46196, -45428, -46773, -46920], [-46197, -45429, -46773, -47093], [-45540, -46079, -45286, -46916],
         [-47184, -47201, -46485, -46916], [-46188, -46359, -45424, -46916], [-46194, -45426, -46638, -46916]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses183 : List (List Int) :=
   [
         [-46195, -45428, -46777, -46916], [-46197, -45362, -46916, -47094], [-45541, -46079, -45287, -47089],
@@ -30930,6 +31414,7 @@ def expectedBlockingClauses183 : List (List Int) :=
         [-46200, -45365, -46921, -47089], [-45535, -47176, -47203, -46664], [-45535, -46190, -46251, -46670],
         [-45535, -46195, -46390, -46671], [-45535, -46199, -46531, -46672], [-47175, -47179, -46081, -46664]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses184 : List (List Int) :=
   [
         [-47179, -46190, -47206, -46762], [-47179, -46195, -47207, -46763], [-47179, -46199, -47208, -46764],
@@ -30949,6 +31434,7 @@ def expectedBlockingClauses184 : List (List Int) :=
         [-46196, -46355, -46495, -46922], [-46200, -46355, -46635, -46923], [-46203, -46355, -46774, -46924],
         [-46206, -46355, -46925, -47090], [-45537, -46082, -46494, -44946], [-47181, -47204, -46494, -46895]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses185 : List (List Int) :=
   [
         [-46191, -46356, -46494, -46922], [-46200, -46494, -46636, -46926], [-46203, -46494, -46775, -46927],
@@ -30968,6 +31454,7 @@ def expectedBlockingClauses185 : List (List Int) :=
         [-45538, -46083, -46634, -44959], [-47182, -47205, -46634, -47069], [-46192, -46357, -46634, -47096],
         [-46197, -46496, -46634, -47099], [-46204, -46634, -46776, -47102], [-46206, -46634, -46919, -47103]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses186 : List (List Int) :=
   [
         [-45539, -46083, -46773, -44960], [-47183, -47205, -46773, -47070], [-46192, -46358, -46773, -47097],
@@ -30987,6 +31474,7 @@ def expectedBlockingClauses186 : List (List Int) :=
         [-45640, -46122, -45160, -47108], [-45584, -45843, -46106, -45209], [-45600, -46017, -46112, -45209],
         [-45585, -45844, -46106, -45221], [-45601, -46018, -46112, -45221], [-45105, -45724, -45904, -47200]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses187 : List (List Int) :=
   [
         [-45105, -45736, -46167, -46394], [-45105, -45737, -46168, -46535], [-45105, -45738, -46169, -46673],
@@ -31006,6 +31494,7 @@ def expectedBlockingClauses187 : List (List Int) :=
         [-45117, -45944, -46188, -46430], [-45117, -45945, -46189, -46571], [-45117, -45946, -46190, -46710],
         [-45699, -45793, -45961, -47200], [-45699, -45974, -46188, -46463], [-45699, -45975, -46189, -46604]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses188 : List (List Int) :=
   [
         [-45699, -45976, -46190, -46743], [-45529, -45839, -45898, -46078], [-45839, -45993, -46188, -46488],
@@ -31025,6 +31514,7 @@ def expectedBlockingClauses188 : List (List Int) :=
         [-46013, -46211, -45424, -46917], [-46013, -46212, -45425, -47090], [-45614, -46118, -46436, -45150],
         [-45841, -46167, -45004, -45150], [-46015, -46188, -45005, -45150], [-46211, -45436, -45150, -46934]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses189 : List (List Int) :=
   [
         [-46212, -45437, -45150, -47107], [-45615, -46118, -46437, -45160], [-45842, -46167, -46493, -45160],
@@ -31044,6 +31534,7 @@ def expectedBlockingClauses189 : List (List Int) :=
         [-45843, -46168, -45442, -45209], [-46017, -46189, -45448, -45209], [-46216, -46643, -45209, -47109],
         [-45028, -46085, -46541, -45221], [-45844, -46168, -45443, -45221], [-46018, -46189, -45449, -45221]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses190 : List (List Int) :=
   [
         [-46215, -46643, -46936, -45221], [-45105, -45730, -46169, -46666], [-45105, -45904, -46190, -46670],
@@ -31063,6 +31554,7 @@ def expectedBlockingClauses190 : List (List Int) :=
         [-45699, -46218, -46743, -46881], [-45839, -47190, -46191, -46894], [-45839, -46211, -46488, -46905],
         [-45839, -46215, -46629, -46906], [-45839, -46218, -46768, -46907], [-47180, -46013, -46170, -46894]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses191 : List (List Int) :=
   [
         [-46013, -46211, -46495, -46922], [-46013, -46215, -46635, -46923], [-46013, -46218, -46774, -46924],
@@ -31082,6 +31574,7 @@ def expectedBlockingClauses191 : List (List Int) :=
         [-46220, -45160, -46935, -47125], [-45616, -46122, -45209, -47026], [-45324, -46152, -45209, -47055],
         [-45843, -46171, -45209, -47081], [-46017, -46192, -45209, -47098], [-46212, -45430, -45209, -47120]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses192 : List (List Int) :=
   [
         [-46216, -45454, -45209, -47123], [-46219, -45478, -45209, -47125], [-45496, -45118, -45765, -46073],
@@ -31101,6 +31594,7 @@ def expectedBlockingClauses192 : List (List Int) :=
         [-45118, -45770, -46167, -46292], [-45118, -45775, -46173, -46572], [-45118, -45776, -46174, -46711],
         [-45700, -45788, -45968, -47201], [-45700, -45800, -46167, -46325], [-45700, -45805, -46173, -46605]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses193 : List (List Int) :=
   [
         [-45700, -45806, -46174, -46744], [-45537, -45725, -46019, -46073], [-45819, -46019, -46167, -46356],
@@ -31120,6 +31614,7 @@ def expectedBlockingClauses193 : List (List Int) :=
         [-45845, -46000, -46195, -46769], [-45845, -46001, -46196, -46901], [-45845, -46002, -46197, -47074],
         [-45613, -45944, -46113, -45131], [-45840, -45993, -47201, -45131], [-46037, -46196, -45131, -46933]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses194 : List (List Int) :=
   [
         [-46038, -46197, -45131, -47106], [-45618, -45949, -46113, -45151], [-45846, -45999, -47201, -45151],
@@ -31139,6 +31634,7 @@ def expectedBlockingClauses194 : List (List Int) :=
         [-45106, -45731, -46173, -46529], [-45106, -45905, -46194, -46533], [-45505, -45118, -46089, -46520],
         [-45118, -45765, -46173, -46561], [-45118, -45939, -46194, -46567], [-45118, -46223, -46583, -46846]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses195 : List (List Int) :=
   [
         [-45118, -46224, -46584, -47019], [-45700, -45794, -46173, -46594], [-45700, -45968, -46194, -46600],
@@ -31158,6 +31654,7 @@ def expectedBlockingClauses195 : List (List Int) :=
         [-45846, -46174, -45151, -44994], [-46020, -46195, -45151, -44997], [-46226, -45151, -45488, -46937],
         [-46227, -45151, -45489, -47110], [-45029, -46090, -46683, -45210], [-45848, -46174, -45468, -45210]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses196 : List (List Int) :=
   [
         [-46022, -46195, -45474, -45210], [-46227, -46785, -45210, -47112], [-45030, -46090, -46684, -45222],
@@ -31177,6 +31674,7 @@ def expectedBlockingClauses196 : List (List Int) :=
         [-45700, -46224, -46605, -47057], [-45700, -46227, -46744, -47058], [-45845, -47191, -46197, -47068],
         [-45845, -46212, -46350, -47078], [-45845, -46224, -46630, -47082], [-45845, -46227, -46769, -47083]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses197 : List (List Int) :=
   [
         [-47181, -46019, -46176, -47068], [-46019, -46212, -46356, -47095], [-46019, -46224, -46636, -47099],
@@ -31196,6 +31694,7 @@ def expectedBlockingClauses197 : List (List Int) :=
         [-45637, -46129, -45132, -47107], [-45586, -45846, -46108, -45140], [-45602, -46020, -46114, -45140],
         [-45645, -46128, -45140, -46937], [-45646, -46129, -45140, -47110], [-45590, -45851, -46108, -45162]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses198 : List (List Int) :=
   [
         [-45606, -46025, -46114, -45162], [-45653, -46128, -45162, -46940], [-45654, -46129, -45162, -47113],
@@ -31215,6 +31714,7 @@ def expectedBlockingClauses198 : List (List Int) :=
         [-45868, -46168, -45409, -45223], [-45876, -46173, -45433, -45223], [-45883, -46178, -45483, -45223],
         [-45107, -45732, -45900, -47202], [-45107, -45911, -46189, -46256], [-45107, -45915, -46194, -46395]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses199 : List (List Int) :=
   [
         [-45107, -45919, -46199, -46675], [-45119, -45766, -45934, -47202], [-45119, -45945, -46189, -46293],
@@ -31234,6 +31734,7 @@ def expectedBlockingClauses199 : List (List Int) :=
         [-45701, -45795, -46168, -46315], [-45701, -45969, -46189, -46321], [-45531, -45850, -46085, -46249],
         [-45850, -47192, -46189, -46345], [-45850, -46215, -45396, -46902], [-45850, -46216, -45397, -47075]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses200 : List (List Int) :=
   [
         [-45538, -46024, -46085, -46253], [-47182, -46024, -46168, -46345], [-46024, -46215, -45402, -46919],
@@ -31253,6 +31754,7 @@ def expectedBlockingClauses200 : List (List Int) :=
         [-46224, -46509, -45211, -47114], [-45032, -46089, -46404, -45223], [-45853, -46173, -45421, -45223],
         [-46027, -46194, -45427, -45223], [-46223, -46509, -46941, -45223], [-45107, -45732, -46178, -46668]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses201 : List (List Int) :=
   [
         [-45107, -45906, -46199, -46672], [-45506, -45119, -46093, -46659], [-45119, -45766, -46178, -46701],
@@ -31272,6 +31774,7 @@ def expectedBlockingClauses201 : List (List Int) :=
         [-45846, -46179, -45140, -46909], [-46020, -46200, -45140, -46926], [-46232, -45140, -46956, -47110],
         [-45851, -46179, -45162, -46912], [-46025, -46200, -45162, -46929], [-46232, -45162, -46961, -47113]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses202 : List (List Int) :=
   [
         [-45624, -46128, -46858, -45223], [-45329, -46158, -46889, -45223], [-45853, -46179, -46913, -45223],
@@ -31291,6 +31794,7 @@ def expectedBlockingClauses202 : List (List Int) :=
         [-45017, -45855, -46075, -45212], [-45025, -46029, -46081, -45212], [-45018, -45856, -46075, -45224],
         [-45026, -46030, -46081, -45224], [-45108, -45081, -45733, -46109], [-45108, -45085, -45907, -46115]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses203 : List (List Int) :=
   [
         [-45564, -45702, -46120, -46327], [-45569, -45702, -46124, -46465], [-45573, -45702, -46127, -46606],
@@ -31310,6 +31814,7 @@ def expectedBlockingClauses203 : List (List Int) :=
         [-45835, -46028, -46183, -47093], [-45615, -45772, -46109, -45003], [-45821, -46016, -47203, -45003],
         [-45870, -46182, -45003, -46935], [-45871, -46183, -45003, -47108], [-45619, -45776, -46109, -45141]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses204 : List (List Int) :=
   [
         [-45826, -46021, -47203, -45141], [-45878, -46182, -45141, -46938], [-45879, -46183, -45141, -47111],
@@ -31329,6 +31834,7 @@ def expectedBlockingClauses204 : List (List Int) :=
         [-45851, -46004, -47203, -45153], [-46056, -46203, -45153, -46940], [-46057, -46204, -45153, -47113],
         [-45855, -46008, -47203, -45212], [-46044, -46190, -45410, -45212], [-46052, -46195, -45434, -45212]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses205 : List (List Int) :=
   [
         [-46056, -46199, -45458, -45212], [-45856, -46009, -47203, -45224], [-46045, -46190, -45411, -45224],
@@ -31348,6 +31854,7 @@ def expectedBlockingClauses205 : List (List Int) :=
         [-45507, -45120, -46090, -46380], [-45120, -45767, -46174, -46421], [-45120, -45941, -46195, -46427],
         [-45120, -46226, -46445, -46848], [-45120, -46227, -46446, -47021], [-45702, -45796, -46174, -46454]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses206 : List (List Int) :=
   [
         [-45702, -45970, -46195, -46460], [-45532, -45854, -46090, -46389], [-45854, -47193, -46195, -46484],
@@ -31367,6 +31874,7 @@ def expectedBlockingClauses206 : List (List Int) :=
         [-46028, -46230, -45452, -46920], [-46028, -46231, -45453, -47093], [-45615, -46127, -45003, -46578],
         [-45842, -46178, -45003, -45007], [-46016, -46199, -45003, -45008], [-46230, -45003, -45462, -46935]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses207 : List (List Int) :=
   [
         [-46231, -45003, -45463, -47108], [-45619, -46127, -45141, -46582], [-45847, -46178, -45141, -45144],
@@ -31386,6 +31894,7 @@ def expectedBlockingClauses207 : List (List Int) :=
         [-46218, -45411, -46952, -45224], [-46226, -45435, -46958, -45224], [-46230, -45459, -46961, -45224],
         [-45108, -45733, -46183, -44956], [-45108, -45907, -46204, -44960], [-45120, -45767, -46183, -47008]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses208 : List (List Int) :=
   [
         [-45120, -45941, -46204, -47015], [-45702, -46219, -46327, -47054], [-45702, -46227, -46465, -47058],
@@ -31405,6 +31914,7 @@ def expectedBlockingClauses208 : List (List Int) :=
         [-45627, -45687, -46164, -47022], [-45693, -45857, -46164, -47077], [-45698, -46031, -46164, -47094],
         [-45308, -45843, -46139, -45258], [-45316, -46017, -46145, -45258], [-45310, -45848, -46139, -45264]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses209 : List (List Int) :=
   [
         [-45318, -46022, -46145, -45264], [-45312, -45852, -46139, -45270], [-45320, -46026, -46145, -45270],
@@ -31424,6 +31934,7 @@ def expectedBlockingClauses209 : List (List Int) :=
         [-45344, -45990, -46206, -47050], [-45533, -45857, -45902, -46082], [-45857, -45996, -46191, -46353],
         [-45857, -46001, -46196, -46491], [-45857, -46005, -46200, -46632], [-45857, -46008, -46203, -46771]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses210 : List (List Int) :=
   [
         [-45857, -46011, -46206, -47077], [-45843, -45996, -47204, -45258], [-46046, -46206, -45258, -47109],
@@ -31443,6 +31954,7 @@ def expectedBlockingClauses210 : List (List Int) :=
         [-45858, -46170, -45358, -47116], [-46032, -46191, -45359, -47116], [-46211, -46364, -45363, -47116],
         [-46215, -46368, -45366, -47116], [-46218, -46371, -45369, -47116], [-45252, -45734, -46175, -45284]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses211 : List (List Int) :=
   [
         [-45252, -45908, -46196, -45286], [-45627, -46228, -46448, -47022], [-45344, -45797, -46175, -46455],
@@ -31462,6 +31974,7 @@ def expectedBlockingClauses211 : List (List Int) :=
         [-46223, -45258, -45430, -45460], [-46232, -45258, -46643, -47109], [-45620, -46128, -45264, -46583],
         [-45326, -46158, -45264, -46614], [-45848, -46179, -45264, -45444], [-46022, -46200, -45264, -45450]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses212 : List (List Int) :=
   [
         [-46232, -45264, -46647, -47112], [-45625, -46128, -46586, -45276], [-45330, -46158, -46617, -45276],
@@ -31481,6 +31994,7 @@ def expectedBlockingClauses212 : List (List Int) :=
         [-46230, -45366, -46788, -47116], [-45252, -45734, -46185, -46973], [-45252, -45908, -46206, -46976],
         [-45627, -45768, -46185, -47009], [-45627, -45942, -46206, -47016], [-45519, -45344, -46098, -46969]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses213 : List (List Int) :=
   [
         [-45344, -45797, -46185, -47039], [-45344, -45971, -46206, -47045], [-45344, -46220, -46328, -47055],
@@ -31500,6 +32014,7 @@ def expectedBlockingClauses213 : List (List Int) :=
         [-45515, -45345, -45798, -46077], [-45518, -45345, -45972, -46083], [-45527, -45859, -47195, -46083],
         [-45527, -47185, -46033, -46077], [-45012, -45844, -46077, -45259], [-45020, -46018, -46083, -45259]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses214 : List (List Int) :=
   [
         [-45014, -45849, -46077, -45265], [-45022, -46023, -46083, -45265], [-45016, -45853, -46077, -45271],
@@ -31519,6 +32034,7 @@ def expectedBlockingClauses214 : List (List Int) :=
         [-45884, -46185, -45271, -46941], [-45835, -46030, -47205, -45277], [-45885, -46185, -45277, -46942],
         [-45703, -45816, -46140, -46943], [-45837, -46032, -47205, -46943], [-45872, -46171, -45360, -46943]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses215 : List (List Int) :=
   [
         [-45880, -46176, -45363, -46943], [-45884, -46180, -45366, -46943], [-45885, -46183, -45369, -46943],
@@ -31538,6 +32054,7 @@ def expectedBlockingClauses215 : List (List Int) :=
         [-46220, -46364, -45265, -46939], [-45624, -46122, -46305, -45271], [-45329, -46152, -46336, -45271],
         [-45853, -46171, -45397, -45271], [-46027, -46192, -45403, -45271], [-46212, -45413, -45433, -45271]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses216 : List (List Int) :=
   [
         [-46220, -46368, -45271, -46941], [-45626, -46122, -46308, -45277], [-45331, -46152, -46339, -45277],
@@ -31557,6 +32074,7 @@ def expectedBlockingClauses216 : List (List Int) :=
         [-46227, -46512, -45369, -46943], [-45253, -45735, -46180, -45291], [-45253, -45909, -46201, -45293],
         [-45628, -46232, -46589, -46849], [-45345, -45798, -46180, -46597], [-45345, -45972, -46201, -46603]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses217 : List (List Int) :=
   [
         [-45859, -47195, -46201, -46627], [-45859, -46232, -45364, -46904], [-47185, -46033, -46180, -46627],
@@ -31576,6 +32094,7 @@ def expectedBlockingClauses217 : List (List Int) :=
         [-45327, -46162, -45265, -46755], [-45849, -46183, -45265, -45469], [-46023, -46204, -45265, -45475],
         [-46231, -45265, -45457, -45489], [-46233, -45265, -46785, -46939], [-45624, -46131, -45271, -46726]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses218 : List (List Int) :=
   [
         [-45329, -46162, -45271, -46757], [-45853, -46183, -45271, -45471], [-46027, -46204, -45271, -45477],
@@ -31595,6 +32114,7 @@ def expectedBlockingClauses218 : List (List Int) :=
         [-46232, -45265, -45457, -46956], [-46233, -45265, -45481, -46958], [-45032, -46098, -45271, -46817],
         [-45853, -46185, -45271, -46913], [-46027, -46206, -45271, -46930], [-46220, -45409, -45271, -46950]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses219 : List (List Int) :=
   [
         [-46228, -45433, -45271, -46956], [-46233, -45271, -45483, -46961], [-45034, -46098, -45277, -46819],
@@ -31614,6 +32134,7 @@ def expectedBlockingClauses219 : List (List Int) :=
         [-44876, -45891, -46254, -46657], [-44882, -47186, -46072, -46251], [-44882, -45899, -46252, -46387],
         [-44882, -45900, -46253, -46528], [-44882, -45901, -46254, -46666], [-45730, -47186, -44894, -46246]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses220 : List (List Int) :=
   [
         [-45905, -44894, -46252, -46394], [-45906, -44894, -46253, -46535], [-45907, -44894, -46254, -46673],
@@ -31633,6 +32154,7 @@ def expectedBlockingClauses220 : List (List Int) :=
         [-46259, -46404, -46541, -46979], [-46260, -46407, -46680, -46979], [-44876, -46264, -46521, -46657],
         [-44882, -46264, -46530, -46666], [-44888, -46264, -46534, -46670], [-44894, -46264, -46537, -46673]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses221 : List (List Int) :=
   [
         [-46264, -46547, -46679, -46806], [-46264, -46548, -46680, -46979], [-44876, -46261, -46378, -45071],
@@ -31652,6 +32174,7 @@ def expectedBlockingClauses221 : List (List Int) :=
         [-46266, -46540, -46806, -46990], [-46269, -46679, -46806, -46992], [-45674, -45753, -46281, -46412],
         [-45674, -45754, -46282, -46553], [-45674, -45755, -46283, -46692], [-45500, -44880, -45039, -46236]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses222 : List (List Int) :=
   [
         [-47177, -45039, -46112, -46280], [-45759, -45039, -46281, -46425], [-45760, -45039, -46282, -46566],
@@ -31671,6 +32194,7 @@ def expectedBlockingClauses222 : List (List Int) :=
         [-45035, -46108, -46293, -46560], [-45035, -46109, -46294, -46699], [-45035, -46110, -46295, -46832],
         [-45035, -46111, -46296, -47005], [-45500, -45039, -44893, -46238], [-45758, -45039, -47197, -46280]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses223 : List (List Int) :=
   [
         [-45039, -46113, -46292, -46425], [-45039, -46114, -46293, -46566], [-45039, -46115, -46294, -46705],
@@ -31690,6 +32214,7 @@ def expectedBlockingClauses223 : List (List Int) :=
         [-45508, -46301, -46378, -45075], [-45508, -46305, -46519, -45076], [-45508, -46308, -46657, -45077],
         [-46305, -46435, -46577, -47027], [-46308, -46435, -46716, -47028], [-46308, -46576, -46717, -47030]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses224 : List (List Int) :=
   [
         [-45675, -46278, -45047, -47001], [-45773, -46285, -45047, -47009], [-45947, -46291, -45047, -47016],
@@ -31709,6 +32234,7 @@ def expectedBlockingClauses224 : List (List Int) :=
         [-45561, -45929, -46322, -46692], [-45799, -47188, -46135, -46319], [-45799, -45962, -46320, -46452],
         [-45799, -45963, -46321, -46593], [-45799, -45964, -46322, -46732], [-45799, -45965, -46323, -46862]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses225 : List (List Int) :=
   [
         [-45799, -45966, -46324, -47035], [-45793, -47188, -46147, -46312], [-45968, -46147, -46320, -46463],
@@ -31728,6 +32254,7 @@ def expectedBlockingClauses225 : List (List Int) :=
         [-45799, -46330, -46453, -46593], [-45799, -46331, -46454, -46732], [-45973, -46330, -46459, -46599],
         [-45973, -46331, -46460, -46738], [-46147, -46330, -46464, -46604], [-46147, -46331, -46465, -46743]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses226 : List (List Int) :=
   [
         [-46330, -46473, -46611, -46878], [-46331, -46476, -46751, -46878], [-46330, -46474, -46612, -47051],
@@ -31747,6 +32274,7 @@ def expectedBlockingClauses226 : List (List Int) :=
         [-46339, -46609, -46750, -47061], [-46333, -46470, -46878, -47059], [-46336, -46611, -46878, -47062],
         [-46339, -46751, -46878, -47064], [-45496, -45109, -46248, -46419], [-45497, -45109, -46249, -46560]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses227 : List (List Int) :=
   [
         [-45498, -45109, -46250, -46699], [-45512, -45689, -45961, -46246], [-45513, -45689, -46135, -46247],
@@ -31766,6 +32294,7 @@ def expectedBlockingClauses227 : List (List Int) :=
         [-45097, -45900, -46345, -46528], [-45097, -45901, -46346, -46666], [-45097, -45902, -46347, -44941],
         [-45097, -45903, -46348, -44953], [-45109, -47187, -46106, -47206], [-45109, -45933, -46344, -46419]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses228 : List (List Int) :=
   [
         [-45109, -45934, -46345, -46560], [-45109, -45935, -46346, -46699], [-45689, -47188, -46135, -47206],
@@ -31785,6 +32314,7 @@ def expectedBlockingClauses228 : List (List Int) :=
         [-45097, -46074, -46351, -46528], [-45097, -46075, -46352, -46666], [-45097, -46076, -46353, -44941],
         [-45097, -46077, -46354, -44953], [-45109, -45932, -47197, -47206], [-45109, -46107, -46350, -46419]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses229 : List (List Int) :=
   [
         [-45109, -46108, -46351, -46560], [-45109, -46109, -46352, -46699], [-45689, -45961, -47198, -47206],
@@ -31804,6 +32334,7 @@ def expectedBlockingClauses229 : List (List Int) :=
         [-45097, -44974, -46389, -46666], [-45109, -45932, -46344, -46417], [-45109, -46106, -46350, -46418],
         [-45109, -44973, -46420, -46560], [-45109, -44974, -46421, -46699], [-45689, -45961, -46344, -46450]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses230 : List (List Int) :=
   [
         [-45689, -46135, -46350, -46451], [-45689, -44973, -46453, -46593], [-45689, -44974, -46454, -46732],
@@ -31823,6 +32354,7 @@ def expectedBlockingClauses230 : List (List Int) :=
         [-45996, -46345, -46626, -45201], [-46170, -46351, -46632, -45201], [-44975, -45446, -45466, -45201],
         [-45997, -46345, -46627, -45213], [-46171, -46351, -46633, -45213], [-44975, -45447, -45467, -45213]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses231 : List (List Int) :=
   [
         [-45097, -45898, -46346, -46664], [-45097, -46072, -46352, -46665], [-45109, -45932, -46346, -46697],
@@ -31842,6 +32374,7 @@ def expectedBlockingClauses231 : List (List Int) :=
         [-45398, -45142, -44993, -46912], [-45995, -46347, -45154, -46897], [-46169, -46353, -45154, -46903],
         [-45012, -45278, -46800, -45213], [-45309, -46317, -46866, -45213], [-45997, -46347, -46898, -45213]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses232 : List (List Int) :=
   [
         [-46171, -46353, -46904, -45213], [-45394, -45419, -46911, -45213], [-45396, -45443, -46913, -45213],
@@ -31861,6 +32394,7 @@ def expectedBlockingClauses232 : List (List Int) :=
         [-45516, -45694, -46141, -46251], [-47175, -45818, -47200, -46251], [-45523, -45818, -46252, -46482],
         [-45524, -45818, -46253, -46623], [-45525, -45818, -46254, -46762], [-45526, -45818, -45280, -46894]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses233 : List (List Int) :=
   [
         [-45527, -45818, -45281, -47067], [-47175, -47180, -46187, -46246], [-45537, -46187, -46252, -46495],
@@ -31880,6 +32414,7 @@ def expectedBlockingClauses233 : List (List Int) :=
         [-45694, -47178, -46141, -47206], [-45694, -45788, -46344, -46458], [-45694, -45789, -46345, -46599],
         [-45694, -45790, -46346, -46738], [-45536, -47176, -46187, -46246], [-47181, -46187, -46344, -46495]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses234 : List (List Int) :=
   [
         [-47182, -46187, -46345, -46635], [-47183, -46187, -46346, -46774], [-47184, -46187, -46347, -46917],
@@ -31899,6 +32434,7 @@ def expectedBlockingClauses234 : List (List Int) :=
         [-45694, -45787, -47198, -47206], [-45694, -46142, -46356, -46458], [-45694, -46143, -46357, -46599],
         [-45694, -46144, -46358, -46738], [-45522, -45818, -47196, -46251], [-45818, -47201, -46356, -46482]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses235 : List (List Int) :=
   [
         [-45818, -47202, -46357, -46623], [-45818, -47203, -46358, -46762], [-45818, -47204, -46359, -46894],
@@ -31918,6 +32454,7 @@ def expectedBlockingClauses235 : List (List Int) :=
         [-45694, -44977, -46460, -46738], [-45522, -45818, -46252, -46385], [-45818, -47200, -46356, -47207],
         [-45818, -44976, -46483, -46623], [-45818, -44977, -46484, -46762], [-45818, -45400, -46485, -46894]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses236 : List (List Int) :=
   [
         [-45818, -45401, -46486, -47067], [-45536, -46187, -46252, -46390], [-47180, -46187, -46344, -47207],
@@ -31937,6 +32474,7 @@ def expectedBlockingClauses236 : List (List Int) :=
         [-45113, -45758, -46346, -46697], [-45113, -46112, -46358, -46704], [-45694, -45787, -46346, -46730],
         [-45694, -46141, -46358, -46737], [-45522, -45818, -46254, -46664], [-45818, -47200, -46358, -47209]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses237 : List (List Int) :=
   [
         [-45818, -45404, -46765, -46894], [-45818, -45405, -46766, -47067], [-45536, -46187, -46254, -46669],
@@ -31956,6 +32494,7 @@ def expectedBlockingClauses237 : List (List Int) :=
         [-45402, -45449, -46930, -45217], [-45404, -45473, -46931, -45217], [-45101, -45401, -46391, -44958],
         [-45101, -45403, -46532, -44959], [-45101, -45405, -46670, -44960], [-45113, -45401, -46425, -47013]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses238 : List (List Int) :=
   [
         [-45113, -45403, -46566, -47014], [-45113, -45405, -46705, -47015], [-45694, -45787, -46348, -47033],
@@ -31975,6 +32514,7 @@ def expectedBlockingClauses238 : List (List Int) :=
         [-45537, -46013, -46255, -46495], [-45538, -46013, -46256, -46635], [-45539, -46013, -46257, -46774],
         [-45540, -46013, -45282, -46917], [-45541, -46013, -45283, -47090], [-45530, -45840, -46247, -45139]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses239 : List (List Int) :=
   [
         [-45537, -46014, -46251, -45139], [-45531, -45841, -46247, -45150], [-45538, -46015, -46251, -45150],
@@ -31994,6 +32534,7 @@ def expectedBlockingClauses239 : List (List Int) :=
         [-47184, -46013, -46353, -46917], [-47185, -46013, -46354, -47090], [-45613, -45765, -46280, -45139],
         [-47181, -46014, -47206, -45139], [-45846, -46351, -45139, -44989], [-45847, -46352, -45139, -44998]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses240 : List (List Int) :=
   [
         [-45848, -46353, -45139, -46933], [-45849, -46354, -45139, -47106], [-45614, -45766, -46280, -45150],
@@ -32013,6 +32554,7 @@ def expectedBlockingClauses240 : List (List Int) :=
         [-45839, -47194, -46359, -46900], [-45839, -47195, -46360, -47073], [-45613, -45939, -46286, -45139],
         [-45840, -47191, -47206, -45139], [-46020, -46357, -45139, -44989], [-46021, -46358, -45139, -44998]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses241 : List (List Int) :=
   [
         [-46022, -46359, -45139, -46933], [-46023, -46360, -45139, -47106], [-45614, -45940, -46286, -45150],
@@ -32032,6 +32574,7 @@ def expectedBlockingClauses241 : List (List Int) :=
         [-47180, -46013, -46350, -47207], [-46013, -44979, -46496, -46635], [-46013, -44980, -46497, -46774],
         [-46013, -45406, -46498, -46917], [-46013, -45407, -46499, -47090], [-45843, -46350, -46491, -45209]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses242 : List (List Int) :=
   [
         [-46017, -46356, -46498, -45209], [-44979, -45432, -45454, -45209], [-44980, -45434, -45478, -45209],
@@ -32051,6 +32594,7 @@ def expectedBlockingClauses242 : List (List Int) :=
         [-45536, -46013, -46257, -46669], [-47180, -46013, -46352, -47209], [-46013, -45410, -46777, -46917],
         [-46013, -45411, -46778, -47090], [-45843, -46352, -46771, -45209], [-46017, -46358, -46777, -45209]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses243 : List (List Int) :=
   [
         [-45844, -46352, -46772, -45221], [-46018, -46358, -46778, -45221], [-45105, -45406, -46394, -44950],
@@ -32070,6 +32614,7 @@ def expectedBlockingClauses243 : List (List Int) :=
         [-45699, -45793, -46354, -47034], [-45699, -45967, -46360, -47040], [-45839, -47190, -46360, -47211],
         [-45839, -45407, -46488, -47074], [-45839, -45409, -46629, -47075], [-45839, -45411, -46768, -47076]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses244 : List (List Int) :=
   [
         [-45839, -45360, -46900, -47077], [-47180, -46013, -46354, -47211], [-46013, -45407, -46495, -47091],
@@ -32089,6 +32634,7 @@ def expectedBlockingClauses244 : List (List Int) :=
         [-45633, -45679, -46274, -47117], [-45311, -45864, -46314, -47117], [-45319, -46038, -46320, -47117],
         [-45327, -46212, -46325, -47117], [-45164, -46332, -46947, -47117], [-45629, -45759, -45944, -46344]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses245 : List (List Int) :=
   [
         [-45629, -45765, -46118, -46350], [-45597, -45759, -46034, -46281], [-47181, -46034, -46188, -46350],
@@ -32108,6 +32654,7 @@ def expectedBlockingClauses245 : List (List Int) :=
         [-45819, -46034, -47201, -46350], [-46034, -46196, -45406, -46922], [-46034, -46197, -45407, -47095],
         [-45632, -46125, -46292, -46944], [-45863, -46175, -46350, -46944], [-46037, -46196, -46356, -46944]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses246 : List (List Int) :=
   [
         [-46228, -45407, -46944, -47120], [-45633, -46126, -46292, -47117], [-45864, -46176, -46350, -47117],
@@ -32127,6 +32674,7 @@ def expectedBlockingClauses246 : List (List Int) :=
         [-45015, -45865, -46265, -46906], [-45016, -45865, -46266, -47079], [-45502, -45598, -46039, -46240],
         [-45524, -45820, -46039, -46249], [-45538, -46039, -46189, -46256], [-45023, -46039, -46265, -46923]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses247 : List (List Int) :=
   [
         [-45024, -46039, -46266, -47096], [-45506, -45614, -46213, -46240], [-45531, -45841, -46213, -46249],
@@ -32146,6 +32694,7 @@ def expectedBlockingClauses247 : List (List Int) :=
         [-45876, -44973, -45437, -47121], [-45884, -45396, -46950, -47121], [-45634, -45771, -45934, -46345],
         [-45634, -45940, -46119, -46357], [-45634, -45949, -44976, -46436], [-45582, -45865, -45934, -46288]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses248 : List (List Int) :=
   [
         [-45865, -47192, -46168, -46357], [-45865, -45999, -44976, -45004], [-45865, -46005, -45402, -46906],
@@ -32165,6 +32714,7 @@ def expectedBlockingClauses248 : List (List Int) :=
         [-45634, -45412, -46436, -46854], [-45634, -46368, -46858, -47024], [-45582, -45865, -46304, -46834],
         [-45865, -45994, -45402, -46896], [-45865, -46168, -45408, -46902], [-45865, -45412, -45004, -46909]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses249 : List (List Int) :=
   [
         [-45865, -46368, -46913, -47079], [-45598, -46039, -46304, -46841], [-45820, -46039, -45396, -46896],
@@ -32184,6 +32734,7 @@ def expectedBlockingClauses249 : List (List Int) :=
         [-45018, -45869, -46269, -47080], [-45503, -45599, -46043, -46241], [-45525, -45821, -46043, -46250],
         [-45539, -46043, -46190, -46257], [-45025, -46043, -46268, -46924], [-45026, -46043, -46269, -47097]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses250 : List (List Int) :=
   [
         [-45507, -45615, -46217, -46241], [-45532, -45842, -46217, -46250], [-45539, -46016, -46217, -46254],
@@ -32203,6 +32754,7 @@ def expectedBlockingClauses250 : List (List Int) :=
         [-45834, -46044, -46346, -46951], [-45855, -46218, -46352, -46951], [-45878, -44974, -45438, -46951],
         [-45882, -44975, -45462, -46951], [-45885, -45399, -46951, -47125], [-45640, -45783, -46283, -47124]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses251 : List (List Int) :=
   [
         [-45835, -46045, -46346, -47124], [-45856, -46219, -46352, -47124], [-45879, -44974, -45439, -47124],
@@ -32222,6 +32774,7 @@ def expectedBlockingClauses251 : List (List Int) :=
         [-45869, -46183, -45411, -47080], [-45599, -46043, -46115, -46294], [-45821, -46043, -47203, -46352],
         [-46043, -46195, -44980, -46500], [-46043, -46199, -44981, -45008], [-46043, -46203, -45410, -46924]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses252 : List (List Int) :=
   [
         [-46043, -46204, -45411, -47097], [-45639, -46130, -46294, -46951], [-45870, -46182, -46352, -46951],
@@ -32241,6 +32794,7 @@ def expectedBlockingClauses252 : List (List Int) :=
         [-45638, -46371, -46852, -47032], [-45583, -45869, -46308, -47008], [-45869, -45995, -45405, -47070],
         [-45869, -46169, -45411, -47076], [-45869, -45415, -46493, -47083], [-45869, -45417, -45007, -47085]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses253 : List (List Int) :=
   [
         [-45869, -46371, -46907, -47087], [-45599, -46043, -46308, -47015], [-45821, -46043, -45399, -47070],
@@ -32260,6 +32814,7 @@ def expectedBlockingClauses253 : List (List Int) :=
         [-45320, -45378, -46335, -45448], [-45322, -45378, -46338, -45472], [-45326, -45386, -46332, -45430],
         [-45328, -45386, -46335, -45454], [-45330, -45386, -46338, -45478], [-45164, -46341, -46504, -47120]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses254 : List (List Int) :=
   [
         [-45165, -46341, -46642, -47123], [-45166, -46341, -46780, -47125], [-45693, -45872, -46317, -47126],
@@ -32279,6 +32834,7 @@ def expectedBlockingClauses254 : List (List Int) :=
         [-45641, -45954, -45402, -46579], [-45641, -45956, -45404, -46718], [-45704, -45981, -45400, -46470],
         [-45704, -45984, -45402, -46611], [-45704, -45987, -45404, -46751], [-45011, -45370, -45902, -45280]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses255 : List (List Int) :=
   [
         [-45308, -45370, -45965, -46323], [-45370, -47194, -46170, -46359], [-45370, -46001, -45400, -45418],
@@ -32298,6 +32854,7 @@ def expectedBlockingClauses255 : List (List Int) :=
         [-45378, -46200, -45408, -45448], [-45378, -46203, -45410, -45472], [-45378, -46206, -45360, -47098],
         [-46223, -45408, -46504, -45460], [-46226, -45410, -46504, -45484], [-46228, -45360, -46504, -47120]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses256 : List (List Int) :=
   [
         [-46230, -45410, -46642, -45486], [-46232, -45360, -46642, -47123], [-46233, -45360, -46780, -47125],
@@ -32317,6 +32874,7 @@ def expectedBlockingClauses256 : List (List Int) :=
         [-45386, -45416, -45458, -45478], [-45386, -46368, -45366, -47109], [-45163, -46335, -46620, -47126],
         [-45872, -45396, -45364, -47126], [-46046, -45402, -45365, -47126], [-46220, -45408, -45366, -47126]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses257 : List (List Int) :=
   [
         [-45416, -46650, -46781, -47126], [-45542, -46371, -46688, -46983], [-45641, -46371, -46728, -47026],
@@ -32336,6 +32894,7 @@ def expectedBlockingClauses257 : List (List Int) :=
         [-45632, -46310, -46504, -47029], [-45863, -45358, -46504, -47084], [-46037, -45359, -46504, -47101],
         [-46211, -45360, -46504, -47112], [-46368, -46504, -45460, -47129], [-46371, -46504, -45484, -47131]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses258 : List (List Int) :=
   [
         [-45636, -46310, -46642, -47031], [-45867, -45358, -46642, -47086], [-46041, -45359, -46642, -47103],
@@ -32355,6 +32914,7 @@ def expectedBlockingClauses258 : List (List Int) :=
         [-45703, -46220, -46329, -46953], [-45164, -46333, -46505, -46953], [-45165, -46336, -46643, -46953],
         [-45166, -46339, -46781, -46953], [-45543, -45750, -45358, -46810], [-45642, -45778, -45395, -46439]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses259 : List (List Int) :=
   [
         [-45642, -45781, -45397, -46580], [-45642, -45783, -45399, -46719], [-45705, -45808, -45395, -46471],
@@ -32374,6 +32934,7 @@ def expectedBlockingClauses259 : List (List Int) :=
         [-45371, -46009, -45405, -45467], [-45371, -46011, -45359, -46908], [-45028, -45909, -45387, -45281],
         [-45325, -45972, -45387, -46324], [-45844, -47195, -45387, -46348], [-46023, -45387, -45401, -45431]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses260 : List (List Int) :=
   [
         [-46027, -45387, -45403, -45455], [-46030, -45387, -45405, -45479], [-46032, -45387, -45359, -46936],
@@ -32393,6 +32954,7 @@ def expectedBlockingClauses260 : List (List Int) :=
         [-46046, -46206, -46360, -46953], [-46228, -45407, -46505, -46953], [-46232, -45409, -46643, -46953],
         [-46233, -45411, -46781, -46953], [-45543, -45413, -46404, -46541], [-45543, -45415, -46407, -46680]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses261 : List (List Int) :=
   [
         [-45543, -46364, -46408, -46810], [-45642, -45413, -46443, -46580], [-45642, -45415, -46446, -46719],
@@ -32412,6 +32974,7 @@ def expectedBlockingClauses261 : List (List Int) :=
         [-45371, -46371, -45367, -46908], [-45379, -46371, -45368, -46925], [-45387, -46371, -45369, -46936],
         [-45163, -46339, -46759, -46953], [-45872, -45399, -45367, -46953], [-46046, -45405, -45368, -46953]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses262 : List (List Int) :=
   [
         [-46220, -45411, -45369, -46953], [-45543, -46364, -46400, -46814], [-45543, -46368, -46541, -46817],
@@ -32431,6 +32994,7 @@ def expectedBlockingClauses262 : List (List Int) :=
         [-46371, -46644, -45487, -46961], [-45640, -46310, -46782, -46859], [-45871, -45358, -46782, -46914],
         [-46045, -45359, -46782, -46931], [-46219, -45360, -46782, -46942], [-45078, -44883, -46248, -46378]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses263 : List (List Int) :=
   [
         [-45080, -44883, -46379, -46529], [-45081, -44883, -46380, -46667], [-45082, -44889, -46252, -46378],
@@ -32450,6 +33014,7 @@ def expectedBlockingClauses263 : List (List Int) :=
         [-45914, -46262, -46391, -46984], [-45921, -46392, -46545, -46984], [-45923, -46393, -46684, -46984],
         [-44877, -46062, -46239, -46394], [-44877, -46064, -46395, -46520], [-44877, -46065, -46396, -46658]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses264 : List (List Int) :=
   [
         [-44883, -45899, -47196, -46390], [-44883, -46072, -46248, -46394], [-44883, -46074, -46395, -46529],
@@ -32469,6 +33034,7 @@ def expectedBlockingClauses264 : List (List Int) :=
         [-46084, -46258, -46396, -46673], [-46258, -46406, -46679, -46807], [-46258, -46407, -46680, -46980],
         [-44877, -46239, -46399, -45070], [-44877, -46403, -46520, -45072], [-44877, -46406, -46658, -45073]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses265 : List (List Int) :=
   [
         [-44883, -46248, -46399, -44941], [-44883, -46403, -46529, -44943], [-44883, -46406, -46667, -44944],
@@ -32488,6 +33054,7 @@ def expectedBlockingClauses265 : List (List Int) :=
         [-45761, -45040, -46421, -46706], [-45762, -45040, -46422, -46840], [-45763, -45040, -46423, -47013],
         [-45505, -44881, -45044, -46375], [-47177, -45939, -45044, -46417], [-45764, -45044, -46292, -46419]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses266 : List (List Int) :=
   [
         [-45766, -45044, -46420, -46572], [-45767, -45044, -46421, -46711], [-45768, -45044, -46422, -46846],
@@ -32507,6 +33074,7 @@ def expectedBlockingClauses266 : List (List Int) :=
         [-45949, -46288, -46425, -46581], [-46123, -46293, -46430, -46581], [-46304, -46438, -46581, -46854],
         [-46305, -46439, -46581, -47027], [-45776, -46283, -46419, -46720], [-45950, -46289, -46425, -46720]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses267 : List (List Int) :=
   [
         [-46124, -46294, -46430, -46720], [-46307, -46438, -46720, -46855], [-46308, -46439, -46720, -47028],
@@ -32526,6 +33094,7 @@ def expectedBlockingClauses267 : List (List Int) :=
         [-45573, -46414, -44986, -46753], [-45565, -46332, -46412, -46883], [-45574, -46413, -46614, -46883],
         [-45577, -46414, -46754, -46883], [-45566, -46333, -46412, -47056], [-45575, -46413, -46615, -47056]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses268 : List (List Int) :=
   [
         [-45578, -46414, -46755, -47056], [-45567, -45752, -46274, -46452], [-45567, -45754, -46453, -46554],
@@ -32545,6 +33114,7 @@ def expectedBlockingClauses268 : List (List Int) :=
         [-45978, -46333, -46458, -47056], [-45985, -46459, -46615, -47056], [-45988, -46460, -46755, -47056],
         [-45567, -46100, -46274, -46463], [-45567, -46102, -46464, -46554], [-45567, -46103, -46465, -46693]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses269 : List (List Int) :=
   [
         [-44965, -45962, -47198, -46457], [-44965, -46135, -46314, -46463], [-44965, -46137, -46464, -46594],
@@ -32564,6 +33134,7 @@ def expectedBlockingClauses269 : List (List Int) :=
         [-46472, -46618, -46755, -47056], [-45562, -44971, -46414, -46692], [-45800, -44971, -46454, -46732],
         [-45974, -44971, -46460, -46738], [-46148, -44971, -46465, -46743], [-44971, -46476, -46751, -46879]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses270 : List (List Int) :=
   [
         [-44971, -46477, -46752, -47052], [-45567, -46274, -46470, -46824], [-45567, -46473, -46554, -46826],
@@ -32583,6 +33154,7 @@ def expectedBlockingClauses270 : List (List Int) :=
         [-45526, -45998, -45284, -46895], [-45527, -45998, -45285, -47068], [-47175, -47191, -46172, -46385],
         [-45529, -46172, -46350, -46387], [-45531, -46172, -46388, -46630], [-45532, -46172, -46389, -46769]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses271 : List (List Int) :=
   [
         [-45533, -46172, -45284, -46901], [-45534, -46172, -45285, -47074], [-45522, -45993, -45127, -46385],
@@ -32602,6 +33174,7 @@ def expectedBlockingClauses271 : List (List Int) :=
         [-47193, -46172, -46484, -46769], [-47194, -46172, -46485, -46901], [-47195, -46172, -46486, -47074],
         [-45581, -45932, -45127, -46417], [-47190, -46167, -45127, -47207], [-45996, -45127, -46485, -46905]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses272 : List (List Int) :=
   [
         [-45997, -45127, -46486, -47078], [-45586, -45934, -46417, -45143], [-47192, -46173, -47207, -45143],
@@ -32621,6 +33194,7 @@ def expectedBlockingClauses272 : List (List Int) :=
         [-45998, -47205, -46492, -47068], [-45581, -46106, -45127, -46418], [-45993, -47200, -45127, -47207],
         [-46170, -45127, -46491, -46905], [-46171, -45127, -46492, -47078], [-45586, -46108, -46418, -45143]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses273 : List (List Int) :=
   [
         [-45999, -47202, -47207, -45143], [-46178, -46490, -45143, -44994], [-46179, -46491, -45143, -46909],
@@ -32640,6 +33214,7 @@ def expectedBlockingClauses273 : List (List Int) :=
         [-45398, -45418, -45155, -46910], [-45399, -45419, -45155, -47083], [-46001, -46347, -46482, -45202],
         [-46175, -46353, -46488, -45202], [-46002, -46348, -46482, -45214], [-46176, -46354, -46488, -45214]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses274 : List (List Int) :=
   [
         [-45098, -45899, -46483, -46526], [-45098, -46073, -46489, -46527], [-45098, -44983, -46530, -46667],
@@ -32659,6 +33234,7 @@ def expectedBlockingClauses274 : List (List Int) :=
         [-46172, -45422, -46771, -46901], [-46172, -45423, -46772, -47074], [-45581, -45127, -46421, -46699],
         [-45993, -45127, -46484, -46762], [-46167, -45127, -46490, -46768], [-45127, -45422, -45466, -46905]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses275 : List (List Int) :=
   [
         [-45127, -45423, -45467, -47078], [-46001, -46484, -46765, -45202], [-46175, -46490, -46771, -45202],
@@ -32678,6 +33254,7 @@ def expectedBlockingClauses275 : List (List Int) :=
         [-45110, -45423, -46700, -47008], [-45690, -45962, -46486, -47033], [-45690, -46136, -46492, -47034],
         [-45998, -47201, -46492, -47211], [-45998, -46344, -45419, -47067], [-45998, -45421, -46624, -47069]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses276 : List (List Int) :=
   [
         [-45998, -45423, -46763, -47070], [-45998, -45361, -46895, -47071], [-47191, -46172, -46486, -47211],
@@ -32697,6 +33274,7 @@ def expectedBlockingClauses276 : List (List Int) :=
         [-45525, -45826, -46385, -45158], [-45539, -46195, -46390, -45158], [-45019, -45400, -46391, -45206],
         [-45023, -46392, -45450, -45206], [-45025, -46393, -45474, -45206], [-45020, -45401, -46391, -45218]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses277 : List (List Int) :=
   [
         [-45024, -46392, -45451, -45218], [-45026, -46393, -45475, -45218], [-45102, -45082, -46252, -46425],
@@ -32716,6 +33294,7 @@ def expectedBlockingClauses277 : List (List Int) :=
         [-45603, -45761, -46417, -45158], [-47183, -46195, -47207, -45158], [-45834, -46485, -45158, -46927],
         [-45835, -46486, -45158, -47100], [-45604, -45762, -46417, -45206], [-47184, -46196, -47207, -45206]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses278 : List (List Int) :=
   [
         [-45822, -45400, -46482, -45206], [-45831, -46483, -45450, -45206], [-45834, -46484, -45474, -45206],
@@ -32735,6 +33314,7 @@ def expectedBlockingClauses278 : List (List Int) :=
         [-46203, -46498, -45158, -46927], [-46204, -46499, -45158, -47100], [-45604, -46116, -46424, -45206],
         [-45827, -47204, -47207, -45206], [-46191, -45400, -46495, -45206], [-46200, -46496, -45450, -45206]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses279 : List (List Int) :=
   [
         [-46203, -46497, -45474, -45206], [-46206, -46499, -45206, -47101], [-45605, -46117, -46424, -45218],
@@ -32754,6 +33334,7 @@ def expectedBlockingClauses279 : List (List Int) :=
         [-45695, -45788, -46483, -46591], [-45695, -46142, -46496, -46598], [-45695, -44984, -46601, -46739],
         [-45523, -45824, -46392, -46526], [-45824, -47201, -46496, -47208], [-45824, -44984, -46625, -46763]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses280 : List (List Int) :=
   [
         [-45824, -45426, -46626, -46895], [-45824, -45427, -46627, -47068], [-45537, -46193, -46392, -46531],
@@ -32773,6 +33354,7 @@ def expectedBlockingClauses280 : List (List Int) :=
         [-45102, -45426, -46533, -44947], [-45102, -45428, -46671, -44948], [-45114, -46287, -45424, -46839],
         [-45114, -45426, -46567, -46841], [-45114, -45428, -46706, -46842], [-45695, -45788, -46485, -46860]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses281 : List (List Int) :=
   [
         [-45695, -46142, -46498, -46867], [-45824, -47201, -46498, -47210], [-45824, -46344, -45424, -46894],
@@ -32792,6 +33374,7 @@ def expectedBlockingClauses281 : List (List Int) :=
         [-46193, -45362, -46918, -47094], [-45819, -45129, -46486, -47067], [-46188, -45129, -46499, -47090],
         [-45825, -46486, -45147, -47069], [-46194, -46499, -45147, -47092], [-45429, -45147, -44997, -47102]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses282 : List (List Int) :=
   [
         [-45826, -46486, -45158, -47070], [-46195, -46499, -45158, -47093], [-45021, -45287, -45206, -46976],
@@ -32811,6 +33394,7 @@ def expectedBlockingClauses282 : List (List Int) :=
         [-45616, -45406, -46430, -45210], [-45623, -46431, -45456, -45210], [-45625, -46432, -45480, -45210],
         [-45617, -45407, -46430, -45222], [-45624, -46431, -45457, -45222], [-45626, -46432, -45481, -45222]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses283 : List (List Int) :=
   [
         [-45106, -45087, -44881, -46418], [-45106, -47176, -45905, -47207], [-45106, -45730, -46255, -46488],
@@ -32830,6 +33414,7 @@ def expectedBlockingClauses283 : List (List Int) :=
         [-45844, -45407, -46488, -45222], [-45853, -46489, -45457, -45222], [-45856, -46490, -45481, -45222],
         [-45858, -46491, -46939, -45222], [-45106, -45087, -44887, -46424], [-45106, -45731, -47186, -47207]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses284 : List (List Int) :=
   [
         [-45106, -45904, -46255, -46495], [-45106, -45906, -46496, -46536], [-45106, -45907, -46497, -46674],
@@ -32849,6 +33434,7 @@ def expectedBlockingClauses284 : List (List Int) :=
         [-46030, -46497, -45481, -45222], [-46032, -46498, -46939, -45222], [-45106, -45731, -46247, -46488],
         [-45106, -45905, -46251, -46495], [-45118, -45765, -46280, -46488], [-45118, -45939, -46286, -46495]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses285 : List (List Int) :=
   [
         [-45700, -45794, -46313, -46488], [-45700, -45968, -46319, -46495], [-45530, -45845, -46247, -46394],
@@ -32868,6 +33454,7 @@ def expectedBlockingClauses285 : List (List Int) :=
         [-46019, -45433, -46639, -47091], [-45613, -45131, -46431, -46571], [-45840, -45131, -46489, -46629],
         [-46014, -45131, -46496, -46635], [-45131, -45432, -45454, -46933], [-45131, -45433, -45455, -47106]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses286 : List (List Int) :=
   [
         [-45848, -46489, -46632, -45210], [-46022, -46496, -46638, -45210], [-44985, -45458, -45480, -45210],
@@ -32887,6 +33474,7 @@ def expectedBlockingClauses286 : List (List Int) :=
         [-47181, -46019, -46491, -47210], [-46019, -46356, -45430, -46917], [-46019, -45432, -46636, -46919],
         [-46019, -45434, -46775, -46920], [-46019, -45363, -46921, -47091], [-45840, -45131, -46491, -46900]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses287 : List (List Int) :=
   [
         [-46014, -45131, -46498, -46917], [-45846, -46491, -45151, -46902], [-46020, -46498, -45151, -46919],
@@ -32906,6 +33494,7 @@ def expectedBlockingClauses287 : List (List Int) :=
         [-45406, -45431, -45210, -47109], [-45433, -45456, -45210, -47114], [-45435, -45480, -45210, -47115],
         [-45495, -45581, -45860, -46378], [-45522, -45860, -45993, -46391], [-45529, -45860, -46167, -46394]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses288 : List (List Int) :=
   [
         [-45011, -45860, -46399, -46905], [-45012, -45860, -46400, -47078], [-45500, -45597, -46034, -46378],
@@ -32925,6 +33514,7 @@ def expectedBlockingClauses288 : List (List Int) :=
         [-45613, -45764, -46208, -46419], [-47180, -46014, -46208, -46482], [-45841, -46208, -45004, -44989],
         [-45842, -46208, -46493, -44998], [-45843, -46208, -45418, -46933], [-45844, -46208, -45419, -47106]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses289 : List (List Int) :=
   [
         [-45632, -45773, -46419, -46944], [-45822, -46037, -46482, -46944], [-45843, -46211, -46488, -46944],
@@ -32944,6 +33534,7 @@ def expectedBlockingClauses289 : List (List Int) :=
         [-45629, -46119, -45006, -46577], [-45629, -46120, -46501, -46716], [-45581, -45860, -46106, -46430],
         [-45860, -45993, -47200, -46495], [-45860, -46168, -45006, -44987], [-45860, -46169, -46501, -44992]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses290 : List (List Int) :=
   [
         [-45860, -46170, -45430, -46905], [-45860, -46171, -45431, -47078], [-45597, -46034, -46112, -46430],
@@ -32963,6 +33554,7 @@ def expectedBlockingClauses290 : List (List Int) :=
         [-45864, -45418, -46908, -47117], [-46038, -45424, -46925, -47117], [-46212, -45430, -46936, -47117],
         [-45436, -45461, -46950, -47117], [-45438, -45485, -46952, -47117], [-45629, -45437, -46577, -47024]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses291 : List (List Int) :=
   [
         [-45629, -45439, -46716, -47025], [-45629, -46505, -46850, -47026], [-45581, -45860, -46439, -47005],
@@ -32982,6 +33574,7 @@ def expectedBlockingClauses291 : List (List Int) :=
         [-45598, -46047, -44976, -46436], [-45614, -46221, -44979, -46436], [-45636, -45412, -46436, -46954],
         [-45637, -45413, -46436, -47127], [-45645, -45681, -46413, -46954], [-45312, -45875, -46453, -46954]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses292 : List (List Int) :=
   [
         [-45320, -46049, -46459, -46954], [-45328, -46223, -46464, -46954], [-45165, -46474, -46954, -47129],
@@ -33001,6 +33594,7 @@ def expectedBlockingClauses292 : List (List Int) :=
         [-46026, -46221, -45426, -46937], [-46027, -46221, -45427, -47110], [-45645, -45954, -46426, -46954],
         [-45875, -46005, -46483, -46954], [-46026, -46223, -46496, -46954], [-46041, -45412, -45005, -46954]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses293 : List (List Int) :=
   [
         [-46058, -45427, -46954, -47129], [-45646, -45955, -46426, -47127], [-45876, -46006, -46483, -47127],
@@ -33020,6 +33614,7 @@ def expectedBlockingClauses293 : List (List Int) :=
         [-45846, -46221, -45420, -46902], [-46020, -46221, -45426, -46919], [-46221, -44979, -45436, -46934],
         [-46221, -46509, -46941, -47110], [-45646, -46442, -46858, -47127], [-45876, -45420, -46913, -47127]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses294 : List (List Int) :=
   [
         [-46050, -45426, -46930, -47127], [-46224, -45432, -46941, -47127], [-45413, -45436, -46950, -47127],
@@ -33039,6 +33634,7 @@ def expectedBlockingClauses294 : List (List Int) :=
         [-45599, -46051, -44977, -46437], [-45606, -46051, -46441, -45148], [-45615, -46225, -44980, -46437],
         [-45622, -46225, -46441, -45152], [-45639, -45414, -46437, -46957], [-45653, -46441, -45464, -46957]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses295 : List (List Int) :=
   [
         [-45640, -45415, -46437, -47130], [-45654, -46441, -45465, -47130], [-45648, -45684, -46414, -46957],
@@ -33058,6 +33654,7 @@ def expectedBlockingClauses295 : List (List Int) :=
         [-45647, -45946, -46299, -46500], [-45647, -45953, -44984, -46582], [-45587, -45877, -45935, -46427],
         [-45877, -47193, -46174, -46497], [-45877, -45995, -44974, -46500], [-45877, -46004, -44984, -45144]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses296 : List (List Int) :=
   [
         [-45877, -46008, -45428, -46910], [-45877, -46009, -45429, -47083], [-45619, -45941, -46225, -46427],
@@ -33077,6 +33674,7 @@ def expectedBlockingClauses296 : List (List Int) :=
         [-45649, -46131, -46432, -47130], [-45879, -46183, -46490, -47130], [-46053, -46204, -46497, -47130],
         [-46219, -45415, -46501, -47130], [-46231, -44985, -45465, -47130], [-46233, -45434, -46958, -47130]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses297 : List (List Int) :=
   [
         [-45647, -46299, -45438, -46852], [-45647, -45440, -46582, -46857], [-45647, -46512, -46859, -47028],
@@ -33096,6 +33694,7 @@ def expectedBlockingClauses297 : List (List Int) :=
         [-45619, -46225, -46446, -47021], [-45847, -46225, -45423, -47076], [-46021, -46225, -45429, -47093],
         [-46225, -44980, -45439, -47108], [-46225, -45441, -45152, -47113], [-46225, -46512, -46938, -47115]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses298 : List (List Int) :=
   [
         [-45648, -46446, -46957, -47032], [-45878, -45423, -46957, -47087], [-46052, -45429, -46957, -47104],
@@ -33115,6 +33714,7 @@ def expectedBlockingClauses298 : List (List Int) :=
         [-45650, -45773, -46300, -45418], [-45650, -45780, -45420, -46583], [-45650, -45782, -45422, -46722],
         [-45706, -45803, -46332, -45418], [-45706, -45810, -45420, -46614], [-45706, -45813, -45422, -46754]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses299 : List (List Int) :=
   [
         [-45021, -45728, -45380, -45284], [-45318, -45791, -45380, -46455], [-47184, -45380, -46196, -46491],
@@ -33134,6 +33734,7 @@ def expectedBlockingClauses299 : List (List Int) :=
         [-46029, -45388, -45428, -45480], [-46032, -45388, -45362, -47112], [-46046, -46363, -45362, -47120],
         [-46056, -45428, -46646, -45488], [-46058, -45362, -46646, -47129], [-46059, -45362, -46784, -47131]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses300 : List (List Int) :=
   [
         [-45880, -46011, -46485, -47132], [-46032, -46228, -46498, -47132], [-46046, -46364, -45424, -47132],
@@ -33153,6 +33754,7 @@ def expectedBlockingClauses300 : List (List Int) :=
         [-45875, -45396, -45418, -46646], [-46049, -45402, -45424, -46646], [-46223, -45408, -45430, -46646],
         [-46368, -46505, -46646, -47129], [-45648, -46307, -46438, -46784], [-45878, -45398, -45418, -46784]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses301 : List (List Int) :=
   [
         [-46052, -45404, -45424, -46784], [-46226, -45410, -45430, -46784], [-46371, -46505, -46784, -47131],
@@ -33172,6 +33774,7 @@ def expectedBlockingClauses301 : List (List Int) :=
         [-46054, -45428, -45368, -47132], [-46228, -45434, -45369, -47132], [-45544, -46261, -46505, -46983],
         [-45544, -46509, -46544, -46990], [-45544, -46512, -46683, -46992], [-45650, -46300, -46505, -47026]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses302 : List (List Int) :=
   [
         [-45650, -46509, -46583, -47031], [-45650, -46512, -46722, -47032], [-45570, -45706, -46448, -47001],
@@ -33191,6 +33794,7 @@ def expectedBlockingClauses302 : List (List Int) :=
         [-45578, -45707, -46446, -46755], [-45585, -45373, -45395, -46439], [-45592, -45373, -46443, -45445],
         [-45594, -45373, -46446, -45469], [-45601, -45381, -45401, -46439], [-45608, -45381, -46443, -45451]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses303 : List (List Int) :=
   [
         [-45610, -45381, -46446, -45475], [-45617, -45389, -45407, -46439], [-45624, -45389, -46443, -45457],
@@ -33210,6 +33814,7 @@ def expectedBlockingClauses303 : List (List Int) :=
         [-45327, -45798, -45389, -46456], [-47185, -46023, -45389, -46486], [-45844, -45389, -45407, -45419],
         [-45853, -45389, -45421, -45457], [-45856, -45389, -45423, -45481], [-45858, -45389, -45361, -46939]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses304 : List (List Int) :=
   [
         [-45872, -46365, -45361, -46947], [-45883, -45423, -46648, -45489], [-45884, -45361, -46648, -46956],
@@ -33229,6 +33834,7 @@ def expectedBlockingClauses304 : List (List Int) :=
         [-45651, -46131, -45435, -46723], [-45707, -46152, -46333, -45431], [-45707, -46159, -45433, -46615],
         [-45707, -46162, -45435, -46755], [-45014, -45373, -46077, -45289], [-45311, -45373, -46140, -46467]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses305 : List (List Int) :=
   [
         [-45373, -46002, -47205, -46499], [-45373, -46171, -45395, -45431], [-45373, -46180, -45433, -45445],
@@ -33248,6 +33854,7 @@ def expectedBlockingClauses305 : List (List Int) :=
         [-45545, -46509, -46549, -46814], [-45651, -45441, -46587, -46723], [-45651, -46509, -46589, -46856],
         [-45707, -45441, -46618, -46755], [-45707, -46509, -46620, -46886], [-45373, -45441, -45447, -45469]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses306 : List (List Int) :=
   [
         [-45373, -46509, -45364, -46911], [-45381, -45441, -45453, -45475], [-45381, -46509, -45365, -46928],
@@ -33267,6 +33874,7 @@ def expectedBlockingClauses306 : List (List Int) :=
         [-45707, -46512, -46755, -46891], [-45589, -45373, -46448, -46836], [-45373, -46002, -45362, -46898],
         [-45373, -46176, -45363, -46904], [-45373, -45395, -46505, -46908], [-45373, -46509, -45445, -46913]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses307 : List (List Int) :=
   [
         [-45373, -46512, -45469, -46914], [-45605, -45381, -46448, -46843], [-45828, -45381, -45361, -46898],
@@ -33286,6 +33894,7 @@ def expectedBlockingClauses307 : List (List Int) :=
         [-45727, -44890, -46530, -46672], [-47176, -45906, -44896, -46526], [-45730, -44896, -46256, -46528],
         [-45731, -44896, -46395, -46529], [-45733, -44896, -46530, -46675], [-45736, -46259, -46401, -46528]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses308 : List (List Int) :=
   [
         [-45739, -46265, -46528, -46815], [-45743, -46403, -46529, -46815], [-45748, -46530, -46686, -46815],
@@ -33305,6 +33914,7 @@ def expectedBlockingClauses308 : List (List Int) :=
         [-45560, -46241, -46519, -46685], [-45745, -46250, -46528, -46685], [-45919, -46254, -46532, -46685],
         [-46093, -46257, -46535, -46685], [-46268, -46540, -46685, -46816], [-46269, -46541, -46685, -46989]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses309 : List (List Int) :=
   [
         [-44878, -46240, -46378, -46539], [-44884, -46249, -46387, -46539], [-44890, -46253, -46391, -46539],
@@ -33324,6 +33934,7 @@ def expectedBlockingClauses309 : List (List Int) :=
         [-46547, -46687, -46819, -46988], [-44878, -46240, -46541, -45074], [-44878, -46379, -46545, -45075],
         [-44878, -46548, -46659, -45077], [-44884, -46249, -46541, -44953], [-44884, -46388, -46545, -44954]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses310 : List (List Int) :=
   [
         [-44884, -46548, -46668, -44956], [-44890, -46253, -46541, -44957], [-44890, -46392, -46545, -44958],
@@ -33343,6 +33954,7 @@ def expectedBlockingClauses310 : List (List Int) :=
         [-45506, -44887, -45045, -46517], [-45766, -47187, -45045, -46558], [-45938, -45045, -46293, -46566],
         [-45939, -45045, -46431, -46567], [-45941, -45045, -46568, -46712], [-45942, -45045, -46569, -46847]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses311 : List (List Int) :=
   [
         [-45943, -45045, -46570, -47020], [-45944, -46298, -46440, -46566], [-45680, -46100, -46275, -46571],
@@ -33362,6 +33974,7 @@ def expectedBlockingClauses311 : List (List Int) :=
         [-45775, -46440, -46562, -46700], [-45949, -46440, -46568, -46706], [-46123, -46440, -46573, -46711],
         [-46440, -46586, -46722, -46854], [-46440, -46587, -46723, -47027], [-45510, -46240, -46579, -45070]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses312 : List (List Int) :=
   [
         [-45510, -46379, -46583, -45071], [-45510, -46586, -46659, -45073], [-46298, -46440, -46579, -46850],
@@ -33381,6 +33994,7 @@ def expectedBlockingClauses312 : List (List Int) :=
         [-45798, -44970, -46597, -47048], [-45800, -46330, -44982, -46593], [-45803, -46335, -46593, -46887],
         [-45807, -46473, -46594, -46887], [-45813, -46595, -46756, -46887], [-45804, -46336, -46593, -47060]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses313 : List (List Int) :=
   [
         [-45808, -46474, -46594, -47060], [-45814, -46595, -46757, -47060], [-45572, -45926, -46275, -46599],
@@ -33400,6 +34014,7 @@ def expectedBlockingClauses313 : List (List Int) :=
         [-46161, -46606, -46756, -46887], [-46152, -46336, -46604, -47060], [-46156, -46474, -46605, -47060],
         [-46162, -46606, -46757, -47060], [-45573, -46276, -46553, -44991], [-45809, -46316, -46593, -44991]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses314 : List (List Int) :=
   [
         [-45983, -46322, -46599, -44991], [-46157, -46327, -46604, -44991], [-46338, -46611, -44991, -46888],
@@ -33419,6 +34034,7 @@ def expectedBlockingClauses314 : List (List Int) :=
         [-46474, -46614, -46886, -47060], [-46617, -46757, -46891, -47060], [-45572, -46275, -46612, -46997],
         [-45572, -46413, -46615, -46998], [-45572, -46618, -46694, -47000], [-44966, -46315, -46612, -47035]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses315 : List (List Int) :=
   [
         [-44966, -46453, -46615, -47036], [-44966, -46618, -46734, -47038], [-44968, -46321, -46612, -47041],
@@ -33438,6 +34054,7 @@ def expectedBlockingClauses315 : List (List Int) :=
         [-45099, -45079, -46388, -46561], [-45099, -45081, -46562, -46668], [-45581, -44973, -45134, -46560],
         [-45584, -45396, -46560, -45203], [-45588, -45420, -46561, -45203], [-45593, -46562, -45470, -45203]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses316 : List (List Int) :=
   [
         [-45585, -45397, -46560, -45215], [-45589, -45421, -46561, -45215], [-45594, -46562, -45471, -45215],
@@ -33457,6 +34074,7 @@ def expectedBlockingClauses316 : List (List Int) :=
         [-46011, -46627, -45203, -47086], [-45592, -45937, -46558, -45215], [-47195, -46180, -47208, -45215],
         [-45997, -45397, -46623, -45215], [-46002, -45421, -46624, -45215], [-46009, -46625, -45471, -45215]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses317 : List (List Int) :=
   [
         [-46011, -46626, -46913, -45215], [-45099, -45080, -44892, -46559], [-45099, -45900, -47196, -47208],
@@ -33476,6 +34094,7 @@ def expectedBlockingClauses317 : List (List Int) :=
         [-46006, -47205, -47208, -45215], [-46171, -45397, -46629, -45215], [-46176, -45421, -46630, -45215],
         [-46183, -46631, -45471, -45215], [-46185, -46632, -46913, -45215], [-45099, -45900, -46246, -46623]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses318 : List (List Int) :=
   [
         [-45099, -46074, -46247, -46629], [-45111, -45934, -46279, -46623], [-45111, -46108, -46280, -46629],
@@ -33495,6 +34114,7 @@ def expectedBlockingClauses318 : List (List Int) :=
         [-46004, -46484, -46624, -45156], [-46178, -46490, -46630, -45156], [-45422, -45444, -45156, -46912],
         [-45423, -45445, -45156, -47085], [-46005, -46485, -46624, -45203], [-46179, -46491, -46630, -45203]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses319 : List (List Int) :=
   [
         [-45396, -45418, -44987, -45203], [-46006, -46486, -46624, -45215], [-46180, -46492, -46630, -45215],
@@ -33514,6 +34134,7 @@ def expectedBlockingClauses319 : List (List Int) :=
         [-46003, -46483, -45444, -46895], [-46003, -45446, -46764, -46897], [-46003, -45364, -46898, -47069],
         [-47192, -46177, -46626, -47210], [-46177, -46351, -45442, -46900], [-46177, -46489, -45444, -46901]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses320 : List (List Int) :=
   [
         [-46177, -45446, -46770, -46903], [-46177, -45364, -46904, -47075], [-45994, -45128, -46626, -46894],
@@ -33533,6 +34154,7 @@ def expectedBlockingClauses320 : List (List Int) :=
         [-45312, -46597, -45203, -47039], [-46005, -46627, -45203, -47071], [-46179, -46633, -45203, -47077],
         [-45396, -45443, -45203, -47081], [-45420, -45445, -45203, -47084], [-45447, -45470, -45203, -47087]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses321 : List (List Int) :=
   [
         [-45500, -45115, -46288, -46532], [-45501, -45115, -46426, -46533], [-45503, -45115, -46534, -46707],
@@ -33552,6 +34174,7 @@ def expectedBlockingClauses321 : List (List Int) :=
         [-45103, -45725, -46392, -46624], [-45103, -45727, -46625, -46672], [-45103, -45728, -46626, -44947],
         [-45103, -45729, -46627, -44959], [-45115, -47177, -46114, -47208], [-45115, -45758, -46288, -46623]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses322 : List (List Int) :=
   [
         [-45115, -45759, -46426, -46624], [-45115, -45761, -46625, -46707], [-45696, -47178, -46143, -47208],
@@ -33571,6 +34194,7 @@ def expectedBlockingClauses322 : List (List Int) :=
         [-45103, -46082, -46638, -44947], [-45103, -46083, -46639, -44959], [-45115, -45760, -47197, -47208],
         [-45115, -46112, -46288, -46635], [-45115, -46113, -46426, -46636], [-45115, -46115, -46637, -46707]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses323 : List (List Int) :=
   [
         [-45696, -45789, -47198, -47208], [-45696, -46141, -46321, -46635], [-45696, -46142, -46459, -46636],
@@ -33590,6 +34214,7 @@ def expectedBlockingClauses323 : List (List Int) :=
         [-45829, -47202, -47206, -46635], [-45829, -46347, -45448, -46896], [-45829, -46348, -45449, -47069],
         [-45538, -46198, -46251, -46532], [-47182, -46198, -47206, -46623], [-46198, -46359, -45448, -46919]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses324 : List (List Int) :=
   [
         [-46198, -46360, -45449, -47092], [-45606, -46289, -46566, -45159], [-45830, -46346, -46623, -45159],
@@ -33609,6 +34234,7 @@ def expectedBlockingClauses324 : List (List Int) :=
         [-45115, -45760, -46625, -46697], [-45115, -46114, -46637, -46704], [-45696, -45789, -46625, -46730],
         [-45696, -46143, -46637, -46737], [-45524, -45829, -46534, -46664], [-45829, -47202, -46637, -47209]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses325 : List (List Int) :=
   [
         [-45829, -45452, -46765, -46896], [-45829, -45453, -46766, -47069], [-45538, -46198, -46534, -46669],
@@ -33628,6 +34254,7 @@ def expectedBlockingClauses325 : List (List Int) :=
         [-44976, -45137, -45448, -46922], [-45830, -46626, -45159, -46897], [-46199, -46638, -45159, -46920],
         [-45024, -45292, -46803, -45219], [-45321, -46602, -46872, -45219], [-45832, -46626, -46898, -45219]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses326 : List (List Int) :=
   [
         [-46201, -46638, -46921, -45219], [-45403, -45448, -46925, -45219], [-45427, -45450, -46928, -45219],
@@ -33647,6 +34274,7 @@ def expectedBlockingClauses326 : List (List Int) :=
         [-45529, -45850, -46351, -46535], [-45530, -45850, -46489, -46536], [-45532, -45850, -46537, -46770],
         [-45533, -45850, -45294, -46902], [-45534, -45850, -45295, -47075], [-47175, -47182, -46024, -46527]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses327 : List (List Int) :=
   [
         [-45536, -46024, -46357, -46535], [-45537, -46024, -46496, -46536], [-45539, -46024, -46537, -46776],
@@ -33666,6 +34294,7 @@ def expectedBlockingClauses327 : List (List Int) :=
         [-45538, -47176, -46024, -46527], [-47180, -46024, -46357, -46629], [-47181, -46024, -46496, -46630],
         [-47183, -46024, -46631, -46776], [-47184, -46024, -46632, -46919], [-47185, -46024, -46633, -47092]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses328 : List (List Int) :=
   [
         [-45614, -45764, -45132, -46559], [-47180, -46015, -45132, -47208], [-45843, -45132, -46632, -46934],
@@ -33685,6 +34314,7 @@ def expectedBlockingClauses328 : List (List Int) :=
         [-45850, -47191, -46489, -46636], [-45850, -47193, -46637, -46770], [-45850, -47194, -46638, -46902],
         [-45850, -47195, -46639, -47075], [-45614, -45938, -45132, -46565], [-45841, -47190, -45132, -47208]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses329 : List (List Int) :=
   [
         [-46017, -45132, -46638, -46934], [-46018, -45132, -46639, -47107], [-45618, -45939, -45140, -46565],
@@ -33704,6 +34334,7 @@ def expectedBlockingClauses329 : List (List Int) :=
         [-45852, -46353, -46629, -45211], [-46026, -46359, -46635, -45211], [-45853, -46354, -46629, -45223],
         [-46027, -46360, -46635, -45223], [-45107, -45732, -46386, -46630], [-45107, -45906, -46390, -46636]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses330 : List (List Int) :=
   [
         [-45107, -46256, -46394, -44989], [-45119, -45766, -46418, -46630], [-45119, -45940, -46424, -46636],
@@ -33723,6 +34354,7 @@ def expectedBlockingClauses330 : List (List Int) :=
         [-45614, -45132, -46573, -46710], [-45841, -45132, -46631, -46768], [-46015, -45132, -46637, -46774],
         [-45132, -45458, -45478, -46934], [-45132, -45459, -45479, -47107], [-45618, -45140, -46573, -46711]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses331 : List (List Int) :=
   [
         [-45846, -45140, -46631, -46769], [-46020, -45140, -46637, -46775], [-45140, -45458, -45480, -46937],
@@ -33742,6 +34374,7 @@ def expectedBlockingClauses331 : List (List Int) :=
         [-45107, -45459, -46675, -44964], [-45119, -46293, -45455, -47018], [-45119, -46431, -45457, -47019],
         [-45119, -45459, -46712, -47021], [-45701, -45795, -46633, -47034], [-45701, -45969, -46639, -47040]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses332 : List (List Int) :=
   [
         [-45850, -47192, -46639, -47211], [-45850, -46351, -45455, -47073], [-45850, -46489, -45457, -47074],
@@ -33761,6 +34394,7 @@ def expectedBlockingClauses332 : List (List Int) :=
         [-45599, -46039, -46578, -44996], [-45613, -46213, -45006, -46577], [-45615, -46213, -46578, -44999],
         [-45632, -45436, -46577, -46948], [-45639, -46578, -45486, -46948], [-45633, -45437, -46577, -47121]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses333 : List (List Int) :=
   [
         [-45640, -46578, -45487, -47121], [-45636, -45675, -46553, -46948], [-45308, -45867, -46593, -46948],
@@ -33780,6 +34414,7 @@ def expectedBlockingClauses333 : List (List Int) :=
         [-45634, -45946, -45008, -46717], [-45582, -45865, -45932, -46566], [-45865, -47190, -46168, -46635],
         [-45865, -45993, -45004, -44988], [-45865, -45995, -45008, -44993], [-45865, -45996, -45448, -46906]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses334 : List (List Int) :=
   [
         [-45865, -45997, -45449, -47079], [-45614, -45938, -46213, -46566], [-45841, -47190, -46213, -46623],
@@ -33799,6 +34434,7 @@ def expectedBlockingClauses334 : List (List Int) :=
         [-45868, -46171, -46629, -47121], [-46042, -46192, -46635, -47121], [-46212, -45437, -44989, -47121],
         [-46219, -45009, -45487, -47121], [-46220, -45454, -46950, -47121], [-45634, -46436, -45460, -46850]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses335 : List (List Int) :=
   [
         [-45634, -45462, -46717, -46852], [-45634, -46643, -46853, -47024], [-45582, -45865, -46579, -46832],
@@ -33818,6 +34454,7 @@ def expectedBlockingClauses335 : List (List Int) :=
         [-45841, -46213, -45443, -47073], [-46015, -46213, -45449, -47090], [-46213, -45006, -45461, -47106],
         [-46213, -45463, -44999, -47108], [-46213, -46643, -46934, -47109], [-45636, -46580, -46948, -47026]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses336 : List (List Int) :=
   [
         [-45867, -45443, -46948, -47081], [-46041, -45449, -46948, -47098], [-46215, -45455, -46948, -47109],
@@ -33837,6 +34474,7 @@ def expectedBlockingClauses336 : List (List Int) :=
         [-45828, -46047, -45445, -47099], [-45618, -45765, -46221, -46561], [-47181, -46020, -46221, -46624],
         [-45847, -46221, -45144, -45000], [-45848, -46221, -45444, -46937], [-45849, -46221, -45445, -47110]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses337 : List (List Int) :=
   [
         [-45645, -45777, -46561, -46954], [-45827, -46049, -46624, -46954], [-45848, -46223, -46630, -46954],
@@ -33856,6 +34494,7 @@ def expectedBlockingClauses337 : List (List Int) :=
         [-45825, -46047, -47201, -46630], [-46047, -46195, -45152, -44997], [-46047, -46196, -45456, -46926],
         [-46047, -46197, -45457, -47099], [-45645, -46125, -46572, -46954], [-45875, -46175, -46630, -46954]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses338 : List (List Int) :=
   [
         [-46049, -46196, -46636, -46954], [-46226, -45152, -45488, -46954], [-46228, -45457, -46954, -47129],
@@ -33875,6 +34514,7 @@ def expectedBlockingClauses338 : List (List Int) :=
         [-45618, -46221, -46584, -47019], [-45846, -46221, -45445, -47074], [-46020, -46221, -45451, -47091],
         [-46221, -45465, -45000, -47111], [-46221, -46647, -46937, -47112], [-45645, -46584, -46954, -47029]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses339 : List (List Int) :=
   [
         [-45875, -45445, -46954, -47084], [-46049, -45451, -46954, -47101], [-46223, -45457, -46954, -47112],
@@ -33894,6 +34534,7 @@ def expectedBlockingClauses339 : List (List Int) :=
         [-45652, -45776, -46441, -45144], [-45606, -45761, -46055, -46562], [-47183, -46055, -46199, -46631],
         [-45821, -46055, -44978, -45007], [-45826, -46055, -44984, -45144], [-45834, -46055, -45446, -46929]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses340 : List (List Int) :=
   [
         [-45835, -46055, -45447, -47102], [-45622, -45767, -46229, -46562], [-47183, -46025, -46229, -46625],
@@ -33913,6 +34554,7 @@ def expectedBlockingClauses340 : List (List Int) :=
         [-45883, -46009, -46625, -47133], [-46030, -46231, -46637, -47133], [-46045, -45417, -45008, -47133],
         [-46053, -45441, -45148, -47133], [-46059, -45452, -46961, -47133], [-45652, -45779, -46109, -46631]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses341 : List (List Int) :=
   [
         [-45652, -45953, -46115, -46637], [-45652, -46120, -46303, -45009], [-45652, -46124, -46441, -45152],
@@ -33932,6 +34574,7 @@ def expectedBlockingClauses341 : List (List Int) :=
         [-45622, -46229, -46586, -46848], [-45851, -46229, -45446, -46903], [-46025, -46229, -45452, -46920],
         [-46229, -44981, -45462, -46935], [-46229, -44985, -45464, -46938], [-46229, -46650, -46942, -47113]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses342 : List (List Int) :=
   [
         [-45654, -46586, -46859, -47133], [-45883, -45446, -46914, -47133], [-46057, -45452, -46931, -47133],
@@ -33951,6 +34594,7 @@ def expectedBlockingClauses342 : List (List Int) :=
         [-45616, -45390, -45408, -46579], [-45620, -45390, -45432, -46583], [-45625, -45390, -46586, -45482],
         [-45632, -45412, -46508, -46579], [-45546, -45672, -46620, -46990], [-45655, -45675, -46304, -46611]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses343 : List (List Int) :=
   [
         [-45655, -45678, -46442, -46614], [-45655, -45684, -46617, -46725], [-45308, -45374, -45396, -46611],
@@ -33970,6 +34614,7 @@ def expectedBlockingClauses343 : List (List Int) :=
         [-45863, -45412, -46508, -45442], [-45880, -46508, -45364, -47129], [-45885, -45364, -46787, -47134],
         [-45837, -46058, -46626, -47135], [-45858, -46232, -46632, -47135], [-45872, -46368, -45442, -47135]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses344 : List (List Int) :=
   [
         [-45880, -46509, -45444, -47135], [-45885, -45446, -46788, -47135], [-45546, -45924, -45365, -46990],
@@ -33989,6 +34634,7 @@ def expectedBlockingClauses344 : List (List Int) :=
         [-45374, -46170, -45396, -45454], [-45374, -46175, -45420, -45456], [-45374, -46182, -45458, -45470],
         [-45374, -46185, -45366, -47086], [-45023, -45382, -46082, -45294], [-45320, -45382, -46145, -46607]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses345 : List (List Int) :=
   [
         [-45831, -45382, -47204, -46632], [-45382, -46191, -45402, -45454], [-45382, -46196, -45426, -45456],
@@ -34008,6 +34654,7 @@ def expectedBlockingClauses345 : List (List Int) :=
         [-45882, -45422, -45444, -46787], [-46056, -45428, -45450, -46787], [-46230, -45434, -45456, -46787],
         [-46512, -46647, -46787, -47134], [-45165, -46479, -46614, -47135], [-45884, -45361, -45444, -47135]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses346 : List (List Int) :=
   [
         [-46058, -45362, -45450, -47135], [-46232, -45363, -45456, -47135], [-46368, -46505, -45460, -47135],
@@ -34027,6 +34674,7 @@ def expectedBlockingClauses346 : List (List Int) :=
         [-45607, -45382, -46589, -47016], [-45831, -45382, -45364, -47071], [-45382, -46200, -45366, -47094],
         [-45382, -45402, -46643, -47098], [-45382, -45426, -46647, -47101], [-45382, -46650, -45476, -47104]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses347 : List (List Int) :=
   [
         [-45623, -45390, -46589, -47022], [-45852, -45390, -45364, -47077], [-46026, -45390, -45365, -47094],
@@ -34046,6 +34694,7 @@ def expectedBlockingClauses347 : List (List Int) :=
         [-45325, -45391, -45409, -46612], [-45327, -45391, -45433, -46615], [-45331, -45391, -46618, -45483],
         [-45163, -46369, -46620, -46950], [-45164, -46510, -46620, -46956], [-45166, -46620, -46789, -46961]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses348 : List (List Int) :=
   [
         [-45693, -45884, -46597, -46962], [-45698, -46058, -46603, -46962], [-45703, -46232, -46608, -46962],
@@ -34065,6 +34714,7 @@ def expectedBlockingClauses348 : List (List Int) :=
         [-45709, -45988, -45453, -46757], [-45016, -45375, -45903, -45293], [-45313, -45375, -45966, -46603],
         [-45375, -47195, -46180, -46639], [-45375, -45997, -45397, -45449], [-45375, -46002, -45421, -45451]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses349 : List (List Int) :=
   [
         [-45375, -46009, -45453, -45471], [-45375, -46011, -45365, -46913], [-45032, -45909, -45391, -45293],
@@ -34084,6 +34734,7 @@ def expectedBlockingClauses349 : List (List Int) :=
         [-46233, -45366, -46789, -46961], [-45884, -46185, -46633, -46962], [-46058, -46206, -46639, -46962],
         [-46220, -46368, -45455, -46962], [-46228, -46509, -45457, -46962], [-46233, -45459, -46788, -46962]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses350 : List (List Int) :=
   [
         [-45547, -46270, -46643, -46817], [-45656, -46310, -46643, -46858], [-45709, -46341, -46643, -46889],
@@ -34103,6 +34754,7 @@ def expectedBlockingClauses350 : List (List Int) :=
         [-45391, -46650, -45369, -46941], [-45637, -46369, -46587, -46719], [-45868, -46369, -45447, -45467],
         [-46042, -46369, -45453, -45473], [-46216, -46369, -45459, -45479], [-46369, -46650, -46781, -46950]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses351 : List (List Int) :=
   [
         [-45646, -46510, -46587, -46723], [-45876, -46510, -45447, -45469], [-46050, -46510, -45453, -45475],
@@ -34122,6 +34774,7 @@ def expectedBlockingClauses351 : List (List Int) :=
         [-46042, -46369, -45365, -46925], [-46216, -46369, -45366, -46936], [-45646, -46510, -46589, -46856],
         [-45876, -46510, -45364, -46911], [-46050, -46510, -45365, -46928], [-46224, -46510, -45366, -46939]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses352 : List (List Int) :=
   [
         [-45413, -46510, -46643, -46947], [-45654, -46589, -46789, -46859], [-45883, -45364, -46789, -46914],
@@ -34141,6 +34794,7 @@ def expectedBlockingClauses352 : List (List Int) :=
         [-44885, -45899, -46389, -46671], [-44885, -45900, -46530, -46672], [-45733, -47186, -44897, -46664],
         [-45904, -44897, -46257, -46670], [-45905, -44897, -46396, -46671], [-45906, -44897, -46537, -46672]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses353 : List (List Int) :=
   [
         [-45910, -46260, -46405, -46670], [-45911, -46264, -46546, -46670], [-45915, -46402, -46546, -46671],
@@ -34160,6 +34814,7 @@ def expectedBlockingClauses353 : List (List Int) :=
         [-44897, -46396, -46536, -46682], [-46268, -46540, -46678, -46818], [-46406, -46544, -46682, -46818],
         [-46269, -46541, -46678, -46991], [-46407, -46545, -46682, -46991], [-44879, -46241, -46679, -45070]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses354 : List (List Int) :=
   [
         [-44879, -46380, -46683, -45071], [-44879, -46521, -46686, -45072], [-44885, -46250, -46679, -44941],
@@ -34179,6 +34834,7 @@ def expectedBlockingClauses354 : List (List Int) :=
         [-45683, -45753, -46414, -46700], [-45683, -45754, -46555, -46701], [-45503, -44880, -45042, -46654],
         [-47177, -45042, -46115, -46698], [-45758, -45042, -46289, -46699], [-45759, -45042, -46427, -46700]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses355 : List (List Int) :=
   [
         [-45760, -45042, -46568, -46701], [-45762, -45042, -46702, -46842], [-45763, -45042, -46703, -47015],
@@ -34198,6 +34854,7 @@ def expectedBlockingClauses355 : List (List Int) :=
         [-45038, -46111, -46714, -47008], [-45503, -45042, -44893, -46656], [-45761, -45042, -47197, -46698],
         [-45042, -46112, -46289, -46710], [-45042, -46113, -46427, -46711], [-45042, -46114, -46568, -46712]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses356 : List (List Int) :=
   [
         [-45042, -46116, -46713, -46842], [-45042, -46117, -46714, -47015], [-46118, -46299, -46444, -46710],
@@ -34217,6 +34874,7 @@ def expectedBlockingClauses356 : List (List Int) :=
         [-46299, -46444, -46719, -47023], [-46303, -46585, -46719, -47024], [-46441, -46585, -46723, -47027],
         [-45684, -46696, -45050, -47001], [-45782, -46703, -45050, -47009], [-45956, -46709, -45050, -47016]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses357 : List (List Int) :=
   [
         [-46130, -46714, -45050, -47022], [-46307, -46719, -45050, -47026], [-46445, -46723, -45050, -47029],
@@ -34236,6 +34894,7 @@ def expectedBlockingClauses357 : List (List Int) :=
         [-45812, -45962, -46454, -46739], [-45812, -45963, -46595, -46740], [-45812, -45965, -46741, -46865],
         [-45812, -45966, -46742, -47038], [-45796, -47188, -46160, -46730], [-45967, -46160, -46327, -46738]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses358 : List (List Int) :=
   [
         [-45968, -46160, -46465, -46739], [-45969, -46160, -46606, -46740], [-45971, -46160, -46741, -46876],
@@ -34255,6 +34914,7 @@ def expectedBlockingClauses358 : List (List Int) :=
         [-46339, -46471, -46749, -47063], [-45576, -46276, -46553, -46750], [-45576, -46414, -46554, -46753],
         [-45812, -46316, -46593, -46750], [-45812, -46454, -46594, -46753], [-45986, -46322, -46599, -46750]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses359 : List (List Int) :=
   [
         [-45986, -46460, -46600, -46753], [-46160, -46327, -46604, -46750], [-46160, -46465, -46605, -46753],
@@ -34274,6 +34934,7 @@ def expectedBlockingClauses359 : List (List Int) :=
         [-46617, -46757, -46890, -47062], [-45495, -45112, -46283, -46666], [-45496, -45112, -46421, -46667],
         [-45497, -45112, -46562, -46668], [-45512, -45692, -45964, -46664], [-45513, -45692, -46138, -46665]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses360 : List (List Int) :=
   [
         [-47175, -46007, -47203, -46665], [-45522, -46007, -46346, -46666], [-45523, -46007, -46484, -46667],
@@ -34293,6 +34954,7 @@ def expectedBlockingClauses360 : List (List Int) :=
         [-45100, -45903, -46766, -44956], [-45112, -47187, -46109, -47209], [-45112, -45932, -46283, -46762],
         [-45112, -45933, -46421, -46763], [-45112, -45934, -46562, -46764], [-45692, -47188, -46138, -47209]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses361 : List (List Int) :=
   [
         [-45692, -45961, -46316, -46762], [-45692, -45962, -46454, -46763], [-45692, -45963, -46595, -46764],
@@ -34312,6 +34974,7 @@ def expectedBlockingClauses361 : List (List Int) :=
         [-45100, -46077, -46772, -44956], [-45112, -45935, -47197, -47209], [-45112, -46106, -46283, -46768],
         [-45112, -46107, -46421, -46769], [-45112, -46108, -46562, -46770], [-45692, -45964, -47198, -47209]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses362 : List (List Int) :=
   [
         [-45692, -46135, -46316, -46768], [-45692, -46136, -46454, -46769], [-45692, -46137, -46595, -46770],
@@ -34331,6 +34994,7 @@ def expectedBlockingClauses362 : List (List Int) :=
         [-45525, -46007, -46246, -46666], [-46007, -47203, -47206, -46768], [-46007, -46347, -45466, -46897],
         [-46007, -46348, -45467, -47070], [-45532, -46181, -46247, -46666], [-47193, -46181, -47206, -46762]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses363 : List (List Int) :=
   [
         [-46181, -46353, -45466, -46903], [-46181, -46354, -45467, -47076], [-46008, -46347, -46762, -45204],
@@ -34350,6 +35014,7 @@ def expectedBlockingClauses363 : List (List Int) :=
         [-45692, -46454, -46594, -44994], [-45525, -46007, -46526, -46668], [-46007, -47203, -47208, -46770],
         [-46007, -46346, -46623, -44993], [-46007, -46484, -46624, -44994], [-46007, -46626, -45470, -46897]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses364 : List (List Int) :=
   [
         [-46007, -46627, -45471, -47070], [-45532, -46181, -46527, -46668], [-47193, -46181, -47208, -46764],
@@ -34369,6 +35034,7 @@ def expectedBlockingClauses364 : List (List Int) :=
         [-45018, -45296, -46800, -45216], [-45315, -46735, -46866, -45216], [-46009, -46765, -46898, -45216],
         [-46183, -46771, -46904, -45216], [-45399, -45466, -46908, -45216], [-45423, -45468, -46911, -45216]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses365 : List (List Int) :=
   [
         [-45447, -45470, -46913, -45216], [-45100, -46250, -45467, -44953], [-45100, -46389, -45469, -44954],
@@ -34388,6 +35054,7 @@ def expectedBlockingClauses365 : List (List Int) :=
         [-45523, -45833, -46484, -46671], [-45524, -45833, -46625, -46672], [-45526, -45833, -45298, -46897],
         [-45527, -45833, -45299, -47070], [-47175, -47183, -46202, -46664], [-45536, -46202, -46358, -46670]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses366 : List (List Int) :=
   [
         [-45537, -46202, -46497, -46671], [-45538, -46202, -46637, -46672], [-45540, -46202, -45298, -46920],
@@ -34407,6 +35074,7 @@ def expectedBlockingClauses366 : List (List Int) :=
         [-45697, -45789, -46601, -46764], [-45539, -47176, -46202, -46664], [-47180, -46202, -46358, -46762],
         [-47181, -46202, -46497, -46763], [-47182, -46202, -46637, -46764], [-47184, -46202, -46765, -46920]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses367 : List (List Int) :=
   [
         [-47185, -46202, -46766, -47093], [-45599, -45758, -45002, -46697], [-47180, -46190, -45002, -47209],
@@ -34426,6 +35094,7 @@ def expectedBlockingClauses367 : List (List Int) :=
         [-45697, -46143, -46601, -46776], [-45525, -45833, -47196, -46669], [-45833, -47200, -46346, -46774],
         [-45833, -47201, -46484, -46775], [-45833, -47202, -46625, -46776], [-45833, -47204, -46777, -46897]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses368 : List (List Int) :=
   [
         [-45833, -47205, -46778, -47070], [-45599, -46112, -45002, -46704], [-45821, -47200, -45002, -47209],
@@ -34445,6 +35114,7 @@ def expectedBlockingClauses368 : List (List Int) :=
         [-45834, -46347, -46762, -45208], [-46203, -46359, -46774, -45208], [-45835, -46348, -46762, -45220],
         [-46204, -46360, -46774, -45220], [-45104, -45727, -46385, -46763], [-45104, -46081, -46390, -46775]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses369 : List (List Int) :=
   [
         [-45104, -46254, -46391, -44995], [-45116, -45761, -46417, -46763], [-45116, -46115, -46424, -46775],
@@ -34464,6 +35134,7 @@ def expectedBlockingClauses369 : List (List Int) :=
         [-47183, -46202, -47208, -46764], [-46202, -46358, -46635, -44996], [-46202, -46497, -46636, -44997],
         [-46202, -46638, -45476, -46920], [-46202, -46639, -45477, -47093], [-45834, -46626, -46764, -45208]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses370 : List (List Int) :=
   [
         [-46203, -46638, -46776, -45208], [-45404, -45448, -44996, -45208], [-45428, -45450, -44997, -45208],
@@ -34483,6 +35154,7 @@ def expectedBlockingClauses370 : List (List Int) :=
         [-45104, -46393, -45475, -44958], [-45104, -46534, -45477, -44959], [-45116, -46289, -45473, -47012],
         [-45116, -46427, -45475, -47013], [-45116, -46568, -45477, -47014], [-45697, -45790, -46766, -47033]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses371 : List (List Int) :=
   [
         [-45697, -46144, -46778, -47040], [-45833, -47203, -46778, -47211], [-45833, -46346, -45473, -47067],
@@ -34502,6 +35174,7 @@ def expectedBlockingClauses371 : List (List Int) :=
         [-45540, -46028, -45300, -46920], [-45541, -46028, -45301, -47093], [-45529, -45842, -45003, -46665],
         [-45536, -46016, -45003, -46669], [-45530, -45847, -45141, -46665], [-45537, -46021, -45141, -46669]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses372 : List (List Int) :=
   [
         [-45531, -45851, -45153, -46665], [-45538, -46025, -45153, -46669], [-45027, -45410, -46673, -45212],
@@ -34521,6 +35194,7 @@ def expectedBlockingClauses372 : List (List Int) :=
         [-47180, -46016, -45003, -47209], [-45843, -45003, -46771, -46935], [-45844, -45003, -46772, -47108],
         [-45619, -45765, -45141, -46698], [-47181, -46021, -45141, -47209], [-45840, -44980, -45141, -46768]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses373 : List (List Int) :=
   [
         [-45848, -45141, -46771, -46938], [-45849, -45141, -46772, -47111], [-45622, -45766, -45153, -46698],
@@ -34540,6 +35214,7 @@ def expectedBlockingClauses373 : List (List Int) :=
         [-45842, -47190, -45003, -47209], [-46017, -45003, -46777, -46935], [-46018, -45003, -46778, -47108],
         [-45619, -45939, -45141, -46704], [-45847, -47191, -45141, -47209], [-46014, -44980, -45141, -46774]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses374 : List (List Int) :=
   [
         [-46022, -45141, -46777, -46938], [-46023, -45141, -46778, -47111], [-45622, -45940, -45153, -46704],
@@ -34559,6 +35234,7 @@ def expectedBlockingClauses374 : List (List Int) :=
         [-45120, -45941, -46424, -46775], [-45120, -46294, -46430, -44998], [-45702, -45796, -46451, -46769],
         [-45702, -45970, -46457, -46775], [-45702, -46327, -46463, -44998], [-45532, -45854, -46386, -46674]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses375 : List (List Int) :=
   [
         [-45854, -47193, -47207, -46775], [-45854, -46352, -46488, -44998], [-45854, -46491, -45480, -46903],
@@ -34578,6 +35254,7 @@ def expectedBlockingClauses375 : List (List Int) :=
         [-45434, -45456, -45000, -45212], [-45856, -46633, -46770, -45224], [-46030, -46639, -46776, -45224],
         [-45411, -45455, -44999, -45224], [-45435, -45457, -45000, -45224], [-45108, -46257, -45478, -44949]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses376 : List (List Int) :=
   [
         [-45108, -46396, -45480, -44950], [-45108, -46537, -45482, -44951], [-45120, -46294, -45478, -46845],
@@ -34597,6 +35274,7 @@ def expectedBlockingClauses376 : List (List Int) :=
         [-45854, -46352, -45479, -47073], [-45854, -46490, -45481, -47074], [-45854, -46631, -45483, -47075],
         [-45854, -45369, -46903, -47077], [-47183, -46028, -46772, -47211], [-46028, -46358, -45479, -47090]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses377 : List (List Int) :=
   [
         [-46028, -46497, -45481, -47091], [-46028, -46637, -45483, -47092], [-46028, -45369, -46920, -47094],
@@ -34616,6 +35294,7 @@ def expectedBlockingClauses377 : List (List Int) :=
         [-45633, -45439, -46716, -47124], [-45637, -45463, -46717, -47124], [-45639, -45675, -46692, -46951],
         [-45308, -45870, -46732, -46951], [-45316, -46044, -46738, -46951], [-45324, -46218, -46743, -46951]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses378 : List (List Int) :=
   [
         [-45163, -46752, -46951, -47125], [-45640, -45676, -46692, -47124], [-45309, -45871, -46732, -47124],
@@ -34635,6 +35314,7 @@ def expectedBlockingClauses378 : List (List Int) :=
         [-45869, -45996, -45472, -46907], [-45869, -45997, -45473, -47080], [-45615, -45938, -46217, -46705],
         [-45842, -47190, -46217, -46762], [-46014, -46217, -46501, -44995], [-46015, -46217, -45009, -44996]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses379 : List (List Int) :=
   [
         [-46017, -46217, -45472, -46935], [-46018, -46217, -45473, -47108], [-45639, -45947, -46705, -46951],
@@ -34654,6 +35334,7 @@ def expectedBlockingClauses379 : List (List Int) :=
         [-45638, -46437, -45484, -46850], [-45638, -46578, -45486, -46851], [-45638, -46781, -46853, -47025],
         [-45583, -45869, -46718, -46832], [-45869, -45995, -45472, -46894], [-45869, -46169, -45478, -46900]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses380 : List (List Int) :=
   [
         [-45869, -46493, -45484, -46905], [-45869, -45007, -45486, -46906], [-45869, -46781, -46908, -47080],
@@ -34673,6 +35354,7 @@ def expectedBlockingClauses380 : List (List Int) :=
         [-45639, -46719, -46951, -47026], [-45870, -45467, -46951, -47081], [-46044, -45473, -46951, -47098],
         [-46218, -45479, -46951, -47109], [-45438, -45485, -46951, -47120], [-45462, -45487, -46951, -47123]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses381 : List (List Int) :=
   [
         [-45496, -45587, -45877, -46658], [-45523, -45877, -46000, -46671], [-45530, -45877, -46174, -46674],
@@ -34692,6 +35374,7 @@ def expectedBlockingClauses381 : List (List Int) :=
         [-45849, -46225, -45469, -47111], [-45648, -45777, -46700, -46957], [-45827, -46052, -46763, -46957],
         [-45848, -46226, -46769, -46957], [-45875, -45464, -44994, -46957], [-45880, -45469, -46957, -47131]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses382 : List (List Int) :=
   [
         [-45649, -45778, -46700, -47130], [-45828, -46053, -46763, -47130], [-45849, -46227, -46769, -47130],
@@ -34711,6 +35394,7 @@ def expectedBlockingClauses382 : List (List Int) :=
         [-45878, -46175, -46769, -46957], [-46052, -46196, -46775, -46957], [-46223, -45464, -45000, -46957],
         [-46228, -45481, -46957, -47131], [-45649, -46126, -46711, -47130], [-45879, -46176, -46769, -47130]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses383 : List (List Int) :=
   [
         [-46053, -46197, -46775, -47130], [-46224, -45465, -45000, -47130], [-46228, -45480, -46958, -47130],
@@ -34730,6 +35414,7 @@ def expectedBlockingClauses383 : List (List Int) :=
         [-45648, -46723, -46957, -47029], [-45878, -45469, -46957, -47084], [-46052, -45475, -46957, -47101],
         [-46226, -45481, -46957, -47112], [-45464, -45489, -46957, -47129], [-45497, -45590, -45881, -46659]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses384 : List (List Int) :=
   [
         [-45524, -45881, -46004, -46672], [-45531, -45881, -46178, -46675], [-45015, -45881, -46686, -46912],
@@ -34749,6 +35434,7 @@ def expectedBlockingClauses384 : List (List Int) :=
         [-45652, -45779, -45934, -46764], [-45652, -45940, -46127, -46776], [-45590, -45881, -45934, -46707],
         [-45881, -47192, -46178, -46776], [-45881, -46005, -45476, -46912], [-45881, -46006, -45477, -47085]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses385 : List (List Int) :=
   [
         [-45622, -45940, -46229, -46707], [-45851, -47192, -46229, -46764], [-46026, -46229, -45476, -46940],
@@ -34768,6 +35454,7 @@ def expectedBlockingClauses385 : List (List Int) :=
         [-46229, -46788, -46941, -47113], [-45654, -46725, -46858, -47133], [-45883, -45470, -46913, -47133],
         [-46057, -45476, -46930, -47133], [-46231, -45482, -46941, -47133], [-45652, -46788, -46857, -47031]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses386 : List (List Int) :=
   [
         [-45590, -45881, -46726, -47007], [-45881, -46004, -45477, -47069], [-45881, -46178, -45483, -47075],
@@ -34787,6 +35474,7 @@ def expectedBlockingClauses386 : List (List Int) :=
         [-45326, -45392, -45434, -46754], [-45328, -45392, -45458, -46756], [-45163, -46370, -46759, -47125],
         [-45164, -46511, -46759, -47131], [-45165, -46649, -46759, -47134], [-45693, -45885, -46735, -47136]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses387 : List (List Int) :=
   [
         [-45698, -46059, -46741, -47136], [-45703, -46233, -46746, -47136], [-45163, -46371, -46751, -47136],
@@ -34806,6 +35494,7 @@ def expectedBlockingClauses387 : List (List Int) :=
         [-45710, -45981, -46476, -45474], [-45710, -45984, -46617, -45476], [-45017, -45376, -45902, -45298],
         [-45314, -45376, -45965, -46741], [-45376, -47194, -46182, -46777], [-45376, -45996, -45398, -45472]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses388 : List (List Int) :=
   [
         [-45376, -46001, -45422, -45474], [-45376, -46005, -45446, -45476], [-45376, -46011, -45368, -47087],
@@ -34825,6 +35514,7 @@ def expectedBlockingClauses388 : List (List Int) :=
         [-46220, -46370, -45369, -47125], [-46211, -45414, -46511, -45478], [-46228, -46511, -45369, -47131],
         [-46215, -45416, -46649, -45478], [-46223, -45440, -46649, -45480], [-46232, -46649, -45369, -47134]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses389 : List (List Int) :=
   [
         [-45885, -46185, -46771, -47136], [-46059, -46206, -46777, -47136], [-46220, -46371, -45478, -47136],
@@ -34844,6 +35534,7 @@ def expectedBlockingClauses389 : List (List Int) :=
         [-45376, -45422, -45444, -45488], [-45376, -45364, -46788, -47087], [-45384, -45404, -45448, -45486],
         [-45384, -45428, -45450, -45488], [-45384, -45365, -46788, -47104], [-45392, -45410, -45454, -45486]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses390 : List (List Int) :=
   [
         [-45392, -45434, -45456, -45488], [-45392, -45366, -46788, -47115], [-45166, -46620, -46756, -47136],
@@ -34863,6 +35554,7 @@ def expectedBlockingClauses390 : List (List Int) :=
         [-46218, -46370, -45369, -47109], [-45648, -46511, -46728, -47029], [-45878, -46511, -45367, -47084],
         [-46052, -46511, -45368, -47101], [-46226, -46511, -45369, -47112], [-45414, -46511, -46781, -47120]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses391 : List (List Int) :=
   [
         [-45653, -46649, -46728, -47031], [-45882, -46649, -45367, -47086], [-46056, -46649, -45368, -47103],
@@ -34882,6 +35574,7 @@ def expectedBlockingClauses391 : List (List Int) :=
         [-45165, -46650, -46757, -46963], [-45549, -45750, -45367, -46819], [-45658, -45774, -46308, -45467],
         [-45658, -45778, -46446, -45469], [-45658, -45781, -46587, -45471], [-45711, -45804, -46339, -45467]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses392 : List (List Int) :=
   [
         [-45711, -45808, -46477, -45469], [-45711, -45811, -46618, -45471], [-45026, -45729, -45385, -45297],
@@ -34901,6 +35594,7 @@ def expectedBlockingClauses392 : List (List Int) :=
         [-45331, -45972, -45393, -46742], [-45856, -47195, -45393, -46766], [-46018, -45393, -45411, -45473],
         [-46023, -45393, -45435, -45475], [-46027, -45393, -45459, -45477], [-46032, -45393, -45368, -46942]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses393 : List (List Int) :=
   [
         [-46046, -46372, -45368, -46952], [-46038, -45415, -46513, -45473], [-46054, -46513, -45368, -46958],
@@ -34920,6 +35614,7 @@ def expectedBlockingClauses393 : List (List Int) :=
         [-46232, -46650, -45483, -46963], [-45549, -46270, -46781, -46819], [-45658, -46310, -46781, -46859],
         [-45711, -46341, -46781, -46891], [-45377, -45358, -46781, -46914], [-45385, -45359, -46781, -46931]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses394 : List (List Int) :=
   [
         [-45393, -45360, -46781, -46942], [-45166, -46341, -46752, -46963], [-45885, -45358, -45467, -46963],
@@ -34939,6 +35634,7 @@ def expectedBlockingClauses394 : List (List Int) :=
         [-46059, -45365, -45477, -46963], [-46233, -45366, -45483, -46963], [-46371, -46643, -45487, -46963],
         [-46512, -46647, -45489, -46963], [-45549, -46269, -46781, -46810], [-45549, -46407, -46785, -46814]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses395 : List (List Int) :=
   [
         [-45549, -46548, -46788, -46817], [-45658, -46308, -46781, -46853], [-45658, -46446, -46785, -46856],
@@ -34958,6 +35654,7 @@ def expectedBlockingClauses395 : List (List Int) :=
         [-45417, -46651, -46781, -46950], [-45441, -46651, -46785, -46956], [-45664, -45332, -46796, -46973],
         [-45667, -45334, -46796, -46976], [-45670, -45336, -46796, -46978], [-45671, -45723, -46800, -46969]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses396 : List (List Int) :=
   [
         [-47176, -45334, -46082, -46799], [-45729, -45334, -46800, -46976], [-47176, -45908, -45336, -46798],
@@ -34977,6 +35674,7 @@ def expectedBlockingClauses396 : List (List Int) :=
         [-46260, -46406, -45173, -46807], [-46264, -46547, -45173, -46808], [-46269, -45173, -46810, -46992],
         [-45671, -46384, -46814, -46969], [-45332, -45285, -46814, -46973], [-45334, -45287, -46814, -46976]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses397 : List (List Int) :=
   [
         [-45336, -45289, -46814, -46978], [-45739, -45167, -46387, -44942], [-45913, -45167, -46391, -44946],
@@ -34996,6 +35694,7 @@ def expectedBlockingClauses397 : List (List Int) :=
         [-45917, -45169, -46671, -44948], [-46091, -45169, -46674, -44952], [-45169, -46544, -46682, -46816],
         [-45169, -46684, -46819, -46987], [-45746, -45171, -46668, -44944], [-45920, -45171, -46672, -44948]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses398 : List (List Int) :=
   [
         [-46094, -45171, -46675, -44952], [-45171, -46687, -46819, -46990], [-45676, -46309, -46828, -47026],
@@ -35015,6 +35714,7 @@ def expectedBlockingClauses398 : List (List Int) :=
         [-45784, -46106, -46284, -46845], [-45784, -46107, -46422, -46846], [-45784, -46108, -46563, -46847],
         [-45784, -46109, -46702, -46848], [-45784, -46111, -46849, -47009], [-45762, -45958, -47197, -46831]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses399 : List (List Int) :=
   [
         [-45958, -46112, -46290, -46845], [-45958, -46113, -46428, -46846], [-45958, -46114, -46569, -46847],
@@ -35034,6 +35734,7 @@ def expectedBlockingClauses399 : List (List Int) :=
         [-46447, -46583, -46721, -46857], [-46447, -46723, -46859, -47029], [-46588, -46726, -46859, -47031],
         [-45579, -45757, -46866, -47001], [-45517, -45720, -45989, -46793], [-47178, -45989, -46145, -46861]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses400 : List (List Int) :=
   [
         [-45787, -45989, -46323, -46862], [-45788, -45989, -46461, -46863], [-45789, -45989, -46602, -46864],
@@ -35053,6 +35754,7 @@ def expectedBlockingClauses400 : List (List Int) :=
         [-45338, -46245, -46882, -46969], [-45570, -46274, -46478, -46824], [-45807, -46314, -46478, -46862],
         [-45981, -46320, -46478, -46868], [-46155, -46325, -46478, -46873], [-46333, -46478, -46882, -47059]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses401 : List (List Int) :=
   [
         [-45574, -46275, -46619, -46824], [-45810, -46315, -46619, -46862], [-45984, -46321, -46619, -46868],
@@ -35072,6 +35774,7 @@ def expectedBlockingClauses401 : List (List Int) :=
         [-45577, -46555, -46758, -46826], [-45813, -46595, -46758, -46864], [-45987, -46601, -46758, -46870],
         [-46161, -46606, -46758, -46875], [-46618, -46758, -46889, -47064], [-45338, -46663, -46891, -46969]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses402 : List (List Int) :=
   [
         [-45565, -46340, -46692, -46827], [-45803, -46340, -46732, -46865], [-45977, -46340, -46738, -46871],
@@ -35091,6 +35794,7 @@ def expectedBlockingClauses402 : List (List Int) :=
         [-45313, -45266, -46866, -47086], [-45315, -45272, -46866, -47087], [-45248, -45663, -45894, -46860],
         [-45248, -47186, -46076, -47210], [-45248, -45898, -45278, -46894], [-45248, -45899, -45284, -46895]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses403 : List (List Int) :=
   [
         [-45248, -45900, -45290, -46896], [-45248, -45901, -45296, -46897], [-45248, -45903, -46898, -46973],
@@ -35110,6 +35814,7 @@ def expectedBlockingClauses403 : List (List Int) :=
         [-46009, -45367, -46897, -47088], [-45248, -45663, -46068, -46861], [-45248, -45902, -47196, -47210],
         [-45248, -46072, -45278, -46900], [-45248, -46073, -45284, -46901], [-45248, -46074, -45290, -46902]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses404 : List (List Int) :=
   [
         [-45248, -46075, -45296, -46903], [-45248, -46077, -46904, -46973], [-45595, -45936, -47197, -47210],
@@ -35129,6 +35834,7 @@ def expectedBlockingClauses404 : List (List Int) :=
         [-45248, -45279, -46908, -46973], [-45595, -45936, -46279, -46894], [-45595, -46110, -46280, -46900],
         [-45340, -46318, -46908, -47039], [-46010, -47204, -47206, -46900], [-46010, -46344, -46485, -46905]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses405 : List (List Int) :=
   [
         [-46010, -46345, -46626, -46906], [-46010, -46346, -46765, -46907], [-46010, -46348, -46908, -47071],
@@ -35148,6 +35854,7 @@ def expectedBlockingClauses405 : List (List Int) :=
         [-45011, -45254, -46387, -44942], [-45584, -45254, -46419, -46833], [-45996, -45254, -46482, -46895],
         [-46170, -45254, -46488, -46901], [-45254, -45419, -46911, -47081], [-45015, -46388, -45266, -44942]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses406 : List (List Int) :=
   [
         [-45591, -46420, -45266, -46833], [-46005, -46483, -45266, -46895], [-46179, -46489, -45266, -46901],
@@ -35167,6 +35874,7 @@ def expectedBlockingClauses406 : List (List Int) :=
         [-46011, -46627, -46896, -47088], [-46185, -46633, -46902, -47088], [-45248, -45297, -46914, -46973],
         [-45595, -45936, -46697, -46897], [-45595, -46110, -46698, -46903], [-45340, -46736, -46914, -47039]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses407 : List (List Int) :=
   [
         [-46010, -47204, -47209, -46903], [-46010, -46347, -46762, -46907], [-46010, -46485, -46763, -46910],
@@ -35186,6 +35894,7 @@ def expectedBlockingClauses407 : List (List Int) :=
         [-45533, -46184, -46800, -46972], [-47194, -46184, -46898, -47211], [-46184, -46353, -46908, -47073],
         [-46184, -46491, -46911, -47074], [-46184, -46632, -46913, -47075], [-46184, -46771, -46914, -47076]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses408 : List (List Int) :=
   [
         [-45996, -45254, -46898, -47067], [-46170, -45254, -46904, -47073], [-46001, -45260, -46898, -47068],
@@ -35205,6 +35914,7 @@ def expectedBlockingClauses408 : List (List Int) :=
         [-45611, -45763, -46898, -47016], [-45342, -47178, -46145, -47210], [-45342, -45792, -46898, -47045],
         [-45540, -47176, -46205, -46798], [-47180, -46205, -46359, -46894], [-47181, -46205, -46498, -46895]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses409 : List (List Int) :=
   [
         [-47182, -46205, -46638, -46896], [-47183, -46205, -46777, -46897], [-47185, -46205, -46898, -47094],
@@ -35224,6 +35934,7 @@ def expectedBlockingClauses409 : List (List Int) :=
         [-45342, -45791, -47198, -47210], [-45342, -46146, -46921, -47045], [-45526, -45836, -47196, -46802],
         [-45836, -47200, -46347, -46917], [-45836, -47201, -46485, -46918], [-45836, -47202, -46626, -46919]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses410 : List (List Int) :=
   [
         [-45836, -47203, -46765, -46920], [-45836, -47205, -46921, -47071], [-45316, -46141, -45256, -46867],
@@ -35243,6 +35954,7 @@ def expectedBlockingClauses410 : List (List Int) :=
         [-46205, -46356, -46498, -46922], [-46205, -46357, -46638, -46923], [-46205, -46358, -46777, -46924],
         [-46205, -46360, -46925, -47094], [-45021, -46252, -45262, -44945], [-45604, -46287, -45262, -46839]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses411 : List (List Int) :=
   [
         [-45827, -46344, -45262, -46894], [-46196, -46356, -45262, -46917], [-45401, -45262, -46925, -47101],
@@ -35262,6 +35974,7 @@ def expectedBlockingClauses411 : List (List Int) :=
         [-45025, -46393, -45274, -44946], [-45609, -46427, -45274, -46840], [-45834, -46484, -45274, -46895],
         [-46203, -46497, -45274, -46918], [-44984, -45452, -45274, -46926], [-45429, -45274, -46928, -47104]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses412 : List (List Int) :=
   [
         [-45837, -46486, -46895, -47105], [-46206, -46499, -46918, -47105], [-45250, -45293, -46930, -46976],
@@ -35281,6 +35994,7 @@ def expectedBlockingClauses412 : List (List Int) :=
         [-45836, -46766, -46931, -47071], [-47184, -46205, -47209, -46897], [-46205, -46359, -46774, -46924],
         [-46205, -46498, -46775, -46927], [-46205, -46638, -46776, -46929], [-46205, -46778, -46931, -47094]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses413 : List (List Int) :=
   [
         [-45019, -45256, -46670, -44948], [-45600, -45256, -46705, -46842], [-45822, -45256, -46762, -46897],
@@ -35300,6 +36014,7 @@ def expectedBlockingClauses413 : List (List Int) :=
         [-45831, -45268, -46898, -47069], [-46200, -45268, -46921, -47092], [-45834, -45274, -46898, -47070],
         [-46203, -45274, -46921, -47093], [-45494, -45627, -45768, -46799], [-45499, -45627, -45942, -46802]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses414 : List (List Int) :=
   [
         [-45520, -45344, -46805, -47050], [-47175, -45857, -47194, -46802], [-45529, -45857, -46353, -44949],
@@ -35319,6 +36034,7 @@ def expectedBlockingClauses414 : List (List Int) :=
         [-47180, -46017, -45258, -47210], [-45840, -45258, -45430, -46901], [-45841, -45258, -45454, -46902],
         [-45842, -45258, -45478, -46903], [-45844, -45258, -46904, -47109], [-45326, -45794, -45264, -46861]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses415 : List (List Int) :=
   [
         [-47181, -46022, -45264, -47210], [-45840, -45406, -45264, -46900], [-45846, -45264, -45456, -46902],
@@ -35338,6 +36054,7 @@ def expectedBlockingClauses415 : List (List Int) :=
         [-46014, -45258, -45430, -46918], [-46015, -45258, -45454, -46919], [-46016, -45258, -45478, -46920],
         [-46018, -45258, -46921, -47109], [-45326, -45968, -45264, -46867], [-45848, -47191, -45264, -47210]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses416 : List (List Int) :=
   [
         [-46014, -45406, -45264, -46917], [-46020, -45264, -45456, -46919], [-46021, -45264, -45480, -46920],
@@ -35357,6 +36074,7 @@ def expectedBlockingClauses416 : List (List Int) :=
         [-45623, -46293, -45270, -46845], [-45852, -46351, -45270, -46900], [-46026, -46357, -45270, -46917],
         [-44979, -45432, -45270, -46933], [-45409, -45270, -46936, -47114], [-45033, -46257, -45276, -44949]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses417 : List (List Int) :=
   [
         [-45625, -46294, -45276, -46845], [-45855, -46352, -45276, -46900], [-46029, -46358, -45276, -46917],
@@ -35376,6 +36094,7 @@ def expectedBlockingClauses417 : List (List Int) :=
         [-45627, -45942, -46565, -46919], [-45344, -46608, -46941, -47050], [-45857, -47194, -47208, -46919],
         [-45857, -46353, -46629, -46934], [-45857, -46491, -46630, -46937], [-45857, -46631, -46771, -46940]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses418 : List (List Int) :=
   [
         [-45857, -46633, -46941, -47077], [-47184, -46031, -47208, -46902], [-46031, -46359, -46635, -46934],
@@ -35395,6 +36114,7 @@ def expectedBlockingClauses418 : List (List Int) :=
         [-45258, -45430, -44998, -46938], [-45258, -45454, -44999, -46940], [-45258, -45479, -46942, -47109],
         [-45029, -45264, -46674, -44952], [-45620, -45264, -46711, -46848], [-45848, -45264, -46769, -46903]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses419 : List (List Int) :=
   [
         [-46022, -45264, -46775, -46920], [-45264, -45456, -45000, -46940], [-45264, -45481, -46942, -47112],
@@ -35414,6 +36134,7 @@ def expectedBlockingClauses419 : List (List Int) :=
         [-45617, -45386, -46853, -47109], [-45581, -45863, -46504, -46832], [-45597, -46037, -46504, -46839],
         [-45613, -46211, -46504, -46845], [-45633, -46504, -46853, -47120], [-45582, -45867, -46642, -46832]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses420 : List (List Int) :=
   [
         [-45598, -46041, -46642, -46839], [-45614, -46215, -46642, -46845], [-45637, -46642, -46853, -47123],
@@ -35433,6 +36154,7 @@ def expectedBlockingClauses420 : List (List Int) :=
         [-45864, -46505, -46905, -47126], [-45868, -46643, -46906, -47126], [-45871, -46781, -46907, -47126],
         [-45542, -45910, -46399, -46922], [-45542, -45911, -46540, -46923], [-45542, -45912, -46679, -46924]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses421 : List (List Int) :=
   [
         [-45641, -45948, -46925, -47026], [-45704, -45978, -46925, -47055], [-45011, -45370, -45898, -44945],
@@ -35452,6 +36174,7 @@ def expectedBlockingClauses421 : List (List Int) :=
         [-45822, -45378, -47200, -46900], [-45378, -46188, -45424, -46933], [-45378, -46189, -45448, -46934],
         [-45378, -46190, -45472, -46935], [-45378, -46192, -46936, -47098], [-45863, -46167, -46504, -46900]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses422 : List (List Int) :=
   [
         [-46037, -46188, -46504, -46917], [-46212, -46504, -46936, -47120], [-45867, -46168, -46642, -46900],
@@ -35471,6 +36194,7 @@ def expectedBlockingClauses422 : List (List Int) :=
         [-46046, -45425, -46922, -47126], [-46220, -45431, -46933, -47126], [-45542, -46541, -46950, -46983],
         [-45641, -45675, -46553, -46880], [-45641, -45773, -46560, -46906], [-45641, -45947, -46566, -46923]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses423 : List (List Int) :=
   [
         [-45641, -46121, -46571, -46934], [-45641, -46580, -46950, -47026], [-45704, -46612, -46950, -47055],
@@ -35490,6 +36214,7 @@ def expectedBlockingClauses423 : List (List Int) :=
         [-45378, -46191, -46774, -46935], [-45378, -45473, -46952, -47098], [-45324, -45386, -46743, -46881],
         [-45843, -45386, -46768, -46907], [-46017, -45386, -46774, -46924], [-45386, -45479, -46952, -47109]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses424 : List (List Int) :=
   [
         [-45632, -46504, -46716, -46852], [-45863, -46504, -44992, -46907], [-46037, -46504, -44995, -46924],
@@ -35509,6 +36234,7 @@ def expectedBlockingClauses424 : List (List Int) :=
         [-46044, -46780, -46925, -47097], [-46218, -46780, -46936, -47108], [-45544, -45555, -46261, -46850],
         [-45544, -45558, -46544, -46854], [-45544, -45559, -46683, -46855], [-45571, -45706, -46856, -47059]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses425 : List (List Int) :=
   [
         [-45589, -45372, -46856, -47084], [-45605, -45380, -46856, -47101], [-45621, -45388, -46856, -47112],
@@ -35528,6 +36254,7 @@ def expectedBlockingClauses425 : List (List Int) :=
         [-45840, -46211, -46363, -46901], [-45864, -46363, -46911, -47120], [-45825, -46049, -46646, -46895],
         [-45846, -46223, -46646, -46901], [-45876, -46646, -46911, -47129], [-45826, -46052, -46784, -46895]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses426 : List (List Int) :=
   [
         [-45847, -46226, -46784, -46901], [-45879, -46784, -46911, -47131], [-45864, -46364, -46905, -47132],
@@ -35547,6 +36274,7 @@ def expectedBlockingClauses426 : List (List Int) :=
         [-45588, -45372, -46107, -46846], [-45372, -46001, -47201, -46918], [-45372, -46167, -45394, -46933],
         [-45372, -46173, -45444, -46937], [-45372, -46174, -45468, -46938], [-45372, -46176, -46939, -47084]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses427 : List (List Int) :=
   [
         [-45021, -45380, -46079, -44950], [-45604, -45380, -46113, -46846], [-45827, -45380, -47201, -46901],
@@ -35566,6 +36294,7 @@ def expectedBlockingClauses427 : List (List Int) :=
         [-45544, -46545, -46956, -46987], [-45650, -45678, -46554, -46884], [-45650, -45777, -46561, -46909],
         [-45650, -45951, -46567, -46926], [-45650, -46125, -46572, -46937], [-45650, -46584, -46956, -47029]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses428 : List (List Int) :=
   [
         [-45706, -46615, -46956, -47059], [-45310, -45372, -46594, -46884], [-45372, -46001, -46624, -46926],
@@ -35585,6 +36314,7 @@ def expectedBlockingClauses428 : List (List Int) :=
         [-45875, -46646, -44994, -46910], [-46049, -46646, -44997, -46927], [-46223, -46646, -45000, -46938],
         [-46646, -45489, -46958, -47129], [-45164, -46755, -46885, -47132], [-45880, -45469, -46910, -47132]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses429 : List (List Int) :=
   [
         [-46054, -45475, -46927, -47132], [-46228, -45481, -46938, -47132], [-45544, -46261, -46947, -46980],
@@ -35604,6 +36334,7 @@ def expectedBlockingClauses429 : List (List Int) :=
         [-45637, -46367, -46858, -47123], [-45586, -45875, -46508, -46834], [-45602, -46049, -46508, -46841],
         [-45618, -46223, -46508, -46847], [-45646, -46508, -46858, -47129], [-45590, -45882, -46787, -46834]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses430 : List (List Int) :=
   [
         [-45606, -46056, -46787, -46841], [-45622, -46230, -46787, -46847], [-45654, -46787, -46858, -47134],
@@ -35623,6 +36354,7 @@ def expectedBlockingClauses430 : List (List Int) :=
         [-45546, -45915, -46403, -46926], [-45546, -45919, -46686, -46929], [-45655, -45955, -46930, -47031],
         [-45708, -45985, -46930, -47062], [-45015, -45374, -45900, -44947], [-45591, -45374, -45934, -46841]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses431 : List (List Int) :=
   [
         [-45374, -47192, -46179, -46919], [-45374, -45994, -45396, -46923], [-45374, -45999, -45420, -46926],
@@ -35642,6 +36374,7 @@ def expectedBlockingClauses431 : List (List Int) :=
         [-45382, -46201, -46941, -47103], [-45867, -46168, -46367, -46902], [-46041, -46189, -46367, -46919],
         [-46216, -46367, -46941, -47123], [-45875, -46173, -46508, -46902], [-46049, -46194, -46508, -46919]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses432 : List (List Int) :=
   [
         [-46224, -46508, -46941, -47129], [-45882, -46178, -46787, -46902], [-46056, -46199, -46787, -46919],
@@ -35661,6 +36394,7 @@ def expectedBlockingClauses432 : List (List Int) :=
         [-45312, -45374, -46453, -46884], [-45374, -46005, -46483, -46926], [-45374, -46179, -46489, -46937],
         [-45374, -45421, -46956, -47086], [-45320, -45382, -46459, -46884], [-45831, -45382, -46483, -46909]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses433 : List (List Int) :=
   [
         [-45382, -46200, -46496, -46937], [-45382, -45427, -46956, -47103], [-45328, -45390, -46464, -46884],
@@ -35680,6 +36414,7 @@ def expectedBlockingClauses433 : List (List Int) :=
         [-45655, -46442, -46956, -47027], [-45655, -46725, -46961, -47030], [-45708, -46335, -46950, -47053],
         [-45708, -46473, -46956, -47057], [-45708, -46756, -46961, -47061], [-45374, -45396, -46950, -47079]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses434 : List (List Int) :=
   [
         [-45374, -45420, -46956, -47082], [-45374, -45470, -46961, -47085], [-45382, -45402, -46950, -47096],
@@ -35699,6 +36434,7 @@ def expectedBlockingClauses434 : List (List Int) :=
         [-45657, -45685, -46891, -47032], [-45315, -45376, -46891, -47087], [-45323, -45384, -46891, -47104],
         [-45331, -45392, -46891, -47115], [-45548, -45738, -46268, -46907], [-45548, -45742, -46406, -46910]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses435 : List (List Int) :=
   [
         [-45548, -45745, -46547, -46912], [-45657, -45783, -46914, -47032], [-45710, -45814, -46914, -47064],
@@ -35718,6 +36454,7 @@ def expectedBlockingClauses435 : List (List Int) :=
         [-45625, -45941, -45392, -46842], [-45855, -47193, -45392, -46897], [-46016, -45392, -45410, -46924],
         [-46021, -45392, -45434, -46927], [-46025, -45392, -45458, -46929], [-46030, -45392, -46931, -47115]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses436 : List (List Int) :=
   [
         [-45870, -45995, -46370, -46897], [-46016, -46218, -46370, -46920], [-46045, -46370, -46931, -47125],
@@ -35737,6 +36474,7 @@ def expectedBlockingClauses436 : List (List Int) :=
         [-46231, -46650, -46940, -47136], [-45548, -46269, -46952, -46992], [-45657, -45684, -46276, -46881],
         [-45657, -45782, -46283, -46907], [-45657, -45956, -46289, -46924], [-45657, -46130, -46294, -46935]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses437 : List (List Int) :=
   [
         [-45657, -46308, -46952, -47032], [-45710, -46339, -46952, -47064], [-45314, -45376, -46316, -46881],
@@ -35756,6 +36494,7 @@ def expectedBlockingClauses437 : List (List Int) :=
         [-45384, -45429, -46958, -47104], [-45330, -45392, -46465, -46885], [-45855, -45392, -46490, -46910],
         [-46029, -45392, -46497, -46927], [-45392, -45435, -46958, -47115], [-45639, -46370, -46437, -46855]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses438 : List (List Int) :=
   [
         [-45870, -46370, -46493, -46910], [-46044, -46370, -46500, -46927], [-46218, -46370, -46501, -46938],
@@ -35775,6 +36514,7 @@ def expectedBlockingClauses438 : List (List Int) :=
         [-45166, -46618, -46888, -47136], [-45885, -45447, -46912, -47136], [-46059, -45453, -46929, -47136],
         [-46233, -45459, -46940, -47136], [-45548, -46268, -46952, -46982], [-45548, -46406, -46958, -46986]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses439 : List (List Int) :=
   [
         [-45548, -46547, -46961, -46989], [-45657, -46307, -46952, -47025], [-45657, -46445, -46958, -47028],
@@ -35794,6 +36534,7 @@ def expectedBlockingClauses439 : List (List Int) :=
         [-45520, -45703, -46234, -46796], [-45534, -45858, -46234, -46800], [-45541, -46032, -46234, -46803],
         [-45028, -46234, -45360, -46810], [-45030, -46234, -45363, -46814], [-45032, -46234, -45366, -46817]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses440 : List (List Int) :=
   [
         [-45034, -46234, -45369, -46819], [-45566, -45163, -46373, -46828], [-45585, -45872, -46373, -46836],
@@ -35813,6 +36554,7 @@ def expectedBlockingClauses440 : List (List Int) :=
         [-45856, -46234, -45369, -46914], [-45163, -45804, -46373, -46866], [-45823, -46046, -46373, -46898],
         [-45844, -46220, -46373, -46904], [-45864, -46373, -46505, -46911], [-45868, -46373, -46643, -46913]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses441 : List (List Int) :=
   [
         [-45871, -46373, -46781, -46914], [-45164, -45808, -46514, -46866], [-45828, -46054, -46514, -46898],
@@ -35832,6 +36574,7 @@ def expectedBlockingClauses441 : List (List Int) :=
         [-46038, -46364, -46514, -46925], [-46050, -46514, -46647, -46930], [-46053, -46514, -46785, -46931],
         [-45165, -45985, -46652, -46872], [-45884, -46006, -46652, -46898], [-46027, -46232, -46652, -46921]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses442 : List (List Int) :=
   [
         [-46042, -46368, -46652, -46925], [-46050, -46509, -46652, -46928], [-46057, -46652, -46788, -46931],
@@ -35851,6 +36594,7 @@ def expectedBlockingClauses442 : List (List Int) :=
         [-45885, -46183, -46790, -46904], [-46059, -46204, -46790, -46921], [-46219, -46371, -46790, -46936],
         [-46227, -46512, -46790, -46939], [-46231, -46650, -46790, -46941], [-45712, -46333, -46479, -46947]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses443 : List (List Int) :=
   [
         [-45712, -46336, -46620, -46950], [-45712, -46339, -46759, -46952], [-45693, -45886, -46318, -46882],
@@ -35870,6 +36614,7 @@ def expectedBlockingClauses443 : List (List Int) :=
         [-45886, -45421, -45364, -46956], [-45886, -45423, -45367, -46958], [-45698, -46060, -46462, -46886],
         [-45837, -46060, -46486, -46911], [-46060, -46206, -46499, -46939], [-46060, -45359, -45425, -46947]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses444 : List (List Int) :=
   [
         [-46060, -45427, -45365, -46956], [-46060, -45429, -45368, -46958], [-45703, -46234, -46467, -46886],
@@ -35889,6 +36634,7 @@ def expectedBlockingClauses444 : List (List Int) :=
         [-45163, -46373, -46612, -46889], [-45872, -46373, -45443, -46913], [-46046, -46373, -45449, -46930],
         [-46220, -46373, -45455, -46941], [-46373, -46505, -45461, -46956], [-45164, -46514, -46615, -46889]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses445 : List (List Int) :=
   [
         [-45880, -46514, -45445, -46913], [-46054, -46514, -45451, -46930], [-46228, -46514, -45457, -46941],
@@ -35908,6 +36654,7 @@ def expectedBlockingClauses445 : List (List Int) :=
         [-46232, -46652, -45483, -46942], [-45663, -45333, -46800, -46969], [-45666, -45335, -46803, -46969],
         [-45669, -45337, -46805, -46969], [-45673, -45722, -46796, -46973], [-47176, -45335, -46083, -46972]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses446 : List (List Int) :=
   [
         [-45728, -45335, -46803, -46973], [-47176, -45909, -45337, -46971], [-45734, -45337, -46805, -46973],
@@ -35927,6 +36674,7 @@ def expectedBlockingClauses446 : List (List Int) :=
         [-46264, -46548, -45174, -46981], [-46268, -45174, -46819, -46983], [-45673, -46383, -46796, -46987],
         [-45333, -45284, -46800, -46987], [-45335, -45286, -46803, -46987], [-45337, -45288, -46805, -46987]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses447 : List (List Int) :=
   [
         [-45740, -45168, -46387, -44954], [-45914, -45168, -46391, -44958], [-46088, -45168, -46394, -44962],
@@ -35946,6 +36694,7 @@ def expectedBlockingClauses447 : List (List Int) :=
         [-46092, -45170, -46674, -44964], [-45170, -46545, -46682, -46989], [-45170, -46683, -46814, -46992],
         [-45747, -45172, -46668, -44956], [-45921, -45172, -46672, -44960], [-46095, -45172, -46675, -44964]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses448 : List (List Int) :=
   [
         [-45172, -46686, -46817, -46992], [-45675, -46311, -46853, -47001], [-45678, -46449, -46856, -47001],
@@ -35965,6 +36714,7 @@ def expectedBlockingClauses448 : List (List Int) :=
         [-45786, -46107, -46423, -47019], [-45786, -46108, -46564, -47020], [-45786, -46109, -46703, -47021],
         [-45786, -46110, -46836, -47022], [-45763, -45960, -47197, -47004], [-45960, -46112, -46291, -47018]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses449 : List (List Int) :=
   [
         [-45960, -46113, -46429, -47019], [-45960, -46114, -46570, -47020], [-45960, -46115, -46709, -47021],
@@ -35984,6 +36734,7 @@ def expectedBlockingClauses449 : List (List Int) :=
         [-46449, -46722, -46856, -47032], [-46590, -46725, -46858, -47032], [-45580, -45756, -46828, -47039],
         [-45518, -45720, -45991, -46966], [-47178, -45991, -46146, -47034], [-45787, -45991, -46324, -47035]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses450 : List (List Int) :=
   [
         [-45788, -45991, -46462, -47036], [-45789, -45991, -46603, -47037], [-45790, -45991, -46742, -47038],
@@ -36003,6 +36754,7 @@ def expectedBlockingClauses450 : List (List Int) :=
         [-45571, -46274, -46480, -46997], [-45808, -46314, -46480, -47035], [-45982, -46320, -46480, -47041],
         [-46156, -46325, -46480, -47046], [-46332, -46480, -46886, -47055], [-45575, -46275, -46621, -46997]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses451 : List (List Int) :=
   [
         [-45811, -46315, -46621, -47035], [-45985, -46321, -46621, -47041], [-46159, -46326, -46621, -47046],
@@ -36022,6 +36774,7 @@ def expectedBlockingClauses451 : List (List Int) :=
         [-45814, -46595, -46760, -47037], [-45988, -46601, -46760, -47043], [-46162, -46606, -46760, -47048],
         [-46617, -46760, -46891, -47062], [-45339, -46662, -46796, -47064], [-45566, -46342, -46692, -47000]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses452 : List (List Int) :=
   [
         [-45804, -46342, -46732, -47038], [-45978, -46342, -46738, -47044], [-46152, -46342, -46743, -47049],
@@ -36041,6 +36794,7 @@ def expectedBlockingClauses452 : List (List Int) :=
         [-45314, -45273, -46914, -47039], [-45249, -45664, -45894, -47033], [-45249, -47186, -46077, -47211],
         [-45249, -45898, -45279, -47067], [-45249, -45899, -45285, -47068], [-45249, -45900, -45291, -47069]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses453 : List (List Int) :=
   [
         [-45249, -45901, -45297, -47070], [-45249, -45902, -46800, -47071], [-45596, -47187, -46111, -47211],
@@ -36060,6 +36814,7 @@ def expectedBlockingClauses453 : List (List Int) :=
         [-45249, -45664, -46068, -47034], [-45249, -45903, -47196, -47211], [-45249, -46072, -45279, -47073],
         [-45249, -46073, -45285, -47074], [-45249, -46074, -45291, -47075], [-45249, -46075, -45297, -47076]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses454 : List (List Int) :=
   [
         [-45249, -46076, -46800, -47077], [-45596, -45937, -47197, -47211], [-45596, -46110, -46836, -47077],
@@ -36079,6 +36834,7 @@ def expectedBlockingClauses454 : List (List Int) :=
         [-45596, -45937, -46279, -47067], [-45596, -46111, -46280, -47073], [-45341, -46317, -46866, -47081],
         [-46012, -47205, -47206, -47073], [-46012, -46344, -46486, -47078], [-46012, -46345, -46627, -47079]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses455 : List (List Int) :=
   [
         [-46012, -46346, -46766, -47080], [-46012, -46347, -46898, -47081], [-47195, -46186, -47206, -47067],
@@ -36098,6 +36854,7 @@ def expectedBlockingClauses455 : List (List Int) :=
         [-45585, -45255, -46419, -47006], [-45997, -45255, -46482, -47068], [-46171, -45255, -46488, -47074],
         [-45255, -45418, -46908, -47084], [-45016, -46388, -45267, -44954], [-45592, -46420, -45267, -47006]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses456 : List (List Int) :=
   [
         [-46006, -46483, -45267, -47068], [-46180, -46489, -45267, -47074], [-45420, -45267, -46913, -47084],
@@ -36117,6 +36874,7 @@ def expectedBlockingClauses456 : List (List Int) :=
         [-46185, -46632, -46915, -47075], [-45249, -45296, -46800, -47087], [-45596, -45937, -46697, -47070],
         [-45596, -46111, -46698, -47076], [-45341, -46735, -46866, -47087], [-46012, -47205, -47209, -47076]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses457 : List (List Int) :=
   [
         [-46012, -46348, -46762, -47080], [-46012, -46486, -46763, -47083], [-46012, -46627, -46764, -47085],
@@ -36136,6 +36894,7 @@ def expectedBlockingClauses457 : List (List Int) :=
         [-47195, -46186, -47210, -47071], [-46186, -46354, -46900, -47081], [-46186, -46492, -46901, -47084],
         [-46186, -46633, -46902, -47086], [-46186, -46772, -46903, -47087], [-45997, -45255, -46894, -47071]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses458 : List (List Int) :=
   [
         [-46171, -45255, -46900, -47077], [-46002, -45261, -46895, -47071], [-46176, -45261, -46901, -47077],
@@ -36155,6 +36914,7 @@ def expectedBlockingClauses458 : List (List Int) :=
         [-45343, -47178, -46146, -47211], [-45343, -45791, -46872, -47071], [-45541, -47176, -46207, -46971],
         [-47180, -46207, -46360, -47067], [-47181, -46207, -46499, -47068], [-47182, -46207, -46639, -47069]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses459 : List (List Int) :=
   [
         [-47183, -46207, -46778, -47070], [-47184, -46207, -46921, -47071], [-45317, -45787, -45257, -47033],
@@ -36174,6 +36934,7 @@ def expectedBlockingClauses459 : List (List Int) :=
         [-45343, -46145, -46872, -47094], [-45527, -45838, -47196, -46975], [-45838, -47200, -46348, -47090],
         [-45838, -47201, -46486, -47091], [-45838, -47202, -46627, -47092], [-45838, -47203, -46766, -47093]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses460 : List (List Int) :=
   [
         [-45838, -47204, -46898, -47094], [-45317, -46141, -45257, -47040], [-45823, -47200, -45257, -47211],
@@ -36193,6 +36954,7 @@ def expectedBlockingClauses460 : List (List Int) :=
         [-46207, -46357, -46639, -47096], [-46207, -46358, -46778, -47097], [-46207, -46359, -46921, -47098],
         [-45022, -46252, -45263, -44957], [-45605, -46287, -45263, -47012], [-45828, -46344, -45263, -47067]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses461 : List (List Int) :=
   [
         [-46197, -46356, -45263, -47090], [-45400, -45263, -46928, -47098], [-45024, -46253, -45269, -44957],
@@ -36212,6 +36974,7 @@ def expectedBlockingClauses461 : List (List Int) :=
         [-45610, -46427, -45275, -47013], [-45835, -46484, -45275, -47068], [-46204, -46497, -45275, -47091],
         [-44984, -45453, -45275, -47099], [-45428, -45275, -46931, -47101], [-45837, -46485, -46932, -47068]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses462 : List (List Int) :=
   [
         [-46206, -46498, -46932, -47091], [-45251, -45292, -46803, -47103], [-45612, -45763, -46558, -47069],
@@ -36231,6 +36994,7 @@ def expectedBlockingClauses462 : List (List Int) :=
         [-47185, -46207, -47209, -47070], [-46207, -46360, -46774, -47097], [-46207, -46499, -46775, -47100],
         [-46207, -46639, -46776, -47102], [-46207, -46777, -46921, -47104], [-45020, -45257, -46670, -44960]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses463 : List (List Int) :=
   [
         [-45601, -45257, -46705, -47015], [-45823, -45257, -46762, -47070], [-46192, -45257, -46774, -47093],
@@ -36250,6 +37014,7 @@ def expectedBlockingClauses463 : List (List Int) :=
         [-46201, -45269, -46919, -47094], [-45835, -45275, -46897, -47071], [-46204, -45275, -46920, -47094],
         [-45494, -45628, -45769, -46972], [-45499, -45628, -45943, -46975], [-45519, -45345, -46877, -46978]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses464 : List (List Int) :=
   [
         [-47175, -45859, -47195, -46975], [-45529, -45859, -46354, -44961], [-45530, -45859, -46492, -44962],
@@ -36269,6 +37034,7 @@ def expectedBlockingClauses464 : List (List Int) :=
         [-45840, -45259, -45431, -47074], [-45841, -45259, -45455, -47075], [-45842, -45259, -45479, -47076],
         [-45843, -45259, -46936, -47077], [-45327, -45794, -45265, -47034], [-47181, -46023, -45265, -47211]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses465 : List (List Int) :=
   [
         [-45840, -45407, -45265, -47073], [-45846, -45265, -45457, -47075], [-45847, -45265, -45481, -47076],
@@ -36288,6 +37054,7 @@ def expectedBlockingClauses465 : List (List Int) :=
         [-46015, -45259, -45455, -47092], [-46016, -45259, -45479, -47093], [-46017, -45259, -46936, -47094],
         [-45327, -45968, -45265, -47040], [-45849, -47191, -45265, -47211], [-46014, -45407, -45265, -47090]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses466 : List (List Int) :=
   [
         [-46020, -45265, -45457, -47092], [-46021, -45265, -45481, -47093], [-46022, -45265, -46939, -47094],
@@ -36307,6 +37074,7 @@ def expectedBlockingClauses466 : List (List Int) :=
         [-45853, -46351, -45271, -47073], [-46027, -46357, -45271, -47090], [-44979, -45433, -45271, -47106],
         [-45408, -45271, -46941, -47109], [-45034, -46257, -45277, -44961], [-45626, -46294, -45277, -47018]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses467 : List (List Int) :=
   [
         [-45856, -46352, -45277, -47073], [-46030, -46358, -45277, -47090], [-44980, -45435, -45277, -47106],
@@ -36326,6 +37094,7 @@ def expectedBlockingClauses467 : List (List Int) :=
         [-45345, -46607, -46877, -47114], [-45859, -47195, -47208, -47092], [-45859, -46354, -46629, -47107],
         [-45859, -46492, -46630, -47110], [-45859, -46631, -46772, -47113], [-45859, -46632, -46904, -47114]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses468 : List (List Int) :=
   [
         [-47185, -46033, -47208, -47075], [-46033, -46360, -46635, -47107], [-46033, -46499, -46636, -47110],
@@ -36345,6 +37114,7 @@ def expectedBlockingClauses468 : List (List Int) :=
         [-45259, -45455, -44999, -47113], [-45259, -45478, -46936, -47115], [-45030, -45265, -46674, -44964],
         [-45621, -45265, -46711, -47021], [-45849, -45265, -46769, -47076], [-46023, -45265, -46775, -47093]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses469 : List (List Int) :=
   [
         [-45265, -45457, -45000, -47113], [-45265, -45480, -46939, -47115], [-45032, -45271, -46675, -44964],
@@ -36364,6 +37134,7 @@ def expectedBlockingClauses469 : List (List Int) :=
         [-45581, -45864, -46506, -47005], [-45597, -46038, -46506, -47012], [-45613, -46212, -46506, -47018],
         [-45632, -46506, -46947, -47026], [-45582, -45868, -46644, -47005], [-45598, -46042, -46644, -47012]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses470 : List (List Int) :=
   [
         [-45614, -46216, -46644, -47018], [-45636, -46644, -46950, -47026], [-45583, -45871, -46782, -47005],
@@ -36383,6 +37154,7 @@ def expectedBlockingClauses470 : List (List Int) :=
         [-45867, -46643, -46953, -47079], [-45870, -46781, -46953, -47080], [-45543, -45910, -46400, -47095],
         [-45543, -45911, -46541, -47096], [-45543, -45912, -46680, -47097], [-45642, -45947, -46853, -47098]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses471 : List (List Int) :=
   [
         [-45705, -45977, -46882, -47098], [-45012, -45371, -45898, -44957], [-45585, -45371, -45932, -47012],
@@ -36402,6 +37174,7 @@ def expectedBlockingClauses471 : List (List Int) :=
         [-45379, -46188, -45425, -47106], [-45379, -46189, -45449, -47107], [-45379, -46190, -45473, -47108],
         [-45379, -46191, -46925, -47109], [-45864, -46167, -46506, -47073], [-46038, -46188, -46506, -47090]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses472 : List (List Int) :=
   [
         [-46211, -46506, -46947, -47109], [-45868, -46168, -46644, -47073], [-46042, -46189, -46644, -47090],
@@ -36421,6 +37194,7 @@ def expectedBlockingClauses472 : List (List Int) :=
         [-46220, -45430, -46953, -47106], [-45543, -46540, -46810, -47123], [-45642, -45676, -46553, -47053],
         [-45642, -45774, -46560, -47079], [-45642, -45948, -46566, -47096], [-45642, -46122, -46571, -47107]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses473 : List (List Int) :=
   [
         [-45642, -46579, -46853, -47123], [-45705, -46611, -46882, -47123], [-45309, -45371, -46593, -47053],
@@ -36440,6 +37214,7 @@ def expectedBlockingClauses473 : List (List Int) :=
         [-45379, -45472, -46925, -47125], [-45325, -45387, -46743, -47054], [-45844, -45387, -46768, -47080],
         [-46018, -45387, -46774, -47097], [-45387, -45478, -46936, -47125], [-45633, -46506, -46716, -47025]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses474 : List (List Int) :=
   [
         [-45864, -46506, -44992, -47080], [-46038, -46506, -44995, -47097], [-46212, -46506, -44998, -47108],
@@ -36459,6 +37234,7 @@ def expectedBlockingClauses474 : List (List Int) :=
         [-46219, -46782, -46935, -47109], [-45545, -45555, -46262, -47023], [-45545, -45558, -46545, -47027],
         [-45545, -45559, -46684, -47028], [-45570, -45707, -46886, -47029], [-45588, -45373, -46911, -47029]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses475 : List (List Int) :=
   [
         [-45604, -45381, -46928, -47029], [-45620, -45389, -46939, -47029], [-45581, -45864, -46365, -47006],
@@ -36478,6 +37254,7 @@ def expectedBlockingClauses475 : List (List Int) :=
         [-45863, -46365, -46947, -47084], [-45825, -46050, -46648, -47068], [-45846, -46224, -46648, -47074],
         [-45875, -46648, -46956, -47084], [-45826, -46053, -46786, -47068], [-45847, -46227, -46786, -47074]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses476 : List (List Int) :=
   [
         [-45878, -46786, -46958, -47084], [-45863, -46364, -46959, -47078], [-45875, -46647, -46959, -47082],
@@ -36497,6 +37274,7 @@ def expectedBlockingClauses476 : List (List Int) :=
         [-45373, -46002, -47201, -47091], [-45373, -46167, -45395, -47106], [-45373, -46173, -45445, -47110],
         [-45373, -46174, -45469, -47111], [-45373, -46175, -46911, -47112], [-45022, -45381, -46079, -44962]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses477 : List (List Int) :=
   [
         [-45605, -45381, -46113, -47019], [-45828, -45381, -47201, -47074], [-45381, -46188, -45401, -47106],
@@ -36516,6 +37294,7 @@ def expectedBlockingClauses477 : List (List Int) :=
         [-45651, -45679, -46554, -47057], [-45651, -45778, -46561, -47082], [-45651, -45952, -46567, -47099],
         [-45651, -46126, -46572, -47110], [-45651, -46583, -46856, -47129], [-45707, -46614, -46886, -47129]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses478 : List (List Int) :=
   [
         [-45311, -45373, -46594, -47057], [-45373, -46002, -46624, -47099], [-45373, -46176, -46630, -47110],
@@ -36535,6 +37314,7 @@ def expectedBlockingClauses478 : List (List Int) :=
         [-46050, -46648, -44997, -47100], [-46224, -46648, -45000, -47111], [-46648, -45488, -46956, -47131],
         [-45164, -46754, -46959, -47058], [-45880, -45468, -46959, -47083], [-46054, -45474, -46959, -47100]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses479 : List (List Int) :=
   [
         [-46228, -45480, -46959, -47111], [-45545, -46262, -46807, -47120], [-45545, -46545, -46812, -47129],
@@ -36554,6 +37334,7 @@ def expectedBlockingClauses479 : List (List Int) :=
         [-45586, -45876, -46510, -47007], [-45602, -46050, -46510, -47014], [-45618, -46224, -46510, -47020],
         [-45645, -46510, -46956, -47031], [-45590, -45883, -46789, -47007], [-45606, -46057, -46789, -47014]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses480 : List (List Int) :=
   [
         [-45622, -46231, -46789, -47020], [-45653, -46789, -46961, -47031], [-45636, -46368, -46962, -47024],
@@ -36573,6 +37354,7 @@ def expectedBlockingClauses480 : List (List Int) :=
         [-45547, -45919, -46687, -47102], [-45656, -45954, -46858, -47103], [-45709, -45984, -46889, -47103],
         [-45016, -45375, -45900, -44959], [-45592, -45375, -45934, -47014], [-45375, -47192, -46180, -47092]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses481 : List (List Int) :=
   [
         [-45375, -45994, -45397, -47096], [-45375, -45999, -45421, -47099], [-45375, -46004, -45471, -47102],
@@ -36592,6 +37374,7 @@ def expectedBlockingClauses481 : List (List Int) :=
         [-45868, -46168, -46369, -47075], [-46042, -46189, -46369, -47092], [-46215, -46369, -46950, -47114],
         [-45876, -46173, -46510, -47075], [-46050, -46194, -46510, -47092], [-46223, -46510, -46956, -47114]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses482 : List (List Int) :=
   [
         [-45883, -46178, -46789, -47075], [-46057, -46199, -46789, -47092], [-46230, -46789, -46961, -47114],
@@ -36611,6 +37394,7 @@ def expectedBlockingClauses482 : List (List Int) :=
         [-45375, -46006, -46483, -47099], [-45375, -46180, -46489, -47110], [-45375, -45420, -46913, -47129],
         [-45321, -45383, -46459, -47057], [-45832, -45383, -46483, -47082], [-45383, -46201, -46496, -47110]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses483 : List (List Int) :=
   [
         [-45383, -45426, -46930, -47129], [-45329, -45391, -46464, -47057], [-45853, -45391, -46489, -47082],
@@ -36630,6 +37414,7 @@ def expectedBlockingClauses483 : List (List Int) :=
         [-45656, -46726, -46857, -47134], [-45709, -46336, -46880, -47123], [-45709, -46474, -46884, -47129],
         [-45709, -46757, -46888, -47134], [-45375, -45397, -46906, -47123], [-45375, -45421, -46909, -47129]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses484 : List (List Int) :=
   [
         [-45375, -45471, -46912, -47134], [-45383, -45403, -46923, -47123], [-45383, -45427, -46926, -47129],
@@ -36649,6 +37434,7 @@ def expectedBlockingClauses484 : List (List Int) :=
         [-45314, -45377, -46914, -47064], [-45322, -45385, -46931, -47064], [-45330, -45393, -46942, -47064],
         [-45549, -45738, -46269, -47080], [-45549, -45742, -46407, -47083], [-45549, -45745, -46548, -47085]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses485 : List (List Int) :=
   [
         [-45658, -45782, -46859, -47087], [-45711, -45813, -46891, -47087], [-45026, -45727, -45385, -44956],
@@ -36668,6 +37454,7 @@ def expectedBlockingClauses485 : List (List Int) :=
         [-45856, -47193, -45393, -47070], [-46016, -45393, -45411, -47097], [-46021, -45393, -45435, -47100],
         [-46025, -45393, -45459, -47102], [-46029, -45393, -46942, -47104], [-45871, -45995, -46372, -47070]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses486 : List (List Int) :=
   [
         [-46016, -46219, -46372, -47093], [-46044, -46372, -46952, -47104], [-45879, -46000, -46513, -47070],
@@ -36687,6 +37474,7 @@ def expectedBlockingClauses486 : List (List Int) :=
         [-45549, -46268, -46819, -47125], [-45658, -45685, -46276, -47054], [-45658, -45783, -46283, -47080],
         [-45658, -45957, -46289, -47097], [-45658, -46131, -46294, -47108], [-45658, -46307, -46859, -47125]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses487 : List (List Int) :=
   [
         [-45711, -46338, -46891, -47125], [-45315, -45377, -46316, -47054], [-45377, -46009, -46346, -47097],
@@ -36706,6 +37494,7 @@ def expectedBlockingClauses487 : List (List Int) :=
         [-45331, -45393, -46465, -47058], [-45856, -45393, -46490, -47083], [-46030, -45393, -46497, -47100],
         [-45393, -45434, -46942, -47131], [-45640, -46372, -46437, -47028], [-45871, -46372, -46493, -47083]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses488 : List (List Int) :=
   [
         [-46045, -46372, -46500, -47100], [-46219, -46372, -46501, -47111], [-46372, -45438, -46952, -47131],
@@ -36725,6 +37514,7 @@ def expectedBlockingClauses488 : List (List Int) :=
         [-45885, -45446, -46963, -47085], [-46059, -45452, -46963, -47102], [-46233, -45458, -46963, -47113],
         [-45549, -46269, -46809, -47125], [-45549, -46407, -46813, -47131], [-45549, -46548, -46816, -47134]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses489 : List (List Int) :=
   [
         [-45658, -46308, -46852, -47125], [-45658, -46446, -46855, -47131], [-45658, -46587, -46857, -47134],
@@ -36744,6 +37534,7 @@ def expectedBlockingClauses489 : List (List Int) :=
         [-45533, -45858, -46234, -46973], [-45540, -46032, -46234, -46976], [-45027, -46234, -45360, -46983],
         [-45029, -46234, -45363, -46987], [-45031, -46234, -45366, -46990], [-45033, -46234, -45369, -46992]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses490 : List (List Int) :=
   [
         [-45565, -45163, -46373, -47001], [-45584, -45872, -46373, -47009], [-45600, -46046, -46373, -47016],
@@ -36763,6 +37554,7 @@ def expectedBlockingClauses490 : List (List Int) :=
         [-45163, -45803, -46373, -47039], [-45822, -46046, -46373, -47071], [-45843, -46220, -46373, -47077],
         [-45863, -46373, -46505, -47084], [-45867, -46373, -46643, -47086], [-45870, -46373, -46781, -47087]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses491 : List (List Int) :=
   [
         [-45164, -45807, -46514, -47039], [-45827, -46054, -46514, -47071], [-45848, -46228, -46514, -47077],
@@ -36782,6 +37574,7 @@ def expectedBlockingClauses491 : List (List Int) :=
         [-46049, -46514, -46647, -47103], [-46052, -46514, -46785, -47104], [-45165, -45984, -46652, -47045],
         [-45884, -46005, -46652, -47071], [-46026, -46232, -46652, -47094], [-46041, -46368, -46652, -47098]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses492 : List (List Int) :=
   [
         [-46049, -46509, -46652, -47101], [-46056, -46652, -46788, -47104], [-45166, -45987, -46790, -47045],
@@ -36801,6 +37594,7 @@ def expectedBlockingClauses492 : List (List Int) :=
         [-46059, -46203, -46790, -47094], [-46218, -46371, -46790, -47109], [-46226, -46512, -46790, -47112],
         [-46230, -46650, -46790, -47114], [-45712, -46332, -46479, -47120], [-45712, -46335, -46620, -47123]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses493 : List (List Int) :=
   [
         [-45712, -46338, -46759, -47125], [-45693, -45886, -46317, -47055], [-45886, -46011, -46347, -47098],
@@ -36820,6 +37614,7 @@ def expectedBlockingClauses493 : List (List Int) :=
         [-45886, -45422, -45367, -47131], [-45698, -46060, -46461, -47059], [-45837, -46060, -46485, -47084],
         [-46060, -46206, -46498, -47112], [-46060, -45359, -45424, -47120], [-46060, -45426, -45365, -47129]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses494 : List (List Int) :=
   [
         [-46060, -45428, -45368, -47131], [-45703, -46234, -46466, -47059], [-45858, -46234, -46491, -47084],
@@ -36839,6 +37634,7 @@ def expectedBlockingClauses494 : List (List Int) :=
         [-45872, -46373, -45442, -47086], [-46046, -46373, -45448, -47103], [-46220, -46373, -45454, -47114],
         [-46373, -46505, -45460, -47129], [-45164, -46514, -46614, -47062], [-45880, -46514, -45444, -47086]]
 
+/-- Generated blocking-clause chunk for the exact-twelve core-pair family. -/
 def expectedBlockingClauses495 : List (List Int) :=
   [
         [-46054, -46514, -45450, -47103], [-46228, -46514, -45456, -47114], [-45166, -46617, -46790, -47062],
@@ -36856,6 +37652,7 @@ def expectedBlockingClauses495 : List (List Int) :=
         [-46228, -46514, -45480, -47115], [-46514, -46647, -45488, -47134], [-45165, -46652, -46756, -47064],
         [-45884, -46652, -45470, -47087], [-46058, -46652, -45476, -47104], [-46232, -46652, -45482, -47115]]
 
+/-- Complete concatenation of the generated blocking-clause chunks. -/
 def expectedBlockingClauses : List (List Int) :=
   expectedBlockingClauses000 ++
     expectedBlockingClauses001 ++
@@ -37370,11 +38167,13 @@ theorem family_shape :
         (47175 ≤ definition.varIndex ∧ definition.varIndex ≤ 47211)) = true := by
   native_decide
 
+/-- Check the data certificate and installed-definition membership for one finite family entry. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Every listed family entry has valid data and uses only installed definitions. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧
@@ -37388,6 +38187,7 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 definition hdefinition)
 
+/-- Every reused definition stays below the fresh-variable cutoff. -/
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
@@ -37398,6 +38198,7 @@ private theorem reused_definition_le_cutoff
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
 
+/-- A false mixed blocking clause forces the corresponding positive rows to match. -/
 private theorem positiveRowsMatch_of_mixed_blockingClause_false
     (base : Nat → Bool) (row : RowPattern Label)
     (entryDefinitions : List PositiveMembershipDefinition)

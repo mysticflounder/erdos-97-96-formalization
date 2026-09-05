@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstrings-corepair-cnf-20260905",
+  "owner": "codex",
+  "base_head": "601e9ad7b67b1597f23df80f5045717f76a62697",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstrings-corepair-cnf-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221CorePairAllOrderCommonFiveMembershipFamilyCnf.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-05T22:50:00Z",
+  "manifest_sha256": "3c33bd1a21fdeaa97bc6aafa228b0045f56ab6041ca4ef66a867794172c661a0"
+}
