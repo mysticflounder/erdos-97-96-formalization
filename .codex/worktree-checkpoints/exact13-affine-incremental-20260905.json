@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-affine-incremental-20260905",
+  "owner": "KalmansonCartographer",
+  "base_head": "41e1b09d478dd77b0cf7149fa21a6a89ae35490b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-affine-incremental-20260905.json",
+    "docs/audits/2026-09-05-exact13-affine-incremental.json",
+    "docs/audits/2026-09-05-exact13-affine-incremental.md",
+    "scripts/mine_exact13_affine_relations.py",
+    "scripts/test_mine_exact13_affine_relations.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-05T23:31:00Z",
+  "manifest_sha256": "bee40abf49503517a5136f6edb4cbd809d21a669baf4b7aabf726f16eccac99c"
+}

@@ -1,0 +1,1190 @@
+{
+  "schema": "exact13-affine-incremental-audit/v1",
+  "claim_scope": "Seven fixed retained direct-cell tables, all baseline-rejected. No surviving baseline input; incremental benefit unmeasured. No new cell closure.",
+  "source_sha256": {
+    "scripts/mine_exact13_affine_relations.py": "fcdc12a4be6b0c3b70bdbd286edb1b1851f5fcb26877ed59280a14cf53e458b2",
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096"
+  },
+  "summary": {
+    "cohort_size": 7,
+    "baseline_rejected": 7,
+    "baseline_survivors": 0,
+    "affine_collision_found": 5,
+    "new_rejections": 0,
+    "incremental_benefit": "unmeasured"
+  },
+  "records": [
+    {
+      "path": "scratch/runs/exact13-cell0-post-threeform-piqd-20260905/run-0002/events/cell-000-direct-z08-k09-10-post-threeform-repaired.json",
+      "sha256": "69c6405f5454f26cd6b8cfc073cc568e11b9e72510422a41206ce1302598c300",
+      "selector": ".decoded_sat_models[0].cell",
+      "cell": {
+        "base_rows": {
+          "C0": [
+            1,
+            2,
+            4,
+            11
+          ],
+          "C1": [
+            0,
+            3,
+            7,
+            12
+          ],
+          "K": [
+            5,
+            6,
+            9,
+            10
+          ],
+          "L": [
+            4,
+            8,
+            11,
+            12
+          ],
+          "T": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        "global_rows": {
+          "2": [
+            1,
+            6,
+            9,
+            12
+          ],
+          "4": [
+            3,
+            5,
+            9,
+            11
+          ],
+          "5": [
+            0,
+            2,
+            3,
+            4
+          ],
+          "6": [
+            2,
+            5,
+            7,
+            12
+          ],
+          "7": [
+            0,
+            1,
+            5,
+            8
+          ],
+          "8": [
+            0,
+            6,
+            10,
+            11
+          ],
+          "10": [
+            2,
+            8,
+            9,
+            12
+          ],
+          "11": [
+            2,
+            3,
+            5,
+            10
+          ],
+          "12": [
+            1,
+            4,
+            8,
+            10
+          ]
+        },
+        "roles": {
+          "b0": 3,
+          "b1": 9,
+          "d": 8,
+          "s0": 2,
+          "s1": 0,
+          "z": 8
+        }
+      },
+      "baseline": {
+        "zero_form": [
+          2,
+          8,
+          12,
+          6,
+          1
+        ],
+        "opposite_pairs": 89
+      },
+      "affine": {
+        "relations": 18,
+        "components": 36,
+        "collision": {
+          "kind": "collision",
+          "support": [
+            0,
+            2
+          ],
+          "coefficients": [
+            4,
+            -4,
+            -1,
+            0,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "result": [
+            2,
+            0,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "collinearity": {
+          "kind": "collinearity",
+          "support": [
+            0,
+            1,
+            7
+          ],
+          "coefficients": [
+            6,
+            -6,
+            -1,
+            -2,
+            -2,
+            -3,
+            4,
+            -3,
+            0,
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "result": [
+            8,
+            -4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -4,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "path": "scratch/runs/exact13-cell0-post-threeform-piqd-20260905/run-0001/events/cell-000-direct-z08-k09-10-post-threeform.json",
+      "sha256": "6498a31b22e096ae5b43b2b6f4df2fe25aa2259c353954981e9babc538902634",
+      "selector": ".decoded_sat_models[0].cell",
+      "cell": {
+        "base_rows": {
+          "C0": [
+            0,
+            5,
+            6,
+            11
+          ],
+          "C1": [
+            2,
+            3,
+            7,
+            12
+          ],
+          "K": [
+            1,
+            4,
+            9,
+            10
+          ],
+          "L": [
+            5,
+            8,
+            11,
+            12
+          ],
+          "T": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "global_rows": {
+          "2": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "3": [
+            0,
+            1,
+            4,
+            12
+          ],
+          "4": [
+            0,
+            3,
+            8,
+            10
+          ],
+          "6": [
+            0,
+            1,
+            2,
+            8
+          ],
+          "7": [
+            3,
+            4,
+            6,
+            11
+          ],
+          "8": [
+            0,
+            7,
+            9,
+            11
+          ],
+          "9": [
+            0,
+            2,
+            10,
+            12
+          ],
+          "10": [
+            1,
+            2,
+            9,
+            11
+          ],
+          "11": [
+            2,
+            4,
+            5,
+            10
+          ]
+        },
+        "roles": {
+          "b0": 12,
+          "b1": 5,
+          "d": 8,
+          "s0": 0,
+          "s1": 2,
+          "z": 8
+        }
+      },
+      "baseline": {
+        "zero_form": [
+          2,
+          8,
+          9,
+          11,
+          1
+        ],
+        "opposite_pairs": 98
+      },
+      "affine": {
+        "relations": 16,
+        "components": 36,
+        "collision": {
+          "kind": "collision",
+          "support": [
+            0,
+            1
+          ],
+          "coefficients": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -2,
+            0,
+            -1,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "result": [
+            3,
+            -3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "collinearity": {
+          "kind": "collinearity",
+          "support": [
+            0,
+            1,
+            2
+          ],
+          "coefficients": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            -3,
+            0,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "result": [
+            4,
+            -3,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "path": "scratch/runs/cardge13-exact13-conic-resume-20260905/run-0001/cell-000-direct-z08-k09-10-conic-resume.json",
+      "sha256": "c04594d844603f9a7935c9f6b4f337f01bd3655f3be853b0f15ae24b0cc1c5fd",
+      "selector": ".decoded_sat_models[0].cell",
+      "cell": {
+        "base_rows": {
+          "C0": [
+            4,
+            5,
+            6,
+            11
+          ],
+          "C1": [
+            0,
+            2,
+            3,
+            12
+          ],
+          "K": [
+            1,
+            7,
+            9,
+            10
+          ],
+          "L": [
+            2,
+            8,
+            11,
+            12
+          ],
+          "T": [
+            3,
+            6,
+            7,
+            12
+          ]
+        },
+        "global_rows": {
+          "2": [
+            3,
+            4,
+            8,
+            9
+          ],
+          "3": [
+            0,
+            6,
+            8,
+            10
+          ],
+          "4": [
+            0,
+            5,
+            9,
+            12
+          ],
+          "5": [
+            0,
+            1,
+            3,
+            11
+          ],
+          "6": [
+            2,
+            3,
+            5,
+            7
+          ],
+          "7": [
+            0,
+            2,
+            4,
+            10
+          ],
+          "8": [
+            1,
+            5,
+            7,
+            12
+          ],
+          "9": [
+            4,
+            7,
+            8,
+            11
+          ],
+          "11": [
+            1,
+            2,
+            4,
+            9
+          ]
+        },
+        "roles": {
+          "b0": 12,
+          "b1": 10,
+          "d": 7,
+          "s0": 4,
+          "s1": 2,
+          "z": 8
+        }
+      },
+      "baseline": {
+        "zero_form": [
+          2,
+          9,
+          3,
+          0,
+          0
+        ],
+        "opposite_pairs": 87
+      },
+      "affine": {
+        "relations": 8,
+        "components": 36,
+        "collision": {
+          "kind": "collision",
+          "support": [
+            0,
+            2
+          ],
+          "coefficients": [
+            1,
+            -2,
+            -1,
+            0,
+            1,
+            -3,
+            0,
+            0
+          ],
+          "result": [
+            2,
+            0,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "collinearity": {
+          "kind": "collinearity",
+          "support": [
+            0,
+            2,
+            3
+          ],
+          "coefficients": [
+            1,
+            -2,
+            -1,
+            0,
+            -2,
+            0,
+            0,
+            0
+          ],
+          "result": [
+            2,
+            0,
+            1,
+            -3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "path": "scratch/runs/cardge13-exact13-three-form-resume-20260905/run-0001/cell-000-direct-z08-k09-10-three-form-resume.json",
+      "sha256": "c32a39e64458fc669f3937948435402a345ee66a12983abe5c28bd7bc2243619",
+      "selector": ".decoded_sat_models[0].cell",
+      "cell": {
+        "base_rows": {
+          "C0": [
+            4,
+            5,
+            6,
+            11
+          ],
+          "C1": [
+            0,
+            2,
+            3,
+            12
+          ],
+          "K": [
+            1,
+            7,
+            9,
+            10
+          ],
+          "L": [
+            2,
+            8,
+            11,
+            12
+          ],
+          "T": [
+            3,
+            6,
+            7,
+            12
+          ]
+        },
+        "global_rows": {
+          "2": [
+            3,
+            4,
+            8,
+            9
+          ],
+          "3": [
+            0,
+            6,
+            8,
+            10
+          ],
+          "4": [
+            0,
+            5,
+            9,
+            12
+          ],
+          "5": [
+            0,
+            1,
+            3,
+            11
+          ],
+          "6": [
+            2,
+            3,
+            5,
+            7
+          ],
+          "7": [
+            0,
+            2,
+            4,
+            10
+          ],
+          "8": [
+            1,
+            5,
+            7,
+            12
+          ],
+          "9": [
+            7,
+            8,
+            10,
+            11
+          ],
+          "11": [
+            1,
+            2,
+            4,
+            9
+          ]
+        },
+        "roles": {
+          "b0": 12,
+          "b1": 10,
+          "d": 7,
+          "s0": 4,
+          "s1": 2,
+          "z": 8
+        }
+      },
+      "baseline": {
+        "zero_form": [
+          2,
+          9,
+          10,
+          7,
+          1
+        ],
+        "opposite_pairs": 92
+      },
+      "affine": {
+        "relations": 6,
+        "components": 36,
+        "collision": {
+          "kind": "collision",
+          "support": [
+            0,
+            2
+          ],
+          "coefficients": [
+            1,
+            -2,
+            -1,
+            0,
+            1,
+            -3
+          ],
+          "result": [
+            2,
+            0,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "collinearity": {
+          "kind": "collinearity",
+          "support": [
+            0,
+            2,
+            3
+          ],
+          "coefficients": [
+            1,
+            -2,
+            -1,
+            0,
+            -2,
+            0
+          ],
+          "result": [
+            2,
+            0,
+            1,
+            -3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "path": "scratch/runs/cardge13-exact13-two-form-resume-20260905/run-0001/cell-000-direct-z08-k09-10-two-form-resume.json",
+      "sha256": "dbd6a730dcaaac004f66b0d664671fc47d84e169c0b9c3da31196a25a84fa158",
+      "selector": ".decoded_sat_models[0].cell",
+      "cell": {
+        "base_rows": {
+          "C0": [
+            1,
+            2,
+            3,
+            11
+          ],
+          "C1": [
+            0,
+            5,
+            7,
+            12
+          ],
+          "K": [
+            4,
+            6,
+            9,
+            10
+          ],
+          "L": [
+            7,
+            8,
+            11,
+            12
+          ],
+          "T": [
+            2,
+            3,
+            6,
+            7
+          ]
+        },
+        "global_rows": {
+          "2": [
+            5,
+            6,
+            8,
+            9
+          ],
+          "3": [
+            0,
+            2,
+            9,
+            12
+          ],
+          "4": [
+            1,
+            5,
+            10,
+            12
+          ],
+          "6": [
+            0,
+            3,
+            7,
+            10
+          ],
+          "7": [
+            0,
+            1,
+            4,
+            8
+          ],
+          "9": [
+            6,
+            8,
+            10,
+            11
+          ],
+          "10": [
+            3,
+            4,
+            9,
+            12
+          ],
+          "11": [
+            1,
+            2,
+            8,
+            10
+          ],
+          "12": [
+            1,
+            5,
+            9,
+            11
+          ]
+        },
+        "roles": {
+          "b0": 5,
+          "b1": 8,
+          "d": 6,
+          "s0": 11,
+          "s1": 5,
+          "z": 8
+        }
+      },
+      "baseline": {
+        "zero_form": null,
+        "opposite_pairs": 70
+      },
+      "affine": {
+        "relations": 1,
+        "components": 37,
+        "collision": null,
+        "collinearity": null
+      }
+    },
+    {
+      "path": "scratch/runs/cardge13-exact13-coarse-cell-resume-20260905/run-0001/events/cell-000-direct-z08-k09-10-resume-3000.json",
+      "sha256": "ed1fa3dd88f0faf057297414f5ee8ba258398d689d51670c36da4a79bd132c04",
+      "selector": ".decoded_sat_models[0].cell",
+      "cell": {
+        "base_rows": {
+          "C0": [
+            1,
+            4,
+            5,
+            12
+          ],
+          "C1": [
+            0,
+            2,
+            6,
+            11
+          ],
+          "K": [
+            3,
+            7,
+            9,
+            10
+          ],
+          "L": [
+            4,
+            8,
+            11,
+            12
+          ],
+          "T": [
+            3,
+            6,
+            7,
+            8
+          ]
+        },
+        "global_rows": {
+          "2": [
+            0,
+            3,
+            5,
+            8
+          ],
+          "4": [
+            2,
+            5,
+            9,
+            11
+          ],
+          "5": [
+            1,
+            6,
+            10,
+            11
+          ],
+          "6": [
+            0,
+            1,
+            2,
+            7
+          ],
+          "7": [
+            1,
+            6,
+            8,
+            9
+          ],
+          "8": [
+            5,
+            6,
+            10,
+            12
+          ],
+          "9": [
+            2,
+            4,
+            8,
+            10
+          ],
+          "11": [
+            1,
+            3,
+            4,
+            10
+          ],
+          "12": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        "roles": {
+          "b0": 3,
+          "b1": 10,
+          "d": 7,
+          "s0": 1,
+          "s1": 0,
+          "z": 8
+        }
+      },
+      "baseline": {
+        "zero_form": [
+          2,
+          9,
+          10,
+          4,
+          1
+        ],
+        "opposite_pairs": 80
+      },
+      "affine": {
+        "relations": 7,
+        "components": 37,
+        "collision": {
+          "kind": "collision",
+          "support": [
+            0,
+            10
+          ],
+          "coefficients": [
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "result": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0
+          ]
+        },
+        "collinearity": {
+          "kind": "collinearity",
+          "support": [
+            0,
+            2,
+            4
+          ],
+          "coefficients": [
+            -1,
+            0,
+            0,
+            0,
+            1,
+            2,
+            2
+          ],
+          "result": [
+            1,
+            0,
+            -2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "path": "scratch/runs/cardge13-exact13-coarse-cell-classifier-20260905/run-0002/events/cell-000-direct-z08-k09-10-resume.json",
+      "sha256": "012b57bdf613bf160c8e6964e40c0da1e8fe4c67e4e797552e46c43d0d6a9394",
+      "selector": ".decoded_sat_models[0].cell",
+      "cell": {
+        "base_rows": {
+          "C0": [
+            1,
+            5,
+            7,
+            12
+          ],
+          "C1": [
+            0,
+            2,
+            3,
+            11
+          ],
+          "K": [
+            4,
+            6,
+            9,
+            10
+          ],
+          "L": [
+            5,
+            8,
+            11,
+            12
+          ],
+          "T": [
+            3,
+            4,
+            6,
+            7
+          ]
+        },
+        "global_rows": {
+          "2": [
+            1,
+            7,
+            8,
+            9
+          ],
+          "3": [
+            4,
+            5,
+            9,
+            11
+          ],
+          "5": [
+            0,
+            4,
+            7,
+            11
+          ],
+          "7": [
+            0,
+            6,
+            9,
+            12
+          ],
+          "8": [
+            1,
+            6,
+            10,
+            11
+          ],
+          "9": [
+            3,
+            5,
+            8,
+            10
+          ],
+          "10": [
+            0,
+            1,
+            2,
+            5
+          ],
+          "11": [
+            2,
+            7,
+            10,
+            12
+          ],
+          "12": [
+            0,
+            4,
+            8,
+            10
+          ]
+        },
+        "roles": {
+          "b0": 4,
+          "b1": 6,
+          "d": 4,
+          "s0": 5,
+          "s1": 0,
+          "z": 8
+        }
+      },
+      "baseline": {
+        "zero_form": [
+          2,
+          8,
+          10,
+          6,
+          1
+        ],
+        "opposite_pairs": 67
+      },
+      "affine": {
+        "relations": 3,
+        "components": 37,
+        "collision": null,
+        "collinearity": null
+      }
+    }
+  ]
+}
