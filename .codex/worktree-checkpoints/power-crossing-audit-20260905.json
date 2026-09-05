@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "power-crossing-audit-20260905",
+  "owner": "codex-atomic-scribe",
+  "base_head": "7c6930a70b0796ab53fd88eef7ebcd2e92735f99",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/power-crossing-audit-20260905.json",
+    "docs/skeptic-planarity-audit-and-power-crossing-2026-09-05.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T20:52:03Z",
+  "manifest_sha256": "489c36a4d6c34032826f2e56208ab66efdc07d66b732311132be53bc6af1c76b"
+}
