@@ -699,6 +699,27 @@ theorem exists_mem_not_mem_pair_of_card_gt
   have hunion := Finset.card_union_le X Y
   omega
 
+/-- If two exceptional sets leave at least two places in a finite set, choose
+two distinct points outside both exceptions. -/
+theorem exists_two_mem_not_mem_pair_of_card_gt
+    {α : Type*} (T X Y : Finset α)
+    (hcard : X.card + Y.card + 1 < T.card) :
+    ∃ z ∈ T, z ∉ X ∧ z ∉ Y ∧
+      ∃ w ∈ T, w ∉ X ∧ w ∉ Y ∧ w ≠ z := by
+  classical
+  have hfirst : X.card + Y.card < T.card := by omega
+  obtain ⟨z, hzT, hzX, hzY⟩ :=
+    exists_mem_not_mem_pair_of_card_gt T X Y hfirst
+  have herase : (T.erase z).card = T.card - 1 :=
+    Finset.card_erase_of_mem hzT
+  have hsecond : X.card + Y.card < (T.erase z).card := by
+    rw [herase]
+    omega
+  obtain ⟨w, hwErase, hwX, hwY⟩ :=
+    exists_mem_not_mem_pair_of_card_gt (T.erase z) X Y hsecond
+  have hw := Finset.mem_erase.mp hwErase
+  exact ⟨z, hzT, hzX, hzY, w, hw.2, hwX, hwY, hw.1⟩
+
 private theorem oppApex2_eq_oppositeVertex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by

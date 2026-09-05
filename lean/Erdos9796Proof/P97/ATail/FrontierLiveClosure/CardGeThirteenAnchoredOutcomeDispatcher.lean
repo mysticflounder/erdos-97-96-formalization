@@ -36,6 +36,8 @@ structure CardGeThirteenAnchoredOutcome
   outcome : CardGeThirteenOutcome R firstRow secondRow
   namedRowGoodSource :
     TwoRadiusNamedRowGoodSourceIngress R firstRow secondRow
+  twoNamedRowGoodSources :
+    TwoRadiusNamedRowsTwoGoodSourcesIngress R firstRow secondRow
 
 /-- Compose the exhaustive card-at-least-thirteen split with the source
 anchored in one of the two rows supplied by the original branch. -/
@@ -57,10 +59,11 @@ theorem nonempty_cardGeThirteenAnchoredOutcome
   obtain ⟨outcome⟩ :=
     nonempty_cardGeThirteenOutcome R hcard surface rho otherRadius
       firstRow secondRow hradii hnoFive hfirstRadius hsecondRadius hdisjoint
-  obtain ⟨namedRowGoodSource⟩ :=
-    nonempty_twoRadiusNamedRowGoodSourceIngress
+  obtain ⟨twoNamedRowGoodSources⟩ :=
+    nonempty_twoRadiusNamedRowsTwoGoodSourcesIngress
       R surface firstRow secondRow hnoFive hdisjoint
-  exact ⟨⟨outcome, namedRowGoodSource⟩⟩
+  exact ⟨⟨outcome, twoNamedRowGoodSources.first,
+    twoNamedRowGoodSources⟩⟩
 
 end ATailFrontierLiveClosure
 end Problem97
