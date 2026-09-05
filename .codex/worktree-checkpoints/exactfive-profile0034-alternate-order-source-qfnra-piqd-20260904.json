@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-alternate-order-source-qfnra-piqd-20260904",
+  "owner": "profile0034-alternate-order-source-qfnra-piqd",
+  "base_head": "e296af8f97534aaaadc918e90af3c7da4064e391",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-alternate-order-source-qfnra-piqd-20260904.json",
+    "census/card_head/exactfive_profile0034_alternate_order_source_qfnra_piqd.py",
+    "census/card_head/tests/test_exactfive_profile0034_alternate_order_source_qfnra_piqd.py",
+    "docs/computation/exactfive-profile0034-alternate-order-source-qfnra-piqd-spec.md",
+    "scripts/run_exactfive_profile0034_alternate_order_source_qfnra_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-profile0034-alternate-order-source-qfnra-piqd-20260904/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-04T00:00:00Z",
+  "manifest_sha256": "5c23d8a986a62eab0bd4b3f82fa494d5f95fe17f5166309a0500389f56f8aa0d"
+}
