@@ -1477,3 +1477,42 @@ they do not identify their endpoints, rows, or deletion packets with
 membership for the canonical endpoints plus this proof-relevant alignment.
 The weak-cycle refactor is therefore deferred until one of those two cycle
 outcomes has an on-spine terminal.
+
+### 2026-09-05 signed-area terminal landed
+
+Commit `2198ed8f6` closes the terminal half of the signed-area route.  The new
+theorem `signedArea2_mul_neg_of_two_circle_intersections` proves that two
+distinct common points of two circles with distinct centres have strictly
+negative signed-area product.  Its proof reuses the indexed theorem-bank
+result `SurplusCOMPGBank.sep_signedArea2` and discharges nonvanishing directly
+from the coordinate dot/determinant identities.
+
+`B1ActualLivePairSignedAreaProductNonnegative` is the minimal B1-facing packet:
+one canonical live row, a distinct mate in the physical selected class and
+that row's actual support, and a nonnegative signed-area product against the
+second apex and actual row blocker.  The new consumer
+`false_of_b1ActualLivePairSignedAreaProductNonnegative` derives both circle
+incidences from those memberships and contradicts the generic strict-negative
+theorem.  It preserves the actual blocker and does not depend on a surrogate
+boundary-order packet.
+
+The two focused `lake-build` targets pass together at 10,861 jobs.  The named
+axiom probe reports only `propext`, `Classical.choice`, and `Quot.sound`; a
+source scan finds no `sorry`, `admit`, or `native_decide` in either new module.
+The post-build proof-blueprint resync still fails on the previously known stale
+private declaration
+`B1CardSixRoleProjectionIngress.ambientRoleIndex_injective`; this is separate
+from the successful Lean build and does not weaken the new terminal.
+
+The B1 closure residual is now sharply isolated to the producer
+
+```lean
+B1ActualLivePairSignedAreaProductNonnegative C
+```
+
+from the canonical or escape branch.  Local two-circle incidence proves the
+opposite sign, so this producer must use genuinely global deletion/escape
+placement data.  The direct escape-source Pro consult
+`01M1RSXD38KCFTCK2AH96PGEF6` remains queued.  The duplicate Luna consumer lane
+was stopped after confirming that it had no additional uncommitted delta and
+had released all ownership.
