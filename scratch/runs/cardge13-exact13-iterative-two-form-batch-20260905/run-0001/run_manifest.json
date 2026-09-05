@@ -1,0 +1,33 @@
+{
+  "base_head": "68e8a7dfa0aefb1166ce412b517c25730f743b69",
+  "created_utc": "2026-09-05T13:27:13Z",
+  "input_digests": {
+    "scratch/runs/cardge13-exact13-coarse-cell-classifier-20260905/run-0001/events/cell-000-direct-z08-k09-10.json": "aa58db32cc1f8841205c789f5382eadd2a39f64b7b4709995066652fd19a6608",
+    "scratch/runs/cardge13-exact13-coarse-cell-classifier-20260905/run-0002/events/cell-000-direct-z08-k09-10-resume.json": "012b57bdf613bf160c8e6964e40c0da1e8fe4c67e4e797552e46c43d0d6a9394",
+    "scratch/runs/cardge13-exact13-coarse-cell-resume-20260905/run-0001/events/cell-000-direct-z08-k09-10-resume-3000.json": "ed1fa3dd88f0faf057297414f5ee8ba258398d689d51670c36da4a79bd132c04",
+    "scratch/runs/cardge13-exact13-two-form-batch-20260905/run-0001/cell-000-final-model-two-form-batch.json": "e33b5f04ec9a2957abd70313f4dde95e238250f4bd3f7bea1015677a535290f2",
+    "scratch/runs/cardge13-exact13-two-form-resume-20260905/run-0001/cell-000-direct-z08-k09-10-two-form-resume.json": "dbd6a730dcaaac004f66b0d664671fc47d84e169c0b9c3da31196a25a84fa158"
+  },
+  "lane_id": "cardge13-exact13-iterative-two-form-batch-20260905",
+  "manifest_sha256": "715edba590bb7bb80e58771d3f105326c4b1df2b30c34a563ee993559a8781e0",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "RadiusCartographer",
+  "root": "scratch/runs/cardge13-exact13-iterative-two-form-batch-20260905/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/cardge13_exact13_coarse_cell_batch_piqd.py": "000eae266ed8ea98314465f2877b28e247493c8d078399aa45ae9b58190a3ddd",
+    "scripts/cardge13_exact13_coarse_cell_boolean_piqd.py": "26c0866ce98061d276499452e1b9a4d7f6700f54008996ff31f203b8bca52f20",
+    "scripts/cardge13_exact13_coarse_cell_iterative_two_form_batch_piqd.py": "2d3093c03a788ee0da7286826cc77655255fcb8527ba4af20ecb7ed2a2febc2c",
+    "scripts/cardge13_exact13_coarse_cell_two_form_batch_piqd.py": "449ee6014201e85355455f9c2fd79a2f541c2a216871e2e484d32f8641b93ddd",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_cegar_piqd.py": "b9ebd4869e3df7fde461db5667a62556104b3fe66057b71dfd5fc151296491a6",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py": "53d0dc73267f4bc486bd4773433bb95e8d28fb2e52678a2aabb294a3e5b7a41a",
+    "scripts/cardge13_exact13_global_source_cell_boolean_slice_piqd.py": "d090c8febb743b2769c32ff5d09af0e8555f46a0842d2e2fac37e0cd61c14dd5",
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096",
+    "scripts/test_cardge13_exact13_coarse_cell_iterative_two_form_batch_piqd.py": "a5efa7612ca046db8ef608ef9399dc4f765f419c945c997b7f3becfb2ed5091b"
+  }
+}
