@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-order-transport-20260905",
+  "owner": "luna-swarm-slice-ingress",
+  "base_head": "abab02eb9ffc1b0063731263c2821aa7d3c729e8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-order-transport-20260905.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13OrderTransport.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-order-transport-20260905/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/exact13-order-transport-20260905/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-05T08:00:00Z",
+  "manifest_sha256": "5d6f3e3be8480974b6f3a75563638b9276ca4727d46108059a7ba4b6e2967e7c"
+}

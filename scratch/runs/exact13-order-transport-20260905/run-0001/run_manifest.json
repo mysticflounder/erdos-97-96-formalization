@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "exact13-order-transport-20260905",
+  "run_id": "run-0001",
+  "root": "scratch/runs/exact13-order-transport-20260905/run-0001",
+  "owner": "luna-swarm-slice-ingress",
+  "base_head": "abab02eb9ffc1b0063731263c2821aa7d3c729e8",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13OrderTransport.lean": "2061cf3cc3b7f08bfdb6601ded88a6b332f598bc2ac9ec46dc8627e89189ab15"
+  },
+  "input_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/DRExactThirteenValuation.lean": "6b41efe1b3a98fb7d1e3ce9c8eae966b00d066d7be2f69dbd4e38e0481b8be50"
+  },
+  "created_utc": "2026-09-05T08:05:00Z",
+  "manifest_sha256": "27e88e865bfd2bb26d5c93ea35b9da55ea05c121bca11fdf4841a90fdcd3880e"
+}
