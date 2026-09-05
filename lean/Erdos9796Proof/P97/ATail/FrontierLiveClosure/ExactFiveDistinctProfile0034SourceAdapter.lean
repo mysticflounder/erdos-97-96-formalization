@@ -136,6 +136,7 @@ theorem RobustApexFourIncidenceContinuationPacket.blocker_ne_deleted_of_mem_firs
 
 /-- Under the positive profile-0034 incidences, one can choose residual heads
   in the first two rows that avoid the second-apex center and each other.  The
+  row-0 head also remains distinct from the retained point and blocker.  The
   proof uses only the two residual pairs: if the second-apex center is in the
   first row, the three-fan restriction rules out an unwanted cross-row equality;
   otherwise the two distinct row-1 residuals support the finite case split. -/
@@ -158,6 +159,8 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_profile0034_separated_r
     ∃ p s : ℝ²,
       p ∈ P.surface.row₀.support ∧
       s ∈ P.surface.row₁.support ∧
+      p ≠ N.retained ∧
+      p ≠ blocker ∧
       p ≠ s ∧
       p ≠ S.oppApex2 ∧
       s ≠ S.oppApex2 := by
@@ -177,25 +180,32 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_profile0034_separated_r
   have htK₁ : t ∈ P.surface.row₁.support := by
     rw [hrow₁]
     simp
+  have hpA : p ≠ N.retained := by
+    intro hpA
+    exact hpFresh (by simp [hpA])
+  have hpU : p ≠ blocker := by
+    intro hpU
+    exact hpFresh (by simp [hpU])
+  have hqA : q ≠ N.retained := by
+    intro hqA
+    exact hqFresh (by simp [hqA])
+  have hqU : q ≠ blocker := by
+    intro hqU
+    exact hqFresh (by simp [hqU])
   by_cases hc₂K₀ : S.oppApex2 ∈ P.surface.row₀.support
   · have hrestriction :=
       P.threeFan_shared_support_restriction hblockerK₀ hOK₁ hOK₂
     rcases hrestriction with hc₂not | hrestriction
     · exact (hc₂not hc₂K₀).elim
     · have hpOrq : ∃ x : ℝ²,
-        x ∈ P.surface.row₀.support ∧ x ≠ S.oppApex2 ∧ x ≠ N.retained := by
+        x ∈ P.surface.row₀.support ∧ x ≠ S.oppApex2 ∧
+          x ≠ N.retained ∧ x ≠ blocker := by
         by_cases hp₂ : p = S.oppApex2
         · have hq₂ : q ≠ S.oppApex2 := by
             intro hq₂
             exact hpq (hp₂.trans hq₂.symm)
-          have hqA : q ≠ N.retained := by
-            intro hqA
-            exact hqFresh (by simp [hqA])
-          exact ⟨q, hqK₀, hq₂, hqA⟩
-        · have hpA : p ≠ N.retained := by
-            intro hpA
-            exact hpFresh (by simp [hpA])
-          exact ⟨p, hpK₀, hp₂, hpA⟩
+          exact ⟨q, hqK₀, hq₂, hqA, hqU⟩
+        · exact ⟨p, hpK₀, hp₂, hpA, hpU⟩
       have hsOrt : ∃ y : ℝ²,
         y ∈ P.surface.row₁.support ∧ y ≠ S.oppApex2 := by
         by_cases hs₂ : s = S.oppApex2
@@ -204,7 +214,7 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_profile0034_separated_r
             exact hst (hs₂.trans ht₂.symm)
           exact ⟨t, htK₁, ht₂⟩
         · exact ⟨s, hsK₁, hs₂⟩
-      rcases hpOrq with ⟨p, hpK₀, hp₂, hpA⟩
+      rcases hpOrq with ⟨p, hpK₀, hp₂, hpA, hpU⟩
       rcases hsOrt with ⟨s, hsK₁, hs₂⟩
       have hps : p ≠ s := by
         intro hps
@@ -213,7 +223,7 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_profile0034_separated_r
         rcases hrestriction hpK₀ hpK₁ with hpa | hp₂'
         · exact hpA hpa
         · exact hp₂ hp₂'
-      exact ⟨p, s, hpK₀, hsK₁, hps, hp₂, hs₂⟩
+      exact ⟨p, s, hpK₀, hsK₁, hpA, hpU, hps, hp₂, hs₂⟩
   · have hp₂ : p ≠ S.oppApex2 := by
       intro hp₂
       exact hc₂K₀ (hp₂ ▸ hpK₀)
@@ -221,9 +231,11 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_profile0034_separated_r
       intro hq₂
       exact hc₂K₀ (hq₂ ▸ hqK₀)
     by_cases hs_good : s ≠ p ∧ s ≠ S.oppApex2
-    · exact ⟨p, s, hpK₀, hsK₁, fun h => hs_good.1 h.symm, hp₂, hs_good.2⟩
+    · exact ⟨p, s, hpK₀, hsK₁, hpA, hpU,
+        fun h => hs_good.1 h.symm, hp₂, hs_good.2⟩
     · by_cases ht_good : t ≠ p ∧ t ≠ S.oppApex2
-      · exact ⟨p, t, hpK₀, htK₁, fun h => ht_good.1 h.symm, hp₂, ht_good.2⟩
+      · exact ⟨p, t, hpK₀, htK₁, hpA, hpU,
+          fun h => ht_good.1 h.symm, hp₂, ht_good.2⟩
       · have hs_bad : s = p ∨ s = S.oppApex2 := by
           by_contra h
           apply hs_good
@@ -237,12 +249,12 @@ theorem RobustApexFourIncidenceContinuationPacket.exists_profile0034_separated_r
         rcases hs_bad with hs_is_p | hs_is₂
         · rcases ht_bad with ht_is_p | ht_is₂
           · exact (hst (hs_is_p.trans ht_is_p.symm)).elim
-          · refine ⟨q, s, hqK₀, hsK₁, ?_, hq₂,
+          · refine ⟨q, s, hqK₀, hsK₁, hqA, hqU, ?_, hq₂,
               fun hs₂ => hp₂ (hs_is_p.symm.trans hs₂)⟩
             intro hqs
             exact hpq (hqs.trans hs_is_p).symm
         · rcases ht_bad with ht_is_p | ht_is₂
-          · refine ⟨q, t, hqK₀, htK₁, ?_, hq₂,
+          · refine ⟨q, t, hqK₀, htK₁, hqA, hqU, ?_, hq₂,
               fun ht₂ => hp₂ (ht_is_p.symm.trans ht₂)⟩
             intro hqt
             exact hpq (hqt.trans ht_is_p).symm
@@ -341,6 +353,8 @@ theorem
       ∃ iU ip is ia id ic iO : Fin P.boundaryIndexing.n,
         p ∈ P.surface.row₀.support ∧
         s ∈ P.surface.row₁.support ∧
+        p ≠ N.retained ∧
+        p ≠ blocker ∧
         p ≠ s ∧
         p ≠ S.oppApex2 ∧
         s ≠ S.oppApex2 ∧
@@ -353,7 +367,7 @@ theorem
         P.boundaryIndexing.boundary ic = S.oppApex2 ∧
         P.boundaryIndexing.boundary iO = S.oppApex1 := by
   rcases P.exists_profile0034_separated_residual_heads N hblockerK₀ hOK₁ hOK₂ with
-    ⟨p, s, hpK₀, hsK₁, hps, hp₂, hs₂⟩
+    ⟨p, s, hpK₀, hsK₁, hpRetained, hpU, hps, hp₂, hs₂⟩
   have hblockerDeleted : blocker ≠ deleted :=
     P.blocker_ne_deleted_of_mem_firstRow N hblockerK₀
   have hblockerA : blocker ∈ D.A :=
@@ -378,8 +392,8 @@ theorem
   let id : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf dLabel
   let ic : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf cLabel
   let iO : Fin P.boundaryIndexing.n := P.boundaryIndexing.indexOf OLabel
-  refine ⟨p, s, iU, ip, is, ia, id, ic, iO, hpK₀, hsK₁, hps, hp₂, hs₂,
-    hblockerDeleted, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨p, s, iU, ip, is, ia, id, ic, iO, hpK₀, hsK₁, hpRetained, hpU,
+    hps, hp₂, hs₂, hblockerDeleted, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · simpa [iU, ULabel, pointOf] using P.boundaryIndexing.point_eq ULabel
   · simpa [ip, pLabel, pointOf] using P.boundaryIndexing.point_eq pLabel
   · simpa [is, sLabel, pointOf] using P.boundaryIndexing.point_eq sLabel

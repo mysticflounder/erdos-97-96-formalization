@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-profile0034-residual-blocker-separation-20260905",
+  "owner": "codex-profile0034-residual-blocker-separation",
+  "base_head": "929cae682e8f38f3fd8e91e19934d6d53f4b5f62",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-profile0034-residual-blocker-separation-20260905.json",
+    "docs/audits/2026-09-05-exactfive-profile0034-residual-blocker-separation.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactFiveDistinctProfile0034SourceAdapter.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T07:02:14Z",
+  "manifest_sha256": "db8e309ea14ee0fab54c031e5fe753e43b6dbb7deb24563141cbf608651b9da9"
+}
