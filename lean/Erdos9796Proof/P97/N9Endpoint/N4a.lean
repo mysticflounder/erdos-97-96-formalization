@@ -43,6 +43,8 @@ variable {m : ℕ}
 noncomputable def support (L : OrderedSideChain m) : Finset ℝ² :=
   Finset.univ.image L.points
 
+/-- A point belongs to a chain's support exactly when it is one of the
+chain's indexed points. -/
 @[simp] theorem mem_support_iff {L : OrderedSideChain m} {x : ℝ²} :
     x ∈ L.support ↔ ∃ i : Fin m, L.points i = x := by
   classical
@@ -146,6 +148,8 @@ noncomputable def OrderedSideChain.ofOrderedCapRev {m : ℕ}
     (L : Problem97.CGN.OrderedCap m) (i : Fin m) :
     (OrderedSideChain.ofOrderedCapRev L).points i = L.points i.rev := rfl
 
+/-- Membership in the reversed cap-chain support is independent of the
+reversal of indices. -/
 @[simp] theorem OrderedSideChain.mem_support_ofOrderedCapRev_iff {m : ℕ}
     (L : Problem97.CGN.OrderedCap m) {x : ℝ²} :
     x ∈ (OrderedSideChain.ofOrderedCapRev L).support ↔ ∃ i : Fin m, L.points i = x := by
@@ -159,6 +163,7 @@ noncomputable def OrderedSideChain.ofOrderedCapRev {m : ℕ}
     refine OrderedSideChain.mem_support_iff.mpr ⟨i.rev, ?_⟩
     simpa using hi
 
+/-- Reversing an ordered cap leaves its underlying support unchanged. -/
 @[simp] theorem OrderedSideChain.support_ofOrderedCapRev {m : ℕ}
     (L : Problem97.CGN.OrderedCap m) :
     (OrderedSideChain.ofOrderedCapRev L).support = Finset.univ.image L.points := by

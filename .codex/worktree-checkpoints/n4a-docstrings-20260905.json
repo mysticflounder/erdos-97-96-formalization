@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "n4a-docstrings-20260905",
+  "owner": "luna-swarm-n4a-docstrings",
+  "base_head": "e275189eb4511490b0028ce118f17066e498e896",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/n4a-docstrings-20260905.json",
+    "lean/Erdos9796Proof/P97/N9Endpoint/N4a.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T04:03:57Z",
+  "manifest_sha256": "cee5ea3098af8c9701a8768ac92a2ed84e766fc4333c197e481ccd1d143a4e36"
+}
