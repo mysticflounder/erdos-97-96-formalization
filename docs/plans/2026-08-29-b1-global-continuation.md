@@ -1121,6 +1121,31 @@ The next viable use of the outside arms requires a genuinely new geometric
 terminal relating the source blocker/core center to an indexed cap, boundary
 order, or a second source incidence.
 
+Independent audits at revision `ac9a1f89b` likewise ruled out direct work on
+the current blocker-inside leaves.  In the genuine third-source-row arm,
+`exactFourRigid221_context_u_ne_source_normalForm` reaches only the consistent
+finite alternatives in which the source blocker is the distinguished deleted
+point, `u`, or one of the two `v`-slice points.  The packet has no second
+source-row companion, reverse/cyclic incidence, or source-faithful cap order
+with which to eliminate those alternatives.  In the source-equals-`u` arm,
+the blocker-deleted, source-row-heavy, opposite-row-heavy, and sparse-row
+terminals are also compatible with their current interfaces.  The strongest
+common source-clean endpoint,
+`exactFourRigid221_sourceEqU_oppositeRowPartner`, names the second `v`-row
+point and an equal-distance edge but does not place that point or its center
+in the required ordered strict-cap geometry.  Indexed searches for each leaf
+found no source-clean `False` consumer.  Do not attack these five `sorry`s as
+local set/cardinality proofs; a producer must first retain exact carrier-label
+incidence plus boundary order, or furnish an independent second-source
+geometric relation.
+
+The profile0034 singleton-deletion grid does not supply that producer.
+`SINGLETON_DELETION_GRID_COMPLETE` records all nineteen planned cells rather
+than certifying all targets.  Its two `UNSAT_CUSTODY_VALID` target cells delete
+the source-row equality `D(O,a) = D(O,p)`, not the B1 blocker-deleted equality
+`centerAt(source) = jointDeletion.deleted`.  They remain discovery-only and
+have no source realization, B1 transport, Lean ingress, or theorem candidate.
+
 For exact class cardinality six,
 `B1CardSixPointConfigurationPayload.ofSource` already packages the strongest
 source-clean positive boundary, metric, row, role-alias, and physical-support
