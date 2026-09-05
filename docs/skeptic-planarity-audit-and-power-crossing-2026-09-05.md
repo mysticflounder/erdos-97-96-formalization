@@ -3,8 +3,19 @@
 **Target**: `/tmp/planarity-audit-and-power-crossing.md` (258 lines).
 **Target SHA-256**: `c3c237f648abc6eb1f0f6726f732c7ec03e4234e6ae8d5229cc41402a7ce11a2`.
 **Date**: 2026-09-05.
-**Verdict**: NEEDS WORK — missing replay artifacts and one omitted literature hypothesis; the local crossing and exposed-graph proofs pass.
+**Historical verdict for the original target**: NEEDS WORK — missing replay artifacts and one omitted literature hypothesis; the local crossing and exposed-graph proofs pass.
 **Claims audited**: 15 grouped mathematical claims, listed below.
+
+**Disposition — superseded by the repaired note, 2026-09-05.** The
+[maintained supporting note](erdos-97-power-crossing.md) replaces the unavailable
+sixteen-point example with a complete, independently reconstructed rational
+[certificate](../certificates/p97_power_crossing_control.json) and an
+[exact verifier](../scripts/verify_p97_power_crossing.py). Independent hull,
+distance-fiber, and construction checks pass. F2 and F3 are corrected there.
+The findings below describe only the original external file at the recorded
+hash; they are historical evidence, not outstanding repair assignments for the
+maintained note. The original missing artifact has not been recovered or
+retroactively verified.
 
 This is a dated review of an external note, not a proof-status register or a list
 of assigned proof obligations. The [atomic prose proof](erdos-97-descent-prose-proof-atomic.md)
@@ -160,7 +171,7 @@ Result: all 99 comparisons passed; nine distinct full two-point rows supply
 the explicit 15-vertex, 18-edge subdivision. This replay corroborates the
 finite construction; the general k construction rests on the written argument.
 
-## Required before CERTIFIED
+## Required before CERTIFIED — superseded original target only
 
 Supply the complete sixteen-point data and replay procedure; qualify the lens
 citation by excluding touching pairs; replace the banned connector. Supplying

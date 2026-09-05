@@ -1524,6 +1524,19 @@ The disjoint cover is a case of the split, not an unconditional premise for
 all carriers of size at least thirteen. The dispatcher stops at outcome
 packets; importing it does not consume them in the larger-cardinality leaf.
 
+**PROVEN (pen-and-paper, conditional geometry).** The independently audited
+[circle-power crossing theorem](erdos-97-power-crossing.md) forces two distinct
+strict-containment witnesses when two center segments properly cross and each
+circle pair has two shared points. Its exposed-graph consequence also requires
+explicit power-sign hypotheses.
+
+**EMPIRICALLY VERIFIED (one exact rational sixteen-point configuration).**
+A separately replayed control shows that crossings and those containments can
+coexist with four unique full four-point fibers. The source's `rowOverlap`
+outcome supplies only a nonempty intersection. The additional incidences and
+the implication from containment to contradiction remain unproved. These results do not discharge
+the larger-cardinality leaf.
+
 **PROVEN (Lean-formalized, fixed cells only).** The
 `CardGeThirteenTwoCanonicalK4FixedCell` result has an independent
 [core-only audit](skeptic-CardGeThirteenTwoCanonicalK4FixedCell-2026-09-04.md).

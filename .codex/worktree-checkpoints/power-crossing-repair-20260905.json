@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "power-crossing-repair-20260905",
+  "owner": "codex-atomic-scribe",
+  "base_head": "1fcfe8a1b851b044ecc3eeea5e0000a65f279dce",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/power-crossing-repair-20260905.json",
+    "certificates/p97_power_crossing_control.json",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "docs/erdos-97-power-crossing.md",
+    "docs/skeptic-planarity-audit-and-power-crossing-2026-09-05.md",
+    "scripts/tests/test_verify_p97_power_crossing.py",
+    "scripts/verify_p97_power_crossing.py"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T21:19:37Z",
+  "manifest_sha256": "4a5963455304150d72f1c39a52f7a9d4fbef17a100ffc5586350dfe4c8959adf"
+}
