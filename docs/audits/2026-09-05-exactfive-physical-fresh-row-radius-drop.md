@@ -52,13 +52,18 @@ The immediate consumer is the double-hit branch of the physical residual.
    and with the strict radius drop retained;
 5. `actualFreshBlocker_omission_or_twoOutside`: the source-clean trichotomy
    needed by the physical caller—omit `q`, omit `w`, or enter that named
-   low-radius two-outside configuration.
+   low-radius two-outside configuration;
+6. `actualFreshBlocker_doubleHit_otherCapPlacement`: both exterior points in
+   the double-hit child lie in the union of the surplus cap and the second
+   opposite cap.  This is the first explicit bridge from the small fresh row
+   to the other Moser caps.
 
-Lean LSP elaborated the complete file without diagnostics.  A literal theorem
-verification of the strongest consequence reported only `propext`,
-`Classical.choice`, and `Quot.sound`, with no source-scan warnings.
-The governed focused build completed successfully (`8102/8102`).  Its
-best-effort proof-blueprint resync then hit the pre-existing stale private
+Lean LSP elaborated the complete current file without diagnostics.  Literal
+verification of the trichotomy and other-cap placement reported only
+`propext`, `Classical.choice`, and `Quot.sound`, with no source-scan warnings.
+A governed focused build through the named two-outside trichotomy completed
+successfully (`8102/8102`).  Its best-effort proof-blueprint resync then hit
+the pre-existing stale private
 `B1CardSixRoleProjectionIngress.ambientRoleIndex_injective` index entry; this
 occurred after the Lean build had succeeded and is not evidence against this
 module.

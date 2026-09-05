@@ -27,6 +27,23 @@ open CapSelectedRowCounting
 open FirstApexInteriorPairGeometry
 open FirstApexUniqueRadiusResidual
 
+/-- A carrier point outside the first opposite cap belongs to one of the two
+other indexed caps. -/
+theorem mem_surplusOrSecondCap_of_mem_not_firstCap
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
+    (hxA : x ∈ A) (hxNotFirst : x ∉ S.capByIndex S.oppIndex1) :
+    x ∈ S.capByIndex S.surplusIdx ∨
+      x ∈ S.capByIndex S.oppIndex2 := by
+  rcases S.exists_mem_capByIndex_of_mem hxA with ⟨i, hi⟩
+  rcases S.index_eq_surplusIdx_or_oppIndex1_or_oppIndex2 i with
+    hiSurplus | hiFirst | hiSecond
+  · subst i
+    exact Or.inl hi
+  · subst i
+    exact False.elim (hxNotFirst hi)
+  · subst i
+    exact Or.inr hi
+
 /-- If the actual blocker row of a fresh carrier source contains both original
 strict-interior sources, then its radius is strictly below the first-apex
 radius. -/
@@ -297,6 +314,40 @@ theorem actualFreshBlocker_omission_or_twoOutside
           R hfreshA hfreshNotFirst hqRow hwRow))
     · exact Or.inr (Or.inl hwRow)
   · exact Or.inl hqRow
+
+/-- The two exterior points in the double-hit row both land in the union of
+the surplus cap and the second opposite cap. -/
+theorem actualFreshBlocker_doubleHit_otherCapPlacement
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hfreshNotFirst : fresh ∉ SelectedClass D.A S.oppApex1 radius)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    ∃ t : ℝ²,
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support =
+        {R.interior.frontier.pair.q, R.interior.frontier.pair.w, fresh, t} ∧
+      (fresh ∈ S.capByIndex S.surplusIdx ∨
+        fresh ∈ S.capByIndex S.oppIndex2) ∧
+      (t ∈ S.capByIndex S.surplusIdx ∨
+        t ∈ S.capByIndex S.oppIndex2) ∧
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.radius < radius := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  rcases actualFreshBlocker_doubleHit_twoOutside
+      R hfreshA hfreshNotFirst hqRow hwRow with
+    ⟨t, hsupport, _hcard, hfreshOutside, htOutside, hdrop⟩
+  have htRow : t ∈ K.support := by
+    rw [hsupport]
+    simp
+  have htA : t ∈ D.A := K.support_subset_A htRow
+  exact ⟨t, hsupport,
+    mem_surplusOrSecondCap_of_mem_not_firstCap S hfreshA hfreshOutside,
+    mem_surplusOrSecondCap_of_mem_not_firstCap S htA htOutside,
+    hdrop⟩
 
 end ExactFiveDistinctPhysicalFreshRowRadiusDrop
 end Problem97
