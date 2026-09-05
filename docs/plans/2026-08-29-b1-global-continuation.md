@@ -1046,6 +1046,21 @@ not a full Euclidean counterexample, but it proves that no Lean argument using
 only those incidence fields can derive the desired two-point lower bound.
 The missing lower bound must come from additional metric/order ingress.
 
+The current exact-thirteen 100-cell catalog is complete only for its fixed-label
+coarse signature.  Its direct/mirror construction makes no label-permutation
+symmetry assumption, and the Boolean CEGAR event explicitly records
+`source_coverage = false`; the latest retained event ended
+`REFINEMENT_BUDGET` with a SAT Boolean incidence model and contains no real
+distance assignment.  The separate metric CSP declares free pair-distance
+variables and imposes row equalities plus strict Kalmanson inequalities, but
+not positivity or triangle inequalities.  Positivity is a source-valid
+strengthening because the exact-thirteen label map is injective, although it
+would still not establish planar/source realization.  The optional coordinate
+check is diagnostic-only, and no current artifact-to-`ProviderRealizes` Lean
+bridge consumes either result.  Treat positivity as encoding hardening rather
+than a B1 frontier reduction; retain formula-scoped claim labels until the
+source bridge and a named Lean consumer exist.
+
 ### Card-at-least-thirteen global producer candidate
 
 `exists_good_sources_distinctBlockers_commonDeletion` is a genuine
