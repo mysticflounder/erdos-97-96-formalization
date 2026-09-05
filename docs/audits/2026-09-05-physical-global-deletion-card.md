@@ -18,5 +18,9 @@ This is a reusable producer for the open non-`u` physical leaf.  It is not a
 closure of that leaf: the remaining placement/collision argument still needs a
 consumer of the exact-two conclusion.
 
-Validation is recorded separately after the focused module build and axiom
-probe complete.
+Validation: the focused source check (`cd lean && lake env lean
+Erdos9796Proof/P97/ATail/FrontierLiveClosure/PhysicalGlobalDeletionCard.lean`)
+and the inline axiom probe both pass with no `sorry`, `admit`, or custom axiom.
+A governed `lake-build` replay was attempted, but the shared Lake tree was
+already rebuilding thousands of modules; no aggregate-spine claim is made from
+that interrupted replay.
