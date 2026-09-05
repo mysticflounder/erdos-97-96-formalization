@@ -256,6 +256,20 @@ theorem annularDetLinear_apply (p v : Plane) :
     annularDetLinear p v = p 0 * v 1 - p 1 * v 0 :=
   rfl
 
+/-- Determinant sign against the upper inner ray is the upper coordinate
+wedge inequality. -/
+theorem annularDetLinear_upper_wedge_iff {a h x y : ℝ} :
+    annularDetLinear (!₂[a, h] : Plane) !₂[x, y] < 0 ↔ a * y < h * x := by
+  change a * y - h * x < 0 ↔ a * y < h * x
+  constructor <;> intro hsign <;> nlinarith
+
+/-- Determinant sign against the lower inner ray is the lower coordinate
+wedge inequality. -/
+theorem annularDetLinear_lower_wedge_iff {a h x y : ℝ} :
+    0 < annularDetLinear (!₂[a, -h] : Plane) !₂[x, y] ↔ -h * x < a * y := by
+  change 0 < a * y - (-h) * x ↔ -h * x < a * y
+  constructor <;> intro hsign <;> nlinarith
+
 /-- A point strictly inside the coordinate box bounded by the two inner rays
 cannot have the same radius as either inner endpoint. -/
 theorem false_of_equal_radius_of_open_coordinate_box
