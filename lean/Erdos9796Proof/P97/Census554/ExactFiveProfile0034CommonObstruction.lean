@@ -30,9 +30,9 @@ def cross (ax ay bx byy cx cy : ℝ) : ℝ :=
 def qdist (ax ay bx byy : ℝ) : ℝ :=
   (ax - bx) ^ 2 + 3 * (ay - byy) ^ 2
 
+set_option maxHeartbeats 2000000 in
 -- The normalized nonlinear elimination uses several nested `nlinarith` calls;
 -- the default heartbeat budget is insufficient on a clean build.
-set_option maxHeartbeats 2000000 in
 theorem normalized_first_chain_obstruction
     (px py sx sy : ℝ)
     (hUps : 0 < cross 0 0 px py sx sy)
@@ -170,9 +170,9 @@ theorem normalized_first_chain_obstruction
   · exact hsx
   · linarith [hsy]
 
+set_option maxHeartbeats 2000000 in
 -- Combining the two normalized chains enlarges the nonlinear context enough
 -- that a clean build needs the same bounded heartbeat allowance.
-set_option maxHeartbeats 2000000 in
 theorem normalized_common_obstruction
     (px py sx sy dx dy cx cy : ℝ)
     (hUps : 0 < cross 0 0 px py sx sy)
@@ -277,9 +277,9 @@ theorem normalized_common_obstruction
   rw [hfactor_identity] at hleft_pos
   linarith only [hleft_pos, hright_neg]
 
+set_option maxHeartbeats 2000000 in
 -- The swapped-chain proof performs a factored quadratic sign elimination;
 -- the bounded allowance keeps that kernel-checked calculation reproducible.
-set_option maxHeartbeats 2000000 in
 /-- In the normalized equilateral frame, the profile-0034 circle equations
 exclude the swapped chain `U<a<s<d<c<O`. -/
 theorem normalized_a_before_s_obstruction
