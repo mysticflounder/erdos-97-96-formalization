@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "luna-swarm-radius-scribe-b1-apex-u-blocker-cell-20260905",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "6ce317e3541c8e308192a4404bfce6a55bfbaa6a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/luna-swarm-radius-scribe-b1-apex-u-blocker-cell-20260905.json",
+    "docs/audits/2026-09-05-b1-apex-u-blocker-cell.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1ApexUBlockerCell.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-05T00:54:51Z",
+  "manifest_sha256": "d6662e7f37508ef55e4f6bd8a771c77b63011b3e5ca3ba27460db67714fbae67"
+}
