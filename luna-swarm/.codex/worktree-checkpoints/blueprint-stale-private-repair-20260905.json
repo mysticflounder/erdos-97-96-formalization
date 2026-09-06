@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "blueprint-stale-private-repair-20260905",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "328a9577c43956974ecf629b20dcd1e13acc6e3b",
+  "owned_paths": [
+    "docs/skeptic-TwoInteriorSameBoundaryRadius-2026-09-06.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardSixRoleProjectionIngress.lean",
+    "luna-swarm/.codex/worktree-checkpoints/blueprint-stale-private-repair-20260905.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/blueprint-stale-private-repair-20260905/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T04:12:47Z",
+  "manifest_sha256": "f2e796676d5ebd470af5bebb798fd41b79ce400b085bbe9af66d65dd4ea33fdd"
+}

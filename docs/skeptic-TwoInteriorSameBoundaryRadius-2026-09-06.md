@@ -1,8 +1,8 @@
 # Math Skeptic Audit: TwoInteriorSameBoundaryRadius.lean
 
 **Target**: `lean/Erdos9796Proof/Geometry/TwoInteriorSameBoundaryRadius.lean`
-**Date**: 2026-09-06
-**Verdict**: CERTIFIED
+**Date**: 2026-09-05
+**Verdict**: SOURCE-CLEAN / BUILT; CONSUMER PROMOTION PENDING
 **Claims audited**: 7
 
 ## Summary
@@ -13,7 +13,10 @@ custom `axiom`, `native_decide`, `unsafe`, `implemented_by`, or `extern`, and
 the two new public conclusions report only `propext`, `Classical.choice`, and
 `Quot.sound`.  The new claim is scoped to a center-supported enclosing disk;
 it does not identify an arbitrary disk as a minimum enclosing circle and does
-not claim any exact-thirteen incidence or closure consequence.
+not claim any exact-thirteen incidence or closure consequence.  This audit
+certifies the geometry module at its focused build snapshot only: it does not
+establish consumer reachability or project-level promotion while the
+proof-blueprint index/call graph remains stale.
 
 ## Findings
 
@@ -110,6 +113,9 @@ The stronger strict-radius label is accompanied by a new Lean theorem and a
 new checked equality corollary in the same diff.  No finite computation is
 used to support the general claim.
 
-## Required before CERTIFIED
+## Promotion status
 
-None.
+The geometry source is clean, its focused governed build succeeded, and the
+two public declarations have only the project-approved core axiom closure.
+Consumer reachability and project-level promotion remain pending a fresh,
+successful proof-blueprint reference mine over a matching current build.
