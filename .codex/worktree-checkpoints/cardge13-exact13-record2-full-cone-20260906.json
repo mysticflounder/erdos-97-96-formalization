@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-exact13-record2-full-cone-20260906",
+  "owner": "RadiusCartographer",
+  "base_head": "0ea1d2300c95c62d6e8db45410f82d36fe33cb1b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-exact13-record2-full-cone-20260906.json",
+    "docs/audits/2026-09-06-cardge13-exact13-record2-full-cone.md",
+    "scripts/certify_exact13_record2_full_cone.py",
+    "scripts/test_certify_exact13_record2_full_cone.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-exact13-record2-full-cone-20260906/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/cardge13-exact13-record2-full-cone-20260906/run-0001/record-002-first-survivor-piqd.json",
+    "scratch/runs/cardge13-exact13-record2-full-cone-20260906/run-0001/record-002-two-center-closure.json",
+    "scratch/runs/cardge13-exact13-record2-full-cone-20260906/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-06T10:36:32Z",
+  "manifest_sha256": "818597641febf165ea7ee31bad3d139266991c4e45b757028f0dfcbba112b81e"
+}

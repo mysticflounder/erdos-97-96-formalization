@@ -1,0 +1,29 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "cardge13-exact13-record2-full-cone-20260906",
+  "run_id": "run-0001",
+  "root": "scratch/runs/cardge13-exact13-record2-full-cone-20260906/run-0001",
+  "owner": "RadiusCartographer",
+  "base_head": "0ea1d2300c95c62d6e8db45410f82d36fe33cb1b",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096",
+    "scripts/cardge13_exact13_tight_cover_lra_piqd.py": "5101cdc837cfc0a1e956dae8f27359e0f6e4f2d2a50e8f0319956c047309581b",
+    "scripts/certify_exact13_record2_full_cone.py": "8be479324760aa909139c1d645eaf864cbfdd2a8f7d27a7454c3202ffafe1a64",
+    "scripts/check_exact13_global_obstructions.py": "cfee0962564b3570a9471931b241e7914ac9e0ee215e779c66530814d8120705",
+    "scripts/solve_exact13_global_completion.py": "b988ff17eb4ad275e6573894d4824ca960d0b31a715054cf60b1f10cce0ff5e4",
+    "scripts/solve_exact13_quotient_cones.py": "a4d9d22863c6807e444f8f7c587206c8282848cdc395530e3d9ebcf23e2d9a4d",
+    "scripts/test_certify_exact13_record2_full_cone.py": "5caec01dd54c2001cde34d0d5997d8fb56d686b703465a76a1a666bc2dd9a2b8"
+  },
+  "input_digests": {
+    "docs/audits/2026-09-05-exact13-baseline-survivor-family.json": "4e2c1ff2ce9ec35a51c83f8609d73ce122ffd3b16ce9d4f9787a32557723436c",
+    "docs/audits/2026-09-06-exact13-full-cone.json": "d5fa74e8a52a9c6bebca28155a1bf190b6b9253f234fb53728c4a10c94f2ac3d",
+    "docs/audits/2026-09-06-exact13-global-obstructions.json": "c893a56f52439557f4e5ed567686359d6eea9aac1f2141d42ef7771d5975ec5b"
+  },
+  "created_utc": "2026-09-06T10:36:32Z",
+  "manifest_sha256": "030e2e252e2b53aa6d9367fec6ea9a4f89aef28735624d5a027c8a090634d7cb"
+}
