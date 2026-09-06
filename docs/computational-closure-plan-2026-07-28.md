@@ -5,10 +5,12 @@ Evidence-status terms in this plan follow the
 
 The active exact-five execution order is the
 [physical/uniform closure plan](plans/2026-09-05-exactfive-physical-uniform-closure-plan.md):
-validate the committed simultaneous-deletion/strict-fresh integration, derive the
-source geometry needed by radius drop, then address admissible-pair
-reconstruction and the uniform return-path barrier. The recovered scalar and
-graph checks do not close the physical terminal. This targeted plan takes
+validate the committed simultaneous-deletion/strict-fresh integration, consume
+the landed source radius-drop and circle-power lemmas, retain minimum-pair
+provenance through source reconstruction, and address the uniform return-path
+barrier. The canonical fresh-row omission and smaller-radius cases still lack
+a contradiction consumer. The recovered scalar and graph checks do not close
+the physical terminal. This targeted plan takes
 precedence over older exact-five next-step proposals below; it does not
 refresh the global obligation counts.
 

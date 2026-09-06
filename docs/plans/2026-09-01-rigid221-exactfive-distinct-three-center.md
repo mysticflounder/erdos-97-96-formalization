@@ -12,8 +12,10 @@ simultaneous-deletion draft supports bypassing the five-incidence dispatcher
 by replacing the second row and regenerating strict freshness. Its production
 lane committed the helper and coordinator in `bce36a53c`; both builds pass
 and the unused five-incidence declaration is deleted. A fresh kernel mine
-must confirm the source dependency change. The next independent task is the
-actual-source geometry needed for radius drop. Earlier census and incidence
+must confirm the source dependency change. Source radius drop, circle-power
+distance drop, and the actual-fresh-row trichotomy have since landed. The
+remaining physical proof must contradict the omission and smaller-radius
+cases; minimum-pair source reconstruction is in progress. Earlier census and incidence
 execution proposals below remain dated route history, not an instruction to
 restart their solver runs. The physical contradiction and uniform geometric
 barrier remain open.

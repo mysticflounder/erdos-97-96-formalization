@@ -39,8 +39,8 @@ well-founded measure and its constructor fan-out before changing obligations.
 | Priority | Work | Present evidence | Required result |
 | --- | --- | --- | --- |
 | 1 | Simultaneous-deletion row replacement and strict-fresh reconstruction | Committed in `bce36a53c`; helper and coordinator builds pass; old five-incidence declaration deleted; ten production helpers have core-only axioms | Refresh the kernel mine and aggregate dependency/trust evidence before accepting a proof-spine reduction |
-| 2 | Source geometry for radius drop | Six radius-drop and five circle-power scalar theorems check; source transport remains open | Derive all coordinate/sign hypotheses from the physical residual and apply them at its consumer |
-| 3 | Admissible-pair selection and actual-blocker reconstruction | Conditional prose argument audited | Minimize among jointly admissible pairs, rebuild dependent source data, and close or strictly narrow a live physical case |
+| 2 | Source geometry for radius drop | Source strict radius drop, circle-power exterior distance drop, and support-triangle exclusion have landed; actual-fresh-row adapter checked | Supply a contradiction for the omission or smaller-radius child, then apply an exhaustive split at the physical consumer |
+| 3 | Admissible-pair selection and actual-blocker reconstruction | Chord-minimum producer and conditional cap-five double-hit consumer checked; source reconstruction in progress | Retain the minimum pair through residual construction and any reselection, derive the cap-size and robustness hypotheses, and close or strictly narrow a live physical case |
 | 4 | Uniform row-replacement and return-cycle interface | Conditional graph reduction audited; finite regression reproduced | Five source-owned row replacements sharing the other rows, an explicit gauge condition, and a source return cycle |
 | 5 | Uniform geometric barrier | OPEN MATHEMATICAL | A source-derived no-return cut, path invariant, or sound shortening theorem, with a contradiction consumer |
 | 6 | Production validation | Required after each applicable source change | Intended aggregate build, literal axiom audit, independent mathematical audit, fresh source/kernel evidence, and applicable ingress binding |
@@ -73,7 +73,52 @@ normal form may choose `fresh := deleted`; only the subsequent
 `nonempty_strictThreeCenterAlternative` on the new packet supplies strict
 freshness or the tight cover. The former fresh point is not reusable.
 
-### 2. Start at the source geometry, before another scalar lemma
+### 2. Consume the source geometry in a physical contradiction
+
+The source geometry that was missing at the initial checkpoint is now in
+`FirstApexInteriorPairGeometry.lean` and
+`FirstApexInteriorPairCirclePower.lean`. In particular,
+`bisectorCenter_radius_lt_of_selected_pair` proves strict radius drop;
+`dist_firstApex_lt_of_interiorPair_circlePoint_outsideCap` proves the
+exterior-point distance drop; and
+`interiorPair_circleRadius_lt_dist_supportTriangle` excludes the three
+Moser support vertices from that circle. The
+[fresh-row checkpoint](../audits/2026-09-05-exactfive-physical-fresh-row-radius-drop.md)
+records their source adapters and validation boundaries. The coordinate-free
+production argument supersedes the pending coordinate-transport route below.
+
+Read-only consumer inspection at source revision
+`955ef2c465c8822b856b204eafeba7f3278c4e55` finds that the physical theorem
+still has a bare `sorry` and does not call the fresh-row adapter. Let `q,w`
+be `R.interior.frontier.pair` and let `K` be the canonical shell
+`(H.selectedAt fresh packet.q_mem_A).toCriticalFourShell`. The physical
+packet supplies carrier membership; `fresh_not_mem_firstApexSelectedClass`
+supplies the other premise of `actualFreshBlocker_omission_or_twoOutside`.
+Its alternatives are:
+
+1. `q` is omitted by `K.support`;
+2. `w` is omitted by `K.support`; or
+3. `K.support = {q,w,fresh,t}` for four distinct points, with `fresh,t`
+   outside the first cap and `K.radius < radius`.
+
+No checked `False` consumer was found for these alternatives. The separate
+high-radius double-hit contradiction needs both source memberships and
+`radius ≤ K.radius`; the physical packet supplies none of these three
+antecedents for the canonical fresh shell. Its old blocker row is a
+different row. In the third alternative, both exterior points have
+first-apex distance below `radius` and the fresh point is not a Moser
+support vertex. These restrictions remain compatible with omission from
+the selected radius class. The bounded indexed reuse search found the
+existing radius-drop module, not an independent terminal consumer.
+
+**Current proof blocker:** derive a contradiction for the source-entitled
+omission cases and for the remaining smaller-radius configuration. Merely
+dispatching this trichotomy into new admissions would repackage the open
+physical theorem and is not an accepted frontier reduction. The minimum-pair
+route below can eliminate a restricted double-hit case once its additional
+source hypotheses are retained; it does not yet close this general split.
+
+#### Historical source-geometry preflight
 
 Run one indexed reuse preflight for the first concrete missing antecedent.
 Record its immediate physical consumer, relevant source/import revision, and
@@ -139,14 +184,17 @@ from the existing global `dist_image` field by polarization;
 The parent independently replayed both statements with Lean LSP and literal
 axiom probes: only `propext`, `Classical.choice`, and `Quot.sound`, with no
 errors or warnings. The [validation receipt](../audits/2026-09-05-exactfive-inner-transport-prototype.json)
-binds the tested source and current direct import sources.
+binds the tested source and direct import sources at its captured source
+head. Later production edits changed those imports; this receipt is
+historical prototype evidence, not a binding of their current bytes.
 
 This is a retained prototype, not production integration or physical closure.
 No extra inner-product field is needed in the normalization interface.
-Next derive the normalized actual-apex coordinate bounds and strict side
-signs from the source packet, then combine them with the existing scalar
-positivity identity. The checked transport preserves strictness once proved;
-it does not supply that strictness.
+At that checkpoint the next proposed task was to derive normalized
+actual-apex bounds and strict side signs. The subsequent source geometry
+above supplies the needed production radius and distance inequalities by a
+coordinate-free route. The prototype itself preserves strictness once
+proved; it does not supply that strictness.
 
 ### 3. Reconstruct source roles after minimizing the pair
 
@@ -157,6 +205,27 @@ blockers, canonical-support equalities, and strict freshness after reselection.
 Apply the cap-five double-hit conclusion only to that newly selected pair.
 The extra MEC-vertex blocker is a producer with an open contradiction
 consumer. Retain the total critical-shell system in that argument.
+
+`MinimalAdmissibleInteriorPair.lean` now minimizes the chord distance
+`dist p.1 p.2` over ordered, jointly admissible interior pairs. Its
+`no_interiorPoint_closer_to_both` needs independent second-apex full
+deletion robustness. It establishes a metric no-shortening property;
+indexed consecutiveness still needs a source/order bridge. The current
+physical adapter
+`false_of_actualFreshBlocker_doubleHit_of_minimalPair_capFive` additionally
+requires `M.frontier = R.interior` and first closed-cap cardinality five.
+Exact cardinality five of the selected radius class does not by itself
+supply that cap-cardinality hypothesis.
+
+At the consumer checkpoint above, the ordinary residual producer and
+adaptive common-center reselection choose arbitrary admissible pairs.
+Their outputs cannot inherit minimality by assertion. The source owner is
+rebuilding the exact-five split with explicit minimum-pair custody in
+`FirstApexUniqueRadiusResidual.lean`; that ongoing edit is not claimed as a
+validated caller integration here. Keep its producer validation separate
+from the further task of carrying its payload through the live coordinator,
+especially across adaptive reselection. The omission and larger-cap cases
+remain open even after the conditional cap-five double-hit consumer applies.
 
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 

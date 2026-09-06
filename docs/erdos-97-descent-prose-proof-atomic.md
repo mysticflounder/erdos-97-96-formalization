@@ -1601,9 +1601,17 @@ newly verified publication-spine count. The coordinator still reaches
 `sorryAx` through the physical consumer and approved native trust through
 the tight-twelve branch.
 
-The physical terminal still needs the actual-source geometric hypotheses of
-the scalar radius-drop argument. In particular, the opposite Moser apex must
-not be identified with the MEC center. The uniform strategy has an audited
+Source radius drop and circle-power distance drop are now proved in
+`FirstApexInteriorPairGeometry.lean` and
+`FirstApexInteriorPairCirclePower.lean`; the
+[actual-fresh-row adapter](audits/2026-09-05-exactfive-physical-fresh-row-radius-drop.md)
+retains the actual opposite Moser apex and canonical critical shell. The
+physical terminal still lacks a contradiction for a shell omitting an
+original endpoint or containing both at smaller radius. Chord-minimum
+selection gives a conditional cap-five double-hit contradiction, requiring
+explicit custody of the selected minimum pair, second-apex robustness, and
+the cap-cardinality hypothesis. Its source reconstruction is in progress;
+no physical closure follows from the helper alone. The uniform strategy has an audited
 conditional return-cycle reduction, but no source-derived geometric barrier
 to those cycles. Its finite regressions and local thirty-point control do
 not establish the global contradiction.
@@ -1872,7 +1880,7 @@ matrix aggregates declarations by obligation family.
 | Exact-thirteen fixed-cell K4 exclusions | PROVEN (Lean-formalized, fixed cells only) | Done for their explicit inputs; source coverage pending | §11.4; these are not the general-carrier terminal |
 | Common-center exact-five adaptive reselection | PROVEN (conditional source reduction) | Reduced to exact-four or distinct-center consumers | §11.5; it still inherits their unresolved conclusions |
 | Recovered exact-five scalar and double-deletion helpers | PROVEN (Lean-formalized at the audited signatures, core axioms) | Reference checks and production helper/coordinator builds done; fresh kernel mine pending | §11.5; [handoff audit](skeptic-exactfive-physical-handoff-2026-09-05.md) and source commit `bce36a53c` |
-| Exact-five source radius drop and uniform return-path barrier | CONJECTURED at the assembled source interface | Open | [Execution plan](plans/2026-09-05-exactfive-physical-uniform-closure-plan.md); conditional scalar/graph reductions alone do not close the physical terminal |
+| Exact-five physical fresh-row contradiction and uniform return-path barrier | CONJECTURED at the assembled consumer | Open | [Execution plan](plans/2026-09-05-exactfive-physical-uniform-closure-plan.md); source radius/distance drops proved, omission and smaller-radius consumers open |
 | Exact-five distinct-center exact-twelve tight physical cover, with the eleven-point union, erase identity, retained-source omission, and retained packet | PROVEN (Lean-formalized under approved native trust) | Done for the full tight-cover contract | §11.5; `false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical` and `Balanced555FiniteUnsat` |
 | Exact-five distinct-center physical fresh-source contradiction | CONJECTURED | Open | §11.5; the remaining exact-five declaration in §11.8 |
 | TriApex cardinality split and exact-fifteen controls | PROVEN (pen-and-paper cap counting; implemented source reductions) | Done as reductions | §11.6; both terminal conclusions remain open |
