@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.Phase3SharedPairSeparation
+import Erdos9796Proof.P97.FiniteRowCardinality
 import Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage
 import Erdos9796Proof.P97.ATail.KalmansonFourEqualitySchemas
 
@@ -77,8 +78,6 @@ def longLabelBool (point : Fin 16) : Bool :=
 def outsideHits (membership : Fin 16 → Bool) : Finset (Fin 7) :=
   Finset.univ.filter fun i => membership (outsideLabel i)
 
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
 /-- A four-element row containing its two fixed cap hits and at most two cap
 labels has exactly two outside labels. -/
 theorem outsideHits_card_eq_two
@@ -90,7 +89,39 @@ theorem outsideHits_card_eq_two
       (Finset.univ.filter fun point =>
         membership point && longLabelBool point).card ≤ 2) :
     (outsideHits membership).card = 2 := by
-  native_decide +revert
+  let support : Finset (Fin 16) := Finset.univ.filter fun p ↦ membership p
+  let cap : Finset (Fin 16) := Finset.univ.filter fun p ↦ longLabelBool p
+  have hinter : support ∩ cap =
+      Finset.univ.filter (fun p ↦ membership p && longLabelBool p) := by
+    ext p
+    simp [support, cap, Bool.and_eq_true]
+  have hcap : (support ∩ cap).card ≤ 2 := by
+    rw [hinter]
+    exact hlong
+  have hcap₁ : ∀ r : Fin 4, longLabelBool (fixedHit₁ r) = true := by decide
+  have hcap₂ : ∀ r : Fin 4, longLabelBool (fixedHit₂ r) = true := by decide
+  have hdistinct : ∀ r : Fin 4, fixedHit₁ r ≠ fixedHit₂ r := by decide
+  have houtside : (support \ cap).card = 2 :=
+    FiniteRowCardinality.outsideSlice_card_eq_two support cap (fixedHit₁ row) (fixedHit₂ row)
+      htotal hcap (by simp [support, cap, hfixed₁, hcap₁])
+      (by simp [support, cap, hfixed₂, hcap₂]) (hdistinct row)
+  have hinj : Function.Injective outsideLabel := by decide
+  have hlabel : ∀ i, longLabelBool (outsideLabel i) = false := by decide
+  have hcover : ∀ p : Fin 16,
+      longLabelBool p = false ↔ ∃ i, outsideLabel i = p := by decide
+  have himage : (outsideHits membership).image outsideLabel = support \ cap := by
+    ext p
+    simp only [Finset.mem_image, outsideHits, Finset.mem_filter, Finset.mem_univ,
+      true_and, Finset.mem_sdiff, support, cap]
+    constructor
+    · rintro ⟨i, hi, rfl⟩
+      exact ⟨hi, by simp [hlabel i]⟩
+    · rintro ⟨hm, hc⟩
+      have hfalse : longLabelBool p = false := by simpa using hc
+      obtain ⟨i, rfl⟩ := (hcover p).mp hfalse
+      exact ⟨i, hm, rfl⟩
+  rw [← himage, Finset.card_image_of_injective _ hinj] at houtside
+  exact houtside
 
 /-- The normalized outside pair attached to one actual four-point row. -/
 def outsidePairOfMembership

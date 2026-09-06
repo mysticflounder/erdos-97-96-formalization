@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.U1CarrierInjection
+import Erdos9796Proof.P97.FiniteRowCardinality
 
 /-!
 # Exact-seventeen BlockerV source normal form
@@ -644,19 +645,8 @@ theorem outsideSlice_card_eq_two {α : Type*} [DecidableEq α]
     (ha : a ∈ support ∩ cap) (hb : b ∈ support ∩ cap)
     (hab : a ≠ b) :
     (support \ cap).card = 2 := by
-  have hpair : {a, b} ⊆ support ∩ cap := by
-    intro x hx
-    simp only [Finset.mem_insert, Finset.mem_singleton] at hx
-    rcases hx with rfl | rfl
-    · exact ha
-    · exact hb
-  have htwo : 2 ≤ (support ∩ cap).card := by
-    calc
-      2 = ({a, b} : Finset α).card := by simp [hab]
-      _ ≤ (support ∩ cap).card := Finset.card_le_card hpair
-  have hinter : (support ∩ cap).card = 2 := by omega
-  have hsplit := Finset.card_sdiff_add_card_inter support cap
-  omega
+  exact FiniteRowCardinality.outsideSlice_card_eq_two support cap a b
+    hsupport hcap ha hb hab
 
 /-- The bag of incidences between four distinguished rows and an outside set. -/
 def incidenceBag {α : Type*} [DecidableEq α]

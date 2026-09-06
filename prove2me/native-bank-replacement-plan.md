@@ -1,7 +1,8 @@
 # Plan: replace native certificate banks with general theorems
 
 Date: 2026-09-05. Planning baseline: `fff7305bb6f10ddfc5a9446fe7392541da47d87b`.
-Status: planned; implementation has not started under this plan.
+Status: package 1 is implemented and undergoing live validation; packages 2–5
+remain planned. See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md).
 
 ## Objective and boundaries
 
@@ -107,8 +108,9 @@ members and at most two cap members has two points outside the cap.
    declarations' axioms and inspect the consumer graph.
 
 **Exit:** both computations are replaced by the shared counting argument plus
-label adapters. Their separate `exists_metricMotif_of_pairwiseSeparated`
-classifiers remain explicit native dependencies. Do not report the whole banks
+label adapters. The separate exact-15 `exists_metricMotif_of_pairwiseSeparated`
+and exact-16 `metricObstructionOccurs_of_pairwiseSeparated` classifiers remain
+explicit native dependencies. Do not report the whole banks
 or the P97 root as native-free.
 
 ### 2. Replace finite geometric cases by structural coverage
