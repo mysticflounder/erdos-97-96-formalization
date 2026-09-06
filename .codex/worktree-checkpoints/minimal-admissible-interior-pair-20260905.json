@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "minimal-admissible-interior-pair-20260905",
+  "owner": "codex-root",
+  "base_head": "b15a03986a617e492abc95abb0bfcedef79829c7",
+  "created_utc": "2026-09-06T00:22:00Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/minimal-admissible-interior-pair-20260905.json",
+    "docs/audits/2026-09-05-minimal-admissible-interior-pair.md",
+    "lean/Erdos9796Proof/P97/ATail/MinimalAdmissibleInteriorPair.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "37ed29a23ef06e4a4cc48e7c23e5a555490dd6850afa7534b46b126846fb7116"
+}
