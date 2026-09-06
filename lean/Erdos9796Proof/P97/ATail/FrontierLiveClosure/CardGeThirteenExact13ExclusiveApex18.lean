@@ -76,6 +76,111 @@ theorem pRaw_not_mem_Kraw :
     exact Finset.mem_image.mpr ⟨pRaw I, hp, I.P.labelMap.secondApex_eq⟩
   exact I.Q.base.thirdRow.center_not_mem hphys
 
+theorem pRaw_not_mem_Lraw :
+    pRaw I ∉ I.O.Lraw := by
+  intro hp
+  rcases I.O.is_other with h | h
+  · have hphys : I.P.pt (pRaw I) ∈ I.firstRow.support := by
+      rw [← h.2]
+      exact Finset.mem_image.mpr ⟨pRaw I, hp, rfl⟩
+    change I.P.pt secondApex ∈ I.firstRow.support at hphys
+    rw [I.P.labelMap.secondApex_eq] at hphys
+    exact I.firstRow.center_not_mem hphys
+  · have hphys : I.P.pt (pRaw I) ∈ I.secondRow.support := by
+      rw [← h.2]
+      exact Finset.mem_image.mpr ⟨pRaw I, hp, rfl⟩
+    change I.P.pt secondApex ∈ I.secondRow.support at hphys
+    rw [I.P.labelMap.secondApex_eq] at hphys
+    exact I.secondRow.center_not_mem hphys
+
+theorem Lraw_erase_zraw_card :
+    (I.O.Lraw.erase I.X.tightSupport.zraw).card = 3 := by
+  rw [Finset.card_erase_of_mem I.O.Lraw_mem_zraw, I.O.Lraw_card]
+
+theorem Uraw_card :
+    (Finset.univ \ (I.X.tightSupport.Kraw ∪ I.O.Lraw ∪
+      {pRaw I})).card = 4 := by
+  have hKL : Disjoint I.X.tightSupport.Kraw I.O.Lraw :=
+    I.O.Lraw_disjoint_Kraw.symm
+  have hKp : pRaw I ∉ I.X.tightSupport.Kraw := pRaw_not_mem_Kraw I
+  have hLp : pRaw I ∉ I.O.Lraw := pRaw_not_mem_Lraw I
+  have hKLp : Disjoint (I.X.tightSupport.Kraw ∪ I.O.Lraw) {pRaw I} := by
+    rw [Finset.disjoint_singleton_right]
+    intro hp
+    rcases Finset.mem_union.mp hp with hpK | hpL
+    · exact hKp hpK
+    · exact hLp hpL
+  have hremoved :
+      (I.X.tightSupport.Kraw ∪ I.O.Lraw ∪ {pRaw I}).card = 9 := by
+    rw [Finset.card_union_of_disjoint hKLp,
+      Finset.card_union_of_disjoint hKL]
+    simp [I.X.tightSupport.Kraw_card, I.O.Lraw_card]
+  have hsub : I.X.tightSupport.Kraw ∪ I.O.Lraw ∪ {pRaw I} ⊆
+      (Finset.univ : Finset (Fin 13)) := by
+    intro x hx
+    exact Finset.mem_univ x
+  rw [Finset.card_sdiff_of_subset hsub, Finset.card_univ, hremoved]
+  decide
+
+private theorem physical_blocker_inter_card_le_one
+    {A : Finset ℝ²} {C P b : ℝ²} {r : ℝ}
+    (hconv : EuclideanGeometry.ConvexIndep (A : Set ℝ²))
+    (hcontain : ∀ q ∈ A, dist q C ≤ r)
+    (hcenter : C ∈ convexHull ℝ {q : ℝ² | q ∈ A ∧ dist q C = r})
+    (hbmem : b ∈ A) (hPmem : P ∈ A) (hPboundary : dist P C = r)
+    (B : SelectedFourClass A b) (T : SelectedFourClass A P)
+    (hPB : P ∈ B.support) : (B.support ∩ T.support).card ≤ 1 := by
+  apply Finset.card_le_one.mpr
+  intro x hx y hy
+  rcases Finset.mem_inter.mp hx with ⟨hxB, hxT⟩
+  rcases Finset.mem_inter.mp hy with ⟨hyB, hyT⟩
+  exact Erdos9796Proof.Geometry.eq_of_one_boundary_same_radius_pair
+    hconv hcontain hcenter hbmem hPmem
+    (T.support_subset_A hxT) (T.support_subset_A hyT) hPboundary
+    ((B.support_eq_radius P hPB).trans (B.support_eq_radius x hxB).symm)
+    ((B.support_eq_radius P hPB).trans (B.support_eq_radius y hyB).symm)
+    ((T.support_eq_radius x hxT).trans (T.support_eq_radius y hyT).symm)
+
+/-- The blocker containing the boundary apex meets the other apex row at most once. -/
+theorem chosen_blocker_Lraw_inter_card_le_one
+    (B : Finset (Fin 13))
+    (hB : B = I.X.tightSupport.C0raw ∨ B = I.X.tightSupport.C1raw)
+    (hp : pRaw I ∈ B) : (B ∩ I.O.Lraw).card ≤ 1 := by
+  obtain ⟨E⟩ := I.Q.base.exactRows
+  let M := MEC.mec I.D.A I.S.hA
+  have hcenter : M.center ∈
+      convexHull ℝ {q : ℝ² | q ∈ I.D.A ∧ dist q M.center = M.radius} := by
+    have hboundarySet : (MEC.boundary I.D.A I.S.hA : Set ℝ²) =
+        {q : ℝ² | q ∈ I.D.A ∧ dist q M.center = M.radius} := by
+      ext q
+      exact MEC.mem_boundary_iff I.S.hA
+    rw [← hboundarySet]
+    exact MEC.mec_center_mem_convexHull_boundary I.S.hA I.S.hncol
+  have hPboundary : dist I.S.oppApex2 M.center = M.radius := by
+    change dist I.S.oppApex2 (MEC.mec I.D.A I.S.hA).center =
+      (MEC.mec I.D.A I.S.hA).radius
+    unfold SurplusCapPacket.oppApex2
+    split
+    · exact I.S.triangleNonObtuse.toMoserTriangle.v3_boundary
+    · exact I.S.triangleNonObtuse.toMoserTriangle.v1_boundary
+    · exact I.S.triangleNonObtuse.toMoserTriangle.v2_boundary
+  have hsource {b : ℝ²} (row : SelectedFourClass I.D.A b)
+      (hb : b ∈ I.D.A) (himage : B.image I.P.pt = row.support) :
+      (B ∩ I.O.Lraw).card ≤ 1 := by
+    have hpRow : I.S.oppApex2 ∈ row.support := by
+      rw [← himage]
+      exact Finset.mem_image.mpr ⟨pRaw I, hp, I.P.labelMap.secondApex_eq⟩
+    rcases I.O.is_other with h | h
+    · rw [raw_intersection_card_eq_of_image_eq I.P himage h.2]
+      exact physical_blocker_inter_card_le_one I.D.convex M.enclosing hcenter
+        hb E.center₂_mem_A hPboundary row I.firstRow hpRow
+    · rw [raw_intersection_card_eq_of_image_eq I.P himage h.2]
+      exact physical_blocker_inter_card_le_one I.D.convex M.enclosing hcenter
+        hb E.center₂_mem_A hPboundary row I.secondRow hpRow
+  rcases hB with rfl | rfl
+  · exact hsource I.Q.base.W.row₁ E.center₀_mem_A I.X.tightSupport.C0raw_image
+  · exact hsource I.Q.base.W.row₂ E.center₁_mem_A I.X.tightSupport.C1raw_image
+
 /-- The raw apex lies in exactly one of the two blocker supports. -/
 theorem exclusive_apex_blocker_raw :
     (pRaw I ∈ I.X.tightSupport.C0raw ∧
