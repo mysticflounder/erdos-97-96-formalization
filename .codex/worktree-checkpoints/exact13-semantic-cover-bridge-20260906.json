@@ -7,10 +7,11 @@
     ".codex/worktree-checkpoints/exact13-semantic-cover-bridge-20260906.json",
     "docs/erdos-97-descent-prose-proof-atomic.md",
     "docs/erdos-97-exact13-semantic-canonicalization.md",
-    "docs/skeptic-97-96-literature-semantic-adapter-full-handoff-2026-09-05-2026-09-05.md"
+    "docs/skeptic-97-96-literature-semantic-adapter-full-handoff-2026-09-05-2026-09-05.md",
+    "docs/skeptic-erdos-97-exact13-semantic-canonicalization-2026-09-06.md"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-06T07:33:38Z",
-  "manifest_sha256": "2d5c9da6c9b38700ae7a3516a15417c5d6516cbce51776424464acf33c517fe8"
+  "manifest_sha256": "efb3520f9ea13a5ba815c680b263042b6d142301c733b72313c9387167574fbb"
 }

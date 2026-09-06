@@ -1,7 +1,7 @@
 # Semantic canonicalization in the exact-thirteen cover
 
 **Status:** PROVEN pen-and-paper under the source hypotheses below; independently
-audited. The Lean draft below is uncompiled and is not a formalization receipt.
+audited. The Lean drafts below are uncompiled and are not formalization receipts.
 
 **Authority:** [the atomic proof](erdos-97-descent-prose-proof-atomic.md) records
 current project status. This note supplies the detailed argument for its
@@ -115,6 +115,38 @@ while its original support inclusion omits `w`. This is a contradiction.
 The two blocker branches use bounds **one plus two**, in either order.
 Nothing here requires both blocker traces to have cardinality at most one.
 
+## The raw packet supplies the cover
+
+Let `J : ExactThirteenBranchIngress S` and let
+`T : CardGeThirteenExact13RawTightSupport R surface firstRow secondRow Q.base J`.
+The existing packet supplies
+
+```text
+(T.C0raw ∪ T.C1raw) ∪ T.Kraw = univ.erase T.zraw.
+```
+
+Insert `T.zraw` on both sides and apply the finset image under `J.pt`.
+Images preserve insertion and union. The packet's four stored image equalities
+identify the singleton and three supports, while `J.labelMap.image_eq`
+identifies the image of `univ` with `D.A`. This proves exactly the physical
+cover used above. This transport needs no injectivity, cardinality, or
+disjointness argument; those additional packet fields are not used.
+For a dispatch packet `X`, its existing field `X.tightSupport` supplies `T`.
+Thus the source consumer need not acquire an additional cover field.
+
+The raw packet also determines which blocker contains the apex. Let `p` be
+the raw label `DRExactThirteenValuation.secondApex`.
+The label map gives `J.pt p = P`. Since `z ≠ P`, the stored equality
+`J.pt T.zraw = z` gives `p ≠ T.zraw`. If `p ∈ T.Kraw`, its image would put
+`P` in `K`, contradicting the third row's center exclusion. Apply the raw
+cover to `p ∈ univ.erase T.zraw`: it follows that `p ∈ T.C0raw` or
+`p ∈ T.C1raw`. The stored `raw_disjoint_C0_C1` rules out membership in both.
+This proves exclusive blocker membership directly in raw labels. It does
+not yet count or classify the later eighteen-choice source configurations.
+
+Both deductions were independently checked against the source packet and
+local finset APIs. Their Lean implementations still require elaboration.
+
 ## Source and consumer contract
 
 The [active two-radius plan](plans/2026-09-01-dr-two-radius-branch-closure.md),
@@ -143,8 +175,15 @@ current declarations supplying the proof are:
 | Moser boundary data and structural projection | `P97/Moser/Triangle.lean:59`, `P97/Cap/PartitionFromMEC.lean:332` |
 | Two-point trace bound | `P97/U1CarrierInjection.lean:474` |
 | Support-preserving extraction in an erased carrier | `P97/ATail/FrontierLiveClosure/FreshThirdCrossDeletionRows.lean:40` |
+| Raw cover, support images, and blocker disjointness | `P97/ATail/FrontierLiveClosure/CardGeThirteenExact13RawIngress.lean:345` |
 
 Paths in the table are relative to `lean/Erdos9796Proof/`.
+The separate bounded reuse search for the raw transport used the key
+“raw_cover physical cover C0raw_image Kraw_image CardGeThirteen,” with index
+revision `6aedcbccd`. It found `raw_tight_support_of_exact_cover`, which
+constructs the raw packet from a physical cover, but no named reverse helper
+in the search results. The immediate consumer is canonicalization's `hcover`
+argument; all its required cover data are already stored in `X.tightSupport`.
 The missing terminal remains a source-produced contradiction, for example
 joint survival for a pair `(z,w)` killed by the theorem. Existing survival
 for a differently named pair cannot supply that hypothesis without proving
@@ -160,7 +199,7 @@ Validate the selected module with the governed workflow, then inspect the
 exported declarations' axioms and the actual consumer path before making a
 formalization or closure claim.
 
-The complete draft follows.
+The canonicalization draft follows. The raw-cover draft is given afterward.
 
 ```lean
 /-
@@ -377,3 +416,67 @@ theorem not_four_survives_double_erase_of_mem_third
 end ATailFrontierLiveClosure
 end Problem97
 ```
+
+### Raw-cover helper draft
+
+This separate, uncompiled draft is intended for the coordinated
+`CardGeThirteenExact13RawCover.lean` lane. It imports the raw packet and does
+not depend on canonicalization. The canonicalization consumer imports this
+helper after both modules have been checked.
+
+```lean
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CardGeThirteenExact13RawIngress
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ATailFrontierLiveClosure
+
+open ATailCriticalPairFrontier
+open ATailExactFourPhysicalConsumer
+open ATailExactFourRobustCapExpansion
+open ATailUniqueArmRouteAuditScratch
+open ATailUniqueFourLateChoiceTerminalScratch
+open ExactThirteenBranchIngress
+
+/-- The raw tight-support packet already supplies the physical cover. -/
+theorem physical_cover_of_raw_tight_support
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {radius : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : OriginalUniqueFourResidual F)
+    (surface : ExactFourPostCardElevenRobustSurface R)
+    (firstRow secondRow : SelectedFourClass D.A S.oppApex2)
+    (Q : CardGeThirteenUncoveredThreeCenterPacket R firstRow secondRow)
+    (J : ExactThirteenBranchIngress S)
+    (T : CardGeThirteenExact13RawTightSupport
+      R surface firstRow secondRow Q J) :
+    D.A = insert Q.z
+      ((Q.W.row₁.support ∪ Q.W.row₂.support) ∪ Q.thirdRow.support) := by
+  classical
+  have hraw :
+      insert T.zraw ((T.C0raw ∪ T.C1raw) ∪ T.Kraw) =
+        (Finset.univ : Finset (Fin 13)) := by
+    rw [T.raw_cover]
+    exact Finset.insert_erase (Finset.mem_univ T.zraw)
+  have himage := congrArg (Finset.image J.pt) hraw
+  simpa only [Finset.image_insert, Finset.image_union,
+    T.zraw_image, T.C0raw_image, T.C1raw_image, T.Kraw_image,
+    J.labelMap.image_eq] using himage.symm
+
+end ATailFrontierLiveClosure
+end Problem97
+```
+
+For the strict-interior packet `Q` and its dispatch packet `X`, the consumer
+call supplying canonicalization's cover is:
+
+```lean
+have hcover := physical_cover_of_raw_tight_support
+  R surface firstRow secondRow Q.base J X.tightSupport
+```
+
+This draft supplies the cover input only. The apex membership argument above
+is available to the separately owned eighteen-choice adapter; it does not
+require access to the private `radius_eq_of_cover` helper in the
+canonicalization draft.

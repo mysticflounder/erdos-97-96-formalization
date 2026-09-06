@@ -1558,14 +1558,19 @@ retains the general-carrier obligation.
 **PROVEN (pen-and-paper, semantic exact-thirteen cover).** The
 [semantic canonicalization argument](erdos-97-exact13-semantic-canonicalization.md)
 shows that every selected four-row at `S.oppApex2` after deleting
-`Q.base.z` has support `Q.base.thirdRow.support`. Apply the retained cover
+`Q.base.z` has support `Q.base.thirdRow.support`. The existing raw tight-support
+packet supplies the required physical cover: insert the omitted raw label,
+then take the point-map image of its stored cover equality. No additional
+cover hypothesis is needed at that packet's consumer. Apply this cover
 to the apex's membership in the original carrier: the apex lies in at least
 one blocker row. The one-boundary equality kernel bounds that blocker trace
 by one, while the other blocker trace is bounded by two. A different-radius
 four-row would then have at most three points. Stored completeness of the
 third row gives support equality at the remaining radius; no new `hnoFive`
 assumption is needed. Deleting `z` and any point of the third row consequently
-destroys four-row survival at the apex. The Lean adapter remains uncompiled;
+destroys four-row survival at the apex. The stored center exclusions, raw
+cover, and blocker disjointness also put the raw apex in exactly one blocker,
+without new geometry. The canonicalization and raw-cover Lean drafts remain uncompiled;
 an incompatible source survival statement or another terminal is still
 needed to close the exact-thirteen branch.
 
