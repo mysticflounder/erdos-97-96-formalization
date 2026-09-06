@@ -1,0 +1,19 @@
+{
+  "base_head": "2e5bad4c90615d72e075c85ea9d8d81d820f2e46",
+  "created_utc": "2026-09-05T23:32:00Z",
+  "durable_paths": [
+    "scratch/runs/exact13-cell0-coverage-20260905/run-0001/cell-000-coverage-batch-certificate.json",
+    "scratch/runs/exact13-cell0-coverage-20260905/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-cell0-coverage-20260905/run-0001"
+  ],
+  "lane_id": "exact13-cell0-coverage-20260905",
+  "manifest_sha256": "2698deae2eb6a698cbd0226eeecfd2a9511f8efbe690b7803cba670d04280e57",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-cell0-coverage-20260905.json",
+    "docs/audits/2026-09-05-exact13-cell0-coverage.md"
+  ],
+  "owner": "ProofRelay97",
+  "schema": "worktree-lane-checkpoint/v1"
+}
