@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-strong-valid-source-refinement-20260906",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "ec13064a5b8202dc8ee86dc6b06c52e6190290df",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-strong-valid-source-refinement-20260906.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13StrongSourceCoverage.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13StrongSourceCoverageTest.lean"
+  ],
+  "durable_paths": [
+    "docs/audits/2026-09-06-exact13-strong-valid-source-refinement-20260906.md"
+  ],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T16:00:00Z",
+  "manifest_sha256": "a1d92b390b090720074027618ba3037eb3e18d69ee636f0c18c63c0225ae9a34"
+}
