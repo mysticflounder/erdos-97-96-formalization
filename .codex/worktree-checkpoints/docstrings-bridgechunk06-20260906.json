@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstrings-bridgechunk06-20260906",
+  "owner": "codex",
+  "base_head": "82d556e7874c5e30adbe8b391eb70f7c2125c26e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstrings-bridgechunk06-20260906.json",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4P4MirrorValuation/P4MirrorOuterOccurrenceBridge/BridgeChunk06.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T02:51:00Z",
+  "manifest_sha256": "5dd5483dd850d3ae96b667883fdaa90e3093715b00b60b701d23078d51a56f2b"
+}
