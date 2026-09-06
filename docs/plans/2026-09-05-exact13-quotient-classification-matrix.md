@@ -36,6 +36,7 @@ set of admissible unresolved source leaves, not merely more sampled cuts.
 | F2 | Match F1's named providers to the current source charts | Source-contract audit + independent enumeration | NATURAL MATCH REJECTED | 0/4 cyclic/reflected maps pass necessary source conditions; other provider identifications are not ruled out |
 | F3 | Reassign S=T, D=G10; exhaust compatible fixed-core base records | KalmansonCartographer + independent code/count audit | FINITE FAMILY EXCLUDED; NO INCREMENTAL GAIN | 60 partitions, 2340 base/blocker records, 13572 role records; all already one-form rejected |
 | F4 | Drop G10; allow every blocker center | KalmansonCartographer + independent count audit | STRONGER FINITE FAMILY EXCLUDED | 3120 base/blocker records: 3084 one-form and 36 two-form; no baseline survivor |
+| F5 | Exhaust K/L/T family around retained prefix seed | KalmansonCartographer + independent audit | 540 FIVE-ROW BASELINE SURVIVORS | 10548 records: 9746 one-form, 262 two-form, 540 residual; positive rational pair weights checked; full cone/global completion open |
 | A1 | Apply affine miner to eligible surviving complete row tables | KalmansonCartographer | READY, NO ELIGIBLE INPUT | Miner/checker at 15ef84edc; previous seven-table cohort had no baseline survivor |
 | P1 | Connect exhaustive coverage and certified leaves to live consumer | Existing Lean owners | BLOCKED ON S2/C2/R1 | No Lean promotion claimed by this lane |
 
@@ -108,9 +109,10 @@ does not depend on the external attachment remaining available.
 
 ## Next unblocked work
 
-1. Seek a finite-validator-compatible cell surviving baseline cancellation.
-   F3 below passes incidence validation but all its base records already
-   collapse under one form. Do not formalize F3 expecting incremental coverage.
+1. Classify F5's 540 five-row residuals beyond two-form cancellation and
+   complete the missing global rows where possible. They are not all-center
+   survivors and are not eligible as complete-table affine inputs. Do not
+   formalize F3 expecting incremental coverage.
 2. With the source owner, state and prove the full finite-record/order
    projection, including mirror. Do not re-prove global-row existence.
 3. Add the small exact-dual adapter only when a candidate needs that exit;
@@ -187,3 +189,39 @@ are 17880 and 216. No member survives this baseline. The report's `without_G10`
 section and checker retain this independent enumeration; it does not rely on
 the three-chain argument. Full finite-validator table count is 18096 times
 495 to the ninth power, not an all-source coverage count.
+
+## F5: a nonempty five-row residual family
+
+Fix direct order and K={5,7,8,12}, L={2,9,10,11}, T={0,6,7,10}.
+These core supports come from the retained `FIXED_ROWS` in
+`scripts/cardge13_exact13_fixed_base_k4_scan.py`; that particular seed is not
+new. The new census exhausts all finite-validator-compatible C0/C1 supports,
+blocker pairs, and source witnesses with these three rows fixed.
+
+EMPIRICALLY VERIFIED finite counts:
+
+| Outcome | Base/blocker records | Source-witness-weighted records |
+| --- | --- | --- |
+| One-form rejection | 9746 | 91512 |
+| Two-form rejection, no one-form rejection | 262 | 3012 |
+| No one/two-form rejection | 540 | 5784 |
+| Total | 10548 | 100308 |
+
+There are 180 support partitions. The pair check divides each projected
+integer vector by the gcd of its coefficients and looks for opposite rays,
+covering arbitrary positive rational pair weights. Allowing unequal weights
+does not remove any of the 540 residuals found by the earlier unit-weight
+test. This is not a full-cone feasibility check.
+
+All 540 residual base/blocker records are retained in
+`docs/audits/2026-09-05-exact13-baseline-survivor-family.json`, each with one
+canonical s0/s1/d witness. Arbitrary filler globals used only to validate
+incidence completions are deliberately absent from these records. None is
+claimed to survive after adding the nine required global rows. The prior
+seed is among these records; no geometric or live-source occurrence is claimed.
+
+Replay:
+
+```bash
+uv run --no-cache python -B scripts/check_exact13_baseline_survivor_family.py --verify docs/audits/2026-09-05-exact13-baseline-survivor-family.json
+```

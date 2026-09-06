@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import itertools
 import json
+import math
 from collections import Counter
 from pathlib import Path
 
@@ -53,7 +54,13 @@ def check_transport(mapping=POSITION_TO_RAW):
     return rows
 
 
-def enumerate_family(require_g10=True):
+def primitive_ray(vector):
+    """Normalize positive integer multiples without identifying opposite rays."""
+    divisor = math.gcd(*(abs(value) for _, value in vector))
+    return tuple((edge, value // divisor) for edge, value in vector) if divisor else ()
+
+
+def enumerate_family(require_g10=True, *, core=None, on_record=None, rational_pairs=False):
     """Enumerate every base/blocker record; count all source-witness choices.
 
     Global supports other than a required G10 are independent arbitrary
@@ -61,21 +68,22 @@ def enumerate_family(require_g10=True):
     globals are free. Each base record is validated using canonical representatives;
     only their cardinality and center avoidance enter validate_cell.
     """
+    core = CORE if core is None else core
     counts = Counter({"baseline_one_form": 0, "baseline_two_form": 0,
                       "baseline_no_one_or_two_form": 0})
     digest = hashlib.sha256()
     representative = None
     vectors = [chain.form_vector(f) for f in base.kalmanson_forms(base.DIRECT_ORDER)]
-    for z in sorted(base.I2 & set(CORE["L"])):
-        deletions = sorted(set(CORE["T"]) & (set(CORE["K"]) | {z}))
+    for z in sorted(base.I2 & set(core["L"])):
+        deletions = sorted(set(core["T"]) & (set(core["K"]) | {z}))
         if not deletions:
             continue
-        remaining = set(base.LABELS) - set(CORE["K"]) - {z}
+        remaining = set(base.LABELS) - set(core["K"]) - {z}
         for chosen in itertools.combinations(sorted(remaining), 4):
             c0, c1 = set(chosen), remaining - set(chosen)
-            if any(len(c & set(CORE["L"])) > 2 for c in (c0, c1)):
+            if any(len(c & set(core["L"])) > 2 for c in (c0, c1)):
                 continue
-            s0s, s1s = sorted(c0 - set(CORE["T"])), sorted(c1 - set(CORE["T"]))
+            s0s, s1s = sorted(c0 - set(core["T"])), sorted(c1 - set(core["T"]))
             if not s0s or not s1s:
                 continue
             counts["support_partitions"] += 1
@@ -84,7 +92,7 @@ def enumerate_family(require_g10=True):
                     continue
                 cell = {
                     "roles": {"b0": b0, "b1": b1, "s0": s0s[0], "s1": s1s[0], "d": deletions[0], "z": z},
-                    "base_rows": {**CORE, "C0": sorted(c0), "C1": sorted(c1)},
+                    "base_rows": {**core, "C0": sorted(c0), "C1": sorted(c1)},
                     "global_rows": {str(i): ([j for j in base.LABELS if j != i][:4]
                                              if i != 10 or not require_g10 else list(G10))
                                     for i in base.GLOBAL_CENTERS if i not in (b0, b1)},
@@ -103,11 +111,15 @@ def enumerate_family(require_g10=True):
                     if not projected:
                         exit_kind = "one_form"
                         break
+                    if rational_pairs:
+                        projected = primitive_ray(projected)
                     if tuple((edge, -value) for edge, value in projected) in seen:
                         exit_kind = "two_form"
                         # Still scan for a one-form certificate before labeling.
                     seen.add(projected)
                 counts["baseline_" + exit_kind] += 1
+                if on_record is not None:
+                    on_record(cell, exit_kind)
                 counts["weighted_" + exit_kind] += len(s0s) * len(s1s) * len(deletions)
                 counts["role_records"] += len(s0s) * len(s1s) * len(deletions)
                 digest.update(json.dumps(cell, sort_keys=True, separators=(",", ":")).encode() + b"\n")
