@@ -23,6 +23,8 @@ server verification before the corresponding platform nodes can be marked proved
 
 ## Contents
 
+- [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
+  and bank-replacement work, with consumer and validation gates.
 - `mission-description.md`: the public introduction, including why the problems
   belong together, history, mathematical targets, and references.
 - `Definitions/` and `Theorems/`: the namespace-isolated, Mathlib-only statements.
