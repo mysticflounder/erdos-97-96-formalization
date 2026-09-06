@@ -1,0 +1,19 @@
+{
+  "base_head": "9e2e850a7152f61c68cb8536002b62ec7102a97b",
+  "created_utc": "2026-09-06T04:15:00Z",
+  "durable_paths": [
+    "scratch/runs/cardge13-exact13-source-order-bridge-20260906/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-exact13-source-order-bridge-20260906/run-0001"
+  ],
+  "lane_id": "cardge13-exact13-source-order-bridge-20260906",
+  "manifest_sha256": "2352464bf7b606188361fce676f4464c3591e61d6f0fe5d33a16fbd0c3d6be68",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-exact13-source-order-bridge-20260906.json",
+    "docs/audits/2026-09-06-cardge13-exact13-source-order-bridge.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceOrderBridge.lean"
+  ],
+  "owner": "luna-swarm-gap-weaver",
+  "schema": "worktree-lane-checkpoint/v1"
+}

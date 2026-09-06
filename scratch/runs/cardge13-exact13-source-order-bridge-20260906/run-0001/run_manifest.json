@@ -1,0 +1,26 @@
+{
+  "base_head": "9e2e850a7152f61c68cb8536002b62ec7102a97b",
+  "created_utc": "2026-09-06T04:25:00Z",
+  "input_digests": {
+    "docs/audits/2026-09-06-cardge13-exact13-source-order-bridge.md": "e622cd476a6152052b7d5dd6b328d263952feb1ca07fcc89ab5e69150b0e5377"
+  },
+  "lane_id": "cardge13-exact13-source-order-bridge-20260906",
+  "manifest_sha256": "f676eac5d5e3103ab5e4aff644f809e1fb76b06f16bd9a29b0af819c0f2aa394",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "luna-swarm-gap-weaver",
+  "root": "scratch/runs/cardge13-exact13-source-order-bridge-20260906/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13OrderTransport.lean": "2061cf3cc3b7f08bfdb6601ded88a6b332f598bc2ac9ec46dc8627e89189ab15",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13ProviderIngress.lean": "619586ebddf143e13dae8906a7e1f4724715be9b608da4685c78d7ce329f981f",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13RawIngress.lean": "80e6dea8b5087a131eb55eec7756bafe9ef549ddd69b04dfa2790891ca8a9945",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceOrderBridge.lean": "22a8ac1daafd4a5c649cfd3e44dcd9c2c1320d999787c7926b6e638f8c8e1033",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceRoleIngress.lean": "8852f93e8548f5eb20f5b8a607b1f279bc37589e5e1953d5422dcfa142b11fba",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenThreeChainTerminal.lean": "e6e91ef42cc87f0dc1b0e41c86cd221b74f65213a7fb5d6a1a0ba17f1582347f"
+  }
+}
