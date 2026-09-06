@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-onehit-strict-transition-20260905",
+  "owner": "codex-rigid221",
+  "base_head": "777c0ba74adce787657174ad116547a42b327ce3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-onehit-strict-transition-20260905.json",
+    "docs/audits/2026-09-05-exactfive-onehit-strict-transition.md",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveOneHitShellReselection.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T02:50:00Z",
+  "manifest_sha256": "4cabe0179cae5a65d4867d77ac45829bee2200e3732d029078f5dfa0e15c9f67"
+}

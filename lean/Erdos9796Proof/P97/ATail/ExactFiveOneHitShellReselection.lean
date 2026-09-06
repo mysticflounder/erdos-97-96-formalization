@@ -329,5 +329,83 @@ theorem nonempty_wOmittedQHitReselection
     omitted_center_eq := homitted
     retained_support_eq := hsupport }⟩
 
+/-- A first-orientation one-hit reselection whose installed fresh blocker is
+genuinely different from the second endpoint's previous blocker. -/
+structure StrictQOmittedWHitReselection
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    (fresh : ℝ²) (hfreshA : fresh ∈ D.A) extends
+      QOmittedWHitReselection Rmin fresh hfreshA where
+  fresh_center_ne_old_retained_center :
+    H.centerAt fresh hfreshA ≠
+      H.centerAt Rmin.residual.interior.frontier.pair.w
+        Rmin.residual.interior.frontier.pair.w_mem_A
+
+/-- A symmetric one-hit reselection whose installed fresh blocker is
+genuinely different from the first endpoint's previous blocker. -/
+structure StrictWOmittedQHitReselection
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    (fresh : ℝ²) (hfreshA : fresh ∈ D.A) extends
+      WOmittedQHitReselection Rmin fresh hfreshA where
+  fresh_center_ne_old_retained_center :
+    H.centerAt fresh hfreshA ≠
+      H.centerAt Rmin.residual.interior.frontier.pair.q
+        Rmin.residual.interior.frontier.pair.q_mem_A
+
+/-- A first-orientation one-hit row either reuses the second endpoint's old
+blocker or supplies a strict shell reselection. -/
+theorem freshBlocker_eq_oldWBlocker_or_strict_qOmittedWHitReselection
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hqMiss : Rmin.residual.interior.frontier.pair.q ∉
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwHit : Rmin.residual.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    H.centerAt fresh hfreshA =
+        H.centerAt Rmin.residual.interior.frontier.pair.w
+          Rmin.residual.interior.frontier.pair.w_mem_A ∨
+      Nonempty (StrictQOmittedWHitReselection Rmin fresh hfreshA) := by
+  by_cases hshared : H.centerAt fresh hfreshA =
+      H.centerAt Rmin.residual.interior.frontier.pair.w
+        Rmin.residual.interior.frontier.pair.w_mem_A
+  · exact Or.inl hshared
+  · exact Or.inr ⟨{
+      toQOmittedWHitReselection :=
+        (nonempty_qOmittedWHitReselection Rmin hfreshA hqMiss hwHit).some
+      fresh_center_ne_old_retained_center := hshared }⟩
+
+/-- A symmetric one-hit row either reuses the first endpoint's old blocker or
+supplies a strict shell reselection. -/
+theorem freshBlocker_eq_oldQBlocker_or_strict_wOmittedQHitReselection
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hwMiss : Rmin.residual.interior.frontier.pair.w ∉
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hqHit : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    H.centerAt fresh hfreshA =
+        H.centerAt Rmin.residual.interior.frontier.pair.q
+          Rmin.residual.interior.frontier.pair.q_mem_A ∨
+      Nonempty (StrictWOmittedQHitReselection Rmin fresh hfreshA) := by
+  by_cases hshared : H.centerAt fresh hfreshA =
+      H.centerAt Rmin.residual.interior.frontier.pair.q
+        Rmin.residual.interior.frontier.pair.q_mem_A
+  · exact Or.inl hshared
+  · exact Or.inr ⟨{
+      toWOmittedQHitReselection :=
+        (nonempty_wOmittedQHitReselection Rmin hfreshA hwMiss hqHit).some
+      fresh_center_ne_old_retained_center := hshared }⟩
+
 end ExactFiveOneHitShellReselection
 end Problem97
