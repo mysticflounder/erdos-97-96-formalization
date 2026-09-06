@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-safe-selector-20260906",
+  "owner": "codex-rigid221",
+  "base_head": "3a86fc5616d90a2d75e5e382c243337a47e352e8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-safe-selector-20260906.json",
+    "docs/audits/2026-09-06-exactfive-safe-selector-preflight.md",
+    "docs/skeptic-exactfive-safe-selector-2026-09-06.md",
+    "scripts/check_exactfive_safe_selector_metric_control.py",
+    "tests/test_exactfive_safe_selector_metric_control.py"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T15:42:15Z",
+  "manifest_sha256": "30951d1676b843456ed29286689ec2c63749c6ff6de3f69b16ca38ceecdf9fc2"
+}
