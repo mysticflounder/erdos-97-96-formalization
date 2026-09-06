@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-raw-cover-20260906",
+  "owner": "luna-swarm-orbit-warden",
+  "base_head": "0665ffdd460afeeb4a4c13b455d95892991bdcb4",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-raw-cover-20260906.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13RawCover.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T08:20:00Z",
+  "manifest_sha256": "a51cf41e42694294ed4e0d65505726d02e8cab31f1233388969b1e21b05e4ea9"
+}
