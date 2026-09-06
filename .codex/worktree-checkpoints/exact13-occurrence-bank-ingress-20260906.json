@@ -1,0 +1,19 @@
+{
+  "base_head": "3f9f5c6401a8d1776f05b1167c730f672d0168f3",
+  "created_utc": "2026-09-06T11:35:17.812365Z",
+  "durable_paths": [
+    "scratch/runs/exact13-occurrence-bank-ingress-20260906/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-occurrence-bank-ingress-20260906/run-0001"
+  ],
+  "lane_id": "exact13-occurrence-bank-ingress-20260906",
+  "manifest_sha256": "91a12cec4bb3fa880dd3d8b6d84a181578009e18cf8b35b5e563d7e5b768e1a0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-occurrence-bank-ingress-20260906.json",
+    "docs/audits/2026-09-06-exact13-occurrence-bank-ingress.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13OccurrenceBankIngress.lean"
+  ],
+  "owner": "luna-swarm-gap-weaver",
+  "schema": "worktree-lane-checkpoint/v1"
+}
