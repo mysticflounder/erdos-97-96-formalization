@@ -1,8 +1,10 @@
 # Plan: replace native certificate banks with general theorems
 
 Date: 2026-09-05. Planning baseline: `fff7305bb6f10ddfc5a9446fe7392541da47d87b`.
-Status: package 1 is complete and validated; packages 2–5
-remain planned. See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md).
+Status: package 1 is complete and validated; the package-2 exact-15 classifier
+pilot is complete, with exact-16 as the next candidate. Packages 3–5 remain
+planned. See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md)
+and [exact-15 coverage audit](../docs/audits/2026-09-05-native-exact15-coverage.md).
 
 ## Objective and boundaries
 
@@ -50,7 +52,8 @@ as established behavior.
 | 5 | Integrate and transfer | Audited proof packages linked to the existing private mission | Exact transferred statements and proofs accepted by the server |
 
 Packages 2, 3, and 4 can run as independent bounded research lanes after package 0.
-Package 1 is the first implementation delivery. Finish and assess one family-level
+The package-2 exact-15 classifier pilot is complete; exact-16 and the remaining
+geometric families are open. Packages 3–5 remain planned. Assess one family-level
 pilot in each research lane before expanding it.
 
 ### 0. Establish a fresh baseline
@@ -108,9 +111,10 @@ members and at most two cap members has two points outside the cap.
    declarations' axioms and inspect the consumer graph.
 
 **Exit:** both computations are replaced by the shared counting argument plus
-label adapters. The separate exact-15 `exists_metricMotif_of_pairwiseSeparated`
-and exact-16 `metricObstructionOccurs_of_pairwiseSeparated` classifiers remain
-explicit native dependencies. Do not report the whole banks
+label adapters. The exact-15 `exists_metricMotif_of_pairwiseSeparated` classifier
+now has a core-only structural proof in the package-2 pilot. The exact-16
+`metricObstructionOccurs_of_pairwiseSeparated` classifier remains an explicit
+native dependency. Do not report the whole banks
 or the P97 root as native-free.
 
 ### 2. Replace finite geometric cases by structural coverage
@@ -123,6 +127,11 @@ Start with these existing source theorems:
 - The cardinality-independent contradictions in
   `ATail/KalmansonThreeEqualitySchemas.lean` and
   `ATail/KalmansonFourEqualitySchemas.lean`.
+
+**Pilot status:** the exact-15 classifier replacement is complete with a core-only
+structural proof and governed validation. The exact-16 classifier is the next
+candidate. This pilot does not close the remaining exact-16 or geometric-family
+coverage work in this package.
 
 1. Select one native classifier or finite case family and its immediate consumer.
    Search the existing indexed Lean corpus once for that concrete hypothesis set.

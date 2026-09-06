@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.Phase3SharedPairSeparation
 import Erdos9796Proof.P97.FiniteRowCardinality
+import Erdos9796Proof.P97.FourPairCoverage
 import Erdos9796Proof.P97.ATail.KalmansonThreeEqualitySchemas
 
 /-!
@@ -17,8 +18,9 @@ two fixed hits in this cap and hence exactly two hits among the six points
 outside it.  There are only two possible cyclic orders for the seven interior
 points.
 
-This file exhausts the resulting `2 * 15^4` finite patterns.  Pairwise cyclic
-separation of shared row pairs forces one of sixteen three-row metric motifs.
+A four-pair counting argument shows that pairwise cyclic separation of shared
+row pairs forces one of sixteen three-row metric motifs.  Only the fixed label
+tables and a single six-valued overlap witness require finite case checks.
 The theorem is deliberately stated independently of the geometric ingress;
 `Rigid221SourceHeavy` supplies the exact profile, cyclic position embedding,
 and four realized rows.  Pairwise separation is derived here from those data.
@@ -291,14 +293,122 @@ instance (rows : Fin 4 → OutsidePair) (index : Fin 16) :
   unfold MotifOccurs
   infer_instance
 
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
--- Native evaluation exhausts the `2 * 15^4` finite assignment space.
-/-- Exhaustive `2 * 15^4` coverage of the exact-fifteen four-row core. -/
+/-- An outside support member is a hit of its row. -/
+private theorem hits_outside_of_mem (rows : Fin 4 → OutsidePair) (r : Fin 4)
+    (i : Fin 6) (hi : i ∈ (rows r).val) : Hits rows r (outsideLabel i) := by
+  fin_cases i <;> simp_all [Hits, hitsBool, outsideLabel]
+
+/-- All outside labels lie beyond every row center in both orders. -/
+private theorem outside_not_btw (o : Fin 2) (r s : Fin 4) (i : Fin 6) :
+    ¬ SurplusCOMPGBank.btw (position o (centerLabel r))
+      (position o (centerLabel s)) (position o (outsideLabel i)) := by
+  have hc : ∀ (o : Fin 2) (r : Fin 4), (position o (centerLabel r)).val < 9 := by decide
+  have ho : ∀ (o : Fin 2) (i : Fin 6), 9 ≤ (position o (outsideLabel i)).val := by decide
+  have hr := hc o r
+  have hs := hc o s
+  have hi := ho o i
+  unfold SurplusCOMPGBank.btw
+  simp only [Fin.lt_def]
+  omega
+
+/-- Two distinct shared hits cannot both lie outside the centers' interval. -/
+private theorem false_of_shared_not_btw {o : Fin 2} {rows : Fin 4 → OutsidePair}
+    (hsep : PairwiseSeparated o rows) (r s : Fin 4) (hrs : r.val < s.val)
+    (p q : Fin 15) (hpq : p ≠ q)
+    (hrp : Hits rows r p) (hrq : Hits rows r q)
+    (hsp : Hits rows s p) (hsq : Hits rows s q)
+    (hp : ¬ SurplusCOMPGBank.btw (position o (centerLabel r))
+      (position o (centerLabel s)) (position o p))
+    (hq : ¬ SurplusCOMPGBank.btw (position o (centerLabel r))
+      (position o (centerLabel s)) (position o q)) : False := by
+  rcases lt_or_gt_of_ne hpq with hlt | hlt
+  · exact hp ((hsep r s p q hrs hlt hrp hrq hsp hsq).mpr hq)
+  · exact hq ((hsep r s q p hrs hlt hrq hrp hsq hsp).mpr hp)
+
+/-- A shared fixed hit outside the interval forbids a shared outside support. -/
+private theorem disjoint_of_fixed_hit {o : Fin 2} {rows : Fin 4 → OutsidePair}
+    (hsep : PairwiseSeparated o rows) (r s : Fin 4) (hrs : r.val < s.val)
+    (p : Fin 15) (hrp : Hits rows r p) (hsp : Hits rows s p)
+    (hne : ∀ i, p ≠ outsideLabel i)
+    (hp : ¬ SurplusCOMPGBank.btw (position o (centerLabel r))
+      (position o (centerLabel s)) (position o p)) :
+    Disjoint (rows r).val (rows s).val := by
+  apply Finset.disjoint_left.mpr
+  intro i hir his
+  exact false_of_shared_not_btw hsep r s hrs p (outsideLabel i) (hne i)
+    hrp (hits_outside_of_mem rows r i hir) hsp (hits_outside_of_mem rows s i his)
+    hp (outside_not_btw o r s i)
+
+/-- The second and fourth outside supports are distinct by separation. -/
+private theorem second_ne_fourth {o : Fin 2} {rows : Fin 4 → OutsidePair}
+    (hsep : PairwiseSeparated o rows) : (rows 1).val ≠ (rows 3).val := by
+  intro heq
+  obtain ⟨i, j, hij, hpair⟩ := Finset.card_eq_two.mp (rows 1).property
+  have hi : i ∈ (rows 1).val := by simp [hpair]
+  have hj : j ∈ (rows 1).val := by simp [hpair]
+  have hinj : Function.Injective outsideLabel := by decide
+  exact false_of_shared_not_btw hsep 1 3 (by decide) (outsideLabel i) (outsideLabel j)
+    (fun h => hij (hinj h)) (hits_outside_of_mem rows 1 i hi)
+    (hits_outside_of_mem rows 1 j hj) (hits_outside_of_mem rows 3 i (heq ▸ hi))
+    (hits_outside_of_mem rows 3 j (heq ▸ hj))
+    (outside_not_btw o 1 3 i) (outside_not_btw o 1 3 j)
+
+/-- A first/fourth support overlap realizes one of six existing motifs. -/
+private theorem motif_of_first_fourth_overlap (rows : Fin 4 → OutsidePair)
+    (i : Fin 6) (hi : i ∈ (rows 0).val ∩ (rows 3).val) :
+    ∃ index : Fin 16, MotifOccurs rows index := by
+  obtain ⟨h0, h3⟩ := Finset.mem_inter.mp hi
+  fin_cases i
+  · exact ⟨4, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨5, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨6, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨7, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨14, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨15, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+
+/-- A second/third support overlap realizes one of six existing motifs. -/
+private theorem motif_of_second_third_overlap (rows : Fin 4 → OutsidePair)
+    (i : Fin 6) (hi : i ∈ (rows 1).val ∩ (rows 2).val) :
+    ∃ index : Fin 16, MotifOccurs rows index := by
+  obtain ⟨h1, h2⟩ := Finset.mem_inter.mp hi
+  fin_cases i
+  · exact ⟨8, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨9, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨10, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨11, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨12, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+  · exact ⟨13, by simp_all [MotifOccurs, motif, pairHit, hitsBool, fixedHit₁, fixedHit₂, outsideLabel]⟩
+
+/-- Separation and four two-point supports force an existing metric motif. -/
 theorem exists_metricMotif_of_pairwiseSeparated :
     ∀ (order : Fin 2) (rows : Fin 4 → OutsidePair),
       PairwiseSeparated order rows → ∃ index : Fin 16, MotifOccurs rows index := by
-  native_decide
+  intro order rows hsep
+  have h01 : Disjoint (rows 0).val (rows 1).val := by
+    apply disjoint_of_fixed_hit hsep 0 1 (by decide) 6
+    · simp [Hits, hitsBool, fixedHit₁]
+    · simp [Hits, hitsBool, fixedHit₁]
+    · decide
+    · fin_cases order <;> decide
+  have h02 : Disjoint (rows 0).val (rows 2).val := by
+    apply disjoint_of_fixed_hit hsep 0 2 (by decide) 9
+    · simp [Hits, hitsBool, fixedHit₂]
+    · simp [Hits, hitsBool, fixedHit₂]
+    · decide
+    · fin_cases order <;> decide
+  have h23 : Disjoint (rows 2).val (rows 3).val := by
+    apply disjoint_of_fixed_hit hsep 2 3 (by decide) 8
+    · simp [Hits, hitsBool, fixedHit₁]
+    · simp [Hits, hitsBool, fixedHit₁]
+    · decide
+    · fin_cases order <;> decide
+  rcases FourPairCoverage.overlap_of_disjoint_pairs Finset.univ
+    (rows 0).val (rows 1).val (rows 2).val (rows 3).val (by decide)
+    (Finset.subset_univ _) (Finset.subset_univ _) (Finset.subset_univ _) (Finset.subset_univ _)
+    (rows 0).property (rows 1).property (rows 2).property (rows 3).property
+    h01 h02 h23 (second_ne_fourth hsep) with ⟨i, hi⟩ | ⟨i, hi⟩
+  · exact motif_of_first_fourth_overlap rows i hi
+  · exact motif_of_second_third_overlap rows i hi
 
 /-- The two possible orientations in which the named exact-fifteen order can
 sit in a fixed CCW boundary enumeration. -/
