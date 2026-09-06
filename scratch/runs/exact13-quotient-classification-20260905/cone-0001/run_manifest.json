@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "exact13-quotient-classification-20260905",
+  "run_id": "cone-0001",
+  "root": "scratch/runs/exact13-quotient-classification-20260905/cone-0001",
+  "owner": "KalmansonCartographer",
+  "base_head": "5b7fd2e10573fd91a1a24d16b9e0690b42ecf8c7",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096",
+    "scripts/cardge13_exact13_tight_cover_lra_piqd.py": "5101cdc837cfc0a1e956dae8f27359e0f6e4f2d2a50e8f0319956c047309581b"
+  },
+  "input_digests": {
+    "docs/audits/2026-09-05-exact13-baseline-survivor-family.json": "4e2c1ff2ce9ec35a51c83f8609d73ce122ffd3b16ce9d4f9787a32557723436c"
+  },
+  "created_utc": "2026-09-06T07:38:00Z",
+  "manifest_sha256": "f39f6d6419e85657730e3439a04d4850a00cd3664d60f6a322002e497c6de8f5"
+}

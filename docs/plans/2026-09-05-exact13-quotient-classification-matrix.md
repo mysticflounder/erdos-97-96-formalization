@@ -29,14 +29,16 @@ set of admissible unresolved source leaves, not merely more sampled cuts.
 | C2 | Establish exhaustive branching/enumeration and deduplication rule | KalmansonCartographer | BLOCKED ON S2/C1 | No source-complete candidate denominator yet; no unproved symmetry quotient |
 | Q1 | Reuse quotient construction and all 1,430 strict forms on 78 edges | Toolchain audit | AVAILABLE; REPLAYED IN F1 | Existing row closure and form generator; fixed-cell mirror forms checked |
 | Q2 | Obtain and replay nonnegative rational cancellation | Toolchain audit | AVAILABLE; F1 COMPLETE | Existing exact weighted producer; F1 uses direct integer witnesses without solving |
-| Q3 | Obtain and replay rational dual with every form at least 1 | Toolchain audit | PRECISE ADAPTER GAP | Reuse bounded `parse_piqd_get_values`; add normalized quotient inequalities and exact replay. No new parser/Gaussian framework needed |
-| V1 | Differential/negative controls for the two exact exits | KalmansonCartographer | CANCELLATION CONTROLS PASS | Nine tests on F1; dual exit remains untested/unimplemented in this lane |
+| Q3 | Obtain and replay rational dual with every form at least 1 | KalmansonCartographer | IMPLEMENTED; EXACT REPLAY | PIQD full-cone producer, bounded rational readback, all 1,430 gaps checked |
+| V1 | Differential/negative controls for the two exact exits | KalmansonCartographer | BOTH EXITS PASS | Feasible and contradictory PIQD controls; malformed readbacks, invalid weights, zero gaps and incomplete coverage rejected |
 | R1 | Report cancellation / dual-exit / undecided / uncovered counts | KalmansonCartographer | F1 COUNT COMPLETE; ALL-SOURCE BLOCKED | Fixed-cell 495/495 below; no all-source denominator |
 | F1 | Three-chain fixed order, all 495 pivot supports | KalmansonCartographer; independent Luna/API and code audits | EXACT FINITE REPLAY COMPLETE | Minimal row groups, nine links/ten gaps, 423 one-form + 72 two-form certificates; no source occurrence claim |
 | F2 | Match F1's named providers to the current source charts | Source-contract audit + independent enumeration | NATURAL MATCH REJECTED | 0/4 cyclic/reflected maps pass necessary source conditions; other provider identifications are not ruled out |
 | F3 | Reassign S=T, D=G10; exhaust compatible fixed-core base records | KalmansonCartographer + independent code/count audit | FINITE FAMILY EXCLUDED; NO INCREMENTAL GAIN | 60 partitions, 2340 base/blocker records, 13572 role records; all already one-form rejected |
 | F4 | Drop G10; allow every blocker center | KalmansonCartographer + independent count audit | STRONGER FINITE FAMILY EXCLUDED | 3120 base/blocker records: 3084 one-form and 36 two-form; no baseline survivor |
-| F5 | Exhaust K/L/T family around retained prefix seed | KalmansonCartographer + independent audit | 540 FIVE-ROW BASELINE SURVIVORS | 10548 records: 9746 one-form, 262 two-form, 540 residual; positive rational pair weights checked; full cone/global completion open |
+| F5 | Exhaust K/L/T family around retained prefix seed | KalmansonCartographer + independent audit | 540 FIVE-ROW BASELINE SURVIVORS | 10548 records: 9746 one-form, 262 two-form, 540 residual; positive rational pair weights checked; full cone in F6 |
+| F6 | Test the complete rational cone of the 540 F5 residuals | KalmansonCartographer + independent arithmetic audit | COMPLETE: 468 FEASIBLE, 72 EXCLUDED | 270 identical-labelled equality-map groups: 234 distance certificates, 36 cancellations; zero undecided |
+| G1 | Complete the nine missing global rows of F6 feasible cases | KalmansonCartographer | OPEN | Existing pinned strict source-cell slice encoder identified; require numeric replay as well as incidence validation |
 | A1 | Apply affine miner to eligible surviving complete row tables | KalmansonCartographer | READY, NO ELIGIBLE INPUT | Miner/checker at 15ef84edc; previous seven-table cohort had no baseline survivor |
 | P1 | Connect exhaustive coverage and certified leaves to live consumer | Existing Lean owners | BLOCKED ON S2/C2/R1 | No Lean promotion claimed by this lane |
 
@@ -54,7 +56,7 @@ survivor of all tested geometric inequalities.
 | Fixed three-chain cell: candidate pivot supports | 495 | Exactly all four-subsets of 12 labels, conditional on its specific rows/order |
 | Fixed three-chain cell: cancellation exits | 495 | 423 one-form, 72 two-form, all integer-replayed |
 | Fixed three-chain cell: dual / undecided / uncovered exits | 0 / 0 / 0 | Cancellation already covers this whole conditional domain |
-| Rational-dual exits produced by this lane | 0 | Awaiting exact-dual interface audit |
+| Rational-dual exits produced by this lane | 234 quotient groups / 468 records | F6 exact replay; five-row scope only |
 | New live leaves eliminated by this lane | 0 | No claimed reduction in the parent plan's measure |
 | Reassigned fixed-core family F3 | 2340/2340 base/blocker records excluded | Compatible with finite validator, not established live-source occurrence; all already one-form rejected |
 | Previous affine regression cohort | 7 tables; 5 affine collisions; 0 baseline survivors | Historical, not the classification denominator |
@@ -224,4 +226,41 @@ Replay:
 
 ```bash
 uv run --no-cache python -B scripts/check_exact13_baseline_survivor_family.py --verify docs/audits/2026-09-05-exact13-baseline-survivor-family.json
+```
+
+## F6: full rational cone classification
+
+EMPIRICALLY VERIFIED: all 540 F5 records are classified using all 1,430
+strict Kalmanson forms, with the five named rows as the only equalities.
+The direct cyclic order is (2,8,9,10,11,12,1,3,4,5,0,6,7), inherited from F5.
+Grouping uses identical labelled edge-to-root maps, not a symmetry assumption.
+There are 270 groups, each containing exactly two records.
+
+| Exact exit | Quotient groups | Base/blocker records |
+| --- | --- | --- |
+| Rational values with every projected gap at least 1 | 234 | 468 |
+| Nonnegative rational weights summing to 1 with zero projected sum | 36 | 72 |
+| Undecided / uncovered in this finite family | 0 | 0 |
+
+The certificates are retained in
+`docs/audits/2026-09-06-exact13-full-cone.json` and bound to the F5 input hash.
+PIQD supplies candidate values; exact rational arithmetic checks every gap or
+cancellation. Bare solver UNSAT is not an accepted exit. The cancellation
+weights need not all be equal, and their support sizes are not claimed minimal.
+
+For each feasible quotient, any nonzero nonnegative combination of its strict
+forms evaluates positively on the retained witness, so it cannot be the zero
+form. Searching longer cancellations on those unchanged five-row systems
+cannot eliminate them. The next test must add the missing global rows or
+other constraints; G1 is global-row completion with the base record pinned.
+
+No all-center survivor, Euclidean realization, live-source occurrence, or
+general-n conclusion is asserted. The original strict all-center conjecture
+is not refuted by these five-row certificates. Live source leaves eliminated
+by this lane remain zero.
+
+Replay without a solver:
+
+```bash
+uv run --no-cache python -B scripts/solve_exact13_quotient_cones.py --verify docs/audits/2026-09-06-exact13-full-cone.json --require-complete
 ```
