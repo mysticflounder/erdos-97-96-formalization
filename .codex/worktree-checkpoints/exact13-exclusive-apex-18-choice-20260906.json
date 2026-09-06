@@ -5,10 +5,11 @@
   "base_head": "9afd4ff5f7af10120c56bb8a44c6e5d16c9276ce",
   "owned_paths": [
     ".codex/worktree-checkpoints/exact13-exclusive-apex-18-choice-20260906.json",
+    "docs/skeptic-CardGeThirteenExact13ExclusiveApex18-2026-09-06.md",
     "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13ExclusiveApex18.lean"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-06T10:00:00Z",
-  "manifest_sha256": "d5b3bf460f30a08ba7c8a5078c9e3333401c5f59c6a01c7c902767b73c2f01cd"
+  "manifest_sha256": "0a3b931ffde1607d34423df7824e0e4696001b9e8e479b7b08555e7659e52917"
 }
