@@ -38,7 +38,8 @@ set of admissible unresolved source leaves, not merely more sampled cuts.
 | F4 | Drop G10; allow every blocker center | KalmansonCartographer + independent count audit | STRONGER FINITE FAMILY EXCLUDED | 3120 base/blocker records: 3084 one-form and 36 two-form; no baseline survivor |
 | F5 | Exhaust K/L/T family around retained prefix seed | KalmansonCartographer + independent audit | 540 FIVE-ROW BASELINE SURVIVORS | 10548 records: 9746 one-form, 262 two-form, 540 residual; positive rational pair weights checked; full cone in F6 |
 | F6 | Test the complete rational cone of the 540 F5 residuals | KalmansonCartographer + independent arithmetic audit | COMPLETE: 468 FEASIBLE, 72 EXCLUDED | 270 identical-labelled equality-map groups: 234 distance certificates, 36 cancellations; zero undecided |
-| G1 | Complete the nine missing global rows of F6 feasible cases | KalmansonCartographer | OPEN | Existing pinned strict source-cell slice encoder identified; require numeric replay as well as incidence validation |
+| G1 | Complete the nine missing global rows of F6 feasible cases | KalmansonCartographer + independent audits | 234/234 SOLVER UNSAT; UNCERTIFIED | Compact pinned strict-LRA producer; all 468 records covered, zero unknown; no all-center witness; exact exclusions belong to G2 |
+| G2 | Certify one impossible missing center per G1 system | KalmansonCartographer + independent certificate worker | 37 SYSTEMS / 74 RECORDS EXACTLY EXCLUDED; PARTIAL | 18,315 support certificates; 62/234 systems processed under 600-second cap; 197 systems remain uncertified by G2 |
 | A1 | Apply affine miner to eligible surviving complete row tables | KalmansonCartographer | READY, NO ELIGIBLE INPUT | Miner/checker at 15ef84edc; previous seven-table cohort had no baseline survivor |
 | P1 | Connect exhaustive coverage and certified leaves to live consumer | Existing Lean owners | BLOCKED ON S2/C2/R1 | No Lean promotion claimed by this lane |
 
@@ -263,4 +264,81 @@ Replay without a solver:
 
 ```bash
 uv run --no-cache python -B scripts/solve_exact13_quotient_cones.py --verify docs/audits/2026-09-06-exact13-full-cone.json --require-complete
+```
+
+## G1: pinned global-row screening
+
+EMPIRICALLY VERIFIED solver outcomes, not certified exclusions: all 234
+completion systems returned UNSAT through PIQD/Z3, with no UNKNOWN result.
+These systems cover all 468 F6 distance-feasible records. Grouping checks both
+the labelled equality map and the set of nine missing centers. This is not
+an all-source or all-exact-13 denominator.
+
+The specialized query uses 78 real distances, nine real radii and 108 Boolean
+support selectors. Exactly four of twelve selectors are true at each missing
+center; each selected incident distance equals that center's radius. The
+query also imposes all 15 base-row equality links and all 1,430 strict gaps
+at least 1. Real-valued ITE cardinalities keep this in QF_LRA. There are no
+metric, positivity, triangle or Euclidean-coordinate constraints.
+
+The source audit found no additional cross-global incidence constraints.
+The general source search and conflict bank are omitted from this fixed-base
+query. SAT acceptance requires exact distance replay, recovery of four-point
+equal-distance supports and finite-cell validation; solver Boolean model text
+alone is not accepted. The known feasible and excluded base-only controls
+passed before the global screen.
+
+The solver-only evidence is retained in
+`docs/audits/2026-09-06-exact13-global-completion.json`. All runs had explicit
+timeouts; total reported solve time was 148.398 seconds, maximum 2.458 seconds.
+No DRAT/LRAT or other independently checked UNSAT proof is supplied by G1.
+G2 seeks separate exact local-support certificates.
+
+```bash
+uv run --no-cache python -B scripts/solve_exact13_global_completion.py --verify docs/audits/2026-09-06-exact13-global-completion.json
+```
+
+## G2: exact single-center obstruction certificates
+
+EMPIRICALLY VERIFIED finite exclusions: 37 completion systems, covering 74
+records, have a missing center at which every one of the 495 four-supports
+forces a one- or two-form strict Kalmanson cancellation. The retained
+certificates comprise 17,222 one-form and 1,093 two-form cancellations.
+The chosen centers are 2 (30 systems), 7 (six systems) and 11 (one system).
+These exclusions use the five base rows plus just one global row at a time;
+they do not depend on trusting G1's solver UNSAT results.
+
+| G2 result | Completion systems | Records |
+| --- | --- | --- |
+| Exact exhausted-center certificate | 37 | 74 |
+| Processed without an exhausted-center certificate | 25 | 50 |
+| Not processed within this run | 172 | 344 |
+| Still without a G2 exclusion | 197 | 394 |
+
+The producer had a 600-second cap checked between center scans. It processed
+62/234 systems: 37 exhausted, 24 reporting no exhausted center under the
+one/two-form test, and one interrupted at the time boundary. A center scan
+stops at its first short-test survivor unless every support is excluded.
+The 24 diagnostic results do not supply full-cone or all-center survivors.
+
+Exact certificates, index mappings and input fingerprints are retained in
+`docs/audits/2026-09-06-exact13-global-obstructions.json`. The checker verifies
+the chosen center is active, exactly all 495 supports occur in canonical
+order, weights are positive integers and every projected weighted sum is
+zero. It explicitly reports partial coverage.
+
+The exclusion argument is conditional and finite: any completion must select
+one of those 495 supports at the certified center. Its retained positive
+cancellation would sum strictly positive gaps to zero. Thus that fixed base
+system has no strict-Kalmanson global completion. This does not prove the
+general all-center conjecture or establish live-source coverage.
+
+Next target: a processed system without a short local obstruction, beginning
+with record 2. Test its retained single-center support survivors against the
+full rational cone before deciding whether a joint-global obstruction is
+needed. Extending the same short-certificate census alone does not resolve
+the 24 processed diagnostic cases.
+
+```bash
+uv run --no-cache python -B scripts/check_exact13_global_obstructions.py --check docs/audits/2026-09-06-exact13-global-obstructions.json
 ```

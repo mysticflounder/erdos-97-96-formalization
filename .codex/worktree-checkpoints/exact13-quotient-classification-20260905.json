@@ -10,21 +10,34 @@
     "docs/audits/2026-09-05-exact13-reassigned-chain-family.json",
     "docs/audits/2026-09-05-exact13-three-chain-cell.json",
     "docs/audits/2026-09-06-exact13-full-cone.json",
+    "docs/audits/2026-09-06-exact13-global-completion.json",
+    "docs/audits/2026-09-06-exact13-global-obstructions.json",
     "docs/plans/2026-09-05-exact13-quotient-classification-matrix.md",
     "docs/skeptic-exact13-baseline-survivor-family-2026-09-05.md",
     "docs/skeptic-exact13-full-cone-2026-09-06.md",
+    "docs/skeptic-exact13-global-completion-2026-09-06.md",
     "docs/skeptic-exact13-reassigned-chain-family-2026-09-05.md",
     "scripts/check_exact13_baseline_survivor_family.py",
+    "scripts/check_exact13_global_obstructions.py",
     "scripts/check_exact13_reassigned_chain_family.py",
     "scripts/check_exact13_three_chain_cell.py",
+    "scripts/solve_exact13_global_completion.py",
     "scripts/solve_exact13_quotient_cones.py",
     "scripts/test_check_exact13_baseline_survivor_family.py",
+    "scripts/test_check_exact13_global_obstructions.py",
     "scripts/test_check_exact13_reassigned_chain_family.py",
     "scripts/test_check_exact13_three_chain_cell.py",
+    "scripts/test_solve_exact13_global_completion.py",
     "scripts/test_solve_exact13_quotient_cones.py"
   ],
-  "durable_paths": ["scratch/runs/exact13-quotient-classification-20260905/cone-0001/run_manifest.json"],
-  "generated_roots": ["scratch/runs/exact13-quotient-classification-20260905/cone-0001"],
+  "durable_paths": [
+    "scratch/runs/exact13-quotient-classification-20260905/cone-0001/run_manifest.json",
+    "scratch/runs/exact13-quotient-classification-20260905/global-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-quotient-classification-20260905/cone-0001",
+    "scratch/runs/exact13-quotient-classification-20260905/global-0001"
+  ],
   "created_utc": "2026-09-06T03:17:00Z",
-  "manifest_sha256": "90bab1a5ac01f36c837331666753754ed1361210df947889889b40d708f71162"
+  "manifest_sha256": "2110f5192e5d52cd73a2dc52447efda14ebf96a0e858782a4a3c6c08921a23a7"
 }
