@@ -328,6 +328,24 @@ Mere nearest-pair selection does not establish joint survival.
 The omitted-endpoint and non-mutual cases remain open, and this paper
 exclusion has not been promoted to Lean or a live terminal reduction.
 
+The [three-anchor geometric control](../audits/2026-09-06-exactfive-three-anchor-control.md)
+now tests that exception beyond the earlier angular diagnostic. The retained
+15-point exact-trigonometric construction has strict convexity, an acute
+MEC triangle with the designated surplus cap, no M44 supporting packet,
+an exact first-apex five-class, and full single-deletion robustness at both
+selected apices. Its only short interior pair is exactly the pair that
+destroys the second apex's two rich four-classes. Every admissible interior
+pair therefore has chord greater than r. These are finite interval-verified
+properties with explicit circle identities; no Lean promotion is claimed.
+
+Global K4 fails at the other thirteen centers, and the construction has no
+actual critical rows or total H. Thus local cap geometry, apex robustness,
+and noM44 do not supply the three-anchor chord bound. Any proof of that bound
+under the full source must use additional global hypotheses, or closure
+must consume the long-pair exception directly. The control's first cap has
+cardinality five; it does not refute the existing minimum-pair cap-five
+double-hit consumer, which also requires the actual source and row data.
+
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 
 Start with one baseline `FaithfulCarrierPattern` whose gauge center differs

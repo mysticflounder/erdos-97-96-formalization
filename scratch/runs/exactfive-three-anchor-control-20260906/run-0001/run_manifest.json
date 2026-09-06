@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "exactfive-three-anchor-control-20260906",
+  "run_id": "run-0001",
+  "root": "scratch/runs/exactfive-three-anchor-control-20260906/run-0001",
+  "owner": "CapDropAudit",
+  "base_head": "369554c6c9779db95fec0a4096f96e08d4556911",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/verify_exactfive_three_anchor_control.py": "044eeff67cdd378a0e9051632c537fee91f64eed812192a37cd29c3c2a5d54a3"
+  },
+  "input_digests": {
+    "certificates/exactfive_three_anchor_control_20260906.json": "5e5ec957e6822855d3277cf598dae9c12b26c31c8a86fc3ba4229f71e4b6c694"
+  },
+  "created_utc": "2026-09-06T17:11:49Z",
+  "manifest_sha256": "be7f1ad2f23b54f81cdd8c5dc9693eb6d5e5b5b45620614562d2c0fed0f46544"
+}

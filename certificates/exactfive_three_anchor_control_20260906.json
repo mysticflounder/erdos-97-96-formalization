@@ -1,0 +1,196 @@
+{
+  "M44_supporting_triangles": [],
+  "MEC_boundary_points": [
+    "O",
+    "V",
+    "W"
+  ],
+  "MEC_boundary_triples_checked": 1,
+  "MEC_strict_disk_gap_lower_numerator": "1244641208761617214346830072764025394384966551",
+  "cyclic_order": [
+    "b1",
+    "b2",
+    "b3",
+    "O",
+    "P",
+    "R",
+    "Q",
+    "V",
+    "a",
+    "u",
+    "v",
+    "W",
+    "c1",
+    "c2",
+    "c3"
+  ],
+  "exact_identity_basis": [
+    "sin^2(t)+cos^2(t)=1",
+    "2-2*cos(t)=4*sin^2(t/2)",
+    "rotation preserves squared norm",
+    "explicit circumcenter formula"
+  ],
+  "first_apex_class": [
+    "V",
+    "W",
+    "a",
+    "u",
+    "v"
+  ],
+  "global_K4_failing_centers": [
+    "W",
+    "a",
+    "u",
+    "v",
+    "b1",
+    "b2",
+    "b3",
+    "c1",
+    "c2",
+    "c3",
+    "P",
+    "Q",
+    "R"
+  ],
+  "interior_pair_deletions": [
+    {
+      "V_K4_survives": true,
+      "V_class_sizes_after_deletion": [
+        3,
+        4
+      ],
+      "pair": [
+        "a",
+        "u"
+      ]
+    },
+    {
+      "V_K4_survives": true,
+      "V_class_sizes_after_deletion": [
+        4,
+        3
+      ],
+      "pair": [
+        "a",
+        "v"
+      ]
+    },
+    {
+      "V_K4_survives": false,
+      "V_class_sizes_after_deletion": [
+        3,
+        3
+      ],
+      "pair": [
+        "u",
+        "v"
+      ]
+    }
+  ],
+  "interval_units_denominator": "1461501637330902918203684832716283019655932542976",
+  "minimum_admissible_pairs_unordered": [
+    [
+      "a",
+      "u"
+    ]
+  ],
+  "nonobtuse_MEC_supporting_triangles": [
+    {
+      "closed_cap_counts": [
+        5,
+        8,
+        5
+      ],
+      "vertices": [
+        "O",
+        "V",
+        "W"
+      ]
+    }
+  ],
+  "point_count": 15,
+  "radius_multiplicity_upper_bounds": {
+    "O": 5,
+    "P": 1,
+    "Q": 1,
+    "R": 2,
+    "V": 4,
+    "W": 1,
+    "a": 1,
+    "b1": 1,
+    "b2": 2,
+    "b3": 1,
+    "c1": 1,
+    "c2": 2,
+    "c3": 1,
+    "u": 1,
+    "v": 1
+  },
+  "schema": "exactfive-three-anchor-control/v1",
+  "scope_exclusions": [
+    "no global K4",
+    "no total CriticalShellSystem",
+    "no CounterexampleData or global minimality",
+    "no Lean proof or physical terminal reduction"
+  ],
+  "second_apex_classes": [
+    [
+      "b1",
+      "b2",
+      "b3",
+      "u"
+    ],
+    [
+      "c1",
+      "c2",
+      "c3",
+      "v"
+    ]
+  ],
+  "singleton_robust_apices": [
+    "O",
+    "V"
+  ],
+  "sole_short_and_bad_pair": [
+    "u",
+    "v"
+  ],
+  "squared_chords": {
+    "a,u": [
+      1.2832641009093995,
+      1.2832641009093995
+    ],
+    "a,v": [
+      1.5841766183644814,
+      1.5841766183644814
+    ],
+    "u,v": [
+      0.024623318809724546,
+      0.024623318809724546
+    ]
+  },
+  "status": "PASS: finite interval-verified local control; global K4 fails",
+  "strict_cap_interiors_by_opposite_apex": {
+    "O": [
+      "a",
+      "u",
+      "v"
+    ],
+    "V": [
+      "b1",
+      "b2",
+      "b3",
+      "c1",
+      "c2",
+      "c3"
+    ],
+    "W": [
+      "P",
+      "Q",
+      "R"
+    ]
+  },
+  "strict_convexity_determinant_lower_numerator": "100600726031340850790205837502228190358657",
+  "triangle_inner_product_lower_numerator": "253787095979746234342504104840838677948535315164",
+  "verifier_sha256": "044eeff67cdd378a0e9051632c537fee91f64eed812192a37cd29c3c2a5d54a3"
+}

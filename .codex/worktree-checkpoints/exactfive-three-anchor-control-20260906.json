@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-three-anchor-control-20260906",
+  "owner": "CapDropAudit",
+  "base_head": "369554c6c9779db95fec0a4096f96e08d4556911",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-three-anchor-control-20260906.json",
+    "certificates/exactfive_three_anchor_control_20260906.json",
+    "docs/audits/2026-09-06-exactfive-three-anchor-control.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/skeptic-exactfive-three-anchor-control-2026-09-06.md",
+    "scripts/verify_exactfive_three_anchor_control.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/exactfive-three-anchor-control-20260906/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-three-anchor-control-20260906/run-0001"
+  ],
+  "created_utc": "2026-09-06T16:50:11.509566Z",
+  "manifest_sha256": "e852fde6ff0bcfb6b64c1f7e0a3d9c197ce540760dcea442795f9e2c1a629119"
+}
