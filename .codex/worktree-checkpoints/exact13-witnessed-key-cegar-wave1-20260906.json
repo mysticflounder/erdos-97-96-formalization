@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-witnessed-key-cegar-wave1-20260906",
+  "owner": "exact13-witnessed-key-cegar-wave1-20260906",
+  "base_head": "0c60d03ae2390e0cf404af0f05821b16298141bc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-witnessed-key-cegar-wave1-20260906.json",
+    "docs/audits/2026-09-06-exact13-witnessed-key-cegar-wave1.md",
+    "scripts/cardge13_exact13_witnessed_key_cegar_wave1_piqd.py",
+    "scripts/test_cardge13_exact13_witnessed_key_cegar_wave1_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-witnessed-key-cegar-wave1-20260906/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T13:37:28Z",
+  "manifest_sha256": "d44c72a8a0d15d892799c557bba9491de2b7cbb13b6084781a4291c550cd2994"
+}
