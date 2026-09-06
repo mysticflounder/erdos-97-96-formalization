@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
 import Erdos9796Proof.P97.ATail.FirstApexInteriorPairCirclePower
+import Erdos9796Proof.P97.ATail.MinimalAdmissibleInteriorPair
 import Erdos9796Proof.P97.CapSelectedRowCounting
 
 /-!
@@ -478,6 +479,40 @@ theorem actualFreshBlocker_doubleHit_twoOutside_firstApexDistanceDrop
       R hfreshA hqRow hwRow htRow htOutside
   exact ⟨t, hsupport, hcard, hfreshOutside, htOutside,
     hfreshDrop, htDrop, hrowDrop⟩
+
+/-- A minimum admissible source pair eliminates the actual fresh-row
+double-hit child when the first closed cap has cardinality five.  The explicit
+equality records that this is the source-selected pair; a later arbitrary
+reselection does not inherit the conclusion. -/
+theorem false_of_actualFreshBlocker_doubleHit_of_minimalPair_capFive
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    (M : FirstApexExactFiveInteriorFrontier.MinimalAdmissibleInteriorPair
+      D S radius H)
+    (hsource : M.frontier = R.interior)
+    (hsecond : FullyDeletionRobustAt D S.oppApex2)
+    (hcap : (S.capByIndex S.oppIndex1).card = 5)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    False := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hcenterA : H.centerAt fresh hfreshA ∈ D.A :=
+    (Finset.mem_erase.mp K.center_mem).2
+  have hcenterNe : H.centerAt fresh hfreshA ≠ S.oppApex1 :=
+    R.firstApex_fullyDeletionRobust.centerAt_ne H fresh hfreshA
+  have hcenterEq :
+      dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q =
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.w :=
+    (K.support_eq_radius R.interior.frontier.pair.q hqRow).trans
+      (K.support_eq_radius R.interior.frontier.pair.w hwRow).symm
+  exact M.no_other_bisector_of_cap_card_five hsecond
+    R.class_card_eq_five hcap hcenterA hcenterNe
+    (by simpa [hsource] using hcenterEq)
 
 end ExactFiveDistinctPhysicalFreshRowRadiusDrop
 end Problem97

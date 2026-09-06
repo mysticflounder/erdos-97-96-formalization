@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1FiveSixWaveIngress
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1CardSixCanonicalAdjacent
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1WinningSliceOrderOutcome
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.EqualBlockerContinuation
@@ -1902,23 +1903,33 @@ theorem B1EscapeSourceContext.exists_freshPair_deletion_role
   exact ⟨other, u, v, jointDeletion, huNeV, huClass, hvClass,
     hvOmitted, huOmitted, context, hdeletedNeSource, hdeletedRole⟩
 
-/-- **Remaining B1 consumer.**  The source-clean producer has removed every
-case with a third joint deletion.  What remains is the full B1 context together
-with an exact five- or six-point physical class exhausted by the two known
-deletions and the two live-row slices.
+/-- **Remaining B1 consumer.**  The adjacent card-six canonical endpoint
+leaves have been closed.  The only unresolved alternatives are an escape
+source context, a card-five canonical endpoint, or a card-six endpoint with
+both canonical deletions strict-second-cap interior and their common blocker
+between them. -/
+theorem false_of_b1CanonicalAdjacentClosedResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
+      (H := H) (F := F))
+    (_residual : B1CanonicalAdjacentClosedResidual C) :
+    False := by
+  sorry
 
-The cardinality and cover alone are not contradictory: the unresolved input is
-the global incidence or boundary-order consequence forced by the surrounding
-counterexample context. -/
+/-- Dispatch the five/six normal form through the residual obtained after
+closing the adjacent card-six canonical endpoint leaves. -/
 theorem false_of_b1PhysicalClassFiveSixNormalForm
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
       (H := H) (F := F))
-    (_hnormal : B1PhysicalClassFiveSixNormalForm C) :
+    (hnormal : B1PhysicalClassFiveSixNormalForm C) :
     False := by
-  sorry
+  exact false_of_b1CanonicalAdjacentClosedResidual C
+    (b1_canonicalAdjacentClosedResidual_of_normalForm C hnormal).some
 
 /-- Consume the exact producer split.  A third joint deletion has an actual
 blocker distinct from the common blocker and therefore reduces to the checked

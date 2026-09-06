@@ -413,6 +413,209 @@ private theorem scaled_qdist_eq_dist_sq
   rw [← hr_sq]
   field_simp
 
+set_option maxHeartbeats 4000000 in
+-- The similarity normalization and six signed-area transports each require
+-- kernel-checked coordinate simplification beyond the default allowance.
+/-- Five Euclidean points in the oriented order `U,a,s,d,O` cannot realize
+the mutual-center distance pattern. The proof normalizes the equilateral
+triangle `U,O,a`, reflects it to the rational half-frame, and invokes
+`false_of_normalized_pentagon_order`. -/
+theorem euclidean_mutual_center_pentagon_obstruction
+    (U a s d O : ℝ²)
+    (hUO_ne : U ≠ O)
+    (hUO_Ua : dist U O = dist U a)
+    (hUO_Oa : dist U O = dist O a)
+    (hUO_Us : dist U O = dist U s)
+    (hOa_Od : dist O a = dist O d)
+    (hUOa : 0 < signedArea2 U O a)
+    (hUas : signedArea2 U a s < 0)
+    (hUad : signedArea2 U a d < 0)
+    (hUdO : signedArea2 U d O < 0)
+    (hasO : signedArea2 a s O < 0)
+    (hadO : signedArea2 a d O < 0)
+    (hasd : signedArea2 a s d < 0) : False := by
+  let r : ℝ := Real.sqrt 3
+  have hr_pos : 0 < r := by
+    dsimp only [r]
+    positivity
+  have hr_ne : r ≠ 0 := ne_of_gt hr_pos
+  have hr_half : (-r / 2) / r = -(1 / 2 : ℝ) := by
+    field_simp [hr_ne]
+  have hr_cancel : r * 2⁻¹ * r⁻¹ = (2⁻¹ : ℝ) := by
+    field_simp [hr_ne]
+  have hr_sq : r ^ 2 = 3 := by
+    dsimp only [r]
+    exact Real.sq_sqrt (by norm_num)
+  let T : ℝ² → ℝ² := normSim U O
+  let R : ℝ² → ℝ² := fun X ↦ reflectXAxis (T X)
+  have h31 : dist U O = dist a U := by
+    simpa only [dist_comm] using hUO_Ua
+  have hTa : T a = pt (1 / 2) (r / 2) := by
+    dsimp only [T]
+    simpa only [r] using normSim_thd U O a hUO_ne h31 hUO_Oa hUOa
+  have hRU : R U = pt 0 0 := by
+    dsimp [R, T]
+    rw [normSim_fst]
+    simp [reflectXAxis, pt]
+  have hRO : R O = pt 1 0 := by
+    dsimp [R, T]
+    rw [normSim_snd U O hUO_ne]
+    simp [reflectXAxis, pt]
+  have hRa : R a = pt (1 / 2) (-r / 2) := by
+    change reflectXAxis (T a) = _
+    rw [hTa]
+    simp [reflectXAxis, pt]
+    ring
+  have hL : 0 < (O 0 - U 0) ^ 2 + (O 1 - U 1) ^ 2 := by
+    rw [← dist_sq_coord O U]
+    exact sq_pos_of_pos (dist_pos.mpr hUO_ne.symm)
+  have hscale : 0 < ((O 0 - U 0) ^ 2 + (O 1 - U 1) ^ 2)⁻¹ :=
+    inv_pos.mpr hL
+  have map_dist {X Y Z W : ℝ²} (h : dist X Y = dist Z W) :
+      dist (R X) (R Y) = dist (R Z) (R W) := by
+    change dist (reflectXAxis (normSim U O X)) (reflectXAxis (normSim U O Y)) =
+      dist (reflectXAxis (normSim U O Z)) (reflectXAxis (normSim U O W))
+    rw [dist_reflectXAxis, dist_reflectXAxis,
+      normSim_dist_image U O hUO_ne X Y,
+      normSim_dist_image U O hUO_ne Z W, h]
+  have map_area {X Y Z : ℝ²} (h : signedArea2 X Y Z < 0) :
+      0 < signedArea2 (R X) (R Y) (R Z) := by
+    change 0 < signedArea2
+      (reflectXAxis (normSim U O X))
+      (reflectXAxis (normSim U O Y))
+      (reflectXAxis (normSim U O Z))
+    rw [signedArea2_reflectXAxis, signedArea2_normSim U O hUO_ne]
+    have hp := mul_pos hscale (neg_pos.mpr h)
+    nlinarith
+  have hRUs : dist (pt 0 0) (pt 1 0) = dist (pt 0 0) (R s) := by
+    simpa only [hRU, hRO] using map_dist hUO_Us
+  have hROd : dist (pt 1 0) (pt (1 / 2) (-r / 2)) = dist (pt 1 0) (R d) := by
+    simpa only [hRO, hRa] using map_dist hOa_Od
+  have hs_euclid : (R s 0) ^ 2 + (R s 1) ^ 2 = 1 := by
+    have h := congrArg (fun z : ℝ ↦ z ^ 2) hRUs
+    change dist (pt 0 0) (pt 1 0) ^ 2 = dist (pt 0 0) (R s) ^ 2 at h
+    rw [dist_sq_coord, dist_sq_coord] at h
+    simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one, sub_zero] at h
+    nlinarith
+  have hs : (R s 0) ^ 2 + 3 * (R s 1 / r) ^ 2 = 1 := by
+    field_simp [hr_ne]
+    nlinarith [hs_euclid, hr_sq]
+  have hd_euclid : (R d 0) ^ 2 + (R d 1) ^ 2 = 2 * (R d 0) := by
+    have h := congrArg (fun z : ℝ ↦ z ^ 2) hROd
+    change dist (pt 1 0) (pt (1 / 2) (-r / 2)) ^ 2 = dist (pt 1 0) (R d) ^ 2 at h
+    rw [dist_sq_coord, dist_sq_coord] at h
+    simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at h
+    nlinarith [hr_sq]
+  have hd : (R d 0) ^ 2 + 3 * (R d 1 / r) ^ 2 = 2 * (R d 0) := by
+    field_simp [hr_ne]
+    nlinarith [hd_euclid, hr_sq]
+  have hUas' := map_area hUas
+  have hUad' := map_area hUad
+  have hUdO' := map_area hUdO
+  have hasO' := map_area hasO
+  have hadO' := map_area hadO
+  have hasd' := map_area hasd
+  have hUas_scaled :
+      0 < cross 0 0 (1 / 2) (-1 / 2) (R s 0) (R s 1 / r) := by
+    have hp : 0 < cross (R U 0) (R U 1 / r) (R a 0) (R a 1 / r)
+        (R s 0) (R s 1 / r) := by
+      rw [scaled_cross_eq_signedArea2_div r hr_ne]
+      exact div_pos hUas' hr_pos
+    simpa [hRU, hRa, pt, hr_half, hr_cancel, div_eq_mul_inv] using hp
+  have hUad_scaled :
+      0 < cross 0 0 (1 / 2) (-1 / 2) (R d 0) (R d 1 / r) := by
+    have hp : 0 < cross (R U 0) (R U 1 / r) (R a 0) (R a 1 / r)
+        (R d 0) (R d 1 / r) := by
+      rw [scaled_cross_eq_signedArea2_div r hr_ne]
+      exact div_pos hUad' hr_pos
+    simpa [hRU, hRa, pt, hr_half, hr_cancel, div_eq_mul_inv] using hp
+  have hUdO_scaled : 0 < cross 0 0 (R d 0) (R d 1 / r) 1 0 := by
+    have hp : 0 < cross (R U 0) (R U 1 / r) (R d 0) (R d 1 / r)
+        (R O 0) (R O 1 / r) := by
+      rw [scaled_cross_eq_signedArea2_div r hr_ne]
+      exact div_pos hUdO' hr_pos
+    simpa [hRU, hRO, pt, hr_half, hr_cancel, div_eq_mul_inv] using hp
+  have hasO_scaled :
+      0 < cross (1 / 2) (-1 / 2) (R s 0) (R s 1 / r) 1 0 := by
+    have hp : 0 < cross (R a 0) (R a 1 / r) (R s 0) (R s 1 / r)
+        (R O 0) (R O 1 / r) := by
+      rw [scaled_cross_eq_signedArea2_div r hr_ne]
+      exact div_pos hasO' hr_pos
+    simpa [hRa, hRO, pt, hr_half, hr_cancel, div_eq_mul_inv] using hp
+  have hadO_scaled :
+      0 < cross (1 / 2) (-1 / 2) (R d 0) (R d 1 / r) 1 0 := by
+    have hp : 0 < cross (R a 0) (R a 1 / r) (R d 0) (R d 1 / r)
+        (R O 0) (R O 1 / r) := by
+      rw [scaled_cross_eq_signedArea2_div r hr_ne]
+      exact div_pos hadO' hr_pos
+    simpa [hRa, hRO, pt, hr_half, hr_cancel, div_eq_mul_inv] using hp
+  have hasd_scaled :
+      0 < cross (1 / 2) (-1 / 2) (R s 0) (R s 1 / r)
+        (R d 0) (R d 1 / r) := by
+    have hp : 0 < cross (R a 0) (R a 1 / r) (R s 0) (R s 1 / r)
+        (R d 0) (R d 1 / r) := by
+      rw [scaled_cross_eq_signedArea2_div r hr_ne]
+      exact div_pos hasd' hr_pos
+    simpa [hRa, pt, hr_half, hr_cancel, div_eq_mul_inv] using hp
+  exact false_of_normalized_pentagon_order
+    (R s 0) (R s 1 / r) (R d 0) (R d 1 / r) hs hd
+    hUas_scaled hasO_scaled hUad_scaled hadO_scaled hUdO_scaled hasd_scaled
+
+/-- Five increasing positions on a strictly convex boundary cannot realize
+the mutual-center distance pattern in the guarded order `U<a<s<d<O`. -/
+theorem boundaryOrder_mutual_center_pentagon_obstruction
+    {n : ℕ} (boundary : Fin n → ℝ²)
+    (hinj : Function.Injective boundary)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (iU ia is id iO : Fin n)
+    (hUa : iU < ia) (has : ia < is) (hsd : is < id) (hdO : id < iO)
+    (hUO_Ua : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary ia))
+    (hUO_Oa : dist (boundary iU) (boundary iO) =
+      dist (boundary iO) (boundary ia))
+    (hUO_Us : dist (boundary iU) (boundary iO) =
+      dist (boundary iU) (boundary is))
+    (hOa_Od : dist (boundary iO) (boundary ia) =
+      dist (boundary iO) (boundary id)) : False := by
+  have hUis : iU < is := lt_trans hUa has
+  have hUid : iU < id := lt_trans hUis hsd
+  have hUiO : iU < iO := lt_trans hUid hdO
+  have hiaO : ia < iO := lt_trans has (lt_trans hsd hdO)
+  have hisO : is < iO := lt_trans hsd hdO
+  have swap_last (X Y Z : ℝ²) :
+      signedArea2 X Z Y = -signedArea2 X Y Z := by
+    simp only [signedArea2]
+    ring
+  have hUaO :
+      signedArea2 (boundary iU) (boundary ia) (boundary iO) < 0 :=
+    hneg_of_ccw hinj hccw hUa hiaO
+  have hUOa :
+      0 < signedArea2 (boundary iU) (boundary iO) (boundary ia) := by
+    rw [swap_last]
+    linarith
+  have hUas :
+      signedArea2 (boundary iU) (boundary ia) (boundary is) < 0 :=
+    hneg_of_ccw hinj hccw hUa has
+  have hUad :
+      signedArea2 (boundary iU) (boundary ia) (boundary id) < 0 :=
+    hneg_of_ccw hinj hccw hUa (lt_trans has hsd)
+  have hUdO :
+      signedArea2 (boundary iU) (boundary id) (boundary iO) < 0 :=
+    hneg_of_ccw hinj hccw hUid hdO
+  have hasO :
+      signedArea2 (boundary ia) (boundary is) (boundary iO) < 0 :=
+    hneg_of_ccw hinj hccw has hisO
+  have hadO :
+      signedArea2 (boundary ia) (boundary id) (boundary iO) < 0 :=
+    hneg_of_ccw hinj hccw (lt_trans has hsd) hdO
+  have hasd :
+      signedArea2 (boundary ia) (boundary is) (boundary id) < 0 :=
+    hneg_of_ccw hinj hccw has hsd
+  exact euclidean_mutual_center_pentagon_obstruction
+    (boundary iU) (boundary ia) (boundary is) (boundary id) (boundary iO)
+    (hinj.ne (ne_of_lt hUiO)) hUO_Ua hUO_Oa hUO_Us hOa_Od
+    hUOa hUas hUad hUdO hasO hadO hasd
+
 /-- The common obstruction in the standard Euclidean equilateral frame. This
 wrapper converts ordinary signed areas and distances to the rational scalar
 coordinates used by `normalized_common_obstruction`. -/
