@@ -268,6 +268,37 @@ row cover, or well-founded decrease is established. Do not make a recursive
 call or replace the open terminal with new admissions on the strength of the
 one-hit transition alone.
 
+### 3b. Global deletion and an actual critical row across a new cut
+
+The [global-source cut note](../audits/2026-09-06-exactfive-global-source-cut.md)
+audits Pro response `01M1TWK4EP57RK85782ETSAFR4` and proves an intermediate
+global statement on paper. It does not close or reduce the physical terminal.
+The source puts at least three E members, including q,w, in the first-cap interior;
+full containment of E was an unsupported premise in the Pro request and is
+not used in the corrected argument.
+
+Deleting U = E ∪ B ∪ L uses global minimality correctly, but its outside
+center can be the old retained blocker with a singleton deletion, or O with
+a two-anchor deletion. The audited radial formula also shows that a minimal
+blocking deletion of size at least two has a robust center. Its restored
+four-classes must not be treated as ambient actual-blocker rows.
+
+The different cut X = N ∖ {bq,bw}, where N is the set of all nonrobust
+carrier centers, produces an actual critical row. The cover bound
+|A| ≤ 4|N| and |A| > 9 make X nonempty. Minimality forces the unique
+four-class at some c ∈ X to contain t outside X. Thus c differs from both
+original blockers and both robust apices, while t is robust or one of the
+two old blocker centers. Deleting t destroys every K4 witness at c, so its
+row may be installed as H's choice for t.
+
+This proves existence of an additional actual blocker center. It does not
+make t fresh relative to U, put c in the original cap, identify a q,w pair
+incidence, or preserve a dependent residual under override. The next
+geometric step must treat the robust-source and old-blocker-source arms and
+supply an existing consumer's antecedents. No iteration or radius descent
+is justified by the cut alone. Keep the physical admission open until that
+consumer and its source transport are proved and checked.
+
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 
 Start with one baseline `FaithfulCarrierPattern` whose gauge center differs

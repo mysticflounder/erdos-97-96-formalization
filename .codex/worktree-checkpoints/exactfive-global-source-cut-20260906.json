@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-global-source-cut-20260906",
+  "owner": "CapDropAudit",
+  "base_head": "8e6f754f72a5c421a1c5c59308ee4bdd77f6913b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-global-source-cut-20260906.json",
+    "docs/audits/2026-09-06-exactfive-global-source-cut.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/references/exactfive-source-geometry-2026-09-05/global-source-cut-pro-response-2026-09-06.md",
+    "docs/skeptic-exactfive-global-source-cut-2026-09-06.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T15:37:00.371818Z",
+  "manifest_sha256": "327414b716501ff4841f6f671be4f2c517373666849b7ac9ca492fd1b5fe79c8"
+}
