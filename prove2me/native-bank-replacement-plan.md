@@ -1,10 +1,11 @@
 # Plan: replace native certificate banks with general theorems
 
-Date: 2026-09-05. Planning baseline: `fff7305bb6f10ddfc5a9446fe7392541da47d87b`.
-Status: package 1 is complete and validated; the package-2 exact-15 classifier
-pilot is complete, with exact-16 as the next candidate. Packages 3–5 remain
-planned. See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md)
-and [exact-15 coverage audit](../docs/audits/2026-09-05-native-exact15-coverage.md).
+Date: 2026-09-06. Planning baseline: `fff7305bb6f10ddfc5a9446fe7392541da47d87b`.
+Status: package 1 is complete and validated; the package-2 exact-15 and exact-16
+classifier pilots are complete with core-only structural proofs. Broader package-2
+geometric families and packages 3–5 remain planned. See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md),
+[exact-15 coverage audit](../docs/audits/2026-09-05-native-exact15-coverage.md),
+and [exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md).
 
 ## Objective and boundaries
 
@@ -29,9 +30,9 @@ Inputs:
   and the live plans governing any other touched residual.
 
 The inventory found 5,035 native token sites in the main first-party Lean tree.
-That is a source census, not a count of reachable proof obligations. Historical
-and scratch totals remain separate. This plan does not require rewriting every
-archived experiment or changing the repository's approved native-trust policy.
+That dated figure is a historical source census, not a current count of reachable
+proof obligations. Historical and scratch totals remain separate. This plan does not require rewriting
+every archived experiment or changing the repository's approved native-trust policy.
 
 Keep the source repository on its existing Lean/Mathlib pins during mathematical
 replacement work. Port completed results separately to the mission's pinned
@@ -52,7 +53,7 @@ as established behavior.
 | 5 | Integrate and transfer | Audited proof packages linked to the existing private mission | Exact transferred statements and proofs accepted by the server |
 
 Packages 2, 3, and 4 can run as independent bounded research lanes after package 0.
-The package-2 exact-15 classifier pilot is complete; exact-16 and the remaining
+The package-2 exact-15 and exact-16 classifier pilots are complete; broader
 geometric families are open. Packages 3–5 remain planned. Assess one family-level
 pilot in each research lane before expanding it.
 
@@ -111,11 +112,8 @@ members and at most two cap members has two points outside the cap.
    declarations' axioms and inspect the consumer graph.
 
 **Exit:** both computations are replaced by the shared counting argument plus
-label adapters. The exact-15 `exists_metricMotif_of_pairwiseSeparated` classifier
-now has a core-only structural proof in the package-2 pilot. The exact-16
-`metricObstructionOccurs_of_pairwiseSeparated` classifier remains an explicit
-native dependency. Do not report the whole banks
-or the P97 root as native-free.
+label adapters. The separate classifier replacements are recorded under package 2.
+Do not report the whole banks or the P97 root as native-free.
 
 ### 2. Replace finite geometric cases by structural coverage
 
@@ -128,10 +126,11 @@ Start with these existing source theorems:
   `ATail/KalmansonThreeEqualitySchemas.lean` and
   `ATail/KalmansonFourEqualitySchemas.lean`.
 
-**Pilot status:** the exact-15 classifier replacement is complete with a core-only
-structural proof and governed validation. The exact-16 classifier is the next
-candidate. This pilot does not close the remaining exact-16 or geometric-family
-coverage work in this package.
+**Pilot status:** the exact-15 and exact-16 classifier replacements are complete
+with core-only structural proofs and governed validation. In exact16, the
+OldB/OldC/NewB cases are exhaustive; `NewAMotifOccurs` remains a preserved public
+interface but is unused by the proof. This does not close the remaining broader
+geometric-family coverage work in package 2.
 
 1. Select one native classifier or finite case family and its immediate consumer.
    Search the existing indexed Lean corpus once for that concrete hypothesis set.
@@ -141,9 +140,9 @@ coverage work in this package.
 3. Match cases to the existing geometric cores. Retain a coverage table containing
    proved matches, unmatched cases, and the first missing antecedent for each.
    Historical coverage of 230 cores is a search lead, not current coverage proof.
-4. Prove the order/membership adapters from the source geometry. For the exact-15/16
-   classifiers, investigate a combinatorial proof that cyclic separation of the
-   four outside pairs forces one of the existing metric motifs.
+4. Prove the order/membership adapters from the source geometry. The completed
+   exact-15 and exact-16 pilots use cyclic separation; exact16's finite step is the
+   structural union argument with eight incidences in a seven-label universe.
 5. Check proposed generalizations against the existing finite cases and known
    countermodels before investing in a large formalization. A finite successful
    test is supporting evidence only; a counterexample identifies a needed
@@ -257,5 +256,6 @@ exhaustive dispatch. Do not create orphan lemmas or uncovered `sorry` obligation
 At each family-level pilot, decide whether to expand, refine one missing
 antecedent, or stop that candidate. Assign disjoint source paths to parallel
 workers; keep a separate reviewer and one owner for shared imports/manifests.
-No reliable end-to-end duration is known: package 1 is bounded implementation,
-while packages 2–4 contain open mathematical work.
+No reliable end-to-end duration is known: the completed pilots were bounded
+implementations, while broader package-2 work and packages 3–5 contain open
+mathematical work.

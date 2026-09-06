@@ -1,11 +1,16 @@
 # Native-bank replacement audit
 
-Date: 2026-09-05. Repository lane base: `7a54ca3f9e9f10398de1b3e63729abd66125b3ec`.
+Date: 2026-09-06. Repository lane base: `7a54ca3f9e9f10398de1b3e63729abd66125b3ec`.
 
 This audit asks which general mathematical arguments can replace the repository's
 `native_decide` computations. It does not change a proof, refresh a frozen bank,
 or certify a Prove2Me transfer. Source references describe the inspected working
 tree; the inventory records content hashes because other lanes are active.
+
+Current status: the exact-15 and exact-16 classifier pilots now have core-only
+structural proofs. The exact-16 governed build and eight-declaration axiom probe
+passed; broader geometric families and packages 3–5 remain open. See the
+[exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md).
 
 ## Scope and evidence
 
@@ -120,10 +125,11 @@ edges, also visible in source). Package 1 extracted the counting proof to the
 shared `P97/FiniteRowCardinality.lean` module.
 
 **Package-1 result:** the two native proof sites were replaced with one reusable counting
-argument and explicit label adapters. The package-2 exact-15 classifier pilot has since
-replaced `exists_metricMotif_of_pairwiseSeparated` with a core-only structural proof;
-see the [exact-15 coverage audit](../docs/audits/2026-09-05-native-exact15-coverage.md).
-The exact-16 classifier remains a separate native dependency.
+argument and explicit label adapters. The package-2 exact-15 and exact-16 classifier
+pilots have since replaced `exists_metricMotif_of_pairwiseSeparated` and
+`metricObstructionOccurs_of_pairwiseSeparated` with core-only structural proofs;
+see the [exact-15 coverage audit](../docs/audits/2026-09-05-native-exact15-coverage.md)
+and [exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md).
 
 ## General coverage argument already present
 
@@ -159,19 +165,18 @@ The source theorem
 derives three strict quadrilateral inequalities and combines them with these
 equalities using `linarith`. The ambient number of polygon vertices is arbitrary.
 
-The exact-15 classifier pilot now has a core-only combinatorial argument about cyclic
-separation of four two-point outside supports. This proves the finite coverage
-statement while leaving its geometric motif dispatch explicit. The corresponding
-exact-16 classifier remains a candidate research task: its proof must establish
-that the same admissibility hypotheses force one of the existing metric motifs.
-Existing metric contradictions do not prove that coverage statement. Neither
-enlarging the outside set nor dropping a cyclic-order hypothesis is justified by a
-bounded classifier.
+The exact-15 and exact-16 classifier pilots now have core-only combinatorial
+arguments about cyclic separation of four two-point outside supports. Exact16's
+finite step is the structural union argument with eight incidences in a seven-label
+universe. Its OldB, OldC, and NewB cases are exhaustive; `NewAMotifOccurs` remains
+a preserved interface but is unused by the proof. Broader geometric-family coverage
+remains open, and existing metric contradictions alone do not establish it.
 
 The former exact-15 implementation specified `2 * 15^4` patterns; its current
-structural proof no longer enumerates that search space. The exact-16 source still
-specifies `2 * 7 * choose(7, 2)^4`. These counts describe encoded search spaces,
-not numbers of geometrically realizable configurations.
+structural proof no longer enumerates that search space. The former exact-16
+implementation specified `2 * 7 * choose(7, 2)^4`; its current structural proof
+also avoids enumerating that search space. These counts describe encoded search
+spaces, not numbers of geometrically realizable configurations.
 
 ## Card-eleven SAT/replay banks
 
@@ -279,13 +284,12 @@ same five-point contradiction.
 
 ## Recommended order of work
 
-1. Replace the exact-15/exact-16 outside-slice computations using the existing
-   finite-set theorem and explicit injective label adapters. This is the smallest
-   concrete removal of native dependence found in this audit.
+1. The exact-15/exact-16 outside-slice computations and classifier pilots are
+   complete, using finite-set adapters and structural coverage proofs.
 2. Match five-point circle-isosceles and Kalmanson core hypotheses against finite
    cases, recording uncovered cases explicitly. Prove a structural coverage lemma
    only where its hypotheses are actually supplied by the source geometry.
-3. Isolate the card-eleven terminal branches and mine smaller contradictory
+3. Next planned package: isolate one card-eleven terminal branch and mine smaller contradictory
    geometric clause cores. Keep ledger-encoding cleanups distinct from terminal
    mathematics.
 4. Treat polynomial identity families separately: seek shared symbolic identities,
@@ -310,8 +314,10 @@ Use `--scope lean` for the canonical Lean tree, including generated modules.
 Neither scope scans untracked files or Lake dependencies. Archived and tracked
 scratch files are discovery material; they are not assumed to be imported.
 
-This is a source-and-index audit. No full Lean build, fresh final-root axiom probe,
-certificate refreeze, solver rerun, or Prove2Me proof submission was performed.
-Existing source proofs are candidates for reuse until compiled with their actual
+This original source-and-index audit did not perform a full Lean build, certificate
+refreeze, solver rerun, or Prove2Me proof submission. The exact16 pilot's separate
+validation records a governed build PASS in 9.71 seconds, an actual module rebuild
+in 7.3 seconds, a passing eight-declaration axiom probe, and 63 unchanged source
+hashes. Existing source proofs are candidates for reuse until compiled with their actual
 imports and audited at the consumer. New statements above are labelled as paper
 arguments or research candidates; no new Lean proof closure is claimed.

@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.Phase3SharedPairSeparation
 import Erdos9796Proof.P97.FiniteRowCardinality
+import Erdos9796Proof.P97.FourPairCoverage
 import Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage
 import Erdos9796Proof.P97.ATail.KalmansonFourEqualitySchemas
 
@@ -18,10 +19,10 @@ four selected rows has two fixed cap hits and exactly two outside hits.  The
 seventh outside point can occupy any of seven positions after the named cap
 packet, in either of the two source-forced orders.
 
-The finite certificate below exhausts the resulting
-`2 * 7 * choose(7, 2)^4` assignments.  Pairwise cyclic separation forces one
-of two previously banked three-equality Kalmanson motifs or one of the two new
-four-equality motifs in `KalmansonFourEqualitySchemas`.
+Four two-point supports in seven outside points must overlap. Pairwise cyclic
+separation rules out three pairings, and each remaining pairing supplies an
+existing metric obstruction. This counting argument preserves the four-family
+interface without enumerating assignments.
 -/
 
 open scoped Convex EuclideanGeometry
@@ -270,15 +271,115 @@ instance (order : Fin 2) (insertion : Fin 7) (rows : Fin 4 → OutsidePair) :
     NewAMotifOccurs NewBMotifOccurs
   infer_instance
 
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 0 in
+/-- An outside support member is a hit of its row. -/
+private theorem hits_outside_of_mem (rows : Fin 4 → OutsidePair) (r : Fin 4)
+    (i : Fin 7) (hi : i ∈ (rows r).val) : Hits rows r (outsideLabel i) := by
+  fin_cases i <;> simp_all [Hits, hitsBool, outsideLabel]
+
+/-- Insertion leaves every outside point at position at least nine. -/
+private theorem outside_position_ge_nine (o : Fin 2) (ins : Fin 7) (i : Fin 7) :
+    9 ≤ (position o ins (outsideLabel i)).val := by
+  fin_cases o <;> fin_cases ins <;> fin_cases i <;> decide
+
+/-- All outside labels lie beyond every row center in both orders. -/
+private theorem outside_not_btw (o : Fin 2) (ins : Fin 7) (r s : Fin 4) (i : Fin 7) :
+    ¬ SurplusCOMPGBank.btw (position o ins (centerLabel r))
+      (position o ins (centerLabel s)) (position o ins (outsideLabel i)) := by
+  have hc : ∀ (o : Fin 2) (ins : Fin 7) (r : Fin 4),
+      (position o ins (centerLabel r)).val < 9 := by decide
+  have hr := hc o ins r
+  have hs := hc o ins s
+  have hi := outside_position_ge_nine o ins i
+  unfold SurplusCOMPGBank.btw
+  simp only [Fin.lt_def]
+  omega
+
+/-- Two distinct shared hits cannot both lie outside the centers' interval. -/
+private theorem false_of_shared_not_btw {o : Fin 2} {ins : Fin 7}
+    {rows : Fin 4 → OutsidePair} (hsep : PairwiseSeparated o ins rows)
+    (r s : Fin 4) (hrs : r.val < s.val) (p q : Fin 16) (hpq : p ≠ q)
+    (hrp : Hits rows r p) (hrq : Hits rows r q)
+    (hsp : Hits rows s p) (hsq : Hits rows s q)
+    (hp : ¬ SurplusCOMPGBank.btw (position o ins (centerLabel r))
+      (position o ins (centerLabel s)) (position o ins p))
+    (hq : ¬ SurplusCOMPGBank.btw (position o ins (centerLabel r))
+      (position o ins (centerLabel s)) (position o ins q)) : False := by
+  rcases lt_or_gt_of_ne hpq with hlt | hlt
+  · exact hp ((hsep r s p q hrs hlt hrp hrq hsp hsq).mpr hq)
+  · exact hq ((hsep r s q p hrs hlt hrq hrp hsq hsp).mpr hp)
+
+/-- A shared fixed hit outside the interval forbids a shared outside support. -/
+private theorem disjoint_of_fixed_hit {o : Fin 2} {ins : Fin 7}
+    {rows : Fin 4 → OutsidePair} (hsep : PairwiseSeparated o ins rows)
+    (r s : Fin 4) (hrs : r.val < s.val) (p : Fin 16)
+    (hrp : Hits rows r p) (hsp : Hits rows s p) (hne : ∀ i, p ≠ outsideLabel i)
+    (hp : ¬ SurplusCOMPGBank.btw (position o ins (centerLabel r))
+      (position o ins (centerLabel s)) (position o ins p)) :
+    Disjoint (rows r).val (rows s).val := by
+  apply Finset.disjoint_left.mpr
+  intro i hir his
+  exact false_of_shared_not_btw hsep r s hrs p (outsideLabel i) (hne i)
+    hrp (hits_outside_of_mem rows r i hir) hsp (hits_outside_of_mem rows s i his)
+    hp (outside_not_btw o ins r s i)
+
+/-- The fixed labels used as motif witnesses retain their cap order. -/
+private theorem fixed_motif_order (o : Fin 2) (ins : Fin 7) :
+    position o ins 10 < position o ins 9 ∧ position o ins 9 < position o ins 7 := by
+  fin_cases o <;> fin_cases ins <;> decide
+
+/-- The cap label seven precedes every outside label. -/
+private theorem seven_lt_outside (o : Fin 2) (ins : Fin 7) (i : Fin 7) :
+    position o ins 7 < position o ins (outsideLabel i) := by
+  have h7 : ∀ (o : Fin 2) (ins : Fin 7), (position o ins 7).val < 9 := by decide
+  change (position o ins 7).val < (position o ins (outsideLabel i)).val
+  exact lt_of_lt_of_le (h7 o ins) (outside_position_ge_nine o ins i)
+
 /-- Exhaustive coverage of the exact-sixteen four-row core by four reusable
 metric obstruction families. -/
 theorem metricObstructionOccurs_of_pairwiseSeparated :
     ∀ (order : Fin 2) (insertion : Fin 7) (rows : Fin 4 → OutsidePair),
       PairwiseSeparated order insertion rows →
         MetricObstructionOccurs order insertion rows := by
-  native_decide
+  intro order insertion rows hsep
+  have h01 : Disjoint (rows 0).val (rows 1).val := by
+    apply disjoint_of_fixed_hit hsep 0 1 (by decide) 6
+    · simp [Hits, hitsBool, fixedHit₁]
+    · simp [Hits, hitsBool, fixedHit₁]
+    · decide
+    · fin_cases order <;> fin_cases insertion <;> decide
+  have h02 : Disjoint (rows 0).val (rows 2).val := by
+    apply disjoint_of_fixed_hit hsep 0 2 (by decide) 9
+    · simp [Hits, hitsBool, fixedHit₂]
+    · simp [Hits, hitsBool, fixedHit₂]
+    · decide
+    · fin_cases order <;> fin_cases insertion <;> decide
+  have h23 : Disjoint (rows 2).val (rows 3).val := by
+    apply disjoint_of_fixed_hit hsep 2 3 (by decide) 8
+    · simp [Hits, hitsBool, fixedHit₁]
+    · simp [Hits, hitsBool, fixedHit₁]
+    · decide
+    · fin_cases order <;> fin_cases insertion <;> decide
+  obtain hAD | hBC | hBD := FourPairCoverage.overlap_of_three_disjoint_pairs Finset.univ
+    (rows 0).val (rows 1).val (rows 2).val (rows 3).val (by decide)
+    (Finset.subset_univ _) (Finset.subset_univ _) (Finset.subset_univ _) (Finset.subset_univ _)
+    (rows 0).property (rows 1).property (rows 2).property (rows 3).property h01 h02 h23
+  · obtain ⟨i, hi⟩ := hAD
+    obtain ⟨h0, h3⟩ := Finset.mem_inter.mp hi
+    refine Or.inr (Or.inl ⟨9, outsideLabel i, (fixed_motif_order order insertion).1,
+      lt_trans (fixed_motif_order order insertion).2 (seven_lt_outside order insertion i),
+      ?_, hits_outside_of_mem rows 0 i h0, hits_outside_of_mem rows 3 i h3, ?_⟩)
+    · simp [Hits, hitsBool, fixedHit₂]
+    · simp [Hits, hitsBool, fixedHit₂]
+  · obtain ⟨i, hi⟩ := hBC
+    obtain ⟨h1, h2⟩ := Finset.mem_inter.mp hi
+    exact Or.inl ⟨outsideLabel i,
+      lt_trans (fixed_motif_order order insertion).2 (seven_lt_outside order insertion i),
+      hits_outside_of_mem rows 2 i h2, hits_outside_of_mem rows 1 i h1⟩
+  · obtain ⟨i, hi⟩ := hBD
+    obtain ⟨h1, h3⟩ := Finset.mem_inter.mp hi
+    exact Or.inr (Or.inr (Or.inr ⟨7, outsideLabel i,
+      (fixed_motif_order order insertion).2, seven_lt_outside order insertion i,
+      hits_outside_of_mem rows 3 i h3, hits_outside_of_mem rows 1 i h1⟩))
 
 /-- The two possible orientations in which the named exact-sixteen order can
 sit in a fixed CCW boundary enumeration. -/
