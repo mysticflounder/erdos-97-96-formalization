@@ -1,0 +1,23 @@
+{
+  "base_head": "0ea1d2300c95c62d6e8db45410f82d36fe33cb1b",
+  "created_utc": "2026-09-06T10:53:47.332459Z",
+  "input_digests": {
+    "docs/audits/2026-09-06-exact13-weighted-provider-bank-bridge.md": "4ac2811fc3e136283b2b1c6355fc43e830c1248a036d9f97bce1a0e14a2e42ec"
+  },
+  "lane_id": "exact13-weighted-provider-bank-bridge-20260906",
+  "manifest_sha256": "9750590ff5d8ed9e3d901be5ba6c69b9877f4cede67ae061aa9aeb640077f3f4",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "luna-swarm-gap-weaver",
+  "root": "scratch/runs/exact13-weighted-provider-bank-bridge-20260906/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13ExclusiveApex18.lean": "75ed653182b37db7df61466de7fb7ebca2db57fdb7ee6d74543ebf3ca9f3429b",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceOrderBridge.lean": "22a8ac1daafd4a5c649cfd3e44dcd9c2c1320d999787c7926b6e638f8c8e1033",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13WeightedProviderBankBridge.lean": "cd213fa15551c1fe1c334be32d4050371334c9dbbd363431b8e72c20d6d9c878"
+  }
+}

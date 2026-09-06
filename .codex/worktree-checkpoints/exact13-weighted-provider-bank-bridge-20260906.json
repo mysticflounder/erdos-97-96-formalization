@@ -1,0 +1,19 @@
+{
+  "base_head": "0ea1d2300c95c62d6e8db45410f82d36fe33cb1b",
+  "created_utc": "2026-09-06T10:53:47.332459Z",
+  "durable_paths": [
+    "scratch/runs/exact13-weighted-provider-bank-bridge-20260906/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-weighted-provider-bank-bridge-20260906/run-0001"
+  ],
+  "lane_id": "exact13-weighted-provider-bank-bridge-20260906",
+  "manifest_sha256": "e257ddd70f8dfad1d81381b1bf6cbf6cd9991c607af8b4e6b75a49b26f24f5c5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-weighted-provider-bank-bridge-20260906.json",
+    "docs/audits/2026-09-06-exact13-weighted-provider-bank-bridge.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13WeightedProviderBankBridge.lean"
+  ],
+  "owner": "luna-swarm-gap-weaver",
+  "schema": "worktree-lane-checkpoint/v1"
+}
