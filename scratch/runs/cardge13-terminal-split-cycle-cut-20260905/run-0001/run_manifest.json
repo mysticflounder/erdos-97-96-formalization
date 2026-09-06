@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "cardge13-terminal-split-cycle-cut-20260905",
+  "run_id": "run-0001",
+  "root": "scratch/runs/cardge13-terminal-split-cycle-cut-20260905/run-0001",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "13e4f7317376584bc72244f097cd97f8de52414d",
+  "created_utc": "2026-09-06T02:20:00Z",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "input_digests": {
+    "scratch/runs/cardge13-terminal-split-cycle-cut-20260905/run-0001/artifacts/axiom_probe.lean": "b1377e8b6fc64721322d140803b667898fa5db8d51aa15c5055f65ebbac24985"
+  },
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTerminalSplitV2.lean": "f70a6ac399bc6b2e5e49f1093ae9609450d20f16ebfe7cb1bb8f53cd71d68827",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenAnchoredOutcomeDispatcher.lean": "94932d4e9ec5006dd1a6c823d74b6b32a81cd085d7b7fa55a852d48e6572085a",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenOutcomeDispatcher.lean": "5a2eb4efa3bfd400e4163d17b9c02ea1b008c7a543b83b95018ef30178d61da6"
+  },
+  "manifest_sha256": "c22745a71afd2e43cd6ff6bb5811737fd9f975d6aeaccc7c7177e1ac4e066daf"
+}

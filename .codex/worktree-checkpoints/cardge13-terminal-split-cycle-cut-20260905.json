@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-terminal-split-cycle-cut-20260905",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "13e4f7317376584bc72244f097cd97f8de52414d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-terminal-split-cycle-cut-20260905.json",
+    "docs/audits/2026-09-05-cardge13-terminal-split-cycle-cut.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenOutcomeDispatcher.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenTerminalSplitV2.lean"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-terminal-split-cycle-cut-20260905/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/cardge13-terminal-split-cycle-cut-20260905/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-06T02:15:56Z",
+  "manifest_sha256": "f0d082a8407cc9b50fd657c111002b59f6944b7213d085f9339ab4a508723ac6"
+}

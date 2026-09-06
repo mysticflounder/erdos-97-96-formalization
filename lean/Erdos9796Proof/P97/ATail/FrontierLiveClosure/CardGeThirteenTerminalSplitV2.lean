@@ -8,7 +8,6 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CardGeThirteenTwoRadiusSplit
 import Erdos9796Proof.P97.ATail.SevenGoodSourceDistinctBlockerCommonDeletion
 import Erdos9796Proof.P97.ATail.TwoFourClassesTwoFourShells
 import Erdos9796Proof.P97.ATail.TwoRadiusDoublePartitionLargeInterior
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFreshThirdFiber
 
 /-!
 # Card-at-least-thirteen terminal split
@@ -34,7 +33,6 @@ open ATailTwoFourClassesTwoFourShells
 open ATailTwoRadiusDoublePartitionLargeInterior
 open ATailUniqueArmRouteAuditScratch
 open ATailUniqueFourLateChoiceTerminalScratch
-open TwoSourceExactCollisionRowsTerminal
 
 attribute [local instance] Classical.propDecidable
 

@@ -104,9 +104,9 @@ theorem nonempty_cardGeThirteenOutcome
       · by_cases hdisj1K :
             Disjoint P.base.W.row₂.support P.base.thirdRow.support
         · rcases cardGeThirteenPacket_fresh_or_exactThirteenTight_twoArm
-              R hcard firstRow secondRow P.base with hsplit
-          · rcases hsplit with ⟨q, hq, houtside⟩
-            have hdisj01K :
+              R hcard firstRow secondRow P.base with
+            ⟨q, hq, houtside⟩ | ⟨hcard13, hcover, _, _, _⟩
+          · have hdisj01K :
                 Disjoint (P.base.W.row₁.support ∪ P.base.W.row₂.support)
                   P.base.thirdRow.support :=
               Finset.disjoint_union_left.mpr ⟨hdisj0K, hdisj1K⟩
@@ -157,8 +157,7 @@ theorem nonempty_cardGeThirteenOutcome
               exact Finset.card_le_card hQsub
             exact ⟨.uncovered P q hq houtside hdisj01 hdisj0K hdisj1K
               hcard14⟩
-          · rcases hsplit with ⟨hcard13, hcover, _, _, _⟩
-            obtain ⟨ingress⟩ :=
+          · obtain ⟨ingress⟩ :=
               ExactThirteenBranchIngress.of_twoRadiusBranch R surface rho
                 otherRadius firstRow secondRow hradii hnoFive hfirstRadius
                 hsecondRadius hdisjoint hcard13
