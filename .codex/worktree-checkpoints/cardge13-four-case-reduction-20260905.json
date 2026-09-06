@@ -1,14 +1,22 @@
 {
   "base_head": "fa9bba54497ca4748db1f44fa4bd494db2bc387b",
   "created_utc": "2026-09-06T01:01:52Z",
-  "durable_paths": [],
-  "generated_roots": [],
+  "durable_paths": [
+    "scratch/runs/cardge13-four-case-reduction-20260905/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-four-case-reduction-20260905/run-0001"
+  ],
   "lane_id": "cardge13-four-case-reduction-20260905",
-  "manifest_sha256": "6cbd3f501875d7603c66f2362cd09fb730eb8bc70a69dd16d745e069255d4977",
+  "manifest_sha256": "d9412eb812f87ed09841a63a3b1d77596518a68b4371234c041d140bd2877798",
   "owned_paths": [
     ".codex/worktree-checkpoints/cardge13-four-case-reduction-20260905.json",
-    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md"
+    "docs/audits/2026-09-05-cardge13-four-case-reduction.md",
+    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenCoordinator.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceRoleIngress.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean"
   ],
-  "owner": "RadiusCartographer",
+  "owner": "luna-swarm-radial-otter",
   "schema": "worktree-lane-checkpoint/v1"
 }

@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.ContextFrames
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CardGeThirteenCoordinator
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Balanced555FiniteUnsat
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
@@ -1270,7 +1271,9 @@ theorem false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen
     (_hsecondRadius : secondRow.radius = otherRadius)
     (_hdisjoint : Disjoint firstRow.support secondRow.support) :
     False := by
-  sorry
+  exact false_of_cardGeThirteenAnchoredOutcome_onSpine
+    R _hcard surface rho otherRadius firstRow secondRow
+    _hradii _hnoFive _hfirstRadius _hsecondRadius _hdisjoint
 
 /-- The no-five two-distinct-radii branch of the post-card-eleven robust
 exact-four terminal.  It retains the two disjoint exact rows and their radius

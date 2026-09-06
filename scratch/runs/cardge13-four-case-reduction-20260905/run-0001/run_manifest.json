@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "cardge13-four-case-reduction-20260905",
+  "run_id": "run-0001",
+  "root": "scratch/runs/cardge13-four-case-reduction-20260905/run-0001",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "fa9bba54497ca4748db1f44fa4bd494db2bc387b",
+  "created_utc": "2026-09-06T02:47:24Z",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "input_digests": {
+    "docs/plans/2026-09-01-dr-two-radius-branch-closure.md": "e5132402de575142e21eea57a30ef767388e0080df79505dea598e5218014a06"
+  },
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceRoleIngress.lean": "8852f93e8548f5eb20f5b8a607b1f279bc37589e5e1953d5422dcfa142b11fba",
+    "lean/Erdos9796Proof/Geometry/TwoInteriorSameBoundaryRadius.lean": "76e5504d0e8c411e5f792ba5450f71586a806c898a4b58abd1d407febc132af1",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveOneHitShellReselection.lean": "08a0465ad1fa8b363ce8ec1a44af5e51065d5de39538b2d370933d44dddaab76",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenCoordinator.lean": "bb09a710ce4e87893c6126e21a4281746663d39dbede776c899be71c14e0cc69",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean": "1081d4c1de5a505c39fc0a485f684df2b22752f5084aa47fa614ae44a088fa2c",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenAnchoredOutcomeDispatcher.lean": "94932d4e9ec5006dd1a6c823d74b6b32a81cd085d7b7fa55a852d48e6572085a",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenOutcomeDispatcher.lean": "5a2eb4efa3bfd400e4163d17b9c02ea1b008c7a543b83b95018ef30178d61da6"
+  },
+  "manifest_sha256": "caea2d6e4045d8007dca013f7e5de872126814a0f10f189b02ff4fc4d516f38f"
+}

@@ -869,6 +869,30 @@ certificate replay is then unnecessary for card 12.
   exact-13 coverage, `rowOverlap`, the disjoint fresh card-at-least-14 arm, and
   `adjacentGrid`.  Closing either fresh or grid does not discharge the others.
 
+  Integration audit 2026-09-05: the first proposed coordinator import into
+  `Rigid221Closure` was cyclic.  Every exact-13 ingress root reached
+  `Rigid221Closure` through the declaration-unused
+  `CardGeThirteenTerminalSplitV2` import of `TwoSourceFreshThirdFiber`, then
+  the tri-apex legacy wrapper chain.  A full import-graph simulation found
+  that removing exactly that dead import and its unused
+  `open TwoSourceExactCollisionRowsTerminal` makes `Rigid221Closure`
+  unreachable from the anchored dispatcher, raw ingress, raw dispatch
+  bridge, coarse ingress, and source-role ingress.  This two-line dependency
+  repair must be focused-built before the coordinator is wired; the earlier
+  acyclicity claim is retracted.
+
+  One-shot reuse preflights at indexed source revision `13e4f7317` found no
+  hidden closer for the other three leaves.  For `rowOverlap`, the exact-row
+  packet gives pairwise intersection cardinality at most two, while the
+  nearest overlap terminal requires cardinality at least three and distinct
+  blocker indices; mere failure of disjointness gives only cardinality at
+  least one.  For disjoint fresh/card-at-least-14, the nearest theorem is the
+  upstream fresh-or-tight producer already used by the dispatcher, with no
+  downstream `False` consumer.  For `adjacentGrid`, the nearest exact theorem
+  is restricted to card 12, while the generic distribution API still needs
+  stronger source-role hypotheses.  These are therefore genuine immediate
+  residuals rather than missed theorem-bank reuse.
+
 ## 7. Effort
 
 In sessions: Phase 0 + 2 together, one. Phase 1, one to two. Phase 3, one

@@ -134,18 +134,20 @@ theorem nonempty_cardGeThirteenExact13SourceRoleWitnesses
     b1_image := _hib1
     b0_not_C0 := by
       intro hb0
-      have hb0' : V.blocker₁ ∈ V.sourceRow₁.rawSupport := by
-        simpa [hib0_eq, hC0raw] using hb0
+      have hb0T : _ib0 ∈ T.C0raw := by
+        simpa only [T] using hb0
+      rw [hib0_eq, hC0raw] at hb0T
       apply V.sourceRow₁.center_not_mem
       rw [V.sourceRow₁.support_eq]
-      exact Finset.mem_image.mpr ⟨V.blocker₁, hb0', rfl⟩
+      exact Finset.mem_image.mpr ⟨V.blocker₁, hb0T, rfl⟩
     b1_not_C1 := by
       intro hb1
-      have hb1' : V.blocker₂ ∈ V.sourceRow₂.rawSupport := by
-        simpa [hib1_eq, hC1raw] using hb1
+      have hb1T : _ib1 ∈ T.C1raw := by
+        simpa only [T] using hb1
+      rw [hib1_eq, hC1raw] at hb1T
       apply V.sourceRow₂.center_not_mem
       rw [V.sourceRow₂.support_eq]
-      exact Finset.mem_image.mpr ⟨V.blocker₂, hb1', rfl⟩
+      exact Finset.mem_image.mpr ⟨V.blocker₂, hb1T, rfl⟩
     s0 := s0
     s1 := s1
     d := d
