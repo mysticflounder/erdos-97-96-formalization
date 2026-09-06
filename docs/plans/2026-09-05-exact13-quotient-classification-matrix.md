@@ -41,6 +41,7 @@ set of admissible unresolved source leaves, not merely more sampled cuts.
 | G1 | Complete the nine missing global rows of F6 feasible cases | KalmansonCartographer + independent audits | 234/234 SOLVER UNSAT; UNCERTIFIED | Compact pinned strict-LRA producer; all 468 records covered, zero unknown; no all-center witness; exact exclusions belong to G2 |
 | G2 | Certify one impossible missing center per G1 system | KalmansonCartographer + independent certificate worker | 37 SYSTEMS / 74 RECORDS EXACTLY EXCLUDED; PARTIAL | 18,315 support certificates; 62/234 systems processed under 600-second cap; 197 systems remain uncertified by G2 |
 | G3 | Close the systems not certified by G2 using two/three centers | Kant + independent census audit | COMPLETE: REMAINING 197 SYSTEMS / 394 RECORDS EXCLUDED | Commit 6cde0412c; 195 two-center closures, two third-center closures; all 234 F6 completion systems now exactly excluded |
+| H1 | Reproduce guarded one-boundary impact on retained witnessed-Key models | KalmansonCartographer + independent replay audit | COMPLETE: 4,432 REJECTED / 1,569 CANCELLABLE SURVIVORS | All 6,001 events/assignments/root/keys authenticated and replayed; 2,574 guarded clauses; 22 tests; finite retained-data audit only, no solver/root mutation or source-entitlement claim |
 | A1 | Apply affine miner to eligible surviving complete row tables | KalmansonCartographer | READY, NO ELIGIBLE INPUT | Miner/checker at 15ef84edc; previous seven-table cohort had no baseline survivor |
 | P1 | Connect exhaustive coverage and certified leaves to live consumer | Existing Lean owners | BLOCKED ON S2/C2/R1 | No Lean promotion claimed by this lane |
 
@@ -378,3 +379,24 @@ work. The broader source-facing search has moved to the witnessed-Key root;
 wave 2 reports 6,000 cuts and `REFINEMENT_BUDGET`, not exhaustive coverage.
 Coordinate with its owner before beginning another wave. See
 `docs/audits/2026-09-06-exact13-witnessed-key-cegar-wave2.md`.
+
+## H1: guarded one-boundary retained-data replay
+
+EMPIRICALLY VERIFIED on all 6,001 retained wave-2 models: the guarded
+one-boundary predicate rejects 4,432 models; each of the 1,569 survivors
+has a one-form Kalmanson zero projection after exact row-equality closure.
+Independent arithmetic replay confirms the counts and all surviving
+cancellations. Both the full 2,574-clause family and its 1,815 nontrivial
+clauses agree with the set predicate on this dataset.
+
+The reproducible checker is `scripts/check_exact13_guarded_boundary.py`;
+its authenticated report, individual survivor form indices, replay commands,
+scope and independent audit are recorded in
+`docs/audits/2026-09-06-exact13-guarded-boundary.{json,md}`.
+The saved-report check and 22 regression tests pass.
+
+The original Boolean root does not imply the guarded predicate: retained
+`imported-0003.json` supplies an authenticated countermodel. The separate
+geometric source-refinement lane must establish entitlement before a new
+solver root uses this constraint. H1 does not change that root, prove its
+UNSAT, or settle the general strict all-center conjecture.
