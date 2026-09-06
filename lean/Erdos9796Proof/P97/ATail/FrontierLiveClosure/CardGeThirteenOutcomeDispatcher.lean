@@ -30,8 +30,10 @@ attribute [local instance] Classical.propDecidable
 
 /-- Every source-clean outcome retained by the card-at-least-thirteen C3
 branch.  The first three constructors retain the strict-interior packet and
-the corresponding finite row-cover residual; the last retains the adjacent
-cap grid without weakening it to an existential proposition. -/
+the corresponding finite row-cover residual; the uncovered branch also
+retains the three row-disjointness proofs and the resulting cardinal bound;
+the last retains the adjacent cap grid without weakening it to an existential
+proposition. -/
 inductive CardGeThirteenOutcome
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -50,7 +52,11 @@ inductive CardGeThirteenOutcome
       (hq : q ∈ D.A)
       (houtside : q ∉ insert P.base.z
         ((P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
-          P.base.thirdRow.support)) :
+          P.base.thirdRow.support))
+      (hdisj01 : Disjoint P.base.W.row₁.support P.base.W.row₂.support)
+      (hdisj0K : Disjoint P.base.W.row₁.support P.base.thirdRow.support)
+      (hdisj1K : Disjoint P.base.W.row₂.support P.base.thirdRow.support)
+      (hcard14 : 14 ≤ D.A.card) :
       CardGeThirteenOutcome R firstRow secondRow
   | exactThirteenTight
       (P : CardGeThirteenUncoveredStrictInteriorPacket R firstRow secondRow)
@@ -91,23 +97,76 @@ theorem nonempty_cardGeThirteenOutcome
       R hcard surface rho otherRadius firstRow secondRow hradii hnoFive
         hfirstRadius hsecondRadius hdisjoint with hpacket | hgrid
   · rcases hpacket with ⟨P⟩
-    cases cardGeThirteenPacket_fresh_or_exactThirteenTight_provenance
-        R hcard firstRow secondRow P.base with
-    | overlap01 h =>
-        exact ⟨.rowOverlap P (Or.inl h)⟩
-    | overlap0K h =>
-        exact ⟨.rowOverlap P (Or.inr (Or.inl h))⟩
-    | overlap1K h =>
-        exact ⟨.rowOverlap P (Or.inr (Or.inr h))⟩
-    | fresh q hq houtside =>
-        exact ⟨.uncovered P q hq houtside⟩
-    | tight hdisj01 hdisj0K hdisj1K hcover hcard13 =>
-      obtain ⟨ingress⟩ :=
-        ExactThirteenBranchIngress.of_twoRadiusBranch R surface rho otherRadius
-          firstRow secondRow hradii hnoFive hfirstRadius hsecondRadius
-            hdisjoint hcard13
-      exact ⟨.exactThirteenTight P ingress hdisj01 hdisj0K hdisj1K
-        hcover hcard13⟩
+    by_cases hdisj01 :
+        Disjoint P.base.W.row₁.support P.base.W.row₂.support
+    · by_cases hdisj0K :
+          Disjoint P.base.W.row₁.support P.base.thirdRow.support
+      · by_cases hdisj1K :
+            Disjoint P.base.W.row₂.support P.base.thirdRow.support
+        · rcases cardGeThirteenPacket_fresh_or_exactThirteenTight_twoArm
+              R hcard firstRow secondRow P.base with hsplit
+          · rcases hsplit with ⟨q, hq, houtside⟩
+            have hdisj01K :
+                Disjoint (P.base.W.row₁.support ∪ P.base.W.row₂.support)
+                  P.base.thirdRow.support :=
+              Finset.disjoint_union_left.mpr ⟨hdisj0K, hdisj1K⟩
+            have hC01card :
+                (P.base.W.row₁.support ∪ P.base.W.row₂.support).card = 8 := by
+              rw [Finset.card_union_of_disjoint hdisj01,
+                P.base.W.row₁.support_card, P.base.W.row₂.support_card]
+            have hC01Kcard :
+                ((P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
+                  P.base.thirdRow.support).card = 12 := by
+              rw [Finset.card_union_of_disjoint hdisj01K, hC01card,
+                P.base.thirdRow.support_card]
+            have hzUnion :
+                P.base.z ∉ (P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
+                  P.base.thirdRow.support := by
+              simp [P.base.z_not_mem_row₁, P.base.z_not_mem_row₂,
+                P.base.thirdRow_omits]
+            have hTcard :
+                (insert P.base.z
+                  ((P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
+                    P.base.thirdRow.support)).card = 13 := by
+              rw [Finset.card_insert_of_notMem hzUnion, hC01Kcard]
+            have hQcard :
+                (insert q (insert P.base.z
+                  ((P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
+                    P.base.thirdRow.support))).card = 14 := by
+              rw [Finset.card_insert_of_notMem houtside, hTcard]
+            have hzA : P.base.z ∈ D.A := by
+              rcases Finset.mem_union.mp P.base.z_mem_rows with hz | hz
+              · exact firstRow.support_subset_A hz
+              · exact secondRow.support_subset_A hz
+            have hcoverSub :
+                insert P.base.z
+                    ((P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
+                      P.base.thirdRow.support) ⊆ D.A :=
+              Finset.insert_subset hzA
+                (Finset.union_subset
+                  (Finset.union_subset P.base.W.row₁.support_subset_A
+                    P.base.W.row₂.support_subset_A)
+                  P.base.thirdRow.support_subset_A)
+            have hQsub :
+                insert q (insert P.base.z
+                  ((P.base.W.row₁.support ∪ P.base.W.row₂.support) ∪
+                    P.base.thirdRow.support)) ⊆ D.A :=
+              Finset.insert_subset hq hcoverSub
+            have hcard14 : 14 ≤ D.A.card := by
+              rw [← hQcard]
+              exact Finset.card_le_card hQsub
+            exact ⟨.uncovered P q hq houtside hdisj01 hdisj0K hdisj1K
+              hcard14⟩
+          · rcases hsplit with ⟨hcard13, hcover, _, _, _⟩
+            obtain ⟨ingress⟩ :=
+              ExactThirteenBranchIngress.of_twoRadiusBranch R surface rho
+                otherRadius firstRow secondRow hradii hnoFive hfirstRadius
+                hsecondRadius hdisjoint hcard13
+            exact ⟨.exactThirteenTight P ingress hdisj01 hdisj0K hdisj1K
+              hcover hcard13⟩
+        · exact ⟨.rowOverlap P (Or.inr (Or.inr hdisj1K))⟩
+      · exact ⟨.rowOverlap P (Or.inr (Or.inl hdisj0K))⟩
+    · exact ⟨.rowOverlap P (Or.inl hdisj01)⟩
   · exact ⟨.adjacentGrid hgrid⟩
 
 end ATailFrontierLiveClosure
