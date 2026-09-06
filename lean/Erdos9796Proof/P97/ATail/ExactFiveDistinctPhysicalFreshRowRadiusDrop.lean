@@ -386,6 +386,59 @@ theorem actualFreshBlocker_doubleHit_exteriorPoint_dist_firstApex_lt
     (hqEq.trans hwEq.symm) (K.support_subset_A hzRow) hzOutside
     (hzEq.trans hqEq.symm)
 
+/-- A fresh source whose actual blocker row contains the original interior
+pair cannot be one of the three supporting Moser vertices. -/
+theorem actualFreshBlocker_doubleHit_fresh_not_mem_supportTriangle
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    fresh ∉ S.triangle.verts := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hcenterA : H.centerAt fresh hfreshA ∈ D.A :=
+    (Finset.mem_erase.mp K.center_mem).2
+  have hcenterNe : H.centerAt fresh hfreshA ≠ S.oppApex1 :=
+    R.firstApex_fullyDeletionRobust.centerAt_ne H fresh hfreshA
+  have hqEq :
+      dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q = K.radius :=
+    K.support_eq_radius R.interior.frontier.pair.q hqRow
+  have hwEq :
+      dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.w = K.radius :=
+    K.support_eq_radius R.interior.frontier.pair.w hwRow
+  have hfreshEq : dist (H.centerAt fresh hfreshA) fresh = K.radius :=
+    K.support_eq_radius fresh K.q_mem_support
+  have htriangle := interiorPair_circleRadius_lt_dist_supportTriangle
+    R.interior.q_mem_interior R.interior.w_mem_interior
+    R.interior.frontier.pair.q_ne_w hcenterA hcenterNe
+    (hqEq.trans hwEq.symm)
+  have hsame :
+      dist (H.centerAt fresh hfreshA) fresh =
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q :=
+    hfreshEq.trans hqEq.symm
+  intro hfreshVerts
+  rcases SurplusCapPacket.mem_triangle_verts_cases hfreshVerts with
+    h | h | h
+  · have hlt :
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q <
+          dist (H.centerAt fresh hfreshA) fresh := by
+      simpa [h] using htriangle.1
+    linarith
+  · have hlt :
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q <
+          dist (H.centerAt fresh hfreshA) fresh := by
+      simpa [h] using htriangle.2.1
+    linarith
+  · have hlt :
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q <
+          dist (H.centerAt fresh hfreshA) fresh := by
+      simpa [h] using htriangle.2.2
+    linarith
+
 /-- In the named two-inside/two-outside child, both exterior row points have
 strictly smaller first-apex radius as well as the row's smaller shell radius. -/
 theorem actualFreshBlocker_doubleHit_twoOutside_firstApexDistanceDrop

@@ -64,7 +64,13 @@ The immediate consumer is the double-hit branch of the physical residual.
 8. `actualFreshBlocker_doubleHit_twoOutside_firstApexDistanceDrop`: in the
    named double-hit child, both `fresh` and the fourth point `t` satisfy that
    strict first-apex distance drop, in addition to the blocker-row radius
-   drop.
+   drop; and
+9. `FirstApexInteriorPairCirclePower.interiorPair_circleRadius_lt_dist_supportTriangle`
+   together with
+   `actualFreshBlocker_doubleHit_fresh_not_mem_supportTriangle`: all three
+   Moser support vertices lie strictly outside the blocker circle through the
+   interior pair, so the fresh source in a double-hit row cannot be a support
+   vertex.
 
 The circle-power bridge is proved coordinate-free.  The two circle centers
 lie on the chord's perpendicular bisector; strict ordered-cap placement puts
@@ -91,7 +97,8 @@ pair.  The high-radius double-hit branch is now closed.  Remaining cases are:
 - at least one original source is omitted by the actual fresh row; or
 - both occur, but the fresh row has strictly smaller radius and the now-named
   support `{q, w, fresh, t}`, whose latter two points are outside the first
-  cap and strictly inside the original first-apex circle.
+  cap and strictly inside the original first-apex circle; moreover `fresh`
+  is not one of the three Moser support vertices.
 
 The old `normalForm.blockerClass` is not a substitute for the fresh source's
 actual blocker row: its hypotheses force only the retained point in the
