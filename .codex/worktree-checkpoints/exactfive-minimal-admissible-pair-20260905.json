@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-minimal-admissible-pair-20260905",
+  "owner": "codex-rigid221",
+  "base_head": "b1b85fe92c6227590a2d1fa05a71d0f1c4c65c7a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-minimal-admissible-pair-20260905.json",
+    "docs/audits/2026-09-05-exactfive-minimal-admissible-pair.md",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctPhysicalFreshRowRadiusDrop.lean",
+    "lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean",
+    "lean/Erdos9796Proof/P97/ATail/MinimalAdmissibleInteriorPair.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T00:21:13Z",
+  "manifest_sha256": "cca9f3c00e8f2584b64d69e89d7ce91ffc6ae42d614d9544677d6b847b59eb02"
+}
