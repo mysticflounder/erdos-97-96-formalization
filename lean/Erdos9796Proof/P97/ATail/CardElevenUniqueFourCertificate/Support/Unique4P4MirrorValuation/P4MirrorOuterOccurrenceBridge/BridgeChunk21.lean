@@ -13,1030 +13,1287 @@ open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open P4DirectOuterArcAdapterScratch
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13549 : MirrorEntry := .noFour (noFourEntry 13549 [-2383, -950, -738, -732]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13550 : MirrorEntry := .noFour (noFourEntry 13550 [-950, -738, -2377, -732]
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13551 : MirrorEntry := .noFour (noFourEntry 13551 [-2370, -950, -738, -732]
   (2370, ⟨10, .left, {1, 2, 3, 4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13552 : MirrorEntry := .noFour (noFourEntry 13552 [-2361, -950, -738, -732]
   (2361, ⟨10, .left, {1, 2, 3, 4, 5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13553 : MirrorEntry := .noFour (noFourEntry 13553 [-1172, -951, -738, -732]
   (1172, ⟨3, .right, {6}⟩) (951, ⟨2, .right, {7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13554 : MirrorEntry := .noFour (noFourEntry 13554 [-1174, -951, -738, -732]
   (1174, ⟨3, .right, {5, 6}⟩) (951, ⟨2, .right, {7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13555 : MirrorEntry := .noFour (noFourEntry 13555 [-951, -738, -1369, -732]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13556 : MirrorEntry := .noFour (noFourEntry 13556 [-951, -738, -1370, -732]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13557 : MirrorEntry := .noFour (noFourEntry 13557 [-1429, -951, -738, -732]
   (1429, ⟨5, .left, {6}⟩) (951, ⟨2, .right, {7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13558 : MirrorEntry := .noFour (noFourEntry 13558 [-1660, -951, -738, -732]
   (1660, ⟨6, .left, {5}⟩) (951, ⟨2, .right, {7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13559 : MirrorEntry := .noFour (noFourEntry 13559 [-953, -738, -1370, -732]
   (953, ⟨2, .right, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13560 : MirrorEntry := .noFour (noFourEntry 13560 [-1448, -953, -738, -732]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (953, ⟨2, .right, {6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13561 : MirrorEntry := .noFour (noFourEntry 13561 [-1660, -953, -732, -738]
   (1660, ⟨6, .left, {5}⟩) (953, ⟨2, .right, {6, 7}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13562 : MirrorEntry := .noFour (noFourEntry 13562 [-1446, -955, -738, -732]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (955, ⟨2, .right, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13563 : MirrorEntry := .noFour (noFourEntry 13563 [-1448, -955, -738, -732]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (955, ⟨2, .right, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13564 : MirrorEntry := .noFour (noFourEntry 13564 [-2183, -955, -732, -738]
   (2183, ⟨9, .left, {2}⟩) (955, ⟨2, .right, {5, 6, 7}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13565 : MirrorEntry := .noFour (noFourEntry 13565 [-2179, -955, -738, -732]
   (2179, ⟨9, .left, {2, 3}⟩) (955, ⟨2, .right, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13566 : MirrorEntry := .noFour (noFourEntry 13566 [-2174, -955, -738, -732]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (955, ⟨2, .right, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13567 : MirrorEntry := .noFour (noFourEntry 13567 [-955, -732, -2392, -738]
   (955, ⟨2, .right, {5, 6, 7}⟩) (732, ⟨1, .right, {8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13568 : MirrorEntry := .noFour (noFourEntry 13568 [-2383, -955, -732, -738]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (955, ⟨2, .right, {5, 6, 7}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13569 : MirrorEntry := .noFour (noFourEntry 13569 [-2183, -957, -732, -738]
   (2183, ⟨9, .left, {2}⟩) (957, ⟨2, .right, {4, 5, 6, 7}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13570 : MirrorEntry := .noFour (noFourEntry 13570 [-957, -732, -2392, -738]
   (957, ⟨2, .right, {4, 5, 6, 7}⟩) (732, ⟨1, .right, {8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13571 : MirrorEntry := .noFour (noFourEntry 13571 [-1172, -738, -1370, -732]
   (1172, ⟨3, .right, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13572 : MirrorEntry := .noFour (noFourEntry 13572 [-1446, -1174, -738, -732]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13573 : MirrorEntry := .noFour (noFourEntry 13573 [-1448, -1174, -738, -732]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13574 : MirrorEntry := .noFour (noFourEntry 13574 [-1673, -1174, -738, -732]
   (1673, ⟨6, .right, {2, 3}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13575 : MirrorEntry := .noFour (noFourEntry 13575 [-2179, -1174, -738, -732]
   (2179, ⟨9, .left, {2, 3}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13576 : MirrorEntry := .noFour (noFourEntry 13576 [-2174, -1174, -738, -732]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13577 : MirrorEntry := .noFour (noFourEntry 13577 [-2383, -1174, -738, -732]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13578 : MirrorEntry := .noFour (noFourEntry 13578 [-2183, -1176, -732, -738]
   (2183, ⟨9, .left, {2}⟩) (1176, ⟨3, .right, {4, 5, 6}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13579 : MirrorEntry := .noFour (noFourEntry 13579 [-1176, -732, -2392, -738]
   (1176, ⟨3, .right, {4, 5, 6}⟩) (732, ⟨1, .right, {8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13580 : MirrorEntry := .noFour (noFourEntry 13580 [-2183, -732, -1178, -738]
   (2183, ⟨9, .left, {2}⟩) (732, ⟨1, .right, {8}⟩)
   (1178, ⟨3, .right, {3, 4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13581 : MirrorEntry := .noFour (noFourEntry 13581 [-732, -2392, -1178, -738]
   (732, ⟨1, .right, {8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1178, ⟨3, .right, {3, 4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13582 : MirrorEntry := .noFour (noFourEntry 13582 [-1429, -738, -1370, -732]
   (1429, ⟨5, .left, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13583 : MirrorEntry := .noFour (noFourEntry 13583 [-1418, -738, -1370, -732]
   (1418, ⟨5, .left, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13584 : MirrorEntry := .noFour (noFourEntry 13584 [-1660, -1429, -738, -732]
   (1660, ⟨6, .left, {5}⟩) (1429, ⟨5, .left, {6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13585 : MirrorEntry := .noFour (noFourEntry 13585 [-1448, -1418, -738, -732]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (1418, ⟨5, .left, {6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13586 : MirrorEntry := .noFour (noFourEntry 13586 [-2383, -1418, -738, -732]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1418, ⟨5, .left, {6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13587 : MirrorEntry := .noFour (noFourEntry 13587 [-1653, -1446, -738, -732]
   (1653, ⟨6, .left, {5, 6}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13588 : MirrorEntry := .noFour (noFourEntry 13588 [-1642, -1446, -738, -732]
   (1642, ⟨6, .left, {5, 6, 7}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13589 : MirrorEntry := .noFour (noFourEntry 13589 [-1653, -1448, -738, -732]
   (1653, ⟨6, .left, {5, 6}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13590 : MirrorEntry := .noFour (noFourEntry 13590 [-1642, -1448, -738, -732]
   (1642, ⟨6, .left, {5, 6, 7}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13591 : MirrorEntry := .noFour (noFourEntry 13591 [-1673, -1653, -738, -732]
   (1673, ⟨6, .right, {2, 3}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13592 : MirrorEntry := .noFour (noFourEntry 13592 [-2183, -1653, -738, -732]
   (2183, ⟨9, .left, {2}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13593 : MirrorEntry := .noFour (noFourEntry 13593 [-2179, -1653, -738, -732]
   (2179, ⟨9, .left, {2, 3}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13594 : MirrorEntry := .noFour (noFourEntry 13594 [-2174, -1653, -738, -732]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13595 : MirrorEntry := .noFour (noFourEntry 13595 [-1653, -738, -2392, -732]
   (1653, ⟨6, .left, {5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13596 : MirrorEntry := .noFour (noFourEntry 13596 [-2383, -1653, -738, -732]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13597 : MirrorEntry := .noFour (noFourEntry 13597 [-1673, -1642, -738, -732]
   (1673, ⟨6, .right, {2, 3}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13598 : MirrorEntry := .noFour (noFourEntry 13598 [-2183, -1642, -732, -738]
   (2183, ⟨9, .left, {2}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13599 : MirrorEntry := .noFour (noFourEntry 13599 [-2179, -1642, -738, -732]
   (2179, ⟨9, .left, {2, 3}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13600 : MirrorEntry := .noFour (noFourEntry 13600 [-2174, -1642, -738, -732]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13601 : MirrorEntry := .noFour (noFourEntry 13601 [-1642, -732, -2392, -738]
   (1642, ⟨6, .left, {5, 6, 7}⟩) (732, ⟨1, .right, {8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13602 : MirrorEntry := .noFour (noFourEntry 13602 [-2383, -1642, -732, -738]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13603 : MirrorEntry := .noFour (noFourEntry 13603 [-2183, -1671, -732, -738]
   (2183, ⟨9, .left, {2}⟩) (1671, ⟨6, .right, {3}⟩)
   (732, ⟨1, .right, {8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13604 : MirrorEntry := .noFour (noFourEntry 13604 [-1673, -738, -1871, -732]
   (1673, ⟨6, .right, {2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13605 : MirrorEntry := .noFour (noFourEntry 13605 [-1673, -732, -1864, -738]
   (1673, ⟨6, .right, {2, 3}⟩) (732, ⟨1, .right, {8}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13606 : MirrorEntry := .noFour (noFourEntry 13606 [-732, -1871, -1675, -738]
   (732, ⟨1, .right, {8}⟩) (1871, ⟨7, .left, {4, 5, 6}⟩)
   (1675, ⟨6, .right, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13607 : MirrorEntry := .noFour (noFourEntry 13607 [-732, -1864, -1675, -738]
   (732, ⟨1, .right, {8}⟩) (1864, ⟨7, .left, {4, 5, 6, 7}⟩)
   (1675, ⟨6, .right, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13608 : MirrorEntry := .noFour (noFourEntry 13608 [-2183, -732, -1871, -738]
   (2183, ⟨9, .left, {2}⟩) (732, ⟨1, .right, {8}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13609 : MirrorEntry := .noFour (noFourEntry 13609 [-2179, -738, -1871, -732]
   (2179, ⟨9, .left, {2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13610 : MirrorEntry := .noFour (noFourEntry 13610 [-738, -2392, -1871, -732]
   (738, ⟨1, .left, {0, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13611 : MirrorEntry := .noFour (noFourEntry 13611 [-2388, -738, -1871, -732]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13612 : MirrorEntry := .noFour (noFourEntry 13612 [-2183, -732, -1864, -738]
   (2183, ⟨9, .left, {2}⟩) (732, ⟨1, .right, {8}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13613 : MirrorEntry := .noFour (noFourEntry 13613 [-2179, -732, -1864, -738]
   (2179, ⟨9, .left, {2, 3}⟩) (732, ⟨1, .right, {8}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13614 : MirrorEntry := .noFour (noFourEntry 13614 [-732, -2392, -1864, -738]
   (732, ⟨1, .right, {8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13615 : MirrorEntry := .noFour (noFourEntry 13615 [-2388, -732, -1864, -738]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (732, ⟨1, .right, {8}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13616 : MirrorEntry := .noFour (noFourEntry 13616 [-2183, -738, -1946, -732]
   (2183, ⟨9, .left, {2}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1946, ⟨8, .left, {3, 4, 5, 6}⟩) (732, ⟨1, .right, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13617 : MirrorEntry := .noFour (noFourEntry 13617 [-732, -2392, -1946, -738]
   (732, ⟨1, .right, {8}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1946, ⟨8, .left, {3, 4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13618 : MirrorEntry := .noFour (noFourEntry 13618 [-1935, -732, -2392, -738]
   (1935, ⟨8, .left, {3, 4, 5, 6, 7}⟩) (732, ⟨1, .right, {8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13619 : MirrorEntry := .noFour (noFourEntry 13619 [-950, -1172, -742, -738]
   (950, ⟨2, .left, {9}⟩) (1172, ⟨3, .right, {6}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13620 : MirrorEntry := .noFour (noFourEntry 13620 [-950, -742, -1369, -738]
   (950, ⟨2, .left, {9}⟩) (742, ⟨1, .right, {7, 8}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13621 : MirrorEntry := .noFour (noFourEntry 13621 [-950, -742, -1370, -738]
   (950, ⟨2, .left, {9}⟩) (742, ⟨1, .right, {7, 8}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13622 : MirrorEntry := .noFour (noFourEntry 13622 [-1429, -950, -742, -738]
   (1429, ⟨5, .left, {6}⟩) (950, ⟨2, .left, {9}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13623 : MirrorEntry := .noFour (noFourEntry 13623 [-2183, -950, -742, -738]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13624 : MirrorEntry := .noFour (noFourEntry 13624 [-1172, -742, -1370, -738]
   (1172, ⟨3, .right, {6}⟩) (742, ⟨1, .right, {7, 8}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13625 : MirrorEntry := .noFour (noFourEntry 13625 [-1446, -1174, -738, -742]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13626 : MirrorEntry := .noFour (noFourEntry 13626 [-1174, -1448, -742, -738]
   (1174, ⟨3, .right, {5, 6}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13627 : MirrorEntry := .noFour (noFourEntry 13627 [-1673, -1174, -738, -742]
   (1673, ⟨6, .right, {2, 3}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13628 : MirrorEntry := .noFour (noFourEntry 13628 [-1174, -2179, -742, -738]
   (1174, ⟨3, .right, {5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13629 : MirrorEntry := .noFour (noFourEntry 13629 [-2174, -1174, -738, -742]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13630 : MirrorEntry := .noFour (noFourEntry 13630 [-2383, -1174, -738, -742]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13631 : MirrorEntry := .noFour (noFourEntry 13631 [-1673, -1176, -738, -742]
   (1673, ⟨6, .right, {2, 3}⟩) (1176, ⟨3, .right, {4, 5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13632 : MirrorEntry := .noFour (noFourEntry 13632 [-1176, -2179, -742, -738]
   (1176, ⟨3, .right, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13633 : MirrorEntry := .noFour (noFourEntry 13633 [-1429, -738, -1370, -742]
   (1429, ⟨5, .left, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13634 : MirrorEntry := .noFour (noFourEntry 13634 [-1653, -1446, -738, -742]
   (1653, ⟨6, .left, {5, 6}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13635 : MirrorEntry := .noFour (noFourEntry 13635 [-1653, -1448, -742, -738]
   (1653, ⟨6, .left, {5, 6}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13636 : MirrorEntry := .noFour (noFourEntry 13636 [-1673, -1653, -742, -738]
   (1673, ⟨6, .right, {2, 3}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13637 : MirrorEntry := .noFour (noFourEntry 13637 [-1653, -2179, -742, -738]
   (1653, ⟨6, .left, {5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩)
   (742, ⟨1, .right, {7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13638 : MirrorEntry := .noFour (noFourEntry 13638 [-2174, -1653, -738, -742]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13639 : MirrorEntry := .noFour (noFourEntry 13639 [-2383, -1653, -738, -742]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13640 : MirrorEntry := .noFour (noFourEntry 13640 [-1673, -738, -1871, -742]
   (1673, ⟨6, .right, {2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (742, ⟨1, .right, {7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13641 : MirrorEntry := .noFour (noFourEntry 13641 [-2179, -742, -1871, -738]
   (2179, ⟨9, .left, {2, 3}⟩) (742, ⟨1, .right, {7, 8}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13642 : MirrorEntry := .noFour (noFourEntry 13642 [-950, -749, -1369, -738]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13643 : MirrorEntry := .noFour (noFourEntry 13643 [-950, -749, -1370, -738]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13644 : MirrorEntry := .noFour (noFourEntry 13644 [-1444, -950, -749, -738]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (749, ⟨1, .right, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13645 : MirrorEntry := .noFour (noFourEntry 13645 [-1959, -950, -749, -738]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (749, ⟨1, .right, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13646 : MirrorEntry := .noFour (noFourEntry 13646 [-950, -749, -1953, -738]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
   (1953, ⟨8, .left, {3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13647 : MirrorEntry := .noFour (noFourEntry 13647 [-2183, -950, -749, -738]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (749, ⟨1, .right, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13648 : MirrorEntry := .noFour (noFourEntry 13648 [-950, -749, -2392, -738]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13649 : MirrorEntry := .noFour (noFourEntry 13649 [-2383, -950, -749, -738]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (749, ⟨1, .right, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13650 : MirrorEntry := .noFour (noFourEntry 13650 [-950, -749, -2377, -738]
   (950, ⟨2, .left, {9}⟩) (749, ⟨1, .right, {6, 7, 8}⟩)
   (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13651 : MirrorEntry := .noFour (noFourEntry 13651 [-1442, -950, -755, -738]
   (1442, ⟨5, .right, {4}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13652 : MirrorEntry := .noFour (noFourEntry 13652 [-1444, -950, -755, -738]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13653 : MirrorEntry := .noFour (noFourEntry 13653 [-1446, -950, -755, -738]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13654 : MirrorEntry := .noFour (noFourEntry 13654 [-1448, -950, -755, -738]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13655 : MirrorEntry := .noFour (noFourEntry 13655 [-1959, -950, -755, -738]
   (1959, ⟨8, .left, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13656 : MirrorEntry := .noFour (noFourEntry 13656 [-2183, -950, -755, -738]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13657 : MirrorEntry := .noFour (noFourEntry 13657 [-2174, -950, -755, -738]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13658 : MirrorEntry := .noFour (noFourEntry 13658 [-950, -755, -2392, -738]
   (950, ⟨2, .left, {9}⟩) (755, ⟨1, .right, {5, 6, 7, 8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13659 : MirrorEntry := .noFour (noFourEntry 13659 [-2383, -950, -755, -738]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (755, ⟨1, .right, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13660 : MirrorEntry := .noFour (noFourEntry 13660 [-2183, -950, -738, -760]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (760, ⟨1, .right, {4, 5, 6, 7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13661 : MirrorEntry := .noFour (noFourEntry 13661 [-950, -760, -2392, -738]
   (950, ⟨2, .left, {9}⟩) (760, ⟨1, .right, {4, 5, 6, 7, 8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13662 : MirrorEntry := .noFour (noFourEntry 13662 [-2183, -950, -738, -764]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (764, ⟨1, .right, {3, 4, 5, 6, 7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13663 : MirrorEntry := .noFour (noFourEntry 13663 [-950, -764, -2392, -738]
   (950, ⟨2, .left, {9}⟩) (764, ⟨1, .right, {3, 4, 5, 6, 7, 8}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13664 : MirrorEntry := .noFour (noFourEntry 13664 [-2183, -951, -950, -738]
   (2183, ⟨9, .left, {2}⟩) (951, ⟨2, .right, {7}⟩)
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13665 : MirrorEntry := .noFour (noFourEntry 13665 [-951, -950, -2392, -738]
   (951, ⟨2, .right, {7}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13666 : MirrorEntry := .noFour (noFourEntry 13666 [-2183, -953, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (953, ⟨2, .right, {6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13667 : MirrorEntry := .noFour (noFourEntry 13667 [-950, -738, -2392, -953]
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (953, ⟨2, .right, {6, 7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13668 : MirrorEntry := .noFour (noFourEntry 13668 [-2183, -955, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (955, ⟨2, .right, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13669 : MirrorEntry := .noFour (noFourEntry 13669 [-950, -738, -2392, -955]
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (955, ⟨2, .right, {5, 6, 7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13670 : MirrorEntry := .noFour (noFourEntry 13670 [-2183, -957, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (957, ⟨2, .right, {4, 5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13671 : MirrorEntry := .noFour (noFourEntry 13671 [-957, -738, -2392, -950]
   (957, ⟨2, .right, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13672 : MirrorEntry := .noFour (noFourEntry 13672 [-2183, -738, -959, -950]
   (2183, ⟨9, .left, {2}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (959, ⟨2, .right, {3, 4, 5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13673 : MirrorEntry := .noFour (noFourEntry 13673 [-738, -2392, -959, -950]
   (738, ⟨1, .left, {0, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (959, ⟨2, .right, {3, 4, 5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13674 : MirrorEntry := .noFour (noFourEntry 13674 [-1172, -738, -1369, -950]
   (1172, ⟨3, .right, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13675 : MirrorEntry := .noFour (noFourEntry 13675 [-950, -738, -1370, -1172]
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1172, ⟨3, .right, {6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13676 : MirrorEntry := .noFour (noFourEntry 13676 [-1448, -1172, -738, -950]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (1172, ⟨3, .right, {6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13677 : MirrorEntry := .noFour (noFourEntry 13677 [-2183, -950, -738, -1172]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1172, ⟨3, .right, {6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13678 : MirrorEntry := .noFour (noFourEntry 13678 [-950, -738, -2392, -1172]
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (1172, ⟨3, .right, {6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13679 : MirrorEntry := .noFour (noFourEntry 13679 [-2383, -1172, -738, -950]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1172, ⟨3, .right, {6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13680 : MirrorEntry := .noFour (noFourEntry 13680 [-1172, -738, -2377, -950]
   (1172, ⟨3, .right, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13681 : MirrorEntry := .noFour (noFourEntry 13681 [-1444, -1174, -950, -738]
   (1444, ⟨5, .right, {3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13682 : MirrorEntry := .noFour (noFourEntry 13682 [-1446, -1174, -738, -950]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13683 : MirrorEntry := .noFour (noFourEntry 13683 [-1448, -1174, -738, -950]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13684 : MirrorEntry := .noFour (noFourEntry 13684 [-1959, -1174, -738, -950]
   (1959, ⟨8, .left, {3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13685 : MirrorEntry := .noFour (noFourEntry 13685 [-2183, -1174, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13686 : MirrorEntry := .noFour (noFourEntry 13686 [-2174, -1174, -738, -950]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13687 : MirrorEntry := .noFour (noFourEntry 13687 [-1174, -950, -2392, -738]
   (1174, ⟨3, .right, {5, 6}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13688 : MirrorEntry := .noFour (noFourEntry 13688 [-2383, -1174, -738, -950]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13689 : MirrorEntry := .noFour (noFourEntry 13689 [-2183, -1176, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (1176, ⟨3, .right, {4, 5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13690 : MirrorEntry := .noFour (noFourEntry 13690 [-1176, -950, -2392, -738]
   (1176, ⟨3, .right, {4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13691 : MirrorEntry := .noFour (noFourEntry 13691 [-2183, -950, -1178, -738]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (1178, ⟨3, .right, {3, 4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13692 : MirrorEntry := .noFour (noFourEntry 13692 [-950, -2392, -1178, -738]
   (950, ⟨2, .left, {9}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1178, ⟨3, .right, {3, 4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13693 : MirrorEntry := .noFour (noFourEntry 13693 [-1429, -738, -1369, -950]
   (1429, ⟨5, .left, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13694 : MirrorEntry := .noFour (noFourEntry 13694 [-1418, -950, -1369, -738]
   (1418, ⟨5, .left, {6, 7}⟩) (950, ⟨2, .left, {9}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13695 : MirrorEntry := .noFour (noFourEntry 13695 [-950, -1422, -1369, -738]
   (950, ⟨2, .left, {9}⟩) (1422, ⟨5, .left, {6, 7, 8}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13696 : MirrorEntry := .noFour (noFourEntry 13696 [-1429, -738, -1370, -950]
   (1429, ⟨5, .left, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13697 : MirrorEntry := .noFour (noFourEntry 13697 [-1418, -950, -1370, -738]
   (1418, ⟨5, .left, {6, 7}⟩) (950, ⟨2, .left, {9}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13698 : MirrorEntry := .noFour (noFourEntry 13698 [-950, -1370, -1422, -738]
   (950, ⟨2, .left, {9}⟩) (1370, ⟨4, .right, {2, 3, 4, 5}⟩)
   (1422, ⟨5, .left, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13699 : MirrorEntry := .noFour (noFourEntry 13699 [-2183, -1429, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (1429, ⟨5, .left, {6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13700 : MirrorEntry := .noFour (noFourEntry 13700 [-1429, -738, -2392, -950]
   (1429, ⟨5, .left, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13701 : MirrorEntry := .noFour (noFourEntry 13701 [-2383, -1429, -738, -950]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1429, ⟨5, .left, {6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13702 : MirrorEntry := .noFour (noFourEntry 13702 [-1444, -950, -738, -1418]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1418, ⟨5, .left, {6, 7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13703 : MirrorEntry := .noFour (noFourEntry 13703 [-1446, -950, -738, -1418]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1418, ⟨5, .left, {6, 7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13704 : MirrorEntry := .noFour (noFourEntry 13704 [-1448, -950, -738, -1418]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1418, ⟨5, .left, {6, 7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13705 : MirrorEntry := .noFour (noFourEntry 13705 [-1418, -950, -1953, -738]
   (1418, ⟨5, .left, {6, 7}⟩) (950, ⟨2, .left, {9}⟩)
   (1953, ⟨8, .left, {3, 4, 5}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13706 : MirrorEntry := .noFour (noFourEntry 13706 [-2183, -1418, -950, -738]
   (2183, ⟨9, .left, {2}⟩) (1418, ⟨5, .left, {6, 7}⟩)
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13707 : MirrorEntry := .noFour (noFourEntry 13707 [-2174, -1418, -950, -738]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1418, ⟨5, .left, {6, 7}⟩)
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13708 : MirrorEntry := .noFour (noFourEntry 13708 [-1418, -950, -2392, -738]
   (1418, ⟨5, .left, {6, 7}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13709 : MirrorEntry := .noFour (noFourEntry 13709 [-2383, -1418, -950, -738]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1418, ⟨5, .left, {6, 7}⟩)
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13710 : MirrorEntry := .noFour (noFourEntry 13710 [-1418, -738, -2377, -950]
   (1418, ⟨5, .left, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2377, ⟨10, .left, {1, 2, 3, 4, 5}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13711 : MirrorEntry := .noFour (noFourEntry 13711 [-950, -738, -1422, -1446]
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1422, ⟨5, .left, {6, 7, 8}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13712 : MirrorEntry := .noFour (noFourEntry 13712 [-1448, -950, -738, -1422]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1422, ⟨5, .left, {6, 7, 8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13713 : MirrorEntry := .noFour (noFourEntry 13713 [-950, -1953, -1422, -738]
   (950, ⟨2, .left, {9}⟩) (1953, ⟨8, .left, {3, 4, 5}⟩)
   (1422, ⟨5, .left, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13714 : MirrorEntry := .noFour (noFourEntry 13714 [-2183, -950, -1422, -738]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (1422, ⟨5, .left, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13715 : MirrorEntry := .noFour (noFourEntry 13715 [-2174, -950, -1422, -738]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (1422, ⟨5, .left, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13716 : MirrorEntry := .noFour (noFourEntry 13716 [-950, -2392, -1422, -738]
   (950, ⟨2, .left, {9}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1422, ⟨5, .left, {6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13717 : MirrorEntry := .noFour (noFourEntry 13717 [-2383, -738, -1422, -950]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1422, ⟨5, .left, {6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13718 : MirrorEntry := .noFour (noFourEntry 13718 [-1653, -1444, -738, -950]
   (1653, ⟨6, .left, {5, 6}⟩) (1444, ⟨5, .right, {3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13719 : MirrorEntry := .noFour (noFourEntry 13719 [-1642, -1444, -738, -950]
   (1642, ⟨6, .left, {5, 6, 7}⟩) (1444, ⟨5, .right, {3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13720 : MirrorEntry := .noFour (noFourEntry 13720 [-1444, -950, -1647, -738]
   (1444, ⟨5, .right, {3, 4}⟩) (950, ⟨2, .left, {9}⟩)
   (1647, ⟨6, .left, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13721 : MirrorEntry := .noFour (noFourEntry 13721 [-1653, -1446, -738, -950]
   (1653, ⟨6, .left, {5, 6}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13722 : MirrorEntry := .noFour (noFourEntry 13722 [-1642, -1446, -738, -950]
   (1642, ⟨6, .left, {5, 6, 7}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13723 : MirrorEntry := .noFour (noFourEntry 13723 [-1446, -738, -1647, -950]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1647, ⟨6, .left, {5, 6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13724 : MirrorEntry := .noFour (noFourEntry 13724 [-1653, -1448, -738, -950]
   (1653, ⟨6, .left, {5, 6}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13725 : MirrorEntry := .noFour (noFourEntry 13725 [-1642, -1448, -738, -950]
   (1642, ⟨6, .left, {5, 6, 7}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13726 : MirrorEntry := .noFour (noFourEntry 13726 [-1448, -738, -1647, -950]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1647, ⟨6, .left, {5, 6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13727 : MirrorEntry := .noFour (noFourEntry 13727 [-1959, -1653, -738, -950]
   (1959, ⟨8, .left, {3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13728 : MirrorEntry := .noFour (noFourEntry 13728 [-2183, -1653, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13729 : MirrorEntry := .noFour (noFourEntry 13729 [-2174, -1653, -738, -950]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13730 : MirrorEntry := .noFour (noFourEntry 13730 [-1653, -950, -2392, -738]
   (1653, ⟨6, .left, {5, 6}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13731 : MirrorEntry := .noFour (noFourEntry 13731 [-2383, -1653, -738, -950]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13732 : MirrorEntry := .noFour (noFourEntry 13732 [-1959, -1642, -738, -950]
   (1959, ⟨8, .left, {3, 4}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13733 : MirrorEntry := .noFour (noFourEntry 13733 [-2183, -1642, -738, -950]
   (2183, ⟨9, .left, {2}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13734 : MirrorEntry := .noFour (noFourEntry 13734 [-2174, -1642, -738, -950]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13735 : MirrorEntry := .noFour (noFourEntry 13735 [-1642, -950, -2392, -738]
   (1642, ⟨6, .left, {5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13736 : MirrorEntry := .noFour (noFourEntry 13736 [-2383, -1642, -738, -950]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1642, ⟨6, .left, {5, 6, 7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13737 : MirrorEntry := .noFour (noFourEntry 13737 [-1959, -738, -1647, -950]
   (1959, ⟨8, .left, {3, 4}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1647, ⟨6, .left, {5, 6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13738 : MirrorEntry := .noFour (noFourEntry 13738 [-2183, -950, -1647, -738]
   (2183, ⟨9, .left, {2}⟩) (950, ⟨2, .left, {9}⟩)
   (1647, ⟨6, .left, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13739 : MirrorEntry := .noFour (noFourEntry 13739 [-2174, -1647, -738, -950]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1647, ⟨6, .left, {5, 6, 7, 8}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13740 : MirrorEntry := .noFour (noFourEntry 13740 [-950, -2392, -1647, -738]
   (950, ⟨2, .left, {9}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1647, ⟨6, .left, {5, 6, 7, 8}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13741 : MirrorEntry := .noFour (noFourEntry 13741 [-2383, -738, -1647, -950]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1647, ⟨6, .left, {5, 6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13742 : MirrorEntry := .noFour (noFourEntry 13742 [-1671, -738, -1871, -950]
   (1671, ⟨6, .right, {3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13743 : MirrorEntry := .noFour (noFourEntry 13743 [-1673, -738, -1871, -950]
   (1673, ⟨6, .right, {2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13744 : MirrorEntry := .noFour (noFourEntry 13744 [-1673, -738, -1864, -950]
   (1673, ⟨6, .right, {2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13745 : MirrorEntry := .noFour (noFourEntry 13745 [-950, -1871, -1675, -738]
   (950, ⟨2, .left, {9}⟩) (1871, ⟨7, .left, {4, 5, 6}⟩)
   (1675, ⟨6, .right, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13746 : MirrorEntry := .noFour (noFourEntry 13746 [-950, -1864, -1675, -738]
   (950, ⟨2, .left, {9}⟩) (1864, ⟨7, .left, {4, 5, 6, 7}⟩)
   (1675, ⟨6, .right, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13747 : MirrorEntry := .noFour (noFourEntry 13747 [-1964, -950, -1871, -738]
   (1964, ⟨8, .left, {3}⟩) (950, ⟨2, .left, {9}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13748 : MirrorEntry := .noFour (noFourEntry 13748 [-2183, -738, -1871, -950]
   (2183, ⟨9, .left, {2}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13749 : MirrorEntry := .noFour (noFourEntry 13749 [-2179, -738, -1871, -950]
   (2179, ⟨9, .left, {2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13750 : MirrorEntry := .noFour (noFourEntry 13750 [-738, -2392, -1871, -950]
   (738, ⟨1, .left, {0, 10}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13751 : MirrorEntry := .noFour (noFourEntry 13751 [-2388, -738, -1871, -950]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13752 : MirrorEntry := .noFour (noFourEntry 13752 [-2183, -738, -1864, -950]
   (2183, ⟨9, .left, {2}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13753 : MirrorEntry := .noFour (noFourEntry 13753 [-2179, -950, -1864, -738]
   (2179, ⟨9, .left, {2, 3}⟩) (950, ⟨2, .left, {9}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13754 : MirrorEntry := .noFour (noFourEntry 13754 [-950, -2392, -1864, -738]
   (950, ⟨2, .left, {9}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13755 : MirrorEntry := .noFour (noFourEntry 13755 [-2388, -738, -1864, -950]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1864, ⟨7, .left, {4, 5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13756 : MirrorEntry := .noFour (noFourEntry 13756 [-2183, -738, -1946, -950]
   (2183, ⟨9, .left, {2}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1946, ⟨8, .left, {3, 4, 5, 6}⟩) (950, ⟨2, .left, {9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13757 : MirrorEntry := .noFour (noFourEntry 13757 [-950, -2392, -1946, -738]
   (950, ⟨2, .left, {9}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1946, ⟨8, .left, {3, 4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13758 : MirrorEntry := .noFour (noFourEntry 13758 [-2183, -1935, -950, -738]
   (2183, ⟨9, .left, {2}⟩) (1935, ⟨8, .left, {3, 4, 5, 6, 7}⟩)
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13759 : MirrorEntry := .noFour (noFourEntry 13759 [-1935, -950, -2392, -738]
   (1935, ⟨8, .left, {3, 4, 5, 6, 7}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13760 : MirrorEntry := .noFour (noFourEntry 13760 [-2183, -1942, -950, -738]
   (2183, ⟨9, .left, {2}⟩) (1942, ⟨8, .left, {3, 4, 5, 6, 7, 8}⟩)
   (950, ⟨2, .left, {9}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13761 : MirrorEntry := .noFour (noFourEntry 13761 [-1942, -950, -2392, -738]
   (1942, ⟨8, .left, {3, 4, 5, 6, 7, 8}⟩) (950, ⟨2, .left, {9}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13762 : MirrorEntry := .noFour (noFourEntry 13762 [-1171, -738, -1369, -951]
   (1171, ⟨3, .left, {8, 9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13763 : MirrorEntry := .noFour (noFourEntry 13763 [-1171, -738, -1370, -951]
   (1171, ⟨3, .left, {8, 9}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13764 : MirrorEntry := .noFour (noFourEntry 13764 [-1429, -1171, -738, -951]
   (1429, ⟨5, .left, {6}⟩) (1171, ⟨3, .left, {8, 9}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13765 : MirrorEntry := .noFour (noFourEntry 13765 [-951, -738, -1370, -1172]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1172, ⟨3, .right, {6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13766 : MirrorEntry := .noFour (noFourEntry 13766 [-1446, -1174, -738, -951]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13767 : MirrorEntry := .noFour (noFourEntry 13767 [-1448, -951, -738, -1174]
   (1448, ⟨5, .right, {1, 2, 3, 4}⟩) (951, ⟨2, .right, {7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1174, ⟨3, .right, {5, 6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13768 : MirrorEntry := .noFour (noFourEntry 13768 [-1673, -1174, -738, -951]
   (1673, ⟨6, .right, {2, 3}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13769 : MirrorEntry := .noFour (noFourEntry 13769 [-1174, -738, -1675, -951]
   (1174, ⟨3, .right, {5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1675, ⟨6, .right, {1, 2, 3}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13770 : MirrorEntry := .noFour (noFourEntry 13770 [-2183, -951, -738, -1174]
   (2183, ⟨9, .left, {2}⟩) (951, ⟨2, .right, {7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1174, ⟨3, .right, {5, 6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13771 : MirrorEntry := .noFour (noFourEntry 13771 [-2174, -1174, -738, -951]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13772 : MirrorEntry := .noFour (noFourEntry 13772 [-951, -738, -2392, -1174]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (1174, ⟨3, .right, {5, 6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13773 : MirrorEntry := .noFour (noFourEntry 13773 [-2388, -1174, -738, -951]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13774 : MirrorEntry := .noFour (noFourEntry 13774 [-2383, -1174, -738, -951]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1174, ⟨3, .right, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13775 : MirrorEntry := .noFour (noFourEntry 13775 [-1176, -738, -1675, -951]
   (1176, ⟨3, .right, {4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1675, ⟨6, .right, {1, 2, 3}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13776 : MirrorEntry := .noFour (noFourEntry 13776 [-1176, -951, -2392, -738]
   (1176, ⟨3, .right, {4, 5, 6}⟩) (951, ⟨2, .right, {7}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13777 : MirrorEntry := .noFour (noFourEntry 13777 [-2388, -1176, -738, -951]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (1176, ⟨3, .right, {4, 5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13778 : MirrorEntry := .noFour (noFourEntry 13778 [-1429, -738, -1370, -951]
   (1429, ⟨5, .left, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13779 : MirrorEntry := .noFour (noFourEntry 13779 [-1429, -738, -2392, -951]
   (1429, ⟨5, .left, {6}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13780 : MirrorEntry := .noFour (noFourEntry 13780 [-1653, -1446, -738, -951]
   (1653, ⟨6, .left, {5, 6}⟩) (1446, ⟨5, .right, {2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13781 : MirrorEntry := .noFour (noFourEntry 13781 [-1653, -1448, -738, -951]
   (1653, ⟨6, .left, {5, 6}⟩) (1448, ⟨5, .right, {1, 2, 3, 4}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13782 : MirrorEntry := .noFour (noFourEntry 13782 [-1673, -951, -738, -1653]
   (1673, ⟨6, .right, {2, 3}⟩) (951, ⟨2, .right, {7}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (1653, ⟨6, .left, {5, 6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13783 : MirrorEntry := .noFour (noFourEntry 13783 [-951, -738, -1675, -1653]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1675, ⟨6, .right, {1, 2, 3}⟩) (1653, ⟨6, .left, {5, 6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13784 : MirrorEntry := .noFour (noFourEntry 13784 [-2183, -1653, -738, -951]
   (2183, ⟨9, .left, {2}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13785 : MirrorEntry := .noFour (noFourEntry 13785 [-2179, -1653, -738, -951]
   (2179, ⟨9, .left, {2, 3}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13786 : MirrorEntry := .noFour (noFourEntry 13786 [-2174, -1653, -738, -951]
   (2174, ⟨9, .left, {2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13787 : MirrorEntry := .noFour (noFourEntry 13787 [-951, -738, -2392, -1653]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (1653, ⟨6, .left, {5, 6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13788 : MirrorEntry := .noFour (noFourEntry 13788 [-2388, -1653, -738, -951]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13789 : MirrorEntry := .noFour (noFourEntry 13789 [-2383, -1653, -738, -951]
   (2383, ⟨10, .left, {1, 2, 3, 4}⟩) (1653, ⟨6, .left, {5, 6}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13790 : MirrorEntry := .noFour (noFourEntry 13790 [-1673, -951, -1871, -738]
   (1673, ⟨6, .right, {2, 3}⟩) (951, ⟨2, .right, {7}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13791 : MirrorEntry := .noFour (noFourEntry 13791 [-951, -738, -1871, -1675]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (1675, ⟨6, .right, {1, 2, 3}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13792 : MirrorEntry := .noFour (noFourEntry 13792 [-2183, -951, -1871, -738]
   (2183, ⟨9, .left, {2}⟩) (951, ⟨2, .right, {7}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13793 : MirrorEntry := .noFour (noFourEntry 13793 [-951, -738, -1871, -2179]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (2179, ⟨9, .left, {2, 3}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13794 : MirrorEntry := .noFour (noFourEntry 13794 [-951, -738, -2392, -1871]
   (951, ⟨2, .right, {7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (2392, ⟨10, .left, {1, 2}⟩) (1871, ⟨7, .left, {4, 5, 6}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13795 : MirrorEntry := .noFour (noFourEntry 13795 [-2388, -738, -1871, -951]
   (2388, ⟨10, .left, {1, 2, 3}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1871, ⟨7, .left, {4, 5, 6}⟩) (951, ⟨2, .right, {7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13796 : MirrorEntry := .noFour (noFourEntry 13796 [-951, -2392, -1946, -738]
   (951, ⟨2, .right, {7}⟩) (2392, ⟨10, .left, {1, 2}⟩)
   (1946, ⟨8, .left, {3, 4, 5, 6}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13797 : MirrorEntry := .noFour (noFourEntry 13797 [-953, -738, -1370, -1162]
   (953, ⟨2, .right, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1162, ⟨3, .left, {8}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13798 : MirrorEntry := .noFour (noFourEntry 13798 [-1660, -1162, -738, -953]
   (1660, ⟨6, .left, {5}⟩) (1162, ⟨3, .left, {8}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (953, ⟨2, .right, {6, 7}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13799 : MirrorEntry := .noFour (noFourEntry 13799 [-953, -738, -1369, -1171]
   (953, ⟨2, .right, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1369, ⟨4, .right, {3, 4, 5}⟩) (1171, ⟨3, .left, {8, 9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13800 : MirrorEntry := .noFour (noFourEntry 13800 [-953, -738, -1370, -1171]
   (953, ⟨2, .right, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1370, ⟨4, .right, {2, 3, 4, 5}⟩) (1171, ⟨3, .left, {8, 9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13801 : MirrorEntry := .noFour (noFourEntry 13801 [-1444, -1171, -953, -738]
   (1444, ⟨5, .right, {3, 4}⟩) (1171, ⟨3, .left, {8, 9}⟩)
   (953, ⟨2, .right, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13802 : MirrorEntry := .noFour (noFourEntry 13802 [-1959, -1171, -953, -738]
   (1959, ⟨8, .left, {3, 4}⟩) (1171, ⟨3, .left, {8, 9}⟩)
   (953, ⟨2, .right, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13803 : MirrorEntry := .noFour (noFourEntry 13803 [-953, -738, -1953, -1171]
   (953, ⟨2, .right, {6, 7}⟩) (738, ⟨1, .left, {0, 10}⟩)
   (1953, ⟨8, .left, {3, 4, 5}⟩) (1171, ⟨3, .left, {8, 9}⟩))
 
+/-- Generated mirror-outer no-four entry for the finite bridge data. -/
 def entry_13804 : MirrorEntry := .noFour (noFourEntry 13804 [-1446, -1162, -738, -955]
   (1446, ⟨5, .right, {2, 3, 4}⟩) (1162, ⟨3, .left, {8}⟩)
   (738, ⟨1, .left, {0, 10}⟩) (955, ⟨2, .right, {5, 6, 7}⟩))
 
+/-- Generated mirror-outer bridge list for the finite bridge data. -/
 def bridgeChunk21 : List MirrorEntry := [
   entry_13549,
   entry_13550,
@@ -1296,8 +1553,10 @@ def bridgeChunk21 : List MirrorEntry := [
   entry_13804,
 ]
 
+/-- All generated entries in bridge chunk 21 satisfy the finite MirrorEntry well-formedness predicate. -/
 theorem bridgeChunk21_wf : bridgeChunk21.all MirrorEntry.wf = true := by native_decide
 
+/-- The generated bridge chunk 21 contains exactly 256 mirror-outer entries. -/
 theorem bridgeChunk21_length : bridgeChunk21.length = 256 := by native_decide
 
 end Problem97.P4MirrorOuterOccurrenceBridgeScratch
