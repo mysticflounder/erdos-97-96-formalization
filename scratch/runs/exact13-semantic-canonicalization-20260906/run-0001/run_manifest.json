@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "exact13-semantic-canonicalization-20260906",
+  "run_id": "run-0001",
+  "root": "scratch/runs/exact13-semantic-canonicalization-20260906/run-0001",
+  "owner": "luna-swarm-slice-ingress",
+  "base_head": "2edd257558de796a0a45e8b8bda8cc99d172c0d2",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SemanticCanonicalization.lean": "74b6279c153c0659b20f9d34deb8d263715477310adad77e2a510b7249c7dda3"
+  },
+  "input_digests": {
+    ".blueprint.toml": "2ec06cb1052483a9bd5274b35d6b54192bfc12b6bcad6c1d4d8c5071ad404f63"
+  },
+  "created_utc": "2026-09-06T09:09:50Z",
+  "manifest_sha256": "3bf1fbd969577798af1b0809e2ab43da9db8acd90fe3c5738ee2514623a75fe8"
+}
