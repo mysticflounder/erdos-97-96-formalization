@@ -811,6 +811,33 @@ certificate replay is then unnecessary for card 12.
   its remaining domain, and every leaf must end in a checked cancellation or
   an explicit dual-certified exit to a different geometric obligation.
 
+  Reuse preflight 2026-09-05: the repository-indexed Lean search for the
+  proposed exact-thirteen finite-classification residual used source index
+  `e170e38ad`.  The nearest declarations were the source-role ingress and the
+  100-cell coarse catalog; both explicitly stop before a contradiction, and no
+  `false_of*exact*thirteen*` theorem consumes their joint data.  The proposed
+  residual's immediate consumer is the exact-thirteen arm of
+  `false_of_exactFourPostCardElevenTwoRadiusBranch_cardGeThirteen`; its final
+  consumer is `Problem97.erdos97_rhs`.  The first missing antecedent is
+  exhaustive source-incidence coverage, including the mirror orientation.
+  No candidate closer or circular import path was found.
+
+  The next coordinator checkpoint replaces the single bare card-at-least-13
+  residual by the four already tracked source cases: row overlap, a fresh
+  point outside three pairwise-disjoint four-supports with `14 ≤ D.A.card`,
+  exact thirteen reduced to the dispatch packet, other outer support, coarse
+  signature, and source-role witnesses, and the adjacent-cap grid.  The
+  before-frontier is one geometry-bearing residual with no constructor
+  exposed; the after-frontier is the multiset of those four strictly narrower
+  cases, with the exact-thirteen member measured by its remaining admissible
+  finite leaves.  The split counts only after the exhaustive producer and all
+  four immediate consumers are kernel-reachable.  The current `uncovered`
+  constructor drops the pairwise-disjointness proofs, so it must first be
+  strengthened; the 14-point bound then follows by cardinality of
+  `insert q (insert z ((C0 ∪ C1) ∪ K))`.  The existing direct-cell terminals
+  remain conditional leaves: the source-role/coarse data provide neither an
+  unconditional direct orientation nor their fixed raw incidences.
+
   **Strictly above 13.**  Add a source-clean refinement before treating the
   current `uncovered` outcome as one undifferentiated branch: three pairwise
   disjoint four-supports together with the old point `z` and the fresh point
