@@ -1,7 +1,7 @@
 # Plan: replace native certificate banks with general theorems
 
 Date: 2026-09-05. Planning baseline: `fff7305bb6f10ddfc5a9446fe7392541da47d87b`.
-Status: package 1 is implemented and undergoing live validation; packages 2–5
+Status: package 1 is complete and validated; packages 2–5
 remain planned. See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md).
 
 ## Objective and boundaries

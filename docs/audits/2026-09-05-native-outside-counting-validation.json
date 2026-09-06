@@ -1,0 +1,76 @@
+{
+  "schema": "native-outside-counting-validation/v1",
+  "implementation_commit": "4d23ed107",
+  "build_kind": "current-source-recheck",
+  "first_build_exit": 0,
+  "first_build_source_changes": [
+    "Erdos9796Proof.P97.ATail.MinimalAdmissibleInteriorPair"
+  ],
+  "validated_foreign_source_sha256": {
+    "lean/Erdos9796Proof/P97/ATail/MinimalAdmissibleInteriorPair.lean": "fb872f8a0a9180567bb7909febfbc2b2d24c91649d609518e8af12e35c733b27"
+  },
+  "build_exit": 0,
+  "build_head": "13e4f7317376584bc72244f097cd97f8de52414d",
+  "source_module_count": 2896,
+  "source_digest": "c98771c070fa52aeafe33fc512edf3787c2fce20cbd971469f33c1d0300d15e4",
+  "build_source_changes": [],
+  "post_probe_source_changes": [],
+  "probe_exit": 0,
+  "memory_mb": 16384,
+  "axioms": {
+    "Problem97.FiniteRowCardinality.outsideSlice_card_eq_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Problem97.BlockerVExactFifteenFourRowCoverage.outsideHits_card_eq_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Problem97.BlockerVExactSixteenFourRowCoverage.outsideHits_card_eq_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Problem97.BlockerVExactFifteenFourRowCoverage.outsidePairOfMembership": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Problem97.BlockerVExactSixteenFourRowCoverage.outsidePairOfMembership": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Problem97.ATailBlockerVExactSeventeenSourceNormalForm.outsideSlice_card_eq_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Problem97.BlockerVExactFifteenFourRowCoverage.exists_metricMotif_of_pairwiseSeparated": [
+      "propext",
+      "Classical.choice",
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler",
+      "Quot.sound"
+    ],
+    "Problem97.BlockerVExactSixteenFourRowCoverage.metricObstructionOccurs_of_pairwiseSeparated": [
+      "propext",
+      "Classical.choice",
+      "Lean.ofReduceBool",
+      "Lean.trustCompiler",
+      "Quot.sound"
+    ]
+  },
+  "probe_source": "import Erdos9796Proof.P97.FiniteRowCardinality\nimport Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage\nimport Erdos9796Proof.P97.ATail.BlockerVExactSixteenFourRowCoverage\nimport Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceNormalForm\n\n#print axioms Problem97.FiniteRowCardinality.outsideSlice_card_eq_two\n#print axioms Problem97.BlockerVExactFifteenFourRowCoverage.outsideHits_card_eq_two\n#print axioms Problem97.BlockerVExactSixteenFourRowCoverage.outsideHits_card_eq_two\n#print axioms Problem97.BlockerVExactFifteenFourRowCoverage.outsidePairOfMembership\n#print axioms Problem97.BlockerVExactSixteenFourRowCoverage.outsidePairOfMembership\n#print axioms Problem97.ATailBlockerVExactSeventeenSourceNormalForm.outsideSlice_card_eq_two\n#print axioms Problem97.BlockerVExactFifteenFourRowCoverage.exists_metricMotif_of_pairwiseSeparated\n#print axioms Problem97.BlockerVExactSixteenFourRowCoverage.metricObstructionOccurs_of_pairwiseSeparated\n",
+  "probe_sha256": "e2f91fed458b74eb823a2a73b797d494c57ed59c9553184b2d45b0d6f34cdfa5",
+  "probe_log_sha256": "4c2efe444deb5ae05229b79e30789e4f1590c1059de32df0c50fd23de99b608a",
+  "target_source_sha256": {
+    "Erdos9796Proof.P97.FiniteRowCardinality": "428ffc69353214ed313b869bd41c6db659c5008d4e13c0db54932de3665bce9c",
+    "Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage": "040c9f8f44cdeb6c73ee4476abc959b5ef0eee8f5e13fa7e62b4687bb8290e75",
+    "Erdos9796Proof.P97.ATail.BlockerVExactSixteenFourRowCoverage": "c91f12c6d06e4c068e8625450fc721bd1be0f46bb1ee9e050ab3b5217fe79b96",
+    "Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceNormalForm": "658196d8cf5b9a142e991d31dc31499eddfb9d69dbc662bae2d6c1d3a1b8f6b9",
+    "Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy": "640a694d2b2226c196046e349a9e584c46d259da4db44bfc7b3e1d7f72a71ae5"
+  }
+}

@@ -5,6 +5,7 @@
   "base_head": "9120a9609b4124e9808f166523b9c5a3caa20663",
   "owned_paths": [
     ".codex/worktree-checkpoints/native-outside-counting-20260905.json",
+    "docs/audits/2026-09-05-native-outside-counting-validation.json",
     "docs/audits/2026-09-05-native-outside-counting.md",
     "lean/Erdos9796Proof/P97/ATail/BlockerVExactFifteenFourRowCoverage.lean",
     "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenSourceNormalForm.lean",
@@ -17,5 +18,5 @@
   ],
   "durable_paths": [],
   "created_utc": "2026-09-06T00:51:37.946009Z",
-  "manifest_sha256": "5adde4a242e354fe8cb4ac926587d0ec3f2ca0b1823075b2047696209eb0ce51"
+  "manifest_sha256": "0bd8902ae42d57c3f41ec1d8cbf4a576fc948a890540fc5efcff04e180a02f82"
 }

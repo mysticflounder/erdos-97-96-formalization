@@ -2,8 +2,8 @@
 
 Date: 2026-09-05. Lane: `native-outside-counting-20260905`.
 Lane baseline: `9120a9609b4124e9808f166523b9c5a3caa20663`.
-Status: isolated proof check passed; live integration applied; governed module
-and consumer builds and fresh axiom probes pending.
+Status: complete. Implementation checkpoint: `4d23ed107`. Governed builds,
+current-source recheck, independent static review, and fresh axiom probes passed.
 
 ## Scope and argument
 
@@ -32,7 +32,7 @@ theorem. The exact-15/16 public signatures, docstrings, finite definitions, and
 
 ## Dependency ledger
 
-| Target | Before | Intended after | Immediate consumer |
+| Target | Before | After | Immediate consumer |
 | --- | --- | --- | --- |
 | Exact-15 `outsideHits_card_eq_two` | `native_decide +revert` | Shared counting and label adapter | `outsidePairOfMembership` |
 | Exact-16 `outsideHits_card_eq_two` | `native_decide +revert` | Shared counting and label adapter | `outsidePairOfMembership` |
@@ -81,5 +81,40 @@ integration and consumer validation before completion.
 The live integration also passed independent static review by `plan_review`:
 the extracted proof and both adapters match the checked draft, the public
 interfaces are preserved, and the helper's import direction introduces no cycle.
-Module builds, consumer build, and fresh axiom probes remain pending. The
-isolated draft is preliminary evidence.
+The first governed five-target build passed (`BUILD-EXIT=0`): the shared helper
+took 1.5 seconds, exact-17 6 seconds, exact-15 73 seconds, exact-16 2,899 seconds,
+and `Rigid221SourceHeavy` 76 seconds. The existing classifier and consumer
+warnings remain outside the replaced proofs.
+
+The first before/after source snapshot detected a concurrent foreign change to
+`MinimalAdmissibleInteriorPair.lean`. A second governed run passed against the
+updated dependency, with zero source changes across its 2,896 local modules.
+The post-probe recapture also found zero changes. That foreign file was not
+included in the package-1 commit; its validated SHA-256 was
+`fb872f8a0a9180567bb7909febfbc2b2d24c91649d609518e8af12e35c733b27`.
+
+Both builds used `LAKE_BUILD_NO_REFRESH=1 lake-build` with these five targets:
+
+```text
+Erdos9796Proof.P97.FiniteRowCardinality
+Erdos9796Proof.P97.ATail.BlockerVExactFifteenFourRowCoverage
+Erdos9796Proof.P97.ATail.BlockerVExactSixteenFourRowCoverage
+Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceNormalForm
+Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
+```
+
+The live axiom probe passed using `lake env lean -M16384 -DautoImplicit=false`
+from `lean/`. An initial 4 GB attempt exhausted Lean's interpreter memory limit;
+the successful run used the repository's normal 16 GB cap.
+All six shared/counting/compatibility/`outsidePairOfMembership` declarations
+reported exactly `[propext, Classical.choice, Quot.sound]`.
+Both retained classifiers additionally reported `Lean.ofReduceBool` and
+`Lean.trustCompiler`. The geometric consumer still has its existing `sorry`
+warnings; no geometric closure or bank retirement is claimed.
+
+The [validation receipt](2026-09-05-native-outside-counting-validation.json)
+retains the exact probe source, all eight axiom results, source hashes, build
+revision, and snapshot digest. It records the validated working-tree state,
+including the foreign dependency identified above. The full generated logs are
+`artifacts/build.log`, `artifacts/build-recheck.log`, and `artifacts/axioms.log`
+under the lane's run directory.
