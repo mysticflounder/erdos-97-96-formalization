@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "cardge13-exact13-priority-cone-continuation-20260906",
+  "run_id": "run-0001",
+  "root": "scratch/runs/cardge13-exact13-priority-cone-continuation-20260906/run-0001",
+  "owner": "CardGE13ConeContinuation",
+  "base_head": "c2978097ace4ba0b1999d9eb464b49e2f17d31c0",
+  "output_classes": ["artifacts", "events", "tmp"],
+  "source_digests": {
+    "scripts/cardge13_exact13_coarse_cell_batch_piqd.py": "000eae266ed8ea98314465f2877b28e247493c8d078399aa45ae9b58190a3ddd",
+    "scripts/cardge13_exact13_coarse_cell_boolean_piqd.py": "26c0866ce98061d276499452e1b9a4d7f6700f54008996ff31f203b8bca52f20",
+    "scripts/cardge13_exact13_coarse_cell_conic_batch_piqd.py": "228d8e1ebddf198eb48cef10048cf0341f00f0e098e344b5afd6c01e4014c396",
+    "scripts/cardge13_exact13_coarse_cell_three_form_batch_piqd.py": "6c44f960250ca7848715623e3d707da32c644aa1d982f7d7f68941ae94853664",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_cegar_piqd.py": "b9ebd4869e3df7fde461db5667a62556104b3fe66057b71dfd5fc151296491a6",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py": "ce8e19ab9f635cb4947dc0c8b1191e3f4da0dba15908b1446d72f7b061e98096",
+    "scripts/cardge13_exact13_global_source_cell_boolean_slice_piqd.py": "d090c8febb743b2769c32ff5d09af0e8555f46a0842d2e2fac37e0cd61c14dd5",
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096",
+    "scripts/cardge13_exact13_tight_cover_lra_piqd.py": "5101cdc837cfc0a1e956dae8f27359e0f6e4f2d2a50e8f0319956c047309581b"
+  },
+  "input_digests": {
+    "scratch/runs/cardge13-exact13-priority-cone-20260906/run-0001/cell-012-direct-z09-k08-12-priority.json": "cbdf6f1b69a1c84ca5a3c256d13a3201291692efefa3b42856ea0137588f4c9e",
+    "scratch/runs/cardge13-exact13-priority-cone-20260906/run-0001/run_manifest.json": "64f973399f76244a0be3ac8793874c1b917fe931b0b3a65d6c3a86b35fa87ecc"
+  },
+  "created_utc": "2026-09-06T07:58:27Z",
+  "manifest_sha256": "30e37d3ababebfb7e5016769b3b9b0d236ce957cc0671712599d9e61cca1454f"
+}

@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-exact13-priority-cone-continuation-20260906",
+  "owner": "CardGE13ConeContinuation",
+  "base_head": "c2978097ace4ba0b1999d9eb464b49e2f17d31c0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-exact13-priority-cone-continuation-20260906.json",
+    "docs/audits/2026-09-06-cardge13-exact13-priority-cone-continuation.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/cardge13-exact13-priority-cone-continuation-20260906/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/cardge13-exact13-priority-cone-continuation-20260906/run-0001/cell-012-direct-z09-k08-12-priority-cone.json",
+    "scratch/runs/cardge13-exact13-priority-cone-continuation-20260906/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-06T07:58:27Z",
+  "manifest_sha256": "931a8d62e7ffa0e3fa581fa803271cb7b731c2295e0f4055d4408d4dfda3673d"
+}
