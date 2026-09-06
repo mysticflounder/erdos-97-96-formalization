@@ -38,6 +38,7 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Construct a positive-membership definition from its index and requirement. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
@@ -45,6 +46,7 @@ private def mkDefinition (varIndex : Nat) (center : Label)
 
 /- The 1,647 genuinely fresh definitions, in compiler allocation order,
 in 64-entry chunks. -/
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk000 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45490 0 {1, 2, 3},
@@ -112,6 +114,7 @@ def freshDefinitionsChunk000 : List PositiveMembershipDefinition :=
     mkDefinition 45552 1 {0, 2, 7},
     mkDefinition 45553 1 {0, 2, 8}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk001 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45554 1 {0, 2, 9},
@@ -179,6 +182,7 @@ def freshDefinitionsChunk001 : List PositiveMembershipDefinition :=
     mkDefinition 45616 1 {5, 6, 10},
     mkDefinition 45617 1 {5, 6, 11}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk002 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45618 1 {5, 7, 8},
@@ -246,6 +250,7 @@ def freshDefinitionsChunk002 : List PositiveMembershipDefinition :=
     mkDefinition 45680 2 {1, 8},
     mkDefinition 45681 2 {1, 8, 10}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk003 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45682 2 {1, 8, 11},
@@ -313,6 +318,7 @@ def freshDefinitionsChunk003 : List PositiveMembershipDefinition :=
     mkDefinition 45744 3 {0, 7, 11},
     mkDefinition 45745 3 {0, 8, 9}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk004 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45746 3 {0, 8, 10},
@@ -380,6 +386,7 @@ def freshDefinitionsChunk004 : List PositiveMembershipDefinition :=
     mkDefinition 45808 3 {2, 7, 11},
     mkDefinition 45809 3 {2, 8, 9}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk005 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45810 3 {2, 8, 10},
@@ -447,6 +454,7 @@ def freshDefinitionsChunk005 : List PositiveMembershipDefinition :=
     mkDefinition 45872 3 {6, 10, 11},
     mkDefinition 45873 3 {7, 8}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk006 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45874 3 {7, 8, 9},
@@ -514,6 +522,7 @@ def freshDefinitionsChunk006 : List PositiveMembershipDefinition :=
     mkDefinition 45936 4 {1, 3, 10},
     mkDefinition 45937 4 {1, 3, 11}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk007 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45938 4 {1, 5, 6},
@@ -581,6 +590,7 @@ def freshDefinitionsChunk007 : List PositiveMembershipDefinition :=
     mkDefinition 46000 4 {3, 7, 9},
     mkDefinition 46001 4 {3, 7, 10}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk008 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46002 4 {3, 7, 11},
@@ -648,6 +658,7 @@ def freshDefinitionsChunk008 : List PositiveMembershipDefinition :=
     mkDefinition 46064 5 {0, 1, 8},
     mkDefinition 46065 5 {0, 1, 9}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk009 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46066 5 {0, 1, 10},
@@ -715,6 +726,7 @@ def freshDefinitionsChunk009 : List PositiveMembershipDefinition :=
     mkDefinition 46128 5 {1, 8, 10},
     mkDefinition 46129 5 {1, 8, 11}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk010 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46130 5 {1, 9, 10},
@@ -782,6 +794,7 @@ def freshDefinitionsChunk010 : List PositiveMembershipDefinition :=
     mkDefinition 46192 5 {4, 6, 11},
     mkDefinition 46193 5 {4, 7}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk011 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46194 5 {4, 7, 8},
@@ -849,6 +862,7 @@ def freshDefinitionsChunk011 : List PositiveMembershipDefinition :=
     mkDefinition 46256 6 {0, 5, 8},
     mkDefinition 46257 6 {0, 5, 9}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk012 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46258 6 {0, 7},
@@ -916,6 +930,7 @@ def freshDefinitionsChunk012 : List PositiveMembershipDefinition :=
     mkDefinition 46320 6 {2, 4, 7},
     mkDefinition 46321 6 {2, 4, 8}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk013 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46322 6 {2, 4, 9},
@@ -983,6 +998,7 @@ def freshDefinitionsChunk013 : List PositiveMembershipDefinition :=
     mkDefinition 46384 7 {0, 2, 11},
     mkDefinition 46385 7 {0, 3, 4}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk014 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46386 7 {0, 3, 5},
@@ -1050,6 +1066,7 @@ def freshDefinitionsChunk014 : List PositiveMembershipDefinition :=
     mkDefinition 46448 7 {1, 10, 11},
     mkDefinition 46449 7 {1, 11}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk015 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46450 7 {2, 3, 4},
@@ -1117,6 +1134,7 @@ def freshDefinitionsChunk015 : List PositiveMembershipDefinition :=
     mkDefinition 46512 7 {9, 10, 11},
     mkDefinition 46513 7 {9, 11}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk016 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46514 7 {10, 11},
@@ -1184,6 +1202,7 @@ def freshDefinitionsChunk016 : List PositiveMembershipDefinition :=
     mkDefinition 46576 8 {1, 6},
     mkDefinition 46577 8 {1, 6, 7}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk017 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46578 8 {1, 6, 9},
@@ -1251,6 +1270,7 @@ def freshDefinitionsChunk017 : List PositiveMembershipDefinition :=
     mkDefinition 46640 8 {6, 7},
     mkDefinition 46641 8 {6, 9}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk018 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46642 8 {6, 10},
@@ -1318,6 +1338,7 @@ def freshDefinitionsChunk018 : List PositiveMembershipDefinition :=
     mkDefinition 46704 9 {1, 4, 5},
     mkDefinition 46705 9 {1, 4, 6}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk019 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46706 9 {1, 4, 7},
@@ -1385,6 +1406,7 @@ def freshDefinitionsChunk019 : List PositiveMembershipDefinition :=
     mkDefinition 46768 9 {3, 5, 6},
     mkDefinition 46769 9 {3, 5, 7}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk020 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46770 9 {3, 5, 8},
@@ -1452,6 +1474,7 @@ def freshDefinitionsChunk020 : List PositiveMembershipDefinition :=
     mkDefinition 46832 10 {1, 3, 6},
     mkDefinition 46833 10 {1, 3, 7}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk021 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46834 10 {1, 3, 8},
@@ -1519,6 +1542,7 @@ def freshDefinitionsChunk021 : List PositiveMembershipDefinition :=
     mkDefinition 46896 10 {3, 4, 8},
     mkDefinition 46897 10 {3, 4, 9}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk022 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46898 10 {3, 4, 11},
@@ -1586,6 +1610,7 @@ def freshDefinitionsChunk022 : List PositiveMembershipDefinition :=
     mkDefinition 46960 10 {8, 9},
     mkDefinition 46961 10 {8, 9, 11}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk023 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46962 10 {8, 11},
@@ -1653,6 +1678,7 @@ def freshDefinitionsChunk023 : List PositiveMembershipDefinition :=
     mkDefinition 47024 11 {1, 6, 8},
     mkDefinition 47025 11 {1, 6, 9}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk024 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47026 11 {1, 6, 10},
@@ -1720,6 +1746,7 @@ def freshDefinitionsChunk024 : List PositiveMembershipDefinition :=
     mkDefinition 47088 11 {3, 10},
     mkDefinition 47089 11 {4, 5}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitionsChunk025 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47090 11 {4, 5, 6},
@@ -1770,6 +1797,7 @@ def freshDefinitionsChunk025 : List PositiveMembershipDefinition :=
     mkDefinition 47135 11 {8, 10},
     mkDefinition 47136 11 {9, 10}]
 
+/-- Fresh positive-membership definitions allocated for the exact-twelve all-order family. -/
 def freshDefinitions : List PositiveMembershipDefinition :=
   freshDefinitionsChunk000 ++
     freshDefinitionsChunk001 ++
@@ -1800,6 +1828,7 @@ def freshDefinitions : List PositiveMembershipDefinition :=
 
 /- The 583 parent-chain definitions reused by the compiler, in compiler
 scan order, with their exact inherited variables. -/
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk000 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45225 0 {1, 2},
@@ -1867,6 +1896,7 @@ def reusedDefinitionsChunk000 : List PositiveMembershipDefinition :=
     mkDefinition 45086 1 {0, 5, 6},
     mkDefinition 45087 1 {0, 5, 7}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk001 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45088 1 {0, 5, 8},
@@ -1934,6 +1964,7 @@ def reusedDefinitionsChunk001 : List PositiveMembershipDefinition :=
     mkDefinition 44883 3 {0, 7},
     mkDefinition 44884 3 {0, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk002 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44885 3 {0, 9},
@@ -2001,6 +2032,7 @@ def reusedDefinitionsChunk002 : List PositiveMembershipDefinition :=
     mkDefinition 45044 5 {1, 7},
     mkDefinition 45045 5 {1, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk003 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45046 5 {1, 9},
@@ -2068,6 +2100,7 @@ def reusedDefinitionsChunk003 : List PositiveMembershipDefinition :=
     mkDefinition 45256 6 {4, 10},
     mkDefinition 45359 6 {4, 10, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk004 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45257 6 {4, 11},
@@ -2135,6 +2168,7 @@ def reusedDefinitionsChunk004 : List PositiveMembershipDefinition :=
     mkDefinition 45425 7 {4, 6, 11},
     mkDefinition 45137 7 {4, 8}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk005 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44984 7 {4, 8, 9},
@@ -2202,6 +2236,7 @@ def reusedDefinitionsChunk005 : List PositiveMembershipDefinition :=
     mkDefinition 45446 8 {3, 9, 10},
     mkDefinition 45447 8 {3, 9, 11}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk006 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45266 8 {3, 10},
@@ -2269,6 +2304,7 @@ def reusedDefinitionsChunk006 : List PositiveMembershipDefinition :=
     mkDefinition 44991 9 {2, 8},
     mkDefinition 45154 9 {3, 6}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk007 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44992 9 {3, 6, 7},
@@ -2336,6 +2372,7 @@ def reusedDefinitionsChunk007 : List PositiveMembershipDefinition :=
     mkDefinition 44941 10 {0, 3, 6},
     mkDefinition 44942 10 {0, 3, 7}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk008 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44943 10 {0, 3, 8},
@@ -2403,6 +2440,7 @@ def reusedDefinitionsChunk008 : List PositiveMembershipDefinition :=
     mkDefinition 45216 11 {3, 9},
     mkDefinition 45217 11 {4, 6}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitionsChunk009 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45218 11 {4, 7},
@@ -2413,6 +2451,7 @@ def reusedDefinitionsChunk009 : List PositiveMembershipDefinition :=
     mkDefinition 45223 11 {5, 8},
     mkDefinition 45224 11 {5, 9}]
 
+/-- Inherited positive-membership definitions for the exact-twelve all-order family. -/
 def reusedDefinitions : List PositiveMembershipDefinition :=
   reusedDefinitionsChunk000 ++
     reusedDefinitionsChunk001 ++
@@ -2456,6 +2495,7 @@ def implicationDimacs : List (List Int) :=
       definition.requirement.center (candidateIndicesFor definition) definition
 
 /- BEGIN GENERATED IMPLICATION CLAUSE ANCHOR -/
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs000 : List (List Int) :=
   [
         [-1, 45490], [-2, 45490], [-1, 45491], [-3, 45491],
@@ -2475,6 +2515,7 @@ def expectedImplicationDimacs000 : List (List Int) :=
         [-15, 45510], [-8, 45511], [-12, 45511], [-16, 45511],
         [-1, 45512], [-17, 45512], [-18, 45512], [-19, 45512]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs001 : List (List Int) :=
   [
         [-2, 45513], [-17, 45513], [-20, 45513], [-21, 45513],
@@ -2494,6 +2535,7 @@ def expectedImplicationDimacs001 : List (List Int) :=
         [-27, 45525], [-36, 45525], [-37, 45525], [-18, 45526],
         [-28, 45526], [-30, 45526], [-32, 45526], [-34, 45526]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs002 : List (List Int) :=
   [
         [-36, 45526], [-19, 45527], [-29, 45527], [-31, 45527],
@@ -2513,6 +2555,7 @@ def expectedImplicationDimacs002 : List (List Int) :=
         [-43, 45534], [-45, 45534], [-3, 45535], [-4, 45535],
         [-13, 45535], [-14, 45535], [-15, 45535], [-16, 45535]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs003 : List (List Int) :=
   [
         [-17, 45535], [-22, 45535], [-23, 45535], [-24, 45535],
@@ -2532,6 +2575,7 @@ def expectedImplicationDimacs003 : List (List Int) :=
         [-49, 45545], [-34, 45546], [-42, 45546], [-50, 45546],
         [-35, 45547], [-43, 45547], [-51, 45547], [-36, 45548]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs004 : List (List Int) :=
   [
         [-44, 45548], [-52, 45548], [-37, 45549], [-45, 45549],
@@ -2551,6 +2595,7 @@ def expectedImplicationDimacs004 : List (List Int) :=
         [-77, 45560], [-80, 45560], [-81, 45560], [-54, 45561],
         [-55, 45561], [-56, 45561], [-82, 45561], [-83, 45561]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs005 : List (List Int) :=
   [
         [-84, 45561], [-85, 45561], [-86, 45561], [-87, 45561],
@@ -2570,6 +2615,7 @@ def expectedImplicationDimacs005 : List (List Int) :=
         [-55, 45572], [-57, 45572], [-59, 45572], [-82, 45572],
         [-86, 45572], [-87, 45572], [-88, 45572], [-91, 45572]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs006 : List (List Int) :=
   [
         [-92, 45572], [-93, 45572], [-96, 45572], [-97, 45572],
@@ -2589,6 +2635,7 @@ def expectedImplicationDimacs006 : List (List Int) :=
         [-99, 45583], [-102, 45583], [-105, 45583], [-106, 45583],
         [-100, 45584], [-103, 45584], [-105, 45584], [-101, 45585]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs007 : List (List Int) :=
   [
         [-104, 45585], [-106, 45585], [-63, 45586], [-98, 45586],
@@ -2608,6 +2655,7 @@ def expectedImplicationDimacs007 : List (List Int) :=
         [-120, 45598], [-68, 45599], [-115, 45599], [-118, 45599],
         [-121, 45599], [-122, 45599], [-116, 45600], [-119, 45600]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs008 : List (List Int) :=
   [
         [-121, 45600], [-117, 45601], [-120, 45601], [-122, 45601],
@@ -2627,6 +2675,7 @@ def expectedImplicationDimacs008 : List (List Int) :=
         [-134, 45614], [-135, 45614], [-136, 45614], [-74, 45615],
         [-131, 45615], [-134, 45615], [-137, 45615], [-138, 45615]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs009 : List (List Int) :=
   [
         [-132, 45616], [-135, 45616], [-137, 45616], [-133, 45617],
@@ -2646,6 +2695,7 @@ def expectedImplicationDimacs009 : List (List Int) :=
         [-79, 45629], [-82, 45629], [-83, 45629], [-84, 45629],
         [-85, 45629], [-98, 45629], [-99, 45629], [-100, 45629]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs010 : List (List Int) :=
   [
         [-101, 45629], [-114, 45629], [-115, 45629], [-116, 45629],
@@ -2665,6 +2715,7 @@ def expectedImplicationDimacs010 : List (List Int) :=
         [-114, 45634], [-118, 45634], [-119, 45634], [-120, 45634],
         [-130, 45634], [-134, 45634], [-135, 45634], [-136, 45634]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs011 : List (List Int) :=
   [
         [-146, 45634], [-147, 45634], [-148, 45634], [-151, 45634],
@@ -2684,6 +2735,7 @@ def expectedImplicationDimacs011 : List (List Int) :=
         [-149, 45639], [-151, 45639], [-90, 45640], [-106, 45640],
         [-122, 45640], [-138, 45640], [-150, 45640], [-152, 45640]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs012 : List (List Int) :=
   [
         [-84, 45641], [-87, 45641], [-89, 45641], [-100, 45641],
@@ -2703,6 +2755,7 @@ def expectedImplicationDimacs012 : List (List Int) :=
         [-154, 45643], [-81, 45644], [-91, 45644], [-107, 45644],
         [-123, 45644], [-139, 45644], [-146, 45644], [-153, 45644]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs013 : List (List Int) :=
   [
         [-154, 45644], [-92, 45645], [-108, 45645], [-124, 45645],
@@ -2722,6 +2775,7 @@ def expectedImplicationDimacs013 : List (List Int) :=
         [-108, 45650], [-110, 45650], [-116, 45650], [-124, 45650],
         [-126, 45650], [-132, 45650], [-140, 45650], [-142, 45650]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs014 : List (List Int) :=
   [
         [-147, 45650], [-149, 45650], [-153, 45650], [-85, 45651],
@@ -2741,6 +2795,7 @@ def expectedImplicationDimacs014 : List (List Int) :=
         [-154, 45654], [-87, 45655], [-92, 45655], [-96, 45655],
         [-103, 45655], [-108, 45655], [-112, 45655], [-119, 45655]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs015 : List (List Int) :=
   [
         [-124, 45655], [-128, 45655], [-135, 45655], [-140, 45655],
@@ -2760,6 +2815,7 @@ def expectedImplicationDimacs015 : List (List Int) :=
         [-156, 45662], [-156, 45663], [-156, 45664], [-157, 45665],
         [-157, 45666], [-157, 45667], [-158, 45668], [-158, 45669]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs016 : List (List Int) :=
   [
         [-158, 45670], [-155, 45671], [-156, 45671], [-157, 45671],
@@ -2779,6 +2835,7 @@ def expectedImplicationDimacs016 : List (List Int) :=
         [-169, 45698], [-170, 45698], [-171, 45699], [-172, 45700],
         [-173, 45701], [-174, 45702], [-158, 45703], [-171, 45703]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs017 : List (List Int) :=
   [
         [-172, 45703], [-173, 45703], [-174, 45703], [-159, 45704],
@@ -2798,6 +2855,7 @@ def expectedImplicationDimacs017 : List (List Int) :=
         [-176, 45713], [-177, 45713], [-178, 45713], [-179, 45713],
         [-180, 45713], [-181, 45713], [-182, 45713], [-183, 45713]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs018 : List (List Int) :=
   [
         [-184, 45713], [-185, 45713], [-186, 45713], [-187, 45713],
@@ -2817,6 +2875,7 @@ def expectedImplicationDimacs018 : List (List Int) :=
         [-192, 45719], [-196, 45719], [-199, 45719], [-201, 45719],
         [-202, 45719], [-203, 45720], [-204, 45720], [-205, 45720]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs019 : List (List Int) :=
   [
         [-206, 45720], [-207, 45720], [-208, 45720], [-209, 45720],
@@ -2836,6 +2895,7 @@ def expectedImplicationDimacs019 : List (List Int) :=
         [-250, 45727], [-180, 45728], [-208, 45728], [-235, 45728],
         [-240, 45728], [-244, 45728], [-247, 45728], [-249, 45728]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs020 : List (List Int) :=
   [
         [-251, 45728], [-181, 45729], [-209, 45729], [-236, 45729],
@@ -2855,6 +2915,7 @@ def expectedImplicationDimacs020 : List (List Int) :=
         [-266, 45735], [-188, 45736], [-216, 45736], [-237, 45736],
         [-252, 45736], [-267, 45736], [-268, 45736], [-269, 45736]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs021 : List (List Int) :=
   [
         [-270, 45736], [-189, 45737], [-217, 45737], [-238, 45737],
@@ -2874,6 +2935,7 @@ def expectedImplicationDimacs021 : List (List Int) :=
         [-282, 45743], [-196, 45744], [-224, 45744], [-245, 45744],
         [-260, 45744], [-270, 45744], [-279, 45744], [-281, 45744]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs022 : List (List Int) :=
   [
         [-282, 45744], [-197, 45745], [-225, 45745], [-246, 45745],
@@ -2893,6 +2955,7 @@ def expectedImplicationDimacs022 : List (List Int) :=
         [-294, 45751], [-295, 45751], [-296, 45751], [-297, 45751],
         [-298, 45751], [-299, 45751], [-300, 45751], [-301, 45751]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs023 : List (List Int) :=
   [
         [-302, 45751], [-303, 45751], [-304, 45751], [-305, 45751],
@@ -2912,6 +2975,7 @@ def expectedImplicationDimacs023 : List (List Int) :=
         [-288, 45758], [-315, 45758], [-321, 45758], [-322, 45758],
         [-323, 45758], [-324, 45758], [-325, 45758], [-177, 45759]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs024 : List (List Int) :=
   [
         [-289, 45759], [-316, 45759], [-321, 45759], [-326, 45759],
@@ -2931,6 +2995,7 @@ def expectedImplicationDimacs024 : List (List Int) :=
         [-296, 45766], [-317, 45766], [-337, 45766], [-341, 45766],
         [-345, 45766], [-346, 45766], [-347, 45766], [-185, 45767]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs025 : List (List Int) :=
   [
         [-297, 45767], [-318, 45767], [-338, 45767], [-342, 45767],
@@ -2950,6 +3015,7 @@ def expectedImplicationDimacs025 : List (List Int) :=
         [-304, 45774], [-325, 45774], [-340, 45774], [-354, 45774],
         [-357, 45774], [-359, 45774], [-360, 45774], [-193, 45775]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs026 : List (List Int) :=
   [
         [-305, 45775], [-326, 45775], [-341, 45775], [-351, 45775],
@@ -2969,6 +3035,7 @@ def expectedImplicationDimacs026 : List (List Int) :=
         [-312, 45782], [-333, 45782], [-348, 45782], [-358, 45782],
         [-364, 45782], [-367, 45782], [-370, 45782], [-201, 45783]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs027 : List (List Int) :=
   [
         [-313, 45783], [-334, 45783], [-349, 45783], [-359, 45783],
@@ -2988,6 +3055,7 @@ def expectedImplicationDimacs027 : List (List Int) :=
         [-202, 45786], [-293, 45786], [-299, 45786], [-304, 45786],
         [-308, 45786], [-311, 45786], [-313, 45786], [-314, 45786]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs028 : List (List Int) :=
   [
         [-320, 45786], [-325, 45786], [-329, 45786], [-332, 45786],
@@ -3007,6 +3075,7 @@ def expectedImplicationDimacs028 : List (List Int) :=
         [-380, 45791], [-384, 45791], [-387, 45791], [-389, 45791],
         [-391, 45791], [-209, 45792], [-293, 45792], [-376, 45792]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs029 : List (List Int) :=
   [
         [-381, 45792], [-385, 45792], [-388, 45792], [-390, 45792],
@@ -3026,6 +3095,7 @@ def expectedImplicationDimacs029 : List (List Int) :=
         [-217, 45799], [-218, 45799], [-219, 45799], [-220, 45799],
         [-288, 45799], [-294, 45799], [-300, 45799], [-301, 45799]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs030 : List (List Int) :=
   [
         [-302, 45799], [-303, 45799], [-304, 45799], [-371, 45799],
@@ -3045,6 +3115,7 @@ def expectedImplicationDimacs030 : List (List Int) :=
         [-220, 45804], [-304, 45804], [-381, 45804], [-396, 45804],
         [-410, 45804], [-413, 45804], [-415, 45804], [-416, 45804]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs031 : List (List Int) :=
   [
         [-221, 45805], [-305, 45805], [-382, 45805], [-397, 45805],
@@ -3064,6 +3135,7 @@ def expectedImplicationDimacs031 : List (List Int) :=
         [-207, 45812], [-213, 45812], [-218, 45812], [-222, 45812],
         [-225, 45812], [-228, 45812], [-229, 45812], [-291, 45812]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs032 : List (List Int) :=
   [
         [-297, 45812], [-302, 45812], [-306, 45812], [-309, 45812],
@@ -3083,6 +3155,7 @@ def expectedImplicationDimacs032 : List (List Int) :=
         [-314, 45815], [-375, 45815], [-380, 45815], [-384, 45815],
         [-387, 45815], [-389, 45815], [-391, 45815], [-395, 45815]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs033 : List (List Int) :=
   [
         [-399, 45815], [-402, 45815], [-404, 45815], [-406, 45815],
@@ -3102,6 +3175,7 @@ def expectedImplicationDimacs033 : List (List Int) :=
         [-426, 45817], [-176, 45818], [-204, 45818], [-231, 45818],
         [-237, 45818], [-238, 45818], [-239, 45818], [-240, 45818]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs034 : List (List Int) :=
   [
         [-241, 45818], [-288, 45818], [-315, 45818], [-321, 45818],
@@ -3121,6 +3195,7 @@ def expectedImplicationDimacs034 : List (List Int) :=
         [-430, 45822], [-444, 45822], [-447, 45822], [-449, 45822],
         [-451, 45822], [-241, 45823], [-325, 45823], [-381, 45823]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs035 : List (List Int) :=
   [
         [-431, 45823], [-445, 45823], [-448, 45823], [-450, 45823],
@@ -3140,6 +3215,7 @@ def expectedImplicationDimacs035 : List (List Int) :=
         [-456, 45826], [-244, 45827], [-328, 45827], [-384, 45827],
         [-434, 45827], [-444, 45827], [-453, 45827], [-455, 45827]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs036 : List (List Int) :=
   [
         [-457, 45827], [-245, 45828], [-329, 45828], [-385, 45828],
@@ -3159,6 +3235,7 @@ def expectedImplicationDimacs036 : List (List Int) :=
         [-437, 45831], [-447, 45831], [-453, 45831], [-458, 45831],
         [-460, 45831], [-248, 45832], [-332, 45832], [-388, 45832]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs037 : List (List Int) :=
   [
         [-438, 45832], [-448, 45832], [-454, 45832], [-459, 45832],
@@ -3178,6 +3255,7 @@ def expectedImplicationDimacs037 : List (List Int) :=
         [-461, 45835], [-180, 45836], [-208, 45836], [-235, 45836],
         [-240, 45836], [-244, 45836], [-247, 45836], [-249, 45836]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs038 : List (List Int) :=
   [
         [-251, 45836], [-292, 45836], [-319, 45836], [-324, 45836],
@@ -3197,6 +3275,7 @@ def expectedImplicationDimacs038 : List (List Int) :=
         [-390, 45838], [-391, 45838], [-431, 45838], [-435, 45838],
         [-438, 45838], [-440, 45838], [-441, 45838], [-445, 45838]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs039 : List (List Int) :=
   [
         [-448, 45838], [-450, 45838], [-451, 45838], [-454, 45838],
@@ -3216,6 +3295,7 @@ def expectedImplicationDimacs039 : List (List Int) :=
         [-428, 45841], [-462, 45841], [-466, 45841], [-467, 45841],
         [-468, 45841], [-254, 45842], [-338, 45842], [-394, 45842]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs040 : List (List Int) :=
   [
         [-429, 45842], [-463, 45842], [-466, 45842], [-469, 45842],
@@ -3235,6 +3315,7 @@ def expectedImplicationDimacs040 : List (List Int) :=
         [-477, 45845], [-257, 45846], [-341, 45846], [-397, 45846],
         [-432, 45846], [-462, 45846], [-472, 45846], [-473, 45846]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs041 : List (List Int) :=
   [
         [-474, 45846], [-258, 45847], [-342, 45847], [-398, 45847],
@@ -3254,6 +3335,7 @@ def expectedImplicationDimacs041 : List (List Int) :=
         [-473, 45850], [-474, 45850], [-478, 45850], [-479, 45850],
         [-480, 45850], [-261, 45851], [-345, 45851], [-401, 45851]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs042 : List (List Int) :=
   [
         [-436, 45851], [-466, 45851], [-472, 45851], [-478, 45851],
@@ -3273,6 +3355,7 @@ def expectedImplicationDimacs042 : List (List Int) :=
         [-481, 45854], [-264, 45855], [-348, 45855], [-404, 45855],
         [-439, 45855], [-469, 45855], [-475, 45855], [-478, 45855]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs043 : List (List Int) :=
   [
         [-481, 45855], [-265, 45856], [-349, 45856], [-405, 45856],
@@ -3292,6 +3375,7 @@ def expectedImplicationDimacs043 : List (List Int) :=
         [-256, 45859], [-260, 45859], [-263, 45859], [-265, 45859],
         [-266, 45859], [-299, 45859], [-320, 45859], [-340, 45859]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs044 : List (List Int) :=
   [
         [-344, 45859], [-347, 45859], [-349, 45859], [-350, 45859],
@@ -3311,6 +3395,7 @@ def expectedImplicationDimacs044 : List (List Int) :=
         [-483, 45860], [-484, 45860], [-485, 45860], [-486, 45860],
         [-487, 45860], [-267, 45861], [-351, 45861], [-407, 45861]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs045 : List (List Int) :=
   [
         [-442, 45861], [-462, 45861], [-482, 45861], [-483, 45861],
@@ -3330,6 +3415,7 @@ def expectedImplicationDimacs045 : List (List Int) :=
         [-466, 45865], [-467, 45865], [-468, 45865], [-482, 45865],
         [-483, 45865], [-484, 45865], [-488, 45865], [-489, 45865]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs046 : List (List Int) :=
   [
         [-490, 45865], [-271, 45866], [-355, 45866], [-411, 45866],
@@ -3349,6 +3435,7 @@ def expectedImplicationDimacs046 : List (List Int) :=
         [-485, 45869], [-486, 45869], [-488, 45869], [-489, 45869],
         [-491, 45869], [-274, 45870], [-358, 45870], [-414, 45870]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs047 : List (List Int) :=
   [
         [-449, 45870], [-469, 45870], [-485, 45870], [-488, 45870],
@@ -3368,6 +3455,7 @@ def expectedImplicationDimacs047 : List (List Int) :=
         [-494, 45873], [-277, 45874], [-361, 45874], [-417, 45874],
         [-452, 45874], [-472, 45874], [-482, 45874], [-492, 45874]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs048 : List (List Int) :=
   [
         [-493, 45874], [-278, 45875], [-362, 45875], [-418, 45875],
@@ -3387,6 +3475,7 @@ def expectedImplicationDimacs048 : List (List Int) :=
         [-455, 45878], [-475, 45878], [-485, 45878], [-492, 45878],
         [-495, 45878], [-281, 45879], [-365, 45879], [-421, 45879]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs049 : List (List Int) :=
   [
         [-456, 45879], [-476, 45879], [-486, 45879], [-493, 45879],
@@ -3406,6 +3495,7 @@ def expectedImplicationDimacs049 : List (List Int) :=
         [-496, 45882], [-284, 45883], [-368, 45883], [-424, 45883],
         [-459, 45883], [-479, 45883], [-489, 45883], [-493, 45883]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs050 : List (List Int) :=
   [
         [-496, 45883], [-285, 45884], [-369, 45884], [-425, 45884],
@@ -3425,6 +3515,7 @@ def expectedImplicationDimacs050 : List (List Int) :=
         [-500, 45887], [-501, 45887], [-502, 45887], [-503, 45887],
         [-504, 45887], [-505, 45887], [-506, 45887], [-507, 45887]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs051 : List (List Int) :=
   [
         [-508, 45887], [-509, 45887], [-510, 45887], [-511, 45887],
@@ -3444,6 +3535,7 @@ def expectedImplicationDimacs051 : List (List Int) :=
         [-521, 45893], [-523, 45893], [-524, 45893], [-525, 45894],
         [-526, 45894], [-527, 45894], [-528, 45894], [-529, 45894]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs052 : List (List Int) :=
   [
         [-530, 45894], [-531, 45894], [-525, 45895], [-532, 45895],
@@ -3463,6 +3555,7 @@ def expectedImplicationDimacs052 : List (List Int) :=
         [-530, 45902], [-557, 45902], [-562, 45902], [-566, 45902],
         [-569, 45902], [-571, 45902], [-573, 45902], [-503, 45903]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs053 : List (List Int) :=
   [
         [-531, 45903], [-558, 45903], [-563, 45903], [-567, 45903],
@@ -3482,6 +3575,7 @@ def expectedImplicationDimacs053 : List (List Int) :=
         [-538, 45910], [-559, 45910], [-574, 45910], [-589, 45910],
         [-590, 45910], [-591, 45910], [-592, 45910], [-511, 45911]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs054 : List (List Int) :=
   [
         [-539, 45911], [-560, 45911], [-575, 45911], [-589, 45911],
@@ -3501,6 +3595,7 @@ def expectedImplicationDimacs054 : List (List Int) :=
         [-546, 45918], [-567, 45918], [-582, 45918], [-592, 45918],
         [-601, 45918], [-603, 45918], [-604, 45918], [-519, 45919]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs055 : List (List Int) :=
   [
         [-547, 45919], [-568, 45919], [-583, 45919], [-593, 45919],
@@ -3520,6 +3615,7 @@ def expectedImplicationDimacs055 : List (List Int) :=
         [-618, 45925], [-619, 45925], [-620, 45925], [-621, 45925],
         [-622, 45925], [-623, 45925], [-624, 45925], [-625, 45925]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs056 : List (List Int) :=
   [
         [-626, 45925], [-627, 45925], [-628, 45925], [-629, 45925],
@@ -3539,6 +3635,7 @@ def expectedImplicationDimacs056 : List (List Int) :=
         [-643, 45932], [-644, 45932], [-645, 45932], [-646, 45932],
         [-647, 45932], [-499, 45933], [-611, 45933], [-638, 45933]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs057 : List (List Int) :=
   [
         [-643, 45933], [-648, 45933], [-649, 45933], [-650, 45933],
@@ -3558,6 +3655,7 @@ def expectedImplicationDimacs057 : List (List Int) :=
         [-659, 45940], [-663, 45940], [-667, 45940], [-668, 45940],
         [-669, 45940], [-507, 45941], [-619, 45941], [-640, 45941]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs058 : List (List Int) :=
   [
         [-660, 45941], [-664, 45941], [-667, 45941], [-670, 45941],
@@ -3577,6 +3675,7 @@ def expectedImplicationDimacs058 : List (List Int) :=
         [-662, 45948], [-676, 45948], [-679, 45948], [-681, 45948],
         [-682, 45948], [-515, 45949], [-627, 45949], [-648, 45949]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs059 : List (List Int) :=
   [
         [-663, 45949], [-673, 45949], [-683, 45949], [-684, 45949],
@@ -3596,6 +3695,7 @@ def expectedImplicationDimacs059 : List (List Int) :=
         [-670, 45956], [-680, 45956], [-686, 45956], [-689, 45956],
         [-692, 45956], [-523, 45957], [-635, 45957], [-656, 45957]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs060 : List (List Int) :=
   [
         [-671, 45957], [-681, 45957], [-687, 45957], [-690, 45957],
@@ -3615,6 +3715,7 @@ def expectedImplicationDimacs060 : List (List Int) :=
         [-621, 45960], [-626, 45960], [-630, 45960], [-633, 45960],
         [-635, 45960], [-636, 45960], [-642, 45960], [-647, 45960]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs061 : List (List Int) :=
   [
         [-651, 45960], [-654, 45960], [-656, 45960], [-657, 45960],
@@ -3634,6 +3735,7 @@ def expectedImplicationDimacs061 : List (List Int) :=
         [-709, 45965], [-711, 45965], [-713, 45965], [-531, 45966],
         [-615, 45966], [-698, 45966], [-703, 45966], [-707, 45966]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs062 : List (List Int) :=
   [
         [-710, 45966], [-712, 45966], [-713, 45966], [-532, 45967],
@@ -3653,6 +3755,7 @@ def expectedImplicationDimacs062 : List (List Int) :=
         [-541, 45973], [-542, 45973], [-610, 45973], [-616, 45973],
         [-622, 45973], [-623, 45973], [-624, 45973], [-625, 45973]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs063 : List (List Int) :=
   [
         [-626, 45973], [-693, 45973], [-699, 45973], [-700, 45973],
@@ -3672,6 +3775,7 @@ def expectedImplicationDimacs063 : List (List Int) :=
         [-703, 45978], [-718, 45978], [-732, 45978], [-735, 45978],
         [-737, 45978], [-738, 45978], [-543, 45979], [-627, 45979]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs064 : List (List Int) :=
   [
         [-704, 45979], [-719, 45979], [-729, 45979], [-739, 45979],
@@ -3691,6 +3795,7 @@ def expectedImplicationDimacs064 : List (List Int) :=
         [-540, 45986], [-544, 45986], [-547, 45986], [-550, 45986],
         [-551, 45986], [-613, 45986], [-619, 45986], [-624, 45986]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs065 : List (List Int) :=
   [
         [-628, 45986], [-631, 45986], [-634, 45986], [-635, 45986],
@@ -3710,6 +3815,7 @@ def expectedImplicationDimacs065 : List (List Int) :=
         [-702, 45989], [-706, 45989], [-709, 45989], [-711, 45989],
         [-713, 45989], [-717, 45989], [-721, 45989], [-724, 45989]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs066 : List (List Int) :=
   [
         [-726, 45989], [-728, 45989], [-731, 45989], [-734, 45989],
@@ -3729,6 +3835,7 @@ def expectedImplicationDimacs066 : List (List Int) :=
         [-526, 45992], [-553, 45992], [-559, 45992], [-560, 45992],
         [-561, 45992], [-562, 45992], [-563, 45992], [-610, 45992]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs067 : List (List Int) :=
   [
         [-637, 45992], [-643, 45992], [-644, 45992], [-645, 45992],
@@ -3748,6 +3855,7 @@ def expectedImplicationDimacs067 : List (List Int) :=
         [-769, 45996], [-771, 45996], [-773, 45996], [-563, 45997],
         [-647, 45997], [-703, 45997], [-753, 45997], [-767, 45997]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs068 : List (List Int) :=
   [
         [-770, 45997], [-772, 45997], [-773, 45997], [-499, 45998],
@@ -3767,6 +3875,7 @@ def expectedImplicationDimacs068 : List (List Int) :=
         [-650, 46001], [-706, 46001], [-756, 46001], [-766, 46001],
         [-775, 46001], [-777, 46001], [-779, 46001], [-567, 46002]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs069 : List (List Int) :=
   [
         [-651, 46002], [-707, 46002], [-757, 46002], [-767, 46002],
@@ -3786,6 +3895,7 @@ def expectedImplicationDimacs069 : List (List Int) :=
         [-775, 46005], [-780, 46005], [-782, 46005], [-570, 46006],
         [-654, 46006], [-710, 46006], [-760, 46006], [-770, 46006]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs070 : List (List Int) :=
   [
         [-776, 46006], [-781, 46006], [-782, 46006], [-501, 46007],
@@ -3805,6 +3915,7 @@ def expectedImplicationDimacs070 : List (List Int) :=
         [-530, 46010], [-557, 46010], [-562, 46010], [-566, 46010],
         [-569, 46010], [-571, 46010], [-573, 46010], [-614, 46010]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs071 : List (List Int) :=
   [
         [-641, 46010], [-646, 46010], [-650, 46010], [-653, 46010],
@@ -3824,6 +3935,7 @@ def expectedImplicationDimacs071 : List (List Int) :=
         [-753, 46012], [-757, 46012], [-760, 46012], [-762, 46012],
         [-763, 46012], [-767, 46012], [-770, 46012], [-772, 46012]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs072 : List (List Int) :=
   [
         [-773, 46012], [-776, 46012], [-778, 46012], [-779, 46012],
@@ -3843,6 +3955,7 @@ def expectedImplicationDimacs072 : List (List Int) :=
         [-788, 46015], [-789, 46015], [-790, 46015], [-576, 46016],
         [-660, 46016], [-716, 46016], [-751, 46016], [-785, 46016]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs073 : List (List Int) :=
   [
         [-788, 46016], [-791, 46016], [-792, 46016], [-577, 46017],
@@ -3862,6 +3975,7 @@ def expectedImplicationDimacs073 : List (List Int) :=
         [-663, 46020], [-719, 46020], [-754, 46020], [-784, 46020],
         [-794, 46020], [-795, 46020], [-796, 46020], [-580, 46021]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs074 : List (List Int) :=
   [
         [-664, 46021], [-720, 46021], [-755, 46021], [-785, 46021],
@@ -3881,6 +3995,7 @@ def expectedImplicationDimacs074 : List (List Int) :=
         [-800, 46024], [-801, 46024], [-802, 46024], [-583, 46025],
         [-667, 46025], [-723, 46025], [-758, 46025], [-788, 46025]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs075 : List (List Int) :=
   [
         [-794, 46025], [-800, 46025], [-801, 46025], [-584, 46026],
@@ -3900,6 +4015,7 @@ def expectedImplicationDimacs075 : List (List Int) :=
         [-670, 46029], [-726, 46029], [-761, 46029], [-791, 46029],
         [-797, 46029], [-800, 46029], [-803, 46029], [-587, 46030]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs076 : List (List Int) :=
   [
         [-671, 46030], [-727, 46030], [-762, 46030], [-792, 46030],
@@ -3919,6 +4035,7 @@ def expectedImplicationDimacs076 : List (List Int) :=
         [-585, 46033], [-587, 46033], [-588, 46033], [-621, 46033],
         [-642, 46033], [-662, 46033], [-666, 46033], [-669, 46033]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs077 : List (List Int) :=
   [
         [-671, 46033], [-672, 46033], [-698, 46033], [-718, 46033],
@@ -3938,6 +4055,7 @@ def expectedImplicationDimacs077 : List (List Int) :=
         [-807, 46034], [-808, 46034], [-809, 46034], [-589, 46035],
         [-673, 46035], [-729, 46035], [-764, 46035], [-784, 46035]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs078 : List (List Int) :=
   [
         [-804, 46035], [-805, 46035], [-806, 46035], [-590, 46036],
@@ -3957,6 +4075,7 @@ def expectedImplicationDimacs078 : List (List Int) :=
         [-790, 46039], [-804, 46039], [-805, 46039], [-806, 46039],
         [-810, 46039], [-811, 46039], [-812, 46039], [-593, 46040]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs079 : List (List Int) :=
   [
         [-677, 46040], [-733, 46040], [-768, 46040], [-788, 46040],
@@ -3976,6 +4095,7 @@ def expectedImplicationDimacs079 : List (List Int) :=
         [-810, 46043], [-811, 46043], [-813, 46043], [-596, 46044],
         [-680, 46044], [-736, 46044], [-771, 46044], [-791, 46044]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs080 : List (List Int) :=
   [
         [-807, 46044], [-810, 46044], [-813, 46044], [-597, 46045],
@@ -3995,6 +4115,7 @@ def expectedImplicationDimacs080 : List (List Int) :=
         [-683, 46048], [-739, 46048], [-774, 46048], [-794, 46048],
         [-804, 46048], [-814, 46048], [-815, 46048], [-600, 46049]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs081 : List (List Int) :=
   [
         [-684, 46049], [-740, 46049], [-775, 46049], [-795, 46049],
@@ -4014,6 +4135,7 @@ def expectedImplicationDimacs081 : List (List Int) :=
         [-807, 46052], [-814, 46052], [-817, 46052], [-603, 46053],
         [-687, 46053], [-743, 46053], [-778, 46053], [-798, 46053]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs082 : List (List Int) :=
   [
         [-808, 46053], [-815, 46053], [-817, 46053], [-604, 46054],
@@ -4033,6 +4155,7 @@ def expectedImplicationDimacs082 : List (List Int) :=
         [-690, 46057], [-746, 46057], [-781, 46057], [-801, 46057],
         [-811, 46057], [-815, 46057], [-818, 46057], [-607, 46058]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs083 : List (List Int) :=
   [
         [-691, 46058], [-747, 46058], [-782, 46058], [-802, 46058],
@@ -4052,6 +4175,7 @@ def expectedImplicationDimacs083 : List (List Int) :=
         [-824, 46061], [-825, 46061], [-826, 46061], [-827, 46061],
         [-828, 46061], [-829, 46061], [-830, 46061], [-831, 46061]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs084 : List (List Int) :=
   [
         [-832, 46061], [-833, 46061], [-834, 46061], [-835, 46061],
@@ -4071,6 +4195,7 @@ def expectedImplicationDimacs084 : List (List Int) :=
         [-846, 46067], [-847, 46068], [-848, 46068], [-849, 46068],
         [-850, 46068], [-851, 46068], [-852, 46068], [-853, 46068]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs085 : List (List Int) :=
   [
         [-847, 46069], [-854, 46069], [-855, 46069], [-856, 46069],
@@ -4090,6 +4215,7 @@ def expectedImplicationDimacs085 : List (List Int) :=
         [-884, 46076], [-888, 46076], [-891, 46076], [-893, 46076],
         [-895, 46076], [-825, 46077], [-853, 46077], [-880, 46077]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs086 : List (List Int) :=
   [
         [-885, 46077], [-889, 46077], [-892, 46077], [-894, 46077],
@@ -4109,6 +4235,7 @@ def expectedImplicationDimacs086 : List (List Int) :=
         [-896, 46084], [-911, 46084], [-912, 46084], [-913, 46084],
         [-914, 46084], [-833, 46085], [-861, 46085], [-882, 46085]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs087 : List (List Int) :=
   [
         [-897, 46085], [-911, 46085], [-915, 46085], [-916, 46085],
@@ -4128,6 +4255,7 @@ def expectedImplicationDimacs087 : List (List Int) :=
         [-904, 46092], [-914, 46092], [-923, 46092], [-925, 46092],
         [-926, 46092], [-841, 46093], [-869, 46093], [-890, 46093]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs088 : List (List Int) :=
   [
         [-905, 46093], [-915, 46093], [-921, 46093], [-927, 46093],
@@ -4147,6 +4275,7 @@ def expectedImplicationDimacs088 : List (List Int) :=
         [-942, 46099], [-943, 46099], [-944, 46099], [-945, 46099],
         [-946, 46099], [-947, 46099], [-948, 46099], [-949, 46099]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs089 : List (List Int) :=
   [
         [-950, 46099], [-951, 46099], [-952, 46099], [-953, 46099],
@@ -4166,6 +4295,7 @@ def expectedImplicationDimacs089 : List (List Int) :=
         [-967, 46106], [-968, 46106], [-969, 46106], [-821, 46107],
         [-933, 46107], [-960, 46107], [-965, 46107], [-970, 46107]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs090 : List (List Int) :=
   [
         [-971, 46107], [-972, 46107], [-973, 46107], [-822, 46108],
@@ -4185,6 +4315,7 @@ def expectedImplicationDimacs090 : List (List Int) :=
         [-989, 46114], [-990, 46114], [-991, 46114], [-829, 46115],
         [-941, 46115], [-962, 46115], [-982, 46115], [-986, 46115]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs091 : List (List Int) :=
   [
         [-989, 46115], [-992, 46115], [-993, 46115], [-830, 46116],
@@ -4204,6 +4335,7 @@ def expectedImplicationDimacs091 : List (List Int) :=
         [-1001, 46122], [-1003, 46122], [-1004, 46122], [-837, 46123],
         [-949, 46123], [-970, 46123], [-985, 46123], [-995, 46123]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs092 : List (List Int) :=
   [
         [-1005, 46123], [-1006, 46123], [-1007, 46123], [-838, 46124],
@@ -4223,6 +4355,7 @@ def expectedImplicationDimacs092 : List (List Int) :=
         [-1008, 46130], [-1011, 46130], [-1014, 46130], [-845, 46131],
         [-957, 46131], [-978, 46131], [-993, 46131], [-1003, 46131]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs093 : List (List Int) :=
   [
         [-1009, 46131], [-1012, 46131], [-1014, 46131], [-824, 46132],
@@ -4242,6 +4375,7 @@ def expectedImplicationDimacs093 : List (List Int) :=
         [-952, 46134], [-955, 46134], [-957, 46134], [-958, 46134],
         [-964, 46134], [-969, 46134], [-973, 46134], [-976, 46134]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs094 : List (List Int) :=
   [
         [-978, 46134], [-979, 46134], [-984, 46134], [-988, 46134],
@@ -4261,6 +4395,7 @@ def expectedImplicationDimacs094 : List (List Int) :=
         [-1035, 46139], [-853, 46140], [-937, 46140], [-1020, 46140],
         [-1025, 46140], [-1029, 46140], [-1032, 46140], [-1034, 46140]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs095 : List (List Int) :=
   [
         [-1035, 46140], [-854, 46141], [-938, 46141], [-1015, 46141],
@@ -4280,6 +4415,7 @@ def expectedImplicationDimacs095 : List (List Int) :=
         [-932, 46147], [-938, 46147], [-944, 46147], [-945, 46147],
         [-946, 46147], [-947, 46147], [-948, 46147], [-1015, 46147]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs096 : List (List Int) :=
   [
         [-1021, 46147], [-1022, 46147], [-1023, 46147], [-1024, 46147],
@@ -4299,6 +4435,7 @@ def expectedImplicationDimacs096 : List (List Int) :=
         [-1054, 46152], [-1057, 46152], [-1059, 46152], [-1060, 46152],
         [-865, 46153], [-949, 46153], [-1026, 46153], [-1041, 46153]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs097 : List (List Int) :=
   [
         [-1051, 46153], [-1061, 46153], [-1062, 46153], [-1063, 46153],
@@ -4318,6 +4455,7 @@ def expectedImplicationDimacs097 : List (List Int) :=
         [-869, 46160], [-872, 46160], [-873, 46160], [-935, 46160],
         [-941, 46160], [-946, 46160], [-950, 46160], [-953, 46160]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs098 : List (List Int) :=
   [
         [-956, 46160], [-957, 46160], [-1018, 46160], [-1023, 46160],
@@ -4337,6 +4475,7 @@ def expectedImplicationDimacs098 : List (List Int) :=
         [-1031, 46163], [-1033, 46163], [-1035, 46163], [-1039, 46163],
         [-1043, 46163], [-1046, 46163], [-1048, 46163], [-1050, 46163]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs099 : List (List Int) :=
   [
         [-1053, 46163], [-1056, 46163], [-1058, 46163], [-1060, 46163],
@@ -4356,6 +4495,7 @@ def expectedImplicationDimacs099 : List (List Int) :=
         [-881, 46166], [-882, 46166], [-883, 46166], [-884, 46166],
         [-885, 46166], [-932, 46166], [-959, 46166], [-965, 46166]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs100 : List (List Int) :=
   [
         [-966, 46166], [-967, 46166], [-968, 46166], [-969, 46166],
@@ -4375,6 +4515,7 @@ def expectedImplicationDimacs100 : List (List Int) :=
         [-1095, 46170], [-885, 46171], [-969, 46171], [-1025, 46171],
         [-1075, 46171], [-1089, 46171], [-1092, 46171], [-1094, 46171]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs101 : List (List Int) :=
   [
         [-1095, 46171], [-821, 46172], [-849, 46172], [-876, 46172],
@@ -4394,6 +4535,7 @@ def expectedImplicationDimacs101 : List (List Int) :=
         [-1078, 46175], [-1088, 46175], [-1097, 46175], [-1099, 46175],
         [-1101, 46175], [-889, 46176], [-973, 46176], [-1029, 46176]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs102 : List (List Int) :=
   [
         [-1079, 46176], [-1089, 46176], [-1098, 46176], [-1100, 46176],
@@ -4413,6 +4555,7 @@ def expectedImplicationDimacs102 : List (List Int) :=
         [-1104, 46179], [-892, 46180], [-976, 46180], [-1032, 46180],
         [-1082, 46180], [-1092, 46180], [-1098, 46180], [-1103, 46180]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs103 : List (List Int) :=
   [
         [-1104, 46180], [-823, 46181], [-851, 46181], [-878, 46181],
@@ -4432,6 +4575,7 @@ def expectedImplicationDimacs103 : List (List Int) :=
         [-884, 46184], [-888, 46184], [-891, 46184], [-893, 46184],
         [-895, 46184], [-936, 46184], [-963, 46184], [-968, 46184]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs104 : List (List Int) :=
   [
         [-972, 46184], [-975, 46184], [-977, 46184], [-979, 46184],
@@ -4451,6 +4595,7 @@ def expectedImplicationDimacs104 : List (List Int) :=
         [-1082, 46186], [-1084, 46186], [-1085, 46186], [-1089, 46186],
         [-1092, 46186], [-1094, 46186], [-1095, 46186], [-1098, 46186]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs105 : List (List Int) :=
   [
         [-1100, 46186], [-1101, 46186], [-1103, 46186], [-1104, 46186],
@@ -4470,6 +4615,7 @@ def expectedImplicationDimacs105 : List (List Int) :=
         [-1112, 46189], [-898, 46190], [-982, 46190], [-1038, 46190],
         [-1073, 46190], [-1107, 46190], [-1110, 46190], [-1113, 46190]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs106 : List (List Int) :=
   [
         [-1114, 46190], [-899, 46191], [-983, 46191], [-1039, 46191],
@@ -4489,6 +4635,7 @@ def expectedImplicationDimacs106 : List (List Int) :=
         [-1076, 46194], [-1106, 46194], [-1116, 46194], [-1117, 46194],
         [-1118, 46194], [-902, 46195], [-986, 46195], [-1042, 46195]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs107 : List (List Int) :=
   [
         [-1077, 46195], [-1107, 46195], [-1116, 46195], [-1119, 46195],
@@ -4508,6 +4655,7 @@ def expectedImplicationDimacs107 : List (List Int) :=
         [-1124, 46198], [-905, 46199], [-989, 46199], [-1045, 46199],
         [-1080, 46199], [-1110, 46199], [-1116, 46199], [-1122, 46199]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs108 : List (List Int) :=
   [
         [-1123, 46199], [-906, 46200], [-990, 46200], [-1046, 46200],
@@ -4527,6 +4675,7 @@ def expectedImplicationDimacs108 : List (List Int) :=
         [-1083, 46203], [-1113, 46203], [-1119, 46203], [-1122, 46203],
         [-1125, 46203], [-909, 46204], [-993, 46204], [-1049, 46204]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs109 : List (List Int) :=
   [
         [-1084, 46204], [-1114, 46204], [-1120, 46204], [-1123, 46204],
@@ -4546,6 +4695,7 @@ def expectedImplicationDimacs109 : List (List Int) :=
         [-910, 46207], [-943, 46207], [-964, 46207], [-984, 46207],
         [-988, 46207], [-991, 46207], [-993, 46207], [-994, 46207]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs110 : List (List Int) :=
   [
         [-1020, 46207], [-1040, 46207], [-1044, 46207], [-1047, 46207],
@@ -4565,6 +4715,7 @@ def expectedImplicationDimacs110 : List (List Int) :=
         [-1131, 46208], [-911, 46209], [-995, 46209], [-1051, 46209],
         [-1086, 46209], [-1106, 46209], [-1126, 46209], [-1127, 46209]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs111 : List (List Int) :=
   [
         [-1128, 46209], [-912, 46210], [-996, 46210], [-1052, 46210],
@@ -4584,6 +4735,7 @@ def expectedImplicationDimacs111 : List (List Int) :=
         [-1127, 46213], [-1128, 46213], [-1132, 46213], [-1133, 46213],
         [-1134, 46213], [-915, 46214], [-999, 46214], [-1055, 46214]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs112 : List (List Int) :=
   [
         [-1090, 46214], [-1110, 46214], [-1126, 46214], [-1132, 46214],
@@ -4603,6 +4755,7 @@ def expectedImplicationDimacs112 : List (List Int) :=
         [-1135, 46217], [-918, 46218], [-1002, 46218], [-1058, 46218],
         [-1093, 46218], [-1113, 46218], [-1129, 46218], [-1132, 46218]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs113 : List (List Int) :=
   [
         [-1135, 46218], [-919, 46219], [-1003, 46219], [-1059, 46219],
@@ -4622,6 +4775,7 @@ def expectedImplicationDimacs113 : List (List Int) :=
         [-1096, 46222], [-1116, 46222], [-1126, 46222], [-1136, 46222],
         [-1137, 46222], [-922, 46223], [-1006, 46223], [-1062, 46223]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs114 : List (List Int) :=
   [
         [-1097, 46223], [-1117, 46223], [-1127, 46223], [-1136, 46223],
@@ -4641,6 +4795,7 @@ def expectedImplicationDimacs114 : List (List Int) :=
         [-1139, 46226], [-925, 46227], [-1009, 46227], [-1065, 46227],
         [-1100, 46227], [-1120, 46227], [-1130, 46227], [-1137, 46227]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs115 : List (List Int) :=
   [
         [-1139, 46227], [-926, 46228], [-1010, 46228], [-1066, 46228],
@@ -4660,6 +4815,7 @@ def expectedImplicationDimacs115 : List (List Int) :=
         [-1103, 46231], [-1123, 46231], [-1133, 46231], [-1137, 46231],
         [-1140, 46231], [-929, 46232], [-1013, 46232], [-1069, 46232]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs116 : List (List Int) :=
   [
         [-1104, 46232], [-1124, 46232], [-1134, 46232], [-1138, 46232],
@@ -4679,6 +4835,7 @@ def expectedImplicationDimacs116 : List (List Int) :=
         [-1148, 46235], [-1149, 46235], [-1150, 46235], [-1151, 46235],
         [-1152, 46235], [-1153, 46235], [-1154, 46235], [-1155, 46235]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs117 : List (List Int) :=
   [
         [-1156, 46235], [-1157, 46235], [-1158, 46235], [-1159, 46235],
@@ -4698,6 +4855,7 @@ def expectedImplicationDimacs117 : List (List Int) :=
         [-1152, 46242], [-1157, 46242], [-1161, 46242], [-1164, 46242],
         [-1166, 46242], [-1168, 46242], [-1147, 46243], [-1153, 46243]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs118 : List (List Int) :=
   [
         [-1158, 46243], [-1162, 46243], [-1165, 46243], [-1167, 46243],
@@ -4717,6 +4875,7 @@ def expectedImplicationDimacs118 : List (List Int) :=
         [-1212, 46250], [-1215, 46250], [-1216, 46250], [-1148, 46251],
         [-1176, 46251], [-1197, 46251], [-1218, 46251], [-1219, 46251]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs119 : List (List Int) :=
   [
         [-1220, 46251], [-1221, 46251], [-1222, 46251], [-1149, 46252],
@@ -4736,6 +4895,7 @@ def expectedImplicationDimacs119 : List (List Int) :=
         [-1161, 46258], [-1162, 46258], [-1171, 46258], [-1177, 46258],
         [-1182, 46258], [-1187, 46258], [-1188, 46258], [-1189, 46258]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs120 : List (List Int) :=
   [
         [-1190, 46258], [-1198, 46258], [-1203, 46258], [-1208, 46258],
@@ -4755,6 +4915,7 @@ def expectedImplicationDimacs120 : List (List Int) :=
         [-1164, 46263], [-1165, 46263], [-1172, 46263], [-1178, 46263],
         [-1183, 46263], [-1187, 46263], [-1191, 46263], [-1192, 46263]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs121 : List (List Int) :=
   [
         [-1193, 46263], [-1199, 46263], [-1204, 46263], [-1208, 46263],
@@ -4774,6 +4935,7 @@ def expectedImplicationDimacs121 : List (List Int) :=
         [-1194, 46267], [-1195, 46267], [-1200, 46267], [-1205, 46267],
         [-1209, 46267], [-1212, 46267], [-1215, 46267], [-1216, 46267]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs122 : List (List Int) :=
   [
         [-1220, 46267], [-1224, 46267], [-1227, 46267], [-1230, 46267],
@@ -4793,6 +4955,7 @@ def expectedImplicationDimacs122 : List (List Int) :=
         [-1267, 46273], [-1268, 46273], [-1269, 46273], [-1254, 46274],
         [-1260, 46274], [-1265, 46274], [-1270, 46274], [-1271, 46274]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs123 : List (List Int) :=
   [
         [-1272, 46274], [-1273, 46274], [-1255, 46275], [-1261, 46275],
@@ -4812,6 +4975,7 @@ def expectedImplicationDimacs123 : List (List Int) :=
         [-1282, 46282], [-1287, 46282], [-1291, 46282], [-1295, 46282],
         [-1296, 46282], [-1297, 46282], [-1145, 46283], [-1256, 46283]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs124 : List (List Int) :=
   [
         [-1283, 46283], [-1288, 46283], [-1292, 46283], [-1295, 46283],
@@ -4831,6 +4995,7 @@ def expectedImplicationDimacs124 : List (List Int) :=
         [-1284, 46290], [-1304, 46290], [-1308, 46290], [-1311, 46290],
         [-1313, 46290], [-1315, 46290], [-1153, 46291], [-1264, 46291]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs125 : List (List Int) :=
   [
         [-1285, 46291], [-1305, 46291], [-1309, 46291], [-1312, 46291],
@@ -4850,6 +5015,7 @@ def expectedImplicationDimacs125 : List (List Int) :=
         [-1270, 46297], [-1271, 46297], [-1272, 46297], [-1273, 46297],
         [-1281, 46297], [-1286, 46297], [-1291, 46297], [-1292, 46297]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs126 : List (List Int) :=
   [
         [-1293, 46297], [-1294, 46297], [-1301, 46297], [-1306, 46297],
@@ -4869,6 +5035,7 @@ def expectedImplicationDimacs126 : List (List Int) :=
         [-1270, 46302], [-1274, 46302], [-1275, 46302], [-1276, 46302],
         [-1282, 46302], [-1287, 46302], [-1291, 46302], [-1295, 46302]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs127 : List (List Int) :=
   [
         [-1296, 46302], [-1297, 46302], [-1302, 46302], [-1306, 46302],
@@ -4888,6 +5055,7 @@ def expectedImplicationDimacs127 : List (List Int) :=
         [-1295, 46306], [-1298, 46306], [-1299, 46306], [-1303, 46306],
         [-1307, 46306], [-1310, 46306], [-1313, 46306], [-1314, 46306]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs128 : List (List Int) :=
   [
         [-1317, 46306], [-1320, 46306], [-1323, 46306], [-1324, 46306],
@@ -4907,6 +5075,7 @@ def expectedImplicationDimacs128 : List (List Int) :=
         [-1330, 46309], [-1331, 46309], [-1333, 46309], [-1334, 46309],
         [-1168, 46310], [-1279, 46310], [-1300, 46310], [-1315, 46310]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs129 : List (List Int) :=
   [
         [-1325, 46310], [-1330, 46310], [-1333, 46310], [-1334, 46310],
@@ -4926,6 +5095,7 @@ def expectedImplicationDimacs129 : List (List Int) :=
         [-1254, 46314], [-1336, 46314], [-1341, 46314], [-1346, 46314],
         [-1347, 46314], [-1348, 46314], [-1349, 46314], [-1172, 46315]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs130 : List (List Int) :=
   [
         [-1255, 46315], [-1337, 46315], [-1342, 46315], [-1346, 46315],
@@ -4945,6 +5115,7 @@ def expectedImplicationDimacs130 : List (List Int) :=
         [-1262, 46322], [-1338, 46322], [-1358, 46322], [-1362, 46322],
         [-1365, 46322], [-1368, 46322], [-1369, 46322], [-1180, 46323]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs131 : List (List Int) :=
   [
         [-1263, 46323], [-1339, 46323], [-1359, 46323], [-1363, 46323],
@@ -4964,6 +5135,7 @@ def expectedImplicationDimacs131 : List (List Int) :=
         [-1270, 46330], [-1346, 46330], [-1361, 46330], [-1371, 46330],
         [-1381, 46330], [-1382, 46330], [-1188, 46331], [-1271, 46331]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs132 : List (List Int) :=
   [
         [-1347, 46331], [-1362, 46331], [-1372, 46331], [-1383, 46331],
@@ -4983,6 +5155,7 @@ def expectedImplicationDimacs132 : List (List Int) :=
         [-1277, 46337], [-1278, 46337], [-1338, 46337], [-1343, 46337],
         [-1347, 46337], [-1350, 46337], [-1353, 46337], [-1354, 46337]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs133 : List (List Int) :=
   [
         [-1358, 46337], [-1362, 46337], [-1365, 46337], [-1368, 46337],
@@ -5002,6 +5175,7 @@ def expectedImplicationDimacs133 : List (List Int) :=
         [-1376, 46340], [-1378, 46340], [-1380, 46340], [-1381, 46340],
         [-1383, 46340], [-1385, 46340], [-1386, 46340], [-1388, 46340]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs134 : List (List Int) :=
   [
         [-1389, 46340], [-1196, 46341], [-1279, 46341], [-1355, 46341],
@@ -5021,6 +5195,7 @@ def expectedImplicationDimacs134 : List (List Int) :=
         [-1283, 46343], [-1284, 46343], [-1285, 46343], [-1335, 46343],
         [-1336, 46343], [-1337, 46343], [-1338, 46343], [-1339, 46343]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs135 : List (List Int) :=
   [
         [-1340, 46343], [-1390, 46343], [-1391, 46343], [-1392, 46343],
@@ -5040,6 +5215,7 @@ def expectedImplicationDimacs135 : List (List Int) :=
         [-1142, 46349], [-1170, 46349], [-1197, 46349], [-1203, 46349],
         [-1204, 46349], [-1205, 46349], [-1206, 46349], [-1207, 46349]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs136 : List (List Int) :=
   [
         [-1253, 46349], [-1280, 46349], [-1286, 46349], [-1287, 46349],
@@ -5059,6 +5235,7 @@ def expectedImplicationDimacs136 : List (List Int) :=
         [-1407, 46353], [-1410, 46353], [-1412, 46353], [-1414, 46353],
         [-1207, 46354], [-1290, 46354], [-1345, 46354], [-1394, 46354]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs137 : List (List Int) :=
   [
         [-1408, 46354], [-1411, 46354], [-1413, 46354], [-1414, 46354],
@@ -5078,6 +5255,7 @@ def expectedImplicationDimacs137 : List (List Int) :=
         [-1220, 46358], [-1303, 46358], [-1358, 46358], [-1392, 46358],
         [-1425, 46358], [-1428, 46358], [-1431, 46358], [-1432, 46358]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs138 : List (List Int) :=
   [
         [-1221, 46359], [-1304, 46359], [-1359, 46359], [-1393, 46359],
@@ -5097,6 +5275,7 @@ def expectedImplicationDimacs138 : List (List Int) :=
         [-1329, 46362], [-1347, 46362], [-1362, 46362], [-1372, 46362],
         [-1383, 46362], [-1384, 46362], [-1396, 46362], [-1406, 46362]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs139 : List (List Int) :=
   [
         [-1417, 46362], [-1418, 46362], [-1425, 46362], [-1436, 46362],
@@ -5116,6 +5295,7 @@ def expectedImplicationDimacs139 : List (List Int) :=
         [-1244, 46365], [-1246, 46365], [-1247, 46365], [-1273, 46365],
         [-1294, 46365], [-1309, 46365], [-1319, 46365], [-1327, 46365]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs140 : List (List Int) :=
   [
         [-1329, 46365], [-1330, 46365], [-1349, 46365], [-1364, 46365],
@@ -5135,6 +5315,7 @@ def expectedImplicationDimacs140 : List (List Int) :=
         [-1248, 46367], [-1250, 46367], [-1275, 46367], [-1296, 46367],
         [-1311, 46367], [-1321, 46367], [-1326, 46367], [-1331, 46367]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs141 : List (List Int) :=
   [
         [-1333, 46367], [-1351, 46367], [-1366, 46367], [-1376, 46367],
@@ -5154,6 +5335,7 @@ def expectedImplicationDimacs141 : List (List Int) :=
         [-1435, 46369], [-1440, 46369], [-1441, 46369], [-1444, 46369],
         [-1449, 46369], [-1450, 46369], [-1452, 46369], [-1454, 46369]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs142 : List (List Int) :=
   [
         [-1166, 46370], [-1194, 46370], [-1215, 46370], [-1230, 46370],
@@ -5173,6 +5355,7 @@ def expectedImplicationDimacs142 : List (List Int) :=
         [-1332, 46372], [-1334, 46372], [-1354, 46372], [-1369, 46372],
         [-1379, 46372], [-1384, 46372], [-1387, 46372], [-1389, 46372]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs143 : List (List Int) :=
   [
         [-1403, 46372], [-1413, 46372], [-1418, 46372], [-1421, 46372],
@@ -5192,6 +5375,7 @@ def expectedImplicationDimacs143 : List (List Int) :=
         [-1461, 46374], [-1462, 46374], [-1463, 46374], [-1464, 46374],
         [-1465, 46374], [-1466, 46374], [-1467, 46374], [-1468, 46374]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs144 : List (List Int) :=
   [
         [-1469, 46374], [-1470, 46374], [-1471, 46374], [-1472, 46374],
@@ -5211,6 +5395,7 @@ def expectedImplicationDimacs144 : List (List Int) :=
         [-1460, 46381], [-1466, 46381], [-1471, 46381], [-1475, 46381],
         [-1478, 46381], [-1480, 46381], [-1482, 46381], [-1461, 46382]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs145 : List (List Int) :=
   [
         [-1467, 46382], [-1472, 46382], [-1476, 46382], [-1479, 46382],
@@ -5230,6 +5415,7 @@ def expectedImplicationDimacs145 : List (List Int) :=
         [-1523, 46389], [-1526, 46389], [-1529, 46389], [-1530, 46389],
         [-1462, 46390], [-1490, 46390], [-1511, 46390], [-1532, 46390]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs146 : List (List Int) :=
   [
         [-1533, 46390], [-1534, 46390], [-1535, 46390], [-1536, 46390],
@@ -5249,6 +5435,7 @@ def expectedImplicationDimacs146 : List (List Int) :=
         [-1474, 46397], [-1475, 46397], [-1476, 46397], [-1485, 46397],
         [-1491, 46397], [-1496, 46397], [-1501, 46397], [-1502, 46397]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs147 : List (List Int) :=
   [
         [-1503, 46397], [-1504, 46397], [-1512, 46397], [-1517, 46397],
@@ -5268,6 +5455,7 @@ def expectedImplicationDimacs147 : List (List Int) :=
         [-1505, 46401], [-1506, 46401], [-1507, 46401], [-1513, 46401],
         [-1518, 46401], [-1522, 46401], [-1526, 46401], [-1527, 46401]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs148 : List (List Int) :=
   [
         [-1528, 46401], [-1533, 46401], [-1537, 46401], [-1541, 46401],
@@ -5287,6 +5475,7 @@ def expectedImplicationDimacs148 : List (List Int) :=
         [-1529, 46405], [-1530, 46405], [-1534, 46405], [-1538, 46405],
         [-1541, 46405], [-1544, 46405], [-1545, 46405], [-1548, 46405]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs149 : List (List Int) :=
   [
         [-1551, 46405], [-1554, 46405], [-1555, 46405], [-1559, 46405],
@@ -5306,6 +5495,7 @@ def expectedImplicationDimacs149 : List (List Int) :=
         [-1584, 46412], [-1585, 46412], [-1586, 46412], [-1587, 46412],
         [-1569, 46413], [-1575, 46413], [-1580, 46413], [-1584, 46413]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs150 : List (List Int) :=
   [
         [-1588, 46413], [-1589, 46413], [-1590, 46413], [-1570, 46414],
@@ -5325,6 +5515,7 @@ def expectedImplicationDimacs150 : List (List Int) :=
         [-1459, 46421], [-1570, 46421], [-1597, 46421], [-1602, 46421],
         [-1606, 46421], [-1609, 46421], [-1612, 46421], [-1613, 46421]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs151 : List (List Int) :=
   [
         [-1460, 46422], [-1571, 46422], [-1598, 46422], [-1603, 46422],
@@ -5344,6 +5535,7 @@ def expectedImplicationDimacs151 : List (List Int) :=
         [-1467, 46429], [-1578, 46429], [-1599, 46429], [-1619, 46429],
         [-1623, 46429], [-1626, 46429], [-1628, 46429], [-1629, 46429]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs152 : List (List Int) :=
   [
         [-1468, 46430], [-1579, 46430], [-1600, 46430], [-1615, 46430],
@@ -5363,6 +5555,7 @@ def expectedImplicationDimacs152 : List (List Int) :=
         [-1605, 46435], [-1606, 46435], [-1607, 46435], [-1608, 46435],
         [-1615, 46435], [-1620, 46435], [-1621, 46435], [-1622, 46435]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs153 : List (List Int) :=
   [
         [-1623, 46435], [-1630, 46435], [-1631, 46435], [-1632, 46435],
@@ -5382,6 +5575,7 @@ def expectedImplicationDimacs153 : List (List Int) :=
         [-1605, 46440], [-1609, 46440], [-1610, 46440], [-1611, 46440],
         [-1616, 46440], [-1620, 46440], [-1624, 46440], [-1625, 46440]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs154 : List (List Int) :=
   [
         [-1626, 46440], [-1630, 46440], [-1634, 46440], [-1635, 46440],
@@ -5401,6 +5595,7 @@ def expectedImplicationDimacs154 : List (List Int) :=
         [-1627, 46444], [-1628, 46444], [-1631, 46444], [-1634, 46444],
         [-1637, 46444], [-1638, 46444], [-1642, 46444], [-1643, 46444]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs155 : List (List Int) :=
   [
         [-1645, 46444], [-1646, 46444], [-1648, 46444], [-1480, 46445],
@@ -5420,6 +5615,7 @@ def expectedImplicationDimacs155 : List (List Int) :=
         [-1614, 46448], [-1629, 46448], [-1639, 46448], [-1644, 46448],
         [-1647, 46448], [-1648, 46448], [-1461, 46449], [-1467, 46449]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs156 : List (List Int) :=
   [
         [-1472, 46449], [-1476, 46449], [-1479, 46449], [-1481, 46449],
@@ -5439,6 +5635,7 @@ def expectedImplicationDimacs156 : List (List Int) :=
         [-1663, 46452], [-1486, 46453], [-1569, 46453], [-1651, 46453],
         [-1656, 46453], [-1660, 46453], [-1664, 46453], [-1665, 46453]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs157 : List (List Int) :=
   [
         [-1666, 46453], [-1487, 46454], [-1570, 46454], [-1652, 46454],
@@ -5458,6 +5655,7 @@ def expectedImplicationDimacs157 : List (List Int) :=
         [-1683, 46460], [-1494, 46461], [-1577, 46461], [-1653, 46461],
         [-1673, 46461], [-1677, 46461], [-1680, 46461], [-1682, 46461]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs158 : List (List Int) :=
   [
         [-1684, 46461], [-1495, 46462], [-1578, 46462], [-1654, 46462],
@@ -5477,6 +5675,7 @@ def expectedImplicationDimacs158 : List (List Int) :=
         [-1568, 46468], [-1574, 46468], [-1579, 46468], [-1584, 46468],
         [-1585, 46468], [-1586, 46468], [-1587, 46468], [-1650, 46468]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs159 : List (List Int) :=
   [
         [-1655, 46468], [-1660, 46468], [-1661, 46468], [-1662, 46468],
@@ -5496,6 +5695,7 @@ def expectedImplicationDimacs159 : List (List Int) :=
         [-1702, 46473], [-1507, 46474], [-1590, 46474], [-1666, 46474],
         [-1681, 46474], [-1691, 46474], [-1696, 46474], [-1701, 46474]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs160 : List (List Int) :=
   [
         [-1702, 46474], [-1487, 46475], [-1493, 46475], [-1498, 46475],
@@ -5515,6 +5715,7 @@ def expectedImplicationDimacs160 : List (List Int) :=
         [-1508, 46478], [-1510, 46478], [-1571, 46478], [-1577, 46478],
         [-1582, 46478], [-1586, 46478], [-1589, 46478], [-1591, 46478]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs161 : List (List Int) :=
   [
         [-1593, 46478], [-1653, 46478], [-1658, 46478], [-1662, 46478],
@@ -5534,6 +5735,7 @@ def expectedImplicationDimacs161 : List (List Int) :=
         [-1691, 46480], [-1693, 46480], [-1694, 46480], [-1696, 46480],
         [-1698, 46480], [-1699, 46480], [-1701, 46480], [-1702, 46480]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs162 : List (List Int) :=
   [
         [-1703, 46480], [-1455, 46481], [-1483, 46481], [-1511, 46481],
@@ -5553,6 +5755,7 @@ def expectedImplicationDimacs162 : List (List Int) :=
         [-1706, 46484], [-1710, 46484], [-1713, 46484], [-1716, 46484],
         [-1717, 46484], [-1515, 46485], [-1598, 46485], [-1653, 46485]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs163 : List (List Int) :=
   [
         [-1707, 46485], [-1711, 46485], [-1714, 46485], [-1716, 46485],
@@ -5572,6 +5775,7 @@ def expectedImplicationDimacs163 : List (List Int) :=
         [-1722, 46488], [-1518, 46489], [-1601, 46489], [-1656, 46489],
         [-1705, 46489], [-1719, 46489], [-1723, 46489], [-1724, 46489]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs164 : List (List Int) :=
   [
         [-1725, 46489], [-1519, 46490], [-1602, 46490], [-1657, 46490],
@@ -5591,6 +5795,7 @@ def expectedImplicationDimacs164 : List (List Int) :=
         [-1707, 46494], [-1708, 46494], [-1738, 46494], [-1739, 46494],
         [-1740, 46494], [-1741, 46494], [-1742, 46494], [-1743, 46494]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs165 : List (List Int) :=
   [
         [-1744, 46494], [-1745, 46494], [-1746, 46494], [-1747, 46494],
@@ -5610,6 +5815,7 @@ def expectedImplicationDimacs165 : List (List Int) :=
         [-1759, 46501], [-1760, 46501], [-1473, 46502], [-1501, 46502],
         [-1522, 46502], [-1537, 46502], [-1547, 46502], [-1557, 46502]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs166 : List (List Int) :=
   [
         [-1558, 46502], [-1584, 46502], [-1605, 46502], [-1620, 46502],
@@ -5629,6 +5835,7 @@ def expectedImplicationDimacs166 : List (List Int) :=
         [-1559, 46504], [-1561, 46504], [-1586, 46504], [-1607, 46504],
         [-1622, 46504], [-1632, 46504], [-1640, 46504], [-1642, 46504]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs167 : List (List Int) :=
   [
         [-1644, 46504], [-1662, 46504], [-1677, 46504], [-1687, 46504],
@@ -5648,6 +5855,7 @@ def expectedImplicationDimacs167 : List (List Int) :=
         [-1749, 46506], [-1751, 46506], [-1752, 46506], [-1758, 46506],
         [-1760, 46506], [-1761, 46506], [-1766, 46506], [-1767, 46506]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs168 : List (List Int) :=
   [
         [-1477, 46507], [-1505, 46507], [-1526, 46507], [-1541, 46507],
@@ -5667,6 +5875,7 @@ def expectedImplicationDimacs168 : List (List Int) :=
         [-1753, 46508], [-1755, 46508], [-1757, 46508], [-1762, 46508],
         [-1764, 46508], [-1766, 46508], [-1768, 46508], [-1564, 46509]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs169 : List (List Int) :=
   [
         [-1647, 46509], [-1702, 46509], [-1736, 46509], [-1755, 46509],
@@ -5686,6 +5895,7 @@ def expectedImplicationDimacs169 : List (List Int) :=
         [-1648, 46511], [-1667, 46511], [-1682, 46511], [-1692, 46511],
         [-1697, 46511], [-1700, 46511], [-1703, 46511], [-1716, 46511]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs170 : List (List Int) :=
   [
         [-1726, 46511], [-1731, 46511], [-1734, 46511], [-1737, 46511],
@@ -5705,6 +5915,7 @@ def expectedImplicationDimacs170 : List (List Int) :=
         [-1482, 46514], [-1510, 46514], [-1531, 46514], [-1546, 46514],
         [-1556, 46514], [-1561, 46514], [-1564, 46514], [-1565, 46514]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs171 : List (List Int) :=
   [
         [-1593, 46514], [-1614, 46514], [-1629, 46514], [-1639, 46514],
@@ -5724,6 +5935,7 @@ def expectedImplicationDimacs171 : List (List Int) :=
         [-1769, 46516], [-1770, 46516], [-1771, 46516], [-1772, 46516],
         [-1773, 46516], [-1774, 46516], [-1775, 46516], [-1769, 46517]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs172 : List (List Int) :=
   [
         [-1776, 46517], [-1777, 46517], [-1778, 46517], [-1779, 46517],
@@ -5743,6 +5955,7 @@ def expectedImplicationDimacs172 : List (List Int) :=
         [-1809, 46525], [-1814, 46525], [-1818, 46525], [-1821, 46525],
         [-1823, 46525], [-1824, 46525], [-1769, 46526], [-1797, 46526]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs173 : List (List Int) :=
   [
         [-1825, 46526], [-1826, 46526], [-1827, 46526], [-1828, 46526],
@@ -5762,6 +5975,7 @@ def expectedImplicationDimacs173 : List (List Int) :=
         [-1827, 46533], [-1847, 46533], [-1851, 46533], [-1855, 46533],
         [-1856, 46533], [-1857, 46533], [-1779, 46534], [-1807, 46534]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs174 : List (List Int) :=
   [
         [-1828, 46534], [-1848, 46534], [-1852, 46534], [-1855, 46534],
@@ -5781,6 +5995,7 @@ def expectedImplicationDimacs174 : List (List Int) :=
         [-1862, 46538], [-1863, 46538], [-1864, 46538], [-1871, 46538],
         [-1872, 46538], [-1873, 46538], [-1874, 46538], [-1875, 46538]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs175 : List (List Int) :=
   [
         [-1787, 46539], [-1815, 46539], [-1836, 46539], [-1851, 46539],
@@ -5800,6 +6015,7 @@ def expectedImplicationDimacs175 : List (List Int) :=
         [-1878, 46542], [-1791, 46543], [-1819, 46543], [-1840, 46543],
         [-1855, 46543], [-1865, 46543], [-1876, 46543], [-1877, 46543]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs176 : List (List Int) :=
   [
         [-1792, 46544], [-1820, 46544], [-1841, 46544], [-1856, 46544],
@@ -5819,6 +6035,7 @@ def expectedImplicationDimacs176 : List (List Int) :=
         [-1876, 46547], [-1879, 46547], [-1795, 46548], [-1823, 46548],
         [-1844, 46548], [-1859, 46548], [-1869, 46548], [-1874, 46548]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs177 : List (List Int) :=
   [
         [-1877, 46548], [-1879, 46548], [-1796, 46549], [-1824, 46549],
@@ -5838,6 +6055,7 @@ def expectedImplicationDimacs177 : List (List Int) :=
         [-1903, 46556], [-1905, 46556], [-1907, 46556], [-1886, 46557],
         [-1892, 46557], [-1897, 46557], [-1901, 46557], [-1904, 46557]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs178 : List (List Int) :=
   [
         [-1906, 46557], [-1907, 46557], [-1769, 46558], [-1880, 46558],
@@ -5857,6 +6075,7 @@ def expectedImplicationDimacs178 : List (List Int) :=
         [-1927, 46564], [-1928, 46564], [-1776, 46565], [-1887, 46565],
         [-1908, 46565], [-1929, 46565], [-1930, 46565], [-1931, 46565]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs179 : List (List Int) :=
   [
         [-1932, 46565], [-1933, 46565], [-1777, 46566], [-1888, 46566],
@@ -5876,6 +6095,7 @@ def expectedImplicationDimacs179 : List (List Int) :=
         [-1949, 46572], [-1950, 46572], [-1784, 46573], [-1895, 46573],
         [-1916, 46573], [-1931, 46573], [-1945, 46573], [-1948, 46573]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs180 : List (List Int) :=
   [
         [-1951, 46573], [-1952, 46573], [-1785, 46574], [-1896, 46574],
@@ -5895,6 +6115,7 @@ def expectedImplicationDimacs180 : List (List Int) :=
         [-1944, 46577], [-1954, 46577], [-1955, 46577], [-1788, 46578],
         [-1899, 46578], [-1920, 46578], [-1935, 46578], [-1945, 46578]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs181 : List (List Int) :=
   [
         [-1956, 46578], [-1957, 46578], [-1789, 46579], [-1900, 46579],
@@ -5914,6 +6135,7 @@ def expectedImplicationDimacs181 : List (List Int) :=
         [-1948, 46582], [-1959, 46582], [-1960, 46582], [-1792, 46583],
         [-1903, 46583], [-1924, 46583], [-1939, 46583], [-1949, 46583]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs182 : List (List Int) :=
   [
         [-1954, 46583], [-1959, 46583], [-1961, 46583], [-1793, 46584],
@@ -5933,6 +6155,7 @@ def expectedImplicationDimacs182 : List (List Int) :=
         [-1942, 46587], [-1952, 46587], [-1957, 46587], [-1960, 46587],
         [-1962, 46587], [-1774, 46588], [-1780, 46588], [-1785, 46588]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs183 : List (List Int) :=
   [
         [-1789, 46588], [-1792, 46588], [-1794, 46588], [-1796, 46588],
@@ -5952,6 +6175,7 @@ def expectedImplicationDimacs183 : List (List Int) :=
         [-1922, 46590], [-1925, 46590], [-1927, 46590], [-1928, 46590],
         [-1933, 46590], [-1937, 46590], [-1940, 46590], [-1942, 46590]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs184 : List (List Int) :=
   [
         [-1943, 46590], [-1947, 46590], [-1950, 46590], [-1952, 46590],
@@ -5971,6 +6195,7 @@ def expectedImplicationDimacs184 : List (List Int) :=
         [-1979, 46596], [-1981, 46596], [-1983, 46596], [-1803, 46597],
         [-1886, 46597], [-1968, 46597], [-1973, 46597], [-1977, 46597]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs185 : List (List Int) :=
   [
         [-1980, 46597], [-1982, 46597], [-1983, 46597], [-1804, 46598],
@@ -5990,6 +6215,7 @@ def expectedImplicationDimacs185 : List (List Int) :=
         [-2000, 46604], [-2001, 46604], [-2002, 46604], [-1811, 46605],
         [-1894, 46605], [-1970, 46605], [-1985, 46605], [-1999, 46605]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs186 : List (List Int) :=
   [
         [-2003, 46605], [-2004, 46605], [-2005, 46605], [-1812, 46606],
@@ -6009,6 +6235,7 @@ def expectedImplicationDimacs186 : List (List Int) :=
         [-2009, 46609], [-2010, 46609], [-2011, 46609], [-2012, 46609],
         [-2013, 46609], [-1815, 46610], [-1898, 46610], [-1974, 46610]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs187 : List (List Int) :=
   [
         [-1989, 46610], [-1999, 46610], [-2009, 46610], [-2010, 46610],
@@ -6028,6 +6255,7 @@ def expectedImplicationDimacs187 : List (List Int) :=
         [-1906, 46616], [-1966, 46616], [-1971, 46616], [-1975, 46616],
         [-1978, 46616], [-1981, 46616], [-1982, 46616], [-1986, 46616]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs188 : List (List Int) :=
   [
         [-1990, 46616], [-1993, 46616], [-1996, 46616], [-1997, 46616],
@@ -6047,6 +6275,7 @@ def expectedImplicationDimacs188 : List (List Int) :=
         [-2006, 46619], [-2008, 46619], [-2009, 46619], [-2011, 46619],
         [-2013, 46619], [-2014, 46619], [-2016, 46619], [-2017, 46619]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs189 : List (List Int) :=
   [
         [-1824, 46620], [-1907, 46620], [-1983, 46620], [-1998, 46620],
@@ -6066,6 +6295,7 @@ def expectedImplicationDimacs189 : List (List Int) :=
         [-1912, 46622], [-1913, 46622], [-1963, 46622], [-1964, 46622],
         [-1965, 46622], [-1966, 46622], [-1967, 46622], [-1968, 46622]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs190 : List (List Int) :=
   [
         [-2018, 46622], [-2019, 46622], [-2020, 46622], [-2021, 46622],
@@ -6085,6 +6315,7 @@ def expectedImplicationDimacs190 : List (List Int) :=
         [-1798, 46628], [-1825, 46628], [-1831, 46628], [-1832, 46628],
         [-1833, 46628], [-1834, 46628], [-1835, 46628], [-1881, 46628]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs191 : List (List Int) :=
   [
         [-1908, 46628], [-1914, 46628], [-1915, 46628], [-1916, 46628],
@@ -6104,6 +6335,7 @@ def expectedImplicationDimacs191 : List (List Int) :=
         [-2038, 46632], [-2040, 46632], [-2042, 46632], [-1835, 46633],
         [-1918, 46633], [-1973, 46633], [-2022, 46633], [-2036, 46633]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs192 : List (List Int) :=
   [
         [-2039, 46633], [-2041, 46633], [-2042, 46633], [-1776, 46634],
@@ -6123,6 +6355,7 @@ def expectedImplicationDimacs192 : List (List Int) :=
         [-1931, 46637], [-1986, 46637], [-2020, 46637], [-2053, 46637],
         [-2056, 46637], [-2059, 46637], [-2060, 46637], [-1849, 46638]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs193 : List (List Int) :=
   [
         [-1932, 46638], [-1987, 46638], [-2021, 46638], [-2054, 46638],
@@ -6142,6 +6375,7 @@ def expectedImplicationDimacs193 : List (List Int) :=
         [-1975, 46641], [-1990, 46641], [-2000, 46641], [-2011, 46641],
         [-2012, 46641], [-2024, 46641], [-2034, 46641], [-2045, 46641]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs194 : List (List Int) :=
   [
         [-2046, 46641], [-2053, 46641], [-2064, 46641], [-2065, 46641],
@@ -6161,6 +6395,7 @@ def expectedImplicationDimacs194 : List (List Int) :=
         [-1874, 46644], [-1875, 46644], [-1901, 46644], [-1922, 46644],
         [-1937, 46644], [-1947, 46644], [-1955, 46644], [-1957, 46644]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs195 : List (List Int) :=
   [
         [-1958, 46644], [-1977, 46644], [-1992, 46644], [-2002, 46644],
@@ -6180,6 +6415,7 @@ def expectedImplicationDimacs195 : List (List Int) :=
         [-1878, 46646], [-1903, 46646], [-1924, 46646], [-1939, 46646],
         [-1949, 46646], [-1954, 46646], [-1959, 46646], [-1961, 46646]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs196 : List (List Int) :=
   [
         [-1979, 46646], [-1994, 46646], [-2004, 46646], [-2009, 46646],
@@ -6199,6 +6435,7 @@ def expectedImplicationDimacs196 : List (List Int) :=
         [-2068, 46648], [-2069, 46648], [-2072, 46648], [-2077, 46648],
         [-2078, 46648], [-2080, 46648], [-2082, 46648], [-1794, 46649]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs197 : List (List Int) :=
   [
         [-1822, 46649], [-1843, 46649], [-1858, 46649], [-1868, 46649],
@@ -6218,6 +6455,7 @@ def expectedImplicationDimacs197 : List (List Int) :=
         [-1962, 46651], [-1982, 46651], [-1997, 46651], [-2007, 46651],
         [-2012, 46651], [-2015, 46651], [-2017, 46651], [-2031, 46651]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs198 : List (List Int) :=
   [
         [-2041, 46651], [-2046, 46651], [-2049, 46651], [-2051, 46651],
@@ -6237,6 +6475,7 @@ def expectedImplicationDimacs198 : List (List Int) :=
         [-2090, 46653], [-2091, 46653], [-2092, 46653], [-2093, 46653],
         [-2094, 46653], [-2095, 46653], [-2096, 46653], [-2097, 46653]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs199 : List (List Int) :=
   [
         [-2098, 46653], [-2099, 46653], [-2100, 46653], [-2101, 46653],
@@ -6256,6 +6495,7 @@ def expectedImplicationDimacs199 : List (List Int) :=
         [-2094, 46660], [-2099, 46660], [-2103, 46660], [-2106, 46660],
         [-2108, 46660], [-2110, 46660], [-2089, 46661], [-2095, 46661]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs200 : List (List Int) :=
   [
         [-2100, 46661], [-2104, 46661], [-2107, 46661], [-2109, 46661],
@@ -6275,6 +6515,7 @@ def expectedImplicationDimacs200 : List (List Int) :=
         [-2154, 46668], [-2157, 46668], [-2158, 46668], [-2090, 46669],
         [-2118, 46669], [-2139, 46669], [-2160, 46669], [-2161, 46669]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs201 : List (List Int) :=
   [
         [-2162, 46669], [-2163, 46669], [-2164, 46669], [-2091, 46670],
@@ -6294,6 +6535,7 @@ def expectedImplicationDimacs201 : List (List Int) :=
         [-2103, 46676], [-2104, 46676], [-2113, 46676], [-2119, 46676],
         [-2124, 46676], [-2129, 46676], [-2130, 46676], [-2131, 46676]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs202 : List (List Int) :=
   [
         [-2132, 46676], [-2140, 46676], [-2145, 46676], [-2150, 46676],
@@ -6313,6 +6555,7 @@ def expectedImplicationDimacs202 : List (List Int) :=
         [-2106, 46681], [-2107, 46681], [-2114, 46681], [-2120, 46681],
         [-2125, 46681], [-2129, 46681], [-2133, 46681], [-2134, 46681]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs203 : List (List Int) :=
   [
         [-2135, 46681], [-2141, 46681], [-2146, 46681], [-2150, 46681],
@@ -6332,6 +6575,7 @@ def expectedImplicationDimacs203 : List (List Int) :=
         [-2136, 46685], [-2137, 46685], [-2142, 46685], [-2147, 46685],
         [-2151, 46685], [-2154, 46685], [-2157, 46685], [-2158, 46685]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs204 : List (List Int) :=
   [
         [-2162, 46685], [-2166, 46685], [-2169, 46685], [-2172, 46685],
@@ -6351,6 +6595,7 @@ def expectedImplicationDimacs204 : List (List Int) :=
         [-2209, 46691], [-2210, 46691], [-2211, 46691], [-2196, 46692],
         [-2202, 46692], [-2207, 46692], [-2212, 46692], [-2213, 46692]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs205 : List (List Int) :=
   [
         [-2214, 46692], [-2215, 46692], [-2197, 46693], [-2203, 46693],
@@ -6370,6 +6615,7 @@ def expectedImplicationDimacs205 : List (List Int) :=
         [-2224, 46700], [-2229, 46700], [-2233, 46700], [-2237, 46700],
         [-2238, 46700], [-2239, 46700], [-2087, 46701], [-2198, 46701]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs206 : List (List Int) :=
   [
         [-2225, 46701], [-2230, 46701], [-2234, 46701], [-2237, 46701],
@@ -6389,6 +6635,7 @@ def expectedImplicationDimacs206 : List (List Int) :=
         [-2226, 46708], [-2246, 46708], [-2250, 46708], [-2253, 46708],
         [-2255, 46708], [-2257, 46708], [-2095, 46709], [-2206, 46709]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs207 : List (List Int) :=
   [
         [-2227, 46709], [-2247, 46709], [-2251, 46709], [-2254, 46709],
@@ -6408,6 +6655,7 @@ def expectedImplicationDimacs207 : List (List Int) :=
         [-2212, 46715], [-2213, 46715], [-2214, 46715], [-2215, 46715],
         [-2223, 46715], [-2228, 46715], [-2233, 46715], [-2234, 46715]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs208 : List (List Int) :=
   [
         [-2235, 46715], [-2236, 46715], [-2243, 46715], [-2248, 46715],
@@ -6427,6 +6675,7 @@ def expectedImplicationDimacs208 : List (List Int) :=
         [-2212, 46720], [-2216, 46720], [-2217, 46720], [-2218, 46720],
         [-2224, 46720], [-2229, 46720], [-2233, 46720], [-2237, 46720]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs209 : List (List Int) :=
   [
         [-2238, 46720], [-2239, 46720], [-2244, 46720], [-2248, 46720],
@@ -6446,6 +6695,7 @@ def expectedImplicationDimacs209 : List (List Int) :=
         [-2237, 46724], [-2240, 46724], [-2241, 46724], [-2245, 46724],
         [-2249, 46724], [-2252, 46724], [-2255, 46724], [-2256, 46724]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs210 : List (List Int) :=
   [
         [-2259, 46724], [-2262, 46724], [-2265, 46724], [-2266, 46724],
@@ -6465,6 +6715,7 @@ def expectedImplicationDimacs210 : List (List Int) :=
         [-2272, 46727], [-2273, 46727], [-2275, 46727], [-2276, 46727],
         [-2110, 46728], [-2221, 46728], [-2242, 46728], [-2257, 46728]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs211 : List (List Int) :=
   [
         [-2267, 46728], [-2272, 46728], [-2275, 46728], [-2276, 46728],
@@ -6484,6 +6735,7 @@ def expectedImplicationDimacs211 : List (List Int) :=
         [-2196, 46732], [-2278, 46732], [-2283, 46732], [-2288, 46732],
         [-2289, 46732], [-2290, 46732], [-2291, 46732], [-2114, 46733]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs212 : List (List Int) :=
   [
         [-2197, 46733], [-2279, 46733], [-2284, 46733], [-2288, 46733],
@@ -6503,6 +6755,7 @@ def expectedImplicationDimacs212 : List (List Int) :=
         [-2204, 46740], [-2280, 46740], [-2300, 46740], [-2304, 46740],
         [-2307, 46740], [-2310, 46740], [-2311, 46740], [-2122, 46741]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs213 : List (List Int) :=
   [
         [-2205, 46741], [-2281, 46741], [-2301, 46741], [-2305, 46741],
@@ -6522,6 +6775,7 @@ def expectedImplicationDimacs213 : List (List Int) :=
         [-2119, 46748], [-2124, 46748], [-2129, 46748], [-2130, 46748],
         [-2131, 46748], [-2132, 46748], [-2196, 46748], [-2202, 46748]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs214 : List (List Int) :=
   [
         [-2207, 46748], [-2212, 46748], [-2213, 46748], [-2214, 46748],
@@ -6541,6 +6795,7 @@ def expectedImplicationDimacs214 : List (List Int) :=
         [-2216, 46753], [-2292, 46753], [-2307, 46753], [-2317, 46753],
         [-2328, 46753], [-2329, 46753], [-2134, 46754], [-2217, 46754]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs215 : List (List Int) :=
   [
         [-2293, 46754], [-2308, 46754], [-2318, 46754], [-2323, 46754],
@@ -6560,6 +6815,7 @@ def expectedImplicationDimacs215 : List (List Int) :=
         [-2318, 46758], [-2320, 46758], [-2322, 46758], [-2323, 46758],
         [-2325, 46758], [-2327, 46758], [-2328, 46758], [-2330, 46758]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs216 : List (List Int) :=
   [
         [-2331, 46758], [-2138, 46759], [-2221, 46759], [-2297, 46759],
@@ -6579,6 +6835,7 @@ def expectedImplicationDimacs216 : List (List Int) :=
         [-2225, 46761], [-2226, 46761], [-2227, 46761], [-2277, 46761],
         [-2278, 46761], [-2279, 46761], [-2280, 46761], [-2281, 46761]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs217 : List (List Int) :=
   [
         [-2282, 46761], [-2332, 46761], [-2333, 46761], [-2334, 46761],
@@ -6598,6 +6855,7 @@ def expectedImplicationDimacs217 : List (List Int) :=
         [-2084, 46767], [-2112, 46767], [-2139, 46767], [-2145, 46767],
         [-2146, 46767], [-2147, 46767], [-2148, 46767], [-2149, 46767]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs218 : List (List Int) :=
   [
         [-2195, 46767], [-2222, 46767], [-2228, 46767], [-2229, 46767],
@@ -6617,6 +6875,7 @@ def expectedImplicationDimacs218 : List (List Int) :=
         [-2349, 46771], [-2352, 46771], [-2354, 46771], [-2356, 46771],
         [-2149, 46772], [-2232, 46772], [-2287, 46772], [-2336, 46772]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs219 : List (List Int) :=
   [
         [-2350, 46772], [-2353, 46772], [-2355, 46772], [-2356, 46772],
@@ -6636,6 +6895,7 @@ def expectedImplicationDimacs219 : List (List Int) :=
         [-2162, 46776], [-2245, 46776], [-2300, 46776], [-2334, 46776],
         [-2367, 46776], [-2370, 46776], [-2373, 46776], [-2374, 46776]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs220 : List (List Int) :=
   [
         [-2163, 46777], [-2246, 46777], [-2301, 46777], [-2335, 46777],
@@ -6655,6 +6915,7 @@ def expectedImplicationDimacs220 : List (List Int) :=
         [-2268, 46780], [-2270, 46780], [-2272, 46780], [-2290, 46780],
         [-2305, 46780], [-2315, 46780], [-2323, 46780], [-2325, 46780]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs221 : List (List Int) :=
   [
         [-2327, 46780], [-2339, 46780], [-2349, 46780], [-2357, 46780],
@@ -6674,6 +6935,7 @@ def expectedImplicationDimacs221 : List (List Int) :=
         [-2394, 46782], [-2395, 46782], [-2105, 46783], [-2133, 46783],
         [-2154, 46783], [-2169, 46783], [-2179, 46783], [-2190, 46783]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs222 : List (List Int) :=
   [
         [-2191, 46783], [-2216, 46783], [-2237, 46783], [-2252, 46783],
@@ -6693,6 +6955,7 @@ def expectedImplicationDimacs222 : List (List Int) :=
         [-2396, 46784], [-2192, 46785], [-2275, 46785], [-2330, 46785],
         [-2364, 46785], [-2383, 46785], [-2392, 46785], [-2394, 46785]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs223 : List (List Int) :=
   [
         [-2396, 46785], [-2107, 46786], [-2135, 46786], [-2156, 46786],
@@ -6712,6 +6975,7 @@ def expectedImplicationDimacs223 : List (List Int) :=
         [-2331, 46787], [-2344, 46787], [-2354, 46787], [-2359, 46787],
         [-2362, 46787], [-2365, 46787], [-2373, 46787], [-2378, 46787]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs224 : List (List Int) :=
   [
         [-2381, 46787], [-2384, 46787], [-2387, 46787], [-2390, 46787],
@@ -6731,6 +6995,7 @@ def expectedImplicationDimacs224 : List (List Int) :=
         [-2192, 46790], [-2193, 46790], [-2221, 46790], [-2242, 46790],
         [-2257, 46790], [-2267, 46790], [-2272, 46790], [-2275, 46790]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs225 : List (List Int) :=
   [
         [-2276, 46790], [-2297, 46790], [-2312, 46790], [-2322, 46790],
@@ -6750,6 +7015,7 @@ def expectedImplicationDimacs225 : List (List Int) :=
         [-2431, 46792], [-2432, 46792], [-2433, 46792], [-2434, 46792],
         [-2435, 46792], [-2436, 46792], [-2437, 46792], [-2438, 46792]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs226 : List (List Int) :=
   [
         [-2439, 46792], [-2440, 46792], [-2441, 46792], [-2442, 46792],
@@ -6769,6 +7035,7 @@ def expectedImplicationDimacs226 : List (List Int) :=
         [-2453, 46797], [-2454, 46797], [-2455, 46797], [-2456, 46797],
         [-2457, 46797], [-2458, 46797], [-2459, 46797], [-2460, 46797]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs227 : List (List Int) :=
   [
         [-2461, 46797], [-2462, 46797], [-2463, 46797], [-2464, 46797],
@@ -6788,6 +7055,7 @@ def expectedImplicationDimacs227 : List (List Int) :=
         [-2458, 46801], [-2474, 46801], [-2475, 46801], [-2476, 46801],
         [-2477, 46801], [-2478, 46801], [-2479, 46801], [-2480, 46801]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs228 : List (List Int) :=
   [
         [-2481, 46801], [-2482, 46801], [-2483, 46801], [-2484, 46801],
@@ -6807,6 +7075,7 @@ def expectedImplicationDimacs228 : List (List Int) :=
         [-2496, 46804], [-2497, 46804], [-2498, 46804], [-2414, 46805],
         [-2442, 46805], [-2463, 46805], [-2478, 46805], [-2492, 46805]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs229 : List (List Int) :=
   [
         [-2495, 46805], [-2497, 46805], [-2498, 46805], [-2399, 46806],
@@ -6826,6 +7095,7 @@ def expectedImplicationDimacs229 : List (List Int) :=
         [-2466, 46809], [-2481, 46809], [-2491, 46809], [-2500, 46809],
         [-2502, 46809], [-2504, 46809], [-2418, 46810], [-2446, 46810]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs230 : List (List Int) :=
   [
         [-2467, 46810], [-2482, 46810], [-2492, 46810], [-2501, 46810],
@@ -6845,6 +7115,7 @@ def expectedImplicationDimacs230 : List (List Int) :=
         [-2507, 46813], [-2421, 46814], [-2449, 46814], [-2470, 46814],
         [-2485, 46814], [-2495, 46814], [-2501, 46814], [-2506, 46814]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs231 : List (List Int) :=
   [
         [-2507, 46814], [-2401, 46815], [-2407, 46815], [-2412, 46815],
@@ -6864,6 +7135,7 @@ def expectedImplicationDimacs231 : List (List Int) :=
         [-2420, 46818], [-2422, 46818], [-2424, 46818], [-2430, 46818],
         [-2436, 46818], [-2441, 46818], [-2445, 46818], [-2448, 46818]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs232 : List (List Int) :=
   [
         [-2450, 46818], [-2452, 46818], [-2457, 46818], [-2462, 46818],
@@ -6883,6 +7155,7 @@ def expectedImplicationDimacs232 : List (List Int) :=
         [-2534, 46820], [-2535, 46820], [-2536, 46820], [-2509, 46821],
         [-2510, 46821], [-2511, 46821], [-2512, 46821], [-2513, 46821]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs233 : List (List Int) :=
   [
         [-2514, 46821], [-2515, 46821], [-2509, 46822], [-2516, 46822],
@@ -6902,6 +7175,7 @@ def expectedImplicationDimacs233 : List (List Int) :=
         [-2402, 46829], [-2403, 46829], [-2509, 46829], [-2510, 46829],
         [-2511, 46829], [-2512, 46829], [-2513, 46829], [-2514, 46829]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs234 : List (List Int) :=
   [
         [-2515, 46829], [-2537, 46829], [-2538, 46829], [-2539, 46829],
@@ -6921,6 +7195,7 @@ def expectedImplicationDimacs234 : List (List Int) :=
         [-2540, 46834], [-2545, 46834], [-2549, 46834], [-2552, 46834],
         [-2555, 46834], [-2556, 46834], [-2402, 46835], [-2514, 46835]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs235 : List (List Int) :=
   [
         [-2541, 46835], [-2546, 46835], [-2550, 46835], [-2553, 46835],
@@ -6940,6 +7215,7 @@ def expectedImplicationDimacs235 : List (List Int) :=
         [-2562, 46838], [-2405, 46839], [-2517, 46839], [-2538, 46839],
         [-2558, 46839], [-2563, 46839], [-2564, 46839], [-2565, 46839]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs236 : List (List Int) :=
   [
         [-2566, 46839], [-2406, 46840], [-2518, 46840], [-2539, 46840],
@@ -6959,6 +7235,7 @@ def expectedImplicationDimacs236 : List (List Int) :=
         [-2561, 46844], [-2562, 46844], [-2573, 46844], [-2574, 46844],
         [-2575, 46844], [-2576, 46844], [-2577, 46844], [-2578, 46844]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs237 : List (List Int) :=
   [
         [-2579, 46844], [-2580, 46844], [-2581, 46844], [-2582, 46844],
@@ -6978,6 +7255,7 @@ def expectedImplicationDimacs237 : List (List Int) :=
         [-2574, 46851], [-2583, 46851], [-2586, 46851], [-2587, 46851],
         [-2417, 46852], [-2529, 46852], [-2550, 46852], [-2565, 46852]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs238 : List (List Int) :=
   [
         [-2575, 46852], [-2584, 46852], [-2586, 46852], [-2588, 46852],
@@ -6997,6 +7275,7 @@ def expectedImplicationDimacs238 : List (List Int) :=
         [-2582, 46859], [-2588, 46859], [-2591, 46859], [-2592, 46859],
         [-2425, 46860], [-2509, 46860], [-2593, 46860], [-2594, 46860]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs239 : List (List Int) :=
   [
         [-2595, 46860], [-2596, 46860], [-2597, 46860], [-2598, 46860],
@@ -7016,6 +7295,7 @@ def expectedImplicationDimacs239 : List (List Int) :=
         [-2615, 46867], [-2616, 46867], [-2617, 46867], [-2618, 46867],
         [-2433, 46868], [-2517, 46868], [-2594, 46868], [-2614, 46868]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs240 : List (List Int) :=
   [
         [-2619, 46868], [-2620, 46868], [-2621, 46868], [-2622, 46868],
@@ -7035,6 +7315,7 @@ def expectedImplicationDimacs240 : List (List Int) :=
         [-2630, 46875], [-2633, 46875], [-2636, 46875], [-2637, 46875],
         [-2441, 46876], [-2525, 46876], [-2602, 46876], [-2617, 46876]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs241 : List (List Int) :=
   [
         [-2631, 46876], [-2634, 46876], [-2636, 46876], [-2638, 46876],
@@ -7054,6 +7335,7 @@ def expectedImplicationDimacs241 : List (List Int) :=
         [-2528, 46880], [-2605, 46880], [-2620, 46880], [-2630, 46880],
         [-2639, 46880], [-2642, 46880], [-2643, 46880], [-2445, 46881]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs242 : List (List Int) :=
   [
         [-2529, 46881], [-2606, 46881], [-2621, 46881], [-2631, 46881],
@@ -7073,6 +7355,7 @@ def expectedImplicationDimacs242 : List (List Int) :=
         [-2645, 46884], [-2646, 46884], [-2448, 46885], [-2532, 46885],
         [-2609, 46885], [-2624, 46885], [-2634, 46885], [-2640, 46885]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs243 : List (List Int) :=
   [
         [-2645, 46885], [-2647, 46885], [-2449, 46886], [-2533, 46886],
@@ -7092,6 +7375,7 @@ def expectedImplicationDimacs243 : List (List Int) :=
         [-2627, 46889], [-2637, 46889], [-2643, 46889], [-2646, 46889],
         [-2648, 46889], [-2430, 46890], [-2436, 46890], [-2441, 46890]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs244 : List (List Int) :=
   [
         [-2445, 46890], [-2448, 46890], [-2450, 46890], [-2452, 46890],
@@ -7111,6 +7395,7 @@ def expectedImplicationDimacs244 : List (List Int) :=
         [-2607, 46892], [-2610, 46892], [-2612, 46892], [-2613, 46892],
         [-2618, 46892], [-2622, 46892], [-2625, 46892], [-2627, 46892]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs245 : List (List Int) :=
   [
         [-2628, 46892], [-2632, 46892], [-2635, 46892], [-2637, 46892],
@@ -7130,6 +7415,7 @@ def expectedImplicationDimacs245 : List (List Int) :=
         [-2539, 46895], [-2595, 46895], [-2650, 46895], [-2654, 46895],
         [-2658, 46895], [-2659, 46895], [-2660, 46895], [-2456, 46896]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs246 : List (List Int) :=
   [
         [-2540, 46896], [-2596, 46896], [-2651, 46896], [-2655, 46896],
@@ -7149,6 +7435,7 @@ def expectedImplicationDimacs246 : List (List Int) :=
         [-2671, 46899], [-2672, 46899], [-2673, 46899], [-2459, 46900],
         [-2543, 46900], [-2599, 46900], [-2649, 46900], [-2664, 46900]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs247 : List (List Int) :=
   [
         [-2665, 46900], [-2666, 46900], [-2667, 46900], [-2460, 46901],
@@ -7168,6 +7455,7 @@ def expectedImplicationDimacs247 : List (List Int) :=
         [-2675, 46907], [-2677, 46907], [-2679, 46907], [-2467, 46908],
         [-2551, 46908], [-2607, 46908], [-2657, 46908], [-2667, 46908]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs248 : List (List Int) :=
   [
         [-2676, 46908], [-2678, 46908], [-2679, 46908], [-2468, 46909],
@@ -7187,6 +7475,7 @@ def expectedImplicationDimacs248 : List (List Int) :=
         [-2470, 46915], [-2472, 46915], [-2473, 46915], [-2515, 46915],
         [-2542, 46915], [-2547, 46915], [-2551, 46915], [-2554, 46915]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs249 : List (List Int) :=
   [
         [-2556, 46915], [-2557, 46915], [-2598, 46915], [-2603, 46915],
@@ -7206,6 +7495,7 @@ def expectedImplicationDimacs249 : List (List Int) :=
         [-2691, 46916], [-2692, 46916], [-2693, 46916], [-2474, 46917],
         [-2558, 46917], [-2614, 46917], [-2649, 46917], [-2684, 46917]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs250 : List (List Int) :=
   [
         [-2685, 46917], [-2686, 46917], [-2687, 46917], [-2475, 46918],
@@ -7225,6 +7515,7 @@ def expectedImplicationDimacs250 : List (List Int) :=
         [-2695, 46924], [-2697, 46924], [-2699, 46924], [-2482, 46925],
         [-2566, 46925], [-2622, 46925], [-2657, 46925], [-2687, 46925]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs251 : List (List Int) :=
   [
         [-2696, 46925], [-2698, 46925], [-2699, 46925], [-2483, 46926],
@@ -7244,6 +7535,7 @@ def expectedImplicationDimacs251 : List (List Int) :=
         [-2485, 46932], [-2487, 46932], [-2488, 46932], [-2521, 46932],
         [-2542, 46932], [-2562, 46932], [-2566, 46932], [-2569, 46932]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs252 : List (List Int) :=
   [
         [-2571, 46932], [-2572, 46932], [-2598, 46932], [-2618, 46932],
@@ -7263,6 +7555,7 @@ def expectedImplicationDimacs252 : List (List Int) :=
         [-2577, 46937], [-2633, 46937], [-2668, 46937], [-2688, 46937],
         [-2704, 46937], [-2710, 46937], [-2711, 46937], [-2494, 46938]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs253 : List (List Int) :=
   [
         [-2578, 46938], [-2634, 46938], [-2669, 46938], [-2689, 46938],
@@ -7282,6 +7575,7 @@ def expectedImplicationDimacs253 : List (List Int) :=
         [-2632, 46943], [-2635, 46943], [-2637, 46943], [-2638, 46943],
         [-2653, 46943], [-2667, 46943], [-2670, 46943], [-2672, 46943]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs254 : List (List Int) :=
   [
         [-2673, 46943], [-2687, 46943], [-2690, 46943], [-2692, 46943],
@@ -7301,6 +7595,7 @@ def expectedImplicationDimacs254 : List (List Int) :=
         [-2584, 46946], [-2640, 46946], [-2675, 46946], [-2695, 46946],
         [-2705, 46946], [-2714, 46946], [-2716, 46946], [-2501, 46947]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs255 : List (List Int) :=
   [
         [-2585, 46947], [-2641, 46947], [-2676, 46947], [-2696, 46947],
@@ -7320,6 +7615,7 @@ def expectedImplicationDimacs255 : List (List Int) :=
         [-2708, 46950], [-2715, 46950], [-2717, 46950], [-2417, 46951],
         [-2445, 46951], [-2466, 46951], [-2481, 46951], [-2491, 46951]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs256 : List (List Int) :=
   [
         [-2500, 46951], [-2502, 46951], [-2504, 46951], [-2529, 46951],
@@ -7339,6 +7635,7 @@ def expectedImplicationDimacs256 : List (List Int) :=
         [-2632, 46953], [-2641, 46953], [-2643, 46953], [-2644, 46953],
         [-2657, 46953], [-2667, 46953], [-2676, 46953], [-2678, 46953]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs257 : List (List Int) :=
   [
         [-2679, 46953], [-2687, 46953], [-2696, 46953], [-2698, 46953],
@@ -7358,6 +7655,7 @@ def expectedImplicationDimacs257 : List (List Int) :=
         [-2590, 46956], [-2646, 46956], [-2681, 46956], [-2701, 46956],
         [-2711, 46956], [-2715, 46956], [-2718, 46956], [-2420, 46957]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs258 : List (List Int) :=
   [
         [-2448, 46957], [-2469, 46957], [-2484, 46957], [-2494, 46957],
@@ -7377,6 +7675,7 @@ def expectedImplicationDimacs258 : List (List Int) :=
         [-2590, 46959], [-2591, 46959], [-2610, 46959], [-2625, 46959],
         [-2635, 46959], [-2641, 46959], [-2646, 46959], [-2647, 46959]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs259 : List (List Int) :=
   [
         [-2660, 46959], [-2670, 46959], [-2676, 46959], [-2681, 46959],
@@ -7396,6 +7695,7 @@ def expectedImplicationDimacs259 : List (List Int) :=
         [-2713, 46961], [-2717, 46961], [-2718, 46961], [-2423, 46962],
         [-2451, 46962], [-2472, 46962], [-2487, 46962], [-2497, 46962]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs260 : List (List Int) :=
   [
         [-2503, 46962], [-2506, 46962], [-2508, 46962], [-2535, 46962],
@@ -7415,6 +7715,7 @@ def expectedImplicationDimacs260 : List (List Int) :=
         [-2683, 46963], [-2693, 46963], [-2699, 46963], [-2702, 46963],
         [-2703, 46963], [-2709, 46963], [-2712, 46963], [-2713, 46963]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs261 : List (List Int) :=
   [
         [-2716, 46963], [-2717, 46963], [-2718, 46963], [-2719, 46964],
@@ -7434,6 +7735,7 @@ def expectedImplicationDimacs261 : List (List Int) :=
         [-2772, 46965], [-2773, 46965], [-2774, 46965], [-2747, 46966],
         [-2748, 46966], [-2749, 46966], [-2750, 46966], [-2751, 46966]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs262 : List (List Int) :=
   [
         [-2752, 46966], [-2753, 46966], [-2747, 46967], [-2754, 46967],
@@ -7453,6 +7755,7 @@ def expectedImplicationDimacs262 : List (List Int) :=
         [-2794, 46970], [-2795, 46970], [-2719, 46971], [-2747, 46971],
         [-2775, 46971], [-2776, 46971], [-2777, 46971], [-2778, 46971]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs263 : List (List Int) :=
   [
         [-2779, 46971], [-2780, 46971], [-2720, 46972], [-2748, 46972],
@@ -7472,6 +7775,7 @@ def expectedImplicationDimacs263 : List (List Int) :=
         [-2796, 46975], [-2797, 46975], [-2798, 46975], [-2799, 46975],
         [-2800, 46975], [-2731, 46976], [-2759, 46976], [-2780, 46976]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs264 : List (List Int) :=
   [
         [-2800, 46976], [-2804, 46976], [-2807, 46976], [-2809, 46976],
@@ -7491,6 +7795,7 @@ def expectedImplicationDimacs264 : List (List Int) :=
         [-2755, 46979], [-2760, 46979], [-2765, 46979], [-2766, 46979],
         [-2767, 46979], [-2768, 46979], [-2776, 46979], [-2781, 46979]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs265 : List (List Int) :=
   [
         [-2786, 46979], [-2787, 46979], [-2788, 46979], [-2789, 46979],
@@ -7510,6 +7815,7 @@ def expectedImplicationDimacs265 : List (List Int) :=
         [-2742, 46984], [-2743, 46984], [-2750, 46984], [-2756, 46984],
         [-2761, 46984], [-2765, 46984], [-2769, 46984], [-2770, 46984]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs266 : List (List Int) :=
   [
         [-2771, 46984], [-2777, 46984], [-2782, 46984], [-2786, 46984],
@@ -7529,6 +7835,7 @@ def expectedImplicationDimacs266 : List (List Int) :=
         [-2766, 46988], [-2769, 46988], [-2772, 46988], [-2773, 46988],
         [-2778, 46988], [-2783, 46988], [-2787, 46988], [-2790, 46988]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs267 : List (List Int) :=
   [
         [-2793, 46988], [-2794, 46988], [-2798, 46988], [-2802, 46988],
@@ -7548,6 +7855,7 @@ def expectedImplicationDimacs267 : List (List Int) :=
         [-2808, 46991], [-2810, 46991], [-2813, 46991], [-2816, 46991],
         [-2818, 46991], [-2820, 46991], [-2822, 46991], [-2824, 46991]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs268 : List (List Int) :=
   [
         [-2826, 46991], [-2827, 46991], [-2829, 46991], [-2830, 46991],
@@ -7567,6 +7875,7 @@ def expectedImplicationDimacs268 : List (List Int) :=
         [-2844, 46996], [-2845, 46996], [-2846, 46996], [-2847, 46996],
         [-2848, 46996], [-2833, 46997], [-2839, 46997], [-2844, 46997]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs269 : List (List Int) :=
   [
         [-2849, 46997], [-2850, 46997], [-2851, 46997], [-2852, 46997],
@@ -7586,6 +7895,7 @@ def expectedImplicationDimacs269 : List (List Int) :=
         [-2869, 47002], [-2870, 47002], [-2871, 47002], [-2872, 47002],
         [-2873, 47002], [-2874, 47002], [-2875, 47002], [-2876, 47002]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs270 : List (List Int) :=
   [
         [-2877, 47002], [-2878, 47002], [-2879, 47002], [-2719, 47003],
@@ -7605,6 +7915,7 @@ def expectedImplicationDimacs270 : List (List Int) :=
         [-2876, 47009], [-2878, 47009], [-2879, 47009], [-2719, 47010],
         [-2726, 47010], [-2727, 47010], [-2728, 47010], [-2729, 47010]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs271 : List (List Int) :=
   [
         [-2730, 47010], [-2731, 47010], [-2831, 47010], [-2838, 47010],
@@ -7624,6 +7935,7 @@ def expectedImplicationDimacs271 : List (List Int) :=
         [-2862, 47014], [-2882, 47014], [-2886, 47014], [-2889, 47014],
         [-2892, 47014], [-2893, 47014], [-2730, 47015], [-2842, 47015]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs272 : List (List Int) :=
   [
         [-2863, 47015], [-2883, 47015], [-2887, 47015], [-2890, 47015],
@@ -7643,6 +7955,7 @@ def expectedImplicationDimacs272 : List (List Int) :=
         [-2898, 47018], [-2733, 47019], [-2845, 47019], [-2866, 47019],
         [-2881, 47019], [-2895, 47019], [-2899, 47019], [-2900, 47019]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs273 : List (List Int) :=
   [
         [-2901, 47019], [-2734, 47020], [-2846, 47020], [-2867, 47020],
@@ -7662,6 +7975,7 @@ def expectedImplicationDimacs273 : List (List Int) :=
         [-2910, 47026], [-2741, 47027], [-2853, 47027], [-2874, 47027],
         [-2889, 47027], [-2899, 47027], [-2905, 47027], [-2911, 47027]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs274 : List (List Int) :=
   [
         [-2912, 47027], [-2742, 47028], [-2854, 47028], [-2875, 47028],
@@ -7681,6 +7995,7 @@ def expectedImplicationDimacs274 : List (List Int) :=
         [-2925, 47034], [-2749, 47035], [-2833, 47035], [-2916, 47035],
         [-2921, 47035], [-2926, 47035], [-2927, 47035], [-2928, 47035]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs275 : List (List Int) :=
   [
         [-2929, 47035], [-2750, 47036], [-2834, 47036], [-2917, 47036],
@@ -7700,6 +8015,7 @@ def expectedImplicationDimacs275 : List (List Int) :=
         [-2947, 47042], [-2757, 47043], [-2841, 47043], [-2918, 47043],
         [-2938, 47043], [-2942, 47043], [-2945, 47043], [-2948, 47043]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs276 : List (List Int) :=
   [
         [-2949, 47043], [-2758, 47044], [-2842, 47044], [-2919, 47044],
@@ -7719,6 +8035,7 @@ def expectedImplicationDimacs276 : List (List Int) :=
         [-2960, 47050], [-2749, 47051], [-2755, 47051], [-2760, 47051],
         [-2765, 47051], [-2766, 47051], [-2767, 47051], [-2768, 47051]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs277 : List (List Int) :=
   [
         [-2833, 47051], [-2839, 47051], [-2844, 47051], [-2849, 47051],
@@ -7738,6 +8055,7 @@ def expectedImplicationDimacs277 : List (List Int) :=
         [-2954, 47055], [-2963, 47055], [-2965, 47055], [-2966, 47055],
         [-2750, 47056], [-2756, 47056], [-2761, 47056], [-2765, 47056]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs278 : List (List Int) :=
   [
         [-2769, 47056], [-2770, 47056], [-2771, 47056], [-2834, 47056],
@@ -7757,6 +8075,7 @@ def expectedImplicationDimacs278 : List (List Int) :=
         [-2757, 47060], [-2762, 47060], [-2766, 47060], [-2769, 47060],
         [-2772, 47060], [-2773, 47060], [-2835, 47060], [-2841, 47060]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs279 : List (List Int) :=
   [
         [-2846, 47060], [-2850, 47060], [-2853, 47060], [-2856, 47060],
@@ -7776,6 +8095,7 @@ def expectedImplicationDimacs279 : List (List Int) :=
         [-2919, 47063], [-2924, 47063], [-2928, 47063], [-2931, 47063],
         [-2933, 47063], [-2935, 47063], [-2939, 47063], [-2943, 47063]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs280 : List (List Int) :=
   [
         [-2946, 47063], [-2948, 47063], [-2950, 47063], [-2953, 47063],
@@ -7795,6 +8115,7 @@ def expectedImplicationDimacs280 : List (List Int) :=
         [-2719, 47066], [-2747, 47066], [-2775, 47066], [-2776, 47066],
         [-2777, 47066], [-2778, 47066], [-2779, 47066], [-2780, 47066]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs281 : List (List Int) :=
   [
         [-2831, 47066], [-2859, 47066], [-2860, 47066], [-2861, 47066],
@@ -7814,6 +8135,7 @@ def expectedImplicationDimacs281 : List (List Int) :=
         [-2978, 47070], [-2981, 47070], [-2983, 47070], [-2985, 47070],
         [-2780, 47071], [-2864, 47071], [-2920, 47071], [-2975, 47071]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs282 : List (List Int) :=
   [
         [-2979, 47071], [-2982, 47071], [-2984, 47071], [-2985, 47071],
@@ -7833,6 +8155,7 @@ def expectedImplicationDimacs282 : List (List Int) :=
         [-2783, 47075], [-2867, 47075], [-2923, 47075], [-2973, 47075],
         [-2987, 47075], [-2990, 47075], [-2993, 47075], [-2994, 47075]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs283 : List (List Int) :=
   [
         [-2784, 47076], [-2868, 47076], [-2924, 47076], [-2974, 47076],
@@ -7852,6 +8175,7 @@ def expectedImplicationDimacs283 : List (List Int) :=
         [-2791, 47083], [-2875, 47083], [-2931, 47083], [-2981, 47083],
         [-2991, 47083], [-2997, 47083], [-3002, 47083], [-3004, 47083]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs284 : List (List Int) :=
   [
         [-2792, 47084], [-2876, 47084], [-2932, 47084], [-2982, 47084],
@@ -7871,6 +8195,7 @@ def expectedImplicationDimacs284 : List (List Int) :=
         [-2984, 47088], [-2985, 47088], [-2989, 47088], [-2992, 47088],
         [-2994, 47088], [-2995, 47088], [-2998, 47088], [-3000, 47088]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs285 : List (List Int) :=
   [
         [-3001, 47088], [-3003, 47088], [-3004, 47088], [-3005, 47088],
@@ -7890,6 +8215,7 @@ def expectedImplicationDimacs285 : List (List Int) :=
         [-2798, 47092], [-2882, 47092], [-2938, 47092], [-2973, 47092],
         [-3007, 47092], [-3010, 47092], [-3013, 47092], [-3014, 47092]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs286 : List (List Int) :=
   [
         [-2799, 47093], [-2883, 47093], [-2939, 47093], [-2974, 47093],
@@ -7909,6 +8235,7 @@ def expectedImplicationDimacs286 : List (List Int) :=
         [-2806, 47100], [-2890, 47100], [-2946, 47100], [-2981, 47100],
         [-3011, 47100], [-3017, 47100], [-3022, 47100], [-3024, 47100]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs287 : List (List Int) :=
   [
         [-2807, 47101], [-2891, 47101], [-2947, 47101], [-2982, 47101],
@@ -7928,6 +8255,7 @@ def expectedImplicationDimacs287 : List (List Int) :=
         [-2984, 47105], [-2985, 47105], [-3009, 47105], [-3012, 47105],
         [-3014, 47105], [-3015, 47105], [-3018, 47105], [-3020, 47105]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs288 : List (List Int) :=
   [
         [-3021, 47105], [-3023, 47105], [-3024, 47105], [-3025, 47105],
@@ -7947,6 +8275,7 @@ def expectedImplicationDimacs288 : List (List Int) :=
         [-3012, 47112], [-3028, 47112], [-3033, 47112], [-3034, 47112],
         [-2818, 47113], [-2902, 47113], [-2958, 47113], [-2993, 47113]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs289 : List (List Int) :=
   [
         [-3013, 47113], [-3029, 47113], [-3032, 47113], [-3035, 47113],
@@ -7966,6 +8295,7 @@ def expectedImplicationDimacs289 : List (List Int) :=
         [-2737, 47117], [-2765, 47117], [-2786, 47117], [-2801, 47117],
         [-2811, 47117], [-2821, 47117], [-2822, 47117], [-2823, 47117]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs290 : List (List Int) :=
   [
         [-2849, 47117], [-2870, 47117], [-2885, 47117], [-2895, 47117],
@@ -7985,6 +8315,7 @@ def expectedImplicationDimacs290 : List (List Int) :=
         [-2812, 47121], [-2821, 47121], [-2824, 47121], [-2825, 47121],
         [-2850, 47121], [-2871, 47121], [-2886, 47121], [-2896, 47121]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs291 : List (List Int) :=
   [
         [-2905, 47121], [-2908, 47121], [-2909, 47121], [-2927, 47121],
@@ -8004,6 +8335,7 @@ def expectedImplicationDimacs291 : List (List Int) :=
         [-2943, 47124], [-2953, 47124], [-2962, 47124], [-2964, 47124],
         [-2966, 47124], [-2978, 47124], [-2988, 47124], [-2997, 47124]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs292 : List (List Int) :=
   [
         [-2999, 47124], [-3001, 47124], [-3008, 47124], [-3017, 47124],
@@ -8023,6 +8355,7 @@ def expectedImplicationDimacs292 : List (List Int) :=
         [-2741, 47127], [-2769, 47127], [-2790, 47127], [-2805, 47127],
         [-2815, 47127], [-2821, 47127], [-2827, 47127], [-2828, 47127]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs293 : List (List Int) :=
   [
         [-2853, 47127], [-2874, 47127], [-2889, 47127], [-2899, 47127],
@@ -8042,6 +8375,7 @@ def expectedImplicationDimacs293 : List (List Int) :=
         [-2906, 47130], [-2911, 47130], [-2913, 47130], [-2931, 47130],
         [-2946, 47130], [-2956, 47130], [-2962, 47130], [-2967, 47130]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs294 : List (List Int) :=
   [
         [-2969, 47130], [-2981, 47130], [-2991, 47130], [-2997, 47130],
@@ -8061,6 +8395,7 @@ def expectedImplicationDimacs294 : List (List Int) :=
         [-3034, 47132], [-3037, 47132], [-3038, 47132], [-3040, 47132],
         [-2744, 47133], [-2772, 47133], [-2793, 47133], [-2808, 47133]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs295 : List (List Int) :=
   [
         [-2818, 47133], [-2824, 47133], [-2827, 47133], [-2830, 47133],
@@ -8080,6 +8415,7 @@ def expectedImplicationDimacs295 : List (List Int) :=
         [-2949, 47135], [-2959, 47135], [-2965, 47135], [-2968, 47135],
         [-2970, 47135], [-2984, 47135], [-2994, 47135], [-3000, 47135]]
 
+/-- Generated implication-clause chunk for the fresh exact-twelve definitions. -/
 def expectedImplicationDimacs296 : List (List Int) :=
   [
         [-3003, 47135], [-3005, 47135], [-3014, 47135], [-3020, 47135],
@@ -8095,6 +8431,7 @@ def expectedImplicationDimacs296 : List (List Int) :=
         [-3024, 47136], [-3025, 47136], [-3031, 47136], [-3034, 47136],
         [-3035, 47136], [-3038, 47136], [-3039, 47136], [-3040, 47136]]
 
+/-- Complete concatenation of the generated implication-clause chunks. -/
 def expectedImplicationDimacs : List (List Int) :=
   expectedImplicationDimacs000 ++
     expectedImplicationDimacs001 ++
@@ -8401,6 +8738,7 @@ theorem implicationDimacs_eq :
     implicationDimacs = expectedImplicationDimacs := by
   native_decide
 
+/-- Validate one positive-membership definition against its variable and candidate-index constraints. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (45489 < definition.varIndex ∧
@@ -8414,6 +8752,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- The finite definition compiler preserves validity for this exact-twelve ingress. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
@@ -8475,6 +8814,7 @@ theorem implicationDimacs_sat
 
 /- The 11,052 realizable roles, in Python compiler order, in 96-entry
 chunks. -/
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk000 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 1, c := 0, x := 2, y := 3},
@@ -8574,6 +8914,7 @@ def familyDataChunk000 : List AllOrderCommonFiveData :=
     {a := 0, b := 1, c := 7, x := 6, y := 5},
     {a := 0, b := 1, c := 7, x := 8, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk001 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 1, c := 7, x := 9, y := 5},
@@ -8673,6 +9014,7 @@ def familyDataChunk001 : List AllOrderCommonFiveData :=
     {a := 0, b := 1, c := 11, x := 7, y := 9},
     {a := 0, b := 1, c := 11, x := 8, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk002 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 2, c := 0, x := 1, y := 3},
@@ -8772,6 +9114,7 @@ def familyDataChunk002 : List AllOrderCommonFiveData :=
     {a := 0, b := 2, c := 6, x := 10, y := 11},
     {a := 0, b := 2, c := 7, x := 1, y := 3}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk003 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 2, c := 7, x := 1, y := 4},
@@ -8871,6 +9214,7 @@ def familyDataChunk003 : List AllOrderCommonFiveData :=
     {a := 0, b := 3, c := 2, x := 10, y := 8},
     {a := 0, b := 3, c := 2, x := 11, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk004 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 3, c := 2, x := 10, y := 9},
@@ -8970,6 +9314,7 @@ def familyDataChunk004 : List AllOrderCommonFiveData :=
     {a := 0, b := 4, c := 9, x := 8, y := 2},
     {a := 0, b := 4, c := 9, x := 10, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk005 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 4, c := 10, x := 11, y := 1},
@@ -9069,6 +9414,7 @@ def familyDataChunk005 : List AllOrderCommonFiveData :=
     {a := 0, b := 6, c := 0, x := 3, y := 4},
     {a := 0, b := 6, c := 0, x := 3, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk006 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 6, c := 0, x := 3, y := 10},
@@ -9168,6 +9514,7 @@ def familyDataChunk006 : List AllOrderCommonFiveData :=
     {a := 0, b := 7, c := 9, x := 6, y := 5},
     {a := 0, b := 7, c := 9, x := 6, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk007 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 7, c := 9, x := 6, y := 11},
@@ -9267,6 +9614,7 @@ def familyDataChunk007 : List AllOrderCommonFiveData :=
     {a := 0, b := 9, c := 0, x := 3, y := 4},
     {a := 0, b := 9, c := 0, x := 3, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk008 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 9, c := 0, x := 3, y := 10},
@@ -9366,6 +9714,7 @@ def familyDataChunk008 : List AllOrderCommonFiveData :=
     {a := 0, b := 10, c := 6, x := 8, y := 4},
     {a := 0, b := 10, c := 6, x := 9, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk009 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 10, c := 6, x := 7, y := 5},
@@ -9465,6 +9814,7 @@ def familyDataChunk009 : List AllOrderCommonFiveData :=
     {a := 0, b := 11, c := 6, x := 3, y := 5},
     {a := 0, b := 11, c := 6, x := 7, y := 3}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk010 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 11, c := 6, x := 8, y := 3},
@@ -9564,6 +9914,7 @@ def familyDataChunk010 : List AllOrderCommonFiveData :=
     {a := 1, b := 0, c := 3, x := 2, y := 6},
     {a := 1, b := 0, c := 3, x := 2, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk011 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 0, c := 3, x := 2, y := 8},
@@ -9663,6 +10014,7 @@ def familyDataChunk011 : List AllOrderCommonFiveData :=
     {a := 1, b := 0, c := 9, x := 10, y := 11},
     {a := 1, b := 0, c := 10, x := 2, y := 3}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk012 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 0, c := 10, x := 2, y := 4},
@@ -9762,6 +10114,7 @@ def familyDataChunk012 : List AllOrderCommonFiveData :=
     {a := 1, b := 2, c := 3, x := 7, y := 9},
     {a := 1, b := 2, c := 3, x := 7, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk013 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 2, c := 3, x := 7, y := 11},
@@ -9861,6 +10214,7 @@ def familyDataChunk013 : List AllOrderCommonFiveData :=
     {a := 1, b := 2, c := 9, x := 4, y := 11},
     {a := 1, b := 2, c := 9, x := 5, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk014 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 2, c := 9, x := 5, y := 11},
@@ -9960,6 +10314,7 @@ def familyDataChunk014 : List AllOrderCommonFiveData :=
     {a := 1, b := 4, c := 0, x := 11, y := 6},
     {a := 1, b := 4, c := 0, x := 10, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk015 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 4, c := 0, x := 11, y := 7},
@@ -10059,6 +10414,7 @@ def familyDataChunk015 : List AllOrderCommonFiveData :=
     {a := 1, b := 5, c := 11, x := 0, y := 6},
     {a := 1, b := 5, c := 11, x := 0, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk016 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 5, c := 11, x := 0, y := 8},
@@ -10158,6 +10514,7 @@ def familyDataChunk016 : List AllOrderCommonFiveData :=
     {a := 1, b := 7, c := 3, x := 0, y := 11},
     {a := 1, b := 7, c := 3, x := 4, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk017 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 7, c := 3, x := 5, y := 2},
@@ -10257,6 +10614,7 @@ def familyDataChunk017 : List AllOrderCommonFiveData :=
     {a := 1, b := 8, c := 6, x := 9, y := 0},
     {a := 1, b := 8, c := 6, x := 9, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk018 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 8, c := 6, x := 9, y := 3},
@@ -10356,6 +10714,7 @@ def familyDataChunk018 : List AllOrderCommonFiveData :=
     {a := 1, b := 9, c := 10, x := 7, y := 8},
     {a := 1, b := 9, c := 11, x := 10, y := 0}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk019 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 9, c := 11, x := 2, y := 3},
@@ -10455,6 +10814,7 @@ def familyDataChunk019 : List AllOrderCommonFiveData :=
     {a := 1, b := 10, c := 5, x := 4, y := 7},
     {a := 1, b := 10, c := 5, x := 4, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk020 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 10, c := 5, x := 4, y := 9},
@@ -10554,6 +10914,7 @@ def familyDataChunk020 : List AllOrderCommonFiveData :=
     {a := 1, b := 11, c := 5, x := 4, y := 9},
     {a := 1, b := 11, c := 5, x := 6, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk021 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 11, c := 5, x := 6, y := 8},
@@ -10653,6 +11014,7 @@ def familyDataChunk021 : List AllOrderCommonFiveData :=
     {a := 2, b := 0, c := 7, x := 1, y := 5},
     {a := 2, b := 0, c := 7, x := 1, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk022 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 0, c := 7, x := 1, y := 11},
@@ -10752,6 +11114,7 @@ def familyDataChunk022 : List AllOrderCommonFiveData :=
     {a := 2, b := 1, c := 0, x := 4, y := 8},
     {a := 2, b := 1, c := 0, x := 4, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk023 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 1, c := 0, x := 5, y := 6},
@@ -10851,6 +11214,7 @@ def familyDataChunk023 : List AllOrderCommonFiveData :=
     {a := 2, b := 1, c := 7, x := 8, y := 0},
     {a := 2, b := 1, c := 7, x := 9, y := 0}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk024 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 1, c := 7, x := 0, y := 10},
@@ -10950,6 +11314,7 @@ def familyDataChunk024 : List AllOrderCommonFiveData :=
     {a := 2, b := 3, c := 2, x := 9, y := 10},
     {a := 2, b := 3, c := 2, x := 9, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk025 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 3, c := 2, x := 10, y := 11},
@@ -11049,6 +11414,7 @@ def familyDataChunk025 : List AllOrderCommonFiveData :=
     {a := 2, b := 4, c := 8, x := 9, y := 0},
     {a := 2, b := 4, c := 8, x := 0, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk026 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 4, c := 8, x := 0, y := 11},
@@ -11148,6 +11514,7 @@ def familyDataChunk026 : List AllOrderCommonFiveData :=
     {a := 2, b := 6, c := 1, x := 7, y := 9},
     {a := 2, b := 6, c := 1, x := 8, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk027 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 6, c := 2, x := 1, y := 10},
@@ -11247,6 +11614,7 @@ def familyDataChunk027 : List AllOrderCommonFiveData :=
     {a := 2, b := 7, c := 5, x := 4, y := 11},
     {a := 2, b := 7, c := 5, x := 8, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk028 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 7, c := 5, x := 10, y := 11},
@@ -11346,6 +11714,7 @@ def familyDataChunk028 : List AllOrderCommonFiveData :=
     {a := 2, b := 8, c := 9, x := 6, y := 11},
     {a := 2, b := 8, c := 9, x := 7, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk029 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 8, c := 9, x := 7, y := 11},
@@ -11445,6 +11814,7 @@ def familyDataChunk029 : List AllOrderCommonFiveData :=
     {a := 2, b := 10, c := 1, x := 7, y := 9},
     {a := 2, b := 10, c := 1, x := 8, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk030 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 10, c := 3, x := 0, y := 6},
@@ -11544,6 +11914,7 @@ def familyDataChunk030 : List AllOrderCommonFiveData :=
     {a := 2, b := 11, c := 1, x := 9, y := 4},
     {a := 2, b := 11, c := 1, x := 6, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk031 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 11, c := 1, x := 7, y := 5},
@@ -11643,6 +12014,7 @@ def familyDataChunk031 : List AllOrderCommonFiveData :=
     {a := 3, b := 0, c := 1, x := 6, y := 8},
     {a := 3, b := 0, c := 1, x := 6, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk032 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 0, c := 1, x := 7, y := 8},
@@ -11742,6 +12114,7 @@ def familyDataChunk032 : List AllOrderCommonFiveData :=
     {a := 3, b := 0, c := 10, x := 7, y := 1},
     {a := 3, b := 0, c := 10, x := 8, y := 1}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk033 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 0, c := 10, x := 9, y := 1},
@@ -11841,6 +12214,7 @@ def familyDataChunk033 : List AllOrderCommonFiveData :=
     {a := 3, b := 1, c := 4, x := 8, y := 11},
     {a := 3, b := 1, c := 4, x := 9, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk034 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 1, c := 4, x := 9, y := 11},
@@ -11940,6 +12314,7 @@ def familyDataChunk034 : List AllOrderCommonFiveData :=
     {a := 3, b := 2, c := 3, x := 0, y := 11},
     {a := 3, b := 2, c := 3, x := 6, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk035 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 2, c := 3, x := 6, y := 8},
@@ -12039,6 +12414,7 @@ def familyDataChunk035 : List AllOrderCommonFiveData :=
     {a := 3, b := 4, c := 3, x := 6, y := 9},
     {a := 3, b := 4, c := 3, x := 6, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk036 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 4, c := 3, x := 6, y := 11},
@@ -12138,6 +12514,7 @@ def familyDataChunk036 : List AllOrderCommonFiveData :=
     {a := 3, b := 7, c := 3, x := 0, y := 10},
     {a := 3, b := 7, c := 3, x := 0, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk037 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 7, c := 3, x := 1, y := 10},
@@ -12237,6 +12614,7 @@ def familyDataChunk037 : List AllOrderCommonFiveData :=
     {a := 3, b := 8, c := 7, x := 9, y := 0},
     {a := 3, b := 8, c := 7, x := 9, y := 1}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk038 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 8, c := 7, x := 9, y := 2},
@@ -12336,6 +12714,7 @@ def familyDataChunk038 : List AllOrderCommonFiveData :=
     {a := 3, b := 10, c := 1, x := 8, y := 5},
     {a := 3, b := 10, c := 1, x := 9, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk039 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 10, c := 1, x := 6, y := 7},
@@ -12435,6 +12814,7 @@ def familyDataChunk039 : List AllOrderCommonFiveData :=
     {a := 3, b := 11, c := 1, x := 7, y := 8},
     {a := 3, b := 11, c := 1, x := 7, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk040 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 11, c := 1, x := 8, y := 9},
@@ -12534,6 +12914,7 @@ def familyDataChunk040 : List AllOrderCommonFiveData :=
     {a := 4, b := 0, c := 2, x := 10, y := 3},
     {a := 4, b := 0, c := 2, x := 11, y := 3}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk041 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 0, c := 2, x := 10, y := 5},
@@ -12633,6 +13014,7 @@ def familyDataChunk041 : List AllOrderCommonFiveData :=
     {a := 4, b := 0, c := 10, x := 2, y := 8},
     {a := 4, b := 0, c := 10, x := 2, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk042 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 0, c := 10, x := 6, y := 3},
@@ -12732,6 +13114,7 @@ def familyDataChunk042 : List AllOrderCommonFiveData :=
     {a := 4, b := 1, c := 5, x := 0, y := 9},
     {a := 4, b := 1, c := 5, x := 0, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk043 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 1, c := 5, x := 0, y := 11},
@@ -12831,6 +13214,7 @@ def familyDataChunk043 : List AllOrderCommonFiveData :=
     {a := 4, b := 2, c := 3, x := 7, y := 9},
     {a := 4, b := 2, c := 3, x := 7, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk044 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 2, c := 3, x := 7, y := 11},
@@ -12930,6 +13314,7 @@ def familyDataChunk044 : List AllOrderCommonFiveData :=
     {a := 4, b := 3, c := 4, x := 8, y := 9},
     {a := 4, b := 3, c := 4, x := 8, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk045 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 3, c := 4, x := 8, y := 11},
@@ -13029,6 +13414,7 @@ def familyDataChunk045 : List AllOrderCommonFiveData :=
     {a := 4, b := 7, c := 4, x := 0, y := 10},
     {a := 4, b := 7, c := 4, x := 0, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk046 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 7, c := 4, x := 1, y := 10},
@@ -13128,6 +13514,7 @@ def familyDataChunk046 : List AllOrderCommonFiveData :=
     {a := 4, b := 8, c := 9, x := 6, y := 0},
     {a := 4, b := 8, c := 9, x := 7, y := 0}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk047 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 8, c := 9, x := 6, y := 1},
@@ -13227,6 +13614,7 @@ def familyDataChunk047 : List AllOrderCommonFiveData :=
     {a := 4, b := 10, c := 1, x := 8, y := 9},
     {a := 4, b := 10, c := 3, x := 0, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk048 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 10, c := 3, x := 0, y := 6},
@@ -13326,6 +13714,7 @@ def familyDataChunk048 : List AllOrderCommonFiveData :=
     {a := 4, b := 11, c := 3, x := 0, y := 9},
     {a := 4, b := 11, c := 3, x := 2, y := 6}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk049 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 11, c := 3, x := 2, y := 7},
@@ -13425,6 +13814,7 @@ def familyDataChunk049 : List AllOrderCommonFiveData :=
     {a := 5, b := 0, c := 3, x := 2, y := 6},
     {a := 5, b := 0, c := 3, x := 2, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk050 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 0, c := 3, x := 2, y := 8},
@@ -13524,6 +13914,7 @@ def familyDataChunk050 : List AllOrderCommonFiveData :=
     {a := 5, b := 0, c := 10, x := 7, y := 4},
     {a := 5, b := 0, c := 10, x := 8, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk051 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 0, c := 10, x := 9, y := 4},
@@ -13623,6 +14014,7 @@ def familyDataChunk051 : List AllOrderCommonFiveData :=
     {a := 5, b := 1, c := 5, x := 6, y := 11},
     {a := 5, b := 1, c := 5, x := 7, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk052 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 1, c := 5, x := 7, y := 9},
@@ -13722,6 +14114,7 @@ def familyDataChunk052 : List AllOrderCommonFiveData :=
     {a := 5, b := 2, c := 3, x := 9, y := 11},
     {a := 5, b := 2, c := 3, x := 10, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk053 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 2, c := 4, x := 0, y := 6},
@@ -13821,6 +14214,7 @@ def familyDataChunk053 : List AllOrderCommonFiveData :=
     {a := 5, b := 4, c := 5, x := 0, y := 7},
     {a := 5, b := 4, c := 5, x := 0, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk054 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 4, c := 5, x := 0, y := 9},
@@ -13920,6 +14314,7 @@ def familyDataChunk054 : List AllOrderCommonFiveData :=
     {a := 5, b := 7, c := 5, x := 0, y := 10},
     {a := 5, b := 7, c := 5, x := 0, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk055 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 7, c := 5, x := 1, y := 10},
@@ -14019,6 +14414,7 @@ def familyDataChunk055 : List AllOrderCommonFiveData :=
     {a := 5, b := 8, c := 9, x := 7, y := 3},
     {a := 5, b := 8, c := 9, x := 6, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk056 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 8, c := 9, x := 7, y := 4},
@@ -14118,6 +14514,7 @@ def familyDataChunk056 : List AllOrderCommonFiveData :=
     {a := 5, b := 10, c := 3, x := 2, y := 7},
     {a := 5, b := 10, c := 3, x := 2, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk057 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 10, c := 3, x := 2, y := 9},
@@ -14217,6 +14614,7 @@ def familyDataChunk057 : List AllOrderCommonFiveData :=
     {a := 5, b := 11, c := 3, x := 6, y := 9},
     {a := 5, b := 11, c := 3, x := 7, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk058 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 11, c := 3, x := 7, y := 9},
@@ -14316,6 +14714,7 @@ def familyDataChunk058 : List AllOrderCommonFiveData :=
     {a := 6, b := 0, c := 5, x := 4, y := 11},
     {a := 6, b := 0, c := 5, x := 10, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk059 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 0, c := 6, x := 1, y := 3},
@@ -14415,6 +14814,7 @@ def familyDataChunk059 : List AllOrderCommonFiveData :=
     {a := 6, b := 1, c := 3, x := 10, y := 2},
     {a := 6, b := 1, c := 3, x := 11, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk060 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 1, c := 3, x := 10, y := 7},
@@ -14514,6 +14914,7 @@ def familyDataChunk060 : List AllOrderCommonFiveData :=
     {a := 6, b := 1, c := 10, x := 5, y := 7},
     {a := 6, b := 1, c := 10, x := 5, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk061 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 1, c := 10, x := 5, y := 9},
@@ -14613,6 +15014,7 @@ def familyDataChunk061 : List AllOrderCommonFiveData :=
     {a := 6, b := 2, c := 9, x := 4, y := 10},
     {a := 6, b := 2, c := 9, x := 4, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk062 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 2, c := 9, x := 5, y := 10},
@@ -14712,6 +15114,7 @@ def familyDataChunk062 : List AllOrderCommonFiveData :=
     {a := 6, b := 4, c := 7, x := 1, y := 10},
     {a := 6, b := 4, c := 7, x := 1, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk063 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 4, c := 7, x := 8, y := 9},
@@ -14811,6 +15214,7 @@ def familyDataChunk063 : List AllOrderCommonFiveData :=
     {a := 6, b := 7, c := 3, x := 8, y := 9},
     {a := 6, b := 7, c := 3, x := 10, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk064 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 7, c := 3, x := 11, y := 8},
@@ -14910,6 +15314,7 @@ def familyDataChunk064 : List AllOrderCommonFiveData :=
     {a := 6, b := 8, c := 4, x := 11, y := 9},
     {a := 6, b := 8, c := 5, x := 1, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk065 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 8, c := 5, x := 3, y := 9},
@@ -15009,6 +15414,7 @@ def familyDataChunk065 : List AllOrderCommonFiveData :=
     {a := 6, b := 9, c := 7, x := 5, y := 11},
     {a := 6, b := 9, c := 7, x := 10, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk066 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 9, c := 8, x := 1, y := 3},
@@ -15108,6 +15514,7 @@ def familyDataChunk066 : List AllOrderCommonFiveData :=
     {a := 6, b := 10, c := 9, x := 1, y := 2},
     {a := 6, b := 10, c := 9, x := 1, y := 3}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk067 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 10, c := 9, x := 1, y := 4},
@@ -15207,6 +15614,7 @@ def familyDataChunk067 : List AllOrderCommonFiveData :=
     {a := 7, b := 0, c := 2, x := 4, y := 11},
     {a := 7, b := 0, c := 2, x := 5, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk068 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 0, c := 2, x := 5, y := 11},
@@ -15306,6 +15714,7 @@ def familyDataChunk068 : List AllOrderCommonFiveData :=
     {a := 7, b := 1, c := 0, x := 2, y := 5},
     {a := 7, b := 1, c := 0, x := 3, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk069 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 1, c := 0, x := 3, y := 5},
@@ -15405,6 +15814,7 @@ def familyDataChunk069 : List AllOrderCommonFiveData :=
     {a := 7, b := 1, c := 9, x := 2, y := 4},
     {a := 7, b := 1, c := 9, x := 2, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk070 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 1, c := 9, x := 3, y := 4},
@@ -15504,6 +15914,7 @@ def familyDataChunk070 : List AllOrderCommonFiveData :=
     {a := 7, b := 2, c := 8, x := 1, y := 10},
     {a := 7, b := 2, c := 8, x := 1, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk071 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 2, c := 8, x := 3, y := 4},
@@ -15603,6 +16014,7 @@ def familyDataChunk071 : List AllOrderCommonFiveData :=
     {a := 7, b := 4, c := 2, x := 0, y := 10},
     {a := 7, b := 4, c := 2, x := 0, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk072 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 4, c := 2, x := 10, y := 6},
@@ -15702,6 +16114,7 @@ def familyDataChunk072 : List AllOrderCommonFiveData :=
     {a := 7, b := 6, c := 7, x := 1, y := 3},
     {a := 7, b := 6, c := 7, x := 1, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk073 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 6, c := 7, x := 1, y := 5},
@@ -15801,6 +16214,7 @@ def familyDataChunk073 : List AllOrderCommonFiveData :=
     {a := 7, b := 8, c := 6, x := 1, y := 9},
     {a := 7, b := 8, c := 6, x := 1, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk074 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 8, c := 6, x := 1, y := 11},
@@ -15900,6 +16314,7 @@ def familyDataChunk074 : List AllOrderCommonFiveData :=
     {a := 7, b := 9, c := 7, x := 10, y := 11},
     {a := 7, b := 9, c := 8, x := 1, y := 3}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk075 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 9, c := 8, x := 1, y := 4},
@@ -15999,6 +16414,7 @@ def familyDataChunk075 : List AllOrderCommonFiveData :=
     {a := 7, b := 10, c := 9, x := 2, y := 3},
     {a := 7, b := 10, c := 9, x := 2, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk076 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 10, c := 9, x := 2, y := 5},
@@ -16098,6 +16514,7 @@ def familyDataChunk076 : List AllOrderCommonFiveData :=
     {a := 8, b := 0, c := 3, x := 5, y := 1},
     {a := 8, b := 0, c := 3, x := 1, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk077 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 0, c := 3, x := 1, y := 11},
@@ -16197,6 +16614,7 @@ def familyDataChunk077 : List AllOrderCommonFiveData :=
     {a := 8, b := 1, c := 0, x := 3, y := 9},
     {a := 8, b := 1, c := 0, x := 4, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk078 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 1, c := 0, x := 4, y := 6},
@@ -16296,6 +16714,7 @@ def familyDataChunk078 : List AllOrderCommonFiveData :=
     {a := 8, b := 1, c := 9, x := 6, y := 7},
     {a := 8, b := 1, c := 9, x := 10, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk079 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 1, c := 10, x := 3, y := 0},
@@ -16395,6 +16814,7 @@ def familyDataChunk079 : List AllOrderCommonFiveData :=
     {a := 8, b := 2, c := 8, x := 4, y := 5},
     {a := 8, b := 2, c := 8, x := 4, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk080 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 2, c := 8, x := 4, y := 11},
@@ -16494,6 +16914,7 @@ def familyDataChunk080 : List AllOrderCommonFiveData :=
     {a := 8, b := 4, c := 2, x := 11, y := 7},
     {a := 8, b := 4, c := 2, x := 10, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk081 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 4, c := 2, x := 11, y := 9},
@@ -16593,6 +17014,7 @@ def familyDataChunk081 : List AllOrderCommonFiveData :=
     {a := 8, b := 6, c := 7, x := 1, y := 4},
     {a := 8, b := 6, c := 7, x := 1, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk082 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 6, c := 7, x := 1, y := 9},
@@ -16692,6 +17114,7 @@ def familyDataChunk082 : List AllOrderCommonFiveData :=
     {a := 8, b := 7, c := 8, x := 4, y := 6},
     {a := 8, b := 7, c := 8, x := 4, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk083 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 7, c := 8, x := 4, y := 10},
@@ -16791,6 +17214,7 @@ def familyDataChunk083 : List AllOrderCommonFiveData :=
     {a := 8, b := 9, c := 8, x := 3, y := 5},
     {a := 8, b := 9, c := 8, x := 3, y := 6}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk084 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 9, c := 8, x := 3, y := 7},
@@ -16890,6 +17314,7 @@ def familyDataChunk084 : List AllOrderCommonFiveData :=
     {a := 8, b := 10, c := 9, x := 4, y := 5},
     {a := 8, b := 10, c := 9, x := 6, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk085 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 11, c := 0, x := 2, y := 3},
@@ -16989,6 +17414,7 @@ def familyDataChunk085 : List AllOrderCommonFiveData :=
     {a := 9, b := 0, c := 3, x := 5, y := 10},
     {a := 9, b := 0, c := 3, x := 5, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk086 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 0, c := 3, x := 10, y := 11},
@@ -17088,6 +17514,7 @@ def familyDataChunk086 : List AllOrderCommonFiveData :=
     {a := 9, b := 1, c := 0, x := 4, y := 7},
     {a := 9, b := 1, c := 0, x := 4, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk087 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 1, c := 0, x := 5, y := 6},
@@ -17187,6 +17614,7 @@ def familyDataChunk087 : List AllOrderCommonFiveData :=
     {a := 9, b := 1, c := 9, x := 10, y := 11},
     {a := 9, b := 1, c := 10, x := 3, y := 0}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk088 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 1, c := 10, x := 4, y := 0},
@@ -17286,6 +17714,7 @@ def familyDataChunk088 : List AllOrderCommonFiveData :=
     {a := 9, b := 2, c := 8, x := 4, y := 10},
     {a := 9, b := 2, c := 8, x := 4, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk089 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 2, c := 8, x := 5, y := 10},
@@ -17385,6 +17814,7 @@ def familyDataChunk089 : List AllOrderCommonFiveData :=
     {a := 9, b := 4, c := 2, x := 10, y := 6},
     {a := 9, b := 4, c := 2, x := 11, y := 6}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk090 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 4, c := 2, x := 10, y := 7},
@@ -17484,6 +17914,7 @@ def familyDataChunk090 : List AllOrderCommonFiveData :=
     {a := 9, b := 5, c := 11, x := 2, y := 7},
     {a := 9, b := 5, c := 11, x := 2, y := 8}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk091 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 6, c := 1, x := 7, y := 8},
@@ -17583,6 +18014,7 @@ def familyDataChunk091 : List AllOrderCommonFiveData :=
     {a := 9, b := 7, c := 8, x := 4, y := 5},
     {a := 9, b := 7, c := 8, x := 4, y := 6}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk092 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 7, c := 8, x := 4, y := 10},
@@ -17682,6 +18114,7 @@ def familyDataChunk092 : List AllOrderCommonFiveData :=
     {a := 9, b := 8, c := 9, x := 1, y := 10},
     {a := 9, b := 8, c := 9, x := 1, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk093 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 8, c := 9, x := 3, y := 4},
@@ -17781,6 +18214,7 @@ def familyDataChunk093 : List AllOrderCommonFiveData :=
     {a := 9, b := 10, c := 7, x := 2, y := 5},
     {a := 9, b := 10, c := 7, x := 3, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk094 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 10, c := 7, x := 3, y := 5},
@@ -17880,6 +18314,7 @@ def familyDataChunk094 : List AllOrderCommonFiveData :=
     {a := 9, b := 11, c := 8, x := 6, y := 7},
     {a := 9, b := 11, c := 9, x := 1, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk095 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 11, c := 9, x := 1, y := 3},
@@ -17979,6 +18414,7 @@ def familyDataChunk095 : List AllOrderCommonFiveData :=
     {a := 10, b := 0, c := 10, x := 2, y := 3},
     {a := 10, b := 0, c := 10, x := 2, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk096 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 0, c := 10, x := 2, y := 5},
@@ -18078,6 +18514,7 @@ def familyDataChunk096 : List AllOrderCommonFiveData :=
     {a := 10, b := 1, c := 7, x := 8, y := 2},
     {a := 10, b := 1, c := 7, x := 9, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk097 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 1, c := 7, x := 3, y := 4},
@@ -18177,6 +18614,7 @@ def familyDataChunk097 : List AllOrderCommonFiveData :=
     {a := 10, b := 1, c := 11, x := 5, y := 6},
     {a := 10, b := 1, c := 11, x := 5, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk098 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 1, c := 11, x := 5, y := 8},
@@ -18276,6 +18714,7 @@ def familyDataChunk098 : List AllOrderCommonFiveData :=
     {a := 10, b := 2, c := 6, x := 1, y := 11},
     {a := 10, b := 2, c := 6, x := 3, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk099 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 2, c := 6, x := 3, y := 5},
@@ -18375,6 +18814,7 @@ def familyDataChunk099 : List AllOrderCommonFiveData :=
     {a := 10, b := 3, c := 6, x := 8, y := 2},
     {a := 10, b := 3, c := 6, x := 9, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk100 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 3, c := 7, x := 1, y := 0},
@@ -18474,6 +18914,7 @@ def familyDataChunk100 : List AllOrderCommonFiveData :=
     {a := 10, b := 4, c := 10, x := 2, y := 9},
     {a := 10, b := 4, c := 10, x := 6, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk101 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 4, c := 10, x := 6, y := 8},
@@ -18573,6 +19014,7 @@ def familyDataChunk101 : List AllOrderCommonFiveData :=
     {a := 10, b := 6, c := 0, x := 4, y := 5},
     {a := 10, b := 6, c := 0, x := 4, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk102 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 6, c := 0, x := 5, y := 11},
@@ -18672,6 +19114,7 @@ def familyDataChunk102 : List AllOrderCommonFiveData :=
     {a := 10, b := 7, c := 6, x := 8, y := 11},
     {a := 10, b := 7, c := 6, x := 9, y := 11}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk103 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 7, c := 8, x := 6, y := 0},
@@ -18771,6 +19214,7 @@ def familyDataChunk103 : List AllOrderCommonFiveData :=
     {a := 10, b := 8, c := 10, x := 1, y := 4},
     {a := 10, b := 8, c := 10, x := 1, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk104 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 8, c := 10, x := 2, y := 3},
@@ -18870,6 +19314,7 @@ def familyDataChunk104 : List AllOrderCommonFiveData :=
     {a := 10, b := 11, c := 10, x := 4, y := 6},
     {a := 10, b := 11, c := 10, x := 4, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk105 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 11, c := 10, x := 4, y := 8},
@@ -18969,6 +19414,7 @@ def familyDataChunk105 : List AllOrderCommonFiveData :=
     {a := 11, b := 0, c := 10, x := 2, y := 3},
     {a := 11, b := 0, c := 10, x := 2, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk106 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 0, c := 10, x := 2, y := 5},
@@ -19068,6 +19514,7 @@ def familyDataChunk106 : List AllOrderCommonFiveData :=
     {a := 11, b := 1, c := 7, x := 8, y := 2},
     {a := 11, b := 1, c := 7, x := 9, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk107 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 1, c := 7, x := 3, y := 4},
@@ -19167,6 +19614,7 @@ def familyDataChunk107 : List AllOrderCommonFiveData :=
     {a := 11, b := 1, c := 11, x := 5, y := 6},
     {a := 11, b := 1, c := 11, x := 5, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk108 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 1, c := 11, x := 5, y := 8},
@@ -19266,6 +19714,7 @@ def familyDataChunk108 : List AllOrderCommonFiveData :=
     {a := 11, b := 2, c := 6, x := 1, y := 10},
     {a := 11, b := 2, c := 6, x := 3, y := 4}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk109 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 2, c := 6, x := 3, y := 5},
@@ -19365,6 +19814,7 @@ def familyDataChunk109 : List AllOrderCommonFiveData :=
     {a := 11, b := 3, c := 6, x := 8, y := 2},
     {a := 11, b := 3, c := 6, x := 9, y := 2}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk110 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 3, c := 7, x := 1, y := 0},
@@ -19464,6 +19914,7 @@ def familyDataChunk110 : List AllOrderCommonFiveData :=
     {a := 11, b := 4, c := 10, x := 2, y := 9},
     {a := 11, b := 4, c := 10, x := 6, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk111 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 4, c := 10, x := 6, y := 8},
@@ -19563,6 +20014,7 @@ def familyDataChunk111 : List AllOrderCommonFiveData :=
     {a := 11, b := 6, c := 0, x := 4, y := 5},
     {a := 11, b := 6, c := 0, x := 4, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk112 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 6, c := 0, x := 5, y := 10},
@@ -19662,6 +20114,7 @@ def familyDataChunk112 : List AllOrderCommonFiveData :=
     {a := 11, b := 7, c := 6, x := 8, y := 10},
     {a := 11, b := 7, c := 6, x := 9, y := 10}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk113 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 7, c := 8, x := 6, y := 0},
@@ -19761,6 +20214,7 @@ def familyDataChunk113 : List AllOrderCommonFiveData :=
     {a := 11, b := 8, c := 10, x := 1, y := 4},
     {a := 11, b := 8, c := 10, x := 1, y := 5}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk114 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 8, c := 10, x := 2, y := 3},
@@ -19860,6 +20314,7 @@ def familyDataChunk114 : List AllOrderCommonFiveData :=
     {a := 11, b := 10, c := 11, x := 4, y := 6},
     {a := 11, b := 10, c := 11, x := 4, y := 7}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyDataChunk115 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 10, c := 11, x := 4, y := 8},
@@ -19875,6 +20330,7 @@ def familyDataChunk115 : List AllOrderCommonFiveData :=
     {a := 11, b := 10, c := 11, x := 7, y := 9},
     {a := 11, b := 10, c := 11, x := 8, y := 9}]
 
+/-- Finite exact-twelve all-order common-five CNF data for this binding. -/
 def familyData : List AllOrderCommonFiveData :=
   familyDataChunk000 ++
     familyDataChunk001 ++
@@ -20008,25 +20464,30 @@ def familyChoices (data : AllOrderCommonFiveData) :
     (insertByCenter {center := data.y, support := {data.a, data.b}}
       [{center := data.c, support := {data.b, data.x, data.y}}])
 
+/-- Look up the installed positive-membership definition for a row requirement. -/
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD (mkDefinition 45490 0 {1, 2, 3})
 
+/-- One finite family entry couples a data certificate with its membership definitions. -/
 structure FamilyEntry where
   data : AllOrderCommonFiveData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Family entries assembled from the finite data and their row choices. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Blocking clauses derived from each finite family entry. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
 /- BEGIN GENERATED BLOCKING CLAUSE ANCHOR -/
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses000 : List (List Int) :=
   [
         [-45490, -45659, -45713], [-45491, -45659, -45887], [-45492, -45659, -46061],
@@ -20046,6 +20507,7 @@ def expectedBlockingClauses000 : List (List Int) :=
         [-45951, -46374, -46791], [-45952, -46374, -46964], [-45954, -46515, -46791],
         [-45955, -46515, -46964], [-45956, -46653, -46791], [-45957, -46653, -46964]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses001 : List (List Int) :=
   [
         [-45959, -46791, -46964], [-45659, -46104, -46791], [-45659, -46105, -46964],
@@ -20065,6 +20527,7 @@ def expectedBlockingClauses001 : List (List Int) :=
         [-45887, -46061, -46424], [-45887, -46235, -46425], [-45887, -46426, -46515],
         [-45887, -46427, -46653], [-46061, -46235, -46430], [-46061, -46431, -46515]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses002 : List (List Int) :=
   [
         [-46061, -46432, -46653], [-46448, -46791, -46964], [-45659, -45713, -46550],
@@ -20084,6 +20547,7 @@ def expectedBlockingClauses002 : List (List Int) :=
         [-45659, -46061, -46823], [-45659, -46235, -46824], [-45659, -46374, -46825],
         [-45659, -46515, -46826], [-45659, -46653, -46827], [-45713, -45887, -46830]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses003 : List (List Int) :=
   [
         [-45713, -46061, -46831], [-45713, -46235, -46832], [-45713, -46374, -46833],
@@ -20103,6 +20567,7 @@ def expectedBlockingClauses003 : List (List Int) :=
         [-46235, -46374, -47023], [-46235, -46515, -47024], [-46235, -46653, -47025],
         [-46374, -46515, -47027], [-46374, -46653, -47028], [-46515, -46653, -47030]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses004 : List (List Int) :=
   [
         [-45490, -45550, -45090], [-45491, -45550, -45091], [-45492, -45550, -45092],
@@ -20122,6 +20587,7 @@ def expectedBlockingClauses004 : List (List Int) :=
         [-45813, -45096, -46792], [-45814, -45096, -46965], [-45550, -45926, -45093],
         [-45550, -45927, -45094], [-45550, -45928, -45095], [-45550, -45929, -45096]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses005 : List (List Int) :=
   [
         [-45974, -45093, -45094], [-45975, -45093, -45095], [-45976, -45093, -45096],
@@ -20141,6 +20607,7 @@ def expectedBlockingClauses005 : List (List Int) :=
         [-45091, -46323, -46792], [-45091, -46324, -46965], [-45092, -46328, -46792],
         [-45092, -46329, -46965], [-46341, -46792, -46965], [-45550, -45090, -46409]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses006 : List (List Int) :=
   [
         [-45550, -45091, -46410], [-45550, -45092, -46411], [-45550, -46415, -46792],
@@ -20160,6 +20627,7 @@ def expectedBlockingClauses006 : List (List Int) :=
         [-45092, -46747, -46965], [-46759, -46792, -46965], [-45550, -45090, -46821],
         [-45550, -45091, -46822], [-45550, -45092, -46823], [-45550, -46828, -46965]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses007 : List (List Int) :=
   [
         [-45090, -45091, -46860], [-45090, -45092, -46861], [-45090, -46866, -46965],
@@ -20179,6 +20647,7 @@ def expectedBlockingClauses007 : List (List Int) :=
         [-45308, -45058, -46797], [-45309, -45058, -46970], [-45310, -45061, -46797],
         [-45311, -45061, -46970], [-45312, -45064, -46797], [-45313, -45064, -46970]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses008 : List (List Int) :=
   [
         [-45314, -45067, -46797], [-45315, -45067, -46970], [-45693, -46797, -46970],
@@ -20198,6 +20667,7 @@ def expectedBlockingClauses008 : List (List Int) :=
         [-45662, -45067, -47038], [-45058, -45061, -47078], [-45058, -45064, -47079],
         [-45058, -45067, -47080], [-45061, -45064, -47082], [-45061, -45067, -47083]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses009 : List (List Int) :=
   [
         [-45064, -45067, -47085], [-45597, -45059, -45062], [-45598, -45059, -45065],
@@ -20217,6 +20687,7 @@ def expectedBlockingClauses009 : List (List Int) :=
         [-45056, -46708, -46801], [-45056, -46709, -46974], [-45665, -45059, -46738],
         [-45665, -45062, -46739], [-45665, -45065, -46740], [-45368, -46801, -46974]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses010 : List (List Int) :=
   [
         [-45056, -46843, -46974], [-45665, -45059, -46868], [-45665, -45062, -46869],
@@ -20236,6 +20707,7 @@ def expectedBlockingClauses010 : List (List Int) :=
         [-45330, -45069, -46804], [-45331, -45069, -46977], [-45703, -46804, -46977],
         [-45057, -46295, -46804], [-45057, -46296, -46977], [-45668, -46325, -45063]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses011 : List (List Int) :=
   [
         [-45668, -46326, -45066], [-45668, -46327, -45069], [-45360, -46804, -46977],
@@ -20255,6 +20727,7 @@ def expectedBlockingClauses011 : List (List Int) :=
         [-45066, -45069, -47113], [-45495, -44876, -44882], [-45500, -44876, -44888],
         [-45504, -44876, -44894], [-45522, -44882, -44888], [-45529, -44882, -44894]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses012 : List (List Int) :=
   [
         [-45011, -44882, -46806], [-45012, -44882, -46979], [-45536, -44888, -44894],
@@ -20274,6 +20747,7 @@ def expectedBlockingClauses012 : List (List Int) :=
         [-44882, -44888, -47067], [-44882, -44894, -47073], [-44882, -46806, -47081],
         [-44888, -44894, -47090], [-44888, -46806, -47098], [-44894, -46806, -47109]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses013 : List (List Int) :=
   [
         [-46397, -46538, -47118], [-46397, -46676, -47119], [-46538, -46676, -47122],
@@ -20293,6 +20767,7 @@ def expectedBlockingClauses013 : List (List Int) :=
         [-46258, -45461, -46984], [-44877, -46258, -46716], [-44883, -46258, -44992],
         [-44889, -46258, -44995], [-44895, -46258, -44998], [-46258, -45484, -46811]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses014 : List (List Int) :=
   [
         [-46258, -45485, -46984], [-44877, -44883, -46833], [-44877, -44889, -46840],
@@ -20312,6 +20787,7 @@ def expectedBlockingClauses014 : List (List Int) :=
         [-45861, -46263, -46401], [-46035, -46263, -46401], [-46209, -46263, -46401],
         [-44878, -46303, -46685], [-44884, -44975, -46685], [-44890, -44978, -46685]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses015 : List (List Int) :=
   [
         [-44896, -44981, -46685], [-45416, -46685, -46815], [-45417, -46685, -46988],
@@ -20331,6 +20807,7 @@ def expectedBlockingClauses015 : List (List Int) :=
         [-46263, -46401, -47118], [-45498, -44879, -44885], [-45503, -44879, -44891],
         [-45507, -44879, -44897], [-45525, -44885, -44891], [-45532, -44885, -44897]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses016 : List (List Int) :=
   [
         [-45017, -44885, -46818], [-45018, -44885, -46991], [-45539, -44891, -44897],
@@ -20350,6 +20827,7 @@ def expectedBlockingClauses016 : List (List Int) :=
         [-44885, -44891, -47070], [-44885, -44897, -47076], [-44885, -46818, -47087],
         [-44891, -44897, -47093], [-44891, -46818, -47104], [-44897, -46818, -47115]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses017 : List (List Int) :=
   [
         [-46267, -46405, -47119], [-46267, -46546, -47122], [-46405, -46546, -47128],
@@ -20369,6 +20847,7 @@ def expectedBlockingClauses017 : List (List Int) :=
         [-45332, -45396, -45171], [-45332, -45398, -45173], [-45334, -45336, -46359],
         [-45334, -45400, -45169], [-45334, -45402, -45171], [-45334, -45404, -45173]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses018 : List (List Int) :=
   [
         [-45336, -45406, -45169], [-45336, -45408, -45171], [-45336, -45410, -45173],
@@ -20388,6 +20867,7 @@ def expectedBlockingClauses018 : List (List Int) :=
         [-45671, -45167, -46751], [-45671, -45169, -46754], [-45671, -45171, -46756],
         [-45332, -45334, -46765], [-45332, -45336, -46771], [-45332, -45167, -45466]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses019 : List (List Int) :=
   [
         [-45332, -45169, -45468], [-45332, -45171, -45470], [-45334, -45336, -46777],
@@ -20407,6 +20887,7 @@ def expectedBlockingClauses019 : List (List Int) :=
         [-45673, -46333, -45170], [-45673, -46336, -45172], [-45673, -46339, -45174],
         [-45333, -45335, -46348], [-45333, -45337, -46354], [-45333, -45395, -45170]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses020 : List (List Int) :=
   [
         [-45333, -45397, -45172], [-45333, -45399, -45174], [-45335, -45337, -46360],
@@ -20426,6 +20907,7 @@ def expectedBlockingClauses020 : List (List Int) :=
         [-45337, -45168, -45455], [-45337, -45170, -45457], [-45337, -45459, -45174],
         [-45673, -45333, -46736], [-45673, -45335, -46742], [-45673, -45337, -46747]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses021 : List (List Int) :=
   [
         [-45673, -45168, -46752], [-45673, -45170, -46755], [-45673, -45172, -46757],
@@ -20445,6 +20927,7 @@ def expectedBlockingClauses021 : List (List Int) :=
         [-45670, -46061, -46964], [-45672, -46791, -46964], [-45659, -45720, -45887],
         [-45659, -45721, -46061], [-45659, -45226, -46235], [-45659, -45227, -46374]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses022 : List (List Int) :=
   [
         [-45659, -45228, -46515], [-45659, -45229, -46653], [-45724, -45887, -46235],
@@ -20464,6 +20947,7 @@ def expectedBlockingClauses022 : List (List Int) :=
         [-45659, -45236, -46515], [-45659, -45237, -46653], [-45713, -46072, -46235],
         [-45713, -46073, -46374], [-45713, -46074, -46515], [-45713, -46075, -46653]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses023 : List (List Int) :=
   [
         [-45887, -46078, -46235], [-45887, -46079, -46374], [-45887, -46080, -46515],
@@ -20483,6 +20967,7 @@ def expectedBlockingClauses023 : List (List Int) :=
         [-45887, -45298, -46791], [-45887, -45299, -46964], [-46061, -45300, -46791],
         [-46061, -45301, -46964], [-46688, -46791, -46964], [-45659, -45713, -46793]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses024 : List (List Int) :=
   [
         [-45659, -45887, -46794], [-45659, -46061, -46795], [-45659, -46235, -44918],
@@ -20502,6 +20987,7 @@ def expectedBlockingClauses024 : List (List Int) :=
         [-45887, -46374, -44958], [-45887, -46515, -44959], [-45887, -46653, -44960],
         [-46061, -46235, -44961], [-46061, -46374, -44962], [-46061, -46515, -44963]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses025 : List (List Int) :=
   [
         [-46061, -46653, -44964], [-46235, -46374, -46980], [-46235, -46515, -46981],
@@ -20521,6 +21007,7 @@ def expectedBlockingClauses025 : List (List Int) :=
         [-45802, -45238, -45241], [-45803, -45238, -46820], [-45804, -45238, -46993],
         [-45805, -45239, -45240], [-45806, -45239, -45241], [-45807, -45239, -46820]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses026 : List (List Int) :=
   [
         [-45808, -45239, -46993], [-45809, -45240, -45241], [-45810, -45240, -46820],
@@ -20540,6 +21027,7 @@ def expectedBlockingClauses026 : List (List Int) :=
         [-46156, -45239, -46993], [-46157, -45240, -45241], [-46158, -45240, -46820],
         [-46159, -45240, -46993], [-46161, -45241, -46820], [-46162, -45241, -46993]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses027 : List (List Int) :=
   [
         [-46164, -46820, -46993], [-45225, -45751, -45346], [-45225, -45925, -45347],
@@ -20559,6 +21047,7 @@ def expectedBlockingClauses027 : List (List Int) :=
         [-45751, -46735, -46820], [-45751, -46736, -46993], [-45925, -46099, -46737],
         [-45925, -46741, -46820], [-45925, -46742, -46993], [-46099, -46746, -46820]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses028 : List (List Int) :=
   [
         [-46099, -46747, -46993], [-45225, -45238, -44918], [-45225, -45239, -44919],
@@ -20578,6 +21067,7 @@ def expectedBlockingClauses028 : List (List Int) :=
         [-45016, -44935, -47002], [-45017, -44938, -46829], [-45018, -44938, -47002],
         [-44926, -45078, -44929], [-44926, -45079, -44932], [-44926, -45080, -44935]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses029 : List (List Int) :=
   [
         [-44926, -45081, -44938], [-45581, -44929, -44932], [-45582, -44929, -44935],
@@ -20597,6 +21087,7 @@ def expectedBlockingClauses029 : List (List Int) :=
         [-44935, -44938, -47085], [-44935, -46829, -47086], [-44938, -46829, -47087],
         [-45019, -44930, -46837], [-45020, -44930, -47010], [-45021, -44933, -46837]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses030 : List (List Int) :=
   [
         [-45022, -44933, -47010], [-45023, -44936, -46837], [-45024, -44936, -47010],
@@ -20616,6 +21107,7 @@ def expectedBlockingClauses030 : List (List Int) :=
         [-44927, -46837, -46976], [-44930, -44933, -47095], [-44930, -44936, -47096],
         [-44930, -44939, -47097], [-44930, -46837, -47098], [-44933, -44936, -47099]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses031 : List (List Int) :=
   [
         [-44933, -44939, -47100], [-44933, -46837, -47101], [-44936, -44939, -47102],
@@ -20635,6 +21127,7 @@ def expectedBlockingClauses031 : List (List Int) :=
         [-44934, -46939, -47017], [-44937, -44940, -46940], [-44937, -46941, -47017],
         [-44940, -46942, -47017], [-44928, -44931, -44961], [-44928, -44934, -44962]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses032 : List (List Int) :=
   [
         [-44928, -44937, -44963], [-44928, -44940, -44964], [-44928, -46844, -46978],
@@ -20654,6 +21147,7 @@ def expectedBlockingClauses032 : List (List Int) :=
         [-45674, -45035, -45961], [-45674, -45967, -45043], [-46035, -46435, -46576],
         [-46036, -46435, -46715], [-46040, -46576, -46715], [-46046, -45047, -45051]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses033 : List (List Int) :=
   [
         [-45508, -46087, -45047], [-45508, -46088, -45051], [-45674, -45035, -46135],
@@ -20673,6 +21167,7 @@ def expectedBlockingClauses033 : List (List Int) :=
         [-45326, -45044, -45048], [-45327, -45044, -45052], [-45164, -45048, -45052],
         [-45509, -45743, -45048], [-45509, -45744, -45052], [-45677, -45788, -45040]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses034 : List (List Int) :=
   [
         [-45677, -45794, -45044], [-45874, -46581, -46720], [-45880, -45048, -45052],
@@ -20692,6 +21187,7 @@ def expectedBlockingClauses034 : List (List Int) :=
         [-46297, -45485, -45052], [-45509, -46814, -45052], [-45677, -45036, -46863],
         [-45677, -45040, -46869], [-45677, -45044, -46874], [-45036, -45040, -46895]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses035 : List (List Int) :=
   [
         [-45036, -45044, -46901], [-45040, -45044, -46918], [-46581, -46720, -46955],
@@ -20711,6 +21207,7 @@ def expectedBlockingClauses035 : List (List Int) :=
         [-45680, -45037, -46137], [-45680, -45041, -46143], [-46209, -46302, -46440],
         [-46232, -45049, -45053], [-45510, -46264, -46724], [-45680, -46334, -46724]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses036 : List (List Int) :=
   [
         [-45037, -44975, -46724], [-45041, -44978, -46724], [-45045, -44981, -46724],
@@ -20730,6 +21227,7 @@ def expectedBlockingClauses036 : List (List Int) :=
         [-45525, -45038, -45042], [-45532, -45038, -45046], [-45017, -45038, -45050],
         [-45018, -45038, -45054], [-45539, -45042, -45046], [-45025, -45042, -45050]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses037 : List (List Int) :=
   [
         [-45026, -45042, -45054], [-45033, -45046, -45050], [-45034, -45046, -45054],
@@ -20749,6 +21247,7 @@ def expectedBlockingClauses037 : List (List Int) :=
         [-45038, -45046, -46903], [-45042, -45046, -46920], [-46306, -46444, -46946],
         [-46306, -46585, -46949], [-46444, -46585, -46955], [-45511, -45050, -46992]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses038 : List (List Int) :=
   [
         [-45683, -45038, -47038], [-45683, -45042, -47044], [-45683, -45046, -47049],
@@ -20768,6 +21267,7 @@ def expectedBlockingClauses038 : List (List Int) :=
         [-45330, -46132, -46727], [-45686, -45791, -45958], [-45686, -45797, -46132],
         [-45686, -45803, -46309], [-45686, -45807, -46447], [-45686, -45810, -46588]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses039 : List (List Int) :=
   [
         [-45686, -45813, -46727], [-45822, -45958, -46309], [-45827, -45958, -46447],
@@ -20787,6 +21287,7 @@ def expectedBlockingClauses039 : List (List Int) :=
         [-45784, -46175, -46447], [-45784, -46179, -46588], [-45784, -46182, -46727],
         [-45958, -46191, -46309], [-45958, -46196, -46447], [-45958, -46200, -46588]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses040 : List (List Int) :=
   [
         [-45958, -46203, -46727], [-46211, -46309, -46447], [-46215, -46309, -46588],
@@ -20806,6 +21307,7 @@ def expectedBlockingClauses040 : List (List Int) :=
         [-45688, -45798, -46134], [-45688, -45804, -46311], [-45688, -45808, -46449],
         [-45688, -45811, -46590], [-45688, -45814, -46729], [-45823, -45960, -46311]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses041 : List (List Int) :=
   [
         [-45828, -45960, -46449], [-45832, -45960, -46590], [-45835, -45960, -46729],
@@ -20825,6 +21327,7 @@ def expectedBlockingClauses041 : List (List Int) :=
         [-45786, -46183, -46729], [-45960, -46192, -46311], [-45960, -46197, -46449],
         [-45960, -46201, -46590], [-45960, -46204, -46729], [-46212, -46311, -46449]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses042 : List (List Int) :=
   [
         [-46216, -46311, -46590], [-46219, -46311, -46729], [-46224, -46449, -46590],
@@ -20844,6 +21347,7 @@ def expectedBlockingClauses042 : List (List Int) :=
         [-45738, -45093, -45096], [-45741, -45094, -45095], [-45742, -45094, -45096],
         [-45745, -45095, -45096], [-45750, -46792, -46965], [-45550, -45090, -44886]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses043 : List (List Int) :=
   [
         [-45550, -44887, -45092], [-45550, -45892, -46792], [-45550, -45893, -46965],
@@ -20863,6 +21367,7 @@ def expectedBlockingClauses043 : List (List Int) :=
         [-45092, -45283, -46965], [-46270, -46792, -46965], [-45550, -45090, -46375],
         [-45550, -45091, -46376], [-45550, -45092, -46377], [-45550, -46381, -46792]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses044 : List (List Int) :=
   [
         [-45550, -46382, -46965], [-45090, -45091, -46385], [-45090, -45092, -46386],
@@ -20882,6 +21387,7 @@ def expectedBlockingClauses044 : List (List Int) :=
         [-45550, -45094, -45071], [-45550, -45095, -45072], [-45550, -45096, -45073],
         [-45090, -45093, -44941], [-45090, -45094, -44942], [-45090, -45095, -44943]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses045 : List (List Int) :=
   [
         [-45090, -45096, -44944], [-45091, -45093, -44945], [-45091, -45094, -44946],
@@ -20901,6 +21407,7 @@ def expectedBlockingClauses045 : List (List Int) :=
         [-45498, -45751, -45241], [-45499, -45925, -46099], [-45500, -45925, -45238],
         [-45501, -45925, -45239], [-45502, -45925, -45240], [-45503, -45925, -45241]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses046 : List (List Int) :=
   [
         [-45504, -46099, -45238], [-45505, -46099, -45239], [-45506, -46099, -45240],
@@ -20920,6 +21427,7 @@ def expectedBlockingClauses046 : List (List Int) :=
         [-45944, -45238, -45239], [-45945, -45238, -45240], [-45946, -45238, -45241],
         [-45947, -45238, -46820], [-45948, -45238, -46993], [-45949, -45239, -45240]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses047 : List (List Int) :=
   [
         [-45950, -45239, -45241], [-45951, -45239, -46820], [-45952, -45239, -46993],
@@ -20939,6 +21447,7 @@ def expectedBlockingClauses047 : List (List Int) :=
         [-46307, -45241, -46820], [-46308, -45241, -46993], [-46310, -46820, -46993],
         [-45225, -45238, -46378], [-45225, -46379, -45240], [-45225, -46380, -45241]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses048 : List (List Int) :=
   [
         [-45225, -46381, -46820], [-45225, -46382, -46993], [-45751, -45925, -46417],
@@ -20958,6 +21467,7 @@ def expectedBlockingClauses048 : List (List Int) :=
         [-45225, -45751, -45121], [-45225, -45925, -45122], [-45225, -46099, -45123],
         [-45751, -45925, -46830], [-45751, -46099, -46831], [-45751, -45238, -46832]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses049 : List (List Int) :=
   [
         [-45751, -45239, -46833], [-45751, -45240, -46834], [-45751, -45241, -46835],
@@ -20977,6 +21487,7 @@ def expectedBlockingClauses049 : List (List Int) :=
         [-45310, -44909, -45302], [-45311, -44909, -45305], [-45312, -44912, -45302],
         [-45313, -44912, -45305], [-45314, -44915, -45302], [-45315, -44915, -45305]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses050 : List (List Int) :=
   [
         [-45693, -45302, -45305], [-44903, -46248, -44909], [-44903, -46249, -44912],
@@ -20996,6 +21507,7 @@ def expectedBlockingClauses050 : List (List Int) :=
         [-44906, -45466, -45302], [-44906, -45467, -45305], [-44909, -45468, -45302],
         [-44909, -45469, -45305], [-44912, -45470, -45302], [-44912, -45471, -45305]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses051 : List (List Int) :=
   [
         [-45367, -45302, -45305], [-45019, -44907, -45303], [-45020, -44907, -45306],
@@ -21015,6 +21527,7 @@ def expectedBlockingClauses051 : List (List Int) :=
         [-45429, -44916, -45306], [-45362, -45303, -45306], [-44904, -44907, -46532],
         [-44904, -44910, -46533], [-44904, -46534, -44916], [-44904, -45292, -45303]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses052 : List (List Int) :=
   [
         [-44904, -45293, -45306], [-44907, -45448, -45303], [-44907, -45449, -45306],
@@ -21034,6 +21547,7 @@ def expectedBlockingClauses052 : List (List Int) :=
         [-44905, -45282, -45304], [-44905, -45283, -45307], [-45406, -44911, -45304],
         [-45407, -44911, -45307], [-45408, -44914, -45304], [-45409, -44914, -45307]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses053 : List (List Int) :=
   [
         [-45410, -44917, -45304], [-45411, -44917, -45307], [-45360, -45304, -45307],
@@ -21053,6 +21567,7 @@ def expectedBlockingClauses053 : List (List Int) :=
         [-45601, -45973, -47051], [-45616, -46147, -46878], [-45617, -46147, -47051],
         [-45630, -46468, -46609], [-45631, -46468, -46748], [-45635, -46609, -46748]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses054 : List (List Int) :=
   [
         [-45561, -45675, -46878], [-45561, -45676, -47051], [-45308, -45799, -46878],
@@ -21072,6 +21587,7 @@ def expectedBlockingClauses054 : List (List Int) :=
         [-46210, -46468, -46748], [-46214, -46609, -46748], [-46220, -46878, -47051],
         [-46468, -46609, -46945], [-46468, -46748, -46946], [-46609, -46748, -46949]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses055 : List (List Int) :=
   [
         [-46468, -46609, -47118], [-46468, -46748, -47119], [-46609, -46748, -47122],
@@ -21091,6 +21607,7 @@ def expectedBlockingClauses055 : List (List Int) :=
         [-45567, -46126, -47056], [-44965, -46175, -46883], [-44965, -46176, -47056],
         [-44967, -46196, -46883], [-44967, -46197, -47056], [-46222, -44986, -44990]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses056 : List (List Int) :=
   [
         [-46228, -46883, -47056], [-45567, -46298, -44986], [-45567, -46299, -44990],
@@ -21110,6 +21627,7 @@ def expectedBlockingClauses056 : List (List Int) :=
         [-45165, -46887, -47060], [-45572, -45760, -44968], [-45572, -45766, -44970],
         [-45572, -45780, -46887], [-45572, -45781, -47060], [-45831, -44968, -46887]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses057 : List (List Int) :=
   [
         [-45832, -44968, -47060], [-45852, -44970, -46887], [-45853, -44970, -47060],
@@ -21129,6 +21647,7 @@ def expectedBlockingClauses057 : List (List Int) :=
         [-44968, -44982, -44997], [-44970, -44972, -44999], [-44970, -44982, -45000],
         [-44972, -45486, -46887], [-44972, -45487, -47060], [-44982, -45488, -46887]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses058 : List (List Int) :=
   [
         [-44982, -45489, -47060], [-44972, -44982, -46945], [-44972, -44982, -47118],
@@ -21148,6 +21667,7 @@ def expectedBlockingClauses058 : List (List Int) :=
         [-46040, -46337, -46616], [-46048, -46475, -46616], [-46059, -46890, -47063],
         [-45576, -45812, -46109], [-45576, -45986, -46115], [-45576, -46130, -46890]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses059 : List (List Int) :=
   [
         [-45576, -46131, -47063], [-45812, -46182, -46890], [-45812, -46183, -47063],
@@ -21167,6 +21687,7 @@ def expectedBlockingClauses059 : List (List Int) :=
         [-45632, -46340, -46478], [-45636, -46340, -46619], [-45639, -46340, -46758],
         [-45645, -46478, -46619], [-45648, -46478, -46758], [-45653, -46619, -46758]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses060 : List (List Int) :=
   [
         [-45338, -45739, -46340], [-45338, -45743, -46478], [-45338, -45746, -46619],
@@ -21186,6 +21707,7 @@ def expectedBlockingClauses060 : List (List Int) :=
         [-45815, -45989, -46347], [-45815, -46163, -46353], [-45989, -46163, -46359],
         [-45338, -46340, -46399], [-45338, -46403, -46619], [-45338, -46406, -46758]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses061 : List (List Int) :=
   [
         [-45579, -45815, -46422], [-45579, -45989, -46428], [-45579, -46163, -46433],
@@ -21205,6 +21727,7 @@ def expectedBlockingClauses061 : List (List Int) :=
         [-45594, -45817, -46760], [-45601, -45991, -46342], [-45605, -45991, -46480],
         [-45608, -45991, -46621], [-45610, -45991, -46760], [-45617, -46165, -46342]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses062 : List (List Int) :=
   [
         [-45621, -46165, -46480], [-45624, -46165, -46621], [-45626, -46165, -46760],
@@ -21224,6 +21747,7 @@ def expectedBlockingClauses062 : List (List Int) :=
         [-46224, -46480, -46621], [-46227, -46480, -46760], [-46231, -46621, -46760],
         [-45339, -46262, -46480], [-45339, -46266, -46621], [-45339, -46269, -46760]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses063 : List (List Int) :=
   [
         [-45580, -45817, -46285], [-45580, -45991, -46291], [-45580, -46165, -46296],
@@ -21243,6 +21767,7 @@ def expectedBlockingClauses063 : List (List Int) :=
         [-45087, -45246, -45061], [-45088, -45246, -45064], [-45089, -45246, -45067],
         [-45555, -45058, -45061], [-45556, -45058, -45064], [-45557, -45058, -45067]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses064 : List (List Int) :=
   [
         [-45558, -45061, -45064], [-45559, -45061, -45067], [-45560, -45064, -45067],
@@ -21262,6 +21787,7 @@ def expectedBlockingClauses064 : List (List Int) :=
         [-46084, -45058, -45061], [-46085, -45058, -45064], [-46086, -45058, -45067],
         [-46089, -45061, -45064], [-46090, -45061, -45067], [-46093, -45064, -45067]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses065 : List (List Int) :=
   [
         [-46098, -46797, -46970], [-45055, -45244, -46237], [-45055, -45246, -46238],
@@ -21281,6 +21807,7 @@ def expectedBlockingClauses065 : List (List Int) :=
         [-45246, -45300, -46797], [-45246, -45301, -46970], [-46688, -46797, -46970],
         [-45055, -45058, -45070], [-45055, -45061, -45071], [-45055, -45064, -45072]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses066 : List (List Int) :=
   [
         [-45055, -45067, -45073], [-45662, -45244, -46794], [-45662, -45246, -46795],
@@ -21300,6 +21827,7 @@ def expectedBlockingClauses066 : List (List Int) :=
         [-45061, -45064, -46985], [-45061, -45067, -46986], [-45064, -45067, -46989],
         [-44926, -45660, -46829], [-44926, -45661, -47002], [-45675, -44929, -46829]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses067 : List (List Int) :=
   [
         [-45676, -44929, -47002], [-45678, -44932, -46829], [-45679, -44932, -47002],
@@ -21319,6 +21847,7 @@ def expectedBlockingClauses067 : List (List Int) :=
         [-45951, -44932, -46829], [-45952, -44932, -47002], [-45953, -44935, -44938],
         [-45954, -44935, -46829], [-45955, -44935, -47002], [-45956, -44938, -46829]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses068 : List (List Int) :=
   [
         [-45957, -44938, -47002], [-45959, -46829, -47002], [-44926, -46062, -44929],
@@ -21338,6 +21867,7 @@ def expectedBlockingClauses068 : List (List Int) :=
         [-46442, -44935, -46829], [-46443, -44935, -47002], [-46445, -44938, -46829],
         [-46446, -44938, -47002], [-46448, -46829, -47002], [-44926, -44929, -46519]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses069 : List (List Int) :=
   [
         [-44926, -44932, -46520], [-44926, -46521, -44938], [-44926, -46522, -46829],
@@ -21357,6 +21887,7 @@ def expectedBlockingClauses069 : List (List Int) :=
         [-44903, -45227, -44909], [-44903, -45228, -44912], [-44903, -45229, -44915],
         [-44903, -45722, -45302], [-44903, -45723, -45305], [-45800, -44906, -44909]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses070 : List (List Int) :=
   [
         [-45801, -44906, -44912], [-45802, -44906, -44915], [-45803, -44906, -45302],
@@ -21376,6 +21907,7 @@ def expectedBlockingClauses070 : List (List Int) :=
         [-46149, -44906, -44912], [-46150, -44906, -44915], [-46151, -44906, -45302],
         [-46152, -44906, -45305], [-46153, -44909, -44912], [-46154, -44909, -44915]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses071 : List (List Int) :=
   [
         [-46155, -44909, -45302], [-46156, -44909, -45305], [-46157, -44912, -44915],
@@ -21395,6 +21927,7 @@ def expectedBlockingClauses071 : List (List Int) :=
         [-45521, -45728, -46893], [-45521, -45729, -47066], [-45819, -46343, -46481],
         [-45820, -46343, -46622], [-45821, -46343, -46761], [-45822, -46343, -46893]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses072 : List (List Int) :=
   [
         [-45823, -46343, -47066], [-45825, -46481, -46622], [-45826, -46481, -46761],
@@ -21414,6 +21947,7 @@ def expectedBlockingClauses072 : List (List Int) :=
         [-45097, -45109, -45714], [-45097, -45739, -45201], [-45097, -45740, -45213],
         [-45109, -45773, -45201], [-45109, -45774, -45213], [-45861, -45133, -45142]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses073 : List (List Int) :=
   [
         [-45862, -45133, -45154], [-45866, -45142, -45154], [-45872, -45201, -45213],
@@ -21433,6 +21967,7 @@ def expectedBlockingClauses073 : List (List Int) :=
         [-45326, -46172, -45202], [-45327, -46172, -45214], [-45164, -45202, -45214],
         [-45098, -45110, -45715], [-45098, -45743, -45202], [-45098, -45744, -45214]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses074 : List (List Int) :=
   [
         [-45110, -45777, -45202], [-45110, -45778, -45214], [-45874, -45143, -45155],
@@ -21452,6 +21987,7 @@ def expectedBlockingClauses074 : List (List Int) :=
         [-45998, -45127, -44995], [-46172, -45127, -44998], [-45127, -45484, -45202],
         [-45127, -45485, -45214], [-45098, -45110, -45071], [-45098, -46814, -45214]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses075 : List (List Int) :=
   [
         [-45110, -45690, -46825], [-45690, -45998, -46869], [-45690, -46172, -46874],
@@ -21471,6 +22007,7 @@ def expectedBlockingClauses075 : List (List Int) :=
         [-46003, -44978, -45156], [-46177, -44981, -45156], [-45416, -45156, -45203],
         [-45417, -45156, -45215], [-45099, -46402, -45156], [-45111, -46441, -45156]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses076 : List (List Int) :=
   [
         [-45691, -46472, -45156], [-46003, -44984, -45156], [-46177, -44985, -45156],
@@ -21490,6 +22027,7 @@ def expectedBlockingClauses076 : List (List Int) :=
         [-45100, -45748, -45204], [-45100, -45749, -45216], [-45112, -45782, -45204],
         [-45112, -45783, -45216], [-45862, -45001, -45135], [-45866, -45001, -45145]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses077 : List (List Int) :=
   [
         [-45874, -45135, -45145], [-45885, -45204, -45216], [-45100, -45112, -45891],
@@ -21509,6 +22047,7 @@ def expectedBlockingClauses077 : List (List Int) :=
         [-45607, -46010, -45266], [-45609, -46010, -45272], [-45616, -46184, -45254],
         [-45620, -46184, -45260], [-45623, -46184, -45266], [-45625, -46184, -45272]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses078 : List (List Int) :=
   [
         [-45632, -45254, -45260], [-45636, -45254, -45266], [-45639, -45254, -45272],
@@ -21528,6 +22067,7 @@ def expectedBlockingClauses078 : List (List Int) :=
         [-45340, -46155, -45260], [-45340, -46158, -45266], [-45340, -46161, -45272],
         [-46211, -45254, -45260], [-46215, -45254, -45266], [-46218, -45254, -45272]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses079 : List (List Int) :=
   [
         [-46223, -45260, -45266], [-46226, -45260, -45272], [-46230, -45266, -45272],
@@ -21547,6 +22087,7 @@ def expectedBlockingClauses079 : List (List Int) :=
         [-45626, -46186, -45273], [-45633, -45255, -45261], [-45637, -45255, -45267],
         [-45640, -45255, -45273], [-45646, -45261, -45267], [-45649, -45261, -45273]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses080 : List (List Int) :=
   [
         [-45654, -45267, -45273], [-45249, -45341, -45723], [-45249, -45740, -45255],
@@ -21566,6 +22107,7 @@ def expectedBlockingClauses080 : List (List Int) :=
         [-46219, -45255, -45273], [-46224, -45261, -45267], [-46227, -45261, -45273],
         [-46231, -45267, -45273], [-45249, -45341, -46245], [-45249, -46262, -45261]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses081 : List (List Int) :=
   [
         [-45249, -46266, -45267], [-45249, -46269, -45273], [-45596, -45341, -46278],
@@ -21585,6 +22127,7 @@ def expectedBlockingClauses081 : List (List Int) :=
         [-45559, -45062, -45068], [-45560, -45065, -45068], [-45056, -45660, -46801],
         [-45056, -45661, -46974], [-45663, -45242, -46801], [-45664, -45242, -46974]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses082 : List (List Int) :=
   [
         [-45669, -45247, -46801], [-45670, -45247, -46974], [-45672, -46801, -46974],
@@ -21604,6 +22147,7 @@ def expectedBlockingClauses082 : List (List Int) :=
         [-45056, -45242, -46236], [-45056, -45247, -46238], [-45056, -46242, -46801],
         [-45056, -46243, -46974], [-45665, -46244, -46801], [-45665, -46245, -46974]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses083 : List (List Int) :=
   [
         [-45242, -45278, -46801], [-45242, -45279, -46974], [-45247, -45282, -46801],
@@ -21623,6 +22167,7 @@ def expectedBlockingClauses083 : List (List Int) :=
         [-45665, -45242, -46793], [-45665, -45247, -46795], [-45665, -45059, -44918],
         [-45665, -45062, -44919], [-45665, -45065, -44920], [-45665, -45068, -44921]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses084 : List (List Int) :=
   [
         [-45242, -45059, -44941], [-45242, -45062, -44942], [-45242, -45065, -44943],
@@ -21642,6 +22187,7 @@ def expectedBlockingClauses084 : List (List Int) :=
         [-45678, -44933, -46837], [-45679, -44933, -47010], [-45681, -44936, -46837],
         [-45682, -44936, -47010], [-45684, -44939, -46837], [-45685, -44939, -47010]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses085 : List (List Int) :=
   [
         [-45687, -46837, -47010], [-44927, -45714, -44930], [-44927, -45715, -44933],
@@ -21661,6 +22207,7 @@ def expectedBlockingClauses085 : List (List Int) :=
         [-45959, -46837, -47010], [-44927, -46062, -44930], [-44927, -46063, -44933],
         [-44927, -46064, -44936], [-44927, -46065, -44939], [-44927, -46066, -46837]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses086 : List (List Int) :=
   [
         [-44927, -46067, -47010], [-46118, -44930, -44933], [-46119, -44930, -44936],
@@ -21680,6 +22227,7 @@ def expectedBlockingClauses086 : List (List Int) :=
         [-44927, -46521, -44939], [-44927, -46522, -46837], [-44927, -46523, -47010],
         [-44930, -46579, -46837], [-44930, -46580, -47010], [-44933, -46583, -46837]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses087 : List (List Int) :=
   [
         [-44933, -46584, -47010], [-46586, -44939, -46837], [-46587, -44939, -47010],
@@ -21699,6 +22247,7 @@ def expectedBlockingClauses087 : List (List Int) :=
         [-45802, -44907, -44916], [-45803, -44907, -45303], [-45804, -44907, -45306],
         [-45805, -44910, -44913], [-45806, -44910, -44916], [-45807, -44910, -45303]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses088 : List (List Int) :=
   [
         [-45808, -44910, -45306], [-45809, -44913, -44916], [-45810, -44913, -45303],
@@ -21718,6 +22267,7 @@ def expectedBlockingClauses088 : List (List Int) :=
         [-46156, -44910, -45306], [-46157, -44913, -44916], [-46158, -44913, -45303],
         [-46159, -44913, -45306], [-46161, -44916, -45303], [-46162, -44916, -45306]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses089 : List (List Int) :=
   [
         [-46164, -45303, -45306], [-44904, -44907, -44918], [-44904, -44910, -44919],
@@ -21737,6 +22287,7 @@ def expectedBlockingClauses089 : List (List Int) :=
         [-45999, -46481, -46622], [-46000, -46481, -46761], [-46001, -46481, -46893],
         [-46002, -46481, -47066], [-46004, -46622, -46761], [-46005, -46622, -46893]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses090 : List (List Int) :=
   [
         [-46006, -46622, -47066], [-46008, -46761, -46893], [-46009, -46761, -47066],
@@ -21756,6 +22307,7 @@ def expectedBlockingClauses090 : List (List Int) :=
         [-45866, -45146, -45157], [-45872, -45205, -45217], [-45101, -45113, -45888],
         [-45101, -45913, -45205], [-45101, -45914, -45217], [-45113, -45947, -45205]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses091 : List (List Int) :=
   [
         [-45113, -45948, -45217], [-46035, -45136, -45146], [-46036, -45136, -45157],
@@ -21775,6 +22327,7 @@ def expectedBlockingClauses091 : List (List Int) :=
         [-45114, -45778, -45218], [-45874, -45147, -45158], [-45880, -45206, -45218],
         [-45102, -45114, -45889], [-45102, -45917, -45206], [-45102, -45918, -45218]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses092 : List (List Int) :=
   [
         [-45114, -45951, -45206], [-45114, -45952, -45218], [-46048, -45147, -45158],
@@ -21794,6 +22347,7 @@ def expectedBlockingClauses092 : List (List Int) :=
         [-45695, -45824, -46863], [-45695, -46193, -46874], [-45147, -45158, -46955],
         [-45102, -45114, -45075], [-45102, -45206, -46987], [-45114, -45695, -46998]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses093 : List (List Int) :=
   [
         [-45695, -45824, -47036], [-45695, -46193, -47047], [-45147, -45158, -47128],
@@ -21813,6 +22367,7 @@ def expectedBlockingClauses093 : List (List Int) :=
         [-45829, -44983, -45159], [-46198, -44985, -45159], [-45440, -45159, -45207],
         [-45441, -45159, -45219], [-45103, -45130, -46678], [-45103, -45137, -46682]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses094 : List (List Int) :=
   [
         [-45115, -45130, -46717], [-45115, -45137, -46721], [-45696, -45130, -46750],
@@ -21832,6 +22387,7 @@ def expectedBlockingClauses094 : List (List Int) :=
         [-45885, -45208, -45220], [-45104, -45116, -45891], [-45104, -45922, -45208],
         [-45104, -45923, -45220], [-45116, -45956, -45208], [-45116, -45957, -45220]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses095 : List (List Int) :=
   [
         [-46036, -45002, -45138], [-46040, -45002, -45149], [-46048, -45138, -45149],
@@ -21851,6 +22407,7 @@ def expectedBlockingClauses095 : List (List Int) :=
         [-45636, -45256, -45268], [-45639, -45256, -45274], [-45645, -45262, -45268],
         [-45648, -45262, -45274], [-45653, -45268, -45274], [-45250, -45342, -45722]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses096 : List (List Int) :=
   [
         [-45250, -45739, -45256], [-45250, -45743, -45262], [-45250, -45746, -45268],
@@ -21870,6 +22427,7 @@ def expectedBlockingClauses096 : List (List Int) :=
         [-46226, -45262, -45274], [-46230, -45268, -45274], [-45250, -45342, -46244],
         [-45250, -46261, -45262], [-45250, -46265, -45268], [-45250, -46268, -45274]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses097 : List (List Int) :=
   [
         [-45611, -45342, -46277], [-45611, -45836, -46284], [-45611, -46205, -46295],
@@ -21889,6 +22447,7 @@ def expectedBlockingClauses097 : List (List Int) :=
         [-45251, -45343, -45723], [-45251, -45740, -45257], [-45251, -45744, -45263],
         [-45251, -45747, -45269], [-45251, -45749, -45275], [-45343, -45804, -45257]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses098 : List (List Int) :=
   [
         [-45343, -45808, -45263], [-45343, -45811, -45269], [-45343, -45814, -45275],
@@ -21908,6 +22467,7 @@ def expectedBlockingClauses098 : List (List Int) :=
         [-45251, -46269, -45275], [-45612, -45343, -46278], [-45612, -45838, -46285],
         [-45612, -46207, -46296], [-45251, -45343, -46384], [-45251, -45257, -46400]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses099 : List (List Int) :=
   [
         [-45251, -46404, -45269], [-45251, -46407, -45275], [-45612, -45343, -46416],
@@ -21927,6 +22487,7 @@ def expectedBlockingClauses099 : List (List Int) :=
         [-45667, -45245, -46977], [-45672, -46804, -46977], [-45057, -45718, -46804],
         [-45057, -45719, -46977], [-45668, -45226, -45060], [-45668, -45227, -45063]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses100 : List (List Int) :=
   [
         [-45668, -45228, -45066], [-45668, -45229, -45069], [-45736, -45060, -45063],
@@ -21946,6 +22507,7 @@ def expectedBlockingClauses100 : List (List Int) :=
         [-45243, -45279, -46977], [-45245, -45280, -46804], [-45245, -45281, -46977],
         [-46270, -46804, -46977], [-45057, -45243, -46375], [-45057, -45245, -46376]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses101 : List (List Int) :=
   [
         [-45057, -46381, -46804], [-45057, -46382, -46977], [-45668, -46383, -46804],
@@ -21965,6 +22527,7 @@ def expectedBlockingClauses101 : List (List Int) :=
         [-45243, -45063, -44942], [-45243, -45066, -44943], [-45243, -45069, -44944],
         [-45245, -45060, -44945], [-45245, -45063, -44946], [-45245, -45066, -44947]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses102 : List (List Int) :=
   [
         [-45245, -45069, -44948], [-45060, -45063, -46807], [-45060, -45066, -46808],
@@ -21984,6 +22547,7 @@ def expectedBlockingClauses102 : List (List Int) :=
         [-44928, -45714, -44931], [-44928, -45715, -44934], [-44928, -45716, -44937],
         [-44928, -45717, -44940], [-44928, -45718, -46844], [-44928, -45719, -47017]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses103 : List (List Int) :=
   [
         [-45770, -44931, -44934], [-45771, -44931, -44937], [-45772, -44931, -44940],
@@ -22003,6 +22567,7 @@ def expectedBlockingClauses103 : List (List Int) :=
         [-46118, -44931, -44934], [-46119, -44931, -44937], [-46120, -44931, -44940],
         [-46121, -44931, -46844], [-46122, -44931, -47017], [-46123, -44934, -44937]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses104 : List (List Int) :=
   [
         [-46124, -44934, -44940], [-46125, -44934, -46844], [-46126, -44934, -47017],
@@ -22022,6 +22587,7 @@ def expectedBlockingClauses104 : List (List Int) :=
         [-46586, -44940, -46844], [-46587, -44940, -47017], [-46589, -46844, -47017],
         [-44928, -44931, -46657], [-44928, -44934, -46658], [-44928, -44937, -46659]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses105 : List (List Int) :=
   [
         [-44928, -46660, -46844], [-44928, -46661, -47017], [-44931, -46718, -46844],
@@ -22041,6 +22607,7 @@ def expectedBlockingClauses105 : List (List Int) :=
         [-45809, -44914, -44917], [-45810, -44914, -45304], [-45811, -44914, -45307],
         [-45813, -44917, -45304], [-45814, -44917, -45307], [-45816, -45304, -45307]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses106 : List (List Int) :=
   [
         [-44905, -45230, -44908], [-44905, -45231, -44911], [-44905, -45232, -44914],
@@ -22060,6 +22627,7 @@ def expectedBlockingClauses106 : List (List Int) :=
         [-44905, -44908, -44918], [-44905, -44911, -44919], [-44905, -44914, -44920],
         [-44905, -44917, -44921], [-44905, -46796, -45307], [-44908, -44911, -46879]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses107 : List (List Int) :=
   [
         [-44908, -44914, -46880], [-44908, -44917, -46881], [-44908, -46882, -45307],
@@ -22079,6 +22647,7 @@ def expectedBlockingClauses107 : List (List Int) :=
         [-46182, -46767, -46899], [-46183, -46767, -47072], [-46185, -46899, -47072],
         [-45535, -46078, -46355], [-45535, -46079, -46494], [-45535, -46080, -46634]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses108 : List (List Int) :=
   [
         [-45535, -46081, -46773], [-45535, -46082, -46916], [-45535, -46083, -47089],
@@ -22098,6 +22667,7 @@ def expectedBlockingClauses108 : List (List Int) :=
         [-46035, -45139, -45150], [-46036, -45139, -45160], [-46040, -45150, -45160],
         [-46046, -45209, -45221], [-45105, -45117, -46062], [-45105, -46087, -45209]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses109 : List (List Int) :=
   [
         [-45105, -46088, -45221], [-45117, -46121, -45209], [-45117, -46122, -45221],
@@ -22117,6 +22687,7 @@ def expectedBlockingClauses109 : List (List Int) :=
         [-45118, -45952, -45222], [-46048, -45151, -45161], [-46054, -45210, -45222],
         [-45106, -45118, -46063], [-45106, -46091, -45210], [-45106, -46092, -45222]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses110 : List (List Int) :=
   [
         [-45118, -46125, -45210], [-45118, -46126, -45222], [-46222, -45151, -45161],
@@ -22136,6 +22707,7 @@ def expectedBlockingClauses110 : List (List Int) :=
         [-45700, -46019, -47042], [-45151, -45161, -47128], [-45630, -45132, -45140],
         [-45119, -45681, -45211], [-45119, -45682, -45223], [-45312, -45850, -45211]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses111 : List (List Int) :=
   [
         [-45313, -45850, -45223], [-45320, -46024, -45211], [-45321, -46024, -45223],
@@ -22155,6 +22727,7 @@ def expectedBlockingClauses111 : List (List Int) :=
         [-45119, -45140, -46721], [-45701, -45132, -46750], [-45701, -45140, -46753],
         [-45850, -45132, -44993], [-45850, -45140, -44994], [-46024, -45132, -44996]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses112 : List (List Int) :=
   [
         [-46024, -45140, -44997], [-45132, -45486, -45211], [-45132, -45487, -45223],
@@ -22174,6 +22747,7 @@ def expectedBlockingClauses112 : List (List Int) :=
         [-46040, -45003, -45153], [-46048, -45141, -45153], [-46059, -45212, -45224],
         [-45108, -45120, -46065], [-45108, -46096, -45212], [-45108, -46097, -45224]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses113 : List (List Int) :=
   [
         [-45120, -46130, -45212], [-45120, -46131, -45224], [-46210, -45003, -45141],
@@ -22193,6 +22767,7 @@ def expectedBlockingClauses113 : List (List Int) :=
         [-45252, -45743, -45264], [-45252, -45746, -45270], [-45252, -45748, -45276],
         [-45344, -45803, -45258], [-45344, -45807, -45264], [-45344, -45810, -45270]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses114 : List (List Int) :=
   [
         [-45344, -45813, -45276], [-45863, -45258, -45264], [-45867, -45258, -45270],
@@ -22212,6 +22787,7 @@ def expectedBlockingClauses114 : List (List Int) :=
         [-45627, -45857, -46284], [-45627, -46031, -46290], [-45252, -45344, -46383],
         [-45252, -45258, -46399], [-45252, -46403, -45270], [-45252, -46406, -45276]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses115 : List (List Int) :=
   [
         [-45627, -45344, -46415], [-45627, -45857, -46422], [-45627, -46031, -46428],
@@ -22231,6 +22807,7 @@ def expectedBlockingClauses115 : List (List Int) :=
         [-45345, -45811, -45271], [-45345, -45814, -45277], [-45864, -45259, -45265],
         [-45868, -45259, -45271], [-45871, -45259, -45277], [-45876, -45265, -45271]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses116 : List (List Int) :=
   [
         [-45879, -45265, -45277], [-45883, -45271, -45277], [-45253, -45345, -45897],
@@ -22250,6 +22827,7 @@ def expectedBlockingClauses116 : List (List Int) :=
         [-45253, -46407, -45277], [-45628, -45345, -46416], [-45628, -45859, -46423],
         [-45628, -46033, -46429], [-45253, -45345, -46525], [-45253, -45259, -46541]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses117 : List (List Int) :=
   [
         [-45253, -45265, -46545], [-45253, -46548, -45277], [-45628, -45345, -46557],
@@ -22269,6 +22847,7 @@ def expectedBlockingClauses117 : List (List Int) :=
         [-44876, -46067, -46979], [-44882, -46076, -46806], [-44882, -46077, -46979],
         [-44888, -46082, -46806], [-44888, -46083, -46979], [-46098, -46806, -46979]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses118 : List (List Int) :=
   [
         [-44876, -44882, -46236], [-44876, -44888, -46237], [-44876, -44894, -46238],
@@ -22288,6 +22867,7 @@ def expectedBlockingClauses118 : List (List Int) :=
         [-44882, -45291, -46979], [-44888, -44894, -46531], [-44888, -45292, -46806],
         [-44888, -45293, -46979], [-44894, -45294, -46806], [-44894, -45295, -46979]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses119 : List (List Int) :=
   [
         [-46397, -46543, -46676], [-46549, -46806, -46979], [-44876, -44882, -46654],
@@ -22307,6 +22887,7 @@ def expectedBlockingClauses119 : List (List Int) :=
         [-45508, -45716, -46576], [-45508, -45717, -46715], [-45508, -45718, -45047],
         [-45508, -45719, -45051], [-45674, -45756, -45047], [-45674, -45757, -45051]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses120 : List (List Int) :=
   [
         [-45777, -46435, -45047], [-45778, -46435, -45051], [-45780, -46576, -45047],
@@ -22326,6 +22907,7 @@ def expectedBlockingClauses120 : List (List Int) :=
         [-45039, -45043, -46286], [-46298, -46435, -46576], [-46299, -46435, -46715],
         [-46303, -46576, -46715], [-46310, -45047, -45051], [-45508, -46381, -45047]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses121 : List (List Int) :=
   [
         [-45508, -46382, -45051], [-45674, -45035, -46409], [-45674, -45039, -46410],
@@ -22345,6 +22927,7 @@ def expectedBlockingClauses121 : List (List Int) :=
         [-45039, -45043, -46838], [-45039, -46435, -46840], [-45039, -46576, -46841],
         [-45039, -46715, -46842], [-45043, -46435, -46846], [-45043, -46576, -46847]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses122 : List (List Int) :=
   [
         [-45043, -46715, -46848], [-45508, -45035, -45124], [-45508, -45039, -45125],
@@ -22364,6 +22947,7 @@ def expectedBlockingClauses122 : List (List Int) :=
         [-45799, -46318, -47051], [-45973, -46147, -46319], [-45973, -46323, -46878],
         [-45973, -46324, -47051], [-46147, -46328, -46878], [-46147, -46329, -47051]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses123 : List (List Int) :=
   [
         [-46330, -46468, -46609], [-46331, -46468, -46748], [-46334, -46609, -46748],
@@ -22383,6 +22967,7 @@ def expectedBlockingClauses123 : List (List Int) :=
         [-45799, -46147, -46731], [-45799, -46735, -46878], [-45799, -46736, -47051],
         [-45973, -46147, -46737], [-45973, -46741, -46878], [-45973, -46742, -47051]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses124 : List (List Int) :=
   [
         [-46147, -46746, -46878], [-46147, -46747, -47051], [-46759, -46878, -47051],
@@ -22402,6 +22987,7 @@ def expectedBlockingClauses124 : List (List Int) :=
         [-45097, -45284, -45201], [-45097, -45285, -45213], [-45109, -46422, -45201],
         [-45109, -46423, -45213], [-44983, -45142, -45154], [-45361, -45201, -45213]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses125 : List (List Int) :=
   [
         [-45097, -45109, -46516], [-45097, -45290, -45201], [-45097, -45291, -45213],
@@ -22421,6 +23007,7 @@ def expectedBlockingClauses125 : List (List Int) :=
         [-45359, -45205, -45217], [-45101, -45113, -46376], [-45101, -45286, -45205],
         [-45101, -45287, -45217], [-45113, -46428, -45205], [-45113, -46429, -45217]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses126 : List (List Int) :=
   [
         [-44984, -45146, -45157], [-45362, -45205, -45217], [-45101, -45113, -46517],
@@ -22440,6 +23027,7 @@ def expectedBlockingClauses126 : List (List Int) :=
         [-44980, -45139, -45160], [-44981, -45150, -45160], [-45360, -45209, -45221],
         [-45105, -45117, -46377], [-45105, -45288, -45209], [-45105, -45289, -45221]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses127 : List (List Int) :=
   [
         [-45117, -46433, -45209], [-45117, -46434, -45221], [-44985, -45150, -45160],
@@ -22459,6 +23047,7 @@ def expectedBlockingClauses127 : List (List Int) :=
         [-45825, -46034, -46640], [-45826, -46034, -45010], [-45846, -46208, -46640],
         [-45847, -46208, -45010], [-45874, -46640, -45010], [-45875, -46640, -46944]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses128 : List (List Int) :=
   [
         [-45876, -46640, -47117], [-45878, -45010, -46944], [-45879, -45010, -47117],
@@ -22478,6 +23067,7 @@ def expectedBlockingClauses128 : List (List Int) :=
         [-46034, -45401, -47117], [-46208, -44979, -46640], [-46208, -44980, -45010],
         [-46208, -45406, -46944], [-46208, -45407, -47117], [-45412, -46640, -46944]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses129 : List (List Int) :=
   [
         [-45413, -46640, -47117], [-45414, -45010, -46944], [-45415, -45010, -47117],
@@ -22497,6 +23087,7 @@ def expectedBlockingClauses129 : List (List Int) :=
         [-45634, -45953, -46779], [-45865, -46004, -46779], [-46025, -46213, -46779],
         [-46056, -46779, -46948], [-46057, -46779, -47121], [-45634, -46127, -46779]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses130 : List (List Int) :=
   [
         [-45865, -46178, -46779], [-46039, -46199, -46779], [-46230, -46779, -46948],
@@ -22516,6 +23107,7 @@ def expectedBlockingClauses130 : List (List Int) :=
         [-46213, -45433, -47121], [-45440, -46779, -46948], [-45441, -46779, -47121],
         [-46509, -46948, -47121], [-45634, -46502, -46721], [-45865, -46502, -44994]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses131 : List (List Int) :=
   [
         [-46039, -46502, -44997], [-46213, -46502, -45000], [-46502, -45488, -46948],
@@ -22535,6 +23127,7 @@ def expectedBlockingClauses131 : List (List Int) :=
         [-46043, -46217, -46497], [-46043, -45428, -46951], [-46043, -45429, -47124],
         [-46217, -45434, -46951], [-46217, -45435, -47124], [-46512, -46951, -47124]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses132 : List (List Int) :=
   [
         [-45638, -45869, -46562], [-45638, -46043, -46568], [-45638, -46217, -46573],
@@ -22554,6 +23147,7 @@ def expectedBlockingClauses132 : List (List Int) :=
         [-45641, -45704, -45756], [-45641, -45762, -45378], [-45641, -45768, -45386],
         [-45542, -45704, -45896], [-45542, -45917, -46504], [-45542, -45920, -46642]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses133 : List (List Int) :=
   [
         [-45542, -45922, -46780], [-45641, -45704, -45930], [-45641, -45370, -45936],
@@ -22573,6 +23167,7 @@ def expectedBlockingClauses133 : List (List Int) :=
         [-45370, -45378, -46626], [-45370, -45386, -46632], [-45378, -45386, -46638],
         [-46504, -45464, -46780], [-45641, -45704, -46695], [-45641, -45370, -46702]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses134 : List (List Int) :=
   [
         [-45641, -45378, -46708], [-45641, -45386, -46713], [-45704, -45370, -46735],
@@ -22592,6 +23187,7 @@ def expectedBlockingClauses134 : List (List Int) :=
         [-45642, -45371, -46111], [-45642, -45379, -46117], [-45642, -45705, -46278],
         [-45642, -45371, -46285], [-45642, -45379, -46291], [-45642, -45387, -46296]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses135 : List (List Int) :=
   [
         [-45705, -45371, -46318], [-45705, -45379, -46324], [-45705, -45387, -46329],
@@ -22611,6 +23207,7 @@ def expectedBlockingClauses135 : List (List Int) :=
         [-44877, -45661, -46984], [-45663, -44883, -46811], [-45664, -44883, -46984],
         [-45666, -44889, -46811], [-45667, -44889, -46984], [-45669, -44895, -46811]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses136 : List (List Int) :=
   [
         [-45670, -44895, -46984], [-45672, -46811, -46984], [-44877, -44880, -44889],
@@ -22630,6 +23227,7 @@ def expectedBlockingClauses136 : List (List Int) :=
         [-44895, -45283, -46984], [-46264, -46542, -46681], [-46270, -46811, -46984],
         [-44877, -44883, -46375], [-44877, -44889, -46376], [-44877, -44895, -46377]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses137 : List (List Int) :=
   [
         [-44877, -46381, -46811], [-44877, -46382, -46984], [-44883, -44889, -46385],
@@ -22649,6 +23247,7 @@ def expectedBlockingClauses137 : List (List Int) :=
         [-46258, -46542, -46678], [-46688, -46811, -46984], [-45490, -45677, -45036],
         [-45491, -45677, -45040], [-45492, -45677, -45044], [-45493, -45036, -45040]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses138 : List (List Int) :=
   [
         [-45494, -45036, -45044], [-45495, -45036, -46297], [-45497, -45036, -46581],
@@ -22668,6 +23267,7 @@ def expectedBlockingClauses138 : List (List Int) :=
         [-45948, -46297, -45052], [-45954, -46581, -45048], [-45955, -46581, -45052],
         [-45956, -46720, -45048], [-45957, -46720, -45052], [-45959, -45048, -45052]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses139 : List (List Int) :=
   [
         [-45509, -46062, -46297], [-45509, -46064, -46581], [-45509, -46065, -46720],
@@ -22687,6 +23287,7 @@ def expectedBlockingClauses139 : List (List Int) :=
         [-46589, -45048, -45052], [-45509, -46660, -45048], [-45509, -46661, -45052],
         [-45677, -45036, -46689], [-45677, -45040, -46690], [-45677, -45044, -46691]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses140 : List (List Int) :=
   [
         [-45036, -45040, -46697], [-45036, -45044, -46698], [-45040, -45044, -46704],
@@ -22706,6 +23307,7 @@ def expectedBlockingClauses140 : List (List Int) :=
         [-45040, -46581, -47014], [-45040, -46720, -47015], [-45044, -46297, -47018],
         [-45044, -46581, -47020], [-45044, -46720, -47021], [-45490, -45567, -44965]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses141 : List (List Int) :=
   [
         [-45491, -45567, -44967], [-45492, -45567, -44969], [-45512, -44965, -44967],
@@ -22725,6 +23327,7 @@ def expectedBlockingClauses141 : List (List Int) :=
         [-46479, -46883, -47056], [-45567, -44965, -46550], [-45567, -44967, -46551],
         [-45567, -44969, -46552], [-45567, -46556, -46883], [-45567, -46557, -47056]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses142 : List (List Int) :=
   [
         [-44965, -44967, -46591], [-44965, -44969, -46592], [-44965, -46596, -46883],
@@ -22744,6 +23347,7 @@ def expectedBlockingClauses142 : List (List Int) :=
         [-44965, -46883, -47039], [-44967, -44969, -47040], [-44967, -46883, -47045],
         [-44969, -46883, -47050], [-45098, -45663, -45202], [-45098, -45664, -45214]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses143 : List (List Int) :=
   [
         [-45308, -45127, -45202], [-45309, -45127, -45214], [-45312, -45143, -45202],
@@ -22763,6 +23367,7 @@ def expectedBlockingClauses143 : List (List Int) :=
         [-45110, -45202, -47009], [-45690, -45127, -47035], [-45690, -45143, -47037],
         [-45690, -45155, -47038], [-45102, -45666, -45206], [-45102, -45667, -45218]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses144 : List (List Int) :=
   [
         [-45316, -45129, -45206], [-45317, -45129, -45218], [-45320, -45147, -45206],
@@ -22782,6 +23387,7 @@ def expectedBlockingClauses144 : List (List Int) :=
         [-45114, -45206, -47016], [-45695, -45129, -47041], [-45695, -45147, -47043],
         [-45695, -45158, -47044], [-45106, -45669, -45210], [-45106, -45670, -45222]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses145 : List (List Int) :=
   [
         [-45324, -45131, -45210], [-45325, -45131, -45222], [-45328, -45151, -45210],
@@ -22801,6 +23407,7 @@ def expectedBlockingClauses145 : List (List Int) :=
         [-45118, -45210, -47022], [-45700, -45131, -47046], [-45700, -45151, -47048],
         [-45700, -45161, -47049], [-45629, -45860, -46419], [-45629, -46034, -46425]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses146 : List (List Int) :=
   [
         [-45629, -46208, -46430], [-45629, -46436, -46640], [-45629, -46437, -45010],
@@ -22820,6 +23427,7 @@ def expectedBlockingClauses146 : List (List Int) :=
         [-46208, -45455, -47117], [-45462, -45010, -46944], [-45463, -45010, -47117],
         [-46643, -46944, -47117], [-45629, -45860, -46699], [-45629, -46034, -46705]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses147 : List (List Int) :=
   [
         [-45629, -46208, -46710], [-45629, -46640, -46717], [-45629, -46718, -46944],
@@ -22839,6 +23447,7 @@ def expectedBlockingClauses147 : List (List Int) :=
         [-46231, -46783, -47127], [-45643, -45873, -46282], [-45643, -46047, -46288],
         [-45643, -46221, -46293], [-45643, -46303, -46783], [-45643, -46304, -46954]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses148 : List (List Int) :=
   [
         [-45643, -46305, -47127], [-45873, -46047, -46345], [-45873, -46221, -46351],
@@ -22858,6 +23467,7 @@ def expectedBlockingClauses148 : List (List Int) :=
         [-46509, -46954, -47127], [-45643, -46783, -46857], [-45873, -46783, -46912],
         [-46047, -46783, -46929], [-46221, -46783, -46940], [-46361, -46783, -46949]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses149 : List (List Int) :=
   [
         [-46783, -46961, -47127], [-45643, -46783, -47030], [-45873, -46783, -47085],
@@ -22877,6 +23487,7 @@ def expectedBlockingClauses149 : List (List Int) :=
         [-46225, -45434, -46957], [-46225, -45435, -47130], [-46362, -45438, -46957],
         [-46362, -45439, -47130], [-46512, -46957, -47130], [-45647, -45877, -46562]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses150 : List (List Int) :=
   [
         [-45647, -46051, -46568], [-45647, -46225, -46573], [-45647, -46362, -46578],
@@ -22896,6 +23507,7 @@ def expectedBlockingClauses150 : List (List Int) :=
         [-45650, -45762, -45380], [-45650, -45768, -45388], [-45544, -45706, -45896],
         [-45544, -45913, -46363], [-45544, -45920, -46646], [-45544, -45922, -46784]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses151 : List (List Int) :=
   [
         [-45650, -45706, -45930], [-45650, -45372, -45936], [-45650, -45942, -45388],
@@ -22915,6 +23527,7 @@ def expectedBlockingClauses151 : List (List Int) :=
         [-45650, -45706, -46695], [-45650, -45372, -46702], [-45650, -45380, -46708],
         [-45650, -45388, -46713], [-45706, -45372, -46735], [-45706, -45380, -46741]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses152 : List (List Int) :=
   [
         [-45706, -45388, -46746], [-45372, -45380, -46765], [-45372, -45388, -46771],
@@ -22934,6 +23547,7 @@ def expectedBlockingClauses152 : List (List Int) :=
         [-45651, -45373, -46285], [-45651, -45381, -46291], [-45651, -45389, -46296],
         [-45707, -45373, -46318], [-45707, -45381, -46324], [-45707, -45389, -46329]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses153 : List (List Int) :=
   [
         [-45373, -45381, -46348], [-45373, -45389, -46354], [-45381, -45389, -46360],
@@ -22953,6 +23567,7 @@ def expectedBlockingClauses153 : List (List Int) :=
         [-45669, -44896, -46815], [-45670, -44896, -46988], [-45672, -46815, -46988],
         [-44878, -44880, -44890], [-44878, -44881, -44896], [-44878, -45718, -46815]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses154 : List (List Int) :=
   [
         [-44878, -45719, -46988], [-45728, -44890, -46815], [-45729, -44890, -46988],
@@ -22972,6 +23587,7 @@ def expectedBlockingClauses154 : List (List Int) :=
         [-44878, -44896, -46377], [-44878, -46381, -46815], [-44878, -46382, -46988],
         [-44884, -44890, -46385], [-44884, -44896, -46386], [-44884, -45284, -46815]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses155 : List (List Int) :=
   [
         [-44884, -45285, -46988], [-44890, -44896, -46390], [-44890, -45286, -46815],
@@ -22991,6 +23607,7 @@ def expectedBlockingClauses155 : List (List Int) :=
         [-45493, -45037, -45041], [-45494, -45037, -45045], [-45495, -45037, -46302],
         [-45496, -45037, -46440], [-45498, -45037, -46724], [-45499, -45041, -45045]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses156 : List (List Int) :=
   [
         [-45500, -45041, -46302], [-45501, -45041, -46440], [-45503, -45041, -46724],
@@ -23010,6 +23627,7 @@ def expectedBlockingClauses156 : List (List Int) :=
         [-45959, -45049, -45053], [-45510, -46062, -46302], [-45510, -46063, -46440],
         [-45510, -46065, -46724], [-45510, -46066, -45049], [-45510, -46067, -45053]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses157 : List (List Int) :=
   [
         [-45680, -46104, -45049], [-45680, -46105, -45053], [-46121, -46302, -45049],
@@ -23029,6 +23647,7 @@ def expectedBlockingClauses157 : List (List Int) :=
         [-45680, -45045, -46691], [-45037, -45041, -46697], [-45037, -45045, -46698],
         [-45041, -45045, -46704], [-46302, -46440, -46716], [-46728, -45049, -45053]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses158 : List (List Int) :=
   [
         [-45510, -45037, -45121], [-45510, -45041, -45122], [-45510, -45045, -45123],
@@ -23048,6 +23667,7 @@ def expectedBlockingClauses158 : List (List Int) :=
         [-45490, -45572, -44966], [-45491, -45572, -44968], [-45492, -45572, -44970],
         [-45512, -44966, -44968], [-45513, -44966, -44970], [-45514, -44966, -46887]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses159 : List (List Int) :=
   [
         [-45515, -44966, -47060], [-45516, -44968, -44970], [-45517, -44968, -46887],
@@ -23067,6 +23687,7 @@ def expectedBlockingClauses159 : List (List Int) :=
         [-44966, -44968, -46591], [-44966, -44970, -46592], [-44966, -46596, -46887],
         [-44966, -46597, -47060], [-44968, -44970, -46598], [-44968, -46602, -46887]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses160 : List (List Int) :=
   [
         [-44968, -46603, -47060], [-44970, -46607, -46887], [-44970, -46608, -47060],
@@ -23086,6 +23707,7 @@ def expectedBlockingClauses160 : List (List Int) :=
         [-45099, -45664, -45215], [-45308, -45128, -45203], [-45309, -45128, -45215],
         [-45310, -45134, -45203], [-45311, -45134, -45215], [-45314, -45156, -45203]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses161 : List (List Int) :=
   [
         [-45315, -45156, -45215], [-45693, -45203, -45215], [-45099, -45111, -46236],
@@ -23105,6 +23727,7 @@ def expectedBlockingClauses161 : List (List Int) :=
         [-45103, -45667, -45219], [-45316, -45130, -45207], [-45317, -45130, -45219],
         [-45318, -45137, -45207], [-45319, -45137, -45219], [-45322, -45159, -45207]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses162 : List (List Int) :=
   [
         [-45323, -45159, -45219], [-45698, -45207, -45219], [-45103, -45115, -46237],
@@ -23124,6 +23747,7 @@ def expectedBlockingClauses162 : List (List Int) :=
         [-45107, -45670, -45223], [-45324, -45132, -45211], [-45325, -45132, -45223],
         [-45326, -45140, -45211], [-45327, -45140, -45223], [-45330, -45162, -45211]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses163 : List (List Int) :=
   [
         [-45331, -45162, -45223], [-45703, -45211, -45223], [-45107, -45119, -46238],
@@ -23143,6 +23767,7 @@ def expectedBlockingClauses163 : List (List Int) :=
         [-45862, -46502, -46779], [-46036, -46502, -46779], [-46210, -46502, -46779],
         [-45634, -45865, -46419], [-45634, -46039, -46425], [-45634, -46213, -46430]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses164 : List (List Int) :=
   [
         [-45634, -46437, -46779], [-45634, -46438, -46948], [-45634, -46439, -47121],
@@ -23162,6 +23787,7 @@ def expectedBlockingClauses164 : List (List Int) :=
         [-45634, -46718, -46948], [-45634, -46719, -47121], [-45865, -46039, -46762],
         [-45865, -46213, -46768], [-45865, -45466, -46948], [-45865, -45467, -47121]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses165 : List (List Int) :=
   [
         [-46039, -46213, -46774], [-46039, -45472, -46948], [-46039, -45473, -47121],
@@ -23181,6 +23807,7 @@ def expectedBlockingClauses165 : List (List Int) :=
         [-45873, -45144, -46783], [-45873, -45444, -46954], [-45873, -45445, -47127],
         [-46047, -46221, -46636], [-46047, -46361, -44988], [-46047, -45148, -46783]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses166 : List (List Int) :=
   [
         [-46047, -45450, -46954], [-46047, -45451, -47127], [-46221, -46361, -44989],
@@ -23200,6 +23827,7 @@ def expectedBlockingClauses166 : List (List Int) :=
         [-46361, -46783, -47119], [-46361, -46954, -47120], [-45652, -45881, -46283],
         [-45652, -46055, -46289], [-45652, -46229, -46294], [-45652, -46299, -46507]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses167 : List (List Int) :=
   [
         [-45652, -46307, -46960], [-45652, -46308, -47133], [-45881, -46055, -46346],
@@ -23219,6 +23847,7 @@ def expectedBlockingClauses167 : List (List Int) :=
         [-45652, -46507, -46582], [-45652, -46586, -46960], [-45652, -46587, -47133],
         [-45881, -46055, -46625], [-45881, -46229, -46631], [-45881, -46366, -45007]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses168 : List (List Int) :=
   [
         [-45881, -46507, -45144], [-45881, -45446, -46960], [-45881, -45447, -47133],
@@ -23238,6 +23867,7 @@ def expectedBlockingClauses168 : List (List Int) :=
         [-45546, -45922, -46787], [-45655, -45708, -45930], [-45655, -45374, -45936],
         [-45655, -45942, -45390], [-45546, -45708, -46070], [-45546, -46087, -46367]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses169 : List (List Int) :=
   [
         [-45546, -46091, -46508], [-45546, -46096, -46787], [-45655, -45708, -46104],
@@ -23257,6 +23887,7 @@ def expectedBlockingClauses169 : List (List Int) :=
         [-45708, -45382, -46741], [-45708, -45390, -46746], [-45374, -45382, -46765],
         [-45374, -45390, -46771], [-45382, -45390, -46777], [-46367, -46508, -45484]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses170 : List (List Int) :=
   [
         [-45515, -45709, -45375], [-45518, -45709, -45383], [-45520, -45709, -45391],
@@ -23276,6 +23907,7 @@ def expectedBlockingClauses170 : List (List Int) :=
         [-45709, -45391, -46329], [-45375, -45383, -46348], [-45375, -45391, -46354],
         [-45383, -45391, -46360], [-45415, -46510, -46789], [-45656, -45709, -46416]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses171 : List (List Int) :=
   [
         [-45656, -45375, -46423], [-45656, -45383, -46429], [-45656, -45391, -46434],
@@ -23295,6 +23927,7 @@ def expectedBlockingClauses171 : List (List Int) :=
         [-44879, -45718, -46818], [-44879, -45719, -46991], [-45728, -44891, -46818],
         [-45729, -44891, -46991], [-45734, -44897, -46818], [-45735, -44897, -46991]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses172 : List (List Int) :=
   [
         [-45750, -46818, -46991], [-44879, -44885, -44886], [-44879, -44887, -44897],
@@ -23314,6 +23947,7 @@ def expectedBlockingClauses172 : List (List Int) :=
         [-44885, -45285, -46991], [-44891, -44897, -46390], [-44891, -45286, -46818],
         [-44891, -45287, -46991], [-44897, -45288, -46818], [-44897, -45289, -46991]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses173 : List (List Int) :=
   [
         [-46267, -46398, -46546], [-46408, -46818, -46991], [-44879, -44885, -46516],
@@ -23333,6 +23967,7 @@ def expectedBlockingClauses173 : List (List Int) :=
         [-45496, -45038, -46444], [-45497, -45038, -46585], [-45499, -45042, -45046],
         [-45500, -45042, -46306], [-45501, -45042, -46444], [-45502, -45042, -46585]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses174 : List (List Int) :=
   [
         [-45504, -45046, -46306], [-45505, -45046, -46444], [-45506, -45046, -46585],
@@ -23352,6 +23987,7 @@ def expectedBlockingClauses174 : List (List Int) :=
         [-45511, -46064, -46585], [-45511, -46066, -45050], [-45511, -46067, -45054],
         [-45683, -46104, -45050], [-45683, -46105, -45054], [-46121, -46306, -45050]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses175 : List (List Int) :=
   [
         [-46122, -46306, -45054], [-46125, -46444, -45050], [-46126, -46444, -45054],
@@ -23371,6 +24007,7 @@ def expectedBlockingClauses175 : List (List Int) :=
         [-45042, -45046, -46704], [-46306, -46444, -46716], [-46306, -46585, -46717],
         [-46444, -46585, -46721], [-46728, -45050, -45054], [-45511, -45038, -45121]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses176 : List (List Int) :=
   [
         [-45511, -45042, -45122], [-45511, -45046, -45123], [-45683, -45038, -46821],
@@ -23390,6 +24027,7 @@ def expectedBlockingClauses176 : List (List Int) :=
         [-45491, -45576, -45986], [-45492, -45576, -46160], [-45512, -45812, -45986],
         [-45513, -45812, -46160], [-45514, -45812, -46890], [-45515, -45812, -47063]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses177 : List (List Int) :=
   [
         [-45516, -45986, -46160], [-45517, -45986, -46890], [-45518, -45986, -47063],
@@ -23409,6 +24047,7 @@ def expectedBlockingClauses177 : List (List Int) :=
         [-45812, -46160, -46592], [-45812, -46596, -46890], [-45812, -46597, -47063],
         [-45986, -46160, -46598], [-45986, -46602, -46890], [-45986, -46603, -47063]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses178 : List (List Int) :=
   [
         [-46160, -46607, -46890], [-46160, -46608, -47063], [-46337, -46475, -46610],
@@ -23428,6 +24067,7 @@ def expectedBlockingClauses178 : List (List Int) :=
         [-45100, -45663, -45204], [-45100, -45664, -45216], [-45308, -45001, -45204],
         [-45309, -45001, -45216], [-45310, -45135, -45204], [-45311, -45135, -45216]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses179 : List (List Int) :=
   [
         [-45312, -45145, -45204], [-45313, -45145, -45216], [-45693, -45204, -45216],
@@ -23447,6 +24087,7 @@ def expectedBlockingClauses179 : List (List Int) :=
         [-45692, -45135, -47036], [-45692, -45145, -47037], [-45104, -45666, -45208],
         [-45104, -45667, -45220], [-45316, -45002, -45208], [-45317, -45002, -45220]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses180 : List (List Int) :=
   [
         [-45318, -45138, -45208], [-45319, -45138, -45220], [-45320, -45149, -45208],
@@ -23466,6 +24107,7 @@ def expectedBlockingClauses180 : List (List Int) :=
         [-45116, -45208, -47016], [-45697, -45002, -47041], [-45697, -45138, -47042],
         [-45697, -45149, -47043], [-45108, -45669, -45212], [-45108, -45670, -45224]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses181 : List (List Int) :=
   [
         [-45324, -45003, -45212], [-45325, -45003, -45224], [-45326, -45141, -45212],
@@ -23485,6 +24127,7 @@ def expectedBlockingClauses181 : List (List Int) :=
         [-45108, -45120, -45126], [-45108, -45702, -46968], [-45120, -45212, -47022],
         [-45702, -45003, -47046], [-45702, -45141, -47047], [-45702, -45153, -47048]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses182 : List (List Int) :=
   [
         [-45630, -46503, -46641], [-45861, -46503, -46641], [-46035, -46503, -46641],
@@ -23504,6 +24147,7 @@ def expectedBlockingClauses182 : List (List Int) :=
         [-45638, -46217, -46710], [-45638, -46718, -46951], [-45638, -46719, -47124],
         [-45869, -46043, -46762], [-45869, -46217, -46768], [-45869, -45466, -46951]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses183 : List (List Int) :=
   [
         [-45869, -45467, -47124], [-46043, -46217, -46774], [-46043, -45472, -46951],
@@ -23523,6 +24167,7 @@ def expectedBlockingClauses183 : List (List Int) :=
         [-45877, -46225, -46630], [-45877, -46362, -44987], [-45877, -45444, -46957],
         [-45877, -45445, -47130], [-46051, -46225, -46636], [-46051, -46362, -44988]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses184 : List (List Int) :=
   [
         [-46051, -45450, -46957], [-46051, -45451, -47130], [-46225, -46362, -44989],
@@ -23542,6 +24187,7 @@ def expectedBlockingClauses184 : List (List Int) :=
         [-45602, -46055, -46507], [-45614, -46229, -46366], [-45618, -46229, -46507],
         [-45630, -46366, -46507], [-45636, -46366, -46960], [-45637, -46366, -47133]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses185 : List (List Int) :=
   [
         [-45645, -46507, -46960], [-45646, -46507, -47133], [-45652, -45771, -46366],
@@ -23561,6 +24207,7 @@ def expectedBlockingClauses185 : List (List Int) :=
         [-45652, -46055, -46707], [-45652, -46229, -46712], [-45652, -46366, -46717],
         [-45652, -46507, -46721], [-45652, -46725, -46960], [-45652, -46726, -47133]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses186 : List (List Int) :=
   [
         [-45881, -46055, -46764], [-45881, -46229, -46770], [-45881, -46366, -44993],
@@ -23580,6 +24227,7 @@ def expectedBlockingClauses186 : List (List Int) :=
         [-45514, -45710, -45376], [-45517, -45710, -45384], [-45519, -45710, -45392],
         [-45526, -45376, -45384], [-45533, -45376, -45392], [-45011, -45376, -46370]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses187 : List (List Int) :=
   [
         [-45013, -45376, -46511], [-45015, -45376, -46649], [-45540, -45384, -45392],
@@ -23599,6 +24247,7 @@ def expectedBlockingClauses187 : List (List Int) :=
         [-45657, -45384, -46428], [-45657, -45392, -46433], [-45710, -45376, -46455],
         [-45710, -45384, -46461], [-45710, -45392, -46466], [-45376, -45384, -46485]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses188 : List (List Int) :=
   [
         [-45376, -45392, -46491], [-45384, -45392, -46498], [-46370, -45436, -46649],
@@ -23618,6 +24267,7 @@ def expectedBlockingClauses188 : List (List Int) :=
         [-45549, -45711, -45723], [-45549, -45740, -46372], [-45549, -45744, -46513],
         [-45549, -45747, -46651], [-45658, -45711, -45757], [-45658, -45763, -45385]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses189 : List (List Int) :=
   [
         [-45658, -45769, -45393], [-45549, -45711, -45897], [-45549, -45914, -46372],
@@ -23637,6 +24287,7 @@ def expectedBlockingClauses189 : List (List Int) :=
         [-45711, -45393, -46608], [-45377, -45385, -46627], [-45377, -45393, -46633],
         [-45385, -45393, -46639], [-46372, -46513, -45461], [-45658, -45711, -46696]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses190 : List (List Int) :=
   [
         [-45658, -45377, -46703], [-45658, -45385, -46709], [-45658, -45393, -46714],
@@ -23656,6 +24307,7 @@ def expectedBlockingClauses190 : List (List Int) :=
         [-45726, -45334, -45171], [-45727, -45334, -45173], [-45730, -45336, -45167],
         [-45731, -45336, -45169], [-45732, -45336, -45171], [-45733, -45336, -45173]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses191 : List (List Int) :=
   [
         [-45736, -45167, -45169], [-45737, -45167, -45171], [-45738, -45167, -45173],
@@ -23675,6 +24327,7 @@ def expectedBlockingClauses191 : List (List Int) :=
         [-46086, -45167, -45173], [-46089, -45169, -45171], [-46090, -45169, -45173],
         [-46093, -45171, -45173], [-45671, -45332, -46793], [-45671, -45334, -46794]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses192 : List (List Int) :=
   [
         [-45671, -45336, -46795], [-45671, -45167, -44918], [-45671, -45169, -44919],
@@ -23694,6 +24347,7 @@ def expectedBlockingClauses192 : List (List Int) :=
         [-45334, -45171, -44959], [-45334, -45173, -44960], [-45336, -45167, -44961],
         [-45336, -45169, -44962], [-45336, -45171, -44963], [-45336, -45173, -44964]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses193 : List (List Int) :=
   [
         [-45167, -45169, -46980], [-45167, -45171, -46981], [-45167, -45173, -46982],
@@ -23713,6 +24367,7 @@ def expectedBlockingClauses193 : List (List Int) :=
         [-45686, -45784, -46409], [-45686, -45958, -46410], [-45686, -46132, -46411],
         [-45686, -46309, -46412], [-45686, -46413, -46588], [-45686, -46414, -46727]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses194 : List (List Int) :=
   [
         [-45784, -45958, -46417], [-45784, -46132, -46418], [-45784, -46309, -46419],
@@ -23732,6 +24387,7 @@ def expectedBlockingClauses194 : List (List Int) :=
         [-45958, -46309, -46705], [-45958, -46447, -46706], [-45958, -46588, -46707],
         [-46132, -46309, -46710], [-46132, -46447, -46711], [-46132, -46588, -46712]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses195 : List (List Int) :=
   [
         [-45686, -45784, -46821], [-45686, -45958, -46822], [-45686, -46132, -46823],
@@ -23751,6 +24407,7 @@ def expectedBlockingClauses195 : List (List Int) :=
         [-45958, -46309, -47012], [-45958, -46447, -47013], [-45958, -46588, -47014],
         [-45958, -46727, -47015], [-46132, -46309, -47018], [-46132, -46447, -47019]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses196 : List (List Int) :=
   [
         [-46132, -46588, -47020], [-46132, -46727, -47021], [-46309, -46447, -47023],
@@ -23770,6 +24427,7 @@ def expectedBlockingClauses196 : List (List Int) :=
         [-45802, -46340, -46758], [-45804, -46340, -47065], [-45805, -46478, -46619],
         [-45806, -46478, -46758], [-45808, -46478, -47065], [-45809, -46619, -46758]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses197 : List (List Int) :=
   [
         [-45811, -46619, -47065], [-45814, -46758, -47065], [-45338, -45230, -46340],
@@ -23789,6 +24447,7 @@ def expectedBlockingClauses197 : List (List Int) :=
         [-45338, -46163, -45348], [-45579, -45815, -46271], [-45579, -45989, -46272],
         [-45579, -46163, -46273], [-45579, -46278, -47065], [-45815, -45989, -46312]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses198 : List (List Int) :=
   [
         [-45815, -46163, -46313], [-45815, -46318, -47065], [-45989, -46163, -46319],
@@ -23808,6 +24467,7 @@ def expectedBlockingClauses198 : List (List Int) :=
         [-45989, -46742, -47065], [-46163, -46747, -47065], [-45338, -46340, -44918],
         [-45338, -46478, -44919], [-45338, -46619, -44920], [-45338, -46758, -44921]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses199 : List (List Int) :=
   [
         [-45579, -45815, -46821], [-45579, -45989, -46822], [-45579, -46163, -46823],
@@ -23827,6 +24487,7 @@ def expectedBlockingClauses199 : List (List Int) :=
         [-45248, -45595, -46236], [-45248, -45340, -45346], [-45595, -46285, -47088],
         [-45340, -46314, -45260], [-45340, -46315, -45266], [-45340, -46316, -45272]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses200 : List (List Int) :=
   [
         [-45248, -45595, -46375], [-45248, -45340, -45349], [-45595, -46423, -47088],
@@ -23846,6 +24507,7 @@ def expectedBlockingClauses200 : List (List Int) :=
         [-45254, -45260, -47078], [-45254, -45266, -47079], [-45254, -45272, -47080],
         [-45260, -45266, -47082], [-45260, -45272, -47083], [-45266, -45272, -47085]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses201 : List (List Int) :=
   [
         [-45250, -45082, -45256], [-45250, -45083, -45262], [-45250, -45084, -45268],
@@ -23865,6 +24527,7 @@ def expectedBlockingClauses201 : List (List Int) :=
         [-45250, -45274, -44948], [-45342, -45256, -46868], [-45342, -45262, -46869],
         [-45342, -45268, -46870], [-45342, -45274, -46871], [-45256, -45262, -46922]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses202 : List (List Int) :=
   [
         [-45256, -45268, -46923], [-45256, -45274, -46924], [-45262, -45268, -46926],
@@ -23884,6 +24547,7 @@ def expectedBlockingClauses202 : List (List Int) :=
         [-45627, -46434, -47116], [-45344, -45258, -46463], [-45344, -46464, -45270],
         [-45344, -46465, -45276], [-45252, -45627, -46518], [-45252, -45344, -45354]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses203 : List (List Int) :=
   [
         [-45627, -46575, -47116], [-45344, -45258, -46604], [-45344, -45264, -46605],
@@ -23903,6 +24567,7 @@ def expectedBlockingClauses203 : List (List Int) :=
         [-45504, -45641, -45386], [-45522, -45370, -45378], [-45529, -45370, -45386],
         [-45012, -45370, -47126], [-45536, -45378, -45386], [-45020, -45378, -47126]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses204 : List (List Int) :=
   [
         [-45028, -45386, -47126], [-45630, -46504, -46642], [-45631, -46504, -46780],
@@ -23922,6 +24587,7 @@ def expectedBlockingClauses204 : List (List Int) :=
         [-45641, -45370, -47005], [-45641, -45378, -47012], [-45641, -45386, -47018],
         [-45704, -45370, -47035], [-45704, -45378, -47041], [-45704, -45386, -47046]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses205 : List (List Int) :=
   [
         [-45370, -45378, -47067], [-45370, -45386, -47073], [-45378, -45386, -47090],
@@ -23941,6 +24607,7 @@ def expectedBlockingClauses205 : List (List Int) :=
         [-45380, -44976, -46646], [-45380, -44977, -46784], [-45388, -44979, -46646],
         [-45388, -44980, -46784], [-45413, -46646, -47132], [-45415, -46784, -47132]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses206 : List (List Int) :=
   [
         [-45544, -46363, -46539], [-45650, -46363, -46577], [-45706, -46363, -46610],
@@ -23960,6 +24627,7 @@ def expectedBlockingClauses206 : List (List Int) :=
         [-45538, -45382, -45390], [-45024, -45382, -47135], [-45032, -45390, -47135],
         [-45630, -46367, -46508], [-45546, -45655, -45716], [-45546, -45747, -47135]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses207 : List (List Int) :=
   [
         [-45655, -45708, -45754], [-45708, -45789, -45382], [-45708, -45795, -45390],
@@ -23979,6 +24647,7 @@ def expectedBlockingClauses207 : List (List Int) :=
         [-46367, -45487, -47135], [-46508, -45489, -47135], [-45655, -45708, -46826],
         [-45655, -45374, -46834], [-45655, -45382, -46841], [-45655, -45390, -46847]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses208 : List (List Int) :=
   [
         [-45708, -45374, -46864], [-45708, -45382, -46870], [-45708, -45390, -46875],
@@ -23998,6 +24667,7 @@ def expectedBlockingClauses208 : List (List Int) :=
         [-45710, -45970, -45392], [-46036, -46370, -46511], [-46040, -46370, -46649],
         [-46048, -46511, -46649], [-45548, -45657, -46065], [-45548, -46097, -47136]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses209 : List (List Int) :=
   [
         [-45657, -45710, -46103], [-45710, -45376, -46138], [-45710, -45384, -46144],
@@ -24017,6 +24687,7 @@ def expectedBlockingClauses209 : List (List Int) :=
         [-45886, -46514, -46911], [-45886, -46652, -46913], [-45886, -46790, -46914],
         [-46060, -46234, -46921], [-46060, -46373, -46925], [-46060, -46514, -46928]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses210 : List (List Int) :=
   [
         [-46060, -46652, -46930], [-46060, -46790, -46931], [-46234, -46373, -46936],
@@ -24036,6 +24707,7 @@ def expectedBlockingClauses210 : List (List Int) :=
         [-45726, -45335, -45172], [-45727, -45335, -45174], [-45730, -45337, -45168],
         [-45731, -45337, -45170], [-45732, -45337, -45172], [-45733, -45337, -45174]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses211 : List (List Int) :=
   [
         [-45736, -45168, -45170], [-45737, -45168, -45172], [-45738, -45168, -45174],
@@ -24055,6 +24727,7 @@ def expectedBlockingClauses211 : List (List Int) :=
         [-46086, -45168, -45174], [-46089, -45170, -45172], [-46090, -45170, -45174],
         [-46093, -45172, -45174], [-45673, -45333, -46793], [-45673, -45335, -46794]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses212 : List (List Int) :=
   [
         [-45673, -45337, -46795], [-45673, -45168, -44918], [-45673, -45170, -44919],
@@ -24074,6 +24747,7 @@ def expectedBlockingClauses212 : List (List Int) :=
         [-45335, -45172, -44959], [-45335, -45174, -44960], [-45337, -45168, -44961],
         [-45337, -45170, -44962], [-45337, -45172, -44963], [-45337, -45174, -44964]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses213 : List (List Int) :=
   [
         [-45168, -45170, -46980], [-45168, -45172, -46981], [-45168, -45174, -46982],
@@ -24093,6 +24767,7 @@ def expectedBlockingClauses213 : List (List Int) :=
         [-45688, -45786, -46409], [-45688, -45960, -46410], [-45688, -46134, -46411],
         [-45688, -46311, -46412], [-45688, -46413, -46590], [-45688, -46414, -46729]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses214 : List (List Int) :=
   [
         [-45786, -45960, -46417], [-45786, -46134, -46418], [-45786, -46311, -46419],
@@ -24112,6 +24787,7 @@ def expectedBlockingClauses214 : List (List Int) :=
         [-45960, -46311, -46705], [-45960, -46449, -46706], [-45960, -46590, -46707],
         [-46134, -46311, -46710], [-46134, -46449, -46711], [-46134, -46590, -46712]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses215 : List (List Int) :=
   [
         [-45688, -45786, -46821], [-45688, -45960, -46822], [-45688, -46134, -46823],
@@ -24131,6 +24807,7 @@ def expectedBlockingClauses215 : List (List Int) :=
         [-45960, -46311, -47012], [-45960, -46449, -47013], [-45960, -46590, -47014],
         [-45960, -46729, -47015], [-46134, -46311, -47018], [-46134, -46449, -47019]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses216 : List (List Int) :=
   [
         [-46134, -46590, -47020], [-46134, -46729, -47021], [-46311, -46449, -47023],
@@ -24150,6 +24827,7 @@ def expectedBlockingClauses216 : List (List Int) :=
         [-45802, -46342, -46760], [-45803, -46342, -46892], [-45805, -46480, -46621],
         [-45806, -46480, -46760], [-45807, -46480, -46892], [-45809, -46621, -46760]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses217 : List (List Int) :=
   [
         [-45810, -46621, -46892], [-45813, -46760, -46892], [-45339, -45230, -46342],
@@ -24169,6 +24847,7 @@ def expectedBlockingClauses217 : List (List Int) :=
         [-45339, -46165, -45348], [-45580, -45817, -46271], [-45580, -45991, -46272],
         [-45580, -46165, -46273], [-45580, -46277, -46892], [-45817, -45991, -46312]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses218 : List (List Int) :=
   [
         [-45817, -46165, -46313], [-45817, -46317, -46892], [-45991, -46165, -46319],
@@ -24188,6 +24867,7 @@ def expectedBlockingClauses218 : List (List Int) :=
         [-45991, -46741, -46892], [-46165, -46746, -46892], [-45339, -46342, -44918],
         [-45339, -46480, -44919], [-45339, -46621, -44920], [-45339, -46760, -44921]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses219 : List (List Int) :=
   [
         [-45580, -45817, -46821], [-45580, -45991, -46822], [-45580, -46165, -46823],
@@ -24207,6 +24887,7 @@ def expectedBlockingClauses219 : List (List Int) :=
         [-45249, -45596, -46236], [-45249, -45341, -45346], [-45596, -46284, -46915],
         [-45341, -46314, -45261], [-45341, -46315, -45267], [-45341, -46316, -45273]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses220 : List (List Int) :=
   [
         [-45249, -45596, -46375], [-45249, -45341, -45349], [-45596, -46422, -46915],
@@ -24226,6 +24907,7 @@ def expectedBlockingClauses220 : List (List Int) :=
         [-45255, -45261, -47078], [-45255, -45267, -47079], [-45255, -45273, -47080],
         [-45261, -45267, -47082], [-45261, -45273, -47083], [-45267, -45273, -47085]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses221 : List (List Int) :=
   [
         [-45251, -45082, -45257], [-45251, -45083, -45263], [-45251, -45084, -45269],
@@ -24245,6 +24927,7 @@ def expectedBlockingClauses221 : List (List Int) :=
         [-45251, -45275, -44948], [-45343, -45257, -46868], [-45343, -45263, -46869],
         [-45343, -45269, -46870], [-45343, -45275, -46871], [-45257, -45263, -46922]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses222 : List (List Int) :=
   [
         [-45257, -45269, -46923], [-45257, -45275, -46924], [-45263, -45269, -46926],
@@ -24264,6 +24947,7 @@ def expectedBlockingClauses222 : List (List Int) :=
         [-45628, -46433, -46943], [-45345, -45259, -46463], [-45345, -46464, -45271],
         [-45345, -46465, -45277], [-45253, -45628, -46518], [-45253, -45345, -45354]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses223 : List (List Int) :=
   [
         [-45628, -46574, -46943], [-45345, -45259, -46604], [-45345, -45265, -46605],
@@ -24283,6 +24967,7 @@ def expectedBlockingClauses223 : List (List Int) :=
         [-45504, -45642, -45387], [-45522, -45371, -45379], [-45529, -45371, -45387],
         [-45011, -45371, -46953], [-45536, -45379, -45387], [-45019, -45379, -46953]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses224 : List (List Int) :=
   [
         [-45027, -45387, -46953], [-45630, -46506, -46644], [-45631, -46506, -46782],
@@ -24302,6 +24987,7 @@ def expectedBlockingClauses224 : List (List Int) :=
         [-45642, -45371, -47005], [-45642, -45379, -47012], [-45642, -45387, -47018],
         [-45705, -45371, -47035], [-45705, -45379, -47041], [-45705, -45387, -47046]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses225 : List (List Int) :=
   [
         [-45371, -45379, -47067], [-45371, -45387, -47073], [-45379, -45387, -47090],
@@ -24321,6 +25007,7 @@ def expectedBlockingClauses225 : List (List Int) :=
         [-45381, -44976, -46648], [-45381, -44977, -46786], [-45389, -44979, -46648],
         [-45389, -44980, -46786], [-45412, -46648, -46959], [-45414, -46786, -46959]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses226 : List (List Int) :=
   [
         [-45545, -46365, -46539], [-45651, -46365, -46577], [-45707, -46365, -46610],
@@ -24340,6 +25027,7 @@ def expectedBlockingClauses226 : List (List Int) :=
         [-45538, -45383, -45391], [-45023, -45383, -46962], [-45031, -45391, -46962],
         [-45630, -46369, -46510], [-45547, -45656, -45716], [-45547, -45746, -46962]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses227 : List (List Int) :=
   [
         [-45656, -45709, -45754], [-45709, -45789, -45383], [-45709, -45795, -45391],
@@ -24359,6 +25047,7 @@ def expectedBlockingClauses227 : List (List Int) :=
         [-46369, -45486, -46962], [-46510, -45488, -46962], [-45656, -45709, -46826],
         [-45656, -45375, -46834], [-45656, -45383, -46841], [-45656, -45391, -46847]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses228 : List (List Int) :=
   [
         [-45709, -45375, -46864], [-45709, -45383, -46870], [-45709, -45391, -46875],
@@ -24378,6 +25067,7 @@ def expectedBlockingClauses228 : List (List Int) :=
         [-45711, -45970, -45393], [-46036, -46372, -46513], [-46040, -46372, -46651],
         [-46048, -46513, -46651], [-45549, -45658, -46065], [-45549, -46096, -46963]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses229 : List (List Int) :=
   [
         [-45658, -45711, -46103], [-45711, -45377, -46138], [-45711, -45385, -46144],
@@ -24397,6 +25087,7 @@ def expectedBlockingClauses229 : List (List Int) :=
         [-45886, -46514, -47084], [-45886, -46652, -47086], [-45886, -46790, -47087],
         [-46060, -46234, -47094], [-46060, -46373, -47098], [-46060, -46514, -47101]]
 
+/-- Generated blocking-clause chunk for the exact-twelve all-order family. -/
 def expectedBlockingClauses230 : List (List Int) :=
   [
         [-46060, -46652, -47103], [-46060, -46790, -47104], [-46234, -46373, -47109],
@@ -24404,6 +25095,7 @@ def expectedBlockingClauses230 : List (List Int) :=
         [-46373, -46514, -47120], [-46373, -46652, -47123], [-46373, -46790, -47125],
         [-46514, -46652, -47129], [-46514, -46790, -47131], [-46652, -46790, -47134]]
 
+/-- Complete concatenation of the generated blocking-clause chunks. -/
 def expectedBlockingClauses : List (List Int) :=
   expectedBlockingClauses000 ++
     expectedBlockingClauses001 ++
@@ -24653,11 +25345,13 @@ theorem family_shape :
         (45490 ≤ definition.varIndex ∧ definition.varIndex ≤ 47136)) = true := by
   native_decide
 
+/-- Check the data certificate and installed-definition membership for one finite family entry. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Every listed family entry has valid data and uses only installed definitions. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧
@@ -24671,6 +25365,7 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 definition hdefinition)
 
+/-- Every reused definition stays below the fresh-variable cutoff. -/
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
@@ -24681,6 +25376,7 @@ private theorem reused_definition_le_cutoff
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
 
+/-- A false mixed blocking clause forces the corresponding positive rows to match. -/
 private theorem positiveRowsMatch_of_mixed_blockingClause_false
     (base : Nat → Bool) (row : RowPattern Label)
     (entryDefinitions : List PositiveMembershipDefinition)
