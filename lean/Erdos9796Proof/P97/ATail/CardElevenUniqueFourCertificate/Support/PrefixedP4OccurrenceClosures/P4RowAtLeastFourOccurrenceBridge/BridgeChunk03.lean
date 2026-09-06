@@ -5,135 +5,264 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Prefixed
 
 namespace Problem97.P4RowAtLeastFourOccurrenceBridgeScratch
 
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry001 : BridgeEntry := ⟨[33, 34, 31, 37, 38, 39, 35], .rowAtLeastFour 3 [2, 4, 0, 7, 8, 9, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry002 : BridgeEntry := ⟨[40, 33, 31, 34, 37, 35, 38], .rowAtLeastFour 3 [10, 2, 0, 4, 7, 5, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry003 : BridgeEntry := ⟨[39, 31, 33, 35, 34, 40, 37], .rowAtLeastFour 3 [9, 0, 2, 5, 4, 10, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry004 : BridgeEntry := ⟨[33, 34, 31, 38, 40, 39, 35], .rowAtLeastFour 3 [2, 4, 0, 8, 10, 9, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry005 : BridgeEntry := ⟨[34, 33, 36, 31, 37, 38, 39], .rowAtLeastFour 3 [4, 2, 6, 0, 7, 8, 9]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry006 : BridgeEntry := ⟨[40, 33, 31, 34, 37, 38, 36], .rowAtLeastFour 3 [10, 2, 0, 4, 7, 8, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry007 : BridgeEntry := ⟨[39, 34, 37, 33, 36, 40, 31], .rowAtLeastFour 3 [9, 4, 7, 2, 6, 10, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry008 : BridgeEntry := ⟨[34, 33, 38, 39, 31, 40, 36], .rowAtLeastFour 3 [4, 2, 8, 9, 0, 10, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry009 : BridgeEntry := ⟨[39, 37, 38, 35, 36, 33, 31], .rowAtLeastFour 3 [9, 7, 8, 5, 6, 2, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry010 : BridgeEntry := ⟨[37, 31, 36, 35, 40, 38, 33], .rowAtLeastFour 3 [7, 0, 6, 5, 10, 8, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry011 : BridgeEntry := ⟨[40, 39, 33, 31, 35, 36, 37], .rowAtLeastFour 3 [10, 9, 2, 0, 5, 6, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry012 : BridgeEntry := ⟨[39, 40, 38, 36, 35, 31, 33], .rowAtLeastFour 3 [9, 10, 8, 6, 5, 0, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry013 : BridgeEntry := ⟨[37, 40, 38, 39, 31, 35, 33], .rowAtLeastFour 3 [7, 10, 8, 9, 0, 5, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry014 : BridgeEntry := ⟨[39, 40, 37, 33, 38, 31, 36], .rowAtLeastFour 3 [9, 10, 7, 2, 8, 0, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry015 : BridgeEntry := ⟨[39, 37, 38, 35, 36, 31, 34], .rowAtLeastFour 3 [9, 7, 8, 5, 6, 0, 4]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry016 : BridgeEntry := ⟨[34, 40, 38, 31, 37, 35, 36], .rowAtLeastFour 3 [4, 10, 8, 0, 7, 5, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry017 : BridgeEntry := ⟨[34, 37, 40, 35, 36, 39, 31], .rowAtLeastFour 3 [4, 7, 10, 5, 6, 9, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry018 : BridgeEntry := ⟨[39, 40, 38, 36, 34, 35, 31], .rowAtLeastFour 3 [9, 10, 8, 6, 4, 5, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry019 : BridgeEntry := ⟨[34, 37, 40, 39, 38, 31, 35], .rowAtLeastFour 3 [4, 7, 10, 9, 8, 0, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry020 : BridgeEntry := ⟨[39, 40, 38, 36, 37, 34, 31], .rowAtLeastFour 3 [9, 10, 8, 6, 7, 4, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry021 : BridgeEntry := ⟨[34, 33, 35, 32, 36, 38, 37], .rowAtLeastFour 3 [4, 2, 5, 1, 6, 8, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry022 : BridgeEntry := ⟨[34, 33, 39, 32, 35, 36, 37], .rowAtLeastFour 3 [4, 2, 9, 1, 5, 6, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry023 : BridgeEntry := ⟨[34, 37, 40, 32, 33, 35, 36], .rowAtLeastFour 3 [4, 7, 10, 1, 2, 5, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry024 : BridgeEntry := ⟨[34, 33, 39, 32, 36, 35, 38], .rowAtLeastFour 3 [4, 2, 9, 1, 6, 5, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry025 : BridgeEntry := ⟨[34, 33, 35, 32, 40, 36, 38], .rowAtLeastFour 3 [4, 2, 5, 1, 10, 6, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry026 : BridgeEntry := ⟨[34, 32, 40, 39, 33, 35, 36], .rowAtLeastFour 3 [4, 1, 10, 9, 2, 5, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry027 : BridgeEntry := ⟨[34, 33, 35, 32, 37, 38, 39], .rowAtLeastFour 3 [4, 2, 5, 1, 7, 8, 9]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry028 : BridgeEntry := ⟨[34, 33, 35, 32, 40, 37, 38], .rowAtLeastFour 3 [4, 2, 5, 1, 10, 7, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry029 : BridgeEntry := ⟨[34, 33, 35, 32, 37, 39, 40], .rowAtLeastFour 3 [4, 2, 5, 1, 7, 9, 10]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry030 : BridgeEntry := ⟨[34, 32, 40, 39, 33, 35, 38], .rowAtLeastFour 3 [4, 1, 10, 9, 2, 5, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry031 : BridgeEntry := ⟨[34, 32, 39, 36, 33, 37, 38], .rowAtLeastFour 3 [4, 1, 9, 6, 2, 7, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry032 : BridgeEntry := ⟨[37, 40, 38, 32, 34, 33, 36], .rowAtLeastFour 3 [7, 10, 8, 1, 4, 2, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry033 : BridgeEntry := ⟨[34, 32, 39, 33, 40, 37, 36], .rowAtLeastFour 3 [4, 1, 9, 2, 10, 7, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry034 : BridgeEntry := ⟨[34, 33, 40, 39, 38, 32, 36], .rowAtLeastFour 3 [4, 2, 10, 9, 8, 1, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry035 : BridgeEntry := ⟨[39, 33, 38, 35, 37, 36, 32], .rowAtLeastFour 3 [9, 2, 8, 5, 7, 6, 1]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry036 : BridgeEntry := ⟨[37, 40, 38, 32, 35, 36, 33], .rowAtLeastFour 3 [7, 10, 8, 1, 5, 6, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry037 : BridgeEntry := ⟨[40, 39, 37, 35, 36, 32, 33], .rowAtLeastFour 3 [10, 9, 7, 5, 6, 1, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry038 : BridgeEntry := ⟨[39, 33, 38, 40, 35, 32, 36], .rowAtLeastFour 3 [9, 2, 8, 10, 5, 1, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry039 : BridgeEntry := ⟨[37, 40, 38, 39, 33, 32, 35], .rowAtLeastFour 3 [7, 10, 8, 9, 2, 1, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry040 : BridgeEntry := ⟨[37, 40, 38, 33, 36, 39, 32], .rowAtLeastFour 3 [7, 10, 8, 2, 6, 9, 1]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry041 : BridgeEntry := ⟨[39, 37, 38, 34, 35, 36, 32], .rowAtLeastFour 3 [9, 7, 8, 4, 5, 6, 1]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry042 : BridgeEntry := ⟨[34, 32, 38, 40, 35, 36, 37], .rowAtLeastFour 3 [4, 1, 8, 10, 5, 6, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry043 : BridgeEntry := ⟨[34, 32, 40, 39, 35, 36, 37], .rowAtLeastFour 3 [4, 1, 10, 9, 5, 6, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry044 : BridgeEntry := ⟨[34, 32, 40, 39, 35, 36, 38], .rowAtLeastFour 3 [4, 1, 10, 9, 5, 6, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry045 : BridgeEntry := ⟨[34, 32, 35, 40, 37, 39, 38], .rowAtLeastFour 3 [4, 1, 5, 10, 7, 9, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry046 : BridgeEntry := ⟨[37, 40, 38, 39, 36, 32, 34], .rowAtLeastFour 3 [7, 10, 8, 9, 6, 1, 4]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry047 : BridgeEntry := ⟨[34, 33, 38, 39, 36, 35, 37], .rowAtLeastFour 3 [4, 2, 8, 9, 6, 5, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry048 : BridgeEntry := ⟨[34, 37, 38, 40, 35, 36, 33], .rowAtLeastFour 3 [4, 7, 8, 10, 5, 6, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry049 : BridgeEntry := ⟨[39, 34, 37, 33, 40, 35, 36], .rowAtLeastFour 3 [9, 4, 7, 2, 10, 5, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry050 : BridgeEntry := ⟨[34, 33, 39, 40, 38, 35, 36], .rowAtLeastFour 3 [4, 2, 9, 10, 8, 5, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry051 : BridgeEntry := ⟨[34, 33, 38, 40, 37, 39, 35], .rowAtLeastFour 3 [4, 2, 8, 10, 7, 9, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry052 : BridgeEntry := ⟨[39, 40, 38, 36, 37, 33, 34], .rowAtLeastFour 3 [9, 10, 8, 6, 7, 2, 4]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry053 : BridgeEntry := ⟨[41, 43, 42, 47, 44, 46, 45], .rowAtLeastFour 4 [0, 2, 1, 7, 3, 6, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry054 : BridgeEntry := ⟨[48, 41, 42, 43, 44, 46, 45], .rowAtLeastFour 4 [8, 0, 1, 2, 3, 6, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry055 : BridgeEntry := ⟨[49, 41, 44, 43, 42, 46, 45], .rowAtLeastFour 4 [9, 0, 3, 2, 1, 6, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry056 : BridgeEntry := ⟨[50, 41, 44, 42, 43, 46, 45], .rowAtLeastFour 4 [10, 0, 3, 1, 2, 6, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry057 : BridgeEntry := ⟨[48, 41, 44, 43, 42, 45, 47], .rowAtLeastFour 4 [8, 0, 3, 2, 1, 5, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry058 : BridgeEntry := ⟨[49, 41, 44, 43, 42, 47, 45], .rowAtLeastFour 4 [9, 0, 3, 2, 1, 7, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry059 : BridgeEntry := ⟨[50, 41, 44, 42, 43, 47, 45], .rowAtLeastFour 4 [10, 0, 3, 1, 2, 7, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry060 : BridgeEntry := ⟨[48, 47, 44, 43, 42, 41, 46], .rowAtLeastFour 4 [8, 7, 3, 2, 1, 0, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry061 : BridgeEntry := ⟨[49, 41, 43, 44, 47, 42, 46], .rowAtLeastFour 4 [9, 0, 2, 3, 7, 1, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry062 : BridgeEntry := ⟨[41, 43, 42, 44, 50, 46, 47], .rowAtLeastFour 4 [0, 2, 1, 3, 10, 6, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry063 : BridgeEntry := ⟨[48, 47, 45, 46, 41, 43, 42], .rowAtLeastFour 4 [8, 7, 5, 6, 0, 2, 1]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry064 : BridgeEntry := ⟨[49, 47, 46, 45, 43, 42, 41], .rowAtLeastFour 4 [9, 7, 6, 5, 2, 1, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry065 : BridgeEntry := ⟨[50, 47, 45, 46, 42, 41, 43], .rowAtLeastFour 4 [10, 7, 5, 6, 1, 0, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry066 : BridgeEntry := ⟨[49, 48, 46, 42, 45, 41, 43], .rowAtLeastFour 4 [9, 8, 6, 1, 5, 0, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry067 : BridgeEntry := ⟨[48, 41, 45, 42, 46, 43, 50], .rowAtLeastFour 4 [8, 0, 5, 1, 6, 2, 10]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry068 : BridgeEntry := ⟨[49, 41, 43, 46, 42, 45, 50], .rowAtLeastFour 4 [9, 0, 2, 6, 1, 5, 10]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry069 : BridgeEntry := ⟨[49, 48, 43, 42, 41, 47, 45], .rowAtLeastFour 4 [9, 8, 2, 1, 0, 7, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry070 : BridgeEntry := ⟨[48, 50, 43, 45, 42, 47, 41], .rowAtLeastFour 4 [8, 10, 2, 5, 1, 7, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry071 : BridgeEntry := ⟨[50, 47, 43, 45, 42, 41, 49], .rowAtLeastFour 4 [10, 7, 2, 5, 1, 0, 9]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry072 : BridgeEntry := ⟨[48, 49, 42, 41, 47, 46, 43], .rowAtLeastFour 4 [8, 9, 1, 0, 7, 6, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry073 : BridgeEntry := ⟨[48, 50, 41, 47, 46, 42, 43], .rowAtLeastFour 4 [8, 10, 0, 7, 6, 1, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry074 : BridgeEntry := ⟨[50, 41, 42, 43, 46, 47, 49], .rowAtLeastFour 4 [10, 0, 1, 2, 6, 7, 9]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry075 : BridgeEntry := ⟨[48, 47, 45, 46, 42, 41, 44], .rowAtLeastFour 4 [8, 7, 5, 6, 1, 0, 3]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry076 : BridgeEntry := ⟨[49, 47, 46, 45, 42, 41, 44], .rowAtLeastFour 4 [9, 7, 6, 5, 1, 0, 3]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry077 : BridgeEntry := ⟨[50, 47, 46, 45, 44, 41, 42], .rowAtLeastFour 4 [10, 7, 6, 5, 3, 0, 1]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry078 : BridgeEntry := ⟨[49, 48, 46, 42, 45, 44, 41], .rowAtLeastFour 4 [9, 8, 6, 1, 5, 3, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry079 : BridgeEntry := ⟨[48, 50, 45, 41, 42, 44, 46], .rowAtLeastFour 4 [8, 10, 5, 0, 1, 3, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry080 : BridgeEntry := ⟨[50, 41, 46, 42, 45, 44, 49], .rowAtLeastFour 4 [10, 0, 6, 1, 5, 3, 9]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry081 : BridgeEntry := ⟨[48, 49, 47, 42, 41, 45, 44], .rowAtLeastFour 4 [8, 9, 7, 1, 0, 5, 3]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry082 : BridgeEntry := ⟨[48, 47, 42, 45, 41, 50, 44], .rowAtLeastFour 4 [8, 7, 1, 5, 0, 10, 3]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry083 : BridgeEntry := ⟨[50, 41, 45, 47, 42, 49, 44], .rowAtLeastFour 4 [10, 0, 5, 7, 1, 9, 3]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry084 : BridgeEntry := ⟨[49, 48, 47, 41, 42, 46, 44], .rowAtLeastFour 4 [9, 8, 7, 0, 1, 6, 3]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry085 : BridgeEntry := ⟨[48, 50, 44, 46, 42, 41, 47], .rowAtLeastFour 4 [8, 10, 3, 6, 1, 0, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry086 : BridgeEntry := ⟨[50, 49, 41, 47, 44, 46, 42], .rowAtLeastFour 4 [10, 9, 0, 7, 3, 6, 1]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry087 : BridgeEntry := ⟨[48, 47, 45, 46, 44, 43, 41], .rowAtLeastFour 4 [8, 7, 5, 6, 3, 2, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry088 : BridgeEntry := ⟨[49, 47, 46, 45, 43, 41, 44], .rowAtLeastFour 4 [9, 7, 6, 5, 2, 0, 3]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry089 : BridgeEntry := ⟨[50, 47, 46, 45, 44, 41, 43], .rowAtLeastFour 4 [10, 7, 6, 5, 3, 0, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry090 : BridgeEntry := ⟨[49, 48, 46, 43, 44, 45, 41], .rowAtLeastFour 4 [9, 8, 6, 2, 3, 5, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry091 : BridgeEntry := ⟨[50, 48, 44, 45, 41, 43, 46], .rowAtLeastFour 4 [10, 8, 3, 5, 0, 2, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry092 : BridgeEntry := ⟨[49, 41, 45, 46, 44, 43, 50], .rowAtLeastFour 4 [9, 0, 5, 6, 3, 2, 10]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry093 : BridgeEntry := ⟨[49, 41, 44, 43, 47, 45, 48], .rowAtLeastFour 4 [9, 0, 3, 2, 7, 5, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry094 : BridgeEntry := ⟨[50, 41, 43, 44, 45, 48, 47], .rowAtLeastFour 4 [10, 0, 2, 3, 5, 8, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry095 : BridgeEntry := ⟨[50, 49, 44, 43, 45, 47, 41], .rowAtLeastFour 4 [10, 9, 3, 2, 5, 7, 0]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry096 : BridgeEntry := ⟨[49, 41, 43, 47, 44, 48, 46], .rowAtLeastFour 4 [9, 0, 2, 7, 3, 8, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry097 : BridgeEntry := ⟨[48, 47, 43, 44, 41, 46, 50], .rowAtLeastFour 4 [8, 7, 2, 3, 0, 6, 10]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry098 : BridgeEntry := ⟨[49, 41, 44, 43, 47, 50, 46], .rowAtLeastFour 4 [9, 0, 3, 2, 7, 10, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry099 : BridgeEntry := ⟨[48, 47, 45, 46, 43, 44, 42], .rowAtLeastFour 4 [8, 7, 5, 6, 2, 3, 1]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry100 : BridgeEntry := ⟨[49, 47, 46, 45, 44, 42, 43], .rowAtLeastFour 4 [9, 7, 6, 5, 3, 1, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry101 : BridgeEntry := ⟨[50, 47, 43, 45, 42, 44, 46], .rowAtLeastFour 4 [10, 7, 2, 5, 1, 3, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry102 : BridgeEntry := ⟨[49, 48, 46, 44, 42, 43, 45], .rowAtLeastFour 4 [9, 8, 6, 3, 1, 2, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry103 : BridgeEntry := ⟨[50, 48, 43, 44, 46, 42, 45], .rowAtLeastFour 4 [10, 8, 2, 3, 6, 1, 5]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry104 : BridgeEntry := ⟨[50, 49, 44, 43, 42, 45, 46], .rowAtLeastFour 4 [10, 9, 3, 2, 1, 5, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry105 : BridgeEntry := ⟨[48, 49, 45, 43, 42, 44, 47], .rowAtLeastFour 4 [8, 9, 5, 2, 1, 3, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry106 : BridgeEntry := ⟨[50, 48, 44, 43, 45, 42, 47], .rowAtLeastFour 4 [10, 8, 3, 2, 5, 1, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry107 : BridgeEntry := ⟨[49, 47, 43, 42, 44, 45, 50], .rowAtLeastFour 4 [9, 7, 2, 1, 3, 5, 10]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry108 : BridgeEntry := ⟨[48, 49, 47, 42, 46, 44, 43], .rowAtLeastFour 4 [8, 9, 7, 1, 6, 3, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry109 : BridgeEntry := ⟨[48, 47, 42, 44, 43, 50, 46], .rowAtLeastFour 4 [8, 7, 1, 3, 2, 10, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry110 : BridgeEntry := ⟨[49, 47, 44, 43, 42, 46, 50], .rowAtLeastFour 4 [9, 7, 3, 2, 1, 6, 10]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry111 : BridgeEntry := ⟨[51, 56, 55, 54, 52, 57, 53], .rowAtLeastFour 5 [0, 6, 4, 3, 1, 7, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry112 : BridgeEntry := ⟨[51, 55, 58, 54, 56, 52, 53], .rowAtLeastFour 5 [0, 4, 8, 3, 6, 1, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry113 : BridgeEntry := ⟨[51, 56, 55, 54, 59, 52, 53], .rowAtLeastFour 5 [0, 6, 4, 3, 9, 1, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry114 : BridgeEntry := ⟨[51, 60, 55, 54, 52, 56, 53], .rowAtLeastFour 5 [0, 10, 4, 3, 1, 6, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry115 : BridgeEntry := ⟨[55, 52, 57, 54, 51, 58, 53], .rowAtLeastFour 5 [4, 1, 7, 3, 0, 8, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry116 : BridgeEntry := ⟨[51, 52, 57, 54, 59, 55, 53], .rowAtLeastFour 5 [0, 1, 7, 3, 9, 4, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry117 : BridgeEntry := ⟨[54, 55, 60, 52, 51, 57, 53], .rowAtLeastFour 5 [3, 4, 10, 1, 0, 7, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry118 : BridgeEntry := ⟨[51, 52, 58, 53, 54, 59, 55], .rowAtLeastFour 5 [0, 1, 8, 2, 3, 9, 4]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry119 : BridgeEntry := ⟨[51, 52, 58, 60, 54, 55, 53], .rowAtLeastFour 5 [0, 1, 8, 10, 3, 4, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry120 : BridgeEntry := ⟨[55, 54, 60, 59, 51, 52, 53], .rowAtLeastFour 5 [4, 3, 10, 9, 0, 1, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry121 : BridgeEntry := ⟨[51, 52, 57, 54, 56, 58, 53], .rowAtLeastFour 5 [0, 1, 7, 3, 6, 8, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry122 : BridgeEntry := ⟨[51, 52, 57, 54, 56, 59, 53], .rowAtLeastFour 5 [0, 1, 7, 3, 6, 9, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry123 : BridgeEntry := ⟨[51, 54, 52, 60, 56, 57, 53], .rowAtLeastFour 5 [0, 3, 1, 10, 6, 7, 2]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry124 : BridgeEntry := ⟨[51, 54, 52, 53, 59, 56, 58], .rowAtLeastFour 5 [0, 3, 1, 2, 9, 6, 8]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry125 : BridgeEntry := ⟨[51, 52, 58, 54, 60, 53, 56], .rowAtLeastFour 5 [0, 1, 8, 3, 10, 2, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry126 : BridgeEntry := ⟨[51, 54, 52, 53, 59, 60, 56], .rowAtLeastFour 5 [0, 3, 1, 2, 9, 10, 6]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry127 : BridgeEntry := ⟨[51, 54, 52, 53, 58, 59, 57], .rowAtLeastFour 5 [0, 3, 1, 2, 8, 9, 7]⟩
+/-- Generated row-at-least-four bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk03Entry128 : BridgeEntry := ⟨[51, 52, 58, 54, 60, 53, 57], .rowAtLeastFour 5 [0, 1, 8, 3, 10, 2, 7]⟩
 
+/-- Generated row-at-least-four bridge list for the prefixed P4 occurrence data. -/
 def bridgeChunk03 : List BridgeEntry := [
   bridgeChunk03Entry001,
   bridgeChunk03Entry002,
@@ -265,265 +394,395 @@ def bridgeChunk03 : List BridgeEntry := [
   bridgeChunk03Entry128,
 ]
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry001_wf : entryWF bridgeChunk03Entry001 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry002_wf : entryWF bridgeChunk03Entry002 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry003_wf : entryWF bridgeChunk03Entry003 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry004_wf : entryWF bridgeChunk03Entry004 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry005_wf : entryWF bridgeChunk03Entry005 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry006_wf : entryWF bridgeChunk03Entry006 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry007_wf : entryWF bridgeChunk03Entry007 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry008_wf : entryWF bridgeChunk03Entry008 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry009_wf : entryWF bridgeChunk03Entry009 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry010_wf : entryWF bridgeChunk03Entry010 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry011_wf : entryWF bridgeChunk03Entry011 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry012_wf : entryWF bridgeChunk03Entry012 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry013_wf : entryWF bridgeChunk03Entry013 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry014_wf : entryWF bridgeChunk03Entry014 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry015_wf : entryWF bridgeChunk03Entry015 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry016_wf : entryWF bridgeChunk03Entry016 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry017_wf : entryWF bridgeChunk03Entry017 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry018_wf : entryWF bridgeChunk03Entry018 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry019_wf : entryWF bridgeChunk03Entry019 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry020_wf : entryWF bridgeChunk03Entry020 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry021_wf : entryWF bridgeChunk03Entry021 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry022_wf : entryWF bridgeChunk03Entry022 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry023_wf : entryWF bridgeChunk03Entry023 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry024_wf : entryWF bridgeChunk03Entry024 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry025_wf : entryWF bridgeChunk03Entry025 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry026_wf : entryWF bridgeChunk03Entry026 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry027_wf : entryWF bridgeChunk03Entry027 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry028_wf : entryWF bridgeChunk03Entry028 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry029_wf : entryWF bridgeChunk03Entry029 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry030_wf : entryWF bridgeChunk03Entry030 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry031_wf : entryWF bridgeChunk03Entry031 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry032_wf : entryWF bridgeChunk03Entry032 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry033_wf : entryWF bridgeChunk03Entry033 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry034_wf : entryWF bridgeChunk03Entry034 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry035_wf : entryWF bridgeChunk03Entry035 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry036_wf : entryWF bridgeChunk03Entry036 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry037_wf : entryWF bridgeChunk03Entry037 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry038_wf : entryWF bridgeChunk03Entry038 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry039_wf : entryWF bridgeChunk03Entry039 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry040_wf : entryWF bridgeChunk03Entry040 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry041_wf : entryWF bridgeChunk03Entry041 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry042_wf : entryWF bridgeChunk03Entry042 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry043_wf : entryWF bridgeChunk03Entry043 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry044_wf : entryWF bridgeChunk03Entry044 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry045_wf : entryWF bridgeChunk03Entry045 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry046_wf : entryWF bridgeChunk03Entry046 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry047_wf : entryWF bridgeChunk03Entry047 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry048_wf : entryWF bridgeChunk03Entry048 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry049_wf : entryWF bridgeChunk03Entry049 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry050_wf : entryWF bridgeChunk03Entry050 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry051_wf : entryWF bridgeChunk03Entry051 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry052_wf : entryWF bridgeChunk03Entry052 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry053_wf : entryWF bridgeChunk03Entry053 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry054_wf : entryWF bridgeChunk03Entry054 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry055_wf : entryWF bridgeChunk03Entry055 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry056_wf : entryWF bridgeChunk03Entry056 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry057_wf : entryWF bridgeChunk03Entry057 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry058_wf : entryWF bridgeChunk03Entry058 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry059_wf : entryWF bridgeChunk03Entry059 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry060_wf : entryWF bridgeChunk03Entry060 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry061_wf : entryWF bridgeChunk03Entry061 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry062_wf : entryWF bridgeChunk03Entry062 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry063_wf : entryWF bridgeChunk03Entry063 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry064_wf : entryWF bridgeChunk03Entry064 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry065_wf : entryWF bridgeChunk03Entry065 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry066_wf : entryWF bridgeChunk03Entry066 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry067_wf : entryWF bridgeChunk03Entry067 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry068_wf : entryWF bridgeChunk03Entry068 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry069_wf : entryWF bridgeChunk03Entry069 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry070_wf : entryWF bridgeChunk03Entry070 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry071_wf : entryWF bridgeChunk03Entry071 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry072_wf : entryWF bridgeChunk03Entry072 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry073_wf : entryWF bridgeChunk03Entry073 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry074_wf : entryWF bridgeChunk03Entry074 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry075_wf : entryWF bridgeChunk03Entry075 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry076_wf : entryWF bridgeChunk03Entry076 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry077_wf : entryWF bridgeChunk03Entry077 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry078_wf : entryWF bridgeChunk03Entry078 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry079_wf : entryWF bridgeChunk03Entry079 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry080_wf : entryWF bridgeChunk03Entry080 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry081_wf : entryWF bridgeChunk03Entry081 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry082_wf : entryWF bridgeChunk03Entry082 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry083_wf : entryWF bridgeChunk03Entry083 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry084_wf : entryWF bridgeChunk03Entry084 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry085_wf : entryWF bridgeChunk03Entry085 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry086_wf : entryWF bridgeChunk03Entry086 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry087_wf : entryWF bridgeChunk03Entry087 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry088_wf : entryWF bridgeChunk03Entry088 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry089_wf : entryWF bridgeChunk03Entry089 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry090_wf : entryWF bridgeChunk03Entry090 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry091_wf : entryWF bridgeChunk03Entry091 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry092_wf : entryWF bridgeChunk03Entry092 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry093_wf : entryWF bridgeChunk03Entry093 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry094_wf : entryWF bridgeChunk03Entry094 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry095_wf : entryWF bridgeChunk03Entry095 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry096_wf : entryWF bridgeChunk03Entry096 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry097_wf : entryWF bridgeChunk03Entry097 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry098_wf : entryWF bridgeChunk03Entry098 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry099_wf : entryWF bridgeChunk03Entry099 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry100_wf : entryWF bridgeChunk03Entry100 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry101_wf : entryWF bridgeChunk03Entry101 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry102_wf : entryWF bridgeChunk03Entry102 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry103_wf : entryWF bridgeChunk03Entry103 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry104_wf : entryWF bridgeChunk03Entry104 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry105_wf : entryWF bridgeChunk03Entry105 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry106_wf : entryWF bridgeChunk03Entry106 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry107_wf : entryWF bridgeChunk03Entry107 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry108_wf : entryWF bridgeChunk03Entry108 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry109_wf : entryWF bridgeChunk03Entry109 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry110_wf : entryWF bridgeChunk03Entry110 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry111_wf : entryWF bridgeChunk03Entry111 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry112_wf : entryWF bridgeChunk03Entry112 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry113_wf : entryWF bridgeChunk03Entry113 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry114_wf : entryWF bridgeChunk03Entry114 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry115_wf : entryWF bridgeChunk03Entry115 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry116_wf : entryWF bridgeChunk03Entry116 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry117_wf : entryWF bridgeChunk03Entry117 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry118_wf : entryWF bridgeChunk03Entry118 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry119_wf : entryWF bridgeChunk03Entry119 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry120_wf : entryWF bridgeChunk03Entry120 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry121_wf : entryWF bridgeChunk03Entry121 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry122_wf : entryWF bridgeChunk03Entry122 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry123_wf : entryWF bridgeChunk03Entry123 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry124_wf : entryWF bridgeChunk03Entry124 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry125_wf : entryWF bridgeChunk03Entry125 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry126_wf : entryWF bridgeChunk03Entry126 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry127_wf : entryWF bridgeChunk03Entry127 = true := by decide
 
+/-- The generated row-at-least-four bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk03Entry128_wf : entryWF bridgeChunk03Entry128 = true := by decide
 
+/-- All generated entries in row-at-least-four bridge chunk 03 satisfy the entryWF predicate. -/
 theorem bridgeChunk03_wf : bridgeChunk03.all entryWF = true := by
   simp [bridgeChunk03, bridgeChunk03Entry001_wf, bridgeChunk03Entry002_wf, bridgeChunk03Entry003_wf, bridgeChunk03Entry004_wf, bridgeChunk03Entry005_wf, bridgeChunk03Entry006_wf, bridgeChunk03Entry007_wf, bridgeChunk03Entry008_wf, bridgeChunk03Entry009_wf, bridgeChunk03Entry010_wf, bridgeChunk03Entry011_wf, bridgeChunk03Entry012_wf, bridgeChunk03Entry013_wf, bridgeChunk03Entry014_wf, bridgeChunk03Entry015_wf, bridgeChunk03Entry016_wf, bridgeChunk03Entry017_wf, bridgeChunk03Entry018_wf, bridgeChunk03Entry019_wf, bridgeChunk03Entry020_wf, bridgeChunk03Entry021_wf, bridgeChunk03Entry022_wf, bridgeChunk03Entry023_wf, bridgeChunk03Entry024_wf, bridgeChunk03Entry025_wf, bridgeChunk03Entry026_wf, bridgeChunk03Entry027_wf, bridgeChunk03Entry028_wf, bridgeChunk03Entry029_wf, bridgeChunk03Entry030_wf, bridgeChunk03Entry031_wf, bridgeChunk03Entry032_wf, bridgeChunk03Entry033_wf, bridgeChunk03Entry034_wf, bridgeChunk03Entry035_wf, bridgeChunk03Entry036_wf, bridgeChunk03Entry037_wf, bridgeChunk03Entry038_wf, bridgeChunk03Entry039_wf, bridgeChunk03Entry040_wf, bridgeChunk03Entry041_wf, bridgeChunk03Entry042_wf, bridgeChunk03Entry043_wf, bridgeChunk03Entry044_wf, bridgeChunk03Entry045_wf, bridgeChunk03Entry046_wf, bridgeChunk03Entry047_wf, bridgeChunk03Entry048_wf, bridgeChunk03Entry049_wf, bridgeChunk03Entry050_wf, bridgeChunk03Entry051_wf, bridgeChunk03Entry052_wf, bridgeChunk03Entry053_wf, bridgeChunk03Entry054_wf, bridgeChunk03Entry055_wf, bridgeChunk03Entry056_wf, bridgeChunk03Entry057_wf, bridgeChunk03Entry058_wf, bridgeChunk03Entry059_wf, bridgeChunk03Entry060_wf, bridgeChunk03Entry061_wf, bridgeChunk03Entry062_wf, bridgeChunk03Entry063_wf, bridgeChunk03Entry064_wf, bridgeChunk03Entry065_wf, bridgeChunk03Entry066_wf, bridgeChunk03Entry067_wf, bridgeChunk03Entry068_wf, bridgeChunk03Entry069_wf, bridgeChunk03Entry070_wf, bridgeChunk03Entry071_wf, bridgeChunk03Entry072_wf, bridgeChunk03Entry073_wf, bridgeChunk03Entry074_wf, bridgeChunk03Entry075_wf, bridgeChunk03Entry076_wf, bridgeChunk03Entry077_wf, bridgeChunk03Entry078_wf, bridgeChunk03Entry079_wf, bridgeChunk03Entry080_wf, bridgeChunk03Entry081_wf, bridgeChunk03Entry082_wf, bridgeChunk03Entry083_wf, bridgeChunk03Entry084_wf, bridgeChunk03Entry085_wf, bridgeChunk03Entry086_wf, bridgeChunk03Entry087_wf, bridgeChunk03Entry088_wf, bridgeChunk03Entry089_wf, bridgeChunk03Entry090_wf, bridgeChunk03Entry091_wf, bridgeChunk03Entry092_wf, bridgeChunk03Entry093_wf, bridgeChunk03Entry094_wf, bridgeChunk03Entry095_wf, bridgeChunk03Entry096_wf, bridgeChunk03Entry097_wf, bridgeChunk03Entry098_wf, bridgeChunk03Entry099_wf, bridgeChunk03Entry100_wf, bridgeChunk03Entry101_wf, bridgeChunk03Entry102_wf, bridgeChunk03Entry103_wf, bridgeChunk03Entry104_wf, bridgeChunk03Entry105_wf, bridgeChunk03Entry106_wf, bridgeChunk03Entry107_wf, bridgeChunk03Entry108_wf, bridgeChunk03Entry109_wf, bridgeChunk03Entry110_wf, bridgeChunk03Entry111_wf, bridgeChunk03Entry112_wf, bridgeChunk03Entry113_wf, bridgeChunk03Entry114_wf, bridgeChunk03Entry115_wf, bridgeChunk03Entry116_wf, bridgeChunk03Entry117_wf, bridgeChunk03Entry118_wf, bridgeChunk03Entry119_wf, bridgeChunk03Entry120_wf, bridgeChunk03Entry121_wf, bridgeChunk03Entry122_wf, bridgeChunk03Entry123_wf, bridgeChunk03Entry124_wf, bridgeChunk03Entry125_wf, bridgeChunk03Entry126_wf, bridgeChunk03Entry127_wf, bridgeChunk03Entry128_wf]
 
+/-- The generated row-at-least-four bridge chunk 03 contains exactly 128 entries. -/
 theorem bridgeChunk03_length : bridgeChunk03.length = 128 := by simp [bridgeChunk03]
 
 end Problem97.P4RowAtLeastFourOccurrenceBridgeScratch
