@@ -40,7 +40,7 @@ well-founded measure and its constructor fan-out before changing obligations.
 | --- | --- | --- | --- |
 | 1 | Simultaneous-deletion row replacement and strict-fresh reconstruction | Committed in `bce36a53c`; helper and coordinator builds pass; old five-incidence declaration deleted; ten production helpers have core-only axioms | Refresh the kernel mine and aggregate dependency/trust evidence before accepting a proof-spine reduction |
 | 2 | Source geometry for radius drop | Source strict radius drop, circle-power exterior distance drop, and support-triangle exclusion have landed; actual-fresh-row adapter checked | Supply a contradiction for the omission or smaller-radius child, then apply an exhaustive split at the physical consumer |
-| 3 | Admissible-pair selection and actual-blocker reconstruction | Minimum-pair residual wrappers and cap-five/cardinality-at-least-thirteen/omission adapter are LSP-clean; live distinct integration in progress | Retain the minimum pair through residual construction and any reselection, derive the cap-size and robustness hypotheses, and close or strictly narrow a live physical case |
+| 3 | Admissible-pair selection and actual-blocker reconstruction | Minimum-pair producer called by live root in `777c0ba74`; downstream `.residual` projection still drops its extra payload | Carry minimum-pair evidence to the physical consumer and through reselection; close or strictly narrow a live case |
 | 4 | Uniform row-replacement and return-cycle interface | Conditional graph reduction audited; finite regression reproduced | Five source-owned row replacements sharing the other rows, an explicit gauge condition, and a source return cycle |
 | 5 | Uniform geometric barrier | OPEN MATHEMATICAL | A source-derived no-return cut, path invariant, or sound shortening theorem, with a contradiction consumer |
 | 6 | Production validation | Required after each applicable source change | Intended aggregate build, literal axiom audit, independent mathematical audit, fresh source/kernel evidence, and applicable ingress binding |
@@ -223,11 +223,14 @@ Their outputs cannot inherit minimality by assertion. The source owner has
 now committed the exact-five split with explicit minimum-pair custody in
 `FirstApexUniqueRadiusResidual.lean` (`9120a9609`) and the
 cap-five/cardinality-at-least-thirteen/omission adapter (`fa9bba544`). Their
-LSP checks pass; live distinct caller integration remains in progress.
-Keep their producer validation separate
-from the further task of carrying its payload through the live coordinator,
-especially across adaptive reselection. The omission and larger-cap cases
-remain open even after the conditional cap-five double-hit consumer applies.
+LSP checks pass. Commit `777c0ba74` calls the minimum-pair producer from the
+live root, with a successful focused coordinator compile reported by its
+owner. Downstream consumers still project `.residual`, discarding the extra
+minimum-pair evidence. Carry that evidence into the physical consumer and
+through adaptive reselection before treating the minimum-aware route as
+complete. This checkpoint is not a fresh kernel reachability audit. The
+omission and larger-cap cases remain open even after the conditional cap-five
+double-hit consumer applies.
 
 ### 3a. Test omission transitions before assuming descent
 
@@ -239,16 +242,31 @@ identify different centers in the old system. Reconstruct the pair and its
 dependent residual under the new system before using a physical consumer.
 Zero-hit omission cannot use this override.
 
-The transition preserves the chord and first-apex radius. Its local incidence
-conditions permit a two-step blocker return `U → C → U`, as checked by the
-retained finite control. That control has no Euclidean or global-minimality
-claim. The next proof must supply geometry or a sound selection invariant
-excluding returns. A concrete first test is whether the full source forces
-the old blocker row to be covered by the first-apex row, new blocker row,
-and preserved second-apex row. An uncovered old-row point with the old chosen
-blocker permits immediate return. No cover or well-founded decrease is
-established. Do not make a recursive call or replace the open terminal with
-new admissions on the strength of this transition alone.
+The transition preserves the chord and first-apex radius. The new
+[27-point rational geometric control](../audits/2026-09-05-exactfive-geometric-return.md)
+strengthens the incidence-only return test: strict convexity, an acute MEC
+support triangle, the exact five-point anchor class, a unique shortest
+admissible pair, single-deletion robustness at both selected apices, and
+actual critical blockers of both original endpoints still permit `U → C → U`.
+The omitted endpoint's chosen blocker stays fixed. Three old-row points
+remain outside the first-apex, new-blocker, and preserved second-apex rows.
+Thus these local geometric hypotheses do not imply the proposed row cover.
+
+The control fails global K4 at 21 centers and leaves 12 sources without any
+actual critical row; it supplies neither total `H` nor `D.Minimal`. Its first
+closed cap has 16 points, so it says nothing against the conditional cap-five
+consumer. The next proof must use missing full-source hypotheses or a proved
+stronger fresh-source selection rule. The bounded source preflight found only
+separate support-triangle omissions for individual rows; it found no existing
+API guaranteeing a common MEC-vertex omission or a fresh blocker. Supply such
+a common-omission theorem or derive an applicable boundary/fiber packet before
+requesting its blocker from total `H`.
+Another E anchor lies in the first row and supplies no strict freshness.
+The inspected `boundary_deletionPacket` producer requires an exact-three-fiber
+boundary packet not yet obtained in this residual. No such source selection,
+row cover, or well-founded decrease is established. Do not make a recursive
+call or replace the open terminal with new admissions on the strength of the
+one-hit transition alone.
 
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 
