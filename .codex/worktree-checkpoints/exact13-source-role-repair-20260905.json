@@ -1,0 +1,15 @@
+{
+  "base_head": "955ef2c465c8822b856b204eafeba7f3278c4e55",
+  "created_utc": "2026-09-06T00:43:00Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "exact13-source-role-repair-20260905",
+  "manifest_sha256": "8f361c04ef0ea6bc19e3287eab2b50632e899c6f4c7ec69ce4829b691b65d6ab",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-source-role-repair-20260905.json",
+    "docs/audits/2026-09-05-exact13-source-role-repair.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceRoleIngress.lean"
+  ],
+  "owner": "ProofRelay97",
+  "schema": "worktree-lane-checkpoint/v1"
+}

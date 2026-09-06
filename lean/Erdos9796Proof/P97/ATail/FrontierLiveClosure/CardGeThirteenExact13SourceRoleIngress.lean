@@ -21,6 +21,10 @@ open scoped EuclideanGeometry
 namespace Problem97
 namespace ATailFrontierLiveClosure
 
+open ATailCriticalPairFrontier
+open ATailExactFourRobustCapExpansion
+open ATailUniqueArmRouteAuditScratch
+open ATailUniqueFourLateChoiceTerminalScratch
 open ExactThirteenBranchIngress
 
 attribute [local instance] Classical.propDecidable
@@ -100,13 +104,21 @@ theorem nonempty_cardGeThirteenExact13SourceRoleWitnesses
     exists_raw_deleted_label_with_firstApex_support R surface Q.base P T
   have hd_eq : d' = d := by
     apply P.labelMap.injective
-    exact hd'.symm.trans hd
+    exact hd'.trans hd.symm
   have hTraw_eq : Traw = V.firstApexRow.rawSupport := by
     apply raw_eq_of_image_eq P
     exact hTraw_image.trans V.firstApexRow.rawSupport_image.symm
   have hd_first : d ∈ V.firstApexRow.rawSupport := by
     rw [← hTraw_eq]
     simpa [hd_eq] using hd'Traw
+  have hd_z_or_K : d = T.zraw ∨ d ∈ T.Kraw := by
+    simpa [hd_eq] using hd'zK
+  have hC0raw : T.C0raw = V.sourceRow₁.rawSupport := by
+    apply raw_eq_of_image_eq P
+    exact T.C0raw_image.trans V.sourceRow₁.rawSupport_image.symm
+  have hC1raw : T.C1raw = V.sourceRow₂.rawSupport := by
+    apply raw_eq_of_image_eq P
+    exact T.C1raw_image.trans V.sourceRow₂.rawSupport_image.symm
   have hib0_eq : _ib0 = V.blocker₁ := by
     apply P.labelMap.injective
     exact _hib0.trans V.blocker₁_image.symm
@@ -122,15 +134,15 @@ theorem nonempty_cardGeThirteenExact13SourceRoleWitnesses
     b1_image := _hib1
     b0_not_C0 := by
       intro hb0
-      have hb0' : V.blocker₁ ∈ T.C0raw := by
-        simpa [hib0_eq] using hb0
+      have hb0' : V.blocker₁ ∈ V.sourceRow₁.rawSupport := by
+        simpa [hib0_eq, hC0raw] using hb0
       apply V.sourceRow₁.center_not_mem
       rw [V.sourceRow₁.support_eq]
       exact Finset.mem_image.mpr ⟨V.blocker₁, hb0', rfl⟩
     b1_not_C1 := by
       intro hb1
-      have hb1' : V.blocker₂ ∈ T.C1raw := by
-        simpa [hib1_eq] using hb1
+      have hb1' : V.blocker₂ ∈ V.sourceRow₂.rawSupport := by
+        simpa [hib1_eq, hC1raw] using hb1
       apply V.sourceRow₂.center_not_mem
       rw [V.sourceRow₂.support_eq]
       exact Finset.mem_image.mpr ⟨V.blocker₂, hb1', rfl⟩
@@ -148,7 +160,7 @@ theorem nonempty_cardGeThirteenExact13SourceRoleWitnesses
     d_mem_firstApex := hd_first
     d_not_C0 := hdC0
     d_not_C1 := hdC1
-    d_z_or_K := hd'zK }⟩
+    d_z_or_K := hd_z_or_K }⟩
 
 end ATailFrontierLiveClosure
 end Problem97
