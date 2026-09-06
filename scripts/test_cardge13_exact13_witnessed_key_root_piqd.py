@@ -56,7 +56,10 @@ def test_synthetic_model_replays_all_key_fields() -> None:
 def test_root_is_boolean_and_has_no_metric_or_conflict_symbols() -> None:
     cnf, projection = subject.emit_root()
     assert len(cnf.names) == 432
-    assert len(cnf.clauses) == 29464
+    assert len(cnf.clauses) == 29468
+    for blocker in ("b0", "b1"):
+        assert (-cnf.names[f"is_{blocker}_0"],) in cnf.clauses
+        assert (-cnf.names[f"is_{blocker}_1"],) in cnf.clauses
     assert not any(name.startswith("d_") or "kalmanson" in name for name in cnf.names)
     assert projection["orientation"] == cnf.names["orientation_mirror"]
 
@@ -83,10 +86,10 @@ def test_piqd_session_normalization_identity_is_pinned() -> None:
         "operation": "remove exactly three leading comment lines and one p-cnf header line",
         "removed_prefix_lines": 4,
         "removed_prefix_bytes": 176,
-        "emitted_cnf_bytes": 894075,
-        "emitted_cnf_sha256": "18ff5514bed6bdc05791a4782328a2c81d456e1d54c828fe024cc3479f069a4c",
-        "piqd_normalized_journal_bytes": 893899,
-        "piqd_normalized_journal_sha256": "35d66a8cab1be7230654fc25905b8b5967106fbb5f1a6843d8739d7972d75d8d",
+        "emitted_cnf_bytes": 894103,
+        "emitted_cnf_sha256": "f27294e2666b1171fc741a53bd035a89ea546e0daee09b7ef3ebb24faf338de2",
+        "piqd_normalized_journal_bytes": 893927,
+        "piqd_normalized_journal_sha256": "b9de440ef5a6856a6b0cebbe5f7e5e3b66ad983019c3cfaabf5774a3fb696080",
         "clause_body_preserved_byte_for_byte": True,
     }
 
@@ -106,7 +109,7 @@ def test_custody_verifier_rebinds_retained_receipt_without_solver(tmp_path: Path
     receipts_path.write_text(json.dumps({
         "count": 1,
         "session_id": session_id,
-        "receipts": [{"base_bytes": len(journal), "base_clauses": 29464,
+        "receipts": [{"base_bytes": len(journal), "base_clauses": 29468,
                       "base_sha256": subject.sha256(journal), "model_recorded": True,
                       "status": "SAT", "solve_index": 1, "result_sha256": result_sha256}],
     }))

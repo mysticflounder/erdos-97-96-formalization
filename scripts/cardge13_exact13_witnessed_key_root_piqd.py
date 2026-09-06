@@ -272,6 +272,13 @@ def emit_root() -> tuple[Cnf, dict[str, object]]:
         cnf.guarded_equal(other_c0, c_bits[point], member(cnf, "C1", point))
         cnf.guarded_equal(other_c1, c_bits[point], member(cnf, "C0", point))
 
+    # Keep the historical redundant binaries above for byte-level continuity
+    # with the authenticated wave-1 effective root, then enforce each source
+    # conjunct with its own unit clause.
+    for name in ("b0", "b1"):
+        cnf.add(-role(cnf, name, SECOND_APEX))
+        cnf.add(-role(cnf, name, FIRST_APEX))
+
     projection = {
         "orientation": orientation,
         "rows": {row: {str(point): member(cnf, row, point) for point in LABELS} for row in ROWS},

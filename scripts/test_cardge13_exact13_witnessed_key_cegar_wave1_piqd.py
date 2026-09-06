@@ -155,7 +155,7 @@ def test_effective_root_repairs_inherited_blocker_apex_clause(tmp_path: Path) ->
     }
     assert expected_units <= set(cnf.clauses)
     assert len(cnf.clauses) == 29468
-    assert report["inherited_clause_count"] == 29464
+    assert report["inherited_clause_count"] == 29468
     assert len(report["root_static_corrections"]) == 4
     assert report["exact_key_valid_root"] is True
 

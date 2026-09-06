@@ -776,7 +776,8 @@ def initial_root(run_root: Path, source: Path, producer_commit: str) -> tuple[
     for name in ("b0", "b1"):
         for apex in (root.SECOND_APEX, root.FIRST_APEX):
             variable = cnf.names[f"is_{name}_{apex}"]
-            cnf.add(-variable)
+            if (-variable,) not in cnf.clauses:
+                cnf.add(-variable)
             correction_atoms.append({"atom": f"is_{name}_{apex}", "unit": -variable})
     emitted = cnf.dimacs((
         ROOT_REPAIR_SCHEMA,
@@ -804,8 +805,8 @@ def initial_root(run_root: Path, source: Path, producer_commit: str) -> tuple[
         "inherited_root_sha256": sha256(inherited_bytes),
         "inherited_clause_count": inherited["clauses"],
         "defect": (
-            "the inherited not-apex encoding has one binary clause per blocker; "
-            "one-hot requires two unit clauses per blocker"
+            "legacy roots encoded one binary clause per blocker; exact roots "
+            "require two unit clauses per blocker"
         ),
         "root_static_corrections": correction_atoms,
         "cnf": str(artifact),
