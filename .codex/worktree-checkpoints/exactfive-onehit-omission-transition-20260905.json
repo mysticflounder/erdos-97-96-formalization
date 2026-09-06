@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-onehit-omission-transition-20260905",
+  "owner": "CapDropAudit",
+  "base_head": "567b1fc52f360ef8ef49641581c42634811fe868",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-onehit-omission-transition-20260905.json",
+    "docs/audits/2026-09-05-exactfive-onehit-omission-transition.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/references/exactfive-source-geometry-2026-09-05/OneHitShellReselection.lean",
+    "docs/references/exactfive-source-geometry-2026-09-05/onehit_incidence_cycle.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T01:10:07.385925Z",
+  "manifest_sha256": "c9f539ecbfb27c10a4c14739dae8dd6f12e90fbb0b3a9a71a4260c6a9528fd53"
+}
