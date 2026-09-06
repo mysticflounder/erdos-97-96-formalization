@@ -59,20 +59,51 @@ Consequently every such fresh row satisfies the source-faithful trichotomy:
 carrier cardinality at least thirteen, first endpoint omitted, or second
 endpoint omitted.
 
+The double-hit child also supplies a new source-owned row.  Every selected
+four-class centered in the carrier omits a supporting-triangle vertex, while
+the small double-hit circle omits all three supporting vertices.  Choosing a
+vertex omitted by the retained blocker row therefore gives a source whose
+canonical blocker differs from both physical apices, the retained blocker,
+and the fresh blocker.  This is a fourth-center witness, not yet a terminal
+contradiction.
+
+For a one-hit row, `CriticalShellSystem.overrideAt` can install the fresh
+blocker as the retained endpoint's canonical blocker.  The omitted endpoint's
+blocker and every other blocker stay fixed.  The same ordered pair, chord
+minimum, radius, and second-apex simultaneous-deletion witness can then be
+rebuilt as a distinct-center exact-five residual over the new shell system.
+Both endpoint orientations are represented in
+`ExactFiveOneHitShellReselection.lean`.  This transition has no decreasing
+measure: a separate no-return argument is still required, and the zero-hit
+case cannot use this override.
+
 ## Validation
 
 Lean LSP diagnostics are clean for the repaired producer, the source residual
-split, and the physical consumers.  The shared governed Lake build remains
-deferred to its lock owner.
+split, the cap/cardinality physical consumers, and the supporting-triangle
+source construction.  They are also clean for both one-hit reselection
+orientations and their packaged transition witnesses.  A focused
+`lake env lean` check of `Rigid221Closure.lean` exits successfully with only
+the file's pre-existing sorry and style warnings.
 
 ## Remaining physical frontier
 
-The wrapper is not yet threaded through the live distinct coordinator.  More
-importantly, the current strict physical packet does not prove that both source
-endpoints occur in the actual fresh row.  Thus minimum-pair custody eliminates
-the cap-five double-hit case but leaves one-hit and zero-hit omission cases.
-The double-hit branch now has its advertised carrier-card lower bound and can
-feed the exact-13 closure lanes once custody is threaded through the live
-coordinator.  The endpoint-omission alternatives remain the mathematical
-frontier.  The later adaptive common-center reselection must remain on the
-ordinary residual type unless it performs a fresh minimization.
+The live root now invokes `firstApexUniqueRadius_minimalResidualCases`, so the
+minimum-pair producer is no longer dead code.  Its current branch consumers
+project `.residual` immediately: this is sound, and is required on the common
+adaptive branch, but the direct distinct coordinator still needs a
+minimum-aware specialization before its physical endpoint can use the new
+four-case transition theorem.
+
+The current strict physical packet does not prove that both source endpoints
+occur in the actual fresh row.  Minimum-pair custody therefore eliminates the
+cap-five double-hit case but leaves one-hit and zero-hit omission cases.  The
+double-hit branch now has its carrier-card lower bound and a fourth-center
+supporting-triangle source.  Both one-hit orientations rebuild the same
+minimum pair over an explicitly related shell system, but they do not decrease
+the chord or radius.  A separate audit confirms that convexity plus their one
+shared row point cannot exclude a two-step return; a sound no-return bridge
+needs a second shared row point, a common outside pair, or explicit cap-order
+or signed-area data.  The zero-hit alternative remains open.  The later
+adaptive common-center reselection must remain on the ordinary residual type
+unless it performs a fresh minimization.

@@ -89,6 +89,46 @@ theorem MinimalAdmissibleInteriorPair.w_mem_interior
       interiorPointSet (D := D) (S := S) radius := by
   exact P.frontier.w_mem_interior
 
+/-- Rebuild a minimum admissible pair over a reselected critical-shell
+system.  The admissible-pair predicate and its chord minimum are independent
+of the shell choices, while the frontier is reconstructed from the same
+ordered endpoints. -/
+noncomputable def MinimalAdmissibleInteriorPair.rebase
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : MinimalAdmissibleInteriorPair D S radius H)
+    (H' : CriticalShellSystem D.A) :
+    MinimalAdmissibleInteriorPair D S radius H' := by
+  let Q := ExactFiveInteriorCriticalPairFrontier.ofInteriorPair
+    D S H' P.q_mem_interior P.w_mem_interior
+      P.frontier.frontier.pair.q_ne_w
+      P.frontier.frontier.secondApexDouble
+  refine {
+    frontier := Q
+    minimal := ?_ }
+  intro q w hq hw hqw hdouble
+  exact P.minimal hq hw hqw hdouble
+
+/-- Reselection preserves the first endpoint of the minimum pair. -/
+@[simp] theorem MinimalAdmissibleInteriorPair.rebase_pair_q
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : MinimalAdmissibleInteriorPair D S radius H)
+    (H' : CriticalShellSystem D.A) :
+    (P.rebase H').frontier.frontier.pair.q =
+      P.frontier.frontier.pair.q := by
+  rfl
+
+/-- Reselection preserves the second endpoint of the minimum pair. -/
+@[simp] theorem MinimalAdmissibleInteriorPair.rebase_pair_w
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : MinimalAdmissibleInteriorPair D S radius H)
+    (H' : CriticalShellSystem D.A) :
+    (P.rebase H').frontier.frontier.pair.w =
+      P.frontier.frontier.pair.w := by
+  rfl
+
 /-- Existence of a minimum admissible pair, obtained by finite minimization of
 the endpoint distance over the ordinary exact-five interior producer. -/
 theorem nonempty_minimalAdmissibleInteriorPair

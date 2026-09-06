@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.ATail.ApexTripleEquidistance
 import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
 import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_survivor_pair
 import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
@@ -26,6 +27,7 @@ namespace Problem97
 namespace ExactFiveDistinctPhysicalFreshRowRadiusDrop
 
 open ATailDeletionRobustness
+open ATailApexTripleEquidistance
 open ATailBiApexRobustCapBounds
 open ATailCriticalPairFrontier
 open ATailCapApexRadiusRigidity
@@ -61,6 +63,32 @@ theorem firstOppCap_card_ge_five
     capInteriorByIndex_card_add_two S S.oppIndex1
   have hcapByIndex : 5 ≤ (S.capByIndex S.oppIndex1).card := by omega
   simpa only [capByIndex_oppIndex1_eq_oppCap1] using hcapByIndex
+
+/-- Any selected four-class centered at a carrier point omits at least one
+vertex of the packet's supporting Moser triangle. -/
+theorem selectedFourClass_exists_supportTriangle_omission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {center : ℝ²} (hcenterA : center ∈ D.A)
+    (K : SelectedFourClass D.A center) :
+    ∃ v : ℝ², v ∈ S.triangle.verts ∧ v ∉ K.support := by
+  by_cases h1 : S.triangle.v1 ∈ K.support
+  · by_cases h2 : S.triangle.v2 ∈ K.support
+    · by_cases h3 : S.triangle.v3 ∈ K.support
+      · exact False.elim
+          (not_equidistant_from_three_apices S D.convex hcenterA
+            K.radius_pos
+            (K.support_eq_radius S.triangle.v1 h1)
+            (K.support_eq_radius S.triangle.v2 h2)
+            (K.support_eq_radius S.triangle.v3 h3))
+      · exact ⟨S.triangle.v3, by
+          classical
+          simp [MoserTriangle.verts], h3⟩
+    · exact ⟨S.triangle.v2, by
+        classical
+        simp [MoserTriangle.verts], h2⟩
+  · exact ⟨S.triangle.v1, by
+      classical
+      simp [MoserTriangle.verts], h1⟩
 
 /-- A carrier point outside the first opposite cap belongs to one of the two
 other indexed caps. -/
@@ -471,6 +499,100 @@ theorem actualFreshBlocker_doubleHit_fresh_not_mem_supportTriangle
           dist (H.centerAt fresh hfreshA) fresh := by
       simpa [h] using htriangle.2.2
     linarith
+
+/-- A double-hit fresh row omits every supporting-triangle vertex. -/
+theorem actualFreshBlocker_doubleHit_supportTriangle_omission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    {v : ℝ²} (hvTriangle : v ∈ S.triangle.verts) :
+    v ∉ (H.selectedAt fresh hfreshA).toCriticalFourShell.support := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hcenterA : H.centerAt fresh hfreshA ∈ D.A :=
+    (Finset.mem_erase.mp K.center_mem).2
+  have hcenterNe : H.centerAt fresh hfreshA ≠ S.oppApex1 :=
+    R.firstApex_fullyDeletionRobust.centerAt_ne H fresh hfreshA
+  have hqEq :
+      dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q = K.radius :=
+    K.support_eq_radius R.interior.frontier.pair.q hqRow
+  have hwEq :
+      dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.w = K.radius :=
+    K.support_eq_radius R.interior.frontier.pair.w hwRow
+  have htriangle := interiorPair_circleRadius_lt_dist_supportTriangle
+    R.interior.q_mem_interior R.interior.w_mem_interior
+    R.interior.frontier.pair.q_ne_w hcenterA hcenterNe
+    (hqEq.trans hwEq.symm)
+  intro hvRow
+  have hvEq : dist (H.centerAt fresh hfreshA) v = K.radius :=
+    K.support_eq_radius v hvRow
+  rcases SurplusCapPacket.mem_triangle_verts_cases hvTriangle with h | h | h
+  · have hlt :
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q <
+          dist (H.centerAt fresh hfreshA) v := by
+      simpa [h] using htriangle.1
+    linarith
+  · have hlt :
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q <
+          dist (H.centerAt fresh hfreshA) v := by
+      simpa [h] using htriangle.2.1
+    linarith
+  · have hlt :
+        dist (H.centerAt fresh hfreshA) R.interior.frontier.pair.q <
+          dist (H.centerAt fresh hfreshA) v := by
+      simpa [h] using htriangle.2.2
+    linarith
+
+/-- A double-hit fresh row and any retained blocker row force a
+supporting-triangle source whose actual blocker differs from both physical
+apices and from both named blocker centers. -/
+theorem exists_supportTriangleSource_freshActualBlocker_of_doubleHit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    (hsecond : FullyDeletionRobustAt D S.oppApex2)
+    {blocker : ℝ²} (hblockerA : blocker ∈ D.A)
+    (blockerClass : SelectedFourClass D.A blocker)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hqRow : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    ∃ (v : ℝ²) (hvA : v ∈ D.A),
+      v ∈ S.triangle.verts ∧
+      v ∉ blockerClass.support ∧
+      v ∉ (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+      H.centerAt v hvA ≠ S.oppApex1 ∧
+      H.centerAt v hvA ≠ S.oppApex2 ∧
+      H.centerAt v hvA ≠ blocker ∧
+      H.centerAt v hvA ≠ H.centerAt fresh hfreshA := by
+  rcases selectedFourClass_exists_supportTriangle_omission
+      hblockerA blockerClass with ⟨v, hvTriangle, hvBlocker⟩
+  have hvA : v ∈ D.A := S.triangle.verts_subset hvTriangle
+  have hvFresh :=
+    actualFreshBlocker_doubleHit_supportTriangle_omission
+      R hfreshA hqRow hwRow hvTriangle
+  have hneFirst :=
+    R.firstApex_fullyDeletionRobust.centerAt_ne H v hvA
+  have hneSecond := hsecond.centerAt_ne H v hvA
+  have hneBlocker :=
+    ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+      H hvA
+      (selectedFourClass_survives_erase_of_not_mem blockerClass hvBlocker)
+  have hneFresh :=
+    ATAILStageOnePrescribedApexDichotomy.actual_blocker_ne_of_deletion_survives
+      H hvA
+      (selectedFourClass_survives_erase_of_not_mem
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.toSelectedFourClass
+        hvFresh)
+  exact ⟨v, hvA, hvTriangle, hvBlocker, hvFresh,
+    hneFirst, hneSecond, hneBlocker, hneFresh⟩
 
 /-- In the named two-inside/two-outside child, both exterior row points have
 strictly smaller first-apex radius as well as the row's smaller shell radius. -/

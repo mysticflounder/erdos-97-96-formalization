@@ -8,11 +8,13 @@
     "docs/audits/2026-09-05-exactfive-minimal-admissible-pair.md",
     "docs/audits/2026-09-05-minimal-admissible-interior-pair.md",
     "lean/Erdos9796Proof/P97/ATail/ExactFiveDistinctPhysicalFreshRowRadiusDrop.lean",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveOneHitShellReselection.lean",
     "lean/Erdos9796Proof/P97/ATail/FirstApexUniqueRadiusResidual.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
     "lean/Erdos9796Proof/P97/ATail/MinimalAdmissibleInteriorPair.lean"
   ],
   "generated_roots": [],
   "durable_paths": [],
   "created_utc": "2026-09-06T00:21:13Z",
-  "manifest_sha256": "02079913d53ccbcde6b8c0c7fcf77dee32c4ded95fa14c9a9eb7fb68200d9810"
+  "manifest_sha256": "7e541f024a5f687f12de5d973d271d27883dea7a96fbfe6def6313ae70f91223"
 }

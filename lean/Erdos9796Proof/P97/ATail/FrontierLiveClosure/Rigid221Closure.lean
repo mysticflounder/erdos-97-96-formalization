@@ -9,6 +9,8 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Balanced555FiniteUnsat
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
 import Erdos9796Proof.P97.ATail.ExactFiveRetainedDoubleDeletion
+import Erdos9796Proof.P97.ATail.ExactFiveDistinctPhysicalFreshRowRadiusDrop
+import Erdos9796Proof.P97.ATail.ExactFiveOneHitShellReselection
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.DRExactTwelveTwoFamilyUnsat
@@ -53,6 +55,8 @@ open ATailTwoCollisionGlobalProducer
 open ATailTwoCenterCapLocalization
 open ATailUniqueFourLateChoiceTerminalScratch
 open FirstApexUniqueRadiusResidual
+open ExactFiveDistinctPhysicalFreshRowRadiusDrop
+open ExactFiveOneHitShellReselection
 open ExactFiveDistinctThreeCenterContinuation
 open Census554.GeneralCarrierBridge
 
@@ -1528,6 +1532,95 @@ theorem fresh_not_mem_firstApexSelectedClass
   rw [normalForm.firstApexClass_support_eq]
   exact herase
 
+/-- Source-faithful progress at the strict physical endpoint.  A fresh actual
+row either omits one endpoint of the minimum source pair, or the carrier has
+at least thirteen points and a supporting-triangle source has an actual
+blocker new relative to the two physical apices and the two named blockers. -/
+theorem exactFiveDistinct_threeCenter_distinctFresh_minimal_sourceProgress
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm Rmin.residual C)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A) :
+    (13 ≤ D.A.card ∧
+        ∃ (v : ℝ²) (hvA : v ∈ D.A),
+          v ∈ S.triangle.verts ∧
+          v ∉ normalForm.blockerClass.support ∧
+          v ∉ (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+          H.centerAt v hvA ≠ S.oppApex1 ∧
+          H.centerAt v hvA ≠ S.oppApex2 ∧
+          H.centerAt v hvA ≠ blocker ∧
+          H.centerAt v hvA ≠ H.centerAt fresh hfreshA) ∨
+      Rmin.residual.interior.frontier.pair.q ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∨
+      Rmin.residual.interior.frontier.pair.w ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support := by
+  by_cases hq : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · have hcard :=
+        _root_.Problem97.ExactFiveDistinctPhysicalFreshRowRadiusDrop.FirstApexUniqueRadiusExactFiveMinimalDistinctResidual.carrier_card_ge_thirteen_of_actualFreshBlocker_doubleHit
+          Rmin normalForm.secondApex_robust hfreshA hq hw
+      have hwitness :=
+        exists_supportTriangleSource_freshActualBlocker_of_doubleHit
+          Rmin.residual normalForm.secondApex_robust C.center₁_mem_A
+          normalForm.blockerClass hfreshA hq hw
+      exact Or.inl ⟨hcard, hwitness⟩
+    · exact Or.inr (Or.inr hw)
+  · exact Or.inr (Or.inl hq)
+
+/-- Exhaustive minimum-source transition at an actual fresh row: a double hit
+enters the at-least-thirteen fourth-blocker branch, either one-hit orientation
+rebuilds the same minimum pair over an explicitly related shell system, and
+the final branch records zero hits. -/
+theorem exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm Rmin.residual C)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A) :
+    (13 ≤ D.A.card ∧
+        ∃ (v : ℝ²) (hvA : v ∈ D.A),
+          v ∈ S.triangle.verts ∧
+          v ∉ normalForm.blockerClass.support ∧
+          v ∉ (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+          H.centerAt v hvA ≠ S.oppApex1 ∧
+          H.centerAt v hvA ≠ S.oppApex2 ∧
+          H.centerAt v hvA ≠ blocker ∧
+          H.centerAt v hvA ≠ H.centerAt fresh hfreshA) ∨
+      Nonempty (QOmittedWHitReselection Rmin fresh hfreshA) ∨
+      Nonempty (WOmittedQHitReselection Rmin fresh hfreshA) ∨
+      (Rmin.residual.interior.frontier.pair.q ∉
+          (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+        Rmin.residual.interior.frontier.pair.w ∉
+          (H.selectedAt fresh hfreshA).toCriticalFourShell.support) := by
+  by_cases hq : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · have hcard :=
+        _root_.Problem97.ExactFiveDistinctPhysicalFreshRowRadiusDrop.FirstApexUniqueRadiusExactFiveMinimalDistinctResidual.carrier_card_ge_thirteen_of_actualFreshBlocker_doubleHit
+          Rmin normalForm.secondApex_robust hfreshA hq hw
+      have hwitness :=
+        exists_supportTriangleSource_freshActualBlocker_of_doubleHit
+          Rmin.residual normalForm.secondApex_robust C.center₁_mem_A
+          normalForm.blockerClass hfreshA hq hw
+      exact Or.inl ⟨hcard, hwitness⟩
+    · exact Or.inr (Or.inr (Or.inl
+        (nonempty_wOmittedQHitReselection Rmin hfreshA hw hq)))
+  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · exact Or.inr (Or.inl
+        (nonempty_qOmittedWHitReselection Rmin hfreshA hq hw))
+    · exact Or.inr (Or.inr (Or.inr ⟨hq, hw⟩))
+
 /-- Open strict-source physical endpoint: a deletion source distinct from the
 original interior deletion preserves all three exact selected rows, while the
 retained source is omitted by the second row. -/
@@ -1878,11 +1971,17 @@ theorem false_of_originalFrontierUniqueRadiusArm
     (hcard : 9 < D.A.card)
     (hunique : OriginalFrontierUniqueRadiusArm F) :
     False := by
-  rcases firstApexUniqueRadius_residualCases
+  rcases firstApexUniqueRadius_minimalResidualCases
       F hmin hNoM44 hcard hunique with hfourResidual | hfiveResidual
   · exact false_of_firstApexUniqueRadiusExactFourResidual
       hfourResidual.some
-  · exact false_of_firstApexUniqueRadiusExactFiveResidual hfiveResidual
+  · rcases hfiveResidual with hdistinct | hcommon
+    · exact
+        false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+          hdistinct.some.residual
+    · exact
+        false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
+          hcommon.some.residual
 
 
 end ATailFrontierLiveClosure
