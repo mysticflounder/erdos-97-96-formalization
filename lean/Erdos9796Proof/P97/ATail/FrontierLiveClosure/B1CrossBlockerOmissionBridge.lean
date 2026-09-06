@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna.
 -/
 
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceCanonicalSurface
+import Erdos9796Proof.P97.ATail.TwoCollisionGlobalProducer
 
 /-!
 # Cross-blocker coincidence omissions
@@ -19,11 +19,11 @@ negate `CollisionCrossHit`, whose other three memberships may still hold.
 namespace Problem97
 namespace ATailFrontierLiveClosure
 
+open scoped EuclideanGeometry
 open ATailCriticalPairFrontier
 open ATailTwoCollisionGlobalProducer
 open ATailOrientedPhysicalApexIngress
 open ATailRetainedStrictInteriorPairSelector
-open ATailBlockerMultiplicityGeometry
 
 section
 
@@ -60,6 +60,7 @@ theorem crossBlockerCoincidence_implies_named_cross_omission
       rw [h₁]
       exact hmemT
     exact hcenterT
+
   · right
     left
     intro hmem
@@ -95,6 +96,98 @@ theorem crossBlockerCoincidence_implies_named_cross_omission
       rw [h₄]
       exact hmemT
     exact hcenterT
+
+/-- The exact strict-cap intersections force both opposite collision pairs to
+be omitted from the other canonical shell.  This upstream lemma is stronger
+than the one-arm coincidence bridge and does not depend on the surface file. -/
+theorem disjoint_opposite_collisionPair_canonicalShells
+    (hpairsDisjoint :
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        {Pρ.source₁, Pρ.source₂}) :
+    Disjoint
+        ({Pρ.source₁, Pρ.source₂} : Finset ℝ²)
+        (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∧
+      Disjoint
+        ({P.source₁, P.source₂} : Finset ℝ²)
+        (H.selectedAt Pρ.source₁ Pρ.source₁_mem_A).toCriticalFourShell.support := by
+  have hP₁ : P.source₁ ∈ ({P.source₁, P.source₂} : Finset ℝ²) := by simp
+  have hP₂ : P.source₂ ∈ ({P.source₁, P.source₂} : Finset ℝ²) := by simp
+  have hPρ₁ : Pρ.source₁ ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) := by simp
+  have hPρ₂ : Pρ.source₂ ∈ ({Pρ.source₁, Pρ.source₂} : Finset ℝ²) := by simp
+  have hcross₁ :
+      Pρ.source₁ ∉
+        (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support := by
+    intro hmem
+    have hcap : Pρ.source₁ ∈ S.capByIndex S.oppIndex1 :=
+      S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+        Pρ.source₁_mem_capInterior
+    have hinter : Pρ.source₁ ∈
+        (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 := Finset.mem_inter.mpr ⟨hmem, hcap⟩
+    rw [P.shell_inter_cap_eq_sources] at hinter
+    rcases (by simpa using hinter :
+      Pρ.source₁ = P.source₁ ∨ Pρ.source₁ = P.source₂) with h | h
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₁) (by simpa [h] using hPρ₁)
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₂) (by simpa [h] using hPρ₁)
+  have hcross₂ :
+      Pρ.source₂ ∉
+        (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support := by
+    intro hmem
+    have hcap : Pρ.source₂ ∈ S.capByIndex S.oppIndex1 :=
+      S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+        Pρ.source₂_mem_capInterior
+    have hinter : Pρ.source₂ ∈
+        (H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 := Finset.mem_inter.mpr ⟨hmem, hcap⟩
+    rw [P.shell_inter_cap_eq_sources] at hinter
+    rcases (by simpa using hinter :
+      Pρ.source₂ = P.source₁ ∨ Pρ.source₂ = P.source₂) with h | h
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₁) (by simpa [h] using hPρ₂)
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₂) (by simpa [h] using hPρ₂)
+  have hcrossρ₁ :
+      P.source₁ ∉
+        (H.selectedAt Pρ.source₁ Pρ.source₁_mem_A).toCriticalFourShell.support := by
+    intro hmem
+    have hcap : P.source₁ ∈ S.capByIndex S.oppIndex1 :=
+      S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+        P.source₁_mem_capInterior
+    have hinter : P.source₁ ∈
+        (H.selectedAt Pρ.source₁ Pρ.source₁_mem_A).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 := Finset.mem_inter.mpr ⟨hmem, hcap⟩
+    rw [Pρ.shell_inter_cap_eq_sources] at hinter
+    rcases (by simpa using hinter :
+      P.source₁ = Pρ.source₁ ∨ P.source₁ = Pρ.source₂) with h | h
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₁) (by simpa [h] using hPρ₁)
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₁) (by simpa [h] using hPρ₂)
+  have hcrossρ₂ :
+      P.source₂ ∉
+        (H.selectedAt Pρ.source₁ Pρ.source₁_mem_A).toCriticalFourShell.support := by
+    intro hmem
+    have hcap : P.source₂ ∈ S.capByIndex S.oppIndex1 :=
+      S.capInteriorByIndex_subset_capByIndex S.oppIndex1
+        P.source₂_mem_capInterior
+    have hinter : P.source₂ ∈
+        (H.selectedAt Pρ.source₁ Pρ.source₁_mem_A).toCriticalFourShell.support ∩
+          S.capByIndex S.oppIndex1 := Finset.mem_inter.mpr ⟨hmem, hcap⟩
+    rw [Pρ.shell_inter_cap_eq_sources] at hinter
+    rcases (by simpa using hinter :
+      P.source₂ = Pρ.source₁ ∨ P.source₂ = Pρ.source₂) with h | h
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₂) (by simpa [h] using hPρ₁)
+    · exact (Finset.disjoint_left.mp hpairsDisjoint hP₂) (by simpa [h] using hPρ₂)
+  constructor
+  · exact Finset.disjoint_left.mpr (by
+      intro z hzPair hzShell
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hzPair
+      rcases hzPair with rfl | rfl
+      · exact hcross₁ hzShell
+      · exact hcross₂ hzShell)
+  · exact Finset.disjoint_left.mpr (by
+      intro z hzPair hzShell
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hzPair
+      rcases hzPair with rfl | rfl
+      · exact hcrossρ₁ hzShell
+      · exact hcrossρ₂ hzShell)
 
 end
 end ATailFrontierLiveClosure
