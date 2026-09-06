@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "selected-four-class-one-boundary-intersection-20260906",
+  "owner": "luna-swarm-slice-ingress",
+  "base_head": "3a86fc5616d90a2d75e5e382c243337a47e352e8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/selected-four-class-one-boundary-intersection-20260906.json",
+    "docs/audits/2026-09-06-selected-four-class-one-boundary-intersection.md",
+    "lean/Erdos9796Proof/P97/SelectedFourClassOneBoundaryIntersection.lean",
+    "lean/Erdos9796Proof/P97/SelectedFourClassOneBoundaryIntersectionTest.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T15:50:00Z",
+  "manifest_sha256": "715f57508e9833db4354cdf07beaec44c61cba98d2efe0355a178bc3d3cb843d"
+}
