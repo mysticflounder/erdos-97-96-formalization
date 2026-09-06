@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-sharp-mutual-trace-20260906",
+  "owner": "CapDropAudit",
+  "base_head": "ac6e7978aa0ac8baa6377c4078a2aa5cdef39488",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-sharp-mutual-trace-20260906.json",
+    "certificates/exactfive_three_anchor_mutual_control_20260906.json",
+    "docs/audits/2026-09-06-exactfive-sharp-mutual-third-anchor.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/references/exactfive-source-geometry-2026-09-05/three-anchor-global-pro-response-2026-09-06.md",
+    "docs/references/exactfive-source-geometry-2026-09-05/three-anchor-mutual-local-control-pro-2026-09-06.md",
+    "docs/skeptic-exactfive-sharp-mutual-third-anchor-2026-09-06.md",
+    "docs/skeptic-exactfive-three-anchor-mutual-control-2026-09-06.md",
+    "scripts/verify_exactfive_three_anchor_mutual_control.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T17:20:04Z",
+  "manifest_sha256": "173e0ea9cd6a5b4c5044e1c9ee98a450fc16e12b579be1affefc852aa6e6fe8b"
+}

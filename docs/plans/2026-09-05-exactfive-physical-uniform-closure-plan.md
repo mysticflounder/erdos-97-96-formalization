@@ -346,6 +346,30 @@ must consume the long-pair exception directly. The control's first cap has
 cardinality five; it does not refute the existing minimum-pair cap-five
 double-hit consumer, which also requires the actual source and row data.
 
+### 3d. Use the actual third-anchor row in the mutual three-anchor case
+
+The [sharp mutual bounds and third-anchor note](../audits/2026-09-06-exactfive-sharp-mutual-third-anchor.md)
+audits the next Pro response, `01M1VS1YXCHXSJCQBXN5PNC80P`. Under the explicit
+mutual incidences it proves (2+√3)ρ² < dist(q,w)², ρ < (√3−1)r, and
+dist(O,c) < r. These are paper inequalities; a new dependent source packet
+and termination argument are still required before calling them descent.
+
+When I = {u,q,w}, use the original total H at u. Its actual full row Kd₀,
+centered at d₀ = H(u), differs from the rows at O,V,b,c and has one of the
+three traces {u}, {u,q}, {u,w}. Each pair trace localizes d₀ to the strict
+first cap, makes that pair the exact closed-cap intersection, and omits c.
+The generic geometric inputs apply even when the pair is bad for joint
+V-deletion. Neither I3 nor the mutual incidences are asserted for every
+ordinary source case.
+
+The retained 24-point exact-arithmetic control includes local mutual critical
+rows and a first closed cap of size eight, but lacks H(u), total H, and global
+K4. It therefore does not invalidate this actual source producer. The next
+required result is a contradiction or a further source-entitled incidence
+in the singleton trace, together with consumers for both pair traces.
+The trace split alone does not justify new admissions, a production helper
+without a consuming reduction, or elimination of the physical terminal.
+
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 
 Start with one baseline `FaithfulCarrierPattern` whose gauge center differs
