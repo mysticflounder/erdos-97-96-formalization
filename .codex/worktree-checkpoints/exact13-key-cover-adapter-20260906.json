@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-key-cover-adapter-20260906",
+  "owner": "luna-swarm-lemma-lantern-97",
+  "base_head": "be28c8c1c44f57a69009f33da061062f70207ff4",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-key-cover-adapter-20260906.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceIndexedBankCoverage.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceIndexedBankCoverageTest.lean"
+  ],
+  "durable_paths": [
+    "docs/audits/2026-09-06-exact13-key-cover-adapter.md"
+  ],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T14:30:00Z",
+  "manifest_sha256": "e8e116370c982851812d7bdf8b75e8df855c8307ce9769bb0686012d4d7f0de8"
+}
