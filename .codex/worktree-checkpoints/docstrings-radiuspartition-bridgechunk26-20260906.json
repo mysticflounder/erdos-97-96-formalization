@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "docstrings-radiuspartition-bridgechunk26-20260906",
+  "owner": "codex",
+  "base_head": "30e5ecff13fcebf72b42a0195ce544d6b637e1b0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/docstrings-radiuspartition-bridgechunk26-20260906.json",
+    "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/PrefixedP4OccurrenceClosures/P4RadiusPartitionOccurrenceBridge/BridgeChunk26.lean"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T08:00:00Z",
+  "manifest_sha256": "52fc305afd2dfc1e91d4c913834e75cf07e017041d45378659b4de1fe208d17f"
+}

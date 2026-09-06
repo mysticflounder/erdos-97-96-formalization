@@ -6,42 +6,61 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Prefixed
 namespace Problem97.P4RadiusPartitionOccurrenceBridgeScratch
 
 /- output 3201; source core 3201 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry001 : BridgeEntry := ⟨[-604, -597, 599], .radiusTrans 10 9 7 5⟩
 /- output 3202; source core 3202 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry002 : BridgeEntry := ⟨[604, -599, -597], .radiusTrans 10 9 5 7⟩
 /- output 3203; source core 3203 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry003 : BridgeEntry := ⟨[-604, -599, 597], .radiusTrans 10 7 9 5⟩
 /- output 3204; source core 3204 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry004 : BridgeEntry := ⟨[-605, -598, 599], .radiusTrans 10 9 8 5⟩
 /- output 3205; source core 3205 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry005 : BridgeEntry := ⟨[-599, -598, 605], .radiusTrans 10 9 5 8⟩
 /- output 3206; source core 3206 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry006 : BridgeEntry := ⟨[-605, -599, 598], .radiusTrans 10 8 9 5⟩
 /- output 3207; source core 3207 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry007 : BridgeEntry := ⟨[-603, -600, 601], .radiusTrans 10 8 7 6⟩
 /- output 3208; source core 3208 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry008 : BridgeEntry := ⟨[603, -600, -601], .radiusTrans 10 7 6 8⟩
 /- output 3209; source core 3209 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry009 : BridgeEntry := ⟨[-603, -601, 600], .radiusTrans 10 7 8 6⟩
 /- output 3210; source core 3210 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry010 : BridgeEntry := ⟨[-604, -600, 602], .radiusTrans 10 9 7 6⟩
 /- output 3211; source core 3211 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry011 : BridgeEntry := ⟨[604, -602, -600], .radiusTrans 10 9 6 7⟩
 /- output 3212; source core 3212 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry012 : BridgeEntry := ⟨[-604, -602, 600], .radiusTrans 10 7 9 6⟩
 /- output 3213; source core 3213 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry013 : BridgeEntry := ⟨[-605, -601, 602], .radiusTrans 10 9 8 6⟩
 /- output 3214; source core 3214 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry014 : BridgeEntry := ⟨[-602, -601, 605], .radiusTrans 10 9 6 8⟩
 /- output 3215; source core 3215 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry015 : BridgeEntry := ⟨[-605, -602, 601], .radiusTrans 10 8 9 6⟩
 /- output 3216; source core 3216 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry016 : BridgeEntry := ⟨[604, -605, -603], .radiusTrans 10 9 8 7⟩
 /- output 3217; source core 3217 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry017 : BridgeEntry := ⟨[-604, -603, 605], .radiusTrans 10 9 7 8⟩
 /- output 3218; source core 3218 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk26Entry018 : BridgeEntry := ⟨[-605, -604, 603], .radiusTrans 10 8 9 7⟩
 
+/-- Generated radius-partition bridge list for the prefixed P4 occurrence data. -/
 def bridgeChunk26 : List BridgeEntry := [
   bridgeChunk26Entry001,
   bridgeChunk26Entry002,
@@ -63,45 +82,65 @@ def bridgeChunk26 : List BridgeEntry := [
   bridgeChunk26Entry018,
 ]
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry001_wf : entryWF bridgeChunk26Entry001 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry002_wf : entryWF bridgeChunk26Entry002 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry003_wf : entryWF bridgeChunk26Entry003 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry004_wf : entryWF bridgeChunk26Entry004 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry005_wf : entryWF bridgeChunk26Entry005 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry006_wf : entryWF bridgeChunk26Entry006 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry007_wf : entryWF bridgeChunk26Entry007 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry008_wf : entryWF bridgeChunk26Entry008 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry009_wf : entryWF bridgeChunk26Entry009 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry010_wf : entryWF bridgeChunk26Entry010 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry011_wf : entryWF bridgeChunk26Entry011 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry012_wf : entryWF bridgeChunk26Entry012 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry013_wf : entryWF bridgeChunk26Entry013 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry014_wf : entryWF bridgeChunk26Entry014 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry015_wf : entryWF bridgeChunk26Entry015 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry016_wf : entryWF bridgeChunk26Entry016 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry017_wf : entryWF bridgeChunk26Entry017 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk26Entry018_wf : entryWF bridgeChunk26Entry018 = true := by decide
 
+/-- All generated entries in radius-partition bridge chunk 26 satisfy the entryWF predicate. -/
 theorem bridgeChunk26_wf : bridgeChunk26.all entryWF = true := by
   simp [bridgeChunk26, bridgeChunk26Entry001_wf, bridgeChunk26Entry002_wf, bridgeChunk26Entry003_wf, bridgeChunk26Entry004_wf, bridgeChunk26Entry005_wf, bridgeChunk26Entry006_wf, bridgeChunk26Entry007_wf, bridgeChunk26Entry008_wf, bridgeChunk26Entry009_wf, bridgeChunk26Entry010_wf, bridgeChunk26Entry011_wf, bridgeChunk26Entry012_wf, bridgeChunk26Entry013_wf, bridgeChunk26Entry014_wf, bridgeChunk26Entry015_wf, bridgeChunk26Entry016_wf, bridgeChunk26Entry017_wf, bridgeChunk26Entry018_wf]
 
+/-- The generated radius-partition bridge chunk 26 contains exactly 18 entries. -/
 theorem bridgeChunk26_length : bridgeChunk26.length = 18 := by simp [bridgeChunk26]
 
 end Problem97.P4RadiusPartitionOccurrenceBridgeScratch
