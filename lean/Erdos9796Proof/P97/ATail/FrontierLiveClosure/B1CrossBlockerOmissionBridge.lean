@@ -210,6 +210,16 @@ theorem crossBlockerCoincidence_implies_radialEquality
     rw [h₄]
     simpa only [dist_comm] using (mem_selectedClass.mp P.source₂_mem_radius).2
 
+/-- The exact terminal interface for a future global radial-exclusion bridge. -/
+theorem false_of_crossBlockerCoincidence_of_radialExclusions
+    (hcoincidence : CrossBlockerCoincidence P Pρ)
+    (hP : dist S.oppApex1 (H.centerAt P.source₁ P.source₁_mem_A) ≠ ρ)
+    (hPρ : dist S.oppApex1 (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) ≠ radius) :
+    False := by
+  rcases crossBlockerCoincidence_implies_radialEquality P Pρ hcoincidence with h | h
+  · exact hP h
+  · exact hPρ h
+
 end
 end ATailFrontierLiveClosure
 end Problem97
