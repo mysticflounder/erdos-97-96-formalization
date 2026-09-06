@@ -1,0 +1,21 @@
+{
+  "base_head": "2171f526c72c79789b771a7611de9f8733a24a83",
+  "created_utc": "2026-09-06T10:18:03.852640Z",
+  "input_digests": {
+    "docs/skeptic-CardGeThirteenExact13ExclusiveApex18-2026-09-06.md": "69aedc0f97284a87d9c001efaf954c11f5df3b67e5fe496c1371aa75cebbbf86"
+  },
+  "lane_id": "exact13-exclusive-apex-18-constructor-20260906",
+  "manifest_sha256": "469c4a0d7421104a5d1db721a1fc583e619d514c7514a162720bfd3ffe1c080e",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "luna-swarm-orbit-warden",
+  "root": "scratch/runs/exact13-exclusive-apex-18-constructor-20260906/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13ExclusiveApex18.lean": "75ed653182b37db7df61466de7fb7ebca2db57fdb7ee6d74543ebf3ca9f3429b"
+  }
+}
