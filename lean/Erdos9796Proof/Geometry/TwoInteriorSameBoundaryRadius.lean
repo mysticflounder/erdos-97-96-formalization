@@ -5,6 +5,11 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.Foundation
+import Erdos9796Proof.Geometry.SimilarityFrame
+import Erdos9796Proof.Geometry.ConvexIndepHull
+import Mathlib.Analysis.Convex.Topology
+import Mathlib.Analysis.LocallyConvex.Separation
+import Mathlib.Analysis.InnerProductSpace.Dual
 
 /-!
 # Two distinct interior points cannot share the boundary-radius metric pattern
@@ -17,7 +22,370 @@ construction, or a closure-layer import.
 
 namespace Erdos9796Proof.Geometry
 
-open scoped EuclideanGeometry
+open scoped EuclideanGeometry InnerProductSpace
+
+/-- The real inner product in the Euclidean plane is the sum of the two
+coordinatewise products. -/
+private theorem oneBoundary_inner_eq_coords (u w : ℝ²) :
+    ⟪u, w⟫_ℝ = u 0 * w 0 + u 1 * w 1 := by
+  rw [PiLp.inner_apply]
+  simp [Fin.sum_univ_two, mul_comm (u _) (w _)]
+
+/-- A point outside the convex hull of a finite planar set admits a vector
+which points strictly from every hull point toward the excluded point. -/
+theorem exists_strict_separating_vector_from_finite_convexHull
+    {S : Set ℝ²} (hS : S.Finite) {p : ℝ²}
+    (hp : p ∉ convexHull ℝ S) :
+    ∃ w : ℝ², ∀ q ∈ convexHull ℝ S, 0 < ⟪w, p - q⟫_ℝ := by
+  have hcompact : IsCompact (convexHull ℝ S) := hS.isCompact_convexHull
+  have hconvex : Convex ℝ (convexHull ℝ S) := convex_convexHull ℝ S
+  obtain ⟨f, u, v, hfp, huv, hfS⟩ :=
+    geometric_hahn_banach_compact_closed
+      (s := ({p} : Set ℝ²)) (t := convexHull ℝ S)
+      (convex_singleton p) isCompact_singleton hconvex hcompact.isClosed
+      (Set.disjoint_singleton_left.2 hp)
+  let z : ℝ² := (InnerProductSpace.toDual ℝ ℝ²).symm f
+  refine ⟨-z, ?_⟩
+  intro q hq
+  have hpq : f p < f q :=
+    (hfp p (by simp)).trans (huv.trans (hfS q hq))
+  have hfq : f q = ⟪z, q⟫_ℝ := by
+    symm
+    exact InnerProductSpace.toDual_symm_apply
+  have hfp' : f p = ⟪z, p⟫_ℝ := by
+    symm
+    exact InnerProductSpace.toDual_symm_apply
+  have hdiff : 0 < ⟪z, q⟫_ℝ - ⟪z, p⟫_ℝ := by
+    rw [← hfq, ← hfp']
+    exact sub_pos.mpr hpq
+  simp only [inner_neg_left, inner_sub_right]
+  nlinarith [hdiff]
+
+/-- The scalar contradiction behind the one-boundary reflected-pair theorem.
+The normalized base endpoints are `(-1, 0)` and `(1, 0)`; the two candidate
+points are `(x, y)` and `(x, -y)`. -/
+theorem false_of_normalized_one_boundary_reflected_pair
+    {h k x y u v : ℝ}
+    (hy : y ≠ 0)
+    (hxplus : 0 < x + 1)
+    (hradius : 4 ≤ (x - 1) ^ 2 + y ^ 2)
+    (hXdisk : (x - h) ^ 2 + (y - k) ^ 2 ≤ (-1 - h) ^ 2 + k ^ 2)
+    (hYdisk : (x - h) ^ 2 + (-y - k) ^ 2 ≤ (-1 - h) ^ 2 + k ^ 2)
+    (hu : 0 < u)
+    (hsepX : 0 < u * (1 - x) - v * y)
+    (hsepY : 0 < u * (1 - x) + v * y)
+    (hsepC : 0 < u * (1 - h) - v * k) : False := by
+  have hy2 : 0 < y ^ 2 := sq_pos_of_ne_zero hy
+  have hDplus : 0 ≤ (h - 1) * (x + 1) + k * y := by
+    nlinarith [hXdisk, hradius]
+  have hDminus : 0 ≤ (h - 1) * (x + 1) - k * y := by
+    nlinarith [hYdisk, hradius]
+  have hax : 0 ≤ (h - 1) * (x + 1) := by
+    nlinarith [hDplus, hDminus]
+  have ha : 0 ≤ h - 1 := nonneg_of_mul_nonneg_left hax hxplus
+  have hfirst : 0 < 2 * y ^ 2 * (u * (1 - h) - v * k) :=
+    mul_pos (mul_pos (by norm_num) hy2) hsepC
+  have hsecond :
+      0 ≤ (u * (1 - x) - v * y) * ((h - 1) * (x + 1) - k * y) :=
+    mul_nonneg hsepX.le hDminus
+  have hthird :
+      0 ≤ (u * (1 - x) + v * y) * ((h - 1) * (x + 1) + k * y) :=
+    mul_nonneg hsepY.le hDplus
+  have hfourth : 0 ≤ 4 * u * (h - 1) * (x + 1) := by positivity
+  have hid :
+      2 * y ^ 2 * (u * (1 - h) - v * k) +
+          (u * (1 - x) - v * y) * ((h - 1) * (x + 1) - k * y) +
+          (u * (1 - x) + v * y) * ((h - 1) * (x + 1) + k * y) +
+          4 * u * (h - 1) * (x + 1) ≤ 0 := by
+    nlinarith [hradius]
+  nlinarith
+
+/-- In the normalized frame, a nontrivial reflected pair lying in the disk
+through `(-1, 0)` forces `(1, 0)` to lie strictly inside that disk. -/
+theorem normalized_second_endpoint_strictly_inside
+    {h k x y : ℝ}
+    (hxplus : 0 < x + 1)
+    (hradius : 4 ≤ (x - 1) ^ 2 + y ^ 2)
+    (hXdisk : (x - h) ^ 2 + (y - k) ^ 2 ≤ (-1 - h) ^ 2 + k ^ 2)
+    (hYdisk : (x - h) ^ 2 + (-y - k) ^ 2 ≤ (-1 - h) ^ 2 + k ^ 2) :
+    (1 - h) ^ 2 + k ^ 2 < (-1 - h) ^ 2 + k ^ 2 := by
+  have hDplus : 0 ≤ (h - 1) * (x + 1) + k * y := by
+    nlinarith [hXdisk, hradius]
+  have hDminus : 0 ≤ (h - 1) * (x + 1) - k * y := by
+    nlinarith [hYdisk, hradius]
+  have hax : 0 ≤ (h - 1) * (x + 1) := by
+    nlinarith [hDplus, hDminus]
+  have ha : 0 ≤ h - 1 := nonneg_of_mul_nonneg_left hax hxplus
+  nlinarith
+
+set_option maxHeartbeats 2000000 in
+-- Elaborating the two finite-hull separation witnesses and their normalized
+-- coordinate consequences exceeds the default deterministic heartbeat budget.
+/-- Two distinct common equidistant points force their radius about `B` to be
+strictly smaller than `BP` when `P` is on a genuinely center-supported
+enclosing circle.  No boundary hypothesis on `B` is required. -/
+theorem dist_lt_base_of_one_boundary_reflected_pair
+    {A : Finset ℝ²} {C B P X Y : ℝ²} {R : ℝ}
+    (hconv : EuclideanGeometry.ConvexIndep (A : Set ℝ²))
+    (hcontain : ∀ q ∈ A, dist q C ≤ R)
+    (hcenter : C ∈ convexHull ℝ {q : ℝ² | q ∈ A ∧ dist q C = R})
+    (hBmem : B ∈ A) (hPmem : P ∈ A) (hXmem : X ∈ A) (hYmem : Y ∈ A)
+    (hPB : P ≠ B) (hXY : X ≠ Y)
+    (hPboundary : dist P C = R)
+    (hPX : dist P X = dist P Y)
+    (hBXY : dist B X = dist B Y) :
+    dist B X < dist B P := by
+  by_contra hnot
+  have hBPleX : dist B P ≤ dist B X := le_of_not_gt hnot
+  let F : SimilarityFrame P B := ofDistinct hPB
+  let x := F X 0
+  let y := F X 1
+  let xY := F Y 0
+  let yY := F Y 1
+  let h := F C 0
+  let k := F C 1
+  have hFBXY : dist (F B) (F X) = dist (F B) (F Y) :=
+    (F.dist_eq_iff B X Y).2 hBXY
+  have hFPXY : dist (F P) (F X) = dist (F P) (F Y) :=
+    (F.dist_eq_iff P X Y).2 hPX
+  have hFBXYsq := congrArg (fun t : ℝ ↦ t ^ 2) hFBXY
+  have hFPXYsq := congrArg (fun t : ℝ ↦ t ^ 2) hFPXY
+  simp only [Problem97.dist_sq_coord] at hFBXYsq hFPXYsq
+  have hBcoord : (1 - x) ^ 2 + y ^ 2 = (1 - xY) ^ 2 + yY ^ 2 := by
+    simpa [x, y, xY, yY, F, planePoint, EuclideanSpace.single_apply] using hFBXYsq
+  have hPcoord : (-1 - x) ^ 2 + y ^ 2 = (-1 - xY) ^ 2 + yY ^ 2 := by
+    simpa [x, y, xY, yY, F, planePoint, EuclideanSpace.single_apply] using hFPXYsq
+  have hxEq : x = xY := by
+    nlinarith only [hBcoord, hPcoord]
+  have hySq : y ^ 2 = yY ^ 2 := by
+    rw [hxEq] at hBcoord
+    nlinarith only [hBcoord]
+  have hyNeY : y ≠ yY := by
+    intro heq
+    apply hXY
+    apply F.injective
+    ext i
+    fin_cases i
+    · simpa [x, xY] using hxEq
+    · simpa [y, yY] using heq
+  have hyY : yY = -y := by
+    rcases sq_eq_sq_iff_eq_or_eq_neg.mp hySq with heq | hneg
+    · exact False.elim (hyNeY heq)
+    · nlinarith only [hneg]
+  have hy : y ≠ 0 := by
+    intro hy0
+    apply hyNeY
+    nlinarith only [hy0, hyY]
+  have hFBPleX : dist (F B) (F P) ≤ dist (F B) (F X) := by
+    rw [F.dist_map, F.dist_map]
+    exact mul_le_mul_of_nonneg_left hBPleX F.scale_pos.le
+  have hFBPleXsq : dist (F B) (F P) ^ 2 ≤ dist (F B) (F X) ^ 2 :=
+    (sq_le_sq₀ dist_nonneg dist_nonneg).2 hFBPleX
+  simp only [Problem97.dist_sq_coord] at hFBPleXsq
+  have hradius : 4 ≤ (x - 1) ^ 2 + y ^ 2 := by
+    dsimp [x, y]
+    have hraw := hFBPleXsq
+    simp [F, planePoint, EuclideanSpace.single_apply] at hraw
+    nlinarith only [hraw]
+  have hXinside : dist X C ≤ dist P C := by
+    calc
+      dist X C ≤ R := hcontain X hXmem
+      _ = dist P C := hPboundary.symm
+  have hYinside : dist Y C ≤ dist P C := by
+    calc
+      dist Y C ≤ R := hcontain Y hYmem
+      _ = dist P C := hPboundary.symm
+  have hFXinside : dist (F X) (F C) ≤ dist (F P) (F C) := by
+    rw [F.dist_map, F.dist_map]
+    exact mul_le_mul_of_nonneg_left hXinside F.scale_pos.le
+  have hFYinside : dist (F Y) (F C) ≤ dist (F P) (F C) := by
+    rw [F.dist_map, F.dist_map]
+    exact mul_le_mul_of_nonneg_left hYinside F.scale_pos.le
+  have hFXinsideSq : dist (F X) (F C) ^ 2 ≤ dist (F P) (F C) ^ 2 :=
+    (sq_le_sq₀ dist_nonneg dist_nonneg).2 hFXinside
+  have hFYinsideSq : dist (F Y) (F C) ^ 2 ≤ dist (F P) (F C) ^ 2 :=
+    (sq_le_sq₀ dist_nonneg dist_nonneg).2 hFYinside
+  simp only [Problem97.dist_sq_coord] at hFXinsideSq hFYinsideSq
+  have hXdisk : (x - h) ^ 2 + (y - k) ^ 2 ≤ (-1 - h) ^ 2 + k ^ 2 := by
+    simpa [x, y, h, k, F, planePoint, EuclideanSpace.single_apply] using hFXinsideSq
+  have hYdisk : (x - h) ^ 2 + (-y - k) ^ 2 ≤ (-1 - h) ^ 2 + k ^ 2 := by
+    have hraw : (xY - h) ^ 2 + (yY - k) ^ 2 ≤ (-1 - h) ^ 2 + k ^ 2 := by
+      simpa [xY, yY, h, k, F, planePoint, EuclideanSpace.single_apply] using hFYinsideSq
+    rw [← hxEq, hyY] at hraw
+    exact hraw
+  have hsepMappedHull : ∀ q ∈ A, ∃ w : ℝ²,
+      ∀ z ∈ convexHull ℝ (F '' (((A.erase q : Finset ℝ²) : Set ℝ²))),
+        0 < ⟪w, F q - z⟫_ℝ := by
+    intro q hq
+    have hqNot : q ∉ convexHull ℝ (((A.erase q : Finset ℝ²) : Set ℝ²) : Set ℝ²) := by
+      apply convexIndep_not_mem_convexHull_of_finset_subset_diff hconv hq
+      intro z hz
+      have hzA : z ∈ A := Finset.mem_of_mem_erase hz
+      have hzne : z ≠ q := Finset.ne_of_mem_erase hz
+      exact ⟨hzA, by simp [hzne]⟩
+    have hqNotMap :
+        F q ∉ convexHull ℝ (F '' (((A.erase q : Finset ℝ²) : Set ℝ²)) ) := by
+      intro hmem
+      exact hqNot ((F.convexHull_mem_iff).mp hmem)
+    exact exists_strict_separating_vector_from_finite_convexHull
+      ((A.erase q).finite_toSet.image F) hqNotMap
+  have hXneP : X ≠ P := by
+    intro hXP
+    have hPY0 : dist P Y = 0 := by
+      rw [← hPX, hXP]
+      simp
+    have hYP : Y = P := (dist_eq_zero.mp hPY0).symm
+    exact hXY (hXP.trans hYP.symm)
+  have hYneP : Y ≠ P := by
+    intro hYP
+    have hPX0 : dist P X = 0 := by
+      rw [hPX, hYP]
+      simp
+    have hXP : X = P := (dist_eq_zero.mp hPX0).symm
+    exact hXY (hXP.trans hYP.symm)
+  obtain ⟨wP, hwP⟩ := hsepMappedHull P hPmem
+  have hBmemEraseP : B ∈ A.erase P := Finset.mem_erase.mpr ⟨hPB.symm, hBmem⟩
+  have hXmemEraseP : X ∈ A.erase P := Finset.mem_erase.mpr ⟨hXneP, hXmem⟩
+  have hYmemEraseP : Y ∈ A.erase P := Finset.mem_erase.mpr ⟨hYneP, hYmem⟩
+  have hsepPB := hwP (F B)
+    (subset_convexHull ℝ _ ⟨B, hBmemEraseP, rfl⟩)
+  have hsepPX := hwP (F X)
+    (subset_convexHull ℝ _ ⟨X, hXmemEraseP, rfl⟩)
+  have hsepPY := hwP (F Y)
+    (subset_convexHull ℝ _ ⟨Y, hYmemEraseP, rfl⟩)
+  let a := wP 0
+  let b := wP 1
+  have hsepPBcoord : 0 < -2 * a := by
+    dsimp [a]
+    simp [oneBoundary_inner_eq_coords, F, planePoint,
+      EuclideanSpace.single_apply, PiLp.sub_apply] at hsepPB
+    nlinarith only [hsepPB]
+  have hsepPXcoord : 0 < a * (-1 - x) - b * y := by
+    dsimp [a, b, x, y]
+    simp [oneBoundary_inner_eq_coords, F, planePoint,
+      EuclideanSpace.single_apply, PiLp.sub_apply] at hsepPX
+    nlinarith only [hsepPX]
+  have hsepPYcoord : 0 < a * (-1 - xY) - b * yY := by
+    dsimp [a, b, xY, yY]
+    simp [oneBoundary_inner_eq_coords, F, planePoint,
+      EuclideanSpace.single_apply, PiLp.sub_apply] at hsepPY
+    nlinarith only [hsepPY]
+  have haNeg : a < 0 := by nlinarith only [hsepPBcoord]
+  have haxNeg : a * (x + 1) < 0 := by
+    rw [← hxEq, hyY] at hsepPYcoord
+    nlinarith only [hsepPXcoord, hsepPYcoord]
+  have haxNeg' : (x + 1) * a < 0 := by nlinarith only [haxNeg]
+  have hxplus : 0 < x + 1 := pos_of_mul_neg_left haxNeg' haNeg.le
+  have hBinsideCoord :
+      (1 - h) ^ 2 + k ^ 2 < (-1 - h) ^ 2 + k ^ 2 :=
+    normalized_second_endpoint_strictly_inside hxplus hradius hXdisk hYdisk
+  have hBinsideSq : dist (F B) (F C) ^ 2 < dist (F P) (F C) ^ 2 := by
+    rw [Problem97.dist_sq_coord, Problem97.dist_sq_coord]
+    simpa [h, k, F, planePoint, EuclideanSpace.single_apply] using hBinsideCoord
+  have hBinsideMap : dist (F B) (F C) < dist (F P) (F C) :=
+    (sq_lt_sq₀ dist_nonneg dist_nonneg).mp hBinsideSq
+  have hBinside : dist B C < dist P C := by
+    rw [F.dist_map, F.dist_map] at hBinsideMap
+    exact lt_of_mul_lt_mul_left hBinsideMap F.scale_pos.le
+  have hBstrict : dist B C < R := by simpa [hPboundary] using hBinside
+  have hsupportErase :
+      {q : ℝ² | q ∈ A ∧ dist q C = R} ⊆ ((A.erase B : Finset ℝ²) : Set ℝ²) := by
+    rintro q ⟨hqA, hqR⟩
+    have hqne : q ≠ B := by
+      intro hqB
+      subst q
+      exact (ne_of_lt hBstrict) hqR
+    exact Finset.mem_erase.mpr ⟨hqne, hqA⟩
+  have hcenterErase :
+      C ∈ convexHull ℝ (((A.erase B : Finset ℝ²) : Set ℝ²)) :=
+    convexHull_mono hsupportErase hcenter
+  obtain ⟨w, hw⟩ := hsepMappedHull B hBmem
+  have hXneB : X ≠ B := by
+    intro hXB
+    have hBY0 : dist B Y = 0 := by
+      rw [← hBXY, hXB]
+      simp
+    have hYB : Y = B := (dist_eq_zero.mp hBY0).symm
+    exact hXY (hXB.trans hYB.symm)
+  have hYneB : Y ≠ B := by
+    intro hYB
+    have hBX0 : dist B X = 0 := by
+      rw [hBXY, hYB]
+      simp
+    have hXB : X = B := (dist_eq_zero.mp hBX0).symm
+    exact hXY (hXB.trans hYB.symm)
+  have hPmemEraseB : P ∈ A.erase B := Finset.mem_erase.mpr ⟨hPB, hPmem⟩
+  have hXmemEraseB : X ∈ A.erase B := Finset.mem_erase.mpr ⟨hXneB, hXmem⟩
+  have hYmemEraseB : Y ∈ A.erase B := Finset.mem_erase.mpr ⟨hYneB, hYmem⟩
+  have hcenterMap :
+      F C ∈ convexHull ℝ (F '' (((A.erase B : Finset ℝ²) : Set ℝ²))) :=
+    (F.convexHull_mem_iff).2 hcenterErase
+  have hsepBP := hw (F P)
+    (subset_convexHull ℝ _ ⟨P, hPmemEraseB, rfl⟩)
+  have hsepBX := hw (F X)
+    (subset_convexHull ℝ _ ⟨X, hXmemEraseB, rfl⟩)
+  have hsepBY := hw (F Y)
+    (subset_convexHull ℝ _ ⟨Y, hYmemEraseB, rfl⟩)
+  have hsepBC := hw (F C) hcenterMap
+  let u := w 0
+  let v := w 1
+  have hu : 0 < u := by
+    dsimp [u]
+    simp [oneBoundary_inner_eq_coords, F, planePoint,
+      EuclideanSpace.single_apply, PiLp.sub_apply] at hsepBP
+    nlinarith only [hsepBP]
+  have hsepXcoord : 0 < u * (1 - x) - v * y := by
+    dsimp [u, v, x, y]
+    simp [oneBoundary_inner_eq_coords, F, planePoint,
+      EuclideanSpace.single_apply, PiLp.sub_apply] at hsepBX
+    nlinarith only [hsepBX]
+  have hsepYcoord : 0 < u * (1 - x) + v * y := by
+    have hraw : 0 < u * (1 - xY) - v * yY := by
+      dsimp [u, v, xY, yY]
+      simp [oneBoundary_inner_eq_coords, F, planePoint,
+        EuclideanSpace.single_apply, PiLp.sub_apply] at hsepBY
+      nlinarith only [hsepBY]
+    rw [← hxEq, hyY] at hraw
+    nlinarith only [hraw]
+  have hsepCcoord : 0 < u * (1 - h) - v * k := by
+    dsimp [u, v, h, k]
+    simp [oneBoundary_inner_eq_coords, F, planePoint,
+      EuclideanSpace.single_apply, PiLp.sub_apply] at hsepBC
+    nlinarith only [hsepBC]
+  exact false_of_normalized_one_boundary_reflected_pair
+    hy hxplus hradius hXdisk hYdisk hu hsepXcoord hsepYcoord hsepCcoord
+
+/-- Equality in the one-boundary radius comparison is impossible: two carrier
+points in the same selected row about `B` and the same row about boundary point
+`P` must coincide. -/
+theorem eq_of_one_boundary_same_radius_pair
+    {A : Finset ℝ²} {C B P X Y : ℝ²} {R : ℝ}
+    (hconv : EuclideanGeometry.ConvexIndep (A : Set ℝ²))
+    (hcontain : ∀ q ∈ A, dist q C ≤ R)
+    (hcenter : C ∈ convexHull ℝ {q : ℝ² | q ∈ A ∧ dist q C = R})
+    (hBmem : B ∈ A) (hPmem : P ∈ A) (hXmem : X ∈ A) (hYmem : Y ∈ A)
+    (hPboundary : dist P C = R)
+    (hBP : dist B P = dist B X)
+    (hBY : dist B P = dist B Y)
+    (hPX : dist P X = dist P Y) : X = Y := by
+  by_contra hXY
+  have hPB : P ≠ B := by
+    intro hPB
+    have hBX0 : dist B X = 0 := by
+      rw [← hBP, ← hPB]
+      simp
+    have hBY0 : dist B Y = 0 := by
+      rw [← hBY, ← hPB]
+      simp
+    exact hXY ((dist_eq_zero.mp hBX0).symm.trans (dist_eq_zero.mp hBY0))
+  have hBXY : dist B X = dist B Y := hBP.symm.trans hBY
+  have hlt := dist_lt_base_of_one_boundary_reflected_pair
+    hconv hcontain hcenter hBmem hPmem hXmem hYmem hPB hXY
+      hPboundary hPX hBXY
+  nlinarith only [hlt, hBP]
+
+#print axioms dist_lt_base_of_one_boundary_reflected_pair
+#print axioms eq_of_one_boundary_same_radius_pair
 
 set_option maxHeartbeats 1000000 in
 -- The coordinate cancellation in the closed-disk equality case exceeds the

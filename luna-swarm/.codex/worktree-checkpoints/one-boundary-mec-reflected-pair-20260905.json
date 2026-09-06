@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "one-boundary-mec-reflected-pair-20260905",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "777c0ba74adce787657174ad116547a42b327ce3",
+  "owned_paths": [
+    "docs/skeptic-TwoInteriorSameBoundaryRadius-2026-09-06.md",
+    "lean/Erdos9796Proof/Geometry/TwoInteriorSameBoundaryRadius.lean",
+    "luna-swarm/.codex/worktree-checkpoints/one-boundary-mec-reflected-pair-20260905.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T02:48:08Z",
+  "manifest_sha256": "90fe3cef859d4a01bc002cf812e3afed7cdeebef89c9a26468199b80fd46d9b3"
+}
