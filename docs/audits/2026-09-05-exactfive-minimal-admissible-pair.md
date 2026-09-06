@@ -49,6 +49,16 @@ the cap-five case it refines the remaining physical branch to the statement
 that the actual fresh row omits at least one endpoint of the minimum source
 pair.
 
+The same argument now handles the larger-cap alternative without a fixed
+carrier size.  An exact-five first-apex class gives at least five points in the
+first opposite cap.  If an actual fresh row contains both minimum-pair
+endpoints, the cap-five contradiction upgrades that bound to six.  Second-apex
+full deletion robustness gives five points in the second opposite cap, and the
+three-cap partition with the surplus cap then yields `13 ≤ D.A.card`.
+Consequently every such fresh row satisfies the source-faithful trichotomy:
+carrier cardinality at least thirteen, first endpoint omitted, or second
+endpoint omitted.
+
 ## Validation
 
 Lean LSP diagnostics are clean for the repaired producer, the source residual
@@ -61,7 +71,8 @@ The wrapper is not yet threaded through the live distinct coordinator.  More
 importantly, the current strict physical packet does not prove that both source
 endpoints occur in the actual fresh row.  Thus minimum-pair custody eliminates
 the cap-five double-hit case but leaves one-hit and zero-hit omission cases.
-The cap-at-least-six double-hit branch also needs its advertised carrier-card
-lower bound before it can feed the exact-13 closure lanes.  The later adaptive
-common-center reselection must remain on the ordinary residual type unless it
-performs a fresh minimization.
+The double-hit branch now has its advertised carrier-card lower bound and can
+feed the exact-13 closure lanes once custody is threaded through the live
+coordinator.  The endpoint-omission alternatives remain the mathematical
+frontier.  The later adaptive common-center reselection must remain on the
+ordinary residual type unless it performs a fresh minimization.

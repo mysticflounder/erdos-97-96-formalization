@@ -4,6 +4,8 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.ATail.BiApexRobustCapBounds
+import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.UniqueRowProducer.card_five_interior_survivor_pair
 import Erdos9796Proof.P97.ATail.FirstApexUniqueRadiusResidual
 import Erdos9796Proof.P97.ATail.FirstApexInteriorPairCirclePower
 import Erdos9796Proof.P97.ATail.MinimalAdmissibleInteriorPair
@@ -24,11 +26,41 @@ namespace Problem97
 namespace ExactFiveDistinctPhysicalFreshRowRadiusDrop
 
 open ATailDeletionRobustness
+open ATailBiApexRobustCapBounds
 open ATailCriticalPairFrontier
+open ATailCapApexRadiusRigidity
 open CapSelectedRowCounting
 open FirstApexInteriorPairGeometry
 open FirstApexInteriorPairCirclePower
 open FirstApexUniqueRadiusResidual
+
+private theorem capByIndex_oppIndex1_eq_oppCap1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.capByIndex S.oppIndex1 = S.oppCap1 := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i <;>
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi]
+
+/-- An exact-five first-apex class puts at least five points in the first
+physical opposite cap. -/
+theorem firstOppCap_card_ge_five
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+    5 ≤ S.oppCap1.card := by
+  have hinterior :
+      3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
+        S.capInteriorByIndex S.oppIndex1).card :=
+    ATailUniqueRowProducerScratch.firstApex_cardFive_interior_card_ge_three
+      D S R.interior.frontier.radius_pos R.class_card_eq_five
+  have hinteriorCap : 3 ≤ (S.capInteriorByIndex S.oppIndex1).card :=
+    hinterior.trans (Finset.card_le_card Finset.inter_subset_right)
+  have hcap :=
+    capInteriorByIndex_card_add_two S S.oppIndex1
+  have hcapByIndex : 5 ≤ (S.capByIndex S.oppIndex1).card := by omega
+  simpa only [capByIndex_oppIndex1_eq_oppCap1] using hcapByIndex
 
 /-- A carrier point outside the first opposite cap belongs to one of the two
 other indexed caps. -/
@@ -538,6 +570,70 @@ theorem
         hfreshA hq hw).elim
     · exact Or.inr hw
   · exact Or.inl hq
+
+/-- If the actual fresh row contains both endpoints of the minimum admissible
+source pair, the first physical cap cannot have cardinality five.  The two
+physical cap bounds and the surplus-cap partition then force at least thirteen
+carrier points. -/
+theorem
+    FirstApexUniqueRadiusExactFiveMinimalDistinctResidual.carrier_card_ge_thirteen_of_actualFreshBlocker_doubleHit
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    (hsecond : FullyDeletionRobustAt D S.oppApex2)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hqRow : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hwRow : Rmin.residual.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support) :
+    13 ≤ D.A.card := by
+  have hfirstFive : 5 ≤ S.oppCap1.card :=
+    firstOppCap_card_ge_five Rmin.residual
+  have hfirstSix : 6 ≤ S.oppCap1.card := by
+    by_contra hnotSix
+    have hcapOpp : S.oppCap1.card = 5 := by omega
+    have hcap : (S.capByIndex S.oppIndex1).card = 5 := by
+      simpa only [capByIndex_oppIndex1_eq_oppCap1] using hcapOpp
+    exact false_of_actualFreshBlocker_doubleHit_of_minimalPair_capFive
+      Rmin.residual Rmin.minimalPair Rmin.source_eq hsecond hcap
+      hfreshA hqRow hwRow
+  have hsecondFive : 5 ≤ S.oppCap2.card :=
+    second_oppCap_card_ge_five hsecond
+  have hsum := S.capSum
+  have hsurplus := S.surplus_card_gt_four
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  all_goals
+    simp only [SurplusCapPacket.surplusCap, SurplusCapPacket.oppCap1,
+      SurplusCapPacket.oppCap2, hi] at hsum hsurplus hfirstSix hsecondFive
+    omega
+
+/-- Every actual fresh blocker row in the minimum-pair source branch either
+forces the carrier into the at-least-thirteen regime or omits one of the two
+minimum source endpoints. -/
+theorem
+    FirstApexUniqueRadiusExactFiveMinimalDistinctResidual.card_ge_thirteen_or_actualFreshBlocker_source_omission
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    (hsecond : FullyDeletionRobustAt D S.oppApex2)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A) :
+    13 ≤ D.A.card ∨
+      Rmin.residual.interior.frontier.pair.q ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∨
+      Rmin.residual.interior.frontier.pair.w ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support := by
+  by_cases hq : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · exact Or.inl
+        (carrier_card_ge_thirteen_of_actualFreshBlocker_doubleHit
+          Rmin hsecond hfreshA hq hw)
+    · exact Or.inr (Or.inr hw)
+  · exact Or.inr (Or.inl hq)
 
 end ExactFiveDistinctPhysicalFreshRowRadiusDrop
 end Problem97
