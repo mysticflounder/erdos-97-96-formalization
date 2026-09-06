@@ -1555,6 +1555,20 @@ larger-cardinality leaf. The
 [two-radius closure plan](plans/2026-09-01-dr-two-radius-branch-closure.md)
 retains the general-carrier obligation.
 
+**PROVEN (pen-and-paper, semantic exact-thirteen cover).** The
+[semantic canonicalization argument](erdos-97-exact13-semantic-canonicalization.md)
+shows that every selected four-row at `S.oppApex2` after deleting
+`Q.base.z` has support `Q.base.thirdRow.support`. Apply the retained cover
+to the apex's membership in the original carrier: the apex lies in at least
+one blocker row. The one-boundary equality kernel bounds that blocker trace
+by one, while the other blocker trace is bounded by two. A different-radius
+four-row would then have at most three points. Stored completeness of the
+third row gives support equality at the remaining radius; no new `hnoFive`
+assumption is needed. Deleting `z` and any point of the third row consequently
+destroys four-row survival at the apex. The Lean adapter remains uncompiled;
+an incompatible source survival statement or another terminal is still
+needed to close the exact-thirteen branch.
+
 ### 11.5 Exact-five and the remaining Rigid221 closure contracts
 
 The first-apex unique-radius splitter produces exact-four, exact-five with

@@ -90,7 +90,7 @@ files do match the hashes printed in the handoff.
   center-support facts are available from the original carrier.
 
 The required witness extraction already exists:
-`FreshThirdCrossDeletionRows.exists_selectedFourClass_in_erase_of_deletion_survives`
+`ATailFrontierLiveClosure.exists_selectedFourClass_in_erase_of_deletion_survives`
 at `FreshThirdCrossDeletionRows.lean:40–60` accepts arbitrary `A`, `center`,
 and `deleted`. Instantiate `A := D.A.erase z` and `deleted := w` to extract
 the row directly in the doubly erased carrier. Then lift that same support

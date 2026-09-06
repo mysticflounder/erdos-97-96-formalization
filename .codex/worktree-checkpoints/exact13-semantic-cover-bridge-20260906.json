@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-semantic-cover-bridge-20260906",
+  "owner": "codex-atomic-scribe",
+  "base_head": "4f8f2f5fa9360c94dd512779bafbff48bdae2bc9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-semantic-cover-bridge-20260906.json",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "docs/erdos-97-exact13-semantic-canonicalization.md",
+    "docs/skeptic-97-96-literature-semantic-adapter-full-handoff-2026-09-05-2026-09-05.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T07:33:38Z",
+  "manifest_sha256": "2d5c9da6c9b38700ae7a3516a15417c5d6516cbce51776424464acf33c517fe8"
+}
