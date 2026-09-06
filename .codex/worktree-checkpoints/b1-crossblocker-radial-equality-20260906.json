@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-crossblocker-radial-equality-20260906",
+  "owner": "luna-swarm-lemma-lantern",
+  "base_head": "71579f0d0e2fbb036f416bb9586944c224a5ca6b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-crossblocker-radial-equality-20260906.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CrossBlockerOmissionBridge.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T08:30:00Z",
+  "manifest_sha256": "10e872036158f9bee6978e3d2a23581a95e6fc48e1149fecf5496896ecc3a2ec"
+}

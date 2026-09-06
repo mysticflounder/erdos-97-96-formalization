@@ -189,6 +189,27 @@ theorem disjoint_opposite_collisionPair_canonicalShells
       · exact hcrossρ₁ hzShell
       · exact hcrossρ₂ hzShell)
 
+/-- A coincidence arm is exactly a radial equality for the opposite first-apex
+class.  This records the remaining obstruction without importing any closure
+consumer. -/
+theorem crossBlockerCoincidence_implies_radialEquality
+    (hcoincidence : CrossBlockerCoincidence P Pρ) :
+    dist S.oppApex1 (H.centerAt P.source₁ P.source₁_mem_A) = ρ ∨
+      dist S.oppApex1 (H.centerAt Pρ.source₁ Pρ.source₁_mem_A) = radius := by
+  rcases hcoincidence with h₁ | h₂ | h₃ | h₄
+  · left
+    rw [h₁]
+    simpa only [dist_comm] using (mem_selectedClass.mp Pρ.source₁_mem_radius).2
+  · left
+    rw [h₂]
+    simpa only [dist_comm] using (mem_selectedClass.mp Pρ.source₂_mem_radius).2
+  · right
+    rw [h₃]
+    simpa only [dist_comm] using (mem_selectedClass.mp P.source₁_mem_radius).2
+  · right
+    rw [h₄]
+    simpa only [dist_comm] using (mem_selectedClass.mp P.source₂_mem_radius).2
+
 end
 end ATailFrontierLiveClosure
 end Problem97
