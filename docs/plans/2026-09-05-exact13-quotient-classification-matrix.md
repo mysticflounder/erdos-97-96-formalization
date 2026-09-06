@@ -34,6 +34,8 @@ set of admissible unresolved source leaves, not merely more sampled cuts.
 | R1 | Report cancellation / dual-exit / undecided / uncovered counts | KalmansonCartographer | F1 COUNT COMPLETE; ALL-SOURCE BLOCKED | Fixed-cell 495/495 below; no all-source denominator |
 | F1 | Three-chain fixed order, all 495 pivot supports | KalmansonCartographer; independent Luna/API and code audits | EXACT FINITE REPLAY COMPLETE | Minimal row groups, nine links/ten gaps, 423 one-form + 72 two-form certificates; no source occurrence claim |
 | F2 | Match F1's named providers to the current source charts | Source-contract audit + independent enumeration | NATURAL MATCH REJECTED | 0/4 cyclic/reflected maps pass necessary source conditions; other provider identifications are not ruled out |
+| F3 | Reassign S=T, D=G10; exhaust compatible fixed-core base records | KalmansonCartographer + independent code/count audit | FINITE FAMILY EXCLUDED; NO INCREMENTAL GAIN | 60 partitions, 2340 base/blocker records, 13572 role records; all already one-form rejected |
+| F4 | Drop G10; allow every blocker center | KalmansonCartographer + independent count audit | STRONGER FINITE FAMILY EXCLUDED | 3120 base/blocker records: 3084 one-form and 36 two-form; no baseline survivor |
 | A1 | Apply affine miner to eligible surviving complete row tables | KalmansonCartographer | READY, NO ELIGIBLE INPUT | Miner/checker at 15ef84edc; previous seven-table cohort had no baseline survivor |
 | P1 | Connect exhaustive coverage and certified leaves to live consumer | Existing Lean owners | BLOCKED ON S2/C2/R1 | No Lean promotion claimed by this lane |
 
@@ -53,6 +55,7 @@ survivor of all tested geometric inequalities.
 | Fixed three-chain cell: dual / undecided / uncovered exits | 0 / 0 / 0 | Cancellation already covers this whole conditional domain |
 | Rational-dual exits produced by this lane | 0 | Awaiting exact-dual interface audit |
 | New live leaves eliminated by this lane | 0 | No claimed reduction in the parent plan's measure |
+| Reassigned fixed-core family F3 | 2340/2340 base/blocker records excluded | Compatible with finite validator, not established live-source occurrence; all already one-form rejected |
 | Previous affine regression cohort | 7 tables; 5 affine collisions; 0 baseline survivors | Historical, not the classification denominator |
 | Later direct-cell bounded wave | 21 SAT models; 0 baseline survivors | Historical certificate b460c57f5, not exhaustive coverage |
 
@@ -105,9 +108,9 @@ does not depend on the external attachment remaining available.
 
 ## Next unblocked work
 
-1. Find a source-compatible provider/order cell. Independent code and Luna
-   audits confirm F1's finite calculation and its distinction from the older
-   fixed cell, but the natural provider identification fails as recorded below.
+1. Seek a finite-validator-compatible cell surviving baseline cancellation.
+   F3 below passes incidence validation but all its base records already
+   collapse under one form. Do not formalize F3 expecting incremental coverage.
 2. With the source owner, state and prove the full finite-record/order
    projection, including mirror. Do not re-prove global-row existence.
 3. Add the small exact-dual adapter only when a candidate needs that exit;
@@ -134,3 +137,53 @@ auditor. This rejects this specific role-preserving application, not all
 possible applications using other global rows or different provider roles.
 F1 therefore contributes no established live-source coverage. Do not spend a
 further formalization lane on this cell in anticipation of that failed match.
+
+## Reassigned provider family F3
+
+The natural match failure does not forbid S being the first-apex row T and D
+being a global row. In the direct chart, the positional-to-raw map
+`[0,5,4,3,1,12,11,10,9,8,2,7,6]` gives this fixed core:
+
+| Provider | Center | Support |
+| --- | --- | --- |
+| K | 0 | {1,10,11,12} |
+| L | 0 | {2,3,8,9} |
+| T (old S) | 1 | {0,6,7,9} |
+| G10 (old D) | 10 | {2,3,4,5} |
+
+Source-role constraints force z=d=9 within this fixed core. Exhausting all
+ordered C0/C1 partitions, allowable distinct blocker centers (excluding 10
+because G10 is active), and source witnesses gives 60 support partitions,
+2340 base/blocker records, and 13572 role records. Each of the remaining
+eight global rows independently has 495 choices under `validate_cell`.
+This is a defined finite-interface family, not the all-source denominator.
+
+The transported chains at pivot 2 are `[10,11,12,1]`, `[7,6,0]`, and
+`[8,9,5,4,3]`. All nine links replay as positive sums of the ten direct-chart
+Kalmanson forms; every four-support repeats a chain. However the independent
+baseline comparison excludes all 2340 base/blocker records with a single
+form using the five base rows and G10 alone. No arbitrary filler global row
+is used for that comparison. There are no baseline survivors to send to the
+affine miner; no claim about membership in an existing published bank is made.
+
+Retained report: `docs/audits/2026-09-05-exact13-reassigned-chain-family.json`.
+Its checker recomputes enumeration, validation, transport, and baseline counts:
+
+```bash
+uv run --no-cache python -B scripts/check_exact13_reassigned_chain_family.py --verify docs/audits/2026-09-05-exact13-reassigned-chain-family.json
+uv run --no-cache python -B -m pytest -q -p no:cacheprovider scripts/test_check_exact13_reassigned_chain_family.py
+```
+
+No live-source projection, geometric occurrence, or Lean promotion is asserted.
+
+### F4: removing the extra global-row hypothesis
+
+EMPIRICALLY VERIFIED: with only the same K,L,T fixed, allow center 10 as a
+blocker and leave all nine active global rows arbitrary. The enlarged family
+has 3120 base/blocker records and 18096 source-role records. Using only the
+five base rows, 3084 records have one-form cancellations and the remaining
+36 have two-form cancellations. Weighted by source-witness choices the counts
+are 17880 and 216. No member survives this baseline. The report's `without_G10`
+section and checker retain this independent enumeration; it does not rely on
+the three-chain argument. Full finite-validator table count is 18096 times
+495 to the ninth power, not an all-source coverage count.

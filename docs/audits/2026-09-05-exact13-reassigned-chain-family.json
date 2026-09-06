@@ -1,0 +1,194 @@
+{
+  "G10": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "base_blocker_records": 2340,
+  "baseline_no_one_or_two_form": 0,
+  "baseline_one_form": 2340,
+  "baseline_scope": "All five base rows plus G10; complete one/two-form vector scan; no filler globals",
+  "baseline_two_form": 0,
+  "canonical_enumeration_sha256": "2e14ddf869b70613a8ca20c83e2f0dee182450b03fdf4bf88192eff968fc57fe",
+  "chains": [
+    [
+      10,
+      11,
+      12,
+      1
+    ],
+    [
+      7,
+      6,
+      0
+    ],
+    [
+      8,
+      9,
+      5,
+      4,
+      3
+    ]
+  ],
+  "checked_links": 9,
+  "complete_validator_tables": 48919886690530201551562500,
+  "core": {
+    "K": [
+      1,
+      10,
+      11,
+      12
+    ],
+    "L": [
+      2,
+      3,
+      8,
+      9
+    ],
+    "T": [
+      0,
+      6,
+      7,
+      9
+    ]
+  },
+  "free_global_rows": 8,
+  "gap_instances": 10,
+  "incremental_over_existing_cancellation_bank": "No claim about published bank membership; compare baseline counts above",
+  "live_source_leaves_eliminated": 0,
+  "pivot": 2,
+  "pivot_supports_excluded": 495,
+  "position_to_raw": [
+    0,
+    5,
+    4,
+    3,
+    1,
+    12,
+    11,
+    10,
+    9,
+    8,
+    2,
+    7,
+    6
+  ],
+  "representative": {
+    "base_rows": {
+      "C0": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "C1": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "K": [
+        1,
+        10,
+        11,
+        12
+      ],
+      "L": [
+        2,
+        3,
+        8,
+        9
+      ],
+      "T": [
+        0,
+        6,
+        7,
+        9
+      ]
+    },
+    "global_rows": {
+      "10": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "11": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "12": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "3": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "4": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "6": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "7": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "8": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "9": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "roles": {
+      "b0": 5,
+      "b1": 2,
+      "d": 9,
+      "s0": 2,
+      "s1": 5,
+      "z": 9
+    }
+  },
+  "role_records": 13572,
+  "schema": "exact13-reassigned-chain-family/v1",
+  "scope": "Fixed core, direct chart, finite validator only; no live-source projection or Euclidean realization claim",
+  "support_partitions": 60,
+  "weighted_one_form": 13572,
+  "without_G10": {
+    "baseline_one_form": 3084,
+    "baseline_two_form": 36,
+    "baseline_no_one_or_two_form": 0,
+    "support_partitions": 60,
+    "base_blocker_records": 3120,
+    "weighted_one_form": 17880,
+    "role_records": 18096,
+    "weighted_two_form": 216,
+    "canonical_enumeration_sha256": "d4bf1e07a7dbf969162dd072ea6588e7446d19570bc7062fb3bc60e03a9e6eba",
+    "free_global_rows": 9,
+    "complete_validator_tables": 32287125215749933024031250000,
+    "scope": "Same K/L/T, blockers may include10, only five base rows used in cancellation"
+  }
+}
