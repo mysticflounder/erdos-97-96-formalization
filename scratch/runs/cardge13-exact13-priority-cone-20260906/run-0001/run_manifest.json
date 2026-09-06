@@ -1,0 +1,29 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "cardge13-exact13-priority-cone-20260906",
+  "run_id": "run-0001",
+  "root": "scratch/runs/cardge13-exact13-priority-cone-20260906/run-0001",
+  "owner": "CardGE13ConeSmith",
+  "base_head": "0b02a614097133602c1079d919929c9042302a21",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/cardge13_exact13_global_source_cell_csp_piqd.py": "a9022adf79ca8c78344fa1fc2ca9b333e97cce2cf34e8e02c1d52324965ba096",
+    "scripts/cardge13_exact13_global_source_cell_boolean_slice_piqd.py": "d090c8febb743b2769c32ff5d09af0e8555f46a0842d2e2fac37e0cd61c14dd5",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_cegar_piqd.py": "b9ebd4869e3df7fde461db5667a62556104b3fe66057b71dfd5fc151296491a6",
+    "scripts/cardge13_exact13_global_source_cell_boolean_path_pair_resume_piqd.py": "ce8e19ab9f635cb4947dc0c8b1191e3f4da0dba15908b1446d72f7b061e98096",
+    "scripts/cardge13_exact13_coarse_cell_boolean_piqd.py": "26c0866ce98061d276499452e1b9a4d7f6700f54008996ff31f203b8bca52f20",
+    "scripts/cardge13_exact13_coarse_cell_conic_batch_piqd.py": "228d8e1ebddf198eb48cef10048cf0341f00f0e098e344b5afd6c01e4014c396",
+    "scripts/cardge13_exact13_coarse_cell_batch_piqd.py": "000eae266ed8ea98314465f2877b28e247493c8d078399aa45ae9b58190a3ddd",
+    "scripts/cardge13_exact13_coarse_cell_three_form_batch_piqd.py": "6c44f960250ca7848715623e3d707da32c644aa1d982f7d7f68941ae94853664",
+    "scripts/cardge13_exact13_tight_cover_lra_piqd.py": "5101cdc837cfc0a1e956dae8f27359e0f6e4f2d2a50e8f0319956c047309581b"
+  },
+  "input_digests": {
+    "scratch/runs/cardge13-exact13-coarse-cell-classifier-20260905/run-0001/artifacts/coarse-cell-catalog.json": "161e25d990ff527e3826af1a405d891540680bfc21e4a51bd62c144aeff4f160"
+  },
+  "created_utc": "2026-09-06T07:20:02Z",
+  "manifest_sha256": "365823ffb88f3e8be57af06d456659a6862363bc153d5eac5d377d4a0e8d01af"
+}
