@@ -1,0 +1,18 @@
+{
+  "authorized_by": "convo #16542 release and #16543 coordinator instruction",
+  "moved_utc": "2026-09-06T12:30:41.634458Z",
+  "reference_scan": "scratch/runs/exact13-source-indexed-finite-key-20260906/run-0001/events/draft-reference-scan.log",
+  "writer_scan": "scratch/runs/exact13-source-indexed-finite-key-20260906/run-0001/events/draft-writer-scan.log",
+  "files": [
+    {
+      "source": ".codex/worktree-checkpoints/exact13-source-indexed-key-20260906.json",
+      "quarantine": "scratch/runs/exact13-source-indexed-finite-key-20260906/run-0001/artifacts/quarantine/exact13-source-indexed-key-20260906.json",
+      "sha256": "73ffd7ba396f9847a33fae7c7b919e18cd8295d97987c57730ec58ee40ba4f39"
+    },
+    {
+      "source": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceIndexedKey.lean",
+      "quarantine": "scratch/runs/exact13-source-indexed-finite-key-20260906/run-0001/artifacts/quarantine/CardGeThirteenExact13SourceIndexedKey.lean",
+      "sha256": "0b2a738f51bc4006cc3819bbcbd772223ca148023fbcd375c1f1da05692251a7"
+    }
+  ]
+}

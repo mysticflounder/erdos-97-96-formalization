@@ -1,0 +1,25 @@
+{
+  "base_head": "6cde0412cd81d74eee6c1a9d065e2354955f0c57",
+  "created_utc": "2026-09-06T12:14:48.386463Z",
+  "input_digests": {
+    "docs/audits/2026-09-06-exact13-source-indexed-finite-key.md": "26bcc0445b436ee314f5e9890e3bfef03763afe80e3c4ddb67b02d6ab089bd06"
+  },
+  "lane_id": "exact13-source-indexed-finite-key-20260906",
+  "manifest_sha256": "7d6a319756a0de69ed556270403ff0d9ef3b0acab74f4d79a4a0d75acdc76b51",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "luna-swarm-gap-weaver",
+  "root": "scratch/runs/exact13-source-indexed-finite-key-20260906/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13ExclusiveApex18.lean": "75ed653182b37db7df61466de7fb7ebca2db57fdb7ee6d74543ebf3ca9f3429b",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13OccurrenceBankIngress.lean": "44f15a38d0e91c52d65f599d17ae042b27de932297b9a7e16a8f26ec941f5e89",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceIndexedFiniteKey.lean": "8ec3b72ccf9cbb0a002558630b1971775f81f0170998329f0934db9062cdb1dc",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13SourceOrderBridge.lean": "22a8ac1daafd4a5c649cfd3e44dcd9c2c1320d999787c7926b6e638f8c8e1033",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenExact13WeightedProviderBankBridge.lean": "cd213fa15551c1fe1c334be32d4050371334c9dbbd363431b8e72c20d6d9c878"
+  }
+}
