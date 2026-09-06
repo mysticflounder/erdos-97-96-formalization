@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "semantic-handoff-audit-20260905",
+  "owner": "codex-atomic-scribe",
+  "base_head": "ba4b80edf3e9edb777771c1afbb877966e0eb2e0",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/semantic-handoff-audit-20260905.json",
+    "docs/skeptic-97-96-literature-semantic-adapter-full-handoff-2026-09-05-2026-09-05.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T06:29:41Z",
+  "manifest_sha256": "1acf79529e92516c8a4a3df0fc2c6cfc07bbf4787389eb9969536999dca19043"
+}
