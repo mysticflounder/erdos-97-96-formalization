@@ -67,10 +67,10 @@ not infer native independence from a missing edge.
 
 ## First concrete replacement: finite-set partition counting
 
-**Existing source proof; reuse candidate, not yet ported or freshly compiled.**
+**Package-1 replacement complete and validated.**
 
-Both `BlockerVExactFifteenFourRowCoverage.outsideHits_card_eq_two` and
-`BlockerVExactSixteenFourRowCoverage.outsideHits_card_eq_two` use
+Before package 1, both `BlockerVExactFifteenFourRowCoverage.outsideHits_card_eq_two` and
+`BlockerVExactSixteenFourRowCoverage.outsideHits_card_eq_two` used
 `native_decide +revert` to prove this fact about an arbitrary Boolean row:
 
 - the row has four members;
@@ -106,23 +106,24 @@ The general mathematical statement behind it is:
 r + s = r + |S ∖ C|. Cancellation gives the conclusion. This is a proof on paper;
 the more general r,s statement has not been added to Lean in this audit.
 
-**Exact adapter obligations:** set `support` to the Boolean row's filtered
-universe and `cap` to the labels satisfying `longLabelBool`. For each of the four
-rows, the two fixed labels are distinct and lie in that cap. Prove that
-`outsideLabel` is injective and maps `outsideHits` onto `support \ cap`; transport
-cardinality through that map. The six-label and seven-label tables require only
-small label facts, not a search over arbitrary row membership functions.
+**Exact adapters, now discharged:** `support` is the Boolean row's filtered universe
+and `cap` is the labels satisfying `longLabelBool`. For each of the four rows, the
+two fixed labels are distinct and lie in that cap. The proofs establish that
+`outsideLabel` is injective and maps `outsideHits` onto `support \ cap`, then
+transport cardinality through that map. The six-label and seven-label tables use
+only small label facts, not a search over arbitrary row membership functions.
 
 **Consumers:** each `outsidePairOfMembership` uses this cardinality theorem;
 `false_of_positionEmbedding_membershipRows` then feeds the exact-15/exact-16
 branches of `ATail/FrontierLiveClosure/Rigid221SourceHeavy.lean` (cached dependency
-edges, also visible in source). Prefer extracting the existing proof to a small
-shared combinatorics module rather than coupling these banks to the entire
-exact-17 source module. Check import direction before choosing the shared file.
+edges, also visible in source). Package 1 extracted the counting proof to the
+shared `P97/FiniteRowCardinality.lean` module.
 
-**Candidate impact:** would replace two native proof sites with one reusable counting argument
-and explicit label adapters. It does not remove either bank's separate
-`exists_metricMotif_of_pairwiseSeparated` classification.
+**Package-1 result:** the two native proof sites were replaced with one reusable counting
+argument and explicit label adapters. The package-2 exact-15 classifier pilot has since
+replaced `exists_metricMotif_of_pairwiseSeparated` with a core-only structural proof;
+see the [exact-15 coverage audit](../docs/audits/2026-09-05-native-exact15-coverage.md).
+The exact-16 classifier remains a separate native dependency.
 
 ## General coverage argument already present
 
@@ -158,16 +159,19 @@ The source theorem
 derives three strict quadrilateral inequalities and combines them with these
 equalities using `linarith`. The ambient number of polygon vertices is arbitrary.
 
-**Candidate research task, not a new proof:** replace the finite motif classifier
-with a combinatorial argument about cyclic separation of four two-point outside
-supports. It must establish that the same admissibility hypotheses force one of
-the existing metric motifs. Existing metric contradictions do not prove this
-coverage statement. Neither enlarging the outside set nor dropping a cyclic-order
-hypothesis is justified by a bounded classifier.
+The exact-15 classifier pilot now has a core-only combinatorial argument about cyclic
+separation of four two-point outside supports. This proves the finite coverage
+statement while leaving its geometric motif dispatch explicit. The corresponding
+exact-16 classifier remains a candidate research task: its proof must establish
+that the same admissibility hypotheses force one of the existing metric motifs.
+Existing metric contradictions do not prove that coverage statement. Neither
+enlarging the outside set nor dropping a cyclic-order hypothesis is justified by a
+bounded classifier.
 
-The exact-15 source specifies `2 * 15^4` patterns; the exact-16 source specifies
-`2 * 7 * choose(7, 2)^4`. These counts describe the encoded search spaces, not
-numbers of geometrically realizable configurations.
+The former exact-15 implementation specified `2 * 15^4` patterns; its current
+structural proof no longer enumerates that search space. The exact-16 source still
+specifies `2 * 7 * choose(7, 2)^4`. These counts describe encoded search spaces,
+not numbers of geometrically realizable configurations.
 
 ## Card-eleven SAT/replay banks
 

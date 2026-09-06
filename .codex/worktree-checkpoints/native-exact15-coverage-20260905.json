@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "native-exact15-coverage-20260905",
+  "owner": "codex-project-review",
+  "base_head": "328a9577c43956974ecf629b20dcd1e13acc6e3b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/native-exact15-coverage-20260905.json",
+    "docs/audits/2026-09-05-native-exact15-coverage-validation.json",
+    "docs/audits/2026-09-05-native-exact15-coverage.md",
+    "lean/Erdos9796Proof/P97/ATail/BlockerVExactFifteenFourRowCoverage.lean",
+    "lean/Erdos9796Proof/P97/FourPairCoverage.lean",
+    "prove2me/native-bank-audit.md",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "generated_roots": [
+    "scratch/runs/native-exact15-coverage-20260905/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T05:45:49.542569Z",
+  "manifest_sha256": "d2e995936a0e45fea9a2346e0a539b1bf9d2188b3e6a6d07e7fe92c2297b7077"
+}
