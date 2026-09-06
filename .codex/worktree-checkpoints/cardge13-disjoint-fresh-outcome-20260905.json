@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-disjoint-fresh-outcome-20260905",
+  "owner": "luna-swarm-radial-otter",
+  "base_head": "f481d9b311b6525848935a971ba1ed727a23d82a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-disjoint-fresh-outcome-20260905.json",
+    "docs/audits/2026-09-05-cardge13-disjoint-fresh-outcome.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenOutcomeDispatcher.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T01:32:11Z",
+  "manifest_sha256": "dc1d8ec596a1cca0a96955b0a096d59551454e85a009fc65a7a544ffd320f745"
+}
