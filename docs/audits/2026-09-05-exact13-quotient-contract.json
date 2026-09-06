@@ -1,0 +1,106 @@
+{
+  "schema": "exact13-quotient-contract-audit/v1",
+  "lane": "exact13-quotient-classification-20260905",
+  "claim_scope": "Read-only source/interface audit plus a separately conditional fixed-cell classification; not Lean promotion or all-source coverage.",
+  "source_snapshot_status": "SourceRoleIngress/coordinator under active governed build; no current build or axiom verification by this lane.",
+  "source_bundle": [
+    "CardGeThirteenExact13DispatchRawPacket",
+    "CardGeThirteenRawOtherOuterSupport",
+    "ExactThirteenCoarseCellSignature",
+    "CardGeThirteenExact13SourceRoleWitnesses",
+    "Exact13GlobalRows.ofIngress",
+    "ProviderRealizes"
+  ],
+  "first_missing_implication": "Source bundle plus source-selected global rows -> complete finite cell record satisfying validate_cell and the orientation-dependent candidate predicate, with import reachability and mirror coverage.",
+  "finite_domain": {
+    "labels": 13,
+    "orientations": [
+      "direct",
+      "mirror"
+    ],
+    "base_rows": [
+      "C0",
+      "C1",
+      "K",
+      "L",
+      "T"
+    ],
+    "base_row_cardinality": 4,
+    "global_slots": 11,
+    "active_global_rows_after_blocker_guard": 9,
+    "distinct_non_apex_blocker_pairs": 110,
+    "unordered_distance_edges": 78,
+    "strict_kalmanson_forms": 1430,
+    "coarse_signatures": 100,
+    "source_complete_candidate_count": null
+  },
+  "source_to_interface": [
+    {
+      "declaration": "CardGeThirteenExact13RawTightSupport",
+      "file": "CardGeThirteenExact13RawIngress.lean",
+      "interface": "C0,C1,K,z; pairwise-disjoint four-supports cover all labels except z"
+    },
+    {
+      "declaration": "CardGeThirteenRawOtherOuterSupport",
+      "file": "CardGeThirteenExact13RawIngress.lean",
+      "interface": "L; four-support containing z and disjoint from K; source also retains is_other identity"
+    },
+    {
+      "declaration": "ExactThirteenFivePositionalRows",
+      "file": "CardGeThirteenExact13RawIngress.lean",
+      "interface": "C0/C1/K/L/T; requires positional/raw index transport"
+    },
+    {
+      "declaration": "CardGeThirteenExact13SourceRoleWitnesses",
+      "file": "CardGeThirteenExact13SourceRoleIngress.lean",
+      "interface": "b0,b1,s0,s1,d,z and associated source/deletion memberships"
+    },
+    {
+      "declaration": "ExactThirteenCoarseCellSignature",
+      "file": "CardGeThirteenExact13CoarseCellIngress.lean",
+      "interface": "orientation and I2 partition/coarse slice predicates"
+    },
+    {
+      "declaration": "Exact13GlobalRows.ofIngress",
+      "file": "CardGeThirteenExact13ProviderIngress.lean",
+      "interface": "all 11 source-selected global rows exist; guardedGlobalSupport empties the two blocker slots"
+    }
+  ],
+  "lean_file_directory": "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure",
+  "toolchain": {
+    "quotient_and_forms": "scripts/cardge13_exact13_global_source_cell_csp_piqd.py:edge_roots_for_rows,kalmanson_forms",
+    "weighted_cone": "scripts/cardge13_exact13_coarse_cell_conic_batch_piqd.py:cone_commands,model_weights,primitive_natural_weights,weighted_conflict",
+    "exact_readback": "census/cap_configuration/replay.py:parse_piqd_get_values",
+    "authenticated_query": "census/p97_search/phase3_piqd_smt_source_adapter.py:run_authenticated_single_solver_query",
+    "missing_dual_adapter": "normalized quotient inequalities + request all quotient values + exact Fraction replay of every strict form >=1",
+    "forbidden_inference": "UNSAT/UNKNOWN or model_replay alone is not a rational dual certificate"
+  },
+  "natural_provider_match_audit": {
+    "assumptions": "O=source second apex raw0; S/D=C0/C1 in either order; K/L=source K/L; full S,D,K partition leaves position9 as z",
+    "I2": [8,9,10,11,12],
+    "maps_position_to_raw": [
+      {"chart": "direct", "map": [0,6,7,2,8,9,10,11,12,1,3,4,5], "failure": "z=1 outside I2"},
+      {"chart": "direct_reversed", "map": [0,5,4,3,1,12,11,10,9,8,2,7,6], "failure": "bS=1 is first apex"},
+      {"chart": "mirror", "map": [0,3,4,5,1,8,9,10,11,12,2,6,7], "failure": "bS=1 is first apex"},
+      {"chart": "mirror_reversed", "map": [0,7,6,2,12,11,10,9,8,1,5,4,3], "failure": "z=1 outside I2"}
+    ],
+    "passing_maps": 0,
+    "independently_checked": true,
+    "scope_limit": "Does not rule out different provider identifications or use of other global rows"
+  },
+  "conditional_cell": {
+    "source_message": 16061,
+    "specification_sha256": "72cd80b44c5c047b6a50b965e0d17a2df7fe44b0a6dfd16a1a1d9649adca414f",
+    "certificate": "docs/audits/2026-09-05-exact13-three-chain-cell.json",
+    "candidate_count": 495,
+    "cancellation_count": 495,
+    "one_form": 423,
+    "two_form": 72,
+    "dual_exits": 0,
+    "undecided": 0,
+    "uncovered": 0,
+    "actual_source_leaves_eliminated": 0,
+    "source_occurrence_proved": false,
+    "lean_promotion": false
+  }
+}
