@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-two-center-census-20260906",
+  "owner": "Kant",
+  "base_head": "60e9d5127d0e05c67c84c11b6966d8651806dd6d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-two-center-census-20260906.json",
+    "docs/audits/2026-09-06-exact13-two-center-census.md",
+    "scripts/certify_exact13_two_center_census.py",
+    "scripts/test_certify_exact13_two_center_census.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-two-center-census-20260906/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/exact13-two-center-census-20260906/run-0001/exact13-two-center-census.json",
+    "scratch/runs/exact13-two-center-census-20260906/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-06T11:00:00Z",
+  "manifest_sha256": "5ecc4f0eec26ac96ad34f71158326fa7569d47251fad6a3a1ad948d0dbb3da46"
+}
