@@ -6,262 +6,391 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Prefixed
 namespace Problem97.P4RadiusPartitionOccurrenceBridgeScratch
 
 /- output 1793; source core 1793 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry001 : BridgeEntry := ⟨[-416, -401, 400], .radiusTrans 6 5 7 2⟩
 /- output 1794; source core 1794 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry002 : BridgeEntry := ⟨[402, -400, -417], .radiusTrans 6 2 5 8⟩
 /- output 1795; source core 1795 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry003 : BridgeEntry := ⟨[417, -402, -400], .radiusTrans 6 8 2 5⟩
 /- output 1796; source core 1796 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry004 : BridgeEntry := ⟨[-402, -417, 400], .radiusTrans 6 2 8 5⟩
 /- output 1797; source core 1797 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry005 : BridgeEntry := ⟨[403, -400, -418], .radiusTrans 6 2 5 9⟩
 /- output 1798; source core 1798 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry006 : BridgeEntry := ⟨[-403, -400, 418], .radiusTrans 6 9 2 5⟩
 /- output 1799; source core 1799 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry007 : BridgeEntry := ⟨[-403, -418, 400], .radiusTrans 6 2 9 5⟩
 /- output 1800; source core 1800 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry008 : BridgeEntry := ⟨[404, -400, -419], .radiusTrans 6 2 5 10⟩
 /- output 1801; source core 1801 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry009 : BridgeEntry := ⟨[419, -404, -400], .radiusTrans 6 10 2 5⟩
 /- output 1802; source core 1802 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry010 : BridgeEntry := ⟨[-404, -419, 400], .radiusTrans 6 2 10 5⟩
 /- output 1803; source core 1803 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry011 : BridgeEntry := ⟨[-420, -401, 402], .radiusTrans 6 8 7 2⟩
 /- output 1804; source core 1804 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry012 : BridgeEntry := ⟨[-402, -401, 420], .radiusTrans 6 8 2 7⟩
 /- output 1805; source core 1805 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry013 : BridgeEntry := ⟨[-420, 401, -402], .radiusTrans 6 7 8 2⟩
 /- output 1806; source core 1806 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry014 : BridgeEntry := ⟨[-421, -401, 403], .radiusTrans 6 9 7 2⟩
 /- output 1807; source core 1807 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry015 : BridgeEntry := ⟨[-403, -401, 421], .radiusTrans 6 9 2 7⟩
 /- output 1808; source core 1808 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry016 : BridgeEntry := ⟨[-421, 401, -403], .radiusTrans 6 7 9 2⟩
 /- output 1809; source core 1809 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry017 : BridgeEntry := ⟨[-422, -401, 404], .radiusTrans 6 10 7 2⟩
 /- output 1810; source core 1810 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry018 : BridgeEntry := ⟨[422, -404, -401], .radiusTrans 6 10 2 7⟩
 /- output 1811; source core 1811 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry019 : BridgeEntry := ⟨[-422, 401, -404], .radiusTrans 6 7 10 2⟩
 /- output 1812; source core 1812 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry020 : BridgeEntry := ⟨[-423, -402, 403], .radiusTrans 6 9 8 2⟩
 /- output 1813; source core 1813 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry021 : BridgeEntry := ⟨[-403, -402, 423], .radiusTrans 6 9 2 8⟩
 /- output 1814; source core 1814 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry022 : BridgeEntry := ⟨[-423, 402, -403], .radiusTrans 6 8 9 2⟩
 /- output 1815; source core 1815 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry023 : BridgeEntry := ⟨[-402, -424, 404], .radiusTrans 6 2 8 10⟩
 /- output 1816; source core 1816 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry024 : BridgeEntry := ⟨[-404, -402, 424], .radiusTrans 6 10 2 8⟩
 /- output 1817; source core 1817 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry025 : BridgeEntry := ⟨[-404, -424, 402], .radiusTrans 6 2 10 8⟩
 /- output 1818; source core 1818 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry026 : BridgeEntry := ⟨[-425, -403, 404], .radiusTrans 6 10 9 2⟩
 /- output 1819; source core 1819 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry027 : BridgeEntry := ⟨[-404, -403, 425], .radiusTrans 6 10 2 9⟩
 /- output 1820; source core 1820 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry028 : BridgeEntry := ⟨[-425, -404, 403], .radiusTrans 6 9 10 2⟩
 /- output 1821; source core 1821 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry029 : BridgeEntry := ⟨[-405, -411, 406], .radiusTrans 6 3 4 5⟩
 /- output 1822; source core 1822 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry030 : BridgeEntry := ⟨[-405, -406, 411], .radiusTrans 6 4 3 5⟩
 /- output 1823; source core 1823 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry031 : BridgeEntry := ⟨[-411, -406, 405], .radiusTrans 6 4 5 3⟩
 /- output 1824; source core 1824 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry032 : BridgeEntry := ⟨[407, -405, -412], .radiusTrans 6 3 4 7⟩
 /- output 1825; source core 1825 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry033 : BridgeEntry := ⟨[412, -405, -407], .radiusTrans 6 4 3 7⟩
 /- output 1826; source core 1826 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry034 : BridgeEntry := ⟨[-412, -407, 405], .radiusTrans 6 4 7 3⟩
 /- output 1827; source core 1827 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry035 : BridgeEntry := ⟨[-405, 408, -413], .radiusTrans 6 3 4 8⟩
 /- output 1828; source core 1828 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry036 : BridgeEntry := ⟨[-405, 413, -408], .radiusTrans 6 4 3 8⟩
 /- output 1829; source core 1829 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry037 : BridgeEntry := ⟨[-413, -408, 405], .radiusTrans 6 4 8 3⟩
 /- output 1830; source core 1830 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry038 : BridgeEntry := ⟨[-405, -414, 409], .radiusTrans 6 3 4 9⟩
 /- output 1831; source core 1831 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry039 : BridgeEntry := ⟨[-405, -409, 414], .radiusTrans 6 4 3 9⟩
 /- output 1832; source core 1832 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry040 : BridgeEntry := ⟨[-414, -409, 405], .radiusTrans 6 4 9 3⟩
 /- output 1833; source core 1833 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry041 : BridgeEntry := ⟨[-405, -415, 410], .radiusTrans 6 3 4 10⟩
 /- output 1834; source core 1834 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry042 : BridgeEntry := ⟨[-405, -410, 415], .radiusTrans 6 4 3 10⟩
 /- output 1835; source core 1835 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry043 : BridgeEntry := ⟨[-410, -415, 405], .radiusTrans 6 3 10 4⟩
 /- output 1836; source core 1836 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry044 : BridgeEntry := ⟨[407, -416, -406], .radiusTrans 6 7 5 3⟩
 /- output 1837; source core 1837 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry045 : BridgeEntry := ⟨[-416, -407, 406], .radiusTrans 6 5 7 3⟩
 /- output 1838; source core 1838 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry046 : BridgeEntry := ⟨[408, -406, -417], .radiusTrans 6 3 5 8⟩
 /- output 1839; source core 1839 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry047 : BridgeEntry := ⟨[-408, -417, 406], .radiusTrans 6 3 8 5⟩
 /- output 1840; source core 1840 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry048 : BridgeEntry := ⟨[409, -406, -418], .radiusTrans 6 3 5 9⟩
 /- output 1841; source core 1841 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry049 : BridgeEntry := ⟨[-406, -409, 418], .radiusTrans 6 5 3 9⟩
 /- output 1842; source core 1842 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry050 : BridgeEntry := ⟨[-409, -418, 406], .radiusTrans 6 3 9 5⟩
 /- output 1843; source core 1843 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry051 : BridgeEntry := ⟨[-406, -419, 410], .radiusTrans 6 3 5 10⟩
 /- output 1844; source core 1844 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry052 : BridgeEntry := ⟨[-410, 419, -406], .radiusTrans 6 10 3 5⟩
 /- output 1845; source core 1845 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry053 : BridgeEntry := ⟨[-410, -419, 406], .radiusTrans 6 3 10 5⟩
 /- output 1846; source core 1846 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry054 : BridgeEntry := ⟨[-420, -407, 408], .radiusTrans 6 8 7 3⟩
 /- output 1847; source core 1847 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry055 : BridgeEntry := ⟨[-408, -407, 420], .radiusTrans 6 8 3 7⟩
 /- output 1848; source core 1848 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry056 : BridgeEntry := ⟨[407, -420, -408], .radiusTrans 6 7 8 3⟩
 /- output 1849; source core 1849 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry057 : BridgeEntry := ⟨[-421, -407, 409], .radiusTrans 6 9 7 3⟩
 /- output 1850; source core 1850 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry058 : BridgeEntry := ⟨[-407, 421, -409], .radiusTrans 6 7 3 9⟩
 /- output 1851; source core 1851 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry059 : BridgeEntry := ⟨[407, -421, -409], .radiusTrans 6 7 9 3⟩
 /- output 1852; source core 1852 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry060 : BridgeEntry := ⟨[-422, -407, 410], .radiusTrans 6 10 7 3⟩
 /- output 1853; source core 1853 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry061 : BridgeEntry := ⟨[422, -410, -407], .radiusTrans 6 10 3 7⟩
 /- output 1854; source core 1854 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry062 : BridgeEntry := ⟨[407, -422, -410], .radiusTrans 6 7 10 3⟩
 /- output 1855; source core 1855 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry063 : BridgeEntry := ⟨[-423, -408, 409], .radiusTrans 6 9 8 3⟩
 /- output 1856; source core 1856 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry064 : BridgeEntry := ⟨[-408, -409, 423], .radiusTrans 6 8 3 9⟩
 /- output 1857; source core 1857 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry065 : BridgeEntry := ⟨[-423, -409, 408], .radiusTrans 6 8 9 3⟩
 /- output 1858; source core 1858 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry066 : BridgeEntry := ⟨[-408, -424, 410], .radiusTrans 6 3 8 10⟩
 /- output 1859; source core 1859 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry067 : BridgeEntry := ⟨[-410, -408, 424], .radiusTrans 6 10 3 8⟩
 /- output 1860; source core 1860 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry068 : BridgeEntry := ⟨[-410, -424, 408], .radiusTrans 6 3 10 8⟩
 /- output 1861; source core 1861 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry069 : BridgeEntry := ⟨[-425, -409, 410], .radiusTrans 6 10 9 3⟩
 /- output 1862; source core 1862 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry070 : BridgeEntry := ⟨[-410, -409, 425], .radiusTrans 6 10 3 9⟩
 /- output 1863; source core 1863 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry071 : BridgeEntry := ⟨[-425, -410, 409], .radiusTrans 6 9 10 3⟩
 /- output 1864; source core 1864 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry072 : BridgeEntry := ⟨[412, -416, -411], .radiusTrans 6 7 5 4⟩
 /- output 1865; source core 1865 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry073 : BridgeEntry := ⟨[413, -411, -417], .radiusTrans 6 4 5 8⟩
 /- output 1866; source core 1866 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry074 : BridgeEntry := ⟨[417, -413, -411], .radiusTrans 6 8 4 5⟩
 /- output 1867; source core 1867 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry075 : BridgeEntry := ⟨[-413, -417, 411], .radiusTrans 6 4 8 5⟩
 /- output 1868; source core 1868 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry076 : BridgeEntry := ⟨[-411, -418, 414], .radiusTrans 6 4 5 9⟩
 /- output 1869; source core 1869 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry077 : BridgeEntry := ⟨[-414, -411, 418], .radiusTrans 6 9 4 5⟩
 /- output 1870; source core 1870 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry078 : BridgeEntry := ⟨[-414, -418, 411], .radiusTrans 6 4 9 5⟩
 /- output 1871; source core 1871 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry079 : BridgeEntry := ⟨[-411, -419, 415], .radiusTrans 6 4 5 10⟩
 /- output 1872; source core 1872 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry080 : BridgeEntry := ⟨[-415, 419, -411], .radiusTrans 6 10 4 5⟩
 /- output 1873; source core 1873 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry081 : BridgeEntry := ⟨[-415, -419, 411], .radiusTrans 6 4 10 5⟩
 /- output 1874; source core 1874 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry082 : BridgeEntry := ⟨[413, -420, -412], .radiusTrans 6 8 7 4⟩
 /- output 1875; source core 1875 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry083 : BridgeEntry := ⟨[-412, -413, 420], .radiusTrans 6 7 4 8⟩
 /- output 1876; source core 1876 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry084 : BridgeEntry := ⟨[412, -420, -413], .radiusTrans 6 7 8 4⟩
 /- output 1877; source core 1877 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry085 : BridgeEntry := ⟨[-421, -412, 414], .radiusTrans 6 9 7 4⟩
 /- output 1878; source core 1878 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry086 : BridgeEntry := ⟨[-412, -414, 421], .radiusTrans 6 7 4 9⟩
 /- output 1879; source core 1879 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry087 : BridgeEntry := ⟨[412, -421, -414], .radiusTrans 6 7 9 4⟩
 /- output 1880; source core 1880 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry088 : BridgeEntry := ⟨[-422, -412, 415], .radiusTrans 6 10 7 4⟩
 /- output 1881; source core 1881 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry089 : BridgeEntry := ⟨[422, -412, -415], .radiusTrans 6 7 4 10⟩
 /- output 1882; source core 1882 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry090 : BridgeEntry := ⟨[412, -422, -415], .radiusTrans 6 7 10 4⟩
 /- output 1883; source core 1883 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry091 : BridgeEntry := ⟨[414, -423, -413], .radiusTrans 6 9 8 4⟩
 /- output 1884; source core 1884 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry092 : BridgeEntry := ⟨[-414, -413, 423], .radiusTrans 6 9 4 8⟩
 /- output 1885; source core 1885 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry093 : BridgeEntry := ⟨[413, -423, -414], .radiusTrans 6 8 9 4⟩
 /- output 1886; source core 1886 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry094 : BridgeEntry := ⟨[-413, -424, 415], .radiusTrans 6 4 8 10⟩
 /- output 1887; source core 1887 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry095 : BridgeEntry := ⟨[-415, -413, 424], .radiusTrans 6 10 4 8⟩
 /- output 1888; source core 1888 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry096 : BridgeEntry := ⟨[413, -415, -424], .radiusTrans 6 4 10 8⟩
 /- output 1889; source core 1889 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry097 : BridgeEntry := ⟨[-425, -414, 415], .radiusTrans 6 10 9 4⟩
 /- output 1890; source core 1890 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry098 : BridgeEntry := ⟨[-415, -414, 425], .radiusTrans 6 10 4 9⟩
 /- output 1891; source core 1891 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry099 : BridgeEntry := ⟨[-425, -415, 414], .radiusTrans 6 9 10 4⟩
 /- output 1892; source core 1892 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry100 : BridgeEntry := ⟨[-420, 417, -416], .radiusTrans 6 8 7 5⟩
 /- output 1893; source core 1893 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry101 : BridgeEntry := ⟨[-416, 420, -417], .radiusTrans 6 7 5 8⟩
 /- output 1894; source core 1894 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry102 : BridgeEntry := ⟨[-420, 416, -417], .radiusTrans 6 7 8 5⟩
 /- output 1895; source core 1895 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry103 : BridgeEntry := ⟨[-421, -416, 418], .radiusTrans 6 9 7 5⟩
 /- output 1896; source core 1896 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry104 : BridgeEntry := ⟨[-421, 416, -418], .radiusTrans 6 7 9 5⟩
 /- output 1897; source core 1897 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry105 : BridgeEntry := ⟨[-422, 419, -416], .radiusTrans 6 10 7 5⟩
 /- output 1898; source core 1898 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry106 : BridgeEntry := ⟨[422, -416, -419], .radiusTrans 6 7 5 10⟩
 /- output 1899; source core 1899 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry107 : BridgeEntry := ⟨[-422, 416, -419], .radiusTrans 6 7 10 5⟩
 /- output 1900; source core 1900 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry108 : BridgeEntry := ⟨[-423, 418, -417], .radiusTrans 6 9 8 5⟩
 /- output 1901; source core 1901 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry109 : BridgeEntry := ⟨[-417, -418, 423], .radiusTrans 6 8 5 9⟩
 /- output 1902; source core 1902 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry110 : BridgeEntry := ⟨[-423, 417, -418], .radiusTrans 6 8 9 5⟩
 /- output 1903; source core 1903 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry111 : BridgeEntry := ⟨[-424, 419, -417], .radiusTrans 6 10 8 5⟩
 /- output 1904; source core 1904 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry112 : BridgeEntry := ⟨[-419, -417, 424], .radiusTrans 6 10 5 8⟩
 /- output 1905; source core 1905 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry113 : BridgeEntry := ⟨[-419, 417, -424], .radiusTrans 6 5 10 8⟩
 /- output 1906; source core 1906 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry114 : BridgeEntry := ⟨[-425, 419, -418], .radiusTrans 6 10 9 5⟩
 /- output 1907; source core 1907 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry115 : BridgeEntry := ⟨[-419, -418, 425], .radiusTrans 6 10 5 9⟩
 /- output 1908; source core 1908 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry116 : BridgeEntry := ⟨[-425, 418, -419], .radiusTrans 6 9 10 5⟩
 /- output 1909; source core 1909 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry117 : BridgeEntry := ⟨[-423, -420, 421], .radiusTrans 6 9 8 7⟩
 /- output 1910; source core 1910 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry118 : BridgeEntry := ⟨[-421, -420, 423], .radiusTrans 6 9 7 8⟩
 /- output 1911; source core 1911 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry119 : BridgeEntry := ⟨[-423, -421, 420], .radiusTrans 6 8 9 7⟩
 /- output 1912; source core 1912 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry120 : BridgeEntry := ⟨[422, -420, -424], .radiusTrans 6 7 8 10⟩
 /- output 1913; source core 1913 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry121 : BridgeEntry := ⟨[-422, -420, 424], .radiusTrans 6 10 7 8⟩
 /- output 1914; source core 1914 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry122 : BridgeEntry := ⟨[-422, 420, -424], .radiusTrans 6 7 10 8⟩
 /- output 1915; source core 1915 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry123 : BridgeEntry := ⟨[422, -425, -421], .radiusTrans 6 10 9 7⟩
 /- output 1916; source core 1916 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry124 : BridgeEntry := ⟨[-422, -421, 425], .radiusTrans 6 10 7 9⟩
 /- output 1917; source core 1917 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry125 : BridgeEntry := ⟨[-425, -422, 421], .radiusTrans 6 9 10 7⟩
 /- output 1918; source core 1918 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry126 : BridgeEntry := ⟨[-425, -423, 424], .radiusTrans 6 10 9 8⟩
 /- output 1919; source core 1919 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry127 : BridgeEntry := ⟨[-423, -424, 425], .radiusTrans 6 9 8 10⟩
 /- output 1920; source core 1920 -/
+/-- Generated radius-partition bridge entry for the prefixed P4 occurrence data. -/
 def bridgeChunk15Entry128 : BridgeEntry := ⟨[-425, -424, 423], .radiusTrans 6 9 10 8⟩
 
+/-- Generated radius-partition bridge list for the prefixed P4 occurrence data. -/
 def bridgeChunk15 : List BridgeEntry := [
   bridgeChunk15Entry001,
   bridgeChunk15Entry002,
@@ -393,265 +522,395 @@ def bridgeChunk15 : List BridgeEntry := [
   bridgeChunk15Entry128,
 ]
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry001_wf : entryWF bridgeChunk15Entry001 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry002_wf : entryWF bridgeChunk15Entry002 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry003_wf : entryWF bridgeChunk15Entry003 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry004_wf : entryWF bridgeChunk15Entry004 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry005_wf : entryWF bridgeChunk15Entry005 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry006_wf : entryWF bridgeChunk15Entry006 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry007_wf : entryWF bridgeChunk15Entry007 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry008_wf : entryWF bridgeChunk15Entry008 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry009_wf : entryWF bridgeChunk15Entry009 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry010_wf : entryWF bridgeChunk15Entry010 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry011_wf : entryWF bridgeChunk15Entry011 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry012_wf : entryWF bridgeChunk15Entry012 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry013_wf : entryWF bridgeChunk15Entry013 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry014_wf : entryWF bridgeChunk15Entry014 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry015_wf : entryWF bridgeChunk15Entry015 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry016_wf : entryWF bridgeChunk15Entry016 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry017_wf : entryWF bridgeChunk15Entry017 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry018_wf : entryWF bridgeChunk15Entry018 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry019_wf : entryWF bridgeChunk15Entry019 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry020_wf : entryWF bridgeChunk15Entry020 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry021_wf : entryWF bridgeChunk15Entry021 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry022_wf : entryWF bridgeChunk15Entry022 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry023_wf : entryWF bridgeChunk15Entry023 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry024_wf : entryWF bridgeChunk15Entry024 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry025_wf : entryWF bridgeChunk15Entry025 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry026_wf : entryWF bridgeChunk15Entry026 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry027_wf : entryWF bridgeChunk15Entry027 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry028_wf : entryWF bridgeChunk15Entry028 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry029_wf : entryWF bridgeChunk15Entry029 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry030_wf : entryWF bridgeChunk15Entry030 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry031_wf : entryWF bridgeChunk15Entry031 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry032_wf : entryWF bridgeChunk15Entry032 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry033_wf : entryWF bridgeChunk15Entry033 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry034_wf : entryWF bridgeChunk15Entry034 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry035_wf : entryWF bridgeChunk15Entry035 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry036_wf : entryWF bridgeChunk15Entry036 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry037_wf : entryWF bridgeChunk15Entry037 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry038_wf : entryWF bridgeChunk15Entry038 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry039_wf : entryWF bridgeChunk15Entry039 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry040_wf : entryWF bridgeChunk15Entry040 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry041_wf : entryWF bridgeChunk15Entry041 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry042_wf : entryWF bridgeChunk15Entry042 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry043_wf : entryWF bridgeChunk15Entry043 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry044_wf : entryWF bridgeChunk15Entry044 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry045_wf : entryWF bridgeChunk15Entry045 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry046_wf : entryWF bridgeChunk15Entry046 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry047_wf : entryWF bridgeChunk15Entry047 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry048_wf : entryWF bridgeChunk15Entry048 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry049_wf : entryWF bridgeChunk15Entry049 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry050_wf : entryWF bridgeChunk15Entry050 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry051_wf : entryWF bridgeChunk15Entry051 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry052_wf : entryWF bridgeChunk15Entry052 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry053_wf : entryWF bridgeChunk15Entry053 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry054_wf : entryWF bridgeChunk15Entry054 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry055_wf : entryWF bridgeChunk15Entry055 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry056_wf : entryWF bridgeChunk15Entry056 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry057_wf : entryWF bridgeChunk15Entry057 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry058_wf : entryWF bridgeChunk15Entry058 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry059_wf : entryWF bridgeChunk15Entry059 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry060_wf : entryWF bridgeChunk15Entry060 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry061_wf : entryWF bridgeChunk15Entry061 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry062_wf : entryWF bridgeChunk15Entry062 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry063_wf : entryWF bridgeChunk15Entry063 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry064_wf : entryWF bridgeChunk15Entry064 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry065_wf : entryWF bridgeChunk15Entry065 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry066_wf : entryWF bridgeChunk15Entry066 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry067_wf : entryWF bridgeChunk15Entry067 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry068_wf : entryWF bridgeChunk15Entry068 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry069_wf : entryWF bridgeChunk15Entry069 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry070_wf : entryWF bridgeChunk15Entry070 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry071_wf : entryWF bridgeChunk15Entry071 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry072_wf : entryWF bridgeChunk15Entry072 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry073_wf : entryWF bridgeChunk15Entry073 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry074_wf : entryWF bridgeChunk15Entry074 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry075_wf : entryWF bridgeChunk15Entry075 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry076_wf : entryWF bridgeChunk15Entry076 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry077_wf : entryWF bridgeChunk15Entry077 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry078_wf : entryWF bridgeChunk15Entry078 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry079_wf : entryWF bridgeChunk15Entry079 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry080_wf : entryWF bridgeChunk15Entry080 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry081_wf : entryWF bridgeChunk15Entry081 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry082_wf : entryWF bridgeChunk15Entry082 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry083_wf : entryWF bridgeChunk15Entry083 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry084_wf : entryWF bridgeChunk15Entry084 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry085_wf : entryWF bridgeChunk15Entry085 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry086_wf : entryWF bridgeChunk15Entry086 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry087_wf : entryWF bridgeChunk15Entry087 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry088_wf : entryWF bridgeChunk15Entry088 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry089_wf : entryWF bridgeChunk15Entry089 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry090_wf : entryWF bridgeChunk15Entry090 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry091_wf : entryWF bridgeChunk15Entry091 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry092_wf : entryWF bridgeChunk15Entry092 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry093_wf : entryWF bridgeChunk15Entry093 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry094_wf : entryWF bridgeChunk15Entry094 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry095_wf : entryWF bridgeChunk15Entry095 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry096_wf : entryWF bridgeChunk15Entry096 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry097_wf : entryWF bridgeChunk15Entry097 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry098_wf : entryWF bridgeChunk15Entry098 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry099_wf : entryWF bridgeChunk15Entry099 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry100_wf : entryWF bridgeChunk15Entry100 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry101_wf : entryWF bridgeChunk15Entry101 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry102_wf : entryWF bridgeChunk15Entry102 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry103_wf : entryWF bridgeChunk15Entry103 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry104_wf : entryWF bridgeChunk15Entry104 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry105_wf : entryWF bridgeChunk15Entry105 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry106_wf : entryWF bridgeChunk15Entry106 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry107_wf : entryWF bridgeChunk15Entry107 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry108_wf : entryWF bridgeChunk15Entry108 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry109_wf : entryWF bridgeChunk15Entry109 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry110_wf : entryWF bridgeChunk15Entry110 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry111_wf : entryWF bridgeChunk15Entry111 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry112_wf : entryWF bridgeChunk15Entry112 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry113_wf : entryWF bridgeChunk15Entry113 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry114_wf : entryWF bridgeChunk15Entry114 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry115_wf : entryWF bridgeChunk15Entry115 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry116_wf : entryWF bridgeChunk15Entry116 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry117_wf : entryWF bridgeChunk15Entry117 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry118_wf : entryWF bridgeChunk15Entry118 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry119_wf : entryWF bridgeChunk15Entry119 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry120_wf : entryWF bridgeChunk15Entry120 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry121_wf : entryWF bridgeChunk15Entry121 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry122_wf : entryWF bridgeChunk15Entry122 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry123_wf : entryWF bridgeChunk15Entry123 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry124_wf : entryWF bridgeChunk15Entry124 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry125_wf : entryWF bridgeChunk15Entry125 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry126_wf : entryWF bridgeChunk15Entry126 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry127_wf : entryWF bridgeChunk15Entry127 = true := by decide
 
+/-- The generated radius-partition bridge entry satisfies the entryWF predicate. -/
 theorem bridgeChunk15Entry128_wf : entryWF bridgeChunk15Entry128 = true := by decide
 
+/-- All generated entries in radius-partition bridge chunk 15 satisfy the entryWF predicate. -/
 theorem bridgeChunk15_wf : bridgeChunk15.all entryWF = true := by
   simp [bridgeChunk15, bridgeChunk15Entry001_wf, bridgeChunk15Entry002_wf, bridgeChunk15Entry003_wf, bridgeChunk15Entry004_wf, bridgeChunk15Entry005_wf, bridgeChunk15Entry006_wf, bridgeChunk15Entry007_wf, bridgeChunk15Entry008_wf, bridgeChunk15Entry009_wf, bridgeChunk15Entry010_wf, bridgeChunk15Entry011_wf, bridgeChunk15Entry012_wf, bridgeChunk15Entry013_wf, bridgeChunk15Entry014_wf, bridgeChunk15Entry015_wf, bridgeChunk15Entry016_wf, bridgeChunk15Entry017_wf, bridgeChunk15Entry018_wf, bridgeChunk15Entry019_wf, bridgeChunk15Entry020_wf, bridgeChunk15Entry021_wf, bridgeChunk15Entry022_wf, bridgeChunk15Entry023_wf, bridgeChunk15Entry024_wf, bridgeChunk15Entry025_wf, bridgeChunk15Entry026_wf, bridgeChunk15Entry027_wf, bridgeChunk15Entry028_wf, bridgeChunk15Entry029_wf, bridgeChunk15Entry030_wf, bridgeChunk15Entry031_wf, bridgeChunk15Entry032_wf, bridgeChunk15Entry033_wf, bridgeChunk15Entry034_wf, bridgeChunk15Entry035_wf, bridgeChunk15Entry036_wf, bridgeChunk15Entry037_wf, bridgeChunk15Entry038_wf, bridgeChunk15Entry039_wf, bridgeChunk15Entry040_wf, bridgeChunk15Entry041_wf, bridgeChunk15Entry042_wf, bridgeChunk15Entry043_wf, bridgeChunk15Entry044_wf, bridgeChunk15Entry045_wf, bridgeChunk15Entry046_wf, bridgeChunk15Entry047_wf, bridgeChunk15Entry048_wf, bridgeChunk15Entry049_wf, bridgeChunk15Entry050_wf, bridgeChunk15Entry051_wf, bridgeChunk15Entry052_wf, bridgeChunk15Entry053_wf, bridgeChunk15Entry054_wf, bridgeChunk15Entry055_wf, bridgeChunk15Entry056_wf, bridgeChunk15Entry057_wf, bridgeChunk15Entry058_wf, bridgeChunk15Entry059_wf, bridgeChunk15Entry060_wf, bridgeChunk15Entry061_wf, bridgeChunk15Entry062_wf, bridgeChunk15Entry063_wf, bridgeChunk15Entry064_wf, bridgeChunk15Entry065_wf, bridgeChunk15Entry066_wf, bridgeChunk15Entry067_wf, bridgeChunk15Entry068_wf, bridgeChunk15Entry069_wf, bridgeChunk15Entry070_wf, bridgeChunk15Entry071_wf, bridgeChunk15Entry072_wf, bridgeChunk15Entry073_wf, bridgeChunk15Entry074_wf, bridgeChunk15Entry075_wf, bridgeChunk15Entry076_wf, bridgeChunk15Entry077_wf, bridgeChunk15Entry078_wf, bridgeChunk15Entry079_wf, bridgeChunk15Entry080_wf, bridgeChunk15Entry081_wf, bridgeChunk15Entry082_wf, bridgeChunk15Entry083_wf, bridgeChunk15Entry084_wf, bridgeChunk15Entry085_wf, bridgeChunk15Entry086_wf, bridgeChunk15Entry087_wf, bridgeChunk15Entry088_wf, bridgeChunk15Entry089_wf, bridgeChunk15Entry090_wf, bridgeChunk15Entry091_wf, bridgeChunk15Entry092_wf, bridgeChunk15Entry093_wf, bridgeChunk15Entry094_wf, bridgeChunk15Entry095_wf, bridgeChunk15Entry096_wf, bridgeChunk15Entry097_wf, bridgeChunk15Entry098_wf, bridgeChunk15Entry099_wf, bridgeChunk15Entry100_wf, bridgeChunk15Entry101_wf, bridgeChunk15Entry102_wf, bridgeChunk15Entry103_wf, bridgeChunk15Entry104_wf, bridgeChunk15Entry105_wf, bridgeChunk15Entry106_wf, bridgeChunk15Entry107_wf, bridgeChunk15Entry108_wf, bridgeChunk15Entry109_wf, bridgeChunk15Entry110_wf, bridgeChunk15Entry111_wf, bridgeChunk15Entry112_wf, bridgeChunk15Entry113_wf, bridgeChunk15Entry114_wf, bridgeChunk15Entry115_wf, bridgeChunk15Entry116_wf, bridgeChunk15Entry117_wf, bridgeChunk15Entry118_wf, bridgeChunk15Entry119_wf, bridgeChunk15Entry120_wf, bridgeChunk15Entry121_wf, bridgeChunk15Entry122_wf, bridgeChunk15Entry123_wf, bridgeChunk15Entry124_wf, bridgeChunk15Entry125_wf, bridgeChunk15Entry126_wf, bridgeChunk15Entry127_wf, bridgeChunk15Entry128_wf]
 
+/-- The generated radius-partition bridge chunk 15 contains exactly 128 entries. -/
 theorem bridgeChunk15_length : bridgeChunk15.length = 128 := by simp [bridgeChunk15]
 
 end Problem97.P4RadiusPartitionOccurrenceBridgeScratch
