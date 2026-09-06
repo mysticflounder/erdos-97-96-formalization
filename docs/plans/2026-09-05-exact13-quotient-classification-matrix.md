@@ -40,6 +40,7 @@ set of admissible unresolved source leaves, not merely more sampled cuts.
 | F6 | Test the complete rational cone of the 540 F5 residuals | KalmansonCartographer + independent arithmetic audit | COMPLETE: 468 FEASIBLE, 72 EXCLUDED | 270 identical-labelled equality-map groups: 234 distance certificates, 36 cancellations; zero undecided |
 | G1 | Complete the nine missing global rows of F6 feasible cases | KalmansonCartographer + independent audits | 234/234 SOLVER UNSAT; UNCERTIFIED | Compact pinned strict-LRA producer; all 468 records covered, zero unknown; no all-center witness; exact exclusions belong to G2 |
 | G2 | Certify one impossible missing center per G1 system | KalmansonCartographer + independent certificate worker | 37 SYSTEMS / 74 RECORDS EXACTLY EXCLUDED; PARTIAL | 18,315 support certificates; 62/234 systems processed under 600-second cap; 197 systems remain uncertified by G2 |
+| G3 | Close the systems not certified by G2 using two/three centers | Kant + independent census audit | COMPLETE: REMAINING 197 SYSTEMS / 394 RECORDS EXCLUDED | Commit 6cde0412c; 195 two-center closures, two third-center closures; all 234 F6 completion systems now exactly excluded |
 | A1 | Apply affine miner to eligible surviving complete row tables | KalmansonCartographer | READY, NO ELIGIBLE INPUT | Miner/checker at 15ef84edc; previous seven-table cohort had no baseline survivor |
 | P1 | Connect exhaustive coverage and certified leaves to live consumer | Existing Lean owners | BLOCKED ON S2/C2/R1 | No Lean promotion claimed by this lane |
 
@@ -333,12 +334,47 @@ cancellation would sum strictly positive gaps to zero. Thus that fixed base
 system has no strict-Kalmanson global completion. This does not prove the
 general all-center conjecture or establish live-source coverage.
 
-Next target: a processed system without a short local obstruction, beginning
-with record 2. Test its retained single-center support survivors against the
-full rational cone before deciding whether a joint-global obstruction is
-needed. Extending the same short-certificate census alone does not resolve
-the 24 processed diagnostic cases.
+The original next target was record 2's short-test survivors. This target is
+now superseded by G3: record 2 and every remaining system have exact
+multi-center certificates. G2's partial counts above describe that bounded
+run, not the current combined certification frontier.
 
 ```bash
 uv run --no-cache python -B scripts/check_exact13_global_obstructions.py --check docs/audits/2026-09-06-exact13-global-obstructions.json
 ```
+
+## G3: completed multi-center certification
+
+EMPIRICALLY VERIFIED exact finite closure, completed by the later census
+lane at commit `6cde0412c`: all 197 systems left uncertified by G2 have exact
+certificates. The v2 report has 195 `TWO_CENTER_CLOSED` entries and two
+`THREE_CENTER_CLOSED` entries, with zero unresolved. The third-center cases
+are records 208 and 214, both using center 3 and all 495 supports.
+
+| Combined completion coverage | Systems | Records |
+| --- | --- | --- |
+| Prior G2 exhausted-center certificates | 37 | 74 |
+| G3 two-center certificates | 195 | 390 |
+| G3 three-center certificates | 2 | 4 |
+| Total exactly excluded | 234 | 468 |
+| Unresolved within this fixed family | 0 | 0 |
+
+The governed report is
+`scratch/runs/exact13-two-center-census-20260906/run-0001/exact13-two-center-census.json`,
+self-hash `ef178a1be870dd983c273a1254c99183dbf51e6b9954b9f507fa9272dd3f925c`.
+The independent replay and scope audit are recorded in
+`docs/audits/2026-09-06-exact13-two-center-census.md`. Reconciliation authenticated
+the current report self-hash and its source/input pins; it did not repeat the
+already completed full census.
+
+Together with F5's 10,008 baseline exclusions and F6's 72 additional
+five-row exclusions, this excludes every global completion of the 10,548
+base/blocker records in the fixed direct K/L/T family. It does not exclude
+every exact-13 source case, prove the general all-center conjecture, or supply
+Lean ingress. G1's solver outcomes remain separate from these exact certificates.
+
+The record-2 local-cone and multi-center tasks must not be rerun as unfinished
+work. The broader source-facing search has moved to the witnessed-Key root;
+wave 2 reports 6,000 cuts and `REFINEMENT_BUDGET`, not exhaustive coverage.
+Coordinate with its owner before beginning another wave. See
+`docs/audits/2026-09-06-exact13-witnessed-key-cegar-wave2.md`.

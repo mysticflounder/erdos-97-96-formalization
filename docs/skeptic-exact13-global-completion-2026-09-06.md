@@ -1,11 +1,11 @@
 # Math Skeptic Audit: pinned exact-13 global completion
 
-Target: `docs/plans/2026-09-05-exact13-quotient-classification-matrix.md`, G1/G2;
+Target: `docs/plans/2026-09-05-exact13-quotient-classification-matrix.md`, G1/G2/G3;
 `docs/audits/2026-09-06-exact13-global-completion.json`;
 `scripts/solve_exact13_global_completion.py`.
 Date: 2026-09-06.
-Verdict: CERTIFIED for G1's solver-outcome bookkeeping and G2's stated partial finite exclusions.
-Claims audited: 5.
+Verdict: CERTIFIED for the stated fixed-family scope; not source coverage or general-n closure.
+Claims audited: 6.
 
 ## Findings
 
@@ -67,6 +67,24 @@ Claims audited: 5.
 - Verdict: OK. The argument uses a verified exhaustive support list for that
   fixed base; it asserts no source occurrence or general-n theorem.
 
+### F6: later census supersedes the open certification frontier
+
+- Location: matrix, G3 combined-coverage table.
+- Quote: "Total exactly excluded" (234 systems / 468 records).
+- Stated and supported label: EMPIRICALLY VERIFIED exact finite closure.
+- Evidence: the later independently audited census at `6cde0412c` closes the
+  other 197 systems: 195 two-center and two third-center entries. Current
+  reconciliation authenticated its report self-hash
+  `ef178a1be870dd983c273a1254c99183dbf51e6b9954b9f507fa9272dd3f925c`
+  and its source/input pins; all six census tests passed. Full reconstruction
+  was already audited in `docs/audits/2026-09-06-exact13-two-center-census.md`
+  and was not repeated for this documentation reconciliation.
+- Verdict: OK. G2's historical partial counts remain accurate for that run,
+  but are not the current combined frontier. The cumulative 10,548-record
+  fixed-family exclusion adds F5's 10,008 baseline exclusions, F6's 72
+  additional exclusions and these 468 completion exclusions. No stronger
+  source universe or general-n claim follows from this addition.
+
 ## Independent evidence audit
 
 The read-only `cone_exact_audit` worker reported 3,135 checks and zero errors:
@@ -104,5 +122,6 @@ the later checker-only changes, as described above; all external pins match.
 
 G1 adds the nine missing rows, but its solver UNSAT results are not promoted
 to certified exclusions. G2 separately certifies only the 37 exhausted-center
-systems. No all-exact-13, all-source or general-n result is asserted. A
+systems; G3 supplies the remaining exact certificates. No all-exact-13,
+all-source or general-n result is asserted. A
 short-test survivor is not a full-cone or all-center survivor.
