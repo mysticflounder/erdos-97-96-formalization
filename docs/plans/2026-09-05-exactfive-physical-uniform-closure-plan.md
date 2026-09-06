@@ -299,6 +299,35 @@ supply an existing consumer's antecedents. No iteration or radius descent
 is justified by the cut alone. Keep the physical admission open until that
 consumer and its source transport are proved and checked.
 
+### 3c. Exclude mutual double hits when the chord is short
+
+The [mutual-return chord proof](../audits/2026-09-06-exactfive-mutual-return-chord.md)
+audits Pro response `01M1VP82R698EMZ83S7EADX101` and strengthens its
+old-center return exclusion. Raw pair geometry applies to any selected row
+containing two authenticated interior points; it does not require changing
+H or choosing a fresh source. The global cut still does not supply those
+two incidences.
+
+For an actual double-hit row Kc, assume it contains an old endpoint blocker
+b and that the old actual row Kb contains c. Mutual incidence forces equal
+radii and an equilateral triangle. The audited paper proof then gives
+dist(q,w) > r by convex independence and cap separation. Thus a proved
+source chord bound dist(q,w) ≤ r eliminates this mutual-return case.
+
+The same note proves short-pair existence when |I| ≥ 4. Distances from V
+to distinct I points are distinct, so at most one unordered I pair can
+fail joint deletion survival. Four I rays in the at-most-90-degree MEC
+cap cone give two short adjacent pairs; one is admissible. A minimum
+admissible pair then has chord at most r.
+
+The remaining short-pair case has |I| = 3. If its only short pair is bad,
+V has exactly two rich four-classes, meeting I once each; the third I
+point belongs to neither. Exclude this configuration or give it its own
+consumer, and thread the minimum-pair payload into the physical leaf.
+Mere nearest-pair selection does not establish joint survival.
+The omitted-endpoint and non-mutual cases remain open, and this paper
+exclusion has not been promoted to Lean or a live terminal reduction.
+
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 
 Start with one baseline `FaithfulCarrierPattern` whose gauge center differs

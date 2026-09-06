@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-mutual-return-chord-20260906",
+  "owner": "CapDropAudit",
+  "base_head": "00942f94e83c5ad6bd3dc01e6d73532a28f92958",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-mutual-return-chord-20260906.json",
+    "docs/audits/2026-09-06-exactfive-mutual-return-chord.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/references/exactfive-source-geometry-2026-09-05/nonrobust-cut-consumer-pro-response-2026-09-06.md",
+    "docs/skeptic-exactfive-mutual-return-chord-2026-09-06.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T16:25:41.834392Z",
+  "manifest_sha256": "a2a583ebba7ea6d7c28ffbc18379babb6635277a8249b184a813694af20a7772"
+}
