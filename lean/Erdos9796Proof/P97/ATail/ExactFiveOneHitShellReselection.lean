@@ -68,7 +68,8 @@ theorem exists_reselection_of_mem_support
     exact hsame.trans hsupport
 
 /-- A one-hit shell permits a blocker reselection with distinct endpoint
-centers.  The omitted endpoint's chosen center is preserved. -/
+centers.  Every source other than the retained endpoint keeps its chosen
+center. -/
 theorem exists_reselection_of_one_hit
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {fresh omitted retained : ℝ²} (hfresh : fresh ∈ A)
@@ -79,6 +80,8 @@ theorem exists_reselection_of_one_hit
       (H.selectedAt fresh hfresh).toCriticalFourShell.support) :
     ∃ H' : CriticalShellSystem A,
       H'.centerAt retained hretained = H.centerAt fresh hfresh ∧
+      (∀ z : ℝ², ∀ hz : z ∈ A, z ≠ retained →
+        H'.centerAt z hz = H.centerAt z hz) ∧
       H'.centerAt omitted homitted = H.centerAt omitted homitted ∧
       H'.centerAt omitted homitted ≠ H'.centerAt retained hretained ∧
       (H'.selectedAt retained hretained).toCriticalFourShell.support =
@@ -96,7 +99,8 @@ theorem exists_reselection_of_one_hit
       H.centerAt omitted homitted ≠ H.centerAt fresh hfresh := by
     intro h
     exact H.no_qfree_at omitted homitted (h.symm ▸ hsurvives)
-  refine ⟨H', hretainedCenter, hother omitted homitted hne, ?_, hsupport⟩
+  refine ⟨H', hretainedCenter, hother,
+    hother omitted homitted hne, ?_, hsupport⟩
   simpa only [hother omitted homitted hne, hretainedCenter] using hcenters
 
 /-- Retained source data for the transition that omits the first endpoint and
@@ -114,6 +118,10 @@ structure QOmittedWHitReselection
     shell.centerAt Rmin.residual.interior.frontier.pair.w
         Rmin.residual.interior.frontier.pair.w_mem_A =
       H.centerAt fresh hfreshA
+  other_center_eq :
+    ∀ z : ℝ², ∀ hz : z ∈ D.A,
+      z ≠ Rmin.residual.interior.frontier.pair.w →
+        shell.centerAt z hz = H.centerAt z hz
   omitted_center_eq :
     shell.centerAt Rmin.residual.interior.frontier.pair.q
         Rmin.residual.interior.frontier.pair.q_mem_A =
@@ -139,6 +147,10 @@ structure WOmittedQHitReselection
     shell.centerAt Rmin.residual.interior.frontier.pair.q
         Rmin.residual.interior.frontier.pair.q_mem_A =
       H.centerAt fresh hfreshA
+  other_center_eq :
+    ∀ z : ℝ², ∀ hz : z ∈ D.A,
+      z ≠ Rmin.residual.interior.frontier.pair.q →
+        shell.centerAt z hz = H.centerAt z hz
   omitted_center_eq :
     shell.centerAt Rmin.residual.interior.frontier.pair.w
         Rmin.residual.interior.frontier.pair.w_mem_A =
@@ -169,6 +181,9 @@ theorem nonempty_reselected_minimalDistinct_of_q_omitted_w_hit
       H'.centerAt Rmin.residual.interior.frontier.pair.w
           Rmin.residual.interior.frontier.pair.w_mem_A =
         H.centerAt fresh hfreshA ∧
+      (∀ z : ℝ², ∀ hz : z ∈ D.A,
+        z ≠ Rmin.residual.interior.frontier.pair.w →
+          H'.centerAt z hz = H.centerAt z hz) ∧
       H'.centerAt Rmin.residual.interior.frontier.pair.q
           Rmin.residual.interior.frontier.pair.q_mem_A =
         H.centerAt Rmin.residual.interior.frontier.pair.q
@@ -177,7 +192,7 @@ theorem nonempty_reselected_minimalDistinct_of_q_omitted_w_hit
           Rmin.residual.interior.frontier.pair.w_mem_A).toCriticalFourShell.support =
         (H.selectedAt fresh hfreshA).toCriticalFourShell.support := by
   let R := Rmin.residual
-  obtain ⟨H', hwCenter, hqCenter, hcenters, hsupport⟩ :=
+  obtain ⟨H', hwCenter, hother, hqCenter, hcenters, hsupport⟩ :=
     exists_reselection_of_one_hit H hfreshA
       R.interior.frontier.pair.q_mem_A
       R.interior.frontier.pair.w_mem_A hqMiss hwHit
@@ -211,8 +226,9 @@ theorem nonempty_reselected_minimalDistinct_of_q_omitted_w_hit
   refine ⟨H', F', ⟨{
     residual := R'
     minimalPair := M'
-    source_eq := rfl }⟩, ?_, ?_, ?_⟩
+    source_eq := rfl }⟩, ?_, ?_, ?_, ?_⟩
   · exact hwCenter
+  · exact hother
   · exact hqCenter
   · exact hsupport
 
@@ -234,6 +250,9 @@ theorem nonempty_reselected_minimalDistinct_of_w_omitted_q_hit
       H'.centerAt Rmin.residual.interior.frontier.pair.q
           Rmin.residual.interior.frontier.pair.q_mem_A =
         H.centerAt fresh hfreshA ∧
+      (∀ z : ℝ², ∀ hz : z ∈ D.A,
+        z ≠ Rmin.residual.interior.frontier.pair.q →
+          H'.centerAt z hz = H.centerAt z hz) ∧
       H'.centerAt Rmin.residual.interior.frontier.pair.w
           Rmin.residual.interior.frontier.pair.w_mem_A =
         H.centerAt Rmin.residual.interior.frontier.pair.w
@@ -242,7 +261,7 @@ theorem nonempty_reselected_minimalDistinct_of_w_omitted_q_hit
           Rmin.residual.interior.frontier.pair.q_mem_A).toCriticalFourShell.support =
         (H.selectedAt fresh hfreshA).toCriticalFourShell.support := by
   let R := Rmin.residual
-  obtain ⟨H', hqCenter, hwCenter, hcenters, hsupport⟩ :=
+  obtain ⟨H', hqCenter, hother, hwCenter, hcenters, hsupport⟩ :=
     exists_reselection_of_one_hit H hfreshA
       R.interior.frontier.pair.w_mem_A
       R.interior.frontier.pair.q_mem_A hwMiss hqHit
@@ -276,8 +295,9 @@ theorem nonempty_reselected_minimalDistinct_of_w_omitted_q_hit
   refine ⟨H', F', ⟨{
     residual := R'
     minimalPair := M'
-    source_eq := rfl }⟩, ?_, ?_, ?_⟩
+    source_eq := rfl }⟩, ?_, ?_, ?_, ?_⟩
   · exact hqCenter
+  · exact hother
   · exact hwCenter
   · exact hsupport
 
@@ -296,12 +316,13 @@ theorem nonempty_qOmittedWHitReselection
     Nonempty (QOmittedWHitReselection Rmin fresh hfreshA) := by
   rcases nonempty_reselected_minimalDistinct_of_q_omitted_w_hit
       Rmin hfreshA hqMiss hwHit with
-    ⟨H', F', next, hretained, homitted, hsupport⟩
+    ⟨H', F', next, hretained, hother, homitted, hsupport⟩
   exact ⟨{
     shell := H'
     frontier := F'
     next := next.some
     retained_center_eq := hretained
+    other_center_eq := hother
     omitted_center_eq := homitted
     retained_support_eq := hsupport }⟩
 
@@ -320,14 +341,53 @@ theorem nonempty_wOmittedQHitReselection
     Nonempty (WOmittedQHitReselection Rmin fresh hfreshA) := by
   rcases nonempty_reselected_minimalDistinct_of_w_omitted_q_hit
       Rmin hfreshA hwMiss hqHit with
-    ⟨H', F', next, hretained, homitted, hsupport⟩
+    ⟨H', F', next, hretained, hother, homitted, hsupport⟩
   exact ⟨{
     shell := H'
     frontier := F'
     next := next.some
     retained_center_eq := hretained
+    other_center_eq := hother
     omitted_center_eq := homitted
     retained_support_eq := hsupport }⟩
+
+/-- Away from the retained endpoint, a blocker return after the first
+one-hit reselection was already present in the old shell system. -/
+theorem QOmittedWHitReselection.old_center_eq_of_new_center_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F}
+    {fresh x : ℝ²} {hfreshA : fresh ∈ D.A}
+    (T : QOmittedWHitReselection Rmin fresh hfreshA)
+    (hxA : x ∈ D.A)
+    (hxne : x ≠ Rmin.residual.interior.frontier.pair.w)
+    (hreturn : T.shell.centerAt x hxA =
+      H.centerAt Rmin.residual.interior.frontier.pair.w
+        Rmin.residual.interior.frontier.pair.w_mem_A) :
+    H.centerAt x hxA =
+      H.centerAt Rmin.residual.interior.frontier.pair.w
+        Rmin.residual.interior.frontier.pair.w_mem_A := by
+  simpa only [T.other_center_eq x hxA hxne] using hreturn
+
+/-- Away from the retained endpoint, a blocker return after the symmetric
+one-hit reselection was already present in the old shell system. -/
+theorem WOmittedQHitReselection.old_center_eq_of_new_center_eq
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F}
+    {fresh x : ℝ²} {hfreshA : fresh ∈ D.A}
+    (T : WOmittedQHitReselection Rmin fresh hfreshA)
+    (hxA : x ∈ D.A)
+    (hxne : x ≠ Rmin.residual.interior.frontier.pair.q)
+    (hreturn : T.shell.centerAt x hxA =
+      H.centerAt Rmin.residual.interior.frontier.pair.q
+        Rmin.residual.interior.frontier.pair.q_mem_A) :
+    H.centerAt x hxA =
+      H.centerAt Rmin.residual.interior.frontier.pair.q
+        Rmin.residual.interior.frontier.pair.q_mem_A := by
+  simpa only [T.other_center_eq x hxA hxne] using hreturn
 
 /-- A first-orientation one-hit reselection whose installed fresh blocker is
 genuinely different from the second endpoint's previous blocker. -/
