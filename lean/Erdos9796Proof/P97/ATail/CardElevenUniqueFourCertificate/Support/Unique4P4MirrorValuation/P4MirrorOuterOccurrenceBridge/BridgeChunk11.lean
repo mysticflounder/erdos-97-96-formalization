@@ -13,6 +13,7 @@ open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open P4DirectOuterArcAdapterScratch
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10989 : MirrorEntry := .membershipRow (membershipRowEntry 10989 [-65, -64, -63, 1799, -70]
   1799 ⟨6, {2, 3, 4, 10}⟩
   (65, ⟨6, 4⟩)
@@ -20,20 +21,25 @@ def entry_10989 : MirrorEntry := .membershipRow (membershipRowEntry 10989 [-65, 
   (63, ⟨6, 2⟩)
   (70, ⟨6, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_10990 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 6, 7, 8}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10990 : MirrorEntry := .rowArc (rowArcEntry 10990 [-1799, 1653]
   1799 ⟨6, {2, 3, 4, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_10990)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_10991 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 6, 7, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10991 : MirrorEntry := .rowArc (rowArcEntry 10991 [1680, -1799]
   1799 ⟨6, {2, 3, 4, 10}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_10991)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10992 : MirrorEntry := .membershipRow (membershipRowEntry 10992 [-67, -64, -66, -63, 1800]
   1800 ⟨6, {2, 3, 5, 7}⟩
   (67, ⟨6, 7⟩)
@@ -41,20 +47,25 @@ def entry_10992 : MirrorEntry := .membershipRow (membershipRowEntry 10992 [-67, 
   (66, ⟨6, 5⟩)
   (63, ⟨6, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_10993 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {3, 5, 7, 8}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10993 : MirrorEntry := .rowArc (rowArcEntry 10993 [1653, -1800]
   1800 ⟨6, {2, 3, 5, 7}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_10993)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_10994 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {3, 5, 7, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10994 : MirrorEntry := .rowArc (rowArcEntry 10994 [1680, -1800]
   1800 ⟨6, {2, 3, 5, 7}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_10994)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10995 : MirrorEntry := .membershipRow (membershipRowEntry 10995 [-66, -64, -68, -63, 1801]
   1801 ⟨6, {2, 3, 5, 8}⟩
   (66, ⟨6, 5⟩)
@@ -62,20 +73,25 @@ def entry_10995 : MirrorEntry := .membershipRow (membershipRowEntry 10995 [-66, 
   (68, ⟨6, 8⟩)
   (63, ⟨6, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_10996 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 5, 7, 8}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10996 : MirrorEntry := .rowArc (rowArcEntry 10996 [1653, -1801]
   1801 ⟨6, {2, 3, 5, 8}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_10996)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_10997 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 5, 7, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10997 : MirrorEntry := .rowArc (rowArcEntry 10997 [1680, -1801]
   1801 ⟨6, {2, 3, 5, 8}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_10997)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10998 : MirrorEntry := .membershipRow (membershipRowEntry 10998 [-69, -64, -66, -63, 1802]
   1802 ⟨6, {2, 3, 5, 9}⟩
   (69, ⟨6, 9⟩)
@@ -83,20 +99,25 @@ def entry_10998 : MirrorEntry := .membershipRow (membershipRowEntry 10998 [-69, 
   (66, ⟨6, 5⟩)
   (63, ⟨6, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_10999 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 5, 7, 8}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_10999 : MirrorEntry := .rowArc (rowArcEntry 10999 [-1802, 1653]
   1802 ⟨6, {2, 3, 5, 9}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_10999)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11000 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 5, 7, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11000 : MirrorEntry := .rowArc (rowArcEntry 11000 [1680, -1802]
   1802 ⟨6, {2, 3, 5, 9}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_11000)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11001 : MirrorEntry := .membershipRow (membershipRowEntry 11001 [1803, -64, -66, -63, -70]
   1803 ⟨6, {2, 3, 5, 10}⟩
   (64, ⟨6, 3⟩)
@@ -104,20 +125,25 @@ def entry_11001 : MirrorEntry := .membershipRow (membershipRowEntry 11001 [1803,
   (63, ⟨6, 2⟩)
   (70, ⟨6, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11002 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 5, 7, 8}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11002 : MirrorEntry := .rowArc (rowArcEntry 11002 [-1803, 1653]
   1803 ⟨6, {2, 3, 5, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11002)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11003 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 5, 7, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11003 : MirrorEntry := .rowArc (rowArcEntry 11003 [1680, -1803]
   1803 ⟨6, {2, 3, 5, 10}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_11003)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11004 : MirrorEntry := .membershipRow (membershipRowEntry 11004 [-63, -64, -68, -67, 1804]
   1804 ⟨6, {2, 3, 7, 8}⟩
   (63, ⟨6, 2⟩)
@@ -125,20 +151,25 @@ def entry_11004 : MirrorEntry := .membershipRow (membershipRowEntry 11004 [-63, 
   (68, ⟨6, 8⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11005 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 7, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11005 : MirrorEntry := .rowArc (rowArcEntry 11005 [-1804, 1642]
   1804 ⟨6, {2, 3, 7, 8}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11005)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11006 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 7, 8}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11006 : MirrorEntry := .rowArc (rowArcEntry 11006 [1671, -1804]
   1804 ⟨6, {2, 3, 7, 8}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11006)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11007 : MirrorEntry := .membershipRow (membershipRowEntry 11007 [-67, -63, -69, 1805, -64]
   1805 ⟨6, {2, 3, 7, 9}⟩
   (67, ⟨6, 7⟩)
@@ -146,20 +177,25 @@ def entry_11007 : MirrorEntry := .membershipRow (membershipRowEntry 11007 [-67, 
   (69, ⟨6, 9⟩)
   (64, ⟨6, 3⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11008 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 7, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11008 : MirrorEntry := .rowArc (rowArcEntry 11008 [-1805, 1642]
   1805 ⟨6, {2, 3, 7, 9}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11008)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11009 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 7, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11009 : MirrorEntry := .rowArc (rowArcEntry 11009 [1673, -1805]
   1805 ⟨6, {2, 3, 7, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11009)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11010 : MirrorEntry := .membershipRow (membershipRowEntry 11010 [-63, -64, -70, -67, 1806]
   1806 ⟨6, {2, 3, 7, 10}⟩
   (63, ⟨6, 2⟩)
@@ -167,20 +203,25 @@ def entry_11010 : MirrorEntry := .membershipRow (membershipRowEntry 11010 [-63, 
   (70, ⟨6, 10⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11011 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 7, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11011 : MirrorEntry := .rowArc (rowArcEntry 11011 [-1806, 1642]
   1806 ⟨6, {2, 3, 7, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11011)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11012 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 7, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11012 : MirrorEntry := .rowArc (rowArcEntry 11012 [1675, -1806]
   1806 ⟨6, {2, 3, 7, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11012)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11013 : MirrorEntry := .membershipRow (membershipRowEntry 11013 [-63, -64, -68, -69, 1807]
   1807 ⟨6, {2, 3, 8, 9}⟩
   (63, ⟨6, 2⟩)
@@ -188,20 +229,25 @@ def entry_11013 : MirrorEntry := .membershipRow (membershipRowEntry 11013 [-63, 
   (68, ⟨6, 8⟩)
   (69, ⟨6, 9⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11014 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 7, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11014 : MirrorEntry := .rowArc (rowArcEntry 11014 [-1807, 1642]
   1807 ⟨6, {2, 3, 8, 9}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11014)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11015 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 7, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11015 : MirrorEntry := .rowArc (rowArcEntry 11015 [-1807, 1673]
   1807 ⟨6, {2, 3, 8, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11015)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11016 : MirrorEntry := .membershipRow (membershipRowEntry 11016 [-63, -64, -70, -68, 1808]
   1808 ⟨6, {2, 3, 8, 10}⟩
   (63, ⟨6, 2⟩)
@@ -209,20 +255,25 @@ def entry_11016 : MirrorEntry := .membershipRow (membershipRowEntry 11016 [-63, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11017 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 7, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11017 : MirrorEntry := .rowArc (rowArcEntry 11017 [-1808, 1642]
   1808 ⟨6, {2, 3, 8, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11017)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11018 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 7, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11018 : MirrorEntry := .rowArc (rowArcEntry 11018 [-1808, 1675]
   1808 ⟨6, {2, 3, 8, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11018)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11019 : MirrorEntry := .membershipRow (membershipRowEntry 11019 [-63, -64, -70, -69, 1809]
   1809 ⟨6, {2, 3, 9, 10}⟩
   (63, ⟨6, 2⟩)
@@ -230,34 +281,43 @@ def entry_11019 : MirrorEntry := .membershipRow (membershipRowEntry 11019 [-63, 
   (70, ⟨6, 10⟩)
   (69, ⟨6, 9⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11020 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 7, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11020 : MirrorEntry := .rowArc (rowArcEntry 11020 [-1809, 1642]
   1809 ⟨6, {2, 3, 9, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11020)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11021 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 7, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11021 : MirrorEntry := .rowArc (rowArcEntry 11021 [-1809, 1675]
   1809 ⟨6, {2, 3, 9, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11021)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11022 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {3, 5, 6, 8}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11022 : MirrorEntry := .rowArc (rowArcEntry 11022 [1660, -1810]
   1810 ⟨6, {2, 4, 5, 7}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11022)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11023 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {3, 5, 6, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11023 : MirrorEntry := .rowArc (rowArcEntry 11023 [1680, -1810]
   1810 ⟨6, {2, 4, 5, 7}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_11023)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11024 : MirrorEntry := .membershipRow (membershipRowEntry 11024 [-65, -63, -66, -68, 1811]
   1811 ⟨6, {2, 4, 5, 8}⟩
   (65, ⟨6, 4⟩)
@@ -265,20 +325,25 @@ def entry_11024 : MirrorEntry := .membershipRow (membershipRowEntry 11024 [-65, 
   (66, ⟨6, 5⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11025 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 5, 6, 8}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11025 : MirrorEntry := .rowArc (rowArcEntry 11025 [1660, -1811]
   1811 ⟨6, {2, 4, 5, 8}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11025)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11026 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 5, 6, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11026 : MirrorEntry := .rowArc (rowArcEntry 11026 [1680, -1811]
   1811 ⟨6, {2, 4, 5, 8}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_11026)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11027 : MirrorEntry := .membershipRow (membershipRowEntry 11027 [-65, -63, -66, -69, 1812]
   1812 ⟨6, {2, 4, 5, 9}⟩
   (65, ⟨6, 4⟩)
@@ -286,20 +351,25 @@ def entry_11027 : MirrorEntry := .membershipRow (membershipRowEntry 11027 [-65, 
   (66, ⟨6, 5⟩)
   (69, ⟨6, 9⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11028 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 5, 6, 8}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11028 : MirrorEntry := .rowArc (rowArcEntry 11028 [1660, -1812]
   1812 ⟨6, {2, 4, 5, 9}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11028)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11029 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 5, 6, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11029 : MirrorEntry := .rowArc (rowArcEntry 11029 [1680, -1812]
   1812 ⟨6, {2, 4, 5, 9}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_11029)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11030 : MirrorEntry := .membershipRow (membershipRowEntry 11030 [1813, -65, -63, -66, -70]
   1813 ⟨6, {2, 4, 5, 10}⟩
   (65, ⟨6, 4⟩)
@@ -307,20 +377,25 @@ def entry_11030 : MirrorEntry := .membershipRow (membershipRowEntry 11030 [1813,
   (66, ⟨6, 5⟩)
   (70, ⟨6, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11031 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 5, 6, 8}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11031 : MirrorEntry := .rowArc (rowArcEntry 11031 [1660, -1813]
   1813 ⟨6, {2, 4, 5, 10}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11031)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11032 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 5, 6, 8}⟩, arc := ⟨4, .left, {0, 1, 7, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11032 : MirrorEntry := .rowArc (rowArcEntry 11032 [1680, -1813]
   1813 ⟨6, {2, 4, 5, 10}⟩ 1680 ⟨6, .right, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_11032)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11033 : MirrorEntry := .membershipRow (membershipRowEntry 11033 [-67, -65, -63, 1814, -68]
   1814 ⟨6, {2, 4, 7, 8}⟩
   (67, ⟨6, 7⟩)
@@ -328,20 +403,25 @@ def entry_11033 : MirrorEntry := .membershipRow (membershipRowEntry 11033 [-67, 
   (63, ⟨6, 2⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11034 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 6, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11034 : MirrorEntry := .rowArc (rowArcEntry 11034 [-1814, 1642]
   1814 ⟨6, {2, 4, 7, 8}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11034)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11035 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 6, 8}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11035 : MirrorEntry := .rowArc (rowArcEntry 11035 [1671, -1814]
   1814 ⟨6, {2, 4, 7, 8}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11035)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11036 : MirrorEntry := .membershipRow (membershipRowEntry 11036 [-67, -65, -63, 1815, -69]
   1815 ⟨6, {2, 4, 7, 9}⟩
   (67, ⟨6, 7⟩)
@@ -349,20 +429,25 @@ def entry_11036 : MirrorEntry := .membershipRow (membershipRowEntry 11036 [-67, 
   (63, ⟨6, 2⟩)
   (69, ⟨6, 9⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11037 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 6, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11037 : MirrorEntry := .rowArc (rowArcEntry 11037 [-1815, 1642]
   1815 ⟨6, {2, 4, 7, 9}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11037)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11038 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 6, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11038 : MirrorEntry := .rowArc (rowArcEntry 11038 [1673, -1815]
   1815 ⟨6, {2, 4, 7, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11038)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11039 : MirrorEntry := .membershipRow (membershipRowEntry 11039 [-65, -63, -70, -67, 1816]
   1816 ⟨6, {2, 4, 7, 10}⟩
   (65, ⟨6, 4⟩)
@@ -370,20 +455,25 @@ def entry_11039 : MirrorEntry := .membershipRow (membershipRowEntry 11039 [-65, 
   (70, ⟨6, 10⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11040 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 6, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11040 : MirrorEntry := .rowArc (rowArcEntry 11040 [-1816, 1642]
   1816 ⟨6, {2, 4, 7, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11040)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11041 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 6, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11041 : MirrorEntry := .rowArc (rowArcEntry 11041 [1675, -1816]
   1816 ⟨6, {2, 4, 7, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11041)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11042 : MirrorEntry := .membershipRow (membershipRowEntry 11042 [-65, -63, -69, -68, 1817]
   1817 ⟨6, {2, 4, 8, 9}⟩
   (65, ⟨6, 4⟩)
@@ -391,20 +481,25 @@ def entry_11042 : MirrorEntry := .membershipRow (membershipRowEntry 11042 [-65, 
   (69, ⟨6, 9⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11043 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 6, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11043 : MirrorEntry := .rowArc (rowArcEntry 11043 [-1817, 1642]
   1817 ⟨6, {2, 4, 8, 9}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11043)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11044 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 6, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11044 : MirrorEntry := .rowArc (rowArcEntry 11044 [1673, -1817]
   1817 ⟨6, {2, 4, 8, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11044)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11045 : MirrorEntry := .membershipRow (membershipRowEntry 11045 [-65, -63, -70, -68, 1818]
   1818 ⟨6, {2, 4, 8, 10}⟩
   (65, ⟨6, 4⟩)
@@ -412,20 +507,25 @@ def entry_11045 : MirrorEntry := .membershipRow (membershipRowEntry 11045 [-65, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11046 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 6, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11046 : MirrorEntry := .rowArc (rowArcEntry 11046 [-1818, 1642]
   1818 ⟨6, {2, 4, 8, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11046)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11047 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 6, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11047 : MirrorEntry := .rowArc (rowArcEntry 11047 [1675, -1818]
   1818 ⟨6, {2, 4, 8, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11047)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11048 : MirrorEntry := .membershipRow (membershipRowEntry 11048 [-65, -63, -70, -69, 1819]
   1819 ⟨6, {2, 4, 9, 10}⟩
   (65, ⟨6, 4⟩)
@@ -433,20 +533,25 @@ def entry_11048 : MirrorEntry := .membershipRow (membershipRowEntry 11048 [-65, 
   (70, ⟨6, 10⟩)
   (69, ⟨6, 9⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11049 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 6, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11049 : MirrorEntry := .rowArc (rowArcEntry 11049 [-1819, 1642]
   1819 ⟨6, {2, 4, 9, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11049)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11050 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 6, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11050 : MirrorEntry := .rowArc (rowArcEntry 11050 [1675, -1819]
   1819 ⟨6, {2, 4, 9, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11050)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11051 : MirrorEntry := .membershipRow (membershipRowEntry 11051 [-67, -63, -66, -68, 1820]
   1820 ⟨6, {2, 5, 7, 8}⟩
   (67, ⟨6, 7⟩)
@@ -454,20 +559,25 @@ def entry_11051 : MirrorEntry := .membershipRow (membershipRowEntry 11051 [-67, 
   (66, ⟨6, 5⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11052 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 5, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11052 : MirrorEntry := .rowArc (rowArcEntry 11052 [-1820, 1642]
   1820 ⟨6, {2, 5, 7, 8}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11052)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11053 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 5, 8}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11053 : MirrorEntry := .rowArc (rowArcEntry 11053 [1671, -1820]
   1820 ⟨6, {2, 5, 7, 8}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11053)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11054 : MirrorEntry := .membershipRow (membershipRowEntry 11054 [-67, -63, -69, -66, 1821]
   1821 ⟨6, {2, 5, 7, 9}⟩
   (67, ⟨6, 7⟩)
@@ -475,20 +585,25 @@ def entry_11054 : MirrorEntry := .membershipRow (membershipRowEntry 11054 [-67, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11055 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 5, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11055 : MirrorEntry := .rowArc (rowArcEntry 11055 [-1821, 1642]
   1821 ⟨6, {2, 5, 7, 9}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11055)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11056 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 5, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11056 : MirrorEntry := .rowArc (rowArcEntry 11056 [1673, -1821]
   1821 ⟨6, {2, 5, 7, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11056)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11057 : MirrorEntry := .membershipRow (membershipRowEntry 11057 [-67, -63, -66, -70, 1822]
   1822 ⟨6, {2, 5, 7, 10}⟩
   (67, ⟨6, 7⟩)
@@ -496,20 +611,25 @@ def entry_11057 : MirrorEntry := .membershipRow (membershipRowEntry 11057 [-67, 
   (66, ⟨6, 5⟩)
   (70, ⟨6, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11058 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 5, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11058 : MirrorEntry := .rowArc (rowArcEntry 11058 [-1822, 1642]
   1822 ⟨6, {2, 5, 7, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11058)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11059 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 5, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11059 : MirrorEntry := .rowArc (rowArcEntry 11059 [1675, -1822]
   1822 ⟨6, {2, 5, 7, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11059)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11060 : MirrorEntry := .membershipRow (membershipRowEntry 11060 [-63, -68, -69, -66, 1823]
   1823 ⟨6, {2, 5, 8, 9}⟩
   (63, ⟨6, 2⟩)
@@ -517,20 +637,25 @@ def entry_11060 : MirrorEntry := .membershipRow (membershipRowEntry 11060 [-63, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11061 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 5, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11061 : MirrorEntry := .rowArc (rowArcEntry 11061 [-1823, 1642]
   1823 ⟨6, {2, 5, 8, 9}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11061)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11062 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 5, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11062 : MirrorEntry := .rowArc (rowArcEntry 11062 [1673, -1823]
   1823 ⟨6, {2, 5, 8, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11062)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11063 : MirrorEntry := .membershipRow (membershipRowEntry 11063 [-63, 1824, -66, -70, -68]
   1824 ⟨6, {2, 5, 8, 10}⟩
   (63, ⟨6, 2⟩)
@@ -538,20 +663,25 @@ def entry_11063 : MirrorEntry := .membershipRow (membershipRowEntry 11063 [-63, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11064 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 5, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11064 : MirrorEntry := .rowArc (rowArcEntry 11064 [-1824, 1642]
   1824 ⟨6, {2, 5, 8, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11064)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11065 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 5, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11065 : MirrorEntry := .rowArc (rowArcEntry 11065 [1675, -1824]
   1824 ⟨6, {2, 5, 8, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11065)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11066 : MirrorEntry := .membershipRow (membershipRowEntry 11066 [-63, -70, -69, -66, 1825]
   1825 ⟨6, {2, 5, 9, 10}⟩
   (63, ⟨6, 2⟩)
@@ -559,20 +689,25 @@ def entry_11066 : MirrorEntry := .membershipRow (membershipRowEntry 11066 [-63, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11067 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 5, 8}⟩, arc := ⟨4, .right, {3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11067 : MirrorEntry := .rowArc (rowArcEntry 11067 [-1825, 1642]
   1825 ⟨6, {2, 5, 9, 10}⟩ 1642 ⟨6, .left, {5, 6, 7}⟩
   reflectedDatum_11067)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11068 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 5, 8}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11068 : MirrorEntry := .rowArc (rowArcEntry 11068 [1675, -1825]
   1825 ⟨6, {2, 5, 9, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11068)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11069 : MirrorEntry := .membershipRow (membershipRowEntry 11069 [-63, -68, -69, -67, 1826]
   1826 ⟨6, {2, 7, 8, 9}⟩
   (63, ⟨6, 2⟩)
@@ -580,20 +715,25 @@ def entry_11069 : MirrorEntry := .membershipRow (membershipRowEntry 11069 [-63, 
   (69, ⟨6, 9⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11070 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 8}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11070 : MirrorEntry := .rowArc (rowArcEntry 11070 [1734, -1826]
   1826 ⟨6, {2, 7, 8, 9}⟩ 1734 ⟨6, .left, {0, 5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11070)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11071 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 8}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11071 : MirrorEntry := .rowArc (rowArcEntry 11071 [-1826, 1671]
   1826 ⟨6, {2, 7, 8, 9}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11071)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11072 : MirrorEntry := .membershipRow (membershipRowEntry 11072 [-63, -67, -70, -68, 1827]
   1827 ⟨6, {2, 7, 8, 10}⟩
   (63, ⟨6, 2⟩)
@@ -601,20 +741,25 @@ def entry_11072 : MirrorEntry := .membershipRow (membershipRowEntry 11072 [-63, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11073 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 8}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11073 : MirrorEntry := .rowArc (rowArcEntry 11073 [1736, -1827]
   1827 ⟨6, {2, 7, 8, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11073)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11074 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 8}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11074 : MirrorEntry := .rowArc (rowArcEntry 11074 [-1827, 1671]
   1827 ⟨6, {2, 7, 8, 10}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11074)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11075 : MirrorEntry := .membershipRow (membershipRowEntry 11075 [-63, -70, -69, -67, 1828]
   1828 ⟨6, {2, 7, 9, 10}⟩
   (63, ⟨6, 2⟩)
@@ -622,34 +767,43 @@ def entry_11075 : MirrorEntry := .membershipRow (membershipRowEntry 11075 [-63, 
   (69, ⟨6, 9⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11076 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 8}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11076 : MirrorEntry := .rowArc (rowArcEntry 11076 [1736, -1828]
   1828 ⟨6, {2, 7, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11076)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11077 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11077 : MirrorEntry := .rowArc (rowArcEntry 11077 [-1828, 1673]
   1828 ⟨6, {2, 7, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11077)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11078 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 8}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11078 : MirrorEntry := .rowArc (rowArcEntry 11078 [1736, -1829]
   1829 ⟨6, {2, 8, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11078)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11079 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 8}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11079 : MirrorEntry := .rowArc (rowArcEntry 11079 [-1829, 1673]
   1829 ⟨6, {2, 8, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11079)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11080 : MirrorEntry := .membershipRow (membershipRowEntry 11080 [-65, -64, 1830, -66, -68]
   1830 ⟨6, {3, 4, 5, 8}⟩
   (65, ⟨6, 4⟩)
@@ -657,13 +811,16 @@ def entry_11080 : MirrorEntry := .membershipRow (membershipRowEntry 11080 [-65, 
   (66, ⟨6, 5⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11081 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 5, 6, 7}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11081 : MirrorEntry := .rowArc (rowArcEntry 11081 [1660, -1830]
   1830 ⟨6, {3, 4, 5, 8}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11081)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11082 : MirrorEntry := .membershipRow (membershipRowEntry 11082 [-65, -64, -66, 1831, -69]
   1831 ⟨6, {3, 4, 5, 9}⟩
   (65, ⟨6, 4⟩)
@@ -671,13 +828,16 @@ def entry_11082 : MirrorEntry := .membershipRow (membershipRowEntry 11082 [-65, 
   (66, ⟨6, 5⟩)
   (69, ⟨6, 9⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11083 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 5, 6, 7}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11083 : MirrorEntry := .rowArc (rowArcEntry 11083 [1660, -1831]
   1831 ⟨6, {3, 4, 5, 9}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11083)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11084 : MirrorEntry := .membershipRow (membershipRowEntry 11084 [-65, -64, -66, -70, 1832]
   1832 ⟨6, {3, 4, 5, 10}⟩
   (65, ⟨6, 4⟩)
@@ -685,13 +845,16 @@ def entry_11084 : MirrorEntry := .membershipRow (membershipRowEntry 11084 [-65, 
   (66, ⟨6, 5⟩)
   (70, ⟨6, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11085 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 5, 6, 7}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11085 : MirrorEntry := .rowArc (rowArcEntry 11085 [1660, -1832]
   1832 ⟨6, {3, 4, 5, 10}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11085)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11086 : MirrorEntry := .membershipRow (membershipRowEntry 11086 [-65, -64, -68, -67, 1833]
   1833 ⟨6, {3, 4, 7, 8}⟩
   (65, ⟨6, 4⟩)
@@ -699,20 +862,25 @@ def entry_11086 : MirrorEntry := .membershipRow (membershipRowEntry 11086 [-65, 
   (68, ⟨6, 8⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11087 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 6, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11087 : MirrorEntry := .rowArc (rowArcEntry 11087 [1653, -1833]
   1833 ⟨6, {3, 4, 7, 8}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11087)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11088 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 6, 7}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11088 : MirrorEntry := .rowArc (rowArcEntry 11088 [1671, -1833]
   1833 ⟨6, {3, 4, 7, 8}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11088)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11089 : MirrorEntry := .membershipRow (membershipRowEntry 11089 [-65, -64, -69, -67, 1834]
   1834 ⟨6, {3, 4, 7, 9}⟩
   (65, ⟨6, 4⟩)
@@ -720,20 +888,25 @@ def entry_11089 : MirrorEntry := .membershipRow (membershipRowEntry 11089 [-65, 
   (69, ⟨6, 9⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11090 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 6, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11090 : MirrorEntry := .rowArc (rowArcEntry 11090 [1653, -1834]
   1834 ⟨6, {3, 4, 7, 9}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11090)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11091 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 6, 7}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11091 : MirrorEntry := .rowArc (rowArcEntry 11091 [1673, -1834]
   1834 ⟨6, {3, 4, 7, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11091)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11092 : MirrorEntry := .membershipRow (membershipRowEntry 11092 [-65, -64, -70, -67, 1835]
   1835 ⟨6, {3, 4, 7, 10}⟩
   (65, ⟨6, 4⟩)
@@ -741,20 +914,25 @@ def entry_11092 : MirrorEntry := .membershipRow (membershipRowEntry 11092 [-65, 
   (70, ⟨6, 10⟩)
   (67, ⟨6, 7⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11093 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 6, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11093 : MirrorEntry := .rowArc (rowArcEntry 11093 [1653, -1835]
   1835 ⟨6, {3, 4, 7, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11093)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11094 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 6, 7}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11094 : MirrorEntry := .rowArc (rowArcEntry 11094 [1675, -1835]
   1835 ⟨6, {3, 4, 7, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11094)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11095 : MirrorEntry := .membershipRow (membershipRowEntry 11095 [-65, -64, -69, -68, 1836]
   1836 ⟨6, {3, 4, 8, 9}⟩
   (65, ⟨6, 4⟩)
@@ -762,20 +940,25 @@ def entry_11095 : MirrorEntry := .membershipRow (membershipRowEntry 11095 [-65, 
   (69, ⟨6, 9⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11096 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 6, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11096 : MirrorEntry := .rowArc (rowArcEntry 11096 [1653, -1836]
   1836 ⟨6, {3, 4, 8, 9}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11096)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11097 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 6, 7}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11097 : MirrorEntry := .rowArc (rowArcEntry 11097 [1673, -1836]
   1836 ⟨6, {3, 4, 8, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11097)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11098 : MirrorEntry := .membershipRow (membershipRowEntry 11098 [-65, -64, -70, -68, 1837]
   1837 ⟨6, {3, 4, 8, 10}⟩
   (65, ⟨6, 4⟩)
@@ -783,20 +966,25 @@ def entry_11098 : MirrorEntry := .membershipRow (membershipRowEntry 11098 [-65, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11099 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 6, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11099 : MirrorEntry := .rowArc (rowArcEntry 11099 [1653, -1837]
   1837 ⟨6, {3, 4, 8, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11099)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11100 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 6, 7}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11100 : MirrorEntry := .rowArc (rowArcEntry 11100 [1675, -1837]
   1837 ⟨6, {3, 4, 8, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11100)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11101 : MirrorEntry := .membershipRow (membershipRowEntry 11101 [-65, -70, -69, -64, 1838]
   1838 ⟨6, {3, 4, 9, 10}⟩
   (65, ⟨6, 4⟩)
@@ -804,20 +992,25 @@ def entry_11101 : MirrorEntry := .membershipRow (membershipRowEntry 11101 [-65, 
   (69, ⟨6, 9⟩)
   (64, ⟨6, 3⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11102 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 6, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11102 : MirrorEntry := .rowArc (rowArcEntry 11102 [1653, -1838]
   1838 ⟨6, {3, 4, 9, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11102)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11103 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 6, 7}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11103 : MirrorEntry := .rowArc (rowArcEntry 11103 [1675, -1838]
   1838 ⟨6, {3, 4, 9, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11103)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11104 : MirrorEntry := .membershipRow (membershipRowEntry 11104 [-67, -64, -66, -68, 1839]
   1839 ⟨6, {3, 5, 7, 8}⟩
   (67, ⟨6, 7⟩)
@@ -825,20 +1018,25 @@ def entry_11104 : MirrorEntry := .membershipRow (membershipRowEntry 11104 [-67, 
   (66, ⟨6, 5⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11105 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 5, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11105 : MirrorEntry := .rowArc (rowArcEntry 11105 [1653, -1839]
   1839 ⟨6, {3, 5, 7, 8}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11105)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11106 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 5, 7}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11106 : MirrorEntry := .rowArc (rowArcEntry 11106 [1671, -1839]
   1839 ⟨6, {3, 5, 7, 8}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11106)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11107 : MirrorEntry := .membershipRow (membershipRowEntry 11107 [-67, -64, -69, -66, 1840]
   1840 ⟨6, {3, 5, 7, 9}⟩
   (67, ⟨6, 7⟩)
@@ -846,20 +1044,25 @@ def entry_11107 : MirrorEntry := .membershipRow (membershipRowEntry 11107 [-67, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11108 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 5, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11108 : MirrorEntry := .rowArc (rowArcEntry 11108 [1653, -1840]
   1840 ⟨6, {3, 5, 7, 9}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11108)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11109 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 5, 7}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11109 : MirrorEntry := .rowArc (rowArcEntry 11109 [1673, -1840]
   1840 ⟨6, {3, 5, 7, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11109)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11110 : MirrorEntry := .membershipRow (membershipRowEntry 11110 [-67, -64, -66, -70, 1841]
   1841 ⟨6, {3, 5, 7, 10}⟩
   (67, ⟨6, 7⟩)
@@ -867,20 +1070,25 @@ def entry_11110 : MirrorEntry := .membershipRow (membershipRowEntry 11110 [-67, 
   (66, ⟨6, 5⟩)
   (70, ⟨6, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11111 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 5, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11111 : MirrorEntry := .rowArc (rowArcEntry 11111 [1653, -1841]
   1841 ⟨6, {3, 5, 7, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11111)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11112 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 3, 5, 7}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11112 : MirrorEntry := .rowArc (rowArcEntry 11112 [1675, -1841]
   1841 ⟨6, {3, 5, 7, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11112)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11113 : MirrorEntry := .membershipRow (membershipRowEntry 11113 [-69, -64, -68, -66, 1842]
   1842 ⟨6, {3, 5, 8, 9}⟩
   (69, ⟨6, 9⟩)
@@ -888,20 +1096,25 @@ def entry_11113 : MirrorEntry := .membershipRow (membershipRowEntry 11113 [-69, 
   (68, ⟨6, 8⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11114 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 5, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11114 : MirrorEntry := .rowArc (rowArcEntry 11114 [1653, -1842]
   1842 ⟨6, {3, 5, 8, 9}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11114)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11115 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 5, 7}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11115 : MirrorEntry := .rowArc (rowArcEntry 11115 [1673, -1842]
   1842 ⟨6, {3, 5, 8, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11115)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11116 : MirrorEntry := .membershipRow (membershipRowEntry 11116 [-64, 1843, -66, -70, -68]
   1843 ⟨6, {3, 5, 8, 10}⟩
   (64, ⟨6, 3⟩)
@@ -909,20 +1122,25 @@ def entry_11116 : MirrorEntry := .membershipRow (membershipRowEntry 11116 [-64, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11117 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 5, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11117 : MirrorEntry := .rowArc (rowArcEntry 11117 [1653, -1843]
   1843 ⟨6, {3, 5, 8, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11117)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11118 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 5, 7}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11118 : MirrorEntry := .rowArc (rowArcEntry 11118 [1675, -1843]
   1843 ⟨6, {3, 5, 8, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11118)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11119 : MirrorEntry := .membershipRow (membershipRowEntry 11119 [-69, -64, -70, -66, 1844]
   1844 ⟨6, {3, 5, 9, 10}⟩
   (69, ⟨6, 9⟩)
@@ -930,20 +1148,25 @@ def entry_11119 : MirrorEntry := .membershipRow (membershipRowEntry 11119 [-69, 
   (70, ⟨6, 10⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11120 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 5, 7}⟩, arc := ⟨4, .right, {4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11120 : MirrorEntry := .rowArc (rowArcEntry 11120 [-1844, 1653]
   1844 ⟨6, {3, 5, 9, 10}⟩ 1653 ⟨6, .left, {5, 6}⟩
   reflectedDatum_11120)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11121 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 5, 7}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11121 : MirrorEntry := .rowArc (rowArcEntry 11121 [1675, -1844]
   1844 ⟨6, {3, 5, 9, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11121)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11122 : MirrorEntry := .membershipRow (membershipRowEntry 11122 [-67, -64, 1845, -69, -68]
   1845 ⟨6, {3, 7, 8, 9}⟩
   (67, ⟨6, 7⟩)
@@ -951,20 +1174,25 @@ def entry_11122 : MirrorEntry := .membershipRow (membershipRowEntry 11122 [-67, 
   (69, ⟨6, 9⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11123 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 7}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11123 : MirrorEntry := .rowArc (rowArcEntry 11123 [1734, -1845]
   1845 ⟨6, {3, 7, 8, 9}⟩ 1734 ⟨6, .left, {0, 5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11123)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11124 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 7}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11124 : MirrorEntry := .rowArc (rowArcEntry 11124 [1671, -1845]
   1845 ⟨6, {3, 7, 8, 9}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11124)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11125 : MirrorEntry := .membershipRow (membershipRowEntry 11125 [-64, -67, -70, -68, 1846]
   1846 ⟨6, {3, 7, 8, 10}⟩
   (64, ⟨6, 3⟩)
@@ -972,20 +1200,25 @@ def entry_11125 : MirrorEntry := .membershipRow (membershipRowEntry 11125 [-64, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11126 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 7}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11126 : MirrorEntry := .rowArc (rowArcEntry 11126 [1736, -1846]
   1846 ⟨6, {3, 7, 8, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11126)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11127 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 7}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11127 : MirrorEntry := .rowArc (rowArcEntry 11127 [1671, -1846]
   1846 ⟨6, {3, 7, 8, 10}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11127)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11128 : MirrorEntry := .membershipRow (membershipRowEntry 11128 [-67, -64, -70, -69, 1847]
   1847 ⟨6, {3, 7, 9, 10}⟩
   (67, ⟨6, 7⟩)
@@ -993,62 +1226,79 @@ def entry_11128 : MirrorEntry := .membershipRow (membershipRowEntry 11128 [-67, 
   (70, ⟨6, 10⟩)
   (69, ⟨6, 9⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11129 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 7}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11129 : MirrorEntry := .rowArc (rowArcEntry 11129 [1736, -1847]
   1847 ⟨6, {3, 7, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11129)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11130 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 7}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11130 : MirrorEntry := .rowArc (rowArcEntry 11130 [1673, -1847]
   1847 ⟨6, {3, 7, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11130)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11131 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 7}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11131 : MirrorEntry := .rowArc (rowArcEntry 11131 [1736, -1848]
   1848 ⟨6, {3, 8, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11131)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11132 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 7}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11132 : MirrorEntry := .rowArc (rowArcEntry 11132 [-1848, 1673]
   1848 ⟨6, {3, 8, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11132)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11133 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 5, 6}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11133 : MirrorEntry := .rowArc (rowArcEntry 11133 [1660, -1849]
   1849 ⟨6, {4, 5, 7, 8}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11133)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11134 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {2, 3, 5, 6}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11134 : MirrorEntry := .rowArc (rowArcEntry 11134 [1671, -1849]
   1849 ⟨6, {4, 5, 7, 8}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11134)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11135 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 5, 6}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11135 : MirrorEntry := .rowArc (rowArcEntry 11135 [1660, -1850]
   1850 ⟨6, {4, 5, 7, 9}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11135)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11136 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 3, 5, 6}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11136 : MirrorEntry := .rowArc (rowArcEntry 11136 [1673, -1850]
   1850 ⟨6, {4, 5, 7, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11136)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11137 : MirrorEntry := .membershipRow (membershipRowEntry 11137 [-65, -68, -69, -66, 1851]
   1851 ⟨6, {4, 5, 8, 9}⟩
   (65, ⟨6, 4⟩)
@@ -1056,20 +1306,25 @@ def entry_11137 : MirrorEntry := .membershipRow (membershipRowEntry 11137 [-65, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11138 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 5, 6}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11138 : MirrorEntry := .rowArc (rowArcEntry 11138 [1660, -1851]
   1851 ⟨6, {4, 5, 8, 9}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11138)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11139 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 5, 6}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11139 : MirrorEntry := .rowArc (rowArcEntry 11139 [1673, -1851]
   1851 ⟨6, {4, 5, 8, 9}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11139)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11140 : MirrorEntry := .membershipRow (membershipRowEntry 11140 [-65, 1852, -66, -70, -68]
   1852 ⟨6, {4, 5, 8, 10}⟩
   (65, ⟨6, 4⟩)
@@ -1077,20 +1332,25 @@ def entry_11140 : MirrorEntry := .membershipRow (membershipRowEntry 11140 [-65, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11141 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 5, 6}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11141 : MirrorEntry := .rowArc (rowArcEntry 11141 [1660, -1852]
   1852 ⟨6, {4, 5, 8, 10}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11141)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11142 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 5, 6}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11142 : MirrorEntry := .rowArc (rowArcEntry 11142 [1675, -1852]
   1852 ⟨6, {4, 5, 8, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11142)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11143 : MirrorEntry := .membershipRow (membershipRowEntry 11143 [-65, -70, -69, -66, 1853]
   1853 ⟨6, {4, 5, 9, 10}⟩
   (65, ⟨6, 4⟩)
@@ -1098,20 +1358,25 @@ def entry_11143 : MirrorEntry := .membershipRow (membershipRowEntry 11143 [-65, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11144 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 5, 6}⟩, arc := ⟨4, .right, {5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11144 : MirrorEntry := .rowArc (rowArcEntry 11144 [1660, -1853]
   1853 ⟨6, {4, 5, 9, 10}⟩ 1660 ⟨6, .left, {5}⟩
   reflectedDatum_11144)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11145 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 5, 6}⟩, arc := ⟨4, .left, {7, 8, 9}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11145 : MirrorEntry := .rowArc (rowArcEntry 11145 [1675, -1853]
   1853 ⟨6, {4, 5, 9, 10}⟩ 1675 ⟨6, .right, {1, 2, 3}⟩
   reflectedDatum_11145)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11146 : MirrorEntry := .membershipRow (membershipRowEntry 11146 [-67, -65, -69, -68, 1854]
   1854 ⟨6, {4, 7, 8, 9}⟩
   (67, ⟨6, 7⟩)
@@ -1119,20 +1384,25 @@ def entry_11146 : MirrorEntry := .membershipRow (membershipRowEntry 11146 [-67, 
   (69, ⟨6, 9⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11147 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 6}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11147 : MirrorEntry := .rowArc (rowArcEntry 11147 [1734, -1854]
   1854 ⟨6, {4, 7, 8, 9}⟩ 1734 ⟨6, .left, {0, 5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11147)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11148 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 6}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11148 : MirrorEntry := .rowArc (rowArcEntry 11148 [1671, -1854]
   1854 ⟨6, {4, 7, 8, 9}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11148)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11149 : MirrorEntry := .membershipRow (membershipRowEntry 11149 [-67, -65, -70, -68, 1855]
   1855 ⟨6, {4, 7, 8, 10}⟩
   (67, ⟨6, 7⟩)
@@ -1140,20 +1410,25 @@ def entry_11149 : MirrorEntry := .membershipRow (membershipRowEntry 11149 [-67, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11150 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 6}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11150 : MirrorEntry := .rowArc (rowArcEntry 11150 [1736, -1855]
   1855 ⟨6, {4, 7, 8, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11150)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11151 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 6}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11151 : MirrorEntry := .rowArc (rowArcEntry 11151 [1671, -1855]
   1855 ⟨6, {4, 7, 8, 10}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11151)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11152 : MirrorEntry := .membershipRow (membershipRowEntry 11152 [-67, -70, -69, -65, 1856]
   1856 ⟨6, {4, 7, 9, 10}⟩
   (67, ⟨6, 7⟩)
@@ -1161,34 +1436,43 @@ def entry_11152 : MirrorEntry := .membershipRow (membershipRowEntry 11152 [-67, 
   (69, ⟨6, 9⟩)
   (65, ⟨6, 4⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11153 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 6}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11153 : MirrorEntry := .rowArc (rowArcEntry 11153 [1736, -1856]
   1856 ⟨6, {4, 7, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11153)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11154 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 6}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11154 : MirrorEntry := .rowArc (rowArcEntry 11154 [1673, -1856]
   1856 ⟨6, {4, 7, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11154)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11155 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 6}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11155 : MirrorEntry := .rowArc (rowArcEntry 11155 [1736, -1857]
   1857 ⟨6, {4, 8, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11155)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11156 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 6}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11156 : MirrorEntry := .rowArc (rowArcEntry 11156 [1673, -1857]
   1857 ⟨6, {4, 8, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11156)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11157 : MirrorEntry := .membershipRow (membershipRowEntry 11157 [-67, -68, -69, -66, 1858]
   1858 ⟨6, {5, 7, 8, 9}⟩
   (67, ⟨6, 7⟩)
@@ -1196,20 +1480,25 @@ def entry_11157 : MirrorEntry := .membershipRow (membershipRowEntry 11157 [-67, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11158 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 5}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11158 : MirrorEntry := .rowArc (rowArcEntry 11158 [1734, -1858]
   1858 ⟨6, {5, 7, 8, 9}⟩ 1734 ⟨6, .left, {0, 5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11158)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11159 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {1, 2, 3, 5}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11159 : MirrorEntry := .rowArc (rowArcEntry 11159 [1671, -1858]
   1858 ⟨6, {5, 7, 8, 9}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11159)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11160 : MirrorEntry := .membershipRow (membershipRowEntry 11160 [-67, 1859, -66, -70, -68]
   1859 ⟨6, {5, 7, 8, 10}⟩
   (67, ⟨6, 7⟩)
@@ -1217,20 +1506,25 @@ def entry_11160 : MirrorEntry := .membershipRow (membershipRowEntry 11160 [-67, 
   (70, ⟨6, 10⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11161 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 5}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11161 : MirrorEntry := .rowArc (rowArcEntry 11161 [1736, -1859]
   1859 ⟨6, {5, 7, 8, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11161)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11162 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 2, 3, 5}⟩, arc := ⟨4, .left, {7}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11162 : MirrorEntry := .rowArc (rowArcEntry 11162 [1671, -1859]
   1859 ⟨6, {5, 7, 8, 10}⟩ 1671 ⟨6, .right, {3}⟩
   reflectedDatum_11162)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11163 : MirrorEntry := .membershipRow (membershipRowEntry 11163 [-67, -70, -69, -66, 1860]
   1860 ⟨6, {5, 7, 9, 10}⟩
   (67, ⟨6, 7⟩)
@@ -1238,20 +1532,25 @@ def entry_11163 : MirrorEntry := .membershipRow (membershipRowEntry 11163 [-67, 
   (69, ⟨6, 9⟩)
   (66, ⟨6, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11164 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 5}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11164 : MirrorEntry := .rowArc (rowArcEntry 11164 [1736, -1860]
   1860 ⟨6, {5, 7, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11164)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11165 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 3, 5}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11165 : MirrorEntry := .rowArc (rowArcEntry 11165 [1673, -1860]
   1860 ⟨6, {5, 7, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11165)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11166 : MirrorEntry := .membershipRow (membershipRowEntry 11166 [1861, -70, -69, -66, -68]
   1861 ⟨6, {5, 8, 9, 10}⟩
   (70, ⟨6, 10⟩)
@@ -1259,27 +1558,34 @@ def entry_11166 : MirrorEntry := .membershipRow (membershipRowEntry 11166 [1861,
   (66, ⟨6, 5⟩)
   (68, ⟨6, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11167 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 5}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11167 : MirrorEntry := .rowArc (rowArcEntry 11167 [1736, -1861]
   1861 ⟨6, {5, 8, 9, 10}⟩ 1736 ⟨6, .left, {5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11167)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11168 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 5}⟩, arc := ⟨4, .left, {7, 8}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11168 : MirrorEntry := .rowArc (rowArcEntry 11168 [1673, -1861]
   1861 ⟨6, {5, 8, 9, 10}⟩ 1673 ⟨6, .right, {2, 3}⟩
   reflectedDatum_11168)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11169 : DirectRowArcFiniteDatum :=
   { row := ⟨4, {0, 1, 2, 3}⟩, arc := ⟨4, .right, {0, 1, 2, 3, 4, 5, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11169 : MirrorEntry := .rowArc (rowArcEntry 11169 [1734, -1862]
   1862 ⟨6, {7, 8, 9, 10}⟩ 1734 ⟨6, .left, {0, 5, 6, 7, 8, 9, 10}⟩
   reflectedDatum_11169)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11170 : MirrorEntry := .membershipRow (membershipRowEntry 11170 [-72, 1863, -71, -74, -73]
   1863 ⟨7, {0, 1, 2, 3}⟩
   (72, ⟨7, 1⟩)
@@ -1287,20 +1593,25 @@ def entry_11170 : MirrorEntry := .membershipRow (membershipRowEntry 11170 [-72, 
   (74, ⟨7, 3⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11171 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {7, 8, 9, 10}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11171 : MirrorEntry := .rowArc (rowArcEntry 11171 [1864, -1863]
   1863 ⟨7, {0, 1, 2, 3}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11171)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11172 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {7, 8, 9, 10}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11172 : MirrorEntry := .rowArc (rowArcEntry 11172 [1865, -1863]
   1863 ⟨7, {0, 1, 2, 3}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11172)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11173 : MirrorEntry := .membershipRow (membershipRowEntry 11173 [1866, -72, -71, -75, -73]
   1866 ⟨7, {0, 1, 2, 4}⟩
   (72, ⟨7, 1⟩)
@@ -1308,20 +1619,25 @@ def entry_11173 : MirrorEntry := .membershipRow (membershipRowEntry 11173 [1866,
   (75, ⟨7, 4⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11174 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 8, 9, 10}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11174 : MirrorEntry := .rowArc (rowArcEntry 11174 [1864, -1866]
   1866 ⟨7, {0, 1, 2, 4}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11174)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11175 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 8, 9, 10}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11175 : MirrorEntry := .rowArc (rowArcEntry 11175 [1865, -1866]
   1866 ⟨7, {0, 1, 2, 4}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11175)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11176 : MirrorEntry := .membershipRow (membershipRowEntry 11176 [-72, -76, -71, 1867, -73]
   1867 ⟨7, {0, 1, 2, 5}⟩
   (72, ⟨7, 1⟩)
@@ -1329,20 +1645,25 @@ def entry_11176 : MirrorEntry := .membershipRow (membershipRowEntry 11176 [-72, 
   (71, ⟨7, 0⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11177 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 8, 9, 10}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11177 : MirrorEntry := .rowArc (rowArcEntry 11177 [1864, -1867]
   1867 ⟨7, {0, 1, 2, 5}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11177)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11178 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 8, 9, 10}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11178 : MirrorEntry := .rowArc (rowArcEntry 11178 [1865, -1867]
   1867 ⟨7, {0, 1, 2, 5}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11178)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11179 : MirrorEntry := .membershipRow (membershipRowEntry 11179 [-72, -77, -71, -73, 1868]
   1868 ⟨7, {0, 1, 2, 6}⟩
   (72, ⟨7, 1⟩)
@@ -1350,20 +1671,25 @@ def entry_11179 : MirrorEntry := .membershipRow (membershipRowEntry 11179 [-72, 
   (71, ⟨7, 0⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11180 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 8, 9, 10}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11180 : MirrorEntry := .rowArc (rowArcEntry 11180 [1864, -1868]
   1868 ⟨7, {0, 1, 2, 6}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11180)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11181 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 8, 9, 10}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11181 : MirrorEntry := .rowArc (rowArcEntry 11181 [1865, -1868]
   1868 ⟨7, {0, 1, 2, 6}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11181)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11182 : MirrorEntry := .membershipRow (membershipRowEntry 11182 [-72, 1870, -71, -74, -75]
   1870 ⟨7, {0, 1, 3, 4}⟩
   (72, ⟨7, 1⟩)
@@ -1371,20 +1697,25 @@ def entry_11182 : MirrorEntry := .membershipRow (membershipRowEntry 11182 [-72, 
   (74, ⟨7, 3⟩)
   (75, ⟨7, 4⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11183 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 7, 9, 10}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11183 : MirrorEntry := .rowArc (rowArcEntry 11183 [1871, -1870]
   1870 ⟨7, {0, 1, 3, 4}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11183)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11184 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 7, 9, 10}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11184 : MirrorEntry := .rowArc (rowArcEntry 11184 [-1870, 1865]
   1870 ⟨7, {0, 1, 3, 4}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11184)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11185 : MirrorEntry := .membershipRow (membershipRowEntry 11185 [-72, -76, -74, 1872, -71]
   1872 ⟨7, {0, 1, 3, 5}⟩
   (72, ⟨7, 1⟩)
@@ -1392,20 +1723,25 @@ def entry_11185 : MirrorEntry := .membershipRow (membershipRowEntry 11185 [-72, 
   (74, ⟨7, 3⟩)
   (71, ⟨7, 0⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11186 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 7, 9, 10}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11186 : MirrorEntry := .rowArc (rowArcEntry 11186 [1871, -1872]
   1872 ⟨7, {0, 1, 3, 5}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11186)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11187 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 7, 9, 10}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11187 : MirrorEntry := .rowArc (rowArcEntry 11187 [-1872, 1865]
   1872 ⟨7, {0, 1, 3, 5}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11187)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11188 : MirrorEntry := .membershipRow (membershipRowEntry 11188 [-72, -77, -71, -74, 1873]
   1873 ⟨7, {0, 1, 3, 6}⟩
   (72, ⟨7, 1⟩)
@@ -1413,20 +1749,25 @@ def entry_11188 : MirrorEntry := .membershipRow (membershipRowEntry 11188 [-72, 
   (71, ⟨7, 0⟩)
   (74, ⟨7, 3⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11189 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 7, 9, 10}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11189 : MirrorEntry := .rowArc (rowArcEntry 11189 [1871, -1873]
   1873 ⟨7, {0, 1, 3, 6}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11189)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11190 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 7, 9, 10}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11190 : MirrorEntry := .rowArc (rowArcEntry 11190 [-1873, 1865]
   1873 ⟨7, {0, 1, 3, 6}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11190)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11191 : MirrorEntry := .membershipRow (membershipRowEntry 11191 [1878, -75, -74, -71, -73]
   1878 ⟨7, {0, 2, 3, 4}⟩
   (75, ⟨7, 4⟩)
@@ -1434,20 +1775,25 @@ def entry_11191 : MirrorEntry := .membershipRow (membershipRowEntry 11191 [1878,
   (71, ⟨7, 0⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11192 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 7, 8, 10}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11192 : MirrorEntry := .rowArc (rowArcEntry 11192 [1871, -1878]
   1878 ⟨7, {0, 2, 3, 4}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11192)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11193 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 7, 8, 10}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11193 : MirrorEntry := .rowArc (rowArcEntry 11193 [1879, -1878]
   1878 ⟨7, {0, 2, 3, 4}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11193)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11194 : MirrorEntry := .membershipRow (membershipRowEntry 11194 [-73, -76, -71, -74, 1880]
   1880 ⟨7, {0, 2, 3, 5}⟩
   (73, ⟨7, 2⟩)
@@ -1455,20 +1801,25 @@ def entry_11194 : MirrorEntry := .membershipRow (membershipRowEntry 11194 [-73, 
   (71, ⟨7, 0⟩)
   (74, ⟨7, 3⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11195 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 7, 8, 10}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11195 : MirrorEntry := .rowArc (rowArcEntry 11195 [1871, -1880]
   1880 ⟨7, {0, 2, 3, 5}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11195)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11196 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 7, 8, 10}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11196 : MirrorEntry := .rowArc (rowArcEntry 11196 [1879, -1880]
   1880 ⟨7, {0, 2, 3, 5}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11196)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11197 : MirrorEntry := .membershipRow (membershipRowEntry 11197 [-77, -73, -71, -74, 1881]
   1881 ⟨7, {0, 2, 3, 6}⟩
   (77, ⟨7, 6⟩)
@@ -1476,41 +1827,52 @@ def entry_11197 : MirrorEntry := .membershipRow (membershipRowEntry 11197 [-77, 
   (71, ⟨7, 0⟩)
   (74, ⟨7, 3⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11198 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 7, 8, 10}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11198 : MirrorEntry := .rowArc (rowArcEntry 11198 [1871, -1881]
   1881 ⟨7, {0, 2, 3, 6}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11198)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11199 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 7, 8, 10}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11199 : MirrorEntry := .rowArc (rowArcEntry 11199 [1879, -1881]
   1881 ⟨7, {0, 2, 3, 6}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11199)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11200 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 6, 8, 10}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11200 : MirrorEntry := .rowArc (rowArcEntry 11200 [1879, -1882]
   1882 ⟨7, {0, 2, 4, 5}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11200)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11201 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 6, 8, 10}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11201 : MirrorEntry := .rowArc (rowArcEntry 11201 [1879, -1883]
   1883 ⟨7, {0, 2, 4, 6}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11201)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11202 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 5, 8, 10}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11202 : MirrorEntry := .rowArc (rowArcEntry 11202 [1879, -1884]
   1884 ⟨7, {0, 2, 5, 6}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11202)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11203 : MirrorEntry := .membershipRow (membershipRowEntry 11203 [1885, -75, -74, -72, -73]
   1885 ⟨7, {1, 2, 3, 4}⟩
   (75, ⟨7, 4⟩)
@@ -1518,20 +1880,25 @@ def entry_11203 : MirrorEntry := .membershipRow (membershipRowEntry 11203 [1885,
   (72, ⟨7, 1⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11204 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 7, 8, 9}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11204 : MirrorEntry := .rowArc (rowArcEntry 11204 [-1885, 1871]
   1885 ⟨7, {1, 2, 3, 4}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11204)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11205 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {6, 7, 8, 9}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11205 : MirrorEntry := .rowArc (rowArcEntry 11205 [1879, -1885]
   1885 ⟨7, {1, 2, 3, 4}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11205)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11206 : MirrorEntry := .membershipRow (membershipRowEntry 11206 [-72, -73, -74, -76, 1886]
   1886 ⟨7, {1, 2, 3, 5}⟩
   (72, ⟨7, 1⟩)
@@ -1539,20 +1906,25 @@ def entry_11206 : MirrorEntry := .membershipRow (membershipRowEntry 11206 [-72, 
   (74, ⟨7, 3⟩)
   (76, ⟨7, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11207 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 7, 8, 9}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11207 : MirrorEntry := .rowArc (rowArcEntry 11207 [-1886, 1871]
   1886 ⟨7, {1, 2, 3, 5}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11207)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11208 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 7, 8, 9}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11208 : MirrorEntry := .rowArc (rowArcEntry 11208 [1879, -1886]
   1886 ⟨7, {1, 2, 3, 5}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11208)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11209 : MirrorEntry := .membershipRow (membershipRowEntry 11209 [-72, -73, -74, -77, 1887]
   1887 ⟨7, {1, 2, 3, 6}⟩
   (72, ⟨7, 1⟩)
@@ -1560,20 +1932,25 @@ def entry_11209 : MirrorEntry := .membershipRow (membershipRowEntry 11209 [-72, 
   (74, ⟨7, 3⟩)
   (77, ⟨7, 6⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11210 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 7, 8, 9}⟩, arc := ⟨3, .right, {4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11210 : MirrorEntry := .rowArc (rowArcEntry 11210 [-1887, 1871]
   1887 ⟨7, {1, 2, 3, 6}⟩ 1871 ⟨7, .left, {4, 5, 6}⟩
   reflectedDatum_11210)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11211 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 7, 8, 9}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11211 : MirrorEntry := .rowArc (rowArcEntry 11211 [1879, -1887]
   1887 ⟨7, {1, 2, 3, 6}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11211)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11212 : MirrorEntry := .membershipRow (membershipRowEntry 11212 [-73, -72, -74, 1888, -78]
   1888 ⟨7, {1, 2, 3, 8}⟩
   (73, ⟨7, 2⟩)
@@ -1581,20 +1958,25 @@ def entry_11212 : MirrorEntry := .membershipRow (membershipRowEntry 11212 [-73, 
   (74, ⟨7, 3⟩)
   (78, ⟨7, 8⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11213 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 7, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11213 : MirrorEntry := .rowArc (rowArcEntry 11213 [1864, -1888]
   1888 ⟨7, {1, 2, 3, 8}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11213)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11214 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 7, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11214 : MirrorEntry := .rowArc (rowArcEntry 11214 [1865, -1888]
   1888 ⟨7, {1, 2, 3, 8}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11214)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11215 : MirrorEntry := .membershipRow (membershipRowEntry 11215 [-79, -74, -73, 1889, -72]
   1889 ⟨7, {1, 2, 3, 9}⟩
   (79, ⟨7, 9⟩)
@@ -1602,20 +1984,25 @@ def entry_11215 : MirrorEntry := .membershipRow (membershipRowEntry 11215 [-79, 
   (73, ⟨7, 2⟩)
   (72, ⟨7, 1⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11216 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {1, 7, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11216 : MirrorEntry := .rowArc (rowArcEntry 11216 [1864, -1889]
   1889 ⟨7, {1, 2, 3, 9}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11216)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11217 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {1, 7, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11217 : MirrorEntry := .rowArc (rowArcEntry 11217 [1865, -1889]
   1889 ⟨7, {1, 2, 3, 9}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11217)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11218 : MirrorEntry := .membershipRow (membershipRowEntry 11218 [-73, -72, -74, 1890, -80]
   1890 ⟨7, {1, 2, 3, 10}⟩
   (73, ⟨7, 2⟩)
@@ -1623,34 +2010,43 @@ def entry_11218 : MirrorEntry := .membershipRow (membershipRowEntry 11218 [-73, 
   (74, ⟨7, 3⟩)
   (80, ⟨7, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11219 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {0, 7, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11219 : MirrorEntry := .rowArc (rowArcEntry 11219 [1864, -1890]
   1890 ⟨7, {1, 2, 3, 10}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11219)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11220 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {0, 7, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11220 : MirrorEntry := .rowArc (rowArcEntry 11220 [1865, -1890]
   1890 ⟨7, {1, 2, 3, 10}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11220)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11221 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {5, 6, 8, 9}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11221 : MirrorEntry := .rowArc (rowArcEntry 11221 [1879, -1891]
   1891 ⟨7, {1, 2, 4, 5}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11221)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11222 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 6, 8, 9}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11222 : MirrorEntry := .rowArc (rowArcEntry 11222 [1879, -1892]
   1892 ⟨7, {1, 2, 4, 6}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11222)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11223 : MirrorEntry := .membershipRow (membershipRowEntry 11223 [-78, 1893, -75, -73, -72]
   1893 ⟨7, {1, 2, 4, 8}⟩
   (78, ⟨7, 8⟩)
@@ -1658,20 +2054,25 @@ def entry_11223 : MirrorEntry := .membershipRow (membershipRowEntry 11223 [-78, 
   (73, ⟨7, 2⟩)
   (72, ⟨7, 1⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11224 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 6, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11224 : MirrorEntry := .rowArc (rowArcEntry 11224 [1864, -1893]
   1893 ⟨7, {1, 2, 4, 8}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11224)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11225 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 6, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11225 : MirrorEntry := .rowArc (rowArcEntry 11225 [1865, -1893]
   1893 ⟨7, {1, 2, 4, 8}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11225)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11226 : MirrorEntry := .membershipRow (membershipRowEntry 11226 [-79, -73, -75, -72, 1894]
   1894 ⟨7, {1, 2, 4, 9}⟩
   (79, ⟨7, 9⟩)
@@ -1679,20 +2080,25 @@ def entry_11226 : MirrorEntry := .membershipRow (membershipRowEntry 11226 [-79, 
   (75, ⟨7, 4⟩)
   (72, ⟨7, 1⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11227 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {1, 6, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11227 : MirrorEntry := .rowArc (rowArcEntry 11227 [1864, -1894]
   1894 ⟨7, {1, 2, 4, 9}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11227)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11228 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {1, 6, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11228 : MirrorEntry := .rowArc (rowArcEntry 11228 [1865, -1894]
   1894 ⟨7, {1, 2, 4, 9}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11228)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11229 : MirrorEntry := .membershipRow (membershipRowEntry 11229 [-73, -72, -75, 1895, -80]
   1895 ⟨7, {1, 2, 4, 10}⟩
   (73, ⟨7, 2⟩)
@@ -1700,27 +2106,34 @@ def entry_11229 : MirrorEntry := .membershipRow (membershipRowEntry 11229 [-73, 
   (75, ⟨7, 4⟩)
   (80, ⟨7, 10⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11230 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {0, 6, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11230 : MirrorEntry := .rowArc (rowArcEntry 11230 [1864, -1895]
   1895 ⟨7, {1, 2, 4, 10}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11230)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11231 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {0, 6, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11231 : MirrorEntry := .rowArc (rowArcEntry 11231 [1865, -1895]
   1895 ⟨7, {1, 2, 4, 10}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11231)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11232 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {4, 5, 8, 9}⟩, arc := ⟨3, .left, {0, 1, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11232 : MirrorEntry := .rowArc (rowArcEntry 11232 [-1896, 1879]
   1896 ⟨7, {1, 2, 5, 6}⟩ 1879 ⟨7, .right, {0, 1, 2, 9, 10}⟩
   reflectedDatum_11232)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11233 : MirrorEntry := .membershipRow (membershipRowEntry 11233 [-78, -72, -73, -76, 1897]
   1897 ⟨7, {1, 2, 5, 8}⟩
   (78, ⟨7, 8⟩)
@@ -1728,20 +2141,25 @@ def entry_11233 : MirrorEntry := .membershipRow (membershipRowEntry 11233 [-78, 
   (73, ⟨7, 2⟩)
   (76, ⟨7, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11234 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 5, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11234 : MirrorEntry := .rowArc (rowArcEntry 11234 [1864, -1897]
   1897 ⟨7, {1, 2, 5, 8}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11234)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11235 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 5, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11235 : MirrorEntry := .rowArc (rowArcEntry 11235 [1865, -1897]
   1897 ⟨7, {1, 2, 5, 8}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11235)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11236 : MirrorEntry := .membershipRow (membershipRowEntry 11236 [-79, -72, -73, -76, 1898]
   1898 ⟨7, {1, 2, 5, 9}⟩
   (79, ⟨7, 9⟩)
@@ -1749,20 +2167,25 @@ def entry_11236 : MirrorEntry := .membershipRow (membershipRowEntry 11236 [-79, 
   (73, ⟨7, 2⟩)
   (76, ⟨7, 5⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11237 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {1, 5, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11237 : MirrorEntry := .rowArc (rowArcEntry 11237 [1864, -1898]
   1898 ⟨7, {1, 2, 5, 9}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11237)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11238 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {1, 5, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11238 : MirrorEntry := .rowArc (rowArcEntry 11238 [1865, -1898]
   1898 ⟨7, {1, 2, 5, 9}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11238)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11239 : MirrorEntry := .membershipRow (membershipRowEntry 11239 [-80, -72, -76, 1899, -73]
   1899 ⟨7, {1, 2, 5, 10}⟩
   (80, ⟨7, 10⟩)
@@ -1770,20 +2193,25 @@ def entry_11239 : MirrorEntry := .membershipRow (membershipRowEntry 11239 [-80, 
   (76, ⟨7, 5⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11240 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {0, 5, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11240 : MirrorEntry := .rowArc (rowArcEntry 11240 [1864, -1899]
   1899 ⟨7, {1, 2, 5, 10}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11240)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11241 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {0, 5, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11241 : MirrorEntry := .rowArc (rowArcEntry 11241 [1865, -1899]
   1899 ⟨7, {1, 2, 5, 10}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11241)
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11242 : MirrorEntry := .membershipRow (membershipRowEntry 11242 [-78, -72, -77, 1900, -73]
   1900 ⟨7, {1, 2, 6, 8}⟩
   (78, ⟨7, 8⟩)
@@ -1791,20 +2219,25 @@ def entry_11242 : MirrorEntry := .membershipRow (membershipRowEntry 11242 [-78, 
   (77, ⟨7, 6⟩)
   (73, ⟨7, 2⟩))
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11243 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 4, 8, 9}⟩, arc := ⟨3, .right, {3, 4, 5, 6}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11243 : MirrorEntry := .rowArc (rowArcEntry 11243 [1864, -1900]
   1900 ⟨7, {1, 2, 6, 8}⟩ 1864 ⟨7, .left, {4, 5, 6, 7}⟩
   reflectedDatum_11243)
 
+/-- Generated reflected direct-row arc data used by the adjacent mirror-outer entry. -/
 def reflectedDatum_11244 : DirectRowArcFiniteDatum :=
   { row := ⟨3, {2, 4, 8, 9}⟩, arc := ⟨3, .left, {0, 8, 9, 10}⟩ }
 
+/-- Generated mirror-outer membership or row-arc entry for the finite bridge data. -/
 def entry_11244 : MirrorEntry := .rowArc (rowArcEntry 11244 [1865, -1900]
   1900 ⟨7, {1, 2, 6, 8}⟩ 1865 ⟨7, .right, {0, 1, 2, 10}⟩
   reflectedDatum_11244)
 
+/-- Generated finite mirror-outer bridge data. -/
 def bridgeChunk11 : List MirrorEntry := [
   entry_10989,
   entry_10990,
@@ -2064,8 +2497,10 @@ def bridgeChunk11 : List MirrorEntry := [
   entry_11244,
 ]
 
+/-- All generated entries in bridge chunk 11 satisfy the finite MirrorEntry well-formedness predicate. -/
 theorem bridgeChunk11_wf : bridgeChunk11.all MirrorEntry.wf = true := by native_decide
 
+/-- The generated bridge chunk 11 contains exactly 256 mirror-outer entries. -/
 theorem bridgeChunk11_length : bridgeChunk11.length = 256 := by native_decide
 
 end Problem97.P4MirrorOuterOccurrenceBridgeScratch
