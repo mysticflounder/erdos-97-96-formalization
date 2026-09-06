@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "native-bank-plan-review-20260905",
+  "owner": "codex-project-review",
+  "base_head": "9184d6a42bcadf900301dcff9e4dddd1440aed4d",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/native-bank-plan-review-20260905.json",
+    "docs/skeptic-native-bank-replacement-plan-2026-09-05.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-06T00:36:02.899523Z",
+  "manifest_sha256": "c35580b8b75cb5d00418257ef365a56ef51204cb855298195596e0d86f618d33"
+}
