@@ -3,9 +3,10 @@
 ## Scope
 
 This lane repairs and extends the standalone minimum-distance source selector
-in `MinimalAdmissibleInteriorPair.lean`.  It does not yet replace the ordinary
-exact-five residual producer, does not transfer the property across a later
-reselection, and does not treat a radius drop as a renewal argument.
+in `MinimalAdmissibleInteriorPair.lean`, and adds a source case split that keeps
+the selected minimum pair attached to its exact-five residual.  It does not
+transfer the property across a later reselection and does not treat a radius
+drop as a renewal argument.
 
 ## Reuse preflight
 
@@ -35,13 +36,32 @@ physical consumer.  It requires an explicit equality between the minimum pair
 and the residual's source pair, so the theorem cannot be misapplied after an
 arbitrary adaptive reselection.
 
+`firstApexUniqueRadius_exactFive_minimalResidualCases` now constructs the
+minimum pair before the distinct/common obstruction-center split and returns a
+wrapper carrying that source equality.  The full
+`firstApexUniqueRadius_minimalResidualCases` preserves the exact-four arm and
+uses these wrappers only on the source exact-five arms.  The common wrapper's
+documentation explicitly forbids transferring its equality to a pair selected
+later by the adaptive common-center branch.
+
+`actualFreshBlocker_omits_source_of_capFive` consumes the distinct wrapper.  In
+the cap-five case it refines the remaining physical branch to the statement
+that the actual fresh row omits at least one endpoint of the minimum source
+pair.
+
 ## Validation
 
-Lean LSP diagnostics are clean for the repaired producer and the physical
-consumer.  The shared governed Lake build remains deferred to its lock owner.
+Lean LSP diagnostics are clean for the repaired producer, the source residual
+split, and the physical consumers.  The shared governed Lake build remains
+deferred to its lock owner.
 
-## Remaining source bridge
+## Remaining physical frontier
 
-The next step is to make the original exact-five case split retain the minimum
-wrapper, while leaving the later adaptive common-center reselection on the
-ordinary residual type unless it performs a fresh minimization.
+The wrapper is not yet threaded through the live distinct coordinator.  More
+importantly, the current strict physical packet does not prove that both source
+endpoints occur in the actual fresh row.  Thus minimum-pair custody eliminates
+the cap-five double-hit case but leaves one-hit and zero-hit omission cases.
+The cap-at-least-six double-hit branch also needs its advertised carrier-card
+lower bound before it can feed the exact-13 closure lanes.  The later adaptive
+common-center reselection must remain on the ordinary residual type unless it
+performs a fresh minimization.

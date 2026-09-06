@@ -514,5 +514,30 @@ theorem false_of_actualFreshBlocker_doubleHit_of_minimalPair_capFive
     R.class_card_eq_five hcap hcenterA hcenterNe
     (by simpa [hsource] using hcenterEq)
 
+/-- Source-custody form of the cap-five consequence: the actual fresh row
+must omit at least one endpoint of the minimum admissible pair. -/
+theorem
+    FirstApexUniqueRadiusExactFiveMinimalDistinctResidual.actualFreshBlocker_omits_source_of_capFive
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    (hsecond : FullyDeletionRobustAt D S.oppApex2)
+    (hcap : (S.capByIndex S.oppIndex1).card = 5)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A) :
+    Rmin.residual.interior.frontier.pair.q ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∨
+      Rmin.residual.interior.frontier.pair.w ∉
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support := by
+  by_cases hq : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · exact (false_of_actualFreshBlocker_doubleHit_of_minimalPair_capFive
+        Rmin.residual Rmin.minimalPair Rmin.source_eq hsecond hcap
+        hfreshA hq hw).elim
+    · exact Or.inr hw
+  · exact Or.inl hq
+
 end ExactFiveDistinctPhysicalFreshRowRadiusDrop
 end Problem97
