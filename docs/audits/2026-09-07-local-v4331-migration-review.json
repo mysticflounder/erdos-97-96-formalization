@@ -1,0 +1,359 @@
+{
+  "schema": "local-lean-migration-review/v1",
+  "captured_utc": "2026-09-07T21:06:03.981701+00:00",
+  "worktree": "/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907",
+  "base_head": "15cb02b27a670a82a92f603270227d498e891ff3",
+  "changed_source_sha256": {
+    "lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+    "lean/Erdos9796Proof/Geometry/SimilarityFrame.lean": "dc644a4efebe1dd5c2aff9012d11e35e8f905a6ebf70794839b53b4ae7c0fa63",
+    "lean/Erdos9796Proof/P97/ATail/ConvexCocircularHalfPlane.lean": "bd1069642de4714111483ea7116a18eaf48cf21cfd77f3da48ff9d4362285dc4",
+    "lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean": "2da2260e45184e67ce769964306ee68c2a7eb2a76613bb115abe0b07cdfd8ce0",
+    "lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean": "d996228454be56f00f05eba2a686f5e604fdc223e2669ee3eff7bf24cab56b66",
+    "lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean": "132159c1d9a9d482221d48e98ef25e289eacd573553094ddd4194c28bff99a37",
+    "lean/Erdos9796Proof/P97/EndpointCertificate/Soundness.lean": "ab3ab9ac0c527b9cedac7752ff196708abf77834ccf818f48af9e19df6f48ffc",
+    "lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean": "0f84a986d7fd40f6dc1ac6ce73b31ffa3fb3169b81119319dbae24bca7a85646",
+    "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean": "2a8d00cd1d6b2290156c6085675919cde734d3890ca0877876d719ff756a7348",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankDFS.lean": "b50c2e8eb04891e4fb078833094b9d080b68f2b5e5fac2b3445a6a2a8f13103d",
+    "lean/lake-manifest.json": "9de4a69fdebf0ff09647ae11adb312a5a2e12ac0aa3603f2c8ab618d57967f13",
+    "lean/lakefile.toml": "1bb4649795d9328d96feb96639afccea8c7f903c2a8469c1e44a468804424f55",
+    "lean/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+  },
+  "working_diff": "diff --git a/lean-toolchain b/lean-toolchain\nindex 5249182c0..a8afa7d1b 100644\n--- a/lean-toolchain\n+++ b/lean-toolchain\n@@ -1 +1 @@\n-leanprover/lean4:v4.27.0\n+leanprover/lean4:v4.33.1\ndiff --git a/lean/Erdos9796Proof/Geometry/SimilarityFrame.lean b/lean/Erdos9796Proof/Geometry/SimilarityFrame.lean\nindex b9fbbaf19..0a104e39d 100644\n--- a/lean/Erdos9796Proof/Geometry/SimilarityFrame.lean\n+++ b/lean/Erdos9796Proof/Geometry/SimilarityFrame.lean\n@@ -73,7 +73,7 @@ structure SimilarityFrame (q\u2081 q\u2082 : Plane) where\n \n namespace SimilarityFrame\n \n-instance {q\u2081 q\u2082 : Plane} : CoeFun (SimilarityFrame q\u2081 q\u2082) (fun _ => Plane \u2192 Plane) :=\n+noncomputable instance {q\u2081 q\u2082 : Plane} : CoeFun (SimilarityFrame q\u2081 q\u2082) (fun _ => Plane \u2192 Plane) :=\n   \u27e8fun F => F.map\u27e9\n \n /-- Applying a similarity frame as a function agrees with applying its underlying affine map. -/\ndiff --git a/lean/Erdos9796Proof/P97/ATail/ConvexCocircularHalfPlane.lean b/lean/Erdos9796Proof/P97/ATail/ConvexCocircularHalfPlane.lean\nindex 6985d7902..667e045d2 100644\n--- a/lean/Erdos9796Proof/P97/ATail/ConvexCocircularHalfPlane.lean\n+++ b/lean/Erdos9796Proof/P97/ATail/ConvexCocircularHalfPlane.lean\n@@ -48,7 +48,7 @@ theorem exists_strict_separating_vector_of_convexIndep_cocircular\n     apply hA P hP\n     exact convexHull_mono hsub hmem\n   have hcompact : IsCompact (convexHull \u211d (C : Set \u211d\u00b2)) :=\n-    C.finite_toSet.isCompact_convexHull\n+    C.finite_toSet.isCompact_convexHull \u211d\n   have hconvex : Convex \u211d (convexHull \u211d (C : Set \u211d\u00b2)) :=\n     convex_convexHull \u211d (C : Set \u211d\u00b2)\n   obtain \u27e8f, u, v, hfP, huv, hfC\u27e9 :=\ndiff --git a/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean b/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean\nindex 65fedaeef..7714c9672 100644\n--- a/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean\n+++ b/lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean\n@@ -63,7 +63,8 @@ theorem run_ready {n : Nat} {formula result : DefaultFormula n}\n   | cons action rest ih =>\n       cases action with\n       | del ids =>\n-          exact ih (Formula.readyForRupAdd_delete formula ids ready) (by simpa [run] using h)\n+          simp only [run] at h\n+          exact ih (Formula.readyForRupAdd_delete formula ids ready) h\n       | add clause hints =>\n           simp only [run] at h\n           split at h\n@@ -96,7 +97,8 @@ theorem run_limplies {n : Nat} {formula result : DefaultFormula n}\n       | del ids =>\n           apply Limplies.trans formula (formula.delete ids) result\n           \u00b7 exact Formula.limplies_delete\n-          \u00b7 exact ih (Formula.readyForRupAdd_delete formula ids ready) (by simpa [run] using h)\n+          \u00b7 simp only [run] at h\n+            exact ih (Formula.readyForRupAdd_delete formula ids ready) h\n       | add clause hints =>\n           simp only [run] at h\n           split at h\ndiff --git a/lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean b/lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean\nindex 153eb926a..764249823 100644\n--- a/lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean\n+++ b/lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean\n@@ -86,8 +86,7 @@ theorem reverseCyclicPoint_orderedTriple_sign_neg {n : Nat}\n     (\u2221 (reverseCyclicPoint point i.val) (reverseCyclicPoint point j.val)\n       (reverseCyclicPoint point k.val)).sign = -1 := by\n   have hrotate : IsCcwConvexPolygon (rotatePoint point) := by\n-    simpa [rotatePoint] using\n-      isCcwConvexPolygon_cyclicShift hinj hccw (1 : Fin (n + 1))\n+    exact isCcwConvexPolygon_cyclicShift hinj hccw (1 : Fin (n + 1))\n   have hstandard :=\n     ShellCurvature.standardCounterclockwiseConvexPolygon_reverseLinear hrotate\n   simpa [rotatePoint_rev_eq_reverseCyclicPoint] using hstandard hij hjk\n@@ -345,7 +344,7 @@ theorem chordLift_lifts_arcAngle {n i j : Nat} (hn : 3 <= n + 1)\n         (\u2221 (reverseCyclicPoint point (i + 1))\n           (reverseCyclicPoint point i)\n           (reverseCyclicPoint point j)) := by\n-    simpa using hsub\n+    exact hsub\n   rw [chordLift, Real.Angle.coe_add, edgeLift_lifts_arcAngle hn hinj,\n     chordStartGap, Real.Angle.coe_toReal]\n   rw [sub_eq_iff_eq_add] at hsub'\n@@ -390,7 +389,7 @@ theorem chordLift_step_sub_mem_Ioo {n i j : Nat} (hn : 3 <= n + 1)\n     dsimp [d]\n     rw [chordLift_lifts_arcAngle hn hinj hproperSucc,\n       chordLift_lifts_arcAngle hn hinj hproper]\n-    simpa using hsub\n+    exact hsub\n   rcases hproperSucc with \u27e8_hi0, hijSucc, hjSucc, hnotFull\u27e9\n   have hij : i < j := by\n     rcases hproper with \u27e8_, hij, _, _\u27e9\n@@ -653,7 +652,7 @@ theorem chordLift_sameStart_sub_mem_Ioo {n i j k : Nat}\n     dsimp [d]\n     rw [chordLift_lifts_arcAngle hn hinj hproperIK,\n       chordLift_lifts_arcAngle hn hinj hproperIJ]\n-    simpa using hsub\n+    exact hsub\n   have hsign := openWindow_apex_sign_pos hinj hccw hij hjk hk hnotFull\n   apply real_mem_Ioo_of_coe_sign_pos hdLower hdUpper\n   rwa [hcoe]\ndiff --git a/lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean b/lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean\nindex 3a9a5b27d..32d0795e1 100644\n--- a/lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean\n+++ b/lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean\n@@ -443,7 +443,7 @@ theorem shadow_mem_endpointSearchAux_of_endpointShadowOK\n     (by simp [SurplusCOMPGBank.fragmentSearchAssignedPrefixes])\n     (by simp [SurplusCOMPGBank.fragmentSearchAssignedPrefixes])\n     (by intro other hmem; cases other <;> simp at hmem \u22a2) h1\n-  simpa [endpointSearchPlan, endpointSearchOrder,\n+  simpa [endpointSearchPlan, endpointSearchOrder, SurplusCOMPGBank.fragmentSearchOrder,\n     SurplusCOMPGBank.shadowMasksForAssigned,\n     SurplusCOMPGBank.shadowPairCountsForAssigned,\n     SurplusCOMPGBank.emptyShadowMasks] using h0\ndiff --git a/lean/Erdos9796Proof/P97/EndpointCertificate/Soundness.lean b/lean/Erdos9796Proof/P97/EndpointCertificate/Soundness.lean\nindex 7cb99a62c..193380297 100644\n--- a/lean/Erdos9796Proof/P97/EndpointCertificate/Soundness.lean\n+++ b/lean/Erdos9796Proof/P97/EndpointCertificate/Soundness.lean\n@@ -383,17 +383,13 @@ theorem false_of_checkCertificate (\u03bd : Nat \u2192 \u211d) (cert : Certificate)\n   by_cases hnorm :\n       cert.generators.all isNormalizedPoly &&\n         cert.coefficients.all isNormalizedPoly\n-  \u00b7 have hmatch :\n-        (match sumProductsCanon cert.generators cert.coefficients with\n-        | some p => decide (p = onePoly)\n-        | none => false) = true := by\n-      simpa [checkCertificate, hnorm] using hcheck\n+  \u00b7 simp only [checkCertificate, hnorm, \u2193reduceIte] at hcheck\n     cases hsum : sumProductsCanon cert.generators cert.coefficients with\n     | none =>\n-        simp [hsum] at hmatch\n+        simp [hsum] at hcheck\n     | some p =>\n         have hp_eq : p = onePoly := by\n-          exact of_decide_eq_true (by simpa [hsum] using hmatch)\n+          exact of_decide_eq_true (by simpa [hsum] using hcheck)\n         have hp_zero : evalPoly \u03bd p = 0 :=\n           evalPoly_sumProductsCanon_eq_zero \u03bd hsum hgenerators\n         rw [hp_eq, evalPoly_onePoly] at hp_zero\n@@ -413,17 +409,13 @@ theorem false_of_checkCertificate_of_weighted_zeros\n   by_cases hnorm :\n       cert.generators.all isNormalizedPoly &&\n         cert.coefficients.all isNormalizedPoly\n-  \u00b7 have hmatch :\n-        (match sumProductsCanon cert.generators cert.coefficients with\n-        | some p => decide (p = onePoly)\n-        | none => false) = true := by\n-      simpa [checkCertificate, hnorm] using hcheck\n+  \u00b7 simp only [checkCertificate, hnorm, \u2193reduceIte] at hcheck\n     cases hsum : sumProductsCanon cert.generators cert.coefficients with\n     | none =>\n-        simp [hsum] at hmatch\n+        simp [hsum] at hcheck\n     | some p =>\n         have hp_eq : p = onePoly := by\n-          exact of_decide_eq_true (by simpa [hsum] using hmatch)\n+          exact of_decide_eq_true (by simpa [hsum] using hcheck)\n         have hp_zero : evalPoly \u03bd p = 0 :=\n           evalPoly_sumProductsCanon_eq_zero_of_weighted_zeros \u03bd hsum\n             hweighted\ndiff --git a/lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean b/lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean\nindex 58184f7e9..84b8d59bf 100644\n--- a/lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean\n+++ b/lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean\n@@ -366,9 +366,8 @@ theorem erasedPinCanonicalSeed_candidateMasks\n     (seed : OneSidedSeed) (center : Label) :\n     (erasedPinCanonicalSeed seed).candidateMasks center =\n       seed.candidateMasks center := by\n-  cases seed <;> cases center <;>\n-    simp [erasedPinCanonicalSeed, OneSidedSeed.candidateMasks,\n-      OneSidedSeed.fixedMask]\n+  cases seed\n+  rfl\n \n theorem isValidOneSidedSeedShadow_erasedPinCanonicalSeed\n     {seed : OneSidedSeed} {shadow : Shadow}\ndiff --git a/lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean b/lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean\nindex a073acdc0..0a57f694e 100644\n--- a/lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean\n+++ b/lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean\n@@ -112,7 +112,7 @@ theorem mec_center_mem_convexHull_boundary\n     convex_convexHull _ _\n   have hB_fin : (B : Set \u211d\u00b2).Finite := B.finite_toSet\n   have hcvx_closed : IsClosed (convexHull \u211d ((B : Finset \u211d\u00b2) : Set \u211d\u00b2)) :=\n-    hB_fin.isClosed_convexHull\n+    hB_fin.isClosed_convexHull (\ud835\udd5c := \u211d)\n   have hcvx_complete : IsComplete (convexHull \u211d ((B : Finset \u211d\u00b2) : Set \u211d\u00b2)) :=\n     hcvx_closed.isComplete\n   have hcvx_nonempty : (convexHull \u211d ((B : Finset \u211d\u00b2) : Set \u211d\u00b2)).Nonempty := by\ndiff --git a/lean/Erdos9796Proof/P97/SurplusCOMPGBankDFS.lean b/lean/Erdos9796Proof/P97/SurplusCOMPGBankDFS.lean\nindex c017125d9..7275566a9 100644\n--- a/lean/Erdos9796Proof/P97/SurplusCOMPGBankDFS.lean\n+++ b/lean/Erdos9796Proof/P97/SurplusCOMPGBankDFS.lean\n@@ -41,42 +41,43 @@ theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s1\n   unfold fragmentSearchAux at hmem\n   simp at hmem\n   rcases hmem with \u27e8_hv, hmem\u27e9\n+  have hpin : pinnedMaskOf .s1 = 201 := by rfl\n   rcases hmem with h771 | h777 | h785 | h801 | h834 | h840 | h848 | h864 | h898 | h904 | h912 | h928\n   \u00b7 exact \u27e8771, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h771.2\u27e9\n   \u00b7 exact \u27e8777, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h777.2\u27e9\n   \u00b7 exact \u27e8785, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h785.2\u27e9\n   \u00b7 exact \u27e8801, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h801.2\u27e9\n   \u00b7 exact \u27e8834, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h834.2\u27e9\n   \u00b7 exact \u27e8840, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h840.2\u27e9\n   \u00b7 exact \u27e8848, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h848.2\u27e9\n   \u00b7 exact \u27e8864, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h864.2\u27e9\n   \u00b7 exact \u27e8898, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h898.2\u27e9\n   \u00b7 exact \u27e8904, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h904.2\u27e9\n   \u00b7 exact \u27e8912, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h912.2\u27e9\n   \u00b7 exact \u27e8928, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h928.2\u27e9\n \n theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s2\n@@ -92,42 +93,43 @@ theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s2\n   unfold fragmentSearchAux at hmem\n   simp at hmem\n   rcases hmem with \u27e8_hv, hmem\u27e9\n+  have hpin : pinnedMaskOf .s2 = 209 := by rfl\n   rcases hmem with h771 | h777 | h785 | h801 | h834 | h840 | h848 | h864 | h898 | h904 | h912 | h928\n   \u00b7 exact \u27e8771, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h771.2\u27e9\n   \u00b7 exact \u27e8777, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h777.2\u27e9\n   \u00b7 exact \u27e8785, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h785.2\u27e9\n   \u00b7 exact \u27e8801, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h801.2\u27e9\n   \u00b7 exact \u27e8834, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h834.2\u27e9\n   \u00b7 exact \u27e8840, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h840.2\u27e9\n   \u00b7 exact \u27e8848, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h848.2\u27e9\n   \u00b7 exact \u27e8864, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h864.2\u27e9\n   \u00b7 exact \u27e8898, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h898.2\u27e9\n   \u00b7 exact \u27e8904, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h904.2\u27e9\n   \u00b7 exact \u27e8912, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h912.2\u27e9\n   \u00b7 exact \u27e8928, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h928.2\u27e9\n \n theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s3\n@@ -143,42 +145,43 @@ theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s3\n   unfold fragmentSearchAux at hmem\n   simp at hmem\n   rcases hmem with \u27e8_hv, hmem\u27e9\n+  have hpin : pinnedMaskOf .s3 = 225 := by rfl\n   rcases hmem with h771 | h777 | h785 | h801 | h834 | h840 | h848 | h864 | h898 | h904 | h912 | h928\n   \u00b7 exact \u27e8771, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h771.2\u27e9\n   \u00b7 exact \u27e8777, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h777.2\u27e9\n   \u00b7 exact \u27e8785, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h785.2\u27e9\n   \u00b7 exact \u27e8801, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h801.2\u27e9\n   \u00b7 exact \u27e8834, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h834.2\u27e9\n   \u00b7 exact \u27e8840, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h840.2\u27e9\n   \u00b7 exact \u27e8848, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h848.2\u27e9\n   \u00b7 exact \u27e8864, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h864.2\u27e9\n   \u00b7 exact \u27e8898, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h898.2\u27e9\n   \u00b7 exact \u27e8904, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h904.2\u27e9\n   \u00b7 exact \u27e8912, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h912.2\u27e9\n   \u00b7 exact \u27e8928, by simp [candidateMasks],\n-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]\n+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]\n         using h928.2\u27e9\n \n theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top\ndiff --git a/lean/lake-manifest.json b/lean/lake-manifest.json\nindex d32a9876b..947fa6b18 100644\n--- a/lean/lake-manifest.json\n+++ b/lean/lake-manifest.json\n@@ -1,31 +1,31 @@\n-{\"version\": \"1.1.0\",\n+{\"version\": \"1.2.0\",\n  \"packagesDir\": \".lake/packages\",\n  \"packages\":\n  [{\"url\": \"https://github.com/google-deepmind/formal-conjectures.git\",\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"\",\n-   \"rev\": \"89a67be506fbae633d02941ccbd9f3737bbd5457\",\n+   \"rev\": \"8323e878b83fcd7f4a448256069352a265460d75\",\n    \"name\": \"formal_conjectures\",\n    \"manifestFile\": \"lake-manifest.json\",\n-   \"inputRev\": \"main\",\n+   \"inputRev\": \"8323e878b83fcd7f4a448256069352a265460d75\",\n    \"inherited\": false,\n    \"configFile\": \"lakefile.toml\"},\n   {\"url\": \"https://github.com/leanprover-community/mathlib4\",\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"a3a10db0e9d66acbebf76c5e6a135066525ac900\",\n+   \"rev\": \"0df444a360eaa60ab8c11dca51a86af692955474\",\n    \"name\": \"mathlib\",\n    \"manifestFile\": \"lake-manifest.json\",\n-   \"inputRev\": \"v4.27.0\",\n+   \"inputRev\": \"v4.33.1\",\n    \"inherited\": false,\n    \"configFile\": \"lakefile.lean\"},\n   {\"url\": \"https://github.com/leanprover-community/plausible\",\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"009dc1e6f2feb2c96c081537d80a0905b2c6498f\",\n+   \"rev\": \"b7eb3304aeae834b12dda98993a37f6a41f6f0bb\",\n    \"name\": \"plausible\",\n    \"manifestFile\": \"lake-manifest.json\",\n    \"inputRev\": \"main\",\n@@ -35,7 +35,7 @@\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"5ce7f0a355f522a952a3d678d696bd563bb4fd28\",\n+   \"rev\": \"5f4d51b81cbd3f6b32b156bfad9056621a040404\",\n    \"name\": \"LeanSearchClient\",\n    \"manifestFile\": \"lake-manifest.json\",\n    \"inputRev\": \"main\",\n@@ -45,7 +45,7 @@\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"8f497d55985a189cea8020d9dc51260af1e41ad2\",\n+   \"rev\": \"16f02aa7642864af59f1ff0e384a015994db9118\",\n    \"name\": \"importGraph\",\n    \"manifestFile\": \"lake-manifest.json\",\n    \"inputRev\": \"main\",\n@@ -55,17 +55,17 @@\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"c04225ee7c0585effbd933662b3151f01b600e40\",\n+   \"rev\": \"4be2e3d5087eeb272cf5a8853b8f9dd025ef5957\",\n    \"name\": \"proofwidgets\",\n    \"manifestFile\": \"lake-manifest.json\",\n-   \"inputRev\": \"v0.0.85\",\n+   \"inputRev\": \"main\",\n    \"inherited\": true,\n    \"configFile\": \"lakefile.lean\"},\n   {\"url\": \"https://github.com/leanprover-community/aesop\",\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"cb837cc26236ada03c81837bebe0acd9c70ced7d\",\n+   \"rev\": \"3448c0bcc5ce01b2d1546e483ec3620e32df3d0e\",\n    \"name\": \"aesop\",\n    \"manifestFile\": \"lake-manifest.json\",\n    \"inputRev\": \"master\",\n@@ -75,7 +75,7 @@\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"bd58c9efe2086d56ca361807014141a860ddbf8c\",\n+   \"rev\": \"92c15be17b7caf78c2ad767ec40f89052d908d81\",\n    \"name\": \"Qq\",\n    \"manifestFile\": \"lake-manifest.json\",\n    \"inputRev\": \"master\",\n@@ -85,7 +85,7 @@\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover-community\",\n-   \"rev\": \"b25b36a7caf8e237e7d1e6121543078a06777c8a\",\n+   \"rev\": \"4488d40d070b9700d4d5a6aa342f0d40c31b2a2d\",\n    \"name\": \"batteries\",\n    \"manifestFile\": \"lake-manifest.json\",\n    \"inputRev\": \"main\",\n@@ -95,11 +95,12 @@\n    \"type\": \"git\",\n    \"subDir\": null,\n    \"scope\": \"leanprover\",\n-   \"rev\": \"55c37290ff6186e2e965d68cf853a57c0702db82\",\n+   \"rev\": \"6130a47896ce867c6a4a55373441e59e565bad0f\",\n    \"name\": \"Cli\",\n    \"manifestFile\": \"lake-manifest.json\",\n-   \"inputRev\": \"v4.27.0\",\n+   \"inputRev\": \"v4.33.0\",\n    \"inherited\": true,\n    \"configFile\": \"lakefile.toml\"}],\n  \"name\": \"Erdos9796\",\n- \"lakeDir\": \".lake\"}\n+ \"lakeDir\": \".lake\",\n+ \"fixedToolchain\": false}\ndiff --git a/lean/lakefile.toml b/lean/lakefile.toml\nindex c1dd71913..b83806b4a 100644\n--- a/lean/lakefile.toml\n+++ b/lean/lakefile.toml\n@@ -23,12 +23,12 @@ weak.linter.style.longLine = false\n [[require]]\n name = \"mathlib\"\n scope = \"leanprover-community\"\n-rev = \"v4.27.0\"\n+rev = \"v4.33.1\"\n \n [[require]]\n name = \"formal_conjectures\"\n git = \"https://github.com/google-deepmind/formal-conjectures.git\"\n-rev = \"main\"\n+rev = \"8323e878b83fcd7f4a448256069352a265460d75\"\n \n [[lean_lib]]\n name = \"Erdos9796\"\ndiff --git a/lean/lean-toolchain b/lean/lean-toolchain\nindex 5249182c0..a8afa7d1b 100644\n--- a/lean/lean-toolchain\n+++ b/lean/lean-toolchain\n@@ -1 +1 @@\n-leanprover/lean4:v4.27.0\n+leanprover/lean4:v4.33.1\n",
+  "working_diff_sha256": "8e2e21d08b8871a8fe3d6c1d6197ba2c570db886f7b5aeea87c73df5864c7db2",
+  "reviewed_utc": "2026-09-07T21:12:14.527669+00:00",
+  "independent_build_run": false,
+  "round0_census": {
+    "log": "scratch/runs/mathlib-v4331-migration-20260907/run-0001/artifacts/census/round-0/build.log",
+    "modules_built_ok": 148,
+    "total_failed": 9,
+    "frontier_count": 9,
+    "cascade_count": 0,
+    "frontier": [
+      {
+        "module": "Erdos9796Proof.Geometry.SimilarityFrame",
+        "file": "lean/Erdos9796Proof/Geometry/SimilarityFrame.lean",
+        "first_error": "76:0: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'PiLp.seminormedAddCommGroup', which is 'noncomputable'"
+      },
+      {
+        "module": "Erdos9796Proof.P97.ATail.ConvexCocircularHalfPlane",
+        "file": "lean/Erdos9796Proof/P97/ATail/ConvexCocircularHalfPlane.lean",
+        "first_error": "51:4: failed to synthesize instance of type class"
+      },
+      {
+        "module": "Erdos9796Proof.P97.Certificate.CheckpointedRup",
+        "file": "lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean",
+        "first_error": "66:73: Type mismatch: After simplification, term"
+      },
+      {
+        "module": "Erdos9796Proof.P97.ConvexCyclicOrder.ShellCurvatureConstruct",
+        "file": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean",
+        "first_error": "89:4: Type mismatch: After simplification, term"
+      },
+      {
+        "module": "Erdos9796Proof.P97.EndpointCertificate.ShadowSearch",
+        "file": "lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean",
+        "first_error": "446:2: Type mismatch: After simplification, term"
+      },
+      {
+        "module": "Erdos9796Proof.P97.EndpointCertificate.Soundness",
+        "file": "lean/Erdos9796Proof/P97/EndpointCertificate/Soundness.lean",
+        "first_error": "390:6: Type mismatch: After simplification, term"
+      },
+      {
+        "module": "Erdos9796Proof.P97.ErasedPinFixedSeedDFS",
+        "file": "lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean",
+        "first_error": "368:36: unsolved goals"
+      },
+      {
+        "module": "Erdos9796Proof.P97.Moser.TriangleNonObtuse",
+        "file": "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean",
+        "first_error": "115:4: failed to synthesize instance of type class"
+      },
+      {
+        "module": "Erdos9796Proof.P97.SurplusCOMPGBankDFS",
+        "file": "lean/Erdos9796Proof/P97/SurplusCOMPGBankDFS.lean",
+        "first_error": "46:9: Type mismatch: After simplification, term"
+      }
+    ],
+    "failed": [
+      {
+        "module": "Erdos9796Proof.Geometry.SimilarityFrame",
+        "file": "lean/Erdos9796Proof/Geometry/SimilarityFrame.lean",
+        "first_error": "76:0: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'PiLp.seminormedAddCommGroup', which is 'noncomputable'",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.ATail.ConvexCocircularHalfPlane",
+        "file": "lean/Erdos9796Proof/P97/ATail/ConvexCocircularHalfPlane.lean",
+        "first_error": "51:4: failed to synthesize instance of type class",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.Certificate.CheckpointedRup",
+        "file": "lean/Erdos9796Proof/P97/Certificate/CheckpointedRup.lean",
+        "first_error": "66:73: Type mismatch: After simplification, term",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.ConvexCyclicOrder.ShellCurvatureConstruct",
+        "file": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/ShellCurvatureConstruct.lean",
+        "first_error": "89:4: Type mismatch: After simplification, term",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.EndpointCertificate.ShadowSearch",
+        "file": "lean/Erdos9796Proof/P97/EndpointCertificate/ShadowSearch.lean",
+        "first_error": "446:2: Type mismatch: After simplification, term",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.EndpointCertificate.Soundness",
+        "file": "lean/Erdos9796Proof/P97/EndpointCertificate/Soundness.lean",
+        "first_error": "390:6: Type mismatch: After simplification, term",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.ErasedPinFixedSeedDFS",
+        "file": "lean/Erdos9796Proof/P97/ErasedPinFixedSeedDFS.lean",
+        "first_error": "368:36: unsolved goals",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.Moser.TriangleNonObtuse",
+        "file": "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean",
+        "first_error": "115:4: failed to synthesize instance of type class",
+        "missing_imports": []
+      },
+      {
+        "module": "Erdos9796Proof.P97.SurplusCOMPGBankDFS",
+        "file": "lean/Erdos9796Proof/P97/SurplusCOMPGBankDFS.lean",
+        "first_error": "46:9: Type mismatch: After simplification, term",
+        "missing_imports": []
+      }
+    ]
+  },
+  "round0_exit": "1",
+  "round1_log_bytes": 552034,
+  "round1_log_prefix_sha256": "da6d43ec103fdf9dbd39918c920ac2c7aee1036abc125d2745bbcef1c489fff2",
+  "round1_errors": [
+    {
+      "line": 2726,
+      "context": [
+        "error: Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:572:23: Type mismatch: After simplification, term",
+        "  hM44.left",
+        " has type",
+        "  @Eq \u2115",
+        "    (#(match 0 with",
+        "      | \u27e80, isLt\u27e9 => S.partition.C2",
+        "      | \u27e81, isLt\u27e9 => S.partition.C3",
+        "      | x => S.partition.C1))",
+        "    4",
+        "but is expected to have type",
+        "  @Eq \u2115",
+        "    (#(match",
+        "        \u2191(match 0 with",
+        "          | \u27e80, isLt\u27e9 => 1",
+        "          | \u27e81, isLt\u27e9 => 2",
+        "          | x => 0) with",
+        "      | 0 => S.partition.C1",
+        "      | 1 => S.partition.C2"
+      ]
+    },
+    {
+      "line": 2746,
+      "context": [
+        "error: Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:572:23: Type mismatch: After simplification, term",
+        "  hM44.left",
+        " has type",
+        "  @Eq \u2115",
+        "    (#(match 1 with",
+        "      | \u27e80, isLt\u27e9 => S.partition.C2",
+        "      | \u27e81, isLt\u27e9 => S.partition.C3",
+        "      | x => S.partition.C1))",
+        "    4",
+        "but is expected to have type",
+        "  @Eq \u2115",
+        "    (#(match",
+        "        \u2191(match 1 with",
+        "          | \u27e80, isLt\u27e9 => 1",
+        "          | \u27e81, isLt\u27e9 => 2",
+        "          | x => 0) with",
+        "      | 0 => S.partition.C1",
+        "      | 1 => S.partition.C2"
+      ]
+    },
+    {
+      "line": 2766,
+      "context": [
+        "error: Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:580:23: Type mismatch: After simplification, term",
+        "  hM44.right",
+        " has type",
+        "  @Eq \u2115",
+        "    (#(match 0 with",
+        "      | \u27e80, isLt\u27e9 => S.partition.C3",
+        "      | \u27e81, isLt\u27e9 => S.partition.C1",
+        "      | x => S.partition.C2))",
+        "    4",
+        "but is expected to have type",
+        "  @Eq \u2115",
+        "    (#(match",
+        "        \u2191(match 0 with",
+        "          | \u27e80, isLt\u27e9 => 2",
+        "          | \u27e81, isLt\u27e9 => 0",
+        "          | x => 1) with",
+        "      | 0 => S.partition.C1",
+        "      | 1 => S.partition.C2"
+      ]
+    },
+    {
+      "line": 2786,
+      "context": [
+        "error: Erdos9796Proof/P97/Cap/PartitionFromMEC.lean:580:23: Type mismatch: After simplification, term",
+        "  hM44.right",
+        " has type",
+        "  @Eq \u2115",
+        "    (#(match 1 with",
+        "      | \u27e80, isLt\u27e9 => S.partition.C3",
+        "      | \u27e81, isLt\u27e9 => S.partition.C1",
+        "      | x => S.partition.C2))",
+        "    4",
+        "but is expected to have type",
+        "  @Eq \u2115",
+        "    (#(match",
+        "        \u2191(match 1 with",
+        "          | \u27e80, isLt\u27e9 => 2",
+        "          | \u27e81, isLt\u27e9 => 0",
+        "          | x => 1) with",
+        "      | 0 => S.partition.C1",
+        "      | 1 => S.partition.C2"
+      ]
+    }
+  ],
+  "round1_last_line": "\u2714 [11650/14049] Built Erdos9796Proof.P97.ATail.FrontierLiveClosure.Generated.Balanced555DirectReplay.CompactWindowedRupReplay.Shard1.W0026 (13s)",
+  "missing_root_oleans": [
+    "Erdos9796Proof/P96/EuclideanPeeling",
+    "Erdos9796Proof/P96/UpstreamBridge",
+    "Erdos9796Proof/P97/UpstreamBridge",
+    "Challenge",
+    "Solution"
+  ],
+  "pilot_trace": {
+    "synthetic": false,
+    "schemaVersion": "2025-09-10",
+    "outputs": {
+      "o": [
+        "551d2d415707012f.olean"
+      ],
+      "m": false,
+      "i": "e823015f337a7e20.ilean",
+      "c": "8dbcbee40fea4ab2.c"
+    },
+    "log": [
+      {
+        "message": ".> LEAN_PATH=/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/Cli/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/batteries/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/Qq/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/aesop/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/importGraph/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/plausible/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/mathlib/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/packages/formal_conjectures/.lake/build/lib/lean:/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/build/lib/lean /Users/adam/.elan/toolchains/leanprover--lean4---v4.33.1/bin/lean -M16384 -s2097152 /Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/Erdos9796Proof/P97/FourPairCoverage.lean -o /Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/build/lib/lean/Erdos9796Proof/P97/FourPairCoverage.olean -i /Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/build/lib/lean/Erdos9796Proof/P97/FourPairCoverage.ilean -c /Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/build/ir/Erdos9796Proof/P97/FourPairCoverage.c --setup /Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/.lake/build/ir/Erdos9796Proof/P97/FourPairCoverage.setup.json --json",
+        "level": "trace"
+      }
+    ],
+    "inputs": [
+      [
+        "deps",
+        [
+          [
+            "Erdos9796/Erdos9796Proof:extraDep",
+            [
+              [
+                "@Erdos9796:extraDep",
+                "00000000000006bb"
+              ]
+            ]
+          ],
+          [
+            "imports",
+            [
+              [
+                "Mathlib.Data.Finset.Card transitive imports (legacy)",
+                "4b03c3218236012e"
+              ],
+              [
+                "Mathlib.Data.Finset.Card:importAllArts",
+                "d59c5c3b7de87058"
+              ]
+            ]
+          ]
+        ]
+      ],
+      [
+        "libs",
+        [
+          [
+            "import dynlibs",
+            "00000000000006bb"
+          ],
+          [
+            "package external libraries",
+            "00000000000006bb"
+          ],
+          [
+            "module dynlibs",
+            "00000000000006bb"
+          ],
+          [
+            "module plugins",
+            "00000000000006bb"
+          ]
+        ]
+      ],
+      [
+        "Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+        "0051240b7c23c453"
+      ],
+      [
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/.worktrees/mathlib-v4331-migration-20260907/lean/Erdos9796Proof/P97/FourPairCoverage.lean",
+        "e2bbae8cb606389c"
+      ],
+      [
+        "options",
+        [
+          [
+            "-Dweak.linter.style.longLine=false",
+            "5826c6c78e4b832d"
+          ],
+          [
+            "-Dweak.linter.mathlibStandardSet=true",
+            "8a155799906f2b42"
+          ],
+          [
+            "-DrelaxedAutoImplicit=false",
+            "74a2b5546b55be80"
+          ],
+          [
+            "-Dpp.unicode.fun=true",
+            "9b94070140457fab"
+          ]
+        ]
+      ],
+      [
+        "isModule: false",
+        "feefd2a0d3a1847e"
+      ],
+      [
+        "Module.name: Erdos9796Proof.P97.FourPairCoverage",
+        "2a67f35684e78e18"
+      ],
+      [
+        "Package.id?: (some Erdos9796)",
+        "f1028c569740846e"
+      ],
+      [
+        "Module.leanArgs: #[-M16384, -s2097152]",
+        "a51a46f6fdba1040"
+      ]
+    ],
+    "depHash": "0c5e19c4f80e34bb"
+  },
+  "pilot_trace_sha256": "368019efa7d6f3feb3546a181a59b352a4b4ed99cf0b47fdbd29c927d78e71e4",
+  "pilot_source_sha256": "f5be62ebdcd6ea6260f532759958ad1d660ec76c6baa74cd314b48030e1324e3",
+  "source_drift": [],
+  "source_review": "Independent migration_semantics review: no theorem-type/premise/checker-semantic weakening found in nine modified Lean source files; no new trust markers; existing native_decide counts unchanged. Static review only.",
+  "evidence_review": "Independent migration_evidence review: research documents preserve no-build qualifications; root/comparator artifacts absent; old validation logs are not new-toolchain evidence. Coordinator additionally inspected actual round-0 census and active round-1 log."
+}

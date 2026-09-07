@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "local-v4331-review-prove2me-20260907",
+  "owner": "codex-migration-review",
+  "base_head": "15cb02b27a670a82a92f603270227d498e891ff3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/local-v4331-review-prove2me-20260907.json",
+    "docs/audits/2026-09-07-local-v4331-migration-review.json",
+    "docs/audits/2026-09-07-local-v4331-migration-review.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [
+    "scratch/runs/local-v4331-review-prove2me-20260907/run-0001"
+  ],
+  "created_utc": "2026-09-07T21:06:03.981701Z",
+  "manifest_sha256": "cf764252c8d5bc178a31106fd5157b5f53ac1681562185526bd26b690b678e7b"
+}
