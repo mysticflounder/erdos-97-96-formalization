@@ -1,0 +1,137 @@
+{
+  "schema": "prove2me-upload-receipt/v1",
+  "recorded_utc": "2026-09-07T21:37:27.215952Z",
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "theorem_url": "https://prove2.me/theorems/9bd194e6-8fc5-4637-8f3c-71645a468443",
+  "publish_response": {
+    "jobs": [
+      {
+        "job_id": "e1db2174-834d-4d73-a972-9e3476d7ef80",
+        "name": "Erdos9796Mission_four_pair_overlap_on_seven"
+      }
+    ],
+    "errors": [],
+    "message": "1/1 problem(s) queued. Poll GET /api/v1/publish-jobs/{job_id} until status is PUBLISHED, FAILED, or ERROR.",
+    "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions"
+  },
+  "publish_verdict": {
+    "id": "e1db2174-834d-4d73-a972-9e3476d7ef80",
+    "kind": "problem",
+    "theorem_name": "Erdos9796Mission_four_pair_overlap_on_seven",
+    "theorem_title": "Four two-point supports in a seven-point set",
+    "formal_statement": "theorem Erdos9796Mission_four_pair_overlap_on_seven {α : Type*} [DecidableEq α]\n    (U A B C D : Finset α) (hU : U.card ≤ 7)\n    (hAU : A ⊆ U) (hBU : B ⊆ U) (hCU : C ⊆ U) (hDU : D ⊆ U)\n    (hA : A.card = 2) (hB : B.card = 2) (hC : C.card = 2) (hD : D.card = 2)\n    (hAB : Disjoint A B) (hAC : Disjoint A C) (hCD : Disjoint C D) :\n    (A ∩ D).Nonempty ∨ (B ∩ C).Nonempty ∨ (B ∩ D).Nonempty := by sorry",
+    "natural_language_statement": "Let U be a finite set with at most seven elements, and let A, B, C, D be two-element subsets of U. Suppose A and B are disjoint, A and C are disjoint, and C and D are disjoint. Then at least one of A ∩ D, B ∩ C, or B ∩ D is nonempty.",
+    "definitions": "import Mathlib.Data.Finset.Card\nset_option autoImplicit false",
+    "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/39000ab545ab30982e92d70f8ab7ef0c21fa4b00/lean/Erdos9796Proof/P97/FourPairCoverage.lean — Problem97.FourPairCoverage.overlap_of_three_disjoint_pairs",
+    "tags": [
+      "combinatorics",
+      "finite-sets"
+    ],
+    "visibility": "public",
+    "status": "PUBLISHED",
+    "error_message": "",
+    "theorem_id": "9bd194e6-8fc5-4637-8f3c-71645a468443",
+    "created_at": "2026-09-07T21:33:31.79932+00:00",
+    "updated_at": "2026-09-07T21:33:36.736692+00:00"
+  },
+  "verify_response": {
+    "submission_id": "5c87cdab-352e-4ae6-9230-9fac843c8f38",
+    "status": "PENDING",
+    "message": "Proof submitted for verification. Poll GET /submission/{id} for results.",
+    "guidelines": "Reminder: write the explanation like a section of a math paper, not a tactic-by-tactic transcript. Walk through the mathematical argument and show how it maps onto your Lean code, in Markdown with KaTeX math. The explanation is the only part of a submission you can edit later, via PATCH /api/v1/submissions/:id. Full principles: references/prove.md#attach-an-explanation"
+  },
+  "verify_verdict": {
+    "id": "5c87cdab-352e-4ae6-9230-9fac843c8f38",
+    "theorem_id": "9bd194e6-8fc5-4637-8f3c-71645a468443",
+    "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+    "status": "ACCEPTED",
+    "error_message": "",
+    "file_path": "9bd194e6-8fc5-4637-8f3c-71645a468443/6ac78adb-dda3-4892-bb46-d4c86f102d16/5c87cdab-352e-4ae6-9230-9fac843c8f38.lean",
+    "created_at": "2026-09-07T21:34:37.402717+00:00",
+    "updated_at": "2026-09-07T21:34:55.159851+00:00"
+  },
+  "theorem_final": {
+    "theorem_id": "9bd194e6-8fc5-4637-8f3c-71645a468443",
+    "theorem_name": "Erdos9796Mission_four_pair_overlap_on_seven",
+    "theorem_title": "Four two-point supports in a seven-point set",
+    "status": "Proved",
+    "formal_statement": "theorem Erdos9796Mission_four_pair_overlap_on_seven {α : Type*} [DecidableEq α]\n    (U A B C D : Finset α) (hU : U.card ≤ 7)\n    (hAU : A ⊆ U) (hBU : B ⊆ U) (hCU : C ⊆ U) (hDU : D ⊆ U)\n    (hA : A.card = 2) (hB : B.card = 2) (hC : C.card = 2) (hD : D.card = 2)\n    (hAB : Disjoint A B) (hAC : Disjoint A C) (hCD : Disjoint C D) :\n    (A ∩ D).Nonempty ∨ (B ∩ C).Nonempty ∨ (B ∩ D).Nonempty := by sorry",
+    "natural_language_statement": "Let U be a finite set with at most seven elements, and let A, B, C, D be two-element subsets of U. Suppose A and B are disjoint, A and C are disjoint, and C and D are disjoint. Then at least one of A ∩ D, B ∩ C, or B ∩ D is nonempty.",
+    "created_at": "2026-09-07T21:33:36.075718+00:00",
+    "vote_count": 0,
+    "tags": [
+      "combinatorics",
+      "finite-sets"
+    ],
+    "preamble": "import Mathlib.Data.Finset.Card\nset_option autoImplicit false",
+    "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/39000ab545ab30982e92d70f8ab7ef0c21fa4b00/lean/Erdos9796Proof/P97/FourPairCoverage.lean — Problem97.FourPairCoverage.overlap_of_three_disjoint_pairs",
+    "deprecated_at": null,
+    "deprecated_by": null,
+    "visibility": "public",
+    "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "audits": [],
+    "readback": null
+  },
+  "milestone_payload": {
+    "title": "P97 exact-16 supporting lemma: four-support overlap",
+    "milestone_description": "Let U be a finite set with at most seven elements, and let A, B, C, D be two-element subsets of U. Suppose A and B are disjoint, A and C are disjoint, and C and D are disjoint. Then at least one of A ∩ D, B ∩ C, or B ∩ D is nonempty.\n\nThis is the counting component of the exact-16 support classifier: it replaces enumeration of support assignments. The geometric interpretation and exclusions are separate obligations. This lemma alone does not establish exact-16 exclusion or RVOL.",
+    "theorem_id": "9bd194e6-8fc5-4637-8f3c-71645a468443"
+  },
+  "milestone_final": {
+    "id": "bc3ac2d3-e0ba-4259-b305-c1facbb9b953",
+    "title": "P97 exact-16 supporting lemma: four-support overlap",
+    "milestone_description": "Let U be a finite set with at most seven elements, and let A, B, C, D be two-element subsets of U. Suppose A and B are disjoint, A and C are disjoint, and C and D are disjoint. Then at least one of A ∩ D, B ∩ C, or B ∩ D is nonempty.\n\nThis is the counting component of the exact-16 support classifier: it replaces enumeration of support assignments. The geometric interpretation and exclusions are separate obligations. This lemma alone does not establish exact-16 exclusion or RVOL.",
+    "sort_order": 7,
+    "completed": true,
+    "theorem": {
+      "id": "9bd194e6-8fc5-4637-8f3c-71645a468443",
+      "theorem_name": "Erdos9796Mission_four_pair_overlap_on_seven",
+      "status": "Proved"
+    },
+    "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+    "created_at": "2026-09-07T21:36:26.933428+00:00"
+  },
+  "files_sha256": {
+    "submissions/upload-20260907/payload.json": "e9c594e38e3b8906eacea54077a125231e12dd0b6319ef2e0fcaf55fd07a52c0",
+    "submissions/four-pair-coverage/Solutions/Sol_Erdos9796Mission_four_pair_overlap_on_seven.lean": "8e16519390023e8b0872ccc8fafc35999bf3c5ae2ec5d1987bc3bad80e23242d",
+    "submissions/four-pair-coverage/explanation.md": "53449a6c2f3cd288ed51cd385c7798d83979ba8d5e8c78dac24f240c2217f79c",
+    "submissions/four-pair-coverage/validation.json": "66369b39053155d63af7f8a7ba0b53db94fd818eac50d669a7ca648241d0cc59"
+  },
+  "remaining_original_milestones": [
+    {
+      "theorem_name": "Erdos9796Mission.danzer_nine",
+      "status": "Open",
+      "completed": false
+    },
+    {
+      "theorem_name": "Erdos9796Mission.counterexample_card_ge_nine",
+      "status": "Open",
+      "completed": false
+    },
+    {
+      "theorem_name": "Erdos9796Mission.finite_nine_exclusion",
+      "status": "Open",
+      "completed": false
+    },
+    {
+      "theorem_name": "Erdos9796Mission.minimal_counterexample_removable",
+      "status": "Open",
+      "completed": false
+    },
+    {
+      "theorem_name": "Erdos9796Mission.problem97",
+      "status": "Open",
+      "completed": false
+    },
+    {
+      "theorem_name": "Erdos9796Mission.linear_bound_of_problem97",
+      "status": "Open",
+      "completed": false
+    },
+    {
+      "theorem_name": "Erdos9796Mission.problem96",
+      "status": "Open",
+      "completed": false
+    }
+  ]
+}

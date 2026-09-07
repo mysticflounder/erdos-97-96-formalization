@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-upload-20260907",
+  "owner": "codex-prove2me-upload",
+  "base_head": "3f9db5ec1cb21841810d0fa2b88f0d9027a6900b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-upload-20260907.json",
+    "prove2me/README.md",
+    "prove2me/submissions/upload-20260907/README.md",
+    "prove2me/submissions/upload-20260907/payload.json",
+    "prove2me/submissions/upload-20260907/receipt.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [
+    "scratch/runs/prove2me-upload-20260907/run-0001"
+  ],
+  "created_utc": "2026-09-07T21:31:12Z",
+  "manifest_sha256": "5fa4eca583677a1143c057b21c0cbd807d99b4a6d75e3bea916b844778fc367e"
+}
