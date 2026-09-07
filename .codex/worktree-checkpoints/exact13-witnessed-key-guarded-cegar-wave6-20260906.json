@@ -1,0 +1,28 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-witnessed-key-guarded-cegar-wave6-20260906",
+  "owner": "exact13-witnessed-key-guarded-cegar-wave6-20260906",
+  "base_head": "fd020fbb3255253b07ffc8229ca6b2c7883ff1d1",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-witnessed-key-guarded-cegar-wave6-20260906.json",
+    "docs/audits/2026-09-06-exact13-witnessed-key-guarded-cegar-wave6.md",
+    "scripts/cardge13_exact13_witnessed_key_guarded_cegar_wave6_piqd.py",
+    "scripts/test_cardge13_exact13_witnessed_key_guarded_cegar_wave6_piqd.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data-7400/piqd.db",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data-7400/piqd.lock",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data-7401/piqd.db",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data-7401/piqd.lock",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data-7401/sessions/5ead1a60-d97d-4c52-a6e5-20c13b1ad097/journal.cnf",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data-7401/sessions/5ead1a60-d97d-4c52-a6e5-20c13b1ad097/receipts.jsonl",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data/piqd.db",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/piqd-data/piqd.lock",
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-witnessed-key-guarded-cegar-wave6-20260906/run-0001"
+  ],
+  "created_utc": "2026-09-06T23:00:00Z",
+  "manifest_sha256": "2406b93a2cde660beb863ed211c765f56f06b0a84009f1eac38e9717d13ffe4e"
+}
