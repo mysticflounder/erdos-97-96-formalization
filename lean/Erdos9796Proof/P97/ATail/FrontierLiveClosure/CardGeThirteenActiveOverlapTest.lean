@@ -1,0 +1,20 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ATail.FrontierLiveClosure.CardGeThirteenActiveOverlap
+
+/-! Focused compile and trust checks for the CardGe13 active-overlap normalizer. -/
+
+#check Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap
+#check Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.sharedSupport
+#check Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.remainingSupport
+#check Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.nonempty_of_overlap
+#check Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.card_eq_one_or_two
+#check Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.remainingSupport_inter_sharedSupport_card_le_one_of_card_eq_two
+
+#print axioms Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.nonempty_of_overlap
+#print axioms Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.card_eq_one_or_two
+#print axioms Problem97.ATailFrontierLiveClosure.CardGeThirteenActiveOverlap.remainingSupport_inter_sharedSupport_card_le_one_of_card_eq_two

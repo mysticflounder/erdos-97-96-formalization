@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cardge13-active-overlap-20260906",
+  "owner": "luna-swarm-radius-scribe",
+  "base_head": "091fef81c45c5d77289af09ab2e8238e84ae9d4a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cardge13-active-overlap-20260906.json",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenActiveOverlap.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/CardGeThirteenActiveOverlapTest.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-07T02:21:00Z",
+  "manifest_sha256": "bf0cdb2d75596f8ec8ac54c88f059d6e021cf85cfa1d5ba4a7d97a8076bea8b2"
+}
