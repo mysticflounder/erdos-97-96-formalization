@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-wave6-partial-replay-20260906",
+  "owner": "codex-atomic-scribe",
+  "base_head": "9852eb8cb5f8283d7f5a8e0d06508590c45934bc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-wave6-partial-replay-20260906.json",
+    "docs/audits/2026-09-06-exact13-wave6-partial-replay.md",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "docs/erdos-97-exact13-semantic-canonicalization.md",
+    "scripts/audit_exact13_wave6_partial_replay.py",
+    "scripts/test_audit_exact13_wave6_partial_replay.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-wave6-partial-replay-20260906/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/exact13-wave6-partial-replay-20260906/run-0001/partial-replay-receipt.json",
+    "scratch/runs/exact13-wave6-partial-replay-20260906/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-07T01:29:09Z",
+  "manifest_sha256": "71a7419b4574b8d96af6727bd9eecf0f60981d25a340249efac65f083d3b31d4"
+}

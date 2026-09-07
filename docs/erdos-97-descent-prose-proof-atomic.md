@@ -1587,6 +1587,11 @@ ended with SAT at its refinement budget; the
 [wave6 extension](audits/2026-09-06-exact13-witnessed-key-guarded-cegar-wave6.md)
 is interrupted and nonterminal. Neither is an exhaustive coverage or
 contradiction certificate.
+The separate [partial recovery audit](audits/2026-09-06-exact13-wave6-partial-replay.md)
+replays all 7,509 wave6 additions and preserves the inherited 56,000-row
+prefix through its authenticated import receipt. A proposed third-apex
+intersection guard excludes 1,669 of those additions; its source refinement
+awaits focused Lean validation, and exhaustive coverage remains open.
 
 ### 11.5 Exact-five and the remaining Rigid221 closure contracts
 

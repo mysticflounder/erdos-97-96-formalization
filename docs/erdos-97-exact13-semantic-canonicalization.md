@@ -217,6 +217,14 @@ The [wave5 audit](audits/2026-09-06-exact13-witnessed-key-guarded-cegar-wave5.md
 records 56,000 cuts and a SAT refinement-budget terminal. The
 [wave6 closeout](audits/2026-09-06-exact13-witnessed-key-guarded-cegar-wave6.md)
 records an interrupted, nonterminal extension to 63,509 cuts, with a one-row
-state lag and no completed post-run StrongValid replay. Neither result proves
+state lag. The subsequent partial replay is described below. Neither result proves
 `StrongValidKeyCover`. Completing checked coverage, or deriving a narrower
 source-entitled coverage contract, remains necessary for this finite route.
+
+The subsequent [partial recovery audit](audits/2026-09-06-exact13-wave6-partial-replay.md)
+replays all 7,509 wave6 additions against the effective root, `Key.Valid`, and
+the existing guarded conditions. It authenticates the inherited 56,000-row
+prefix through the earlier import receipt and preserves the interrupted
+run unchanged. A proposed third-apex guard excludes 1,669 of the additions.
+The successor source producer and conditional refined-coverage consumer
+await focused Lean validation; no exhaustive refined cover is supplied.
