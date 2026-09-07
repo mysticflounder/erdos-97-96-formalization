@@ -400,3 +400,21 @@ The original Boolean root does not imply the guarded predicate: retained
 geometric source-refinement lane must establish entitlement before a new
 solver root uses this constraint. H1 does not change that root, prove its
 UNSAT, or settle the general strict all-center conjecture.
+
+### Successor handoff (September 7)
+
+H1 is a completed historical replay, not the current search frontier.
+The later third-apex source successor is recorded at `427d96c66`, and
+the Wave6 partial-bank reconciliation at `31ffc3a38`. The latter retains
+all 63,509 bank rows while explicitly reporting the 63,508 state count;
+it does not turn the interrupted campaign into a terminal result. See
+`docs/audits/2026-09-06-exact13-wave6-partial-replay.md` and the successor
+source/coverage entry in `docs/plans/2026-09-01-dr-two-radius-branch-closure.md`.
+
+RadiusCartographer has already started the successor lane
+`exact13-third-apex-guarded-cegar-wave7-20260906`, importing that recovered
+bank and adding the 550 third-apex clauses (coordination message 16804).
+Do not implement or launch a duplicate of the previously proposed next wave.
+Inspect the existing lane's retained evidence and coordinate with its owner
+before any continuation; a launch announcement is not evidence of a live
+process, terminal status, exhaustion, or an uncancellable witness.
