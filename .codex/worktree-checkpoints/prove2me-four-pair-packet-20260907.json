@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-four-pair-packet-20260907",
+  "owner": "codex-prove2me-packet",
+  "base_head": "39000ab545ab30982e92d70f8ab7ef0c21fa4b00",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-four-pair-packet-20260907.json",
+    "prove2me/README.md",
+    "prove2me/submissions/four-pair-coverage/README.md",
+    "prove2me/submissions/four-pair-coverage/Solutions/Sol_Erdos9796Mission_four_pair_overlap_on_seven.lean",
+    "prove2me/submissions/four-pair-coverage/Theorems/Thm_Erdos9796Mission_four_pair_overlap_on_seven.lean",
+    "prove2me/submissions/four-pair-coverage/explanation.md",
+    "prove2me/submissions/four-pair-coverage/payload.json",
+    "prove2me/submissions/four-pair-coverage/provenance.json",
+    "prove2me/submissions/four-pair-coverage/readback.json",
+    "prove2me/submissions/four-pair-coverage/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [
+    "scratch/runs/prove2me-four-pair-packet-20260907/run-0001"
+  ],
+  "created_utc": "2026-09-07T21:17:33Z",
+  "manifest_sha256": "e1680bec057a8427787d28d8300c8cd1374913b6f6afa154030ac2a09ec291cb"
+}

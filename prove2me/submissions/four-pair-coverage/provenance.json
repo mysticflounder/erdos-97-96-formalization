@@ -1,0 +1,15 @@
+{
+  "schema": "prove2me-proof-provenance/v1",
+  "source_commit": "39000ab545ab30982e92d70f8ab7ef0c21fa4b00",
+  "source_path": "lean/Erdos9796Proof/P97/FourPairCoverage.lean",
+  "source_sha256": "f5be62ebdcd6ea6260f532759958ad1d660ec76c6baa74cd314b48030e1324e3",
+  "source_declaration": "Problem97.FourPairCoverage.overlap_of_three_disjoint_pairs",
+  "target_name": "Erdos9796Mission_four_pair_overlap_on_seven",
+  "changes": [
+    "Rename exported theorem to the platform target identifier; rename submitted proof to top-level solution.",
+    "Preserve all binders, assumptions, conclusion and proof body; add explicit autoImplicit false."
+  ],
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "mission_visibility": "private",
+  "submission_status": "prepared_not_submitted"
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "prove2me-prepared-proof-validation/v1",
+  "validated_utc": "2026-09-07T21:20:54Z",
+  "status": "locally_validated_not_submitted",
+  "theorem_name": "Erdos9796Mission_four_pair_overlap_on_seven",
+  "private": true,
+  "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+  "toolchain": "leanprover/lean4:v4.33.1",
+  "workspace": "/Users/adam/prove2me_workspace",
+  "workspace_lakefile_sha256": "01e6f097b3a5771d27dcc6672f2bc9944fdae12fe4cc068370ea4e02960021b4",
+  "workspace_manifest_sha256": "dc8f4ad3ee254ef3ec1a3f7c137c87e5bb22c25d951d477c6e80f2da81e17787",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-M",
+    "4096",
+    "-DautoImplicit=false",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/prove2me-four-pair-packet-20260907/run-0001/tmp/ValidationProbe.lean"
+  ],
+  "exit_code": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "exact_target_application_checked": true,
+  "probe_source": "/-\nCopyright (c) 2026 Adam McKenna. All rights reserved.\nReleased under Apache 2.0 license as described in the file LICENSE.\nAuthors: Adam McKenna\n-/\n\nimport Mathlib.Data.Finset.Card\nset_option autoImplicit false\n\n/-! Standalone proof of four-support overlap inside a seven-element carrier. -/\n\ntheorem solution {\u03b1 : Type*} [DecidableEq \u03b1]\n    (U A B C D : Finset \u03b1) (hU : U.card \u2264 7)\n    (hAU : A \u2286 U) (hBU : B \u2286 U) (hCU : C \u2286 U) (hDU : D \u2286 U)\n    (hA : A.card = 2) (hB : B.card = 2) (hC : C.card = 2) (hD : D.card = 2)\n    (hAB : Disjoint A B) (hAC : Disjoint A C) (hCD : Disjoint C D) :\n    (A \u2229 D).Nonempty \u2228 (B \u2229 C).Nonempty \u2228 (B \u2229 D).Nonempty := by\n  classical\n  by_contra h\n  have hAD : Disjoint A D := by\n    apply Finset.disjoint_left.mpr\n    intro x hxA hxD\n    exact h (Or.inl \u27e8x, Finset.mem_inter.mpr \u27e8hxA, hxD\u27e9\u27e9)\n  have hBC : Disjoint B C := by\n    apply Finset.disjoint_left.mpr\n    intro x hxB hxC\n    exact h (Or.inr (Or.inl \u27e8x, Finset.mem_inter.mpr \u27e8hxB, hxC\u27e9\u27e9))\n  have hBD : Disjoint B D := by\n    apply Finset.disjoint_left.mpr\n    intro x hxB hxD\n    exact h (Or.inr (Or.inr \u27e8x, Finset.mem_inter.mpr \u27e8hxB, hxD\u27e9\u27e9))\n  have hABCD : Disjoint (A \u222a B) (C \u222a D) := by\n    apply Finset.disjoint_left.mpr\n    intro x hxAB hxCD\n    rcases Finset.mem_union.mp hxAB with hxA | hxB\n    \u00b7 rcases Finset.mem_union.mp hxCD with hxC | hxD\n      \u00b7 exact Finset.disjoint_left.mp hAC hxA hxC\n      \u00b7 exact Finset.disjoint_left.mp hAD hxA hxD\n    \u00b7 rcases Finset.mem_union.mp hxCD with hxC | hxD\n      \u00b7 exact Finset.disjoint_left.mp hBC hxB hxC\n      \u00b7 exact Finset.disjoint_left.mp hBD hxB hxD\n  have hcard : ((A \u222a B) \u222a (C \u222a D)).card = 8 := by\n    rw [Finset.card_union_of_disjoint hABCD, Finset.card_union_of_disjoint hAB,\n      Finset.card_union_of_disjoint hCD, hA, hB, hC, hD]\n  have hsub : (A \u222a B) \u222a (C \u222a D) \u2286 U :=\n    Finset.union_subset (Finset.union_subset hAU hBU) (Finset.union_subset hCU hDU)\n  have hle : 8 \u2264 U.card := by\n    rw [\u2190 hcard]\n    exact Finset.card_le_card hsub\n  exact (by decide : \u00ac (8 : \u2115) \u2264 7) (hle.trans hU)\n\n-- Independently elaborate the exact target type and apply the submitted proof.\nexample {\u03b1 : Type*} [DecidableEq \u03b1]\n    (U A B C D : Finset \u03b1) (hU : U.card \u2264 7)\n    (hAU : A \u2286 U) (hBU : B \u2286 U) (hCU : C \u2286 U) (hDU : D \u2286 U)\n    (hA : A.card = 2) (hB : B.card = 2) (hC : C.card = 2) (hD : D.card = 2)\n    (hAB : Disjoint A B) (hAC : Disjoint A C) (hCD : Disjoint C D) :\n    (A \u2229 D).Nonempty \u2228 (B \u2229 C).Nonempty \u2228 (B \u2229 D).Nonempty := solution U A B C D hU hAU hBU hCU hDU hA hB hC hD hAB hAC hCD\n\n#print axioms solution\n",
+  "probe_sha256": "c25279173180f27e5d77d4a73e70b41ca1cdd239ec99ca35ad60bee0e9fe10b2",
+  "log": "'solution' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+  "log_sha256": "3c45b5bbbc5477031cd8ce25542a4173fd9168e3ec3c96fdefae390a1c51a617",
+  "files_sha256": {
+    "payload.json": "c35471c14d8423b4529e5e7debb77c7ef395b18e7be6bb20065414f4b145a258",
+    "provenance.json": "18b16d2218e4cac74387cd4278ae59560ed0ca74d3904a15e0bb3a2c850abd45",
+    "explanation.md": "53449a6c2f3cd288ed51cd385c7798d83979ba8d5e8c78dac24f240c2217f79c",
+    "Theorems/Thm_Erdos9796Mission_four_pair_overlap_on_seven.lean": "55ff1d0a440850c37a82d387045c70ee1992e6de35ec0c14148616b1f07e7395",
+    "Solutions/Sol_Erdos9796Mission_four_pair_overlap_on_seven.lean": "8e16519390023e8b0872ccc8fafc35999bf3c5ae2ec5d1987bc3bad80e23242d"
+  },
+  "remote_submission": null
+}

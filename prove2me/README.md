@@ -9,9 +9,10 @@ bound `3n`, hence Problem 96's `O(n)` statement. No reverse implication is claim
 Open the [mission review page](https://prove2.me/my-missions/c63c586d-1908-47a2-afaa-bfc72728b7ab)
 to inspect the combined goal, seven milestones, and independent read-backs.
 
-**SKETCH — NOT PROMOTABLE.** These are open mission statements. Every theorem
+**Original mission statement packet: SKETCH — NOT PROMOTABLE.** These are open mission statements. Every theorem
 item deliberately contains `sorry`; definitions contain no unproved assumptions.
-Compiling this packet checks its types and its suitability for the platform's
+Supporting-proof packets listed below carry separate validation and submission status.
+Compiling this statement packet checks its types and its suitability for the platform's
 environment. It does not prove either Erdős problem or import the repository's
 existing proofs and certificates.
 
@@ -22,6 +23,8 @@ three-neighbour conjecture. Existing source proofs still require transfer and
 server verification before the corresponding platform nodes can be marked proved.
 
 ## Contents
+
+- [Prepared four-support proof](submissions/four-pair-coverage/README.md): standalone Lean 4.33.1 packet, local validation and explanation; not yet submitted.
 
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
   and bank-replacement work, with consumer and validation gates.

@@ -1,0 +1,31 @@
+{
+  "schema": "prove2me-independent-readback/v1",
+  "reviewer": "packet_readback",
+  "reviewed_at": "2026-09-07T21:24:01.158389Z",
+  "status": "pass",
+  "submission_status": "prepared_not_submitted",
+  "natural_language_readback": "Four two-element subsets of a set of cardinality at most seven, with A disjoint from B and C and C disjoint from D, must have an overlap between A and D, B and C, or B and D.",
+  "checks": {
+    "source_binders_hypotheses_conclusion_preserved": true,
+    "source_proof_body_preserved": true,
+    "mathlib_only_imports": true,
+    "no_solution_placeholder_or_native_decide": true,
+    "private_payload": true
+  },
+  "source_environment": {
+    "lean": "4.27.0",
+    "mathlib": "a3a10db0e9d66acbebf76c5e6a135066525ac900"
+  },
+  "target_environment": {
+    "lean": "4.33.1",
+    "mathlib": "0df444a360eaa60ab8c11dca51a86af692955474"
+  },
+  "files_sha256": {
+    "Solutions/Sol_Erdos9796Mission_four_pair_overlap_on_seven.lean": "8e16519390023e8b0872ccc8fafc35999bf3c5ae2ec5d1987bc3bad80e23242d",
+    "Theorems/Thm_Erdos9796Mission_four_pair_overlap_on_seven.lean": "55ff1d0a440850c37a82d387045c70ee1992e6de35ec0c14148616b1f07e7395",
+    "explanation.md": "53449a6c2f3cd288ed51cd385c7798d83979ba8d5e8c78dac24f240c2217f79c",
+    "payload.json": "c35471c14d8423b4529e5e7debb77c7ef395b18e7be6bb20065414f4b145a258",
+    "provenance.json": "18b16d2218e4cac74387cd4278ae59560ed0ca74d3904a15e0bb3a2c850abd45",
+    "validation.json": "66369b39053155d63af7f8a7ba0b53db94fd818eac50d669a7ca648241d0cc59"
+  }
+}
