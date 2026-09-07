@@ -893,6 +893,55 @@ certificate replay is then unnecessary for card 12.
   stronger source-role hypotheses.  These are therefore genuine immediate
   residuals rather than missed theorem-bank reuse.
 
+  Checkpoint 2026-09-06: the source-indexed exact-thirteen route now has a
+  kernel-checked representative-certificate API and an independently audited
+  nonterminal PIQD frontier.  Commit `9852eb8cb` checks one authenticated
+  one-form bank entry and one authenticated two-form bank entry through the
+  typed `Entry`/`KeyEntryCovers` boundary.  Commit `0d6cc61a6` preserves the
+  interrupted Wave 6 frontier honestly: 56,000 imported cuts and 7,509 new
+  cuts, 63,509 rows total, no survivor, but no `run.json`, terminal receipt,
+  full post-audit, UNSAT result, Lean result, or coverage claim.  The one-row
+  lag between the append-only bank and `state.json` was independently checked
+  against the producer's append-before-state order and is retained rather
+  than repaired into a terminal record.
+
+  A new source consequence materially tightens the finite domain without
+  changing historical `StrongValid`.  The successor module
+  `CardGeThirteenExact13ThirdApexSourceCoverage` proves that an active global
+  row containing `thirdApex` meets the active global row centered at
+  `thirdApex` in at most one raw label.  It derives boundary membership from
+  `LabelMap.thirdApex_eq`, transports supports through the source order, and
+  applies `SelectedFourClass.inter_card_le_one_of_mem_boundary_apex`.  It also
+  supplies a separate refined key predicate, source witness, and conditional
+  `BankCovers` consumer.  A governed 12,010-job build succeeded with only
+  `propext`, `Classical.choice`, and `Quot.sound`; no warning was attributed to
+  the two new modules.  The proof-blueprint refresh remains blocked after the
+  green build by the unrelated missing private declaration
+  `B1CardSixRoleProjectionIngress.ambientRoleIndex_injective`.
+
+  The corresponding finite guard rejects 1,669 of the 7,509 retained Wave 6
+  models and needs 550 additional guarded clauses with no new variables.  It
+  invalidates no historical theorem or cut, but it requires a fresh root,
+  bank replay, and exhaustive refined-key coverage audit before promotion.
+  The next exact-thirteen solver checkpoint must therefore start from this
+  strengthened root and consume `ThirdApexStrongValidKeyCover`; the old
+  63,509-row frontier remains diagnostic input, not the final bank.
+
+  The 2026-09-06 Luna/Pro residual audits also sharpen the three general
+  branches.  For `rowOverlap`, the live data normalize to one selected pair
+  whose intersection has card one or two.  In the card-two case, the existing
+  two-saturated-centers theorem bounds the remaining row's intersection with
+  the shared pair by one, but does not contradict the packet.  Closure still
+  needs a source producer for a second common point in card-one cases and,
+  depending on the selected pair, a third-row common pair, a checked
+  same-arc/nonalternation packet, or reciprocal incidences with the exact
+  first-apex survival premises.  For `disjointFresh`, card at least fourteen
+  and a point outside the thirteen-point union still lack a non-cyclic
+  downstream terminal.  For `adjacentGrid`, the oppIndex2 strict
+  cross-distance theorem is now available, but a source-authenticated
+  blocker-shell theorem must still supply the reverse inequality or the
+  nested-escape packet.  None of these audits closes a coordinator `sorry`.
+
 ## 7. Effort
 
 In sessions: Phase 0 + 2 together, one. Phase 1, one to two. Phase 3, one
