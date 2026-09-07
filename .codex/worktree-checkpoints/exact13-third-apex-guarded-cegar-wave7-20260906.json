@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-third-apex-guarded-cegar-wave7-20260906",
+  "owner": "exact13-third-apex-guarded-cegar-wave7-20260906",
+  "base_head": "427d96c66139235abc05ce12edbca3845c4d1b4e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-third-apex-guarded-cegar-wave7-20260906.json",
+    "docs/audits/2026-09-06-exact13-third-apex-guarded-cegar-wave7.md",
+    "scripts/cardge13_exact13_third_apex_guarded_cegar_wave7_piqd.py",
+    "scripts/test_cardge13_exact13_third_apex_guarded_cegar_wave7_piqd.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/exact13-third-apex-guarded-cegar-wave7-20260906/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/exact13-third-apex-guarded-cegar-wave7-20260906/run-0001/piqd-data-7402/piqd.db",
+    "scratch/runs/exact13-third-apex-guarded-cegar-wave7-20260906/run-0001/piqd-data-7402/piqd.lock",
+    "scratch/runs/exact13-third-apex-guarded-cegar-wave7-20260906/run-0001/piqd-data-7402/sessions/08e99ab9-66fd-4bbf-9209-9500e0b5fceb/journal.cnf",
+    "scratch/runs/exact13-third-apex-guarded-cegar-wave7-20260906/run-0001/piqd-data-7402/sessions/08e99ab9-66fd-4bbf-9209-9500e0b5fceb/receipts.jsonl",
+    "scratch/runs/exact13-third-apex-guarded-cegar-wave7-20260906/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-07T02:16:37Z",
+  "manifest_sha256": "913472c5affe8d9a1e33e9ea178172793e1d8afbfb01b4263a0ea0f38ff78dca"
+}
