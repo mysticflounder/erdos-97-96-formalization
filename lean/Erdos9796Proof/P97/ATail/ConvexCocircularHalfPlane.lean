@@ -48,7 +48,7 @@ theorem exists_strict_separating_vector_of_convexIndep_cocircular
     apply hA P hP
     exact convexHull_mono hsub hmem
   have hcompact : IsCompact (convexHull ℝ (C : Set ℝ²)) :=
-    C.finite_toSet.isCompact_convexHull
+    C.finite_toSet.isCompact_convexHull ℝ
   have hconvex : Convex ℝ (convexHull ℝ (C : Set ℝ²)) :=
     convex_convexHull ℝ (C : Set ℝ²)
   obtain ⟨f, u, v, hfP, huv, hfC⟩ :=

@@ -383,17 +383,13 @@ theorem false_of_checkCertificate (ν : Nat → ℝ) (cert : Certificate)
   by_cases hnorm :
       cert.generators.all isNormalizedPoly &&
         cert.coefficients.all isNormalizedPoly
-  · have hmatch :
-        (match sumProductsCanon cert.generators cert.coefficients with
-        | some p => decide (p = onePoly)
-        | none => false) = true := by
-      simpa [checkCertificate, hnorm] using hcheck
+  · simp only [checkCertificate, hnorm, ↓reduceIte] at hcheck
     cases hsum : sumProductsCanon cert.generators cert.coefficients with
     | none =>
-        simp [hsum] at hmatch
+        simp [hsum] at hcheck
     | some p =>
         have hp_eq : p = onePoly := by
-          exact of_decide_eq_true (by simpa [hsum] using hmatch)
+          exact of_decide_eq_true (by simpa [hsum] using hcheck)
         have hp_zero : evalPoly ν p = 0 :=
           evalPoly_sumProductsCanon_eq_zero ν hsum hgenerators
         rw [hp_eq, evalPoly_onePoly] at hp_zero
@@ -413,17 +409,13 @@ theorem false_of_checkCertificate_of_weighted_zeros
   by_cases hnorm :
       cert.generators.all isNormalizedPoly &&
         cert.coefficients.all isNormalizedPoly
-  · have hmatch :
-        (match sumProductsCanon cert.generators cert.coefficients with
-        | some p => decide (p = onePoly)
-        | none => false) = true := by
-      simpa [checkCertificate, hnorm] using hcheck
+  · simp only [checkCertificate, hnorm, ↓reduceIte] at hcheck
     cases hsum : sumProductsCanon cert.generators cert.coefficients with
     | none =>
-        simp [hsum] at hmatch
+        simp [hsum] at hcheck
     | some p =>
         have hp_eq : p = onePoly := by
-          exact of_decide_eq_true (by simpa [hsum] using hmatch)
+          exact of_decide_eq_true (by simpa [hsum] using hcheck)
         have hp_zero : evalPoly ν p = 0 :=
           evalPoly_sumProductsCanon_eq_zero_of_weighted_zeros ν hsum
             hweighted

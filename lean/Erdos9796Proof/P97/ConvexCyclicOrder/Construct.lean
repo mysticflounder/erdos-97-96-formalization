@@ -209,7 +209,7 @@ theorem notMem_convexHull_diff_convexHull_of_notMem
     have hKconv : Convex ℝ K := convex_convexHull _ _
     have hKclosed : IsClosed K := by
       have hfin : ((A : Set ℝ²) \ {a}).Finite := Set.Finite.diff A.finite_toSet
-      exact hfin.isCompact_convexHull.isClosed
+      exact (hfin.isCompact_convexHull ℝ).isClosed
     obtain ⟨f, u, hfu, hua⟩ := geometric_hahn_banach_closed_point hKconv hKclosed hnotin
     have hjoin : convexHull ℝ (A : Set ℝ²) = convexJoin ℝ {a} K := by
       have hins : (A : Set ℝ²) = insert a ((A : Set ℝ²) \ {a}) := by
@@ -1496,8 +1496,8 @@ theorem shortGap_ray_endpointChord_hit
     have hBphi : (1 / (Acoef + B)) • B • phi k = (B / S) • phi k := by
       rw [smul_smul, hBcoef]
     have hc0 : (1 - 1 / (Acoef + B)) + (1 / (Acoef + B)) * (1 - (Acoef + B)) = 0 := by
-      dsimp [S]
-      field_simp [hSne]
+      have hSne' : Acoef + B ≠ 0 := hSne
+      field_simp [hSne']
       ring
     let α : ℝ² := (1 - 1 / (Acoef + B)) • c
     let β : ℝ² := (1 / (Acoef + B) * (1 - (Acoef + B))) • c

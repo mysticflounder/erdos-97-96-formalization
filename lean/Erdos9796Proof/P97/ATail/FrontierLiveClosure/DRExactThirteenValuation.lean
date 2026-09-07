@@ -37,6 +37,9 @@ open ExactThirteenBoundaryBlocks
 
 /- ## The three finite strict profiles -/
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The three strict-interior profiles at carrier cardinality thirteen. -/
 inductive Profile : Type
   | secondOpposite

@@ -19,6 +19,9 @@ geometric prefilter shapes once the two-circle overlap proxy is imposed.
 
 namespace Problem97
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- Labels for the bounded eight-point U5 audit support. -/
 inductive U5AuditLabel where
   | p | q | t1 | t2 | t3 | u | a0 | a1

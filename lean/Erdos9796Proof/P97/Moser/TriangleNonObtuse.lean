@@ -112,7 +112,7 @@ theorem mec_center_mem_convexHull_boundary
     convex_convexHull _ _
   have hB_fin : (B : Set ℝ²).Finite := B.finite_toSet
   have hcvx_closed : IsClosed (convexHull ℝ ((B : Finset ℝ²) : Set ℝ²)) :=
-    hB_fin.isClosed_convexHull
+    hB_fin.isClosed_convexHull (𝕜 := ℝ)
   have hcvx_complete : IsComplete (convexHull ℝ ((B : Finset ℝ²) : Set ℝ²)) :=
     hcvx_closed.isComplete
   have hcvx_nonempty : (convexHull ℝ ((B : Finset ℝ²) : Set ℝ²)).Nonempty := by

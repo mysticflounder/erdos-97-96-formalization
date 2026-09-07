@@ -568,16 +568,22 @@ four. -/
 theorem IsM44.oppIndex1_cap_card_eq_four
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
     (S.capByIndex S.oppIndex1).card = 4 := by
-  rcases hi : S.surplusIdx with ⟨i, hilt⟩
-  interval_cases i <;> simpa [oppIndex1, oppCap1, capByIndex, hi] using hM44.1
+  have h := hM44.1
+  unfold oppCap1 at h
+  unfold oppIndex1
+  generalize S.surplusIdx = j at h ⊢
+  fin_cases j <;> exact h
 
 /-- Under `IsM44`, the second non-surplus opposite cap has closed-cardinality
 four. -/
 theorem IsM44.oppIndex2_cap_card_eq_four
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
     (S.capByIndex S.oppIndex2).card = 4 := by
-  rcases hi : S.surplusIdx with ⟨i, hilt⟩
-  interval_cases i <;> simpa [oppIndex2, oppCap2, capByIndex, hi] using hM44.2
+  have h := hM44.2
+  unfold oppCap2 at h
+  unfold oppIndex2
+  generalize S.surplusIdx = j at h ⊢
+  fin_cases j <;> exact h
 
 /-- Under `IsM44`, the first non-surplus opposite cap has exactly two strict
 interior points. -/

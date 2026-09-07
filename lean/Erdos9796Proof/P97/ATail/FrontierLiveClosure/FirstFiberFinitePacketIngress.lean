@@ -122,11 +122,17 @@ noncomputable def IndexedPacket.combine {n : ℕ}
         intro x
         simp [overflow] }
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 inductive OutsideDeletionArm
   | source
   | other
 deriving DecidableEq, Fintype
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 inductive CollisionRowsArm
   | first
   | second

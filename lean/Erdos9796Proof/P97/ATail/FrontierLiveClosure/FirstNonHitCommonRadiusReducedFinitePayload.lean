@@ -59,6 +59,9 @@ variable
     (Q : FreshThirdBlockerFiber P Pρ)
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The four retained collision sources quantified by the mutual exact trace. -/
 inductive FirstNonHitRetainedSource where
   | firstOne

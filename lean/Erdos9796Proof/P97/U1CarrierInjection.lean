@@ -38,7 +38,6 @@ theorem normalScale_self (p : ℝ²) (r : ℝ) :
 theorem normalScale_sub {p : ℝ²} {r : ℝ} (a b : ℝ²) :
     normalScale p r a - normalScale p r b = r⁻¹ • (a - b) := by
   simp [normalScale, sub_eq_add_neg]
-  abel
 
 /-- Positive scale-normalization rescales every distance by `r⁻¹`. -/
 theorem normalScale_dist_image {p : ℝ²} {r : ℝ}
@@ -105,7 +104,8 @@ theorem axisRotatePerp_self {u : ℝ²} (hunit : ‖u‖ = 1) :
   ext i
   fin_cases i
   · have hsq := coord_norm_sq_of_norm_eq_one hunit
-    simp [axisRotatePerp, inner, Fin.sum_univ_two, hsq]
+    simp [axisRotatePerp, inner, Fin.sum_univ_two]
+    linear_combination hsq
   · simp [axisRotatePerp, inner, Fin.sum_univ_two]
     ring
 
@@ -325,7 +325,7 @@ theorem normalAxis_unitX_sqdist_eq_coordSqDist_of_dist_eq
   have hcoord := normalAxis_coord_sqdist_eq_of_dist_eq hpq h
   rw [normalAxis_witness hpq] at hcoord
   dsimp [coordSqDist] at hcoord
-  simpa using hcoord
+  simpa [coordSqDist] using hcoord
 
 /-- A packet-label row centered at the gauge witness has unit squared
 coordinate radius when the gauge center lies on the same row as the chosen
@@ -1261,7 +1261,8 @@ theorem exists_blocker_cycle
     have hk_ne_one : k ≠ 1 := by
       intro hk
       have hfixed : H.blockerVertex q = q := by
-        simpa [hk] using hperiodic
+        rw [hk] at hperiodic
+        exact hperiodic
       exact H.blockerVertex_ne q hfixed
     exact ⟨q, k, by omega, hperiodic⟩
   · let q : CarrierVertex A := (H.blockerVertex^[n]) start
@@ -1283,7 +1284,8 @@ theorem exists_blocker_cycle
     have hk_ne_one : k ≠ 1 := by
       intro hk
       have hfixed : H.blockerVertex q = q := by
-        simpa [hk] using hperiodic
+        rw [hk] at hperiodic
+        exact hperiodic
       exact H.blockerVertex_ne q hfixed
     exact ⟨q, k, by omega, hperiodic⟩
 
@@ -1329,7 +1331,6 @@ noncomputable def overrideExactSelectedClass
         H.shellAt q hq
     no_qfree := by
       intro q hq
-      dsimp
       split
       · rename_i hqClass
         exact hblocked q hqClass
@@ -1365,7 +1366,6 @@ noncomputable def overrideAt
         H.shellAt z hz
     no_qfree := by
       intro z hz
-      dsimp
       split
       · rename_i h
         subst z

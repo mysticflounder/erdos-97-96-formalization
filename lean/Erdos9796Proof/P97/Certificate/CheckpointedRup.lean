@@ -63,7 +63,8 @@ theorem run_ready {n : Nat} {formula result : DefaultFormula n}
   | cons action rest ih =>
       cases action with
       | del ids =>
-          exact ih (Formula.readyForRupAdd_delete formula ids ready) (by simpa [run] using h)
+          simp only [run] at h
+          exact ih (Formula.readyForRupAdd_delete formula ids ready) h
       | add clause hints =>
           simp only [run] at h
           split at h
@@ -96,7 +97,8 @@ theorem run_limplies {n : Nat} {formula result : DefaultFormula n}
       | del ids =>
           apply Limplies.trans formula (formula.delete ids) result
           · exact Formula.limplies_delete
-          · exact ih (Formula.readyForRupAdd_delete formula ids ready) (by simpa [run] using h)
+          · simp only [run] at h
+            exact ih (Formula.readyForRupAdd_delete formula ids ready) h
       | add clause hints =>
           simp only [run] at h
           split at h

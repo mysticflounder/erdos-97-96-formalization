@@ -443,7 +443,7 @@ theorem shadow_mem_endpointSearchAux_of_endpointShadowOK
     (by simp [SurplusCOMPGBank.fragmentSearchAssignedPrefixes])
     (by simp [SurplusCOMPGBank.fragmentSearchAssignedPrefixes])
     (by intro other hmem; cases other <;> simp at hmem ⊢) h1
-  simpa [endpointSearchPlan, endpointSearchOrder,
+  simpa [endpointSearchPlan, endpointSearchOrder, SurplusCOMPGBank.fragmentSearchOrder,
     SurplusCOMPGBank.shadowMasksForAssigned,
     SurplusCOMPGBank.shadowPairCountsForAssigned,
     SurplusCOMPGBank.emptyShadowMasks] using h0

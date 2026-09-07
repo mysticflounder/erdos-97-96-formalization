@@ -73,7 +73,7 @@ structure SimilarityFrame (q₁ q₂ : Plane) where
 
 namespace SimilarityFrame
 
-instance {q₁ q₂ : Plane} : CoeFun (SimilarityFrame q₁ q₂) (fun _ => Plane → Plane) :=
+noncomputable instance {q₁ q₂ : Plane} : CoeFun (SimilarityFrame q₁ q₂) (fun _ => Plane → Plane) :=
   ⟨fun F => F.map⟩
 
 /-- Applying a similarity frame as a function agrees with applying its underlying affine map. -/

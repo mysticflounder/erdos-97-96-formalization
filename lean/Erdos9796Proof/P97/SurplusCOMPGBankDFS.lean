@@ -41,42 +41,43 @@ theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s1
   unfold fragmentSearchAux at hmem
   simp at hmem
   rcases hmem with ⟨_hv, hmem⟩
+  have hpin : pinnedMaskOf .s1 = 201 := by rfl
   rcases hmem with h771 | h777 | h785 | h801 | h834 | h840 | h848 | h864 | h898 | h904 | h912 | h928
   · exact ⟨771, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h771.2⟩
   · exact ⟨777, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h777.2⟩
   · exact ⟨785, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h785.2⟩
   · exact ⟨801, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h801.2⟩
   · exact ⟨834, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h834.2⟩
   · exact ⟨840, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h840.2⟩
   · exact ⟨848, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h848.2⟩
   · exact ⟨864, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h864.2⟩
   · exact ⟨898, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h898.2⟩
   · exact ⟨904, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h904.2⟩
   · exact ⟨912, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h912.2⟩
   · exact ⟨928, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h928.2⟩
 
 theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s2
@@ -92,42 +93,43 @@ theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s2
   unfold fragmentSearchAux at hmem
   simp at hmem
   rcases hmem with ⟨_hv, hmem⟩
+  have hpin : pinnedMaskOf .s2 = 209 := by rfl
   rcases hmem with h771 | h777 | h785 | h801 | h834 | h840 | h848 | h864 | h898 | h904 | h912 | h928
   · exact ⟨771, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h771.2⟩
   · exact ⟨777, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h777.2⟩
   · exact ⟨785, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h785.2⟩
   · exact ⟨801, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h801.2⟩
   · exact ⟨834, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h834.2⟩
   · exact ⟨840, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h840.2⟩
   · exact ⟨848, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h848.2⟩
   · exact ⟨864, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h864.2⟩
   · exact ⟨898, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h898.2⟩
   · exact ⟨904, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h904.2⟩
   · exact ⟨912, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h912.2⟩
   · exact ⟨928, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h928.2⟩
 
 theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s3
@@ -143,42 +145,43 @@ theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top_s3
   unfold fragmentSearchAux at hmem
   simp at hmem
   rcases hmem with ⟨_hv, hmem⟩
+  have hpin : pinnedMaskOf .s3 = 225 := by rfl
   rcases hmem with h771 | h777 | h785 | h801 | h834 | h840 | h848 | h864 | h898 | h904 | h912 | h928
   · exact ⟨771, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h771.2⟩
   · exact ⟨777, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h777.2⟩
   · exact ⟨785, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h785.2⟩
   · exact ⟨801, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h801.2⟩
   · exact ⟨834, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h834.2⟩
   · exact ⟨840, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h840.2⟩
   · exact ⟨848, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h848.2⟩
   · exact ⟨864, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h864.2⟩
   · exact ⟨898, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h898.2⟩
   · exact ⟨904, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h904.2⟩
   · exact ⟨912, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h912.2⟩
   · exact ⟨928, by simp [candidateMasks],
-      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]
+      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]
         using h928.2⟩
 
 theorem mem_depth2Subtree_of_mem_fragmentSearchAux_top

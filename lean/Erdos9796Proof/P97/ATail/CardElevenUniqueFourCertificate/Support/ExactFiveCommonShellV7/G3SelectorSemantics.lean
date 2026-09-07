@@ -30,6 +30,9 @@ open Census554
 open Census554.CoverCnf
 open Census554.CoverIndexBridge
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The three shell cases combined by the G3 certificate.  The fourth case,
 `s2_o0`, remains on the direct inherited-tail route. -/
 inductive G3Case

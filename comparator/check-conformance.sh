@@ -78,7 +78,7 @@ for tier in core; do
 done
 
 echo "== building Challenge / Solution =="
-./scripts/lake-build.sh Challenge Solution
+lake-build Challenge Solution
 
 fail=0
 for tier in core; do

@@ -110,11 +110,12 @@ theorem surplus_card_gt_four (D : CounterexampleData) :
 /-- The selected surplus cap lies in the ambient carrier. -/
 theorem surplusCap_subset_A (D : CounterexampleData) :
     D.packet.surplusCap ⊆ D.A := by
-  rcases hi : D.packet.surplusIdx with ⟨i, _hilt⟩
-  interval_cases i
-  · simpa [SurplusCapPacket.surplusCap, hi] using D.packet.partition.C1_subset
-  · simpa [SurplusCapPacket.surplusCap, hi] using D.packet.partition.C2_subset
-  · simpa [SurplusCapPacket.surplusCap, hi] using D.packet.partition.C3_subset
+  unfold SurplusCapPacket.surplusCap
+  generalize D.packet.surplusIdx = j
+  fin_cases j
+  · exact D.packet.partition.C1_subset
+  · exact D.packet.partition.C2_subset
+  · exact D.packet.partition.C3_subset
 
 /-- A counterexample datum with a surplus packet has more than four points. -/
 theorem card_gt_four (D : CounterexampleData) : 4 < D.A.card :=
@@ -399,9 +400,9 @@ theorem capAt_subset_A {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) (i : Fin 3) :
     CP.capAt i ⊆ A := by
   fin_cases i
-  · simpa [capAt] using CP.C1_subset
-  · simpa [capAt] using CP.C2_subset
-  · simpa [capAt] using CP.C3_subset
+  · exact CP.C1_subset
+  · exact CP.C2_subset
+  · exact CP.C3_subset
 
 /-- A cap with more than four points contains a non-Moser carrier point. -/
 theorem exists_nonMoser_mem_capAt_of_card_gt_four
@@ -451,7 +452,7 @@ theorem exactPair_or_nonExactSurplusBranch_of_card_gt_nine
   · exact Or.inl hExact
   · right
     rcases CP.exists_surplus_cap_of_card_gt_nine hcard with ⟨i, hi⟩
-    refine ⟨i, by simpa [capAt] using hi, ?_⟩
+    refine ⟨i, hi, ?_⟩
     intro hOpp
     exact hExact (by
       fin_cases i
@@ -489,10 +490,10 @@ theorem isM44Packet_of_capTriple_C1_surplus
         surplusIdx := ⟨0, by decide⟩,
         surplus := ?_ },
       ?_⟩
-  · simpa using hC1
+  · exact hC1
   · constructor
-    · simpa [SurplusCapPacket.oppCap1] using hC2
-    · simpa [SurplusCapPacket.oppCap2] using hC3
+    · exact hC2
+    · exact hC3
 
 /-- A concrete MEC/cap-partition payload with `C2` as the surplus cap and
 `C1`, `C3` as exact four-caps constructs the same-carrier `(m,4,4)` packet. -/
@@ -516,10 +517,10 @@ theorem isM44Packet_of_capTriple_C2_surplus
         surplusIdx := ⟨1, by decide⟩,
         surplus := ?_ },
       ?_⟩
-  · simpa using hC2
+  · exact hC2
   · constructor
-    · simpa [SurplusCapPacket.oppCap1] using hC3
-    · simpa [SurplusCapPacket.oppCap2] using hC1
+    · exact hC3
+    · exact hC1
 
 /-- A concrete MEC/cap-partition payload with `C3` as the surplus cap and
 `C1`, `C2` as exact four-caps constructs the same-carrier `(m,4,4)` packet. -/

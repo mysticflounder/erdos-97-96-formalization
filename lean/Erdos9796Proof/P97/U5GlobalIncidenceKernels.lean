@@ -289,7 +289,7 @@ has proved the required numerator equality.
 This is the completed direct-branch wiring for a row such as `RT-d2c-v2`: the
 only remaining row-specific input is the proof that its normalized numerator
 vanishes. -/
-def u5EndpointLiteralDescriptor_of_normalized_row_numerator_eq_zero
+noncomputable def u5EndpointLiteralDescriptor_of_normalized_row_numerator_eq_zero
     {D : CounterexampleData} {q p : ℝ²} {T : Finset ℝ²}
     {alpha beta x y : ℝ}
     (htriple : U5DangerousTriple D q p T)

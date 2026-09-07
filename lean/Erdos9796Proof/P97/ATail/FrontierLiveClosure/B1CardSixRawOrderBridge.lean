@@ -37,6 +37,9 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
     (H := H) (F := F)}
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The seven roles used by the two live pairs and their common apex. -/
 inductive RawCardSixRole : Type
   | apex | uBlocker | vBlocker | u0 | u1 | v0 | v1
