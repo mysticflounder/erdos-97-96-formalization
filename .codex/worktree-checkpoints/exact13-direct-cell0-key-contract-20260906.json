@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-direct-cell0-key-contract-20260906",
+  "owner": "ProofRelay97",
+  "base_head": "9852eb8cb5f8283d7f5a8e0d06508590c45934bc",
+  "created_utc": "2026-09-07T01:24:00Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-direct-cell0-key-contract-20260906.json",
+    "docs/audits/2026-09-06-exact13-direct-cell0-key-contract.md",
+    "scripts/exact13_direct_cell0_key_contract.py",
+    "scripts/test_exact13_direct_cell0_key_contract.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "manifest_sha256": "2e381bf8331986ae0c71426f14e4979bafc9d8e26cc38762a4e09cd3944dd326"
+}
