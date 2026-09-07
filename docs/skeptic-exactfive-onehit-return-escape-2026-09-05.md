@@ -12,6 +12,12 @@ premises. Their conclusions do not narrow a realizable return case. The
 standalone fiber dichotomy does not fix that defect. No new Lean result is
 certified by this review.
 
+UDCP custody update, 2026-09-07: the rejected source is now retained
+byte-for-byte as [quarantined text](references/quarantine/exactfive-onehit-return-escape-20260905/ExactFiveOneHitBlockerFiber.lean.txt),
+outside the production Lean tree. Its digest and the bounded independent
+reference/file-holder scan are recorded in the target audit. This move does
+not change the rejection or certify any declaration below.
+
 ## Findings
 
 ### F1: Vacuous implication presented as progress

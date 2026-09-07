@@ -36,7 +36,8 @@ new shell and any old selected row on the unchanged carrier.
 
 ## Rejected formal bridge
 
-The uncompiled, uncommitted `ExactFiveOneHitBlockerFiber.lean` draft contains:
+The uncompiled, rejected [draft](../references/quarantine/exactfive-onehit-return-escape-20260905/ExactFiveOneHitBlockerFiber.lean.txt)
+is retained as text evidence outside the production Lean tree. It contains:
 
 - `mem_actualBlockerFiber_of_center_eq`, converting chosen-center equality to
   membership in the source-faithful blocker fiber;
@@ -84,6 +85,16 @@ production helpers. The next mathematical obligation is a genuine descent
 or contradiction consumer, not another return/escape wrapper.
 
 ## Validation
+
+During UDCP on 2026-09-07 the rejected draft was moved byte-for-byte from
+`lean/Erdos9796Proof/P97/ATail/ExactFiveOneHitBlockerFiber.lean` to the linked
+quarantine. Its SHA-256 is
+`07f3640ec3a14fa3702e0d8a3be1fd1d5b409d7957c66d81628c8fdcdbbd5570`.
+Independent pre-move inspection found no Lean importer or qualified reference,
+no matching built olean, and no file holder via lsof/fuser. Process-table
+inspection was permission-denied; no broader process audit is claimed.
+The original bytes remain recoverable as committed rejected evidence, not
+as a compiled module or proof promotion.
 
 - No compilation of the rejected draft was performed or claimed. A build
   slot is not the mathematical blocker.

@@ -1,0 +1,174 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ATail.ExactFiveOneHitShellReselection
+import Erdos9796Proof.P97.ATail.SurvivalCover
+
+/-!
+# Actual-blocker fibers after an exact-five one-hit reselection
+
+An old selected row either exhausts the source fiber of its anchor's blocker,
+or one of its points chooses a different actual blocker.  Consequently, an
+off-row source that returns to the old blocker after a one-hit reselection
+forces the second alternative.
+-/
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace ExactFiveOneHitBlockerFiber
+
+open ATailCriticalPairFrontier
+open ATailSurvivalCover
+open ExactFiveOneHitShellReselection
+open FirstApexExactFiveInteriorFrontier
+open FirstApexUniqueRadiusResidual
+
+attribute [local instance] Classical.propDecidable
+
+/-- Equality of chosen centers places a source in the anchor's actual-blocker
+fiber. -/
+theorem mem_actualBlockerFiber_of_center_eq
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (source anchor : CriticalShellSystem.CarrierVertex A)
+    (hcenter : H.centerAt source.1 source.2 =
+      H.centerAt anchor.1 anchor.2) :
+    source ∈ actualBlockerFiber H anchor := by
+  apply Finset.mem_filter.mpr
+  refine ⟨Finset.mem_univ source, ?_⟩
+  apply Subtype.ext
+  exact hcenter
+
+/-- The anchor's selected row either exhausts the image of its actual-blocker
+fiber, or the row contains a source that chooses another blocker. -/
+theorem actualBlockerFiber_image_eq_selectedSupport_or_exists_escape
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (anchor : CriticalShellSystem.CarrierVertex A) :
+    (actualBlockerFiber H anchor).image (fun source => source.1) =
+        (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support ∨
+      ∃ source : CriticalShellSystem.CarrierVertex A,
+        source.1 ∈
+            (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support ∧
+          H.blockerVertex source ≠ H.blockerVertex anchor := by
+  classical
+  by_cases hall : ∀ source : CriticalShellSystem.CarrierVertex A,
+      source.1 ∈
+          (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support →
+        H.blockerVertex source = H.blockerVertex anchor
+  · left
+    apply Finset.Subset.antisymm
+    · exact actualBlockerFiber_image_subset_selectedSupport H anchor
+    · intro z hz
+      let source : CriticalShellSystem.CarrierVertex A :=
+        ⟨z,
+          (H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support_subset_A
+            hz⟩
+      apply Finset.mem_image.mpr
+      refine ⟨source, ?_, rfl⟩
+      exact Finset.mem_filter.mpr
+        ⟨Finset.mem_univ source, hall source hz⟩
+  · right
+    push_neg at hall
+    exact hall
+
+/-- In the first one-hit orientation, an off-row return to the retained
+endpoint's old blocker forces a source in that old row to choose a different
+actual blocker. -/
+theorem QOmittedWHitReselection.exists_oldSupport_escape_of_new_return
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F}
+    {fresh x : ℝ²} {hfreshA : fresh ∈ D.A}
+    (T : QOmittedWHitReselection Rmin fresh hfreshA)
+    (hxA : x ∈ D.A)
+    (hxne : x ≠ Rmin.residual.interior.frontier.pair.w)
+    (hxOutside : x ∉
+      (H.selectedAt Rmin.residual.interior.frontier.pair.w
+        Rmin.residual.interior.frontier.pair.w_mem_A).toCriticalFourShell.support)
+    (hreturn : T.shell.centerAt x hxA =
+      H.centerAt Rmin.residual.interior.frontier.pair.w
+        Rmin.residual.interior.frontier.pair.w_mem_A) :
+    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+      source.1 ∈
+          (H.selectedAt Rmin.residual.interior.frontier.pair.w
+            Rmin.residual.interior.frontier.pair.w_mem_A).toCriticalFourShell.support ∧
+        H.blockerVertex source ≠
+          H.blockerVertex
+            ⟨Rmin.residual.interior.frontier.pair.w,
+              Rmin.residual.interior.frontier.pair.w_mem_A⟩ ∧
+        source.1 ≠ x := by
+  let anchor : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Rmin.residual.interior.frontier.pair.w,
+      Rmin.residual.interior.frontier.pair.w_mem_A⟩
+  rcases actualBlockerFiber_image_eq_selectedSupport_or_exists_escape H anchor with
+    hexhausted | hescape
+  · have holdCenter := T.old_center_eq_of_new_center_eq hxA hxne hreturn
+    have hxfiber :
+        (⟨x, hxA⟩ : CriticalShellSystem.CarrierVertex D.A) ∈
+          actualBlockerFiber H anchor :=
+      mem_actualBlockerFiber_of_center_eq H ⟨x, hxA⟩ anchor holdCenter
+    have hximage : x ∈
+        (actualBlockerFiber H anchor).image (fun source => source.1) :=
+      Finset.mem_image.mpr ⟨⟨x, hxA⟩, hxfiber, rfl⟩
+    exact (hxOutside (hexhausted ▸ hximage)).elim
+  · rcases hescape with ⟨source, hsourceRow, hsourceBlocker⟩
+    refine ⟨source, hsourceRow, hsourceBlocker, ?_⟩
+    intro hsourceEq
+    apply hxOutside
+    rw [← hsourceEq]
+    exact hsourceRow
+
+/-- In the symmetric one-hit orientation, an off-row return to the retained
+endpoint's old blocker forces a source in that old row to choose a different
+actual blocker. -/
+theorem WOmittedQHitReselection.exists_oldSupport_escape_of_new_return
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    {Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F}
+    {fresh x : ℝ²} {hfreshA : fresh ∈ D.A}
+    (T : WOmittedQHitReselection Rmin fresh hfreshA)
+    (hxA : x ∈ D.A)
+    (hxne : x ≠ Rmin.residual.interior.frontier.pair.q)
+    (hxOutside : x ∉
+      (H.selectedAt Rmin.residual.interior.frontier.pair.q
+        Rmin.residual.interior.frontier.pair.q_mem_A).toCriticalFourShell.support)
+    (hreturn : T.shell.centerAt x hxA =
+      H.centerAt Rmin.residual.interior.frontier.pair.q
+        Rmin.residual.interior.frontier.pair.q_mem_A) :
+    ∃ source : CriticalShellSystem.CarrierVertex D.A,
+      source.1 ∈
+          (H.selectedAt Rmin.residual.interior.frontier.pair.q
+            Rmin.residual.interior.frontier.pair.q_mem_A).toCriticalFourShell.support ∧
+        H.blockerVertex source ≠
+          H.blockerVertex
+            ⟨Rmin.residual.interior.frontier.pair.q,
+              Rmin.residual.interior.frontier.pair.q_mem_A⟩ ∧
+        source.1 ≠ x := by
+  let anchor : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨Rmin.residual.interior.frontier.pair.q,
+      Rmin.residual.interior.frontier.pair.q_mem_A⟩
+  rcases actualBlockerFiber_image_eq_selectedSupport_or_exists_escape H anchor with
+    hexhausted | hescape
+  · have holdCenter := T.old_center_eq_of_new_center_eq hxA hxne hreturn
+    have hxfiber :
+        (⟨x, hxA⟩ : CriticalShellSystem.CarrierVertex D.A) ∈
+          actualBlockerFiber H anchor :=
+      mem_actualBlockerFiber_of_center_eq H ⟨x, hxA⟩ anchor holdCenter
+    have hximage : x ∈
+        (actualBlockerFiber H anchor).image (fun source => source.1) :=
+      Finset.mem_image.mpr ⟨⟨x, hxA⟩, hxfiber, rfl⟩
+    exact (hxOutside (hexhausted ▸ hximage)).elim
+  · rcases hescape with ⟨source, hsourceRow, hsourceBlocker⟩
+    refine ⟨source, hsourceRow, hsourceBlocker, ?_⟩
+    intro hsourceEq
+    apply hxOutside
+    rw [← hsourceEq]
+    exact hsourceRow
+
+end ExactFiveOneHitBlockerFiber
+end Problem97

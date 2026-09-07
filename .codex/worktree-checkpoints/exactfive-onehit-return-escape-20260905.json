@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-onehit-return-escape-20260905",
+  "owner": "codex-rigid221",
+  "base_head": "328a9577c43956974ecf629b20dcd1e13acc6e3b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-onehit-return-escape-20260905.json",
+    "docs/audits/2026-09-05-exactfive-onehit-return-escape.md",
+    "docs/skeptic-exactfive-onehit-return-escape-2026-09-05.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [
+    "docs/references/quarantine/exactfive-onehit-return-escape-20260905/ExactFiveOneHitBlockerFiber.lean.txt"
+  ],
+  "created_utc": "2026-09-06T04:23:23Z",
+  "manifest_sha256": "08c537e1f0858de2227543a02550c991defd67ff81785e592642bdf39f2f3582"
+}
