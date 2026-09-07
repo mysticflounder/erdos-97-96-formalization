@@ -2,10 +2,13 @@
 
 Date: 2026-09-06. Planning baseline: `fff7305bb6f10ddfc5a9446fe7392541da47d87b`.
 Status: package 1 is complete and validated; the package-2 exact-15 and exact-16
-classifier pilots are complete with core-only structural proofs. Broader package-2
-geometric families and packages 3–5 remain planned. See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md),
+classifier pilots are complete with core-only structural proofs. Package 3 has
+selected aligned-P5 and checked two proposed reductions; its terminal replacement
+remains open. Broader package-2 geometric families and packages 4–5 remain planned.
+See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md),
 [exact-15 coverage audit](../docs/audits/2026-09-05-native-exact15-coverage.md),
-and [exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md).
+the [exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md),
+and the [aligned-P5 investigation](../docs/audits/2026-09-06-native-card11-aligned-p5.md).
 
 ## Objective and boundaries
 
@@ -54,7 +57,8 @@ as established behavior.
 
 Packages 2, 3, and 4 can run as independent bounded research lanes after package 0.
 The package-2 exact-15 and exact-16 classifier pilots are complete; broader
-geometric families are open. Packages 3–5 remain planned. Assess one family-level
+geometric families are open. Package 3 is under investigation; packages 4–5 remain
+planned. Assess one family-level
 pilot in each research lane before expanding it.
 
 ### 0. Establish a fresh baseline
@@ -160,6 +164,25 @@ same difficulty into a new `sorry` or enlarge the finite search without a new
 mathematical constraint.
 
 ### 3. Attack one card-eleven terminal
+
+**Pilot status:** aligned-P5 is selected; the terminal remains open. Its current
+source closure uses seven direct and seven reflected native classifier leaves.
+The [investigation](../docs/audits/2026-09-06-native-card11-aligned-p5.md) records
+two checked limits on a replacement argument:
+
+- In the historical four-schema compact Boolean projection, removing the
+  four-row existence requirement at any one center other than the first apex
+  admits a checked satisfying assignment. Merely reducing the number of selected
+  rows cannot establish that projection's contradiction.
+- Keeping just the three cap-vertex rows admits an exact rational metric with all
+  strict Kalmanson inequalities, strict triangle inequalities, and the checked
+  complete-radius constraints. It violates Ptolemy and is not a Euclidean model.
+
+The next mathematical target is incidence propagation involving nonapex rows,
+or an additional source-derived Euclidean constraint. A three-cap-vertex counting
+argument using only those metric constraints is insufficient. The extracted
+six-incidence Kalmanson pattern in the audit still needs an occurrence producer.
+No native leaf was removed by these diagnostic checks.
 
 Consumer:
 `ATailCardElevenUniqueFourCertificate.false_of_firstApexUniqueRadiusExactFourResidual`.

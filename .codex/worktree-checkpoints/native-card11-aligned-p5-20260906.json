@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "native-card11-aligned-p5-20260906",
+  "owner": "codex-project-review",
+  "base_head": "9852eb8cb5f8283d7f5a8e0d06508590c45934bc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/native-card11-aligned-p5-20260906.json",
+    "docs/audits/2026-09-06-native-card11-aligned-p5-apex-metric.json",
+    "docs/audits/2026-09-06-native-card11-aligned-p5-row-requirements.json",
+    "docs/audits/2026-09-06-native-card11-aligned-p5.md",
+    "prove2me/native-bank-audit.md",
+    "prove2me/native-bank-replacement-plan.md",
+    "scripts/audit_aligned_p5_apex_metric.py",
+    "scripts/audit_aligned_p5_row_requirements.py",
+    "scripts/test_audit_aligned_p5_row_requirements.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/native-card11-aligned-p5-20260906/run-0001"
+  ],
+  "durable_paths": [],
+  "created_utc": "2026-09-07T01:56:48.413351Z",
+  "manifest_sha256": "d921000a1b7db24ffac67bd14b9a8673d14eecf1cf3cfdafa98aa46c7de49223"
+}

@@ -1,0 +1,339 @@
+{
+  "schema": "aligned-p5-apex-metric/v1",
+  "query_sha256": "b14815980a8b509c9e9351331d40865e3ceeb41a99621fa74bc36a0db51d3429",
+  "script_sha256": "11d0c85679fa9de0cd88ed3e6829d6c639c9a2346580779c2742cb8e0f7d5bfa",
+  "session": {
+    "clauses": 0,
+    "created_at": 1788746636,
+    "declared_num_vars": null,
+    "id": "363a0a2d-6b03-478a-9480-cef54ef4f2c0",
+    "journal_path": "/Users/adam/.piqd/sessions/363a0a2d-6b03-478a-9480-cef54ef4f2c0/journal.smt2",
+    "label": "native-card11-aligned-p5-apex-metric",
+    "lane": "smt",
+    "last_assumption_free": null,
+    "last_solve_index": null,
+    "last_status": null,
+    "last_terminal_unsat": null,
+    "max_var": 0,
+    "protocol_version": 1,
+    "solver_name": "cvc5",
+    "solver_sha256": "fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74",
+    "solver_signature": "cvc5-1.3.3",
+    "solves": 0,
+    "state": "live",
+    "updated_at": 1788746636
+  },
+  "status": "SAT",
+  "solve": {
+    "effective_deadline_ms": 60000,
+    "model": "(\n(define-fun d_0_1 () Real 9.0)\n(define-fun d_0_2 () Real 12.0)\n(define-fun d_0_3 () Real (/ 187 6))\n(define-fun d_0_4 () Real 19.0)\n(define-fun d_0_5 () Real (/ 187 6))\n(define-fun d_0_6 () Real (/ 187 6))\n(define-fun d_0_7 () Real (/ 187 6))\n(define-fun d_0_8 () Real 19.0)\n(define-fun d_0_9 () Real (/ 85 6))\n(define-fun d_0_10 () Real (/ 61 6))\n(define-fun d_1_2 () Real 6.0)\n(define-fun d_1_3 () Real (/ 157 6))\n(define-fun d_1_4 () Real 15.0)\n(define-fun d_1_5 () Real (/ 169 6))\n(define-fun d_1_6 () Real (/ 175 6))\n(define-fun d_1_7 () Real (/ 181 6))\n(define-fun d_1_8 () Real 19.0)\n(define-fun d_1_9 () Real (/ 91 6))\n(define-fun d_1_10 () Real (/ 73 6))\n(define-fun d_2_3 () Real (/ 127 6))\n(define-fun d_2_4 () Real 11.0)\n(define-fun d_2_5 () Real (/ 151 6))\n(define-fun d_2_6 () Real (/ 163 6))\n(define-fun d_2_7 () Real (/ 175 6))\n(define-fun d_2_8 () Real 19.0)\n(define-fun d_2_9 () Real (/ 97 6))\n(define-fun d_2_10 () Real (/ 85 6))\n(define-fun d_3_4 () Real (/ 115 6))\n(define-fun d_3_5 () Real (/ 112 3))\n(define-fun d_3_6 () Real (/ 121 3))\n(define-fun d_3_7 () Real (/ 130 3))\n(define-fun d_3_8 () Real (/ 205 6))\n(define-fun d_3_9 () Real (/ 100 3))\n(define-fun d_3_10 () Real (/ 97 3))\n(define-fun d_4_5 () Real (/ 115 6))\n(define-fun d_4_6 () Real (/ 139 6))\n(define-fun d_4_7 () Real (/ 163 6))\n(define-fun d_4_8 () Real 19.0)\n(define-fun d_4_9 () Real (/ 115 6))\n(define-fun d_4_10 () Real (/ 115 6))\n(define-fun d_5_6 () Real 5.0)\n(define-fun d_5_7 () Real 10.0)\n(define-fun d_5_8 () Real (/ 127 6))\n(define-fun d_5_9 () Real (/ 88 3))\n(define-fun d_5_10 () Real (/ 91 3))\n(define-fun d_6_7 () Real 6.0)\n(define-fun d_6_8 () Real (/ 109 6))\n(define-fun d_6_9 () Real (/ 82 3))\n(define-fun d_6_10 () Real (/ 88 3))\n(define-fun d_7_8 () Real (/ 91 6))\n(define-fun d_7_9 () Real (/ 76 3))\n(define-fun d_7_10 () Real (/ 85 3))\n(define-fun d_8_9 () Real (/ 67 6))\n(define-fun d_8_10 () Real (/ 91 6))\n(define-fun d_9_10 () Real (/ 28 3))\n(define-fun r_0 () Real (/ 187 6))\n(define-fun r_4 () Real (/ 115 6))\n(define-fun r_8 () Real 19.0)\n)",
+    "model_replay": {
+      "outcome": "SATISFIED",
+      "replay_ms": 28,
+      "script_sha256": "11f9e3177c3e28d5572e0c99be9411581bf81cb90a19b83453d151c75f74fcbc",
+      "solver_sha256": "fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74"
+    },
+    "replayed": false,
+    "result_sha256": "a2b2ecfcde717ca68330adadbb4482edf3e79e3ad109633fe3bc167c8e0b77a2",
+    "solve_index": 1,
+    "solve_ms": 267,
+    "status": "SAT",
+    "values": "((d_0_1 9.0) (d_0_2 12.0) (d_0_3 (/ 187 6)) (d_0_4 19.0) (d_0_5 (/ 187 6)) (d_0_6 (/ 187 6)) (d_0_7 (/ 187 6)) (d_0_8 19.0) (d_0_9 (/ 85 6)) (d_0_10 (/ 61 6)) (d_1_2 6.0) (d_1_3 (/ 157 6)) (d_1_4 15.0) (d_1_5 (/ 169 6)) (d_1_6 (/ 175 6)) (d_1_7 (/ 181 6)) (d_1_8 19.0) (d_1_9 (/ 91 6)) (d_1_10 (/ 73 6)) (d_2_3 (/ 127 6)) (d_2_4 11.0) (d_2_5 (/ 151 6)) (d_2_6 (/ 163 6)) (d_2_7 (/ 175 6)) (d_2_8 19.0) (d_2_9 (/ 97 6)) (d_2_10 (/ 85 6)) (d_3_4 (/ 115 6)) (d_3_5 (/ 112 3)) (d_3_6 (/ 121 3)) (d_3_7 (/ 130 3)) (d_3_8 (/ 205 6)) (d_3_9 (/ 100 3)) (d_3_10 (/ 97 3)) (d_4_5 (/ 115 6)) (d_4_6 (/ 139 6)) (d_4_7 (/ 163 6)) (d_4_8 19.0) (d_4_9 (/ 115 6)) (d_4_10 (/ 115 6)) (d_5_6 5.0) (d_5_7 10.0) (d_5_8 (/ 127 6)) (d_5_9 (/ 88 3)) (d_5_10 (/ 91 3)) (d_6_7 6.0) (d_6_8 (/ 109 6)) (d_6_9 (/ 82 3)) (d_6_10 (/ 88 3)) (d_7_8 (/ 91 6)) (d_7_9 (/ 76 3)) (d_7_10 (/ 85 3)) (d_8_9 (/ 67 6)) (d_8_10 (/ 91 6)) (d_9_10 (/ 28 3)) (r_0 (/ 187 6)) (r_4 (/ 115 6)) (r_8 19.0))"
+  },
+  "scope": "three-apex linear-distance relaxation, not a Euclidean or global-K4 model",
+  "values": {
+    "d_0_1": "9",
+    "d_0_2": "12",
+    "d_0_3": "187/6",
+    "d_0_4": "19",
+    "d_0_5": "187/6",
+    "d_0_6": "187/6",
+    "d_0_7": "187/6",
+    "d_0_8": "19",
+    "d_0_9": "85/6",
+    "d_0_10": "61/6",
+    "d_1_2": "6",
+    "d_1_3": "157/6",
+    "d_1_4": "15",
+    "d_1_5": "169/6",
+    "d_1_6": "175/6",
+    "d_1_7": "181/6",
+    "d_1_8": "19",
+    "d_1_9": "91/6",
+    "d_1_10": "73/6",
+    "d_2_3": "127/6",
+    "d_2_4": "11",
+    "d_2_5": "151/6",
+    "d_2_6": "163/6",
+    "d_2_7": "175/6",
+    "d_2_8": "19",
+    "d_2_9": "97/6",
+    "d_2_10": "85/6",
+    "d_3_4": "115/6",
+    "d_3_5": "112/3",
+    "d_3_6": "121/3",
+    "d_3_7": "130/3",
+    "d_3_8": "205/6",
+    "d_3_9": "100/3",
+    "d_3_10": "97/3",
+    "d_4_5": "115/6",
+    "d_4_6": "139/6",
+    "d_4_7": "163/6",
+    "d_4_8": "19",
+    "d_4_9": "115/6",
+    "d_4_10": "115/6",
+    "d_5_6": "5",
+    "d_5_7": "10",
+    "d_5_8": "127/6",
+    "d_5_9": "88/3",
+    "d_5_10": "91/3",
+    "d_6_7": "6",
+    "d_6_8": "109/6",
+    "d_6_9": "82/3",
+    "d_6_10": "88/3",
+    "d_7_8": "91/6",
+    "d_7_9": "76/3",
+    "d_7_10": "85/3",
+    "d_8_9": "67/6",
+    "d_8_10": "91/6",
+    "d_9_10": "28/3",
+    "r_0": "187/6",
+    "r_4": "115/6",
+    "r_8": "19"
+  },
+  "replay": {
+    "minimum_gap": "1",
+    "kalmanson_count": 660,
+    "triangle_count": 495,
+    "rows": {
+      "0": {
+        "selected_support": [
+          3,
+          5,
+          6,
+          7
+        ],
+        "complete_class": [
+          3,
+          5,
+          6,
+          7
+        ]
+      },
+      "4": {
+        "selected_support": [
+          3,
+          5,
+          9,
+          10
+        ],
+        "complete_class": [
+          3,
+          5,
+          9,
+          10
+        ]
+      },
+      "8": {
+        "selected_support": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "complete_class": [
+          0,
+          1,
+          2,
+          4
+        ]
+      }
+    }
+  },
+  "perturbed": {
+    "construction": "Increase d_0_4 and d_8_10 by 1/100; preserve all selected equalities.",
+    "values": {
+      "d_0_1": "9",
+      "d_0_2": "12",
+      "d_0_3": "187/6",
+      "d_0_4": "1901/100",
+      "d_0_5": "187/6",
+      "d_0_6": "187/6",
+      "d_0_7": "187/6",
+      "d_0_8": "19",
+      "d_0_9": "85/6",
+      "d_0_10": "61/6",
+      "d_1_2": "6",
+      "d_1_3": "157/6",
+      "d_1_4": "15",
+      "d_1_5": "169/6",
+      "d_1_6": "175/6",
+      "d_1_7": "181/6",
+      "d_1_8": "19",
+      "d_1_9": "91/6",
+      "d_1_10": "73/6",
+      "d_2_3": "127/6",
+      "d_2_4": "11",
+      "d_2_5": "151/6",
+      "d_2_6": "163/6",
+      "d_2_7": "175/6",
+      "d_2_8": "19",
+      "d_2_9": "97/6",
+      "d_2_10": "85/6",
+      "d_3_4": "115/6",
+      "d_3_5": "112/3",
+      "d_3_6": "121/3",
+      "d_3_7": "130/3",
+      "d_3_8": "205/6",
+      "d_3_9": "100/3",
+      "d_3_10": "97/3",
+      "d_4_5": "115/6",
+      "d_4_6": "139/6",
+      "d_4_7": "163/6",
+      "d_4_8": "19",
+      "d_4_9": "115/6",
+      "d_4_10": "115/6",
+      "d_5_6": "5",
+      "d_5_7": "10",
+      "d_5_8": "127/6",
+      "d_5_9": "88/3",
+      "d_5_10": "91/3",
+      "d_6_7": "6",
+      "d_6_8": "109/6",
+      "d_6_9": "82/3",
+      "d_6_10": "88/3",
+      "d_7_8": "91/6",
+      "d_7_9": "76/3",
+      "d_7_10": "85/3",
+      "d_8_9": "67/6",
+      "d_8_10": "4553/300",
+      "d_9_10": "28/3",
+      "r_0": "187/6",
+      "r_4": "115/6",
+      "r_8": "19"
+    },
+    "replay": {
+      "minimum_gap": "99/100",
+      "kalmanson_count": 660,
+      "triangle_count": 495,
+      "rows": {
+        "0": {
+          "selected_support": [
+            3,
+            5,
+            6,
+            7
+          ],
+          "complete_class": [
+            3,
+            5,
+            6,
+            7
+          ]
+        },
+        "4": {
+          "selected_support": [
+            3,
+            5,
+            9,
+            10
+          ],
+          "complete_class": [
+            3,
+            5,
+            9,
+            10
+          ]
+        },
+        "8": {
+          "selected_support": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "complete_class": [
+            0,
+            1,
+            2,
+            4
+          ]
+        }
+      }
+    },
+    "radius_constraints": {
+      "nontrivial_classes": {
+        "0": [
+          [
+            3,
+            5,
+            6,
+            7
+          ]
+        ],
+        "4": [
+          [
+            3,
+            5,
+            9,
+            10
+          ]
+        ],
+        "8": [
+          [
+            0,
+            1,
+            2,
+            4
+          ]
+        ]
+      },
+      "shared_pairs": [
+        [
+          0,
+          4,
+          3,
+          5
+        ]
+      ],
+      "nonapex_classes_all_singletons": true
+    },
+    "ptolemy_failure": {
+      "quadruple": [
+        0,
+        2,
+        5,
+        6
+      ],
+      "diagonal_product": "30481/36",
+      "opposite_product_sum": "30397/36",
+      "violation": "7/3"
+    }
+  },
+  "source_snapshot": {
+    "head": "427d96c66139235abc05ce12edbca3845c4d1b4e",
+    "kind": "source-only, no fresh Lean build",
+    "native_leaf_count": 14,
+    "sha256": {
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf1.lean": "aa9adebb145e6464439a5c2a83cbebd387e958e5c018d6d89b86b61fdffaab24",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf10.lean": "b8f845dbbeb1b5e47da82204ca56ed7d35274c764239126c89f1d62107ad555b",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf2.lean": "8cc1b170476623b8dfc3470587cfaa5b6e594e21e1420504c13e6549f0857da0",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf3.lean": "48b031dab6f85fc80acb20ad8416d90afe489bc421f41dd133340734e34b5255",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf7.lean": "a9891707615e09bdee8695124e4c1a14bb7eee062247be2ee4a6d916844d5b80",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf8.lean": "28adaddccd50948cda003024b930f88b1af8307276e4eedced012ac17caf3fd1",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5MirrorNativeLeaf9.lean": "c732b446942f5418d8f2fa3d81045bdb3db50d9decfe58ea2498f17f603523a6",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf1.lean": "e7f5ca8328a72c5561213b62fc3428669671a4ab195c7e3345cf9fb65ffcb68e",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf10.lean": "ed6b51ca8faeb2199297142a8dc505458184630f34c889435699e4129672bf62",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf2.lean": "4fd599539a706ba03a109d1838efe08f3cbad53611e1de8540717ec4c26d7236",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf3.lean": "d76db31d42be96d9798c62f61686ff2bfa6bb0ec52a17633416824371e5ca1b6",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf4.lean": "f602fb77675f2534076cfb74b7f91d372b99454853f111e13f3579a27cf3326d",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf8.lean": "383b0621aa0a03894a2197595adb6cfebeb6cdae4808d48cafbb690410c9eb8c",
+      "lean/Erdos9796Proof/P97/ATail/CardElevenUniqueFourCertificate/Support/Unique4AlignedP5Occurrence/AlignedP5NativeLeaf9.lean": "04bd9cfc89ef5d6e7733e71342406766a7c4815fe7bb8011b022490888a4e54a"
+    }
+  },
+  "validation": {
+    "script": "scripts/audit_aligned_p5_apex_metric.py",
+    "sha256": "26298cce5ef9c8ae54bd4380cce304afaca3942892a661f7c643dafa1fc37f85",
+    "validated_utc": "2026-09-07T02:18:53.149402+00:00"
+  }
+}

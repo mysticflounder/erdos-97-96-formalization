@@ -9,8 +9,11 @@ tree; the inventory records content hashes because other lanes are active.
 
 Current status: the exact-15 and exact-16 classifier pilots now have core-only
 structural proofs. The exact-16 governed build and eight-declaration axiom probe
-passed; broader geometric families and packages 3–5 remain open. See the
-[exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md).
+passed; broader geometric families and packages 3–5 remain open. The aligned-P5
+package-3 pilot now has checked obstruction witnesses for two proposed reductions,
+with its native closure unchanged. See the
+[exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md)
+and [aligned-P5 investigation](../docs/audits/2026-09-06-native-card11-aligned-p5.md).
 
 ## Scope and evidence
 
@@ -214,6 +217,16 @@ terminal can retire its whole replay subtree; no such new terminal proof is
 claimed here. If no structural argument is found, kernel-checkable replay remains
 a separate fallback, not the requested mathematical generalization.
 
+The aligned-P5 pilot is now selected. Current source uses fourteen native
+classifier leaves, split across direct and reflected boundary layouts. Fresh
+clause replay shows that the compact four-schema projection becomes satisfiable
+when any single non-first-apex row-existence requirement is removed. A separate
+exact rational witness satisfies the three cap-vertex rows, all strict Kalmanson
+and triangle inequalities, and the checked complete-radius constraints; it fails
+Ptolemy and does not realize the Euclidean source. These results constrain the
+next proof attempt; they retire no native dependency. See the
+[pilot audit and retained witnesses](../docs/audits/2026-09-06-native-card11-aligned-p5.md).
+
 ## Endpoint and surplus all-cardinality wrappers
 
 The previous bank registry already records all-cardinality contradiction consumers:
@@ -289,9 +302,9 @@ same five-point contradiction.
 2. Match five-point circle-isosceles and Kalmanson core hypotheses against finite
    cases, recording uncovered cases explicitly. Prove a structural coverage lemma
    only where its hypotheses are actually supplied by the source geometry.
-3. Next planned package: isolate one card-eleven terminal branch and mine smaller contradictory
-   geometric clause cores. Keep ledger-encoding cleanups distinct from terminal
-   mathematics.
+3. Continue the selected aligned-P5 terminal through nonapex row propagation or
+   additional Euclidean constraints, respecting the checked limits above. Keep
+   ledger-encoding cleanups distinct from terminal mathematics.
 4. Treat polynomial identity families separately: seek shared symbolic identities,
    otherwise evaluate kernel-checkable identity proofs as a fallback. Do not count
    existing checker-soundness lemmas as native-bank replacements.
