@@ -69,3 +69,32 @@ Prove the actual geometric safe selector or explicitly authorize a different
 closure route. The auxiliary result still needs a source-clean consumer for
 the remaining cases, followed by formalization and current trust/reachability
 validation before any proof-spine promotion claim.
+
+## Continuation preflight: small carriers and radius potential
+
+Independent source review accepted the strict-fresh cardinality-12 counting
+argument. The original deleted source is omitted by the first row's erased
+support and by C's two deleted-row fields. The separate physical fresh
+packet omits its source from all three rows. Both sources are in the carrier
+and are distinct, giving union cardinality at most ten. Without a shared
+point besides retained, the row cardinalities and retained's omission from
+the second-apex row instead give union cardinality eleven. The extra shared
+point is therefore PROVEN (paper), not a contradiction or a Lean result.
+
+The same-source tight-cover premise is impossible for this strict-fresh
+packet. This does not invalidate the existing tight-twelve theorem: its
+separate branch has no distinct-fresh premise. The source audit found no
+matching closed strict-fresh cardinality-12/13/14 terminal.
+
+Independent replay of the distinct 27-point geometric return control passes;
+both retained blocker choices have squared radius five. It refutes a strict
+local radius potential in either direction, not weak monotonicity or a
+full-source argument. Its missing total-shell and global-minimality inputs
+are retained explicitly in the audit. The 13-point nonplanar metric control
+must not be conflated with this planar control.
+
+Final independent subsection review passed. Its requested explicit
+`distinctFresh` branch qualification was applied. The reviewer also checked
+the common-center eliminator's distinct branch at `Rigid221Closure.lean:1940`:
+it can return through the distinct-center coordinator to the current physical
+admission. It is not an independent contradiction consumer.

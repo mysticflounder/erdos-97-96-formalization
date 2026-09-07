@@ -180,12 +180,56 @@ rational controls and PiQD geometry lanes omit some of these inputs.
 | Bisector capacity, robust O exclusion, exact-row source membership | PROVEN (paper) | Arguments above; source APIs inspected |
 | At most two double-hit fresh sources | PROVEN (paper) | Argument and independent review above |
 | Carrier cardinality ≥ 15 gives a non-double-hit strict-fresh source | PROVEN (paper) | Union count and proposition above |
+| Strict-fresh cardinality 12 forces an extra shared row point | PROVEN (paper) | Counting argument in continuation preflight; independent review; not formalized |
 | Original uniform safe selector | CONJECTURED | Open; metric relaxation does not decide it |
 | Finite metric negative control | EMPIRICALLY VERIFIED | One exact matrix; 8,190 subsets; five tests |
 | New Lean formalization and current transitive trust audit | CONJECTURED | Not performed; no promotion claim |
 | Small-cardinality and omission-only terminal consumers | CONJECTURED | Open; physical admission unchanged |
 
 ## Next work
+
+### Small-carrier and one-hit continuation preflight
+
+Source inspection at `9852eb8cb5f8283d7f5a8e0d06508590c45934bc`, with an
+independent read-only small-carrier audit, found no matching terminal for the
+strict-fresh cardinality-12, 13, or 14 cases. Cardinality 12 alone cannot use
+`false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical`.
+In fact its erase-cover premise is incompatible with the **current** packet:
+`packet.q_mem_A` and `fresh_ne_deleted` put fresh in `A.erase deleted`, while
+the three `row.q_not_mem` fields omit fresh from the three-row union. A
+different, reselected tight configuration would require a new argument.
+
+In a hypothetical `distinctFresh` cardinality-12 configuration there is a
+sharper counting reduction. Write W for the union of the three four-point
+normal-form rows (not E union B union L).
+Both deleted and fresh are omitted from W, so |W| ≤ 10. The retained point
+belongs to the first and blocker rows but not the second-apex row. If it
+were the only point shared between any pair of rows, their union would have
+4+4+4−1=11 points. Consequently an additional shared point must exist.
+Independent source/counting review accepted this reduction. It is not an
+overlap contradiction or a Lean proof.
+
+The bounded indexed reuse search surfaced overlap consumers requiring other
+source interfaces, not a terminal for this additional shared point. Nor is
+the common-obstruction-center eliminator an independent terminal:
+`false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual`
+in `Rigid221Closure.lean` calls the distinct-center eliminator in its
+adaptive-reselection branch. Returning there can revisit the current physical
+admission. A new pair would also need its own strict-interior and joint-survival
+antecedents; membership in a shared row does not supply those automatically.
+
+The existing [27-point planar return control](2026-09-05-exactfive-geometric-return.md)
+also blocks a local strict-radius potential: U=(-1,0), C=(1,0), and w=(0,2)
+give squared blocker radius 5 for both choices in U → C → U. Independent
+exact replay passes. This rules out a strict increase or strict decrease
+deduced only from the control's retained local hypotheses; it does not rule
+out weak monotonicity, a stronger source-aware selection rule, or a theorem
+using total H and global minimality, which this control lacks.
+
+The physical admission remains unchanged. The next candidate is a
+source-faithful consumer of the extra-overlap case, while cardinalities 13/14
+and the general omission cases remain open. No new solver or Lean build was
+run for this preflight.
 
 Keep the exact safe selector open. The weaker source-count result provides a
 more direct route to its intended double-hit elimination when |A| ≥ 15, but
