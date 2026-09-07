@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exact13-source-coverage-frontier-20260906",
+  "owner": "codex-atomic-scribe",
+  "base_head": "9852eb8cb5f8283d7f5a8e0d06508590c45934bc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact13-source-coverage-frontier-20260906.json",
+    "docs/archive/2026-09-06-exact13-semantic-uncompiled-drafts.md",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "docs/erdos-97-exact13-semantic-canonicalization.md",
+    "docs/skeptic-erdos-97-exact13-semantic-canonicalization-2026-09-06-2.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-07T01:19:03Z",
+  "manifest_sha256": "b7f2abafb4edb5058cd0926902ca8f8853cabd519f2cc0090604f0b82c281ef3"
+}

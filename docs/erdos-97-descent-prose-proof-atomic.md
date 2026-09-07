@@ -1570,9 +1570,23 @@ third row gives support equality at the remaining radius; no new `hnoFive`
 assumption is needed. Deleting `z` and any point of the third row consequently
 destroys four-row survival at the apex. The stored center exclusions, raw
 cover, and blocker disjointness also put the raw apex in exactly one blocker,
-without new geometry. The canonicalization and raw-cover Lean drafts remain uncompiled;
-an incompatible source survival statement or another terminal is still
-needed to close the exact-thirteen branch.
+without new geometry. The source adapters now have
+[focused Lean validation](audits/2026-09-06-exact13-semantic-canonicalization.md),
+and the [eighteen-choice adapter](skeptic-CardGeThirteenExact13ExclusiveApex18-2026-09-06.md)
+has an independent source and axiom audit. These receipts certify local
+results under their stated hypotheses; aggregate reachability and the
+exact-thirteen terminal remain unproved.
+
+The finite route now constructs source-refined keys, with exhaustive
+`StrongValidKeyCover bank` as the remaining sufficient coverage contract.
+An arbitrary member of `strongValidKeys` need not be geometrically realized.
+The [two representative checked entries](audits/2026-09-06-exact13-representative-certificate-20260906.md)
+do not establish that universal contract. The
+[wave5 bank](audits/2026-09-06-exact13-witnessed-key-guarded-cegar-wave5.md)
+ended with SAT at its refinement budget; the
+[wave6 extension](audits/2026-09-06-exact13-witnessed-key-guarded-cegar-wave6.md)
+is interrupted and nonterminal. Neither is an exhaustive coverage or
+contradiction certificate.
 
 ### 11.5 Exact-five and the remaining Rigid221 closure contracts
 
