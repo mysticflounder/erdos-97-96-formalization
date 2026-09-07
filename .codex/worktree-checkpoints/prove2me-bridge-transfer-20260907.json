@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-bridge-transfer-20260907",
+  "owner": "codex-prove2me-bridge",
+  "base_head": "450bc7f82a3ae5436276c677639cd532d8751556",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-bridge-transfer-20260907.json",
+    "prove2me/README.md",
+    "prove2me/submissions/linear-bound-bridge/README.md",
+    "prove2me/submissions/linear-bound-bridge/explanation.md",
+    "prove2me/submissions/linear-bound-bridge/receipt.json",
+    "prove2me/submissions/linear-bound-bridge/solution.lean",
+    "prove2me/submissions/linear-bound-bridge/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [
+    "scratch/runs/prove2me-bridge-transfer-20260907/run-0001"
+  ],
+  "created_utc": "2026-09-07T22:33:46Z",
+  "manifest_sha256": "019197c3405bace20829f7a64f2862236016ec1e3e9686e12c3d0b6ec1f7e79d"
+}

@@ -1,0 +1,146 @@
+{
+  "schema": "prove2me-original-milestone-receipt/v1",
+  "recorded_utc": "2026-09-07T22:45:22.222823Z",
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "theorem_url": "https://prove2.me/theorems/d76e105d-be12-48ae-8965-782674afd985",
+  "verify_response": {
+    "submission_id": "babc821b-786f-4c21-8fea-e237eb0030e7",
+    "status": "PENDING",
+    "message": "Proof submitted for verification. Poll GET /submission/{id} for results.",
+    "guidelines": "Reminder: write the explanation like a section of a math paper, not a tactic-by-tactic transcript. Walk through the mathematical argument and show how it maps onto your Lean code, in Markdown with KaTeX math. The explanation is the only part of a submission you can edit later, via PATCH /api/v1/submissions/:id. Full principles: references/prove.md#attach-an-explanation"
+  },
+  "verify_verdict": {
+    "id": "babc821b-786f-4c21-8fea-e237eb0030e7",
+    "theorem_id": "d76e105d-be12-48ae-8965-782674afd985",
+    "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+    "status": "ACCEPTED",
+    "error_message": "",
+    "file_path": "d76e105d-be12-48ae-8965-782674afd985/6ac78adb-dda3-4892-bb46-d4c86f102d16/babc821b-786f-4c21-8fea-e237eb0030e7.lean",
+    "created_at": "2026-09-07T22:42:06.893214+00:00",
+    "updated_at": "2026-09-07T22:43:36.694294+00:00"
+  },
+  "theorem_final": {
+    "theorem_id": "d76e105d-be12-48ae-8965-782674afd985",
+    "theorem_name": "Erdos9796Mission.linear_bound_of_problem97",
+    "theorem_title": "The bridge: Problem 97 implies the 3n bound and Problem 96",
+    "status": "Proved",
+    "formal_statement": "theorem Erdos9796Mission.linear_bound_of_problem97 :\n    Problem97 → (∀ A : Finset Plane, ConvexIndep (A : Set Plane) → unitDistancePairsCount A ≤ 3 * A.card) ∧ Problem96 := by sorry",
+    "natural_language_statement": "Assume the affirmative statement of Erdős Problem 97 for every nonempty finite convex-independent point set in the Euclidean plane. Then every finite convex-independent set $A$, including the empty set, satisfies\n\n$$u(A)\\le3|A|,$$\n\nand the extremal function satisfies\n\n$$U_c(n)=O(n).$$\n\nHere $u(A)$ counts unordered pairs of distinct points at distance one, each pair once, and $U_c(n)$ is the supremum of these counts over convex-independent n-point sets. Both conclusions are required. This is a conditional theorem, with Problem 97 as an explicit hypothesis. The repository records the conditional peeling proof and the subsequent supremum-to-Big-O step; transferring both makes the complete link between the two mission targets reusable.",
+    "created_at": "2026-09-05T22:52:01.285977+00:00",
+    "vote_count": 0,
+    "tags": [
+      "convex-position",
+      "discrete-geometry",
+      "erdos-97-96",
+      "unit-distances"
+    ],
+    "preamble": "/- Statement-only mission draft: SKETCH — NOT PROMOTABLE.\nSource and precise status are recorded in items.json. -/\nimport Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission",
+    "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/EuclideanPeeling.lean; https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean",
+    "deprecated_at": null,
+    "deprecated_by": null,
+    "visibility": "public",
+    "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "audits": [],
+    "readback": {
+      "readback": "Assume that every nonempty finite set $C$ of points in the real Euclidean plane whose points all lie outside the real convex hull of the remaining points fails to have the following property: for every $p\\in C$ there is a positive real radius $r>0$ such that $\\{q\\in C : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $4$. Then both of the following hold: for every finite set $A$ of plane points satisfying the same convex-hull condition, including the possibility that $A$ is empty, the number $\\operatorname{unitDistancePairsCount}(A)$ of unordered two-element pairs from $A$ counted once, where a pair $\\{p,q\\}$ is counted exactly when $0<\\operatorname{dist}(p,q)$ and $\\operatorname{dist}(p,q)=1$, is at most $3|A|$; and the real-valued function sending $n$ to the natural-number supremum of these unit-distance counts over finite convex-independent point sets of cardinality $n$ grows as $O(n)$ along natural numbers tending to infinity.",
+      "model": "gpt-5.6-luna",
+      "created_at": "2026-09-05T22:52:05.985273+00:00"
+    }
+  },
+  "milestone_final": {
+    "id": "58649d0e-08e4-4e04-9c15-aa04fe2d9aa3",
+    "title": "The bridge: Problem 97 implies the 3n bound and Problem 96",
+    "milestone_description": "**Server-verified conditional bridge.** Assuming Problem 97, every finite convex-independent planar set A has at most 3|A| unordered unit-distance pairs. Taking the supremum over n-point sets gives Problem 96 with explicit constant three.\n\nThe proof deletes a vertex of unit degree at most three and counts unordered pairs directly in the symmetric square. Problem 97 remains an explicit hypothesis; this milestone does not settle either original problem unconditionally.\n\n[Verified proof](https://prove2.me/theorems/d76e105d-be12-48ae-8965-782674afd985)",
+    "sort_order": 5,
+    "completed": true,
+    "theorem": {
+      "id": "d76e105d-be12-48ae-8965-782674afd985",
+      "theorem_name": "Erdos9796Mission.linear_bound_of_problem97",
+      "status": "Proved"
+    },
+    "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+    "created_at": "2026-09-05T22:53:01.273346+00:00"
+  },
+  "milestone_patch": {
+    "milestone_description": "**Server-verified conditional bridge.** Assuming Problem 97, every finite convex-independent planar set A has at most 3|A| unordered unit-distance pairs. Taking the supremum over n-point sets gives Problem 96 with explicit constant three.\n\nThe proof deletes a vertex of unit degree at most three and counts unordered pairs directly in the symmetric square. Problem 97 remains an explicit hypothesis; this milestone does not settle either original problem unconditionally.\n\n[Verified proof](https://prove2.me/theorems/d76e105d-be12-48ae-8965-782674afd985)"
+  },
+  "files_sha256": {
+    "solution.lean": "3094bf557e3b0b41eac76f2158b4f05ae42187221045ad594b336095fec114b8",
+    "explanation.md": "edcbeec3d4b7949c316b7f8788fac4a2e579d22dff6dc4a6091ccacf67ef76a5",
+    "validation.json": "6623baadd1f7c884d99cddcf8d26469eb9e73c8b57716a284e208870b3dd088c"
+  },
+  "mission_snapshot": [
+    {
+      "id": "a088d872-2694-46c6-a129-61796764edbb",
+      "theorem": {
+        "id": "026148f7-dce3-4658-991b-75fa7cccf734",
+        "theorem_name": "Erdos9796Mission.danzer_nine",
+        "status": "Open"
+      },
+      "completed": false
+    },
+    {
+      "id": "284e8d32-982e-4f1c-aa56-f5dd76e6902e",
+      "theorem": {
+        "id": "c35e1c76-5531-4585-9ced-8c47a929793e",
+        "theorem_name": "Erdos9796Mission.counterexample_card_ge_nine",
+        "status": "Open"
+      },
+      "completed": false
+    },
+    {
+      "id": "13b51403-6abb-4268-9d39-5fe4c5f5eb37",
+      "theorem": {
+        "id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+        "theorem_name": "Erdos9796Mission.finite_nine_exclusion",
+        "status": "Open"
+      },
+      "completed": false
+    },
+    {
+      "id": "e0085905-edbd-4e77-801f-cc348f53b3a8",
+      "theorem": {
+        "id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+        "theorem_name": "Erdos9796Mission.minimal_counterexample_removable",
+        "status": "Open"
+      },
+      "completed": false
+    },
+    {
+      "id": "223632d2-b90a-4952-9975-3f0247d214c2",
+      "theorem": {
+        "id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+        "theorem_name": "Erdos9796Mission.problem97",
+        "status": "Open"
+      },
+      "completed": false
+    },
+    {
+      "id": "58649d0e-08e4-4e04-9c15-aa04fe2d9aa3",
+      "theorem": {
+        "id": "d76e105d-be12-48ae-8965-782674afd985",
+        "theorem_name": "Erdos9796Mission.linear_bound_of_problem97",
+        "status": "Proved"
+      },
+      "completed": true
+    },
+    {
+      "id": "5187d03b-2c7d-41cb-bfb8-076ffcba2c7b",
+      "theorem": {
+        "id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+        "theorem_name": "Erdos9796Mission.problem96",
+        "status": "Open"
+      },
+      "completed": false
+    },
+    {
+      "id": "bc3ac2d3-e0ba-4259-b305-c1facbb9b953",
+      "theorem": {
+        "id": "9bd194e6-8fc5-4637-8f3c-71645a468443",
+        "theorem_name": "Erdos9796Mission_four_pair_overlap_on_seven",
+        "status": "Proved"
+      },
+      "completed": true
+    }
+  ]
+}

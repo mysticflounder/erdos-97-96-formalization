@@ -24,6 +24,8 @@ server verification before the corresponding platform nodes can be marked proved
 
 ## Contents
 
+- [Accepted original bridge milestone](submissions/linear-bound-bridge/README.md): assuming Problem 97, the 3n unit-distance bound and Problem 96; server verified.
+
 - [Accepted four-support proof](submissions/upload-20260907/README.md): public Lean 4.33.1 proof, server verification receipt, and completed supporting milestone. The [original preparation packet](submissions/four-pair-coverage/README.md) is retained for provenance.
 
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse

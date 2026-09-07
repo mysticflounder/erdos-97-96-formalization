@@ -1,0 +1,103 @@
+{
+  "schema": "prove2me-bridge-validation/v1",
+  "status": "locally_validated",
+  "validated_utc": "2026-09-07T22:41:42.991014Z",
+  "toolchain": "leanprover/lean4:v4.33.1",
+  "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+  "target": {
+    "theorem_id": "d76e105d-be12-48ae-8965-782674afd985",
+    "theorem_name": "Erdos9796Mission.linear_bound_of_problem97",
+    "theorem_title": "The bridge: Problem 97 implies the 3n bound and Problem 96",
+    "status": "Open",
+    "formal_statement": "theorem Erdos9796Mission.linear_bound_of_problem97 :\n    Problem97 → (∀ A : Finset Plane, ConvexIndep (A : Set Plane) → unitDistancePairsCount A ≤ 3 * A.card) ∧ Problem96 := by sorry",
+    "natural_language_statement": "Assume the affirmative statement of Erdős Problem 97 for every nonempty finite convex-independent point set in the Euclidean plane. Then every finite convex-independent set $A$, including the empty set, satisfies\n\n$$u(A)\\le3|A|,$$\n\nand the extremal function satisfies\n\n$$U_c(n)=O(n).$$\n\nHere $u(A)$ counts unordered pairs of distinct points at distance one, each pair once, and $U_c(n)$ is the supremum of these counts over convex-independent n-point sets. Both conclusions are required. This is a conditional theorem, with Problem 97 as an explicit hypothesis. The repository records the conditional peeling proof and the subsequent supremum-to-Big-O step; transferring both makes the complete link between the two mission targets reusable.",
+    "created_at": "2026-09-05T22:52:01.285977+00:00",
+    "vote_count": 0,
+    "tags": [
+      "convex-position",
+      "discrete-geometry",
+      "erdos-97-96",
+      "unit-distances"
+    ],
+    "preamble": "/- Statement-only mission draft: SKETCH — NOT PROMOTABLE.\nSource and precise status are recorded in items.json. -/\nimport Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission",
+    "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/EuclideanPeeling.lean; https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean",
+    "deprecated_at": null,
+    "deprecated_by": null,
+    "visibility": "public",
+    "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "audits": [],
+    "readback": {
+      "readback": "Assume that every nonempty finite set $C$ of points in the real Euclidean plane whose points all lie outside the real convex hull of the remaining points fails to have the following property: for every $p\\in C$ there is a positive real radius $r>0$ such that $\\{q\\in C : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $4$. Then both of the following hold: for every finite set $A$ of plane points satisfying the same convex-hull condition, including the possibility that $A$ is empty, the number $\\operatorname{unitDistancePairsCount}(A)$ of unordered two-element pairs from $A$ counted once, where a pair $\\{p,q\\}$ is counted exactly when $0<\\operatorname{dist}(p,q)$ and $\\operatorname{dist}(p,q)=1$, is at most $3|A|$; and the real-valued function sending $n$ to the natural-number supremum of these unit-distance counts over finite convex-independent point sets of cardinality $n$ grows as $O(n)$ along natural numbers tending to infinity.",
+      "model": "gpt-5.6-luna",
+      "created_at": "2026-09-05T22:52:05.985273+00:00"
+    }
+  },
+  "definition": {
+    "theorem_id": "1d2462e2-1f33-4e83-851f-6c097a4ee65d",
+    "theorem_name": "Erdos9796Mission",
+    "theorem_title": "Convex point sets, equidistant neighbours, and unit-distance counts",
+    "status": "Definition",
+    "formal_statement": "",
+    "natural_language_statement": "The ambient space is the Euclidean plane. A set is convex-independent when each point is outside the convex hull of the remaining points. A vertex has at least k equidistant neighbours when a positive-radius circle centred there contains at least k members of the set; the radius may vary with the vertex. Unit-distance counts use unordered pairs at distance one, each counted once. For each n, the extremal count is the natural-number supremum over all convex-independent n-point sets. The two proposition names expand to the affirmative Problem 97 statement and Problem 96's asymptotic O(n) statement; neither is assumed true.",
+    "created_at": "2026-09-05T22:49:02.306238+00:00",
+    "vote_count": 0,
+    "tags": [
+      "convex-position",
+      "discrete-geometry",
+      "erdos-97-96",
+      "unit-distances"
+    ],
+    "definition": "/-\nCopyright 2026 The Formal Conjectures Authors.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    https://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n-/\n\nimport Mathlib\n\n/-!\n# Combined Erdős Problems 97 and 96 mission vocabulary\n\nThe equidistance predicates follow `FormalConjectures/ErdosProblems/97.lean`,\nand the convex unit-distance counting definitions follow\n`FormalConjectures/ErdosProblems/96.lean` from the Formal Conjectures project.\nThe source problems are also documented at\n<https://www.erdosproblems.com/96> and <https://www.erdosproblems.com/97>.\n-/\n\nopen Filter\n\nnamespace Erdos9796Mission\n\nabbrev Plane := EuclideanSpace ℝ (Fin 2)\n\ndef ConvexIndep (S : Set Plane) : Prop :=\n  ∀ a ∈ S, a ∉ convexHull ℝ (S \\ {a})\n\ndef HasNEquidistantPointsAt (n : ℕ) (A : Finset Plane) (p : Plane) : Prop :=\n  ∃ r : ℝ, r > 0 ∧ (A.filter fun q ↦ dist p q = r).card ≥ n\n\ndef HasNEquidistantPointsOn (n : ℕ) (A B : Finset Plane) : Prop :=\n  ∀ p ∈ B, HasNEquidistantPointsAt n A p\n\ndef HasNEquidistantProperty (n : ℕ) (A : Finset Plane) : Prop :=\n  HasNEquidistantPointsOn n A A\n\nnoncomputable def unitDistancePairsCount (A : Finset Plane) : ℕ := by\n  classical\n  let relation : Plane → Plane → Prop := fun p q ↦ 0 < dist p q ∧ dist p q = 1\n  let symmetricRelation : {f : Plane → Plane → Prop // ∀ p q, f p q = f q p} :=\n    ⟨relation, by\n      intro p q\n      exact congrArg (fun d : ℝ => 0 < d ∧ d = 1) (dist_comm p q)⟩\n  exact (A.sym2.filter (Sym2.lift symmetricRelation)).card\n\nnoncomputable def convexUnitDistanceCounts (n : ℕ) : Set ℕ :=\n  {unitDistancePairsCount points |\n    (points : Finset Plane) (_ : points.card = n) (_ : ConvexIndep (points : Set Plane))}\n\nnoncomputable def maxConvexUnitDistances (n : ℕ) : ℕ :=\n  sSup (convexUnitDistanceCounts n)\n\ndef Problem97 : Prop :=\n  ∀ A : Finset Plane, A.Nonempty → ConvexIndep (A : Set Plane) →\n    ¬ HasNEquidistantProperty 4 A\n\ndef Problem96 : Prop :=\n  (fun n => (maxConvexUnitDistances n : ℝ)) =O[atTop] fun n => (n : ℝ)\n\nend Erdos9796Mission\n",
+    "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/Foundation.lean; https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean",
+    "deprecated_at": null,
+    "deprecated_by": null,
+    "visibility": "public",
+    "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "audits": [],
+    "readback": {
+      "readback": "`Plane` is the Euclidean plane, namely the real Euclidean space of functions from a two-element finite index set to $\\mathbb{R}$. For a subset $S$ of this plane, `ConvexIndep S` says that every $a\\in S$ is absent from the convex hull over $\\mathbb{R}$ of $S\\setminus\\{a\\}$. For a natural number $n$, finite point set $A$, and point $p$, `HasNEquidistantPointsAt n A p` says that there exists a real radius $r>0$ such that at least $n$ members $q$ of $A$ satisfy $\\operatorname{dist}(p,q)=r$; the point $p$ itself cannot be counted at such a radius, and for $n=0$ the condition is automatic for every $A,p$, while for a positive $n$ it is impossible when $A$ is empty. `HasNEquidistantPointsOn n A B` says that this condition holds for every $p\\in B$ (vacuously when $B$ is empty), and `HasNEquidistantProperty n A` is the special case $B=A$, so it requires every point of $A$ to have some positive radius containing at least $n$ points of $A$ at that exact distance (vacuously when $A$ is empty). `unitDistancePairsCount A` is the number of unordered pairs of distinct points drawn from $A$ whose mutual distance is exactly $1$; the code tests both $0<\\operatorname{dist}(p,q)$ and $\\operatorname{dist}(p,q)=1$, and each unordered pair is counted once, so the count is $0$ for a set with fewer than two points. `convexUnitDistanceCounts n` is the set of natural numbers obtained as `unitDistancePairsCount points` while `points` ranges over finite point sets in the plane with exactly $n$ elements and with `ConvexIndep (points)`; repeated numerical counts from different point sets occur only once because this is a set, and if there are no admissible point sets the set is empty. `maxConvexUnitDistances n` is the natural-number supremum of `convexUnitDistanceCounts n`, using the natural numbers' convention for a supremum of an empty set.",
+      "model": "gpt-5.6-luna",
+      "created_at": "2026-09-05T22:49:04.953208+00:00"
+    }
+  },
+  "definition_matches_local_bytes": true,
+  "solution_check_exit": 0,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "solution_log": "'solution' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+  "files_sha256": {
+    "solution.lean": "3094bf557e3b0b41eac76f2158b4f05ae42187221045ad594b336095fec114b8",
+    "explanation.md": "edcbeec3d4b7949c316b7f8788fac4a2e579d22dff6dc4a6091ccacf67ef76a5"
+  },
+  "independent_readback": {
+    "reviewer": "bridge_transfer_route",
+    "verdict": "PASS",
+    "statement": "Assuming Problem97, every finite convex-independent planar set has at most three times its cardinality unordered unit-distance pairs, and the extremal count is O(n).",
+    "checks": [
+      "explicit Problem97 hypothesis retained",
+      "all finite sets including empty",
+      "all n and empty supremum family handled",
+      "only published definition import",
+      "no target import, sorry, custom axiom or native_decide",
+      "explanation matches direct symmetric-square deletion proof"
+    ]
+  },
+  "exact_target_application_checked": true,
+  "exact_target_exit": 0,
+  "exact_target_log": "'solution' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+  "exact_probe_source": "/-\nCopyright (c) 2026 Adam McKenna. All rights reserved.\nReleased under Apache 2.0 license as described in the file LICENSE.\nAuthors: Adam McKenna\n-/\n/-\nCopyright 2026 The Formal Conjectures Authors.\n\nLicensed under the Apache License, Version 2.0 (the \"License\");\nyou may not use this file except in compliance with the License.\nYou may obtain a copy of the License at\n\n    https://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software\ndistributed under the License is distributed on an \"AS IS\" BASIS,\nWITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\nSee the License for the specific language governing permissions and\nlimitations under the License.\n-/\n\nimport Mathlib\n\n/-!\n# Combined Erdős Problems 97 and 96 mission vocabulary\n\nThe equidistance predicates follow `FormalConjectures/ErdosProblems/97.lean`,\nand the convex unit-distance counting definitions follow\n`FormalConjectures/ErdosProblems/96.lean` from the Formal Conjectures project.\nThe source problems are also documented at\n<https://www.erdosproblems.com/96> and <https://www.erdosproblems.com/97>.\n-/\n\nopen Filter\n\nnamespace Erdos9796Mission\n\nabbrev Plane := EuclideanSpace ℝ (Fin 2)\n\ndef ConvexIndep (S : Set Plane) : Prop :=\n  ∀ a ∈ S, a ∉ convexHull ℝ (S \\ {a})\n\ndef HasNEquidistantPointsAt (n : ℕ) (A : Finset Plane) (p : Plane) : Prop :=\n  ∃ r : ℝ, r > 0 ∧ (A.filter fun q ↦ dist p q = r).card ≥ n\n\ndef HasNEquidistantPointsOn (n : ℕ) (A B : Finset Plane) : Prop :=\n  ∀ p ∈ B, HasNEquidistantPointsAt n A p\n\ndef HasNEquidistantProperty (n : ℕ) (A : Finset Plane) : Prop :=\n  HasNEquidistantPointsOn n A A\n\nnoncomputable def unitDistancePairsCount (A : Finset Plane) : ℕ := by\n  classical\n  let relation : Plane → Plane → Prop := fun p q ↦ 0 < dist p q ∧ dist p q = 1\n  let symmetricRelation : {f : Plane → Plane → Prop // ∀ p q, f p q = f q p} :=\n    ⟨relation, by\n      intro p q\n      exact congrArg (fun d : ℝ => 0 < d ∧ d = 1) (dist_comm p q)⟩\n  exact (A.sym2.filter (Sym2.lift symmetricRelation)).card\n\nnoncomputable def convexUnitDistanceCounts (n : ℕ) : Set ℕ :=\n  {unitDistancePairsCount points |\n    (points : Finset Plane) (_ : points.card = n) (_ : ConvexIndep (points : Set Plane))}\n\nnoncomputable def maxConvexUnitDistances (n : ℕ) : ℕ :=\n  sSup (convexUnitDistanceCounts n)\n\ndef Problem97 : Prop :=\n  ∀ A : Finset Plane, A.Nonempty → ConvexIndep (A : Set Plane) →\n    ¬ HasNEquidistantProperty 4 A\n\ndef Problem96 : Prop :=\n  (fun n => (maxConvexUnitDistances n : ℝ)) =O[atTop] fun n => (n : ℝ)\n\nend Erdos9796Mission\n\nset_option autoImplicit false\nopen Finset Filter\nopen Erdos9796Mission\n\nnamespace Erdos9796Bridge\n\nnoncomputable def unitPair (s : Sym2 Plane) : Prop :=\n  Sym2.lift ⟨fun p q : Plane ↦ 0 < dist p q ∧ dist p q = 1,\n    fun p q ↦ congrArg (fun d : ℝ ↦ 0 < d ∧ d = 1) (dist_comm p q)⟩ s\n\nlemma count_erase (A : Finset Plane) (p : Plane) (hp : p ∈ A) :\n    unitDistancePairsCount A ≤ unitDistancePairsCount (A.erase p) +\n      (A.filter fun q ↦ dist p q = 1).card := by\n  classical\n  change (A.sym2.filter unitPair).card ≤ ((A.erase p).sym2.filter unitPair).card + _\n  have hs : A.sym2 = (A.image fun q ↦ s(p, q)) ∪ (A.erase p).sym2 := by\n    conv_lhs => rw [← insert_erase hp]\n    rw [sym2_insert, insert_erase hp]\n  have hf : (A.image fun q ↦ s(p, q)).filter unitPair =\n      (A.filter fun q ↦ dist p q = 1).image (fun q ↦ s(p, q)) := by\n    ext e\n    simp only [mem_filter, mem_image]\n    constructor\n    · rintro ⟨⟨q, hq, rfl⟩, h⟩\n      exact ⟨q, ⟨hq, h.2⟩, rfl⟩\n    · rintro ⟨q, ⟨hq, hd⟩, rfl⟩\n      exact ⟨⟨q, hq, rfl⟩, by\n        change 0 < dist p q ∧ dist p q = 1\n        rw [hd]\n        norm_num⟩\n  rw [hs, filter_union, hf]\n  exact (card_union_le _ _).trans (by\n    have h := card_image_le (s := A.filter fun q ↦ dist p q = 1) (f := fun q ↦ s(p, q))\n    omega)\n\nlemma convex_erase {A : Finset Plane} (h : ConvexIndep (A : Set Plane)) (p : Plane) :\n    ConvexIndep (A.erase p : Set Plane) := by\n  intro a ha hm\n  exact h a (erase_subset p A ha)\n    (convexHull_mono (Set.sdiff_subset_sdiff_left (coe_subset.mpr (erase_subset p A))) hm)\n\nlemma low_degree (hP97 : Problem97) {A : Finset Plane} (hne : A.Nonempty)\n    (hconv : ConvexIndep (A : Set Plane)) :\n    ∃ p ∈ A, (A.filter fun q ↦ dist p q = 1).card ≤ 3 := by\n  classical\n  have h := hP97 A hne hconv\n  unfold HasNEquidistantProperty HasNEquidistantPointsOn HasNEquidistantPointsAt at h\n  push Not at h\n  obtain ⟨p, hp, hd⟩ := h\n  exact ⟨p, hp, by have := hd 1 (by norm_num); omega⟩\n\nlemma per_set_bound (hP97 : Problem97) (A : Finset Plane)\n    (hconv : ConvexIndep (A : Set Plane)) : unitDistancePairsCount A ≤ 3 * A.card := by\n  classical\n  induction A using Finset.strongInductionOn with\n  | _ A ih =>\n    by_cases hne : A.Nonempty\n    · obtain ⟨p, hp, hd⟩ := low_degree hP97 hne hconv\n      have hi := ih (A.erase p) (erase_ssubset hp) (convex_erase hconv p)\n      have hc := count_erase A p hp\n      have he := card_erase_of_mem hp\n      have hpos : 0 < A.card := card_pos.mpr hne\n      omega\n    · have he : A = ∅ := not_nonempty_iff_eq_empty.mp hne\n      simp [he, unitDistancePairsCount]\n\nlemma supremum_bound (hP97 : Problem97) (n : ℕ) : maxConvexUnitDistances n ≤ 3 * n := by\n  unfold maxConvexUnitDistances\n  rcases Set.eq_empty_or_nonempty (convexUnitDistanceCounts n) with h | h\n  · rw [h, csSup_empty]\n    exact bot_le\n  · refine csSup_le h ?_\n    rintro x ⟨A, hcard, hconv, rfl⟩\n    simpa [hcard] using per_set_bound hP97 A hconv\n\nend Erdos9796Bridge\n\ntheorem solution :\n    Problem97 → (∀ A : Finset Plane, ConvexIndep (A : Set Plane) →\n      unitDistancePairsCount A ≤ 3 * A.card) ∧ Problem96 := by\n  intro hP97\n  refine ⟨Erdos9796Bridge.per_set_bound hP97, ?_⟩\n  refine Asymptotics.isBigO_of_le' (c := 3) atTop fun n ↦ ?_\n  rw [Real.norm_natCast, Real.norm_natCast]\n  exact_mod_cast Erdos9796Bridge.supremum_bound hP97 n\n\nexample :\n    Problem97 → (∀ A : Finset Plane, ConvexIndep (A : Set Plane) → unitDistancePairsCount A ≤ 3 * A.card) ∧ Problem96 := solution\n#print axioms solution\n",
+  "command": [
+    "lake",
+    "env",
+    "lean",
+    "-M",
+    "8192",
+    "-DautoImplicit=false",
+    "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/runs/prove2me-bridge-transfer-20260907/run-0001/tmp/ExactTargetProbe.lean"
+  ],
+  "workspace": "/Users/adam/prove2me_workspace",
+  "exact_probe_sha256": "54a0d5475bb40a3fa4396745fad871f029e5e6317001f58f7c9119aed5d91349"
+}
