@@ -411,10 +411,26 @@ it does not turn the interrupted campaign into a terminal result. See
 `docs/audits/2026-09-06-exact13-wave6-partial-replay.md` and the successor
 source/coverage entry in `docs/plans/2026-09-01-dr-two-radius-branch-closure.md`.
 
-RadiusCartographer has already started the successor lane
-`exact13-third-apex-guarded-cegar-wave7-20260906`, importing that recovered
-bank and adding the 550 third-apex clauses (coordination message 16804).
-Do not implement or launch a duplicate of the previously proposed next wave.
-Inspect the existing lane's retained evidence and coordinate with its owner
-before any continuation; a launch announcement is not evidence of a live
-process, terminal status, exhaustion, or an uncancellable witness.
+The successor lane `exact13-third-apex-guarded-cegar-wave7-20260906` is now
+retained at `f4b6491af`.  It imported that recovered bank, added the 550
+third-apex clauses with no new variables, and recorded 14,288 further SAT
+model/cut pairs before a `WALL_BUDGET` terminal with final SAT status.  Its
+77,797-row bank is diagnostic only.  Total elapsed time exceeded the stated
+loop budget, the import partition is internally short by 509 rows, and the
+post-loop verifier was passed the historical root hash rather than the fresh
+Wave 7 root hash.  The files and counts are retained, but an independent
+semantic replay receipt is absent.
+
+Do not launch a duplicate or import Wave 7 directly into a promotion lane.
+First fix the partition assertion and verifier hash adapter, replay all 14,288
+new models and cuts against the fresh 31,833-clause root, and issue an honest
+successor receipt that preserves lane base `427d96c66` while separately
+recording its execution head.  Even after that repair, SAT at the wall budget
+is a nonterminal frontier, not exhaustion or an uncancellable witness.
+
+Two adjacent checkpoints refine the search without supplying coverage.
+`CardGeThirteenActiveOverlap` at `1d28ec2c0` kernel-checks the active-pair tag,
+the card-one/card-two split, and the remaining-row bound in the card-two case.
+The direct-cell-zero contract at `1dbdfcf1c` rejects the legacy coarse false
+positive and checks the corrected witnessed restriction, but it predates the
+550-clause successor and proves no Lean lift or complete bank cover.

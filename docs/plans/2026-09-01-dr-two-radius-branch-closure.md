@@ -942,6 +942,42 @@ certificate replay is then unnecessary for card 12.
   blocker-shell theorem must still supply the reverse inequality or the
   nested-escape packet.  None of these audits closes a coordinator `sorry`.
 
+  Checkpoint 2026-09-07: Wave 7 is retained at `f4b6491af` as explicitly
+  nonterminal formula-scoped evidence.  Its strengthened root has 432
+  variables and 31,833 clauses, including exactly 550 third-apex clauses and
+  no new variables.  It replayed the 63,509-row Wave 6 bank and produced
+  14,288 additional SAT model/cut records before the PIQD session ended at
+  `WALL_BUDGET`; the final solve status is SAT and total elapsed time
+  4,246.772 seconds exceeded the configured 3,600-second loop budget.  The
+  resulting bank has 77,797 rows, split into 67,057 one-form and 10,740
+  two-form cuts.  This is not UNSAT, exhaustive coverage, a survivor
+  discharge, a Lean result, or closure.
+
+  Independent review found two repair obligations before another solver wave
+  may import Wave 7 as authenticated semantic evidence.  First, the import
+  report records 57,000 later `StrongValid` rows, but its aggregate count
+  implies 57,509; the producer needs arithmetic assertions and a corrected
+  reseal.  Second, the post-loop new-model verifier received the historical
+  Wave 6 root hash rather than the fresh emitted-root hash.  Although the
+  14,288 model files, cut files, and PIQD receipts are present and local replay
+  against the fresh root was reported successful, no independent replay
+  receipt was retained.  Repair the verifier argument, replay all 14,288
+  models and cuts against the exact fresh root, preserve the lane base
+  `427d96c66`, and record the actual execution head separately.  Do not infer
+  source coverage from the current Wave 7 records.
+
+  The row-overlap audit's three safe consequences are now kernel-checked in
+  `CardGeThirteenActiveOverlap` at `1d28ec2c0`: a proof-relevant choice of
+  `row01`, `row0K`, or `row1K`; selected-intersection cardinality one or two;
+  and, in the card-two case, a bound of one for the remaining row's
+  intersection with the shared pair.  The module introduces no coordinator
+  edit and proves no contradiction.  The direct-cell-zero checkpoint at
+  `1dbdfcf1c` corrects the legacy coarse-cell domain and checks a solver-free
+  432-variable, 31,290-clause restriction with the full occurrence witness,
+  but supplies neither a Lean source-to-assignment lift nor exhaustive bank
+  coverage.  These two checkpoints narrow the next producers without closing
+  any of the four Phase 4 obligations.
+
 ## 7. Effort
 
 In sessions: Phase 0 + 2 together, one. Phase 1, one to two. Phase 3, one
