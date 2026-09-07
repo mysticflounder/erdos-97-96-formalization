@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-mutual-endpoint-control-20260906",
+  "owner": "CapDropAudit",
+  "base_head": "63c0b4e243a683733e400b592b52084f4fcfbd8c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-mutual-endpoint-control-20260906.json",
+    ".codex/worktree-checkpoints/exactfive-partial-h-control-20260906.json",
+    "certificates/exactfive_mutual_endpoint_control_20260906.json",
+    "certificates/exactfive_partial_h_control_20260906.json",
+    "docs/audits/2026-09-06-exactfive-mutual-endpoint-control.md",
+    "docs/audits/2026-09-06-exactfive-partial-h-control.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/skeptic-exactfive-mutual-endpoint-control-2026-09-06.md",
+    "docs/skeptic-exactfive-partial-h-control-2026-09-06.md",
+    "scripts/verify_exactfive_mutual_endpoint_control.py",
+    "scripts/verify_exactfive_partial_h_control.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T17:45:43.342447Z",
+  "manifest_sha256": "eb6fa7f9e8bc78a3a28222c0c0738833ea9149a6ac2ad0aeed5d3adc14da631a"
+}

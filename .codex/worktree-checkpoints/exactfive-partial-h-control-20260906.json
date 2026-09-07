@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-partial-h-control-20260906",
+  "owner": "CapDropAudit",
+  "base_head": "63c0b4e243a683733e400b592b52084f4fcfbd8c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-partial-h-control-20260906.json",
+    "certificates/exactfive_partial_h_control_20260906.json",
+    "docs/audits/2026-09-06-exactfive-partial-h-control.md",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/skeptic-exactfive-partial-h-control-2026-09-06.md",
+    "scripts/verify_exactfive_partial_h_control.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-06T18:03:58.446893Z",
+  "manifest_sha256": "024c0c1e6fcfd2a22569e4bfc5fa21cd03e5ebf0b8f2294aaa870c7353cbadd6"
+}

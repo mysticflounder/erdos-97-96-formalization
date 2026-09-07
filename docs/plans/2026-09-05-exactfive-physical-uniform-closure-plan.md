@@ -370,6 +370,28 @@ in the singleton trace, together with consumers for both pair traces.
 The trace split alone does not justify new admissions, a production helper
 without a consuming reduction, or elimination of the physical terminal.
 
+The [32-point endpoint control](../audits/2026-09-06-exactfive-mutual-endpoint-control.md)
+adds an actual full four-class at the mutual endpoint e = w while retaining
+the local mutual rows and the minimum admissible pair. Its closed cap
+counts are 8,13,14, with W still uniquely surplus. This finite exact
+control excludes a contradiction from these local hypotheses plus K4 at e
+alone. It still fails global K4, total H and original fresh-center data;
+an argument consuming those source hypotheses remains open. In particular,
+the H(u) trace consumers above are not invalidated by this construction.
+
+The [44-point partial-H control](../audits/2026-09-06-exactfive-partial-h-control.md)
+also supplies actual blockers H(q)=d1, H(w)=b, H(b)=c, H(c)=b and
+H(u)=d0. Thus c differs from the assigned endpoint centers, and the
+third-anchor row has trace {u} with radius greater than r. For the local
+selected-row mapping, the fresh source is b and its actual center is c:
+the rows E ∖ {q}, Kb and Lu omit both the original deleted source q and
+the fresh source b. The retained-deletion rows and overlap bounds also
+hold. These finite selected-row facts do not instantiate production
+structures: global K4 fails at 37 centers and 26 sources lack any actual
+blocker, including O,V,W,d0,d1. The remaining singleton argument must use
+the missing global source requirements; local existence of H(u) and the
+displayed freshness assignments supply no contradiction or radius decrease.
+
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 
 Start with one baseline `FaithfulCarrierPattern` whose gauge center differs
