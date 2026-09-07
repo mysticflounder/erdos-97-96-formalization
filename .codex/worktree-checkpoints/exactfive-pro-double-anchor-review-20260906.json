@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-pro-double-anchor-review-20260906",
+  "owner": "CapDropAudit",
+  "base_head": "6806d13fc38e031af644e31c4609a38feefd8c58",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-pro-double-anchor-review-20260906.json",
+    "docs/audits/2026-09-06-exactfive-pro-double-anchor-replay.json",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/references/exactfive-source-geometry-2026-09-05/double-anchor-pro-replay-2026-09-06.md",
+    "docs/references/exactfive-source-geometry-2026-09-05/double-anchor-pro-report-2026-09-06.md",
+    "docs/skeptic-exactfive-pro-double-anchor-2026-09-06.md"
+  ],
+  "durable_paths": [
+    "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001"
+  ],
+  "created_utc": "2026-09-07T02:06:57.703492Z",
+  "manifest_sha256": "a6206d8dda0b43c370a49878cf713aa294104f36d0ac42aba685d18f7993aa48"
+}

@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "exactfive-pro-double-anchor-review-20260906",
+  "run_id": "run-0001",
+  "root": "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001",
+  "owner": "CapDropAudit",
+  "base_head": "6806d13fc38e031af644e31c4609a38feefd8c58",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/references/exactfive-source-geometry-2026-09-05/double-anchor-pro-replay-2026-09-06.md": "c6d1a7e61e4fe66f512a0e81707867b47b92cb790005b91af1a1bd3eac91fabb"
+  },
+  "input_digests": {
+    "docs/references/exactfive-source-geometry-2026-09-05/double-anchor-pro-report-2026-09-06.md": "632858aa5a38dbf58c23361edde9ae06caebf360c58d0b38278ddf6f2405be42",
+    "docs/references/exactfive-source-geometry-2026-09-05/double-anchor-pro-replay-2026-09-06.md": "c6d1a7e61e4fe66f512a0e81707867b47b92cb790005b91af1a1bd3eac91fabb"
+  },
+  "created_utc": "2026-09-07T02:06:58.160484Z",
+  "manifest_sha256": "4d1dd6e20ac3651b139949b36baf90be1e8305c6ff27b28fc5249934388202a7"
+}

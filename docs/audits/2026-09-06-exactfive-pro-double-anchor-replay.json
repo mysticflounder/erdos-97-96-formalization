@@ -1,0 +1,391 @@
+{
+  "schema": "exactfive-pro-double-anchor-replay/v1",
+  "consult_id": "01M1VWHAP9H4ESQDKD9NGVSJB4",
+  "response_message_id": 16703,
+  "attachment_message_id": 16702,
+  "scope": "Finite local control only; no full-source consumer or unconditional closure",
+  "base_head": "6806d13fc38e031af644e31c4609a38feefd8c58",
+  "executed_head": "6806d13fc38e031af644e31c4609a38feefd8c58",
+  "run_root": "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001",
+  "created_utc": "2026-09-07T02:07:54.550082Z",
+  "python_version": "3.13.13 (main, Apr 14 2026, 14:32:41) [Clang 22.1.3 ]",
+  "extraction": "The four Python fences under their filename headings in the authenticated replay Markdown, in order, without modification.",
+  "extracted_script_sha256": {
+    "base_control.py": "6956a9a6e373cc2eec171a6803acf7c5bea43ea750e0eda96591d7912554adfc",
+    "endpoint_control.py": "118f9378d1582a7bbb251264dba2f1196a0a8b48fc883474855e9dbd09d1681f",
+    "double_anchor_control.py": "74e9f3c1512862a15614a4a6c661153ffbaf34846686abb6e2cab5b8a10435fb",
+    "independent_audit.py": "a08db2f0a3f09e5065b9ab934f051e8f82d3cf36956ad30d8ff37cd3cd68cb23"
+  },
+  "commands": [
+    {
+      "script": "base_control.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.194,
+      "stdout_path": "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001/artifacts/base_replay.json",
+      "stdout_sha256": "eda162e6cb815e093aefc0a0c83c6f9156501bb62268e60454b60037e4868be8",
+      "stdout_bytes": 2859,
+      "stderr_bytes": 0
+    },
+    {
+      "script": "endpoint_control.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 0.354,
+      "stdout_path": "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001/artifacts/endpoint_replay.json",
+      "stdout_sha256": "1ca65cfcd17c4a9651657bfa81e14d8a011a2d65b31d469b851306021789e67a",
+      "stdout_bytes": 3979,
+      "stderr_bytes": 0
+    },
+    {
+      "script": "double_anchor_control.py",
+      "arguments": [],
+      "exit_code": 0,
+      "elapsed_seconds": 2.371,
+      "stdout_path": "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001/artifacts/double_anchor_replay.json",
+      "stdout_sha256": "70d5173cf7f665712cdb06bd4d6f36b9e437092632a5f04a94c858bd55be6e62",
+      "stdout_bytes": 19603,
+      "stderr_bytes": 0
+    },
+    {
+      "script": "independent_audit.py",
+      "arguments": [
+        "double_anchor_replay.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.704,
+      "stdout_path": "scratch/runs/exactfive-pro-double-anchor-review-20260906/run-0001/artifacts/independent_audit_result.json",
+      "stdout_sha256": "79e7ad49b188201374bde7d0110189521746793658385b04941a4c6b56f36c85",
+      "stdout_bytes": 355,
+      "stderr_bytes": 0
+    }
+  ],
+  "construction_summary": {
+    "status": "PASS exact local control, NOT global K4",
+    "point_count": 48,
+    "strict_supporting_edge_checks": 2208,
+    "strict_cyclic_triples": 17296,
+    "min_edge_determinant_approx": 3.158146459365975e-20,
+    "MEC_boundary": [
+      "O",
+      "V",
+      "W"
+    ],
+    "MEC_radius_squared_exact": "105631253742563641/87154848400000000",
+    "strict_cap_cardinalities": {
+      "O": 6,
+      "V": 17,
+      "W": 22
+    },
+    "strict_cap_members": {
+      "O": [
+        "B1",
+        "B2",
+        "c",
+        "q",
+        "u",
+        "w"
+      ],
+      "V": [
+        "J1",
+        "J2",
+        "J3",
+        "J4",
+        "Q1",
+        "Q2",
+        "Q3",
+        "S1",
+        "S2",
+        "S3",
+        "T1",
+        "T2",
+        "T3",
+        "U1",
+        "U2",
+        "U3",
+        "aL"
+      ],
+      "W": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "Z1",
+        "Z2",
+        "Z3",
+        "Z4",
+        "aR",
+        "b",
+        "d",
+        "d0",
+        "d1"
+      ]
+    },
+    "rich_rows": {
+      "O": [
+        [
+          "aL",
+          "aR",
+          "q",
+          "u",
+          "w"
+        ]
+      ],
+      "V": [
+        [
+          "Q1",
+          "Q2",
+          "Q3",
+          "q"
+        ],
+        [
+          "U1",
+          "U2",
+          "U3",
+          "u"
+        ]
+      ],
+      "w": [
+        [
+          "J1",
+          "J2",
+          "J3",
+          "J4"
+        ]
+      ],
+      "c": [
+        [
+          "b",
+          "d",
+          "q",
+          "w"
+        ]
+      ],
+      "b": [
+        [
+          "B1",
+          "B2",
+          "c",
+          "w"
+        ]
+      ],
+      "u": [
+        [
+          "Z1",
+          "Z2",
+          "Z3",
+          "Z4"
+        ]
+      ],
+      "d0": [
+        [
+          "S1",
+          "S2",
+          "S3",
+          "u"
+        ]
+      ],
+      "d1": [
+        [
+          "T1",
+          "T2",
+          "T3",
+          "q"
+        ]
+      ]
+    },
+    "actual_nonrobust_centers": [
+      "b",
+      "c",
+      "d0",
+      "d1",
+      "u",
+      "w"
+    ],
+    "global_K4": false,
+    "total_H_possible": false,
+    "construction": "48-point double-anchor K4 and partial-H local control",
+    "partial_H": {
+      "q": "d1",
+      "w": "b",
+      "b": "c",
+      "c": "b",
+      "u": "d0"
+    },
+    "fresh_c_for_partial_endpoint_assignment": true,
+    "singleton_trace_Hu": [
+      "u"
+    ],
+    "singleton_row_radius_squared_approx": 4.148135150115733,
+    "first_apex_radius_squared_approx": 3.25,
+    "u_full_rich_row": [
+      "Z1",
+      "Z2",
+      "Z3",
+      "Z4"
+    ],
+    "u_rich_radius_squared_approx": 2.8915789891222357,
+    "w_full_rich_row": [
+      "J1",
+      "J2",
+      "J3",
+      "J4"
+    ],
+    "nonrich_centers": [
+      "B1",
+      "B2",
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "Q1",
+      "Q2",
+      "Q3",
+      "S1",
+      "S2",
+      "S3",
+      "T1",
+      "T2",
+      "T3",
+      "U1",
+      "U2",
+      "U3",
+      "W",
+      "Z1",
+      "Z2",
+      "Z3",
+      "Z4",
+      "aL",
+      "aR",
+      "d",
+      "q"
+    ],
+    "actual_row_coverage_count": 22,
+    "sources_without_actual_blocker": [
+      "F1",
+      "F2",
+      "F3",
+      "F4",
+      "F5",
+      "G1",
+      "G2",
+      "G3",
+      "G4",
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "O",
+      "Q1",
+      "Q2",
+      "Q3",
+      "U1",
+      "U2",
+      "U3",
+      "V",
+      "W",
+      "aL",
+      "aR",
+      "d0",
+      "d1"
+    ],
+    "source_without_actual_blocker_count": 26,
+    "cardinality_minimal_global_K4": false,
+    "original_physical_source_instantiated": false,
+    "full_source_singleton_contradiction": false,
+    "cyclic_order": [
+      "Q3",
+      "J1",
+      "J2",
+      "J3",
+      "J4",
+      "O",
+      "Z1",
+      "Z2",
+      "Z3",
+      "Z4",
+      "b",
+      "L1",
+      "G1",
+      "L2",
+      "F1",
+      "L3",
+      "G2",
+      "F2",
+      "F3",
+      "G3",
+      "F4",
+      "G4",
+      "F5",
+      "L4",
+      "d",
+      "aR",
+      "d0",
+      "d1",
+      "V",
+      "B1",
+      "B2",
+      "w",
+      "c",
+      "q",
+      "u",
+      "W",
+      "aL",
+      "U1",
+      "U2",
+      "S1",
+      "S2",
+      "S3",
+      "U3",
+      "Q1",
+      "Q2",
+      "T1",
+      "T2",
+      "T3"
+    ]
+  },
+  "independent_audit": {
+    "status": "PASS independent tuple-field audit",
+    "point_count": 48,
+    "supporting_edges": 2208,
+    "cyclic_triples": 17296,
+    "rich_centers": [
+      "O",
+      "V",
+      "b",
+      "c",
+      "d0",
+      "d1",
+      "u",
+      "w"
+    ],
+    "nonrich_centers": 40,
+    "actual_coverage": 22,
+    "no_actual_blocker": 26,
+    "global_K4": false,
+    "total_H_possible": false
+  },
+  "record_sha256": "81b4eba38b2beebeac087332a2894642fd63580f78a86f2d647ed1a9b6a015f6"
+}

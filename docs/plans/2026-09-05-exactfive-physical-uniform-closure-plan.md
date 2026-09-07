@@ -392,6 +392,21 @@ blocker, including O,V,W,d0,d1. The remaining singleton argument must use
 the missing global source requirements; local existence of H(u) and the
 displayed freshness assignments supply no contradiction or radius decrease.
 
+The [completed Pro report](../references/exactfive-source-geometry-2026-09-05/double-anchor-pro-report-2026-09-06.md)
+for consult `01M1VWHAP9H4ESQDKD9NGVSJB4` supplies a 48-point local
+control with full K4 rows at both u and w, while retaining an actual H(u)
+row whose trace on I is {u} and whose radius exceeds r. The
+[local replay receipt](../audits/2026-09-06-exactfive-pro-double-anchor-replay.json)
+and [independent audit](../skeptic-exactfive-pro-double-anchor-2026-09-06.md)
+record successful execution of the supplied construction and independent
+coordinate-only auditor: 2,208 supporting-edge checks and 17,296 cyclic
+triples pass. The construction uses an independently reconstructed parent;
+it is not a byte-identical extension of the repository's 44-point checker.
+It still has 40 centers without K4 and 26 sources without actual blockers.
+Pro reports no new full-source reduction or contradiction consumer. The
+global source argument remains the required next result; increasing the
+number of locally realized rich rows does not provide closure.
+
 ### 4–5. Keep the uniform reduction separate from its missing geometry
 
 Start with one baseline `FaithfulCarrierPattern` whose gauge center differs
