@@ -469,7 +469,8 @@ def load_package(*, require_remote_ready: bool = False, artifact_commit: str | N
     for definition in definitions:
         definition["source_url"] = blob_source(commit, definition["path"], REPO_ROOT / definition["path"]) if commit else None
     if require_remote_ready and any(
-        not node["remote_source"].startswith("https://github.com/") for node in nodes
+        not node["source_url"] or not node["source_url"].startswith("https://github.com/")
+        for node in nodes
     ):
         raise UploadError("execute requires immutable artifact blob sources for every theorem")
     if require_remote_ready and any(
