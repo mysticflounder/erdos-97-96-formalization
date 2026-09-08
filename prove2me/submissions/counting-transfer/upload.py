@@ -131,9 +131,9 @@ def validate_manifest(manifest: dict[str, Any], plan: dict[str, Any]) -> None:
     if not isinstance(root, dict):
         raise UploadError("missing existing root stub record")
     root_relative = Path(str(root.get("path", "")))
+    if root_relative.is_absolute() or ".." in root_relative.parts:
+        raise UploadError("existing root stub path is outside the repository")
     root_path = REPO_ROOT / root_relative
-    if not root_path.is_file():
-        root_path = WORKSPACE / root_relative
     if not root_path.is_file() or sha256_file(root_path) != root.get("sha256"):
         raise UploadError("existing root theorem stub does not match manifest")
 
@@ -173,7 +173,7 @@ def parse_stub(path: Path) -> tuple[str, str]:
     return text[:matches[0].start()].strip(), formal
 
 
-def load_package() -> dict[str, Any]:
+def load_package(*, require_remote_ready: bool = False) -> dict[str, Any]:
     plan = load_json(TRANSFER / "plan.json")
     manifest = load_json(TRANSFER / "generation-manifest.json")
     metadata = load_json(TRANSFER / "metadata.json")
@@ -189,6 +189,8 @@ def load_package() -> dict[str, Any]:
             raise UploadError("metadata record is incomplete")
         if not isinstance(item["tags"], list) or not all(isinstance(tag, str) for tag in item["tags"]):
             raise UploadError("metadata tags must be a list of strings")
+        if require_remote_ready and item["source"].startswith("lean/"):
+            raise UploadError(f"source URL is not pinned for execute: {item['theorem_name']}")
     metadata_by_name = {item["theorem_name"]: item for item in items}
     if len(metadata_by_name) != 75:
         raise UploadError("metadata theorem names are not unique")
@@ -498,7 +500,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
-        package = load_package()
+        package = load_package(require_remote_ready=args.execute)
         if not args.execute:
             print("dry-run: validated 17 definitions, 75 theorem stubs, and 75 solutions; no network calls")
             return 0
