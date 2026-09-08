@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "mathlib-v4331-build-census-20260908",
+  "run_id": "run-0001",
+  "root": "scratch/runs/mathlib-v4331-build-census-20260908/run-0001",
+  "owner": "comparator_wrapper",
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "scripts/check_migration_targets.py": "fcb41d380d478596633fac9f4072643e6ff9d74541f20d260c85814620682a7a",
+    "tests/test_check_migration_targets.py": "7d6bf9f1d549ab921d17a43877ef3ac5bc235e417197c6fc3b96b336af1ab530"
+  },
+  "input_digests": {
+    "pyproject.toml": "a02260448e408e98056a5cf8717faf1f4f57417749917885c8c6ccf0a974ece9",
+    "lean/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+  },
+  "created_utc": "2026-09-08T17:38:12Z",
+  "manifest_sha256": "4d2b628cc2cea1b44b7e7e15b936547226e25564ce52d5d9f5f55dd72437fdba"
+}
