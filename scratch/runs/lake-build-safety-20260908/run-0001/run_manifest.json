@@ -1,0 +1,23 @@
+{
+  "base_head": "1ee3ed4b61b38f25a252344d13c996d3b3ab0b58",
+  "created_utc": "2026-09-08T22:32:52.645406Z",
+  "input_digests": {
+    "lean/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+  },
+  "lane_id": "lake-build-safety-20260908",
+  "manifest_sha256": "6e5f991db94efcd98a830499d0a638e987d4647c875680adfd06c5218fa9540d",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "ToolchainRelay",
+  "root": "scratch/runs/lake-build-safety-20260908/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "docs/audits/2026-09-08-lake-build-crash-safety.md": "2cc682329cf57f680fbc5369b09d21e3f9da95e91416dc58b109df0a07fbc041",
+    "scripts/check_migration_targets.py": "fcb41d380d478596633fac9f4072643e6ff9d74541f20d260c85814620682a7a",
+    "scripts/lean_lake_probe.py": "130f289120de6d5077279038faf8ce07f25b83282f04daa47ae35b638fdc7d51"
+  }
+}

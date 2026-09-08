@@ -1,0 +1,18 @@
+{
+  "base_head": "1ee3ed4b61b38f25a252344d13c996d3b3ab0b58",
+  "created_utc": "2026-09-08T22:32:52.537716Z",
+  "durable_paths": [
+    "scratch/runs/lake-build-safety-20260908/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/lake-build-safety-20260908/run-0001"
+  ],
+  "lane_id": "lake-build-safety-20260908",
+  "manifest_sha256": "d45e670c9a9a7362201610dd051dd0a0a2560020f6d9f6c48c132c5256cbc140",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/lake-build-safety-20260908.json",
+    "docs/audits/2026-09-08-lake-build-crash-safety.md"
+  ],
+  "owner": "ToolchainRelay",
+  "schema": "worktree-lane-checkpoint/v1"
+}
