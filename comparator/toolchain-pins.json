@@ -1,0 +1,45 @@
+{
+  "schema": "lean-upgrade-pins/v1",
+  "lean_toolchain": "leanprover/lean4:v4.33.1",
+  "mathlib_requirement": "v4.33.1",
+  "mathlib_resolved_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+  "formal_conjectures_requirement": "8323e878b83fcd7f4a448256069352a265460d75",
+  "formal_conjectures_resolved_rev": "8323e878b83fcd7f4a448256069352a265460d75",
+  "source_pins": {
+    "mathlib": {
+      "url": "https://github.com/leanprover-community/mathlib4",
+      "scope": "leanprover-community",
+      "require_direct_git": false
+    },
+    "formal_conjectures": {
+      "url": "https://github.com/google-deepmind/formal-conjectures.git",
+      "scope": "",
+      "require_direct_git": true
+    }
+  },
+  "default_roots": [
+    "Erdos9796",
+    "Erdos9796Proof"
+  ],
+  "default_libraries": {
+    "Erdos9796": {"roots": ["Erdos9796"]},
+    "Erdos9796Proof": {"roots": ["Erdos9796Proof"]}
+  },
+  "comparator_libraries": {
+    "Challenge": {
+      "srcDir": "../comparator"
+    },
+    "Solution": {
+      "srcDir": "../comparator"
+    },
+    "ComparatorAxiomAudit": {
+      "srcDir": "../comparator",
+      "roots": ["«axiom-audit»"]
+    }
+  },
+  "diagnostic_executables": {
+    "erase_m1_gate": {
+      "root": "Erdos9796Proof.P97.ErasedCertificate.ErasedNativeEvalGate"
+    }
+  }
+}

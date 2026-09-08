@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "gatee-pin-checker-20260908",
+  "owner": "codex-gatee-pin-checker",
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/gatee-pin-checker-20260908.json",
+    "comparator/toolchain-pins.json",
+    "scripts/check_lean_toolchain.py",
+    "tests/test_check_lean_toolchain.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/gatee-pin-checker-20260908/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/gatee-pin-checker-20260908/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-08T18:37:42Z",
+  "manifest_sha256": "101145179ccb780f35bd2b80cb62d6af81e6384441c842a09753da14fb2ac7f1"
+}
