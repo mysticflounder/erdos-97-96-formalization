@@ -42,6 +42,10 @@ Validation used no Lean or Lake build:
   an observed peak of exactly two active stand-ins. The retained result is
   `scratch/runs/lake-build-64g-guard-20260908/run-0001/artifacts/gate-inert-shell-test.json`
   (SHA-256 `ecfa901486118064499217b2e08075bb820496e45c4fcbb6c033b43764fac7a4`).
+- decoding the retained replay patch and applying it to the prior
+  process-group-safe wrapper reproduced the installed wrapper SHA-256. The
+  retained result is
+  `scratch/runs/lake-build-64g-guard-20260908/run-0001/artifacts/gate-replay-patch-test.txt`.
 
 This gate applies only to invocations through the installed wrapper. It does
 not constrain manually started Lean processes or legacy scripts that call
