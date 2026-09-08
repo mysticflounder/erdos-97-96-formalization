@@ -1,0 +1,54 @@
+{
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "solution:4ec1c9bf-88ad-4632-aa55-375d24e19335": {
+      "explanation_sha256": "a1efce548f16c10aa64331d2e435c17b9fd28597bbf0e72aefdd852b07c9ed5a",
+      "payload_sha256": "6f17f780746497f54da720c5693c2d4aff8725ea93bd94749ec920332b1c0c81",
+      "solution_sha256": "f60805f88590c5647d2165344c09b59be1540a7f209b0b5101faa0ae448c5fbf",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "5f4424b9-2b06-4443-9637-713a960989a6",
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335"
+    },
+    "solution:8ade9b04-8ed3-4b0a-a948-9a5df9f1c637": {
+      "explanation_sha256": "70bff9031a08e0bcb6978c7de39699869039966f2394c901b2a0d0a10a2bbcdc",
+      "payload_sha256": "8f509f1329f63ab5cca60e0a07c69a1c195aab40204e93d4a97a64ec3bab6043",
+      "solution_sha256": "56c6c7875e1c66d3097863771896f61cea67897eeefc2b69d6e90e5d7b5ccf19",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "ea6648ee-430d-44f6-b705-8267653163a6",
+      "theorem_id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637"
+    },
+    "solution:a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad": {
+      "explanation_sha256": "cdccd659c3b92cca8141cbd50e40573f2424f7b1e11592a63f663783f69eb744",
+      "payload_sha256": "dac34cf27e5d4dd2da4cd8d24ce624abdad0d78fba5fe1f75ea8dd1667d0acf3",
+      "solution_sha256": "e8ae93520060e30fdb9695e65b9cb2bd74eb18938fa8f778e68e3b9bceba2a43",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "92dc67b7-f2ba-4e88-a106-83d99acf4f99",
+      "theorem_id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad"
+    }
+  },
+  "package_sha256": "8b011e8bc56223eef887241d40721e01c1bb82c6cc193e8d741f6f10236b3edd",
+  "platform_version": "0.9.8",
+  "schema": "prove2me-mission-graph-reduction-receipt/v1",
+  "solutions": {
+    "Erdos9796Mission.combined": {
+      "status": "SKETCH_ACCEPTED",
+      "submission_id": "92dc67b7-f2ba-4e88-a106-83d99acf4f99",
+      "theorem_id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad"
+    },
+    "Erdos9796Mission.problem96": {
+      "status": "SKETCH_ACCEPTED",
+      "submission_id": "ea6648ee-430d-44f6-b705-8267653163a6",
+      "theorem_id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637"
+    },
+    "Erdos9796Mission.problem97": {
+      "status": "SKETCH_ACCEPTED",
+      "submission_id": "5f4424b9-2b06-4443-9637-713a960989a6",
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335"
+    }
+  },
+  "targets": {
+    "Erdos9796Mission.combined": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad",
+    "Erdos9796Mission.problem96": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+    "Erdos9796Mission.problem97": "4ec1c9bf-88ad-4632-aa55-375d24e19335"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "prove2me-mission-graph-reduction-validation/v1",
+  "status": "sketch_accepted",
+  "validated_utc": "2026-09-08T06:47:00Z",
+  "environment": {
+    "toolchain": "leanprover/lean4:v4.33.1",
+    "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+    "auto_implicit": false,
+    "memory_mb": 8192
+  },
+  "package_sha256": "8b011e8bc56223eef887241d40721e01c1bb82c6cc193e8d741f6f10236b3edd",
+  "submission_receipt": {
+    "path": "prove2me/submissions/mission-graph-reductions/receipt.json",
+    "sha256": "d41d0d24935d0c8577301fd8cdd07d1beba38d93e25229b249c2d9ea00da5666",
+    "results": {
+      "Erdos9796Mission.problem97": {
+        "status": "SKETCH_ACCEPTED",
+        "submission_id": "5f4424b9-2b06-4443-9637-713a960989a6"
+      },
+      "Erdos9796Mission.problem96": {
+        "status": "SKETCH_ACCEPTED",
+        "submission_id": "ea6648ee-430d-44f6-b705-8267653163a6"
+      },
+      "Erdos9796Mission.combined": {
+        "status": "SKETCH_ACCEPTED",
+        "submission_id": "92dc67b7-f2ba-4e88-a106-83d99acf4f99"
+      }
+    }
+  },
+  "source_hashes": {
+    "targets.json": "ad29f5d40cb88eedd44bf67e8d93f6f30dc19a0c014e6145911a13dd8800ed90",
+    "explanations.json": "9f875166772650ae859c910ee88509d4df53f503f5521627c0e295a015215359",
+    "Solutions/Sol_Erdos9796Mission_problem97.lean": "f60805f88590c5647d2165344c09b59be1540a7f209b0b5101faa0ae448c5fbf",
+    "Solutions/Sol_Erdos9796Mission_problem96.lean": "56c6c7875e1c66d3097863771896f61cea67897eeefc2b69d6e90e5d7b5ccf19",
+    "Solutions/Sol_Erdos9796Mission_combined.lean": "e8ae93520060e30fdb9695e65b9cb2bd74eb18938fa8f778e68e3b9bceba2a43"
+  },
+  "direct_import_validation": {
+    "log_path": "scratch/runs/prove2me-upper-reductions-20260907/run-0001/artifacts/direct-import-validation.log",
+    "log_sha256": "84704e85f3768a2edb8d7821e7c48c55784f3a8e70efe885b152a2ca3b77246c",
+    "results": [
+      {
+        "target": "Erdos9796Mission.problem97",
+        "exit": 0
+      },
+      {
+        "target": "Erdos9796Mission.problem96",
+        "exit": 0
+      },
+      {
+        "target": "Erdos9796Mission.combined",
+        "exit": 0
+      }
+    ],
+    "olean_sha256": {
+      "Theorems/Thm_Erdos9796Mission_counterexample_card_ge_nine.olean": "4ffe5d7109694af6db40b38cfd6d60ae6d92561dec0536b069d5bee4e27d3cb9",
+      "Theorems/Thm_Erdos9796Mission_finite_nine_exclusion.olean": "60d2bfa79996017dbbba2b406e44c0b8ef37343ff98abd517cab5b965f4de71e",
+      "Theorems/Thm_Erdos9796Mission_linear_bound_of_problem97.olean": "0ff5d875ff3a86c9285b58ec77f7cda3b78e6633ebf4aa96e538dfc3cb2856ab",
+      "Theorems/Thm_Erdos9796Mission_minimal_counterexample_removable.olean": "402530aedef244b108a36be2d6b4b4c53d4f5635c21d4a1c0e3a0f0e32145983",
+      "Theorems/Thm_Erdos9796Mission_problem96.olean": "fd909c8515599546f4cc6d9b23daf5247eb1593f33fa36af8795be12ceae29f3",
+      "Theorems/Thm_Erdos9796Mission_problem97.olean": "6a9246a70db10583b98e6a410563658807fe31c59c9099d14bbc2f1866b68168"
+    }
+  },
+  "trust_classification": {
+    "solution_sources_contain_sorry": false,
+    "submitted_solution_class": "kernel-checked reduction proofs",
+    "imported_stub_bodies": "The local platform theorem stubs use sorry placeholders by design.",
+    "imported_open_children": "Open child theorems are expected reduction assumptions. Prove2Me records them as graph children and keeps an ancestor open until those children are proved.",
+    "scope": "The successful checks establish that each exact submitted solution source type-checks against the exact imported theorem-stub interfaces. They do not establish the imported open child theorems."
+  },
+  "local_checks": {
+    "uploader_dry_run": "passed",
+    "ruff": "passed",
+    "target_statement_consistency": "passed",
+    "mock_execute_resume": "passed: three POSTs on first execution and zero duplicate POSTs on resume",
+    "network_requests_by_validation_steps": 0
+  }
+}

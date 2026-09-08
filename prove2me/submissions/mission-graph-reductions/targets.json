@@ -1,0 +1,69 @@
+{
+  "schema": "prove2me-mission-graph-reductions/v1",
+  "host": "https://prove2.me/api/v1",
+  "platform_version": "0.9.8",
+  "targets": [
+    {
+      "order": 1,
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+      "theorem_name": "Erdos9796Mission.problem97",
+      "formal_statement": "theorem Erdos9796Mission.problem97 : Erdos9796Mission.Problem97 := by sorry",
+      "solution_path": "Solutions/Sol_Erdos9796Mission_problem97.lean",
+      "dependencies": [
+        {
+          "theorem_id": "c35e1c76-5531-4585-9ced-8c47a929793e",
+          "theorem_name": "Erdos9796Mission.counterexample_card_ge_nine",
+          "module": "Theorems.Thm_Erdos9796Mission_counterexample_card_ge_nine"
+        },
+        {
+          "theorem_id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+          "theorem_name": "Erdos9796Mission.finite_nine_exclusion",
+          "module": "Theorems.Thm_Erdos9796Mission_finite_nine_exclusion"
+        },
+        {
+          "theorem_id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+          "theorem_name": "Erdos9796Mission.minimal_counterexample_removable",
+          "module": "Theorems.Thm_Erdos9796Mission_minimal_counterexample_removable"
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "theorem_id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+      "theorem_name": "Erdos9796Mission.problem96",
+      "formal_statement": "theorem Erdos9796Mission.problem96 : Erdos9796Mission.Problem96 := by sorry",
+      "solution_path": "Solutions/Sol_Erdos9796Mission_problem96.lean",
+      "dependencies": [
+        {
+          "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+          "theorem_name": "Erdos9796Mission.problem97",
+          "module": "Theorems.Thm_Erdos9796Mission_problem97"
+        },
+        {
+          "theorem_id": "d76e105d-be12-48ae-8965-782674afd985",
+          "theorem_name": "Erdos9796Mission.linear_bound_of_problem97",
+          "module": "Theorems.Thm_Erdos9796Mission_linear_bound_of_problem97"
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "theorem_id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad",
+      "theorem_name": "Erdos9796Mission.combined",
+      "formal_statement": "theorem Erdos9796Mission.combined :\n    Erdos9796Mission.Problem97 ∧ Erdos9796Mission.Problem96 := by sorry",
+      "solution_path": "Solutions/Sol_Erdos9796Mission_combined.lean",
+      "dependencies": [
+        {
+          "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+          "theorem_name": "Erdos9796Mission.problem97",
+          "module": "Theorems.Thm_Erdos9796Mission_problem97"
+        },
+        {
+          "theorem_id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+          "theorem_name": "Erdos9796Mission.problem96",
+          "module": "Theorems.Thm_Erdos9796Mission_problem96"
+        }
+      ]
+    }
+  ]
+}
