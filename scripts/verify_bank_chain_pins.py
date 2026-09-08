@@ -68,6 +68,8 @@ MATCH, MISMATCH, ABSENT = "MATCH", "MISMATCH", "ABSENT"
 GUARDED_TREES = ("lean", "certificates", "census", "scripts", "docs")
 SHA_LENGTH = 64
 HEX = "0123456789abcdef"
+DEFAULT_PROBE_TIMEOUT_SECONDS = 900
+PROBE_CLEANUP_MARGIN_SECONDS = 15
 
 
 def is_sha256(text: str) -> bool:
@@ -523,14 +525,76 @@ def run_chain_verify(repo_root: Path, timeout_seconds: int) -> dict[str, Any]:
 # --------------------------------------------------------------------------
 
 
+def validate_probe_run_root(repo_root: Path, raw_root: Path | str | None) -> Path:
+    """Require a registered run directory before starting the miner."""
+
+    if raw_root is None:
+        raise ValueError(
+            "--probe-run-root is required for the dependency check and must name "
+            "a registered scratch/runs/<lane>/<run>/ directory"
+        )
+    root = repo_root.resolve()
+    candidate = Path(raw_root)
+    run_root = candidate if candidate.is_absolute() else root / candidate
+    run_root = run_root.resolve()
+    try:
+        relative = run_root.relative_to(root)
+    except ValueError as exc:
+        raise ValueError(f"probe run root is outside the repository: {run_root}") from exc
+    if len(relative.parts) < 4 or relative.parts[:2] != ("scratch", "runs"):
+        raise ValueError(
+            "probe run root must be under scratch/runs/<lane>/<run>/: "
+            f"{run_root}"
+        )
+    if not run_root.is_dir() or not (run_root / "run_manifest.json").is_file():
+        raise ValueError(f"probe run root is not a registered run directory: {run_root}")
+    return run_root
+
+
+def dependency_probe_timeout(timeout_seconds: int) -> int:
+    """Leave startup/output and process-group cleanup time to the outer caller."""
+
+    if timeout_seconds <= PROBE_CLEANUP_MARGIN_SECONDS:
+        raise ValueError(
+            "miner subprocess timeout must exceed the 15-second probe cleanup margin"
+        )
+    return min(DEFAULT_PROBE_TIMEOUT_SECONDS, timeout_seconds - PROBE_CLEANUP_MARGIN_SECONDS)
+
+
 def mine_compare(
-    repo_root: Path, module_name: str, timeout_seconds: int
+    repo_root: Path,
+    module_name: str,
+    timeout_seconds: int,
+    probe_run_root: Path | str | None = None,
+    probe_timeout_seconds: int | None = None,
 ) -> dict[str, Any]:
     """`--compare` must report UNCHANGED; anything else is a drifted pin."""
 
+    probe_root = validate_probe_run_root(repo_root, probe_run_root)
+    probe_timeout = (
+        probe_timeout_seconds
+        if probe_timeout_seconds is not None
+        else dependency_probe_timeout(timeout_seconds)
+    )
+    if probe_timeout <= 0:
+        raise ValueError("probe timeout must be positive")
+    if probe_timeout > timeout_seconds - PROBE_CLEANUP_MARGIN_SECONDS:
+        raise ValueError(
+            "probe timeout must leave the 15-second cleanup margin before the "
+            "miner subprocess timeout"
+        )
     started = time.monotonic()
     result = subprocess.run(
-        [sys.executable, MINER, f"census.card_head.{module_name}", "--compare"],
+        [
+            sys.executable,
+            MINER,
+            f"census.card_head.{module_name}",
+            "--compare",
+            "--probe-run-root",
+            str(probe_root),
+            "--probe-timeout",
+            str(probe_timeout),
+        ],
         cwd=repo_root,
         capture_output=True,
         text=True,
@@ -624,10 +688,26 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--skip-mine", action="store_true")
     parser.add_argument("--skip-control", action="store_true")
+    parser.add_argument(
+        "--probe-run-root",
+        type=Path,
+        help=(
+            "registered scratch/runs/<lane>/<run>/ directory for the governed "
+            "dependency probes (required unless --skip-mine)"
+        ),
+    )
     args = parser.parse_args(argv)
 
     repo_root = args.repo_root.resolve()
     output_dir = args.output_dir.resolve()
+    probe_root = None
+    probe_timeout = None
+    if not args.skip_mine:
+        try:
+            probe_root = validate_probe_run_root(repo_root, args.probe_run_root)
+            probe_timeout = dependency_probe_timeout(args.timeout_seconds)
+        except ValueError as exc:
+            parser.error(str(exc))
     output_dir.mkdir(parents=True, exist_ok=True)
     before = tracked_tree_state(repo_root)
 
@@ -667,7 +747,13 @@ def main(argv: list[str] | None = None) -> int:
     }
     if not args.skip_mine:
         report["dependency_set"] = [
-            mine_compare(repo_root, name, args.timeout_seconds)
+            mine_compare(
+                repo_root,
+                name,
+                args.timeout_seconds,
+                probe_root,
+                probe_timeout,
+            )
             for name in chain_modules(repo_root)
         ]
     if not args.skip_control:

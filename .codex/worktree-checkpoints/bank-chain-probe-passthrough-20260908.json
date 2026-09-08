@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "bank-chain-probe-passthrough-20260908",
+  "owner": "codex-bank-chain-probe-passthrough",
+  "base_head": "3c87eb82bd88ea53c34cc8f5ebe37ee80d55f96c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/bank-chain-probe-passthrough-20260908.json",
+    "scripts/test_verify_bank_chain_pins.py",
+    "scripts/verify_bank_chain_pins.py"
+  ],
+  "generated_roots": [
+    "scratch/runs/bank-chain-probe-passthrough-20260908/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/bank-chain-probe-passthrough-20260908/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-08T19:00:00Z",
+  "manifest_sha256": "f0d34658e920dd2ef40cd92a77456dd0158ec9880a1e846949219d6a053e6ec9"
+}

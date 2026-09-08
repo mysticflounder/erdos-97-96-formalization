@@ -12,6 +12,7 @@ from __future__ import annotations
 import ast
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -30,6 +31,46 @@ def order():
 @pytest.fixture(scope="module")
 def expectation():
     return mod.expected_own_shas(REPO)
+
+
+def test_mine_compare_passes_registered_probe_root_and_shorter_timeout(tmp_path, monkeypatch):
+    run_root = tmp_path / "scratch" / "runs" / "probe-lane" / "run-0001"
+    run_root.mkdir(parents=True)
+    (run_root / "run_manifest.json").write_text("{}\n", encoding="utf-8")
+    observed = {}
+
+    def fake_run(command, **kwargs):
+        observed["command"] = command
+        observed["kwargs"] = kwargs
+        return SimpleNamespace(returncode=0, stdout="", stderr="UNCHANGED 4 modules\n")
+
+    monkeypatch.setattr(mod.subprocess, "run", fake_run)
+    result = mod.mine_compare(tmp_path, "example_bank", 100, run_root)
+
+    assert result["verdict"] == mod.MATCH
+    command = observed["command"]
+    assert command[command.index("--probe-run-root") + 1] == str(run_root.resolve())
+    assert command[command.index("--probe-timeout") + 1] == "85"
+    assert observed["kwargs"]["timeout"] == 100
+
+
+def test_mine_compare_rejects_unregistered_probe_root_before_subprocess(tmp_path, monkeypatch):
+    def fail_run(*_args, **_kwargs):
+        raise AssertionError("workload launched before probe-root validation")
+
+    monkeypatch.setattr(mod.subprocess, "run", fail_run)
+    with pytest.raises(ValueError, match="registered run directory"):
+        mod.mine_compare(
+            tmp_path,
+            "example_bank",
+            100,
+            tmp_path / "scratch" / "runs" / "probe-lane" / "missing",
+        )
+
+
+def test_dependency_probe_timeout_requires_cleanup_margin():
+    with pytest.raises(ValueError, match="15-second probe cleanup margin"):
+        mod.dependency_probe_timeout(mod.PROBE_CLEANUP_MARGIN_SECONDS)
 
 
 # --------------------------------------------------------------------------

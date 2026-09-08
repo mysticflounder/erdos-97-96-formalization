@@ -1,0 +1,23 @@
+{
+  "base_head": "3c87eb82bd88ea53c34cc8f5ebe37ee80d55f96c",
+  "created_utc": "2026-09-08T19:00:00Z",
+  "input_digests": {
+    "scripts/lean_lake_probe.py": "130f289120de6d5077279038faf8ce07f25b83282f04daa47ae35b638fdc7d51",
+    "scripts/mine_bank_lean_dependencies.py": "e6932e0054b1950060228530e593509f3ee2ccde2ef1ad7b00431e5c1b3e9fdd"
+  },
+  "lane_id": "bank-chain-probe-passthrough-20260908",
+  "manifest_sha256": "915e95c9959593a24dfde7e5137dabd1dc98ea8096772db2d91f7ded2b367766",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "codex-bank-chain-probe-passthrough",
+  "root": "scratch/runs/bank-chain-probe-passthrough-20260908/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/test_verify_bank_chain_pins.py": "2d2d9a1d7d0bb4d6d76b5bc925fc15f2968b19bc5d4f9421d3ec0a7a6af746f1",
+    "scripts/verify_bank_chain_pins.py": "024d46d293ba63aaefc16045ecf71b55a6a0bf655edd456a2f4431111cc7ba1a"
+  }
+}
