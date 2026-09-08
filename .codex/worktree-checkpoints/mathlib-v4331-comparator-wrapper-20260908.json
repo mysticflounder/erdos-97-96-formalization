@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "mathlib-v4331-comparator-wrapper-20260908",
+  "owner": "comparator_wrapper",
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/mathlib-v4331-comparator-wrapper-20260908.json",
+    "comparator/README.md",
+    "comparator/axiom-audit.lean",
+    "comparator/check-conformance.sh",
+    "comparator/test-check-conformance.sh",
+    "lean/lakefile.toml"
+  ],
+  "generated_roots": [
+    "scratch/runs/mathlib-v4331-comparator-wrapper-20260908/run-0001"
+  ],
+  "durable_paths": [
+    "scratch/runs/mathlib-v4331-comparator-wrapper-20260908/run-0001/run_manifest.json"
+  ],
+  "created_utc": "2026-09-08T17:27:42Z",
+  "manifest_sha256": "046caafb95aac07e667d6153bbdc6cce27f1c617a7896f21bdf449e9fac6463c"
+}

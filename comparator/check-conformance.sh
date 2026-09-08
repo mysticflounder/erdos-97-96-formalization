@@ -44,29 +44,122 @@ audit_names() {
   awk '$1 == "#print" && $2 == "axioms" { print $3 }' "$1" | sort
 }
 
-# Flatten `#print axioms` output into one axiom name per line. The reports wrap
-# across lines, so track bracket state rather than assuming one report per line.
-# A report is only opened by the "depends on axioms:" banner, so a bracket in
-# unrelated output (a linter warning, say) cannot inject a phantom axiom name.
+# Extract exactly one axiom report for each name in the manifest. Lake may replay
+# dependency compiler logs, so scanning every "depends on axioms" banner would
+# incorrectly union unrelated reports into this audit. The report body may wrap
+# across lines; Lean also emits a natural-language axiom-free report.
 reported_axioms() {
-  awk '
-    BEGIN { inside = 0 }
+  local out=$1
+  local names=$2
+  local report_names=$3
+  local axioms=$4
+  local status
+  if awk -v names_file="$names" -v report_names="$report_names" -v axioms_file="$axioms" '
+    function fail(message) {
+      print message > "/dev/stderr"
+      bad = 1
+    }
+    function emit(fragment, count, parts, i, item) {
+      gsub(/[[:space:]]/, "", fragment)
+      count = split(fragment, parts, ",")
+      for (i = 1; i <= count; i++) {
+        item = parts[i]
+        if (item != "") print item >> axioms_file
+      }
+    }
+    function consume(fragment, open, closing, body) {
+      if (awaiting == 1 && inside == 0) {
+        open = index(fragment, "[")
+        if (open == 0) return
+        fragment = substr(fragment, open + 1)
+        inside = 1
+        awaiting = 0
+      }
+      if (inside == 0) return
+      closing = index(fragment, "]")
+      if (closing > 0) {
+        body = substr(fragment, 1, closing - 1)
+        emit(body)
+        inside = 0
+      } else {
+        emit(fragment)
+      }
+    }
+    BEGIN {
+      while ((getline name < names_file) > 0) {
+        if (name in expected) fail("duplicate manifest name: " name)
+        expected[name] = 1
+      }
+      close(names_file)
+    }
     {
       line = $0
-      ob = (index(line, "depends on axioms:") > 0) ? index(line, "[") : 0
-      if (ob > 0) { inside = 1; line = substr(line, ob + 1) }
-      if (inside == 0) next
-      cb = index(line, "]")
-      if (cb > 0) { line = substr(line, 1, cb - 1); inside = 0 }
-      print line
+      sub(/^[[:space:]]+/, "", line)
+      if (match(line, /^info: .*:[0-9]+:[0-9]+: /)) {
+        line = substr(line, RSTART + RLENGTH)
+      }
+      header = ""
+      name = ""
+      if (substr(line, 1, 1) == sprintf("%c", 39)) {
+        quoted = substr(line, 2)
+        quote = index(quoted, sprintf("%c", 39))
+        if (quote > 0) {
+          name = substr(quoted, 1, quote - 1)
+          suffix = substr(quoted, quote + 1)
+          if (index(suffix, " depends on axioms:") == 1) {
+            header = "depends"
+            fragment = substr(suffix, length(" depends on axioms:") + 1)
+          } else if (index(suffix, " does not depend on any axioms") == 1) {
+            header = "none"
+          }
+        }
+      }
+      if (header != "" && (awaiting == 1 || inside == 1)) {
+        fail("unterminated axiom report before: " name)
+        awaiting = 0
+        inside = 0
+      }
+      if (header != "") {
+        if (name in expected) {
+          if (seen[name] == 1) {
+            fail("duplicate axiom report: " name)
+          } else {
+            seen[name] = 1
+            print name >> report_names
+            if (header == "depends") {
+              awaiting = 1
+              consume(fragment)
+            }
+          }
+        }
+      } else if (awaiting == 1 || inside == 1) {
+        consume(line)
+      }
     }
-  ' "$1" | tr ',' '\n' | tr -d ' ' | awk 'NF' | sort -u
+    END {
+      if (awaiting == 1 || inside == 1) fail("unterminated axiom report")
+      for (name in expected) {
+        if (seen[name] != 1) fail("missing axiom report: " name)
+      }
+      if (bad == 1) exit 1
+    }
+  ' "$out"; then
+    status=0
+  else
+    status=$?
+  fi
+  sort -u "$axioms" -o "$axioms"
+  return "$status"
 }
 
 echo "== manifest cross-check =="
 for tier in core; do
   case "$tier" in
-    core)   cfg=comparator/config.json;        aud=comparator/axiom-audit.lean ;;
+    core)
+      cfg=comparator/config.json
+      aud=comparator/axiom-audit.lean
+      audit_target=ComparatorAxiomAudit
+      ;;
   esac
   jq -r '.theorem_names[]' "$cfg" | sort >"$TMP/$tier.names"
   audit_names "$aud" >"$TMP/$tier.audit"
@@ -90,9 +183,10 @@ for tier in core; do
   tier_fail=0
 
   echo "== axiom audit [$tier] =="
-  # `lake env lean` must run from `lean/`; the comparator sources live one level
-  # up and are wired in as extra lean_lib targets with srcDir = "../comparator".
-  ( cd lean && lake env lean "../$aud" ) >"$out" 2>&1 || {
+  # Build the audit through the global wrapper. The Lake target is rooted at
+  # comparator/axiom-audit.lean; when cached, Lake replays its saved compiler
+  # log, including every #print axioms report, so `out` stays complete.
+  lake-build "$audit_target" >"$out" 2>&1 || {
     echo "FAIL [$tier]: $aud errored (renamed theorem? library not built?)" >&2
     cat "$out" >&2
     exit 1
@@ -106,21 +200,27 @@ for tier in core; do
 
   # Every reported axiom must appear in permitted_axioms. This subsumes the
   # sorryAx check (sorryAx is not in the permitted set) and catches custom
-  # axioms — and, since the compiler-trusted tier was retired, it is also what
-  # keeps `native_decide` out of the gated set: a listed theorem that starts
-  # using it reports Lean.ofReduceBool, which config.json does not permit, and
-  # there is no longer a second manifest to move it into.
+  # axioms — and, since the compiler-trusted tier was retired, it also keeps
+  # `native_decide` out of the gated set: Lean 4.33 reports generated
+  # `_native.native_decide.ax_*` axioms for it, and config.json permits none of
+  # those names.
   jq -r '.permitted_axioms[]' "$cfg" | sort -u >"$TMP/$tier.permitted"
-  reported_axioms "$out" >"$TMP/$tier.reported"
-  comm -23 "$TMP/$tier.reported" "$TMP/$tier.permitted" >"$TMP/$tier.extra"
-  if [[ -s "$TMP/$tier.extra" ]]; then
-    echo "FAIL [$tier]: axiom(s) not in $cfg permitted_axioms:" >&2
-    sed 's/^/      /' "$TMP/$tier.extra" >&2
+  : >"$TMP/$tier.report-names"
+  : >"$TMP/$tier.reported"
+  if ! reported_axioms "$out" "$names" "$TMP/$tier.report-names" "$TMP/$tier.reported"; then
+    echo "FAIL [$tier]: audit output is missing or duplicates a named theorem report." >&2
     fail=1; tier_fail=1
+  else
+    comm -23 "$TMP/$tier.reported" "$TMP/$tier.permitted" >"$TMP/$tier.extra"
+    if [[ -s "$TMP/$tier.extra" ]]; then
+      echo "FAIL [$tier]: axiom(s) not in $cfg permitted_axioms:" >&2
+      sed 's/^/      /' "$TMP/$tier.extra" >&2
+      fail=1; tier_fail=1
+    fi
   fi
 
   want="$(wc -l <"$names" | tr -d ' ')"
-  got="$(grep -Fc "depend" "$out" || true)"
+  got="$(wc -l <"$TMP/$tier.report-names" | tr -d ' ')"
   if [[ "$got" -ne "$want" ]]; then
     echo "FAIL [$tier]: expected $want axiom reports, got $got." >&2
     fail=1; tier_fail=1

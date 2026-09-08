@@ -49,6 +49,13 @@ srcDir = "../comparator"
 name = "Solution"
 srcDir = "../comparator"
 
+# Comparator axiom reports as a real Lake target. Lake replays the saved build
+# log for cached targets, preserving the `#print axioms` output for the wrapper.
+[[lean_lib]]
+name = "ComparatorAxiomAudit"
+srcDir = "../comparator"
+roots = ["«axiom-audit»"]
+
 # M1 ERASE eval gate as a compiled executable: the search primitives run as
 # native code instead of through the `#eval` interpreter. Diagnostic only —
 # proves nothing, no proof artifact imports it.

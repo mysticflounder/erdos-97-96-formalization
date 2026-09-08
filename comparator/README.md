@@ -65,6 +65,11 @@ The two modules are wired into the build as extra `lean_lib` targets in
 [`../lean/lakefile.toml`](../lean/lakefile.toml) with `srcDir = "../comparator"`,
 so `lake build Challenge Solution` works from `lean/`.
 
+The audit module is also registered as the `ComparatorAxiomAudit` Lake target.
+The conformance script builds that target through the global `lake-build`
+wrapper; Lake replays the target's saved compiler log on cached runs, so the
+captured output still contains every `#print axioms` report.
+
 ## Run it
 
 Offline pre-flight — manifest cross-check, build, axiom audit:
@@ -353,7 +358,7 @@ mentions no project symbol:
 | `Problem97.ConvexIndep A` | `∀ a ∈ ↑A, a ∉ convexHull ℝ (↑A \ {a})` |
 | `Erdos97.HasNEquidistantProperty 4 A` | `∀ p ∈ A, ∃ r > 0, #(A.filter (dist p · = r)) ≥ 4` |
 | `Problem97.pinnedMultiplicity A p` | `((A.image (dist p ·)).filter (0 < ·)).sup fun r => #(A.filter (dist p · = r))` |
-| `EuclideanGeometry.unitDistancePairsCount A` | `#(A.offDiag.filter fun p => dist p.1 p.2 = 1) / 2` |
+| `unitDistNum A` (upstream, on `A.sym2`) | `#(A.offDiag.filter fun p => dist p.1 p.2 = 1) / 2`, by `Problem96.EuclideanPeeling.unitDistNum_eq_doubledUnitCount_div_two` (a proved lemma, not a definitional unfolding) |
 | `Problem97.iCount A` | `∑ p ∈ A, #(((A.erase p).powersetCard 2).filter fun s => ∃ r, ∀ q ∈ s, dist p q = r)` |
 | `Problem97.MEC.boundary A hA` | `A.filter fun p => dist p center = radius` (after unbundling) |
 | `Problem97.UniversalReductionHypotheses` | its two fields, as hypotheses |
