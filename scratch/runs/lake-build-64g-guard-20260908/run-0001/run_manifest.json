@@ -1,0 +1,21 @@
+{
+  "base_head": "b39dc0d439810415e1aaafdc00bb3c6a85b96052",
+  "created_utc": "2026-09-08T22:45:00Z",
+  "input_digests": {
+    "lean/lakefile.toml": "3bae0e219bbbe9f2dfba4fca4c4446a34af27315de59fb05acbb958468304fe6"
+  },
+  "lane_id": "lake-build-64g-guard-20260908",
+  "manifest_sha256": "76aa1b3c546fc2765bc3bc72f7ade066e9b435eddbf5a8dc42bd81616d6232d9",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "ToolchainRelay",
+  "root": "scratch/runs/lake-build-64g-guard-20260908/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "docs/audits/2026-09-08-lake-build-64g-guard.md": "f87787395055d137fb1f0ae899b4fe19ba44340178ce99c97a782b83b39fcc6a"
+  }
+}

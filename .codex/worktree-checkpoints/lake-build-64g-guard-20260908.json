@@ -1,0 +1,18 @@
+{
+  "base_head": "b39dc0d439810415e1aaafdc00bb3c6a85b96052",
+  "created_utc": "2026-09-08T22:45:00Z",
+  "durable_paths": [
+    "scratch/runs/lake-build-64g-guard-20260908/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/lake-build-64g-guard-20260908/run-0001"
+  ],
+  "lane_id": "lake-build-64g-guard-20260908",
+  "manifest_sha256": "254fb278af6f5a755ca814f3cc410d9a50cb5873eec4d47e8306c1ecd51c55bc",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/lake-build-64g-guard-20260908.json",
+    "docs/audits/2026-09-08-lake-build-64g-guard.md"
+  ],
+  "owner": "ToolchainRelay",
+  "schema": "worktree-lane-checkpoint/v1"
+}
