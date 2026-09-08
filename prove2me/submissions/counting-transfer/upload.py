@@ -35,6 +35,9 @@ EXPECTED_PLATFORM_VERSION = "0.9.8"
 TERMINAL_JOB_OK = "PUBLISHED"
 TERMINAL_SUBMISSION_OK = {"ACCEPTED", "SKETCH_ACCEPTED"}
 TERMINAL_FAILURE = {"FAILED", "ERROR"}
+TRANSIENT_SUBMISSION_ERRORS = {
+    "Failed to resolve platform imports: Import parser timed out after 5s",
+}
 
 
 class UploadError(RuntimeError):
@@ -752,6 +755,100 @@ def meaningful_explanation(node: dict[str, Any]) -> str:
     )
 
 
+def solution_request(package: dict[str, Any], node: dict[str, Any], theorem_id: str) -> tuple[bytes, str]:
+    fields = {"theorem_id": theorem_id, "proof_type": "prove"}
+    fields["explanation"] = (
+        package["explanation"].read_text(encoding="utf-8")
+        if node["root"] else meaningful_explanation(node)
+    )
+    solution_bytes = (REPO_ROOT / node["solution_path"]).read_bytes()
+    boundary = hashlib.sha256(solution_bytes).hexdigest()[:32].encode()
+    parts: list[bytes] = []
+    for key, value in fields.items():
+        parts.extend([
+            b"--" + boundary,
+            b'Content-Disposition: form-data; name="' + key.encode() + b'"',
+            b"",
+            value.encode(),
+        ])
+    parts.extend([
+        b"--" + boundary,
+        b'Content-Disposition: form-data; name="file"; filename="solution.lean"',
+        b"Content-Type: text/plain",
+        b"",
+        solution_bytes,
+        b"--" + boundary + b"--",
+        b"",
+    ])
+    return b"\r\n".join(parts), boundary.decode()
+
+
+def queue_solutions(
+    package: dict[str, Any], receipt_path: Path, client: Client, submit_delay: float
+) -> None:
+    """Submit every missing solution without waiting for verification.
+
+    Prove2Me permits up to 100 pending submissions.  Queueing this 75-node,
+    locally validated packet once lets the server verify it in parallel while
+    the ordinary ``--execute`` path remains the receipt-backed reconciler.
+    """
+    receipt = load_json(receipt_path)
+    check_receipt(receipt, package)
+    expected_theorems = {node["name"] for node in package["nodes"]}
+    if set(receipt["theorems"]) != expected_theorems:
+        raise UploadError("queueing solutions requires every theorem receipt")
+    if any(not remote_id(receipt["theorems"][name]) for name in expected_theorems):
+        raise UploadError("queueing solutions requires every theorem ID")
+
+    for node in package["nodes"]:
+        name = node["name"]
+        entry = receipt["solutions"].get(name, {})
+        if entry.get("submission_id"):
+            result = client.request(
+                "GET", "/verify", query={"submission_id": entry["submission_id"]}
+            )
+            if not isinstance(result, dict) or not result.get("status"):
+                raise UploadError(f"invalid verification response for {name}")
+            entry["status"] = result["status"]
+            save_receipt(receipt_path, receipt)
+            continue
+        if entry.get("status") == "ERROR":
+            raise UploadError(
+                f"verification for {name} has no reconciliable submission ID; "
+                "manual reconciliation required"
+            )
+        theorem_id = receipt["theorems"][name]["theorem_id"]
+        body, boundary = solution_request(package, node, theorem_id)
+        set_intent(receipt, receipt_path, "solution", name, body)
+        try:
+            response = client.request(
+                "POST",
+                "/verify",
+                body=body,
+                content_type=f"multipart/form-data; boundary={boundary}",
+            )
+        except UploadError as error:
+            raise UploadError(f"uncertain verification POST for {name}; refusing retry") from error
+        if not isinstance(response, dict) or not response.get("submission_id"):
+            raise UploadError(f"uncertain verification POST for {name}; refusing retry")
+        entry = {
+            "status": response.get("status", "PENDING"),
+            "submission_id": response["submission_id"],
+        }
+        receipt["solutions"][name] = entry
+        mark_intent(
+            receipt,
+            receipt_path,
+            "solution",
+            name,
+            id=entry["submission_id"],
+            submission_id=entry["submission_id"],
+        )
+        save_receipt(receipt_path, receipt)
+        if submit_delay:
+            time.sleep(submit_delay)
+
+
 def execute(package: dict[str, Any], receipt_path: Path, client: Client) -> None:
     if receipt_path.is_file():
         receipt = load_json(receipt_path)
@@ -947,6 +1044,48 @@ def execute(package: dict[str, Any], receipt_path: Path, client: Client) -> None
             continue
         if entry.get("submission_id"):
             result = client.poll_submission(entry["submission_id"])
+            if (
+                result.get("status") == "ERROR"
+                and result.get("error_message") in TRANSIENT_SUBMISSION_ERRORS
+                and entry.get("transient_retries", 0) < 1
+            ):
+                prior_submission_id = entry["submission_id"]
+                theorem_id = receipt["theorems"].get(name, {}).get("theorem_id")
+                if not theorem_id:
+                    raise UploadError(f"no theorem ID for solution retry: {name}")
+                body, boundary = solution_request(package, node, theorem_id)
+                set_intent(receipt, receipt_path, "solution", name, body)
+                try:
+                    response = client.request(
+                        "POST",
+                        "/verify",
+                        body=body,
+                        content_type=f"multipart/form-data; boundary={boundary}",
+                    )
+                except UploadError as error:
+                    raise UploadError(
+                        f"uncertain verification retry POST for {name}; refusing retry"
+                    ) from error
+                if not isinstance(response, dict) or not response.get("submission_id"):
+                    raise UploadError(
+                        f"uncertain verification retry POST for {name}; refusing retry"
+                    )
+                entry.update({
+                    "status": response.get("status", "PENDING"),
+                    "submission_id": response["submission_id"],
+                    "transient_retries": 1,
+                    "prior_submission_ids": [prior_submission_id],
+                })
+                mark_intent(
+                    receipt,
+                    receipt_path,
+                    "solution",
+                    name,
+                    id=entry["submission_id"],
+                    submission_id=entry["submission_id"],
+                )
+                save_receipt(receipt_path, receipt)
+                result = client.poll_submission(entry["submission_id"])
         else:
             if entry.get("status") == "ERROR":
                 raise UploadError(
@@ -955,21 +1094,15 @@ def execute(package: dict[str, Any], receipt_path: Path, client: Client) -> None
             theorem_id = receipt["theorems"].get(name, {}).get("theorem_id")
             if not theorem_id:
                 raise UploadError(f"no theorem ID for solution: {name}")
-            fields = {"theorem_id": theorem_id, "proof_type": "prove"}
-            fields["explanation"] = (
-                package["explanation"].read_text(encoding="utf-8")
-                if node["root"] else meaningful_explanation(node)
-            )
-            solution_bytes = (REPO_ROOT / node["solution_path"]).read_bytes()
-            boundary = hashlib.sha256(solution_bytes).hexdigest()[:32].encode()
-            parts: list[bytes] = []
-            for key, value in fields.items():
-                parts.extend([b"--" + boundary, b'Content-Disposition: form-data; name="' + key.encode() + b'"', b"", value.encode()])
-            parts.extend([b"--" + boundary, b'Content-Disposition: form-data; name="file"; filename="solution.lean"', b"Content-Type: text/plain", b"", solution_bytes, b"--" + boundary + b"--", b""])
-            body = b"\r\n".join(parts)
+            body, boundary = solution_request(package, node, theorem_id)
             set_intent(receipt, receipt_path, "solution", name, body)
             try:
-                response = client.request("POST", "/verify", body=body, content_type=f"multipart/form-data; boundary={boundary.decode()}")
+                response = client.request(
+                    "POST",
+                    "/verify",
+                    body=body,
+                    content_type=f"multipart/form-data; boundary={boundary}",
+                )
             except UploadError as error:
                 raise UploadError(f"uncertain verification POST for {name}; refusing retry") from error
             if not isinstance(response, dict) or not response.get("submission_id"):
@@ -1008,9 +1141,23 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--execute", action="store_true", help="perform network uploads")
+    mode.add_argument(
+        "--queue-solutions",
+        action="store_true",
+        help="submit all missing solutions without waiting for verification",
+    )
+    parser.add_argument(
+        "--submit-delay",
+        type=float,
+        default=1.0,
+        help="seconds between queued solution submissions (default: 1.0)",
+    )
     mode.add_argument("--dry-run", action="store_true", help="validate and print the plan (default)")
     parser.add_argument("--receipt", type=Path, default=TRANSFER / "receipt.json")
-    parser.add_argument("--artifact-commit", help="40-hex committed payload revision required by --execute")
+    parser.add_argument(
+        "--artifact-commit",
+        help="40-hex committed payload revision required by network modes",
+    )
     parser.add_argument("--poll-interval", type=float, default=3.0)
     parser.add_argument("--poll-timeout", type=float, default=3600.0)
     return parser.parse_args(argv)
@@ -1019,11 +1166,24 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     try:
-        package = load_package(require_remote_ready=args.execute, artifact_commit=args.artifact_commit)
-        if not args.execute:
-            print("dry-run: validated external build/type/axiom gate, 18 definitions, 75 theorem stubs, and 75 solutions; no network calls")
+        network_mode = args.execute or args.queue_solutions
+        package = load_package(
+            require_remote_ready=network_mode,
+            artifact_commit=args.artifact_commit,
+        )
+        if not network_mode:
+            print(
+                "dry-run: validated external build/type/axiom gate, 18 definitions, "
+                "75 theorem stubs, and 75 solutions; no network calls"
+            )
             return 0
-        execute(package, args.receipt, Client(args.poll_interval, args.poll_timeout))
+        client = Client(args.poll_interval, args.poll_timeout)
+        if args.queue_solutions:
+            if args.submit_delay < 0:
+                raise UploadError("--submit-delay must be nonnegative")
+            queue_solutions(package, args.receipt, client, args.submit_delay)
+        else:
+            execute(package, args.receipt, client)
     except (UploadError, OSError, KeyError, TypeError, ValueError) as error:
         print(f"upload failed closed: {error}", file=sys.stderr)
         return 2

@@ -201,6 +201,456 @@
       "payload_sha256": "344193a8c5b2580023e54948c58df5bcdbf71950ca223bc46cb934fe808648c2",
       "state": "RESPONSE_RECORDED"
     },
+    "solution:Erdos9796Mission.counterexample_card_ge_nine": {
+      "id": "85e33fb4-bf8e-43c5-931a-f9e7609e7805",
+      "payload_sha256": "603768e19bbd7c8905656d5e372c46cde155fdb98b8b0651338d9174ba99e83d",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "85e33fb4-bf8e-43c5-931a-f9e7609e7805"
+    },
+    "solution:Problem97.CGN.CGN4g1_capBlock_of_supportCap": {
+      "id": "88ef4b2f-6154-42f0-8e45-c20731ff030a",
+      "payload_sha256": "a1468a9685139d2e037e47ef899f4844d0a1a5f963ea1cbb668223d10abb8d80",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "88ef4b2f-6154-42f0-8e45-c20731ff030a"
+    },
+    "solution:Problem97.CGN.CGN4g2_consecutiveTurn_nonpos_of_capBlock": {
+      "id": "805f4f38-054e-48ad-a613-64c152e5bb89",
+      "payload_sha256": "9bfa4364a9cfe4b12c50c52062242dd20d096477e8219bebcf4be6bfd2164030",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "805f4f38-054e-48ad-a613-64c152e5bb89"
+    },
+    "solution:Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented": {
+      "id": "72bf1835-d84c-45ed-aa83-b362902510ea",
+      "payload_sha256": "05cc58ebafde12d7212026dd2f10cb4b407955101c454e14ac5b6ac7c06a21be",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "72bf1835-d84c-45ed-aa83-b362902510ea"
+    },
+    "solution:Problem97.CGN.CGN6b0_secantEndpointBounds_coords": {
+      "id": "21339590-3b8d-4625-8b84-6c1b2aa2dc48",
+      "payload_sha256": "b778047915d14e65b8a82c59a183acc0a3800facb38a75fcb9a975ce46ec6bcd",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "21339590-3b8d-4625-8b84-6c1b2aa2dc48"
+    },
+    "solution:Problem97.CGN.CGN6b_nonacute_of_minorCapChainCoords": {
+      "id": "a99b2301-901f-4e3d-b2e0-db0c9fd3e2b8",
+      "payload_sha256": "7e2e85d10cba51b180414b37fc1bdb8251343a1e819bead40bd4a4670c0c688b",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "a99b2301-901f-4e3d-b2e0-db0c9fd3e2b8"
+    },
+    "solution:Problem97.CGN.CGN6c_oneSidedDistanceInjective": {
+      "id": "36c1f08e-42be-4021-a9ab-1d4754171fff",
+      "payload_sha256": "c659caba3497e8173ba1bb2c043a1797e3ec3e2e452eec3c8bcca115eb014901",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "36c1f08e-42be-4021-a9ab-1d4754171fff"
+    },
+    "solution:Problem97.CGN.CGN6d0_positiveSideBisector_to_wbtw": {
+      "id": "e07ab461-5edb-41c1-9525-fd8d89fff0b0",
+      "payload_sha256": "df6806fb9ea6bc7f5a0c14f05f575f0649ef5790e474d839aa30e7b236c4122e",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "e07ab461-5edb-41c1-9525-fd8d89fff0b0"
+    },
+    "solution:Problem97.CGN.CGN6e2_not_two_apices_on_complementary_side": {
+      "id": "ebfdad4a-138b-48d8-bbce-a5368944e6ea",
+      "payload_sha256": "c7caf63e4dc732407f9d6519f602d57f7e1513724c7cbe525deac2a97adf1724",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "ebfdad4a-138b-48d8-bbce-a5368944e6ea"
+    },
+    "solution:Problem97.CGN.CGN6norm_minorCapChainModel_of_mecCapPacket": {
+      "id": "988f0d8f-d9b1-4423-b154-fa508e1328bc",
+      "payload_sha256": "e6fe5bde2e096176c1e261654a38f49eccd3b092b33ccb453e9b3b41617f1978",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "988f0d8f-d9b1-4423-b154-fa508e1328bc"
+    },
+    "solution:Problem97.CGN.capPairApexes_mem_edgeAt_packet": {
+      "id": "2e0bba97-fe81-4d03-82aa-d06716c60a1d",
+      "payload_sha256": "0d88b7fbd4ece3aef3b1584dd37eee16319a5e67c3b4ff23f0772e74f0e5812d",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "2e0bba97-fe81-4d03-82aa-d06716c60a1d"
+    },
+    "solution:Problem97.CGN.card_witnessedPairsAt_le_left": {
+      "id": "59cb6b7f-201e-42e0-839d-be70c5f56834",
+      "payload_sha256": "482dbc5191c3fdf9034b8f899b2f0eaadc07ca65e4900ccfee234ccb1b513ccc",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "59cb6b7f-201e-42e0-839d-be70c5f56834"
+    },
+    "solution:Problem97.CGN.card_witnessedPairsAt_le_right": {
+      "id": "096580ba-1518-4844-89ba-cbccd0ae3ad0",
+      "payload_sha256": "b1b4326c90cf6e2bd74df0f933f53488db7280856986fe2db678ff9d32ee9be1",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "096580ba-1518-4844-89ba-cbccd0ae3ad0"
+    },
+    "solution:Problem97.CGN.edgeAt_injective_on_CapIndexPairs": {
+      "id": "27f46716-d681-4307-ba98-17a3f93772c5",
+      "payload_sha256": "c72b2a76f17f704e6728d9c3ac1cc86c4863f7f46da4a64688053652a7492ff9",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "27f46716-d681-4307-ba98-17a3f93772c5"
+    },
+    "solution:Problem97.CGN.edgeAt_mem_powersetCard": {
+      "id": "cdc4ccd3-1925-433e-8016-12679ab9c44d",
+      "payload_sha256": "6f642fb21d08c9e1e1d64f48d6462069845567756c485ecf31c5a1eb9e52d162",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "cdc4ccd3-1925-433e-8016-12679ab9c44d"
+    },
+    "solution:Problem97.CGN.weighted_average_initial_bound": {
+      "id": "bae464a3-3f6c-47b9-a29f-58850fb78f13",
+      "payload_sha256": "f9a076f7fac638d880c56aa135cdec5f35ab07a6f28ece7cb80663844db51c7c",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "bae464a3-3f6c-47b9-a29f-58850fb78f13"
+    },
+    "solution:Problem97.CGN.weighted_average_tail_bound": {
+      "id": "7f01adfe-c7a3-4c87-8acb-56ab97e5ae03",
+      "payload_sha256": "c4f3c58a3ad2017fe58abc777a8a8357a56e665f594b9b4470fc8a87bc0a9ca9",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "7f01adfe-c7a3-4c87-8acb-56ab97e5ae03"
+    },
+    "solution:Problem97.CGN.witnessedPairsAt_sum_le_square_div_four": {
+      "id": "26617615-2b76-4bb8-85dd-8ab09b88f202",
+      "payload_sha256": "239afad565c5e7b0684af80fbffd533dc3f37a3bfdf01c4dae5fd6d3049ff6f5",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "26617615-2b76-4bb8-85dd-8ab09b88f202"
+    },
+    "solution:Problem97.CGN8_circumscribed_iCount_upper_bound": {
+      "id": "525047e8-3699-490e-b011-38496ff94445",
+      "payload_sha256": "fb06b47da2e73a32676a313f9d4f201360ea080191115814d281d2833582e7ee",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "525047e8-3699-490e-b011-38496ff94445"
+    },
+    "solution:Problem97.ConvexIndep.not_collinear_of_card_ge_three": {
+      "id": "8cae150e-f71a-4a1c-981e-388f37180a34",
+      "payload_sha256": "ded63f90c9e809c4edae9912356466a9bd09de2bc70ade5ffed3838234a2dc6f",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "8cae150e-f71a-4a1c-981e-388f37180a34"
+    },
+    "solution:Problem97.ConvexIndep.not_same_ray_perpBisector": {
+      "id": "f09b380a-c63f-4f13-9be0-748ab44b7093",
+      "payload_sha256": "34113b855ae0777ad73096a1a28e99ad051d39f068e0cd7170eef4e91c35fc5e",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "f09b380a-c63f-4f13-9be0-748ab44b7093"
+    },
+    "solution:Problem97.ConvexIndep.not_wbtw": {
+      "id": "c17932b0-3c8e-40b4-890f-a022b2b1b520",
+      "payload_sha256": "1354760917a735a15d9d7dcb262fa09ecaab332168c52d58725db9d2b89bfa0a",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "c17932b0-3c8e-40b4-890f-a022b2b1b520"
+    },
+    "solution:Problem97.Dumitrescu.capPairApexes_card_le_two": {
+      "id": "d75a6fa3-21ab-4c1f-a366-08d9ecfd373d",
+      "payload_sha256": "3563342f36cceda70dc66b6988465854c0e0ce7230dc540ca471276d2d7cf982",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "d75a6fa3-21ab-4c1f-a366-08d9ecfd373d"
+    },
+    "solution:Problem97.Dumitrescu.matching_count_sum_le_square_div_four": {
+      "id": "f4cfb3f0-392a-433d-9a36-fbdb0fe69d2d",
+      "payload_sha256": "d359c2fbf6bee78ac38d3d779ffd3dc9c7234c3d4d7390e726c9d17f049aad84",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "f4cfb3f0-392a-433d-9a36-fbdb0fe69d2d"
+    },
+    "solution:Problem97.Dumitrescu.perpBisector_apex_bound": {
+      "id": "33f7ce44-d43b-4f48-8809-624f7435e12a",
+      "payload_sha256": "4f27855b2019f5078c183d38aa0368f73139320223f4ae0ae7128058ebbb8941",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "33f7ce44-d43b-4f48-8809-624f7435e12a"
+    },
+    "solution:Problem97.Dumitrescu.three_cap_decomposition": {
+      "id": "a397dfb0-a050-42c5-b0e8-029d1fb6c91e",
+      "payload_sha256": "6f118c7f3aac9cad77a5d92f9937a7a16b595d2854c88dd1f1e72d5120ded0a4",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "a397dfb0-a050-42c5-b0e8-029d1fb6c91e"
+    },
+    "solution:Problem97.MEC.arc_partition_count_eq_one": {
+      "id": "81033cab-eaa5-45e5-9da6-76ec3e4df0a9",
+      "payload_sha256": "c1cd53eb1c0fe4366cf86ad2541ecf891eb734ebb8bda41f209f96fa1badf3e8",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "81033cab-eaa5-45e5-9da6-76ec3e4df0a9"
+    },
+    "solution:Problem97.MEC.cap_partition_from_moser_circumscribed": {
+      "id": "291b6a8b-4f92-415c-8cba-e3c6759d115b",
+      "payload_sha256": "10effa42f1a80a4d2e9a93b2935854e4db87ef6c6d540ea47084c534bb72a422",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "291b6a8b-4f92-415c-8cba-e3c6759d115b"
+    },
+    "solution:Problem97.MEC.exists_nonobtuse_circumscribed_triple": {
+      "id": "a1666c2e-0f88-4923-a3e0-5289ac950805",
+      "payload_sha256": "06f38ce33056bdae29a5c7eec5d4d07b37318f2830647c33e2e5edf28c924450",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "a1666c2e-0f88-4923-a3e0-5289ac950805"
+    },
+    "solution:Problem97.MEC.mec_center_mem_convexHull_boundary": {
+      "id": "45169314-60e6-4c4b-8409-f1be266d885f",
+      "payload_sha256": "8e6e20936fc76fccf78a5b12c20425b851476d2b9a143e6f9de40d7f63ac3c25",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "45169314-60e6-4c4b-8409-f1be266d885f"
+    },
+    "solution:Problem97.MEC.no_diameter_under_k4": {
+      "id": "e2813390-7ea2-4932-9f82-c85562fe9cce",
+      "payload_sha256": "9848af4f3322afce4c086219f420d182c8b09db04868868bc5922393b2b98081",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "e2813390-7ea2-4932-9f82-c85562fe9cce"
+    },
+    "solution:Problem97.MEC.not_collinear_of_three_dist_eq": {
+      "id": "a9ed0d40-0626-4c37-8c9c-c805be8695b9",
+      "payload_sha256": "71c232ffb611a62e45c2a2aa54e9577a5f82dd8827d967808dfc4a2aeda4b900",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "a9ed0d40-0626-4c37-8c9c-c805be8695b9"
+    },
+    "solution:Problem97.MEC.sylvester_dichotomy": {
+      "id": "04fba056-9240-4ddf-bc60-ba4b1c578bda",
+      "payload_sha256": "bad5801074b393fb5b64db89fd9124a5c8007f79600fb0fc05fde108a4d4ea86",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "04fba056-9240-4ddf-bc60-ba4b1c578bda"
+    },
+    "solution:Problem97.affineSpan_eq_top_of_not_collinear": {
+      "id": "e7426580-b0b9-4a6e-b836-4dd44a9cd6d7",
+      "payload_sha256": "cd13b5ac82e942412b59f802504194df08dc8de7ab9e0629649a95155cb277a5",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "e7426580-b0b9-4a6e-b836-4dd44a9cd6d7"
+    },
+    "solution:Problem97.arcAngle_injective_of_center_interior": {
+      "id": "37b7ff73-d1f6-43e4-983e-8e8450c84a26",
+      "payload_sha256": "13c2b7418ffbd4bfff6fd4b35dd79c77de9453fcce0856c05ebfb0e42d427110",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "37b7ff73-d1f6-43e4-983e-8e8450c84a26"
+    },
+    "solution:Problem97.boundaryBlock_openSide_iff_between_indices_of_signedAreaOrder": {
+      "id": "a4f72fa5-2b60-41b3-a3b0-b86f69f6f1b7",
+      "payload_sha256": "da7997edb7934663f47cc120ff8b7cfe10f2be280393c55deb65556f834dacae",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "a4f72fa5-2b60-41b3-a3b0-b86f69f6f1b7"
+    },
+    "solution:Problem97.boundaryCap_chordProjection_strict": {
+      "id": "692f4758-b2fa-48df-9b7a-3a69f32682d2",
+      "payload_sha256": "973a267c29c4ee72aa924a5f6a8c86ba9b03243ee0846b0faed7991884a35931",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "692f4758-b2fa-48df-9b7a-3a69f32682d2"
+    },
+    "solution:Problem97.cap_sum_identity": {
+      "id": "df03f094-12dc-40d7-9381-056b7185ae98",
+      "payload_sha256": "629d6762d4ae77f784a8585ccc4fef9f970f90e78b83c297b259d738e26d7b1d",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "df03f094-12dc-40d7-9381-056b7185ae98"
+    },
+    "solution:Problem97.card_ge_five_of_K4": {
+      "id": "6d912ef5-ac2d-4cb7-be85-d219cda69c52",
+      "payload_sha256": "c4f14835a81d825977ef6cc1e6fcffe0744eb4026c5933a1df2d58d53a3f6977",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "6d912ef5-ac2d-4cb7-be85-d219cda69c52"
+    },
+    "solution:Problem97.ccw_of_hneg": {
+      "id": "a63878d9-19a4-4b15-b21a-3beeeb54b338",
+      "payload_sha256": "0f7fe24b9207dde8be794aa5ad6a70689e490ffb39292f228bb84ec86d1811bb",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "a63878d9-19a4-4b15-b21a-3beeeb54b338"
+    },
+    "solution:Problem97.center_mem_openSegment_of_arcAngle_gap_eq_neg_pi": {
+      "id": "e491fb83-ab84-4e93-95f9-e652375da450",
+      "payload_sha256": "d927538da2243c1969f882ac90e30509efa230e3112b8e2d8c6c1d7873a39a43",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "e491fb83-ab84-4e93-95f9-e652375da450"
+    },
+    "solution:Problem97.center_same_side_as_apex_of_nonobtuse": {
+      "id": "8d651da8-67b1-4fa5-b08d-24fe5c941a16",
+      "payload_sha256": "b5d8fe5203c9948e202b8ed2946770324a88e2fd42895405a13f381d2076b37c",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "8d651da8-67b1-4fa5-b08d-24fe5c941a16"
+    },
+    "solution:Problem97.collinear_of_signedArea2_eq_zero": {
+      "id": "40edc5e3-ff9d-43b4-9a94-3ae5aa96f30a",
+      "payload_sha256": "771e730f243fc6dab02a0b9d170f31dda916a3b23a0856ce017cd10e812c41f3",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "40edc5e3-ff9d-43b4-9a94-3ae5aa96f30a"
+    },
+    "solution:Problem97.convexHull_line_inter_eq_segment_of_extreme_pair": {
+      "id": "df6b07fb-a2f5-4044-a805-7d796a574d89",
+      "payload_sha256": "99e26fc4b66e77a9129aec54a1ee86d2247276c9156d5950f76768087b7ef3fd",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "df6b07fb-a2f5-4044-a805-7d796a574d89"
+    },
+    "solution:Problem97.counting_arithmetic": {
+      "id": "0f0201a8-e188-433d-8bab-7efa841d2873",
+      "payload_sha256": "ecae25188b5e67b507f106272524893298a7e3df519c02fdab6fb64be9f295e8",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "0f0201a8-e188-433d-8bab-7efa841d2873"
+    },
+    "solution:Problem97.exists_cut_sorted_enumeration_of_convexIndep": {
+      "id": "c9355204-0eef-473d-85f4-fa82eee9f021",
+      "payload_sha256": "fe901ca9ffe6c356c72c55851d921c08d45fef426f6b9d019212f829e07b2fa5",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "c9355204-0eef-473d-85f4-fa82eee9f021"
+    },
+    "solution:Problem97.hneg_cyclicShift": {
+      "id": "16e6dd99-6ffa-4d2d-9e7a-d658c3c9cdab",
+      "payload_sha256": "797078ee3de36761eab95dbab64551cf037e61cec988dee8ec5240f27fac3b7e",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "16e6dd99-6ffa-4d2d-9e7a-d658c3c9cdab"
+    },
+    "solution:Problem97.hneg_of_ccw": {
+      "id": "4b116d48-0d78-4481-8175-540d1db298bb",
+      "payload_sha256": "f1285ec0c1cc5af9daf6cd99174060823bba16055d1ef90afc99c69c13c2b3d9",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "4b116d48-0d78-4481-8175-540d1db298bb"
+    },
+    "solution:Problem97.iCountAt_ge_six_of_K4": {
+      "id": "3e14fba6-d123-4c3a-ad66-fee60ed5655d",
+      "payload_sha256": "620988c265090a1ff9f099d7b2eee1b9c61d983d4b2ac26d4bf9aac5c4e1fdc9",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "3e14fba6-d123-4c3a-ad66-fee60ed5655d"
+    },
+    "solution:Problem97.inner_chord_eq_dist_sq_diff": {
+      "id": "57c6f78b-090d-456f-aa86-dce41442cb20",
+      "payload_sha256": "1ed5d2c30c7ae7d902284c4cc0b6e7d4213f89982f0d8f6b7e6dfdd7265c4247",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "57c6f78b-090d-456f-aa86-dce41442cb20"
+    },
+    "solution:Problem97.inner_chord_eq_two_mul_inner_midpoint": {
+      "id": "697e9e2a-aad5-4735-b870-e78025682598",
+      "payload_sha256": "494626c47e26b9423a5be01281ffc76df757e2ceacf0b2378b2f3f0755ae29c9",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "697e9e2a-aad5-4735-b870-e78025682598"
+    },
+    "solution:Problem97.isCcwConvexPolygon_of_cut_sorted_arcAngle": {
+      "id": "1f8402c4-a7ca-4b30-ad5a-1c84af54430b",
+      "payload_sha256": "23d9fefb48990b3d1586e6eee19b2e7cf53c71ef9e7dfd5b09e42e58f37d45f1",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "1f8402c4-a7ca-4b30-ad5a-1c84af54430b"
+    },
+    "solution:Problem97.longCutArc_nonnegSide_of_endpointChord": {
+      "id": "6d974e30-4237-474f-95b3-e4a93427c75f",
+      "payload_sha256": "7570a94a9c271a8bd4751ce6e01844844e9d6ea4a69bff61ac058d27124b59c8",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "6d974e30-4237-474f-95b3-e4a93427c75f"
+    },
+    "solution:Problem97.longCutArc_positiveSide_of_endpointChord": {
+      "id": "4a49333b-a3c3-46fb-bcee-62c51270e28c",
+      "payload_sha256": "7e0b2f10105da47327d1692a38ca80606afc481b88ad65cdfaf9b030ffa5a057",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "4a49333b-a3c3-46fb-bcee-62c51270e28c"
+    },
+    "solution:Problem97.longGap_intermediate_not_in_endpoint_shortCone_signedArea": {
+      "id": "eaf37ce3-81a9-44de-8858-749f682f7358",
+      "payload_sha256": "e1795a179acc404ab8c66add9a681a5681ccec60f9d34ff7ea5cc2676de3bd88",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "eaf37ce3-81a9-44de-8858-749f682f7358"
+    },
+    "solution:Problem97.longGap_ray_endpointChord_no_hit": {
+      "id": "032195f2-50c6-4f02-a786-ec3577541f75",
+      "payload_sha256": "c3a8db7517c68b72fbbab4e601a52c6a180b9eacabbb5b1cec1a42f6a1575ba5",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "032195f2-50c6-4f02-a786-ec3577541f75"
+    },
+    "solution:Problem97.mem_convexHull_of_midpoint_segment": {
+      "id": "f4471b64-f55f-4217-8045-264270c485d5",
+      "payload_sha256": "53a0ea990cc69096ca9d483deaa108a47735dcf478155f09932d61adc3f718ab",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "f4471b64-f55f-4217-8045-264270c485d5"
+    },
+    "solution:Problem97.notMem_convexHull_diff_convexHull_of_notMem": {
+      "id": "b415cb0a-bbe1-443b-b655-27e69d6ceae9",
+      "payload_sha256": "ef0d78117289a9813bed4dae41ee834464ae8b684a802a5c5702400955ebe6bc",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "b415cb0a-bbe1-443b-b655-27e69d6ceae9"
+    },
+    "solution:Problem97.notMem_extremePoints_of_mem_interior": {
+      "id": "2e149867-5d97-4b9a-ad03-11c8eb6b71eb",
+      "payload_sha256": "4f4e4ec480f0bb714eb1ee3355659889570e28db7f5b3abec8a48a202aff32c8",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "2e149867-5d97-4b9a-ad03-11c8eb6b71eb"
+    },
+    "solution:Problem97.not_collinear_of_convexIndep_triple": {
+      "id": "f8128897-5a32-4aa9-95d8-86b8700d094e",
+      "payload_sha256": "3a5a1582d9aa51a8165800d97cc143609edfcb08a299878b8c12e9e6db70abfb",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "f8128897-5a32-4aa9-95d8-86b8700d094e"
+    },
+    "solution:Problem97.openSegment_center_signedArea_nonneg_transfer": {
+      "id": "5038d140-79b3-40ee-8edb-418ef99c80f1",
+      "payload_sha256": "58ae3111776eb1e24834344af49de488b9d4b81dd7b4a608e6fbff07a8a31d0f",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "5038d140-79b3-40ee-8edb-418ef99c80f1"
+    },
+    "solution:Problem97.sOppSide_of_cut_sorted_short_gap": {
+      "id": "78276ee0-e354-4aca-8739-e3d502ce72e2",
+      "payload_sha256": "68d163587e8c037e19fd4ebc6c8129fc1dc55b420ea6bfc95aa4a5d9bf9609be",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "78276ee0-e354-4aca-8739-e3d502ce72e2"
+    },
+    "solution:Problem97.sSameSide_of_signedArea2_pos": {
+      "id": "e89fe230-e942-444d-a115-1bb99ade4d63",
+      "payload_sha256": "202ee6c9446936f08605a867affec9eaff9b19161d10264448728edfa62770f3",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "e89fe230-e942-444d-a115-1bb99ade4d63"
+    },
+    "solution:Problem97.sameSide_of_cut_sorted_long_gap": {
+      "id": "2b32ea8e-bf30-4343-9334-3a1d84328dfc",
+      "payload_sha256": "6828f5460f84cc6e81390b9eaa8e82638c9b0b1a13785e6dd6bb81b09fe23257",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "2b32ea8e-bf30-4343-9334-3a1d84328dfc"
+    },
+    "solution:Problem97.shortGap_ray_endpointChord_hit": {
+      "id": "d8fda4ea-7dc8-4482-ba52-f69eff297cdd",
+      "payload_sha256": "0fcfa62073f14365d41eb509ff48e70a8d9811e4fa7dda8bf7ba67382a30d793",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "d8fda4ea-7dc8-4482-ba52-f69eff297cdd"
+    },
+    "solution:Problem97.signedArea2_eq_zero_exists_smul": {
+      "id": "42cab6bc-f39f-4e8f-89af-e10bf9f61fdd",
+      "payload_sha256": "7d4efd019ca71f3c0c3c3eaf6ddf939f110c004d73d3cf89a225c1bb2f9e0086",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "42cab6bc-f39f-4e8f-89af-e10bf9f61fdd"
+    },
+    "solution:Problem97.signedArea2_eq_zero_iff_collinear": {
+      "id": "a5a74e0e-9ce1-48e5-b993-859d4f355dcb",
+      "payload_sha256": "d683e440798f4b51a5914b34022cefa863c9df041e958d854230595cdc483d34",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "a5a74e0e-9ce1-48e5-b993-859d4f355dcb"
+    },
+    "solution:Problem97.signedArea2_neg_of_cut_sorted": {
+      "id": "979578f5-d981-4ebe-a4a0-6a9529dbeff5",
+      "payload_sha256": "7e33e202eacdc514cb4a433e629523585a9aa094d8dd8e88c1cdaa5cf00a8cf0",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "979578f5-d981-4ebe-a4a0-6a9529dbeff5"
+    },
+    "solution:Problem97.signedArea2_neg_of_cut_sorted_degenerate": {
+      "id": "98f82d85-99f6-4f08-a2b5-896cc4e5fc6d",
+      "payload_sha256": "14d4ea388759fda727ea148ce66b089024dd4a2a0cd79190f8c09e2341e14922",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "98f82d85-99f6-4f08-a2b5-896cc4e5fc6d"
+    },
+    "solution:Problem97.signedArea2_neg_of_cut_sorted_long": {
+      "id": "2d39dab7-6868-43f1-8929-76344f72fbaa",
+      "payload_sha256": "808b971ac4b9c72c7c0cca69bbe81b78107e258ee141c802805002d7248ebd27",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "2d39dab7-6868-43f1-8929-76344f72fbaa"
+    },
+    "solution:Problem97.signedArea2_neg_of_cut_sorted_short": {
+      "id": "e1838cb1-bc25-4b2b-8a0f-a07a6a297745",
+      "payload_sha256": "de7f92ac274e8827bac99ffee6cb35233f69a300d646126d257f1024d7b4218b",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "e1838cb1-bc25-4b2b-8a0f-a07a6a297745"
+    },
+    "solution:Problem97.signedArea2_opposite_sign_openSegment_line_inter": {
+      "id": "12f24c83-84da-4c6f-8666-ddc31f80b7e4",
+      "payload_sha256": "0f50ec823145658b149b15d0c4ef611adfa3db91e6ec872a142313561179e3bb",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "12f24c83-84da-4c6f-8666-ddc31f80b7e4"
+    },
+    "solution:Problem97.signedArea2_sign_eq_oangle_sign": {
+      "id": "2fad1934-3d35-4347-a6d2-724fed3097bb",
+      "payload_sha256": "2807d52966c2c90d4b14f3274bcbbeb35fdde778954813189a735cacfbc221e0",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "2fad1934-3d35-4347-a6d2-724fed3097bb"
+    },
+    "solution:Problem97.signedArea_prod_eq_inner_mul_dist_sq": {
+      "id": "ec01eac8-6310-4c37-b8e4-2ec7faad7bb3",
+      "payload_sha256": "ec6fd0967172ae080ea886b0fa65909ae578ba585ef92c8be9bd2c549b913694",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "ec01eac8-6310-4c37-b8e4-2ec7faad7bb3"
+    },
+    "solution:Problem97.three_le_card_of_convexIndep_noncoll": {
+      "id": "cd575e23-2d1b-46c6-a3eb-7db9a8f74a21",
+      "payload_sha256": "32fbc7828f51788bb64caef02e23e29874e44224c2457ea2a2464dc6681fa16b",
+      "state": "RESPONSE_RECORDED",
+      "submission_id": "cd575e23-2d1b-46c6-a3eb-7db9a8f74a21"
+    },
     "theorem:Problem97.CGN.CGN4g1_capBlock_of_supportCap": {
       "id": "b73201be-19a7-40c0-990e-f70cf9891bd8",
       "job_id": "b73201be-19a7-40c0-990e-f70cf9891bd8",
@@ -211,6 +661,12 @@
       "id": "575d52f8-7772-4d29-bef8-99f081946ffb",
       "job_id": "575d52f8-7772-4d29-bef8-99f081946ffb",
       "payload_sha256": "37262d415755a3ff4b3160f1f7305e1175676c19d5a779f5338d1f05b30546c4",
+      "state": "RESPONSE_RECORDED"
+    },
+    "theorem:Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented": {
+      "id": "bcc070c2-c5c0-4edf-b534-7366bff939b4",
+      "job_id": "bcc070c2-c5c0-4edf-b534-7366bff939b4",
+      "payload_sha256": "15496196bc17ea30f535325cb428a22cfadc95a328cc4e1516503ee0de177a33",
       "state": "RESPONSE_RECORDED"
     },
     "theorem:Problem97.CGN.CGN6b0_secantEndpointBounds_coords": {
@@ -295,6 +751,12 @@
       "id": "00fcbd34-a1a8-4a54-b45c-c32a1fa672b2",
       "job_id": "00fcbd34-a1a8-4a54-b45c-c32a1fa672b2",
       "payload_sha256": "d4c34509d504f63a6ffa66ab593a8dc46545a45d1e0bd75772eceb5af9d65c68",
+      "state": "RESPONSE_RECORDED"
+    },
+    "theorem:Problem97.CGN8_circumscribed_iCount_upper_bound": {
+      "id": "1adb1503-d8f4-4f0c-8d33-aca18ab25b80",
+      "job_id": "1adb1503-d8f4-4f0c-8d33-aca18ab25b80",
+      "payload_sha256": "bbf279b370c67412408f6cffd77bcd09fd66e89f016c2c0b50e1e7aecccbcc2c",
       "state": "RESPONSE_RECORDED"
     },
     "theorem:Problem97.ConvexIndep.not_collinear_of_card_ge_three": {
@@ -489,10 +951,22 @@
       "payload_sha256": "804eef6f31f560fe8bac07f14decbddc2772101d79413ee3129a9380009d7f18",
       "state": "RESPONSE_RECORDED"
     },
+    "theorem:Problem97.isCcwConvexPolygon_of_cut_sorted_arcAngle": {
+      "id": "dafe1d76-fd6e-4b0a-b515-bd0b9ed17e97",
+      "job_id": "dafe1d76-fd6e-4b0a-b515-bd0b9ed17e97",
+      "payload_sha256": "c5b2d68c25ca20bd74f765a55fc0c76d8f5a1292f29a10af7e6d31b30001eb8d",
+      "state": "RESPONSE_RECORDED"
+    },
     "theorem:Problem97.longCutArc_nonnegSide_of_endpointChord": {
       "id": "f63d54e8-3d25-4528-88fc-23f39f34be1b",
       "job_id": "f63d54e8-3d25-4528-88fc-23f39f34be1b",
       "payload_sha256": "a50e28ea255a1d31f6554ca4b31d118e7992e5e151138bb008cb60b1287af103",
+      "state": "RESPONSE_RECORDED"
+    },
+    "theorem:Problem97.longCutArc_positiveSide_of_endpointChord": {
+      "id": "779ce72d-7854-4095-97cb-86031af448b3",
+      "job_id": "779ce72d-7854-4095-97cb-86031af448b3",
+      "payload_sha256": "83253a576f7eae326984d259d46d5b3e4a189f19201c9ffa0b5ff4112b7538a2",
       "state": "RESPONSE_RECORDED"
     },
     "theorem:Problem97.longGap_intermediate_not_in_endpoint_shortCone_signedArea": {
@@ -549,6 +1023,12 @@
       "payload_sha256": "ebac93aad883906f694b1c4531cf7cc721beb4d1bd9e20a732fc6c4e3255f39c",
       "state": "RESPONSE_RECORDED"
     },
+    "theorem:Problem97.sameSide_of_cut_sorted_long_gap": {
+      "id": "2ea93204-4024-4fe3-bc2d-9350f62c5cce",
+      "job_id": "2ea93204-4024-4fe3-bc2d-9350f62c5cce",
+      "payload_sha256": "e501d7724478cfce69d5f8de47397fad6a194650a0f6a935c927bf60ac2ebb27",
+      "state": "RESPONSE_RECORDED"
+    },
     "theorem:Problem97.shortGap_ray_endpointChord_hit": {
       "id": "15ec540f-9f3d-4b92-9672-dcb27c788a92",
       "job_id": "15ec540f-9f3d-4b92-9672-dcb27c788a92",
@@ -567,10 +1047,22 @@
       "payload_sha256": "98986d9f222840dd2a3f31fb44f970e8dde6601b7dc0bce00fd8e9ad42a18ffe",
       "state": "RESPONSE_RECORDED"
     },
+    "theorem:Problem97.signedArea2_neg_of_cut_sorted": {
+      "id": "262b6c93-4f5e-4aa7-b489-66372b270308",
+      "job_id": "262b6c93-4f5e-4aa7-b489-66372b270308",
+      "payload_sha256": "750c9e87223d75e76245e361e496c640fc0cb1127a10336f621b16632eb21738",
+      "state": "RESPONSE_RECORDED"
+    },
     "theorem:Problem97.signedArea2_neg_of_cut_sorted_degenerate": {
       "id": "332a029d-df8c-4d87-9c0f-7819b0f9d218",
       "job_id": "332a029d-df8c-4d87-9c0f-7819b0f9d218",
       "payload_sha256": "6ae3640caa1dbead50c5589fe2511b06dba43e9afdee1da15d9b6d8f1fee95d7",
+      "state": "RESPONSE_RECORDED"
+    },
+    "theorem:Problem97.signedArea2_neg_of_cut_sorted_long": {
+      "id": "4c89cef3-cae5-4bc1-bcdf-ee75e3bbfb71",
+      "job_id": "4c89cef3-cae5-4bc1-bcdf-ee75e3bbfb71",
+      "payload_sha256": "7bd98469885d7b16315806ef616b100d2163679ba5f76e796b522ae297f0c4cf",
       "state": "RESPONSE_RECORDED"
     },
     "theorem:Problem97.signedArea2_neg_of_cut_sorted_short": {
@@ -606,11 +1098,319 @@
   },
   "manifest_sha256": "5bfbd7295c713f69bb09e645a76db54fdf63356c2a49a5cf92ae72a38cad9b68",
   "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
-  "patches": {},
+  "patches": {
+    "mission_description": "PATCHED",
+    "root_metadata": "PATCHED"
+  },
   "plan_sha256": "a2f8ca78b67d2ebeab08c30bbe766740d0e641b1e24b7efe5ff2ed09eb74ca66",
   "root_theorem_id": "c35e1c76-5531-4585-9ced-8c47a929793e",
   "schema": "prove2me-counting-transfer-receipt/v1",
-  "solutions": {},
+  "solutions": {
+    "Erdos9796Mission.counterexample_card_ge_nine": {
+      "status": "ACCEPTED",
+      "submission_id": "85e33fb4-bf8e-43c5-931a-f9e7609e7805"
+    },
+    "Problem97.CGN.CGN4g1_capBlock_of_supportCap": {
+      "status": "ACCEPTED",
+      "submission_id": "88ef4b2f-6154-42f0-8e45-c20731ff030a"
+    },
+    "Problem97.CGN.CGN4g2_consecutiveTurn_nonpos_of_capBlock": {
+      "status": "ACCEPTED",
+      "submission_id": "805f4f38-054e-48ad-a613-64c152e5bb89"
+    },
+    "Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented": {
+      "status": "ACCEPTED",
+      "submission_id": "72bf1835-d84c-45ed-aa83-b362902510ea"
+    },
+    "Problem97.CGN.CGN6b0_secantEndpointBounds_coords": {
+      "status": "ACCEPTED",
+      "submission_id": "21339590-3b8d-4625-8b84-6c1b2aa2dc48"
+    },
+    "Problem97.CGN.CGN6b_nonacute_of_minorCapChainCoords": {
+      "status": "ACCEPTED",
+      "submission_id": "a99b2301-901f-4e3d-b2e0-db0c9fd3e2b8"
+    },
+    "Problem97.CGN.CGN6c_oneSidedDistanceInjective": {
+      "status": "ACCEPTED",
+      "submission_id": "36c1f08e-42be-4021-a9ab-1d4754171fff"
+    },
+    "Problem97.CGN.CGN6d0_positiveSideBisector_to_wbtw": {
+      "status": "ACCEPTED",
+      "submission_id": "e07ab461-5edb-41c1-9525-fd8d89fff0b0"
+    },
+    "Problem97.CGN.CGN6e2_not_two_apices_on_complementary_side": {
+      "status": "ACCEPTED",
+      "submission_id": "ebfdad4a-138b-48d8-bbce-a5368944e6ea"
+    },
+    "Problem97.CGN.CGN6norm_minorCapChainModel_of_mecCapPacket": {
+      "status": "ACCEPTED",
+      "submission_id": "988f0d8f-d9b1-4423-b154-fa508e1328bc"
+    },
+    "Problem97.CGN.capPairApexes_mem_edgeAt_packet": {
+      "status": "ACCEPTED",
+      "submission_id": "2e0bba97-fe81-4d03-82aa-d06716c60a1d"
+    },
+    "Problem97.CGN.card_witnessedPairsAt_le_left": {
+      "status": "ACCEPTED",
+      "submission_id": "59cb6b7f-201e-42e0-839d-be70c5f56834"
+    },
+    "Problem97.CGN.card_witnessedPairsAt_le_right": {
+      "status": "ACCEPTED",
+      "submission_id": "096580ba-1518-4844-89ba-cbccd0ae3ad0"
+    },
+    "Problem97.CGN.edgeAt_injective_on_CapIndexPairs": {
+      "status": "ACCEPTED",
+      "submission_id": "27f46716-d681-4307-ba98-17a3f93772c5"
+    },
+    "Problem97.CGN.edgeAt_mem_powersetCard": {
+      "status": "ACCEPTED",
+      "submission_id": "cdc4ccd3-1925-433e-8016-12679ab9c44d"
+    },
+    "Problem97.CGN.weighted_average_initial_bound": {
+      "status": "ACCEPTED",
+      "submission_id": "bae464a3-3f6c-47b9-a29f-58850fb78f13"
+    },
+    "Problem97.CGN.weighted_average_tail_bound": {
+      "status": "ACCEPTED",
+      "submission_id": "7f01adfe-c7a3-4c87-8acb-56ab97e5ae03"
+    },
+    "Problem97.CGN.witnessedPairsAt_sum_le_square_div_four": {
+      "status": "ACCEPTED",
+      "submission_id": "26617615-2b76-4bb8-85dd-8ab09b88f202"
+    },
+    "Problem97.CGN8_circumscribed_iCount_upper_bound": {
+      "status": "ACCEPTED",
+      "submission_id": "525047e8-3699-490e-b011-38496ff94445"
+    },
+    "Problem97.ConvexIndep.not_collinear_of_card_ge_three": {
+      "status": "ACCEPTED",
+      "submission_id": "8cae150e-f71a-4a1c-981e-388f37180a34"
+    },
+    "Problem97.ConvexIndep.not_same_ray_perpBisector": {
+      "status": "ACCEPTED",
+      "submission_id": "f09b380a-c63f-4f13-9be0-748ab44b7093"
+    },
+    "Problem97.ConvexIndep.not_wbtw": {
+      "status": "ACCEPTED",
+      "submission_id": "c17932b0-3c8e-40b4-890f-a022b2b1b520"
+    },
+    "Problem97.Dumitrescu.capPairApexes_card_le_two": {
+      "status": "ACCEPTED",
+      "submission_id": "d75a6fa3-21ab-4c1f-a366-08d9ecfd373d"
+    },
+    "Problem97.Dumitrescu.matching_count_sum_le_square_div_four": {
+      "status": "ACCEPTED",
+      "submission_id": "f4cfb3f0-392a-433d-9a36-fbdb0fe69d2d"
+    },
+    "Problem97.Dumitrescu.perpBisector_apex_bound": {
+      "status": "ACCEPTED",
+      "submission_id": "33f7ce44-d43b-4f48-8809-624f7435e12a"
+    },
+    "Problem97.Dumitrescu.three_cap_decomposition": {
+      "status": "ACCEPTED",
+      "submission_id": "a397dfb0-a050-42c5-b0e8-029d1fb6c91e"
+    },
+    "Problem97.MEC.arc_partition_count_eq_one": {
+      "status": "ACCEPTED",
+      "submission_id": "81033cab-eaa5-45e5-9da6-76ec3e4df0a9"
+    },
+    "Problem97.MEC.cap_partition_from_moser_circumscribed": {
+      "status": "ACCEPTED",
+      "submission_id": "291b6a8b-4f92-415c-8cba-e3c6759d115b"
+    },
+    "Problem97.MEC.exists_nonobtuse_circumscribed_triple": {
+      "status": "ACCEPTED",
+      "submission_id": "a1666c2e-0f88-4923-a3e0-5289ac950805"
+    },
+    "Problem97.MEC.mec_center_mem_convexHull_boundary": {
+      "status": "ACCEPTED",
+      "submission_id": "45169314-60e6-4c4b-8409-f1be266d885f"
+    },
+    "Problem97.MEC.no_diameter_under_k4": {
+      "status": "ACCEPTED",
+      "submission_id": "e2813390-7ea2-4932-9f82-c85562fe9cce"
+    },
+    "Problem97.MEC.not_collinear_of_three_dist_eq": {
+      "status": "ACCEPTED",
+      "submission_id": "a9ed0d40-0626-4c37-8c9c-c805be8695b9"
+    },
+    "Problem97.MEC.sylvester_dichotomy": {
+      "status": "ACCEPTED",
+      "submission_id": "04fba056-9240-4ddf-bc60-ba4b1c578bda"
+    },
+    "Problem97.affineSpan_eq_top_of_not_collinear": {
+      "status": "ACCEPTED",
+      "submission_id": "e7426580-b0b9-4a6e-b836-4dd44a9cd6d7"
+    },
+    "Problem97.arcAngle_injective_of_center_interior": {
+      "status": "ACCEPTED",
+      "submission_id": "37b7ff73-d1f6-43e4-983e-8e8450c84a26"
+    },
+    "Problem97.boundaryBlock_openSide_iff_between_indices_of_signedAreaOrder": {
+      "status": "ACCEPTED",
+      "submission_id": "a4f72fa5-2b60-41b3-a3b0-b86f69f6f1b7"
+    },
+    "Problem97.boundaryCap_chordProjection_strict": {
+      "status": "ACCEPTED",
+      "submission_id": "692f4758-b2fa-48df-9b7a-3a69f32682d2"
+    },
+    "Problem97.cap_sum_identity": {
+      "status": "ACCEPTED",
+      "submission_id": "df03f094-12dc-40d7-9381-056b7185ae98"
+    },
+    "Problem97.card_ge_five_of_K4": {
+      "status": "ACCEPTED",
+      "submission_id": "6d912ef5-ac2d-4cb7-be85-d219cda69c52"
+    },
+    "Problem97.ccw_of_hneg": {
+      "status": "ACCEPTED",
+      "submission_id": "a63878d9-19a4-4b15-b21a-3beeeb54b338"
+    },
+    "Problem97.center_mem_openSegment_of_arcAngle_gap_eq_neg_pi": {
+      "status": "ACCEPTED",
+      "submission_id": "e491fb83-ab84-4e93-95f9-e652375da450"
+    },
+    "Problem97.center_same_side_as_apex_of_nonobtuse": {
+      "status": "ACCEPTED",
+      "submission_id": "8d651da8-67b1-4fa5-b08d-24fe5c941a16"
+    },
+    "Problem97.collinear_of_signedArea2_eq_zero": {
+      "status": "ACCEPTED",
+      "submission_id": "40edc5e3-ff9d-43b4-9a94-3ae5aa96f30a"
+    },
+    "Problem97.convexHull_line_inter_eq_segment_of_extreme_pair": {
+      "status": "ACCEPTED",
+      "submission_id": "df6b07fb-a2f5-4044-a805-7d796a574d89"
+    },
+    "Problem97.counting_arithmetic": {
+      "status": "ACCEPTED",
+      "submission_id": "0f0201a8-e188-433d-8bab-7efa841d2873"
+    },
+    "Problem97.exists_cut_sorted_enumeration_of_convexIndep": {
+      "status": "ACCEPTED",
+      "submission_id": "c9355204-0eef-473d-85f4-fa82eee9f021"
+    },
+    "Problem97.hneg_cyclicShift": {
+      "status": "ACCEPTED",
+      "submission_id": "16e6dd99-6ffa-4d2d-9e7a-d658c3c9cdab"
+    },
+    "Problem97.hneg_of_ccw": {
+      "status": "ACCEPTED",
+      "submission_id": "4b116d48-0d78-4481-8175-540d1db298bb"
+    },
+    "Problem97.iCountAt_ge_six_of_K4": {
+      "status": "ACCEPTED",
+      "submission_id": "3e14fba6-d123-4c3a-ad66-fee60ed5655d"
+    },
+    "Problem97.inner_chord_eq_dist_sq_diff": {
+      "status": "ACCEPTED",
+      "submission_id": "57c6f78b-090d-456f-aa86-dce41442cb20"
+    },
+    "Problem97.inner_chord_eq_two_mul_inner_midpoint": {
+      "status": "ACCEPTED",
+      "submission_id": "697e9e2a-aad5-4735-b870-e78025682598"
+    },
+    "Problem97.isCcwConvexPolygon_of_cut_sorted_arcAngle": {
+      "status": "ACCEPTED",
+      "submission_id": "1f8402c4-a7ca-4b30-ad5a-1c84af54430b"
+    },
+    "Problem97.longCutArc_nonnegSide_of_endpointChord": {
+      "status": "ACCEPTED",
+      "submission_id": "6d974e30-4237-474f-95b3-e4a93427c75f"
+    },
+    "Problem97.longCutArc_positiveSide_of_endpointChord": {
+      "status": "ACCEPTED",
+      "submission_id": "4a49333b-a3c3-46fb-bcee-62c51270e28c"
+    },
+    "Problem97.longGap_intermediate_not_in_endpoint_shortCone_signedArea": {
+      "prior_submission_ids": [
+        "2d703f7a-81ea-4970-9f4e-c593b83934e6"
+      ],
+      "status": "ACCEPTED",
+      "submission_id": "eaf37ce3-81a9-44de-8858-749f682f7358",
+      "transient_retries": 1
+    },
+    "Problem97.longGap_ray_endpointChord_no_hit": {
+      "status": "ACCEPTED",
+      "submission_id": "032195f2-50c6-4f02-a786-ec3577541f75"
+    },
+    "Problem97.mem_convexHull_of_midpoint_segment": {
+      "status": "ACCEPTED",
+      "submission_id": "f4471b64-f55f-4217-8045-264270c485d5"
+    },
+    "Problem97.notMem_convexHull_diff_convexHull_of_notMem": {
+      "status": "ACCEPTED",
+      "submission_id": "b415cb0a-bbe1-443b-b655-27e69d6ceae9"
+    },
+    "Problem97.notMem_extremePoints_of_mem_interior": {
+      "status": "ACCEPTED",
+      "submission_id": "2e149867-5d97-4b9a-ad03-11c8eb6b71eb"
+    },
+    "Problem97.not_collinear_of_convexIndep_triple": {
+      "status": "ACCEPTED",
+      "submission_id": "f8128897-5a32-4aa9-95d8-86b8700d094e"
+    },
+    "Problem97.openSegment_center_signedArea_nonneg_transfer": {
+      "status": "ACCEPTED",
+      "submission_id": "5038d140-79b3-40ee-8edb-418ef99c80f1"
+    },
+    "Problem97.sOppSide_of_cut_sorted_short_gap": {
+      "status": "ACCEPTED",
+      "submission_id": "78276ee0-e354-4aca-8739-e3d502ce72e2"
+    },
+    "Problem97.sSameSide_of_signedArea2_pos": {
+      "status": "ACCEPTED",
+      "submission_id": "e89fe230-e942-444d-a115-1bb99ade4d63"
+    },
+    "Problem97.sameSide_of_cut_sorted_long_gap": {
+      "status": "ACCEPTED",
+      "submission_id": "2b32ea8e-bf30-4343-9334-3a1d84328dfc"
+    },
+    "Problem97.shortGap_ray_endpointChord_hit": {
+      "status": "ACCEPTED",
+      "submission_id": "d8fda4ea-7dc8-4482-ba52-f69eff297cdd"
+    },
+    "Problem97.signedArea2_eq_zero_exists_smul": {
+      "status": "ACCEPTED",
+      "submission_id": "42cab6bc-f39f-4e8f-89af-e10bf9f61fdd"
+    },
+    "Problem97.signedArea2_eq_zero_iff_collinear": {
+      "status": "ACCEPTED",
+      "submission_id": "a5a74e0e-9ce1-48e5-b993-859d4f355dcb"
+    },
+    "Problem97.signedArea2_neg_of_cut_sorted": {
+      "status": "ACCEPTED",
+      "submission_id": "979578f5-d981-4ebe-a4a0-6a9529dbeff5"
+    },
+    "Problem97.signedArea2_neg_of_cut_sorted_degenerate": {
+      "status": "ACCEPTED",
+      "submission_id": "98f82d85-99f6-4f08-a2b5-896cc4e5fc6d"
+    },
+    "Problem97.signedArea2_neg_of_cut_sorted_long": {
+      "status": "ACCEPTED",
+      "submission_id": "2d39dab7-6868-43f1-8929-76344f72fbaa"
+    },
+    "Problem97.signedArea2_neg_of_cut_sorted_short": {
+      "status": "ACCEPTED",
+      "submission_id": "e1838cb1-bc25-4b2b-8a0f-a07a6a297745"
+    },
+    "Problem97.signedArea2_opposite_sign_openSegment_line_inter": {
+      "status": "ACCEPTED",
+      "submission_id": "12f24c83-84da-4c6f-8666-ddc31f80b7e4"
+    },
+    "Problem97.signedArea2_sign_eq_oangle_sign": {
+      "status": "ACCEPTED",
+      "submission_id": "2fad1934-3d35-4347-a6d2-724fed3097bb"
+    },
+    "Problem97.signedArea_prod_eq_inner_mul_dist_sq": {
+      "status": "ACCEPTED",
+      "submission_id": "ec01eac8-6310-4c37-b8e4-2ec7faad7bb3"
+    },
+    "Problem97.three_le_card_of_convexIndep_noncoll": {
+      "status": "ACCEPTED",
+      "submission_id": "cd575e23-2d1b-46c6-a3eb-7db9a8f74a21"
+    }
+  },
   "theorems": {
     "Erdos9796Mission.counterexample_card_ge_nine": {
       "status": "BOUND",
@@ -625,6 +1425,11 @@
       "job_id": "575d52f8-7772-4d29-bef8-99f081946ffb",
       "status": "PUBLISHED",
       "theorem_id": "38a4cd7e-920c-4fed-88fe-c38215253aee"
+    },
+    "Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented": {
+      "job_id": "bcc070c2-c5c0-4edf-b534-7366bff939b4",
+      "status": "PUBLISHED",
+      "theorem_id": "6754eebd-7705-4568-b14e-810f23fe6966"
     },
     "Problem97.CGN.CGN6b0_secantEndpointBounds_coords": {
       "job_id": "160908b1-35bb-44f3-b931-b6a4c66095b3",
@@ -648,7 +1453,8 @@
     },
     "Problem97.CGN.CGN6e2_not_two_apices_on_complementary_side": {
       "job_id": "3c9ff85f-8020-4b6b-a913-e4ae8ca9cfa7",
-      "status": "PENDING"
+      "status": "PUBLISHED",
+      "theorem_id": "2867b42c-628c-4fed-8001-4cf8bec44ce1"
     },
     "Problem97.CGN.CGN6norm_minorCapChainModel_of_mecCapPacket": {
       "job_id": "501f194e-ee6a-4310-9f92-ec7c5cc3a16a",
@@ -694,6 +1500,11 @@
       "job_id": "00fcbd34-a1a8-4a54-b45c-c32a1fa672b2",
       "status": "PUBLISHED",
       "theorem_id": "1e926cfe-d471-42f2-a5e8-1e96e756c5eb"
+    },
+    "Problem97.CGN8_circumscribed_iCount_upper_bound": {
+      "job_id": "1adb1503-d8f4-4f0c-8d33-aca18ab25b80",
+      "status": "PUBLISHED",
+      "theorem_id": "9be630a2-d863-419b-a33d-d561cc147450"
     },
     "Problem97.ConvexIndep.not_collinear_of_card_ge_three": {
       "job_id": "03d61e29-fd53-4a30-8f29-040f733c9a8e",
@@ -855,10 +1666,20 @@
       "status": "PUBLISHED",
       "theorem_id": "56380a12-6784-443d-b4be-976beaaed01a"
     },
+    "Problem97.isCcwConvexPolygon_of_cut_sorted_arcAngle": {
+      "job_id": "dafe1d76-fd6e-4b0a-b515-bd0b9ed17e97",
+      "status": "PUBLISHED",
+      "theorem_id": "d136387b-f39f-4b54-abeb-74fa8abc4ad4"
+    },
     "Problem97.longCutArc_nonnegSide_of_endpointChord": {
       "job_id": "f63d54e8-3d25-4528-88fc-23f39f34be1b",
       "status": "PUBLISHED",
       "theorem_id": "c9a25e9e-fddd-42d7-a035-f2a78f514e91"
+    },
+    "Problem97.longCutArc_positiveSide_of_endpointChord": {
+      "job_id": "779ce72d-7854-4095-97cb-86031af448b3",
+      "status": "PUBLISHED",
+      "theorem_id": "b2950059-d512-4ba1-ac4e-0b8ddac32994"
     },
     "Problem97.longGap_intermediate_not_in_endpoint_shortCone_signedArea": {
       "job_id": "adb9efaa-8c35-4c82-a9e3-a14a5b08a4ac",
@@ -905,6 +1726,11 @@
       "status": "PUBLISHED",
       "theorem_id": "eb10fd89-71b7-46c3-980a-dd8dad5a034a"
     },
+    "Problem97.sameSide_of_cut_sorted_long_gap": {
+      "job_id": "2ea93204-4024-4fe3-bc2d-9350f62c5cce",
+      "status": "PUBLISHED",
+      "theorem_id": "5a84609a-3dea-4c3b-9f1c-3b848601c83f"
+    },
     "Problem97.shortGap_ray_endpointChord_hit": {
       "job_id": "15ec540f-9f3d-4b92-9672-dcb27c788a92",
       "status": "PUBLISHED",
@@ -920,10 +1746,20 @@
       "status": "PUBLISHED",
       "theorem_id": "0a228857-44df-489c-a51e-7d4f87638131"
     },
+    "Problem97.signedArea2_neg_of_cut_sorted": {
+      "job_id": "262b6c93-4f5e-4aa7-b489-66372b270308",
+      "status": "PUBLISHED",
+      "theorem_id": "73d988cf-d20e-4f81-b93d-a8b054fff7f7"
+    },
     "Problem97.signedArea2_neg_of_cut_sorted_degenerate": {
       "job_id": "332a029d-df8c-4d87-9c0f-7819b0f9d218",
       "status": "PUBLISHED",
       "theorem_id": "c8afcee6-0808-4eac-a15e-a88dc17ea815"
+    },
+    "Problem97.signedArea2_neg_of_cut_sorted_long": {
+      "job_id": "4c89cef3-cae5-4bc1-bcdf-ee75e3bbfb71",
+      "status": "PUBLISHED",
+      "theorem_id": "c62eedb8-a953-4451-8c14-9b75c2134d74"
     },
     "Problem97.signedArea2_neg_of_cut_sorted_short": {
       "job_id": "6865e6f9-997d-409d-9905-68a2004ef735",
