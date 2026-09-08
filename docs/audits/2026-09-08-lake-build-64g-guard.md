@@ -14,6 +14,9 @@ PATH shim could not affect them because Lake invokes Lean by absolute path.
 
 The installed `/Users/adam/.local/bin/lake-build` has SHA-256
 `820eb148ddcf615398c43781c4e75ba57339f01f9944489c2d734cbd3eca9623`.
+The exact patch from the prior process-group-safe wrapper is retained as
+base64 at `docs/audits/2026-09-08-lake-build-64g-guard.patch.b64` for a later
+atomic restore; base64 decoding preserves the wrapper's significant whitespace.
 It creates a disposable shadow Lean sysroot, tells Lake to resolve Lean through
 it (`LAKE_OVERRIDE_LEAN=true`), and makes `shadow/bin/lean` acquire one of two
 shared POSIX `fcntl` locks before it `exec`s the real compiler. The descriptors
