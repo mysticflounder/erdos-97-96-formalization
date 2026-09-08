@@ -283,6 +283,14 @@ import tempfile
 import tomllib
 from pathlib import Path
 
+from bind_lean_ingress_record import (
+    BindingError,
+    build_probe_text,
+    parse_axiom_message,
+    parse_lean_messages,
+)
+from lean_lake_probe import ProbeError, run_probe
+
 SCHEMA = "p97-obligation-registry/v1"
 ID_SCHEMA = "p97-obligation-id-assignments/v1"
 PUBLISH_TARGET = "Problem97.erdos97_rhs"
@@ -372,9 +380,13 @@ RECEIPT_PREFIX = "registry-check-"
 TOOLCHAIN_CANDIDATES = ("lean/lean-toolchain", "lean-toolchain")
 
 BLUEPRINT_CMD = "proof-blueprint"
-SPINE_ARGS = ["search", "--with-sorry", "--spine", "--json"]
-OFFSPINE_ARGS = ["search", "--with-sorry", "--off-spine", "--json"]
+SPINE_ARGS = ["search", "--with-sorry", "--spine", "--json", "--no-refresh"]
+OFFSPINE_ARGS = ["search", "--with-sorry", "--off-spine", "--json", "--no-refresh"]
 REFS_CHECK_ARGS = ["refs", "--check"]
+DEFAULT_PROBE_TIMEOUT_SECONDS = 900
+NATIVE_REDUCTION_AXIOMS = frozenset(
+    {"Lean.ofReduceBool", "Lean.ofReduceNat", "Lean.trustCompiler"}
+)
 
 # The `proof-blueprint axioms` text format, matched EXACTLY (auditor #7521).
 # The header is `axioms reported by `#print axioms <Sym>` (<N>):`; the target it
@@ -1283,6 +1295,85 @@ def read_declarable_trust(recorded_dir: Path | None) -> set[str] | None:
     return {axiom for _tag, axiom in closure}
 
 
+def _probe_module_for_record(record: dict, repo_root: Path = REPO_ROOT) -> str:
+    """Convert an index record's Lean-lib-relative source path to a module."""
+
+    raw = record.get("file") or record.get("source_file")
+    if not isinstance(raw, str) or not raw.strip():
+        raise RegistryError("index record has no defining source file")
+    candidate = Path(raw)
+    if candidate.is_absolute():
+        lean_root = (repo_root / "lean").resolve()
+        try:
+            raw = candidate.resolve().relative_to(lean_root).as_posix()
+        except ValueError as exc:
+            raise RegistryError(
+                "index record source file is outside the Lean root: " + raw
+            ) from exc
+    parts = [part for part in raw.replace("\\", "/").split("/") if part]
+    if parts and parts[0] == "lean":
+        parts = parts[1:]
+    if not parts or not parts[-1].endswith(".lean"):
+        raise RegistryError("index record has a non-Lean source file: " + raw)
+    parts[-1] = parts[-1][:-len(".lean")]
+    return ".".join(parts)
+
+
+def _probe_axiom_tag(name: str) -> str:
+    """Classify raw kernel names using the registry's advisory tag vocabulary."""
+
+    if name in NATIVE_REDUCTION_AXIOMS or "._native.native_decide." in name:
+        return "core*"
+    if name in ALLOWED_AXIOMS:
+        return "core"
+    return "custom"
+
+
+def _probe_axioms(
+    repo_root: Path, symbol: str, module: str, probe_run_root: Path | str | None
+) -> list[tuple[str, str]]:
+    """Query one closure through the governed global ``lake-build`` wrapper."""
+
+    if probe_run_root is None:
+        raise RegistryError(
+            "cannot verify the axiom closure of "
+            + symbol
+            + ": --probe-run-root is required for the governed kernel probe"
+        )
+    try:
+        result = run_probe(
+            repo_root=repo_root,
+            lake_root="lean",
+            source=build_probe_text(module, [symbol]),
+            run_root=probe_run_root,
+            timeout=DEFAULT_PROBE_TIMEOUT_SECONDS,
+        )
+        messages = parse_lean_messages(result.output, result.probe_path)
+        closure: list[str] | None = None
+        for message in messages:
+            text = message["text"]
+            if "depends on axioms" not in text and "does not depend on any axioms" not in text:
+                continue
+            try:
+                names = parse_axiom_message(text, symbol)
+            except BindingError as exc:
+                raise RegistryError(
+                    "malformed kernel axiom closure for " + symbol + ": " + str(exc)
+                ) from exc
+            if names is None:
+                continue
+            if closure is not None:
+                raise RegistryError(
+                    "kernel axiom probe returned multiple closures for " + symbol
+                )
+            closure = names
+        if closure is not None:
+            return [(_probe_axiom_tag(name), name) for name in closure]
+    except ProbeError as exc:
+        raise RegistryError("cannot verify the axiom closure of " + symbol + ": " + str(exc)) from exc
+    raise RegistryError("kernel axiom probe returned no closure for " + symbol)
+
+
 class FactorizationBackend:
     """Seam between the factorization gate and kernel-mined truth.
 
@@ -1406,8 +1497,11 @@ class BlueprintBackend(FactorizationBackend):
     never as fresh.
     """
 
-    def __init__(self, repo_root: Path = REPO_ROOT) -> None:
+    def __init__(
+        self, repo_root: Path = REPO_ROOT, probe_run_root: Path | str | None = None
+    ) -> None:
         self._root = repo_root
+        self._probe_run_root = probe_run_root
         self._resolved: dict[str, list[dict]] = {}
         self._callers: dict[str, set[str]] = {}
         self._axioms: dict[str, list[tuple[str, str]]] = {}
@@ -1506,9 +1600,15 @@ class BlueprintBackend(FactorizationBackend):
 
     def axioms(self, symbol: str) -> list[tuple[str, str]]:
         if symbol not in self._axioms:
-            stdout, stderr = self._run(["axioms", symbol])
-            # The header must name the symbol that was queried (auditor #7521).
-            self._axioms[symbol] = parse_axioms_output(stdout + stderr, symbol)
+            records = self.resolve(symbol)
+            if len(records) != 1:
+                raise RegistryError(
+                    "cannot resolve exactly one defining source for " + symbol
+                )
+            module = _probe_module_for_record(records[0], self._root)
+            self._axioms[symbol] = _probe_axioms(
+                self._root, symbol, module, self._probe_run_root
+            )
         return list(self._axioms[symbol])
 
     def mined_build(self, symbol: str) -> str | None:
@@ -1572,7 +1672,11 @@ class BlueprintBackend(FactorizationBackend):
         return None
 
 
-def make_backend(meta: dict, factory=None) -> FactorizationBackend | None:
+def make_backend(
+    meta: dict,
+    factory=None,
+    probe_run_root: Path | str | None = None,
+) -> FactorizationBackend | None:
     """A live backend, but only when a factorization block actually needs one.
 
     A reviewed metadata file with no factorization block costs no extra
@@ -1587,7 +1691,7 @@ def make_backend(meta: dict, factory=None) -> FactorizationBackend | None:
         return None
     if factory is not None:
         return factory()
-    return BlueprintBackend()
+    return BlueprintBackend(REPO_ROOT, probe_run_root=probe_run_root)
 
 
 def factorization_blocks(meta: dict) -> dict:
@@ -3610,7 +3714,11 @@ def command_generate(
 
     ledger = load_id_assignments(out_dir / ID_ASSIGNMENTS_NAME)
     meta = load_meta(out_dir)
-    backend = make_backend(meta, backend_factory)
+    backend = make_backend(
+        meta,
+        backend_factory,
+        getattr(args, "probe_run_root", None),
+    )
     build_id = current_build_id(backend)
     migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
     migrated_ledger = apply_alias_migrations(ledger, migrations, git_head_short())
@@ -3846,7 +3954,11 @@ def command_check(
         ledger = load_id_assignments(status_dir / ID_ASSIGNMENTS_NAME)
         meta = load_meta(status_dir)
         private_edge_overrides = load_private_edge_reachability(status_dir)
-        backend = make_backend(meta, backend_factory)
+        backend = make_backend(
+            meta,
+            backend_factory,
+            getattr(args, "probe_run_root", None),
+        )
         build_id = current_build_id(backend)
         migrations, migration_violations = plan_alias_migrations(ledger, meta, backend)
         ledger = apply_alias_migrations(ledger, migrations, git_head_short())
@@ -4113,6 +4225,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="exit 1 when the reviewed metadata join has violations (default: warn"
         " and still write, so a new obligation can be reviewed after generation)",
     )
+    generate.add_argument(
+        "--probe-run-root",
+        help=(
+            "registered scratch/runs/<lane>/<run>/ directory for governed "
+            "kernel axiom probes when factorization blocks are checked"
+        ),
+    )
     generate.set_defaults(func=command_generate)
 
     check = subparsers.add_parser(
@@ -4146,6 +4265,13 @@ def build_parser() -> argparse.ArgumentParser:
         help="require a VERIFIED " + FACTORIZATION_SCHEMA_V2 + " factorization block"
         " on every reachable leaf of this cluster code (" + ", ".join(CLUSTER_CODES)
         + "); repeatable. Without it, missing blocks are only counted.",
+    )
+    check.add_argument(
+        "--probe-run-root",
+        help=(
+            "registered scratch/runs/<lane>/<run>/ directory for governed "
+            "kernel axiom probes when factorization blocks are checked"
+        ),
     )
     check.set_defaults(func=command_check)
 

@@ -1,0 +1,19 @@
+{
+  "base_head": "054e0f061f91871ed285ee47b0cb3a03c005e738",
+  "created_utc": "2026-09-08T19:24:29.449108Z",
+  "durable_paths": [
+    "scratch/runs/obligation-registry-wrapper-20260908/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/obligation-registry-wrapper-20260908/run-0001"
+  ],
+  "lane_id": "obligation-registry-wrapper-20260908",
+  "manifest_sha256": "6e20c9ec20fe5d22c06cf86128149d3d005681a98c3f37f74a3c9aab721be1cd",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/obligation-registry-wrapper-20260908.json",
+    "scripts/gen_obligation_registry.py",
+    "scripts/test_gen_obligation_registry_factorization.py"
+  ],
+  "owner": "codex-obligation-registry-wrapper",
+  "schema": "worktree-lane-checkpoint/v1"
+}

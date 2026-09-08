@@ -44,6 +44,7 @@ import importlib.util
 import json
 import shutil
 import sys
+from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
@@ -1012,6 +1013,80 @@ def test_a_cli_diagnostic_is_reported_as_cannot_verify():
     )
     with pytest.raises(gor.RegistryError):
         live._records(["search", "--uses", "Fixture.NoSuchSymbol.ever", "--json"])
+
+
+def test_blueprint_axioms_uses_governed_probe_and_preserves_native_tag(
+    tmp_path, monkeypatch
+):
+    run_root = tmp_path / "scratch" / "runs" / "lane" / "run-0001"
+    run_root.mkdir(parents=True)
+    (run_root / "run_manifest.json").write_text("{}\n", encoding="utf-8")
+    live = gor.BlueprintBackend(tmp_path, probe_run_root=run_root)
+    live.resolve = lambda _symbol: [{"file": "Fixture/Module.lean"}]
+    seen = {}
+
+    def fake_probe(**kwargs):
+        seen.update(kwargs)
+        return SimpleNamespace(
+            output=(
+                "'Fixture.f' depends on axioms: "
+                "[propext, Lean.ofReduceNat, Fixture.custom]\n"
+            ),
+            probe_path="/registered/Probe.lean",
+        )
+
+    monkeypatch.setattr(gor, "run_probe", fake_probe)
+    assert live.axioms("Fixture.f") == [
+        ("core", "propext"),
+        ("core*", "Lean.ofReduceNat"),
+        ("custom", "Fixture.custom"),
+    ]
+    assert seen["lake_root"] == "lean"
+    assert seen["run_root"] == run_root
+    assert "import Fixture.Module" in seen["source"]
+    assert "#print axioms Fixture.f" in seen["source"]
+
+
+def test_blueprint_axioms_requires_probe_root_only_at_kernel_query(tmp_path):
+    live = gor.BlueprintBackend(tmp_path)
+    live.resolve = lambda _symbol: [{"file": "Fixture/Module.lean"}]
+    with pytest.raises(gor.RegistryError, match="--probe-run-root"):
+        live.axioms("Fixture.f")
+
+
+def test_blueprint_axioms_rejects_duplicate_target_closures(tmp_path, monkeypatch):
+    run_root = tmp_path / "scratch" / "runs" / "lane" / "run-0001"
+    run_root.mkdir(parents=True)
+    (run_root / "run_manifest.json").write_text("{}\n", encoding="utf-8")
+    live = gor.BlueprintBackend(tmp_path, probe_run_root=run_root)
+    live.resolve = lambda _symbol: [{"file": "Fixture/Module.lean"}]
+    monkeypatch.setattr(
+        gor,
+        "run_probe",
+        lambda **_kwargs: SimpleNamespace(
+            output=(
+                "'Fixture.f' depends on axioms: [propext]\n"
+                "'Fixture.f' depends on axioms: [Quot.sound]\n"
+            ),
+            probe_path="/registered/Probe.lean",
+        ),
+    )
+    with pytest.raises(gor.RegistryError, match="multiple closures"):
+        live.axioms("Fixture.f")
+
+
+def test_probe_module_accepts_absolute_path_inside_lean_root(tmp_path):
+    absolute = tmp_path / "lean" / "Fixture" / "Module.lean"
+    assert gor._probe_module_for_record({"file": str(absolute)}, tmp_path) == (
+        "Fixture.Module"
+    )
+    with pytest.raises(gor.RegistryError, match="outside the Lean root"):
+        gor._probe_module_for_record({"file": str(tmp_path / "Other.lean")}, tmp_path)
+
+
+def test_roster_searches_are_explicitly_read_only():
+    assert "--no-refresh" in gor.SPINE_ARGS
+    assert "--no-refresh" in gor.OFFSPINE_ARGS
 
 
 # ---------------------------------------------------------------------------
