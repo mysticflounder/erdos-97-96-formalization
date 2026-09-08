@@ -50,6 +50,12 @@ Validation used no Lean or Lake build:
   successfully after recompiling 113 modules in 32 seconds. Its wrapper build
   ID is `70725-1788908519592108000`; retained output is
   `scratch/runs/lake-build-64g-guard-20260908/run-0001/artifacts/guarded-wrapper-smoke-003.log`.
+- the formerly outer-timeout-bound native leaf
+  `Erdos9796Proof.P97.ErasedCertificate.P2Placement10AFirstPart1Native:olean`
+  built through the guard in 2,189 seconds (36m32s), exit 0, recompiling one
+  module without `check_memory` failure. Its wrapper build ID is
+  `78253-1788908603696729000`; retained output is
+  `scratch/runs/mathlib-v4331-takeover-20260908/run-0001/artifacts/native-p2-firstpart1-guarded-001.log`.
 
 This gate applies only to invocations through the installed wrapper. It does
 not constrain manually started Lean processes or legacy scripts that call
