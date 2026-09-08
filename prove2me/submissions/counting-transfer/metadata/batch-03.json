@@ -1,0 +1,255 @@
+{
+  "schema": "prove2me-counting-metadata-batch/v1",
+  "items": [
+    {
+      "command_id": "Erdos9796Proof.P97.Moser.NonDeg:4270:5462",
+      "theorem_name": "Problem97.collinear_of_signedArea2_eq_zero",
+      "theorem_title": "Collinearity from Vanishing Signed Area",
+      "natural_language_statement": "For three points v₁, v₂, v₃ in ℝ², if signedArea2 v₁ v₂ v₃ = 0, then the set {v₁, v₂, v₃} is collinear over ℝ.",
+      "source": "lean/Erdos9796Proof/P97/Moser/NonDeg.lean:107",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "signed-area", "collinearity"],
+      "attribution_class": "local-infrastructure",
+      "attribution_note": "Algebraic signed-area infrastructure in the Moser nondegeneracy module; the source does not attribute this exact helper to a paper."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.Moser.TriangleNonObtuse:23745:33035",
+      "theorem_name": "Problem97.MEC.exists_nonobtuse_circumscribed_triple",
+      "theorem_title": "Extract a Nonobtuse Triple on the MEC Boundary",
+      "natural_language_statement": "If a nonempty noncollinear finite planar set has at least three points on its minimum-enclosing-circle boundary, then three distinct boundary points in the set can be chosen whose triangle is nonobtuse at all three vertices.",
+      "source": "lean/Erdos9796Proof/P97/Moser/TriangleNonObtuse.lean:485",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "minimum-enclosing-circle", "nonobtuse-triangle", "cap-witness"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "MEC boundary witness extraction used by the circumscribed assembly; the exact formal theorem is local Lean packaging rather than an imported or machine-checked paper proof."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.NoDiameterUnderK4:32818:48118",
+      "theorem_name": "Problem97.MEC.no_diameter_under_k4",
+      "theorem_title": "No MEC Diameter Under the 4-Equidistant Property",
+      "natural_language_statement": "For a nonempty noncollinear convex-independent finite planar set with the 4-equidistant property, at least three points lie on the boundary of its minimum enclosing circle.",
+      "source": "lean/Erdos9796Proof/P97/NoDiameterUnderK4.lean:722",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "minimum-enclosing-circle", "four-equidistant", "diameter-case"],
+      "attribution_class": "dumitrescu-2006",
+      "attribution_note": "The source labels this Lemma 2 (no-diameter under K4) in the Dumitrescu 2006 isosceles-count route; the theorem is a project formalization of that route, not an imported or machine-checked paper proof."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ArcPartitionCount:17995:32990",
+      "theorem_name": "Problem97.MEC.arc_partition_count_eq_one",
+      "theorem_title": "Every Nonvertex Lies on Exactly One Opposite Arc",
+      "natural_language_statement": "For a convex-independent set and a circumscribed Moser triangle, every point of the set distinct from the triangle's three vertices belongs to exactly one of the three opposite-arc predicates.",
+      "source": "lean/Erdos9796Proof/P97/ArcPartitionCount.lean:394",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "minimum-enclosing-circle", "arc-partition", "cap-witness"],
+      "attribution_class": "dumitrescu-2006",
+      "attribution_note": "Arc partition bookkeeping for the three-cap counting route documented in the Dumitrescu 2006 source chain; this exact Lean statement is project formalization."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.CGN.CGN6:57214:70733",
+      "theorem_name": "Problem97.CGN.CGN6b_nonacute_of_minorCapChainCoords",
+      "theorem_title": "Consecutive Minor-Cap Chain Triples Are Nonacute",
+      "natural_language_statement": "For a normalized minor-cap chain coordinate model, any three increasing indices form a nonacute angle at the middle point: the inner product of the two vectors from the middle point to the outer points is nonpositive.",
+      "source": "lean/Erdos9796Proof/P97/CGN/CGN6.lean:1215",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "minor-cap", "nonacute-triangle", "cap-witness"],
+      "attribution_class": "nivasch-pach-pinchasi-zerbib-2013",
+      "attribution_note": "Cap-chain nonacute witness refinement aligned with the Nivasch–Pach–Pinchasi–Zerbib 2013 cap-counting method; the coordinate theorem itself is a local Lean assembly."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:22885:25736",
+      "theorem_name": "Problem97.exists_cut_sorted_enumeration_of_convexIndep",
+      "theorem_title": "Construct a Cut-Sorted Enumeration",
+      "natural_language_statement": "If c is an interior point of the convex hull of a convex-independent finite set A, then A has an injective enumeration φ by Fin A.card whose image is A and whose cut keys of the angular values around c are strictly increasing.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:457",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "cyclic-order", "angular-order"],
+      "attribution_class": "local-infrastructure",
+      "attribution_note": "Enumeration and angular-order infrastructure for later cap arguments; the source does not claim this exact construction as a standalone paper theorem."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:40612:42398",
+      "theorem_name": "Problem97.longGap_ray_endpointChord_no_hit",
+      "theorem_title": "A Long Gap Has No Ray–Chord Intersection",
+      "natural_language_statement": "In a cut-sorted angular enumeration around an interior center, if the endpoint angular gap is longer than π but shorter than 2π, then no intermediate ray from the center meets the chord joining the two endpoints.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:807",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "angular-order", "long-gap", "chord-intersection"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g long-gap geometry used in the circumscribed-cap assembly; the source presents this as local formalization infrastructure."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:42400:44215",
+      "theorem_name": "Problem97.signedArea2_opposite_sign_openSegment_line_inter",
+      "theorem_title": "Opposite Signed Areas Force a Segment–Line Intersection",
+      "natural_language_statement": "For distinct endpoints a and b, if c and x have signed areas of opposite strict signs with respect to the oriented line a b, then the open segment from c to x contains a point on the line through a and b.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:845",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "signed-area", "line-intersection"],
+      "attribution_class": "local-infrastructure",
+      "attribution_note": "Elementary signed-area intersection bridge supporting the cyclic-order construction; the source does not attribute this exact statement to a paper."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:50757:56453",
+      "theorem_name": "Problem97.sSameSide_of_signedArea2_pos",
+      "theorem_title": "Positive Signed Areas Give the Same Open Side",
+      "natural_language_statement": "If a ≠ b and both x and y have strictly positive signed area relative to the oriented chord a b, then x and y lie on the same open side of the line through a and b.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1027",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "signed-area", "same-side"],
+      "attribution_class": "local-infrastructure",
+      "attribution_note": "Signed-area to half-plane bridge in the cyclic-order module; no individual paper attribution is asserted for this exact helper."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:71687:75035",
+      "theorem_name": "Problem97.sOppSide_of_cut_sorted_short_gap",
+      "theorem_title": "Short Gaps Put the Center and Middle Vertex on Opposite Sides",
+      "natural_language_statement": "For a cut-sorted angular enumeration, a short endpoint gap lying between −π and 0 places the center and every strict intermediate vertex on opposite open sides of the endpoint chord.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1529",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "short-gap", "same-side", "cyclic-order"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g short-gap side relation used by the circumscribed-cap assembly; the exact wrapper is local project formalization."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.OangleBridge:24896:26851",
+      "theorem_name": "Problem97.signedArea2_eq_zero_iff_collinear",
+      "theorem_title": "Vanishing Signed Area Characterizes Collinearity",
+      "natural_language_statement": "For three points in ℝ², their signed area is zero if and only if the three-point set is collinear over ℝ.",
+      "source": "lean/Erdos9796Proof/P97/OangleBridge.lean:510",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "signed-area", "collinearity", "angle-bridge"],
+      "attribution_class": "local-infrastructure",
+      "attribution_note": "The OangleBridge source explicitly presents this as a bridge lemma completing the local signed-area layer; it is not attributed as a standalone paper result."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.CGN.CGN6:71168:76951",
+      "theorem_name": "Problem97.CGN.CGN6c_oneSidedDistanceInjective",
+      "theorem_title": "Distances from One Cap Vertex Are One-Sided Injective",
+      "natural_language_statement": "For a minor-cap chain model, a fixed chain vertex has distinct distances to later chain vertices, and also distinct distances to earlier chain vertices.",
+      "source": "lean/Erdos9796Proof/P97/CGN/CGN6.lean:1505",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "minor-cap", "distance-injectivity", "cap-witness"],
+      "attribution_class": "nivasch-pach-pinchasi-zerbib-2013",
+      "attribution_note": "One-sided distance-injectivity is a cap-witness refinement aligned with the Nivasch–Pach–Pinchasi–Zerbib 2013 method; this theorem is assembled locally in Lean."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.CGN.CGN6:82167:87665",
+      "theorem_name": "Problem97.CGN.CGN6d0_positiveSideBisector_to_wbtw",
+      "theorem_title": "Same-Side Bisector Apices Give Midpoint Betweenness",
+      "natural_language_statement": "If x and y are distinct and two apices a and b are equidistant from x and y and lie on the same positive side of the perpendicular bisector, then the midpoint of x and y is weakly between a and b in one of the two endpoint orders.",
+      "source": "lean/Erdos9796Proof/P97/CGN/CGN6.lean:1731",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "minor-cap", "perpendicular-bisector", "betweenness", "cap-witness"],
+      "attribution_class": "nivasch-pach-pinchasi-zerbib-2013",
+      "attribution_note": "Midpoint/betweenness cap-witness bridge supporting the Nivasch–Pach–Pinchasi–Zerbib 2013 refinement; the exact Wbtw packaging is local Lean infrastructure."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:44217:47601",
+      "theorem_name": "Problem97.longCutArc_nonnegSide_of_endpointChord",
+      "theorem_title": "Long-Gap Intermediates Lie on the Closed Nonnegative Side",
+      "natural_language_statement": "For a convex-independent set with a cut-sorted angular enumeration, every index between the endpoints of a long gap lies on the closed nonnegative side of the endpoint chord.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:886",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "long-gap", "chord-side", "cyclic-order"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g long-gap side transfer for the circumscribed-cap assembly; the exact statement is local project formalization."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:75037:78026",
+      "theorem_name": "Problem97.signedArea2_neg_of_cut_sorted_short",
+      "theorem_title": "Short-Gap Cut-Sorted Triples Have Negative Signed Area",
+      "natural_language_statement": "In the short-gap branch of a cut-sorted angular enumeration, any strictly intermediate index gives a strictly negative signed area for the ordered endpoint triple.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1607",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "short-gap", "signed-area", "cyclic-order"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g short-gap signed-area wrapper used in the circumscribed-cap assembly; the source does not claim this exact wrapper as a paper theorem."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.Dumitrescu.L4:2382:4784",
+      "theorem_name": "Problem97.Dumitrescu.three_cap_decomposition",
+      "theorem_title": "Three-Cap Decomposition of the Circumscribed Branch",
+      "natural_language_statement": "For a nonempty noncollinear convex-independent finite set and a circumscribed Moser triangle, there is a cap triple whose three cap cardinalities sum to the cardinality of the set plus three.",
+      "source": "lean/Erdos9796Proof/P97/Dumitrescu/L4.lean:61",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "three-cap-decomposition", "cap-witness"],
+      "attribution_class": "dumitrescu-2006",
+      "attribution_note": "The source calls this Dumitrescu L4 and identifies it as the headline packaging lemma for the Dumitrescu 2006 L1–L10 chain; the exact Lean theorem is project formalization, not an imported or machine-checked paper proof."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.CGN.CGN6:89413:91304",
+      "theorem_name": "Problem97.CGN.CGN6e2_not_two_apices_on_complementary_side",
+      "theorem_title": "Two Complementary-Side Apices Are Impossible",
+      "natural_language_statement": "For a convex-independent set containing an ordered cap, two distinct apices equidistant from the cap endpoints cannot both lie strictly on the complementary side of the endpoint chord while avoiding those endpoints.",
+      "source": "lean/Erdos9796Proof/P97/CGN/CGN6.lean:1892",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "minor-cap", "distance-witness", "cap-witness"],
+      "attribution_class": "nivasch-pach-pinchasi-zerbib-2013",
+      "attribution_note": "The CGN6e2 cap-witness contradiction supports the Nivasch–Pach–Pinchasi–Zerbib 2013 refinement; the exact formal statement is locally assembled in Lean."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:47603:49649",
+      "theorem_name": "Problem97.longCutArc_positiveSide_of_endpointChord",
+      "theorem_title": "Long-Gap Intermediates Lie on the Open Positive Side",
+      "natural_language_statement": "For a convex-independent set with a cut-sorted angular enumeration, every strict intermediate index of a long endpoint gap lies on the open positive side of the endpoint chord.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:959",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "long-gap", "chord-side", "cyclic-order"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g strict long-gap side relation used by the circumscribed-cap assembly; the exact theorem is local Lean formalization."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:56455:58448",
+      "theorem_name": "Problem97.sameSide_of_cut_sorted_long_gap",
+      "theorem_title": "Long-Gap Center and Intermediate Vertex Are on the Same Side",
+      "natural_language_statement": "In a cut-sorted angular enumeration, the center and a strict intermediate vertex of a long endpoint gap lie on the same side of the endpoint chord.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1156",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "long-gap", "same-side", "cyclic-order"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g same-side transfer used by the circumscribed-cap assembly; the source treats the exact predicate as local formalization infrastructure."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:83044:86267",
+      "theorem_name": "Problem97.signedArea2_neg_of_cut_sorted_long",
+      "theorem_title": "Long-Gap Cut-Sorted Triples Have Negative Signed Area",
+      "natural_language_statement": "In the long-gap branch of a cut-sorted angular enumeration, any strictly intermediate index gives a strictly negative signed area for the ordered endpoint triple.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1790",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "long-gap", "signed-area", "cyclic-order"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g long-gap signed-area transfer used in the circumscribed-cap assembly; this exact wrapper is local project formalization."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:86269:88345",
+      "theorem_name": "Problem97.signedArea2_neg_of_cut_sorted",
+      "theorem_title": "Cut-Sorted Triples Have Negative Signed Area",
+      "natural_language_statement": "For a convex-independent set and a cut-sorted angular enumeration about an interior center, every increasing triple of indices has strictly negative signed area.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1862",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "signed-area", "cyclic-order", "ordered-cap"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g wrapper combining the short, degenerate, and long gap cases for the circumscribed-cap assembly; the exact theorem is local Lean formalization."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.ConvexCyclicOrder.Construct:88347:89828",
+      "theorem_name": "Problem97.isCcwConvexPolygon_of_cut_sorted_arcAngle",
+      "theorem_title": "Cut-Sorted Angular Enumeration Is a CCW Convex Polygon",
+      "natural_language_statement": "An injective enumeration of a convex-independent finite set whose cut keys are strictly increasing around an interior center forms a counterclockwise convex polygon in the project's IsCcwConvexPolygon sense.",
+      "source": "lean/Erdos9796Proof/P97/ConvexCyclicOrder/Construct.lean:1901",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "cyclic-order", "convex-polygon"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "Step-2 cyclic-order wrapper consumed by the CGN/circumscribed assembly; it is project Lean infrastructure rather than a separately attributed paper proof."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.CGN.CGN4g:61969:78727",
+      "theorem_name": "Problem97.CGN.CGN4g_strictCapBlockData_of_supportCap_oriented",
+      "theorem_title": "Package an Oriented Support Cap as Strict Cap-Block Data",
+      "natural_language_statement": "Given a convex-independent set, an oriented support-cap description from a nonobtuse Moser triangle, and a circumscribed MEC packet, there is strict cap-block data whose ordered endpoints are the two specified cap vertices in one of the two possible orientations.",
+      "source": "lean/Erdos9796Proof/P97/CGN/CGN4g.lean:1439",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "ordered-cap", "strict-cap-block", "minimum-enclosing-circle"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN4g support-cap packaging for the circumscribed assembly; the exact strict-cap-block interface is local Lean infrastructure."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.CGN.CGN8:854:33243",
+      "theorem_name": "Problem97.CGN8_circumscribed_iCount_upper_bound",
+      "theorem_title": "Circumscribed Caps Bound the Isosceles Count",
+      "natural_language_statement": "For a nonempty noncollinear convex-independent finite planar set with at least three MEC-boundary points, the total isosceles count satisfies iCount A ≤ ((11 · |A|² − 18 · |A|) / 12) over ℝ.",
+      "source": "lean/Erdos9796Proof/P97/CGN/CGN8.lean:27",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "circumscribed-cap", "isosceles-count", "counting-bound"],
+      "attribution_class": "cgn-circumscribed-assembly",
+      "attribution_note": "CGN8 assembles the three-cap extraction, cap savings, and cardinality arithmetic for the circumscribed route; the source's Dumitrescu and Nivasch–Pach–Pinchasi–Zerbib provenance is mathematical provenance only, not an imported or machine-checked paper proof."
+    },
+    {
+      "command_id": "Erdos9796Proof.P97.Counting:3716:4592",
+      "theorem_name": "Problem97.counterexample_card_ge_nine",
+      "theorem_title": "A Convex 4-Equidistant Set Has at Least Nine Points",
+      "natural_language_statement": "Every nonempty convex-independent finite planar set with the 4-equidistant property has cardinality at least 9.",
+      "source": "lean/Erdos9796Proof/P97/Counting.lean:88",
+      "tags": ["erdos-97-96-counting", "convex-geometry", "lean-formalization", "isosceles-count", "counterexample-cardinality", "root-theorem"],
+      "attribution_class": "dumitrescu-2006",
+      "attribution_note": "Root mission theorem whose mathematical provenance is Dumitrescu's 2006 isosceles-count route, with the cap-witness refinements associated with Nivasch–Pach–Pinchasi–Zerbib; this note records mathematical provenance only, not an imported or machine-checked paper proof."
+    }
+  ]
+}
