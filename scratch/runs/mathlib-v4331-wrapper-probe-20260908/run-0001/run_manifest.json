@@ -1,0 +1,26 @@
+{
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "created_utc": "2026-09-08T18:39:47.318900Z",
+  "input_digests": {
+    "lean/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71"
+  },
+  "lane_id": "mathlib-v4331-wrapper-probe-20260908",
+  "manifest_sha256": "c05b68b5ccc4941c24d3e6e833d4dfe13e0b60313a8d0b89a54420ddec25f330",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "owner": "mathlib-v4331-wrapper-probe-20260908",
+  "root": "scratch/runs/mathlib-v4331-wrapper-probe-20260908/run-0001",
+  "run_id": "run-0001",
+  "schema": "worktree-run-manifest/v1",
+  "source_digests": {
+    "scripts/bind_lean_ingress_record.py": "c14baff1b19aca6270b755660e579ad8c74e93fbfdac2d31460387daa3c82545",
+    "scripts/lean_lake_probe.py": "4f97e8cfa2c72c7bd9f47c1812b8f210c69a410913111d9ada3c19192ffae899",
+    "scripts/mine_bank_lean_dependencies.py": "edadd271e50ff286b4a3276c041b933b466a129c44cac5be7d7c3e7dae45c479",
+    "scripts/test_bind_lean_ingress_record.py": "91d4d0b52254a419bc7de481b4b40bdf8eaff75a32b6d71a23cc71bf5ad7dc21",
+    "scripts/test_lean_lake_probe.py": "5e69c4516724f880656e0e41e3667b7577ee4213bcfb7cc55104c44c9e0e44a0",
+    "scripts/test_mine_bank_lean_dependencies.py": "f6e1596d6175988d3182beffbdf6e6209cc95ac51678e836a879efb0cd1f8472"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "created_utc": "2026-09-08T18:39:47.314700Z",
+  "durable_paths": [
+    "scratch/runs/mathlib-v4331-wrapper-probe-20260908/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/mathlib-v4331-wrapper-probe-20260908/run-0001"
+  ],
+  "lane_id": "mathlib-v4331-wrapper-probe-20260908",
+  "manifest_sha256": "06a2e776acf05ee7fe8b642f96f832810855b05711cc0579da4c8a7afad43132",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/mathlib-v4331-wrapper-probe-20260908.json",
+    "scripts/bind_lean_ingress_record.py",
+    "scripts/lean_lake_probe.py",
+    "scripts/mine_bank_lean_dependencies.py",
+    "scripts/test_bind_lean_ingress_record.py",
+    "scripts/test_lean_lake_probe.py",
+    "scripts/test_mine_bank_lean_dependencies.py"
+  ],
+  "owner": "mathlib-v4331-wrapper-probe-20260908",
+  "schema": "worktree-lane-checkpoint/v1"
+}
