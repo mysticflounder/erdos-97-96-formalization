@@ -1,7 +1,6 @@
 # `lake-build` 64 GiB compiler guard
 
-Status: **installed; Lean builds remain paused pending a wrapper-only smoke
-check.**
+Status: **installed and end-to-end confirmed.**
 
 The host recorded four Lean crash reports on 2026-09-08 between 01:55 and
 02:15 PDT. Each was a Lake child that aborted with `SIGABRT`; its crashing
@@ -46,9 +45,14 @@ Validation used no Lean or Lake build:
   process-group-safe wrapper reproduced the installed wrapper SHA-256. The
   retained result is
   `scratch/runs/lake-build-64g-guard-20260908/run-0001/artifacts/gate-replay-patch-test.txt`.
+- a single guarded wrapper smoke check of
+  `Erdos9796Proof.P97.Census554.CapSelectedNativeClosureSound:olean` exited
+  successfully after recompiling 113 modules in 32 seconds. Its wrapper build
+  ID is `70725-1788908519592108000`; retained output is
+  `scratch/runs/lake-build-64g-guard-20260908/run-0001/artifacts/guarded-wrapper-smoke-003.log`.
 
 This gate applies only to invocations through the installed wrapper. It does
 not constrain manually started Lean processes or legacy scripts that call
 `lake env lean` directly. It is a compiler-concurrency and internal-memory
 bound, not a proof of whole-machine resident-memory usage. No new Lean build
-should start until a wrapper-only target smoke check is deliberately scheduled.
+should bypass this wrapper.
