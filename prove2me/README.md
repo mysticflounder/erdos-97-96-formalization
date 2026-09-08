@@ -6,8 +6,8 @@ a vertex with at most three unit-distance neighbours in each nonempty convex
 subset; deleting these vertices counts every unordered edge once and gives the
 bound `3n`, hence Problem 96's `O(n)` statement. No reverse implication is claimed.
 
-Open the [mission review page](https://prove2.me/my-missions/c63c586d-1908-47a2-afaa-bfc72728b7ab)
-to inspect the combined goal, seven milestones, and independent read-backs.
+Open the [public mission](https://prove2.me/missions/Erd%C5%91s%20Problems%2097%20and%2096%3A%20Convex%20Point%20Sets%20and%20Unit%20Distances)
+to inspect the combined goal and its milestones.
 
 **Original mission statement packet: SKETCH — NOT PROMOTABLE.** These are open mission statements. Every theorem
 item deliberately contains `sorry`; definitions contain no unproved assumptions.
@@ -21,12 +21,20 @@ exclusion, conditional P97-to-P96 peeling argument, and open minimal-counterexam
 descent. Its historical milestone is Danzer's nine-point example for the earlier
 three-neighbour conjecture. Existing source proofs still require transfer and
 server verification before the corresponding platform nodes can be marked proved.
+The counting route follows Dumitrescu's 2006 isosceles-count method, with the
+cap-witness refinements used by the source attributed to
+Nivasch--Pach--Pinchasi--Zerbib (2013); these citations record mathematical
+provenance for the project's own Lean formalization.
 
 ## Contents
 
 - [Accepted original bridge milestone](submissions/linear-bound-bridge/README.md): assuming Problem 97, the 3n unit-distance bound and Problem 96; server verified.
 
 - [Accepted four-support proof](submissions/upload-20260907/README.md): public Lean 4.33.1 proof, server verification receipt, and completed supporting milestone. The [original preparation packet](submissions/four-pair-coverage/README.md) is retained for provenance.
+
+- [Counting milestone transfer](submissions/counting-transfer/README.md): the
+  complete 75-node proof that a four-equidistant counterexample has at least
+  nine points, with validation and attribution records.
 
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
   and bank-replacement work, with consumer and validation gates.

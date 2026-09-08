@@ -69,9 +69,11 @@ three-neighbor constructions from the still-open four-neighbor assertion.
 
 # Difficulty
 
-The source proof reduces Problem 97 to strong induction on $|A|$. A counting
-engine forces every counterexample to have at least nine points; a finite
-geometric analysis excludes exactly nine points; and the remaining step must
+The source proof reduces Problem 97 to strong induction on $|A|$. Its counting
+engine follows Dumitrescu's 2006 isosceles-count method, with the cap-witness
+refinements used in the source attributed to Nivasch--Pach--Pinchasi--Zerbib
+(2013). This engine forces every counterexample to have at least nine points; a
+finite geometric analysis excludes exactly nine points; and the remaining step must
 produce a removable vertex for every larger minimal counterexample. The
 removable-vertex statement carries the induction hypothesis that every
 strictly smaller nonempty convex 4-equidistant set is contradictory. That
@@ -100,6 +102,10 @@ assumed inside a definition. Singletons and two-point sets are included in
 Problem 97, while Problem 96's counting definitions also include the empty set.
 The source repository uses Lean `v4.27.0`; these mission statements target the
 platform's `v4.33.1`. Source-proof transfer and revalidation remain separate work.
+The Lean declarations and proofs are this project's own formalization. The
+Dumitrescu and Nivasch--Pach--Pinchasi--Zerbib citations record mathematical
+provenance; they do not indicate that a paper proof was imported or
+machine-checked directly.
 
 These source results establish the intended dependency graph: the P97 universal
 root feeds low-unit-degree extraction, strong induction, and then the P96
@@ -115,3 +121,4 @@ and the documented Danzer nine-point three-neighbor example.
 - Erdős, *Some Combinatorial and Metric Problems in Geometry* (1987), [scan](https://www.renyi.hu/~p_erdos/1987-27.pdf).
 - Fishburn–Reeds, *Unit Distances Between Vertices of a Convex Polygon* (1992), [publisher record](https://www.sciencedirect.com/science/article/pii/092577219290026O).
 - Dumitrescu, *On Distinct Distances from a Vertex of a Convex Polygon* (2006), [Springer record](https://link.springer.com/article/10.1007/s00454-006-1262-y); provenance for the source counting method.
+- Nivasch–Pach–Pinchasi–Zerbib, *The Number of Distinct Distances from a Vertex of a Convex Polygon* (2013), [arXiv:1207.1266](https://arxiv.org/abs/1207.1266); provenance for the cap-witness refinements used by the source formalization.
