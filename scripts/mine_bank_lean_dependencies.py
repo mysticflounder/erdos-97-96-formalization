@@ -49,7 +49,8 @@ from lean_lake_probe import ProbeError, normalize_probe_message, run_probe
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LOCAL_PREFIX = "Erdos9796Proof."
 
-LEAN_TEMPLATE = """{imports}
+LEAN_TEMPLATE = """import Lean
+{imports}
 
 open Lean
 

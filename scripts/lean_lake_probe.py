@@ -98,6 +98,7 @@ def _manifest_for_probe(lake_dir: Path, package_dir: Path, package_name: str) ->
         raise ProbeError(f"malformed pinned Lake manifest: {source}")
 
     relative_lake = os.path.relpath(lake_dir, package_dir).replace(os.sep, "/")
+    packages_dir = (lake_dir / ".lake" / "packages").resolve()
     path_entry: dict[str, object] = {
         "name": package_name,
         "scope": "",
@@ -111,7 +112,7 @@ def _manifest_for_probe(lake_dir: Path, package_dir: Path, package_name: str) ->
     manifest = dict(manifest)
     manifest["name"] = PROBE_PACKAGE
     manifest["lakeDir"] = ".lake"
-    manifest["packagesDir"] = ".lake/packages"
+    manifest["packagesDir"] = str(packages_dir)
     manifest["packages"] = [path_entry, *packages]
     return manifest
 
@@ -226,8 +227,10 @@ def run_probe(
     (package_dir / "lean-toolchain").write_text(
         (lake_dir / "lean-toolchain").read_text(encoding="utf-8"), encoding="utf-8"
     )
+    packages_dir = (lake_dir / ".lake" / "packages").resolve()
     (package_dir / "lakefile.toml").write_text(
-        "name = \"Probe\"\nversion = \"0.1.0\"\npackagesDir = \".lake/packages\"\n\n"
+        "name = \"Probe\"\nversion = \"0.1.0\"\n"
+        f"packagesDir = {json.dumps(str(packages_dir))}\n\n"
         f"[[require]]\nname = {json.dumps(package_name)}\npath = {json.dumps(os.path.relpath(lake_dir, package_dir).replace(os.sep, '/'))}\n\n"
         "[[lean_lib]]\nname = \"Probe\"\n",
         encoding="utf-8",
@@ -236,10 +239,6 @@ def run_probe(
         json.dumps(_manifest_for_probe(lake_dir, package_dir, package_name), indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
     )
-    (package_dir / ".lake" / "packages").symlink_to(
-        lake_dir / ".lake" / "packages", target_is_directory=True
-    )
-
     env = os.environ.copy()
     env.update(
         {

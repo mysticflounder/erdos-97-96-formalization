@@ -77,10 +77,14 @@ def test_wrapper_package_manifest_markers_and_evidence(
         package = Path(str(kwargs["cwd"]))
         manifest = json.loads((package / "lake-manifest.json").read_text(encoding="utf-8"))
         assert manifest["name"] == "Probe"
-        assert manifest["packagesDir"] == ".lake/packages"
+        expected_packages_dir = str((repo / "lean" / ".lake" / "packages").resolve())
+        assert manifest["packagesDir"] == expected_packages_dir
         assert manifest["packages"][0]["type"] == "path"
         assert manifest["packages"][0]["dir"]
-        assert (package / ".lake" / "packages").is_symlink()
+        assert not (package / ".lake" / "packages").exists()
+        assert not any(path.is_symlink() for path in package.rglob("*"))
+        lakefile = (package / "lakefile.toml").read_text(encoding="utf-8")
+        assert f'packagesDir = "{expected_packages_dir}"' in lakefile
         assert "Lean.versionString" in (package / "Probe.lean").read_text(encoding="utf-8")
         process = SuccessProcess(command, package)
         seen["process"] = process
