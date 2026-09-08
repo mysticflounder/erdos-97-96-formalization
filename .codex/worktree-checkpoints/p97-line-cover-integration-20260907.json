@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p97-line-cover-integration-20260907",
+  "owner": "codex-line-cover",
+  "base_head": "a4f1ff107297cb8a9f2cc38d19feb2293d021d8b",
+  "created_utc": "2026-09-07T23:58:43.622497Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p97-line-cover-integration-20260907.json",
+    "docs/audits/alphaevolve-p97-artifact-analysis-2026-08-22.md",
+    "lean/Erdos9796Proof/P97/ConvexIndepLineCover.lean",
+    "scratch/ConvexIndepLineCover.README.md",
+    "scratch/ConvexIndepLineCover.lean"
+  ],
+  "durable_paths": [
+    "scratch/runs/p97-line-cover-integration-20260907/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/p97-line-cover-integration-20260907/run-0001"
+  ],
+  "manifest_sha256": "7df79f4fbc80d30df85ce5abc4f34def3e26c41239405d75f8dc881dc3b4c4c1"
+}

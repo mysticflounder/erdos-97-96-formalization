@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "p97-line-cover-integration-20260907",
+  "run_id": "run-0001",
+  "root": "scratch/runs/p97-line-cover-integration-20260907/run-0001",
+  "owner": "codex-line-cover",
+  "base_head": "a4f1ff107297cb8a9f2cc38d19feb2293d021d8b",
+  "created_utc": "2026-09-07T23:58:43.622497Z",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/ConvexIndepHelpers.lean": "58fea6fdfc458ff582e9e12c324d10b6e51a5653a6daa5dc80f586642be49129",
+    "lean/Erdos9796Proof/P97/ConvexIndepLineCover.lean": "26b3fc4744b852f457f63dbf1792d3b1086257e977341d00a2fba689fa247695",
+    "scratch/ConvexIndepLineCover.lean": "e83f041894983b1893156358edbcee9668ba241ed98367b6dd1e3c6f1ccd8fe4"
+  },
+  "input_digests": {
+    "lean/lake-manifest.json": "48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce"
+  },
+  "manifest_sha256": "36ff3f9c723d4162110ac98e064e059ca89e76633c43b602c5b69660dfcaa42d"
+}

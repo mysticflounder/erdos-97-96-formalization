@@ -1,10 +1,10 @@
 # [DATED AUDIT] AlphaEvolve P97 artifact analysis — 2026-08-22
 
-**Status: EMPIRICAL throughout.** Every finding in this document is numerical.
-No claim here is proven, and no claim here is Lean-promoted. Candidate lemma
-statements are marked {{NEEDS_PROOF}}. The degrees-of-freedom counts are
-HEURISTIC (naive constraint counting); the Jacobian ranks are finite-difference
-computations at specific points.
+**Status: EMPIRICAL for the original artifact analysis.** The 2026-09-07 line-cover
+result in F3 separately proves a geometric exclusion; the numerical golden-ratio
+bound remains unproved. Other candidate lemma statements are marked
+{{NEEDS_PROOF}}. The degrees-of-freedom counts are HEURISTIC (naive constraint
+counting); the Jacobian ranks are finite-difference computations at specific points.
 
 ## 1. Artifact provenance
 
@@ -174,6 +174,27 @@ character at 4.
 
 ### F3. Convex position is the separating obstruction; golden-ratio radius gap
 
+**2026-09-07 geometric exclusion.** Credit for the mirror-line counting observation
+belongs to GitHub user **sallerk**, owner of `sallerk/erdos-notes`; see
+[the original note](https://github.com/sallerk/erdos-notes/blob/6f0ff6e3937ad5bcd341afbf8cf857cd5403913b/p97/NOTE.md).
+Every line contains at most two points of a convex-independent planar set.
+Consequently, five lines contain at most ten such points: the D₅ all-mirror-axis
+fifteen-point family is excluded regardless of its distance equations. The D₃
+all-mirror-axis fifteen-point family is excluded by the bound of six points on
+three lines.
+
+The reusable cover bound and the two fifteen-point exclusions are formalized in
+[`ConvexIndepLineCover.lean`](../../lean/Erdos9796Proof/P97/ConvexIndepLineCover.lean),
+in `Problem97.ConvexIndep.card_le_two_mul_of_collinear_cover`,
+`false_of_card_fifteen_five_collinear_cover`, and
+`false_of_card_fifteen_three_collinear_cover`. Their hypotheses explicitly require
+the five/three collinear-set cover. Identifying that cover with the reflection
+axes is the application here; a dihedral-group-to-axis interface is not formalized.
+See the [validation and audit record](../../scratch/ConvexIndepLineCover.README.md).
+This does not prove a golden-ratio bound or exclude mixed on-axis/off-axis families.
+
+The original numerical experiment follows:
+
 A dihedral all-axes ansatz lowers the naive deficit to 1: D5 on n = 15, three
 C5 orbits, every generator on a reflection axis, each vertex's 4-class formed
 by two mirror pairs forced to a common radius (one equation per orbit; 3
@@ -195,9 +216,9 @@ equations, 3 generator radii, minus scaling). Exhaustive enumeration of all
 CONJECTURE (candidate global lemma, D5 all-axes family): equalizing two
 mirror-pair class radii at every vertex forces one orbit radius down by a
 factor ≥ φ² relative to the largest, which forces that orbit inside the hull;
-hence no member of the family is convex. {{NEEDS_PROOF}} — the constant's
-algebraic form (sin 36°/sin 72°)² suggests a short trigonometric proof, and
-the statement looks certifiable by interval arithmetic if wanted.
+hence no member of the family is convex. The asserted quantitative radius bound
+remains {{NEEDS_PROOF}}. Its nonconvexity consequence is already supplied by the
+line-cover argument above, so this calculation is not needed to exclude the family.
 
 Together with F4 this is a three-way pattern: cluster-cheats degenerate,
 the C3 type collapses, the D5 exact solutions all leave convex position. In
@@ -214,15 +235,16 @@ is what breaks** — matching the spine's convex-position capacity approach.
   the structural reading of the notebook's s²/D normalization: defect decays
   only quadratically along the degeneration, so the exponent 2 is exactly
   what makes the score degeneration-proof.
-- The D5 route produces exact incidence systems but always non-convex, with
-  the F3 margin.
-- Pure cyclic ansätze are closed off by F2 (deficit 2 at every p).
+- The D5 all-axis fifteen-point route is excluded by the line-cover bound in F3;
+  the observed numerical radius margin is supplementary evidence.
+- Pure cyclic ansätze have the heuristic deficit recorded in F2; that count
+  alone does not exclude solutions.
 
 The open crack the data leaves: a **non-symmetric combinatorial type whose
 Jacobian is rank-deficient** at a convex configuration. None was observed.
-Untested neighbors of the D5 experiment: D3 all-axes on n = 15 (five orbits,
-naive deficit 1), mixed on/off-axis orbit structures, and other n.
-{{NEEDS_RESEARCH}}
+The D3 all-axes case on n = 15 is also excluded by the line-cover bound in F3.
+Untested neighbors include mixed on/off-axis orbit structures and other sizes
+not already excluded by the relevant line-cover bound. {{NEEDS_RESEARCH}}
 
 ### F5. Small recurring patterns
 
@@ -246,13 +268,10 @@ naive deficit 1), mixed on/off-axis orbit structures, and other n.
 - F1 says the extremal configuration equalizes: proof strategies that hunt a
   locally-identifiable witness vertex are fighting the data; averaging or
   global capacity arguments are aligned with it.
-- F3 offers a small, self-contained candidate lemma (golden-ratio radius
-  collapse in the D5 family) that is plausibly provable by elementary
-  trigonometry and would be a first fully-worked instance of "class
-  equalization forces radial collapse below the convex-position threshold".
-  It closes no spine obligation by itself; its value is as a model theorem
-  for the capacity leitmotif. {{NEEDS_ADAM_INPUT}} on whether it is worth
-  formalizing versus keeping as prose evidence.
+- F3 now has a reusable line-cover lemma excluding the D5 and D3 all-axis
+  fifteen-point search families. The quantitative golden-ratio claim remains
+  a conjecture and is unnecessary for these exclusions. These results close no
+  general P97 descent obligation.
 
 ## 6. Caveats
 
@@ -287,30 +306,23 @@ Lean corpus shows **all four already exist in repo-native form**:
 | opposite sides of the chord | `false_of_two_centers_equidistant_pair_{after,enclosed,split,before}` + `dist_eq_dist_of_mutual_bisector` (ATail.TwoCenterBisectorParity), stated in the project's CCW cyclic-position form over `ConvexIndep` |
 | shared-pair cyclic adapter | `BoundaryIndexing.sharedPair_satisfied` (Census554.GeneralCarrierBridge) |
 
-No new formalization is required by this document. Adding a parallel
+No new witness-interface formalization is required by this shortlist. Adding a parallel
 `EqDistWitness` wrapper API is NOT recommended: the repo already carries
 duplicate-interface debt, and a bridge with zero consumers is bookkeeping,
 not progress.
 
-**F3 supersession.** The same review supplied a strictly stronger and
-simpler argument that retires F3's candidate lemma: in the all-axes D_m
-ansatz the oriented reflection-axis rays fall into exactly two rotational
-phase classes, so three C_m orbits force two orbits onto the same ray set
-(pigeonhole); the smaller-radius orbit is then a radial contraction of the
-larger, and since the orbit's center lies in its convex hull, every
-contracted point lies in the convex hull of the larger orbit. Hence **no
-union of three distinct all-axes C_m orbits is convexly independent at
-all** — the non-convexity of every exact solution in §F3 was decided by the
-ansatz alone, before the equalization equations were imposed. The
-golden-ratio ratio bound remains a true measured property of the
-equalization system, but it is not the cause of the convexity failure, and
-the "radial collapse below the extremality threshold" lemma candidate is
-withdrawn in favor of the pigeonhole statement. The argument is elementary;
-a Lean utility form (`t • x ∈ convexHull` contradiction against
-`ConvexIndep`) would be a two-line corollary of the definition and has no
-current consumer, so it is left unformalized. F2 (the free-pair counting
-law) is unaffected and remains the substantive residue of the D5
-experiment.
+**F3 supersession.** The earlier review observed that the all-axis restriction
+already forces nonconvexity, before imposing the distance equations. The
+2026-09-07 formalization uses sallerk's line-count observation from F3: `m`
+collinear covering sets support at most `2 * m` convex-independent points.
+This handles three distinct all-axis `C_m` orbits of size `m` when `0 < m`,
+and the production module supplies the five-line and three-line fifteen-point
+corollaries used here. The quantitative golden-ratio claim remains an empirical
+observation and an unproved conjecture outside the sampled configurations.
+No radial-contraction utility is needed for these exclusions. A formal
+dihedral-group-to-axis-cover interface remains outside the present implementation;
+the cover is an explicit hypothesis. F2 remains a heuristic constraint count,
+not a nonexistence theorem.
 
 ## 8. Reproduction
 

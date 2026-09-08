@@ -1,114 +1,99 @@
-# Convex-independent line-cover bound: scratch integration candidate
+# Convex-independent line-cover bound
 
 Copyright (c) 2026 Adam McKenna. Released under GPL-3.0-or-later; see LICENSE.
 
-Prepared at the user's request during the mathlib upgrade. Keep this candidate in
-scratch until the upgrade is complete. No production Lean file, aggregate import,
-proof-status document, or existing audit is changed by this lane.
+The four declarations now live in
+[`Erdos9796Proof.P97.ConvexIndepLineCover`](../lean/Erdos9796Proof/P97/ConvexIndepLineCover.lean).
+This scratch directory retains only the [import/axiom probe](ConvexIndepLineCover.lean)
+and this provenance and validation record. Integration on 2026-09-08 UTC follows
+the user's authorization after pausing the upgrade workflow. The active checkout still uses
+Lean 4.27.0; Lean/mathlib 4.33.1 compatibility is not claimed.
 
-## Scope and provenance
-
-Lane: `p97-line-cover-scratch-20260907`.
-Lane base: `3f9db5ec1cb21841810d0fa2b88f0d9027a6900b`.
-Source: [ConvexIndepLineCover.lean](ConvexIndepLineCover.lean).
+## Discovery credit and exact scope
 
 **Discovery credit: GitHub user sallerk**, owner of `sallerk/erdos-notes`, for the
 mirror-line counting observation in
-[sallerk's P97 note at the inspected revision](https://github.com/sallerk/erdos-notes/blob/6f0ff6e3937ad5bcd341afbf8cf857cd5403913b/p97/NOTE.md).
-We generalize its line count to any finite family of collinear sets. No result
-about alternating radii, distance multiplicity, or general dihedral symmetry is
-formalized here.
+[the inspected P97 note](https://github.com/sallerk/erdos-notes/blob/6f0ff6e3937ad5bcd341afbf8cf857cd5403913b/p97/NOTE.md).
+The credit remains in both the production module docstring and the main theorem
+docstring. This project contributes the Lean formalization, generalizes the
+observation to collinear-set covers, and supplies the numerical specializations.
 
-The exact target is: for `A : Finset ℝ²` and `L : Fin m → Set ℝ²`, convex
-independence of `A`, collinearity of every `L i`, and membership of every point of
-`A` in some `L i` imply `A.card ≤ 2 * m`. The cover may overlap or repeat sets;
-empty covers and empty sets are permitted.
+For `A : Finset ℝ²` and `L : Fin m → Set ℝ²`, convex independence of `A`,
+collinearity of every `L i`, and membership of every point of `A` in some `L i`
+imply `A.card ≤ 2 * m`. The sets may overlap, repeat, or be empty. No common
+intersection, symmetry, equidistance, or nonempty-carrier hypothesis is used.
 
-## Reuse and proof structure
+Four declarations in `Problem97.ConvexIndep` are available:
 
-The project corpus preflight found no matching general line-cover theorem. The
-existing `Problem97.ConvexIndep.not_collinear_of_card_ge_three` and
-`Problem97.ConvexIndep.mono` in `Erdos9796Proof.P97.ConvexIndepHelpers` supply the
-geometric step. Their current statements were inspected at the lane base.
-Mathlib's `Finset.card_biUnion_le` supplies the finite-union count.
+- `card_le_two_of_collinear_subset` bounds each piece by two points.
+- `card_le_two_mul_of_collinear_cover` sums the bounds over a finite cover.
+- `false_of_card_fifteen_five_collinear_cover` rules out fifteen points in five pieces.
+- `false_of_card_fifteen_three_collinear_cover` rules out fifteen points in three pieces.
 
-The candidate contains four declarations in `Problem97.ConvexIndep`:
+The immediate consumers are the two fifteen-point corollaries and the corresponding
+search-family exclusions in the
+[AlphaEvolve audit](../docs/audits/alphaevolve-p97-artifact-analysis-2026-08-22.md).
+There is no import into the published P97/P96 aggregate and no claim to close a
+general descent obligation. A use involving dihedral symmetry must still supply
+the cover by its three or five mirror lines. No group-action-to-axis interface
+or quantitative golden-ratio bound is formalized here.
 
-- `card_le_two_of_collinear_subset`: each collinear subset contributes at most two points.
-- `card_le_two_mul_of_collinear_cover`: sum these bounds over the cover.
-- `false_of_card_fifteen_five_collinear_cover`: fifteen points cannot fit in five sets.
-- `false_of_card_fifteen_three_collinear_cover`: fifteen points cannot fit in three sets.
+## Reuse and independent proof audit
 
-The last two declarations are the immediate consumers. This is an off-spine
-search exclusion; there is no publish-reachable obligation under modification,
-no new `sorry`, and no claimed decrease in the P97 descent frontier.
+The bounded project corpus preflight found no matching general cover theorem.
+The geometric ingredient is the existing
+`Problem97.ConvexIndep.not_collinear_of_card_ge_three`, together with
+`Problem97.ConvexIndep.mono`, in `ConvexIndepHelpers.lean`. The finite-cover count
+uses Mathlib's `Finset.card_biUnion_le`.
 
-## Validation and audit
+**Math-skeptic audit: four claims, independently reviewed 2026-09-07.** The
+collinear-subset bound applies monotonicity followed by the three-point
+noncollinearity theorem. The cover theorem filters `A` by each covering set,
+bounds the union by the sum of piece cardinalities, then bounds the sum by `2 * m`.
+The specializations yield `15 ≤ 10` and `15 ≤ 6`, contradicted by `omega`.
+Overlaps, repetitions, and empty sets are allowed; for `m = 0`, the cover
+hypothesis forces `A` to be empty. The review's sole scope clarification was to
+state explicitly that the D₃/D₅ applications require supplying the line cover;
+that qualification is present in the production docstrings.
 
-The final fresh single-file check passed on 2026-09-07 with Lean 4.27.0 and
-mathlib revision `a3a10db0e9d66acbebf76c5e6a135066525ac900`, using the command below.
-All four declarations reported exactly `{propext, Classical.choice, Quot.sound}`.
-The source includes the four `#print axioms` commands. No `sorryAx`, custom axiom,
-or `Lean.ofReduceBool` was reported. Exit status was 0, with no proof errors or
-warnings. This check includes the final discovery-credit docstrings.
+The scratch declarations were PROVEN (Lean-formalized) on 4.27.0 before the move,
+with the axiom closure of every declaration exactly
+`{propext, Classical.choice, Quot.sound}`. Integration preserves all four theorem
+statements, proof bodies, and theorem docstrings byte-for-byte. Independent
+integration review confirmed the two search-family applications and the explicit
+cover hypotheses. The fresh production-module build and import probe both passed
+on 2026-09-08 UTC, with the same four standard-only axiom closures. All four
+production declarations are PROVEN (Lean-formalized) on the current toolchain.
 
-Final candidate SHA-256 (including the discovery-credit docstrings):
-`dd310b54461fecac8183ec1d5f78cb4b013bd6a40e2e7a250ca2217fadcdc890`.
-The inspected `ConvexIndepHelpers.lean` source SHA-256 is
-`58fea6fdfc458ff582e9e12c324d10b6e51a5653a6daa5dc80f586642be49129`;
-the selected `lean/lake-manifest.json` SHA-256 is
-`48adeb0901038a9dc08e0f80a70d5eb5a609058b849afd582c0c2f6ebe0cbfce`.
+## Validation and replay
 
-The ongoing migration is in `.worktrees/mathlib-v4331-migration-20260907` and
-targets Lean/mathlib 4.33.1. No validation in that worktree is claimed; no source,
-dependency, build artifact, or lock there was changed. Recheck after the upgrade.
+**CERTIFIED on Lean 4.27.0**, mathlib revision
+`a3a10db0e9d66acbebf76c5e6a135066525ac900`: module build `BUILD-EXIT=0`, followed by
+import/axiom probe `PROBE-EXIT=0`. No `sorryAx`, custom axiom, or
+`Lean.ofReduceBool` appears in any of the four closures. No new proof warnings
+were reported.
 
-### Math-skeptic audit
+Production module SHA-256:
+`26b3fc4744b852f457f63dbf1792d3b1086257e977341d00a2fba689fa247695`.
+Import probe SHA-256:
+`e83f041894983b1893156358edbcee9668ba241ed98367b6dd1e3c6f1ccd8fe4`.
 
-**Target:** the four declarations in `ConvexIndepLineCover.lean`.
-**Date:** 2026-09-07. **Claims audited:** 4.
-**Verdict: CERTIFIED for the four Lean declarations on 4.27.0.** The proof
-statements and argument passed independent static review; final fresh elaboration
-and transitive axiom checks passed. All four claims below are PROVEN
-(Lean-formalized). Compatibility with 4.33.1 remains unchecked.
+Run from `lean/`:
 
-| Claim | Evidence and scope |
-| --- | --- |
-| Collinear subsets have cardinality at most two | Existing convex-independence monotonicity and three-point noncollinearity theorem; fresh Lean check. |
-| An `m`-set collinear cover gives cardinality at most `2 * m` | Sum of the filtered-piece bounds, using `Finset.card_biUnion_le`; fresh Lean check. |
-| Five collinear covering sets exclude fifteen points | Specialization to `15 ≤ 10`, discharged by `omega`; fresh Lean check. |
-| Three collinear covering sets exclude fifteen points | Specialization to `15 ≤ 6`, discharged by `omega`; fresh Lean check. |
+```bash
+LAKE_BUILD_NO_REFRESH=1 lake-build Erdos9796Proof.P97.ConvexIndepLineCover
+lake env lean -M 16384 ../scratch/ConvexIndepLineCover.lean
+```
 
-The review explicitly checked overlapping/repeated/empty covering sets and
-`m = 0`; the cover hypothesis forces the carrier to be empty in the last case.
-Its sole clarification finding was that the D₃/D₅ source comments must state
-that the line cover is still supplied as a hypothesis. Those comments were
-clarified without changing statements or proofs. There is no formalized
-dihedral-to-mirror-axis interface and no general P97 closure claim.
+Run the second command after the first finishes. The module build uses the global
+locked wrapper. Blueprint refresh is disabled because the published proof graph
+is unchanged. The probe imports the built production module and prints the
+transitive axiom closure of all four declarations. Repeat these checks after the
+4.33.1 upgrade; current validation does not establish that compatibility.
 
-## Integration after the upgrade
-
-1. With the upgraded dependencies built and no concurrent `lake-build` in this
-   Lake root, run from `lean/`:
-
-   ```bash
-   lake env lean -M 16384 ../scratch/ConvexIndepLineCover.lean
-   ```
-
-2. Check that all four declarations compile and their transitive axiom output
-   contains no `sorryAx`, custom axiom, or `Lean.ofReduceBool`.
-3. Move the declarations to a small production helper module, proposed path
-   `lean/Erdos9796Proof/P97/ConvexIndepLineCover.lean`, retaining the imports and
-   `Problem97` namespace. Move the final diagnostic commands to the validation
-   probe. Run `lake-build Erdos9796Proof.P97.ConvexIndepLineCover` and a fresh axiom
-   probe. Import it only from a concrete consumer when needed.
-4. Update `docs/audits/alphaevolve-p97-artifact-analysis-2026-08-22.md`, F3 and the
-   untested-neighbor paragraph: the D₅ all-axis fifteen-point family is excluded
-   by the five-line bound, and the D₃ family by the three-line bound. This does
-   not prove the audit's proposed golden-ratio bound; it makes that stronger
-   metric assertion unnecessary for the nonconvexity conclusion.
-
-The symmetry application still requires identifying the three or five mirror
-lines and supplying the cover hypothesis. The scratch corollaries formalize the
-resulting geometric exclusions, not an API connecting a dihedral group action to
-its reflection axes. Mixed on-axis/off-axis families are outside this claim.
+Integration lane: `p97-line-cover-integration-20260907`.
+Lane base: `a4f1ff107297cb8a9f2cc38d19feb2293d021d8b`.
+The [run manifest](runs/p97-line-cover-integration-20260907/run-0001/run_manifest.json)
+authenticates the module, probe, helper, and dependency manifest. Reproducible build
+and probe logs are in that run's `artifacts/` directory. Original scratch checkpoint:
+`d794e197a`, lane `p97-line-cover-scratch-20260907`.
