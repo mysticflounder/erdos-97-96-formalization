@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "mathlib-upgrade-progress-audit-20260908",
+  "owner": "codex-upgrade-audit",
+  "base_head": "14bcb9baa1b2ce2dd563e5a43527a30b7582483f",
+  "created_utc": "2026-09-08T05:08:08.386853Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/mathlib-upgrade-progress-audit-20260908.json",
+    "docs/audits/2026-09-08-mathlib-upgrade-progress-audit.json",
+    "docs/audits/2026-09-08-mathlib-upgrade-progress-audit.md"
+  ],
+  "durable_paths": [
+    "scratch/runs/mathlib-upgrade-progress-audit-20260908/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/mathlib-upgrade-progress-audit-20260908/run-0001"
+  ],
+  "manifest_sha256": "6be6be32220bba2ddcdd91b431145a4ab58bba4b4ac29b86ac502200a768e7b3"
+}

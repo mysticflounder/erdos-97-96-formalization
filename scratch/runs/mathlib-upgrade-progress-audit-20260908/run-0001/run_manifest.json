@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "mathlib-upgrade-progress-audit-20260908",
+  "run_id": "run-0001",
+  "root": "scratch/runs/mathlib-upgrade-progress-audit-20260908/run-0001",
+  "owner": "codex-upgrade-audit",
+  "base_head": "14bcb9baa1b2ce2dd563e5a43527a30b7582483f",
+  "created_utc": "2026-09-08T05:08:08.386853Z",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "docs/audits/2026-09-08-mathlib-upgrade-progress-audit.md": "075e5e9393120d277806237c529d9cc3d2f4f44935f12d039200cd5a164133e5"
+  },
+  "input_digests": {
+    "docs/audits/2026-09-08-mathlib-upgrade-progress-audit.json": "c1b455c15f29ef8b471fdedaf3defbe735c5060506141b7bb7a47b3c762e2322"
+  },
+  "manifest_sha256": "4bbee49e96508510352dfb6fc692f72209c9dd9bd4d4ba0d79f95b643adfb9be"
+}
