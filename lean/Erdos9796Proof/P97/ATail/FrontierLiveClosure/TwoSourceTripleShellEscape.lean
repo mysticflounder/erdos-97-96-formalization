@@ -380,7 +380,7 @@ theorem exists_q_tripleShellEscape_qRow_overlap_card_le_two
         Q.source₁.2).toCriticalFourShell.support = KQ.support by rfl]
     rw [hinterEmpty]
     simp
-  · simpa [KQ] using
+  · exact
       SelectedFourClass.inter_card_le_two K KQ.toSelectedFourClass hcenters
 
 end

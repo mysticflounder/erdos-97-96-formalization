@@ -1897,26 +1897,29 @@ theorem exists_blockerCenter_mem_capInteriorByIndex
     intro h
     apply hblockerNe₁
     apply Subtype.ext
-    simpa [apex₁] using h
+    simp only [apex₁]
+    exact h
   have hcenterNe₂ :
       H.centerAt source.1 source.2 ≠ S.oppApex2 := by
     intro h
     apply hblockerNe₂
     apply Subtype.ext
-    simpa [apex₂] using h
+    simp only [apex₂]
+    exact h
   have hcenterNe₃ :
       H.centerAt source.1 source.2 ≠ S.surplusApex := by
     intro h
     apply hblockerNe₃
     apply Subtype.ext
-    simpa [apex₃] using h
+    simp only [apex₃]
+    exact h
   rcases S.mem_triangle_verts_or_exists_capInteriorByIndex_of_mem
       (H.blockerVertex source).2 with htriangle | hcap
   · rcases S.mem_triangle_verts_oppositeVertexByIndex_cases htriangle with
       hsurplus | hfirst | hsecond
-    · exact False.elim (hcenterNe₃ (by simpa using hsurplus))
-    · exact False.elim (hcenterNe₁ (by simpa using hfirst))
-    · exact False.elim (hcenterNe₂ (by simpa using hsecond))
+    · exact False.elim (hcenterNe₃ (by simpa [CriticalShellSystem.blockerVertex] using hsurplus))
+    · exact False.elim (hcenterNe₁ (by simpa [CriticalShellSystem.blockerVertex] using hfirst))
+    · exact False.elim (hcenterNe₂ (by simpa [CriticalShellSystem.blockerVertex] using hsecond))
   · exact hcap
 
 /-! The former negative fresh-third leaf hid four positive geometric cases
@@ -3138,13 +3141,15 @@ theorem false_of_freshThird_canonicalDifferentCap_of_orderSelectedEndpointDeleti
           (B.boundary (B.indexOf canonicalSource)) =
         dist (B.boundary (B.indexOf sourceCenter))
           (B.boundary (B.indexOf firstPoint)) := by
-    simpa only [B.point_eq] using hsourceFirstRaw
+    simp only [B.point_eq]
+    exact hsourceFirstRaw
   have hsourceSecond :
       dist (B.boundary (B.indexOf sourceCenter))
           (B.boundary (B.indexOf canonicalSource)) =
         dist (B.boundary (B.indexOf sourceCenter))
           (B.boundary (B.indexOf secondPoint)) := by
-    simpa only [B.point_eq] using hsourceSecondRaw
+    simp only [B.point_eq]
+    exact hsourceSecondRaw
   rcases hnames with hnames | hnames
   · rcases hnames with ⟨rfl, rfl⟩
     exact false_of_freshThird_orderSelectedEndpointDeletionObstructions
@@ -3334,25 +3339,29 @@ theorem false_of_freshThird_canonicalDifferentCap_of_endpointDeletionObstruction
           (B.boundary (B.indexOf canonicalSource)) =
         dist (B.boundary (B.indexOf sourceCenter))
           (B.boundary (B.indexOf firstPoint)) := by
-    simpa only [B.point_eq] using hsourceFirstRaw
+    simp only [B.point_eq]
+    exact hsourceFirstRaw
   have hsourceSecond :
       dist (B.boundary (B.indexOf sourceCenter))
           (B.boundary (B.indexOf canonicalSource)) =
         dist (B.boundary (B.indexOf sourceCenter))
           (B.boundary (B.indexOf secondPoint)) := by
-    simpa only [B.point_eq] using hsourceSecondRaw
+    simp only [B.point_eq]
+    exact hsourceSecondRaw
   have hfirstEndpoint :
       dist (B.boundary (B.indexOf firstPoint))
           (B.boundary (B.indexOf secondPoint)) =
         dist (B.boundary (B.indexOf firstPoint))
           (B.boundary (B.indexOf canonicalSource)) := by
-    simpa only [B.point_eq] using firstEndpointEq
+    simp only [B.point_eq]
+    exact firstEndpointEq
   have hsecondEndpoint :
       dist (B.boundary (B.indexOf secondPoint))
           (B.boundary (B.indexOf firstPoint)) =
         dist (B.boundary (B.indexOf secondPoint))
           (B.boundary (B.indexOf canonicalSource)) := by
-    simpa only [B.point_eq] using secondEndpointEq
+    simp only [B.point_eq]
+    exact secondEndpointEq
   rcases hnames with hnames | hnames
   · rcases hnames with ⟨rfl, rfl⟩
     apply CapCrossingKalmansonBridge.false_of_freshThird_four_order_arms
