@@ -1023,7 +1023,9 @@ theorem firstFiber_globalRow_inter_firstShell_card_le_two
     apply
       (H.selectedAt P.source₁
           P.source₁_mem_A).toCriticalFourShell.toSelectedFourClass.center_not_mem
-    simpa [hcenters] using Q.source_mem_shell
+    have hshell := Q.source_mem_shell
+    simp only [hcenters] at hshell
+    exact hshell
   exact
     SelectedFourClass.inter_card_le_two Kq
       (H.selectedAt P.source₁
