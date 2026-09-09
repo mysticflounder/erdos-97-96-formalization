@@ -306,3 +306,37 @@ AG. `omega` LOSES A `Fin` BOUND WHEN THE BOUND ITSELF CONTAINS A STUCK MATCHER. 
     accounted for all 13 reported positions — the other 12 were pre-existing warnings and
     `#print axioms` info lines.  The two sibling theorems at :313-336 already used this
     idiom, so it is class S again.
+
+AH. SELF-DEFEATING SIMP SET UNDER `fin_cases` — leave `simp` for a two-branch term proof.
+    A `fin_cases a <;> fin_cases b <;> simp [varDef, totalValDef, asLabel] at h ⊢` over a
+    121-cell grid now dies as `(deterministic) timeout at transform`.  The timeout is a
+    SYMPTOM, not a resource problem: raising heartbeats in a throwaway probe exposes the real
+    error, `maximum recursion depth`, with `Possibly looping simp theorem: totalVal.eq_1 …
+    Possibly caused by: asLabel, dvd_refl, Nat.mod_mod_of_dvd`.  The set carries the
+    def-unfold `asLabel` while the same file has `@[simp] asLabel_val : asLabel point.val =
+    point` keyed on `asLabel` (class E); the unfolded `⟨n % 11, _⟩` then feeds
+    `Nat.mod_mod_of_dvd`/`dvd_refl` into a non-terminating rewrite.  Root cause B compounds
+    it, because `fin_cases` plus full `simp` leaves the variable matcher in `Fin`-numeral
+    form.  Per class AA the site must leave `simp` altogether rather than have its list
+    trimmed.  FIX — the grid has exactly two branch shapes, and both close term-mode:
+      fin_cases source <;> fin_cases center <;>
+        first
+          | exact (hsmall (by decide)).elim
+          | exact Iff.rfl
+    Cells that hit an explicit compact arm contradict `hsmall` by `decide` on a Nat literal;
+    the rest take the default arm, where both sides are defeq at default transparency and the
+    kernel re-checks every cell.  Only plain `decide` is used.  Applied in
+    Unique4P4DirectValuation/DirectIndexedAgreement and its mirror twin
+    Unique4P4MirrorValuation/MirrorIndexedAgreement.
+
+## Running the class-W sweep cheaply
+
+Do NOT re-derive the probe per file.  `scratchpad/sweep-probe.lean` holds the `run_cmd` that
+walks `env.constants.map₂` and runs `Lean.collectAxioms` on each constant, and
+`scratchpad/sweep.sh <module-path-relative-to-lean/>` appends it to a scratchpad copy, runs
+`lake env lean`, prints `SWEEP_RC` and `CLASSW checked=… offenders=…`, and deletes the copy.
+It was validated against the numbers a hand-written probe produced on the same modules.
+Read the result as: `offenders` naming only `*._native.native_decide.ax_*` constants and the
+theorems consuming them is the pre-existing native evidence, not a regression — confirm with
+`git show HEAD:<path> | grep -c native_decide` against the worktree count.  Any `sorryAx` at
+all is a real class-W finding.
