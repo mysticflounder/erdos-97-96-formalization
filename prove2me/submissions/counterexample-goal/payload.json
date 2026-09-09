@@ -1,0 +1,24 @@
+{
+  "schema": "prove2me-counterexample-goal/v1",
+  "host": "https://prove2.me/api/v1",
+  "platform_version": "0.9.8",
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "mission_description_path": "../../mission-description.md",
+  "theorem": {
+    "theorem_name": "Erdos9796Mission.problem97_counterexample_exists",
+    "theorem_title": "Counterexample to Erdős Problem 97",
+    "formal_statement": "theorem Erdos9796Mission.problem97_counterexample_exists :\n    ∃ A : Finset Erdos9796Mission.Plane,\n      A.Nonempty ∧\n        Erdos9796Mission.ConvexIndep (A : Set Erdos9796Mission.Plane) ∧\n        Erdos9796Mission.HasNEquidistantProperty 4 A := by sorry",
+    "natural_language_statement": "There is a nonempty finite set of points in strictly convex position in the Euclidean plane such that every point has at least four points of the set at one positive distance from it; the distance may depend on the point.",
+    "preamble": "import Definitions.Def_Erdos9796Mission",
+    "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/UniversalProblem97.lean#L24-L29",
+    "tags": [
+      "geometry",
+      "combinatorics"
+    ]
+  },
+  "milestone": {
+    "title": "Alternative resolution — construct a Problem 97 counterexample",
+    "milestone_description": "Construct a nonempty finite convex-independent set in the Euclidean plane for which every vertex has at least four other points at one positive distance, possibly a different distance at each vertex. This is the existential closure of the source predicate Problem97.IsCounterexample. A proof refutes Problem 97 and should also be submitted as a disproof of the mission's combined affirmative theorem.",
+    "sort_order": 8
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-counterexample-goal-20260908",
+  "owner": "codex-prove2me-counterexample-goal",
+  "base_head": "a46894f6078319d3001d06310531df50af0f6bbd",
+  "created_utc": "2026-09-09T01:26:18Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-counterexample-goal-20260908.json",
+    "prove2me/mission-description.md",
+    "prove2me/submissions/counterexample-goal/README.md",
+    "prove2me/submissions/counterexample-goal/Theorems/Thm_Erdos9796Mission_problem97_counterexample_exists.lean",
+    "prove2me/submissions/counterexample-goal/explanation.md",
+    "prove2me/submissions/counterexample-goal/payload.json",
+    "prove2me/submissions/counterexample-goal/receipt.json",
+    "prove2me/submissions/counterexample-goal/upload.py",
+    "prove2me/submissions/counterexample-goal/validation.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "manifest_sha256": "84c9ab3cfd05184cc4fba420bf630f95301d80ab6906a8c0c635bbf0dcff948f"
+}

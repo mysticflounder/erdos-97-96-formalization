@@ -1,0 +1,51 @@
+{
+  "digests": {
+    "../../mission-description.md": "9478e8c83c8d0747e279a9c66beb9518ea06946c1c220d2065600ac88e49959b",
+    "Theorems/Thm_Erdos9796Mission_problem97_counterexample_exists.lean": "99f76ca793e9f6d198030b2bbb7a74c3aef34b23b26ac693790bba75df9a49fb",
+    "explanation.md": "4b1b0aa6af8ea488002420a39995f7460c22e0da351bbb662a9d74ec176e6d51",
+    "payload.json": "a537a2cb02c7f3caa0ce2573eafa064a816562830357b1fd879f00eee480aafb"
+  },
+  "milestone": {
+    "completed": false,
+    "created_at": "2026-09-09T01:33:46.764443+00:00",
+    "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+    "id": "4361cbe8-9e80-464b-9962-4fcb0401fe5a",
+    "milestone_description": "Construct a nonempty finite convex-independent set in the Euclidean plane for which every vertex has at least four other points at one positive distance, possibly a different distance at each vertex. This is the existential closure of the source predicate Problem97.IsCounterexample. A proof refutes Problem 97 and should also be submitted as a disproof of the mission's combined affirmative theorem.",
+    "sort_order": 8,
+    "theorem": {
+      "id": "4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+      "status": "Open",
+      "theorem_name": "Erdos9796Mission.problem97_counterexample_exists"
+    },
+    "title": "Alternative resolution — construct a Problem 97 counterexample"
+  },
+  "mission_description": {
+    "patched": true,
+    "sha256": "9478e8c83c8d0747e279a9c66beb9518ea06946c1c220d2065600ac88e49959b"
+  },
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "publish_job": {
+    "created_at": "2026-09-09T01:33:18.962353+00:00",
+    "definitions": "import Definitions.Def_Erdos9796Mission",
+    "error_message": "",
+    "formal_statement": "theorem Erdos9796Mission.problem97_counterexample_exists :\n    ∃ A : Finset Erdos9796Mission.Plane,\n      A.Nonempty ∧\n        Erdos9796Mission.ConvexIndep (A : Set Erdos9796Mission.Plane) ∧\n        Erdos9796Mission.HasNEquidistantProperty 4 A := by sorry",
+    "id": "029b6713-b88e-46c4-bb11-d4040380a836",
+    "kind": "problem",
+    "natural_language_statement": "There is a nonempty finite set of points in strictly convex position in the Euclidean plane such that every point has at least four points of the set at one positive distance from it; the distance may depend on the point.",
+    "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/UniversalProblem97.lean#L24-L29",
+    "status": "PUBLISHED",
+    "tags": [
+      "geometry",
+      "combinatorics"
+    ],
+    "theorem_id": "4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+    "theorem_name": "Erdos9796Mission.problem97_counterexample_exists",
+    "theorem_title": "Counterexample to Erdős Problem 97",
+    "updated_at": "2026-09-09T01:33:44.639322+00:00",
+    "visibility": "public"
+  },
+  "schema": "prove2me-counterexample-goal-receipt/v1",
+  "theorem_id": "4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+  "theorem_name": "Erdos9796Mission.problem97_counterexample_exists",
+  "theorem_status": "Open"
+}

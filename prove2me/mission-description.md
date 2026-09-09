@@ -81,6 +81,20 @@ large-cardinality geometric step remains open, so both headline targets remain
 open. Finite computational certificates can support local cases but do not
 replace the universal geometric statement.
 
+# Counterexample route
+
+Problem 97 is open, so the mission also records the parallel negative route.
+The source formalization calls a nonempty convex-independent
+finite set with the four-equidistant property a
+[`Problem97.IsCounterexample`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/UniversalProblem97.lean#L24-L29).
+Constructing one such set would refute Problem 97 and therefore refute the
+mission's affirmative conjunction, regardless of whether Problem 96 remains
+true. The counterexample milestone keeps this resolution path visible beside
+the nonexistence proof. A successful witness must use exact coordinates or
+exact algebraic data from which Lean verifies both strict convex position and
+the four-equidistant property; a numerical approximation or a realizable
+incidence pattern alone is insufficient.
+
 # Formalization scope
 
 The canonical source is pinned at commit
@@ -113,7 +127,8 @@ supremum bound. The platform mission records those contracts and milestones;
 it does not claim to have transplanted their proof bodies.
 Planned milestones are the two canonical roots, their conditional bridge, the
 `|A| ≥ 9` count, the `n = 9` exclusion, the `|A| > 9` removable-vertex step,
-and the documented Danzer nine-point three-neighbor example.
+the documented Danzer nine-point three-neighbor example, and the parallel goal
+of constructing a Problem 97 counterexample.
 
 # References
 
