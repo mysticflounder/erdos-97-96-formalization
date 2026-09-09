@@ -208,7 +208,7 @@ theorem notMem_convexHull_diff_convexHull_of_notMem
   · set K := convexHull ℝ ((A : Set ℝ²) \ {a}) with hK
     have hKconv : Convex ℝ K := convex_convexHull _ _
     have hKclosed : IsClosed K := by
-      have hfin : ((A : Set ℝ²) \ {a}).Finite := Set.Finite.diff A.finite_toSet
+      have hfin : ((A : Set ℝ²) \ {a}).Finite := Set.Finite.sdiff A.finite_toSet
       exact (hfin.isCompact_convexHull ℝ).isClosed
     obtain ⟨f, u, hfu, hua⟩ := geometric_hahn_banach_closed_point hKconv hKclosed hnotin
     have hjoin : convexHull ℝ (A : Set ℝ²) = convexJoin ℝ {a} K := by

@@ -28,8 +28,8 @@ theorem ConvexIndep.exists_strict_supportingFunctional
     exact_mod_cast hx
   have hnotin : x ∉ convexHull ℝ ((A : Set ℝ²) \ {x}) := hA x hx'
   have hclosed : IsClosed (convexHull ℝ ((A : Set ℝ²) \ {x})) := by
-    have hfinite : ((A : Set ℝ²) \ {x}).Finite := Set.Finite.diff A.finite_toSet
-    exact hfinite.isCompact_convexHull.isClosed
+    have hfinite : ((A : Set ℝ²) \ {x}).Finite := Set.Finite.sdiff A.finite_toSet
+    exact (hfinite.isCompact_convexHull ℝ).isClosed
   have hconvex : Convex ℝ (convexHull ℝ ((A : Set ℝ²) \ {x})) :=
     convex_convexHull ℝ _
   obtain ⟨f, u, hfu, hux⟩ := geometric_hahn_banach_closed_point hconvex hclosed hnotin

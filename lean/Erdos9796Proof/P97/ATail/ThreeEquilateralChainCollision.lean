@@ -90,6 +90,7 @@ private theorem normalized_f_eq_c_of_three_equilateral_chain
     nlinarith only [hCA_CE_sq, hEC_ED_sq, hDy_sq]
   have hEfactor : E 1 * (E 1 - D 1) = 0 := by
     rw [hDx] at hEC_ED_sq
+    beta_reduce at *
     grobner
   have hEy : E 1 = D 1 := by
     rcases mul_eq_zero.mp hEfactor with hzero | heq

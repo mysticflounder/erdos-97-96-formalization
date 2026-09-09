@@ -295,23 +295,23 @@ noncomputable def ofSource
   · intro h
     apply P.uPhysical.source_ne_other
     apply E.boundary.index_injective
-    simpa [roleIndex, B1CardSixRole.value] using h
+    exact h
   · intro h
     apply P.vPhysical.source_ne_other
     apply E.boundary.index_injective
-    simpa [roleIndex, B1CardSixRole.value] using h
+    exact h
   · intro h
     apply P.commonCompletion.first_ne_second
     apply E.boundary.index_injective
-    simpa [roleIndex, B1CardSixRole.value] using h
+    exact h
   · intro h
     apply P.uCompletion.first_ne_second
     apply E.boundary.index_injective
-    simpa [roleIndex, B1CardSixRole.value] using h
+    exact h
   · intro h
     apply P.vCompletion.first_ne_second
     apply E.boundary.index_injective
-    simpa [roleIndex, B1CardSixRole.value] using h
+    exact h
 
 end B1CardSixPointConfigurationPayload
 end B1CardSixPointConfigurationIngress

@@ -148,7 +148,8 @@ private theorem apex_completion_alias_of_cell
   rw [P.uCompletion.complement_eq] at hapexCompletion
   have halias :
       S.oppApex2 = P.uL.1 ∨ S.oppApex2 = P.uR.1 := by
-    simpa only [Finset.mem_insert, Finset.mem_singleton] using hapexCompletion
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hapexCompletion
+    exact hapexCompletion
   rcases halias with hleft | hright
   · left
     apply Subtype.ext

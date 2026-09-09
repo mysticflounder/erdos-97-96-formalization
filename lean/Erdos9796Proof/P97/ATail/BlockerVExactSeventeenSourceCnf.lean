@@ -110,34 +110,34 @@ def atomVar : Atom → Nat
 def baseNumVars : Nat := 308
 
 /-- Every row has at most four hits. -/
-def rowAtMostFourClauses : Std.Sat.CNF Atom :=
+def rowAtMostFourClauses : List (Std.Sat.CNF.Clause Atom) :=
   labels.flatMap fun center =>
     (labels.sublistsLen 5).map fun points =>
       points.map fun point => neg (.hit center point)
 
 /-- Every row has at least four hits. -/
-def rowAtLeastFourClauses : Std.Sat.CNF Atom :=
+def rowAtLeastFourClauses : List (Std.Sat.CNF.Clause Atom) :=
   labels.flatMap fun center =>
     (labels.sublistsLen 14).map fun points =>
       points.map fun point => pos (.hit center point)
 
 /-- A center does not lie in its own positive-radius row. -/
-def centerNotMemClauses : Std.Sat.CNF Atom :=
+def centerNotMemClauses : List (Std.Sat.CNF.Clause Atom) :=
   labels.map fun center => [neg (.hit center center)]
 
 /-- Every carrier label is hit by at least one selected row. -/
-def coverClauses : Std.Sat.CNF Atom :=
+def coverClauses : List (Std.Sat.CNF.Clause Atom) :=
   labels.map fun point => labels.map fun center => pos (.hit center point)
 
 /-- Two distinct full circle rows have at most two common hits. -/
-def pairIntersectionClauses : Std.Sat.CNF Atom :=
+def pairIntersectionClauses : List (Std.Sat.CNF.Clause Atom) :=
   (unorderedPairs labels).flatMap fun centers =>
     (labels.sublistsLen 3).map fun points =>
       points.flatMap fun point =>
         [neg (.hit centers.1 point), neg (.hit centers.2 point)]
 
 /-- Exact distinguished-cap slice of each old row. -/
-def oldCapSliceClauses : Std.Sat.CNF Atom :=
+def oldCapSliceClauses : List (Std.Sat.CNF.Clause Atom) :=
   oldRows.flatMap fun row =>
     secondCapList.map fun point =>
       if point = oldFixedHit₁ row ∨ point = oldFixedHit₂ row then
@@ -146,46 +146,46 @@ def oldCapSliceClauses : Std.Sat.CNF Atom :=
         [neg (.hit (oldCenter row) point)]
 
 /-- Every outside label occurs in at least one old row. -/
-def oldOutsideAtLeastOneClauses : Std.Sat.CNF Atom :=
+def oldOutsideAtLeastOneClauses : List (Std.Sat.CNF.Clause Atom) :=
   outsideList.map fun point =>
     oldRows.map fun row => pos (.hit (oldCenter row) point)
 
 /-- Every outside label occurs in at most one old row. -/
-def oldOutsideAtMostOneClauses : Std.Sat.CNF Atom :=
+def oldOutsideAtMostOneClauses : List (Std.Sat.CNF.Clause Atom) :=
   outsideList.flatMap fun point =>
     (unorderedPairs oldRows).map fun rows =>
       [neg (.hit (oldCenter rows.1) point),
         neg (.hit (oldCenter rows.2) point)]
 
 /-- Exactly one label is chosen as the next-row center. -/
-def nextCenterChoiceClauses : Std.Sat.CNF Atom :=
+def nextCenterChoiceClauses : List (Std.Sat.CNF.Clause Atom) :=
   [labels.map fun center => pos (.nextCenter center)] ++
     (unorderedPairs labels).map (fun centers =>
       [neg (.nextCenter centers.1), neg (.nextCenter centers.2)])
 
 /-- The next center is not one of the four old centers. -/
-def nextCenterNotOldClauses : Std.Sat.CNF Atom :=
+def nextCenterNotOldClauses : List (Std.Sat.CNF.Clause Atom) :=
   oldRows.map fun row => [neg (.nextCenter (oldCenter row))]
 
 /-- The chosen next row contains the source label `11`. -/
-def nextSourceClauses : Std.Sat.CNF Atom :=
+def nextSourceClauses : List (Std.Sat.CNF.Clause Atom) :=
   labels.map fun center =>
     [neg (.nextCenter center), pos (.hit center 11)]
 
 /-- The chosen next row contains at most one physical-class label. -/
-def nextPhysicalClauses : Std.Sat.CNF Atom :=
+def nextPhysicalClauses : List (Std.Sat.CNF.Clause Atom) :=
   labels.flatMap fun center =>
     (unorderedPairs physicalList).map fun points =>
       [neg (.nextCenter center), neg (.hit center points.1),
         neg (.hit center points.2)]
 
 /-- Exactly one of the two source-forced named orders is selected. -/
-def namedOrderClauses : Std.Sat.CNF Atom :=
+def namedOrderClauses : List (Std.Sat.CNF.Clause Atom) :=
   [[pos (.namedOrder 0), pos (.namedOrder 1)],
     [neg (.namedOrder 0), neg (.namedOrder 1)]]
 
 /-- Lean-authoritative Boolean base formula for the source normal form. -/
-def baseCnf : Std.Sat.CNF Atom :=
+def baseCnf : Std.Sat.CNF Atom := ⟨(
   rowAtMostFourClauses ++
     rowAtLeastFourClauses ++
     centerNotMemClauses ++
@@ -198,7 +198,7 @@ def baseCnf : Std.Sat.CNF Atom :=
     nextCenterNotOldClauses ++
     nextSourceClauses ++
     nextPhysicalClauses ++
-    namedOrderClauses
+    namedOrderClauses).toArray⟩
 
 /-- Signed DIMACS literal corresponding to a proof-facing literal. -/
 def litToDimacs : Lit → Int
@@ -207,7 +207,7 @@ def litToDimacs : Lit → Int
 
 /-- Deterministic DIMACS clause list rendered from `baseCnf`. -/
 def baseDimacs : List (List Int) :=
-  baseCnf.map fun clause => clause.map litToDimacs
+  baseCnf.clauses.toList.map fun clause => clause.map litToDimacs
 
 /-- Canonical DIMACS text produced from the checked clause list. -/
 def dimacsString : String :=
@@ -561,9 +561,9 @@ theorem sourceAssign_namedOrder (model : SourceModel) :
 Lean-authoritative Boolean base formula. -/
 theorem sourceAssign_baseCnf (model : SourceModel) :
     Std.Sat.CNF.eval (sourceAssign model) baseCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [Std.Sat.CNF.eval, Array.all_eq_true_iff_forall_mem]
   intro clause hclause
-  simp only [baseCnf, List.mem_append] at hclause
+  simp only [baseCnf, List.mem_toArray, List.mem_append] at hclause
   rcases hclause with hclause | h₁₃
   · rcases hclause with hclause | h₁₂
     · rcases hclause with hclause | h₁₁
@@ -613,7 +613,7 @@ theorem atomVar_regression :
 set_option maxHeartbeats 1000000 in
 -- Native normalization of the 209,692-clause list needs a larger local budget.
 /-- Exact clause-count anchor for the checked base formula. -/
-theorem baseCnf_clause_count : baseCnf.length = 209692 := by
+theorem baseCnf_clause_count : baseCnf.clauses.size = 209692 := by
   native_decide
 
 end ATailBlockerVExactSeventeenSourceCnf

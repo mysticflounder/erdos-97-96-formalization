@@ -164,19 +164,19 @@ theorem edgeChoice_positive_of_check
 /-- The source-role witness is visible in the blocker-0 provider row. -/
 theorem sourceRole_s0_mem_c0 (I : Input) :
     I.sourceRole.s0 ∈ I.providerPattern.supportOf .c0 := by
-  simpa [Input.providerPattern, Exact13RawProviderPattern] using
+  simp only [Input.providerPattern, Exact13RawProviderPattern]; exact
     I.sourceRole.s0_mem_C0
 
 /-- The source-role witness is visible in the blocker-1 provider row. -/
 theorem sourceRole_s1_mem_c1 (I : Input) :
     I.sourceRole.s1 ∈ I.providerPattern.supportOf .c1 := by
-  simpa [Input.providerPattern, Exact13RawProviderPattern] using
+  simp only [Input.providerPattern, Exact13RawProviderPattern]; exact
     I.sourceRole.s1_mem_C1
 
 /-- The deleted source-role label is visible in the first-apex provider row. -/
 theorem sourceRole_d_mem_t (I : Input) :
     I.sourceRole.d ∈ I.providerPattern.supportOf .t := by
-  simpa [Input.providerPattern, Exact13RawProviderPattern] using
+  simp only [Input.providerPattern, Exact13RawProviderPattern]; exact
     I.sourceRole.d_mem_firstApex
 
 /-- The complete provider pattern is realized by the source-faithful finite

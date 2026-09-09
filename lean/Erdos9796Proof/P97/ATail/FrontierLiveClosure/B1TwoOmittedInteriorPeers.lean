@@ -41,7 +41,7 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
   interval_cases i <;>
     simp [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius rho : ℝ}
   {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

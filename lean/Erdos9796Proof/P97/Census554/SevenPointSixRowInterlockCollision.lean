@@ -70,6 +70,7 @@ private theorem normalized_sevenPointSixRowInterlockCollision_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hPQ_PU_sq hQP_QT_sq hQP_QB_sq hTP_TQ_sq hUP_UT_sq hUP_UV_sq hUP_UA_sq
       hVQ_VA_sq hVQ_VB_sq hAP_AV_sq hAP_AB_sq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The eleven distance relations are inconsistent when the two anchors are distinct. -/

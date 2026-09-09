@@ -205,7 +205,8 @@ theorem diagnosticConfiguration_sourceTheory :
               diagnosticConfiguration, diagnosticAssignment, diagnosticSame,
               diagnosticHasFourAfterDeleting, diagnosticIncident,
               decide_eq_true_eq] at hdeleted hcenter ⊢
-            rw [hdeleted, hcenter]
+            simp only [hdeleted, hcenter]
+            rfl
           blocked_deletion_nonrobust := by decide
           nonrobust_congr := by decide }
       seed_same_iff_eq := by decide
@@ -288,13 +289,13 @@ theorem diagnosticConfiguration_qFiberThreeBoundaryConstraint :
   · intro fanIndex freshSlot _ hsame
     exfalso
     exact diagnostic_fan_fresh_slots_separated fanIndex freshSlot <| by
-      simpa [freshThirdQFiberThreeFreshSlot,
-        freshThirdPinnedEndpointOutsideSeedRowSlot] using hsame
+      simp only [freshThirdQFiberThreeFreshSlot,
+        freshThirdPinnedEndpointOutsideSeedRowSlot]; exact hsame
   · intro fanIndex hsame
     exfalso
     exact diagnostic_fan_fresh_slots_separated fanIndex 2 <| by
-      simpa [freshThirdQFiberThreeFreshSlot,
-        freshThirdPinnedEndpointOutsideSeedRowSlot] using hsame
+      simp only [freshThirdQFiberThreeFreshSlot,
+        freshThirdPinnedEndpointOutsideSeedRowSlot]; exact hsame
 
 /-- The diagnostic model also satisfies the exact two-circle overlap bound
 for every pair of visible rows.  In particular, the strengthened query still

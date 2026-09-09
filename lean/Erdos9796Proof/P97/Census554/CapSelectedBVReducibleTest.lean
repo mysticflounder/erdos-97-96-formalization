@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Mathlib.Tactic
+import Std.Tactic.BVDecide
 
 private abbrev colorAt (bits : BitVec 10) (offset : Nat) : BitVec 2 :=
   bits.extractLsb' offset 2
@@ -17,4 +18,5 @@ private abbrev hasDuplicate (bits : BitVec 10) : Bool :=
   colorAt bits 4 == colorAt bits 8 || colorAt bits 6 == colorAt bits 8
 
 example (bits : BitVec 10) : hasDuplicate bits = true := by
+  simp only [hasDuplicate, colorAt]
   bv_decide

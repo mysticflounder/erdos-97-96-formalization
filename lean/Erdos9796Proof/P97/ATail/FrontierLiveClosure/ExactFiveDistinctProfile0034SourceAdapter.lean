@@ -245,14 +245,14 @@ theorem ExactFiveDistinctThreeCenterNormalForm.deleted_ne_secondApex
     rcases N.orientation with horient | horient
     · simpa only [horient.1] using
         (Finset.mem_inter.mp R.interior.w_mem_interior).2
-    · simpa only [horient.1] using
+    · simp only [horient.1]; exact
         (Finset.mem_inter.mp R.interior.q_mem_interior).2
   have happ :
       S.oppositeVertexByIndex S.oppIndex2 = S.oppApex2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
       simp [SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex2, SurplusCapPacket.oppApex2, hi]
+        SurplusCapPacket.oppIndex2, SurplusCapPacket.oppApex2, hi] <;> rfl
   simpa only [happ] using
     (S.capInteriorByIndex_ne_oppositeVertexByIndex_of_mem
       (j := S.oppIndex2) hdeletedInterior)

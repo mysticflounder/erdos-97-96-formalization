@@ -70,6 +70,7 @@ private theorem normalized_sevenPointSixRowAnchorCollision_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hPU_PQ_sq hPV_PQ_sq hPA_PQ_sq hQT_QP_sq hQA_QP_sq hQB_QP_sq hTQ_TP_sq
       hUT_UP_sq hUV_UP_sq hVB_VQ_sq hBA_BP_sq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The eleven distance relations force the two anchor points to coincide. -/

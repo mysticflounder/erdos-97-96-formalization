@@ -58,17 +58,17 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi] <;> rfl
 
 private theorem oppApex1_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusCap,
-      SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
-  · simpa [SurplusCapPacket.surplusCap,
-      SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
+  · simp only [SurplusCapPacket.surplusCap,
+      SurplusCapPacket.oppApex1, hi]; exact S.partition.v2_mem_C1
+  · simp only [SurplusCapPacket.surplusCap,
+      SurplusCapPacket.oppApex1, hi]; exact S.partition.v3_mem_C2
   · simpa [SurplusCapPacket.surplusCap,
       SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
 
@@ -147,7 +147,7 @@ theorem frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two
     (H.selectedAt F.pair.q F.pair.q_mem_A).toSelectedFourClass
   have hinter := SelectedFourClass.inter_card_le_two K₂ Kq
     R.packet.actual_blocker_ne_center₂.symm
-  simpa [K₂, Kq] using hinter
+  exact hinter
 
 /-- Exact failure of confinement to the marginal/actual-support union. -/
 theorem frontierCommonDeletionResidual_exists_secondRow_offConfinement_point
@@ -168,7 +168,7 @@ theorem frontierCommonDeletionResidual_exists_secondRow_offConfinement_point
   let T := (D.A.filter fun x ↦ dist x S.oppApex1 = radius) \
     S.surplusCap
   have hinterKq : (R.packet.B₂ ∩ Kq.support).card ≤ 2 := by
-    simpa [Kq] using
+    simp only [Kq]; exact
       frontierCommonDeletionResidual_secondRow_inter_actualSupport_card_le_two R
   have hdiff : 2 ≤ (R.packet.B₂ \ Kq.support).card := by
     have hsplit :

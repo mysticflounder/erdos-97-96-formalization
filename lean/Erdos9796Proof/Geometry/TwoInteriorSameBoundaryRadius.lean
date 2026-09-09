@@ -37,7 +37,7 @@ theorem exists_strict_separating_vector_from_finite_convexHull
     {S : Set ℝ²} (hS : S.Finite) {p : ℝ²}
     (hp : p ∉ convexHull ℝ S) :
     ∃ w : ℝ², ∀ q ∈ convexHull ℝ S, 0 < ⟪w, p - q⟫_ℝ := by
-  have hcompact : IsCompact (convexHull ℝ S) := hS.isCompact_convexHull
+  have hcompact : IsCompact (convexHull ℝ S) := hS.isCompact_convexHull ℝ
   have hconvex : Convex ℝ (convexHull ℝ S) := convex_convexHull ℝ S
   obtain ⟨f, u, v, hfp, huv, hfS⟩ :=
     geometric_hahn_banach_compact_closed

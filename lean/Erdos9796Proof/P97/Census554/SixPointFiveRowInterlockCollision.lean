@@ -64,6 +64,7 @@ private theorem normalized_sixPointFiveRowInterlockCollision_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hQP_QT_sq hTP_TQ_sq hTP_TV_sq hTP_TA_sq hUQ_UT_sq hUQ_UV_sq hVQ_VU_sq
       hVQ_VA_sq hAT_AU_sq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The nine distance relations force the two anchor points to coincide. -/

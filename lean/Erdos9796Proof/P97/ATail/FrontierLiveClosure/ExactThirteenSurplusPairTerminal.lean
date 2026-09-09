@@ -59,8 +59,8 @@ private def unitTerm (a b c d : Fin 13) (form : KalmansonForm) :
 private theorem oneTerm_check (a b c d : Fin 13) (form : KalmansonForm)
     (hab : a < b) (hbc : b < c) (hcd : c < d) :
     (unitTerm a b c d form).check = true := by
-  simp only [WeightedKalmansonTerm.check, unitTerm, decide_eq_true_eq]
-  exact ⟨hab, hbc, hcd, by decide⟩
+  simp only [WeightedKalmansonTerm.check, unitTerm]
+  exact decide_eq_true ⟨hab, hbc, hcd, by decide⟩
 
 private theorem false_of_one_surplusTerm
     {A : Finset ℝ²} (hA : ConvexIndep A)

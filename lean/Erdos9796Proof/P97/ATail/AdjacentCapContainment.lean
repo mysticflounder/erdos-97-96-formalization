@@ -54,14 +54,14 @@ theorem eq_oppositeVertexByIndex_of_mem_adjacentCaps
     have h := S.partition.nonmoser_in_one x hxA hx
     fin_cases i <;>
       simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
-        capByIndex] at hL hR <;>
+        capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two] at hL hR <;>
       simp only [hL, hR, if_true] at h <;>
       split_ifs at h <;> omega
   simp only [MoserTriangle.verts, Finset.mem_insert,
     Finset.mem_singleton] at hverts
   fin_cases i <;>
     simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
-      capByIndex] at hL hR <;>
+      capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two] at hL hR <;>
     simp only [oppositeVertexByIndex] <;>
     rcases hverts with rfl | rfl | rfl
   · rfl

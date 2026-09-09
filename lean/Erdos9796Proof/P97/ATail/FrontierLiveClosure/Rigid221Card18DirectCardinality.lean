@@ -38,20 +38,20 @@ def trueSetCard (sigma : Nat → Bool) (xs : List Nat) : Nat :=
 private def clauseOf (polarity : Bool) (ys : List Nat) : Std.Sat.CNF.Clause Nat :=
   ys.map fun v ↦ (v, polarity)
 
-private def subsetClauses (xs : List Nat) (r : Nat) (polarity : Bool) : Std.Sat.CNF Nat :=
+private def subsetClauses (xs : List Nat) (r : Nat) (polarity : Bool) : List (Std.Sat.CNF.Clause Nat) :=
   (subsetsOfCard xs r).map (clauseOf polarity)
 
 /-- Forbid every all-true subset of size `k + 1`. -/
-def atMostClauses (xs : List Nat) (k : Nat) : Std.Sat.CNF Nat :=
+def atMostClauses (xs : List Nat) (k : Nat) : List (Std.Sat.CNF.Clause Nat) :=
   subsetClauses xs (k + 1) false
 
 /-- Require a true variable in every subset of size `m - k + 1`, or emit false if `k > m`. -/
-def atLeastClauses (xs : List Nat) (k : Nat) : Std.Sat.CNF Nat :=
+def atLeastClauses (xs : List Nat) (k : Nat) : List (Std.Sat.CNF.Clause Nat) :=
   let m := (variableUniverse xs).length
   if k ≤ m then subsetClauses xs (m - k + 1) true else [[]]
 
 /-- Exact cardinality is the conjunction of the direct at-most and at-least formulas. -/
-def cardEqClauses (xs : List Nat) (k : Nat) : Std.Sat.CNF Nat :=
+def cardEqClauses (xs : List Nat) (k : Nat) : List (Std.Sat.CNF.Clause Nat) :=
   atMostClauses xs k ++ atLeastClauses xs k
 
 @[simp] theorem variableUniverse_toFinset (xs : List Nat) :
@@ -98,9 +98,9 @@ private theorem eval_clauseOf_iff (sigma : Nat → Bool) (polarity : Bool) (ys :
 
 private theorem eval_subsetClauses_iff (sigma : Nat → Bool) (xs : List Nat)
     (r : Nat) (polarity : Bool) :
-    Std.Sat.CNF.eval sigma (subsetClauses xs r polarity) = true ↔
+    (subsetClauses xs r polarity).all (Std.Sat.CNF.Clause.eval sigma) = true ↔
       ∀ ys ∈ subsetsOfCard xs r, ∃ v ∈ ys, sigma v = polarity := by
-  simp [subsetClauses, Std.Sat.CNF.eval, eval_clauseOf_iff]
+  simp [subsetClauses, eval_clauseOf_iff]
 
 private theorem trueSetCard_eq_filter_length (sigma : Nat → Bool) (xs : List Nat) :
     trueSetCard sigma xs = ((variableUniverse xs).filter sigma).length := by
@@ -109,7 +109,7 @@ private theorem trueSetCard_eq_filter_length (sigma : Nat → Bool) (xs : List N
   simp
 
 private theorem eval_atMostClauses_iff_set (sigma : Nat → Bool) (xs : List Nat) (k : Nat) :
-    Std.Sat.CNF.eval sigma (atMostClauses xs k) = true ↔ trueSetCard sigma xs ≤ k := by
+    (atMostClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true ↔ trueSetCard sigma xs ≤ k := by
   rw [atMostClauses, eval_subsetClauses_iff, trueSetCard_eq_filter_length]
   constructor
   · intro hEval
@@ -139,7 +139,7 @@ private theorem eval_atMostClauses_iff_set (sigma : Nat → Bool) (xs : List Nat
 
 private theorem eval_atLeastClauses_iff_set (sigma : Nat → Bool) (xs : List Nat) (k : Nat)
     (hk : k ≤ (variableUniverse xs).length) :
-    Std.Sat.CNF.eval sigma (atLeastClauses xs k) = true ↔
+    (atLeastClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true ↔
       k ≤ trueSetCard sigma xs := by
   simp only [atLeastClauses, hk, if_pos]
   rw [eval_subsetClauses_iff, trueSetCard_eq_filter_length]
@@ -190,21 +190,21 @@ private theorem eval_atLeastClauses_iff_set (sigma : Nat → Bool) (xs : List Na
 /-- The direct negative-subset formula characterizes the at-most bound in both directions. -/
 theorem eval_atMostClauses_iff {sigma : Nat → Bool} {xs : List Nat} {k : Nat}
     (_hxs : xs.Nodup) (_hk : k ≤ xs.length) :
-    Std.Sat.CNF.eval sigma (atMostClauses xs k) = true ↔ trueSetCard sigma xs ≤ k := by
+    (atMostClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true ↔ trueSetCard sigma xs ≤ k := by
   exact eval_atMostClauses_iff_set sigma xs k
 
 /-- The direct positive-subset formula characterizes the at-least bound in both directions. -/
 theorem eval_atLeastClauses_iff {sigma : Nat → Bool} {xs : List Nat} {k : Nat}
     (hxs : xs.Nodup) (hk : k ≤ xs.length) :
-    Std.Sat.CNF.eval sigma (atLeastClauses xs k) = true ↔ k ≤ trueSetCard sigma xs := by
+    (atLeastClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true ↔ k ≤ trueSetCard sigma xs := by
   apply eval_atLeastClauses_iff_set
   simpa [List.toFinset_card_of_nodup hxs] using hk
 
 /-- Appending both direct formulas characterizes exact cardinality in both directions. -/
 theorem eval_cardEqClauses_iff {sigma : Nat → Bool} {xs : List Nat} {k : Nat}
     (hxs : xs.Nodup) (hk : k ≤ xs.length) :
-    Std.Sat.CNF.eval sigma (cardEqClauses xs k) = true ↔ trueSetCard sigma xs = k := by
-  simp only [cardEqClauses, Std.Sat.CNF.eval_append, Bool.and_eq_true]
+    (cardEqClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true ↔ trueSetCard sigma xs = k := by
+  simp only [cardEqClauses, List.all_append, Bool.and_eq_true]
   rw [eval_atMostClauses_iff hxs hk, eval_atLeastClauses_iff hxs hk]
   omega
 
@@ -370,21 +370,21 @@ theorem duplicate_cardEq_excessive_check : cardEqClauses [2, 1, 2] 3 = [[]] := b
 /-- The false formula produced by an excessive at-least request evaluates to false. -/
 theorem eval_atLeastClauses_eq_false_of_card_lt (sigma : Nat → Bool) {xs : List Nat}
     {k : Nat} (h : (variableUniverse xs).length < k) :
-    Std.Sat.CNF.eval sigma (atLeastClauses xs k) = false := by
+    (atLeastClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = false := by
   rw [atLeastClauses_eq_falseFormula_of_card_lt h]
   rfl
 
 /-- The false formula produced by an excessive exact request evaluates to false. -/
 theorem eval_cardEqClauses_eq_false_of_card_lt (sigma : Nat → Bool) {xs : List Nat}
     {k : Nat} (h : (variableUniverse xs).length < k) :
-    Std.Sat.CNF.eval sigma (cardEqClauses xs k) = false := by
+    (cardEqClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = false := by
   rw [cardEqClauses_eq_falseFormula_of_card_lt h]
   rfl
 
 /-- An at-most request at or above the universe size evaluates to true under every assignment. -/
 theorem eval_atMostClauses_eq_true_of_card_le (sigma : Nat → Bool) {xs : List Nat}
     {k : Nat} (h : (variableUniverse xs).length ≤ k) :
-    Std.Sat.CNF.eval sigma (atMostClauses xs k) = true := by
+    (atMostClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true := by
   rw [atMostClauses_eq_nil_of_card_le h]
   rfl
 
