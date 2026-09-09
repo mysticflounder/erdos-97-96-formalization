@@ -86,8 +86,8 @@ private noncomputable def redesignateFirstOppCapAsSurplus
       lt_of_lt_of_le (by omega) Q.firstOppCap_card_ge_six
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi]
-        using hgt
+      (simp only [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi] at hgt ⊢;
+       exact hgt)
 
 @[simp] private theorem redesignateFirstOppCapAsSurplus_oppCap1
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -99,8 +99,8 @@ private noncomputable def redesignateFirstOppCapAsSurplus
     (redesignateFirstOppCapAsSurplus Q).oppCap1 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [redesignateFirstOppCapAsSurplus, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi]
+    simp only [redesignateFirstOppCapAsSurplus, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi] <;> rfl
 
 /-- The exact-five residual closes after redesignating the first opposite cap
 as surplus. A fresh common-deletion parent would force the old exact-five cap
@@ -153,8 +153,8 @@ private noncomputable def redesignateSecondOppCapAsSurplus
       lt_of_lt_of_le (by omega) L.secondOppCap_card_ge_six
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi]
-        using hgt
+      (simp only [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi] at hgt ⊢;
+       exact hgt)
 
 @[simp] private theorem redesignateSecondOppCapAsSurplus_oppCap1
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -166,8 +166,8 @@ private noncomputable def redesignateSecondOppCapAsSurplus
     (redesignateSecondOppCapAsSurplus L).oppCap1 = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [redesignateSecondOppCapAsSurplus, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap1, SurplusCapPacket.surplusCap, hi]
+    simp only [redesignateSecondOppCapAsSurplus, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap1, SurplusCapPacket.surplusCap, hi] <;> rfl
 
 /-- On the large-opposite-caps branch the surplus cap carries at least six
 points as well, so all three caps are large.  Redesignating the second opposite
@@ -243,8 +243,8 @@ noncomputable def redesignateFirstOppCapAsSurplusAtAllLarge
       lt_of_lt_of_le (by omega) L.firstOppCap_card_ge_six
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi]
-        using hgt
+      (simp only [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi] at hgt ⊢;
+       exact hgt)
 
 /-- The rotated packet carries the original surplus apex in its *second*
 opposite role.  This is what makes the rotation informative: a fresh
@@ -260,9 +260,9 @@ Moser apex the bi-apex residual says nothing about. -/
     (redesignateFirstOppCapAsSurplusAtAllLarge L).oppApex2 = S.surplusApex := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [redesignateFirstOppCapAsSurplusAtAllLarge,
+    simp only [redesignateFirstOppCapAsSurplusAtAllLarge,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex2,
-      SurplusCapPacket.surplusApex, hi]
+      SurplusCapPacket.surplusApex, hi] <;> rfl
 
 /-- The same rotation carries the original *second* opposite apex into the
 first opposite role, so the fresh parent's first-apex dichotomy reports on
@@ -277,9 +277,9 @@ first opposite role, so the fresh parent's first-apex dichotomy reports on
     (redesignateFirstOppCapAsSurplusAtAllLarge L).oppApex1 = S.oppApex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [redesignateFirstOppCapAsSurplusAtAllLarge,
+    simp only [redesignateFirstOppCapAsSurplusAtAllLarge,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1,
-      SurplusCapPacket.oppApex2, hi]
+      SurplusCapPacket.oppApex2, hi] <;> rfl
 
 
 /-- A canonical critical shell whose blocker is already localized in one
@@ -582,8 +582,8 @@ private theorem oppApex1_mem_A_for_reverseHit
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 /-- The first opposite apex is outside the closed cap indexed by
@@ -593,12 +593,15 @@ private theorem oppApex1_not_mem_capByIndex_oppIndex1_for_reverseHit
     S.oppApex1 ∉ S.capByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.capByIndex, hi] using S.partition.v2_notin_C2
-  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.capByIndex, hi] using S.partition.v3_notin_C3
-  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.capByIndex, hi] using S.partition.v1_notin_C1
+  · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two,
+      hi] using S.partition.v2_notin_C2
+  · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two,
+      hi] using S.partition.v3_notin_C3
+  · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two,
+      hi] using S.partition.v1_notin_C1
 
 /-- In the reverse-hit arm, the first apex and the reverse blocker are on
 opposite sides of the retained-source chord.  Their two equal-distance
@@ -3937,6 +3940,7 @@ theorem endpointFresh_sharedBlocker_fourth_packet
     rw [hs, hLsingleton]
     ext x
     simp [named]
+    tauto
   have hLmem : L ∈ KA.support := by
     rw [hSupport]
     simp
@@ -4138,9 +4142,9 @@ theorem endpointFresh_frontierRadiusClass_inter_leftAdjacentCap_eq_singleton
       S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.oppApex1,
+      simp only [SurplusCapPacket.oppApex1,
         SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, hi]
+        SurplusCapPacket.oppIndex1, hi] <;> rfl
   have hsingletonSub :
       ({Q.J} : Finset ℝ²) ⊆
         SelectedClass D.A S.oppApex1 radius ∩
@@ -4177,9 +4181,9 @@ theorem endpointFresh_frontierRadiusClass_inter_rightAdjacentCap_eq_singleton
       S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.oppApex1,
+      simp only [SurplusCapPacket.oppApex1,
         SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, hi]
+        SurplusCapPacket.oppIndex1, hi] <;> rfl
   have hsingletonSub :
       ({Q.J} : Finset ℝ²) ⊆
         SelectedClass D.A S.oppApex1 radius ∩
@@ -4626,9 +4630,9 @@ theorem endpointFresh_d44_deletedRows_of_card_eq_fifteen
       S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.oppApex1,
+      simp only [SurplusCapPacket.oppApex1,
         SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, hi]
+        SurplusCapPacket.oppIndex1, hi] <;> rfl
   let deletedAtM :=
     ATailFiveCenterDeletionBoundary.qDeletedK4ClassToSelectedFourClass
       O.packet.row₁ O.packet.B₁_card
