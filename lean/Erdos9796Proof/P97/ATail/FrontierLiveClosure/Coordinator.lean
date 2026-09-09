@@ -113,9 +113,9 @@ theorem false_of_exactFourCollision_interior_eq_two_secondRadius_and_all_low_hit
       S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.oppApex1,
+      simp only [SurplusCapPacket.oppApex1,
         SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, hi]
+        SurplusCapPacket.oppIndex1, hi] <;> rfl
   have hρtwo :
       2 ≤
         (SelectedClass D.A S.oppApex1 ρ ∩
