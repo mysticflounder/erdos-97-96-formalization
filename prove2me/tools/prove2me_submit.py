@@ -380,8 +380,8 @@ def load_plan(path: Path) -> LoadedPlan:
             _required_string(data, "mission_description", "plan"),
             "plan.mission_description",
         )
-        mission_description = description_path.read_text(encoding="utf-8").strip()
-        if not mission_description:
+        mission_description = description_path.read_text(encoding="utf-8")
+        if not mission_description.strip():
             raise SubmissionError("mission description is empty")
         artifacts[str(description_path.relative_to(root))] = _sha256(description_path.read_bytes())
     if (milestones or mission_description is not None) and not isinstance(

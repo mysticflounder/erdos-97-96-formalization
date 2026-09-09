@@ -161,6 +161,21 @@ receipt = "receipt.json"
         load_plan(plan_path)
 
 
+def test_mission_description_preserves_exact_file_text(tmp_path: Path) -> None:
+    plan_path = write_plan(tmp_path)
+    (tmp_path / "mission.md").write_text("Mission text.\n", encoding="utf-8")
+    plan_text = plan_path.read_text(encoding="utf-8").replace(
+        'receipt = "receipt.json"\n',
+        'receipt = "receipt.json"\nmission_id = "mission-1"\n'
+        'mission_description = "mission.md"\n',
+    )
+    plan_path.write_text(plan_text, encoding="utf-8")
+
+    loaded = load_plan(plan_path)
+
+    assert loaded.mission_description == "Mission text.\n"
+
+
 def test_multipart_encoding_is_deterministic_and_sorted() -> None:
     fields = {
         "theorem_id": "theorem-1",
