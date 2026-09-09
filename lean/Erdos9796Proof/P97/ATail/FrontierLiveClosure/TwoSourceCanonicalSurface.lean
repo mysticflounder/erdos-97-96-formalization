@@ -50,9 +50,9 @@ private theorem oppApex1_mem_A_local {A : Finset ℝ²} (S : SurplusCapPacket A)
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 /-- Standalone helper for cyclic alternation separation on a collision pair. -/
 private theorem collision_btw_sep
@@ -231,7 +231,7 @@ theorem actualBlockerFiber_filter_capByIndex_card_le_two
   have hcapTwo :
       ((H.selectedAt anchor.1 anchor.2).toCriticalFourShell.support ∩
         S.capByIndex i).card ≤ 2 := by
-    simpa using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex i
         (H.selectedAt anchor.1
@@ -363,7 +363,7 @@ theorem freshThird_commonRadius_sameBlocker_selectedShell_inter_canonicalCap_eq_
       ((H.selectedAt Q.source₁.1
           Q.source₁.2).toCriticalFourShell.support ∩
         S.capByIndex S.oppIndex1).card ≤ 2 := by
-    simpa using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex1
         (H.selectedAt Q.source₁.1
