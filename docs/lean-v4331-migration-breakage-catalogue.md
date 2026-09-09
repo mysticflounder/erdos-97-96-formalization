@@ -446,6 +446,49 @@ FIX — delete the tactic.  Every one of those sites was closed by a bare `exact
 which is exactly what `exact` uses and what `simpa` no longer does.  Do not reach for a
 `show` with the private name; it is not in scope.
 
+## AN — the standard repair for a root-cause-A `simpa`, and when each variant fails
+
+By build 45 the tail was almost entirely root cause A, and three repairs cover it.  Try them
+in this order; each is strictly weaker than the one before in what it assumes.
+
+1. `exact T`.  Correct when the erased simp set held only `let` names and structure
+   projections, which `exact` unfolds at default transparency anyway.  If a `simp only` is
+   left in front of it, v4.33.1 now ERRORS with `simp made no progress` — delete it.
+2. `simp only [<same set>]` then `exact T`.  Correct when the simp set does real rewriting on
+   the GOAL.  This is the default choice; it keeps every rewrite the original had and moves
+   only the final unification back to default transparency.
+3. `simp only [<same set>] at h ⊢` then `exact h`.  Needed when the term is a HYPOTHESIS the
+   original `simpa` was also simplifying.  Variant 2 silently compares a simplified goal
+   against an unsimplified hypothesis and fails with a mismatch that looks identical to the
+   original one — the tell that you need `at h ⊢`.
+
+A fourth case resists all three: the site sits in ARGUMENT position, `f (by simpa using h)`,
+and the gap is a single projection.  Deleting the `by simpa` is wrong there, because the raw
+hypothesis has not had the default simp set applied to its other side.  Add the projection's
+def to the ORIGINAL `simpa` instead — for example
+`simpa [CriticalShellSystem.blockerVertex] using hsurplus`.  Before unfolding anything by
+hand, check whether the two sides are related by a THEOREM rather than by definition:
+`S.surplusApex` and `S.oppositeVertexByIndex S.surplusIdx` are not defeq, and every copy of
+the bridging lemma in this repository is `private` to some other module.
+
+scratchpad/repair_simpa.py performs variant 2 for the single-line form, driven by the build
+log so it only touches lines the build actually reported.  The multi-line form and the
+argument-position form still need a hand edit.
+
+## AO — `List.map_map` leaves a composition that no longer beta-reduces
+
+`simpa only [… , List.map_map] using …` in FrontierLiveClosure/Balanced555FiniteFormula broke
+with the two sides reading `fun atom ↦ encodeSelectedLiteral (atom, false)` and
+`encodeSelectedLiteral ∘ fun atom ↦ (atom, false)`.  v4.27 beta-reduced the composition back;
+v4.33.1 leaves it.  FIX — add `Function.comp_def` to the simp set.
+
+## AP — `simp` that used to close a goal now leaves a disjunct permutation
+
+In FrontierLiveClosure/TriApexEndpointRetainedOmission `hSupport`, `simp [named]` used to
+finish and now stops at `x = C ∨ x = K ∨ x = L ∨ x = J ↔ x = C ∨ x = K ∨ x = J ∨ x = L`.
+Nothing is wrong with the simp set; the goal is a pure reordering.  FIX — follow it with
+`tauto`.  Do not add `or_comm`/`or_assoc` to the simp set, which loops.
+
 ## Running the class-W sweep cheaply
 
 Do NOT re-derive the probe per file.  `scratchpad/sweep-probe.lean` holds the `run_cmd` that
