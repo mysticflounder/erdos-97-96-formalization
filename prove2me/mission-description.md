@@ -81,7 +81,7 @@ large-cardinality geometric step remains open, so both headline targets remain
 open. Finite computational certificates can support local cases but do not
 replace the universal geometric statement.
 
-# Counterexample route
+# Counterexample routes
 
 Problem 97 is open, so the mission also records the parallel negative route.
 The source formalization calls a nonempty convex-independent
@@ -94,6 +94,15 @@ the nonexistence proof. A successful witness must use exact coordinates or
 exact algebraic data from which Lean verifies both strict convex position and
 the four-equidistant property; a numerical approximation or a realizable
 incidence pattern alone is insufficient.
+
+Problem 96 has its own negative route. Because its claim is asymptotic, one
+finite convex configuration cannot refute it. A counterexample must instead
+give convex-independent point sets at arbitrarily large cardinalities whose
+unit-distance counts exceed every proposed linear constant. The mission tracks
+this superlinear-family statement separately, together with a reduction from
+it to the exact negation of Problem 96. This keeps both possible outcomes
+visible: a direct or Problem-97-derived linear upper bound, and an explicit
+family proving that no such bound exists.
 
 # Formalization scope
 
@@ -127,8 +136,9 @@ supremum bound. The platform mission records those contracts and milestones;
 it does not claim to have transplanted their proof bodies.
 Planned milestones are the two canonical roots, their conditional bridge, the
 `|A| ≥ 9` count, the `n = 9` exclusion, the `|A| > 9` removable-vertex step,
-the documented Danzer nine-point three-neighbor example, and the parallel goal
-of constructing a Problem 97 counterexample.
+the documented Danzer nine-point three-neighbor example, the parallel goal of
+constructing a Problem 97 counterexample, and the superlinear-family route to
+a counterexample to Problem 96.
 
 # References
 

@@ -1,0 +1,52 @@
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/p96-negative-route/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+mission_description = "mission-description.md"
+
+[[theorem]]
+name = "Erdos9796Mission.problem96"
+title = "Erdős Problem 96: linearly many unit distances in convex position"
+file = "Theorems/Thm_Erdos9796Mission_problem96.lean"
+natural_language_statement = "The maximum possible number of unit-distance pairs among convex-independent n-point sets in the Euclidean plane is O(n)."
+source = "https://www.erdosproblems.com/96"
+tags = ["convex-position", "discrete-geometry", "erdos-96", "unit-distances"]
+
+[[theorem]]
+name = "Erdos9796Mission.problem96_superlinear_family"
+title = "Superlinear convex unit-distance family"
+file = "submissions/p96-negative-route/Theorems/Thm_Erdos9796Mission_problem96_superlinear_family.lean"
+natural_language_statement = "For every nonnegative proposed linear constant and every cutoff, some larger cardinality has maximum convex unit-distance count exceeding that constant times the cardinality."
+source = "https://www.erdosproblems.com/96"
+tags = ["convex-position", "discrete-geometry", "erdos-96", "unit-distances"]
+
+[[theorem]]
+name = "Erdos9796Mission.problem96_counterexample"
+title = "Counterexample to Erdős Problem 96"
+file = "submissions/p96-negative-route/Theorems/Thm_Erdos9796Mission_problem96_counterexample.lean"
+natural_language_statement = "The convex unit-distance extremal function is not O(n)."
+source = "https://www.erdosproblems.com/96"
+tags = ["convex-position", "discrete-geometry", "erdos-96", "unit-distances"]
+
+[[proof]]
+theorem = "Erdos9796Mission.problem96_counterexample"
+file = "submissions/p96-negative-route/Solutions/Sol_Erdos9796Mission_problem96_counterexample.lean"
+explanation = "submissions/p96-negative-route/explanation-problem96-counterexample.md"
+proof_type = "prove"
+
+[[milestone]]
+title = "Erdős Problem 96: linearly many unit distances in convex position"
+description = "Resolve the canonical asymptotic Problem 96 statement. A proof may follow the conditional 3n bridge from Problem 97, or may establish the O(n) bound independently by a direct argument. In either case, prove the bound for maxConvexUnitDistances. The planned route lifts the conditional per-set bound of 3n to the supremum defining the maximum unit-distance count."
+theorem = "Erdos9796Mission.problem96"
+sort_order = 6
+reason = "Clarify that Problem 96 welcomes an independent direct proof while retaining the existing conditional bridge route."
+
+[[milestone]]
+title = "Alternative resolution — construct a superlinear convex unit-distance family"
+description = "Disprove Problem 96 by constructing convex-independent point sets whose maximum unit-distance counts exceed every proposed linear bound at arbitrarily large cardinalities. A single finite configuration is insufficient because Problem 96 is asymptotic. The linked reduction converts this superlinear family into the exact negation of Problem 96."
+theorem = "Erdos9796Mission.problem96_counterexample"
+sort_order = 9
+reason = "Add the complementary negative resolution route for Problem 96."

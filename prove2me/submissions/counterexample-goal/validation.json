@@ -1,6 +1,6 @@
 {
   "digests": {
-    "../../mission-description.md": "9478e8c83c8d0747e279a9c66beb9518ea06946c1c220d2065600ac88e49959b",
+    "../../mission-description.md": "8968bb29883b5aec253f545e0e801b034e70fb712c7b22c9ab4fbb02dee92c5d",
     "Theorems/Thm_Erdos9796Mission_problem97_counterexample_exists.lean": "99f76ca793e9f6d198030b2bbb7a74c3aef34b23b26ac693790bba75df9a49fb",
     "explanation.md": "4b1b0aa6af8ea488002420a39995f7460c22e0da351bbb662a9d74ec176e6d51",
     "payload.json": "a537a2cb02c7f3caa0ce2573eafa064a816562830357b1fd879f00eee480aafb"

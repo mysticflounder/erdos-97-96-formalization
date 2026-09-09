@@ -1,0 +1,80 @@
+{
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "milestone-create:Alternative resolution — construct a superlinear convex unit-distance family": {
+      "milestone_id": "db298593-f756-4069-8f6c-cef7a74da32e",
+      "payload_sha256": "8eea21dafce89908997a10701459242ce7c46933ac7760b074952aac327ebd22",
+      "state": "RECORDED"
+    },
+    "milestone-update:Erdős Problem 96: linearly many unit distances in convex position": {
+      "milestone_id": "5187d03b-2c7d-41cb-bfb8-076ffcba2c7b",
+      "payload_sha256": "ebaf6dcdf2578034991bc12b1a3324b590a1e1c724779b43c0e1e2d3f0980303",
+      "state": "RECORDED"
+    },
+    "mission-description:1061a384-cdea-43b4-adb5-273627ea45a0": {
+      "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+      "payload_sha256": "5f1bbebd6ae483a71fa37250c478803d8dbb2ea81dd63447b020d8e4e3df8ebc",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796Mission.problem96_counterexample": {
+      "payload_sha256": "8679866417d09d0873b1460d46b403c3282879bcd84e526575575d944e48d529",
+      "state": "RECORDED",
+      "submission_id": "55bf23da-e1f5-4fdf-bb86-e585222957a9"
+    },
+    "theorem:Erdos9796Mission.problem96_counterexample": {
+      "job_id": "0ab90b75-ca53-404e-82af-3b30058929d0",
+      "payload_sha256": "14cbfd29fefb671fcc00922b69ad68dad7b34610ce24eebca09961bdcd6ebe47",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.problem96_superlinear_family": {
+      "job_id": "807644fc-8329-44ee-9f23-51cf6ce94dbd",
+      "payload_sha256": "e9eeb4c843cb4288dcf5726ab281c2bf27ad35383650d026ec150b51634395bc",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {
+    "Alternative resolution — construct a superlinear convex unit-distance family": {
+      "id": "db298593-f756-4069-8f6c-cef7a74da32e",
+      "status": "ENSURED"
+    },
+    "Erdős Problem 96: linearly many unit distances in convex position": {
+      "id": "5187d03b-2c7d-41cb-bfb8-076ffcba2c7b",
+      "status": "ENSURED"
+    }
+  },
+  "mission_description": {
+    "sha256": "8968bb29883b5aec253f545e0e801b034e70fb712c7b22c9ab4fbb02dee92c5d",
+    "status": "ENSURED"
+  },
+  "plan_digest": "ccad8d6b354911610eb41dd15c1ae67d0522c74309ab4111b0a99fb7c640fe0a",
+  "proofs": {
+    "Erdos9796Mission.problem96_counterexample": {
+      "created_at": "2026-09-09T03:35:02.432573+00:00",
+      "error_message": "",
+      "file_path": "6d8a5361-7510-4d18-afa3-8885f93a9bbd/6ac78adb-dda3-4892-bb46-d4c86f102d16/55bf23da-e1f5-4fdf-bb86-e585222957a9.lean",
+      "id": "55bf23da-e1f5-4fdf-bb86-e585222957a9",
+      "status": "SKETCH_ACCEPTED",
+      "submission_id": "55bf23da-e1f5-4fdf-bb86-e585222957a9",
+      "theorem_id": "6d8a5361-7510-4d18-afa3-8885f93a9bbd",
+      "updated_at": "2026-09-09T03:36:39.26664+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.problem96": {
+      "status": "Open",
+      "theorem_id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637"
+    },
+    "Erdos9796Mission.problem96_counterexample": {
+      "job_id": "0ab90b75-ca53-404e-82af-3b30058929d0",
+      "status": "PUBLISHED",
+      "theorem_id": "6d8a5361-7510-4d18-afa3-8885f93a9bbd"
+    },
+    "Erdos9796Mission.problem96_superlinear_family": {
+      "job_id": "807644fc-8329-44ee-9f23-51cf6ce94dbd",
+      "status": "PUBLISHED",
+      "theorem_id": "ae7c5b69-b078-4138-80cc-2d7cd5e8df61"
+    }
+  }
+}
