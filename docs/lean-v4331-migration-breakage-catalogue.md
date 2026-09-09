@@ -511,3 +511,90 @@ Read the result as: `offenders` naming only `*._native.native_decide.ax_*` const
 theorems consuming them is the pre-existing native evidence, not a regression — confirm with
 `git show HEAD:<path> | grep -c native_decide` against the worktree count.  Any `sorryAx` at
 all is a real class-W finding.
+
+## AQ — the green build is not the whole library: stale v4.27 oleans outside the root closure
+
+`lean/lakefile.toml` declares `Erdos9796` and `Erdos9796Proof` with no `roots` and no `globs`,
+so `lake build` compiles only what the two root modules transitively import.  Every other
+module under `lean/Erdos9796Proof/` keeps whatever `.olean` it last had — at the v4.33.1 pin
+that means a v4.27 artefact that no build regenerates and no build reports.  Build 53 was
+green on 14049/14049 jobs with 1264 such oleans still present.
+
+The tell is `comparator/check-conformance.sh` exiting 1 on
+
+    FAIL [core]: audit reported an error: failed to read file …/<Module>.olean, incompatible header
+
+FIX — delete them.  A v4.27 olean is not part of any verified build; it is an unreadable file
+that only produces cascade failures, because a module importing it fails with
+`incompatible header` before its own elaboration is ever attempted.  Deleting costs nothing:
+the source is what is verified, and `lake build` regenerates the olean from that source in
+dependency order.
+
+    find lean/.lake/build/lib/lean/Erdos9796Proof lean/.lake/build/lib/lean/Erdos9796 \
+      \( -name '*.olean' -o -name '*.ilean' \) ! -newermt '<pin date>' -delete
+
+Do NOT try to enumerate the regressions first with a parallel `lake env lean` fan-out over the
+stale modules.  `lake env lean` type-checks one module against its dependencies' oleans, so a
+module whose imports are still stale reports `incompatible header`, not its own errors: on this
+repository 149 of the first 153 sweep results were cascade noise.  Dependency order is what
+forces the waves, and only a real build satisfies it.
+
+## AR — `bv_decide` moved out of Mathlib and stopped unfolding reducible definitions
+
+`import Mathlib.Tactic` no longer pulls in `bv_decide`; the tell is
+`to use `bv_decide`, please include `import Std.Tactic.BVDecide``.  Adding the import then
+exposes a second change: `bv_decide` abstracts a `private abbrev` applied to the goal variable
+as an opaque term and reports
+
+    The prover found a potentially spurious counterexample:
+    - It abstracted the following unsupported expressions as opaque variables: [hasDuplicate bits]
+
+FIX — add the import, then `simp only [<the abbrevs>]` before `bv_decide`.
+
+## AS — `Set.Finite.isCompact_convexHull` takes the field explicitly
+
+`hs.isCompact_convexHull` now needs the scalar field as an explicit argument.  The tell is
+`failed to synthesize instance of type class Field 𝕜✝` reported at the DOT-NOTATION position,
+not at the `have` whose statement mentions the set.  FIX — `(hs.isCompact_convexHull ℝ).isClosed`.
+`Set.Finite.diff` is in the same area and is now a deprecated alias for `Set.Finite.sdiff`.
+
+## AT — `Std.Sat.CNF` is a structure over `Array`, and there are two ways out
+
+`CNF α` was a `List (Clause α)` alias; v4.33.1 declares
+`structure CNF (α) where clauses : Array (CNF.Clause α)`, with `Clause α = List (Literal α)`,
+an `Append (CNF α)` instance, and `eval a f = f.clauses.all fun c => c.eval a`.  Every list
+idiom on a `CNF` therefore breaks at once: `.map`, `.length`, `.Nodup`, `[[]]`, `= []`,
+`List.all_eq_true`, `List.mem_append`, `List.length_append`, `List.Nodup.append`.
+
+Pick the route by where the module's centre of gravity is.
+
+Route 1 — the module really is a CNF (it renders DIMACS, it is consumed as a formula).  Keep the
+`CNF`-typed name, retype the clause-list building blocks as `List (Std.Sat.CNF.Clause α)`, and
+wrap once: `def baseCnf : Std.Sat.CNF Atom := ⟨(a ++ b ++ … ++ z).toArray⟩`.  Then
+`.map` → `.clauses.toList.map`, `.length` → `.clauses.size`, and
+`rw [Std.Sat.CNF.eval, List.all_eq_true]` → `rw [Std.Sat.CNF.eval, Array.all_eq_true_iff_forall_mem]`
+with `List.mem_toArray` added to the membership `simp only`.  The rest of the proof survives.
+
+Route 2 — the module is really about the clause LIST (it proves `Nodup`, counts clauses,
+compares against `[]` and `[[]]`).  Keep every definition list-typed and respell the eval
+statements at list level: `Std.Sat.CNF.eval sigma (X)` → `(X).all (Std.Sat.CNF.Clause.eval sigma)`,
+and `Std.Sat.CNF.eval_append` → `List.all_append`.  That is the same predicate `CNF.eval`
+computes, and it leaves every `Nodup`, length, disjointness and `= [[]]` proof untouched.
+On `Rigid221Card18DirectCardinality` route 2 was nine edited lines; route 1 would have been
+most of a 413-line file.
+
+## AU — the `simpa` automation, and the third pass it needs
+
+`scratchpad/repair_simpa.py` rewrites failing `simpa [only] [...] using T` as
+`simp only [...]; exact T`, then `--drop-noop` strips the prefix wherever v4.33.1 reports
+`simp` made no progress.  Two things about it are easy to get wrong.
+
+Its error regex must accept BOTH log shapes.  `lake build` prints
+`error: <file>:<line>:<col>: Type mismatch`; raw `lake env lean` prints
+`<file>:<line>:<col>: error: Type mismatch`.  A regex written for one silently matches nothing
+on the other and the script reports `rewrote 0, skipped 0` on a module that is plainly broken.
+
+`--drop-noop` decides on the GOAL, so it strips sets that the HYPOTHESIS still needed — catalogue
+AN variant 3, left as a bare `exact h` that fails with a mismatch printing two identical types.
+`scratchpad/repair_variant3.py` recovers the original set from the pre-repair copy and re-emits
+`simp only [<set>] at h` / `exact h`.  Run it as a third pass, keyed on the same error lines.
