@@ -45,19 +45,21 @@ theorem u2Statement_of_nonSurplusMoserCapContainment
     rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
     interval_cases i
     all_goals
-      simpa [SelectedClass, SurplusCapPacket.oppApex1,
+      simpa only [SelectedClass, SurplusCapPacket.oppApex1,
         SurplusCapPacket.oppCap1, SurplusCapPacket.oppIndex1,
         SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.capByIndex,
-        hi, dist_comm] using h
+        Fin.val_zero, Fin.val_one, Fin.val_two, eq_iff_iff, hi,
+        dist_comm] using h
   · ext y
     have h := congrArg (fun T : Finset ℝ² => y ∈ T) hexact2
     rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
     interval_cases i
     all_goals
-      simpa [SelectedClass, SurplusCapPacket.oppApex2,
+      simpa only [SelectedClass, SurplusCapPacket.oppApex2,
         SurplusCapPacket.oppCap2, SurplusCapPacket.oppIndex2,
         SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.capByIndex,
-        hi, dist_comm] using h
+        Fin.val_zero, Fin.val_one, Fin.val_two, eq_iff_iff, hi,
+        dist_comm] using h
 
 /-- A direct erased-pin triple is the same fixed-triple packet used by the U5
 dangerous-triple interface, with the erased point as `q`. -/
