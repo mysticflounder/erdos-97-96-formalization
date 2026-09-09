@@ -464,7 +464,7 @@ theorem sourceTheory_ofView
       · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
         exact hcap
       · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
-        simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hblocked
+        simp only [FreshThirdQFiberThreeCarrierFiniteView.point]; exact hblocked
       · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
         exact hsame.1.symm
       · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.nonrobust_ofView_iff]
@@ -480,7 +480,7 @@ theorem sourceTheory_ofView
       · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.inCapInterior_ofView_iff]
         exact hcap
       · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.hasFourAfterDeleting_ofView_iff]
-        simpa [FreshThirdQFiberThreeCarrierFiniteView.point] using hblocked
+        simp only [FreshThirdQFiberThreeCarrierFiniteView.point]; exact hblocked
       · rw [FreshThirdQFiberThreeCarrierFiniteAssignment.same_ofView_iff]
         exact hdistinct.1.symm
       · intro e hall
@@ -668,10 +668,10 @@ theorem relationalTheory_ofView
       calc
         FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View left =
             B.boundary (B.indexOf leftPoint) := by
-          simpa [leftPoint] using (B.point_eq leftPoint).symm
+          simp only [leftPoint]; exact (B.point_eq leftPoint).symm
         _ = B.boundary (B.indexOf rightPoint) := congrArg B.boundary heq
         _ = FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View right := by
-          simpa [rightPoint] using B.point_eq rightPoint
+          simp only [rightPoint]; exact B.point_eq rightPoint
     · right
       right
       rw [FreshThirdQFiberThreeCarrierFiniteAssignment.before_ofView_iff]

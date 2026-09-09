@@ -56,8 +56,8 @@ private theorem oppApex1_mem_A
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v2_mem
+  · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem oppApex2_mem_A
@@ -65,8 +65,8 @@ private theorem oppApex2_mem_A
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem surplusApex_mem_A
@@ -74,8 +74,8 @@ private theorem surplusApex_mem_A
     S.surplusApex ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v2_mem
+  · simp only [SurplusCapPacket.surplusApex, hi]; exact S.triangle.v1_mem
+  · simp only [SurplusCapPacket.surplusApex, hi]; exact S.triangle.v2_mem
   · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v3_mem
 
 private theorem five_point_literal_card_le
@@ -520,7 +520,7 @@ private theorem false_of_three_firstCap_hits_at_firstCap_blocker
       ((H.selectedAt source.1
           source.2).toCriticalFourShell.support ∩
         S.capByIndex S.oppIndex1).card ≤ 2 := by
-    simpa using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex1
         (H.selectedAt source.1
@@ -914,7 +914,7 @@ private theorem false_of_three_firstCap_hits_in_selected_row
   have htwo :
       ((H.selectedAt center.1 center.2).toCriticalFourShell.support ∩
         S.capByIndex S.oppIndex1).card ≤ 2 := by
-    simpa using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex1
         (H.selectedAt center.1 center.2).toSelectedFourClass
@@ -2252,9 +2252,9 @@ theorem false_of_twoCapSources_commonRadius_mutualCrossMembership_frame
         S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
       rcases hi : S.surplusIdx with ⟨i, hi3⟩
       interval_cases i <;>
-        simp [SurplusCapPacket.oppApex1,
+        simp only [SurplusCapPacket.oppApex1,
           SurplusCapPacket.oppositeVertexByIndex,
-          SurplusCapPacket.oppIndex1, hi]
+          SurplusCapPacket.oppIndex1, hi] <;> rfl
     have hsourceIndexed :
         source.1 ∈
           SelectedClass D.A
@@ -2904,7 +2904,7 @@ private theorem selectedShell_inter_firstCap_eq_sourcePair
       ((H.selectedAt source.1
           source.2).toCriticalFourShell.support ∩
         S.capByIndex S.oppIndex1).card ≤ 2 := by
-    simpa using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex1
         (H.selectedAt source.1
@@ -3135,12 +3135,12 @@ theorem FirstFiberCrossedThreeRowExactSupports.sharedFourth_or_sourceDeletionSat
       simp only [Finset.mem_insert, Finset.mem_singleton] at hz
       rcases hz with rfl | rfl | rfl
       · exact Finset.mem_inter.mpr
-          ⟨by simpa [commonRow] using
+          ⟨by simp only [commonRow]; exact
               (H.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support,
-            by simpa [otherRow] using hmutual.2⟩
+            by simp only [otherRow]; exact hmutual.2⟩
       · exact Finset.mem_inter.mpr
-          ⟨by simpa [commonRow] using hmutual.1,
-            by simpa [otherRow] using
+          ⟨by simp only [commonRow]; exact hmutual.1,
+            by simp only [otherRow]; exact
               (H.selectedAt source'.1 source'.2).toCriticalFourShell.q_mem_support⟩
       · exact Finset.mem_inter.mpr
           ⟨by

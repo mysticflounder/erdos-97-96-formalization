@@ -42,8 +42,8 @@ private theorem firstFiberRole_oppApex1_mem_A
     S.oppApex1 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v2_mem
+  · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem firstFiberRole_oppApex2_mem_A
@@ -51,8 +51,8 @@ private theorem firstFiberRole_oppApex2_mem_A
     S.oppApex2 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem firstFiberRole_surplusApex_mem_A
@@ -60,8 +60,8 @@ private theorem firstFiberRole_surplusApex_mem_A
     S.surplusApex ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v2_mem
+  · simp only [SurplusCapPacket.surplusApex, hi]; exact S.triangle.v1_mem
+  · simp only [SurplusCapPacket.surplusApex, hi]; exact S.triangle.v2_mem
   · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v3_mem
 
 section
