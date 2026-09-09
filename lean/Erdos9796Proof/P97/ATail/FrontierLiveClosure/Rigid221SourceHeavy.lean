@@ -375,8 +375,8 @@ private theorem capByIndex_oppIndex2_eq_oppCap2_sourceHeavy
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi] <;> rfl
 
 /-- Exhaustive physical-second-cap profile below the source-heavy
 `other = xv` placement.  The exact-five constructors retain the full
@@ -6749,12 +6749,12 @@ private theorem seven_strict_interior_indices_ten
       x = gap.succAbove i := by
     unfold Fin.succAbove
     split
-    · have hi : i.1 < gapNat := by simpa [gap] using ‹i.castSucc < gap›
+    · have hi : i.1 < gapNat := by exact ‹i.castSucc < gap›
       rw [if_pos hi] at hxi
       apply Fin.ext
       simpa using hxi
     · have hi : ¬ i.1 < gapNat := by
-        simpa [gap] using ‹¬ i.castSucc < gap›
+        exact ‹¬ i.castSucc < gap›
       rw [if_neg hi] at hxi
       apply Fin.ext
       simpa using hxi
@@ -6936,7 +6936,7 @@ private theorem seven_strict_interior_indices_eleven
     rfl
   have hnine :
       outer.castSucc.succAbove (9 : Fin 10) = (10 : Fin 11) := by
-    rw [Fin.succAbove_of_le_castSucc _ _ (by simpa using le_of_lt houter9)]
+    rw [Fin.succAbove_of_le_castSucc _ _ (by simpa [Fin.le_def] using le_of_lt houter9)]
     rfl
   have ha' : 0 < a' := by
     apply (Fin.succAbove_lt_succAbove_iff (p := outer.castSucc)).mp
@@ -9513,7 +9513,7 @@ theorem
     have hposition :
         BlockerVExactFifteenFourRowCoverage.PositionEmbedding
           .forward order labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         skip_position_embedding_forward gap16 order
     have pointAt (point : Fin 15) (t : Fin B.m) (j : Fin 9)
         (hpoint :
@@ -9744,7 +9744,7 @@ theorem
     have hposition :
         BlockerVExactFifteenFourRowCoverage.PositionEmbedding
           .reverse order labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         skip_position_embedding_reverse gap16 order
     have pointAt (point : Fin 15) (t : Fin B.m) (j : Fin 9)
         (hsum :
@@ -10485,7 +10485,7 @@ theorem
     have hposition :
         BlockerVExactFifteenFourRowCoverage.PositionEmbedding
           .forward order labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         double_skip_position_embedding_forward outer17 inner16 order
     have pointAt (point : Fin 15) (t : Fin B.m) (j : Fin 9)
         (hpoint :
@@ -10680,7 +10680,7 @@ theorem
     have hposition :
         BlockerVExactFifteenFourRowCoverage.PositionEmbedding
           .reverse order labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         double_skip_position_embedding_reverse outer17 inner16 order
     have pointAt (point : Fin 15) (t : Fin B.m) (j : Fin 9)
         (hsum :
@@ -11200,7 +11200,7 @@ theorem
     have hposition :
         BlockerVExactSixteenFourRowCoverage.PositionEmbedding
           .forward order 0 labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         skip_exactSixteen_position_embedding_forward gap17 order
     have pointAt (point : Fin 16) (t : Fin B.m) (j : Fin 9)
         (hpoint :
@@ -11431,7 +11431,7 @@ theorem
     have hposition :
         BlockerVExactSixteenFourRowCoverage.PositionEmbedding
           .reverse order 0 labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         skip_exactSixteen_position_embedding_reverse gap17 order
     have pointAt (point : Fin 16) (t : Fin B.m) (j : Fin 9)
         (hsum :
@@ -12113,7 +12113,7 @@ theorem
     have hposition :
         BlockerVExactSixteenFourRowCoverage.PositionEmbedding
           .forward order 0 labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         skip_exactSixteen_position_embedding_forward gap17 order
     have pointAt (point : Fin 16) (t : Fin B.m)
         (hpoint :
@@ -12324,7 +12324,7 @@ theorem
     have hposition :
         BlockerVExactSixteenFourRowCoverage.PositionEmbedding
           .reverse order 0 labelIndex := by
-      simpa only [labelIndex, Fin.val_cast] using
+      exact
         skip_exactSixteen_position_embedding_reverse gap17 order
     have pointAt (point : Fin 16) (t : Fin B.m)
         (hpoint :
@@ -12675,12 +12675,15 @@ private theorem oppApex2_not_mem_capByIndex_oppIndex2_for_exactSeventeen
     S.oppApex2 ∉ S.capByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.capByIndex, hi] using S.partition.v3_notin_C3
-  · simpa [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.capByIndex, hi] using S.partition.v1_notin_C1
-  · simpa [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.capByIndex, hi] using S.partition.v2_notin_C2
+  · simpa only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two,
+      hi] using S.partition.v3_notin_C3
+  · simpa only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two,
+      hi] using S.partition.v1_notin_C1
+  · simpa only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one, Fin.val_two,
+      hi] using S.partition.v2_notin_C2
 
 set_option maxHeartbeats 2000000 in
 -- The finite label normalization and direct metric adapter need extra heartbeats.
@@ -13244,19 +13247,19 @@ theorem false_of_exactSeventeen_secondCapNine_exactCover
       rcases happRow with hrow | hrow | hrow | hrow
       · left
         have hrow' : S.oppApex2 ∈ Kxv.support := by
-          simpa only [rowSupport] using hrow
+          exact hrow
         rw [← Q.hblockerEqV]
         exact (Kxv.support_eq_radius _ hrow').trans
           (Kxv.support_eq_radius _ Q.huXvRow).symm
       · right; left
         have hrow' : S.oppApex2 ∈ Ku.support := by
-          simpa only [rowSupport] using hrow
+          exact hrow
         rw [← hcenterU]
         exact (Ku.support_eq_radius _ hrow').trans
           (Ku.support_eq_radius _ Ku.q_mem_support).symm
       · right; right; left
         have hrow' : S.oppApex2 ∈ Kv.support := by
-          simpa only [rowSupport] using hrow
+          exact hrow
         have hraw := (Kv.support_eq_radius _ hrow').trans
           (Kv.support_eq_radius _ Kv.q_mem_support).symm
         simpa only [Hlate, hcenterV] using hraw
@@ -15526,7 +15529,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
         hvrep hdrep hcrep hdelNeV.symm hfanOrient
   have hcCap : c ∈ cap := interiorCap hcInterior
   have hKdelCap : (Kdel.support ∩ cap).card ≤ 2 := by
-    simpa only [cap, c, Kdel, Hlate] using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex2 Kdel.toSelectedFourClass hcCap
   have hsplit := Finset.card_sdiff_add_card_inter Kdel.support cap
@@ -16404,7 +16407,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
         hvrep hxrep hbrep hvNeXv hfanOrient
   have hbCap : b ∈ cap := interiorCap hbInterior
   have hKvCap : (Kv.support ∩ cap).card ≤ 2 := by
-    simpa only [cap, b, Kv, Hlate] using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex2 Kv.toSelectedFourClass hbCap
   have hsplit := Finset.card_sdiff_add_card_inter Kv.support cap
@@ -16801,8 +16804,8 @@ private theorem pentagonOffClassBlocker_capByIndex_oppIndex2_eq_oppCap2
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi] <;> rfl
 
 private theorem pentagonOffClassBlocker_xvRow_secondCap_eq_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -16841,7 +16844,7 @@ private theorem pentagonOffClassBlocker_xvRow_secondCap_eq_pair
     S.capInteriorByIndex_subset_capByIndex S.oppIndex2 Q.hblockerInterior
   have hcapTwo :
       (Kxv.support ∩ S.capByIndex S.oppIndex2).card ≤ 2 := by
-    simpa [Kxv] using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex2 Kxv.toSelectedFourClass hblockerCap
   exact
@@ -18261,11 +18264,11 @@ theorem pentagonOffClassBlocker_physical_cycle_actualBlockers_injective
           (sources i).2).toCriticalFourShell.support ∩ C = edges i := by
     intro i
     fin_cases i
-    · simpa only [Hlate, C, sources, edges] using huTrace
-    · simpa only [Hlate, C, sources, edges] using hxuTrace
-    · simpa only [Hlate, C, sources, edges] using hdTrace
-    · simpa only [Hlate, C, sources, edges] using hvTrace
-    · simpa only [Hlate, C, sources, edges] using hxvTrace
+    · exact huTrace
+    · exact hxuTrace
+    · exact hdTrace
+    · exact hvTrace
+    · exact hxvTrace
   change Function.Injective fun i =>
     Hlate.centerAt (sources i).1 (sources i).2
   intro i j hcenters
@@ -18349,7 +18352,7 @@ theorem pentagonOffClassBlocker_fixedPhysicalPair_biDeletion
     intro hcenters
     have hindices : (1 : Fin 5) = 2 :=
       (pentagonOffClassBlocker_physical_cycle_actualBlockers_injective Q)
-        (by simpa only [Hlate, sourceXu, sourceDeleted] using hcenters)
+        (by exact hcenters)
     omega
   have hxuCenterNeO :
       Hlate.centerAt sourceXu.1 sourceXu.2 ≠ S.oppApex2 :=
@@ -18369,16 +18372,16 @@ theorem pentagonOffClassBlocker_fixedPhysicalPair_biDeletion
     apply selectedFourClass_survives_erase_of_not_mem
       Kxu.toSelectedFourClass
     rcases hq with rfl | rfl
-    · simpa only [Hlate, sourceXu, Kxu] using Q.huNotXuRow
-    · simpa only [Hlate, sourceXu, Kxu] using Q.hxvNotXuRow
+    · exact Q.huNotXuRow
+    · exact Q.hxvNotXuRow
   have hdeletedSurvives :
       HasNEquidistantPointsAt 4 (D.A.erase q)
         (Hlate.centerAt sourceDeleted.1 sourceDeleted.2) := by
     apply selectedFourClass_survives_erase_of_not_mem
       Kdeleted.toSelectedFourClass
     rcases hq with rfl | rfl
-    · simpa only [Hlate, sourceDeleted, Kdeleted] using Q.huNotDeletedRow
-    · simpa only [Hlate, sourceDeleted, Kdeleted] using Q.hxvNotDeletedRow
+    · exact Q.huNotDeletedRow
+    · exact Q.hxvNotDeletedRow
   have hOSurvives :
       HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2 := by
     refine ⟨P.rho, P.hrho, ?_⟩
@@ -18586,19 +18589,19 @@ theorem pentagonOffClassBlocker_nextRowOnlyHit_fiveDistinct_or_xuPositiveRowColl
     intro hcenters
     have hindices : (1 : Fin 5) = 2 :=
       (pentagonOffClassBlocker_physical_cycle_actualBlockers_injective Q)
-        (by simpa only [Hlate, c0, c1] using hcenters)
+        (by exact hcenters)
     omega
   have hc0c3 : c0 ≠ c3 := by
     intro hcenters
     have hindices : (1 : Fin 5) = 3 :=
       (pentagonOffClassBlocker_physical_cycle_actualBlockers_injective Q)
-        (by simpa only [Hlate, c0, c3] using hcenters)
+        (by exact hcenters)
     omega
   have hc1c3 : c1 ≠ c3 := by
     intro hcenters
     have hindices : (2 : Fin 5) = 3 :=
       (pentagonOffClassBlocker_physical_cycle_actualBlockers_injective Q)
-        (by simpa only [Hlate, c1, c3] using hcenters)
+        (by exact hcenters)
     omega
   have hc0O : c0 ≠ S.oppApex2 := by
     simpa only [Hlate, c0] using
@@ -18745,9 +18748,9 @@ theorem pentagonOffClassBlocker_nextRowOnlyHit_exactElevenCarrier_or_xuCollision
     have happ2A : S.oppApex2 ∈ D.A := by
       rcases hi : S.surplusIdx with ⟨i, hi3⟩
       interval_cases i
-      · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-      · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-      · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+      · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+      · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+      · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
     exact
       B.toFaithfulCarrierBoundary
         hc0A hc1A happ2A hc3A hdA hcenters
@@ -19689,8 +19692,8 @@ theorem pentagonOffClassBlocker_fixedPhysicalPair_uDeletion_outsideThreeRows_exa
       source.2 P.surface.ingress.packet.center₂_mem_A hc₁A hc₂A
       hc₁NeO.symm hc₂NeO.symm hc₁NeC₂ KO K₁ K₂
   · simpa only [KO, qDeletedK4ClassToSelectedFourClass] using hsourceOutside.1
-  · simpa only [K₁] using hsourceOutside.2.1
-  · simpa only [K₂] using hsourceOutside.2.2
+  · exact hsourceOutside.2.1
+  · exact hsourceOutside.2.2
 
 /-- Source-tagged A7 continuation terminal.  The retained source lies outside
 all three fixed rows, so its deletion preserves each of them.  Proving this
