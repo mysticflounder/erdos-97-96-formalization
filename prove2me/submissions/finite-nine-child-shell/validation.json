@@ -16,8 +16,8 @@
       "sha256": "07d2e2f0a0fa8927bc49afb6d7e6e04ff96b2e0c00bba22c49e71df8df87b515"
     },
     "solution": {
-      "bytes": 3263,
-      "sha256": "cdee83f0aff4252be5c9541d7f9d2b125ecb6dd3a356946a7a94ca3aad103bb0"
+      "bytes": 3207,
+      "sha256": "4187adb5279f893d3ec3a7edf7c2a39e75a004f3e659ce97de66587a15bdbeeb"
     },
     "authenticated_shell_fragment": {
       "bytes": 39806,
@@ -63,7 +63,7 @@
     "theorem_id": "a8773adc-86d1-4bff-b1e3-5380e4ae8974",
     "plan_created": true,
     "plan_validated": true,
-    "plan_digest": "65d5a9fb7ba5fefd37ab42e0c9229fb630501511fecdb9706846ba73ed913bca",
+    "plan_digest": "b7b8815d7176e9a6ca652c0c694c3dd0026a61647a486e156e360cc28d349cb9",
     "target_binding": "The generic uploader reconciles the exact theorem name and formal statement, then submits to the returned remote theorem ID; the expected current ID is pinned above.",
     "network_actions": false
   }

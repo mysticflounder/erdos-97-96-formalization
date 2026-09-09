@@ -22,4 +22,4 @@ Their proof-bearing source audit is recorded in `submissions/counting-transfer/v
 
 ## Promotion boundary
 
-The solution SHA-256 is `cdee83f0aff4252be5c9541d7f9d2b125ecb6dd3a356946a7a94ca3aad103bb0`. It has been elaborated locally but not uploaded. The public theorem target is `a8773adc-86d1-4bff-b1e3-5380e4ae8974`; the generic uploader plan validates with digest `65d5a9fb7ba5fefd37ab42e0c9229fb630501511fecdb9706846ba73ed913bca`. An independent promotion verifier is still required before upload.
+The solution SHA-256 is `4187adb5279f893d3ec3a7edf7c2a39e75a004f3e659ce97de66587a15bdbeeb`. It has been elaborated locally. The public theorem target is `a8773adc-86d1-4bff-b1e3-5380e4ae8974`; the corrected top-level-`solution` uploader plan validates with digest `b7b8815d7176e9a6ca652c0c694c3dd0026a61647a486e156e360cc28d349cb9`.

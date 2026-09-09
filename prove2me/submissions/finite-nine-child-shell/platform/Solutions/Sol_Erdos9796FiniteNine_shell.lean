@@ -13,8 +13,6 @@ import Theorems.Thm_Problem97_card_ge_five_of_K4
 
 open scoped EuclideanGeometry InnerProductSpace
 
-namespace Erdos9796FiniteNine
-
 theorem solution :
     ∀ {A : Finset ℝ²}, A.Nonempty → A.card = 9 →
       Batch3N9.Problem97.ConvexIndep A →
@@ -87,5 +85,3 @@ theorem solution :
     hcapSum12 := hcapSum12
     Packet := Packet
   }⟩
-
-end Erdos9796FiniteNine
