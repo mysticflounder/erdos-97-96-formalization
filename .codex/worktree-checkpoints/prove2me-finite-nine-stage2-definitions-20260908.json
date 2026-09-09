@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-stage2-definitions-20260908",
+  "owner": "codex-finite-nine-stage2-definitions",
+  "base_head": "131426e570e951b782fde7f6366409d47b849d82",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-stage2-definitions-20260908.json",
+    "prove2me/submissions/finite-nine-stage2-definitions/README.md",
+    "prove2me/submissions/finite-nine-stage2-definitions/generate.py",
+    "prove2me/submissions/finite-nine-stage2-definitions/plan.toml",
+    "prove2me/submissions/finite-nine-stage2-definitions/platform/Check.lean",
+    "prove2me/submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_CountingCore.lean",
+    "prove2me/submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_Forms.lean",
+    "prove2me/submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_N8Interface.lean",
+    "prove2me/submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_Shell.lean",
+    "prove2me/submissions/finite-nine-stage2-definitions/platform/ModuleCheck.lean",
+    "prove2me/submissions/finite-nine-stage2-definitions/skeptic-audit-2026-09-09.md",
+    "prove2me/submissions/finite-nine-stage2-definitions/validation.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-09T05:39:02Z",
+  "manifest_sha256": "892435a09aaeb1bac58ffaa3336fa2f33c839adf24e95d5d790f31c03bcaf6c7"
+}

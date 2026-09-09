@@ -1,0 +1,80 @@
+{
+  "schema": "prove2me-finite-nine-stage2-definitions-validation/v1",
+  "result": "PASS_NOT_UPLOADED",
+  "created_utc": "2026-09-09T05:39:02Z",
+  "source": {
+    "preserved_snapshot": "scratch/live-mission-solutions.json",
+    "preserved_snapshot_sha256": "1f69d9f4f5bec3ad50b648f6dbe728a1e4459cd2bba8f2d38fe2bdfc32218b58",
+    "authenticated_units": {
+      "Solutions.Batch3N9.N9Endpoint.Shell": "0453f4564aa9cd8c13d81a100fdcb0ed6f86683b57a2484c5c538f19d52fc7e2",
+      "Solutions.Batch3N9.N9Endpoint.N67": "5843a2cf8d4fabdde484e0fd4a10d0fbd574bc89bc2a24d819d32b3f964cc5e6",
+      "Solutions.Batch3N9.N9Endpoint.N4e": "4c8f93c7c3da9750b59f3c7357166d6c8a09549c21dff7be2d492f72d5694424",
+      "Solutions.Batch3N9.N8.N8bEndpointPair": "e5f793d5764ce97b703c1e8d1533139556254e26b2721e0923b2a69ee03e26b1"
+    },
+    "tracked_source_cross_check": {
+      "revision": "a46894f6078319d3001d06310531df50af0f6bbd",
+      "file_sha256": {
+        "lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean": "a498b603cc8d3bb0e7bceaa535477f7a6d2b9aee8ee062294150f07f6989dada",
+        "lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean": "c34d9fe7a31e51e805fabba4d4cef5a8b37288be580cebd50194bb9688f95956",
+        "lean/Erdos9796Proof/P97/N9Endpoint/N67.lean": "a77b30831a213ce24f556fa7e58e55aa08d2623cc138c9e932719e29b0f69893",
+        "lean/Erdos9796Proof/P97/N8/N8bEndpointPair.lean": "b10afbc189d9db85cf7a87d5b9e2ccd85462fc182e5933371edfb195385d9a95"
+      },
+      "normalized_extracted_spans_match": true,
+      "scope": "shell structure/views, all nine form predicates, N4e containment, and indexed cap definitions"
+    }
+  },
+  "definition_order": [
+    "Erdos9796FiniteNine_CountingCore",
+    "Erdos9796FiniteNine_Shell",
+    "Erdos9796FiniteNine_Forms",
+    "Erdos9796FiniteNine_N8Interface"
+  ],
+  "artifacts": {
+    "Def_Erdos9796FiniteNine_CountingCore.lean": {
+      "bytes": 1046,
+      "sha256": "62e8fc02ffbfb4d396f208280052539f263c9f422312240abb85f6bf5e73b089"
+    },
+    "Def_Erdos9796FiniteNine_Shell.lean": {
+      "bytes": 3799,
+      "sha256": "c0bf8d317d9066f8371da34e8bf805fca34513548d479d2a71ccc377e2573b7e"
+    },
+    "Def_Erdos9796FiniteNine_Forms.lean": {
+      "bytes": 5581,
+      "sha256": "75d6242c294f09eef5fee642c9396e7b4377d42dec84d4359992a7e5aeda2737"
+    },
+    "Def_Erdos9796FiniteNine_N8Interface.lean": {
+      "bytes": 1455,
+      "sha256": "bf50625e31309d289bc65609f5cd5bd0b6e455238c9bb465afa3accb8d98c87e"
+    }
+  },
+  "checks": {
+    "generator_check": "PASS",
+    "one_mib_limit": "PASS; largest definition is 5581 bytes",
+    "source_token_scan": "PASS; no sorry, sorryAx, theorem, lemma, axiom, native_decide, Lean.ofReduceBool, Lean.ofReduceNat, Lean.trustCompiler, unsafe, partial, implemented_by, or extern token in a definition file",
+    "lean_version": "Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+    "flattened_elaboration": "PASS; platform/Check.lean exit 0",
+    "module_elaboration": "PASS; all four copied modules compiled leaf-first with exit 0, then platform/ModuleCheck.lean imported the final module with exit 0",
+    "axiom_closure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "uploader_plan": "VALIDATED; digest e95dbcd22abed677960ac045caff673113eb091c54fa77cc438681eac2e3b7d8"
+  },
+  "statement_preservation": {
+    "shell_structure_and_basic_definitions": "exact authenticated command spans",
+    "witness_classes_and_form_shapes": "exact authenticated command spans",
+    "public_N4d_predicates": "same proposition bodies as the authenticated private predicates, published directly to avoid cross-definition private-name coupling; unused binder names gain leading underscores only",
+    "N4e_and_indexed_cap_interior": "exact authenticated command spans"
+  },
+  "independent_review": {
+    "result": "BOUNDED_PASS",
+    "interface_correctness_defects": 0,
+    "metadata_residuals_reported": 2,
+    "metadata_residuals_closed_before_commit": [
+      "tracked source revision and full-file hashes added to this record",
+      "validation and skeptic records are exact owned paths; durable_paths remains empty because the checkpoint schema forbids overlap"
+    ]
+  },
+  "promotion_status": "definition packet elaborated, uploader-compatible, and independently reviewed; no network mutation or platform promotion"
+}

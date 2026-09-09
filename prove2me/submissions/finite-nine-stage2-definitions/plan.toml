@@ -1,0 +1,46 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-stage2-definitions/receipt.json"
+
+[[definition]]
+name = "Erdos9796FiniteNine_CountingCore"
+file = "submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_CountingCore.lean"
+title = "Finite-nine counting core aliases"
+natural_language_statement = "Public namespace aliases connecting the finite-nine proof slice to the accepted counting definitions."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "support"]
+private = false
+
+[[definition]]
+name = "Erdos9796FiniteNine_Shell"
+file = "submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_Shell.lean"
+title = "Finite-nine endpoint shell"
+natural_language_statement = "The structural data packet used by every finite-nine endpoint proof branch."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "support"]
+private = false
+
+[[definition]]
+name = "Erdos9796FiniteNine_Forms"
+file = "submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_Forms.lean"
+title = "Finite-nine escaped-class forms"
+natural_language_statement = "Witness classes, their nine geometric forms, and the public form-exclusion predicates."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "support"]
+private = false
+
+[[definition]]
+name = "Erdos9796FiniteNine_N8Interface"
+file = "submissions/finite-nine-stage2-definitions/platform/Definitions/Def_Erdos9796FiniteNine_N8Interface.lean"
+title = "Finite-nine N4/N8 endpoint interface"
+natural_language_statement = "Cap containment and indexed cap interiors used by the final endpoint child statements."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/N8"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "support"]
+private = false
