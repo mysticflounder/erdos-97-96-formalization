@@ -40,7 +40,12 @@ set_option linter.style.nativeDecide false in
 theorem s2O0RetainedConvexFiveOccurrences_valid :
     ∀ index ∈ s2O0RetainedIndices .convexFive,
       (convexFiveOccurrenceAt index).Valid := by
-  native_decide
+  have hall : (s2O0RetainedIndices .convexFive).all
+      (fun index => decide (convexFiveOccurrenceAt index).Valid) = true := by
+    native_decide
+  intro index hindex
+  exact of_decide_eq_true
+    (Array.all_eq_true_iff_forall_mem.mp hall index hindex)
 
 /-- The exact source clauses represented by the retained core, in the 21
 source-family segments' original order. -/

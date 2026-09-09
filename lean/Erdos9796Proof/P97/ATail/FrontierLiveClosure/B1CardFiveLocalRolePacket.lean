@@ -614,7 +614,7 @@ private theorem physical_support_subset_sourceMetricRows
   have hclass : point.1 ∈ SelectedClass D.A S.oppApex2 C.rho := by
     simpa [physicalRowChoice] using hpoint
   apply (mem_sourceMetricRows_iff P P.physicalApex point).mpr
-  simpa [sourceRadius] using (mem_selectedClass.mp hclass).2
+  simpa [sourceRadius, physicalApex] using (mem_selectedClass.mp hclass).2
 
 private theorem common_support_subset_sourceMetricRows
     (P : B1CardFiveLocalRolePacket C) :

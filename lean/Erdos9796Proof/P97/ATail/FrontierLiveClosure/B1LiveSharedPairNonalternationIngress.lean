@@ -33,9 +33,9 @@ theorem b1_oppApex2_mem_A {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 /-- Every two distinct boundary points of `slice` lie on the same side of the
 cyclic cut from `apex` to `source`.  For a slice of cardinality at most two,
@@ -82,9 +82,9 @@ theorem false_of_criticalShell_slice_card_two_of_sameBoundaryArc
     exact hxy (congrArg Subtype.val h)
   have hxiy : ix ≠ iy := B.index_injective.ne hxyLabel
   have hxPoint : B.boundary ix = x := by
-    simpa [ix, xLabel] using B.point_eq xLabel
+    simpa [ix, xLabel, pointOf] using B.point_eq xLabel
   have hyPoint : B.boundary iy = y := by
-    simpa [iy, yLabel] using B.point_eq yLabel
+    simpa [iy, yLabel, pointOf] using B.point_eq yLabel
   have hxSlice' : B.boundary ix ∈ slice := by
     rw [hxPoint]
     exact hxSlice
@@ -92,9 +92,9 @@ theorem false_of_criticalShell_slice_card_two_of_sameBoundaryArc
     rw [hyPoint]
     exact hySlice
   have hapexPoint : B.boundary ic = apex.1 := by
-    simpa [ic] using B.point_eq apex
+    simpa [ic, pointOf] using B.point_eq apex
   have hsourcePoint : B.boundary id = source.1 := by
-    simpa [id] using B.point_eq source
+    simpa [id, pointOf] using B.point_eq source
   have hxClass := (Finset.mem_inter.mp hxSlice).2
   have hyClass := (Finset.mem_inter.mp hySlice).2
   have hxRow := (Finset.mem_inter.mp hxSlice).1

@@ -408,6 +408,44 @@ Isolate a case like this in a probe file that imports only the defining module �
 ledger module carries `native_decide` evidence and takes several minutes per check, while the
 probe returns in seconds and reproduces the failure exactly.
 
+## AL — no `Decidable` instance for a bounded `∀` over an `Array`
+
+`Init/Data/List/Basic.lean:886` still declares `List.decidableBAll`, but v4.33.1 has no
+`Array` analogue.  A statement of the shape `∀ index ∈ (arr : Array α), p index`, where the
+proof is `native_decide` or `decide`, therefore fails at ELABORATION of the goal with
+`failed to synthesize Decidable (∀ index ∈ …, …)` — before the decision procedure runs.
+The tell is the `failed to synthesize` line naming a bounded `∀`, followed by a `sorryAx`
+in the `#print axioms` of that very theorem.
+
+FIX — do not restate the theorem.  Move the decision onto the `Array.all` Boolean, which is
+decidable by computation, and transport it back with
+`Array.all_eq_true_iff_forall_mem` (`Init/Data/Array/Lemmas.lean:689`):
+
+    have hall : (arr).all (fun index => decide (p index)) = true := by
+      native_decide
+    intro index hindex
+    exact of_decide_eq_true (Array.all_eq_true_iff_forall_mem.mp hall index hindex)
+
+The `native_decide` is the file's pre-existing one, relocated inside the `have`; nothing new
+is trusted.  Applied in ExactFiveCommonShellV7/S2O0RetainedCoreComputedFacts
+`s2O0RetainedConvexFiveOccurrences_valid`.  This is the same upstream `List`-to-`Array` move
+that turned `Std.Sat.CNF` into an `Array` wrapper, so `rw [… , Array.all_eq_true_iff_forall_mem]`
+already appears in Census554/BaseSat and CoverIndexBridge — copy the idiom from there.
+
+## AM — `simpa only … using` will not unfold a `private def` from another module
+
+In ExactFiveCommonShellV7/G3Checkpoint0ClauseBank, twenty-nine `simpa only [xs, sat] using …`
+calls broke with a "Type mismatch: After simplification" whose two sides differed only by
+`List.take (retainedBaseCount✝ + 1)` against `List.take 108705`.  `retainedBaseCount` is a
+`private def` in G3BaseSliceLedger, so it cannot be named in the simp set from the consuming
+module, and `simpa`'s reducible-transparency unification will not unfold it on its own.
+The dagger in `retainedBaseCount✝` is the tell that the blocking constant is inaccessible.
+
+FIX — delete the tactic.  Every one of those sites was closed by a bare `exact`: the `let`s
+`xs` and `sat`, `List.drop 0`, and the private numeral all reduce at DEFAULT transparency,
+which is exactly what `exact` uses and what `simpa` no longer does.  Do not reach for a
+`show` with the private name; it is not in scope.
+
 ## Running the class-W sweep cheaply
 
 Do NOT re-derive the probe per file.  `scratchpad/sweep-probe.lean` holds the `run_cmd` that
