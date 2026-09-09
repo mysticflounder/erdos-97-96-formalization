@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "lean433-static-regression-audit-20260909",
+  "owner": "codex-lean433-static-regression-audit",
+  "base_head": "81cc9953a499ad7ff730e5c8cc919140c2f3c3df",
+  "created_utc": "2026-09-09T22:14:07Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/lean433-static-regression-audit-20260909.json",
+    "prove2me/audits/lean-4.33-regression-candidates-2026-09-09.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "manifest_sha256": "3b7b1ad6d1b5ee5d3155c404562be351296719004695809b60d1e86598824a22"
+}
