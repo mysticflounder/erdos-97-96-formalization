@@ -5,7 +5,7 @@
     "lean/lakefile.toml": "3bae0e219bbbe9f2dfba4fca4c4446a34af27315de59fb05acbb958468304fe6"
   },
   "lane_id": "lake-build-64g-guard-20260908",
-  "manifest_sha256": "4cc3ac2466f624213c1286ce40e80fd17944f8cc0f49ef530c0a92a540671b7b",
+  "manifest_sha256": "b135c6707ce0cfc501fa0231babd91fc0d6d84690cf78b7f9fa6d3c110568201",
   "output_classes": [
     "artifacts",
     "events",
@@ -16,7 +16,7 @@
   "run_id": "run-0001",
   "schema": "worktree-run-manifest/v1",
   "source_digests": {
-    "docs/audits/2026-09-08-lake-build-64g-guard.md": "b262b48f25c3704035d59c470a8a8000218a92c1bf48c03daf2c26c2c1d3c48b",
+    "docs/audits/2026-09-08-lake-build-64g-guard.md": "7cf0e3c45562ff6b411720f9580d10f29ec2371cca4789d6900232e16b0c29f2",
     "docs/audits/2026-09-08-lake-build-64g-guard.patch.b64": "559d623d2df6ead0ca476085e41941adcd64736c1ecdc9884b41aaa9f258f5db"
   }
 }
