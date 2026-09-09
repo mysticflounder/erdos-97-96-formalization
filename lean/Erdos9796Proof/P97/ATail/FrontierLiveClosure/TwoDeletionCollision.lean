@@ -395,7 +395,7 @@ theorem b1_freshV_escapeStar_or_adjacentCap
       cap_blocks := E.cap_blocks
       escape := escape
       winning_slice_card := E.winning_slice_card
-      escape_mem_live_slice := by simpa [escape] using hvLive
+      escape_mem_live_slice := hvLive
       cross_omission := b1_escapeRow_crossOmission C escape
     }, ?_⟩
     rfl
