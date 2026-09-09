@@ -1151,17 +1151,19 @@ theorem freshOutsideFirstBlockerFiber_outsidePoints_ne_firstCapEndpoints
       S.oppApex2 ∈ S.capByIndex S.oppIndex1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.oppApex2,
+      simpa only [SurplusCapPacket.oppApex2,
         SurplusCapPacket.rightOuterVertexByIndex,
-        SurplusCapPacket.oppIndex1, hi] using
+        SurplusCapPacket.oppIndex1, Fin.val_zero, Fin.val_one, Fin.val_two,
+        hi] using
         S.rightOuterVertexByIndex_mem_capByIndex S.oppIndex1
   have hsurplusApex :
       S.surplusApex ∈ S.capByIndex S.oppIndex1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.surplusApex,
+      simpa only [SurplusCapPacket.surplusApex,
         SurplusCapPacket.leftOuterVertexByIndex,
-        SurplusCapPacket.oppIndex1, hi] using
+        SurplusCapPacket.oppIndex1, Fin.val_zero, Fin.val_one, Fin.val_two,
+        hi] using
         S.leftOuterVertexByIndex_mem_capByIndex S.oppIndex1
   exact
     ⟨⟨(ne_of_mem_of_not_mem hoppApex2 Q.source_not_mem_firstCap).symm,

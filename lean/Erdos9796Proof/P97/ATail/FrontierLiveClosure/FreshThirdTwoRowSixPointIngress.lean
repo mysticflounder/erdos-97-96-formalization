@@ -361,25 +361,30 @@ theorem freshThird_secondSource_six_point_support_ingress_of_geometric_data
       (H.centerAt Q.source₁.1 Q.source₁.2) :=
     (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.toSelectedFourClass
   have hsource₁_mem : Q.source₁.1 ∈ KB.support := by
-    simpa [KB] using source₁_mem
+    simp only [KB]
+    exact source₁_mem
   have hsource₂_mem : Q.source₂.1 ∈ KB.support := by
-    simpa [KB] using source₂_mem
+    simp only [KB]
+    exact source₂_mem
   have hQsource₁_mem : Q.source₁.1 ∈ KF.support := by
-    simpa [KF] using
+    simp only [KF]
+    exact
       (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.q_mem_support
   have hQsource₂_mem : Q.source₂.1 ∈ KF.support := by
-    simpa [KF] using Q.source₂_mem_source₁_shell
+    simp only [KF]
+    exact Q.source₂_mem_source₁_shell
   have hpoints_ne : Q.source₁.1 ≠ Q.source₂.1 := by
     intro h
     exact Q.sources_ne (Subtype.ext h)
   have hinter : KB.support ∩ KF.support = {Q.source₁.1, Q.source₂.1} := by
-    simpa [KB, KF] using overlap_eq
+    simp only [KB, KF]
+    exact overlap_eq
   rcases selectedFourClass_twoRow_six_point_ingress
       KB KF centers_ne hpoints_ne hsource₁_mem hsource₂_mem hQsource₁_mem
         hQsource₂_mem hinter with
     ⟨X, Y, hXKB, hXnotKF, hYKF, hYnotKB, hroles, hBX, hBX₂, hFY₂, hFY⟩
-  exact ⟨X, Y, by simpa [KB] using hXKB, by simpa [KF] using hXnotKF,
-    by simpa [KF] using hYKF, by simpa [KB] using hYnotKB,
+  exact ⟨X, Y, by exact hXKB, by exact hXnotKF,
+    by exact hYKF, by exact hYnotKB,
     by simpa [KB, KF] using hroles,
     hBX, hBX₂, hFY₂, hFY⟩
 
@@ -430,21 +435,27 @@ theorem freshThird_secondSource_prescribed_remainder_ingress_of_geometric_data
       (H.centerAt Q.source₁.1 Q.source₁.2) :=
     (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.toSelectedFourClass
   have hsource₁_mem : Q.source₁.1 ∈ KB.support := by
-    simpa [KB] using source₁_mem
+    simp only [KB]
+    exact source₁_mem
   have hsource₂_mem : Q.source₂.1 ∈ KB.support := by
-    simpa [KB] using source₂_mem
+    simp only [KB]
+    exact source₂_mem
   have hQsource₁_mem : Q.source₁.1 ∈ KF.support := by
-    simpa [KF] using
+    simp only [KF]
+    exact
       (H.selectedAt Q.source₁.1 Q.source₁.2).toCriticalFourShell.q_mem_support
   have hQsource₂_mem : Q.source₂.1 ∈ KF.support := by
-    simpa [KF] using Q.source₂_mem_source₁_shell
+    simp only [KF]
+    exact Q.source₂_mem_source₁_shell
   have hpoints_ne : Q.source₁.1 ≠ Q.source₂.1 := by
     intro h
     exact Q.sources_ne (Subtype.ext h)
   have hinter : KB.support ∩ KF.support = {Q.source₁.1, Q.source₂.1} := by
-    simpa [KB, KF] using overlap_eq
+    simp only [KB, KF]
+    exact overlap_eq
   have hCmemB : C.secondSource.1 ∈ KB.support := by
-    simpa [KB] using
+    simp only [KB]
+    exact
       (H.selectedAt C.secondSource.1 C.secondSource.2).toCriticalFourShell.q_mem_support
   have hC_ne_source₁ : C.secondSource.1 ≠ Q.source₁.1 := by
     intro h
@@ -475,7 +486,7 @@ theorem freshThird_secondSource_prescribed_remainder_ingress_of_geometric_data
         hQsource₂_mem hinter hCmemB hCnotF with hcenter | hpacket
   · exact Or.inl hcenter
   · rcases hpacket with ⟨Y, hYF, hYnotB, hcard, hBX, hBD, hFD, hFY⟩
-    exact Or.inr ⟨Y, by simpa [KF] using hYF, by simpa [KB] using hYnotB,
+    exact Or.inr ⟨Y, by exact hYF, by exact hYnotB,
       by simpa [KB, KF] using hcard, hBX, hBD, hFD, hFY⟩
 
 /-- Live-source cyclic separation for the second-source geometric row.  The
