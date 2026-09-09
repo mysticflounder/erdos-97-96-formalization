@@ -70,49 +70,49 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi] <;> rfl
 
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi] <;> rfl
 
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi] <;> rfl
 
 private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.surplusApex,
-      SurplusCapPacket.oppositeVertexByIndex, hi]
+    simp only [SurplusCapPacket.surplusApex,
+      SurplusCapPacket.oppositeVertexByIndex, hi] <;> rfl
 
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 private theorem leftAdjacentCapByIndex_surplusIdx_eq_capByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
