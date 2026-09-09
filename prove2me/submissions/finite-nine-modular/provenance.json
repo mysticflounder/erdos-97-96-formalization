@@ -1,0 +1,87 @@
+{
+  "schema": "prove2me-finite-nine-modular-provenance/v1",
+  "created_utc": "2026-09-09T04:26:14Z",
+  "mission": {
+    "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+    "platform_version": "v0.9.8",
+    "mathlib_rev": "0df444a",
+    "theorem_id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+    "theorem_name": "Erdos9796Mission.finite_nine_exclusion",
+    "formal_statement": "∀ A : Finset Plane, A.card = 9 → ConvexIndep (A : Set Plane) → ¬ HasNEquidistantProperty 4 A"
+  },
+  "statement_mapping": {
+    "A": "the same finite set of points in the mission and Problem97.FiniteN9Closure",
+    "cardinality": "the same equality A.card = 9",
+    "convex_independence": "the mission predicate is connected to EuclideanGeometry.ConvexIndep by the accepted counting adapter",
+    "equidistant_property": "the mission predicate is connected to Erdos97.HasNEquidistantProperty by the accepted counting adapter",
+    "conclusion": "both statements negate HasNEquidistantProperty 4 A",
+    "semantic_delta": "none intended; the final reduction specializes only platform namespace aliases"
+  },
+  "source_custody": {
+    "lane_base_head": "ff13d98d92694d0e460549031049f08357ff6150",
+    "preserved_solutions_snapshot": {
+      "path": "scratch/live-mission-solutions.json",
+      "sha256": "1f69d9f4f5bec3ad50b648f6dbe728a1e4459cd2bba8f2d38fe2bdfc32218b58"
+    },
+    "preserved_theorems_snapshot": {
+      "path": "scratch/live-mission-theorems.json",
+      "sha256": "a648b25c21f2300bfd943653e8dc3ea430ba4e87a2f54b46706addfb2f4e2a0b"
+    },
+    "lean_4_33_1_source": {
+      "root": "/Users/adam/prove2me_workspace",
+      "workspace_head": "267c192f654905ecb0cb3ec0faf6ee532390f327",
+      "source_files_tracked_at_head": false,
+      "custody": "untracked migration-worktree files authenticated by the per-file hashes in source-inventory.json; not reproducible from workspace_head alone",
+      "closure_path": "Erdos9796Proof/P97/N9Endpoint/Closure.lean",
+      "closure_sha256": "d11de45dc1ebcd594ca3ed16bc972dc0aebf9cd9471de069f5a71f2914473049"
+    },
+    "current_project_cross_check": {
+      "root": "lean",
+      "commit_observed": "6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f",
+      "closure_path": "Erdos9796Proof/P97/N9Endpoint/Closure.lean",
+      "closure_sha256": "d11de45dc1ebcd594ca3ed16bc972dc0aebf9cd9471de069f5a71f2914473049"
+    },
+    "submission_tool_sha256": "fe72442fc9e1755200d6a64e5cbcf0a5c626d09a90873481d542d037c2dfff6f"
+  },
+  "preserved_failed_submissions": [
+    {
+      "submission_id": "af2e651a-18b3-40fb-b3ba-15e4adb15735",
+      "snapshot_status": "ERROR",
+      "content_characters": 1002758,
+      "content_bytes": 1040897,
+      "reported_outcome": "timed out after 300 seconds"
+    },
+    {
+      "submission_id": "dbe4d832-274e-4c3e-9a9e-cf1768588972",
+      "snapshot_status": "FAILED",
+      "content_characters": 1320856,
+      "content_bytes": 1358995,
+      "reported_outcome": "rejected by the one-MiB scanner"
+    }
+  ],
+  "accepted_reuse_frontier": {
+    "counting_definition_nodes": 18,
+    "counting_support_theorem_nodes": 74,
+    "direct_definition_imports_in_preserved_stream": 18,
+    "direct_theorem_imports_in_preserved_stream": 20,
+    "counting_root_status": "Proved"
+  },
+  "trust_target": {
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "forbidden_boundaries": [
+      "sorryAx in proof solutions",
+      "Lean.ofReduceBool",
+      "Lean.ofReduceNat",
+      "Lean.trustCompiler",
+      "native_decide",
+      "unsafe evaluated code",
+      "implemented_by",
+      "extern"
+    ]
+  },
+  "promotion_status": "offline packet structurally checked by author and independent audit — NOT PROMOTED"
+}

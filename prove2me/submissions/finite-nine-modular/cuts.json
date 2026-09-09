@@ -1,0 +1,261 @@
+{
+  "cuts": [
+    {
+      "depends_on": [],
+      "fragment": "submissions/finite-nine-modular/source-fragments/shell.lean",
+      "fragment_bytes": 39806,
+      "fragment_sha256": "80695e5a22497b0be1f1c30c51c1fe6bc48d067d74744a2750cfca385c14e4fe",
+      "id": "shell",
+      "modules": [
+        "N9Endpoint.N4a",
+        "N9Endpoint.Shell"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_shell.lean",
+      "stub_sha256": "4db7cc34066f1d78fa57c037aa51f68ce159fe5a5b107224dfbcc4abce5b25a6",
+      "target_statement_sha256": {
+        "finiteEndpointShellOfCounterexample": "0a90c92c1cde8bdfad9c1d030ed86b17478abf2da2372cbe392b260c1061ca31"
+      },
+      "targets": [
+        "finiteEndpointShellOfCounterexample"
+      ],
+      "title": "Nine-point endpoint shell"
+    },
+    {
+      "depends_on": [
+        "shell"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/form_b_v1.lean",
+      "fragment_bytes": 555787,
+      "fragment_sha256": "d899a1396d1d9303b35fc6fbfde7d59f4582a0c808316c7e3a943dfc8721925f",
+      "id": "form_b_v1",
+      "modules": [
+        "TwoCircleCrossing",
+        "ArcBlockContiguity",
+        "U2.WitnessReflectionKernel",
+        "N4d.TrackBPilotSupport",
+        "N9Endpoint.N4e",
+        "N4d.TrackBRows",
+        "N4d.FormBLowerForcesV3",
+        "N4d.FormBPEqBProducer",
+        "N4d.BisectorKill",
+        "A1ContextProducers",
+        "A1B2FrameNormalization",
+        "N4d.FaithfulFrame",
+        "N4d.Qa2Cover",
+        "N4d.FormBXb2UpperArc",
+        "Bridge.A1SpineWiring",
+        "N4d.SmallSReductions",
+        "N4d.QeqEb2PinClash",
+        "N4d.ExcludesFormBv1"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_form_b_v1.lean",
+      "stub_sha256": "95fd3410909088d4f0e93e0239b81a3befd06a15973f93e214e9ff11a02ec0ee",
+      "target_statement_sha256": {
+        "N4dExcludesFormB_v1_proof": "b600c24284540190c04eb98739da46b851cd12011b3b47b85c1915624355e186"
+      },
+      "targets": [
+        "N4dExcludesFormB_v1_proof"
+      ],
+      "title": "Escaped Form b exclusion at v1"
+    },
+    {
+      "depends_on": [
+        "form_b_v1"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/form_b_v2.lean",
+      "fragment_bytes": 644,
+      "fragment_sha256": "dd805a29601e3b8fa2290b87ac62bb338f0a616914c1b4d050359ea079058437",
+      "id": "form_b_v2",
+      "modules": [
+        "N4d.CyclicTransport"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_form_b_v2.lean",
+      "stub_sha256": "042e91ac7d77db86d74b8b1e18eb942ccce162a9e9282a8c578ee2f635bb2746",
+      "target_statement_sha256": {
+        "N4dExcludesFormB_v2_proof": "c1348f6d52f3fe7122baa265cd898cdbddd3988530ac68ae04b8a1223b7d9b48"
+      },
+      "targets": [
+        "N4dExcludesFormB_v2_proof"
+      ],
+      "title": "Cyclic Form b exclusion at v2"
+    },
+    {
+      "depends_on": [
+        "form_b_v2"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/form_a_v1.lean",
+      "fragment_bytes": 171986,
+      "fragment_sha256": "89d122f909ca616d7dfae2f4d8f51ae3f02776660103e5c436a663cd34f8a8ed",
+      "id": "form_a_v1",
+      "modules": [
+        "N4d.FormAEndpointPairKill",
+        "N4d.ExcludesFormAv1"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_form_a_v1.lean",
+      "stub_sha256": "e191a2e93268b84de00f9db3ee655ac9ce24b32d163232d8bc234a90adb66dfc",
+      "target_statement_sha256": {
+        "N4dExcludesFormA_v1_proof": "da2c99e5fc7d7da7ac9b36359ea318147190939242bf22310b730af4dc82e3b3"
+      },
+      "targets": [
+        "N4dExcludesFormA_v1_proof"
+      ],
+      "title": "Escaped Form a exclusion at v1"
+    },
+    {
+      "depends_on": [
+        "shell"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/form_c_v1.lean",
+      "fragment_bytes": 306175,
+      "fragment_sha256": "a653d138d81fcaf23ad2e68015fbc4ccc2978dcf9f5d52f55f61535a2c6d246b",
+      "id": "form_c_v1",
+      "modules": [
+        "N4d.FormCPEqCProducer",
+        "N4d.FormCLowerForcesV2",
+        "N4d.FormCcB1UpperArc",
+        "N4d.FormCcA3QeqC",
+        "N4d.FormCQeqEb3PinClash",
+        "N4d.ExcludesFormCv1"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_form_c_v1.lean",
+      "stub_sha256": "95d9c73d605d42f1730244170cb7d20099f14699896d30c02e3c7da95f510686",
+      "target_statement_sha256": {
+        "N4dExcludesFormC_v1_proof": "253b1f058415bfaef33ea833eb20b052a12e17f7a4b9956802fea8bbbe599296"
+      },
+      "targets": [
+        "N4dExcludesFormC_v1_proof"
+      ],
+      "title": "Escaped Form c exclusion at v1"
+    },
+    {
+      "depends_on": [
+        "form_a_v1",
+        "form_b_v1",
+        "form_c_v1"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/cyclic_forms.lean",
+      "fragment_bytes": 12271,
+      "fragment_sha256": "246d74d5159947ad68c26e2725fa6af7e62b9226a28968a0f5319d3f1087e32c",
+      "id": "cyclic_forms",
+      "modules": [
+        "N4d.CyclicTransport"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_cyclic_forms.lean",
+      "stub_sha256": "8bef9aff3f21036918e71887b3af2e09438a99ca563a38d382b2c4881a5b22af",
+      "target_statement_sha256": {
+        "N4dExcludesFormA_v2_proof": "407e568d657afc1b7bcc44ea75b056fdda60c7c0ab74b1568593f35a7f4ea523",
+        "N4dExcludesFormA_v3_proof": "b04c3dc9256ac5af8f489ff325c1112536ee0ef0b7fb8d9c6735e1db980fb91f",
+        "N4dExcludesFormB_v3_proof": "47ebf00f8f666e8c182d6f2a50225a5e73e30d0ed46a583ee529e83b247e1782",
+        "N4dExcludesFormC_v2_proof": "d48b7035e4b8331923edf783350d04d254a2f910ea201f85c48fe45c6c07ef6a",
+        "N4dExcludesFormC_v3_proof": "1646113edf928c523a0765dc03acbde8e92c42e3c2cd0df7db996accafdf9cd1"
+      },
+      "targets": [
+        "N4dExcludesFormA_v2_proof",
+        "N4dExcludesFormC_v2_proof",
+        "N4dExcludesFormA_v3_proof",
+        "N4dExcludesFormB_v3_proof",
+        "N4dExcludesFormC_v3_proof"
+      ],
+      "title": "Remaining cyclic form exclusions"
+    },
+    {
+      "depends_on": [
+        "form_b_v2",
+        "form_a_v1",
+        "form_b_v1",
+        "form_c_v1",
+        "cyclic_forms"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/cap_containment.lean",
+      "fragment_bytes": 808,
+      "fragment_sha256": "c1dce51523622316761cc2066704591ce1c958a473de61c0dad445e05613c071",
+      "id": "cap_containment",
+      "modules": [
+        "N9Endpoint.N4e"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_cap_containment.lean",
+      "stub_sha256": "2dfe7cb146657e93b69c0af2050848df96892938444508525d6135a6fe109b22",
+      "target_statement_sha256": {
+        "n4eCapContainment_of_n4c_n4d": "f59f49261e77bd755b146f6c739884ee9d2f9423a0e6f05109d4b05bfa5f2f46"
+      },
+      "targets": [
+        "n4eCapContainment_of_n4c_n4d"
+      ],
+      "title": "N4 cap containment"
+    },
+    {
+      "depends_on": [
+        "cap_containment"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/circle_placement.lean",
+      "fragment_bytes": 7289,
+      "fragment_sha256": "12c06a3679448b5b1e4b506db4b099ed6396e98b4e8af1a7c7831b217b8d411b",
+      "id": "circle_placement",
+      "modules": [
+        "N9Endpoint.N67"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_circle_placement.lean",
+      "stub_sha256": "d21bac1022fcd194824ccfe9d8e22315bce5b8535804acacbee4911ef60c6f8a",
+      "target_statement_sha256": {
+        "n7_circle_placement": "c837fe89e77c10aa3be92f7a98478cefb6326d0023137b730812af59ae6d9db9"
+      },
+      "targets": [
+        "n7_circle_placement"
+      ],
+      "title": "N6/N7 common-radius circle placement"
+    },
+    {
+      "depends_on": [
+        "circle_placement"
+      ],
+      "fragment": "submissions/finite-nine-modular/source-fragments/single_apex_exhaustion.lean",
+      "fragment_bytes": 176077,
+      "fragment_sha256": "9cbde9063b4d1e42e5f7e110019565b290fa7065b8fd6392353cd6a580ce505d",
+      "id": "single_apex_exhaustion",
+      "modules": [
+        "WitnessPacketInterface",
+        "U2.OneHitBound",
+        "U2.OneHitMonotone",
+        "U2.OneHitRealization",
+        "N8.N8aArcTwoCircle",
+        "N8.N8bEndpointPair",
+        "N8.FourSubpacket",
+        "N8.N8hiSameCap",
+        "U2.SimilarityNormalization",
+        "N8.N8CapCoordNorm",
+        "N8.N8kDistribution"
+      ],
+      "status": "source-authenticated; definition extraction and proof rewrite residual",
+      "stub": "submissions/finite-nine-modular/platform/Theorems/Thm_Erdos9796FiniteNine_single_apex_exhaustion.lean",
+      "stub_sha256": "849ee011491e586cbf8720730aa7a7670ee57cfcb74785e4cfef73944fa00ca1",
+      "target_statement_sha256": {
+        "N8k_capInterior_false_of_hasNEquidistantProperty": "7a9d12254d463bfa72e78b390422c34fc473fbe0a1cb0fff0611624081536fbf"
+      },
+      "targets": [
+        "N8k_capInterior_false_of_hasNEquidistantProperty"
+      ],
+      "title": "N8 single-apex exhaustion"
+    }
+  ],
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "root": "Erdos9796Mission.finite_nine_exclusion",
+  "root_solution": "submissions/finite-nine-modular/platform/Solutions/Sol_Erdos9796Mission_finite_nine_exclusion.lean",
+  "root_solution_bytes": 1674,
+  "root_solution_sha256": "8e886854686bdc44bafb69966ac3cb8a805194b6c6b8dcd4691bf04b9e0d1f55",
+  "schema": "prove2me-finite-nine-modular-cuts/v1",
+  "theorem_id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+  "trust_target": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "upload_ready": false
+}

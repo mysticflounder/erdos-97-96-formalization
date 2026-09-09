@@ -1,0 +1,47 @@
+{
+  "artifacts": {
+    "cuts_sha256": "ce7e80b9c3c51b600aa9670727784ac066f63f73a376636a099d4ba8f9c601b2",
+    "interface_candidate_sha256": "4f0a59754a76f199271b63384a45735678bf00d4ed2dfff6856b12b7c119704b",
+    "root_solution_sha256": "8e886854686bdc44bafb69966ac3cb8a805194b6c6b8dcd4691bf04b9e0d1f55",
+    "source_inventory_sha256": "17bbcb6eaa2c1378beaa2188103c038ca58ab1fdda90a021e6a0c2b6c124b672"
+  },
+  "checks": {
+    "accepted_counting_import_frontier": {
+      "definitions": 18,
+      "theorems": 20
+    },
+    "authenticated_snapshots": true,
+    "child_cut_count": 9,
+    "closure_source_hash_matches": true,
+    "n9_source_modules_cross_checked": 42,
+    "root_solution_contains_sorry": false,
+    "semantic_target_statements_cross_checked": 13,
+    "semantic_targets_present": 13,
+    "sequential_unit_envelopes": true,
+    "source_tree_differences": 9,
+    "source_trees_byte_identical": 33
+  },
+  "observed_local_checks": {
+    "deterministic_generation": {
+      "hash_excludes_validation_record": true,
+      "hashed_generated_file_count": 22,
+      "two_run_aggregate_sha256": "3d8d6fa48745774652bc0678fd02c73ff4817b76e46a187d1738cc87e4efd151"
+    },
+    "generator_ruff": {
+      "command": "uv run --with ruff ruff check --no-cache submissions/finite-nine-modular/generate.py",
+      "exit_code": 0
+    },
+    "interface_candidate_lean_4_33_1": {
+      "command": "lake env lean -M 16384 -R <prove2me-root> -o <temporary-olean> <interface-candidate>",
+      "exit_code": 0
+    }
+  },
+  "residuals": [
+    "Run Stage-2 skeleton subtraction to replace the documentation-only interface bundle.",
+    "Generate and locally elaborate one proof solution per child theorem against public imports.",
+    "Audit each child and the final root with #print axioms; require only the three core axioms.",
+    "Run the no-network uploader dry-run after all child solutions elaborate."
+  ],
+  "result": "PASS_WITH_RESIDUALS",
+  "schema": "prove2me-finite-nine-modular-validation/v1"
+}
