@@ -1,0 +1,87 @@
+{
+  "schema": "prove2me-finite-nine-stage3-theorems-validation/v1",
+  "result": "VALIDATED_STATEMENT_PACKET",
+  "created_utc": "2026-09-09T06:52:55Z",
+  "source_packet": {
+    "cuts": "submissions/finite-nine-modular/cuts.json",
+    "cuts_sha256": "ce7e80b9c3c51b600aa9670727784ac066f63f73a376636a099d4ba8f9c601b2",
+    "statement_fidelity": "PASS; all nine normalized theorem declarations match the fixed first-wave stubs after changing only the dotted declaration name"
+  },
+  "public_definition_dependency": {
+    "module": "Definitions.Def_Erdos9796FiniteNine_N8Interface",
+    "definition_source_sha256": "bf50625e31309d289bc65609f5cd5bd0b6e455238c9bb465afa3accb8d98c87e",
+    "stage2_validation_sha256": "f6c209dde2c507caaa7b4c6b36da13d8f15aa90504586d42c385f9b6cd806c05",
+    "publication_receipt_sha256": "97256c532eb0bb1d052ce9f017f4b8f8afc37ba26742f6b749bbe13f350dc206",
+    "public_definition_id": "8338ae4d-30db-4944-bb5e-fa2cdb502144",
+    "publication_status": "PUBLISHED"
+  },
+  "theorem_order": [
+    "Erdos9796FiniteNine.shell",
+    "Erdos9796FiniteNine.form_b_v1",
+    "Erdos9796FiniteNine.form_b_v2",
+    "Erdos9796FiniteNine.form_a_v1",
+    "Erdos9796FiniteNine.form_c_v1",
+    "Erdos9796FiniteNine.cyclic_forms",
+    "Erdos9796FiniteNine.cap_containment",
+    "Erdos9796FiniteNine.circle_placement",
+    "Erdos9796FiniteNine.single_apex_exhaustion"
+  ],
+  "artifacts": {
+    "Thm_Erdos9796FiniteNine_cap_containment.lean": {
+      "bytes": 930,
+      "sha256": "1d0c55147936eb6609567f9a8c56ddfc5d785bfb7a2d0c2c131654cb592e46ab"
+    },
+    "Thm_Erdos9796FiniteNine_circle_placement.lean": {
+      "bytes": 867,
+      "sha256": "709a5b4585a02ec67449d7325209e5b85f1f169b2dd7a30d7dcf4adecb824b11"
+    },
+    "Thm_Erdos9796FiniteNine_cyclic_forms.lean": {
+      "bytes": 771,
+      "sha256": "e3f72ee176c03eee92e92a0b621b42379005dc6c122c78a2bf042e89287f7e4f"
+    },
+    "Thm_Erdos9796FiniteNine_form_a_v1.lean": {
+      "bytes": 692,
+      "sha256": "77e8bb10aea39879de7305bb38aec3464e320d0bbb60bfec7e1c6c45ad26dd2b"
+    },
+    "Thm_Erdos9796FiniteNine_form_b_v1.lean": {
+      "bytes": 658,
+      "sha256": "f40523e3456d82e3299dfe3229902aa92822261675258fd36e8b4c4788b073e0"
+    },
+    "Thm_Erdos9796FiniteNine_form_b_v2.lean": {
+      "bytes": 657,
+      "sha256": "f07efb36a598f81f0fe5e24027178490082ca182d54d5f32cf5938cf14a391e7"
+    },
+    "Thm_Erdos9796FiniteNine_form_c_v1.lean": {
+      "bytes": 658,
+      "sha256": "6a7383b2ea4ebf0f4889779b392b47c08ebd3098a7b47296efd5d904881c7d62"
+    },
+    "Thm_Erdos9796FiniteNine_shell.lean": {
+      "bytes": 766,
+      "sha256": "d393a5c2e66ac570847f62b7afa0c21c12c0182a39d58f10645d71e16ff79b5f"
+    },
+    "Thm_Erdos9796FiniteNine_single_apex_exhaustion.lean": {
+      "bytes": 814,
+      "sha256": "4f3e7e1034068feb5d0afb347328fac5dbb4712e8ce6bb07a80b94e82f403bf5"
+    }
+  },
+  "checks": {
+    "lean_version": "Lean 4.33.1, commit 819816b2e0a3bf405af45ae5c7af2491d8f5bee6",
+    "definition_module_elaboration": "PASS; four exact published definition sources compiled leaf-first",
+    "theorem_statement_elaboration": "PASS; all nine statement stubs exit 0 against the compiled public-definition sources",
+    "expected_statement_warning": "Each theorem emits only the expected declaration-uses-sorry warning for its statement placeholder",
+    "public_import_count": "PASS; 9 of 9 theorem files import Definitions.Def_Erdos9796FiniteNine_N8Interface",
+    "sketch_label_count": "PASS; 9 of 9 theorem files contain SKETCH — NOT PROMOTABLE",
+    "formal_statement_marker_count": "PASS; 9 of 9 theorem files contain exactly one PROVE2ME_FORMAL_STATEMENT marker",
+    "dag_match": "PASS; all node IDs, predecessor arrays, and leaf-first order match the first-wave cuts.json",
+    "uploader_plan": "VALIDATED; digest 4d1cd2228bc1a769f4baca98f0ab1e3c1a6466109bdbac4d475f93dc6ed8e015",
+    "proof_entries": 0,
+    "solution_files": 0,
+    "network_calls": 0
+  },
+  "packet_hashes": {
+    "README.md": "ad8d0c77d5976444db359b2dee842404af16b33afdc62264a34d5ee87085fb22",
+    "dag.json": "224983a43661c91dc697a011cc723f50b8c3a015d344408efd90f2179ff74efe",
+    "plan.toml": "7742edd753e3565a32d6b953119d4a7ea3a705a9c753714cf7b05b69283f2815"
+  },
+  "promotion_status": "statement creation packet only — no theorem proof submitted or promoted"
+}

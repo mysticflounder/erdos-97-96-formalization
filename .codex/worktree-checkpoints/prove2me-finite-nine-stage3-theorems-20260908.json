@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-stage3-theorems-20260908",
+  "owner": "codex-finite-nine-stage3-theorems",
+  "base_head": "27cae9300f14ce07e080f5230ae1e58f40cff043",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-stage3-theorems-20260908.json",
+    "prove2me/submissions/finite-nine-stage3-theorems/README.md",
+    "prove2me/submissions/finite-nine-stage3-theorems/dag.json",
+    "prove2me/submissions/finite-nine-stage3-theorems/plan.toml",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_cap_containment.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_circle_placement.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_cyclic_forms.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_a_v1.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_b_v1.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_b_v2.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_c_v1.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_shell.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_single_apex_exhaustion.lean",
+    "prove2me/submissions/finite-nine-stage3-theorems/validation.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-09T06:39:14Z",
+  "manifest_sha256": "3cbd373e503b426fa56316a54af3e32b8dc7dae1ac5e9d348dfc61ce0bbe4723"
+}

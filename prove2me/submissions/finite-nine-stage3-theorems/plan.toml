@@ -1,0 +1,146 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-stage3-theorems/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Erdos9796FiniteNine.shell"
+title = "Finite-nine endpoint shell"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_shell.lean"
+natural_language_statement = "Every nine-point convex counterexample with four equidistant points at each vertex supplies the finite endpoint shell used by the remaining branches."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97/N9Endpoint"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[milestone]]
+title = "Transfer the existing finite-nine endpoint-shell proof"
+description = "Transfer the existing Lean proof of the finite-nine endpoint-shell result into Erdos9796FiniteNine.shell. This is proof porting from the authenticated source packet, not an open request to re-prove the result. It is the first node in the fixed nine-cut order and has no child-theorem predecessor."
+theorem = "Erdos9796FiniteNine.shell"
+sort_order = 1
+reason = "Publish the already-proved shell interface first so later transfer solutions can import it without duplicating completed work."
+
+[[milestone]]
+title = "Transfer the existing finite-nine Form b at v1 proof"
+description = "After the endpoint-shell node, transfer the existing Lean proof excluding escaped Form b at v1 into Erdos9796FiniteNine.form_b_v1. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessor: shell."
+theorem = "Erdos9796FiniteNine.form_b_v1"
+sort_order = 2
+reason = "Preserve the nine-cut DAG edge shell -> form_b_v1 and expose the already-completed source proof."
+
+[[milestone]]
+title = "Transfer the existing finite-nine Form b at v2 proof"
+description = "After the Form b at v1 node, transfer the existing cyclic-transport Lean proof into Erdos9796FiniteNine.form_b_v2. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessor: form_b_v1."
+theorem = "Erdos9796FiniteNine.form_b_v2"
+sort_order = 3
+reason = "Preserve the nine-cut DAG edge form_b_v1 -> form_b_v2 required before the Form a transfer."
+
+[[milestone]]
+title = "Transfer the existing finite-nine Form a at v1 proof"
+description = "After the transported Form b at v2 node, transfer the existing Lean proof excluding escaped Form a at v1 into Erdos9796FiniteNine.form_a_v1. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessor: form_b_v2."
+theorem = "Erdos9796FiniteNine.form_a_v1"
+sort_order = 4
+reason = "Preserve the load-bearing form_b_v2 -> form_a_v1 dependency and prevent contributors from restarting a closed source branch."
+
+[[milestone]]
+title = "Transfer the existing finite-nine Form c at v1 proof"
+description = "After the endpoint-shell node, transfer the existing Lean proof excluding escaped Form c at v1 into Erdos9796FiniteNine.form_c_v1. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessor: shell."
+theorem = "Erdos9796FiniteNine.form_c_v1"
+sort_order = 5
+reason = "Preserve the nine-cut DAG edge shell -> form_c_v1 while recording that the mathematical proof already exists."
+
+[[milestone]]
+title = "Transfer the existing finite-nine cyclic-form proofs"
+description = "After Form a at v1, Form b at v1, and Form c at v1 are public, transfer the existing cyclic-transport Lean proofs into Erdos9796FiniteNine.cyclic_forms. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessors: form_a_v1, form_b_v1, and form_c_v1."
+theorem = "Erdos9796FiniteNine.cyclic_forms"
+sort_order = 6
+reason = "Preserve the three incoming DAG edges to cyclic_forms and consolidate the five already-proved cyclic exclusions."
+
+[[milestone]]
+title = "Transfer the existing finite-nine cap-containment proof"
+description = "After all required escaped-form exclusions are public, transfer the existing Lean proof of N4 cap containment into Erdos9796FiniteNine.cap_containment. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessors: form_b_v2, form_a_v1, form_b_v1, form_c_v1, and cyclic_forms."
+theorem = "Erdos9796FiniteNine.cap_containment"
+sort_order = 7
+reason = "Preserve the five incoming DAG edges to cap_containment and expose the existing N4 endpoint conclusion."
+
+[[milestone]]
+title = "Transfer the existing finite-nine circle-placement proof"
+description = "After cap containment is public, transfer the existing N6/N7 common-radius Lean proof into Erdos9796FiniteNine.circle_placement. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessor: cap_containment."
+theorem = "Erdos9796FiniteNine.circle_placement"
+sort_order = 8
+reason = "Preserve the nine-cut DAG edge cap_containment -> circle_placement and make the completed circle-placement proof reusable."
+
+[[milestone]]
+title = "Transfer the existing finite-nine single-apex proof"
+description = "After circle placement is public, transfer the existing N8 single-apex exhaustion Lean proof into Erdos9796FiniteNine.single_apex_exhaustion. This is proof porting from the authenticated source packet, not an open request to re-prove the result. Fixed predecessor: circle_placement."
+theorem = "Erdos9796FiniteNine.single_apex_exhaustion"
+sort_order = 9
+reason = "Preserve the final child edge circle_placement -> single_apex_exhaustion before assembling the tiny mission-root solution."
+
+[[theorem]]
+name = "Erdos9796FiniteNine.form_b_v1"
+title = "Finite-nine escaped Form b exclusion at v1"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_b_v1.lean"
+natural_language_statement = "The finite endpoint shell excludes escaped Form b at its first distinguished triangle vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[theorem]]
+name = "Erdos9796FiniteNine.form_b_v2"
+title = "Finite-nine cyclic Form b exclusion at v2"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_b_v2.lean"
+natural_language_statement = "The finite endpoint shell excludes escaped Form b at its second distinguished triangle vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[theorem]]
+name = "Erdos9796FiniteNine.form_a_v1"
+title = "Finite-nine escaped Form a exclusion at v1"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_a_v1.lean"
+natural_language_statement = "After the cyclic Form b exclusion, the finite endpoint shell excludes escaped Form a at its first distinguished triangle vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[theorem]]
+name = "Erdos9796FiniteNine.form_c_v1"
+title = "Finite-nine escaped Form c exclusion at v1"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_c_v1.lean"
+natural_language_statement = "The finite endpoint shell excludes escaped Form c at its first distinguished triangle vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[theorem]]
+name = "Erdos9796FiniteNine.cyclic_forms"
+title = "Finite-nine remaining cyclic form exclusions"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_cyclic_forms.lean"
+natural_language_statement = "The finite endpoint shell excludes the five remaining cyclic escaped forms at its distinguished triangle vertices."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[theorem]]
+name = "Erdos9796FiniteNine.cap_containment"
+title = "Finite-nine N4 cap containment"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_cap_containment.lean"
+natural_language_statement = "The nine escaped-form exclusions force every relevant four-point distance fiber into the corresponding endpoint cap."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97/N9Endpoint"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[theorem]]
+name = "Erdos9796FiniteNine.circle_placement"
+title = "Finite-nine common-radius circle placement"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_circle_placement.lean"
+natural_language_statement = "Cap containment supplies one positive radius placing each endpoint cap on the circle centered at its corresponding triangle vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97/N9Endpoint"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[theorem]]
+name = "Erdos9796FiniteNine.single_apex_exhaustion"
+title = "Finite-nine single-apex exhaustion"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_single_apex_exhaustion.lean"
+natural_language_statement = "Under cap containment and the four-equidistant-points property, no point lies in an indexed cap interior."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97/N8"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]

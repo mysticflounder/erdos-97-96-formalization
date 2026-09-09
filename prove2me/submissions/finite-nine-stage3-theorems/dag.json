@@ -1,0 +1,67 @@
+{
+  "schema": "prove2me-finite-nine-theorem-dag/v1",
+  "source_packet": "submissions/finite-nine-modular/cuts.json",
+  "public_definition_import": "Definitions.Def_Erdos9796FiniteNine_N8Interface",
+  "nodes": [
+    {
+      "id": "shell",
+      "theorem": "Erdos9796FiniteNine.shell",
+      "depends_on": [],
+      "sort_order": 1
+    },
+    {
+      "id": "form_b_v1",
+      "theorem": "Erdos9796FiniteNine.form_b_v1",
+      "depends_on": ["shell"],
+      "sort_order": 2
+    },
+    {
+      "id": "form_b_v2",
+      "theorem": "Erdos9796FiniteNine.form_b_v2",
+      "depends_on": ["form_b_v1"],
+      "sort_order": 3
+    },
+    {
+      "id": "form_a_v1",
+      "theorem": "Erdos9796FiniteNine.form_a_v1",
+      "depends_on": ["form_b_v2"],
+      "sort_order": 4
+    },
+    {
+      "id": "form_c_v1",
+      "theorem": "Erdos9796FiniteNine.form_c_v1",
+      "depends_on": ["shell"],
+      "sort_order": 5
+    },
+    {
+      "id": "cyclic_forms",
+      "theorem": "Erdos9796FiniteNine.cyclic_forms",
+      "depends_on": ["form_a_v1", "form_b_v1", "form_c_v1"],
+      "sort_order": 6
+    },
+    {
+      "id": "cap_containment",
+      "theorem": "Erdos9796FiniteNine.cap_containment",
+      "depends_on": [
+        "form_b_v2",
+        "form_a_v1",
+        "form_b_v1",
+        "form_c_v1",
+        "cyclic_forms"
+      ],
+      "sort_order": 7
+    },
+    {
+      "id": "circle_placement",
+      "theorem": "Erdos9796FiniteNine.circle_placement",
+      "depends_on": ["cap_containment"],
+      "sort_order": 8
+    },
+    {
+      "id": "single_apex_exhaustion",
+      "theorem": "Erdos9796FiniteNine.single_apex_exhaustion",
+      "depends_on": ["circle_placement"],
+      "sort_order": 9
+    }
+  ]
+}
