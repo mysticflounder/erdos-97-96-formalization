@@ -539,6 +539,33 @@ module whose imports are still stale reports `incompatible header`, not its own 
 repository 149 of the first 153 sweep results were cascade noise.  Dependency order is what
 forces the waves, and only a real build satisfies it.
 
+### AQ.1 — how large the gap is, and how to measure it
+
+Counted at the source level rather than from the olean tree:
+
+    uv run python scripts/lean_build_closure_orphans.py --lake-root lean \
+      --json docs/audits/2026-09-09-lean-build-closure-orphans.json
+
+    modules=6534 in_closure=5150 orphans=1384
+
+So 1384 of the 6534 modules under `lean/Erdos9796/` and `lean/Erdos9796Proof/` are outside
+every declared library target.  They divide as 692 under `P97/ATail`, 385 under
+`P97/ErasedCertificate`, 206 under `P97/Census554`, 17 under `P97/MultiCenter`, and the rest
+scattered.  The 1249 stale oleans deleted on 2026-09-09 were all drawn from this set, which is
+why deleting them changed no build job count.
+
+Read this before reporting a green build: a green `lake build` of the declared targets says
+nothing about these 1384 modules, and neither does `comparator/check-conformance.sh`, whose
+`Challenge`, `Solution`, and `axiom-audit` targets all reach the library only through
+`Erdos9796Proof`.  To bring them into the build the lakefile would need `globs`, for example
+
+    [[lean_lib]]
+    name = "Erdos9796Proof"
+    globs = ["Erdos9796Proof.+"]
+
+which is a deliberate scope change, not a migration repair: it makes every regression in those
+1384 modules a build failure at once.
+
 ## AR — `bv_decide` moved out of Mathlib and stopped unfolding reducible definitions
 
 `import Mathlib.Tactic` no longer pulls in `bv_decide`; the tell is
