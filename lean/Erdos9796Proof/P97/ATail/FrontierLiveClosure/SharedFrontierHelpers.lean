@@ -530,7 +530,7 @@ theorem b1_live_escape_physicalClass_inter_firstShell_card_le_two
       SelectedClass D.A ((lateFirstApexSystem R).centerAt t htA)
           ((lateFirstApexSystem R).selectedAt t htA).radius =
         ((lateFirstApexSystem R).selectedAt t htA).toCriticalFourShell.support := by
-    simpa [CriticalFourShell.toSelectedFourClass] using hclass
+    exact hclass
   rw [hphysical]
   exact selected_support_inter_card_le_two_of_not_mem_other_selected_support
     (lateFirstApexSystem R) htA first.deleted.2 htNotRow

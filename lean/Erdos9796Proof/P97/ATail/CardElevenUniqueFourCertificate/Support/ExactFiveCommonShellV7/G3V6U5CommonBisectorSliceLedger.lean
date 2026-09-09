@@ -313,8 +313,9 @@ theorem v6U5CommonBisectorOccurrenceAt_valid :
 private theorem commonBisectorSourceChoiceVariable_lt
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by
+  have hlt : choice.val < sourceChoiceCount source := choice.isLt
   fin_cases source <;>
-    simp [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at choice ⊢ <;>
+    simp only [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at hlt ⊢ <;>
     omega
 
 /-- Every occurrence in the complete V6 U5 common-bisector family is

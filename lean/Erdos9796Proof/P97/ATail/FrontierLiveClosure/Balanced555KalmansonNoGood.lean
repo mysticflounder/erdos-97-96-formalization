@@ -155,34 +155,28 @@ private theorem positiveRowsMatch_of_atoms_true
   · simp only [Balanced555RequiredRowPair.rowChoice, Finset.mem_insert,
       Finset.mem_singleton] at hpoint
     rcases hpoint with rfl | rfl
-    · apply of_decide_eq_true
-      simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
+    · simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
         hall (data.row0.center, data.row0.first)
           (by simp [Balanced555KalmansonOccurrenceData.positiveAtoms])
-    · apply of_decide_eq_true
-      simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
+    · simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
         hall (data.row0.center, data.row0.second)
           (by simp [Balanced555KalmansonOccurrenceData.positiveAtoms])
   · simp only [Balanced555RequiredRowPair.rowChoice, Finset.mem_insert,
       Finset.mem_singleton] at hpoint
     rcases hpoint with rfl | rfl
-    · apply of_decide_eq_true
-      simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
+    · simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
         hall (data.row1.center, data.row1.first)
           (by simp [Balanced555KalmansonOccurrenceData.positiveAtoms])
-    · apply of_decide_eq_true
-      simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
+    · simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
         hall (data.row1.center, data.row1.second)
           (by simp [Balanced555KalmansonOccurrenceData.positiveAtoms])
   · simp only [Balanced555RequiredRowPair.rowChoice, Finset.mem_insert,
       Finset.mem_singleton] at hpoint
     rcases hpoint with rfl | rfl
-    · apply of_decide_eq_true
-      simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
+    · simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
         hall (data.row2.center, data.row2.first)
           (by simp [Balanced555KalmansonOccurrenceData.positiveAtoms])
-    · apply of_decide_eq_true
-      simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
+    · simpa [selectedAssignment, Balanced555RequiredRowPair.rowChoice] using
         hall (data.row2.center, data.row2.second)
           (by simp [Balanced555KalmansonOccurrenceData.positiveAtoms])
 
