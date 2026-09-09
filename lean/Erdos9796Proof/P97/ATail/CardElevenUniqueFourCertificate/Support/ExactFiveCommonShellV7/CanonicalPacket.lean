@@ -23,11 +23,17 @@ namespace ExactFiveCommonShellV7
 open Census554
 open Census554.SeparationCore
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 inductive SurplusShellChoice
   | labelTwo
   | labelThree
 deriving DecidableEq, Fintype
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 inductive OtherShellChoice
   | labelZero
   | labelNine

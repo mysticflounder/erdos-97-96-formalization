@@ -445,6 +445,9 @@ noncomputable def firstNonHitFiniteIndependentEscape_of_assignment
       witness_not_mem_seed := hwitnessNotSeed
       qOverlap_card_le_two := hoverlap }
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- Source families intentionally outside this finite relaxation. -/
 inductive FirstNonHitFiniteProjectionGap where
   | triApexRichClasses

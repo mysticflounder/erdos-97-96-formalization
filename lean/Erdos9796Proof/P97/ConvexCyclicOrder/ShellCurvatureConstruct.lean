@@ -86,8 +86,7 @@ theorem reverseCyclicPoint_orderedTriple_sign_neg {n : Nat}
     (∡ (reverseCyclicPoint point i.val) (reverseCyclicPoint point j.val)
       (reverseCyclicPoint point k.val)).sign = -1 := by
   have hrotate : IsCcwConvexPolygon (rotatePoint point) := by
-    simpa [rotatePoint] using
-      isCcwConvexPolygon_cyclicShift hinj hccw (1 : Fin (n + 1))
+    exact isCcwConvexPolygon_cyclicShift hinj hccw (1 : Fin (n + 1))
   have hstandard :=
     ShellCurvature.standardCounterclockwiseConvexPolygon_reverseLinear hrotate
   simpa [rotatePoint_rev_eq_reverseCyclicPoint] using hstandard hij hjk
@@ -345,7 +344,7 @@ theorem chordLift_lifts_arcAngle {n i j : Nat} (hn : 3 <= n + 1)
         (∡ (reverseCyclicPoint point (i + 1))
           (reverseCyclicPoint point i)
           (reverseCyclicPoint point j)) := by
-    simpa using hsub
+    exact hsub
   rw [chordLift, Real.Angle.coe_add, edgeLift_lifts_arcAngle hn hinj,
     chordStartGap, Real.Angle.coe_toReal]
   rw [sub_eq_iff_eq_add] at hsub'
@@ -390,7 +389,7 @@ theorem chordLift_step_sub_mem_Ioo {n i j : Nat} (hn : 3 <= n + 1)
     dsimp [d]
     rw [chordLift_lifts_arcAngle hn hinj hproperSucc,
       chordLift_lifts_arcAngle hn hinj hproper]
-    simpa using hsub
+    exact hsub
   rcases hproperSucc with ⟨_hi0, hijSucc, hjSucc, hnotFull⟩
   have hij : i < j := by
     rcases hproper with ⟨_, hij, _, _⟩
@@ -653,7 +652,7 @@ theorem chordLift_sameStart_sub_mem_Ioo {n i j k : Nat}
     dsimp [d]
     rw [chordLift_lifts_arcAngle hn hinj hproperIK,
       chordLift_lifts_arcAngle hn hinj hproperIJ]
-    simpa using hsub
+    exact hsub
   have hsign := openWindow_apex_sign_pos hinj hccw hij hjk hk hnotFull
   apply real_mem_Ioo_of_coe_sign_pos hdLower hdUpper
   rwa [hcoe]

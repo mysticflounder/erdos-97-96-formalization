@@ -42,6 +42,9 @@ namespace TwoSourceExactCollisionRowsTerminal
 
 noncomputable section
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The eleven source-named roles retained by the FirstNonHit finite assignment. -/
 inductive FirstNonHitNamedRole where
   | surplusApex

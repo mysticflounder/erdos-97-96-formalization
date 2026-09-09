@@ -18,7 +18,7 @@ The tool is generic: every module, declaration, root, log, and parent record
 is supplied on the command line.  Nothing about a particular certificate is
 hard-coded.
 
-Generation runs Lean once (``lake env lean`` on a temporary probe file);
+Generation runs one probe through the absolute ``lake-build`` wrapper in a temporary package;
 ``check`` re-derives every byte-level field from the working tree and only
 re-runs Lean when ``--semantic`` is passed.
 """
@@ -31,10 +31,11 @@ import json
 import os
 import subprocess
 import sys
-import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+
+from lean_lake_probe import ProbeError, normalize_probe_message, run_probe
 
 SCHEMA = "p97-lean-ingress-binding/v1"
 SELF_HASH_DOMAIN = "p97-lean-ingress-binding/v1"
@@ -276,18 +277,15 @@ def build_probe_text(aggregate_module: str, declarations: list[str]) -> str:
 def parse_lean_messages(output: str, probe_path: str) -> list[dict[str, str]]:
     """Split ``lean`` output into (severity, text) messages for one file."""
 
-    prefix = probe_path + ":"
     messages: list[dict[str, Any]] = []
     for line in output.splitlines():
-        if line.startswith(prefix):
-            remainder = line[len(prefix) :]
-            parts = remainder.split(":", 2)
-            if len(parts) == 3:
-                body = parts[2].lstrip()
-                severity, separator, tail = body.partition(":")
-                if separator and severity in LEAN_SEVERITIES:
-                    messages.append({"severity": severity, "lines": [tail.strip()]})
-                    continue
+        positioned = normalize_probe_message(line, probe_path)
+        if positioned is not None:
+            severity, body = positioned
+            if not body.strip():
+                continue
+            messages.append({"severity": severity, "lines": [body.strip()]})
+            continue
         # ``#check`` and ``#print axioms`` print bare info messages without a
         # position prefix; wrapped continuation lines start with whitespace.
         if line.strip() == "":
@@ -335,23 +333,6 @@ def _is_axiom_message(text: str) -> bool:
     return "depends on axioms" in text or "does not depend on any axioms" in text
 
 
-def _run_command(command: list[str], cwd: Path, timeout: int) -> subprocess.CompletedProcess[str]:
-    try:
-        return subprocess.run(
-            command,
-            cwd=str(cwd),
-            capture_output=True,
-            text=True,
-            timeout=timeout,
-            check=False,
-        )
-    except FileNotFoundError as exc:
-        raise BindingError(f"semantic probe: command not found: {command[0]}") from exc
-    except subprocess.TimeoutExpired as exc:
-        raise BindingError(
-            f"semantic probe: {' '.join(command)} timed out after {timeout}s"
-        ) from exc
-
 
 def run_semantic_probe(
     *,
@@ -360,53 +341,30 @@ def run_semantic_probe(
     aggregate_module: str,
     declarations: list[str],
     timeout: int,
+    probe_run_root: Path | str | None = None,
 ) -> dict[str, Any]:
-    """Elaborate the declarations under the pinned toolchain via ``lake env lean``."""
-
-    lake_dir = repo_path(repo_root, lake_root, label="lake root")
-    if not lake_dir.is_dir():
-        raise BindingError(f"lake root is not a directory: {lake_root}")
-    toolchain_path = lake_dir / "lean-toolchain"
-    toolchain = read_file_bytes(toolchain_path, label="lean-toolchain").decode("utf-8").strip()
+    """Run the semantic probe through the governed lake-build wrapper."""
 
     probe_text = build_probe_text(aggregate_module, declarations)
-    scratch_dir = repo_root / "scratch"
-    probe_dir = scratch_dir if scratch_dir.is_dir() else Path(tempfile.gettempdir())
-    descriptor, name = tempfile.mkstemp(
-        dir=str(probe_dir), prefix="lean-ingress-binding-", suffix=LEAN_SUFFIX
-    )
-    os.close(descriptor)
-    probe_path = Path(name)
     try:
-        probe_path.write_text(probe_text, encoding="utf-8")
-        version = _run_command(["lake", "env", "lean", "--version"], lake_dir, timeout)
-        if version.returncode != 0:
-            raise BindingError(
-                "semantic probe: 'lake env lean --version' failed with exit "
-                f"{version.returncode}"
-            )
-        lean_version = version.stdout.strip().splitlines()[0].strip() if version.stdout.strip() else ""
-        if not lean_version:
-            raise BindingError("semantic probe: 'lake env lean --version' printed nothing")
-        completed = _run_command(["lake", "env", "lean", str(probe_path)], lake_dir, timeout)
-        output = completed.stdout + completed.stderr
-        messages = parse_lean_messages(output, str(probe_path))
-        for line in output.splitlines():
-            if line.startswith("error"):
-                raise BindingError(f"semantic probe: lean reported an error: {line.strip()}")
-        for message in messages:
-            if message["severity"] == "error":
-                first = message["text"].splitlines()[0] if message["text"] else ""
-                raise BindingError(f"semantic probe: lean reported an error: {first}")
-        if completed.returncode != 0:
-            raise BindingError(
-                f"semantic probe: 'lake env lean' exited {completed.returncode}"
-            )
-    finally:
-        try:
-            probe_path.unlink()
-        except OSError:
-            pass
+        result = run_probe(
+            repo_root=repo_root,
+            lake_root=lake_root,
+            source=probe_text,
+            run_root=probe_run_root,
+            timeout=timeout,
+        )
+    except ProbeError as exc:
+        raise BindingError(f"semantic probe: {exc}") from exc
+    output = result.output
+    messages = parse_lean_messages(output, result.probe_path)
+    for line in output.splitlines():
+        if line.startswith("error"):
+            raise BindingError(f"semantic probe: Lean reported an error: {line.strip()}")
+    for message in messages:
+        if message["severity"] == "error":
+            first = message["text"].splitlines()[0] if message["text"] else ""
+            raise BindingError(f"semantic probe: Lean reported an error: {first}")
 
     records: list[dict[str, Any]] = []
     index = 0
@@ -441,8 +399,8 @@ def run_semantic_probe(
                 f"semantic probe: no '#check' output for {record['declaration']}"
             )
     return {
-        "toolchain": toolchain,
-        "lean_version": lean_version,
+        "toolchain": result.toolchain,
+        "lean_version": result.compiler_version,
         "probe_sha256": sha256_hex(probe_text.encode("utf-8")),
         "timeout_seconds": timeout,
         "declarations": records,
@@ -539,6 +497,7 @@ def generate_record(
     parent_kind: str,
     build_log: str,
     lake_env_lean_timeout: int = DEFAULT_LAKE_ENV_LEAN_TIMEOUT,
+    probe_run_root: Path | str | None = None,
 ) -> dict[str, Any]:
     root = Path(repo_root).resolve()
     if not root.is_dir():
@@ -566,13 +525,16 @@ def generate_record(
     build_evidence = build_evidence_record(root, build_log, aggregate_module)
     parent = parent_link_record(root, parent_record, parent_kind)
 
-    semantic = run_semantic_probe(
-        repo_root=root,
-        lake_root=lake_relative,
-        aggregate_module=aggregate_module,
-        declarations=list(declarations),
-        timeout=lake_env_lean_timeout,
-    )
+    probe_kwargs: dict[str, Any] = {
+        "repo_root": root,
+        "lake_root": lake_relative,
+        "aggregate_module": aggregate_module,
+        "declarations": list(declarations),
+        "timeout": lake_env_lean_timeout,
+    }
+    if probe_run_root is not None:
+        probe_kwargs["probe_run_root"] = probe_run_root
+    semantic = run_semantic_probe(**probe_kwargs)
 
     ingress_again = module_source_record(root, source_relative, ingress_module, label="ingress module")
     aggregate_again = module_source_record(root, source_relative, aggregate_module, label="aggregate module")
@@ -640,7 +602,8 @@ def _require_str(record: dict[str, Any], section: str, key: str) -> str:
 
 
 def check_record_object(
-    record: dict[str, Any], repo_root: Path | str, *, semantic: bool = False
+    record: dict[str, Any], repo_root: Path | str, *, semantic: bool = False,
+    probe_run_root: Path | str | None = None,
 ) -> str:
     """Verify a loaded record against the working tree.  Returns the self hash."""
 
@@ -768,22 +731,28 @@ def check_record_object(
         timeout = recorded_semantic.get("timeout_seconds")
         if not isinstance(timeout, int):
             raise BindingError("semantic: missing integer 'timeout_seconds'")
-        current_semantic = run_semantic_probe(
-            repo_root=root,
-            lake_root=lake_relative,
-            aggregate_module=aggregate_module,
-            declarations=list(declarations),
-            timeout=timeout,
-        )
+        probe_kwargs: dict[str, Any] = {
+            "repo_root": root,
+            "lake_root": lake_relative,
+            "aggregate_module": aggregate_module,
+            "declarations": list(declarations),
+            "timeout": timeout,
+        }
+        if probe_run_root is not None:
+            probe_kwargs["probe_run_root"] = probe_run_root
+        current_semantic = run_semantic_probe(**probe_kwargs)
         _compare("semantic", recorded_semantic, current_semantic)
 
     return str(stored["sha256"])
 
 
-def check_record_file(record_path: Path, repo_root: Path | str, *, semantic: bool = False) -> str:
+def check_record_file(
+    record_path: Path, repo_root: Path | str, *, semantic: bool = False,
+    probe_run_root: Path | str | None = None,
+) -> str:
     data = read_file_bytes(Path(record_path), label="binding record")
     record = load_json_object(data, label="binding record")
-    return check_record_object(record, repo_root, semantic=semantic)
+    return check_record_object(record, repo_root, semantic=semantic, probe_run_root=probe_run_root)
 
 
 # --------------------------------------------------------------------------
@@ -823,10 +792,15 @@ def build_parser() -> argparse.ArgumentParser:
     generate.add_argument("--build-log", required=True, help="repository-relative build log")
     generate.add_argument("--out", required=True, help="output JSON path")
     generate.add_argument(
+        "--probe-run-root",
+        type=Path,
+        help="registered scratch/runs/<lane>/<run>/ directory for the generated package",
+    )
+    generate.add_argument(
         "--lake-env-lean-timeout",
         type=int,
         default=DEFAULT_LAKE_ENV_LEAN_TIMEOUT,
-        help=f"seconds for each 'lake env lean' call (default: {DEFAULT_LAKE_ENV_LEAN_TIMEOUT})",
+        help=f"seconds for the governed probe (default: {DEFAULT_LAKE_ENV_LEAN_TIMEOUT})",
     )
 
     check = subparsers.add_parser("check", help="verify an existing binding record")
@@ -835,7 +809,12 @@ def build_parser() -> argparse.ArgumentParser:
     check.add_argument(
         "--semantic",
         action="store_true",
-        help="re-run the Lean probe (off by default)",
+        help="re-run the governed Lean probe (off by default)",
+    )
+    check.add_argument(
+        "--probe-run-root",
+        type=Path,
+        help="registered run directory required with --semantic",
     )
     return parser
 
@@ -856,6 +835,7 @@ def main(argv: list[str] | None = None) -> int:
                 parent_kind=args.parent_kind,
                 build_log=args.build_log,
                 lake_env_lean_timeout=args.lake_env_lean_timeout,
+                probe_run_root=args.probe_run_root,
             )
             out_path = _resolve_output(repo_root, args.out)
             write_record(record, out_path)
@@ -867,7 +847,8 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         digest = check_record_file(
-            _resolve_output(repo_root, args.record), repo_root, semantic=args.semantic
+            _resolve_output(repo_root, args.record), repo_root, semantic=args.semantic,
+            probe_run_root=args.probe_run_root,
         )
     except (BindingError, ValueError, OSError) as exc:
         print("BINDING CHECK FAILED: " + " ".join(str(exc).split()), file=sys.stderr)

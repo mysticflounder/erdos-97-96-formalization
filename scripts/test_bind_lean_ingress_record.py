@@ -451,6 +451,32 @@ def test_lean_message_and_axiom_parsing() -> None:
     assert errors[0]["severity"] == "error"
 
 
+def test_real_v4331_lake_info_prefix_is_normalized() -> None:
+    # Copied from scratch/runs/mathlib-v4331-takeover-20260908/run-0001/
+    # artifacts/wrapper-probe-smoke.json (the governed wrapper's raw output).
+    probe = "/registered/run/tmp/probe-real/Probe.lean"
+    output = (
+        "info: Probe.lean:4:0: Nat : Type\n"
+        "info: Probe.lean:5:0: 'Nat.add_comm' does not depend on any axioms\n"
+        "info: Probe.lean:6:0: \n"
+    )
+    messages = binder.parse_lean_messages(output, probe)
+    assert messages[0] == {"severity": "info", "text": "Nat : Type"}
+    assert messages[1] == {
+        "severity": "info",
+        "text": "'Nat.add_comm' does not depend on any axioms",
+    }
+    assert binder.parse_axiom_message(messages[1]["text"], "Nat.add_comm") == []
+
+
+def test_positioned_message_from_another_file_is_not_stripped() -> None:
+    messages = binder.parse_lean_messages(
+        "info: Other.lean:4:0: 'Nat.add_comm' does not depend on any axioms\n",
+        "/registered/run/tmp/probe-real/Probe.lean",
+    )
+    assert messages[0]["text"].startswith("info: Other.lean:4:0:")
+
+
 def test_bare_info_messages_without_position_prefix() -> None:
     probe = "/tmp/probe.lean"
     output = (

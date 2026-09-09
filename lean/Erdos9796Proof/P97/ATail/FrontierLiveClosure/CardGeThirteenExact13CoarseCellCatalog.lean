@@ -28,6 +28,9 @@ open ATailUniqueArmRouteAuditScratch
 open DRExactThirteenValuation
 open ExactThirteenBranchIngress
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The two boundary orientations retained by the exact-thirteen ingress. -/
 inductive Exact13CoarseCellOrientation where
   | direct

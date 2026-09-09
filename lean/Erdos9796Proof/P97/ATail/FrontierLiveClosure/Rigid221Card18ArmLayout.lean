@@ -46,6 +46,9 @@ def PacketOfArm.commonRoles : {a : SearchArm} → PacketOfArm a →
         p.commonRoles.deleted] i := by
   cases a <;> fin_cases i <;> rfl
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The five crossed-incidence atoms, in their canonical numeric order. -/
 inductive CrossedIncidence where
   | actualCenter1InBO

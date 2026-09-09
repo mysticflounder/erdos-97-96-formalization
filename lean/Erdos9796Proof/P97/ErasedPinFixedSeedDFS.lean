@@ -366,9 +366,8 @@ theorem erasedPinCanonicalSeed_candidateMasks
     (seed : OneSidedSeed) (center : Label) :
     (erasedPinCanonicalSeed seed).candidateMasks center =
       seed.candidateMasks center := by
-  cases seed <;> cases center <;>
-    simp [erasedPinCanonicalSeed, OneSidedSeed.candidateMasks,
-      OneSidedSeed.fixedMask]
+  cases seed
+  rfl
 
 theorem isValidOneSidedSeedShadow_erasedPinCanonicalSeed
     {seed : OneSidedSeed} {shadow : Shadow}

@@ -686,18 +686,20 @@ cd <this-repo>
 # dependencies from lake-manifest.json: mathlib v4.27.0 and formal-conjectures.
 cd lean && lake exe cache get && cd ..
 
-# Build through the serialized wrapper, which holds a lock so that concurrent
+# Build through the global `lake-build` wrapper (installed on PATH by the
+# lean-usage plugin), which holds a per-project lock so that concurrent
 # invocations queue rather than corrupt each other's output.
-./scripts/lake-build.sh
+lake-build
 ```
 
-`scripts/lake-build.sh` resolves the repository root, takes a PID lockfile at
-`lean/.lake/lake-build.lock` (reaping stale locks, refusing to run while another
-build's process is live), and then runs `lake build` with the default targets
-`Erdos9796` and `Erdos9796Proof`. The memory and stack flags live in
-`lean/lakefile.toml` as `moreLeanArgs = ["-M16384", "-s2097152"]`. Do not
-confuse this script with the `lake-build` command that the `lean-usage` plugin
-installs on `PATH`; they are different programs.
+`lake-build` runs from anywhere inside the repository, locates the Lake root
+`lean/`, takes a stale-PID-aware lockfile, caps each worker's memory, records
+per-module build times, and then runs `lake build` with the default targets
+`Erdos9796` and `Erdos9796Proof`. Extra arguments are forwarded verbatim to
+`lake build`, so `lake-build Challenge Solution` builds the comparator modules.
+The memory and stack flags live in `lean/lakefile.toml` as
+`moreLeanArgs = ["-M16384", "-s2097152"]`. The former repository-local
+`scripts/lake-build.sh` was removed; `lake-build` replaces it.
 
 A successful build prints `declaration uses 'sorry'` warnings for the open leaf
 theorems, plus the off-spine ones listed under **Proof status**, and nothing else
@@ -819,7 +821,6 @@ attic/                        -- retired off-spine work
 scratch/                      -- runtime lanes, solver output, generated artifacts
 
 scripts/                      -- 499 entries; the ones a newcomer needs:
-  lake-build.sh                    -- locked build wrapper
   check_worktree_hygiene.py        -- lane ownership + artifact hygiene gate
   mine_bank_lean_dependencies.py   -- kernel-mined bank source manifests
   gen_obligation_registry.py       -- obligation registry generator + roster gate

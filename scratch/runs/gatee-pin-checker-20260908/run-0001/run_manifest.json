@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "gatee-pin-checker-20260908",
+  "run_id": "run-0001",
+  "root": "scratch/runs/gatee-pin-checker-20260908/run-0001",
+  "owner": "codex-gatee-pin-checker",
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "comparator/toolchain-pins.json": "62b68a20f16b5b90727b2af9b159e94b01d72919de34dc33b6fa9b880a04a3af",
+    "scripts/check_lean_toolchain.py": "d9958dc7bd3bea68298f0a738f1ff71583666c5a78236b959ebb8d4daaa73f6d",
+    "tests/test_check_lean_toolchain.py": "6cae33ffa62241ada72de5cc52753d967fd1accbaa4ac300bf2074a2983bc993"
+  },
+  "input_digests": {
+    "lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+    "lean/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+    "lean/lakefile.toml": "3bae0e219bbbe9f2dfba4fca4c4446a34af27315de59fb05acbb958468304fe6",
+    "lean/lake-manifest.json": "9de4a69fdebf0ff09647ae11adb312a5a2e12ac0aa3603f2c8ab618d57967f13"
+  },
+  "created_utc": "2026-09-08T18:37:42Z",
+  "manifest_sha256": "6f48eeadd8cdb3f36b1d9be023fb6112f9beb09266bf049b3c973200bb0126ae"
+}

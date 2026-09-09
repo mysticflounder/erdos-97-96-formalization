@@ -384,7 +384,7 @@ theorem CGN6norm_minorCapChainModel_of_mecCapPacket
   have hfirst_last : firstIndex (m := m) Packet.hm ≠ lastIndex (m := m) Packet.hm := by
     intro h
     have hm1 : 1 < m := by
-      simpa using Packet.hm
+      exact Packet.hm
     have hval0 : (firstIndex (m := m) Packet.hm).val = 0 := by simp [firstIndex]
     have hval1 : (lastIndex (m := m) Packet.hm).val = m - 1 := by simp [lastIndex]
     have hne : m - 1 ≠ 0 := Nat.sub_ne_zero_of_lt hm1
@@ -515,7 +515,7 @@ theorem CGN6norm_minorCapChainModel_of_mecCapPacket
       intro p'
       simp [T, sub_eq_add_neg, map_add, map_sub, add_comm, add_left_comm, add_assoc])
     have hmap : T '' (convexHull ℝ S) = convexHull ℝ (T '' S) := by
-      simpa using (AffineMap.image_convexHull Taff S)
+      simpa [Taff] using (AffineMap.image_convexHull Taff S)
     constructor
     · intro ha
       have himage : T a ∈ T '' convexHull ℝ S := by
@@ -1148,7 +1148,7 @@ theorem CGN6b0_secantEndpointBounds_coords {m : ℕ} (L : MinorCapChainCoords m)
             = y (t + 1) - y t := by
         simpa [mul_div_assoc] using
           (mul_div_cancel_left₀ (b := y (t + 1) - y t) hne)
-      simpa [w, d, x, y, adjSlopeNat, xCoord, yCoord, ht0, ht1] using hmul
+      simpa [w, d, x, y, adjSlopeNat, slopeAt, xCoord, yCoord, ht0, ht1] using hmul
     have hnum : ∑ t ∈ Finset.Ico a b, w t * d t = y b - y a := by
       calc
         ∑ t ∈ Finset.Ico a b, w t * d t = ∑ t ∈ Finset.Ico a b, (y (t + 1) - y t) := by
@@ -1176,7 +1176,7 @@ theorem CGN6b0_secantEndpointBounds_coords {m : ℕ} (L : MinorCapChainCoords m)
       have h0j : 0 < j := by omega
       have hsec := hsecant_eq h0j hj
       have hrange : Finset.range j = Finset.Ico 0 j := by
-        exact congrArg (fun g : ℕ → Finset ℕ => g j) Finset.range_eq_Ico
+        exact Finset.range_eq_Ico j
       rw [hrange]
       exact hsec
     simpa [htail_sec, hfull_sec] using havg
@@ -1310,7 +1310,7 @@ theorem CGN6b_nonacute_of_minorCapChainCoords {m : ℕ} (L : MinorCapChainCoords
             = y (t + 1) - y t := by
         simpa [mul_div_assoc] using
           (mul_div_cancel_left₀ (b := y (t + 1) - y t) hne)
-      simpa [w, d, x, y, adjSlopeNat, xCoord, yCoord, ht0, ht1] using hmul
+      simpa [w, d, x, y, adjSlopeNat, slopeAt, xCoord, yCoord, ht0, ht1] using hmul
     have hnum : ∑ t ∈ Finset.Ico a b, w t * d t = y b - y a := by
       calc
         ∑ t ∈ Finset.Ico a b, w t * d t = ∑ t ∈ Finset.Ico a b, (y (t + 1) - y t) := by

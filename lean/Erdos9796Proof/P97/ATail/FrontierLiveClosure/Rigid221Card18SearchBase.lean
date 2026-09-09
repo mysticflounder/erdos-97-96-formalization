@@ -24,6 +24,9 @@ namespace ATailFrontierLiveClosure
 
 open Rigid221Card18FiniteDataExport
 
+-- The enum `Fintype` derive handler needs this under Lean 4.33, as in
+-- `MathlibTest/DeriveFintype.lean`.
+set_option backward.isDefEq.respectTransparency false in
 /-- The three constructor arms of `Rigid221Card18AbstractPacket`. -/
 inductive SearchArm where
   | bi

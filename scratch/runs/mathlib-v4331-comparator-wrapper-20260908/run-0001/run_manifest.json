@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "mathlib-v4331-comparator-wrapper-20260908",
+  "run_id": "run-0001",
+  "root": "scratch/runs/mathlib-v4331-comparator-wrapper-20260908/run-0001",
+  "owner": "comparator_wrapper",
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "comparator/check-conformance.sh": "147cedfd7e99fe4d11f6d86207f8ab158dc0fd46f2e3db9f6c56c65975a2f769",
+    "comparator/axiom-audit.lean": "a2fa4711d9bf980c2f9666bee3a51a532943ecb847066ab1458abbad2d4a87c4",
+    "lean/lakefile.toml": "3bae0e219bbbe9f2dfba4fca4c4446a34af27315de59fb05acbb958468304fe6",
+    "comparator/README.md": "488dcbca51b570f68fdd7e24e029f091cd7aa66aabaa6af1df8fd508b0a74406",
+    "comparator/test-check-conformance.sh": "d1c90635091989dd5c559f0267160c113a2eb60a7aaed47ad408abcfbe7538e7"
+  },
+  "input_digests": {
+    "lean/lean-toolchain": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+    "lean/lake-manifest.json": "9de4a69fdebf0ff09647ae11adb312a5a2e12ac0aa3603f2c8ab618d57967f13"
+  },
+  "created_utc": "2026-09-08T17:27:42Z",
+  "manifest_sha256": "a28327a17430e45460a6021242af9dde74e718f07194f771050680e8997c4825"
+}

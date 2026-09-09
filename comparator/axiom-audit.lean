@@ -15,8 +15,8 @@ repository README, `native_decide` policy).
 The theorems live in the shared `Headline` namespace in `Solution.lean`, so the
 comparator finds them under the same qualified names listed in `config.json`.
 
-Run: lake env lean ../comparator/axiom-audit.lean   (from `lean/`)
-  or: comparator/check-conformance.sh                (from the repo root)
+Run: lake-build ComparatorAxiomAudit                  (from the repo root)
+  or: comparator/check-conformance.sh                 (from the repo root)
 -/
 
 #print axioms Headline.counterexample_card_ge_nine

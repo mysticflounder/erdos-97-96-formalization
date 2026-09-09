@@ -41,10 +41,10 @@ from __future__ import annotations
 
 import argparse
 import importlib
-import subprocess
 import sys
-import tempfile
 from pathlib import Path
+
+from lean_lake_probe import ProbeError, normalize_probe_message, run_probe
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 LOCAL_PREFIX = "Erdos9796Proof."
@@ -105,37 +105,46 @@ private def declClosure (env : Environment) (roots : Array Name) : NameSet := Id
 """
 
 
-def mine(root_modules: tuple[str, ...]) -> tuple[str, ...]:
+def mine(
+    root_modules: tuple[str, ...],
+    *,
+    probe_run_root: Path | str | None = None,
+    timeout: int = 900,
+) -> tuple[str, ...]:
     """Repository-local modules supplying a declaration the roots depend on."""
 
     source = LEAN_TEMPLATE.format(
         imports="\n".join(f"import {module}" for module in root_modules),
         roots="\n  , ".join(f"`{module}" for module in root_modules),
     )
-    with tempfile.TemporaryDirectory() as directory:
-        probe = Path(directory) / "MineBankLeanDependencies.lean"
-        probe.write_text(source, encoding="utf-8")
-        completed = subprocess.run(
-            ["lake", "env", "lean", str(probe)],
-            cwd=REPO_ROOT / "lean",
-            capture_output=True,
-            text=True,
+    try:
+        result = run_probe(
+            repo_root=REPO_ROOT,
+            lake_root="lean",
+            source=source,
+            run_root=probe_run_root,
+            timeout=timeout,
         )
-    if completed.returncode != 0:
+    except ProbeError as exc:
         raise SystemExit(
-            "lean failed while mining the dependency set; the tree must be built "
-            f"first.\n{completed.stdout}\n{completed.stderr}"
-        )
+            "governed Lean probe failed while mining the dependency set; "
+            f"the tree must be built first.\n{exc}"
+        ) from exc
+    normalized_lines: list[str] = []
+    for line in result.output.splitlines():
+        positioned = normalize_probe_message(line, result.probe_path)
+        normalized_lines.append(positioned[1] if positioned is not None else line)
+    probe_output = "\n".join(normalized_lines)
     missing = [
         line.split(None, 1)[1]
-        for line in completed.stdout.splitlines()
+        for line in probe_output.splitlines()
         if line.startswith("MISSING-ROOT ")
     ]
     if missing:
         raise SystemExit(f"root declarations absent from the environment: {missing}")
     modules = sorted(
         line.split(None, 1)[1]
-        for line in completed.stdout.splitlines()
+        for line in probe_output.splitlines()
         if line.startswith("MOD ") and line.split(None, 1)[1].startswith(LOCAL_PREFIX)
     )
     if not modules:
@@ -143,7 +152,7 @@ def mine(root_modules: tuple[str, ...]) -> tuple[str, ...]:
     declarations = next(
         (
             line.split(None, 1)[1]
-            for line in completed.stdout.splitlines()
+            for line in probe_output.splitlines()
             if line.startswith("DECLARATIONS ")
         ),
         "?",
@@ -151,7 +160,7 @@ def mine(root_modules: tuple[str, ...]) -> tuple[str, ...]:
     rootdecls = next(
         (
             line.split(None, 1)[1]
-            for line in completed.stdout.splitlines()
+            for line in probe_output.splitlines()
             if line.startswith("ROOTDECLS ")
         ),
         "?",
@@ -167,6 +176,17 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("bank_module", help="importable bank module path")
     parser.add_argument(
+        "--probe-run-root",
+        type=Path,
+        help="registered scratch/runs/<lane>/<run>/ directory for the generated package",
+    )
+    parser.add_argument(
+        "--probe-timeout",
+        type=int,
+        default=900,
+        help="seconds allowed for the governed probe (default: 900)",
+    )
+    parser.add_argument(
         "--compare",
         action="store_true",
         help="also report the module's current LEAN_DEPENDENCY_MODULES",
@@ -176,7 +196,9 @@ def main() -> None:
     sys.path.insert(0, str(REPO_ROOT))
     bank = importlib.import_module(arguments.bank_module)
     root_modules = tuple(bank.LEAN_ROOT_MODULES)
-    mined = mine(root_modules)
+    mined = mine(
+        root_modules, probe_run_root=arguments.probe_run_root, timeout=arguments.probe_timeout
+    )
 
     for module in root_modules:
         if module not in mined:

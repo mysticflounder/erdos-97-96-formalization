@@ -251,23 +251,17 @@ theorem oppApex1_interior_card_eq_two_of_isM44 {D : CounterexampleData}
     (D.packet.oppCap1 \ (D.packet.surplusCap ∪ D.packet.oppCap2)).card = 2 := by
   obtain ⟨hcard1, _hcard2⟩ := hM44
   set CP := D.packet.partition
-  rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
-  interval_cases i
-  · have hC2 : CP.C2.card = 4 := by
-      simpa [CP, SurplusCapPacket.oppCap1, hi] using hcard1
-    simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi] using
-      C2_sdiff_C1_union_C3_card_eq_two CP hC2
-  · have hC3 : CP.C3.card = 4 := by
-      simpa [CP, SurplusCapPacket.oppCap1, hi] using hcard1
-    simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi, Finset.union_comm] using
-      C3_sdiff_C1_union_C2_card_eq_two CP hC3
-  · have hC1 : CP.C1.card = 4 := by
-      simpa [CP, SurplusCapPacket.oppCap1, hi] using hcard1
-    simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi, Finset.union_comm] using
-      C1_sdiff_C2_union_C3_card_eq_two CP hC1
+  unfold SurplusCapPacket.oppCap1 at hcard1
+  unfold SurplusCapPacket.oppCap1 SurplusCapPacket.oppCap2 SurplusCapPacket.surplusCap
+  generalize D.packet.surplusIdx = j at hcard1 ⊢
+  fin_cases j
+  · exact C2_sdiff_C1_union_C3_card_eq_two CP hcard1
+  · have h := C3_sdiff_C1_union_C2_card_eq_two CP hcard1
+    rw [Finset.union_comm CP.C1 CP.C2] at h
+    exact h
+  · have h := C1_sdiff_C2_union_C3_card_eq_two CP hcard1
+    rw [Finset.union_comm CP.C2 CP.C3] at h
+    exact h
 
 /-- The second non-surplus opposite cap has a two-point interior after removing
 the two adjacent caps. -/
@@ -276,23 +270,15 @@ theorem oppApex2_interior_card_eq_two_of_isM44 {D : CounterexampleData}
     (D.packet.oppCap2 \ (D.packet.surplusCap ∪ D.packet.oppCap1)).card = 2 := by
   obtain ⟨_hcard1, hcard2⟩ := hM44
   set CP := D.packet.partition
-  rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
-  interval_cases i
-  · have hC3 : CP.C3.card = 4 := by
-      simpa [CP, SurplusCapPacket.oppCap2, hi] using hcard2
-    simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi] using
-      C3_sdiff_C1_union_C2_card_eq_two CP hC3
-  · have hC1 : CP.C1.card = 4 := by
-      simpa [CP, SurplusCapPacket.oppCap2, hi] using hcard2
-    simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi] using
-      C1_sdiff_C2_union_C3_card_eq_two CP hC1
-  · have hC2 : CP.C2.card = 4 := by
-      simpa [CP, SurplusCapPacket.oppCap2, hi] using hcard2
-    simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi, Finset.union_comm] using
-      C2_sdiff_C1_union_C3_card_eq_two CP hC2
+  unfold SurplusCapPacket.oppCap2 at hcard2
+  unfold SurplusCapPacket.oppCap1 SurplusCapPacket.oppCap2 SurplusCapPacket.surplusCap
+  generalize D.packet.surplusIdx = j at hcard2 ⊢
+  fin_cases j
+  · exact C3_sdiff_C1_union_C2_card_eq_two CP hcard2
+  · exact C1_sdiff_C2_union_C3_card_eq_two CP hcard2
+  · have h := C2_sdiff_C1_union_C3_card_eq_two CP hcard2
+    rw [Finset.union_comm CP.C1 CP.C3] at h
+    exact h
 
 /-- Every exact-radius class at the first non-surplus apex is covered by the
 two adjacent caps and the two-point interior of the opposite cap. -/
@@ -303,17 +289,16 @@ theorem oppApex1_exactRadiusClass_cover (D : CounterexampleData) (r : ℝ) :
   intro x hx
   have hxA : x ∈ D.A := (Finset.mem_filter.mp hx).1
   set CP := D.packet.partition
-  rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
-  interval_cases i
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi] using
-      C2_cover_by_C1_C3_interior CP hxA
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi, Finset.union_comm] using
-      C3_cover_by_C1_C2_interior CP hxA
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi, Finset.union_comm] using
-      C1_cover_by_C2_C3_interior CP hxA
+  unfold SurplusCapPacket.oppCap1 SurplusCapPacket.oppCap2 SurplusCapPacket.surplusCap
+  generalize D.packet.surplusIdx = j
+  fin_cases j
+  · exact C2_cover_by_C1_C3_interior CP hxA
+  · have h := C3_cover_by_C1_C2_interior CP hxA
+    rw [Finset.union_comm CP.C1 CP.C2] at h
+    exact h
+  · have h := C1_cover_by_C2_C3_interior CP hxA
+    rw [Finset.union_comm CP.C2 CP.C3] at h
+    exact h
 
 /-- Every exact-radius class at the second non-surplus apex is covered by the
 two adjacent caps and the two-point interior of the opposite cap. -/
@@ -324,17 +309,14 @@ theorem oppApex2_exactRadiusClass_cover (D : CounterexampleData) (r : ℝ) :
   intro x hx
   have hxA : x ∈ D.A := (Finset.mem_filter.mp hx).1
   set CP := D.packet.partition
-  rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
-  interval_cases i
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi] using
-      C3_cover_by_C1_C2_interior CP hxA
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi] using
-      C1_cover_by_C2_C3_interior CP hxA
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.surplusCap, hi, Finset.union_comm] using
-      C2_cover_by_C1_C3_interior CP hxA
+  unfold SurplusCapPacket.oppCap1 SurplusCapPacket.oppCap2 SurplusCapPacket.surplusCap
+  generalize D.packet.surplusIdx = j
+  fin_cases j
+  · exact C3_cover_by_C1_C2_interior CP hxA
+  · exact C1_cover_by_C2_C3_interior CP hxA
+  · have h := C2_cover_by_C1_C3_interior CP hxA
+    rw [Finset.union_comm CP.C1 CP.C3] at h
+    exact h
 
 /-- Cardinality core of the non-surplus squeeze.
 
