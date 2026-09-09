@@ -221,9 +221,10 @@ theorem exists_source_normalized_physicalCycle_nextRowOnlyHitDichotomy
           {P.v.1, packet.xv}, {packet.xv, P.u.1}] i) := by
     intro i
     rw [hrowEq]
-    simpa [normalizedBlocker, normalized,
+    simp only [normalizedBlocker, normalized,
       FrozenRoleLabeling.relabel_of_admissible,
-      FrozenRoleLabeling.relabel] using
+      FrozenRoleLabeling.relabel]
+    exact
         rowTrace_reindex labeling.e relabeling oldRow (blocker i)
           (SelectedClass D.A S.oppApex2 P.rho)
           (![({P.u.1, packet.xu} : Finset ℝ²),

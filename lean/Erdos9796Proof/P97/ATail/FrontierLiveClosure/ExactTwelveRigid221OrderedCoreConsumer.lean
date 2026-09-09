@@ -71,7 +71,7 @@ theorem FrozenBoundaryOrder.signedArea2_neg_of_cyclicTripleAt
     signedArea2 (pointOf a) (pointOf b) (pointOf c) < 0 := by
   rw [← order.point_eq a, ← order.point_eq b, ← order.point_eq c]
   apply signedArea2_neg_of_cyclic order.boundary_injective order.boundary_ccw
-  simpa only [CyclicTripleAt, FrozenBoundaryOrder.position] using hcyclic
+  exact hcyclic
 
 theorem FrozenBoundaryOrder.signedArea2_pos_of_reverseCyclicTripleAt
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
