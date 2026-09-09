@@ -302,6 +302,8 @@ theorem decodeSourceChoiceVariable_exact
     decodeSourceChoiceVariable (sourceChoiceVariable source choice) =
       some ⟨source, choice⟩ := by
   fin_cases source <;>
+    have hchoice := choice.isLt <;>
+    simp only [sourceChoiceCount] at hchoice <;>
     simp (config := { maxSteps := 1000000 }) (disch := omega) only
       [decodeSourceChoiceVariable, sourceChoiceVariable,
       sourceChoiceStart, sourceChoiceCount, dif_pos, dif_neg,

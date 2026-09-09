@@ -547,7 +547,7 @@ theorem exists_boundaryBlocks_of_isM44_surplus_card_eq_six
       (S.capByIndex S.surplusIdx).card = 6 := by
     rcases hi : S.surplusIdx with ⟨idx, hidx⟩
     interval_cases idx <;>
-      simpa [SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.surplusCap,
         SurplusCapPacket.capByIndex, hi] using hsurplusCard
   have hsurplusInteriorCard :
       (S.capInteriorByIndex S.surplusIdx).card = 4 :=

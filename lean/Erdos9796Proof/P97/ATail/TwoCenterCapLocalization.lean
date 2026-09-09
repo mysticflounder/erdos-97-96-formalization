@@ -30,9 +30,9 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi, Fin.val_zero, Fin.val_one]
 
 /-- The vertex opposite one indexed cap belongs to every other indexed cap. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne

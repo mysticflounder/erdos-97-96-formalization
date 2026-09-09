@@ -137,8 +137,8 @@ theorem firstOppositeInterior_card_eq_three
       (S.capByIndex S.oppIndex1).card = 5 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.oppCap1, hi] using profile.2.1
+      simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppCap1, Fin.val_zero, Fin.val_one, hi] using profile.2.1
   have hinterior := capInteriorByIndex_card_add_two S S.oppIndex1
   omega
 
@@ -177,23 +177,23 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi] <;> rfl
 
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi] <;> rfl
 
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
@@ -208,18 +208,18 @@ private theorem oppApex1_eq_indexedVertex
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 private theorem oppApex2_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 /-- A cap-aware aligned-p5 labeling in either CCW macro orientation. -/
 inductive AlignedP5SourceBoundary
@@ -291,18 +291,18 @@ private theorem oppApex1_eq_oppositeVertexByIndex
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 private theorem oppApex2_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 private theorem capInteriorByIndex_eq_capInteriorAt
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :

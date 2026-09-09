@@ -284,7 +284,7 @@ theorem labeledRowPattern_pair_center_count_le_two
     intro hpoint
     exact hne (e.symm.injective (Subtype.ext hpoint))
   have htarget : target.card ≤ 2 := by
-    simpa [target, dist_comm] using
+    exact
       Dumitrescu.perpBisector_apex_bound hconv
         (e.symm left).2 (e.symm right).2 hpointNe
   change hits.card ≤ 2

@@ -35,16 +35,16 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi] <;> rfl
 
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi] <;> rfl
 
 /-- At cardinality eleven, the displayed surplus packet has one of the two
 oriented profiles used by the fixed finite encoders. -/

@@ -93,8 +93,13 @@ def bridgeEntries : List BridgeEntry :=
   bridgeChunk40
 
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by
-  simp only [bridgeEntries, List.all_append, Bool.and_eq_true]
-  exact ⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨⟨bridgeChunk01_wf, bridgeChunk02_wf⟩, bridgeChunk03_wf⟩, bridgeChunk04_wf⟩, bridgeChunk05_wf⟩, bridgeChunk06_wf⟩, bridgeChunk07_wf⟩, bridgeChunk08_wf⟩, bridgeChunk09_wf⟩, bridgeChunk10_wf⟩, bridgeChunk11_wf⟩, bridgeChunk12_wf⟩, bridgeChunk13_wf⟩, bridgeChunk14_wf⟩, bridgeChunk15_wf⟩, bridgeChunk16_wf⟩, bridgeChunk17_wf⟩, bridgeChunk18_wf⟩, bridgeChunk19_wf⟩, bridgeChunk20_wf⟩, bridgeChunk21_wf⟩, bridgeChunk22_wf⟩, bridgeChunk23_wf⟩, bridgeChunk24_wf⟩, bridgeChunk25_wf⟩, bridgeChunk26_wf⟩, bridgeChunk27_wf⟩, bridgeChunk28_wf⟩, bridgeChunk29_wf⟩, bridgeChunk30_wf⟩, bridgeChunk31_wf⟩, bridgeChunk32_wf⟩, bridgeChunk33_wf⟩, bridgeChunk34_wf⟩, bridgeChunk35_wf⟩, bridgeChunk36_wf⟩, bridgeChunk37_wf⟩, bridgeChunk38_wf⟩, bridgeChunk39_wf⟩, bridgeChunk40_wf⟩
+  have happ : ∀ l₁ l₂ : List BridgeEntry,
+      l₁.all entryWF = true → l₂.all entryWF = true →
+      (l₁ ++ l₂).all entryWF = true := by
+    intro l₁ l₂ h₁ h₂
+    rw [List.all_append, h₁, h₂]
+    rfl
+  exact (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ bridgeChunk01_wf bridgeChunk02_wf) bridgeChunk03_wf) bridgeChunk04_wf) bridgeChunk05_wf) bridgeChunk06_wf) bridgeChunk07_wf) bridgeChunk08_wf) bridgeChunk09_wf) bridgeChunk10_wf) bridgeChunk11_wf) bridgeChunk12_wf) bridgeChunk13_wf) bridgeChunk14_wf) bridgeChunk15_wf) bridgeChunk16_wf) bridgeChunk17_wf) bridgeChunk18_wf) bridgeChunk19_wf) bridgeChunk20_wf) bridgeChunk21_wf) bridgeChunk22_wf) bridgeChunk23_wf) bridgeChunk24_wf) bridgeChunk25_wf) bridgeChunk26_wf) bridgeChunk27_wf) bridgeChunk28_wf) bridgeChunk29_wf) bridgeChunk30_wf) bridgeChunk31_wf) bridgeChunk32_wf) bridgeChunk33_wf) bridgeChunk34_wf) bridgeChunk35_wf) bridgeChunk36_wf) bridgeChunk37_wf) bridgeChunk38_wf) bridgeChunk39_wf) bridgeChunk40_wf)
 
 end P5OccurrenceBridgeScratch
 end Problem97

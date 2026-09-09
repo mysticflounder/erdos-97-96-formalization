@@ -995,72 +995,72 @@ noncomputable def ofRecord001Branch0HRows {D : CounterexampleData}
     { qRow :=
         OrderedSelectedFourClass.ofLabels
           selectedU_mem baseP_mem baseT1_mem baseT2_mem
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ t1))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ t2))
-          (by simpa [pt, pointOf] using hne (by decide : p ≠ t1))
-          (by simpa [pt, pointOf] using hne (by decide : p ≠ t2))
-          (by simpa [pt, pointOf] using hne (by decide : t1 ≠ t2))
-          (by simpa [pt, pointOf] using hne (by decide : q ≠ f1))
-          (by simpa [pt, pointOf] using hne (by decide : q ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : q ≠ t1))
-          (by simpa [pt, pointOf] using hne (by decide : q ≠ t2))
+          (by exact hne (by decide : f1 ≠ p))
+          (by exact hne (by decide : f1 ≠ t1))
+          (by exact hne (by decide : f1 ≠ t2))
+          (by exact hne (by decide : p ≠ t1))
+          (by exact hne (by decide : p ≠ t2))
+          (by exact hne (by decide : t1 ≠ t2))
+          (by exact hne (by decide : q ≠ f1))
+          (by exact hne (by decide : q ≠ p))
+          (by exact hne (by decide : q ≠ t1))
+          (by exact hne (by decide : q ≠ t2))
           hrow_q_p_f1 hrow_q_t1_f1 hrow_q_t2_f1
       t1Row :=
         OrderedSelectedFourClass.ofLabels
           selectedU_mem baseP_mem baseQ_mem baseT3_mem
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ q))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ t3))
-          (by simpa [pt, pointOf] using hne (by decide : p ≠ q))
-          (by simpa [pt, pointOf] using hne (by decide : p ≠ t3))
-          (by simpa [pt, pointOf] using hne (by decide : q ≠ t3))
-          (by simpa [pt, pointOf] using hne (by decide : t1 ≠ f1))
-          (by simpa [pt, pointOf] using hne (by decide : t1 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : t1 ≠ q))
-          (by simpa [pt, pointOf] using hne (by decide : t1 ≠ t3))
+          (by exact hne (by decide : f1 ≠ p))
+          (by exact hne (by decide : f1 ≠ q))
+          (by exact hne (by decide : f1 ≠ t3))
+          (by exact hne (by decide : p ≠ q))
+          (by exact hne (by decide : p ≠ t3))
+          (by exact hne (by decide : q ≠ t3))
+          (by exact hne (by decide : t1 ≠ f1))
+          (by exact hne (by decide : t1 ≠ p))
+          (by exact hne (by decide : t1 ≠ q))
+          (by exact hne (by decide : t1 ≠ t3))
           hrow_t1_p_f1 hrow_t1_q_f1 hrow_t1_t3_f1
       t2Row :=
         OrderedSelectedFourClass.ofLabels
           f2_mem f5_mem baseP_mem baseQ_mem
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ f5))
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ q))
-          (by simpa [pt, pointOf] using hne (by decide : f5 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f5 ≠ q))
-          (by simpa [pt, pointOf] using hne (by decide : p ≠ q))
-          (by simpa [pt, pointOf] using hne (by decide : t2 ≠ f2))
-          (by simpa [pt, pointOf] using hne (by decide : t2 ≠ f5))
-          (by simpa [pt, pointOf] using hne (by decide : t2 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : t2 ≠ q))
+          (by exact hne (by decide : f2 ≠ f5))
+          (by exact hne (by decide : f2 ≠ p))
+          (by exact hne (by decide : f2 ≠ q))
+          (by exact hne (by decide : f5 ≠ p))
+          (by exact hne (by decide : f5 ≠ q))
+          (by exact hne (by decide : p ≠ q))
+          (by exact hne (by decide : t2 ≠ f2))
+          (by exact hne (by decide : t2 ≠ f5))
+          (by exact hne (by decide : t2 ≠ p))
+          (by exact hne (by decide : t2 ≠ q))
           hrow_t2_f5_f2 hrow_t2_p_f2 hrow_t2_q_f2
       t3Row :=
         OrderedSelectedFourClass.ofLabels
           selectedU_mem f2_mem baseP_mem baseT1_mem
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ f2))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ t1))
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ t1))
-          (by simpa [pt, pointOf] using hne (by decide : p ≠ t1))
-          (by simpa [pt, pointOf] using hne (by decide : t3 ≠ f1))
-          (by simpa [pt, pointOf] using hne (by decide : t3 ≠ f2))
-          (by simpa [pt, pointOf] using hne (by decide : t3 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : t3 ≠ t1))
+          (by exact hne (by decide : f1 ≠ f2))
+          (by exact hne (by decide : f1 ≠ p))
+          (by exact hne (by decide : f1 ≠ t1))
+          (by exact hne (by decide : f2 ≠ p))
+          (by exact hne (by decide : f2 ≠ t1))
+          (by exact hne (by decide : p ≠ t1))
+          (by exact hne (by decide : t3 ≠ f1))
+          (by exact hne (by decide : t3 ≠ f2))
+          (by exact hne (by decide : t3 ≠ p))
+          (by exact hne (by decide : t3 ≠ t1))
           hrow_t3_f2_f1 hrow_t3_p_f1 hrow_t3_t1_f1
       uRow :=
         OrderedSelectedFourClass.ofLabels
           f2_mem f3_mem f4_mem baseP_mem
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ f3))
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ f4))
-          (by simpa [pt, pointOf] using hne (by decide : f2 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f3 ≠ f4))
-          (by simpa [pt, pointOf] using hne (by decide : f3 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f4 ≠ p))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ f2))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ f3))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ f4))
-          (by simpa [pt, pointOf] using hne (by decide : f1 ≠ p))
+          (by exact hne (by decide : f2 ≠ f3))
+          (by exact hne (by decide : f2 ≠ f4))
+          (by exact hne (by decide : f2 ≠ p))
+          (by exact hne (by decide : f3 ≠ f4))
+          (by exact hne (by decide : f3 ≠ p))
+          (by exact hne (by decide : f4 ≠ p))
+          (by exact hne (by decide : f1 ≠ f2))
+          (by exact hne (by decide : f1 ≠ f3))
+          (by exact hne (by decide : f1 ≠ f4))
+          (by exact hne (by decide : f1 ≠ p))
           hrow_f1_f3_f2 hrow_f1_f4_f2 hrow_f1_p_f2 }
 
 /-- Transport a centered `f1`-row placement to the `f1:f3=f2` hrow fact. -/
@@ -3050,7 +3050,7 @@ theorem point_injective
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     Function.Injective P.point := by
-  simpa [point] using pointOf_injective_of_pairwise P.labels_pairwise
+  exact pointOf_injective_of_pairwise P.labels_pairwise
 
 /-- Syntactically distinct row-slot labels name geometrically distinct points. -/
 theorem point_ne_of_label_ne

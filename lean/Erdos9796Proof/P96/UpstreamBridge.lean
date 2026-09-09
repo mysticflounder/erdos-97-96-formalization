@@ -7,7 +7,7 @@ import Erdos9796Proof.P96.EuclideanPeeling
 `EuclideanPeeling.lean` proves the headline P96 bound
 `Problem96.unit_distance_pairs_bound`: every convex-independent
 `A : Finset ℝ²` satisfies
-`EuclideanGeometry.unitDistancePairsCount A ≤ 3 * A.card`. Since
+`unitDistNum A ≤ 3 * A.card`. Since
 `Problem97.ConvexIndep` is an **abbreviation** for
 `EuclideanGeometry.ConvexIndep ↑·`, that statement is already in the
 upstream vocabulary of `FormalConjectures/ErdosProblems/96.lean`.
@@ -60,7 +60,7 @@ theorem maxConvexUnitDistances_le_three_mul_of_erdos97
     exact bot_le
   · refine csSup_le h ?_
     rintro x ⟨points, hcard, hConv, rfl⟩
-    calc EuclideanGeometry.unitDistancePairsCount points
+    calc unitDistNum points
         ≤ 3 * points.card := unit_distance_pairs_bound_of_erdos97 hP97 hConv
       _ = 3 * n := by rw [hcard]
 
@@ -97,5 +97,50 @@ theorem erdos96_rhs :
     (fun n => (Erdos96.maxConvexUnitDistances n : ℝ)) =O[atTop]
       fun n => (n : ℝ) :=
   erdos96_rhs_of_erdos97 Problem97.UniversalProblem97
+
+/- ### Transport to the inlined comparator vocabulary
+
+`comparator/Challenge.lean` is mathlib-only and inlines the count as
+`#(points.offDiag.filter fun p => dist p.1 p.2 = 1) / 2`.  Before v4.33.1 the
+upstream count unfolded to exactly that, so the comparator Solution closed by
+definitional equality.  Upstream now counts on `points.sym2`, so the two sets
+are no longer the same by unfolding and the transport below is required. -/
+
+/-- The upstream count set, restated with `unitDistNum` replaced by the halved
+ordered-pair count.  This is the set the mathlib-only comparator statement
+inlines. -/
+theorem convexUnitDistanceCounts_eq_doubledUnitCount_set (n : ℕ) :
+    Erdos96.convexUnitDistanceCounts n =
+      {m : ℕ | ∃ points : Finset ℝ², ∃ _ : points.card = n,
+        ∃ _ : Problem97.ConvexIndep points,
+        EuclideanPeeling.doubledUnitCount points / 2 = m} := by
+  ext m
+  constructor
+  · rintro ⟨points, hcard, hConv, rfl⟩
+    exact ⟨points, hcard, hConv,
+      (EuclideanPeeling.unitDistNum_eq_doubledUnitCount_div_two points).symm⟩
+  · rintro ⟨points, hcard, hConv, rfl⟩
+    exact ⟨points, hcard, hConv,
+      EuclideanPeeling.unitDistNum_eq_doubledUnitCount_div_two points⟩
+
+/-- Equality of the two suprema.  `sSup` is a function, so the set equality
+transports directly; mathlib has no `csSup_congr` at this pin. -/
+theorem maxConvexUnitDistances_eq_sSup_doubledUnitCount_set (n : ℕ) :
+    Erdos96.maxConvexUnitDistances n =
+      sSup {m : ℕ | ∃ points : Finset ℝ², ∃ _ : points.card = n,
+        ∃ _ : Problem97.ConvexIndep points,
+        EuclideanPeeling.doubledUnitCount points / 2 = m} :=
+  congrArg sSup (convexUnitDistanceCounts_eq_doubledUnitCount_set n)
+
+/-- `erdos96_rhs_of_erdos97` in the shape `comparator/Challenge.lean` inlines.
+The Challenge proposition is unchanged; only the project-side vocabulary moves. -/
+theorem erdos96_rhs_inlined_of_erdos97
+    (hP97 : Problem97.UniversalProblem97Statement) :
+    (fun n : ℕ => ((sSup {m : ℕ | ∃ points : Finset ℝ², ∃ _ : points.card = n,
+        ∃ _ : Problem97.ConvexIndep points,
+        EuclideanPeeling.doubledUnitCount points / 2 = m} : ℕ) : ℝ))
+      =O[atTop] fun n : ℕ => (n : ℝ) :=
+  (erdos96_rhs_of_erdos97 hP97).congr_left fun n => by
+    rw [maxConvexUnitDistances_eq_sSup_doubledUnitCount_set]
 
 end Problem96

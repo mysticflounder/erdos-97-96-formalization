@@ -57,8 +57,8 @@ theorem exists_livePacket
     rw [L.point_one]
     rcases hs : S.surplusIdx with ⟨i, hi⟩
     interval_cases i <;>
-      simp [apexAt, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppIndex1, hs]
+      simp only [apexAt, SurplusCapPacket.oppApex1,
+        SurplusCapPacket.oppIndex1, hs] <;> rfl
   let boundaryOrder : SelectedBoundaryOrder L.pointOf :=
     SelectedBoundaryOrder.ofDirectOrMirror boundary
   let P : CanonicalPacket L := {

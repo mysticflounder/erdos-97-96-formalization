@@ -51,8 +51,8 @@ private theorem oppApex2_mem_A
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem oppApex1_mem_A
@@ -60,8 +60,8 @@ private theorem oppApex1_mem_A
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem equidistant_mono
@@ -260,9 +260,9 @@ theorem badOutsideSources_card_le_two
     simpa [C, SelectedFourClass.ofSelectedClass] using
       frontier_pair_w_mem_firstApexClass F
   have hqInter : F.pair.q ∈ K.support ∩ C.support :=
-    Finset.mem_inter.mpr ⟨by simpa [K, Hlate] using hpairAnchor.1, hqC⟩
+    Finset.mem_inter.mpr ⟨hpairAnchor.1, hqC⟩
   have hwInter : F.pair.w ∈ K.support ∩ C.support :=
-    Finset.mem_inter.mpr ⟨by simpa [K, Hlate] using hpairAnchor.2, hwC⟩
+    Finset.mem_inter.mpr ⟨hpairAnchor.2, hwC⟩
   have hinterGe : 2 ≤ (K.support ∩ C.support).card := by
     have hsubset :
         ({F.pair.q, F.pair.w} : Finset ℝ²) ⊆ K.support ∩ C.support := by
@@ -293,7 +293,7 @@ theorem badOutsideSources_card_le_two
       (Hlate.selectedAt source.1 source.2).toCriticalFourShell.q_mem_support
     have hsourceK : source.1 ∈ K.support := by
       rw [hsupports] at hsourceSupport
-      simpa [K] using hsourceSupport
+      exact hsourceSupport
     have hsourceOutside :
         source ∈ outsideFirstApexFiber R :=
       (Finset.mem_filter.mp hsourceBad).1
@@ -325,13 +325,13 @@ theorem carrier_card_ge_eleven_of_original_unique_four_residual
   have hopp1 : 4 ≤ S.oppCap1.card := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.oppCap1, hi] using hopposite.1
+      simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppCap1, hi, Fin.val_zero, Fin.val_one] using hopposite.1
   have hopp2 : 4 ≤ S.oppCap2.card := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.oppCap2, hi] using hopposite.2
+      simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppCap2, hi, Fin.val_zero, Fin.val_one] using hopposite.2
   by_contra hnot
   have hcard : D.A.card = 10 := by omega
   have hcap1 : S.oppCap1.card = 4 := by omega

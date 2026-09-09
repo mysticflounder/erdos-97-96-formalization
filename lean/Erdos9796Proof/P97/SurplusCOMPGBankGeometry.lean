@@ -3821,6 +3821,13 @@ private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
     cases center <;>
       simp [localTriggerOKAt, previousSstarCenters, htriggerU, htriggerQ1,
         htriggerQ2, hfinal, htriggerPrevious]
+  -- `simp` normalizes `!(a && b) = true` to `a = false ∨ b = false` before the
+  -- conditional rewrite from `htriggerPrevious` can fire on the `&&` term, so
+  -- the prior-surplus-star centers are discharged from the hypothesis directly.
+  all_goals
+    exact Or.imp_right (fun hx => by simpa using hx)
+      (Bool.and_eq_false_iff.mp
+        (htriggerPrevious _ (by simp [previousSstarCenters])))
 
 private theorem oneSidedSeedCandidateMaskOK_pointMask_of_interfaces
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
@@ -4781,7 +4788,10 @@ theorem false_of_erasedPinCanonicalFixedSeedShadow_pointClasses_of_exact_vw_priv
       · by_cases hprivateCenter : center = seed.privateCenter
         · subst center
           rw [hprivate]
-          simpa [erasedPinCanonicalSeed, erasedPinCanonicalSeed_candidateMasks] using
+          -- `simp` unfolds `erasedPinCanonicalSeed` inside the projection
+          -- arguments before `erasedPinCanonicalSeed_candidateMasks` can fire,
+          -- so close the goal by definitional unfolding instead.
+          exact
             erasedPinFixedSeeds_privateMask_mem_candidateMasks_privateCenter
               (erasedPinCanonicalSeed seed) hseed
         · exact hcandidate center hvCenter hwCenter hprivateCenter

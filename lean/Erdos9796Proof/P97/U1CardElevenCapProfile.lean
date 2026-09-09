@@ -53,17 +53,20 @@ private lemma capAt_profile_eq_554
   obtain ⟨k, hki, hkj⟩ := fin3_exists_ne i j
   have hk4 : 4 ≤ (CP.capAt k).card := by
     fin_cases k
-    · simpa [CapTriple.capAt] using hlower.1
-    · simpa [CapTriple.capAt] using hlower.2.1
-    · simpa [CapTriple.capAt] using hlower.2.2
+    · exact hlower.1
+    · exact hlower.2.1
+    · exact hlower.2.2
   have hsum' :
       (CP.capAt i).card + (CP.capAt j).card + (CP.capAt k).card = 14 := by
+    have hcap0 : ∀ h : 0 < 3, CP.capAt ⟨0, h⟩ = CP.C1 := fun _ => rfl
+    have hcap1 : ∀ h : 1 < 3, CP.capAt ⟨1, h⟩ = CP.C2 := fun _ => rfl
+    have hcap2 : ∀ h : 2 < 3, CP.capAt ⟨2, h⟩ = CP.C3 := fun _ => rfl
     fin_cases i <;> fin_cases j <;> fin_cases k <;>
       first
         | exact absurd rfl hji
         | exact absurd rfl hki
         | exact absurd rfl hkj
-        | (simp [CapTriple.capAt]; omega)
+        | (simp only [hcap0, hcap1, hcap2]; omega)
   have hprof := nat_eq_554_of_sum_eq_fourteen hi5 hj5 hk4 hsum'
   refine ⟨hprof.1, hprof.2.1, fun l hli hlj => ?_⟩
   rw [fin3_eq_of_ne_of_ne hji hki hkj hli hlj]
@@ -85,12 +88,9 @@ private lemma capInteriorAt_card_add_two
     {A : Finset ℝ²} {M : MoserTriangle A} (CP : CapTriple A M) (k : Fin 3) :
     (capInteriorAt CP k).card + 2 = (CP.capAt k).card := by
   fin_cases k
-  · simpa [capInteriorAt, CapTriple.capAt]
-      using U1OppositeCapLowerBounds.interior1_card_add_two CP
-  · simpa [capInteriorAt, CapTriple.capAt]
-      using U1OppositeCapLowerBounds.interior2_card_add_two CP
-  · simpa [capInteriorAt, CapTriple.capAt]
-      using U1OppositeCapLowerBounds.interior3_card_add_two CP
+  · exact U1OppositeCapLowerBounds.interior1_card_add_two CP
+  · exact U1OppositeCapLowerBounds.interior2_card_add_two CP
+  · exact U1OppositeCapLowerBounds.interior3_card_add_two CP
 
 /-- In the card-11 branch of the two-large-cap leaf, the cap sizes are exactly
 `(5,5,4)` relative to the surplus cap `i` and the chosen second large cap `j`.

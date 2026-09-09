@@ -881,7 +881,7 @@ theorem orderedCap_card_add_four_le_choose_outside
         Nat.choose_le_choose 2 hlastOutside
   have hfirstLast : CGN.firstIndex Packet.hm ≠ CGN.lastIndex Packet.hm := by
     intro h
-    have hm1 : 1 < m := by simpa using Packet.hm
+    have hm1 : 1 < m := Packet.hm
     have hval : (0 : ℕ) = m - 1 := by
       simpa [CGN.firstIndex_val, CGN.lastIndex_val] using congrArg Fin.val h
     exact (Nat.sub_ne_zero_of_lt hm1) hval.symm
@@ -968,7 +968,7 @@ theorem SurplusCapPacket.surplus_card_le_six_of_convexIndep_K4
     Packet Hside Hord hconv F
   have hcapSurplus : S.capByIndex S.surplusIdx = S.surplusCap := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i <;> simp [SurplusCapPacket.capByIndex,
+    interval_cases i <;> simp only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi]
   have hCcard : (Finset.univ.image L.points).card = m := by
     rw [Finset.card_image_of_injective _ L.injective, Finset.card_univ,
@@ -1043,7 +1043,7 @@ theorem SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts_and
     ⟨m, L, Packet, Hside, Hord, hcap, hendpoints⟩
   have hcapSurplus : S.capByIndex S.surplusIdx = S.surplusCap := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i <;> simp [SurplusCapPacket.capByIndex,
+    interval_cases i <;> simp only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi]
   have himageCard : (Finset.univ.image L.points).card = 6 := by
     rw [hcap, hcapSurplus, hcard]

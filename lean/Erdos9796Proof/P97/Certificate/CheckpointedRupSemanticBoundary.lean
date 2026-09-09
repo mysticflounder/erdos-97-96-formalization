@@ -45,7 +45,12 @@ theorem litSat_of_evalLitD (σ : Nat → Bool) (l : Int)
       cases n with
       | zero => simp at hl
       | succ n =>
-          simpa [Census554.CoverCnf.evalLitD, litSat] using h
+          have hlt : (0 : Int) < Int.ofNat (n + 1) := Int.natCast_succ_pos n
+          have hpos : (0 : Int) ≤ Int.ofNat (n + 1) := le_of_lt hlt
+          simp only [Census554.CoverCnf.evalLitD, beq_iff_eq,
+            decide_eq_true hlt] at h
+          simp only [litSat, if_pos hpos]
+          exact h
   | negSucc n =>
       simp [Census554.CoverCnf.evalLitD, litSat] at h ⊢
       simp [h]

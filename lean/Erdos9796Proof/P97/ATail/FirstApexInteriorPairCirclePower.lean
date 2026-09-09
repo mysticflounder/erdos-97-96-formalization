@@ -393,15 +393,15 @@ theorem dist_firstApex_lt_of_interiorPair_circlePoint_outsideCap
   have happA : S.oppApex1 ∈ D.A := by
     rcases hs : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, hs] using S.triangle.v2_mem
-    · simpa [SurplusCapPacket.oppApex1, hs] using S.triangle.v3_mem
+    · simpa only [SurplusCapPacket.oppApex1, hs] using S.triangle.v2_mem
+    · simpa only [SurplusCapPacket.oppApex1, hs] using S.triangle.v3_mem
     · simpa [SurplusCapPacket.oppApex1, hs] using S.triangle.v1_mem
   have happOffCap : S.oppApex1 ∉ S.capByIndex S.oppIndex1 := by
     rcases hs : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.capByIndex, hs] using S.partition.v2_notin_C2
-    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+    · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.capByIndex, hs, Fin.val_one] using S.partition.v2_notin_C2
+    · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
         SurplusCapPacket.capByIndex, hs] using S.partition.v3_notin_C3
     · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
         SurplusCapPacket.capByIndex, hs] using S.partition.v1_notin_C1
@@ -583,15 +583,15 @@ theorem interiorPair_circleRadius_lt_dist_triangleByIndex
   have happA : S.oppApex1 ∈ D.A := by
     rcases hs : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, hs] using S.triangle.v2_mem
-    · simpa [SurplusCapPacket.oppApex1, hs] using S.triangle.v3_mem
+    · simpa only [SurplusCapPacket.oppApex1, hs] using S.triangle.v2_mem
+    · simpa only [SurplusCapPacket.oppApex1, hs] using S.triangle.v3_mem
     · simpa [SurplusCapPacket.oppApex1, hs] using S.triangle.v1_mem
   have happOffCap : S.oppApex1 ∉ S.capByIndex S.oppIndex1 := by
     rcases hs : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.capByIndex, hs] using S.partition.v2_notin_C2
-    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+    · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.capByIndex, hs, Fin.val_one] using S.partition.v2_notin_C2
+    · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
         SurplusCapPacket.capByIndex, hs] using S.partition.v3_notin_C3
     · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
         SurplusCapPacket.capByIndex, hs] using S.partition.v1_notin_C1
@@ -601,8 +601,8 @@ theorem interiorPair_circleRadius_lt_dist_triangleByIndex
       (S.triangleByIndex S.oppIndex1).v1 = S.oppApex1 := by
     rcases hs : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.triangleByIndex, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.oppApex1, hs]
+      simp only [SurplusCapPacket.triangleByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppApex1, hs, Fin.val_zero, Fin.val_one]
   have hOeq : dist S.oppApex1 q = dist S.oppApex1 w :=
     (mem_selectedClass.mp (Finset.mem_inter.mp hq).1).2.trans
       (mem_selectedClass.mp (Finset.mem_inter.mp hw).1).2.symm

@@ -70,6 +70,7 @@ private theorem normalized_sevenPointSixCircle_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hOA_OBsq hBO_BAsq hBO_BDsq hBO_BEsq hCO_CBsq hCO_CFsq hDB_DCsq hDB_DEsq
       hEO_EAsq hFA_FCsq hFA_FEsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The seven-point six-circle equalities force the anchor labels to collide. -/

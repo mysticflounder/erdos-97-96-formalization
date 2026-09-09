@@ -239,7 +239,7 @@ private theorem selectorShape_v3_q_eq_b2_impossible_of_pins
       · simpa [ZeroDefectCapLayout.swapI2] using hb2I2
       · simpa [FormBv1A2Packet, ZeroDefectCapLayout.swapI2] using hb2eq
       · simpa [FormBv1A2Packet, ZeroDefectCapLayout.swapI2] using hv2eq
-    · simpa [SelectorV2Qv1Packet] using hselector
+    · simpa [SelectorV2Qv1Packet, ZeroDefectCapLayout.swapI2] using hselector
   have hexact := S.selectorShape_v2_q_eq_v1_exact_packet_of_pins
     Z hB hcard hxb2 hAinSB
   have hswap :

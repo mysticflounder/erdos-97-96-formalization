@@ -161,8 +161,9 @@ named opposite apex. -/
     S.oppositeVertexByIndex S.oppIndex1 = S.oppApex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppApex1, hi]
+    simp only [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
 
 /-- The indexed opposite vertex at the second non-surplus index is the second
 named opposite apex. -/
@@ -171,8 +172,9 @@ named opposite apex. -/
     S.oppositeVertexByIndex S.oppIndex2 = S.oppApex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppApex2, hi]
+    simp only [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex2, SurplusCapPacket.oppApex2, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
 
 /-- The indexed opposite vertex at the designated surplus index is the named
 surplus apex. -/
@@ -181,7 +183,7 @@ surplus apex. -/
     S.oppositeVertexByIndex S.surplusIdx = S.surplusApex := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppositeVertexByIndex,
+    simp only [SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.surplusApex, hi]
 
 /-- Keep the MEC triangle and cap partition fixed, but designate the old
@@ -199,7 +201,9 @@ noncomputable def redesignateSecondOppCapAsSurplusOf
   surplus := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi] using h
+      simp only [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi]
+        at h ⊢ <;>
+      exact h
 
 /-- The other rotation lands the original surplus apex in the **first** opposite
 role, which is the role `apexRichClassStructure_oppApex1` reports on. -/
@@ -208,8 +212,9 @@ role, which is the role `apexRichClassStructure_oppApex1` reports on. -/
     (redesignateSecondOppCapAsSurplusOf S h).oppApex1 = S.surplusApex := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [redesignateSecondOppCapAsSurplusOf, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppApex1, SurplusCapPacket.surplusApex, hi]
+    simp only [redesignateSecondOppCapAsSurplusOf, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppApex1, SurplusCapPacket.surplusApex, hi] <;>
+    rfl
 
 /-- Its second opposite role carries the original first opposite apex. -/
 @[simp] theorem redesignateSecondOppCapAsSurplusOf_oppApex2
@@ -217,8 +222,9 @@ role, which is the role `apexRichClassStructure_oppApex1` reports on. -/
     (redesignateSecondOppCapAsSurplusOf S h).oppApex2 = S.oppApex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [redesignateSecondOppCapAsSurplusOf, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppApex2, SurplusCapPacket.oppApex1, hi]
+    simp only [redesignateSecondOppCapAsSurplusOf, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppApex2, SurplusCapPacket.oppApex1, hi] <;>
+    rfl
 
 /- ### The unique-four cover at a tri-apex robust configuration -/
 

@@ -31,8 +31,9 @@ private theorem oppositeVertexByIndex_oppIndex1_eq_oppApex1
     S.oppositeVertexByIndex S.oppIndex1 = S.oppApex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1, hi]
+    simp only [SurplusCapPacket.oppositeVertexByIndex,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1, hi] <;>
+    rfl
 
 private theorem rightAdjacentCapByIndex_oppIndex1_eq_capByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
@@ -40,8 +41,9 @@ private theorem rightAdjacentCapByIndex_oppIndex1_eq_capByIndex_surplusIdx
       S.capByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.rightAdjacentCapByIndex,
-      SurplusCapPacket.oppIndex1, SurplusCapPacket.capByIndex, hi]
+    simp only [SurplusCapPacket.rightAdjacentCapByIndex,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.capByIndex, hi] <;>
+    rfl
 
 /-- The output needed by the D2 polynomial contradiction.  In the direct
 zero-cut orientation the actual interior representatives have positive

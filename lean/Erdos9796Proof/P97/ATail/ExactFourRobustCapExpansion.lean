@@ -212,16 +212,16 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi] <;> rfl
 
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem oppApex1_mem_A
@@ -229,8 +229,8 @@ private theorem oppApex1_mem_A
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem oppApex1_ne_oppApex2
@@ -238,9 +238,9 @@ private theorem oppApex1_ne_oppApex2
     S.oppApex1 ≠ S.oppApex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1,
+  · simpa only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi] using S.triangle.v23_ne
-  · simpa [SurplusCapPacket.oppApex1,
+  · simpa only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi] using S.triangle.v13_ne.symm
   · simpa [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi] using S.triangle.v12_ne
@@ -369,7 +369,7 @@ theorem actualLateRow_secondClassInterior_card_le_two
           (Finset.mem_inter.mp hzData.2).2⟩
   have htwo :
       (K.support ∩ S.capByIndex S.oppIndex2).card ≤ 2 := by
-    simpa [K] using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex2 K.toSelectedFourClass hcenterCap
   have hTtwo : T.card ≤ 2 :=
@@ -725,9 +725,9 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 private theorem secondInterior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
@@ -737,7 +737,7 @@ private theorem secondInterior_not_mem_surplusCap
     S.surplusIdx_ne_oppIndex2.symm
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simpa [SurplusCapPacket.capByIndex,
+    simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
 /-- A five-point positive class at the second physical apex contains a strict

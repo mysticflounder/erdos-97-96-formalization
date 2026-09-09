@@ -91,7 +91,8 @@ theorem CriticalFourShell.inter_dangerous_p_circle_card_le_two
     (hcenter_ne_p : center ≠ p) :
     (K.support ∩ insert q T).card ≤ 2 := by
   let Kcircle : SelectedFourClass D.A p := H.toSelectedFourClass
-  simpa [Kcircle, U5DangerousTriple.toSelectedFourClass] using
+  simpa [Kcircle, U5DangerousTriple.toSelectedFourClass,
+    CriticalFourShell.toSelectedFourClass] using
     SelectedFourClass.inter_card_le_two K.toSelectedFourClass Kcircle
       hcenter_ne_p
 

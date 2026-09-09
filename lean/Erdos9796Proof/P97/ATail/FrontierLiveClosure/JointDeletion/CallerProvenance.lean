@@ -95,8 +95,8 @@ theorem surplusApex_mem_carrier {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.surplusApex, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.surplusApex, hi] using S.triangle.v2_mem
   · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v3_mem
 
 /-- The first opposite apex is a carrier point. -/
@@ -104,8 +104,8 @@ theorem oppApex1_mem_carrier {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 /-- The second opposite apex is a carrier point. -/
@@ -113,8 +113,8 @@ theorem oppApex2_mem_carrier {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 @[simp] theorem surplusTriApexes_zero

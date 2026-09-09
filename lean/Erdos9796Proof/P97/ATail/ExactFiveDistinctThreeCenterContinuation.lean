@@ -156,8 +156,8 @@ private theorem oppApex1_mem_A
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem oppApex1_ne_oppApex2
@@ -165,9 +165,9 @@ private theorem oppApex1_ne_oppApex2
     S.oppApex1 ≠ S.oppApex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi] using
+  · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi] using
       S.triangle.v23_ne
-  · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi] using
+  · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi] using
       S.triangle.v13_ne.symm
   · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi] using
       S.triangle.v12_ne
@@ -177,8 +177,8 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi] <;> rfl
 
 /-- An exact five-point first-apex class forces at least five points in the
 first physical opposite cap. -/
@@ -385,7 +385,7 @@ private theorem nonempty_normalForm_of_orientedSources
   have hK₁Support :
       K₁.support =
         (H.selectedAt retained hretainedA).toCriticalFourShell.support := by
-    simpa only [K₁] using
+    exact
       firstRow_support_eq_criticalShell_of_center_eq C hretainedA rfl
   have hretainedK₁ : retained ∈ K₁.support := by
     rw [hK₁Support]

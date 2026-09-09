@@ -1176,7 +1176,7 @@ theorem leftOuterVertexByIndex_oppIndex1_eq_oppositeVertexByIndex_surplusIdx
       S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [leftOuterVertexByIndex, oppositeVertexByIndex, oppIndex1, hi]
+    simp [leftOuterVertexByIndex, oppositeVertexByIndex, oppIndex1, hi] <;> rfl
 
 /-- At the first non-surplus cap index, the right outer endpoint is the Moser
 apex opposite the second non-surplus cap.  This is the `w` label in the pinned
@@ -1188,7 +1188,7 @@ theorem rightOuterVertexByIndex_oppIndex1_eq_oppositeVertexByIndex_oppIndex2
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
     simp [rightOuterVertexByIndex, oppositeVertexByIndex, oppIndex1,
-      oppIndex2, hi]
+      oppIndex2, hi] <;> rfl
 
 /-- At the second non-surplus cap index, the right outer endpoint is the Moser
 apex opposite the surplus cap.  This is the `u` label in the mirror pinned
@@ -1199,7 +1199,7 @@ theorem rightOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_surplusIdx
       S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [rightOuterVertexByIndex, oppositeVertexByIndex, oppIndex2, hi]
+    simp [rightOuterVertexByIndex, oppositeVertexByIndex, oppIndex2, hi] <;> rfl
 
 /-- At the second non-surplus cap index, the left outer endpoint is the Moser
 apex opposite the first non-surplus cap.  This is the `w` label in the mirror
@@ -1211,7 +1211,7 @@ theorem leftOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_oppIndex1
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
     simp [leftOuterVertexByIndex, oppositeVertexByIndex, oppIndex1,
-      oppIndex2, hi]
+      oppIndex2, hi] <;> rfl
 
 /-- In the surplus cap, the `v2` endpoint is the first non-surplus Moser
 apex.  This is the endpoint form consumed by the global interval bridges. -/
@@ -1221,7 +1221,7 @@ theorem triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1
       S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi]
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi] <;> rfl
 
 /-- In the surplus cap, the `v3` endpoint is the second non-surplus Moser
 apex.  This is the endpoint form consumed by the global interval bridges. -/
@@ -1231,7 +1231,7 @@ theorem triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2
       S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi]
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi] <;> rfl
 
 /-- The first vertex of the indexed triangle is the Moser vertex opposite the
 same indexed cap. -/
@@ -1249,7 +1249,7 @@ theorem triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2
       S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi] <;> rfl
 
 /-- In the first non-surplus cap, the `v3` endpoint is the surplus Moser
 apex. -/
@@ -1259,7 +1259,7 @@ theorem triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx
       S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi]
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi] <;> rfl
 
 /-- In the second non-surplus cap, the `v2` endpoint is the surplus Moser
 apex. -/
@@ -1269,7 +1269,7 @@ theorem triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx
       S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi]
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi] <;> rfl
 
 /-- In the second non-surplus cap, the `v3` endpoint is the first
 non-surplus Moser apex. -/
@@ -1279,14 +1279,14 @@ theorem triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1
       S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi] <;> rfl
 
 /-- The first non-surplus index is the left-adjacent index of the surplus cap. -/
 theorem oppIndex1_eq_leftAdjacentIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppIndex1 = leftAdjacentIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
-  interval_cases idx <;> simp [oppIndex1, leftAdjacentIndex, hi]
+  interval_cases idx <;> simp [oppIndex1, leftAdjacentIndex, hi] <;> rfl
 
 /-- The second non-surplus index is the right-adjacent index of the surplus
 cap. -/
@@ -1294,28 +1294,28 @@ theorem oppIndex2_eq_rightAdjacentIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppIndex2 = rightAdjacentIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
-  interval_cases idx <;> simp [oppIndex2, rightAdjacentIndex, hi]
+  interval_cases idx <;> simp [oppIndex2, rightAdjacentIndex, hi] <;> rfl
 
 /-- The surplus cap index is distinct from the first non-surplus cap index. -/
 theorem surplusIdx_ne_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusIdx ≠ S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
-  interval_cases idx <;> simp [oppIndex1, hi]
+  interval_cases idx <;> simp [oppIndex1, hi] <;> (first | rfl | decide)
 
 /-- The surplus cap index is distinct from the second non-surplus cap index. -/
 theorem surplusIdx_ne_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusIdx ≠ S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
-  interval_cases idx <;> simp [oppIndex2, hi]
+  interval_cases idx <;> simp [oppIndex2, hi] <;> (first | rfl | decide)
 
 /-- The two non-surplus cap indices are distinct. -/
 theorem oppIndex1_ne_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppIndex1 ≠ S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
-  interval_cases idx <;> simp [oppIndex1, oppIndex2, hi]
+  interval_cases idx <;> simp [oppIndex1, oppIndex2, hi] <;> (first | rfl | decide)
 
 /-- Every cap index is either the surplus index or one of the two non-surplus
 indices. -/
@@ -1324,7 +1324,7 @@ theorem index_eq_surplusIdx_or_oppIndex1_or_oppIndex2
     i = S.surplusIdx ∨ i = S.oppIndex1 ∨ i = S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;> fin_cases i <;>
-    simp [oppIndex1, oppIndex2, hi]
+    simp [oppIndex1, oppIndex2, hi] <;> (first | rfl | decide)
 
 /-- The left outer Moser endpoint for an indexed cap lies in the closed
 left-adjacent cap. -/
@@ -1444,7 +1444,9 @@ theorem mem_triangle_verts_oppositeVertexByIndex_cases
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
     rcases mem_triangle_verts_cases hx with rfl | rfl | rfl <;>
-      simp [oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+      simp [oppositeVertexByIndex, oppIndex1, oppIndex2, hi] <;>
+        (first | rfl | exact Or.inl rfl | exact Or.inr (Or.inl rfl)
+               | exact Or.inr (Or.inr rfl))
 
 /-- The indexed left outer Moser endpoint is one of the three Moser vertices. -/
 theorem leftOuterVertexByIndex_mem_triangle_verts

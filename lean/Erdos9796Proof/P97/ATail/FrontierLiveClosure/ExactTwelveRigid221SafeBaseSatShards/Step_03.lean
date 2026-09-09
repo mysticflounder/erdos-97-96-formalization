@@ -86,9 +86,9 @@ theorem baseCnf_sat (idx : Nat → Nat)
     ∃ τ : Nat → Bool, Std.Sat.CNF.eval τ baseCnf = true := by
   obtain ⟨σ, hσ⟩ := baseDimacs_sat idx hidx hc2 hc4
   refine ⟨fun n => σ (n + 1), ?_⟩
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [Std.Sat.CNF.eval, Array.all_eq_true_iff_forall_mem]
   intro cl hcl
-  simp only [baseCnf, List.mem_map] at hcl
+  simp only [baseCnf, List.mem_toArray, List.mem_map] at hcl
   obtain ⟨c, hc, rfl⟩ := hcl
   rw [Census554.CoverCnf.evalClauseD_toLit σ c (baseDimacs_nonzero c hc)]
   exact hσ c hc

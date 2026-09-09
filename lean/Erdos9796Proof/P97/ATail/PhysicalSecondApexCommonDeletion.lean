@@ -187,13 +187,13 @@ theorem physicalSecondApex_commonDeletion_robust_or_critical
     · have hfive :
           5 ≤ (SelectedClass D.A S.oppApex2 newRow.radius).card :=
         five_le_selectedClass_of_row_and_extra newRow hsourceA
-          (by simpa [newRow] using G.row₂.q_not_mem)
+          (by exact G.row₂.q_not_mem)
           (by
             calc
               dist S.oppApex2 source = C.row₂.radius :=
                 C.row₂.same_radius source hsourceSecond
               _ = G.row₂.radius := by
-                simpa [oldRow, newRow] using hradius
+                exact hradius
               _ = newRow.radius := rfl)
       exact Or.inl ⟨fullyDeletionRobustAt_of_five_le_selectedClass
         newRow.radius_pos hfive⟩

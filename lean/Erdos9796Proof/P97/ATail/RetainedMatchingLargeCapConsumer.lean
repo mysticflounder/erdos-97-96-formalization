@@ -40,9 +40,9 @@ private theorem oppApex1_eq_oppositeVertex_oppIndex1
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
@@ -305,8 +305,8 @@ private theorem oppApex1_mem_A
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 /-- Every oriented retained common deletion reaches the exact reverse split. -/
@@ -374,7 +374,7 @@ theorem nonempty_retainedReverseCouplingOutcome
     have hcapTwo :
         ((H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support ∩
           S.capByIndex S.oppIndex1).card ≤ 2 := by
-      simpa using
+      exact
         CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
           S D.convex S.oppIndex1
           (H.selectedAt O.deleted

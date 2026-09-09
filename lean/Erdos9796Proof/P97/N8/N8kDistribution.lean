@@ -952,8 +952,7 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
       ((S.CP.arc_membership x hxA).1).mp hxC1
     rcases hvm_verts with rfl | rfl | rfl
     · -- vm = v1 (apex-opposite): RII, kill LEFT I2.  roles (va,vb,vc)=(v1,v2,v3).
-      have hkill : (SelectedClass A x r ∩ S.leftAdjacentInteriorByIndex 0).card = 0 := by
-        simp only [leftAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I2).card = 0 := by
         refine m1_kill_RII S hdpos e12 e13 e23 hp12 hp13 hp23 hv1A hv2A hv3A hxA
           hx1 hxv2 hxv3 hvm_sel hxarc hI2circ
           (by rw [FiniteEndpointShell.I2]; exact fun h => Finset.notMem_erase _ _ h) ?_
@@ -963,10 +962,10 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
         have h1 : signedArea2 z S.triangle.v1 S.triangle.v3 = -signedArea2 z S.triangle.v3 S.triangle.v1 := by simp only [signedArea2]; ring
         have h2 : signedArea2 S.triangle.v2 S.triangle.v1 S.triangle.v3 = -signedArea2 S.triangle.v2 S.triangle.v3 S.triangle.v1 := by simp only [signedArea2]; ring
         rw [h1, h2]; nlinarith [harc]
-      rw [hkill] at hl1ge; exact absurd hl1ge (by norm_num)
+      have hl1ge' : 1 ≤ (SelectedClass A x r ∩ S.I2).card := hl1ge
+      rw [hkill] at hl1ge'; exact absurd hl1ge' (by norm_num)
     · -- vm = v2: RI, kill RIGHT I3.  roles (va,vb,vc)=(v1,v3,v2).
-      have hkill : (SelectedClass A x r ∩ S.rightAdjacentInteriorByIndex 0).card = 0 := by
-        simp only [rightAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I3).card = 0 := by
         refine m1_kill_RI S hdpos e13 e12 (by rw [dist_comm]; exact e23) hp13 hp12 hp23.symm
           hv1A hv3A hv2A hxA hx1 hxv3 hxv2 hvm_sel ?_ hI3circ
           (by rw [FiniteEndpointShell.I3]; exact fun h => Finset.notMem_erase _ _ h) ?_
@@ -979,16 +978,17 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
           have h1 : signedArea2 z S.triangle.v2 S.triangle.v1 = -signedArea2 z S.triangle.v1 S.triangle.v2 := by simp only [signedArea2]; ring
           have h2 : signedArea2 S.triangle.v3 S.triangle.v2 S.triangle.v1 = -signedArea2 S.triangle.v3 S.triangle.v1 S.triangle.v2 := by simp only [signedArea2]; ring
           rw [h1, h2]; nlinarith [harc]
-      rw [hkill] at hr1ge; exact absurd hr1ge (by norm_num)
+      have hr1ge' : 1 ≤ (SelectedClass A x r ∩ S.I3).card := hr1ge
+      rw [hkill] at hr1ge'; exact absurd hr1ge' (by norm_num)
     · -- vm = v3: RI, kill LEFT I2.  roles (va,vb,vc)=(v1,v2,v3).
-      have hkill : (SelectedClass A x r ∩ S.leftAdjacentInteriorByIndex 0).card = 0 := by
-        simp only [leftAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I2).card = 0 := by
         refine m1_kill_RI S hdpos e12 e13 e23 hp12 hp13 hp23 hv1A hv2A hv3A hxA
           hx1 hxv2 hxv3 hvm_sel hxarc hI2circ
           (by rw [FiniteEndpointShell.I2]; exact fun h => Finset.notMem_erase _ _ (Finset.mem_of_mem_erase h)) ?_
         intro z hz; rw [FiniteEndpointShell.I2, Finset.mem_erase, Finset.mem_erase] at hz
         exact ((S.CP.arc_membership z (S.CP.C2_subset hz.2.2)).2.1).mp hz.2.2
-      rw [hkill] at hl1ge; exact absurd hl1ge (by norm_num)
+      have hl1ge' : 1 ≤ (SelectedClass A x r ∩ S.I2).card := hl1ge
+      rw [hkill] at hl1ge'; exact absurd hl1ge' (by norm_num)
   · -- i = 1: apex C2 (centre v2); left adj = I3 (centre v3); right adj = I1 (centre v1).
     have hxI2 : x ∈ S.I2 := by have h := hx_cap; simp only [capInteriorByIndex] at h; exact h
     rw [FiniteEndpointShell.I2, Finset.mem_erase, Finset.mem_erase] at hxI2
@@ -999,18 +999,17 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
       ((S.CP.arc_membership x hxA).2.1).mp hxC2
     rcases hvm_verts with rfl | rfl | rfl
     · -- vm = v1: RI, kill LEFT I3.  roles (va,vb,vc)=(v2,v3,v1).
-      have hkill : (SelectedClass A x r ∩ S.leftAdjacentInteriorByIndex 1).card = 0 := by
-        simp only [leftAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I3).card = 0 := by
         refine m1_kill_RI S hdpos e23 (by rw [dist_comm]; exact e12) (by rw [dist_comm]; exact e13)
           hp23 hp12.symm hp13.symm hv2A hv3A hv1A hxA hx2 hxv3 hxv1 hvm_sel
           hxarc hI3circ
           (by rw [FiniteEndpointShell.I3]; exact fun h => Finset.notMem_erase _ _ (Finset.mem_of_mem_erase h)) ?_
         intro z hz; rw [FiniteEndpointShell.I3, Finset.mem_erase, Finset.mem_erase] at hz
         exact ((S.CP.arc_membership z (S.CP.C3_subset hz.2.2)).2.2).mp hz.2.2
-      rw [hkill] at hl1ge; exact absurd hl1ge (by norm_num)
+      have hl1ge' : 1 ≤ (SelectedClass A x r ∩ S.I3).card := hl1ge
+      rw [hkill] at hl1ge'; exact absurd hl1ge' (by norm_num)
     · -- vm = v2 (apex-opposite): RII, kill LEFT I3.  roles (va,vb,vc)=(v2,v3,v1).
-      have hkill : (SelectedClass A x r ∩ S.leftAdjacentInteriorByIndex 1).card = 0 := by
-        simp only [leftAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I3).card = 0 := by
         refine m1_kill_RII S hdpos e23 (by rw [dist_comm]; exact e12) (by rw [dist_comm]; exact e13)
           hp23 hp12.symm hp13.symm hv2A hv3A hv1A hxA hx2 hxv3 hxv1 hvm_sel
           hxarc hI3circ
@@ -1021,10 +1020,10 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
         have h1 : signedArea2 z S.triangle.v2 S.triangle.v1 = -signedArea2 z S.triangle.v1 S.triangle.v2 := by simp only [signedArea2]; ring
         have h2 : signedArea2 S.triangle.v3 S.triangle.v2 S.triangle.v1 = -signedArea2 S.triangle.v3 S.triangle.v1 S.triangle.v2 := by simp only [signedArea2]; ring
         rw [h1, h2]; nlinarith [harc]
-      rw [hkill] at hl1ge; exact absurd hl1ge (by norm_num)
+      have hl1ge' : 1 ≤ (SelectedClass A x r ∩ S.I3).card := hl1ge
+      rw [hkill] at hl1ge'; exact absurd hl1ge' (by norm_num)
     · -- vm = v3: RI, kill RIGHT I1.  roles (va,vb,vc)=(v2,v1,v3).
-      have hkill : (SelectedClass A x r ∩ S.rightAdjacentInteriorByIndex 1).card = 0 := by
-        simp only [rightAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I1).card = 0 := by
         refine m1_kill_RI S hdpos (by rw [dist_comm]; exact e12) e23 e13
           hp12.symm hp23 hp13 hv2A hv1A hv3A hxA hx2 hxv1 hxv3 hvm_sel ?_ hI1circ
           (by rw [FiniteEndpointShell.I1]; exact fun h => Finset.notMem_erase _ _ h) ?_
@@ -1037,7 +1036,8 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
           have h1 : signedArea2 z S.triangle.v3 S.triangle.v2 = -signedArea2 z S.triangle.v2 S.triangle.v3 := by simp only [signedArea2]; ring
           have h2 : signedArea2 S.triangle.v1 S.triangle.v3 S.triangle.v2 = -signedArea2 S.triangle.v1 S.triangle.v2 S.triangle.v3 := by simp only [signedArea2]; ring
           rw [h1, h2]; nlinarith [harc]
-      rw [hkill] at hr1ge; exact absurd hr1ge (by norm_num)
+      have hr1ge' : 1 ≤ (SelectedClass A x r ∩ S.I1).card := hr1ge
+      rw [hkill] at hr1ge'; exact absurd hr1ge' (by norm_num)
   · -- i = 2: apex C3 (centre v3); left adj = I1 (centre v1); right adj = I2 (centre v2).
     have hxI3 : x ∈ S.I3 := by have h := hx_cap; simp only [capInteriorByIndex] at h; exact h
     rw [FiniteEndpointShell.I3, Finset.mem_erase, Finset.mem_erase] at hxI3
@@ -1048,8 +1048,7 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
       ((S.CP.arc_membership x hxA).2.2).mp hxC3
     rcases hvm_verts with rfl | rfl | rfl
     · -- vm = v1: RI, kill RIGHT I2.  roles (va,vb,vc)=(v3,v2,v1).
-      have hkill : (SelectedClass A x r ∩ S.rightAdjacentInteriorByIndex 2).card = 0 := by
-        simp only [rightAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I2).card = 0 := by
         refine m1_kill_RI S hdpos (by rw [dist_comm]; exact e23) (by rw [dist_comm]; exact e13) (by rw [dist_comm]; exact e12)
           hp23.symm hp13.symm hp12.symm hv3A hv2A hv1A hxA hx3 hxv2 hxv1 hvm_sel ?_ hI2circ
           (by rw [FiniteEndpointShell.I2]; exact fun h => Finset.notMem_erase _ _ h) ?_
@@ -1062,20 +1061,20 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
           have h1 : signedArea2 z S.triangle.v1 S.triangle.v3 = -signedArea2 z S.triangle.v3 S.triangle.v1 := by simp only [signedArea2]; ring
           have h2 : signedArea2 S.triangle.v2 S.triangle.v1 S.triangle.v3 = -signedArea2 S.triangle.v2 S.triangle.v3 S.triangle.v1 := by simp only [signedArea2]; ring
           rw [h1, h2]; nlinarith [harc]
-      rw [hkill] at hr1ge; exact absurd hr1ge (by norm_num)
+      have hr1ge' : 1 ≤ (SelectedClass A x r ∩ S.I2).card := hr1ge
+      rw [hkill] at hr1ge'; exact absurd hr1ge' (by norm_num)
     · -- vm = v2: RI, kill LEFT I1.  roles (va,vb,vc)=(v3,v1,v2).
-      have hkill : (SelectedClass A x r ∩ S.leftAdjacentInteriorByIndex 2).card = 0 := by
-        simp only [leftAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I1).card = 0 := by
         refine m1_kill_RI S hdpos (by rw [dist_comm]; exact e13) (by rw [dist_comm]; exact e23) e12
           hp13.symm hp23.symm hp12 hv3A hv1A hv2A hxA hx3 hxv1 hxv2 hvm_sel
           hxarc hI1circ
           (by rw [FiniteEndpointShell.I1]; exact fun h => Finset.notMem_erase _ _ (Finset.mem_of_mem_erase h)) ?_
         intro z hz; rw [FiniteEndpointShell.I1, Finset.mem_erase, Finset.mem_erase] at hz
         exact ((S.CP.arc_membership z (S.CP.C1_subset hz.2.2)).1).mp hz.2.2
-      rw [hkill] at hl1ge; exact absurd hl1ge (by norm_num)
+      have hl1ge' : 1 ≤ (SelectedClass A x r ∩ S.I1).card := hl1ge
+      rw [hkill] at hl1ge'; exact absurd hl1ge' (by norm_num)
     · -- vm = v3 (apex-opposite): RII, kill LEFT I1.  roles (va,vb,vc)=(v3,v1,v2).
-      have hkill : (SelectedClass A x r ∩ S.leftAdjacentInteriorByIndex 2).card = 0 := by
-        simp only [leftAdjacentInteriorByIndex]
+      have hkill : (SelectedClass A x r ∩ S.I1).card = 0 := by
         refine m1_kill_RII S hdpos (by rw [dist_comm]; exact e13) (by rw [dist_comm]; exact e23) e12
           hp13.symm hp23.symm hp12 hv3A hv1A hv2A hxA hx3 hxv1 hxv2 hvm_sel
           hxarc hI1circ
@@ -1086,7 +1085,8 @@ private lemma m1_branch_false {A : Finset ℝ²} (S : FiniteEndpointShell A)
         have h1 : signedArea2 z S.triangle.v3 S.triangle.v2 = -signedArea2 z S.triangle.v2 S.triangle.v3 := by simp only [signedArea2]; ring
         have h2 : signedArea2 S.triangle.v1 S.triangle.v3 S.triangle.v2 = -signedArea2 S.triangle.v1 S.triangle.v2 S.triangle.v3 := by simp only [signedArea2]; ring
         rw [h1, h2]; nlinarith [harc]
-      rw [hkill] at hl1ge; exact absurd hl1ge (by norm_num)
+      have hl1ge' : 1 ≤ (SelectedClass A x r ∩ S.I1).card := hl1ge
+      rw [hkill] at hl1ge'; exact absurd hl1ge' (by norm_num)
 
 /- ## Main theorem -/
 
@@ -1144,7 +1144,7 @@ theorem N8k_single_apex_false
     rw [hWapex, hWrad, hWsupp] at hone
     -- But `hl2` says it meets the left-adjacent cap in at least two points.
     have hge2 : 2 ≤ (SelectedClass A x r ∩ S.leftAdjacentInteriorByIndex i).card := by
-      simpa [FiniteEndpointShell.leftAdjCount] using hl2
+      simpa [hl_def, FiniteEndpointShell.leftAdjCount] using hl2
     omega
   · by_cases hr2 : 2 ≤ r_count
     · -- Branch: r = 2 (right-adjacent cap has two classmates) → N8a3_adjacent_one_hit (W7).
@@ -1159,7 +1159,7 @@ theorem N8k_single_apex_false
       have hone := S.N8a3_adjacent_one_hit hN4e W
       rw [hWapex, hWrad, hWsupp] at hone
       have hge2 : 2 ≤ (SelectedClass A x r ∩ S.rightAdjacentInteriorByIndex i).card := by
-        simpa [FiniteEndpointShell.rightAdjCount] using hr2
+        simpa [hr_count_def, FiniteEndpointShell.rightAdjCount] using hr2
       omega
     · by_cases hm2 : 2 ≤ m
       · -- Branch: m ≥ 2 (two or more Moser vertices in class) → N8b then N8e (W8)

@@ -1058,7 +1058,7 @@ theorem IsM44.surplusInterior_card_ge_three
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx
   · have hcap : 5 ≤ S.partition.C1.card := by
-      simpa [surplusCap, hi] using hclosed
+      have h := hclosed; simp only [surplusCap, hi] at h; exact h
     have hv3 : S.triangle.v3 ∈ S.partition.C1.erase S.triangle.v2 := by
       exact Finset.mem_erase.mpr ⟨S.triangle.v23_ne.symm, S.partition.v3_mem_C1⟩
     simp only [capInteriorByIndex]
@@ -1066,7 +1066,7 @@ theorem IsM44.surplusInterior_card_ge_three
       Finset.card_erase_of_mem S.partition.v2_mem_C1]
     omega
   · have hcap : 5 ≤ S.partition.C2.card := by
-      simpa [surplusCap, hi] using hclosed
+      have h := hclosed; simp only [surplusCap, hi] at h; exact h
     have hv1 : S.triangle.v1 ∈ S.partition.C2.erase S.triangle.v3 := by
       exact Finset.mem_erase.mpr ⟨S.triangle.v13_ne, S.partition.v1_mem_C2⟩
     simp only [capInteriorByIndex]
@@ -1332,7 +1332,7 @@ theorem leftAdjacentInteriorByIndex_oppIndex1_eq_oppInterior2
     S.leftAdjacentInteriorByIndex S.oppIndex1 = S.oppInterior2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [leftAdjacentInteriorByIndex, oppInterior2, oppIndex1, oppIndex2, hi]
+    simp [leftAdjacentInteriorByIndex, oppInterior2, oppIndex1, oppIndex2, hi] <;> rfl
 
 /-- At the first non-surplus cap index, the right-adjacent interior is the
 surplus-cap strict interior. -/
@@ -1342,7 +1342,7 @@ theorem rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior
       S.capInteriorByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [rightAdjacentInteriorByIndex, capInteriorByIndex, oppIndex1, hi]
+    simp [rightAdjacentInteriorByIndex, capInteriorByIndex, oppIndex1, hi] <;> rfl
 
 /-- At the second non-surplus cap index, the left-adjacent interior is the
 surplus-cap strict interior. -/
@@ -1352,7 +1352,7 @@ theorem leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior
       S.capInteriorByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [leftAdjacentInteriorByIndex, capInteriorByIndex, oppIndex2, hi]
+    simp [leftAdjacentInteriorByIndex, capInteriorByIndex, oppIndex2, hi] <;> rfl
 
 /-- At the second non-surplus cap index, the right-adjacent interior is the
 first non-surplus opposite interior. -/
@@ -1361,7 +1361,7 @@ theorem rightAdjacentInteriorByIndex_oppIndex2_eq_oppInterior1
     S.rightAdjacentInteriorByIndex S.oppIndex2 = S.oppInterior1 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [rightAdjacentInteriorByIndex, oppInterior1, oppIndex1, oppIndex2, hi]
+    simp [rightAdjacentInteriorByIndex, oppInterior1, oppIndex1, oppIndex2, hi] <;> rfl
 
 /-- At the first non-surplus cap index, the left-adjacent closed cap is the
 second non-surplus cap. -/
@@ -1370,7 +1370,7 @@ theorem leftAdjacentCapByIndex_oppIndex1_eq_capByIndex_oppIndex2
     S.leftAdjacentCapByIndex S.oppIndex1 = S.capByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [leftAdjacentCapByIndex, oppIndex1, oppIndex2, hi]
+    simp [leftAdjacentCapByIndex, oppIndex1, oppIndex2, hi] <;> rfl
 
 /-- At the second non-surplus cap index, the right-adjacent closed cap is the
 first non-surplus cap. -/
@@ -1379,7 +1379,7 @@ theorem rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1
     S.rightAdjacentCapByIndex S.oppIndex2 = S.capByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [rightAdjacentCapByIndex, oppIndex1, oppIndex2, hi]
+    simp [rightAdjacentCapByIndex, oppIndex1, oppIndex2, hi] <;> rfl
 
 /-- A right-surplus strict escape at the first non-surplus index is a point of
 the surplus cap interior. -/

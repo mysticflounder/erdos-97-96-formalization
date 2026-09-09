@@ -43,16 +43,18 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppositeVertexByIndex, hi]
+    simp only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppositeVertexByIndex, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
 
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
 
 /-- An exact five-point class at the physical second apex has at least three
 members in the strict interior of the opposite cap. -/

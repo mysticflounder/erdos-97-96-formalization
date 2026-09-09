@@ -503,9 +503,11 @@ theorem evalPoly_endpointS1S3_rabinowitschSqDistPoly_eq_zero
     (endpointS1S3Assignment pointOf) ?_ ?_
   · simp [endpointS1S3Assignment, endpointS1S3Slack,
       endpointNormalAxisAssignment, EndpointVar.eval]
-  · simpa [EndpointVar.index, endpointS1S3Assignment,
-      endpointNormalAxisAssignment, EndpointVar.eval] using
-      endpointNormalAxis_coord_sqdist_ne_zero hvw hs13
+  · rw [endpointS1S3Assignment_xVar_eq (label := .s1) rfl,
+      endpointS1S3Assignment_yVar_eq (label := .s1) rfl,
+      endpointS1S3Assignment_xVar_eq (label := .s3) rfl,
+      endpointS1S3Assignment_yVar_eq (label := .s3) rfl]
+    exact endpointNormalAxis_coord_sqdist_ne_zero hvw hs13
 
 /-- The generated `s1 = s3` Rabinowitsch generator is zero for every endpoint
 metric shadow. -/

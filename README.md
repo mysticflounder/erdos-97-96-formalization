@@ -159,7 +159,7 @@ theorem erdos96_rhs :
 
 This is the RHS of upstream
 [`Erdos96.erdos_96`](https://github.com/google-deepmind/formal-conjectures/blob/89a67be506fbae633d02941ccbd9f3737bbd5457/FormalConjectures/ErdosProblems/96.lean#L69),
-obtained from the per-set bound `unitDistancePairsCount A ≤ 3 * A.card` for
+obtained from the per-set bound `unitDistNum A ≤ 3 * A.card` for
 convex `A`
 ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L289)).
 

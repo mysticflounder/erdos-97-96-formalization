@@ -1213,7 +1213,7 @@ theorem leftAdjacentInteriorByIndex_surplusIdx_eq_oppInterior1
     S.leftAdjacentInteriorByIndex S.surplusIdx = S.oppInterior1 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [leftAdjacentInteriorByIndex, oppInterior1, oppIndex1, hi]
+    simp [leftAdjacentInteriorByIndex, oppInterior1, oppIndex1, hi] <;> rfl
 
 /-- At the surplus cap index, the right-adjacent interior is the second
 non-surplus opposite interior. -/
@@ -1222,7 +1222,7 @@ theorem rightAdjacentInteriorByIndex_surplusIdx_eq_oppInterior2
     S.rightAdjacentInteriorByIndex S.surplusIdx = S.oppInterior2 := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [rightAdjacentInteriorByIndex, oppInterior2, oppIndex2, hi]
+    simp [rightAdjacentInteriorByIndex, oppInterior2, oppIndex2, hi] <;> rfl
 
 /-- An `(m,4,4)` packet admits names for the two strict interior points in
 each adjacent cap of the surplus cap. -/

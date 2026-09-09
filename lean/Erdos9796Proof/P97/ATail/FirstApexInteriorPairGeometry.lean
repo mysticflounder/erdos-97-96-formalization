@@ -41,9 +41,9 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1'
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi, Fin.val_zero, Fin.val_one]
 
 /-- The vertex opposite one indexed cap belongs to every other indexed cap. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
@@ -120,7 +120,7 @@ private theorem interior_oppIndex1_not_mem_surplusCap
     S.surplusIdx_ne_oppIndex1.symm
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simpa [SurplusCapPacket.capByIndex,
+    simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
 /-- Any carrier point other than the first opposite apex that is equidistant
@@ -496,8 +496,8 @@ private theorem oppApex1_mem_A'
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem obstructionCenter_ne_oppApex1_of_exactFive

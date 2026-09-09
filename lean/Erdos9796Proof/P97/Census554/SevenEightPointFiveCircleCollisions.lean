@@ -70,6 +70,7 @@ private theorem normalized_sevenPointFiveCircle_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hAB_ACsq hAB_ADsq hBA_BCsq hBA_BFsq hBA_BEsq hFC_FEsq hFC_FGsq
       hEA_EDsq hEA_EFsq hEA_EGsq hGA_GDsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The seven-point five-circle equalities force `A = E`. -/
@@ -164,6 +165,7 @@ private theorem normalized_eightPointFiveCircle_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hAO_ABsq hAO_AEsq hAO_ADsq hBO_BAsq hBO_BFsq hBO_BGsq hEB_EDsq
       hEB_EFsq hFC_FDsq hFC_FGsq hGA_GEsq hGA_GFsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The eight-point five-circle equalities force `A = E`. -/

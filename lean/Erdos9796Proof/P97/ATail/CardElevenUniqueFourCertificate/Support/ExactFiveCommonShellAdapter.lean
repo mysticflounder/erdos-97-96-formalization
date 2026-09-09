@@ -184,7 +184,7 @@ theorem Card11CapLabeling.exists_pointed_secondInterior
   · exact build (Equiv.swap (7 : Fin 11) 8)
       (by decide) (by decide) (by decide)
       (by decide) (by decide) (by decide)
-      (by simpa [haq6] using haq)
+      (by simpa [haq6, Equiv.swap_apply_def] using haq)
       (by simpa [haw8] using haw)
       (by simpa [hac7] using hac)
   · exact build (Equiv.swap (6 : Fin 11) 7)
@@ -192,26 +192,26 @@ theorem Card11CapLabeling.exists_pointed_secondInterior
       (by decide) (by decide) (by decide)
       (by simpa [haq7] using haq)
       (by simpa [haw6] using haw)
-      (by simpa [hac8] using hac)
+      (by simpa [hac8, Equiv.swap_apply_def] using hac)
   · exact build
       ((Equiv.swap (7 : Fin 11) 8).trans (Equiv.swap (6 : Fin 11) 7))
       (by decide) (by decide) (by decide)
       (by decide) (by decide) (by decide)
-      (by simpa [haq7] using haq)
-      (by simpa [haw8] using haw)
+      (by simpa [haq7, Equiv.swap_apply_def] using haq)
+      (by simpa [haw8, Equiv.swap_apply_def] using haw)
       (by simpa [hac6] using hac)
   · exact build
       ((Equiv.swap (6 : Fin 11) 7).trans (Equiv.swap (7 : Fin 11) 8))
       (by decide) (by decide) (by decide)
       (by decide) (by decide) (by decide)
       (by simpa [haq8] using haq)
-      (by simpa [haw6] using haw)
-      (by simpa [hac7] using hac)
+      (by simpa [haw6, Equiv.swap_apply_def] using haw)
+      (by simpa [hac7, Equiv.swap_apply_def] using hac)
   · exact build (Equiv.swap (6 : Fin 11) 8)
       (by decide) (by decide) (by decide)
       (by decide) (by decide) (by decide)
       (by simpa [haq8] using haq)
-      (by simpa [haw7] using haw)
+      (by simpa [haw7, Equiv.swap_apply_def] using haw)
       (by simpa [hac6] using hac)
 
 /-- At cardinality eleven, the common obstruction center is the third
@@ -246,20 +246,20 @@ theorem commonObstructionCenter_mem_firstApexSelectedClass_of_card_eq_eleven
   have hsecond5 : 5 ≤ (S.partition.capAt S.oppIndex1).card := by
     have hsecond5' : 5 ≤ (S.capByIndex S.oppIndex1).card := by
       omega
-    rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
-    interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, CapTriple.capAt, hi] using hsecond5'
+    rw [← Card11SelectedCube.capByIndex_eq_capAt S]
+    exact hsecond5'
   have hprofile :=
     capInteriorProfile_eq_332_of_card_eq_eleven
       S.triangleNonObtuse S.hCirc S.partition rfl
       (S.surplusIdx_ne_oppIndex1).symm S.surplus hsecond5 hcard
+  have hbridge : ∀ i : Fin 3,
+      S.capInteriorByIndex i = capInteriorAt S.partition i := by
+    intro i
+    fin_cases i <;> rfl
   have hIcard : I.card = 3 := by
-    rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
-    interval_cases i <;>
-      simpa [I, SurplusCapPacket.capInteriorByIndex, capInteriorAt,
-        U1OppositeCapLowerBounds.interior1,
-        U1OppositeCapLowerBounds.interior2,
-        U1OppositeCapLowerBounds.interior3, hi] using hprofile.2.1
+    show (S.capInteriorByIndex S.oppIndex1).card = 3
+    rw [hbridge S.oppIndex1]
+    exact hprofile.2.1
   have hinterCard : (T ∩ I).card = 3 := by
     apply Nat.le_antisymm
     · simpa [hIcard] using
@@ -314,20 +314,20 @@ theorem firstOppositeInterior_eq_sources_insert_commonCenter_of_card_eq_eleven
       have hIge : 3 ≤ I.card :=
         hinter.trans (Finset.card_le_card Finset.inter_subset_right)
       omega
-    rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
-    interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, CapTriple.capAt, hi] using hsecond5'
+    rw [← Card11SelectedCube.capByIndex_eq_capAt S]
+    exact hsecond5'
   have hprofile :=
     capInteriorProfile_eq_332_of_card_eq_eleven
       S.triangleNonObtuse S.hCirc S.partition rfl
       (S.surplusIdx_ne_oppIndex1).symm S.surplus hsecond5 hcard
+  have hbridge : ∀ i : Fin 3,
+      S.capInteriorByIndex i = capInteriorAt S.partition i := by
+    intro i
+    fin_cases i <;> rfl
   have hIcard : I.card = 3 := by
-    rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
-    interval_cases i <;>
-      simpa [I, SurplusCapPacket.capInteriorByIndex, capInteriorAt,
-        U1OppositeCapLowerBounds.interior1,
-        U1OppositeCapLowerBounds.interior2,
-        U1OppositeCapLowerBounds.interior3, hi] using hprofile.2.1
+    show (S.capInteriorByIndex S.oppIndex1).card = 3
+    rw [hbridge S.oppIndex1]
+    exact hprofile.2.1
   have hqI : q ∈ I := by
     simpa [q, I] using (Finset.mem_inter.mp R.interior.q_mem_interior).2
   have hwI : w ∈ I := by
@@ -413,9 +413,8 @@ theorem exists_pointed_commonCenter_card11CapLabeling
       hinter.trans (Finset.card_le_card Finset.inter_subset_right)
     omega
   have hsecond5 : 5 ≤ (S.partition.capAt S.oppIndex1).card := by
-    rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
-    interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, CapTriple.capAt, hi] using hsecond5'
+    rw [← Card11SelectedCube.capByIndex_eq_capAt S]
+    exact hsecond5'
   obtain ⟨L⟩ :=
     Card11CapLabeling.nonempty_of_card_eq_eleven
       S.triangleNonObtuse S.hCirc S.partition rfl hsecond frame
@@ -429,12 +428,12 @@ theorem exists_pointed_commonCenter_card11CapLabeling
     have hgeom :=
       firstOppositeInterior_eq_sources_insert_commonCenter_of_card_eq_eleven
         R hcard
-    rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
-    interval_cases i <;>
-      simpa [SurplusCapPacket.capInteriorByIndex, capInteriorAt,
-        U1OppositeCapLowerBounds.interior1,
-        U1OppositeCapLowerBounds.interior2,
-        U1OppositeCapLowerBounds.interior3, hi] using hgeom
+    have hbridge : ∀ i : Fin 3,
+        S.capInteriorByIndex i = capInteriorAt S.partition i := by
+      intro i
+      fin_cases i <;> rfl
+    rw [← hbridge S.oppIndex1]
+    exact hgeom
   have hqw :
       R.interior.frontier.pair.q ≠ R.interior.frontier.pair.w :=
     R.interior.frontier.pair.q_ne_w
@@ -694,56 +693,38 @@ private theorem exists_firstApex_exactFive_outer_points
     simpa [T] using R.class_card_eq_five
   have houtsideCard : (T \ I).card = 2 := by
     rw [Finset.card_sdiff_of_subset hIsub, hTcard, hIcard]
+  have hopp : S.oppositeVertexByIndex S.oppIndex1 = S.oppApex1 := by
+    rcases hs : S.surplusIdx with ⟨i, hi⟩
+    interval_cases i <;>
+      simp only [SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1, hs] <;> rfl
+  have hright :
+      S.rightAdjacentCapByIndex S.oppIndex1 = S.capByIndex S.surplusIdx := by
+    rcases hs : S.surplusIdx with ⟨i, hi⟩
+    interval_cases i <;>
+      simp only [SurplusCapPacket.rightAdjacentCapByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.capByIndex, hs] <;> rfl
+  have hleft :
+      S.leftAdjacentCapByIndex S.oppIndex1 = S.capByIndex S.oppIndex2 := by
+    rcases hs : S.surplusIdx with ⟨i, hi⟩
+    interval_cases i <;>
+      simp only [SurplusCapPacket.leftAdjacentCapByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.capByIndex, hs] <;> rfl
   have hsurplusOne :
       (T ∩ S.capByIndex S.surplusIdx).card ≤ 1 := by
-    rcases hs : S.surplusIdx with ⟨i, hi⟩
-    interval_cases i
-    · simpa [T, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.rightAdjacentCapByIndex,
-        SurplusCapPacket.capByIndex, hs] using
-        S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
-    · simpa [T, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.rightAdjacentCapByIndex,
-        SurplusCapPacket.capByIndex, hs] using
-        S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
-    · simpa [T, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.rightAdjacentCapByIndex,
-        SurplusCapPacket.capByIndex, hs] using
-        S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
+    have hkey :=
+      S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        D.convex S.oppIndex1 radius
+    rw [hopp, hright] at hkey
+    exact hkey
   have hrestOne :
       (T ∩ S.capByIndex S.oppIndex2).card ≤ 1 := by
-    rcases hs : S.surplusIdx with ⟨i, hi⟩
-    interval_cases i
-    · simpa [T, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.leftAdjacentCapByIndex,
-        SurplusCapPacket.capByIndex, hs] using
-        S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
-    · simpa [T, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.leftAdjacentCapByIndex,
-        SurplusCapPacket.capByIndex, hs] using
-        S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
-    · simpa [T, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.leftAdjacentCapByIndex,
-        SurplusCapPacket.capByIndex, hs] using
-        S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
-          D.convex S.oppIndex1 radius
+    have hkey :=
+      S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+        D.convex S.oppIndex1 radius
+    rw [hopp, hleft] at hkey
+    exact hkey
   have hcover :
       T \ I ⊆
         (T ∩ S.capByIndex S.surplusIdx) ∪
@@ -751,14 +732,9 @@ private theorem exists_firstApex_exactFive_outer_points
     have h :=
       S.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
         S.oppIndex1 R.interior.frontier.radius_pos
-    rcases hs : S.surplusIdx with ⟨i, hi⟩
-    interval_cases i <;>
-      simpa [T, I, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.leftAdjacentCapByIndex,
-        SurplusCapPacket.rightAdjacentCapByIndex,
-        SurplusCapPacket.capByIndex, hs, Finset.union_comm] using h
+    rw [hopp, hleft, hright] at h
+    rw [Finset.union_comm]
+    exact h
   have hsurplusPos : 0 < (T ∩ S.capByIndex S.surplusIdx).card := by
     by_contra hn
     have hz : (T ∩ S.capByIndex S.surplusIdx).card = 0 := by omega
@@ -844,9 +820,8 @@ theorem exists_card11SelectedCube_with_canonical_firstApex_exactFive_shell
     ATailCapApexRadiusRigidity.capInteriorByIndex_card_add_two S S.oppIndex1
   have hsecond5 : 5 ≤ (S.partition.capAt S.oppIndex1).card := by
     have hsecond5' : 5 ≤ (S.capByIndex S.oppIndex1).card := by omega
-    rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
-    interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, CapTriple.capAt, hi] using hsecond5'
+    rw [← Card11SelectedCube.capByIndex_eq_capAt S]
+    exact hsecond5'
   have hprofile :=
     capProfile_eq_554_of_card_eq_eleven
       S.triangleNonObtuse S.hCirc S.partition rfl
@@ -864,8 +839,8 @@ theorem exists_card11SelectedCube_with_canonical_firstApex_exactFive_shell
     rw [L₀.point_one]
     rcases hs : S.surplusIdx with ⟨i, hi⟩
     interval_cases i <;>
-      simp [apexAt, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppIndex1, hs]
+      simp only [apexAt, SurplusCapPacket.oppApex1,
+        SurplusCapPacket.oppIndex1, hs] <;> rfl
   have hxSNe : xS ≠ S.oppApex1 := by
     intro h
     have hd := (mem_selectedClass.mp hxST).2
@@ -1012,8 +987,8 @@ theorem exists_card11SelectedCube_with_canonical_firstApex_exactFive_shell
     rw [L.point_one]
     rcases hs : S.surplusIdx with ⟨i, hi⟩
     interval_cases i <;>
-      simp [apexAt, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppIndex1, hs]
+      simp only [apexAt, SurplusCapPacket.oppApex1,
+        SurplusCapPacket.oppIndex1, hs] <;> rfl
   have hcubeSub :
       C.cube 1 ⊆ L.toCard11Labeling.labelsOf T := by
     intro p hp

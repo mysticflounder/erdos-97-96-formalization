@@ -118,7 +118,10 @@ theorem endpointNoThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two
         (endpointShadowOfPointClasses pointOf centerClass) x y <= 2) :
     SurplusCOMPGBank.noThreeOK
       (endpointShadowOfPointClasses pointOf centerClass) = true := by
-  simp [SurplusCOMPGBank.noThreeOK, SurplusCOMPGBank.labelPairs, hcount]
+  unfold SurplusCOMPGBank.noThreeOK
+  rw [List.all_eq_true]
+  intro pair hpair
+  exact decide_eq_true (hcount pair.1 pair.2 hpair)
 
 private theorem endpoint_foldl_countP_add {α : Type _} (p : α → Bool) :
     ∀ (items : List α) (acc : Nat),
@@ -281,8 +284,10 @@ theorem endpointSearchPairCountsOK_shadowOfPointClasses_of_prefixes
           (endpointShadowOfPointClasses pointOf centerClass) assigned) = true) :
     SurplusCOMPGBank.searchPairCountsOK
       (endpointShadowOfPointClasses pointOf centerClass) = true := by
-  simp [SurplusCOMPGBank.searchPairCountsOK,
-    SurplusCOMPGBank.fragmentSearchAssignedPrefixes, hprefix]
+  unfold SurplusCOMPGBank.searchPairCountsOK
+  rw [List.all_eq_true]
+  intro assigned hassigned
+  exact hprefix assigned hassigned
 
 /-- Separation facts give the generated all-pairs separation Boolean for the
 endpoint shadow. -/
@@ -295,7 +300,10 @@ theorem endpointSeparationOK_shadowOfPointClasses_of_sepOKFor
         (endpointShadowOfPointClasses pointOf centerClass) c cp x y = true) :
     SurplusCOMPGBank.separationOK
       (endpointShadowOfPointClasses pointOf centerClass) = true := by
-  simp [SurplusCOMPGBank.separationOK, SurplusCOMPGBank.labelPairs, hsep]
+  unfold SurplusCOMPGBank.separationOK
+  simp only [List.all_eq_true]
+  intro centerPair _hcenter pointPair hpoint
+  exact hsep centerPair.1 centerPair.2 pointPair.1 pointPair.2 hpoint
 
 /-- Cross-separation point-mask facts give the generated search-separation
 Boolean for the endpoint shadow. -/

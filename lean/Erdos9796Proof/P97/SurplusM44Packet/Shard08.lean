@@ -799,8 +799,13 @@ theorem IsM44.exists_oppInterior_side_placement_of_moserCapContainment
     ⟨r2, _hr2, hE2⟩
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx
-  · simp only [oppIndex1, oppIndex2, capByIndex, oppositeVertexByIndex,
-      oppInterior1, oppInterior2, hi] at hE1 hE2 ⊢
+  · -- `Fin.val_one`/`Fin.val_two` reduce the `Fin`-numeral discriminants so
+    -- every by-index selector `match` closes on both sides; without them the
+    -- rewritten hypotheses keep stuck `match ↑1` scrutinees that the later
+    -- rewrites cannot find in the already-reduced goals.
+    simp only [oppIndex1, oppIndex2, capByIndex, capInteriorByIndex,
+      oppositeVertexByIndex, oppInterior1, oppInterior2, hi, Fin.val_one,
+      Fin.val_two] at hE1 hE2 ⊢
     let d : ℝ := dist S.triangle.v1 S.triangle.v2
     have hdpos : 0 < d := by
       exact dist_pos.mpr S.triangle.v12_ne
@@ -858,8 +863,13 @@ theorem IsM44.exists_oppInterior_side_placement_of_moserCapContainment
       calc
         dist S.triangle.v3 x = r2 := (mem_selectedClass.mp hxsel).2
         _ = d := hr2d
-  · simp only [oppIndex1, oppIndex2, capByIndex, oppositeVertexByIndex,
-      oppInterior1, oppInterior2, hi] at hE1 hE2 ⊢
+  · -- `Fin.val_zero`/`Fin.val_two` reduce the `Fin`-numeral discriminants so
+    -- every by-index selector `match` closes on both sides; without them the
+    -- rewritten hypotheses keep stuck `match ↑0` scrutinees that the later
+    -- rewrites cannot find in the already-reduced goals.
+    simp only [oppIndex1, oppIndex2, capByIndex, capInteriorByIndex,
+      oppositeVertexByIndex, oppInterior1, oppInterior2, hi, Fin.val_zero,
+      Fin.val_two] at hE1 hE2 ⊢
     let d : ℝ := dist S.triangle.v1 S.triangle.v2
     have hdpos : 0 < d := by
       exact dist_pos.mpr S.triangle.v12_ne
@@ -920,8 +930,13 @@ theorem IsM44.exists_oppInterior_side_placement_of_moserCapContainment
       calc
         dist S.triangle.v1 x = r2 := (mem_selectedClass.mp hxsel).2
         _ = d := hr2d
-  · simp only [oppIndex1, oppIndex2, capByIndex, oppositeVertexByIndex,
-      oppInterior1, oppInterior2, hi] at hE1 hE2 ⊢
+  · -- `Fin.val_zero`/`Fin.val_one` reduce the `Fin`-numeral discriminants so
+    -- every by-index selector `match` closes on both sides; without them the
+    -- rewritten hypotheses keep stuck `match ↑0`/`match ↑1` scrutinees that the
+    -- later rewrites cannot find in the already-reduced goals.
+    simp only [oppIndex1, oppIndex2, capByIndex, capInteriorByIndex,
+      oppositeVertexByIndex, oppInterior1, oppInterior2, hi, Fin.val_zero,
+      Fin.val_one] at hE1 hE2 ⊢
     let d : ℝ := dist S.triangle.v1 S.triangle.v2
     have hdpos : 0 < d := by
       exact dist_pos.mpr S.triangle.v12_ne

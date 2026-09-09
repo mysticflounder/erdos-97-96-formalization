@@ -240,11 +240,11 @@ theorem originalUniqueRadiusArm_residual_dispatch
       have hqInterior :
           P.frontier.pair.q ∈ SelectedClass D.A S.oppApex1 radius ∩
             S.capInteriorByIndex S.oppIndex1 := by
-        simpa using P.interiorPair.q_mem
+        exact P.interiorPair.q_mem
       have hwInterior :
           P.frontier.pair.w ∈ SelectedClass D.A S.oppApex1 radius ∩
             S.capInteriorByIndex S.oppIndex1 := by
-        simpa using P.interiorPair.w_mem
+        exact P.interiorPair.w_mem
       have hcInterior :
           H.centerAt P.frontier.pair.q P.frontier.pair.q_mem_A ∈
             S.capInteriorByIndex S.oppIndex1 :=

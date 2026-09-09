@@ -189,9 +189,8 @@ theorem sharedCirclePointForcesV3_of_formB_lower
     intro z
     have hcenter_perp : inner ℝ (center - M) u = 0 := by
       have hdist_eq : dist center q1 = dist center q2 := by
-        rw [dist_comm center q1, dist_comm center q2]
-        simpa [q1, q2] using
-          S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
+        rw [dist_comm center q1, dist_comm center q2, dist_eq_norm, dist_eq_norm]
+        exact S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
       have hperp : center ∈ AffineSubspace.perpBisector q1 q2 := by
         rw [AffineSubspace.mem_perpBisector_iff_dist_eq]
         simpa using hdist_eq
@@ -309,8 +308,8 @@ theorem sharedCirclePointForcesV3_of_formB_lower
       rw [dist_eq_norm, norm_sub_rev]
       exact hdisk_a'
     have hradius : dist center q1 = S.Packet.radius := by
-      rw [dist_comm]
-      simpa [q1, center] using S.Packet.moser_on_boundary_1
+      rw [dist_comm, dist_eq_norm]
+      exact S.Packet.moser_on_boundary_1
     have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
       have hnonneg_a : 0 ≤ dist center a := dist_nonneg
       have hnonneg_q1 : 0 ≤ dist center q1 := dist_nonneg

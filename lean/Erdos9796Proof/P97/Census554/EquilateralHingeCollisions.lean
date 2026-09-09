@@ -90,6 +90,7 @@ private theorem normalized_fivePointHingeCycle_incompatible
   have hHy' : 4 * H 1 ^ 2 - 3 = 0 := by nlinarith [hHy]
   clear hAD hBC hCA_CD hDB_DH hHC_HD hHx hHy
   ring_nf at hADsq hBCsq hCA_CDsq hDB_DHsq hHC_HDsq hHy'
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- **Five-point hinge-cycle collision.**
@@ -172,6 +173,7 @@ private theorem normalized_sixPointHingeTail_incompatible
   have hHy' : 4 * H 1 ^ 2 - 3 = 0 := by nlinarith [hHy]
   clear hAD hBC hCA_CD hCA_CT hDB_DH hDB_DT hHC_HT hHx hHy
   ring_nf at hADsq hBCsq hCA_CDsq hCA_CTsq hDB_DHsq hDB_DTsq hHC_HTsq hHy'
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- **Six-point hinge-tail collision.**
@@ -254,6 +256,7 @@ private theorem normalized_sixPointHingeDoubleSpoke_incompatible
   have hHy' : 4 * H 1 ^ 2 - 3 = 0 := by nlinarith [hHy]
   clear hAL hBC hBR hLB_LC hHC_HR hRA_RC hRA_RL hHx hHy
   ring_nf at hALsq hBCsq hBRsq hLB_LCsq hHC_HRsq hRA_RCsq hRA_RLsq hHy'
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- **Six-point hinge double-spoke collision.**
@@ -342,6 +345,7 @@ private theorem normalized_sevenPointHingeClosedTail_incompatible
   have hHy' : 4 * H 1 ^ 2 - 3 = 0 := by nlinarith [hHy]
   clear hAL hAM hBR hLB_LH hLB_LT hHM_HR hHM_HT hTA_TM hTA_TR hHx hHy
   ring_nf at hALsq hAMsq hBRsq hLB_LHsq hLB_LTsq hHM_HRsq hHM_HTsq hTA_TMsq hTA_TRsq hHy'
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- **Seven-point hinge closed-tail collision.**

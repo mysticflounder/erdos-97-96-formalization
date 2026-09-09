@@ -202,9 +202,9 @@ theorem finalAssign_coverIndex_baseCnf_sat_of_cubeOk
     {κ : Cube} (hκ : CubeOk κ) :
     Std.Sat.CNF.eval (fun n => finalAssign (coverIndex κ) (n + 1))
       baseCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [Std.Sat.CNF.eval, Array.all_eq_true_iff_forall_mem]
   intro cl hcl
-  simp only [baseCnf, List.mem_map] at hcl
+  simp only [baseCnf, List.mem_toArray, List.mem_map] at hcl
   obtain ⟨c, hc, rfl⟩ := hcl
   rw [evalClauseD_toLit (finalAssign (coverIndex κ)) c
     (baseDimacs_nonzero c hc)]

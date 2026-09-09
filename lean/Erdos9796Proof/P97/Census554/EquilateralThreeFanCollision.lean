@@ -53,6 +53,7 @@ theorem normalized_threeFan_signedArea2_eq_zero
   rw [hSx, hSy_negAy] at ⊢
   have hQy_mul_area :
       Q 1 * ((1 - 1 / 2) * (Q 1 + A 1) - (Q 0 - 1 / 2) * A 1) = 0 := by
+    beta_reduce at *
     grobner
   nlinarith
 
@@ -128,6 +129,7 @@ theorem normalized_threeFan_signedArea2_eq_zero_of_distinct
   rw [hSx, hSy_negAy]
   have hQy_mul_area :
       Q 1 * ((1 - 1 / 2) * (Q 1 + A 1) - (Q 0 - 1 / 2) * A 1) = 0 := by
+    beta_reduce at *
     grobner
   have harea := (mul_eq_zero.mp hQy_mul_area).resolve_left hQy_ne
   nlinarith

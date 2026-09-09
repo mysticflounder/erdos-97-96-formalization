@@ -449,8 +449,16 @@ private noncomputable def directLabeling_of_ordered_blocks
         pointOf (labelO1 2)
     rw [card11IndexEquiv_labelO1]
     simpa [fO1, gO1] using heO1 2
-  · simpa [order, card11IndexEquiv_labelO2, labelO2, fO2, gO2] using heO2 0
-  · simpa [order, card11IndexEquiv_labelO2, labelO2, fO2, gO2] using heO2 1
+  · change boundary
+      (card11IndexEquiv (eO2, (eS, eO1)) (labelO2 0)) =
+        pointOf (labelO2 0)
+    rw [card11IndexEquiv_labelO2]
+    simpa [fO2, gO2] using heO2 0
+  · change boundary
+      (card11IndexEquiv (eO2, (eS, eO1)) (labelO2 1)) =
+        pointOf (labelO2 1)
+    rw [card11IndexEquiv_labelO2]
+    simpa [fO2, gO2] using heO2 1
 
 private noncomputable def mirrorLabeling_of_ordered_blocks
     {pointOf : Fin 11 → ℝ²} {n : Nat} {phi : Fin n → ℝ²}
@@ -584,10 +592,16 @@ private noncomputable def mirrorLabeling_of_ordered_blocks
         pointOf (labelO1 2)
     rw [card11IndexEquiv_labelO1]
     simpa [fO1, gO1] using heO1 2
-  · simpa [order, card11MirrorIndexEquiv, card11IndexEquiv_labelO2,
-      labelO2, fO2, gO2] using heO2 0
-  · simpa [order, card11MirrorIndexEquiv, card11IndexEquiv_labelO2,
-      labelO2, fO2, gO2] using heO2 1
+  · change boundary (card11BoundaryReflection
+      (card11IndexEquiv (eO2, (eS, eO1)) (labelO2 0))) =
+        pointOf (labelO2 0)
+    rw [card11IndexEquiv_labelO2]
+    simpa [fO2, gO2] using heO2 0
+  · change boundary (card11BoundaryReflection
+      (card11IndexEquiv (eO2, (eS, eO1)) (labelO2 1))) =
+        pointOf (labelO2 1)
+    rw [card11IndexEquiv_labelO2]
+    simpa [fO2, gO2] using heO2 1
 
 end SeparationGeometry
 

@@ -1,3 +1,6 @@
+import Mathlib.Data.Finset.Sym
+import Mathlib.Data.Sym.Card
+import FormalConjecturesForMathlib.Geometry.Metric
 import FormalConjectures.ErdosProblems.«97»
 import FormalConjecturesForMathlib.Geometry.«2d»
 import Erdos9796Proof.P97.UniversalLocal
@@ -11,7 +14,7 @@ EuclideanSpace ℝ (Fin 2)`), the number of Euclidean unit-distance pairs
 satisfies
 
 ```
-EuclideanGeometry.unitDistancePairsCount A ≤ 3 * A.card.
+unitDistNum A ≤ 3 * A.card.
 ```
 
 ## Proof strategy
@@ -39,7 +42,7 @@ L∞ metric, not Euclidean).
 3. **Strong induction.** On `A.card`, peel the low-degree vertex `p` and
    apply the IH:
    `doubledUnitCount A ≤ 6 * (A.card - 1) + 2 * 3 = 6 * A.card`.
-4. **Divide by 2** to get `unitDistancePairsCount A ≤ 3 * A.card`.
+4. **Divide by 2** to get `unitDistNum A ≤ 3 * A.card`.
 
 `ConvexIndep` is preserved under `erase` (via `ConvexIndep.erase` in
 `ConvexIndepHelpers.lean`), so the inductive step on `A.erase p`
@@ -60,16 +63,100 @@ namespace EuclideanPeeling
 /-- The "doubled" Euclidean unit-distance count on `A`: the number of
 ordered pairs `(p, q) ∈ A.offDiag` with `dist p q = 1`. Each unit
 edge contributes twice (once as `(p, q)`, once as `(q, p)`). The
-unordered count `EuclideanGeometry.unitDistancePairsCount A` is this
+unordered count `unitDistNum A` is this
 divided by `2`. -/
 noncomputable def doubledUnitCount (A : Finset ℝ²) : ℕ :=
   (A.offDiag.filter (fun p => dist p.1 p.2 = 1)).card
 
-/-- Unfolding of the upstream `EuclideanGeometry.unitDistancePairsCount`
-in terms of our doubled count: it is exactly `doubledUnitCount / 2`. -/
-lemma unitDistancePairsCount_eq_doubledUnitCount_div_two (A : Finset ℝ²) :
-    EuclideanGeometry.unitDistancePairsCount A = doubledUnitCount A / 2 :=
-  rfl
+/- ### Bridge to the upstream unordered count
+
+At Lean/mathlib v4.33.1 the upstream interface is the `Sym2`-based
+`unitDistNum`, which counts UNORDERED unit pairs directly.  The former
+`EuclideanGeometry.unitDistancePairsCount`, whose body was literally
+`doubledUnitCount / 2`, no longer exists, and the bridge below is a real
+theorem rather than the `rfl` that sufficed against that body. -/
+
+section UnitDistNumBridge
+
+variable {X : Type*} [MetricSpace X]
+
+omit [MetricSpace X] in
+private lemma sym2_mk_out (z : Sym2 X) : s(z.out.1, z.out.2) = z := z.out_eq
+
+private lemma dist_out_mk (a b : X) :
+    dist (s(a, b) : Sym2 X).out.1 (s(a, b) : Sym2 X).out.2 = dist a b := by
+  rcases Sym2.eq_iff.mp (sym2_mk_out (s(a, b) : Sym2 X)) with ⟨h1, h2⟩ | ⟨h1, h2⟩
+  · rw [h1, h2]
+  · rw [h1, h2, dist_comm]
+
+/-- Every unordered unit pair has exactly two ordered representatives, so the
+ordered count is twice the unordered one.  Stated for a general metric space;
+the `ℝ²` instance is what P96 consumes. -/
+theorem two_mul_unitDistNum (A : Finset X) :
+    2 * unitDistNum A = (A.offDiag.filter fun p : X × X => dist p.1 p.2 = 1).card := by
+  classical
+  set T : Finset (X × X) := A.offDiag.filter (fun p : X × X => dist p.1 p.2 = 1) with hT
+  have hmemT : ∀ x y : X, ((x, y) ∈ T ↔ (x ∈ A ∧ y ∈ A ∧ x ≠ y) ∧ dist x y = 1) := by
+    intro x y
+    simp [hT, Finset.mem_filter, Finset.mem_offDiag]
+  have key : {z ∈ A.sym2 | dist z.out.1 z.out.2 = 1} = T.image Sym2.mk.uncurry := by
+    ext z
+    induction z using Sym2.ind with
+    | _ a b =>
+      rw [Finset.mem_filter, Finset.mem_image]
+      rw [Finset.mk_mem_sym2_iff, dist_out_mk]
+      constructor
+      · rintro ⟨⟨ha, hb⟩, hd⟩
+        refine ⟨(a, b), (hmemT a b).mpr ⟨⟨ha, hb, ?_⟩, hd⟩, rfl⟩
+        rintro rfl
+        rw [dist_self] at hd
+        exact zero_ne_one hd
+      · rintro ⟨⟨x, y⟩, hxy, heq⟩
+        obtain ⟨⟨hx, hy, -⟩, hd⟩ := (hmemT x y).mp hxy
+        have heq' : s(x, y) = s(a, b) := heq
+        rcases Sym2.eq_iff.mp heq' with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+        · exact ⟨⟨hx, hy⟩, hd⟩
+        · exact ⟨⟨hy, hx⟩, by rwa [dist_comm]⟩
+  rw [unitDistNum, key,
+    Finset.card_eq_sum_card_image (Sym2.mk.uncurry : X × X → Sym2 X) T,
+    Finset.sum_const_nat (Sym2.ind ?_), mul_comm]
+  intro a b hab
+  obtain ⟨⟨x, y⟩, hxy, hmk⟩ := Finset.mem_image.mp hab
+  obtain ⟨⟨hx, hy, hxyne⟩, hxyd⟩ := (hmemT x y).mp hxy
+  have hmk' : s(x, y) = s(a, b) := hmk
+  have hab' : (a ∈ A ∧ b ∈ A ∧ a ≠ b) ∧ dist a b = 1 := by
+    rcases Sym2.eq_iff.mp hmk' with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+    · exact ⟨⟨hx, hy, hxyne⟩, hxyd⟩
+    · exact ⟨⟨hy, hx, hxyne.symm⟩, by rwa [dist_comm]⟩
+  obtain ⟨⟨haA, hbA, hne⟩, hd⟩ := hab'
+  have hfib : T.filter (fun z => Sym2.mk.uncurry z = s(a, b)) = {(a, b), (b, a)} := by
+    ext p
+    obtain ⟨u, v⟩ := p
+    rw [Finset.mem_filter, Finset.mem_insert, Finset.mem_singleton]
+    constructor
+    · rintro ⟨-, heq⟩
+      have heq' : s(u, v) = s(a, b) := heq
+      rcases Sym2.eq_iff.mp heq' with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+      · exact Or.inl rfl
+      · exact Or.inr rfl
+    · rintro (h | h)
+      · rw [Prod.mk.injEq] at h
+        obtain ⟨rfl, rfl⟩ := h
+        exact ⟨(hmemT u v).mpr ⟨⟨haA, hbA, hne⟩, hd⟩, rfl⟩
+      · rw [Prod.mk.injEq] at h
+        obtain ⟨rfl, rfl⟩ := h
+        exact ⟨(hmemT u v).mpr ⟨⟨hbA, haA, hne.symm⟩, by rwa [dist_comm]⟩, Sym2.eq_swap⟩
+  rw [hfib, Finset.card_pair_eq_two_iff.mpr (by rw [Ne, Prod.mk.injEq]; exact fun h => hne h.1)]
+
+end UnitDistNumBridge
+
+/-- The upstream unordered count in terms of our doubled count: it is exactly
+`doubledUnitCount / 2`.  This replaces the pre-v4.33.1 `rfl` bridge to
+`EuclideanGeometry.unitDistancePairsCount`. -/
+theorem unitDistNum_eq_doubledUnitCount_div_two (A : Finset ℝ²) :
+    unitDistNum A = doubledUnitCount A / 2 := by
+  unfold doubledUnitCount
+  rw [← two_mul_unitDistNum A, Nat.mul_div_cancel_left _ (by norm_num)]
 
 /- ### A bookkeeping equality
 
@@ -259,6 +346,26 @@ end EuclideanPeeling
 
 /- ### Headline P96 bound -/
 
+/-- **Erdős 97 ⟹ the halved ordered-pair count is at most `3 |A|`.**
+
+This is the shape `comparator/Challenge.lean` inlines: `doubledUnitCount` is a
+plain `def` whose body is literally that Challenge expression, so a comparator
+Solution closes against it by delta at default transparency.
+`unit_distance_pairs_bound_of_erdos97` below is the same bound restated in the
+upstream `unitDistNum` vocabulary.
+
+The explicit P97 hypothesis is carried deliberately; discharging it here would
+route the comparator's headline through the still-open
+`Problem97.UniversalProblem97`. -/
+theorem doubledUnitCount_div_two_bound_of_erdos97
+    (hP97 : Problem97.UniversalProblem97Statement)
+    {A : Finset ℝ²} (hConv : Problem97.ConvexIndep A) :
+    EuclideanPeeling.doubledUnitCount A / 2 ≤ 3 * A.card := by
+  calc EuclideanPeeling.doubledUnitCount A / 2
+      ≤ (6 * A.card) / 2 := Nat.div_le_div_right
+        (EuclideanPeeling.doubledUnitCount_bound_of_erdos97 hP97 A hConv)
+    _ = 3 * A.card := by omega
+
 /-- **Erdős 97 ⟹ Erdős 96, per-set form with explicit constant 3.**
 
 Given Erdős 97 as a hypothesis — `hP97` is the RHS of upstream
@@ -273,12 +380,9 @@ This is the load-bearing reduction of the P96 branch, and it is
 theorem unit_distance_pairs_bound_of_erdos97
     (hP97 : Problem97.UniversalProblem97Statement)
     {A : Finset ℝ²} (hConv : Problem97.ConvexIndep A) :
-    EuclideanGeometry.unitDistancePairsCount A ≤ 3 * A.card := by
-  rw [EuclideanPeeling.unitDistancePairsCount_eq_doubledUnitCount_div_two]
-  calc EuclideanPeeling.doubledUnitCount A / 2
-      ≤ (6 * A.card) / 2 := Nat.div_le_div_right
-        (EuclideanPeeling.doubledUnitCount_bound_of_erdos97 hP97 A hConv)
-    _ = 3 * A.card := by omega
+    unitDistNum A ≤ 3 * A.card := by
+  rw [EuclideanPeeling.unitDistNum_eq_doubledUnitCount_div_two]
+  exact doubledUnitCount_div_two_bound_of_erdos97 hP97 hConv
 
 /-- **Erdős Problem 96 unit-distance bound from Problem 97 (Euclidean
 form).** For any convex-independent `A : Finset ℝ²`, the number of
@@ -288,7 +392,7 @@ Euclidean unit-distance pairs is at most `3 * A.card`.
 `Problem97.UniversalProblem97`; inherits that theorem's open obligations. -/
 theorem unit_distance_pairs_bound {A : Finset ℝ²}
     (hConv : Problem97.ConvexIndep A) :
-    EuclideanGeometry.unitDistancePairsCount A ≤ 3 * A.card :=
+    unitDistNum A ≤ 3 * A.card :=
   unit_distance_pairs_bound_of_erdos97 Problem97.UniversalProblem97 hConv
 
 end Problem96

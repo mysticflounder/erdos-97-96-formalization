@@ -334,9 +334,10 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;>
+    rfl
 
 /-- When both the first selected class and its closed cap have cardinality
 five, the selected class contains every strict-interior point of that cap. -/

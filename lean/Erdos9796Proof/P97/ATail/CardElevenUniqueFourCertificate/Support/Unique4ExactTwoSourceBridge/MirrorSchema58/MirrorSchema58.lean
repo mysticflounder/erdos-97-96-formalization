@@ -289,22 +289,14 @@ theorem false_of_schemaFive_normalized_at
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     Row0 Row2 Row3 Row4
-  · simpa [Row0, OrderedFive.values, rolePoint] using
-      m 0 1 (by simp [schema5])
-  · simpa [Row0, OrderedFive.values, rolePoint] using
-      m 0 2 (by simp [schema5])
-  · simpa [Row2, OrderedFive.values, rolePoint] using
-      m 2 3 (by simp [schema5])
-  · simpa [Row2, OrderedFive.values, rolePoint] using
-      m 2 4 (by simp [schema5])
-  · simpa [Row3, OrderedFive.values, rolePoint] using
-      m 3 2 (by simp [schema5])
-  · simpa [Row3, OrderedFive.values, rolePoint] using
-      m 3 4 (by simp [schema5])
-  · simpa [Row4, OrderedFive.values, rolePoint] using
-      m 4 1 (by simp [schema5])
-  · simpa [Row4, OrderedFive.values, rolePoint] using
-      m 4 3 (by simp [schema5])
+  · exact m 0 1 (by simp [schema5])
+  · exact m 0 2 (by simp [schema5])
+  · exact m 2 3 (by simp [schema5])
+  · exact m 2 4 (by simp [schema5])
+  · exact m 3 2 (by simp [schema5])
+  · exact m 3 4 (by simp [schema5])
+  · exact m 4 1 (by simp [schema5])
+  · exact m 4 3 (by simp [schema5])
 
 /-- A normalized retained schema-8 valuation contradicts convex position.
 This is the boundary-reversed companion of the retained reflected terminal. -/
@@ -336,42 +328,18 @@ theorem false_of_schemaEight_normalized_at
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) (toCardIndex_lt hcard T.h56)
     (toCardIndex_lt hcard T.h67) Row0 Row5 Row6 Row7
-  · simpa [Row0, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 0 1 (by simp [schema8])
-  · simpa [Row0, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 0 2 (by simp [schema8])
-  · simpa [Row0, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 0 7 (by simp [schema8])
-  · simpa [Row5, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 5 1 (by simp [schema8])
-  · simpa [Row5, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 5 4 (by simp [schema8])
-  · simpa [Row5, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 5 6 (by simp [schema8])
-  · simpa [Row6, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 6 3 (by simp [schema8])
-  · simpa [Row6, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 6 4 (by simp [schema8])
-  · simpa [Row6, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 6 7 (by simp [schema8])
-  · simpa [Row7, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 7 2 (by simp [schema8])
-  · simpa [Row7, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 7 3 (by simp [schema8])
-  · simpa [Row7, RetainedKalmansonDecoderScratch.OrderedEight.values,
-      rolePoint] using
-      m 7 6 (by simp [schema8])
+  · exact m 0 1 (by simp [schema8])
+  · exact m 0 2 (by simp [schema8])
+  · exact m 0 7 (by simp [schema8])
+  · exact m 5 1 (by simp [schema8])
+  · exact m 5 4 (by simp [schema8])
+  · exact m 5 6 (by simp [schema8])
+  · exact m 6 3 (by simp [schema8])
+  · exact m 6 4 (by simp [schema8])
+  · exact m 6 7 (by simp [schema8])
+  · exact m 7 2 (by simp [schema8])
+  · exact m 7 3 (by simp [schema8])
+  · exact m 7 6 (by simp [schema8])
 
 /-- The exact normalized occurrence surface introduced by reversing the
 mirror-side retained schema-5/schema-8 clauses. -/

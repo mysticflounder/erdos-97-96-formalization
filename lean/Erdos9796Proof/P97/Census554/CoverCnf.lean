@@ -168,7 +168,7 @@ polarity). -/
 def toLit (i : Int) : Nat × Bool := (i.natAbs - 1, decide (0 < i))
 
 /-- The base cover instance as a `Std.Sat.CNF` formula. -/
-def baseCnf : Std.Sat.CNF Nat := baseDimacs.map fun c => c.map toLit
+def baseCnf : Std.Sat.CNF Nat := ⟨(baseDimacs.map fun c => c.map toLit).toArray⟩
 
 /-- DIMACS text of the base instance; byte-identical to
 `CoverInstance().dimacs()` with an empty pattern bank. -/

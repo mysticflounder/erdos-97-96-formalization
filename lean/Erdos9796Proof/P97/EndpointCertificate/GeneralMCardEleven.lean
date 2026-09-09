@@ -165,7 +165,7 @@ theorem capByIndex_surplusIdx_eq_surplusCap :
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 /-- (2a, second class) The selected class at the Moser apex opposite the second
 non-surplus cap (the `rho` centre) is exactly four points.  Composition of

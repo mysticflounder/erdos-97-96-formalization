@@ -182,7 +182,7 @@ theorem mem_permutations :
     refine ⟨by simp [hlen], ?_, ?_⟩
     · rw [List.nodup_cons]
       exact ⟨fun hx' => hnd.not_mem_erase (hsub hx'), hnd'⟩
-    · exact List.cons_subset.mpr ⟨hx, hsub.trans List.erase_subset⟩
+    · exact List.cons_subset.mpr ⟨hx, List.Subset.trans hsub List.erase_subset⟩
 
 theorem labels_nodup : labels.Nodup := List.nodup_range
 

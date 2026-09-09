@@ -43,8 +43,8 @@ private theorem oppApex2_mem_A
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem oppApex2_eq_oppositeVertex_oppIndex2
@@ -52,8 +52,8 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppositeVertexByIndex, hi]
+    simp only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppositeVertexByIndex, hi, Fin.val_zero, Fin.val_one]
 
 private theorem overrideAt_selectedAt_support
     {A : Finset ℝ²} (H : CriticalShellSystem A)

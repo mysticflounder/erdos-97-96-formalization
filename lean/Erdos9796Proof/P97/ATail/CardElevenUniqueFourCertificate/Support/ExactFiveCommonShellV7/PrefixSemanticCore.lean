@@ -123,7 +123,7 @@ noncomputable def ofCriticalShellSystem
         L.pointOf source ∈ K.support :=
       H.source_mem_selectedFourClass
         (L.pointOf source) (L.mem_carrier source) K
-    simpa [K] using hsource
+    exact hsource
   · intro source heq
     have hpoint :
         H.centerAt (L.pointOf source) (L.mem_carrier source) =
@@ -244,8 +244,8 @@ theorem exists_livePrefixPacket
     rw [L.point_one]
     rcases hs : S.surplusIdx with ⟨i, hi⟩
     interval_cases i <;>
-      simp [apexAt, SurplusCapPacket.oppApex1,
-        SurplusCapPacket.oppIndex1, hs]
+      simp only [apexAt, SurplusCapPacket.oppApex1,
+        SurplusCapPacket.oppIndex1, hs] <;> rfl
   let K₁ : SelectedFourClass D.A (L.pointOf 1) := {
     support := T.erase removed
     support_subset_A := by
@@ -386,7 +386,7 @@ theorem exists_livePrefixPacket
   have hsecond5 : 5 ≤ (S.partition.capAt S.oppIndex1).card := by
     rcases hi : S.oppIndex1 with ⟨i, hiLt⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.capByIndex, CapTriple.capAt, hi] using hsecond5'
+      simpa only [SurplusCapPacket.capByIndex, CapTriple.capAt, hi] using hsecond5'
   have hprofile :=
     capProfile_eq_554_of_card_eq_eleven
       S.triangleNonObtuse S.hCirc S.partition rfl

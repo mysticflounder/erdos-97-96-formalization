@@ -72,35 +72,12 @@ theorem directRowArcFiniteOccurrences_batch_valid :
     directRowArcFiniteOccurrences.length = directRowArcFiniteDataCount ∧
       ∀ occurrence ∈ directRowArcFiniteOccurrences, occurrence.datum.Valid := by
   constructor
-  · simp only [directRowArcFiniteOccurrences, List.length_append,
-      directRowArcFiniteOccurrencesChunk000_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk001_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk002_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk003_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk004_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk005_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk006_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk007_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk008_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk009_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk010_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk011_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk012_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk013_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk014_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk015_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk016_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk017_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk018_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk019_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk020_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk021_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk022_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk023_batch_valid.1,
-      directRowArcFiniteOccurrencesChunk024_batch_valid.1,
-      directRowArcFiniteDataCount]
-  · rw [directRowArcFiniteOccurrences]
-    have h001 := List.forall_mem_append.2
+  · have hlen : ∀ (l₁ l₂ : List DirectRowArcFiniteOccurrence) (a b : Nat),
+        l₁.length = a → l₂.length = b → (l₁ ++ l₂).length = a + b := by
+      intro l₁ l₂ a b h₁ h₂
+      rw [List.length_append, h₁, h₂]
+    exact (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ directRowArcFiniteOccurrencesChunk000_batch_valid.1 directRowArcFiniteOccurrencesChunk001_batch_valid.1) directRowArcFiniteOccurrencesChunk002_batch_valid.1) directRowArcFiniteOccurrencesChunk003_batch_valid.1) directRowArcFiniteOccurrencesChunk004_batch_valid.1) directRowArcFiniteOccurrencesChunk005_batch_valid.1) directRowArcFiniteOccurrencesChunk006_batch_valid.1) directRowArcFiniteOccurrencesChunk007_batch_valid.1) directRowArcFiniteOccurrencesChunk008_batch_valid.1) directRowArcFiniteOccurrencesChunk009_batch_valid.1) directRowArcFiniteOccurrencesChunk010_batch_valid.1) directRowArcFiniteOccurrencesChunk011_batch_valid.1) directRowArcFiniteOccurrencesChunk012_batch_valid.1) directRowArcFiniteOccurrencesChunk013_batch_valid.1) directRowArcFiniteOccurrencesChunk014_batch_valid.1) directRowArcFiniteOccurrencesChunk015_batch_valid.1) directRowArcFiniteOccurrencesChunk016_batch_valid.1) directRowArcFiniteOccurrencesChunk017_batch_valid.1) directRowArcFiniteOccurrencesChunk018_batch_valid.1) directRowArcFiniteOccurrencesChunk019_batch_valid.1) directRowArcFiniteOccurrencesChunk020_batch_valid.1) directRowArcFiniteOccurrencesChunk021_batch_valid.1) directRowArcFiniteOccurrencesChunk022_batch_valid.1) directRowArcFiniteOccurrencesChunk023_batch_valid.1) directRowArcFiniteOccurrencesChunk024_batch_valid.1)
+  · have h001 := List.forall_mem_append.2
       ⟨directRowArcFiniteOccurrencesChunk000_batch_valid.2, directRowArcFiniteOccurrencesChunk001_batch_valid.2⟩
     have h002 := List.forall_mem_append.2
       ⟨h001, directRowArcFiniteOccurrencesChunk002_batch_valid.2⟩

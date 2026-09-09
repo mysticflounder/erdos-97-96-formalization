@@ -64,6 +64,7 @@ private theorem normalized_sixPointFiveCircleA_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hOA_OBsq hAO_ABsq hAO_ACsq hAO_AEsq hCB_CEsq hCB_CFsq hEO_ECsq
       hEO_EFsq hFO_FAsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- Collision A: a four-point `A`-circle linked to two three-point circles. -/
@@ -144,6 +145,7 @@ private theorem normalized_sixPointFiveCircleB_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hAO_ABsq hAO_AEsq hBO_BAsq hBO_BCsq hBO_BFsq hEO_EBsq hCO_CFsq
       hFA_FEsq hFA_FCsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- Collision B: two short bisectors join the two three-point circle constraints. -/
@@ -224,6 +226,7 @@ private theorem normalized_sixPointFiveCircleC_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hAO_ABsq hAO_AEsq hAO_ACsq hBO_BAsq hBO_BFsq hEB_ECsq hEB_EFsq
       hCO_CEsq hFA_FEsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- Collision C: the four-point `A`-circle is closed by two terminal bisectors. -/

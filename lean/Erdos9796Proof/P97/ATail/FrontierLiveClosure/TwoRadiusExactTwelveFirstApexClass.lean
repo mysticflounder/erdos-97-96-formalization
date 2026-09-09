@@ -54,15 +54,15 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppCap2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi] <;> rfl
 
 /-- At the first opposite cap index, the closed left-adjacent cap is the closed
 second opposite cap. -/
@@ -80,8 +80,8 @@ private theorem rightAdjacentCapByIndex_oppIndex1_eq_surplusCap
   rw [← capByIndex_surplusIdx_eq_surplusCap]
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.rightAdjacentCapByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.capByIndex, hi]
+    simp only [SurplusCapPacket.rightAdjacentCapByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.capByIndex, hi] <;> rfl
 
 /-- Census of the exact-four unique-radius class at the first opposite apex in
 the two-radius branch at carrier cardinality twelve: four points, the strict

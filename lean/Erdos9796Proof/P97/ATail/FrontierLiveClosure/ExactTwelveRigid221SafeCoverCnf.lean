@@ -124,7 +124,7 @@ def baseDimacs : List (List Int) :=
   onehotClauses ++ c2Clauses ++ c4Clauses
 
 def baseCnf : Std.Sat.CNF Nat :=
-  baseDimacs.map fun c => c.map toLit
+  ⟨(baseDimacs.map fun c => c.map toLit).toArray⟩
 
 /- ## Executable encoding anchors -/
 

@@ -83,6 +83,7 @@ private theorem normalized_sevenPoint_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hUCWsq hVAUsq
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hVAWsq hWOBsq
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hWOUsq
+  beta_reduce at *
   grobner
 
 /-- The seven-point distance equalities force the two anchor labels to collide. -/

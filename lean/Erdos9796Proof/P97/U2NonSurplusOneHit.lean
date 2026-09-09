@@ -223,7 +223,7 @@ theorem oppApex1_surplusCap_one_hit (D : CounterexampleData) (r : ℝ) :
       D.convex D.packet.hncol CP.C1_subset
       (fun x hxA => (CP.arc_membership x hxA).1)
       CP.v2_mem_C1 CP.v3_mem_C1 P0 P0.inner_at_v1 r
-    simpa [CP, P0, SurplusCapPacket.oppApex1, SurplusCapPacket.surplusCap, hi]
+    simpa only [CP, P0, SurplusCapPacket.oppApex1, SurplusCapPacket.surplusCap, hi]
       using hle
   · have hle := exactRadius_inter_supportCap_at_v2_card_le_one
       (A := D.A) (C := CP.C2) (M := triangle231 D)
@@ -234,8 +234,9 @@ theorem oppApex1_surplusCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle231] using CP.v3_mem_C2)
       (by simpa [triangle231] using CP.v1_mem_C2)
       P231 P231.inner_at_v1 r
-    simpa [CP, P231, SurplusCapPacket.oppApex1, SurplusCapPacket.surplusCap,
-      triangle231, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex1, SurplusCapPacket.surplusCap,
+      triangle231, hi] at hle ⊢
+    exact hle
   · have hle := exactRadius_inter_supportCap_at_v2_card_le_one
       (A := D.A) (C := CP.C3) (M := triangle312 D)
       D.convex D.packet.hncol CP.C3_subset
@@ -245,8 +246,9 @@ theorem oppApex1_surplusCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle312] using CP.v1_mem_C3)
       (by simpa [triangle312] using CP.v2_mem_C3)
       P312 P312.inner_at_v1 r
-    simpa [CP, P312, SurplusCapPacket.oppApex1, SurplusCapPacket.surplusCap,
-      triangle312, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex1, SurplusCapPacket.surplusCap,
+      triangle312, hi] at hle ⊢
+    exact hle
 
 /-- Membership in a surplus cap is exactly the corresponding oriented-arc
 condition, in a form parameterized by an arbitrary packet over the carrier. -/
@@ -257,10 +259,10 @@ theorem mem_surplusCap_iff_onArc (D : CounterexampleData)
   set CP := S.partition with hCP
   rcases hi : S.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
+  · simpa only [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, CP, hi]
       using (CP.arc_membership x hxA).1
-  · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
+  · simpa only [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, CP, hi]
       using (CP.arc_membership x hxA).2.1
   · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
@@ -327,13 +329,14 @@ theorem oppApex1_otherCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle312] using CP.v1_mem_C3)
       (by simpa [triangle312] using CP.v2_mem_C3)
       P312 P312.inner_at_v1 r
-    simpa [CP, P312, SurplusCapPacket.oppApex1, SurplusCapPacket.oppCap2,
-      triangle312, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex1, SurplusCapPacket.oppCap2,
+      triangle312, hi] at hle ⊢
+    exact hle
   · have hle := exactRadius_inter_supportCap_at_v3_card_le_one
       D.convex D.packet.hncol CP.C1_subset
       (fun x hxA => (CP.arc_membership x hxA).1)
       CP.v2_mem_C1 CP.v3_mem_C1 P0 P0.inner_at_v1 r
-    simpa [CP, P0, SurplusCapPacket.oppApex1, SurplusCapPacket.oppCap2, hi]
+    simpa only [CP, P0, SurplusCapPacket.oppApex1, SurplusCapPacket.oppCap2, hi]
       using hle
   · have hle := exactRadius_inter_supportCap_at_v3_card_le_one
       (A := D.A) (C := CP.C2) (M := triangle231 D)
@@ -344,8 +347,9 @@ theorem oppApex1_otherCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle231] using CP.v3_mem_C2)
       (by simpa [triangle231] using CP.v1_mem_C2)
       P231 P231.inner_at_v1 r
-    simpa [CP, P231, SurplusCapPacket.oppApex1, SurplusCapPacket.oppCap2,
-      triangle231, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex1, SurplusCapPacket.oppCap2,
+      triangle231, hi] at hle ⊢
+    exact hle
 
 /-- Exact-radius classes at `oppApex2` meet the surplus cap in at most one
 point. -/
@@ -362,7 +366,7 @@ theorem oppApex2_surplusCap_one_hit (D : CounterexampleData) (r : ℝ) :
       D.convex D.packet.hncol CP.C1_subset
       (fun x hxA => (CP.arc_membership x hxA).1)
       CP.v2_mem_C1 CP.v3_mem_C1 P0 P0.inner_at_v1 r
-    simpa [CP, P0, SurplusCapPacket.oppApex2, SurplusCapPacket.surplusCap, hi]
+    simpa only [CP, P0, SurplusCapPacket.oppApex2, SurplusCapPacket.surplusCap, hi]
       using hle
   · have hle := exactRadius_inter_supportCap_at_v3_card_le_one
       (A := D.A) (C := CP.C2) (M := triangle231 D)
@@ -373,8 +377,9 @@ theorem oppApex2_surplusCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle231] using CP.v3_mem_C2)
       (by simpa [triangle231] using CP.v1_mem_C2)
       P231 P231.inner_at_v1 r
-    simpa [CP, P231, SurplusCapPacket.oppApex2, SurplusCapPacket.surplusCap,
-      triangle231, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex2, SurplusCapPacket.surplusCap,
+      triangle231, hi] at hle ⊢
+    exact hle
   · have hle := exactRadius_inter_supportCap_at_v3_card_le_one
       (A := D.A) (C := CP.C3) (M := triangle312 D)
       D.convex D.packet.hncol CP.C3_subset
@@ -384,8 +389,9 @@ theorem oppApex2_surplusCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle312] using CP.v1_mem_C3)
       (by simpa [triangle312] using CP.v2_mem_C3)
       P312 P312.inner_at_v1 r
-    simpa [CP, P312, SurplusCapPacket.oppApex2, SurplusCapPacket.surplusCap,
-      triangle312, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex2, SurplusCapPacket.surplusCap,
+      triangle312, hi] at hle ⊢
+    exact hle
 
 /-- Exact-radius classes at `oppApex2` meet the other non-surplus cap in at
 most one point. -/
@@ -407,8 +413,9 @@ theorem oppApex2_otherCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle231] using CP.v3_mem_C2)
       (by simpa [triangle231] using CP.v1_mem_C2)
       P231 P231.inner_at_v1 r
-    simpa [CP, P231, SurplusCapPacket.oppApex2, SurplusCapPacket.oppCap1,
-      triangle231, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex2, SurplusCapPacket.oppCap1,
+      triangle231, hi] at hle ⊢
+    exact hle
   · have hle := exactRadius_inter_supportCap_at_v2_card_le_one
       (A := D.A) (C := CP.C3) (M := triangle312 D)
       D.convex D.packet.hncol CP.C3_subset
@@ -418,8 +425,9 @@ theorem oppApex2_otherCap_one_hit (D : CounterexampleData) (r : ℝ) :
       (by simpa [triangle312] using CP.v1_mem_C3)
       (by simpa [triangle312] using CP.v2_mem_C3)
       P312 P312.inner_at_v1 r
-    simpa [CP, P312, SurplusCapPacket.oppApex2, SurplusCapPacket.oppCap1,
-      triangle312, hi] using hle
+    simp only [CP, SurplusCapPacket.oppApex2, SurplusCapPacket.oppCap1,
+      triangle312, hi] at hle ⊢
+    exact hle
   · have hle := exactRadius_inter_supportCap_at_v2_card_le_one
       D.convex D.packet.hncol CP.C1_subset
       (fun x hxA => (CP.arc_membership x hxA).1)
@@ -586,8 +594,8 @@ private theorem oppCap1_subset_A (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [CP, SurplusCapPacket.oppCap1, hi] using CP.C2_subset
-  · simpa [CP, SurplusCapPacket.oppCap1, hi] using CP.C3_subset
+  · simpa only [CP, SurplusCapPacket.oppCap1, hi] using CP.C2_subset
+  · simpa only [CP, SurplusCapPacket.oppCap1, hi] using CP.C3_subset
   · simpa [CP, SurplusCapPacket.oppCap1, hi] using CP.C1_subset
 
 private theorem oppCap2_subset_A (D : CounterexampleData) :
@@ -595,8 +603,8 @@ private theorem oppCap2_subset_A (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [CP, SurplusCapPacket.oppCap2, hi] using CP.C3_subset
-  · simpa [CP, SurplusCapPacket.oppCap2, hi] using CP.C1_subset
+  · simpa only [CP, SurplusCapPacket.oppCap2, hi] using CP.C3_subset
+  · simpa only [CP, SurplusCapPacket.oppCap2, hi] using CP.C1_subset
   · simpa [CP, SurplusCapPacket.oppCap2, hi] using CP.C2_subset
 
 private theorem oppApex2_mem_oppCap1 (D : CounterexampleData) :
@@ -604,9 +612,9 @@ private theorem oppApex2_mem_oppCap1 (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppApex2, hi] using
+  · simpa only [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppApex2, hi] using
       CP.v3_mem_C2
-  · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppApex2, hi] using
+  · simpa only [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppApex2, hi] using
       CP.v1_mem_C3
   · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppApex2, hi] using
       CP.v2_mem_C1
@@ -616,9 +624,9 @@ private theorem oppApex2_mem_surplusCap (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex2, hi] using
+  · simpa only [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex2, hi] using
       CP.v3_mem_C1
-  · simpa [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex2, hi] using
+  · simpa only [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex2, hi] using
       CP.v1_mem_C2
   · simpa [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex2, hi] using
       CP.v2_mem_C3
@@ -628,9 +636,9 @@ private theorem oppApex1_mem_oppCap2 (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [CP, SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi] using
+  · simpa only [CP, SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi] using
       CP.v2_mem_C3
-  · simpa [CP, SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi] using
+  · simpa only [CP, SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi] using
       CP.v3_mem_C1
   · simpa [CP, SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi] using
       CP.v1_mem_C2
@@ -640,9 +648,9 @@ private theorem oppApex1_mem_surplusCap (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
+  · simpa only [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
       CP.v2_mem_C1
-  · simpa [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
+  · simpa only [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
       CP.v3_mem_C2
   · simpa [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi] using
       CP.v1_mem_C3
@@ -678,16 +686,16 @@ theorem oppApex1_filter_subset_oppCap1_of_endpointRadius
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_3)
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_1)
         (by
-          simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
+          simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
             using hOther)
         (by
-          simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.surplusApex, hi]
+          simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.surplusApex, hi]
             using hSurp)
         (by
-          simpa [SurplusCapPacket.oppApex1, hi] using hxDist)
+          simpa only [SurplusCapPacket.oppApex1, hi] using hxDist)
         hxDisk
     have hxC2 : x ∈ CP.C2 := ((CP.arc_membership x hxA).2.1).mpr hArc
-    simpa [CP, SurplusCapPacket.oppCap1, hi] using hxC2
+    simpa only [CP, SurplusCapPacket.oppCap1, hi] using hxC2
   · have hArc :
         OnArcOpposite D.packet.triangle.v3 D.packet.triangle.v1
           D.packet.triangle.v2 x := by
@@ -700,16 +708,16 @@ theorem oppApex1_filter_subset_oppCap1_of_endpointRadius
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_1)
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_2)
         (by
-          simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
+          simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
             using hOther)
         (by
-          simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.surplusApex, hi]
+          simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.surplusApex, hi]
             using hSurp)
         (by
-          simpa [SurplusCapPacket.oppApex1, hi] using hxDist)
+          simpa only [SurplusCapPacket.oppApex1, hi] using hxDist)
         hxDisk
     have hxC3 : x ∈ CP.C3 := ((CP.arc_membership x hxA).2.2).mpr hArc
-    simpa [CP, SurplusCapPacket.oppCap1, hi] using hxC3
+    simpa only [CP, SurplusCapPacket.oppCap1, hi] using hxC3
   · have hArc :
         OnArcOpposite D.packet.triangle.v1 D.packet.triangle.v2
           D.packet.triangle.v3 x := by
@@ -764,16 +772,16 @@ theorem oppApex2_filter_subset_oppCap2_of_endpointRadius
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_1)
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_2)
         (by
-          simpa [SurplusCapPacket.oppApex2, SurplusCapPacket.surplusApex, hi]
+          simpa only [SurplusCapPacket.oppApex2, SurplusCapPacket.surplusApex, hi]
             using hSurp)
         (by
-          simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
+          simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
             using hOther)
         (by
-          simpa [SurplusCapPacket.oppApex2, hi] using hxDist)
+          simpa only [SurplusCapPacket.oppApex2, hi] using hxDist)
         hxDisk
     have hxC3 : x ∈ CP.C3 := ((CP.arc_membership x hxA).2.2).mpr hArc
-    simpa [CP, SurplusCapPacket.oppCap2, hi] using hxC3
+    simpa only [CP, SurplusCapPacket.oppCap2, hi] using hxC3
   · have hArc :
         OnArcOpposite D.packet.triangle.v1 D.packet.triangle.v2
           D.packet.triangle.v3 x := by
@@ -786,16 +794,16 @@ theorem oppApex2_filter_subset_oppCap2_of_endpointRadius
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_2)
         (by simpa [P, dist_eq_norm] using P.moser_on_boundary_3)
         (by
-          simpa [SurplusCapPacket.oppApex2, SurplusCapPacket.surplusApex, hi]
+          simpa only [SurplusCapPacket.oppApex2, SurplusCapPacket.surplusApex, hi]
             using hSurp)
         (by
-          simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
+          simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi]
             using hOther)
         (by
-          simpa [SurplusCapPacket.oppApex2, hi] using hxDist)
+          simpa only [SurplusCapPacket.oppApex2, hi] using hxDist)
         hxDisk
     have hxC1 : x ∈ CP.C1 := ((CP.arc_membership x hxA).1).mpr hArc
-    simpa [CP, SurplusCapPacket.oppCap2, hi] using hxC1
+    simpa only [CP, SurplusCapPacket.oppCap2, hi] using hxC1
   · have hArc :
         OnArcOpposite D.packet.triangle.v2 D.packet.triangle.v3
           D.packet.triangle.v1 x := by
@@ -1090,9 +1098,9 @@ private theorem surplusApexLocal_mem_oppCap1 (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [surplusApexLocal, CP, SurplusCapPacket.oppCap1, hi] using
+  · simpa only [surplusApexLocal, CP, SurplusCapPacket.oppCap1, hi] using
       CP.v1_mem_C2
-  · simpa [surplusApexLocal, CP, SurplusCapPacket.oppCap1, hi] using
+  · simpa only [surplusApexLocal, CP, SurplusCapPacket.oppCap1, hi] using
       CP.v2_mem_C3
   · simpa [surplusApexLocal, CP, SurplusCapPacket.oppCap1, hi] using
       CP.v3_mem_C1
@@ -1102,9 +1110,9 @@ private theorem surplusApexLocal_mem_oppCap2 (D : CounterexampleData) :
   set CP := D.packet.partition
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [surplusApexLocal, CP, SurplusCapPacket.oppCap2, hi] using
+  · simpa only [surplusApexLocal, CP, SurplusCapPacket.oppCap2, hi] using
       CP.v1_mem_C3
-  · simpa [surplusApexLocal, CP, SurplusCapPacket.oppCap2, hi] using
+  · simpa only [surplusApexLocal, CP, SurplusCapPacket.oppCap2, hi] using
       CP.v2_mem_C1
   · simpa [surplusApexLocal, CP, SurplusCapPacket.oppCap2, hi] using
       CP.v3_mem_C2
@@ -1249,8 +1257,7 @@ theorem oppApex1_endpointRadiusWitness_of_u1EndpointEquality
       dist D.packet.oppApex2 D.packet.oppApex1 = r :=
     (hCap1 D.packet.oppApex2 (oppApex2_mem_oppCap1 D)).trans hr₁
   have hSurpMem : D.packet.surplusApex ∈ D.packet.oppCap1 := by
-    simpa [surplusApexLocal, SurplusCapPacket.surplusApex] using
-      surplusApexLocal_mem_oppCap1 D
+    exact surplusApexLocal_mem_oppCap1 D
   have hSurp :
       dist D.packet.surplusApex D.packet.oppApex1 = r :=
     (hCap1 D.packet.surplusApex hSurpMem).trans hr₁
@@ -1290,8 +1297,7 @@ theorem oppApex2_endpointRadiusWitness_of_u1EndpointEquality
       dist D.packet.oppApex1 D.packet.oppApex2 = r :=
     (hCap2 D.packet.oppApex1 (oppApex1_mem_oppCap2 D)).trans hr₂
   have hSurpMem : D.packet.surplusApex ∈ D.packet.oppCap2 := by
-    simpa [surplusApexLocal, SurplusCapPacket.surplusApex] using
-      surplusApexLocal_mem_oppCap2 D
+    exact surplusApexLocal_mem_oppCap2 D
   have hSurp :
       dist D.packet.surplusApex D.packet.oppApex2 = r :=
     (hCap2 D.packet.surplusApex hSurpMem).trans hr₂
@@ -1569,14 +1575,11 @@ private noncomputable def swap23Partition {A : Finset ℝ²} (S : SurplusCapPack
     have h := S.partition.arc_membership v hvA
     exact ⟨
       by
-        simpa [swap23NonObtuse] using
-          h.1.trans (onArcOpposite_swap_chord _ _ _ _),
+        exact h.1.trans (onArcOpposite_swap_chord _ _ _ _),
       by
-        simpa [swap23NonObtuse] using
-          (h.2.2.trans (onArcOpposite_swap_chord _ _ _ _)),
+        exact (h.2.2.trans (onArcOpposite_swap_chord _ _ _ _)),
       by
-        simpa [swap23NonObtuse] using
-          (h.2.1.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
+        exact (h.2.1.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
 
 private noncomputable def swap13Partition {A : Finset ℝ²} (S : SurplusCapPacket A) :
     CapTriple A ((swap13NonObtuse S).toMoserTriangle.toStructural
@@ -1607,14 +1610,11 @@ private noncomputable def swap13Partition {A : Finset ℝ²} (S : SurplusCapPack
     have h := S.partition.arc_membership v hvA
     exact ⟨
       by
-        simpa [swap13NonObtuse] using
-          (h.2.2.trans (onArcOpposite_swap_chord _ _ _ _)),
+        exact (h.2.2.trans (onArcOpposite_swap_chord _ _ _ _)),
       by
-        simpa [swap13NonObtuse] using
-          (h.2.1.trans (onArcOpposite_swap_chord _ _ _ _)),
+        exact (h.2.1.trans (onArcOpposite_swap_chord _ _ _ _)),
       by
-        simpa [swap13NonObtuse] using
-          (h.1.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
+        exact (h.1.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
 
 private noncomputable def swap12Partition {A : Finset ℝ²} (S : SurplusCapPacket A) :
     CapTriple A ((swap12NonObtuse S).toMoserTriangle.toStructural
@@ -1645,14 +1645,11 @@ private noncomputable def swap12Partition {A : Finset ℝ²} (S : SurplusCapPack
     have h := S.partition.arc_membership v hvA
     exact ⟨
       by
-        simpa [swap12NonObtuse] using
-          (h.2.1.trans (onArcOpposite_swap_chord _ _ _ _)),
+        exact (h.2.1.trans (onArcOpposite_swap_chord _ _ _ _)),
       by
-        simpa [swap12NonObtuse] using
-          (h.1.trans (onArcOpposite_swap_chord _ _ _ _)),
+        exact (h.1.trans (onArcOpposite_swap_chord _ _ _ _)),
       by
-        simpa [swap12NonObtuse] using
-          (h.2.2.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
+        exact (h.2.2.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
 
 private noncomputable def fixedSurplusSwapPacket0 (D : CounterexampleData)
     (hidx : D.packet.surplusIdx = (⟨0, by decide⟩ : Fin 3)) :
@@ -1666,7 +1663,7 @@ private noncomputable def fixedSurplusSwapPacket0 (D : CounterexampleData)
   surplus := by
     have h := D.packet.surplus
     rw [hidx] at h
-    simpa [swap23Partition] using h }
+    simpa only [swap23Partition] using h }
 
 private noncomputable def fixedSurplusSwapPacket1 (D : CounterexampleData)
     (hidx : D.packet.surplusIdx = (⟨1, by decide⟩ : Fin 3)) :
@@ -1680,7 +1677,7 @@ private noncomputable def fixedSurplusSwapPacket1 (D : CounterexampleData)
   surplus := by
     have h := D.packet.surplus
     rw [hidx] at h
-    simpa [swap13Partition] using h }
+    simpa only [swap13Partition] using h }
 
 private noncomputable def fixedSurplusSwapPacket2 (D : CounterexampleData)
     (hidx : D.packet.surplusIdx = (⟨2, by decide⟩ : Fin 3)) :
@@ -1708,61 +1705,68 @@ private theorem fixedSurplusSwapPacket0_pinnedLeft_to_right
       (fixedSurplusSwapPacket0 D hidx).oppositeVertexByIndex
           (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
         D.packet.oppositeVertexByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket0, swap23NonObtuse,
+    simp only [fixedSurplusSwapPacket0, swap23NonObtuse,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx]
+      MEC.MoserTriangle.toStructural, hidx,
+      Fin.val_one, Fin.val_two]
   have hinterior :
       (fixedSurplusSwapPacket0 D hidx).capInteriorByIndex
           (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
         D.packet.capInteriorByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket0, swap23NonObtuse, swap23Partition,
+    simp only [fixedSurplusSwapPacket0, swap23NonObtuse, swap23Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.capInteriorByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx, Finset.erase_right_comm]
+      MEC.MoserTriangle.toStructural, hidx, Finset.erase_right_comm,
+      Fin.val_one, Fin.val_two]
   have hown :
       (fixedSurplusSwapPacket0 D hidx).capByIndex
           (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
         D.packet.capByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket0, swap23Partition,
+    simp only [fixedSurplusSwapPacket0, swap23Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.capByIndex, hidx]
+      SurplusCapPacket.capByIndex, hidx,
+      Fin.val_one, Fin.val_two]
   have hleftOuter :
       (fixedSurplusSwapPacket0 D hidx).leftOuterVertexByIndex
           (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
         D.packet.rightOuterVertexByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket0, swap23NonObtuse,
+    simp only [fixedSurplusSwapPacket0, swap23NonObtuse,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftOuterVertexByIndex,
       SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx]
+      MEC.MoserTriangle.toStructural, hidx,
+      Fin.val_one, Fin.val_two]
   have hrightOuter :
       (fixedSurplusSwapPacket0 D hidx).rightOuterVertexByIndex
           (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
         D.packet.leftOuterVertexByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket0, swap23NonObtuse,
+    simp only [fixedSurplusSwapPacket0, swap23NonObtuse,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftOuterVertexByIndex,
       SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx]
+      MEC.MoserTriangle.toStructural, hidx,
+      Fin.val_one, Fin.val_two]
   have hleftAdjacent :
       (fixedSurplusSwapPacket0 D hidx).leftAdjacentCapByIndex
           (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
         D.packet.rightAdjacentCapByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket0, swap23Partition,
+    simp only [fixedSurplusSwapPacket0, swap23Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftAdjacentCapByIndex,
       SurplusCapPacket.rightAdjacentCapByIndex,
-      SurplusCapPacket.capByIndex, hidx]
+      SurplusCapPacket.capByIndex, hidx,
+      Fin.val_one, Fin.val_two]
   have hrightAdjacent :
       (fixedSurplusSwapPacket0 D hidx).rightAdjacentCapByIndex
           (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
         D.packet.leftAdjacentCapByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket0, swap23Partition,
+    simp only [fixedSurplusSwapPacket0, swap23Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftAdjacentCapByIndex,
       SurplusCapPacket.rightAdjacentCapByIndex,
-      SurplusCapPacket.capByIndex, hidx]
+      SurplusCapPacket.capByIndex, hidx,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
   rcases hpinned with
     ⟨p₁, p₂, hpne, hpair, hcard, hsub, hright, hx, hxSurplus,
       hleftEq, hrightEq, hright_ne, hleft_ne⟩
@@ -1800,61 +1804,68 @@ private theorem fixedSurplusSwapPacket1_pinnedLeft_to_right
       (fixedSurplusSwapPacket1 D hidx).oppositeVertexByIndex
           (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
         D.packet.oppositeVertexByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket1, swap13NonObtuse,
+    simp only [fixedSurplusSwapPacket1, swap13NonObtuse,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx]
+      MEC.MoserTriangle.toStructural, hidx,
+      Fin.val_zero, Fin.val_two]
   have hinterior :
       (fixedSurplusSwapPacket1 D hidx).capInteriorByIndex
           (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
         D.packet.capInteriorByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket1, swap13NonObtuse, swap13Partition,
+    simp only [fixedSurplusSwapPacket1, swap13NonObtuse, swap13Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.capInteriorByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx, Finset.erase_right_comm]
+      MEC.MoserTriangle.toStructural, hidx, Finset.erase_right_comm,
+      Fin.val_zero, Fin.val_two]
   have hown :
       (fixedSurplusSwapPacket1 D hidx).capByIndex
           (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
         D.packet.capByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket1, swap13Partition,
+    simp only [fixedSurplusSwapPacket1, swap13Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.capByIndex, hidx]
+      SurplusCapPacket.capByIndex, hidx,
+      Fin.val_zero, Fin.val_two]
   have hleftOuter :
       (fixedSurplusSwapPacket1 D hidx).leftOuterVertexByIndex
           (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
         D.packet.rightOuterVertexByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket1, swap13NonObtuse,
+    simp only [fixedSurplusSwapPacket1, swap13NonObtuse,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftOuterVertexByIndex,
       SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx]
+      MEC.MoserTriangle.toStructural, hidx,
+      Fin.val_zero, Fin.val_two]
   have hrightOuter :
       (fixedSurplusSwapPacket1 D hidx).rightOuterVertexByIndex
           (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
         D.packet.leftOuterVertexByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket1, swap13NonObtuse,
+    simp only [fixedSurplusSwapPacket1, swap13NonObtuse,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftOuterVertexByIndex,
       SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
-      MEC.MoserTriangle.toStructural, hidx]
+      MEC.MoserTriangle.toStructural, hidx,
+      Fin.val_zero, Fin.val_two]
   have hleftAdjacent :
       (fixedSurplusSwapPacket1 D hidx).leftAdjacentCapByIndex
           (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
         D.packet.rightAdjacentCapByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket1, swap13Partition,
+    simp only [fixedSurplusSwapPacket1, swap13Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftAdjacentCapByIndex,
       SurplusCapPacket.rightAdjacentCapByIndex,
-      SurplusCapPacket.capByIndex, hidx]
+      SurplusCapPacket.capByIndex, hidx,
+      Fin.val_zero, Fin.val_two]
   have hrightAdjacent :
       (fixedSurplusSwapPacket1 D hidx).rightAdjacentCapByIndex
           (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
         D.packet.leftAdjacentCapByIndex D.packet.oppIndex2 := by
-    simp [fixedSurplusSwapPacket1, swap13Partition,
+    simp only [fixedSurplusSwapPacket1, swap13Partition,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.leftAdjacentCapByIndex,
       SurplusCapPacket.rightAdjacentCapByIndex,
-      SurplusCapPacket.capByIndex, hidx]
+      SurplusCapPacket.capByIndex, hidx,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
   rcases hpinned with
     ⟨p₁, p₂, hpne, hpair, hcard, hsub, hright, hx, hxSurplus,
       hleftEq, hrightEq, hright_ne, hleft_ne⟩
@@ -2046,17 +2057,17 @@ theorem exists_nonSurplusSwap (D : CounterexampleData) :
     exact {
       carrier_eq := rfl
       oppApex1_eq := by
-        simp [Dsw, fixedSurplusSwapPacket0, swap23NonObtuse,
+        simp only [Dsw, fixedSurplusSwapPacket0, swap23NonObtuse,
           SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
           SurplusCapPacket.triangle, MEC.MoserTriangle.toStructural, hidx]
       oppCap1_eq := by
-        simp [Dsw, fixedSurplusSwapPacket0, swap23Partition,
+        simp only [Dsw, fixedSurplusSwapPacket0, swap23Partition,
           SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hidx]
       oppCap2_eq := by
-        simp [Dsw, fixedSurplusSwapPacket0, swap23Partition,
+        simp only [Dsw, fixedSurplusSwapPacket0, swap23Partition,
           SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hidx]
       surplusCap_eq := by
-        simp [Dsw, fixedSurplusSwapPacket0, swap23Partition,
+        simp only [Dsw, fixedSurplusSwapPacket0, swap23Partition,
           SurplusCapPacket.surplusCap, hidx]
       pinnedLeft_to_right := by
         intro radius x hpinned
@@ -2072,17 +2083,17 @@ theorem exists_nonSurplusSwap (D : CounterexampleData) :
     exact {
       carrier_eq := rfl
       oppApex1_eq := by
-        simp [Dsw, fixedSurplusSwapPacket1, swap13NonObtuse,
+        simp only [Dsw, fixedSurplusSwapPacket1, swap13NonObtuse,
           SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
           SurplusCapPacket.triangle, MEC.MoserTriangle.toStructural, hidx]
       oppCap1_eq := by
-        simp [Dsw, fixedSurplusSwapPacket1, swap13Partition,
+        simp only [Dsw, fixedSurplusSwapPacket1, swap13Partition,
           SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hidx]
       oppCap2_eq := by
-        simp [Dsw, fixedSurplusSwapPacket1, swap13Partition,
+        simp only [Dsw, fixedSurplusSwapPacket1, swap13Partition,
           SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hidx]
       surplusCap_eq := by
-        simp [Dsw, fixedSurplusSwapPacket1, swap13Partition,
+        simp only [Dsw, fixedSurplusSwapPacket1, swap13Partition,
           SurplusCapPacket.surplusCap, hidx]
       pinnedLeft_to_right := by
         intro radius x hpinned
@@ -2171,8 +2182,7 @@ theorem oppApex1_endpointRadiusWitness_or_strict_adjacent_escape
         dist D.packet.oppApex2 D.packet.oppApex1 = r :=
       (Finset.mem_filter.mp hOtherMem).2
     have hSurpCap1 : D.packet.surplusApex ∈ D.packet.oppCap1 := by
-      simpa [surplusApexLocal, SurplusCapPacket.surplusApex] using
-        surplusApexLocal_mem_oppCap1 D
+      exact surplusApexLocal_mem_oppCap1 D
     have hSurpMem :
         D.packet.surplusApex ∈
           D.A.filter (fun x => dist x D.packet.oppApex1 = r) := by
@@ -2224,8 +2234,7 @@ theorem oppApex2_endpointRadiusWitness_or_strict_adjacent_escape
         dist D.packet.oppApex1 D.packet.oppApex2 = r :=
       (Finset.mem_filter.mp hOtherMem).2
     have hSurpCap2 : D.packet.surplusApex ∈ D.packet.oppCap2 := by
-      simpa [surplusApexLocal, SurplusCapPacket.surplusApex] using
-        surplusApexLocal_mem_oppCap2 D
+      exact surplusApexLocal_mem_oppCap2 D
     have hSurpMem :
         D.packet.surplusApex ∈
           D.A.filter (fun x => dist x D.packet.oppApex2 = r) := by
@@ -2365,9 +2374,9 @@ theorem oppApex1_endpoint_dist_eq_of_u2Equilateral
   obtain ⟨h12, h23⟩ := hEq hM44
   rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
+  · simpa only [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi, dist_comm] using h12
-  · simpa [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
+  · simpa only [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi, dist_comm] using h23
   · have h13 : dist D.packet.triangle.v3 D.packet.triangle.v1 =
         dist D.packet.triangle.v1 D.packet.triangle.v2 := by
@@ -2395,7 +2404,7 @@ theorem oppApex2_endpoint_dist_eq_of_u2Equilateral
             dist D.packet.triangle.v3 D.packet.triangle.v1 :=
           dist_comm D.packet.triangle.v1 D.packet.triangle.v3
         _ = dist D.packet.triangle.v2 D.packet.triangle.v3 := h23.symm
-    simpa [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
+    simpa only [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi, dist_comm] using h13
   · have h12' : dist D.packet.triangle.v1 D.packet.triangle.v2 =
         dist D.packet.triangle.v1 D.packet.triangle.v3 := by
@@ -2405,7 +2414,7 @@ theorem oppApex2_endpoint_dist_eq_of_u2Equilateral
         _ = dist D.packet.triangle.v3 D.packet.triangle.v1 := h23
         _ = dist D.packet.triangle.v1 D.packet.triangle.v3 :=
           dist_comm D.packet.triangle.v3 D.packet.triangle.v1
-    simpa [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
+    simpa only [SurplusCapPacket.surplusApex, SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi, dist_comm] using h12'
   · have h32 : dist D.packet.triangle.v3 D.packet.triangle.v2 =
         dist D.packet.triangle.v1 D.packet.triangle.v2 := by

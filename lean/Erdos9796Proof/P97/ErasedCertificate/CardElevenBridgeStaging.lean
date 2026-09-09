@@ -244,7 +244,7 @@ theorem exists_faithfulCarrierPattern_with_p4uClasses
       (F.classAt p₀ hp').support =
         SelectedClass A p₀ (dist p₀ x) := by
     intro hp'
-    simpa [K₀] using hF₀ hp'
+    exact hF₀ hp'
   have hrow₀ : row (patternCode L F) 0 =
       L.toCard11Labeling.labelsOf (SelectedClass A p₀ (dist p₀ x)) := by
     have hp₀label : L.labelOf p₀ = 0 := by
@@ -257,7 +257,7 @@ theorem exists_faithfulCarrierPattern_with_p4uClasses
     have hprescribed₁ : ∀ hp' : p₁ ∈ A,
         (F.classAt p₁ hp').support = SelectedClass A p₁ d := by
       intro hp'
-      simpa [K₁] using hF₁ hp'
+      exact hF₁ hp'
     have hp₁label : L.labelOf p₁ = 1 := by
       rw [show p₁ = L.pointOf 1 by exact L.point_one_eq_opposite.symm]
       exact L.labelOf_pointOf 1
@@ -270,7 +270,7 @@ theorem exists_faithfulCarrierPattern_with_p4uClasses
     have hprescribed₂ : ∀ hp' : p₂ ∈ A,
         (F.classAt p₂ hp').support = SelectedClass A p₂ d := by
       intro hp'
-      simpa [K₂] using hF₂ hp'
+      exact hF₂ hp'
     have hp₂label : L.labelOf p₂ = 2 := by
       rw [show p₂ = L.pointOf 2 by exact L.point_two_eq_opposite.symm]
       exact L.labelOf_pointOf 2
@@ -312,8 +312,9 @@ theorem p4uRow_moserPair_of_nonSurplusMoserCapContainment
   have hp₀p₂ : dist p₀ p₂ = d := by
     rcases hi : S.surplusIdx with ⟨i, hi_lt⟩
     interval_cases i <;>
-      simp [p₀, p₂, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex2, hi, dist_comm] at h12 h23 h31 ⊢ <;>
+      simp only [p₀, p₂, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex2, hi, Fin.val_zero, Fin.val_one, Fin.val_two,
+        dist_comm] at h12 h23 h31 ⊢ <;>
       aesop
   rw [hrow]
   constructor
@@ -362,7 +363,7 @@ theorem exists_faithfulCarrierPattern_with_erasedPinClass
   have hprescribed : ∀ hp' : p ∈ A,
       (F.classAt p hp').support = SelectedClass A p (dist p x) := by
     intro hp'
-    simpa [K] using hF hp'
+    exact hF hp'
   refine ⟨F, hprescribed, ?_⟩
   · rw [row_patternCode_eq_labelsOf]
     exact congrArg L.toCard11Labeling.labelsOf

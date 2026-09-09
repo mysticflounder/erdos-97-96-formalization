@@ -367,7 +367,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 /-- The canonical labels of the six-point surplus cap are exactly `capS`. -/
 theorem labelsOf_surplusCap_eq_capS
@@ -505,30 +505,36 @@ private theorem leftAdjacentIndex_oppIndex1_eq_oppIndex2
     SurplusCapPacket.leftAdjacentIndex S.oppIndex1 = S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.leftAdjacentIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppIndex2, hi]
+    simp only [SurplusCapPacket.leftAdjacentIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppIndex2, hi] <;>
+    rfl
 
 private theorem rightAdjacentIndex_oppIndex1_eq_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     SurplusCapPacket.rightAdjacentIndex S.oppIndex1 = S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.rightAdjacentIndex, SurplusCapPacket.oppIndex1, hi]
+    simp only [SurplusCapPacket.rightAdjacentIndex, SurplusCapPacket.oppIndex1,
+      hi] <;>
+    rfl
 
 private theorem leftAdjacentIndex_oppIndex2_eq_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     SurplusCapPacket.leftAdjacentIndex S.oppIndex2 = S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.leftAdjacentIndex, SurplusCapPacket.oppIndex2, hi]
+    simp only [SurplusCapPacket.leftAdjacentIndex, SurplusCapPacket.oppIndex2,
+      hi] <;>
+    rfl
 
 private theorem rightAdjacentIndex_oppIndex2_eq_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     SurplusCapPacket.rightAdjacentIndex S.oppIndex2 = S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.rightAdjacentIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppIndex2, hi]
+    simp only [SurplusCapPacket.rightAdjacentIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppIndex2, hi] <;>
+    rfl
 
 /-- Intersecting a pulled-back row with labels of a geometric subset preserves
 the geometric intersection cardinality. -/

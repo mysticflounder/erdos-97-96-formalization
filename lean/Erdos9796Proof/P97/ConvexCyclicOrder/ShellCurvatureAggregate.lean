@@ -194,10 +194,11 @@ theorem centeredShellChart_fullArc_lt_two_pi {A : Finset ℝ²}
     ShellCurvature.openWindowArcCurvature
         (B.centeredShellChart K) 0
           (B.centeredShellChart K).windowEnd < 2 * Real.pi := by
-  simpa [centeredShellChart, chartAt] using
-    openFundamentalWindowAngleChartOfCcwBoundary_fullArc_lt_two_pi
-      B.three_le (B.boundaryAt_injective (shellCenterLabel K))
-        (B.boundaryAt_ccw (shellCenterLabel K))
+  have hend : (B.centeredShellChart K).windowEnd = B.n + 1 := rfl
+  rw [hend]
+  exact openFundamentalWindowAngleChartOfCcwBoundary_fullArc_lt_two_pi
+    B.three_le (B.boundaryAt_injective (shellCenterLabel K))
+      (B.boundaryAt_ccw (shellCenterLabel K))
 
 end ShellBoundaryIndexing
 end ShellCurvatureRows

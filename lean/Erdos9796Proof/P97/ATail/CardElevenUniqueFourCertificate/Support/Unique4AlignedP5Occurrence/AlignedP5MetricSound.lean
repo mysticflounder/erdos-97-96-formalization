@@ -163,14 +163,14 @@ theorem exactFirstClassCore_eq_false
               rw [has_rowMaskOf]
               exact (mem_row_iff P 0 pointLabel).mp hmem
             have hhas : has (rowOfPattern P 0).support point = true := by
-              simpa [pointLabel] using hhasLabel
+              exact hhasLabel
             have hfalse := hpoint.1.1
             rw [hrow, hhas] at hfalse
             simp at hfalse
           have hclosure :
               EdgeClosure (rowPattern P) (0, firstLabel) (0, pointLabel) := by
             apply edgeClosure_of_semanticRows_edgesEqual centers
-            simpa [roots, rows, firstLabel, pointLabel] using hpoint.2
+            exact hpoint.2
           have hdist :
               dist (pointOf 0) (pointOf firstLabel) =
                 dist (pointOf 0) (pointOf pointLabel) := by
@@ -218,13 +218,16 @@ theorem fullClassNonalternatingCore_eq_false
   let firstLabel : Label := labelOfMem first hfirstMem
   let secondLabel : Label := labelOfMem second hsecondMem
   have hleftRight : leftLabel < rightLabel := by
-    simpa [leftLabel, rightLabel] using hright.1
+    have h : left < right := of_decide_eq_true hright.1
+    exact h
   have hcentersNe : leftLabel ≠ rightLabel := ne_of_lt hleftRight
   have hsecondFirst : firstLabel ≠ secondLabel := by
     intro heq
     have hval := congrArg Fin.val heq
     simp [firstLabel, secondLabel] at hval
-    exact (Nat.ne_of_lt (by simpa using hsecond.1.1.1.1.1)) hval
+    have hlt : first < second :=
+      of_decide_eq_true hsecond.1.1.1.1.1
+    exact (Nat.ne_of_lt hlt) hval
   have hsecondLeft : secondLabel ≠ leftLabel := by
     intro heq
     have hval := congrArg Fin.val heq
@@ -251,12 +254,10 @@ theorem fullClassNonalternatingCore_eq_false
       points_ne := hsecondFirst
       firstCenter_eq := edgeClosure_of_semanticRows_edgesEqual centers
         leftLabel firstLabel leftLabel secondLabel (by
-          simpa [roots, leftLabel, firstLabel, secondLabel] using
-            hsecond.1.1.2)
+          exact hsecond.1.1.2)
       secondCenter_eq := edgeClosure_of_semanticRows_edgesEqual centers
         rightLabel firstLabel rightLabel secondLabel (by
-          simpa [roots, rightLabel, firstLabel, secondLabel] using
-            hsecond.1.2) }
+          exact hsecond.1.2) }
   have hsat : core.SatisfiedBy (fun label => label) :=
     core.satisfiedBy_of_realizes_ccw hreal pointOf (fun label => label)
       hpointCcw hpointInjective Function.injective_id (fun _ => rfl)

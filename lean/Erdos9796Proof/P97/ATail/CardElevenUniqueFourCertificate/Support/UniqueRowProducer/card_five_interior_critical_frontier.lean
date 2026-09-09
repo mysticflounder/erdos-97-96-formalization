@@ -38,7 +38,7 @@ private theorem interior_oppIndex1_not_mem_surplusCap_for_frontier
     S.surplusIdx_ne_oppIndex1.symm
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simpa [SurplusCapPacket.capByIndex,
+    simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
 private theorem oppApex2_mem_A_for_interior_frontier
@@ -46,9 +46,9 @@ private theorem oppApex2_mem_A_for_interior_frontier
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem equidistant_mono_for_interior_frontier
     {n : ℕ} {S T : Finset ℝ²} {p : ℝ²}
@@ -196,32 +196,24 @@ def CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier
     CriticalPairFrontier D S r H := by
   let Q := P.toSurvivorPairRelocationPacket H
   have hqSelected : Q.q ∈ SelectedClass D.A S.oppApex1 r := by
-    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-      (Finset.mem_inter.mp P.q_mem).1
+    exact (Finset.mem_inter.mp P.q_mem).1
   have hwSelected : Q.w ∈ SelectedClass D.A S.oppApex1 r := by
-    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-      (Finset.mem_inter.mp P.w_mem).1
+    exact (Finset.mem_inter.mp P.w_mem).1
   have hne : Q.q ≠ Q.w := by
-    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-      P.q_ne_w
+    exact P.q_ne_w
   have hfirst : FirstApexSplit Q :=
     ATAILSameRadiusDoubleErase.sameRadius_double_erase_survives_or_unique_class_card_four_or_five
       (D.K4 S.oppApex1 (by
         rcases hi : S.surplusIdx with ⟨i, hi3⟩
         interval_cases i
-        · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-        · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
-        · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem))
+        · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+        · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+        · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem))
       hqSelected hwSelected hne
   have hsecond :
       HasNEquidistantPointsAt 4
         ((D.A.erase Q.q).erase Q.w) S.oppApex2 := by
-    simpa [Q, CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-      P.secondApexDouble
+    exact P.secondApexDouble
   exact {
     pair := Q
     firstApexSplit := hfirst

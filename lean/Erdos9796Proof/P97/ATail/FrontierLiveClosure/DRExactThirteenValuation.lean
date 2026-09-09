@@ -1036,7 +1036,7 @@ private theorem surplusApex_eq_oppositeVertexByIndex
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.surplusApex,
+    simp only [SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppositeVertexByIndex, hi]
 
 private theorem oppApex1_eq_oppositeVertexByIndex
@@ -1044,18 +1044,18 @@ private theorem oppApex1_eq_oppositeVertexByIndex
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 private theorem oppApex2_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 /- The following conditional ingress is intentionally parameterized by the
 three interval saturation equalities.  The unconditional block package only
@@ -1112,12 +1112,12 @@ theorem direct_labelMap_of_saturated_boundaryBlocks_with_boundary
         surplus_between := ?_
         opp1_after := ?_ }
     · change (0 : ℕ) < P.iv ∧ P.iv < P.iw
-      simpa only [zeroIndex] using B.apex_order
+      exact B.apex_order
     · intro x hx
       obtain ⟨q, hq0, hqiv, hqx⟩ := B.opp2_between x hx
       refine ⟨Fin.cast P.card_n q, ?_, ?_, ?_⟩
       · change (0 : ℕ) < q
-        simpa only [zeroIndex] using hq0
+        exact hq0
       · exact hqiv
       · simpa [boundary, cast] using hqx
     · intro x hx
@@ -1168,7 +1168,7 @@ theorem direct_labelMap_of_saturated_boundaryBlocks_with_boundary
   have hzero : zeroIndex (by norm_num : 0 < 13) = (0 : Fin 13) := rfl
   have hsurplus : boundary 0 = S.surplusApex := by
     rw [surplusApex_eq_oppositeVertexByIndex S]
-    simpa only [boundary, cast, hzero] using P.surplus_eq
+    exact P.surplus_eq
   have hfirst : boundary (directIndex p firstApex) = S.oppApex1 := by
     rw [← hiv]
     change P.B.boundary (cast iv) = S.oppApex1
@@ -1308,12 +1308,12 @@ theorem mirror_labelMap_of_saturated_boundaryBlocks_with_boundary
         surplus_between := ?_
         opp2_after := ?_ }
     · change (0 : ℕ) < P.iw ∧ P.iw < P.iv
-      simpa only [zeroIndex] using B.apex_order
+      exact B.apex_order
     · intro x hx
       obtain ⟨q, hq0, hqiw, hqx⟩ := B.opp1_between x hx
       refine ⟨Fin.cast P.card_n q, ?_, ?_, ?_⟩
       · change (0 : ℕ) < q
-        simpa only [zeroIndex] using hq0
+        exact hq0
       · exact hqiw
       · simpa [boundary, cast] using hqx
     · intro x hx
@@ -1370,7 +1370,7 @@ theorem mirror_labelMap_of_saturated_boundaryBlocks_with_boundary
   have hzero : zeroIndex (by norm_num : 0 < 13) = (0 : Fin 13) := rfl
   have hsurplus : boundary 0 = S.surplusApex := by
     rw [surplusApex_eq_oppositeVertexByIndex S]
-    simpa only [boundary, cast, hzero] using P.surplus_eq
+    exact P.surplus_eq
   have hfirst : boundary (mirrorIndex p firstApex) = S.oppApex1 := by
     rw [← hiv]
     change P.B.boundary (cast iv) = S.oppApex1

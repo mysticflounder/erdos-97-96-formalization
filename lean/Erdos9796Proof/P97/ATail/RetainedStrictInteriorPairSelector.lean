@@ -35,8 +35,8 @@ private theorem oppApex1_mem_A
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem capInteriorByIndex_card_add_two
@@ -61,9 +61,9 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 /-- Equal actual blockers for the two strict-cap retained sources. -/
 structure RetainedInteriorBlockerCollision
@@ -283,7 +283,7 @@ theorem RetainedInteriorBlockerCollision.shell_inter_cap_eq_sources
   have hcapTwo :
       ((H.selectedAt P.source₁ P.source₁_mem_A).toCriticalFourShell.support ∩
         S.capByIndex S.oppIndex1).card ≤ 2 := by
-    simpa using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex S.oppIndex1
         (H.selectedAt P.source₁

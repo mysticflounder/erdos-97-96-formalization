@@ -85,6 +85,7 @@ private theorem normalized_sixPointTwoPair_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hCBDsq
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hEBCsq
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hEBDsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The six-point equality motif forces `D = E` or `E = F`. -/

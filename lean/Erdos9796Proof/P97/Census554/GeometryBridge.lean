@@ -36,27 +36,33 @@ def apexAt {A : Finset ℝ²} (M : MoserTriangle A) (i : Fin 3) : ℝ² :=
 theorem apexAt_mem {A : Finset ℝ²} (M : MoserTriangle A) (i : Fin 3) :
     apexAt M i ∈ A := by
   fin_cases i
-  · simpa [apexAt] using M.v1_mem
-  · simpa [apexAt] using M.v2_mem
-  · simpa [apexAt] using M.v3_mem
+  · exact M.v1_mem
+  · exact M.v2_mem
+  · exact M.v3_mem
 
 theorem apexAt_mem_verts {A : Finset ℝ²} (M : MoserTriangle A)
     (i : Fin 3) :
     apexAt M i ∈ M.verts := by
-  fin_cases i <;> simp [apexAt, MoserTriangle.verts]
+  fin_cases i
+  · show M.v1 ∈ M.verts
+    simp [MoserTriangle.verts]
+  · show M.v2 ∈ M.verts
+    simp [MoserTriangle.verts]
+  · show M.v3 ∈ M.verts
+    simp [MoserTriangle.verts]
 
 theorem apexAt_injective {A : Finset ℝ²} (M : MoserTriangle A) :
     Function.Injective (apexAt M) := by
   intro i j hij
   fin_cases i <;> fin_cases j
   · rfl
-  · exact (M.v12_ne (by simpa [apexAt] using hij)).elim
-  · exact (M.v13_ne (by simpa [apexAt] using hij)).elim
-  · exact (M.v12_ne (by simpa [apexAt] using hij.symm)).elim
+  · exact (M.v12_ne hij).elim
+  · exact (M.v13_ne hij).elim
+  · exact (M.v12_ne hij.symm).elim
   · rfl
-  · exact (M.v23_ne (by simpa [apexAt] using hij)).elim
-  · exact (M.v13_ne (by simpa [apexAt] using hij.symm)).elim
-  · exact (M.v23_ne (by simpa [apexAt] using hij.symm)).elim
+  · exact (M.v23_ne hij).elim
+  · exact (M.v13_ne hij.symm).elim
+  · exact (M.v23_ne hij.symm).elim
   · rfl
 
 theorem apexAt_mem_capAt_of_ne {A : Finset ℝ²} {M : MoserTriangle A}
@@ -209,9 +215,9 @@ theorem nonempty_of_card_eq_eleven
         simp only [MoserTriangle.verts, Finset.mem_insert,
           Finset.mem_singleton] at hxVerts
         rcases hxVerts with rfl | rfl | rfl
-        · exact ⟨0, by simp [apexAt]⟩
-        · exact ⟨1, by simp [apexAt]⟩
-        · exact ⟨2, by simp [apexAt]⟩
+        · exact ⟨0, rfl⟩
+        · exact ⟨1, rfl⟩
+        · exact ⟨2, rfl⟩
       rcases hapex with ⟨i, hi⟩
       rcases hframeSurj i with ⟨p, hp⟩
       refine ⟨(finSumFinEquiv : Fin 3 ⊕ Fin 8 ≃ Fin 11) (Sum.inl p), ?_⟩
@@ -1315,8 +1321,28 @@ theorem card_ge_eleven_of_twoLargeCaps
       CP hconv hnoncol hK4 P
   have hi5 : 5 ≤ (CP.capAt i).card := by omega
   have hsum := CP.cap_sum_identity
-  fin_cases i <;> fin_cases j <;>
-    simp_all [CapTriple.capAt] <;> omega
+  fin_cases i <;> fin_cases j
+  · exact absurd rfl hji
+  · have h1 : 5 ≤ CP.C1.card := hi5
+    have h2 : 5 ≤ CP.C2.card := hj5
+    omega
+  · have h1 : 5 ≤ CP.C1.card := hi5
+    have h3 : 5 ≤ CP.C3.card := hj5
+    omega
+  · have h2 : 5 ≤ CP.C2.card := hi5
+    have h1 : 5 ≤ CP.C1.card := hj5
+    omega
+  · exact absurd rfl hji
+  · have h2 : 5 ≤ CP.C2.card := hi5
+    have h3 : 5 ≤ CP.C3.card := hj5
+    omega
+  · have h3 : 5 ≤ CP.C3.card := hi5
+    have h1 : 5 ≤ CP.C1.card := hj5
+    omega
+  · have h3 : 5 ≤ CP.C3.card := hi5
+    have h2 : 5 ≤ CP.C2.card := hj5
+    omega
+  · exact absurd rfl hji
 
 end Census554
 end Problem97

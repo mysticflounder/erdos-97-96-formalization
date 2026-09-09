@@ -855,8 +855,17 @@ theorem packet_groupSum_le_card
     have hnot2 : q ∉ S.capInteriorByIndex 2 := by
       intro hI
       exact S.capInteriorByIndex_not_mem_triangle_verts hI hqv
+    -- The adjacent-interior selectors are definitionally the indexed cap
+    -- interiors; restate the exclusions at those already-reduced forms so the
+    -- closing `simp` can use them without unfolding the selectors.
+    have hL0 : q ∉ S.leftAdjacentInteriorByIndex 0 := hnot1
+    have hL1 : q ∉ S.leftAdjacentInteriorByIndex 1 := hnot2
+    have hL2 : q ∉ S.leftAdjacentInteriorByIndex 2 := hnot0
+    have hR0 : q ∉ S.rightAdjacentInteriorByIndex 0 := hnot2
+    have hR1 : q ∉ S.rightAdjacentInteriorByIndex 1 := hnot0
+    have hR2 : q ∉ S.rightAdjacentInteriorByIndex 2 := hnot1
     fin_cases i <;>
-      simp [hqv, hnot0, hnot1, hnot2]
+      simp [hqv, hnot0, hnot1, hnot2, hL0, hL1, hL2, hR0, hR1, hR2]
   · have hqA : q ∈ A := (mem_selectedClass.mp hqsel).1
     have hone := S.partition.nonmoser_in_one q hqA hqv
     have hM0 : (if q ∈ S.triangle.verts then 1 else 0 : ℕ) = 0 := by
@@ -894,9 +903,13 @@ theorem packet_groupSum_le_card
           if q ∈ S.capByIndex 2 then 1 else 0 :=
       indicator_le_indicator_of_imp
         (fun h => S.capInteriorByIndex_subset_capByIndex 2 h)
+    -- `Fin.val_zero`/`val_one`/`val_two` reduce the `Fin`-numeral discriminants
+    -- so every unfolded selector `match` closes; without them `omega` sees the
+    -- stuck `match ↑0`/`match ↑1` terms as opaque atoms.
     fin_cases i <;>
       simp only [capByIndex, capInteriorByIndex, leftAdjacentInteriorByIndex,
-        rightAdjacentInteriorByIndex] at hI0e hI1e hI2e hI0 hI1 hI2 hone ⊢ <;>
+        rightAdjacentInteriorByIndex, Fin.val_zero, Fin.val_one,
+        Fin.val_two] at hI0e hI1e hI2e hI0 hI1 hI2 hone ⊢ <;>
       omega
 
 /-- Exact packet incidence budget.  A positive-radius selected packet is

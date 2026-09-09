@@ -79,9 +79,9 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi, Fin.val_zero, Fin.val_one]
 
 private theorem firstApex_interior_card_ge_three_of_card_eq_five
     (D : CounterexampleData) (S : SurplusCapPacket D.A) {r : ℝ}
@@ -113,7 +113,7 @@ private theorem interior_not_mem_surplusCap
     S.surplusIdx_ne_oppIndex1.symm
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simpa [SurplusCapPacket.capByIndex,
+    simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
 private def SurvivingPair.toRelocation
@@ -159,8 +159,8 @@ private theorem oppApex2_mem
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem equidistant_mono
@@ -297,8 +297,8 @@ private theorem oppApex1_mem
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private def Witness.toCriticalPairFrontier

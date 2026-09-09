@@ -193,9 +193,9 @@ theorem blocked_sources_in_firstApex_marginal_card_le_one
   have happ2 : S.oppApex2 ∈ D.A := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-    · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-    · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+    · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+    · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+    · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
   rw [Finset.card_le_one]
   intro q hq w hw
   rcases Finset.mem_filter.mp hq with ⟨hqT, hqblocked⟩
@@ -526,9 +526,9 @@ theorem SurvivorPairRelocationPacket.double_erase_or_exact_eight_packet
   have happ2 : S.oppApex2 ∈ D.A := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-    · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-    · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+    · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+    · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+    · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
   exact double_erase_survives_or_two_disjoint_exact_shells
     happ2 P.q_survives P.w_survives P.oppApex2_dist_ne
 
@@ -589,11 +589,11 @@ theorem CriticalPairFrontier.radius_pos
     rw [← h]
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.surplusCap,
+    · simpa only [SurplusCapPacket.surplusCap,
         SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
-    · simpa [SurplusCapPacket.surplusCap,
+    · simpa only [SurplusCapPacket.surplusCap,
         SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
-    · simpa [SurplusCapPacket.surplusCap,
+    · simpa only [SurplusCapPacket.surplusCap,
         SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
   have hpos : 0 < dist S.oppApex1 F.pair.q := dist_pos.mpr hfirstNeQ
   have hqRadius : dist F.pair.q S.oppApex1 = radius :=
@@ -606,18 +606,18 @@ private theorem oppApex1_mem_A
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem blocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)
@@ -804,7 +804,8 @@ theorem cross_deletion_survives_iff_not_mem_selected_support
         _ = K.radius := K.support_eq_radius q K.q_mem_support
     have hfourK :
         4 ≤ (SelectedClass (A.erase w) (H.centerAt q hq) K.radius).card := by
-      simpa [hrho] using hfour
+      rw [hrho] at hfour
+      exact hfour
     have hselectedEq :
         SelectedClass A (H.centerAt q hq) K.radius = K.support := by
       simpa [SelectedClass] using K.support_eq.symm
@@ -993,11 +994,11 @@ theorem signedArea_product_neg_of_cross_membership
       (by
         rcases hi : S.surplusIdx with ⟨i, hi3⟩
         interval_cases i
-        · simpa [h, SurplusCapPacket.surplusCap,
+        · simpa only [h, SurplusCapPacket.surplusCap,
             SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
-        · simpa [h, SurplusCapPacket.surplusCap,
+        · simpa only [h, SurplusCapPacket.surplusCap,
             SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
-        · simpa [h, SurplusCapPacket.surplusCap,
+        · simpa only [h, SurplusCapPacket.surplusCap,
             SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3)
   have hq_ne_blocker : P.q ≠ H.centerAt P.q P.q_mem_A := by
     intro h
@@ -1314,9 +1315,9 @@ theorem exists_criticalPairFrontier_of_K4
   have happ1 : S.oppApex1 ∈ D.A := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+    · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+    · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+    · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
   rcases D.K4 S.oppApex1 happ1 with ⟨r, hr, hfour⟩
   let F := D.A.filter fun x => dist x S.oppApex1 = r
   let DS : CounterexampleData :=

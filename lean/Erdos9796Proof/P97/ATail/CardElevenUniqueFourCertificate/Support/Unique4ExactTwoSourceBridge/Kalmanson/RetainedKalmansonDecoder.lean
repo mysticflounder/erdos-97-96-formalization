@@ -259,18 +259,12 @@ private theorem false_of_schemaZero_normalized_at
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) Row0 Row4 Row5
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 1 (by simp [schema0])
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 2 (by simp [schema0])
-  · simpa [Row4, OrderedSix.values, rolePoint] using
-      m 4 1 (by simp [schema0])
-  · simpa [Row4, OrderedSix.values, rolePoint] using
-      m 4 3 (by simp [schema0])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 2 (by simp [schema0])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 3 (by simp [schema0])
+  · exact m 0 1 (by simp [schema0])
+  · exact m 0 2 (by simp [schema0])
+  · exact m 4 1 (by simp [schema0])
+  · exact m 4 3 (by simp [schema0])
+  · exact m 5 2 (by simp [schema0])
+  · exact m 5 3 (by simp [schema0])
 
 private theorem false_of_schemaZero_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -299,18 +293,12 @@ private theorem false_of_schemaZero_reflected_at
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) Row0 Row1 Row5
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 2 (by simp [schema0, reflectSchema])
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 3 (by simp [schema0, reflectSchema])
-  · simpa [Row1, OrderedSix.values, rolePoint] using
-      m 1 2 (by simp [schema0, reflectSchema])
-  · simpa [Row1, OrderedSix.values, rolePoint] using
-      m 1 4 (by simp [schema0, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 3 (by simp [schema0, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 4 (by simp [schema0, reflectSchema])
+  · exact m 0 2 (by simp [schema0, reflectSchema])
+  · exact m 0 3 (by simp [schema0, reflectSchema])
+  · exact m 1 2 (by simp [schema0, reflectSchema])
+  · exact m 1 4 (by simp [schema0, reflectSchema])
+  · exact m 5 3 (by simp [schema0, reflectSchema])
+  · exact m 5 4 (by simp [schema0, reflectSchema])
 
 private theorem false_of_schemaOne_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -331,12 +319,12 @@ private theorem false_of_schemaOne_normalized_at
     support_mem_of_schemaAt boundary hmem F T.values schema1 hschema hpair
   apply false_of_schemaOne_normalized_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 T.h45 Row0 Row4 Row5
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 1 (by simp [schema1])
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 3 (by simp [schema1])
-  · simpa [Row4, OrderedSix.values, rolePoint] using m 4 2 (by simp [schema1])
-  · simpa [Row4, OrderedSix.values, rolePoint] using m 4 3 (by simp [schema1])
-  · simpa [Row5, OrderedSix.values, rolePoint] using m 5 1 (by simp [schema1])
-  · simpa [Row5, OrderedSix.values, rolePoint] using m 5 2 (by simp [schema1])
+  · exact m 0 1 (by simp [schema1])
+  · exact m 0 3 (by simp [schema1])
+  · exact m 4 2 (by simp [schema1])
+  · exact m 4 3 (by simp [schema1])
+  · exact m 5 1 (by simp [schema1])
+  · exact m 5 2 (by simp [schema1])
 
 private theorem false_of_schemaOne_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -360,18 +348,12 @@ private theorem false_of_schemaOne_reflected_at
       (reflectSchema 6 schema1) hschema hpair
   apply false_of_schemaOne_reflected_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 T.h45 Row0 Row1 Row5
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 3 (by simp [schema1, reflectSchema])
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 4 (by simp [schema1, reflectSchema])
-  · simpa [Row1, OrderedSix.values, rolePoint] using
-      m 1 2 (by simp [schema1, reflectSchema])
-  · simpa [Row1, OrderedSix.values, rolePoint] using
-      m 1 3 (by simp [schema1, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 2 (by simp [schema1, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 4 (by simp [schema1, reflectSchema])
+  · exact m 0 3 (by simp [schema1, reflectSchema])
+  · exact m 0 4 (by simp [schema1, reflectSchema])
+  · exact m 1 2 (by simp [schema1, reflectSchema])
+  · exact m 1 3 (by simp [schema1, reflectSchema])
+  · exact m 5 2 (by simp [schema1, reflectSchema])
+  · exact m 5 4 (by simp [schema1, reflectSchema])
 
 private theorem false_of_schemaTwo_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -396,12 +378,12 @@ private theorem false_of_schemaTwo_normalized_at
     (cardBoundary_ccw hcard hccw)
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) Row0 Row1 Row2
-  · simpa [Row0, OrderedFour.values, rolePoint] using m 0 1 (by simp [schema2])
-  · simpa [Row0, OrderedFour.values, rolePoint] using m 0 2 (by simp [schema2])
-  · simpa [Row1, OrderedFour.values, rolePoint] using m 1 2 (by simp [schema2])
-  · simpa [Row1, OrderedFour.values, rolePoint] using m 1 3 (by simp [schema2])
-  · simpa [Row2, OrderedFour.values, rolePoint] using m 2 1 (by simp [schema2])
-  · simpa [Row2, OrderedFour.values, rolePoint] using m 2 3 (by simp [schema2])
+  · exact m 0 1 (by simp [schema2])
+  · exact m 0 2 (by simp [schema2])
+  · exact m 1 2 (by simp [schema2])
+  · exact m 1 3 (by simp [schema2])
+  · exact m 2 1 (by simp [schema2])
+  · exact m 2 3 (by simp [schema2])
 
 private theorem false_of_schemaTwo_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -429,18 +411,12 @@ private theorem false_of_schemaTwo_reflected_at
     (cardBoundary_ccw hcard hccw)
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) Row1 Row2 Row3
-  · simpa [Row1, OrderedFour.values, rolePoint] using
-      m 1 0 (by simp [schema2, reflectSchema])
-  · simpa [Row1, OrderedFour.values, rolePoint] using
-      m 1 2 (by simp [schema2, reflectSchema])
-  · simpa [Row2, OrderedFour.values, rolePoint] using
-      m 2 0 (by simp [schema2, reflectSchema])
-  · simpa [Row2, OrderedFour.values, rolePoint] using
-      m 2 1 (by simp [schema2, reflectSchema])
-  · simpa [Row3, OrderedFour.values, rolePoint] using
-      m 3 1 (by simp [schema2, reflectSchema])
-  · simpa [Row3, OrderedFour.values, rolePoint] using
-      m 3 2 (by simp [schema2, reflectSchema])
+  · exact m 1 0 (by simp [schema2, reflectSchema])
+  · exact m 1 2 (by simp [schema2, reflectSchema])
+  · exact m 2 0 (by simp [schema2, reflectSchema])
+  · exact m 2 1 (by simp [schema2, reflectSchema])
+  · exact m 3 1 (by simp [schema2, reflectSchema])
+  · exact m 3 2 (by simp [schema2, reflectSchema])
 
 private theorem false_of_schemaThree_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -467,15 +443,15 @@ private theorem false_of_schemaThree_normalized_at
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) Row0 Row1 Row2 Row3
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 1 (by simp [schema3])
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 5 (by simp [schema3])
-  · simpa [Row1, OrderedSix.values, rolePoint] using m 1 0 (by simp [schema3])
-  · simpa [Row1, OrderedSix.values, rolePoint] using m 1 2 (by simp [schema3])
-  · simpa [Row2, OrderedSix.values, rolePoint] using m 2 0 (by simp [schema3])
-  · simpa [Row2, OrderedSix.values, rolePoint] using m 2 1 (by simp [schema3])
-  · simpa [Row2, OrderedSix.values, rolePoint] using m 2 5 (by simp [schema3])
-  · simpa [Row3, OrderedSix.values, rolePoint] using m 3 0 (by simp [schema3])
-  · simpa [Row3, OrderedSix.values, rolePoint] using m 3 2 (by simp [schema3])
+  · exact m 0 1 (by simp [schema3])
+  · exact m 0 5 (by simp [schema3])
+  · exact m 1 0 (by simp [schema3])
+  · exact m 1 2 (by simp [schema3])
+  · exact m 2 0 (by simp [schema3])
+  · exact m 2 1 (by simp [schema3])
+  · exact m 2 5 (by simp [schema3])
+  · exact m 3 0 (by simp [schema3])
+  · exact m 3 2 (by simp [schema3])
 
 private theorem false_of_schemaThree_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -505,24 +481,15 @@ private theorem false_of_schemaThree_reflected_at
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) Row2 Row3 Row4 Row5
-  · simpa [Row2, OrderedSix.values, rolePoint] using
-      m 2 3 (by simp [schema3, reflectSchema])
-  · simpa [Row2, OrderedSix.values, rolePoint] using
-      m 2 5 (by simp [schema3, reflectSchema])
-  · simpa [Row3, OrderedSix.values, rolePoint] using
-      m 3 0 (by simp [schema3, reflectSchema])
-  · simpa [Row3, OrderedSix.values, rolePoint] using
-      m 3 4 (by simp [schema3, reflectSchema])
-  · simpa [Row3, OrderedSix.values, rolePoint] using
-      m 3 5 (by simp [schema3, reflectSchema])
-  · simpa [Row4, OrderedSix.values, rolePoint] using
-      m 4 3 (by simp [schema3, reflectSchema])
-  · simpa [Row4, OrderedSix.values, rolePoint] using
-      m 4 5 (by simp [schema3, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 0 (by simp [schema3, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 4 (by simp [schema3, reflectSchema])
+  · exact m 2 3 (by simp [schema3, reflectSchema])
+  · exact m 2 5 (by simp [schema3, reflectSchema])
+  · exact m 3 0 (by simp [schema3, reflectSchema])
+  · exact m 3 4 (by simp [schema3, reflectSchema])
+  · exact m 3 5 (by simp [schema3, reflectSchema])
+  · exact m 4 3 (by simp [schema3, reflectSchema])
+  · exact m 4 5 (by simp [schema3, reflectSchema])
+  · exact m 5 0 (by simp [schema3, reflectSchema])
+  · exact m 5 4 (by simp [schema3, reflectSchema])
 
 private theorem false_of_schemaFour_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -543,12 +510,12 @@ private theorem false_of_schemaFour_normalized_at
     support_mem_of_schemaAt boundary hmem F T.values schema4 hschema hpair
   apply false_of_schemaFour_normalized_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 Row0 Row2 Row3
-  · simpa [Row0, OrderedFive.values, rolePoint] using m 0 1 (by simp [schema4])
-  · simpa [Row0, OrderedFive.values, rolePoint] using m 0 3 (by simp [schema4])
-  · simpa [Row2, OrderedFive.values, rolePoint] using m 2 3 (by simp [schema4])
-  · simpa [Row2, OrderedFive.values, rolePoint] using m 2 4 (by simp [schema4])
-  · simpa [Row3, OrderedFive.values, rolePoint] using m 3 1 (by simp [schema4])
-  · simpa [Row3, OrderedFive.values, rolePoint] using m 3 4 (by simp [schema4])
+  · exact m 0 1 (by simp [schema4])
+  · exact m 0 3 (by simp [schema4])
+  · exact m 2 3 (by simp [schema4])
+  · exact m 2 4 (by simp [schema4])
+  · exact m 3 1 (by simp [schema4])
+  · exact m 3 4 (by simp [schema4])
 
 private theorem false_of_schemaFour_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -572,18 +539,12 @@ private theorem false_of_schemaFour_reflected_at
       (reflectSchema 5 schema4) hschema hpair
   apply false_of_schemaFour_reflected_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 Row1 Row2 Row4
-  · simpa [Row1, OrderedFive.values, rolePoint] using
-      m 1 0 (by simp [schema4, reflectSchema])
-  · simpa [Row1, OrderedFive.values, rolePoint] using
-      m 1 3 (by simp [schema4, reflectSchema])
-  · simpa [Row2, OrderedFive.values, rolePoint] using
-      m 2 0 (by simp [schema4, reflectSchema])
-  · simpa [Row2, OrderedFive.values, rolePoint] using
-      m 2 1 (by simp [schema4, reflectSchema])
-  · simpa [Row4, OrderedFive.values, rolePoint] using
-      m 4 1 (by simp [schema4, reflectSchema])
-  · simpa [Row4, OrderedFive.values, rolePoint] using
-      m 4 3 (by simp [schema4, reflectSchema])
+  · exact m 1 0 (by simp [schema4, reflectSchema])
+  · exact m 1 3 (by simp [schema4, reflectSchema])
+  · exact m 2 0 (by simp [schema4, reflectSchema])
+  · exact m 2 1 (by simp [schema4, reflectSchema])
+  · exact m 4 1 (by simp [schema4, reflectSchema])
+  · exact m 4 3 (by simp [schema4, reflectSchema])
 
 private theorem false_of_schemaFive_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -613,24 +574,15 @@ private theorem false_of_schemaFive_reflected_at
     (toCardIndex_lt hcard T.h01) (toCardIndex_lt hcard T.h12)
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     Row0 Row1 Row2 Row4
-  · simpa [Row0, OrderedFive.values, rolePoint] using
-      m 0 1 (by simp [schema5, reflectSchema])
-  · simpa [Row0, OrderedFive.values, rolePoint] using
-      m 0 3 (by simp [schema5, reflectSchema])
-  · simpa [Row1, OrderedFive.values, rolePoint] using
-      m 1 0 (by simp [schema5, reflectSchema])
-  · simpa [Row1, OrderedFive.values, rolePoint] using
-      m 1 2 (by simp [schema5, reflectSchema])
-  · simpa [Row2, OrderedFive.values, rolePoint] using
-      m 2 0 (by simp [schema5, reflectSchema])
-  · simpa [Row2, OrderedFive.values, rolePoint] using
-      m 2 1 (by simp [schema5, reflectSchema])
-  · simpa [Row4, OrderedFive.values, rolePoint] using
-      m 4 0 (by simp [schema5, reflectSchema])
-  · simpa [Row4, OrderedFive.values, rolePoint] using
-      m 4 2 (by simp [schema5, reflectSchema])
-  · simpa [Row4, OrderedFive.values, rolePoint] using
-      m 4 3 (by simp [schema5, reflectSchema])
+  · exact m 0 1 (by simp [schema5, reflectSchema])
+  · exact m 0 3 (by simp [schema5, reflectSchema])
+  · exact m 1 0 (by simp [schema5, reflectSchema])
+  · exact m 1 2 (by simp [schema5, reflectSchema])
+  · exact m 2 0 (by simp [schema5, reflectSchema])
+  · exact m 2 1 (by simp [schema5, reflectSchema])
+  · exact m 4 0 (by simp [schema5, reflectSchema])
+  · exact m 4 2 (by simp [schema5, reflectSchema])
+  · exact m 4 3 (by simp [schema5, reflectSchema])
 
 private theorem false_of_schemaSix_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -651,12 +603,12 @@ private theorem false_of_schemaSix_normalized_at
     support_mem_of_schemaAt boundary hmem F T.values schema6 hschema hpair
   apply false_of_schemaSix_normalized_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 T.h45 Row0 Row1 Row2
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 3 (by simp [schema6])
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 4 (by simp [schema6])
-  · simpa [Row1, OrderedSix.values, rolePoint] using m 1 0 (by simp [schema6])
-  · simpa [Row1, OrderedSix.values, rolePoint] using m 1 4 (by simp [schema6])
-  · simpa [Row2, OrderedSix.values, rolePoint] using m 2 0 (by simp [schema6])
-  · simpa [Row2, OrderedSix.values, rolePoint] using m 2 3 (by simp [schema6])
+  · exact m 0 3 (by simp [schema6])
+  · exact m 0 4 (by simp [schema6])
+  · exact m 1 0 (by simp [schema6])
+  · exact m 1 4 (by simp [schema6])
+  · exact m 2 0 (by simp [schema6])
+  · exact m 2 3 (by simp [schema6])
 
 private theorem false_of_schemaSix_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -680,18 +632,12 @@ private theorem false_of_schemaSix_reflected_at
       (reflectSchema 6 schema6) hschema hpair
   apply false_of_schemaSix_reflected_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 T.h45 Row3 Row4 Row5
-  · simpa [Row3, OrderedSix.values, rolePoint] using
-      m 3 2 (by simp [schema6, reflectSchema])
-  · simpa [Row3, OrderedSix.values, rolePoint] using
-      m 3 5 (by simp [schema6, reflectSchema])
-  · simpa [Row4, OrderedSix.values, rolePoint] using
-      m 4 1 (by simp [schema6, reflectSchema])
-  · simpa [Row4, OrderedSix.values, rolePoint] using
-      m 4 5 (by simp [schema6, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 1 (by simp [schema6, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 2 (by simp [schema6, reflectSchema])
+  · exact m 3 2 (by simp [schema6, reflectSchema])
+  · exact m 3 5 (by simp [schema6, reflectSchema])
+  · exact m 4 1 (by simp [schema6, reflectSchema])
+  · exact m 4 5 (by simp [schema6, reflectSchema])
+  · exact m 5 1 (by simp [schema6, reflectSchema])
+  · exact m 5 2 (by simp [schema6, reflectSchema])
 
 private theorem false_of_schemaSeven_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -720,17 +666,17 @@ private theorem false_of_schemaSeven_normalized_at
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) (toCardIndex_lt hcard T.h56)
     Row0 Row1 Row2 Row3 Row6
-  · simpa [Row0, OrderedSeven.values, rolePoint] using m 0 1 (by simp [schema7])
-  · simpa [Row0, OrderedSeven.values, rolePoint] using m 0 5 (by simp [schema7])
-  · simpa [Row1, OrderedSeven.values, rolePoint] using m 1 0 (by simp [schema7])
-  · simpa [Row1, OrderedSeven.values, rolePoint] using m 1 3 (by simp [schema7])
-  · simpa [Row1, OrderedSeven.values, rolePoint] using m 1 4 (by simp [schema7])
-  · simpa [Row2, OrderedSeven.values, rolePoint] using m 2 0 (by simp [schema7])
-  · simpa [Row2, OrderedSeven.values, rolePoint] using m 2 5 (by simp [schema7])
-  · simpa [Row3, OrderedSeven.values, rolePoint] using m 3 1 (by simp [schema7])
-  · simpa [Row3, OrderedSeven.values, rolePoint] using m 3 4 (by simp [schema7])
-  · simpa [Row6, OrderedSeven.values, rolePoint] using m 6 0 (by simp [schema7])
-  · simpa [Row6, OrderedSeven.values, rolePoint] using m 6 3 (by simp [schema7])
+  · exact m 0 1 (by simp [schema7])
+  · exact m 0 5 (by simp [schema7])
+  · exact m 1 0 (by simp [schema7])
+  · exact m 1 3 (by simp [schema7])
+  · exact m 1 4 (by simp [schema7])
+  · exact m 2 0 (by simp [schema7])
+  · exact m 2 5 (by simp [schema7])
+  · exact m 3 1 (by simp [schema7])
+  · exact m 3 4 (by simp [schema7])
+  · exact m 6 0 (by simp [schema7])
+  · exact m 6 3 (by simp [schema7])
 
 private theorem false_of_schemaSeven_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -762,28 +708,17 @@ private theorem false_of_schemaSeven_reflected_at
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) (toCardIndex_lt hcard T.h56)
     Row0 Row3 Row4 Row5 Row6
-  · simpa [Row0, OrderedSeven.values, rolePoint] using
-      m 0 3 (by simp [schema7, reflectSchema])
-  · simpa [Row0, OrderedSeven.values, rolePoint] using
-      m 0 6 (by simp [schema7, reflectSchema])
-  · simpa [Row3, OrderedSeven.values, rolePoint] using
-      m 3 2 (by simp [schema7, reflectSchema])
-  · simpa [Row3, OrderedSeven.values, rolePoint] using
-      m 3 5 (by simp [schema7, reflectSchema])
-  · simpa [Row4, OrderedSeven.values, rolePoint] using
-      m 4 1 (by simp [schema7, reflectSchema])
-  · simpa [Row4, OrderedSeven.values, rolePoint] using
-      m 4 6 (by simp [schema7, reflectSchema])
-  · simpa [Row5, OrderedSeven.values, rolePoint] using
-      m 5 2 (by simp [schema7, reflectSchema])
-  · simpa [Row5, OrderedSeven.values, rolePoint] using
-      m 5 3 (by simp [schema7, reflectSchema])
-  · simpa [Row5, OrderedSeven.values, rolePoint] using
-      m 5 6 (by simp [schema7, reflectSchema])
-  · simpa [Row6, OrderedSeven.values, rolePoint] using
-      m 6 1 (by simp [schema7, reflectSchema])
-  · simpa [Row6, OrderedSeven.values, rolePoint] using
-      m 6 5 (by simp [schema7, reflectSchema])
+  · exact m 0 3 (by simp [schema7, reflectSchema])
+  · exact m 0 6 (by simp [schema7, reflectSchema])
+  · exact m 3 2 (by simp [schema7, reflectSchema])
+  · exact m 3 5 (by simp [schema7, reflectSchema])
+  · exact m 4 1 (by simp [schema7, reflectSchema])
+  · exact m 4 6 (by simp [schema7, reflectSchema])
+  · exact m 5 2 (by simp [schema7, reflectSchema])
+  · exact m 5 3 (by simp [schema7, reflectSchema])
+  · exact m 5 6 (by simp [schema7, reflectSchema])
+  · exact m 6 1 (by simp [schema7, reflectSchema])
+  · exact m 6 5 (by simp [schema7, reflectSchema])
 
 private theorem false_of_schemaEight_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -814,30 +749,18 @@ private theorem false_of_schemaEight_reflected_at
     (toCardIndex_lt hcard T.h23) (toCardIndex_lt hcard T.h34)
     (toCardIndex_lt hcard T.h45) (toCardIndex_lt hcard T.h56)
     (toCardIndex_lt hcard T.h67) Row0 Row1 Row2 Row7
-  · simpa [Row0, OrderedEight.values, rolePoint] using
-      m 0 1 (by simp [schema8, reflectSchema])
-  · simpa [Row0, OrderedEight.values, rolePoint] using
-      m 0 4 (by simp [schema8, reflectSchema])
-  · simpa [Row0, OrderedEight.values, rolePoint] using
-      m 0 5 (by simp [schema8, reflectSchema])
-  · simpa [Row1, OrderedEight.values, rolePoint] using
-      m 1 0 (by simp [schema8, reflectSchema])
-  · simpa [Row1, OrderedEight.values, rolePoint] using
-      m 1 3 (by simp [schema8, reflectSchema])
-  · simpa [Row1, OrderedEight.values, rolePoint] using
-      m 1 4 (by simp [schema8, reflectSchema])
-  · simpa [Row2, OrderedEight.values, rolePoint] using
-      m 2 1 (by simp [schema8, reflectSchema])
-  · simpa [Row2, OrderedEight.values, rolePoint] using
-      m 2 3 (by simp [schema8, reflectSchema])
-  · simpa [Row2, OrderedEight.values, rolePoint] using
-      m 2 6 (by simp [schema8, reflectSchema])
-  · simpa [Row7, OrderedEight.values, rolePoint] using
-      m 7 0 (by simp [schema8, reflectSchema])
-  · simpa [Row7, OrderedEight.values, rolePoint] using
-      m 7 5 (by simp [schema8, reflectSchema])
-  · simpa [Row7, OrderedEight.values, rolePoint] using
-      m 7 6 (by simp [schema8, reflectSchema])
+  · exact m 0 1 (by simp [schema8, reflectSchema])
+  · exact m 0 4 (by simp [schema8, reflectSchema])
+  · exact m 0 5 (by simp [schema8, reflectSchema])
+  · exact m 1 0 (by simp [schema8, reflectSchema])
+  · exact m 1 3 (by simp [schema8, reflectSchema])
+  · exact m 1 4 (by simp [schema8, reflectSchema])
+  · exact m 2 1 (by simp [schema8, reflectSchema])
+  · exact m 2 3 (by simp [schema8, reflectSchema])
+  · exact m 2 6 (by simp [schema8, reflectSchema])
+  · exact m 7 0 (by simp [schema8, reflectSchema])
+  · exact m 7 5 (by simp [schema8, reflectSchema])
+  · exact m 7 6 (by simp [schema8, reflectSchema])
 
 private theorem false_of_schemaNine_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -858,13 +781,13 @@ private theorem false_of_schemaNine_normalized_at
     support_mem_of_schemaAt boundary hmem F T.values schema9 hschema hpair
   apply false_of_schemaNine_normalized_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 T.h45 Row0 Row4 Row5
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 1 (by simp [schema9])
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 3 (by simp [schema9])
-  · simpa [Row0, OrderedSix.values, rolePoint] using m 0 5 (by simp [schema9])
-  · simpa [Row4, OrderedSix.values, rolePoint] using m 4 1 (by simp [schema9])
-  · simpa [Row4, OrderedSix.values, rolePoint] using m 4 2 (by simp [schema9])
-  · simpa [Row5, OrderedSix.values, rolePoint] using m 5 2 (by simp [schema9])
-  · simpa [Row5, OrderedSix.values, rolePoint] using m 5 3 (by simp [schema9])
+  · exact m 0 1 (by simp [schema9])
+  · exact m 0 3 (by simp [schema9])
+  · exact m 0 5 (by simp [schema9])
+  · exact m 4 1 (by simp [schema9])
+  · exact m 4 2 (by simp [schema9])
+  · exact m 5 2 (by simp [schema9])
+  · exact m 5 3 (by simp [schema9])
 
 private theorem false_of_schemaNine_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
@@ -888,20 +811,13 @@ private theorem false_of_schemaNine_reflected_at
       (reflectSchema 6 schema9) hschema hpair
   apply false_of_schemaNine_reflected_fin11 hA hcard hinj himage hccw
     T.h01 T.h12 T.h23 T.h34 T.h45 Row0 Row1 Row5
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 2 (by simp [schema9, reflectSchema])
-  · simpa [Row0, OrderedSix.values, rolePoint] using
-      m 0 3 (by simp [schema9, reflectSchema])
-  · simpa [Row1, OrderedSix.values, rolePoint] using
-      m 1 3 (by simp [schema9, reflectSchema])
-  · simpa [Row1, OrderedSix.values, rolePoint] using
-      m 1 4 (by simp [schema9, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 0 (by simp [schema9, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 2 (by simp [schema9, reflectSchema])
-  · simpa [Row5, OrderedSix.values, rolePoint] using
-      m 5 4 (by simp [schema9, reflectSchema])
+  · exact m 0 2 (by simp [schema9, reflectSchema])
+  · exact m 0 3 (by simp [schema9, reflectSchema])
+  · exact m 1 3 (by simp [schema9, reflectSchema])
+  · exact m 1 4 (by simp [schema9, reflectSchema])
+  · exact m 5 0 (by simp [schema9, reflectSchema])
+  · exact m 5 2 (by simp [schema9, reflectSchema])
+  · exact m 5 4 (by simp [schema9, reflectSchema])
 
 /-- One of the exact schema/orientation pairs retained by the p5 reduced core.
 

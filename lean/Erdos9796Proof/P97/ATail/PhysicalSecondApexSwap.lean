@@ -58,9 +58,9 @@ private theorem oppApex1_mem_surplusCap
     S.oppApex1 ∈ S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi]
+  · simpa only [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi]
       using S.partition.v2_mem_C1
-  · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi]
+  · simpa only [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi]
       using S.partition.v3_mem_C2
   · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi]
       using S.partition.v1_mem_C3
@@ -70,9 +70,9 @@ private theorem oppApex1_mem_oppCap2
     S.oppApex1 ∈ S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi]
+  · simpa only [SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi]
       using S.partition.v2_mem_C3
-  · simpa [SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi]
+  · simpa only [SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi]
       using S.partition.v3_mem_C1
   · simpa [SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi]
       using S.partition.v1_mem_C2

@@ -64,6 +64,7 @@ private theorem normalized_sixRow_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hAUsq hBCsq
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hUVsq hCUsq
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hCVsq hVBsq hVCsq
+  beta_reduce at *
   grobner
 
 /-- The six-row distance equalities force the two anchor labels to collide. -/

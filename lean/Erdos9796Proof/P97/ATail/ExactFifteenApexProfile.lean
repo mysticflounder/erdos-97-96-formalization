@@ -63,8 +63,9 @@ theorem card_ge_fifteen_of_all_cap_card_ge_six
     have h := S.capSum
     rcases hi : S.surplusIdx with ⟨j, hj⟩
     interval_cases j <;>
-      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
         SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi,
+        Fin.val_zero, Fin.val_one, Fin.val_two,
         Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using h
   have h0 := hlarge (0 : Fin 3)
   have h1 := hlarge (1 : Fin 3)
@@ -88,14 +89,16 @@ theorem card_ge_seventeen_of_one_cap_card_ge_eight
     have h := S.capSum
     rcases hi : S.surplusIdx with ⟨j, hj⟩
     interval_cases j <;>
-      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
         SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi,
+        Fin.val_zero, Fin.val_one, Fin.val_two,
         Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using h
   have h0 := hlarge (0 : Fin 3)
   have h1 := hlarge (1 : Fin 3)
   have h2 := hlarge (2 : Fin 3)
   fin_cases i <;>
-    simp only [SurplusCapPacket.capByIndex] at hsum height h0 h1 h2 ⊢ <;>
+    simp only [SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one,
+      Fin.val_two] at hsum height h0 h1 h2 ⊢ <;>
     omega
 
 /-- At the minimum carrier size seventeen, one indexed cap of cardinality at
@@ -115,19 +118,22 @@ theorem capByIndex_card_profile_of_card_eq_seventeen
     have h := S.capSum
     rcases hi : S.surplusIdx with ⟨j, hj⟩
     interval_cases j <;>
-      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
         SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi,
+        Fin.val_zero, Fin.val_one, Fin.val_two,
         Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using h
   have h0 := hlarge (0 : Fin 3)
   have h1 := hlarge (1 : Fin 3)
   have h2 := hlarge (2 : Fin 3)
   constructor
   · fin_cases i <;>
-      simp only [SurplusCapPacket.capByIndex] at hsum height h0 h1 h2 ⊢ <;>
+      simp only [SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one,
+        Fin.val_two] at hsum height h0 h1 h2 ⊢ <;>
       omega
   · intro j hji
     fin_cases i <;> fin_cases j <;>
-      simp only [SurplusCapPacket.capByIndex] at hsum height h0 h1 h2 ⊢ <;>
+      simp only [SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one,
+        Fin.val_two] at hsum height h0 h1 h2 ⊢ <;>
       omega
 
 /-- At exact carrier size fifteen, three cap lower bounds of six are all sharp. -/
@@ -144,14 +150,16 @@ theorem capByIndex_card_eq_six_of_card_eq_fifteen
     have h := S.capSum
     rcases hi : S.surplusIdx with ⟨j, hj⟩
     interval_cases j <;>
-      simpa [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap,
         SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hi,
+        Fin.val_zero, Fin.val_one, Fin.val_two,
         Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using h
   have h0 := hlarge (0 : Fin 3)
   have h1 := hlarge (1 : Fin 3)
   have h2 := hlarge (2 : Fin 3)
   fin_cases i <;>
-    simp only [SurplusCapPacket.capByIndex] at hsum h0 h1 h2 ⊢ <;>
+    simp only [SurplusCapPacket.capByIndex, Fin.val_zero, Fin.val_one,
+      Fin.val_two] at hsum h0 h1 h2 ⊢ <;>
     omega
 
 /-- At exact carrier size fifteen, each strict cap interior has four points. -/

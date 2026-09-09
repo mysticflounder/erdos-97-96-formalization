@@ -218,7 +218,8 @@ theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
   cases meaning with
   | prefixVar index =>
       have := index.isLt
-      simp only [decodeG3Var, encodeG3Var]
+      simp only [encodeG3Var]
+      simp only [decodeG3Var]
       rw [dif_pos (by omega)]
       apply congrArg (fun i : Fin 41004 => some (G3VarMeaning.prefixVar i))
       apply Fin.ext
@@ -226,7 +227,8 @@ theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
       omega
   | localEquality index =>
       have := index.isLt
-      simp only [decodeG3Var, encodeG3Var]
+      simp only [encodeG3Var]
+      simp only [decodeG3Var]
       rw [dif_neg (by omega), dif_pos (by omega)]
       apply congrArg (fun i : Fin 495 => some (G3VarMeaning.localEquality i))
       apply Fin.ext
@@ -234,7 +236,8 @@ theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
       omega
   | sourceCenter index =>
       have := index.isLt
-      simp only [decodeG3Var, encodeG3Var]
+      simp only [encodeG3Var]
+      simp only [decodeG3Var]
       rw [dif_neg (by omega), dif_neg (by omega), dif_pos (by omega)]
       apply congrArg (fun i : Fin 92 => some (G3VarMeaning.sourceCenter i))
       apply Fin.ext
@@ -242,7 +245,8 @@ theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
       omega
   | usedCenter index =>
       have := index.isLt
-      simp only [decodeG3Var, encodeG3Var]
+      simp only [encodeG3Var]
+      simp only [decodeG3Var]
       rw [dif_neg (by omega), dif_neg (by omega), dif_neg (by omega),
         dif_pos (by omega)]
       apply congrArg (fun i : Fin 11 => some (G3VarMeaning.usedCenter i))
@@ -251,7 +255,8 @@ theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
       omega
   | globalEquality index =>
       have := index.isLt
-      simp only [decodeG3Var, encodeG3Var]
+      simp only [encodeG3Var]
+      simp only [decodeG3Var]
       rw [dif_neg (by omega), dif_neg (by omega), dif_neg (by omega),
         dif_neg (by omega), dif_pos (by omega)]
       apply congrArg (fun i : Fin 1485 => some (G3VarMeaning.globalEquality i))
@@ -260,7 +265,8 @@ theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
       omega
   | localFour index =>
       have := index.isLt
-      simp only [decodeG3Var, encodeG3Var]
+      simp only [encodeG3Var]
+      simp only [decodeG3Var]
       rw [dif_neg (by omega), dif_neg (by omega), dif_neg (by omega),
         dif_neg (by omega), dif_neg (by omega), dif_pos (by omega)]
       apply congrArg (fun i : Fin 2310 => some (G3VarMeaning.localFour i))
@@ -269,7 +275,8 @@ theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
       omega
   | qDeletedPair index =>
       have := index.isLt
-      simp only [decodeG3Var, encodeG3Var]
+      simp only [encodeG3Var]
+      simp only [decodeG3Var]
       rw [dif_neg (by omega), dif_neg (by omega), dif_neg (by omega),
         dif_neg (by omega), dif_neg (by omega), dif_neg (by omega),
         dif_pos (by omega)]

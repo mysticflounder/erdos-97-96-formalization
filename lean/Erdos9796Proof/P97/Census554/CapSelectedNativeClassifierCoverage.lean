@@ -191,7 +191,8 @@ theorem allKilled_eq_false_of_semanticTrace
             rw [List.all_eq_false]
             refine ⟨rowOfPattern P center, hrow, ?_⟩
             exact Bool.eq_false_iff.mp hbranch
-          simpa [allKilled, hprefix, hsort] using hallFalse
+          simp only [allKilled, hprefix, hsort]
+          exact hallFalse
 
 set_option linter.style.nativeDecide false in
 theorem variableCenters_nodup : variableCenters.Nodup := by

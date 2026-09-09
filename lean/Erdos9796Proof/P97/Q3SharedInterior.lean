@@ -469,7 +469,6 @@ theorem normSim_center_snd_nonneg_of_nonobtuse
       _ = (dist p₁ p₂)⁻¹ * dist u center := by rw [hboundary13]
       _ = dist (normSim p₁ p₂ u) (normSim p₁ p₂ center) := h₃.symm
   have hsq := congrArg (fun r : ℝ => r ^ 2) hdist
-  dsimp only at hsq
   rw [q3_dist_sq_coord, q3_dist_sq_coord] at hsq
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one] at hsq
   rw [hcenterx] at hsq

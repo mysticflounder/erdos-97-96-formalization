@@ -39,9 +39,9 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 /-- The retained endpoint row source and its fourth row point form a
 source-prescribed retained-radius collision when their actual blockers agree.
@@ -143,8 +143,7 @@ theorem J_not_mem_firstCapInterior_of_sharedBlocker
         (H.selectedAt collision.fiber.source₁.1
           collision.fiber.source₁.2).toCriticalFourShell.support := by
     rw [collision.fiber.supports_eq]
-    simpa only [show collision.fiber.source₂ = ⟨Q.J, Q.J_mem_A⟩ by
-      simp [collision]] using K_mem_J_shell
+    exact K_mem_J_shell
   have hKInter :
       Q.K ∈
         (H.selectedAt collision.fiber.source₁.1

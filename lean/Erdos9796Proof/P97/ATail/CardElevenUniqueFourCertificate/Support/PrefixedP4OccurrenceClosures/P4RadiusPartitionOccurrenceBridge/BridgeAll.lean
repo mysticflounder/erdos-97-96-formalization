@@ -45,9 +45,19 @@ def bridgeEntries : List BridgeEntry :=
   bridgeChunk01 ++ bridgeChunk02 ++ bridgeChunk03 ++ bridgeChunk04 ++ bridgeChunk05 ++ bridgeChunk06 ++ bridgeChunk07 ++ bridgeChunk08 ++ bridgeChunk09 ++ bridgeChunk10 ++ bridgeChunk11 ++ bridgeChunk12 ++ bridgeChunk13 ++ bridgeChunk14 ++ bridgeChunk15 ++ bridgeChunk16 ++ bridgeChunk17 ++ bridgeChunk18 ++ bridgeChunk19 ++ bridgeChunk20 ++ bridgeChunk21 ++ bridgeChunk22 ++ bridgeChunk23 ++ bridgeChunk24 ++ bridgeChunk25 ++ bridgeChunk26
 
 theorem bridgeEntries_length : bridgeEntries.length = 3218 := by
-  simp [bridgeEntries, bridgeChunk01_length, bridgeChunk02_length, bridgeChunk03_length, bridgeChunk04_length, bridgeChunk05_length, bridgeChunk06_length, bridgeChunk07_length, bridgeChunk08_length, bridgeChunk09_length, bridgeChunk10_length, bridgeChunk11_length, bridgeChunk12_length, bridgeChunk13_length, bridgeChunk14_length, bridgeChunk15_length, bridgeChunk16_length, bridgeChunk17_length, bridgeChunk18_length, bridgeChunk19_length, bridgeChunk20_length, bridgeChunk21_length, bridgeChunk22_length, bridgeChunk23_length, bridgeChunk24_length, bridgeChunk25_length, bridgeChunk26_length]
+  have hlen : ∀ (l₁ l₂ : List BridgeEntry) (a b : Nat),
+      l₁.length = a → l₂.length = b → (l₁ ++ l₂).length = a + b := by
+    intro l₁ l₂ a b h₁ h₂
+    rw [List.length_append, h₁, h₂]
+  exact (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ bridgeChunk01_length bridgeChunk02_length) bridgeChunk03_length) bridgeChunk04_length) bridgeChunk05_length) bridgeChunk06_length) bridgeChunk07_length) bridgeChunk08_length) bridgeChunk09_length) bridgeChunk10_length) bridgeChunk11_length) bridgeChunk12_length) bridgeChunk13_length) bridgeChunk14_length) bridgeChunk15_length) bridgeChunk16_length) bridgeChunk17_length) bridgeChunk18_length) bridgeChunk19_length) bridgeChunk20_length) bridgeChunk21_length) bridgeChunk22_length) bridgeChunk23_length) bridgeChunk24_length) bridgeChunk25_length) bridgeChunk26_length)
 
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by
-  simp [bridgeEntries, bridgeChunk01_wf, bridgeChunk02_wf, bridgeChunk03_wf, bridgeChunk04_wf, bridgeChunk05_wf, bridgeChunk06_wf, bridgeChunk07_wf, bridgeChunk08_wf, bridgeChunk09_wf, bridgeChunk10_wf, bridgeChunk11_wf, bridgeChunk12_wf, bridgeChunk13_wf, bridgeChunk14_wf, bridgeChunk15_wf, bridgeChunk16_wf, bridgeChunk17_wf, bridgeChunk18_wf, bridgeChunk19_wf, bridgeChunk20_wf, bridgeChunk21_wf, bridgeChunk22_wf, bridgeChunk23_wf, bridgeChunk24_wf, bridgeChunk25_wf, bridgeChunk26_wf]
+  have happ : ∀ l₁ l₂ : List BridgeEntry,
+      l₁.all entryWF = true → l₂.all entryWF = true →
+      (l₁ ++ l₂).all entryWF = true := by
+    intro l₁ l₂ h₁ h₂
+    rw [List.all_append, h₁, h₂]
+    rfl
+  exact (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ (happ _ _ bridgeChunk01_wf bridgeChunk02_wf) bridgeChunk03_wf) bridgeChunk04_wf) bridgeChunk05_wf) bridgeChunk06_wf) bridgeChunk07_wf) bridgeChunk08_wf) bridgeChunk09_wf) bridgeChunk10_wf) bridgeChunk11_wf) bridgeChunk12_wf) bridgeChunk13_wf) bridgeChunk14_wf) bridgeChunk15_wf) bridgeChunk16_wf) bridgeChunk17_wf) bridgeChunk18_wf) bridgeChunk19_wf) bridgeChunk20_wf) bridgeChunk21_wf) bridgeChunk22_wf) bridgeChunk23_wf) bridgeChunk24_wf) bridgeChunk25_wf) bridgeChunk26_wf)
 
 end Problem97.P4RadiusPartitionOccurrenceBridgeScratch

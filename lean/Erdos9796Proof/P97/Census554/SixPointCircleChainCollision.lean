@@ -64,6 +64,7 @@ private theorem normalized_sixPointCircleChain_incompatible
   simp only [pt, Matrix.cons_val_zero, Matrix.cons_val_one]
     at hBA_BCsq hBA_BDsq hCA_CBsq hCA_CEsq hCA_CFsq hDC_DEsq hEA_EFsq hFB_FDsq
       hFB_FEsq
+  beta_reduce at *
   grobner (ringSteps := 100000)
 
 /-- The six-point circle-chain equalities force the anchor labels to collide. -/

@@ -467,7 +467,7 @@ private theorem surplusInterior_card_eq_three_of_surplus_card_five
   have hcapCard : (S.capByIndex S.surplusIdx).card = 5 := by
     rcases hi : S.surplusIdx with ⟨i, hiLt⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.surplusCap,
         SurplusCapPacket.capByIndex, hi] using hcard5
   exact capInteriorByIndex_card_eq_three_of_cap_card_eq_five S
     S.surplusIdx hcapCard

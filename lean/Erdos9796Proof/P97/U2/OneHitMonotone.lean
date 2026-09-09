@@ -125,8 +125,7 @@ theorem capU1U2_dist_sq_strictMonoOn {α : ℝ} (hα0 : 0 < α) (hα1 : α < π/
         simpa using (hasDerivAt_id γ).const_add (2*π/3)
       have c1 := (h1.cos).const_mul (2 : ℝ)
       have c2 := (h2.cos).const_mul (2 : ℝ)
-      have := ((hasDerivAt_const γ (3 - 2 * Real.cos α)).sub c1).add c2
-      convert this using 1; ring
+      exact (((hasDerivAt_const γ (3 - 2 * Real.cos α)).sub c1).add c2).congr_deriv (by ring)
     rw [hd.deriv]
     have hprod : -2 * Real.sin (α - 2*π/3 - γ) - 2 * Real.sin (2*π/3 + γ)
         = -4 * Real.sin (α/2) * Real.cos (2*π/3 + γ - α/2) := by
@@ -236,9 +235,7 @@ theorem capU1U3_dist_sq_strictAntiOn {α : ℝ} (hα0 : 0 < α) (hα1 : α < π/
       have t1 := (h1.cos).const_mul (2 : ℝ)
       have t2 := h2.cos
       have t3 := (h2.sin).const_mul (Real.sqrt 3)
-      have := ((hbase.sub t1).add t2).add t3
-      convert this using 1
-      ring
+      exact (((hbase.sub t1).add t2).add t3).congr_deriv (by ring)
     rw [hd.deriv]
     have hsp := Real.sin_sub_sin δ (α - 4*π/3 - δ)
     rw [show (δ - (α - 4*π/3 - δ)) / 2 = 2*π/3 + δ - α/2 by ring,

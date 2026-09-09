@@ -226,7 +226,8 @@ theorem I1_card_ge_two
     simpa [Finset.inter_comm] using Finset.card_sdiff_add_card_inter T S.I1
   have hinter_le : (T ∩ S.I1).card ≤ S.I1.card := Finset.card_le_card Finset.inter_subset_right
   have hTfour : 4 ≤ T.card := by
-    simpa [T] using hTcard
+    show 4 ≤ (A.filter (fun q => dist S.MT.toMoserTriangle.v1 q = r)).card
+    exact hTcard
   omega
 
 /-- Shell-facing `N4a/N4b` bridge at the second opposite cap. -/
@@ -305,7 +306,8 @@ theorem I2_card_ge_two
     simpa [Finset.inter_comm] using Finset.card_sdiff_add_card_inter T S.I2
   have hinter_le : (T ∩ S.I2).card ≤ S.I2.card := Finset.card_le_card Finset.inter_subset_right
   have hTfour : 4 ≤ T.card := by
-    simpa [T] using hTcard
+    show 4 ≤ (A.filter (fun q => dist S.MT.toMoserTriangle.v2 q = r)).card
+    exact hTcard
   omega
 
 /-- Shell-facing `N4a/N4b` bridge at the third opposite cap. -/
@@ -384,7 +386,8 @@ theorem I3_card_ge_two
     simpa [Finset.inter_comm] using Finset.card_sdiff_add_card_inter T S.I3
   have hinter_le : (T ∩ S.I3).card ≤ S.I3.card := Finset.card_le_card Finset.inter_subset_right
   have hTfour : 4 ≤ T.card := by
-    simpa [T] using hTcard
+    show 4 ≤ (A.filter (fun q => dist S.MT.toMoserTriangle.v3 q = r)).card
+    exact hTcard
   omega
 
 /-- The first cap decomposes as its open interior plus the two Moser endpoints. -/

@@ -55,7 +55,7 @@ private theorem interior_oppIndex1_not_mem_surplusCap
     S.surplusIdx_ne_oppIndex1.symm
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simpa [SurplusCapPacket.capByIndex,
+    simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
 /-- T1.  Any carrier point other than the first opposite apex that is
@@ -286,9 +286,9 @@ private theorem oppApex1_mem_A'
     S.oppApex1 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 private theorem packet_blocker_ne_oppApex1_of_card_five
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}

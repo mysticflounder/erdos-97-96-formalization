@@ -32,9 +32,10 @@ theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
 
 /-- The named second opposite apex is the zero-cut vertex at `oppIndex2`. -/
 theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
@@ -42,9 +43,10 @@ theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
 
 /-- The indexed closed cap at `oppIndex2` is the named second opposite cap. -/
 theorem capByIndex_oppIndex2_eq_oppCap2
@@ -52,9 +54,10 @@ theorem capByIndex_oppIndex2_eq_oppCap2
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex,
+    simp only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.oppCap2,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two]
 
 /-- In either zero-cut cap-block orientation, two indices whose boundary
 points lie in `oppInterior1` occupy the same side of the cut `(oppApex1,

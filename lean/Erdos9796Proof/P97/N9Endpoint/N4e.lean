@@ -2596,8 +2596,8 @@ theorem C2_same_open_side_of_base_chord_as_v3
       intro z
       have hcenter_perp : inner ℝ (center - M) u = 0 := by
         have hdist_eq : dist center q1 = dist center q2 := by
-          rw [dist_comm center q1, dist_comm center q2]
-          simpa [q1, q2] using S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
+          rw [dist_comm center q1, dist_comm center q2, dist_eq_norm, dist_eq_norm]
+          exact S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
         have hperp : center ∈ AffineSubspace.perpBisector q1 q2 := by
           rw [AffineSubspace.mem_perpBisector_iff_dist_eq]
           simpa using hdist_eq
@@ -2708,8 +2708,8 @@ theorem C2_same_open_side_of_base_chord_as_v3
         rw [dist_eq_norm, norm_sub_rev]
         exact hdisk_a'
       have hradius : dist center q1 = S.Packet.radius := by
-        rw [dist_comm]
-        simpa [q1, center] using S.Packet.moser_on_boundary_1
+        rw [dist_comm, dist_eq_norm]
+        exact S.Packet.moser_on_boundary_1
       have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
         have hnonneg_a : 0 ≤ dist center a := dist_nonneg
         have hnonneg_q1 : 0 ≤ dist center q1 := dist_nonneg
@@ -3029,9 +3029,8 @@ theorem c2_vertex_same_open_side_as_v3
   -- Center perp-bisector: `X center = 0`.
   have hXc : X center = 0 := by
     have hdist_eq : dist center q1 = dist center q2 := by
-      rw [dist_comm center q1, dist_comm center q2]
-      simpa [q1, q2] using
-        S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
+      rw [dist_comm center q1, dist_comm center q2, dist_eq_norm, dist_eq_norm]
+      exact S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
     have hperp : center ∈ AffineSubspace.perpBisector q1 q2 := by
       rw [AffineSubspace.mem_perpBisector_iff_dist_eq]; simpa using hdist_eq
     have hcenter_perp : inner ℝ (center - M) u = 0 := by
@@ -3104,13 +3103,13 @@ theorem c2_vertex_same_open_side_as_v3
   -- `v₃` on the MEC, `a` in the disk, expressed via frame coordinates.
   have hradius_sq : S.Packet.radius ^ 2 = ((1 / 4 : ℝ) + yc ^ 2) * ‖u‖ ^ 2 := by
     have hr : dist center q1 = S.Packet.radius := by
-      rw [dist_comm]; simpa [q1, center] using S.Packet.moser_on_boundary_1
+      rw [dist_comm, dist_eq_norm]; exact S.Packet.moser_on_boundary_1
     have := hdist_center_sq q1
     rw [hr, hX_q1, hY_q1] at this
     rw [this]; ring
   have hC1 : 8 * yc * Y q3 = 4 * (X q3) ^ 2 + 4 * (Y q3) ^ 2 - 1 := by
     have hr : dist center q3 = S.Packet.radius := by
-      rw [dist_comm]; simpa [q3, center] using S.Packet.moser_on_boundary_3
+      rw [dist_comm, dist_eq_norm]; exact S.Packet.moser_on_boundary_3
     have h := hdist_center_sq q3
     rw [hr, hradius_sq] at h
     have hcancel : (X q3) ^ 2 + (Y q3 - yc) ^ 2 = (1 / 4 : ℝ) + yc ^ 2 :=
@@ -7996,8 +7995,8 @@ theorem selectorShape_v2_q_eq_v1_forces_v3
       intro z
       have hcenter_perp : inner ℝ (center - M) u = 0 := by
         have hdist_eq : dist center q1 = dist center q2 := by
-          rw [dist_comm center q1, dist_comm center q2]
-          simpa [q1, q2] using S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
+          rw [dist_comm center q1, dist_comm center q2, dist_eq_norm, dist_eq_norm]
+          exact S.Packet.moser_on_boundary_1.trans S.Packet.moser_on_boundary_2.symm
         have hperp : center ∈ AffineSubspace.perpBisector q1 q2 := by
           rw [AffineSubspace.mem_perpBisector_iff_dist_eq]
           simpa using hdist_eq
@@ -8114,8 +8113,8 @@ theorem selectorShape_v2_q_eq_v1_forces_v3
             rw [dist_eq_norm, norm_sub_rev]
             exact hdisk_a'
           have hradius : dist center q1 = S.Packet.radius := by
-            rw [dist_comm]
-            simpa [q1, center] using S.Packet.moser_on_boundary_1
+            rw [dist_comm, dist_eq_norm]
+            exact S.Packet.moser_on_boundary_1
           have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
             have hnonneg_a : 0 ≤ dist center a := dist_nonneg
             have hnonneg_q1 : 0 ≤ dist center q1 := dist_nonneg
@@ -8124,8 +8123,8 @@ theorem selectorShape_v2_q_eq_v1_forces_v3
           nlinarith [haYsq, hdist_sq, hu_sq_pos]
         have hq_out : dist center q > S.Packet.radius := by
           have hradius : dist center q1 = S.Packet.radius := by
-            rw [dist_comm]
-            simpa [q1, center] using S.Packet.moser_on_boundary_1
+            rw [dist_comm, dist_eq_norm]
+            exact S.Packet.moser_on_boundary_1
           have hdist_sq_q :
               dist center q ^ 2 > S.Packet.radius ^ 2 := by
             rw [hdist_center_sq q]
@@ -8192,8 +8191,8 @@ theorem selectorShape_v2_q_eq_v1_forces_v3
             rw [dist_eq_norm, norm_sub_rev]
             exact hdisk_a'
           have hradius : dist center q1 = S.Packet.radius := by
-            rw [dist_comm]
-            simpa [q1, center] using S.Packet.moser_on_boundary_1
+            rw [dist_comm, dist_eq_norm]
+            exact S.Packet.moser_on_boundary_1
           have hdist_sq : dist center a ^ 2 ≤ dist center q1 ^ 2 := by
             have hnonneg_a : 0 ≤ dist center a := dist_nonneg
             have hnonneg_q1 : 0 ≤ dist center q1 := dist_nonneg
@@ -8202,8 +8201,8 @@ theorem selectorShape_v2_q_eq_v1_forces_v3
           nlinarith [haYsq, hdist_sq, hu_sq_pos]
         have hq_out : dist center q > S.Packet.radius := by
           have hradius : dist center q1 = S.Packet.radius := by
-            rw [dist_comm]
-            simpa [q1, center] using S.Packet.moser_on_boundary_1
+            rw [dist_comm, dist_eq_norm]
+            exact S.Packet.moser_on_boundary_1
           have hdist_sq_q :
               dist center q ^ 2 > S.Packet.radius ^ 2 := by
             rw [hdist_center_sq q]

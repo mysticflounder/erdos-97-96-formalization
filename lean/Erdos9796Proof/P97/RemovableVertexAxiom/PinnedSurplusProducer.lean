@@ -385,7 +385,7 @@ private theorem surplusInterior_eq_triple_of_surplus_card_five
   have hcapCard : (S.capByIndex S.surplusIdx).card = 5 := by
     rcases hi : S.surplusIdx with ⟨i, hiLt⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.surplusCap,
         SurplusCapPacket.capByIndex, hi] using hsurplusCard
   have hinteriorCard :
       (S.capInteriorByIndex S.surplusIdx).card = 3 :=
@@ -984,11 +984,21 @@ private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
         uPwPuMask ≤ 1) :
     localTriggerOKAt sstar center
       (pointMask pointOf (centerClass center)) = true := by
+  have hprevious : ∀ prior : Label, prior ∈ previousSstarCenters sstar →
+      maskHas (pointMask pointOf (centerClass prior)) sstar = false ∨
+        maskInterCard (pointMask pointOf (centerClass prior)) uPwPuMask = 0 := by
+    intro prior hprior
+    rcases Bool.and_eq_false_iff.mp (htriggerPrevious prior hprior) with h | h
+    · exact Or.inl h
+    · refine Or.inr ?_
+      have hnot := of_decide_eq_false h
+      omega
   cases sstar <;> simp [isSurplusStar] at hsstar
   all_goals
     cases center <;>
       simp [localTriggerOKAt, previousSstarCenters, htriggerU, htriggerQ1,
-        htriggerQ2, htriggerPrevious, hfinal]
+        htriggerQ2, hfinal] <;>
+      exact hprevious _ (by simp [previousSstarCenters])
 
 private theorem pinned_mem_convexHull_three_of_same_side
     {O a b c : ℝ²}
@@ -1098,36 +1108,24 @@ private theorem rightPinnedLabelPoint_moser_nonobtuse
   dsimp
   rcases hi : S.surplusIdx with ⟨i, hi_lt⟩
   interval_cases i
-  · exact ⟨by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v1, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v2, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v3⟩
-  · exact ⟨by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v2, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v3, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v1⟩
-  · exact ⟨by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v3, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v1, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v2⟩
+  · refine ⟨?_, ?_, ?_⟩ <;>
+      simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+    · exact S.triangleNonObtuse.inner_at_v1
+    · exact S.triangleNonObtuse.inner_at_v2
+    · exact S.triangleNonObtuse.inner_at_v3
+  · refine ⟨?_, ?_, ?_⟩ <;>
+      simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+    · exact S.triangleNonObtuse.inner_at_v2
+    · exact S.triangleNonObtuse.inner_at_v3
+    · exact S.triangleNonObtuse.inner_at_v1
+  · refine ⟨?_, ?_, ?_⟩ <;>
+      simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+    · exact S.triangleNonObtuse.inner_at_v3
+    · exact S.triangleNonObtuse.inner_at_v1
+    · exact S.triangleNonObtuse.inner_at_v2
 
 private theorem leftPinnedLabelPoint_moser_nonobtuse
     {A : Finset ℝ²} (S : SurplusCapPacket A)
@@ -1641,7 +1639,7 @@ theorem isM44PinnedSurplusNonVExactShapeProducer :
     have hVmask :
         pointMask pointOf (SelectedClass A (pointOf .v) radius) =
           pinnedMaskOf sstar := by
-      simpa [pointOf] using
+      exact
         pinnedRightSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
           S hpinned hxSurplus hinj hpairP hsstar hsstarEq
     exact exists_pinnedSurplusSupportClasses_of_labelComplete hK4 hconv

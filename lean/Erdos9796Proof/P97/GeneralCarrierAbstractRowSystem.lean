@@ -110,7 +110,7 @@ theorem system_pairCodegreeLE_two {A : Finset ℝ²}
       refine ⟨c.2, ?_⟩
       have haSupport := (mem_rowPattern_iff F c a).mp haRow
       have hbSupport := (mem_rowPattern_iff F c b).mp hbRow
-      simpa only [dist_comm] using
+      exact
         ((F.classAt c.1 c.2).support_eq_radius a.1 haSupport).trans
           ((F.classAt c.1 c.2).support_eq_radius b.1 hbSupport).symm
     _ ≤ 2 :=
@@ -197,7 +197,7 @@ theorem system_supportMinimal {D : CounterexampleData}
       ⟨z, (F.classAt centerLabel.1 (hBA hcenter)).support_subset_A hz⟩
     have hzRow : zLabel ∈ rowPattern F centerLabel := by
       apply (mem_rowPattern_iff F centerLabel zLabel).mpr
-      simpa only using hz
+      exact hz
     have hzT : zLabel ∈ T := hclosed hcenterLabel hzRow
     exact Finset.mem_image.mpr ⟨zLabel, hzT, rfl⟩
   have hBeq : B = D.A :=

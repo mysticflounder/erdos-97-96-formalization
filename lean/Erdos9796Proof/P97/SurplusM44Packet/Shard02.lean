@@ -674,11 +674,11 @@ theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
   · by_cases hxv3 : x = S.triangle.v3
     · apply Finset.mem_union_left
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [leftAdjacentCapByIndex, hxv3] using S.partition.v3_mem_C2⟩
+        ⟨hxT, by rw [hxv3]; exact S.partition.v3_mem_C2⟩
     by_cases hxv2 : x = S.triangle.v2
     · apply Finset.mem_union_right
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [rightAdjacentCapByIndex, hxv2] using S.partition.v2_mem_C3⟩
+        ⟨hxT, by rw [hxv2]; exact S.partition.v2_mem_C3⟩
     by_cases hxv1 : x = S.triangle.v1
     · have hxT' : x ∈ SelectedClass A S.triangle.v1 radius := by
         simpa [oppositeVertexByIndex] using hxT
@@ -699,7 +699,7 @@ theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
     by_cases hxC2 : x ∈ S.partition.C2
     · apply Finset.mem_union_left
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [leftAdjacentCapByIndex] using hxC2⟩
+        ⟨hxT, by exact hxC2⟩
     · have hxC3 : x ∈ S.partition.C3 := by
         by_cases hxC3 : x ∈ S.partition.C3
         · exact hxC3
@@ -708,15 +708,15 @@ theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
           omega
       apply Finset.mem_union_right
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [rightAdjacentCapByIndex] using hxC3⟩
+        ⟨hxT, by exact hxC3⟩
   · by_cases hxv1 : x = S.triangle.v1
     · apply Finset.mem_union_left
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [leftAdjacentCapByIndex, hxv1] using S.partition.v1_mem_C3⟩
+        ⟨hxT, by rw [hxv1]; exact S.partition.v1_mem_C3⟩
     by_cases hxv3 : x = S.triangle.v3
     · apply Finset.mem_union_right
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [rightAdjacentCapByIndex, hxv3] using S.partition.v3_mem_C1⟩
+        ⟨hxT, by rw [hxv3]; exact S.partition.v3_mem_C1⟩
     by_cases hxv2 : x = S.triangle.v2
     · have hxT' : x ∈ SelectedClass A S.triangle.v2 radius := by
         simpa [oppositeVertexByIndex] using hxT
@@ -737,7 +737,7 @@ theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
     by_cases hxC3 : x ∈ S.partition.C3
     · apply Finset.mem_union_left
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [leftAdjacentCapByIndex] using hxC3⟩
+        ⟨hxT, by exact hxC3⟩
     · have hxC1 : x ∈ S.partition.C1 := by
         by_cases hxC1 : x ∈ S.partition.C1
         · exact hxC1
@@ -746,15 +746,15 @@ theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
           omega
       apply Finset.mem_union_right
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [rightAdjacentCapByIndex] using hxC1⟩
+        ⟨hxT, by exact hxC1⟩
   · by_cases hxv2 : x = S.triangle.v2
     · apply Finset.mem_union_left
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [leftAdjacentCapByIndex, hxv2] using S.partition.v2_mem_C1⟩
+        ⟨hxT, by rw [hxv2]; exact S.partition.v2_mem_C1⟩
     by_cases hxv1 : x = S.triangle.v1
     · apply Finset.mem_union_right
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [rightAdjacentCapByIndex, hxv1] using S.partition.v1_mem_C2⟩
+        ⟨hxT, by rw [hxv1]; exact S.partition.v1_mem_C2⟩
     by_cases hxv3 : x = S.triangle.v3
     · have hxT' : x ∈ SelectedClass A S.triangle.v3 radius := by
         simpa [oppositeVertexByIndex] using hxT
@@ -775,7 +775,7 @@ theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
     by_cases hxC1 : x ∈ S.partition.C1
     · apply Finset.mem_union_left
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [leftAdjacentCapByIndex] using hxC1⟩
+        ⟨hxT, by exact hxC1⟩
     · have hxC2 : x ∈ S.partition.C2 := by
         by_cases hxC2 : x ∈ S.partition.C2
         · exact hxC2
@@ -784,7 +784,7 @@ theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
           omega
       apply Finset.mem_union_right
       exact Finset.mem_inter.mpr
-        ⟨hxT, by simpa [rightAdjacentCapByIndex] using hxC2⟩
+        ⟨hxT, by exact hxC2⟩
 
 /-- Core selector for a Moser-centered selected class at an indexed short cap:
 the class has exactly four points, contains the two strict own-cap interior
@@ -1417,8 +1417,7 @@ theorem rightEndpointOnFirstRadius_false
   fin_cases i
   · have hsharedNotLeft :
         S.rightOuterVertexByIndex 0 ∉ S.leftAdjacentCapByIndex 0 := by
-      simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using
-        S.partition.v2_notin_C2
+      exact S.partition.v2_notin_C2
     exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (1 : Fin 3)
       hxA hsharedA
       (by simpa [leftAdjacentCapByIndex] using hxNotLeft)
@@ -1432,8 +1431,7 @@ theorem rightEndpointOnFirstRadius_false
         hsharedFirst)
   · have hsharedNotLeft :
         S.rightOuterVertexByIndex 1 ∉ S.leftAdjacentCapByIndex 1 := by
-      simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using
-        S.partition.v3_notin_C3
+      exact S.partition.v3_notin_C3
     exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (2 : Fin 3)
       hxA hsharedA
       (by simpa [leftAdjacentCapByIndex] using hxNotLeft)
@@ -1447,8 +1445,7 @@ theorem rightEndpointOnFirstRadius_false
         hsharedFirst)
   · have hsharedNotLeft :
         S.rightOuterVertexByIndex 2 ∉ S.leftAdjacentCapByIndex 2 := by
-      simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using
-        S.partition.v1_notin_C1
+      exact S.partition.v1_notin_C1
     exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (0 : Fin 3)
       hxA hsharedA
       (by simpa [leftAdjacentCapByIndex] using hxNotLeft)
@@ -1492,8 +1489,7 @@ theorem leftEndpointOnFirstRadius_false
   fin_cases i
   · have hsharedNotRight :
         S.leftOuterVertexByIndex 0 ∉ S.rightAdjacentCapByIndex 0 := by
-      simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using
-        S.partition.v3_notin_C3
+      exact S.partition.v3_notin_C3
     exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (2 : Fin 3)
       hxA hsharedA
       (by simpa [rightAdjacentCapByIndex] using hxNotRight)
@@ -1507,8 +1503,7 @@ theorem leftEndpointOnFirstRadius_false
         hsharedρ)
   · have hsharedNotRight :
         S.leftOuterVertexByIndex 1 ∉ S.rightAdjacentCapByIndex 1 := by
-      simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using
-        S.partition.v1_notin_C1
+      exact S.partition.v1_notin_C1
     exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (0 : Fin 3)
       hxA hsharedA
       (by simpa [rightAdjacentCapByIndex] using hxNotRight)
@@ -1522,8 +1517,7 @@ theorem leftEndpointOnFirstRadius_false
         hsharedρ)
   · have hsharedNotRight :
         S.leftOuterVertexByIndex 2 ∉ S.rightAdjacentCapByIndex 2 := by
-      simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using
-        S.partition.v2_notin_C2
+      exact S.partition.v2_notin_C2
     exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (1 : Fin 3)
       hxA hsharedA
       (by simpa [rightAdjacentCapByIndex] using hxNotRight)

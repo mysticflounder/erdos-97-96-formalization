@@ -52,7 +52,8 @@ theorem exact_cap_class_at_v1
   rcases S.k4_at_v1 with ⟨r, hr, hcard⟩
   let T : Finset ℝ² := A.filter (fun x => dist S.triangle.v1 x = r)
   have hTfour : 4 ≤ T.card := by
-    simpa [T] using hcard
+    show 4 ≤ (A.filter (fun q => dist S.MT.toMoserTriangle.v1 q = r)).card
+    exact hcard
   have hsub : T ⊆ S.CP.C1 := hN4e.1 hr hTfour
   have hcap4 : S.CP.C1.card = 4 := (S.n5_forced_m44).1
   have hcle : S.CP.C1.card ≤ T.card := by
@@ -71,7 +72,8 @@ theorem exact_cap_class_at_v2
   rcases S.k4_at_v2 with ⟨r, hr, hcard⟩
   let T : Finset ℝ² := A.filter (fun x => dist S.triangle.v2 x = r)
   have hTfour : 4 ≤ T.card := by
-    simpa [T] using hcard
+    show 4 ≤ (A.filter (fun q => dist S.MT.toMoserTriangle.v2 q = r)).card
+    exact hcard
   have hsub : T ⊆ S.CP.C2 := hN4e.2.1 hr hTfour
   have hcap4 : S.CP.C2.card = 4 := (S.n5_forced_m44).2.1
   have hcle : S.CP.C2.card ≤ T.card := by
@@ -90,7 +92,8 @@ theorem exact_cap_class_at_v3
   rcases S.k4_at_v3 with ⟨r, hr, hcard⟩
   let T : Finset ℝ² := A.filter (fun x => dist S.triangle.v3 x = r)
   have hTfour : 4 ≤ T.card := by
-    simpa [T] using hcard
+    show 4 ≤ (A.filter (fun q => dist S.MT.toMoserTriangle.v3 q = r)).card
+    exact hcard
   have hsub : T ⊆ S.CP.C3 := hN4e.2.2 hr hTfour
   have hcap4 : S.CP.C3.card = 4 := (S.n5_forced_m44).2.2
   have hcle : S.CP.C3.card ≤ T.card := by

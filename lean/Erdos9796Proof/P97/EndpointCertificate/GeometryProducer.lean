@@ -532,36 +532,45 @@ private theorem rightPinnedLabelPoint_moser_nonobtuse
   dsimp
   rcases hi : S.surplusIdx with ⟨i, hi_lt⟩
   interval_cases i
-  · exact ⟨by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v1, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v2, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v3⟩
-  · exact ⟨by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v2, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v3, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v1⟩
-  · exact ⟨by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v3, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v1, by
-      simpa [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using
-          S.triangleNonObtuse.inner_at_v2⟩
+  · refine ⟨?_, ?_, ?_⟩
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_one, Fin.val_two]
+      exact S.triangleNonObtuse.inner_at_v1
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_one, Fin.val_two]
+      exact S.triangleNonObtuse.inner_at_v2
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_one, Fin.val_two]
+      exact S.triangleNonObtuse.inner_at_v3
+  · refine ⟨?_, ?_, ?_⟩
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_zero, Fin.val_two]
+      exact S.triangleNonObtuse.inner_at_v2
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_zero, Fin.val_two]
+      exact S.triangleNonObtuse.inner_at_v3
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_zero, Fin.val_two]
+      exact S.triangleNonObtuse.inner_at_v1
+  · refine ⟨?_, ?_, ?_⟩
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_zero, Fin.val_one]
+      exact S.triangleNonObtuse.inner_at_v3
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_zero, Fin.val_one]
+      exact S.triangleNonObtuse.inner_at_v1
+    · simp only [rightPinnedLabelPoint, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi,
+        Fin.val_zero, Fin.val_one]
+      exact S.triangleNonObtuse.inner_at_v2
 
 private theorem no_nonMoser_triple_of_convexIndep_nonobtuse
     {A : Finset ℝ²} (hconv : ConvexIndep A)
@@ -683,7 +692,7 @@ private theorem surplusInterior_eq_triple_of_surplus_card_five
   have hcapCard : (S.capByIndex S.surplusIdx).card = 5 := by
     rcases hi : S.surplusIdx with ⟨i, hiLt⟩
     interval_cases i <;>
-      simpa [SurplusCapPacket.surplusCap,
+      simpa only [SurplusCapPacket.surplusCap,
         SurplusCapPacket.capByIndex, hi] using hsurplusCard
   have hinteriorCard :
       (S.capInteriorByIndex S.surplusIdx).card = 3 :=

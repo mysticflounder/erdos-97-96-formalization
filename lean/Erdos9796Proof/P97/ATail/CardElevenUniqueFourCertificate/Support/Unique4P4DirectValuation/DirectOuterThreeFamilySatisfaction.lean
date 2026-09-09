@@ -67,12 +67,8 @@ theorem direct_outer_three_family_compact_sat
   simp only [directOuterThreeFamilyCompactClauses, List.mem_append] at hclause
   rcases hclause with hfirstTwo | hfourArc
   rcases hfirstTwo with hmembership | hrowArc
-  · simpa only [P4DirectMembershipRowOccurrenceBridgeScratch.clauseSat,
-      P4DirectRowArcOccurrenceBridgeScratch.clauseSat] using
-      direct_memberships_imply_row_pattern_compact_sat Q clause hmembership
+  · exact direct_memberships_imply_row_pattern_compact_sat Q clause hmembership
   · exact direct_row_pattern_implies_outer_arc_compact_sat Q clause hrowArc
-  · simpa only [P4DirectFourArcOccurrenceBridgeScratch.clauseSat,
-      P4DirectRowArcOccurrenceBridgeScratch.clauseSat] using
-      direct_no_four_turn_disjoint_outer_arcs_compact_sat Q clause hfourArc
+  · exact direct_no_four_turn_disjoint_outer_arcs_compact_sat Q clause hfourArc
 
 end Problem97.P4DirectOuterValuationScratch

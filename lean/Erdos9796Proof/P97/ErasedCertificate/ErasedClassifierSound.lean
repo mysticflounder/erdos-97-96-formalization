@@ -46,10 +46,18 @@ theorem localCandidateSpec_of_incidenceOK_erasedSeedShellOK
     simpa [capO1, capO2] using hmoser.1
   · intro hcenter
     subst center
-    simpa [capS, capO2] using hmoser.2.1
+    have hS : capS.erase 1 = ({2, 3, 4, 5, 6} : Finset Label) := by decide
+    have hO2 : capO2.erase 1 = ({0, 9, 10} : Finset Label) := by decide
+    have h := hmoser.2.1
+    rw [hS, hO2] at h
+    exact h
   · intro hcenter
     subst center
-    simpa [capS, capO1] using hmoser.2.2
+    have hS : capS.erase 2 = ({1, 3, 4, 5, 6} : Finset Label) := by decide
+    have hO1 : capO1.erase 2 = ({0, 7, 8} : Finset Label) := by decide
+    have h := hmoser.2.2
+    rw [hS, hO1] at h
+    exact h
   · exact hnonMoser center
   · exact hcapCounts center
   · intro hcenter

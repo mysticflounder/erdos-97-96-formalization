@@ -539,7 +539,8 @@ private theorem rightAdjacentIndex_oppIndex1
     rightAdjacentIndex S.oppIndex1 = S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx <;>
-    simp [rightAdjacentIndex, SurplusCapPacket.oppIndex1, hi]
+    simp only [rightAdjacentIndex, SurplusCapPacket.oppIndex1, hi,
+      Fin.val_zero, Fin.val_one, Fin.val_two] <;> rfl
 
 private theorem radialCyclicOrder_of_direct
     (D : CounterexampleData) (S : SurplusCapPacket D.A)

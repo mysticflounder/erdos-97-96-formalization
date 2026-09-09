@@ -346,7 +346,7 @@ theorem N4dExcludesFormA_v2_proof
   exact N4dExcludesFormA_v1_proof (S.cyclicShift)
       (N4dExcludesFormB_v1_proof (S.cyclicShift.cyclicShift)) hr
     (by simpa [cyclicShift_witnessClassAt_v1] using hcard)
-    (by simpa [cyclicShift_witnessClassAt_v1, cyclicShift_CP_C1] using hesc)
+    (by exact hesc)
     ((isFormA_v1_cyclicShift S r).mpr hform)
 
 /-- Cyclic transport of the Form `b` exclusion to `v₂`. -/
@@ -356,7 +356,7 @@ theorem N4dExcludesFormB_v2_proof
   intro r hr hcard hesc hform
   exact N4dExcludesFormB_v1_proof (S.cyclicShift) (r := r) hr
     (by simpa [cyclicShift_witnessClassAt_v1] using hcard)
-    (by simpa [cyclicShift_witnessClassAt_v1, cyclicShift_CP_C1] using hesc)
+    (by exact hesc)
     ((isFormB_v1_cyclicShift S r).mpr hform)
 
 /-- Cyclic transport of the Form `c` exclusion to `v₂`. -/
@@ -366,7 +366,7 @@ theorem N4dExcludesFormC_v2_proof
   intro r hr hcard hesc hform
   exact N4dExcludesFormC_v1_proof (S.cyclicShift) (r := r) hr
     (by simpa [cyclicShift_witnessClassAt_v1] using hcard)
-    (by simpa [cyclicShift_witnessClassAt_v1, cyclicShift_CP_C1] using hesc)
+    (by exact hesc)
     ((isFormC_v1_cyclicShift S r).mpr hform)
 
 /-- Direct cyclic transport of the Form `a` exclusion to `v₃`. -/
@@ -377,7 +377,7 @@ theorem N4dExcludesFormA_v3_proof
   exact N4dExcludesFormA_v1_proof (S.cyclicShift3)
       (N4dExcludesFormB_v1_proof S) hr
     (by simpa [cyclicShift3_witnessClassAt_v1] using hcard)
-    (by simpa [cyclicShift3_witnessClassAt_v1, cyclicShift3_CP_C1] using hesc)
+    (by exact hesc)
     ((isFormA_v1_cyclicShift3 S r).mpr hform)
 
 /-- Direct cyclic transport of the Form `b` exclusion to `v₃`. -/
@@ -387,7 +387,7 @@ theorem N4dExcludesFormB_v3_proof
   intro r hr hcard hesc hform
   exact N4dExcludesFormB_v1_proof (S.cyclicShift3) (r := r) hr
     (by simpa [cyclicShift3_witnessClassAt_v1] using hcard)
-    (by simpa [cyclicShift3_witnessClassAt_v1, cyclicShift3_CP_C1] using hesc)
+    (by exact hesc)
     ((isFormB_v1_cyclicShift3 S r).mpr hform)
 
 /-- Direct cyclic transport of the Form `c` exclusion to `v₃`. -/
@@ -397,7 +397,7 @@ theorem N4dExcludesFormC_v3_proof
   intro r hr hcard hesc hform
   exact N4dExcludesFormC_v1_proof (S.cyclicShift3) (r := r) hr
     (by simpa [cyclicShift3_witnessClassAt_v1] using hcard)
-    (by simpa [cyclicShift3_witnessClassAt_v1, cyclicShift3_CP_C1] using hesc)
+    (by exact hesc)
     ((isFormC_v1_cyclicShift3 S r).mpr hform)
 
 end FiniteEndpointShell

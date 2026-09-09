@@ -56,8 +56,8 @@ private theorem oppApex2_mem
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem nonempty_distinct_of_reselected_pair
@@ -110,8 +110,7 @@ private theorem nonempty_distinct_of_reselected_pair
         hfive).mp heq
     have htKx :
         t ∈ (H.selectedAt x hxA).toCriticalFourShell.support := by
-      simpa [P', ExactFiveInteriorCriticalPairFrontier.ofInteriorPair,
-        ExactFiveInteriorCriticalPairFrontier.frontier] using hnewMutual.2
+      exact hnewMutual.2
     have hxKx :
         x ∈ (H.selectedAt x hxA).toCriticalFourShell.support :=
       (H.selectedAt x hxA).toCriticalFourShell.q_mem_support

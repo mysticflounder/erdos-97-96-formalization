@@ -35,7 +35,7 @@ theorem SurplusCapPacket.surplusInterior_card_ge_four_of_card_gt_five
   rcases hi : S.surplusIdx with ⟨idx, hidx⟩
   interval_cases idx
   · have hcap : 5 < S.partition.C1.card := by
-      simpa [SurplusCapPacket.surplusCap, hi] using hgt
+      simpa only [SurplusCapPacket.surplusCap, hi] using hgt
     have hv3 : S.triangle.v3 ∈ S.partition.C1.erase S.triangle.v2 := by
       exact Finset.mem_erase.mpr
         ⟨S.triangle.v23_ne.symm, S.partition.v3_mem_C1⟩
@@ -44,7 +44,7 @@ theorem SurplusCapPacket.surplusInterior_card_ge_four_of_card_gt_five
       Finset.card_erase_of_mem S.partition.v2_mem_C1]
     omega
   · have hcap : 5 < S.partition.C2.card := by
-      simpa [SurplusCapPacket.surplusCap, hi] using hgt
+      simpa only [SurplusCapPacket.surplusCap, hi] using hgt
     have hv1 : S.triangle.v1 ∈ S.partition.C2.erase S.triangle.v3 := by
       exact Finset.mem_erase.mpr
         ⟨S.triangle.v13_ne, S.partition.v1_mem_C2⟩
@@ -53,7 +53,7 @@ theorem SurplusCapPacket.surplusInterior_card_ge_four_of_card_gt_five
       Finset.card_erase_of_mem S.partition.v3_mem_C2]
     omega
   · have hcap : 5 < S.partition.C3.card := by
-      simpa [SurplusCapPacket.surplusCap, hi] using hgt
+      simpa only [SurplusCapPacket.surplusCap, hi] using hgt
     have hv2 : S.triangle.v2 ∈ S.partition.C3.erase S.triangle.v1 := by
       exact Finset.mem_erase.mpr
         ⟨S.triangle.v12_ne.symm, S.partition.v2_mem_C3⟩

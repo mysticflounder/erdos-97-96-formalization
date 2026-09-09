@@ -96,7 +96,7 @@ private theorem normalized_row₁_omits
     (R : OriginalUniqueFourResidual F)
     (W : GoodSourceDistinctBlockerCommonDeletion R) :
     W.deleted ∉ (normalized_row₁ R W).support := by
-  simpa [normalized_row₁] using
+  exact
     (cross_deletion_survives_iff_not_mem_selected_support
       (lateFirstApexSystem R) W.source₁.2).mp W.source₁_survives
 
@@ -106,7 +106,7 @@ private theorem normalized_row₂_omits
     (R : OriginalUniqueFourResidual F)
     (W : GoodSourceDistinctBlockerCommonDeletion R) :
     W.deleted ∉ (normalized_row₂ R W).support := by
-  simpa [normalized_row₂] using
+  exact
     (cross_deletion_survives_iff_not_mem_selected_support
       (lateFirstApexSystem R) W.source₂.2).mp W.source₂_survives
 
@@ -172,20 +172,16 @@ theorem nonempty_cardGeThirteenUncoveredThreeCenterPacket_or_exactAdjacentCapGri
           (hnoFive secondRow.radius secondRow.radius_pos))
     have hC₀ρ : (W.row₁.support ∩ firstRow.support).card ≤ 2 := by
       rw [hfirstSupport]
-      simpa [W, normalized_witness, normalized_row₁] using
-        (actualLateRow_secondClass_card_le_two R surface W₀.source₁)
+      exact actualLateRow_secondClass_card_le_two R surface W₀.source₁
     have hC₁ρ : (W.row₂.support ∩ firstRow.support).card ≤ 2 := by
       rw [hfirstSupport]
-      simpa [W, normalized_witness, normalized_row₂] using
-        (actualLateRow_secondClass_card_le_two R surface W₀.source₂)
+      exact actualLateRow_secondClass_card_le_two R surface W₀.source₂
     have hC₀σ : (W.row₁.support ∩ secondRow.support).card ≤ 2 := by
       rw [hsecondSupport]
-      simpa [W, normalized_witness, normalized_row₁] using
-        (actualLateRow_secondClass_card_le_two R surface W₀.source₁)
+      exact actualLateRow_secondClass_card_le_two R surface W₀.source₁
     have hC₁σ : (W.row₂.support ∩ secondRow.support).card ≤ 2 := by
       rw [hsecondSupport]
-      simpa [W, normalized_witness, normalized_row₂] using
-        (actualLateRow_secondClass_card_le_two R surface W₀.source₂)
+      exact actualLateRow_secondClass_card_le_two R surface W₀.source₂
     have hpartition :=
       two_four_classes_two_four_shells_uncovered_or_doublePartition
         firstRow.support secondRow.support W.row₁.support W.row₂.support

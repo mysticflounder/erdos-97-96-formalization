@@ -151,8 +151,10 @@ theorem smaller_counterexample_of_removable
 
 /- ## Erdős 97 ⟹ Erdős 96, with explicit constant 3
 
-`EuclideanGeometry.unitDistancePairsCount A` is
-`#(A.offDiag.filter (fun p => dist p.1 p.2 = 1)) / 2` and
+the upstream `unitDistNum A` equals
+`#(A.offDiag.filter (fun p => dist p.1 p.2 = 1)) / 2` by
+`Problem96.EuclideanPeeling.unitDistNum_eq_doubledUnitCount_div_two`, a proved
+lemma rather than a definitional unfolding, and
 `Erdos96.maxConvexUnitDistances n` is the `sSup` of those counts over
 convex-independent `n`-sets; both are inlined.
 -/
@@ -169,7 +171,7 @@ theorem unit_distance_pairs_bound_of_erdos97
     (hConv : ∀ a ∈ (A : Set (EuclideanSpace ℝ (Fin 2))),
       a ∉ convexHull ℝ ((A : Set (EuclideanSpace ℝ (Fin 2))) \ {a})) :
     (A.offDiag.filter fun p => dist p.1 p.2 = 1).card / 2 ≤ 3 * A.card :=
-  Problem96.unit_distance_pairs_bound_of_erdos97 hP97 hConv
+  Problem96.doubledUnitCount_div_two_bound_of_erdos97 hP97 hConv
 
 /-- **Erdős 97 ⟹ Erdős 96.** Given Erdős 97, the maximum number of unit
 distances among `n` points in convex position is `O(n)`. -/
@@ -185,7 +187,7 @@ theorem erdos96_of_erdos97
             a ∉ convexHull ℝ ((points : Set (EuclideanSpace ℝ (Fin 2))) \ {a}),
           (points.offDiag.filter fun p => dist p.1 p.2 = 1).card / 2 = m} : ℕ) : ℝ))
       =O[atTop] fun n : ℕ => (n : ℝ) :=
-  Problem96.erdos96_rhs_of_erdos97 hP97
+  Problem96.erdos96_rhs_inlined_of_erdos97 hP97
 
 /- ## Minimum enclosing circle and the counting engine -/
 

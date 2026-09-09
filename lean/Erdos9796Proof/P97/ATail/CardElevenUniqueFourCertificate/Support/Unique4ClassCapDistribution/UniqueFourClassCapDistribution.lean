@@ -39,18 +39,18 @@ private theorem oppApex2_mem_A
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem oppApex1_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 private theorem interior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
@@ -60,7 +60,7 @@ private theorem interior_not_mem_surplusCap
     S.surplusIdx_ne_oppIndex1.symm
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simpa [SurplusCapPacket.capByIndex,
+    simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
 /-- The rigid exact-two distribution: the other two class points occupy the
@@ -188,11 +188,7 @@ theorem AlignedInteriorFrontier.pair_q_mem_strict
     {R : OriginalUniqueFourResidual F}
     (P : AlignedInteriorFrontier R) :
     P.frontier.pair.q ∈ S.capInteriorByIndex S.oppIndex1 := by
-  simpa [AlignedInteriorFrontier.frontier,
-    CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-    CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-    CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-    (Finset.mem_inter.mp P.interiorPair.q_mem).2
+  exact (Finset.mem_inter.mp P.interiorPair.q_mem).2
 
 theorem AlignedInteriorFrontier.pair_w_mem_strict
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -200,11 +196,7 @@ theorem AlignedInteriorFrontier.pair_w_mem_strict
     {R : OriginalUniqueFourResidual F}
     (P : AlignedInteriorFrontier R) :
     P.frontier.pair.w ∈ S.capInteriorByIndex S.oppIndex1 := by
-  simpa [AlignedInteriorFrontier.frontier,
-    CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-    CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-    CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-    (Finset.mem_inter.mp P.interiorPair.w_mem).2
+  exact (Finset.mem_inter.mp P.interiorPair.w_mem).2
 
 /-- The aligned pair inherits the production two-apex escape inequality; in
 particular it is not another forbidden double-apex co-radial pair. -/
@@ -233,45 +225,13 @@ def AlignedInteriorFrontier.residual
   every_class_member_blocks := R.every_class_member_blocks
   interior_q := P.frontier.pair.q
   interior_w := P.frontier.pair.w
-  interior_q_mem := by
-    simpa [AlignedInteriorFrontier.frontier,
-      CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-      CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-      P.interiorPair.q_mem
-  interior_w_mem := by
-    simpa [AlignedInteriorFrontier.frontier,
-      CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-      CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-      P.interiorPair.w_mem
-  interior_q_ne_w := by
-    simpa [AlignedInteriorFrontier.frontier,
-      CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-      CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-      CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-      P.interiorPair.q_ne_w
+  interior_q_mem := P.interiorPair.q_mem
+  interior_w_mem := P.interiorPair.w_mem
+  interior_q_ne_w := P.interiorPair.q_ne_w
   bisector_center_mem_interior := by
     intro c hcA hcApex hcEq
     exact interior_pair_bisector_center_mem_capInterior
-      (by
-        simpa [AlignedInteriorFrontier.frontier,
-          CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-          CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-          CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-          P.interiorPair.q_mem)
-      (by
-        simpa [AlignedInteriorFrontier.frontier,
-          CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-          CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-          CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-          P.interiorPair.w_mem)
-      (by
-        simpa [AlignedInteriorFrontier.frontier,
-          CardFiveInteriorDoubleDeletionPair.toCriticalPairFrontier,
-          CardFiveInteriorDoubleDeletionPair.toSurvivorPairRelocationPacket,
-          CardFiveInteriorDoubleDeletionPair.toInteriorSurvivorPair] using
-          P.interiorPair.q_ne_w)
+      P.interiorPair.q_mem P.interiorPair.w_mem P.interiorPair.q_ne_w
       hcA hcApex hcEq
 
 /-- Exhaustive source-level decomposition of the exact-four leaf. -/

@@ -155,7 +155,7 @@ theorem snd_eq_of_mem_allocate {α : Type*} {base : ℕ} {keys : List α} (hnd :
   obtain ⟨i, hi, rfl⟩ := mem_allocate_iff.mp h
   obtain ⟨j, hj, rfl⟩ := mem_allocate_iff.mp h'
   obtain ⟨hlen, -⟩ := List.getElem?_eq_some_iff.mp hi
-  have := List.getElem?_inj hlen hnd (hi.trans hj.symm)
+  have := (List.getElem?_inj hlen hnd).mp (hi.trans hj.symm)
   omega
 
 theorem exists_mem_allocate {α : Type*} {base : ℕ} {keys : List α} {k : α} (h : k ∈ keys) :

@@ -301,8 +301,8 @@ are open; only the equivalence is proved.
 
 | Name (under `Headline`) | Project theorem | Claim |
 |---|---|---|
-| `unit_distance_pairs_bound_of_erdos97` | `Problem96.unit_distance_pairs_bound_of_erdos97` | Erdős 97 ⟹ ≤ 3n unit-distance pairs in convex position |
-| `erdos96_of_erdos97` | `Problem96.erdos96_rhs_of_erdos97` | Erdős 97 ⟹ Erdős 96 |
+| `unit_distance_pairs_bound_of_erdos97` | `Problem96.doubledUnitCount_div_two_bound_of_erdos97` | Erdős 97 ⟹ ≤ 3n unit-distance pairs in convex position |
+| `erdos96_of_erdos97` | `Problem96.erdos96_rhs_inlined_of_erdos97` | Erdős 97 ⟹ Erdős 96 |
 
 Both are conditional on `Problem97.UniversalProblem97Statement`, which appears
 as an explicit hypothesis of the gated statement — nothing is hidden. The

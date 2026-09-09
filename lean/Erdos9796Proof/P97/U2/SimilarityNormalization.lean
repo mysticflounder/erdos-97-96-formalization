@@ -342,8 +342,8 @@ theorem exists_capU2_of_dist_v2_one (q : ℝ²) (hq : dist q (pt 1 0) = 1) :
   rw [capU2]
   ext i
   fin_cases i
-  · simpa only [pt, Matrix.cons_val_zero] using hq0
-  · simpa only [pt, Matrix.cons_val_one] using hq1
+  · exact hq0
+  · exact hq1
 
 /-- **Open-arc angle range of cap `C₂`.**  In the normalized frame, a unit-circle point
 `capU2 γ` about `v₂ = (1,0)` (with `γ` the principal-shifted argument, `-5π/3 < γ ≤ π/3`)
@@ -443,8 +443,8 @@ theorem exists_capU3_of_dist_v3_one (q : ℝ²) (hq : dist q (pt (1 / 2) (Real.s
   rw [capU3]
   ext i
   fin_cases i
-  · simpa only [pt, Matrix.cons_val_zero] using hq0
-  · simpa only [pt, Matrix.cons_val_one] using hq1
+  · exact hq0
+  · exact hq1
 
 /-- **Open-arc angle range of cap `C₃`.**  A unit-circle point `capU3 δ` about
 `v₃ = (1/2, √3/2)` (with `δ ∈ (-π/3, 5π/3]`) lying strictly beyond the cap chord `v₁v₂`

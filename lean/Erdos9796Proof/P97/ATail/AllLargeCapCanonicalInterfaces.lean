@@ -134,7 +134,12 @@ theorem triApexAllLargeContext_index_cases
   rcases hi : S.surplusIdx with ⟨j, hj3⟩
   fin_cases i <;>
     interval_cases j <;>
-      simp [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+      simp only [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] <;>
+        (first
+          | exact Or.inl rfl
+          | exact Or.inr (Or.inl rfl)
+          | exact Or.inr (Or.inr rfl)
+          | exact Or.inr (Or.inr trivial))
 
 /-- Two distinct strict-cap points on one rich-apex radius whose canonical
 critical shells have the same blocker determine that blocker's complete
@@ -214,7 +219,7 @@ theorem equalBlocker_sameRadiusInterior_shell_inter_cap_eq_pair
   have hcapTwo :
       ((H.selectedAt x hxA).toCriticalFourShell.support ∩
         S.capByIndex i).card ≤ 2 := by
-    simpa using
+    exact
       CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
         S D.convex i
         (H.selectedAt x hxA).toCriticalFourShell.toSelectedFourClass
@@ -347,23 +352,23 @@ private theorem capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
-      SurplusCapPacket.oppIndex1, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi] <;> rfl
 
 private theorem capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
-      SurplusCapPacket.oppIndex2, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppCap2, hi] <;> rfl
 
 private theorem capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 
 /-- Build the indexed E1 context from the existing residual bundle. -/

@@ -52,18 +52,9 @@ the P4 core. -/
 theorem curvature_membership_iff_rowMem
     (Q : DirectSource R profile distribution) (center point : Label) :
     membershipVal Q.curvature ⟨center, point⟩ ↔
-      rowMem Q.packet.core directIndex center point := by
-  simp only [membershipVal, DirectSource.curvature,
-    ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource.selectedRowSupport,
-    ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource.selectedRow,
-    Finset.mem_filter, Finset.mem_univ, true_and, rowMem, directIndex_apply]
-  change Q.packet.core.boundary point ∈
-      (Q.packet.core.carrierPattern.classAt (Q.packet.core.boundary center)
-        (boundary_mem_carrier Q.packet.core center)).support ↔
-    Q.packet.core.boundary point ∈
-      (Q.packet.core.carrierPattern.classAt (Q.packet.core.boundary center)
-        (boundary_mem_carrier Q.packet.core center)).support
-  rfl
+      rowMem Q.packet.core directIndex center point :=
+  ⟨fun h => (Finset.mem_filter.mp h).2,
+    fun h => Finset.mem_filter.mpr ⟨Finset.mem_univ _, h⟩⟩
 
 /-- On selected-row variables, the direct compact valuation is exactly the
 source row-membership predicate. -/

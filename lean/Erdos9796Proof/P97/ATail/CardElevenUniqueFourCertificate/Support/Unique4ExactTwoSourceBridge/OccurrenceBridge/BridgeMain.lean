@@ -87,8 +87,15 @@ theorem bridgeClauses_length : bridgeClauses.length = 8703 := by
   have h38 : bridgeChunk38.length = 220 := by decide
   have h39 : bridgeChunk39.length = 220 := by decide
   have h40 : bridgeChunk40.length = 123 := by decide
-  simp only [bridgeClauses, List.length_map, bridgeEntries,
-    List.length_append, h01, h02, h03, h04, h05, h06, h07, h08, h09, h10, h11, h12, h13, h14, h15, h16, h17, h18, h19, h20, h21, h22, h23, h24, h25, h26, h27, h28, h29, h30, h31, h32, h33, h34, h35, h36, h37, h38, h39, h40]
+  have hlen : ∀ (l₁ l₂ : List BridgeEntry) (a b : Nat),
+      l₁.length = a → l₂.length = b → (l₁ ++ l₂).length = a + b := by
+    intro l₁ l₂ a b hl₁ hl₂
+    rw [List.length_append, hl₁, hl₂]
+  have hmap : ∀ (l : List BridgeEntry) (a : Nat),
+      l.length = a → (l.map BridgeEntry.clause).length = a := by
+    intro l a hl
+    rw [List.length_map, hl]
+  exact hmap _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ h01 h02) h03) h04) h05) h06) h07) h08) h09) h10) h11) h12) h13) h14) h15) h16) h17) h18) h19) h20) h21) h22) h23) h24) h25) h26) h27) h28) h29) h30) h31) h32) h33) h34) h35) h36) h37) h38) h39) h40)
 
 /-- Every trimmed clause of the selected p5 formula is satisfied by the
 bridge valuation of any packet geometry satisfying all retained
