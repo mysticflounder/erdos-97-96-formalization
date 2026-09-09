@@ -508,7 +508,8 @@ theorem exists_source_safeCubeOK_with_physicalCycleBlockers
   have hblockerXv : blocker 4 = 7 := by
     apply labeling.e.symm.injective
     apply Subtype.ext
-    simpa only [blocker, sources, Hlate, Equiv.symm_apply_apply] using
+    simp only [blocker, sources, Hlate, Equiv.symm_apply_apply]
+    exact
       labeling.blockerXv.symm
   have hblockerActual : ∀ i, blocker i = labeling.e
       ⟨Hlate.centerAt (sources i).1 (sources i).2,
@@ -544,11 +545,16 @@ theorem exists_source_safeCubeOK_with_physicalCycleBlockers
           (sources i).2).toCriticalFourShell.support ∩ C = edges i := by
     intro i
     fin_cases i
-    · simpa only [Hlate, C, sources, edges] using huTrace
-    · simpa only [Hlate, C, sources, edges] using hxuTrace
-    · simpa only [Hlate, C, sources, edges] using hdeletedTrace
-    · simpa only [Hlate, C, sources, edges] using hvTrace
-    · simpa only [Hlate, C, sources, edges] using hxvTrace
+    · simp only [Hlate, C, sources, edges]
+      exact huTrace
+    · simp only [Hlate, C, sources, edges]
+      exact hxuTrace
+    · simp only [Hlate, C, sources, edges]
+      exact hdeletedTrace
+    · simp only [Hlate, C, sources, edges]
+      exact hvTrace
+    · simp only [Hlate, C, sources, edges]
+      exact hxvTrace
   have hrowTrace : ∀ i,
       row (blocker i) ∩ labelsOf labeling.e C =
         labelsOf labeling.e (edges i) := by

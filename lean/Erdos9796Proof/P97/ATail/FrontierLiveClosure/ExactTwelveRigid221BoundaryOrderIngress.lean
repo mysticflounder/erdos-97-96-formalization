@@ -182,9 +182,9 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
         surplus_between := ?_
         firstOpposite_after := ?_ }
     · constructor
-      · simpa only [position, index, hzeroIndex, hfirstIndex] using
+      · simpa only [position, index, hzeroIndex, hfirstIndex, Fin.lt_def] using
           direct.apex_order.1
-      · simpa only [position, index, hfirstIndex, hsecondIndex] using
+      · simpa only [position, index, hfirstIndex, hsecondIndex, Fin.lt_def] using
           direct.apex_order.2
     · intro label hlabel
       have hsource :
@@ -198,8 +198,8 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
         apply B.boundary_injective
         exact hqpoint.trans (B.point_eq _).symm
       constructor
-      · simpa only [position, index, hzeroIndex, hq] using hq0
-      · simpa only [position, index, hfirstIndex, hq] using hqiv
+      · simpa only [position, index, hzeroIndex, hq, Fin.lt_def] using hq0
+      · simpa only [position, index, hfirstIndex, hq, Fin.lt_def] using hqiv
     · intro label hlabel
       have hsource :
           (labeling.e.symm label).1 ∈
@@ -213,8 +213,8 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
         apply B.boundary_injective
         exact hqpoint.trans (B.point_eq _).symm
       constructor
-      · simpa only [position, index, hfirstIndex, hq] using hivq
-      · simpa only [position, index, hsecondIndex, hq] using hqiw
+      · simpa only [position, index, hfirstIndex, hq, Fin.lt_def] using hivq
+      · simpa only [position, index, hsecondIndex, hq, Fin.lt_def] using hqiw
     · intro label hlabel
       have hsource :
           (labeling.e.symm label).1 ∈
@@ -226,7 +226,7 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
       have hq : q = B.indexOf (labeling.e.symm label) := by
         apply B.boundary_injective
         exact hqpoint.trans (B.point_eq _).symm
-      simpa only [position, index, hsecondIndex, hq] using hiwq
+      simpa only [position, index, hsecondIndex, hq, Fin.lt_def] using hiwq
   · right
     refine
       { apex_order := ?_
@@ -234,9 +234,9 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
         surplus_between := ?_
         secondOpposite_after := ?_ }
     · constructor
-      · simpa only [position, index, hzeroIndex, hsecondIndex] using
+      · simpa only [position, index, hzeroIndex, hsecondIndex, Fin.lt_def] using
           mirror.apex_order.1
-      · simpa only [position, index, hsecondIndex, hfirstIndex] using
+      · simpa only [position, index, hsecondIndex, hfirstIndex, Fin.lt_def] using
           mirror.apex_order.2
     · intro label hlabel
       have hsource :
@@ -250,8 +250,8 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
         apply B.boundary_injective
         exact hqpoint.trans (B.point_eq _).symm
       constructor
-      · simpa only [position, index, hzeroIndex, hq] using hq0
-      · simpa only [position, index, hsecondIndex, hq] using hqiw
+      · simpa only [position, index, hzeroIndex, hq, Fin.lt_def] using hq0
+      · simpa only [position, index, hsecondIndex, hq, Fin.lt_def] using hqiw
     · intro label hlabel
       have hsource :
           (labeling.e.symm label).1 ∈
@@ -265,8 +265,8 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
         apply B.boundary_injective
         exact hqpoint.trans (B.point_eq _).symm
       constructor
-      · simpa only [position, index, hsecondIndex, hq] using hiwq
-      · simpa only [position, index, hfirstIndex, hq] using hqiv
+      · simpa only [position, index, hsecondIndex, hq, Fin.lt_def] using hiwq
+      · simpa only [position, index, hfirstIndex, hq, Fin.lt_def] using hqiv
     · intro label hlabel
       have hsource :
           (labeling.e.symm label).1 ∈
@@ -278,7 +278,7 @@ noncomputable def FrozenRoleLabeling.frozenBoundaryOrder_of_capBlocks
       have hq : q = B.indexOf (labeling.e.symm label) := by
         apply B.boundary_injective
         exact hqpoint.trans (B.point_eq _).symm
-      simpa only [position, index, hfirstIndex, hq] using hivq
+      simpa only [position, index, hfirstIndex, hq, Fin.lt_def] using hivq
 
 /-- An exact interior profile transports a cardinality-independent geometric
 zero-cut indexing to the frozen twelve-label vocabulary. -/
