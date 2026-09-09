@@ -76,12 +76,13 @@
     "uploader_plan": "VALIDATED; digest 4d1cd2228bc1a769f4baca98f0ab1e3c1a6466109bdbac4d475f93dc6ed8e015",
     "proof_entries": 0,
     "solution_files": 0,
-    "network_calls": 0
+    "network_calls_before_reviewed_apply": 0,
+    "server_publication": "PASS; nine theorem nodes and nine milestones published with exact readback; see receipt.json"
   },
   "packet_hashes": {
-    "README.md": "ad8d0c77d5976444db359b2dee842404af16b33afdc62264a34d5ee87085fb22",
+    "README.md": "c7601f512eccd1934af69ddb51469702125a8dbda07e93d49537ebc82d75718f",
     "dag.json": "224983a43661c91dc697a011cc723f50b8c3a015d344408efd90f2179ff74efe",
     "plan.toml": "7742edd753e3565a32d6b953119d4a7ea3a705a9c753714cf7b05b69283f2815"
   },
-  "promotion_status": "statement creation packet only — no theorem proof submitted or promoted"
+  "promotion_status": "nine public statement nodes and milestones published — no theorem proof submitted or promoted"
 }

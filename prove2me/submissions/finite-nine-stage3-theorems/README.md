@@ -46,8 +46,8 @@ comparison result.
 
 ## Publication boundary
 
-Running `validate` performs no server mutation. Applying this plan would create public
-theorem nodes and mission milestones, so it requires a separate reviewed publication
-step. Even after node creation, no finite-nine child theorem is proved on Prove2Me
+Running `validate` performs no server mutation. After independent review, this plan
+was applied and all nine public theorem nodes and milestones were created;
+`receipt.json` records their IDs and exact readbacks. No finite-nine child theorem is proved on Prove2Me
 until its no-`sorry` proof solution is transferred, accepted, and independently
 verified. The final mission theorem remains a later root-assembly step.

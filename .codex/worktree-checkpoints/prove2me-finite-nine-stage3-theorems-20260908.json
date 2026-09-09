@@ -20,7 +20,9 @@
     "prove2me/submissions/finite-nine-stage3-theorems/validation.json"
   ],
   "generated_roots": [],
-  "durable_paths": [],
+  "durable_paths": [
+    "prove2me/submissions/finite-nine-stage3-theorems/receipt.json"
+  ],
   "created_utc": "2026-09-09T06:39:14Z",
-  "manifest_sha256": "3cbd373e503b426fa56316a54af3e32b8dc7dae1ac5e9d348dfc61ce0bbe4723"
+  "manifest_sha256": "a76d0aaf1e7fd273986bb28fd201510d0949cf40a7907f8f41230e71e3da5252"
 }
