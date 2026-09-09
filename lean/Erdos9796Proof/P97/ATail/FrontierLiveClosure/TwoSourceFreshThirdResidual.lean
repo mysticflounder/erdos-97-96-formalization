@@ -3524,7 +3524,7 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
       apply B.boundary_injective
       calc
         B.boundary freshIndex = freshLabel.1 := by
-          simpa [freshIndex] using B.point_eq freshLabel
+          simp only [freshIndex]; exact B.point_eq freshLabel
         _ = B.boundary id := heq.symm
     have hinter : (DRow.support ∩ freshRow.support).card ≤ 2 :=
       SelectedFourClass.inter_card_le_two DRow freshRow hcentersNe
@@ -3543,14 +3543,14 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
     · refine ⟨qBetween, DRow, rowCap, Or.inr rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inl ⟨houtsideFresh, hfreshBetween, hbetweenSource,
         hsourceCanonical, rfl,
         ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩
     · refine ⟨qBetween, DRow, rowCap, Or.inr rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inl ⟨houtsideFresh, hfreshBetween, hbetweenSource,
         hsourceCanonical, rfl,
         ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩
@@ -3564,14 +3564,14 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
     · refine ⟨qOutside, DRow, rowCap, Or.inl rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inr (Or.inl ⟨houtsideFresh, hfreshBetween,
         hbetweenCanonical, hcanonicalSource, rfl,
         ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩)
     · refine ⟨qOutside, DRow, rowCap, Or.inl rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inr (Or.inl ⟨houtsideFresh, hfreshBetween,
         hbetweenCanonical, hcanonicalSource, rfl,
         ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩)
@@ -3585,14 +3585,14 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
     · refine ⟨qBetween, DRow, rowCap, Or.inr rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inr (Or.inr (Or.inl ⟨hcanonSource, hsourceBetween,
         hbetweenFresh, hfreshOutside, rfl,
         ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))
     · refine ⟨qBetween, DRow, rowCap, Or.inr rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inr (Or.inr (Or.inl ⟨hcanonSource, hsourceBetween,
         hbetweenFresh, hfreshOutside, rfl,
         ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))
@@ -3606,14 +3606,14 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
     · refine ⟨qOutside, DRow, rowCap, Or.inl rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inr (Or.inr (Or.inr ⟨hsourceCanonical, hcanonicalBetween,
         hbetweenFresh, hfreshOutside, rfl,
         ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))
     · refine ⟨qOutside, DRow, rowCap, Or.inl rfl,
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hindex,
-        by simpa [freshRow] using two_outside hindex DRow, ?_⟩
+        by exact two_outside hindex DRow, ?_⟩
       exact Or.inr (Or.inr (Or.inr ⟨hsourceCanonical, hcanonicalBetween,
         hbetweenFresh, hfreshOutside, rfl,
         ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))
@@ -3738,8 +3738,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inl ⟨houtsideFresh, hfreshBetween, hbetweenSource,
           hsourceCanonical, rfl,
           ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩⟩
@@ -3747,8 +3747,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inl ⟨houtsideFresh, hfreshBetween, hbetweenSource,
           hsourceCanonical, rfl,
           ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩⟩
@@ -3768,8 +3768,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inr (Or.inl ⟨houtsideFresh, hfreshBetween,
           hbetweenCanonical, hcanonicalSource, rfl,
           ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩)⟩
@@ -3777,8 +3777,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inr (Or.inl ⟨houtsideFresh, hfreshBetween,
           hbetweenCanonical, hcanonicalSource, rfl,
           ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩)⟩
@@ -3795,8 +3795,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inr (Or.inr (Or.inl ⟨hcanonicalSource,
           hsourceBetween, hbetweenFresh, hfreshOutside, rfl,
           ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))⟩
@@ -3804,8 +3804,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inr (Or.inr (Or.inl ⟨hcanonicalSource,
           hsourceBetween, hbetweenFresh, hfreshOutside, rfl,
           ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))⟩
@@ -3825,8 +3825,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inr (Or.inr (Or.inr ⟨hsourceCanonical,
           hcanonicalBetween, hbetweenFresh, hfreshOutside, rfl,
           ⟨Or.inl havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))⟩
@@ -3834,8 +3834,8 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
         hcenterCap, hcapInside, hcapOutside,
         by simpa [freshIndex, freshLabel] using hfreshIndex,
         by simpa [sourceIndex, sourceLabel] using hsourceIndex,
-        by simpa [freshRow] using two_outside freshLabel freshRow hfreshIndex DRow,
-        by simpa [sourceRow] using two_outside sourceLabel sourceRow hsourceIndex DRow,
+        by exact two_outside freshLabel freshRow hfreshIndex DRow,
+        by exact two_outside sourceLabel sourceRow hsourceIndex DRow,
         by exact Or.inr (Or.inr (Or.inr ⟨hsourceCanonical,
           hcanonicalBetween, hbetweenFresh, hfreshOutside, rfl,
           ⟨Or.inr havoid, hcenterCap, hcapInside, hcapOutside⟩⟩))⟩
@@ -4736,13 +4736,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hcanonicalOrder.1 hcanonicalOrder.2
           hremainderOrder.1 hremainderOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₁Source)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₁Fresh)
     · have hcanonicalOrder :=
         between_forward hsourceEndpointOrder.1 hcanonical₁Between
@@ -4753,13 +4753,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hcanonicalOrder.1 hcanonicalOrder.2
           hremainderOrder.1 hremainderOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₁Source)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₂Fresh)
     · have hcanonicalOrder :=
         between_forward hsourceEndpointOrder.1 hcanonical₂Between
@@ -4770,13 +4770,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hcanonicalOrder.1 hcanonicalOrder.2
           hremainderOrder.1 hremainderOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₂Source)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₁Fresh)
     · have hcanonicalOrder :=
         between_forward hsourceEndpointOrder.1 hcanonical₂Between
@@ -4787,13 +4787,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hcanonicalOrder.1 hcanonicalOrder.2
           hremainderOrder.1 hremainderOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₂Source)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₂Fresh)
   · rcases hcanonicalBetween with hcanonical₁Between | hcanonical₂Between <;>
       rcases hremainderBetween with hremainder₁Between | hremainder₂Between
@@ -4806,13 +4806,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hremainderOrder.1 hremainderOrder.2
           hcanonicalOrder.1 hcanonicalOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₁Fresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₁Source)
     · have hcanonicalOrder :=
         between_reverse hfreshEndpointOrder.2 hcanonical₁Between
@@ -4823,13 +4823,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hremainderOrder.1 hremainderOrder.2
           hcanonicalOrder.1 hcanonicalOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₂Fresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₁Source)
     · have hcanonicalOrder :=
         between_reverse hfreshEndpointOrder.2 hcanonical₂Between
@@ -4840,13 +4840,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hremainderOrder.1 hremainderOrder.2
           hcanonicalOrder.1 hcanonicalOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₁Fresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₂Source)
     · have hcanonicalOrder :=
         between_reverse hfreshEndpointOrder.2 hcanonical₂Between
@@ -4857,13 +4857,13 @@ private theorem false_of_threeRowCyclicSeparationTriangle_at_sharedPointZero
           B.boundary_injective B.boundary_ccw
           (by omega) hremainderOrder.1 hremainderOrder.2
           hcanonicalOrder.1 hcanonicalOrder.2
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hremainder₂Fresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             fresh_eq hsharedFresh hendpointFresh)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hendpointSource)
-          (by simpa only [hboundaryZero, B.point_eq] using
+          (by simp only [hboundaryZero, B.point_eq]; exact
             source_eq hsharedSource hcanonical₂Source)
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
@@ -5054,16 +5054,16 @@ theorem freshThird_exactSupport_threeRowCyclicSeparations
   have hsourceEndpoint : sourceCenter.1 ≠ endpointCenter.1 := by
     have hendpointMem : endpointCenter.1 ∈ Ksource.support := by
       rcases hrowCenter with hrowCenter | hrowCenter
-      · simpa [endpointCenter, Ksource, hrowCenter] using source₁_mem
-      · simpa [endpointCenter, Ksource, hrowCenter] using source₂_mem
+      · simp only [endpointCenter, Ksource, hrowCenter]; exact source₁_mem
+      · simp only [endpointCenter, Ksource, hrowCenter]; exact source₂_mem
     exact (ne_of_mem_of_not_mem hendpointMem Ksource.center_not_mem).symm
   have hfreshEndpoint : freshCenter.1 ≠ endpointCenter.1 := by
     have hendpointMem : endpointCenter.1 ∈ Kfresh.support := by
       rcases hrowCenter with hrowCenter | hrowCenter
-      · simpa [endpointCenter, Kfresh, hrowCenter] using
+      · simp only [endpointCenter, Kfresh, hrowCenter]; exact
           (H.selectedAt Q.source₁.1
             Q.source₁.2).toCriticalFourShell.q_mem_support
-      · simpa [endpointCenter, Kfresh, hrowCenter] using
+      · simp only [endpointCenter, Kfresh, hrowCenter]; exact
           Q.source₂_mem_source₁_shell
     exact (ne_of_mem_of_not_mem hendpointMem Kfresh.center_not_mem).symm
   have hfirstCanonicalSource :
@@ -5216,7 +5216,7 @@ private theorem false_of_freshThird_exactSupport_cyclicTriangle
     exact Nat.ne_of_gt hn⟩
   have hshiftZero : Bshift.boundary (0 : Fin Bshift.n) = sharedPoint.1 := by
     change B.boundary ((0 : Fin B.n) + cut) = sharedPoint.1
-    simpa [cut] using B.point_eq sharedPoint
+    simp only [cut, zero_add, pointOf]; exact B.point_eq sharedPoint
   let idShift : Fin Bshift.n := Bshift.indexOf endpointLabel
   have hcenterShift : B.boundary id = Bshift.boundary idShift := by
     symm
@@ -5262,27 +5262,27 @@ private theorem false_of_freshThird_exactSupport_cyclicTriangle
     exact Bshift.point_eq endpointLabel
   have hsharedSource : sharedPoint.1 ∈ Ksource.support := by
     by_cases hfirst : B.boundary id = Q.source₁.1
-    · simpa [sharedPoint, hfirst, Ksource] using source₂_mem
-    · simpa [sharedPoint, hfirst, Ksource] using source₁_mem
+    · simp only [sharedPoint, hfirst, Ksource]; exact source₂_mem
+    · simp only [sharedPoint, hfirst, Ksource]; exact source₁_mem
   have hsharedFresh : sharedPoint.1 ∈ Kfresh.support := by
     by_cases hfirst : B.boundary id = Q.source₁.1
-    · simpa [sharedPoint, hfirst, Kfresh] using
+    · simp only [sharedPoint, hfirst, Kfresh]; exact
         Q.source₂_mem_source₁_shell
-    · simpa [sharedPoint, hfirst, Kfresh] using
+    · simp only [sharedPoint, hfirst, Kfresh]; exact
         (H.selectedAt Q.source₁.1
           Q.source₁.2).toCriticalFourShell.q_mem_support
   have hendpointSource : endpointCenter.1 ∈ Ksource.support := by
     rw [hendpointEq]
     rcases hrowCenter with hfirst | hsecond
-    · simpa [endpointLabel, hfirst, Ksource] using source₁_mem
-    · simpa [endpointLabel, hsecond, Ksource] using source₂_mem
+    · simp only [endpointLabel, hfirst, Ksource]; exact source₁_mem
+    · simp only [endpointLabel, hsecond, Ksource]; exact source₂_mem
   have hendpointFresh : endpointCenter.1 ∈ Kfresh.support := by
     rw [hendpointEq]
     rcases hrowCenter with hfirst | hsecond
-    · simpa [endpointLabel, hfirst, Kfresh] using
+    · simp only [endpointLabel, hfirst, Kfresh]; exact
         (H.selectedAt Q.source₁.1
           Q.source₁.2).toCriticalFourShell.q_mem_support
-    · simpa [endpointLabel, hsecond, Kfresh] using
+    · simp only [endpointLabel, hsecond, Kfresh]; exact
         Q.source₂_mem_source₁_shell
   have hcanonical₁Source : C.surface.firstSource.1 ∈ Ksource.support := by
     change C.surface.firstSource.1 ∈
@@ -7408,7 +7408,7 @@ theorem no_four_seed_roles_same_distance
     Finset.univ.image (fun i : Fin 4 ↦ seedPoint (e i))
   have hpositive : 0 < shellRadius := by
     exact dist_pos.mpr (by
-      simpa [point] using hne 0)
+      exact hne 0)
   have hchosenCard : chosen.card = 4 := by
     have hinj : Function.Injective (fun i : Fin 4 ↦ seedPoint (e i)) :=
       (seedRole_point_injective (P := P) (Pρ := Pρ) View).comp e.injective
@@ -8174,16 +8174,16 @@ theorem ofView
       calc
         FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View left =
             B.boundary leftPosition := by
-              simpa [leftPosition,
-                FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition] using
+              simp only [leftPosition,
+                FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition]; exact
                 (B.point_eq
                   ⟨FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View left,
                     FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
                       (P := P) (Pρ := Pρ) View left⟩).symm
         _ = B.boundary rightPosition := congrArg B.boundary heq
         _ = FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View right := by
-              simpa [rightPosition,
-                FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition] using
+              simp only [rightPosition,
+                FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition]; exact
                 B.point_eq
                   ⟨FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View right,
                     FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
@@ -8938,26 +8938,26 @@ theorem sourceFaithfulFan_ofView
             P Pρ View).blockerCap i)
       rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
         (P := P) (Pρ := Pρ)]
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
         FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.blockerCapOfView,
-        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hcap
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact hcap
     · change
         ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).HasFourAfterDeleting
           (.fanSource i) (.blockerCenter i)
       rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
         (P := P) (Pρ := Pρ)]
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
-        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hblocked
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact hblocked
     · change
         (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Same
           .pinnedCenter (.blockerCenter i)
       rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
         (P := P) (Pρ := Pρ)]
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
         FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
-        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hcenter.1
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact hcenter.1
     · apply FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.rowSupportEq_ofView_of_eq
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using hcenter.2.1
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport]; exact hcenter.2.1
     · change
         (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Nonrobust
           .pinnedCenter
@@ -8973,32 +8973,32 @@ theorem sourceFaithfulFan_ofView
             P Pρ View).blockerCap i)
       rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
         (P := P) (Pρ := Pρ)]
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
         FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.blockerCapOfView,
-        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hcap
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact hcap
     · change
         ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).HasFourAfterDeleting
           (.fanSource i) (.blockerCenter i)
       rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.hasFourAfterDeleting_ofView_iff
         (P := P) (Pρ := Pρ)]
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
-        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hblocked
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact hblocked
     · change
         ¬ (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View).Same
           .pinnedCenter (.blockerCenter i)
       rw [FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.same_ofView_iff
         (P := P) (Pρ := Pρ)]
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
         FreshThirdPinnedEndpointOutsideSeedFiniteView.SamePoint,
-        FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using hseparate.1
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact hseparate.1
     · change
         FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowOverlapCount
             (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.ofView P Pρ View)
             .fan (.blocker i) ≤ 2
       rw [FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.rowOverlapCount_ofView_eq
         (P := P) (Pρ := Pρ)]
-      simpa [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
-        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using hseparate.2
+      simp only [FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration.ofView,
+        FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport]; exact hseparate.2
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
@@ -9147,7 +9147,7 @@ theorem orderedRowAtWith_of_positions
       B.boundary q =
         FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View role := by
     rw [← hposition]
-    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition] using
+    simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.boundaryPosition]; exact
       B.point_eq
         ⟨FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View role,
           FreshThirdPinnedEndpointOutsideSeedFiniteView.point_mem_carrier
@@ -9179,7 +9179,7 @@ theorem orderedRowAtWith_of_positions
           (B.indexOf ⟨C.surface.firstSource.1, C.surface.firstSource.2⟩) =
         FreshThirdPinnedEndpointOutsideSeedFiniteView.point
           P Pρ View .canonicalSource := by
-    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+    simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact
       B.point_eq ⟨C.surface.firstSource.1, C.surface.firstSource.2⟩
   have hendpointSplit
       {other : FreshThirdPinnedEndpointOutsideSeedPointRole} {q : Fin B.n}
@@ -9407,18 +9407,18 @@ theorem ofView
   · exact
       (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
         (P := P) (Pρ := Pρ) View _ _).2 (by
-          simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+          simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact
             Packet.source_center_first_cap)
   · constructor
     · exact
         (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
           (P := P) (Pρ := Pρ) View _ _).2 (by
-            simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+            simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact
               C.surface.firstSource_data.2.1)
     · exact
         (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
           (P := P) (Pρ := Pρ) View _ _).2 (by
-            simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+            simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact
               C.surface.secondSource_data.2.1)
   · change
       FreshThirdPinnedEndpointOutsideSeedFiniteConstraint.RowOverlapCount
@@ -9442,7 +9442,7 @@ theorem ofView
   · exact
       (FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.inCapInterior_ofView_iff
         (P := P) (Pρ := Pρ) View _ _).2 (by
-          simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.point] using
+          simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.point]; exact
             Packet.fresh_center_cap)
   · constructor
     · intro hcap
@@ -9532,9 +9532,9 @@ theorem ofView
       (P := P) (Pρ := Pρ),
       FreshThirdPinnedEndpointOutsideSeedFiniteAssignment.incident_ofView_iff
         (P := P) (Pρ := Pρ)]
-    simpa [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident,
+    simp only [FreshThirdPinnedEndpointOutsideSeedFiniteView.Incident,
       FreshThirdPinnedEndpointOutsideSeedFiniteView.point,
-      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport] using
+      FreshThirdPinnedEndpointOutsideSeedFiniteView.rowSupport]; exact
         (cross_deletion_survives_iff_not_mem_selected_support
           H (Packet.fan.fan.source i).2
           (w := FreshThirdPinnedEndpointOutsideSeedFiniteView.point P Pρ View point))
