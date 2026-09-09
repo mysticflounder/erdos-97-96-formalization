@@ -248,8 +248,7 @@ theorem CanonicalPacket.s2O0RetainedCoreSourceClauses_sat
     obtain ⟨index, hindex, rfl⟩ := List.mem_map.mp hclause
     have hindexArray : index ∈ s2O0RetainedIndices .convexFive :=
       Array.mem_toList_iff.mp hindex
-    simpa [sigma, CanonicalPacket.s2O0RetainedCoreValuation] using
-      P.renderConvexFiveOccurrence_sat shadow .s2_o9
+    exact P.renderConvexFiveOccurrence_sat shadow .s2_o9
         (convexFiveOccurrenceAt index)
         (s2O0RetainedConvexFiveOccurrences_valid index hindexArray)
   have hv6Local : ∀ clause ∈ s2O0V6LocalFourClauses,

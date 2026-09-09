@@ -201,9 +201,9 @@ theorem b1_oppApex2_eq_oppositeVertexByIndex_oppIndex2
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨index, hindex⟩
   interval_cases index <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 /-- The second physical apex cannot lie in the strict interior of its indexed
 cap. -/
@@ -684,15 +684,15 @@ theorem B1EscapeRowProvenanceStar.liveRowBlocker_btw_of_two_points
       congrArg Subtype.val h
     exact K.center_not_mem_support (by simpa [K, hpoint] using hqRow)
   have hpPoint : B.boundary ip = p.1 := by
-    simpa [ip] using B.point_eq p
+    simpa [ip, pointOf] using B.point_eq p
   have hqPoint : B.boundary iq = q.1 := by
-    simpa [iq] using B.point_eq q
+    simpa [iq, pointOf] using B.point_eq q
   have hapexPoint : B.boundary ia = S.oppApex2 := by
-    simpa [ia, apex] using B.point_eq apex
+    simpa [ia, apex, pointOf] using B.point_eq apex
   have hblockerPoint :
       B.boundary ib =
         (lateFirstApexSystem C.R).centerAt row.1 row.2 := by
-    simpa [ib, blocker] using B.point_eq blocker
+    simpa [ib, blocker, pointOf, blockerLabel] using B.point_eq blocker
   have hcenterA :
       dist (B.boundary ip) (B.boundary ia) =
         dist (B.boundary iq) (B.boundary ia) := by
