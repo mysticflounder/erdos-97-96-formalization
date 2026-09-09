@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-submission-cli-20260908",
+  "owner": "codex-prove2me-submission-cli",
+  "base_head": "3d6dd0696a7b8c23a2b56d8d486d82159a71c5c2",
+  "created_utc": "2026-09-09T02:04:30Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-submission-cli-20260908.json",
+    "prove2me/tests/test_prove2me_submit.py",
+    "prove2me/tools/README.md",
+    "prove2me/tools/__init__.py",
+    "prove2me/tools/prove2me_submit.py"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "manifest_sha256": "0cdb820371445c69d2bd6cda84189bd0b56890d68cb02ca47634162a37995ab0"
+}
