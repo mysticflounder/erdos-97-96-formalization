@@ -379,7 +379,7 @@ theorem exactAt_blockerLabel_patternCode
   let cCarrier : GeneralCarrierBridge.CarrierLabel A :=
     GeneralCarrierBridge.blockerLabel H (L.pointOf q) (L.mem_carrier q)
   have hc : cCarrier.1 = L.pointOf (blockerLabel L H q) := by
-    simpa [cCarrier] using (pointOf_blockerLabel L H q).symm
+    exact (pointOf_blockerLabel L H q).symm
   have hsupport :
       (F.classAt cCarrier.1 cCarrier.2).support =
         (F.classAt (L.pointOf (blockerLabel L H q))

@@ -1,0 +1,23 @@
+{
+  "base_head": "2b05fcec210402398b464cce9f3de1ae7bfde0d2",
+  "created_utc": "2026-09-08T17:25:38Z",
+  "durable_paths": [
+    "scratch/runs/mathlib-v4331-takeover-20260908/run-0001/inherited-source-snapshot.json",
+    "scratch/runs/mathlib-v4331-takeover-20260908/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/mathlib-v4331-takeover-20260908/run-0001"
+  ],
+  "lane_id": "mathlib-v4331-takeover-20260908",
+  "manifest_sha256": "ecee93c6804f1a4e416e36b3547245d0b01ac07319edc51d06299c5c516dccb5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/mathlib-v4331-takeover-20260908.json",
+    "docs/audits/2026-09-07-mathlib-v4331-migration-census.md",
+    "lean/Erdos9796Proof/P97/ATail/LargeCapUniqueFiveCrossIncidence.lean",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedPinnedShellBridge.lean",
+    "lean/Erdos9796Proof/P97/ErasedCertificate/ErasedClassifierCoverage.lean"
+  ],
+  "owner": "ToolchainRelay",
+  "schema": "worktree-lane-checkpoint/v1"
+}

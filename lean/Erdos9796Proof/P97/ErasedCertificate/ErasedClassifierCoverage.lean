@@ -166,7 +166,8 @@ theorem allKilledAt_eq_false_of_semanticTrace
             rw [List.all_eq_false]
             refine ⟨rowOfPattern P center, hrow, ?_⟩
             exact Bool.eq_false_iff.mp hbranch
-          simpa [allKilledAt, hprefix, hsort] using hallFalse
+          simp only [allKilledAt, hprefix, Bool.false_eq_true, ↓reduceIte, hsort]
+          exact hallFalse
 
 /-- The parameterized variable-center list has no duplicates. -/
 theorem variableCentersAt_nodup (c₀ : Nat) :

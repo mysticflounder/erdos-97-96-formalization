@@ -286,8 +286,8 @@ theorem addRowEqualities_rowOfPattern_sound
         intro point hpoint
         rw [hsupport]
         simp [hpoint]
-      simpa [addRowEqualities, hsupport] using
-        foldl_unionEdges_row_sound hfirst rest parents hparents hrest
+      simp only [addRowEqualities, hsupport]
+      exact foldl_unionEdges_row_sound hfirst rest parents hparents hrest
 
 /-- Folding semantic rows into any sound parent array preserves the invariant. -/
 theorem foldl_addRowEqualities_semantic_sound

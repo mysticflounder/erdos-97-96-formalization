@@ -137,10 +137,9 @@ theorem false_of_largeCapUniqueFiveTwoHitCriticalRow
   have htwo :
       (P.row.toCriticalFourShell.support ∩
         S.capByIndex S.oppIndex2).card ≤ 2 := by
-    simpa using
-      CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
-        S D.convex S.oppIndex2
-        P.row.toCriticalFourShell.toSelectedFourClass hcenterCap
+    exact CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two
+      S D.convex S.oppIndex2
+      P.row.toCriticalFourShell.toSelectedFourClass hcenterCap
   omega
 
 end ATailLargeCapUniqueFiveCrossIncidence
