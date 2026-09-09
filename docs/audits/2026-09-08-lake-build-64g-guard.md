@@ -1,6 +1,6 @@
 # `lake-build` 64 GiB compiler guard
 
-Status: **installed 2026-09-08 18:06 PDT; native-build gate evidence pending.**
+Status: **installed 2026-09-08 18:06 PDT; live wrapper validated.**
 
 Correction: the earlier audit did not inspect the live executable before
 claiming installation. Until 18:06 PDT, `/Users/adam/.local/bin/lake-build`
@@ -46,7 +46,7 @@ group, including descendants. If the Lake leader exits first, cleanup verifies
 that the original group still exists before using the cached PGID; otherwise it
 refuses the group signal.
 
-Validation used no Lean or Lake build:
+Candidate validation, followed by live-wrapper validation:
 
 - the candidate wrapper AST parsed successfully;
 - the installed wrapper matches the reviewed candidate byte-for-byte;
@@ -80,6 +80,14 @@ Validation used no Lean or Lake build:
   migration target, but not the gate. Its wrapper build ID is
   `11869-1788910844479872000`; retained output is
   `scratch/runs/mathlib-v4331-takeover-20260908/run-0001/artifacts/native-p2-firstpart2-guarded-001.log`.
+- after the live replacement, three actual aggregate targets ran through the
+  byte-verified wrapper and exited 0: `P2Placement10ASecondNative:olean`
+  (build `31394-1788917631284214000`, 24 seconds),
+  `P2Placement10ANative:olean` (build `37440-1788917680168808000`,
+  31 seconds), and `P2Placement10A:olean`
+  (build `41932-1788917725701474000`, 17 seconds). Each recompiled one
+  module. Together with the byte-identical candidate's inert two-token test,
+  these are the first live evidence for the installed gate.
 
 This gate applies only to invocations through the installed wrapper. It does
 not constrain manually started Lean processes or legacy scripts that call
