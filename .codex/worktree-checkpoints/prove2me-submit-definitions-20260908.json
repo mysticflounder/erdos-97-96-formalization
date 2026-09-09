@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-submit-definitions-20260908",
+  "owner": "codex-submit-definition-support",
+  "base_head": "ff13d98d92694d0e460549031049f08357ff6150",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-submit-definitions-20260908.json",
+    "prove2me/README.md",
+    "prove2me/tests/test_prove2me_submit.py",
+    "prove2me/tools/prove2me_submit.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-09T04:15:51Z",
+  "manifest_sha256": "126f4d90c33b4777c59179ab1152c92fa309e600155339322305439928f228db"
+}

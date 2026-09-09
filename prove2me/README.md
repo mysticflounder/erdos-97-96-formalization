@@ -56,6 +56,23 @@ namespace and replaces upstream utility imports with explicit definitions;
 it retains the mathematical quantifiers, convex-independence condition,
 positive-radius condition, unordered pair convention, and asymptotic P96 target.
 
+## Reusable submission plans
+
+`tools/prove2me_submit.py` validates and applies receipt-backed TOML submission
+plans independently of the mission-specific workflow below. A plan may contain
+`[[definition]]`, `[[theorem]]`, `[[proof]]`, and `[[milestone]]` entries:
+
+```bash
+uv run python tools/prove2me_submit.py validate path/to/plan.toml
+uv run python tools/prove2me_submit.py apply path/to/plan.toml
+```
+
+`validate` performs local parsing and artifact checks without network access.
+`apply` uses the plan's credentials and receipt, creating or reusing definitions
+before processing theorems so their platform modules are available to later
+theorems and proofs. Remote names and submitted mathematical content are checked
+exactly before a receipt records them.
+
 ## Reproduce and update
 
 From this directory, after Prove2Me workspace setup:

@@ -23,6 +23,7 @@ load_plan = MODULE.load_plan
 parse_theorem_file = MODULE.parse_theorem_file
 
 STATEMENT = "theorem Example.target (n : Nat) : n = n := by sorry"
+DEFINITION = "import Mathlib\n\nnamespace Example\n\ndef helper := 1\n\nend Example\n"
 
 
 class ExactTheoremTransport:
@@ -55,6 +56,61 @@ class ExactTheoremTransport:
         raise AssertionError(f"unexpected request: {method} {url}")
 
 
+class DefinitionTransport:
+    def __init__(
+        self, definition: str = DEFINITION, *, definition_exists: bool = False
+    ) -> None:
+        self.definition = definition
+        self.definition_exists = definition_exists
+        self.calls: list[tuple[str, str, dict[str, str], bytes | None]] = []
+
+    def request(
+        self,
+        method: str,
+        url: str,
+        *,
+        headers: dict[str, str],
+        body: bytes | None,
+    ) -> Any:
+        self.calls.append((method, url, headers, body))
+        if url.endswith("/agent/refresh"):
+            return {
+                "access_token": "access-secret",
+                "expires_at": 10**12,
+                "version": "0.9.8",
+            }
+        if "/theorems?" in url and "status=Definition" in url:
+            if not self.definition_exists:
+                return {"theorems": []}
+            return {
+                "theorems": [
+                    {
+                        "theorem_name": "Example.Bundle",
+                        "theorem_id": "definition-1",
+                        "definition": self.definition,
+                        "status": "Definition",
+                    }
+                ]
+            }
+        if "/theorems?" in url:
+            return {
+                "theorems": [
+                    {
+                        "theorem_name": "Example.target",
+                        "theorem_id": "theorem-1",
+                        "formal_statement": STATEMENT,
+                        "status": "Open",
+                    }
+                ]
+            }
+        if method == "POST" and url.endswith("/submit-definition"):
+            self.definition_exists = True
+            return {"jobs": [{"job_id": "definition-job-1", "status": "PENDING"}]}
+        if url.endswith("/publish-jobs/definition-job-1"):
+            return {"job_id": "definition-job-1", "status": "PUBLISHED"}
+        raise AssertionError(f"unexpected request: {method} {url}")
+
+
 def write_plan(tmp_path: Path) -> Path:
     (tmp_path / "credentials.json").write_text(
         json.dumps({"api_key": "api-secret"}), encoding="utf-8"
@@ -84,6 +140,24 @@ tags = ["test"]
     return plan
 
 
+def append_definition(plan: Path, definition: str = DEFINITION) -> None:
+    (plan.parent / "definition.lean").write_text(definition, encoding="utf-8")
+    with plan.open("a", encoding="utf-8") as stream:
+        stream.write(
+            """
+[[definition]]
+name = "Example.Bundle"
+file = "definition.lean"
+title = "Example definitions"
+natural_language_statement = "Reusable helpers for the example."
+source = "https://example.test/definition-source"
+tags = ["support", "test"]
+private = true
+env = "mathlib-test"
+"""
+        )
+
+
 def test_parse_theorem_file_splits_required_marker_and_checks_dotted_name(
     tmp_path: Path,
 ) -> None:
@@ -100,6 +174,57 @@ def test_parse_theorem_file_splits_required_marker_and_checks_dotted_name(
     assert parsed.declaration_name == "Example.target"
     with pytest.raises(SubmissionError, match="theorem name mismatch"):
         parse_theorem_file(path, "Example.other")
+
+
+def test_load_plan_parses_definition_and_optional_submission_fields(
+    tmp_path: Path,
+) -> None:
+    plan_path = write_plan(tmp_path)
+    append_definition(plan_path)
+
+    loaded = load_plan(plan_path)
+
+    assert len(loaded.definitions) == 1
+    definition = loaded.definitions[0]
+    assert definition["name"] == "Example.Bundle"
+    assert definition["path"] == (tmp_path / "definition.lean").resolve()
+    assert definition["definition"] == DEFINITION
+    assert MODULE._definition_payload(definition) == {
+        "definition_name": "Example.Bundle",
+        "definition_title": "Example definitions",
+        "definition": DEFINITION,
+        "natural_language_statement": "Reusable helpers for the example.",
+        "source": "https://example.test/definition-source",
+        "tags": ["support", "test"],
+        "private": True,
+        "env": "mathlib-test",
+    }
+
+
+def test_definition_only_plan_allows_omitting_optional_metadata(tmp_path: Path) -> None:
+    (tmp_path / "definition.lean").write_text(DEFINITION, encoding="utf-8")
+    plan_path = tmp_path / "plan.toml"
+    plan_path.write_text(
+        """schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "credentials.json"
+receipt = "receipt.json"
+
+[[definition]]
+name = "Example.Bundle"
+file = "definition.lean"
+""",
+        encoding="utf-8",
+    )
+
+    loaded = load_plan(plan_path)
+
+    assert loaded.theorems == ()
+    assert MODULE._definition_payload(loaded.definitions[0]) == {
+        "definition_name": "Example.Bundle",
+        "definition": DEFINITION,
+    }
 
 
 def test_artifact_root_allows_nested_plan_to_use_canonical_worktree_files(
@@ -249,6 +374,110 @@ def test_apply_rejects_exact_name_with_statement_mismatch(tmp_path: Path) -> Non
 
     receipt = (tmp_path / "receipt.json").read_text(encoding="utf-8")
     assert "api-secret" not in receipt
+
+
+def test_apply_creates_then_reuses_definition_with_exact_lookup(
+    tmp_path: Path,
+) -> None:
+    plan_path = write_plan(tmp_path)
+    append_definition(plan_path)
+    plan = load_plan(plan_path)
+    transport = DefinitionTransport()
+
+    first = apply_plan(plan, transport=transport)
+    second = apply_plan(plan, transport=transport)
+
+    assert first["definitions"]["Example.Bundle"] == {
+        "definition_id": "definition-1",
+        "job_id": "definition-job-1",
+        "status": "PUBLISHED",
+    }
+    assert second["definitions"] == first["definitions"]
+    posts = [
+        call
+        for call in transport.calls
+        if call[0] == "POST" and call[1].endswith("/submit-definition")
+    ]
+    assert len(posts) == 1
+    assert json.loads(posts[0][3]) == MODULE._definition_payload(plan.definitions[0])
+    definition_lookups = [
+        call[1]
+        for call in transport.calls
+        if "/theorems?" in call[1] and "status=Definition" in call[1]
+    ]
+    assert len(definition_lookups) == 3
+    assert all("q=Example.Bundle" in url for url in definition_lookups)
+    assert all("env=mathlib-test" in url for url in definition_lookups)
+    assert first["intents"]["definition:Example.Bundle"] == {
+        "job_id": "definition-job-1",
+        "payload_sha256": MODULE._sha256(posts[0][3]),
+        "state": "RECORDED",
+    }
+
+
+def test_apply_rejects_exact_definition_name_with_content_mismatch(
+    tmp_path: Path,
+) -> None:
+    plan_path = write_plan(tmp_path)
+    append_definition(plan_path)
+    transport = DefinitionTransport(
+        "namespace Example\n\ndef helper := 2\n\nend Example\n",
+        definition_exists=True,
+    )
+
+    with pytest.raises(SubmissionError, match="remote definition content mismatch"):
+        apply_plan(load_plan(plan_path), transport=transport)
+
+    assert not any(
+        call[0] == "POST" and call[1].endswith("/submit-definition")
+        for call in transport.calls
+    )
+
+
+def test_definition_intent_reconciles_exact_remote_without_retry(
+    tmp_path: Path,
+) -> None:
+    plan_path = write_plan(tmp_path)
+    append_definition(plan_path)
+    plan = load_plan(plan_path)
+    payload = MODULE._canonical_json(MODULE._definition_payload(plan.definitions[0]))
+    receipt = MODULE._new_receipt(plan)
+    receipt["intents"]["definition:Example.Bundle"] = {
+        "state": "INTENT",
+        "payload_sha256": MODULE._sha256(payload),
+    }
+    (tmp_path / "receipt.json").write_text(json.dumps(receipt), encoding="utf-8")
+    transport = DefinitionTransport(definition_exists=True)
+
+    result = apply_plan(plan, transport=transport)
+
+    assert result["definitions"]["Example.Bundle"]["definition_id"] == "definition-1"
+    assert result["intents"]["definition:Example.Bundle"] == {
+        "definition_id": "definition-1",
+        "payload_sha256": MODULE._sha256(payload),
+        "state": "RECORDED",
+    }
+    assert not any(
+        call[0] == "POST" and call[1].endswith("/submit-definition")
+        for call in transport.calls
+    )
+
+
+def test_definition_receipt_redacts_payload_and_credentials(tmp_path: Path) -> None:
+    secret_definition = "def receiptOnlySecret := \"definition-secret\"\n"
+    plan_path = write_plan(tmp_path)
+    append_definition(plan_path, secret_definition)
+
+    apply_plan(
+        load_plan(plan_path),
+        transport=DefinitionTransport(secret_definition),
+    )
+
+    receipt = (tmp_path / "receipt.json").read_text(encoding="utf-8")
+    assert "definition-secret" not in receipt
+    assert "Reusable helpers for the example" not in receipt
+    assert "api-secret" not in receipt
+    assert "access-secret" not in receipt
 
 
 def test_publish_receipt_preserves_job_id(tmp_path: Path) -> None:

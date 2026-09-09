@@ -92,6 +92,7 @@ class LoadedPlan:
     path: Path
     root: Path
     data: dict[str, Any]
+    definitions: tuple[dict[str, Any], ...]
     theorems: tuple[dict[str, Any], ...]
     proofs: tuple[dict[str, Any], ...]
     milestones: tuple[dict[str, Any], ...]
@@ -285,12 +286,53 @@ def load_plan(path: Path) -> LoadedPlan:
     _required_string(data, "credentials", "plan")
     _required_string(data, "receipt", "plan")
 
+    definition_rows = _tables(data, "definition")
     theorem_rows = _tables(data, "theorem")
-    if not theorem_rows:
-        raise SubmissionError("plan must contain at least one [[theorem]]")
+    if not definition_rows and not theorem_rows:
+        raise SubmissionError(
+            "plan must contain at least one [[definition]] or [[theorem]]"
+        )
+    definition_names: set[str] = set()
+    definition_records: list[dict[str, Any]] = []
+    artifacts: dict[str, str] = {}
+    for number, row in enumerate(definition_rows, 1):
+        context = f"definition[{number}]"
+        name = _required_string(row, "name", context)
+        if not NAME_RE.fullmatch(name):
+            raise SubmissionError(f"invalid dotted definition name: {name!r}")
+        if name in definition_names:
+            raise SubmissionError(f"duplicate definition name: {name}")
+        definition_names.add(name)
+        definition_path = _resolve(
+            root, _required_string(row, "file", context), f"{context}.file"
+        )
+        try:
+            definition_bytes = definition_path.read_bytes()
+            definition = definition_bytes.decode("utf-8")
+        except (OSError, UnicodeDecodeError) as error:
+            raise SubmissionError(
+                f"cannot read definition file: {definition_path}"
+            ) from error
+        if not definition.strip():
+            raise SubmissionError(f"empty definition file: {definition_path}")
+        record = dict(row)
+        record.update({"path": definition_path, "definition": definition})
+        for key in ("title", "natural_language_statement", "source", "env"):
+            if key in record:
+                _required_string(record, key, context)
+        if "tags" in record:
+            tags = record["tags"]
+            if not isinstance(tags, list) or any(
+                not isinstance(tag, str) for tag in tags
+            ):
+                raise SubmissionError(f"{context}.tags must be an array of strings")
+        if "private" in record and not isinstance(record["private"], bool):
+            raise SubmissionError(f"{context}.private must be a boolean")
+        artifacts[str(definition_path.relative_to(root))] = _sha256(definition_bytes)
+        definition_records.append(record)
+
     names: set[str] = set()
     theorem_records: list[dict[str, Any]] = []
-    artifacts: dict[str, str] = {}
     for number, row in enumerate(theorem_rows, 1):
         context = f"theorem[{number}]"
         name = _required_string(row, "name", context)
@@ -397,6 +439,7 @@ def load_plan(path: Path) -> LoadedPlan:
         path,
         root,
         data,
+        tuple(definition_records),
         tuple(theorem_records),
         tuple(proofs),
         tuple(milestones),
@@ -560,6 +603,30 @@ class Client:
             raise SubmissionError(f"ambiguous exact theorem lookup: {name}")
         return exact[0] if exact else None
 
+    def lookup_definition_exact(
+        self, name: str, env: str | None = None
+    ) -> dict[str, Any] | None:
+        query = {"q": name, "status": "Definition"}
+        if env:
+            query["env"] = env
+        response = self.request("GET", "/theorems", query=query)
+        candidates = (
+            response.get("theorems", response.get("items", []))
+            if isinstance(response, dict)
+            else response
+        )
+        if not isinstance(candidates, list):
+            raise SubmissionError("invalid definition lookup response")
+        exact = [
+            item
+            for item in candidates
+            if isinstance(item, dict)
+            and (item.get("definition_name") or item.get("theorem_name")) == name
+        ]
+        if len(exact) > 1:
+            raise SubmissionError(f"ambiguous exact definition lookup: {name}")
+        return exact[0] if exact else None
+
     def poll_job(self, job_id: str) -> dict[str, Any]:
         return self._poll(f"/publish-jobs/{job_id}", JOB_SUCCESS)
 
@@ -608,6 +675,7 @@ def _new_receipt(plan: LoadedPlan) -> dict[str, Any]:
         "schema": RECEIPT_SCHEMA,
         "host": plan.data["host"].rstrip("/"),
         "plan_digest": plan.digest,
+        "definitions": {},
         "theorems": {},
         "proofs": {},
         "milestones": {},
@@ -632,7 +700,15 @@ def _load_receipt(plan: LoadedPlan) -> tuple[Path, dict[str, Any]]:
         or receipt.get("plan_digest") != plan.digest
     ):
         raise SubmissionError("receipt belongs to a different plan or host")
-    for key in ("theorems", "proofs", "milestones", "mission_description", "intents"):
+    receipt.setdefault("definitions", {})
+    for key in (
+        "definitions",
+        "theorems",
+        "proofs",
+        "milestones",
+        "mission_description",
+        "intents",
+    ):
         if not isinstance(receipt.get(key), dict):
             raise SubmissionError(f"malformed receipt field: {key}")
     return path, receipt
@@ -666,6 +742,143 @@ def _identifier(remote: dict[str, Any]) -> str | None:
         ),
         None,
     )
+
+
+def _definition_identifier(remote: dict[str, Any]) -> str | None:
+    return next(
+        (
+            remote.get(key)
+            for key in ("definition_id", "theorem_id", "id")
+            if isinstance(remote.get(key), str)
+        ),
+        None,
+    )
+
+
+def _definition_payload(definition: dict[str, Any]) -> dict[str, Any]:
+    payload: dict[str, Any] = {
+        "definition_name": definition["name"],
+        "definition": definition["definition"],
+    }
+    optional_fields = {
+        "title": "definition_title",
+        "natural_language_statement": "natural_language_statement",
+        "source": "source",
+        "tags": "tags",
+        "private": "private",
+        "env": "env",
+    }
+    for plan_key, api_key in optional_fields.items():
+        if plan_key in definition:
+            payload[api_key] = definition[plan_key]
+    return payload
+
+
+def _require_definition_readback(
+    remote: dict[str, Any], name: str, expected: str
+) -> dict[str, Any]:
+    content = next(
+        (
+            remote.get(key)
+            for key in ("definition", "definitions", "code")
+            if isinstance(remote.get(key), str)
+        ),
+        None,
+    )
+    if content != expected:
+        raise SubmissionError(f"remote definition content mismatch: {name}")
+    return remote
+
+
+def _ensure_definition(
+    definition: dict[str, Any],
+    client: Client,
+    receipt_path: Path,
+    receipt: dict[str, Any],
+) -> str:
+    name = definition["name"]
+    expected = definition["definition"]
+    entry = receipt["definitions"].get(name, {})
+    if entry.get("job_id") and entry.get("status") not in JOB_SUCCESS:
+        result = client.poll_job(entry["job_id"])
+        entry["status"] = result.get("status")
+        receipt["definitions"][name] = entry
+        _atomic_json(receipt_path, receipt)
+        if result.get("status") not in JOB_SUCCESS:
+            raise SubmissionError(
+                f"definition publish job for {name} ended as {result.get('status')}"
+            )
+
+    remote = client.lookup_definition_exact(name, definition.get("env"))
+    if remote is not None:
+        _require_definition_readback(remote, name, expected)
+        definition_id = _definition_identifier(remote)
+        if not definition_id:
+            raise SubmissionError(f"remote definition has no ID: {name}")
+        recorded_job_id = entry.get("job_id")
+        final_entry = {
+            "status": "PUBLISHED"
+            if isinstance(recorded_job_id, str)
+            else remote.get("status", "PUBLISHED"),
+            "definition_id": definition_id,
+        }
+        if isinstance(recorded_job_id, str):
+            final_entry["job_id"] = recorded_job_id
+        receipt["definitions"][name] = final_entry
+        intent_key = f"definition:{name}"
+        prior = receipt["intents"].get(intent_key)
+        if prior and prior.get("state") == "INTENT":
+            _complete_intent(
+                receipt,
+                receipt_path,
+                intent_key,
+                definition_id=definition_id,
+            )
+        else:
+            _atomic_json(receipt_path, receipt)
+        return definition_id
+
+    intent_key = f"definition:{name}"
+    prior = receipt["intents"].get(intent_key)
+    if prior and prior.get("state") == "INTENT":
+        raise SubmissionError(
+            f"uncertain prior definition POST for {name}; refusing retry"
+        )
+    payload = _canonical_json(_definition_payload(definition))
+    _intent(receipt, receipt_path, intent_key, payload)
+    response = client.request("POST", "/submit-definition", body=payload)
+    jobs = response.get("jobs", []) if isinstance(response, dict) else []
+    if isinstance(response, dict) and isinstance(response.get("job_id"), str):
+        jobs = [response]
+    if len(jobs) != 1 or not isinstance(jobs[0].get("job_id"), str):
+        raise SubmissionError(f"submit-definition returned no unique job for {name}")
+    job_id = jobs[0]["job_id"]
+    receipt["definitions"][name] = {
+        "status": jobs[0].get("status", "PENDING"),
+        "job_id": job_id,
+    }
+    _complete_intent(receipt, receipt_path, intent_key, job_id=job_id)
+    result = client.poll_job(job_id)
+    if result.get("status") not in JOB_SUCCESS:
+        receipt["definitions"][name]["status"] = result.get("status")
+        _atomic_json(receipt_path, receipt)
+        raise SubmissionError(
+            f"definition publish job for {name} ended as {result.get('status')}"
+        )
+    remote = client.lookup_definition_exact(name, definition.get("env"))
+    if remote is None:
+        raise SubmissionError(f"published definition did not reconcile exactly: {name}")
+    _require_definition_readback(remote, name, expected)
+    definition_id = _definition_identifier(remote)
+    if not definition_id:
+        raise SubmissionError(f"published definition has no ID: {name}")
+    receipt["definitions"][name] = {
+        "status": "PUBLISHED",
+        "definition_id": definition_id,
+        "job_id": job_id,
+    }
+    _atomic_json(receipt_path, receipt)
+    return definition_id
 
 
 def _theorem_payload(theorem: dict[str, Any]) -> dict[str, Any]:
@@ -991,6 +1204,8 @@ def apply_plan(
         poll_timeout=poll_timeout,
     )
     receipt_path, receipt = _load_receipt(plan)
+    for definition in plan.definitions:
+        _ensure_definition(definition, client, receipt_path, receipt)
     ids: dict[str, str] = {}
     for theorem in plan.theorems:
         ids[theorem["name"]] = _ensure_theorem(
@@ -1027,6 +1242,7 @@ def _validation_summary(plan: LoadedPlan) -> dict[str, Any]:
         "schema": PLAN_SCHEMA,
         "status": "VALIDATED",
         "plan_digest": plan.digest,
+        "definitions": [definition["name"] for definition in plan.definitions],
         "theorems": [theorem["name"] for theorem in plan.theorems],
         "proofs": [proof["theorem"] for proof in plan.proofs],
         "milestones": [milestone["title"] for milestone in plan.milestones],
