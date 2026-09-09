@@ -18,7 +18,9 @@
     "prove2me/submissions/finite-nine-stage2-definitions/validation.json"
   ],
   "generated_roots": [],
-  "durable_paths": [],
+  "durable_paths": [
+    "prove2me/submissions/finite-nine-stage2-definitions/receipt.json"
+  ],
   "created_utc": "2026-09-09T05:39:02Z",
-  "manifest_sha256": "892435a09aaeb1bac58ffaa3336fa2f33c839adf24e95d5d790f31c03bcaf6c7"
+  "manifest_sha256": "a93bf48a023e056595b53b9afa18cbed38982a6e7ecefa02b6dc7b00fea166e9"
 }

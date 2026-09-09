@@ -1,0 +1,53 @@
+{
+  "definitions": {
+    "Erdos9796FiniteNine_CountingCore": {
+      "definition_id": "6e11ed01-822c-41c9-949a-26607c7290d7",
+      "job_id": "a42d4d19-2be1-4a26-9774-350b5835e02d",
+      "status": "PUBLISHED"
+    },
+    "Erdos9796FiniteNine_Forms": {
+      "definition_id": "e3a66ec7-cdfc-43f6-a6ab-a05bdf87951b",
+      "job_id": "44ba35f1-fd92-46ff-a651-36fd0f4904f7",
+      "status": "PUBLISHED"
+    },
+    "Erdos9796FiniteNine_N8Interface": {
+      "definition_id": "8338ae4d-30db-4944-bb5e-fa2cdb502144",
+      "job_id": "46934f79-d338-4051-b1a7-e195b1ca0465",
+      "status": "PUBLISHED"
+    },
+    "Erdos9796FiniteNine_Shell": {
+      "definition_id": "ce37debe-f180-46db-96cb-4cea533473dc",
+      "job_id": "9e2ec362-397c-4359-beca-02bd30b0ba1f",
+      "status": "PUBLISHED"
+    }
+  },
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "definition:Erdos9796FiniteNine_CountingCore": {
+      "job_id": "a42d4d19-2be1-4a26-9774-350b5835e02d",
+      "payload_sha256": "b783f9633669bbbc722760adff7ecf086ca44ab354d2c960f4beed548b52e3be",
+      "state": "RECORDED"
+    },
+    "definition:Erdos9796FiniteNine_Forms": {
+      "job_id": "44ba35f1-fd92-46ff-a651-36fd0f4904f7",
+      "payload_sha256": "0af21060fa3d496005f5bbab92e7d7cac88d475e91352c943cdc735f2dc5b661",
+      "state": "RECORDED"
+    },
+    "definition:Erdos9796FiniteNine_N8Interface": {
+      "job_id": "46934f79-d338-4051-b1a7-e195b1ca0465",
+      "payload_sha256": "95134409f0867fbca2fda0e58d4deabb56a48bf85dfb587cf0fca5d2affc4f38",
+      "state": "RECORDED"
+    },
+    "definition:Erdos9796FiniteNine_Shell": {
+      "job_id": "9e2ec362-397c-4359-beca-02bd30b0ba1f",
+      "payload_sha256": "1167dd295b5b81ad07c553fe67667ebb8aeecad249731fd4205e3ef0dd2d2abd",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "e95dbcd22abed677960ac045caff673113eb091c54fa77cc438681eac2e3b7d8",
+  "proofs": {},
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {}
+}

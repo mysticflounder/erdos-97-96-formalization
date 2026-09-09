@@ -109,3 +109,10 @@ proved on Prove2Me.
 
 Nothing further is required for this report's narrow label-accuracy verdict. Platform
 submission still requires the independent promotion review already stated in the packet.
+
+## Post-audit publication
+
+After the independent bounded review, the exact audited definition bytes were
+published in strict dependency order. `receipt.json` records all four public IDs
+and successful readbacks. This does not change the audit's narrow scope and does
+not certify any finite-nine child theorem or the mission root.

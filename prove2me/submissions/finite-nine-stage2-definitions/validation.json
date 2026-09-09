@@ -1,6 +1,6 @@
 {
   "schema": "prove2me-finite-nine-stage2-definitions-validation/v1",
-  "result": "PASS_NOT_UPLOADED",
+  "result": "PUBLISHED_DEFINITIONS",
   "created_utc": "2026-09-09T05:39:02Z",
   "source": {
     "preserved_snapshot": "scratch/live-mission-solutions.json",
@@ -76,5 +76,17 @@
       "validation and skeptic records are exact owned paths; durable_paths remains empty because the checkpoint schema forbids overlap"
     ]
   },
-  "promotion_status": "definition packet elaborated, uploader-compatible, and independently reviewed; no network mutation or platform promotion"
+  "server_publication": {
+    "published_utc": "2026-09-09T06:32:46Z",
+    "plan_digest": "e95dbcd22abed677960ac045caff673113eb091c54fa77cc438681eac2e3b7d8",
+    "receipt": "submissions/finite-nine-stage2-definitions/receipt.json",
+    "exact_content_readback": "PASS",
+    "definition_ids": {
+      "Erdos9796FiniteNine_CountingCore": "6e11ed01-822c-41c9-949a-26607c7290d7",
+      "Erdos9796FiniteNine_Shell": "ce37debe-f180-46db-96cb-4cea533473dc",
+      "Erdos9796FiniteNine_Forms": "e3a66ec7-cdfc-43f6-a6ab-a05bdf87951b",
+      "Erdos9796FiniteNine_N8Interface": "8338ae4d-30db-4944-bb5e-fa2cdb502144"
+    }
+  },
+  "promotion_status": "four public definition nodes published after independent review; no child theorem proof or root promotion yet"
 }

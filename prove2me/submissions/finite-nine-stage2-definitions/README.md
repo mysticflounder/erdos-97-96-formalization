@@ -53,11 +53,15 @@ revision `a46894f6078319d3001d06310531df50af0f6bbd`; the exact full-file hashes
 and comparison scope are recorded in `validation.json`. This avoids treating
 the older migration-worktree hashes as tracked-source custody.
 
+## Publication status
+
+The four reviewed definition nodes were published on 2026-09-09 in strict plan
+order. `receipt.json` records their public definition IDs, publish jobs, payload
+hashes, and exact-content readback result. This publication is still not a proof
+of any child theorem.
+
 ## Remaining transfer work
 
-This packet has not been uploaded and is not a proof of a child theorem. After the
-completed bounded review, submit these four public definitions in plan order. Then update the
-nine first-wave child theorem files to import
+Update the nine first-wave child theorem files to import
 `Definitions.Def_Erdos9796FiniteNine_N8Interface`, elaborate the authenticated proof
-fragments leaf-first, and finally submit the tiny root reduction. No network or
-Prove2Me mutation was performed here.
+fragments leaf-first, and finally submit the tiny root reduction.
