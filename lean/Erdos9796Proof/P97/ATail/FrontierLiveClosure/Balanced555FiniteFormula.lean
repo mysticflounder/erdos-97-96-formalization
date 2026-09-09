@@ -1070,7 +1070,8 @@ theorem evalClauseD_encodedNoGoodClause
       Std.Sat.CNF.Clause.eval
         (Balanced555KalmansonOccurrence.selectedAssignment configuration) data.noGoodClause := by
   simpa only [encodedNoGoodClause, Balanced555KalmansonOccurrenceData.noGoodClause,
-    List.map_map] using evalEncodedNoGoodAtoms configuration data.positiveAtoms hoffDiagonal
+    List.map_map, Function.comp_def] using
+    evalEncodedNoGoodAtoms configuration data.positiveAtoms hoffDiagonal
 
 /-- Every generated Kalmanson clause is true under the valuation induced by a
 balanced finite configuration. -/
