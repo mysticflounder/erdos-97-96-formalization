@@ -281,7 +281,7 @@ private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.surplusApex,
+    simp only [SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppositeVertexByIndex, hi]
 
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
@@ -289,18 +289,18 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex1,
+    simp only [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex1, hi]
+      SurplusCapPacket.oppIndex1, hi] <;> rfl
 
 private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2,
+    simp only [SurplusCapPacket.oppApex2,
       SurplusCapPacket.oppositeVertexByIndex,
-      SurplusCapPacket.oppIndex2, hi]
+      SurplusCapPacket.oppIndex2, hi] <;> rfl
 
 private theorem Balanced555BoundaryLabeling.firstApex_label_eq_firstApex
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}

@@ -58,16 +58,15 @@ theorem mirrorMembershipVal_iff_rowMem
     (Q : ExactTwoBoundaryCore R distribution) (center point : Fin 11) :
     mirrorMembershipVal Q ⟨center, point⟩ ↔
       rowMem Q mirrorIndex center point := by
-  simp only [mirrorMembershipVal, membershipVal, reflectMembershipAtom,
-    selectedRowSupport, selectedRow, Finset.mem_filter, Finset.mem_univ,
-    true_and, rowMem]
-  change
-    shiftedBoundary Q (reflFin point) ∈
-        (Q.carrierPattern.classAt
-          (shiftedBoundary Q (reflFin center)) _).support ↔
-      Q.boundary (mirrorIndex point) ∈
-        (Q.carrierPattern.classAt
-          (Q.boundary (mirrorIndex center)) _).support
+  have hbridge :
+      mirrorMembershipVal Q ⟨center, point⟩ ↔
+        shiftedBoundary Q (reflFin point) ∈
+          (Q.carrierPattern.classAt
+            (shiftedBoundary Q (reflFin center))
+            (shiftedBoundary_mem Q (reflFin center))).support :=
+    ⟨fun h => (Finset.mem_filter.mp h).2,
+      fun h => Finset.mem_filter.mpr ⟨Finset.mem_univ _, h⟩⟩
+  simp only [hbridge, rowMem]
   rw [classAt_support_congr Q.carrierPattern
     (shiftedBoundary_mem Q (reflFin center))
     (boundary_mem_carrier Q (mirrorIndex center))
@@ -195,17 +194,17 @@ theorem mirrorTotalVal_agree_outerAtom_of_binding
   cases hatom : atomOfVar n with
   | membership atom =>
       have h : MembershipBinding n atom := by
-        simpa [outerAtomBindingBool, hatom] using hbinding
+        simpa [MembershipBinding, outerAtomBindingBool, hatom] using hbinding
       simpa [mirrorVal, hatom] using
         mirrorCompactVal_membership_of_binding P h
   | row atom =>
       have h : RowBinding n atom := by
-        simpa [outerAtomBindingBool, hatom] using hbinding
+        simpa [RowBinding, outerAtomBindingBool, hatom] using hbinding
       simpa [mirrorVal, hatom] using
         mirrorCompactVal_row_of_binding P h
   | arc atom =>
       have h : OuterBinding n atom := by
-        simpa [outerAtomBindingBool, hatom] using hbinding
+        simpa [OuterBinding, outerAtomBindingBool, hatom] using hbinding
       simpa [mirrorVal, hatom] using
         mirrorCompactVal_outer_of_binding P h
   | unused =>

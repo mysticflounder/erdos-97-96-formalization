@@ -207,7 +207,9 @@ theorem directTotalVal_blockerVariable_iff_blockerVal
   · rw [directTotalVal_of_lt Q hsmall,
       directVal_blockerVariable_iff_blockerVal Q source center hsmall]
   · fin_cases source <;> fin_cases center <;>
-      simp [blockerVariable, directTotalVal, asLabel] at hsmall ⊢
+      first
+        | exact (hsmall (by decide)).elim
+        | exact Iff.rfl
 
 /-- The totalized valuation supplies both compact and synthetic support atoms. -/
 theorem directTotalVal_supportVariable_iff_criticalSupportVal
@@ -218,7 +220,9 @@ theorem directTotalVal_supportVariable_iff_criticalSupportVal
   · rw [directTotalVal_of_lt Q hsmall,
       directVal_supportVariable_iff_criticalSupportVal Q source point hsmall]
   · fin_cases source <;> fin_cases point <;>
-      simp [supportVariable, directTotalVal, asLabel] at hsmall ⊢
+      first
+        | exact (hsmall (by decide)).elim
+        | exact Iff.rfl
 
 /-- One valuation agrees with every indexed atom used by the generated
 critical-support interface while remaining unchanged on compact indices. -/

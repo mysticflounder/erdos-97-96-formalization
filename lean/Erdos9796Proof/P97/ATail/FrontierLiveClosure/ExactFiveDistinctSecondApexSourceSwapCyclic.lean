@@ -59,10 +59,10 @@ theorem retained_mem_oppInterior1
     (N : ExactFiveDistinctThreeCenterNormalForm R C) :
     N.retained ∈ S.oppInterior1 := by
   rcases N.orientation with ⟨_, hretained, _⟩ | ⟨_, hretained, _⟩
-  · simpa only [hretained] using
-      (Finset.mem_inter.mp R.interior.q_mem_interior).2
-  · simpa only [hretained] using
-      (Finset.mem_inter.mp R.interior.w_mem_interior).2
+  · rw [hretained]
+    exact (Finset.mem_inter.mp R.interior.q_mem_interior).2
+  · rw [hretained]
+    exact (Finset.mem_inter.mp R.interior.w_mem_interior).2
 
 /-- The original deleted source is in the same strict opposite-cap interior
 as the retained source. -/
@@ -76,10 +76,10 @@ theorem deleted_mem_oppInterior1
     (N : ExactFiveDistinctThreeCenterNormalForm R C) :
     deleted ∈ S.oppInterior1 := by
   rcases N.orientation with ⟨hdeleted, _, _⟩ | ⟨hdeleted, _, _⟩
-  · simpa only [hdeleted] using
-      (Finset.mem_inter.mp R.interior.w_mem_interior).2
-  · simpa only [hdeleted] using
-      (Finset.mem_inter.mp R.interior.q_mem_interior).2
+  · rw [hdeleted]
+    exact (Finset.mem_inter.mp R.interior.w_mem_interior).2
+  · rw [hdeleted]
+    exact (Finset.mem_inter.mp R.interior.q_mem_interior).2
 
 /-- In the fourth incidence branch, the hard second-apex replacement row
 cannot contain the blocker.  Otherwise the canonical swapped first-apex row
@@ -489,8 +489,8 @@ theorem firstOppCap_card_ge_five_of_exactFiveFirstApex
   have hcapEq : S.capByIndex S.oppIndex1 = S.oppCap1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
-        SurplusCapPacket.oppIndex1, hi]
+      simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
+        SurplusCapPacket.oppIndex1, hi] <;> rfl
   rw [hcapEq] at hcapCard
   omega
 
@@ -522,32 +522,32 @@ theorem HardSourceSwapExactGridRoles.radialCyclicOrder
       surplus := by
         rcases hi : S.surplusIdx with ⟨i, hi3⟩
         interval_cases i <;>
-          simp [SurplusCapPacket.oppCap1,
+          simp only [SurplusCapPacket.oppCap1,
             SurplusCapPacket.oppIndex1, hi] at hfirst ⊢ <;>
-          omega }
+          exact hfirst }
   have hcenter :
       Srot.oppositeVertexByIndex Srot.oppIndex1 =
         S.oppositeVertexByIndex S.oppIndex2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [Srot, SurplusCapPacket.oppositeVertexByIndex,
-        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi]
+      simp only [Srot, SurplusCapPacket.oppositeVertexByIndex,
+        SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] <;> rfl
   have hleft :
       Srot.leftAdjacentCapByIndex Srot.oppIndex1 =
         S.leftAdjacentCapByIndex S.oppIndex2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [Srot, SurplusCapPacket.leftAdjacentCapByIndex,
+      simp only [Srot, SurplusCapPacket.leftAdjacentCapByIndex,
         SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.oppIndex2, hi]
+        SurplusCapPacket.oppIndex2, hi] <;> rfl
   have hright :
       Srot.rightAdjacentCapByIndex Srot.oppIndex1 =
         S.rightAdjacentCapByIndex S.oppIndex2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [Srot, SurplusCapPacket.rightAdjacentCapByIndex,
+      simp only [Srot, SurplusCapPacket.rightAdjacentCapByIndex,
         SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.oppIndex2, hi]
+        SurplusCapPacket.oppIndex2, hi] <;> rfl
   let Grot : Srot.ExactFourTwoRadiusAdjacentCapGrid Srot.oppIndex1
       N.secondApexClass.radius P.replacement.radius :=
     { radius_left_card_eq_one := by
@@ -638,8 +638,8 @@ theorem carrier_card_ge_fourteen_of_exactFiveFirstApex_of_largeSecondInterior
   have hcapEq : S.capByIndex S.oppIndex2 = S.oppCap2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
-        SurplusCapPacket.oppIndex2, hi]
+      simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
+        SurplusCapPacket.oppIndex2, hi] <;> rfl
   rw [hcapEq] at hsecondCard
   have hsecond : 7 ≤ S.oppCap2.card := by
     unfold SurplusCapPacket.oppInterior2 at hlarge

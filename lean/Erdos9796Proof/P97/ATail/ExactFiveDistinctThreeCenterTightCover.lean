@@ -417,13 +417,13 @@ theorem tightPhysical_exact_cap_profile
   have hcapEq₁ : S.capByIndex S.oppIndex1 = S.oppCap1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-        SurplusCapPacket.oppCap1, hi]
+      simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppCap1, hi] <;> rfl
   have hcapEq₂ : S.capByIndex S.oppIndex2 = S.oppCap2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.oppCap2, hi]
+      simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppCap2, hi] <;> rfl
   have hfirstInterior :
       3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
         S.capInteriorByIndex S.oppIndex1).card :=
@@ -478,13 +478,13 @@ theorem nonempty_tightPhysical_secondApexUniqueFive
       S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.oppositeVertexByIndex, hi]
+      simp only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppositeVertexByIndex, hi] <;> rfl
   have hcapEq : S.capByIndex S.oppIndex2 = S.oppCap2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
-        SurplusCapPacket.oppCap2, hi]
+      simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppCap2, hi] <;> rfl
   have hsecondEq := (tightPhysical_exact_cap_profile N hcard).2.2.1
   have hcapByIndex : (S.capByIndex S.oppIndex2).card = 5 := by
     rw [hcapEq, hsecondEq]
@@ -756,16 +756,16 @@ theorem nonempty_retainedPacket_of_normalForm
   have hfirstApexA : S.oppApex1 ∈ D.A := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+    · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
+    · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
     · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
   have hsecondApexA : S.oppApex2 ∈ D.A := C.center₂_mem_A
   have hapices : S.oppApex1 ≠ S.oppApex2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
+    · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
         hi] using S.triangle.v23_ne
-    · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
+    · simpa only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
         hi] using S.triangle.v13_ne.symm
     · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2,
         hi] using S.triangle.v12_ne
@@ -1273,22 +1273,22 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
-      SurplusCapPacket.oppositeVertexByIndex, hi]
+    simp only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppositeVertexByIndex, hi] <;> rfl
 
 private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.surplusApex,
+    simp only [SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppositeVertexByIndex, hi]
 
 private theorem mem_capByIndex_endpoint_or_interior

@@ -36,8 +36,8 @@ private theorem capByIndex_oppIndex1_eq_oppCap1 :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
-      SurplusCapPacket.oppCap1, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppCap1, hi] <;> rfl
 
 private theorem capO2_label_mem (j : Fin 2) :
     (⟨9 + j, by omega⟩ : Fin 11) ∈ Card11Labeling.capO2InteriorLabels := by
@@ -116,7 +116,8 @@ private theorem classHit_mirror_five
     (P : P4MirrorBoundaryPacket R profile distribution) :
     classHit P.core mirrorIndex 5 := by
   unfold classHit
-  simpa [mirrorIndex, P.boundary_eq] using
+  have hidx : mirrorIndex 5 = 6 := by decide
+  simpa [hidx, P.boundary_eq] using
     selected_mem_of_strict_firstOpposite_mem P
       (mirror_boundary_strict_firstOpposite_mem P.orientedBoundary 1)
 
@@ -124,7 +125,8 @@ private theorem classHit_mirror_six
     (P : P4MirrorBoundaryPacket R profile distribution) :
     classHit P.core mirrorIndex 6 := by
   unfold classHit
-  simpa [mirrorIndex, P.boundary_eq] using
+  have hidx : mirrorIndex 6 = 5 := by decide
+  simpa [hidx, P.boundary_eq] using
     selected_mem_of_strict_firstOpposite_mem P
       (mirror_boundary_strict_firstOpposite_mem P.orientedBoundary 0)
 

@@ -279,7 +279,7 @@ theorem CanonicalPacket.renderUsedCenterOccurrence_sat
             P.fullRadiusValuation shadow selected
                 (encodeG3Var (.sourceCenter sourceCenter)) = true := by
           rw [P.fullRadiusValuation_sourceCenter]
-          exact decide_eq_true (by simpa [hrow] using hsource)
+          exact decide_eq_true (by rw [hrow]; exact hsource)
         apply evalClauseD_of_positive_mem _
           (encodeG3Var_pos (.sourceCenter sourceCenter))
         · exact List.mem_cons_of_mem _ (List.mem_map.mpr

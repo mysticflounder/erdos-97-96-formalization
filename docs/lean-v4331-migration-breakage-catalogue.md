@@ -329,6 +329,85 @@ AH. SELF-DEFEATING SIMP SET UNDER `fin_cases` — leave `simp` for a two-branch 
     Unique4P4DirectValuation/DirectIndexedAgreement and its mirror twin
     Unique4P4MirrorValuation/MirrorIndexedAgreement.
 
+## AI — class AF, refined: `Finset` membership is `SetLike` and `Finset.mem_filter` never matches
+
+The class AF entry said `Finset.mem_filter` "no longer fires in `simp`".  Build 32 pinned the
+mechanism, and it is stronger than that: in v4.33.1 mathlib there is NO `Finset.instMembership`
+at all.  `Mathlib/Data/Finset/Defs.lean:101` declares `instance : SetLike (Finset α) α`, and
+every `a ∈ (s : Finset α)` therefore elaborates through `@SetLike.instMembership`.  Under
+`pp.explicit` the goal reads
+
+    @Membership.mem Label (Finset (Fin 11))
+      (@SetLike.instMembership (Finset (Fin 11)) (Fin 11) (@Finset.instSetLike (Fin 11)))
+      {i | …} (reflFin point)
+
+with `pp.notation false` confirming the collection really is `Finset.filter (fun i => …)
+Finset.univ`.  Against that goal ALL of `rw [Finset.mem_filter]`, `simp only
+[Finset.mem_filter]`, `rw [Finset.mem_filter_univ]` and `simp only [Finset.mem_filter_univ]`
+fail — the first two with "Did not find an occurrence of the pattern `?a ∈ Finset.filter ?p
+?s`", the last two silently, as an `unusedSimpArgs` note.  Do not spend probes rediscovering
+this; go straight to the term-mode bridge.
+
+Second-order symptom: a following `change` that used to align the two sides now fails with
+"pattern is not definitionally equal to target", because `x ∈ Finset.filter p s` is only
+PROPOSITIONALLY the conjunction, never definitionally.  The `change` is not the defect.
+
+FIX — state the membership step as a `have` proved in term mode, where elaboration unifies at
+default transparency and unfolds the intervening `def`s (`mirrorMembershipVal`,
+`membershipVal`, `selectedRowSupport`) on its own:
+
+    have hbridge : mirrorMembershipVal Q ⟨center, point⟩ ↔ <predicate side> :=
+      ⟨fun h => (Finset.mem_filter.mp h).2,
+        fun h => Finset.mem_filter.mpr ⟨Finset.mem_univ _, h⟩⟩
+    simp only [hbridge, rowMem]
+    rw [<the original congr chain>]
+
+Applied in Unique4P4MirrorValuation/MirrorOuterFamilySatisfaction.
+
+## AJ — `simp` no longer identifies two names for the same cyclic index
+
+`classHit_mirror_five` fed `simpa [mirrorIndex, P.boundary_eq] using h` a term whose type
+mentions boundary index `6` against a goal that, after `mirrorIndex` unfolds to `fun i => -i`,
+mentions `-5`.  In v4.27 `simp` closed the gap; in v4.33.1 it reports a class-A style
+"Type mismatch: After simplification" whose two sides differ only in the index spelling.
+FIX — do not unfold `mirrorIndex`; give `simp` the normalized index equation instead, proved
+by the kernel decision procedure on the finite index type:
+
+    have hidx : mirrorIndex 5 = 6 := by decide
+    simpa [hidx, P.boundary_eq] using …
+
+Plain `decide` only; `native_decide` is not needed and is not permitted here.
+
+## AK — a stuck `Fin` matcher reaches `omega` as an opaque atom
+
+Recorded under root cause B, but worth its own tell because the reported error names `omega`
+and not `simp`.  `omega could not prove the goal: a possible counterexample may satisfy … where
+b := ↑(match 0 with | 0 => 689 | 1 => 760 | … | x => 701)` is class B, not arithmetic: the
+`fin_cases` scrutinee became a `Fin` numeral, `Fin.val` of a numeral does not reduce, and the
+`Nat` match over it never fires, so `omega` abstracts the whole branch table as one atom.
+Adding arithmetic lemmas cannot help.
+
+`simp` to `simp only` is necessary but NOT sufficient here.  In
+ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger `sourceChoiceVariable_lt` it took the
+eleven reported failures down to three — the branch table `sourceChoiceStart` reduced, but
+`sourceChoiceCount` did not, because that one appears in the TYPE of the bound variable
+(`choice : Fin (sourceChoiceCount source)`) and `simp only ... at choice` will not rewrite a
+`Fin` index there.  `omega` harvests its `Fin` bound from `Fin.isLt`
+(`.../Lean/Elab/Tactic/Omega/OmegaM.lean:179`), so the bound arrived with a stuck matcher and
+was dropped — this is class AG in its type-position form.
+
+FIX — hoist the bound into an ordinary hypothesis BEFORE the case split, where `simp only`
+can reach it:
+
+    have hlt : choice.val < sourceChoiceCount source := choice.isLt
+    fin_cases source <;>
+      simp only [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at hlt ⊢ <;>
+      omega
+
+Isolate a case like this in a probe file that imports only the defining module — the enclosing
+ledger module carries `native_decide` evidence and takes several minutes per check, while the
+probe returns in seconds and reproduces the failure exactly.
+
 ## Running the class-W sweep cheaply
 
 Do NOT re-derive the probe per file.  `scratchpad/sweep-probe.lean` holds the `run_cmd` that
@@ -336,6 +415,17 @@ walks `env.constants.map₂` and runs `Lean.collectAxioms` on each constant, and
 `scratchpad/sweep.sh <module-path-relative-to-lean/>` appends it to a scratchpad copy, runs
 `lake env lean`, prints `SWEEP_RC` and `CLASSW checked=… offenders=…`, and deletes the copy.
 It was validated against the numbers a hand-written probe produced on the same modules.
+
+The copy MUST be written into the source module's own directory, not into the scratchpad.
+Modules such as ExactFiveCommonShellV7/G3UsedCenterSliceLedger and
+ExactFiveCommonShellV7/G3V6U5NontripleSliceLedger read their evidence with
+`include_str "data/…"`, which resolves relative to the file being compiled; a scratchpad copy
+fails that read with `no such file or directory (error code: 4294967294)`, every downstream
+`native_decide` then reports `uses 'sorry' and/or contains errors`, and the probe dutifully
+reports `sorryAx` offenders that do not exist in the real module.  Treat `SWEEP_RC=1` together
+with an `include_str` line in the module as a harness failure and re-run, not as a class-W
+finding.  Name the copy something that is not a case variant of the original: this machine's
+filesystem is case-insensitive, and `cat a.lean > A.lean` self-appends without bound.
 Read the result as: `offenders` naming only `*._native.native_decide.ax_*` constants and the
 theorems consuming them is the pre-existing native evidence, not a regression — confirm with
 `git show HEAD:<path> | grep -c native_decide` against the worktree count.  Any `sorryAx` at

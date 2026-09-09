@@ -403,8 +403,8 @@ theorem hardSourceSwap_carrier_card_ge_fifteen
   have hfirstCapEq : S.capByIndex S.oppIndex1 = S.oppCap1 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
-        SurplusCapPacket.oppIndex1, hi]
+      simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap1,
+        SurplusCapPacket.oppIndex1, hi] <;> rfl
   rw [hfirstCapEq] at hfirstCapSum
   have hfirstCap : 5 ≤ S.oppCap1.card := by omega
   have hsecondInterior := hardSourceSwap_secondCapInterior_card_ge_six P
@@ -413,8 +413,8 @@ theorem hardSourceSwap_carrier_card_ge_fifteen
   have hsecondCapEq : S.capByIndex S.oppIndex2 = S.oppCap2 := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;>
-      simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
-        SurplusCapPacket.oppIndex2, hi]
+      simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppCap2,
+        SurplusCapPacket.oppIndex2, hi] <;> rfl
   rw [hsecondCapEq] at hsecondCapSum
   have hsecondCap : 8 ≤ S.oppCap2.card := by omega
   have hsum := S.capSum

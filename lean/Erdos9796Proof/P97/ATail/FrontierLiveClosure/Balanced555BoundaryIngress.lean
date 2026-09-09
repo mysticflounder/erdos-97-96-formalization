@@ -100,7 +100,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
     S.capByIndex S.surplusIdx = S.surplusCap := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i <;>
-    simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
+    simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
 private theorem subset_image_Ioo {boundary : Fin 12 → ℝ²} {T : Finset ℝ²}
     {a b : Fin 12}
@@ -256,7 +256,7 @@ theorem nonempty_balanced555BoundaryLabeling
         labelsOf labels (S.capInteriorByIndex S.oppIndex2) = Finset.Ioo 0 4 :=
           labelsOf_eq_of_exact_block labels hinj hpoint
             (fun x hx ↦ by
-              obtain ⟨q, hq0, hq4, hqx⟩ := hI2block x (by simpa using hx)
+              obtain ⟨q, hq0, hq4, hqx⟩ := hI2block x hx
               exact ⟨q, Finset.mem_Ioo.mpr ⟨hq0, hq4⟩, hqx⟩)
             (by rw [Fin.card_Ioo, hI2]; decide)
         _ = {1, 2, 3} := by decide
@@ -272,7 +272,7 @@ theorem nonempty_balanced555BoundaryLabeling
         labelsOf labels (S.capInteriorByIndex S.oppIndex1) = Finset.Ioi 8 :=
           labelsOf_eq_of_exact_block labels hinj hpoint
             (fun x hx ↦ by
-              obtain ⟨q, hq8, hqx⟩ := hI1block x (by simpa using hx)
+              obtain ⟨q, hq8, hqx⟩ := hI1block x hx
               exact ⟨q, Finset.mem_Ioi.mpr hq8, hqx⟩)
             (by rw [Fin.card_Ioi, hI1]; decide)
         _ = {9, 10, 11} := by decide
@@ -312,7 +312,7 @@ theorem nonempty_balanced555BoundaryLabeling
         labelsOf labels (S.capInteriorByIndex S.oppIndex2) = Finset.Ioi 8 :=
           labelsOf_eq_of_exact_block labels hinj hpoint
             (fun x hx ↦ by
-              obtain ⟨q, hq8, hqx⟩ := hI2block x (by simpa using hx)
+              obtain ⟨q, hq8, hqx⟩ := hI2block x hx
               exact ⟨q, Finset.mem_Ioi.mpr hq8, hqx⟩)
             (by rw [Fin.card_Ioi, hI2]; decide)
         _ = {9, 10, 11} := by decide
@@ -328,7 +328,7 @@ theorem nonempty_balanced555BoundaryLabeling
         labelsOf labels (S.capInteriorByIndex S.oppIndex1) = Finset.Ioo 0 4 :=
           labelsOf_eq_of_exact_block labels hinj hpoint
             (fun x hx ↦ by
-              obtain ⟨q, hq0, hq4, hqx⟩ := hI1block x (by simpa using hx)
+              obtain ⟨q, hq0, hq4, hqx⟩ := hI1block x hx
               exact ⟨q, Finset.mem_Ioo.mpr ⟨hq0, hq4⟩, hqx⟩)
             (by rw [Fin.card_Ioo, hI1]; decide)
         _ = {1, 2, 3} := by decide

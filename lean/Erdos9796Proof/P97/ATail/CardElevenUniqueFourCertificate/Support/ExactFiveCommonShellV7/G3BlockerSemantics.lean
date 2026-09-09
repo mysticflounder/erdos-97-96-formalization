@@ -161,11 +161,13 @@ theorem CanonicalPacket.exactBlockerClause_sat
   have hinside' : inside ∈ P.cube.cube center := by
     apply of_decide_eq_true
     rw [← coverIndex_testBit_of_cubeOk hP center inside]
-    simpa [hchosen] using hinside
+    rw [hchosen] at hinside
+    exact hinside
   have houtside' : outside ∉ P.cube.cube center := by
     apply of_decide_eq_false
     rw [← coverIndex_testBit_of_cubeOk hP center outside]
-    simpa [hchosen] using houtside
+    rw [hchosen] at houtside
+    exact houtside
   rcases hrow with hrow | hrow
   · rw [hrow] at hlocal
     exact P.not_localEqHolds_of_exactAt

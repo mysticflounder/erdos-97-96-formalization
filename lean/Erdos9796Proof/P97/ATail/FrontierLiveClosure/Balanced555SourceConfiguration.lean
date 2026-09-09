@@ -172,8 +172,7 @@ theorem realizes_selectedAt
     {I : BalancedTightCoverInvariant R C N}
     (Q : Balanced555SourceConfiguration R C N I) :
     Census554.EqualityCore.Realizes Q.selectedAt Q.boundary.pointOf := by
-  simpa [selectedAt, Balanced555BoundaryLabeling.pointOf] using
-    realizes_labeledRowPattern Q.carrierPattern Q.boundary.labels
+  exact realizes_labeledRowPattern Q.carrierPattern Q.boundary.labels
 
 /-- The selected class at the first apex is exactly the first pinned
 normal-form support after relabeling. -/

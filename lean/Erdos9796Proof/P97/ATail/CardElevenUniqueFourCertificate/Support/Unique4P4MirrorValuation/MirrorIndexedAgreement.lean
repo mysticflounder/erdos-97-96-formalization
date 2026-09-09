@@ -157,8 +157,9 @@ theorem mirrorTotalVal_blockerVariable_iff_blockerVal
     simp [AtomParameters.interpret, mirrorAdapter,
       P4DirectOuterValuationScratch.asLabel_val]
   · fin_cases source <;> fin_cases center <;>
-      simp [blockerVariable, mirrorTotalVal,
-        P4DirectOuterValuationScratch.asLabel] at hsmall ⊢
+      first
+        | exact (hsmall (by decide)).elim
+        | exact Iff.rfl
 
 theorem mirrorTotalVal_supportVariable_iff_criticalSupportVal
     (P : P4MirrorBoundaryPacket R profile distribution)
@@ -173,8 +174,9 @@ theorem mirrorTotalVal_supportVariable_iff_criticalSupportVal
     simp [AtomParameters.interpret, mirrorAdapter,
       P4DirectOuterValuationScratch.asLabel_val]
   · fin_cases source <;> fin_cases point <;>
-      simp [supportVariable, mirrorTotalVal,
-        P4DirectOuterValuationScratch.asLabel] at hsmall ⊢
+      first
+        | exact (hsmall (by decide)).elim
+        | exact Iff.rfl
 
 /-- The common indexed agreement consumed by all orientation-generic P4
 occurrence bridges. -/
