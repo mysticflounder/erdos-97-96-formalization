@@ -1,0 +1,41 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-ten-eleven/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Erdos9796Mission.finite_ten_exclusion"
+title = "Exact-ten endpoint: exclude a ten-vertex counterexample"
+file = "submissions/finite-ten-eleven/Theorems/Thm_Erdos9796Mission_finite_ten_exclusion.lean"
+natural_language_statement = "No convex-independent set of exactly ten points in the Euclidean plane has four equidistant points at every vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/ff13d98d92694d0e460549031049f08357ff6150/lean/Erdos9796Proof/P97/FiniteN10.lean#L179-L193"
+tags = ["convex-position", "discrete-geometry", "erdos-97", "exact-cardinality"]
+
+[[theorem]]
+name = "Erdos9796Mission.finite_eleven_exclusion"
+title = "Exact-eleven endpoint: exclude an eleven-vertex counterexample"
+file = "submissions/finite-ten-eleven/Theorems/Thm_Erdos9796Mission_finite_eleven_exclusion.lean"
+natural_language_statement = "No convex-independent set of exactly eleven points in the Euclidean plane has four equidistant points at every vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/ff13d98d92694d0e460549031049f08357ff6150/lean/Erdos9796Proof/P97/FiniteN11.lean#L42-L78"
+tags = ["convex-position", "discrete-geometry", "erdos-97", "exact-cardinality"]
+
+[[milestone]]
+title = "Transfer the existing exact-ten exclusion proof"
+description = "Transfer the existing Lean proof Problem97.FiniteN10Closure into the mission-local theorem Erdos9796Mission.finite_ten_exclusion. This is a proof-porting milestone, not a request to re-prove the exact-ten result from scratch. Preserve the exact-cardinality statement and make the already-published exact-nine endpoint an explicit dependency. The source proof has been audited with native/compiler trust, so submission must report and pass the platform's policy for Lean.ofReduceBool and Lean.trustCompiler."
+theorem = "Erdos9796Mission.finite_ten_exclusion"
+sort_order = 10
+reason = "Expose the already-proved exact-ten endpoint so Prove2Me contributors do not duplicate completed source-project work."
+
+[[milestone]]
+title = "Transfer the existing exact-eleven exclusion proof"
+description = "After the exact-ten transfer, transfer the existing Lean proof Problem97.FiniteN11Closure into the mission-local theorem Erdos9796Mission.finite_eleven_exclusion. This is a proof-porting milestone, not a request to re-prove the exact-eleven result from scratch. Preserve the exact-cardinality statement and import the exact-ten theorem as a dependency. The source proof has been audited with native/compiler trust, so submission must report and pass the platform's policy for Lean.ofReduceBool and Lean.trustCompiler."
+theorem = "Erdos9796Mission.finite_eleven_exclusion"
+sort_order = 11
+reason = "Expose the already-proved exact-eleven endpoint after exact ten and prevent duplicate effort on a closed source theorem."

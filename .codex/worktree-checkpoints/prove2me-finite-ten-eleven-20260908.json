@@ -1,0 +1,20 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-ten-eleven-20260908",
+  "owner": "codex-prove2me-finite-ten-eleven",
+  "base_head": "ff13d98d92694d0e460549031049f08357ff6150",
+  "created_utc": "2026-09-09T04:22:28Z",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-ten-eleven-20260908.json",
+    "prove2me/submissions/finite-ten-eleven/README.md",
+    "prove2me/submissions/finite-ten-eleven/Theorems/Thm_Erdos9796Mission_finite_eleven_exclusion.lean",
+    "prove2me/submissions/finite-ten-eleven/Theorems/Thm_Erdos9796Mission_finite_ten_exclusion.lean",
+    "prove2me/submissions/finite-ten-eleven/explanation-finite-eleven.md",
+    "prove2me/submissions/finite-ten-eleven/explanation-finite-ten.md",
+    "prove2me/submissions/finite-ten-eleven/plan.toml",
+    "prove2me/submissions/finite-ten-eleven/provenance.md"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "manifest_sha256": "10323d4c1caab553e1b4eb74c904c9ac3e559691e44109ce4c14ee3270e4293f"
+}
