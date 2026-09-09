@@ -1,0 +1,25 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+# Expected existing theorem ID: a8773adc-86d1-4bff-b1e3-5380e4ae8974
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-child-shell/receipt.json"
+
+[[theorem]]
+name = "Erdos9796FiniteNine.shell"
+title = "Finite-nine endpoint shell"
+file = "submissions/finite-nine-child-shell/platform/Theorems/Thm_Erdos9796FiniteNine_shell.lean"
+natural_language_statement = "Every nine-point convex counterexample with four equidistant points at each vertex supplies the finite endpoint shell used by the remaining branches."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/tree/6e3e2a849c67f518d75fd45a09a201a6c8f4cd8f/lean/Erdos9796Proof/P97/N9Endpoint"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.shell"
+file = "submissions/finite-nine-child-shell/platform/Solutions/Sol_Erdos9796FiniteNine_shell.lean"
+explanation = "submissions/finite-nine-child-shell/explanation.md"
+proof_type = "prove"

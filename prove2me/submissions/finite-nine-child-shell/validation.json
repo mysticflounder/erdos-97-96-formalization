@@ -1,0 +1,70 @@
+{
+  "schema": "prove2me-finite-nine-child-validation/v1",
+  "created_utc": "2026-09-09T06:39:50Z",
+  "cut": "shell",
+  "result": "LOCALLY_ELABORATED_PLAN_VALIDATED_NOT_PROMOTED",
+  "lean": {
+    "version": "4.33.1",
+    "commit": "819816b2",
+    "theorem_stub_exit_code": 0,
+    "solution_exit_code": 0,
+    "audit_exit_code": 0
+  },
+  "artifacts": {
+    "theorem": {
+      "bytes": 523,
+      "sha256": "07d2e2f0a0fa8927bc49afb6d7e6e04ff96b2e0c00bba22c49e71df8df87b515"
+    },
+    "solution": {
+      "bytes": 3263,
+      "sha256": "cdee83f0aff4252be5c9541d7f9d2b125ecb6dd3a356946a7a94ca3aad103bb0"
+    },
+    "authenticated_shell_fragment": {
+      "bytes": 39806,
+      "sha256": "80695e5a22497b0be1f1c30c51c1fe6bc48d067d74744a2750cfca385c14e4fe"
+    },
+    "explanation": {
+      "bytes": 891,
+      "sha256": "14c686c8bfd822dfce75964c5bd8e52b178d3e2193d664903e468710ae8f2bb1"
+    },
+    "plan": {
+      "bytes": 1303,
+      "sha256": "6c7d67d8a4a280764c3b4546ccc53b3984a97721d9df0bbbc4a8872d77521f60"
+    }
+  },
+  "checks": {
+    "under_one_mib": true,
+    "solution_forbidden_token_scan": true,
+    "direct_definition_import_is_published": true,
+    "direct_theorem_import_count": 5,
+    "all_direct_theorem_imports_published": true,
+    "public_definition_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "accepted_counting_proof_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "native_or_unsafe_boundary": false
+  },
+  "local_placeholder_probe": {
+    "axioms": [
+      "propext",
+      "sorryAx",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "interpretation": "sorryAx is contributed by downloaded statement-only modules for already-published theorem nodes; the exact solution contains no sorry token and the proof-bearing counting audit excludes sorryAx"
+  },
+  "submission": {
+    "theorem_id": "a8773adc-86d1-4bff-b1e3-5380e4ae8974",
+    "plan_created": true,
+    "plan_validated": true,
+    "plan_digest": "65d5a9fb7ba5fefd37ab42e0c9229fb630501511fecdb9706846ba73ed913bca",
+    "target_binding": "The generic uploader reconciles the exact theorem name and formal statement, then submits to the returned remote theorem ID; the expected current ID is pinned above.",
+    "network_actions": false
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-child-shell-20260908",
+  "owner": "codex-finite-nine-child-shell",
+  "base_head": "27cae9300f14ce07e080f5230ae1e58f40cff043",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-child-shell-20260908.json",
+    "prove2me/submissions/finite-nine-child-shell/README.md",
+    "prove2me/submissions/finite-nine-child-shell/explanation.md",
+    "prove2me/submissions/finite-nine-child-shell/plan.toml",
+    "prove2me/submissions/finite-nine-child-shell/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-child-shell/platform/Solutions/Sol_Erdos9796FiniteNine_shell.lean",
+    "prove2me/submissions/finite-nine-child-shell/platform/Theorems/Thm_Erdos9796FiniteNine_shell.lean",
+    "prove2me/submissions/finite-nine-child-shell/provenance.md",
+    "prove2me/submissions/finite-nine-child-shell/validation.json"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-09T06:39:50Z",
+  "manifest_sha256": "8dc4bcc0b304b47e625f3641466bff0cf7f4aac109e5fad29251696dcffdef4f"
+}
