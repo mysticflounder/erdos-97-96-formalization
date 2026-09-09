@@ -594,6 +594,7 @@ private theorem exists_fourth_of_support_card_eq_four
     rw [hsplit, hd]
     ext x
     simp [named]
+    tauto
 
 /-- Fixed-role support packet for either crossed outside-pair constructor.
 The first collision row is already fully named.  The other two rows each have
@@ -2318,8 +2319,8 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 private theorem firstFiber_oppApex1_mem_A : S.oppApex1 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-  · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v2_mem
+  · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
@@ -2327,8 +2328,8 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 private theorem firstFiber_oppApex2_mem_A : S.oppApex2 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
@@ -2336,8 +2337,8 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 private theorem firstFiber_surplusApex_mem_A : S.surplusApex ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v2_mem
+  · simp only [SurplusCapPacket.surplusApex, hi]; exact S.triangle.v1_mem
+  · simp only [SurplusCapPacket.surplusApex, hi]; exact S.triangle.v2_mem
   · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v3_mem
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq

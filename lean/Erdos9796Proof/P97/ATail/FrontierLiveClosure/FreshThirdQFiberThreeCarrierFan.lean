@@ -178,7 +178,7 @@ theorem exists_boundaryBlockerRow_sourceIndex
   have hsource : Boundary.source.1 ∈ View.boundaryBlockerRow.support := by
     have hq := (View.qFan.blockerRow
       View.boundaryIndex).toCriticalFourShell.q_mem_support
-    simpa [boundaryBlockerRow, View.boundary_eq] using hq
+    simp only [boundaryBlockerRow, View.boundary_eq] at hq ⊢; exact hq
   let i : Fin 4 :=
     View.boundaryBlockerRowFan.index ⟨Boundary.source.1, hsource⟩
   refine ⟨i, ?_⟩
