@@ -1452,9 +1452,9 @@ private theorem exactFiveDistinct_oppApex2_mem_A
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 /-- A swapped unique-four frontier carries the exact-four residual fields
 needed by the production eliminator. -/
