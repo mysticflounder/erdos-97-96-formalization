@@ -1,0 +1,69 @@
+{
+  "schema": "prove2me-finite-nine-form-b-v1-split-validation/v1",
+  "created_utc": "2026-09-10T03:21:37Z",
+  "result": "ACCEPTED",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.form_b_v1",
+    "id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+    "source_statement_sha256": "b600c24284540190c04eb98739da46b851cd12011b3b47b85c1915624355e186"
+  },
+  "accepted_dependencies": {
+    "Erdos9796FiniteNine.n4e_core": {
+      "theorem_id": "8092e252-3da6-454a-813c-702397a844f8",
+      "proof_id": "1a2e8096-87cf-4595-b748-0c0ada857b8a"
+    },
+    "Erdos9796FiniteNine.n4d_formb_branch": {
+      "theorem_id": "42459e69-2295-4399-8a78-05eecc61a975",
+      "proof_id": "e7aae940-ff91-4c37-a2d9-a7284461f1ba"
+    }
+  },
+  "accepted_proof": {
+    "submission_id": "03e034b0-3f2c-4371-bf58-a37f96e453a2",
+    "theorem_id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+    "status": "ACCEPTED"
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-form-b-v1-split/platform/Solutions/Sol_Erdos9796FiniteNine_form_b_v1.lean",
+    "bytes": 374744,
+    "sha256": "261fc4de1e90b0bafb3fdba4f40f8406bbd526e00deda3930259d92203d3fc12",
+    "generator_sha256": "3eab2b7d5fa518d84758e03030ace2da98597e7bc11d78a302373650c50e3c61"
+  },
+  "superseded_server_attempts": [
+    {
+      "submission_id": "e79c8662-4da5-4028-a16a-ae1139352bd1",
+      "status": "ERROR",
+      "error_message": "Verification timed out after 300s"
+    },
+    {
+      "submission_id": "c48a71c4-7c62-4cd8-8fb6-0e12fad9dada",
+      "status": "ERROR",
+      "error_message": "Verification timed out after 300s"
+    }
+  ],
+  "checks": {
+    "generator_replay": "PASS; 374744 bytes and artifact digest matched",
+    "authenticated_slice_extraction": "PASS; repaired parent stream, selected prefix, N4e tail, row helpers, and final N4d modules matched pinned digests",
+    "support_projection_rewrite": "PASS; omitted N4e core and N4d branch conclusions are obtained from the accepted public records",
+    "lean_433_repairs": "PASS; parent repair assertions and final wrapper repairs applied",
+    "one_mib_limit": "PASS; 374744 bytes",
+    "forbidden_token_scan": "PASS; generated solution has no proof placeholder, named axiom, native/compiler trust primitive, unsafe or partial declaration, or external implementation",
+    "ruff": "PASS",
+    "uploader_plan": "PASS; plan digest c93509af3a71166282a19c5a7ffa91ff2cff54085c8abf00927cdd21f02c6e25; one existing theorem and one proof; no definition or milestone",
+    "lean_4_33_1_solution_elaboration": "PASS; lake-build completed 8753 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/26856-1789010240290817000.log",
+    "final_consumer_axiom_audit": "PASS with statement-mirror caveat; audit lake-build completed 8755 jobs and exited 0; #print axioms solution reported [propext, sorryAx, Classical.choice, Quot.sound]; /Users/adam/prove2me_workspace/.lake/lake-build-logs/45271-1789010443521462000.log",
+    "server_verification": "PASS; proof submission 03e034b0-3f2c-4371-bf58-a37f96e453a2 accepted for theorem b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+    "independent_skeptic_audit": "CERTIFIED for platform-verified status; local statement mirrors separately introduce sorryAx"
+  },
+  "local_observed_axiom_closure": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "required_server_axiom_closure": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "promotion_status": "platform-verified through accepted proof submission 03e034b0-3f2c-4371-bf58-a37f96e453a2"
+}

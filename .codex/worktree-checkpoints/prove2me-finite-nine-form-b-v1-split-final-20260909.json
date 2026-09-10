@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-form-b-v1-split-final-20260909",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-form-b-v1-split-final-20260909.json",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/README.md",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/explanation.md",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/generate.py",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/plan.toml",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/platform/Solutions/Sol_Erdos9796FiniteNine_form_b_v1.lean",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/provenance.md",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/receipt.json",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/skeptic-audit-2026-09-09.md",
+    "prove2me/submissions/finite-nine-child-form-b-v1-split/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-form-b-v1-split-final",
+  "base_head": "8692a6108bea7bbf4e6e2916539e19e38438a284",
+  "created_utc": "2026-09-10T02:50:00Z",
+  "manifest_sha256": "3a7f64976b2dce7770e871a738874c0b050c9cc363ebbadfe05ce49c6f095130"
+}
