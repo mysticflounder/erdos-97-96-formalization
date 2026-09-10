@@ -1,0 +1,26 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+# Existing theorem ID: 0e9040fa-76aa-44d0-9f4a-f78e0f838e21
+# Accepted dependency: N4 cap containment (2ab7afe0-25de-4ecb-b326-1bcb63a31b23)
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.9"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-child-circle-placement/receipt.json"
+
+[[theorem]]
+name = "Erdos9796FiniteNine.circle_placement"
+title = "Finite-nine common-radius circle placement"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_circle_placement.lean"
+natural_language_statement = "Cap containment supplies one positive radius placing each endpoint cap on the circle centered at its corresponding triangle vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/131426e570e951b782fde7f6366409d47b849d82/prove2me/submissions/finite-nine-modular/source-fragments/circle_placement.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.circle_placement"
+file = "submissions/finite-nine-child-circle-placement/platform/Solutions/Sol_Erdos9796FiniteNine_circle_placement.lean"
+explanation = "submissions/finite-nine-child-circle-placement/explanation.md"
+proof_type = "prove"

@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-circle-placement-20260909",
+  "base_head": "983966af8bbf83d31028ee4efd261c0df52886d5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-circle-placement-20260909.json",
+    "prove2me/submissions/finite-nine-child-circle-placement/README.md",
+    "prove2me/submissions/finite-nine-child-circle-placement/explanation.md",
+    "prove2me/submissions/finite-nine-child-circle-placement/generate.py",
+    "prove2me/submissions/finite-nine-child-circle-placement/plan.toml",
+    "prove2me/submissions/finite-nine-child-circle-placement/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-child-circle-placement/platform/Solutions/Sol_Erdos9796FiniteNine_circle_placement.lean",
+    "prove2me/submissions/finite-nine-child-circle-placement/provenance.md",
+    "prove2me/submissions/finite-nine-child-circle-placement/receipt.json",
+    "prove2me/submissions/finite-nine-child-circle-placement/skeptic-audit-2026-09-09.md",
+    "prove2me/submissions/finite-nine-child-circle-placement/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-circle-placement",
+  "created_utc": "2026-09-10T06:53:00Z",
+  "manifest_sha256": "cce1e15176ce58a08d0a4b1e017ad307c64d49b2ae10c642628cf8cda81bc942"
+}
