@@ -1,0 +1,46 @@
+{
+  "schema": "prove2me-finite-nine-cyclic-forms-validation/v1",
+  "created_utc": "2026-09-09T23:00:00Z",
+  "result": "PLATFORM_VERIFIED_LOCAL_BUILD_PASS_OFFLINE_SORRYAX",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.cyclic_forms",
+    "id": "0ecda05b-fa42-4a3f-9e58-f77d7226bc26",
+    "source_statement_sha256": "8bd6c7bbb546ff6ec28eff7a9646e5a56ce4942e36b17c25dcfb5a6bef8c34bf"
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-cyclic-forms/platform/Solutions/Sol_Erdos9796FiniteNine_cyclic_forms.lean",
+    "bytes": 13319,
+    "sha256": "1812e901b588f216b46874002c8d9921c2ca6f1d4c8bcdf359b4ddecf1cbb3d5"
+  },
+  "checks": {
+    "generator_check": "PASS",
+    "generator_ruff": "PASS",
+    "authenticated_fragment": "PASS; 246d74d5159947ad68c26e2725fa6af7e62b9226a28968a0f5319d3f1087e32c",
+    "current_source_binding": "PASS; edbf1d9caed20389ae0b93b9f13ea65433b6ae9230b7a85a53e45b1f408e794c",
+    "reuse_preflight": "PASS; indexed revision da400a7a1, no cyclic_forms exact/name match",
+    "source_private_rewrites": "PASS; A v1, B v1, and C v1 calls rewritten to public theorem modules; B v2 source-private proof omitted",
+    "both_cyclic_shifts": "PASS; one-step and three-step shifts with transport lemmas retained",
+    "one_mib_limit": "PASS; 13319 bytes",
+    "forbidden_token_scan": "PASS",
+    "plan_validation": "PASS; digest 80b14e33123e508e65c0a28fd789d7ff4157ad45850c1b9fa5994f47b20aabe7",
+    "solution_elaboration": "PASS; lake-build Solutions.Sol_Erdos9796FiniteNine_cyclic_forms, 8725 jobs, exit 0, /Users/adam/prove2me_workspace/.lake/lake-build-logs/80484-1789020063493488000.log",
+    "audit_elaboration": "PASS; lake-build Solutions.Audit_Erdos9796FiniteNine_cyclic_forms, 8726 jobs, exit 0, /Users/adam/prove2me_workspace/.lake/lake-build-logs/90916-1789020129563098000.log",
+    "axiom_audit": "PASS local audit; [propext, sorryAx, Classical.choice, Quot.sound]",
+    "offline_dependency_mirrors": "Form A v1, Form B v1, Form B v2, and Form C v1 are statement-only mirrors in the local workspace; sorryAx is thereby expected",
+    "platform_submission": "PASS; accepted proof ea892517-aefe-4776-9a28-ebcfd62d5252",
+    "platform_created_utc": "2026-09-10T06:11:19.419853+00:00",
+    "platform_accepted_utc": "2026-09-10T06:12:53.232103+00:00"
+  },
+  "local_observed_axiom_closure": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "required_server_axiom_closure": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "promotion_status": "platform verified through accepted proof submission ea892517-aefe-4776-9a28-ebcfd62d5252; offline dependency mirror caveat retained"
+}

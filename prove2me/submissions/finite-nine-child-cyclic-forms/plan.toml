@@ -1,0 +1,26 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+# Existing theorem ID: 0ecda05b-fa42-4a3f-9e58-f77d7226bc26
+# Accepted dependencies: Form A v1, Form B v1, Form B v2, Form C v1
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.9"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-child-cyclic-forms/receipt.json"
+
+[[theorem]]
+name = "Erdos9796FiniteNine.cyclic_forms"
+title = "Finite-nine cyclic form exclusions"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_cyclic_forms.lean"
+natural_language_statement = "For a finite nine-point endpoint shell, the remaining Form A, Form B, and Form C cases at the second and third distinguished vertices are excluded."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/275c906536f3a1484b5c7d869dc91bb8d341df55/lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.cyclic_forms"
+file = "submissions/finite-nine-child-cyclic-forms/platform/Solutions/Sol_Erdos9796FiniteNine_cyclic_forms.lean"
+explanation = "submissions/finite-nine-child-cyclic-forms/explanation.md"
+proof_type = "prove"

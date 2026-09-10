@@ -1,0 +1,35 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Erdos9796FiniteNine.cyclic_forms": {
+      "payload_sha256": "ecf5cf36790585653d4e5799b0fda0c71fe19ee8fb7d1c1a0ef4333b6fbc4235",
+      "state": "RECORDED",
+      "submission_id": "ea892517-aefe-4776-9a28-ebcfd62d5252"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "80b14e33123e508e65c0a28fd789d7ff4157ad45850c1b9fa5994f47b20aabe7",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796FiniteNine.cyclic_forms": {
+      "created_at": "2026-09-10T06:11:19.419853+00:00",
+      "error_message": "",
+      "file_path": "0ecda05b-fa42-4a3f-9e58-f77d7226bc26/6ac78adb-dda3-4892-bb46-d4c86f102d16/ea892517-aefe-4776-9a28-ebcfd62d5252.lean",
+      "id": "ea892517-aefe-4776-9a28-ebcfd62d5252",
+      "status": "ACCEPTED",
+      "submission_id": "ea892517-aefe-4776-9a28-ebcfd62d5252",
+      "theorem_id": "0ecda05b-fa42-4a3f-9e58-f77d7226bc26",
+      "updated_at": "2026-09-10T06:12:53.232103+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796FiniteNine.cyclic_forms": {
+      "status": "Open",
+      "theorem_id": "0ecda05b-fa42-4a3f-9e58-f77d7226bc26"
+    }
+  }
+}

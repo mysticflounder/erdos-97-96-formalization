@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-cyclic-forms-20260909",
+  "base_head": "a16f3070dcbe95e52ea89d9b547a5c6f507c33ab",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-cyclic-forms-20260909.json",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/README.md",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/explanation.md",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/generate.py",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/plan.toml",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/platform/Solutions/Sol_Erdos9796FiniteNine_cyclic_forms.lean",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/provenance.md",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/receipt.json",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/skeptic-audit-2026-09-09.md",
+    "prove2me/submissions/finite-nine-child-cyclic-forms/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-cyclic-forms",
+  "created_utc": "2026-09-10T05:53:00Z",
+  "manifest_sha256": "6887c7e95bda4daa809282b9f39502f4ef75088d9f77d9c661f77d00701d7387"
+}
