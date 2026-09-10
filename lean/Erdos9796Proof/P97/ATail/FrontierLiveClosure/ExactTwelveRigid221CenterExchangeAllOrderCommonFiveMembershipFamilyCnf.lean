@@ -5711,7 +5711,7 @@ theorem false_of_blockingClause_false
       (entry.definitions.map fun definition => definition.requirement)
       entry.data hvalid.1
   apply nogood.refutes hreal order hforced hconv
-  simpa [nogood] using hpositive
+  exact hpositive
 
 end CenterExchangeAllOrderCommonFiveMembershipFamilyCnf
 end ExactTwelveRigid221Ingress
