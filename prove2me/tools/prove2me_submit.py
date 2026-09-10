@@ -678,6 +678,7 @@ def _new_receipt(plan: LoadedPlan) -> dict[str, Any]:
         "definitions": {},
         "theorems": {},
         "proofs": {},
+        "proof_attempts": {},
         "milestones": {},
         "mission_description": {},
         "intents": {},
@@ -701,16 +702,24 @@ def _load_receipt(plan: LoadedPlan) -> tuple[Path, dict[str, Any]]:
     ):
         raise SubmissionError("receipt belongs to a different plan or host")
     receipt.setdefault("definitions", {})
+    receipt.setdefault("proof_attempts", {})
     for key in (
         "definitions",
         "theorems",
         "proofs",
+        "proof_attempts",
         "milestones",
         "mission_description",
         "intents",
     ):
         if not isinstance(receipt.get(key), dict):
             raise SubmissionError(f"malformed receipt field: {key}")
+    if any(
+        not isinstance(attempts, list)
+        or any(not isinstance(attempt, dict) for attempt in attempts)
+        for attempts in receipt["proof_attempts"].values()
+    ):
+        raise SubmissionError("malformed receipt field: proof_attempts")
     return path, receipt
 
 
@@ -977,6 +986,8 @@ def _ensure_proof(
     client: Client,
     receipt_path: Path,
     receipt: dict[str, Any],
+    *,
+    retry_terminal_proofs: bool = False,
 ) -> None:
     name = proof["theorem"]
     entry = receipt["proofs"].get(name, {})
@@ -987,19 +998,53 @@ def _ensure_proof(
         entry.update(result)
         receipt["proofs"][name] = entry
         _atomic_json(receipt_path, receipt)
-        if result.get("status") not in PROOF_SUCCESS:
+        status = result.get("status")
+        if status in PROOF_SUCCESS:
+            return
+        if status not in FAILURE or not retry_terminal_proofs:
             raise SubmissionError(f"proof for {name} ended as {result.get('status')}")
-        return
+
+        relevant_intents = {
+            key: intent
+            for key, intent in receipt["intents"].items()
+            if key == f"proof:{name}" or key.startswith(f"proof:{name}:retry:")
+        }
+        if any(
+            intent.get("state") == "INTENT"
+            for intent in relevant_intents.values()
+        ):
+            raise SubmissionError(
+                f"uncertain prior proof POST for {name}; refusing retry"
+            )
+
+        attempts = receipt["proof_attempts"].setdefault(name, [])
+        failed_submission_id = entry["submission_id"]
+        if not any(
+            attempt.get("submission_id") == failed_submission_id
+            for attempt in attempts
+        ):
+            attempts.append(dict(entry))
+            _atomic_json(receipt_path, receipt)
+
+        retry_number = len(attempts)
+        intent_key = f"proof:{name}:retry:{retry_number}"
+        while intent_key in receipt["intents"]:
+            retry_number += 1
+            intent_key = f"proof:{name}:retry:{retry_number}"
+    else:
+        intent_key = f"proof:{name}"
+        prior = receipt["intents"].get(intent_key)
+        if prior and prior.get("state") == "INTENT":
+            raise SubmissionError(
+                f"uncertain prior proof POST for {name}; refusing retry"
+            )
+
     fields = {
         "explanation": proof["explanation_text"],
         "proof_type": proof["proof_type"],
         "theorem_id": theorem_id,
     }
     body, boundary = encode_multipart(fields, proof["path"].read_bytes())
-    intent_key = f"proof:{name}"
-    prior = receipt["intents"].get(intent_key)
-    if prior and prior.get("state") == "INTENT":
-        raise SubmissionError(f"uncertain prior proof POST for {name}; refusing retry")
     _intent(receipt, receipt_path, intent_key, body)
     response = client.request(
         "POST",
@@ -1014,7 +1059,12 @@ def _ensure_proof(
         "status": response.get("status", "PENDING"),
         "submission_id": submission_id,
     }
-    _complete_intent(receipt, receipt_path, intent_key, submission_id=submission_id)
+    if intent_key != f"proof:{name}":
+        receipt["proofs"][name]["intent_key"] = intent_key
+    intent_values = {"submission_id": submission_id}
+    if entry.get("submission_id"):
+        intent_values["retry_of_submission_id"] = entry["submission_id"]
+    _complete_intent(receipt, receipt_path, intent_key, **intent_values)
     result = client.poll_submission(submission_id)
     receipt["proofs"][name].update(result)
     _atomic_json(receipt_path, receipt)
@@ -1192,6 +1242,7 @@ def apply_plan(
     transport: Transport | None = None,
     poll_interval: float = 2.0,
     poll_timeout: float = 900.0,
+    retry_terminal_proofs: bool = False,
 ) -> dict[str, Any]:
     """Apply a validated plan, recording every mutation intent atomically."""
     credentials = _resolve_credentials(plan.path.parent, plan.data["credentials"])
@@ -1213,7 +1264,12 @@ def apply_plan(
         )
     for proof in plan.proofs:
         _ensure_proof(
-            proof, ids[proof["theorem"]], client, receipt_path, receipt
+            proof,
+            ids[proof["theorem"]],
+            client,
+            receipt_path,
+            receipt,
+            retry_terminal_proofs=retry_terminal_proofs,
         )
     mission_id = plan.data.get("mission_id")
     if isinstance(mission_id, str):
@@ -1256,6 +1312,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("plan", type=Path)
     parser.add_argument("--poll-interval", type=float, default=2.0)
     parser.add_argument("--poll-timeout", type=float, default=900.0)
+    parser.add_argument(
+        "--retry-terminal-proofs",
+        action="store_true",
+        help="submit one new proof attempt after a recorded terminal failure",
+    )
     args = parser.parse_args(argv)
     try:
         plan = load_plan(args.plan)
@@ -1266,6 +1327,7 @@ def main(argv: list[str] | None = None) -> int:
                 plan,
                 poll_interval=args.poll_interval,
                 poll_timeout=args.poll_timeout,
+                retry_terminal_proofs=args.retry_terminal_proofs,
             )
         )
     except SubmissionError as error:

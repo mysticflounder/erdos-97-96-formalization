@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-submit-terminal-retry-20260909",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-submit-terminal-retry-20260909.json",
+    "prove2me/tests/test_prove2me_submit.py",
+    "prove2me/tools/prove2me_submit.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-submit-retry",
+  "base_head": "0707e2c26e2e570e2b56ce656242cf5dec4d2584",
+  "created_utc": "2026-09-10T00:31:00Z",
+  "manifest_sha256": "b297b76a4c90d31286fdc461cb57311b3860f565394e5b928bb4653c9475ede7"
+}

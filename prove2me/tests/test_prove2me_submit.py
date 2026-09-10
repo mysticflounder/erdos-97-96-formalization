@@ -111,6 +111,59 @@ class DefinitionTransport:
         raise AssertionError(f"unexpected request: {method} {url}")
 
 
+class ProofRetryTransport:
+    def __init__(
+        self, retry_status: str = "ACCEPTED", recorded_status: str = "FAILED"
+    ) -> None:
+        self.retry_status = retry_status
+        self.recorded_status = recorded_status
+        self.calls: list[tuple[str, str, dict[str, str], bytes | None]] = []
+        self.retry_count = 0
+
+    def request(
+        self,
+        method: str,
+        url: str,
+        *,
+        headers: dict[str, str],
+        body: bytes | None,
+    ) -> Any:
+        self.calls.append((method, url, headers, body))
+        if url.endswith("/agent/refresh"):
+            return {
+                "access_token": "access-secret",
+                "expires_at": 10**12,
+                "version": "0.9.8",
+            }
+        if "/theorems?" in url:
+            return {
+                "theorems": [
+                    {
+                        "theorem_name": "Example.target",
+                        "theorem_id": "theorem-1",
+                        "formal_statement": STATEMENT,
+                        "status": "Open",
+                    }
+                ]
+            }
+        if method == "GET" and "submission_id=submission-old" in url:
+            return {
+                "submission_id": "submission-old",
+                "status": self.recorded_status,
+                "result": {"diagnostic": "old failure"},
+            }
+        if method == "POST" and url.endswith("/verify"):
+            self.retry_count += 1
+            return {
+                "submission_id": f"submission-retry-{self.retry_count}",
+                "status": "PENDING",
+            }
+        if method == "GET" and "submission_id=submission-retry-" in url:
+            submission_id = url.rsplit("=", 1)[-1]
+            return {"submission_id": submission_id, "status": self.retry_status}
+        raise AssertionError(f"unexpected request: {method} {url}")
+
+
 def write_plan(tmp_path: Path) -> Path:
     (tmp_path / "credentials.json").write_text(
         json.dumps({"api_key": "api-secret"}), encoding="utf-8"
@@ -156,6 +209,41 @@ private = true
 env = "mathlib-test"
 """
         )
+
+
+def append_proof(plan: Path) -> None:
+    (plan.parent / "solution.lean").write_text(
+        "theorem solution (n : Nat) : n = n := by rfl\n", encoding="utf-8"
+    )
+    (plan.parent / "explanation.md").write_text("Reflexivity.\n", encoding="utf-8")
+    with plan.open("a", encoding="utf-8") as stream:
+        stream.write(
+            """
+[[proof]]
+theorem = "Example.target"
+file = "solution.lean"
+explanation = "explanation.md"
+"""
+        )
+
+
+def write_failed_proof_receipt(plan: Any, *, uncertain: bool = False) -> None:
+    receipt = MODULE._new_receipt(plan)
+    receipt["theorems"]["Example.target"] = {
+        "status": "PUBLISHED",
+        "theorem_id": "theorem-1",
+    }
+    receipt["proofs"]["Example.target"] = {
+        "status": "PENDING",
+        "submission_id": "submission-old",
+        "local_metadata": {"preserve": True},
+    }
+    receipt["intents"]["proof:Example.target"] = {
+        "state": "INTENT" if uncertain else "RECORDED",
+        "payload_sha256": "original-digest",
+        "submission_id": "submission-old",
+    }
+    MODULE._atomic_json(plan.root / plan.data["receipt"], receipt)
 
 
 def test_parse_theorem_file_splits_required_marker_and_checks_dotted_name(
@@ -348,6 +436,124 @@ explanation = "explanation.md"
     )
     with pytest.raises(SubmissionError, match="contains 'admit'"):
         load_plan(plan_path)
+
+
+def test_terminal_proof_failure_is_not_retried_by_default(tmp_path: Path) -> None:
+    plan_path = write_plan(tmp_path)
+    append_proof(plan_path)
+    plan = load_plan(plan_path)
+    write_failed_proof_receipt(plan)
+    transport = ProofRetryTransport()
+
+    with pytest.raises(SubmissionError, match="ended as FAILED"):
+        apply_plan(plan, transport=transport)
+
+    receipt = json.loads((tmp_path / "receipt.json").read_text(encoding="utf-8"))
+    assert transport.retry_count == 0
+    assert receipt["proofs"]["Example.target"]["status"] == "FAILED"
+    assert receipt["proof_attempts"] == {}
+
+
+def test_explicit_terminal_retry_preserves_history_and_uses_unique_intent(
+    tmp_path: Path,
+) -> None:
+    plan_path = write_plan(tmp_path)
+    append_proof(plan_path)
+    plan = load_plan(plan_path)
+    write_failed_proof_receipt(plan)
+    transport = ProofRetryTransport()
+
+    receipt = apply_plan(plan, transport=transport, retry_terminal_proofs=True)
+
+    assert receipt["proof_attempts"]["Example.target"] == [
+        {
+            "local_metadata": {"preserve": True},
+            "result": {"diagnostic": "old failure"},
+            "status": "FAILED",
+            "submission_id": "submission-old",
+        }
+    ]
+    assert receipt["intents"]["proof:Example.target"] == {
+        "payload_sha256": "original-digest",
+        "state": "RECORDED",
+        "submission_id": "submission-old",
+    }
+    retry_intent = receipt["intents"]["proof:Example.target:retry:1"]
+    assert retry_intent["state"] == "RECORDED"
+    assert retry_intent["submission_id"] == "submission-retry-1"
+    assert retry_intent["retry_of_submission_id"] == "submission-old"
+    assert receipt["proofs"]["Example.target"] == {
+        "intent_key": "proof:Example.target:retry:1",
+        "status": "ACCEPTED",
+        "submission_id": "submission-retry-1",
+    }
+
+
+def test_accepted_retry_is_reused_without_another_post(tmp_path: Path) -> None:
+    plan_path = write_plan(tmp_path)
+    append_proof(plan_path)
+    plan = load_plan(plan_path)
+    write_failed_proof_receipt(plan)
+    transport = ProofRetryTransport()
+
+    first = apply_plan(plan, transport=transport, retry_terminal_proofs=True)
+    second = apply_plan(plan, transport=transport, retry_terminal_proofs=True)
+
+    assert first["proofs"] == second["proofs"]
+    assert transport.retry_count == 1
+
+
+def test_failed_retry_does_not_loop_within_one_apply(tmp_path: Path) -> None:
+    plan_path = write_plan(tmp_path)
+    append_proof(plan_path)
+    plan = load_plan(plan_path)
+    write_failed_proof_receipt(plan)
+    transport = ProofRetryTransport(retry_status="WA")
+
+    with pytest.raises(SubmissionError, match="ended as WA"):
+        apply_plan(plan, transport=transport, retry_terminal_proofs=True)
+
+    receipt = json.loads((tmp_path / "receipt.json").read_text(encoding="utf-8"))
+    assert transport.retry_count == 1
+    assert len(receipt["proof_attempts"]["Example.target"]) == 1
+    assert receipt["proofs"]["Example.target"]["status"] == "WA"
+
+
+def test_retry_refuses_uncertain_prior_proof_intent(tmp_path: Path) -> None:
+    plan_path = write_plan(tmp_path)
+    append_proof(plan_path)
+    plan = load_plan(plan_path)
+    write_failed_proof_receipt(plan, uncertain=True)
+    transport = ProofRetryTransport()
+
+    with pytest.raises(SubmissionError, match="uncertain prior proof POST"):
+        apply_plan(plan, transport=transport, retry_terminal_proofs=True)
+
+    assert transport.retry_count == 0
+
+
+@pytest.mark.parametrize(
+    ("status", "message"),
+    [("CANCELLED", "ended as CANCELLED"), ("PENDING", "polling timed out")],
+)
+def test_retry_refuses_unknown_and_active_states(
+    tmp_path: Path, status: str, message: str
+) -> None:
+    plan_path = write_plan(tmp_path)
+    append_proof(plan_path)
+    plan = load_plan(plan_path)
+    write_failed_proof_receipt(plan)
+    transport = ProofRetryTransport(recorded_status=status)
+
+    with pytest.raises(SubmissionError, match=message):
+        apply_plan(
+            plan,
+            transport=transport,
+            poll_timeout=0,
+            retry_terminal_proofs=True,
+        )
+
+    assert transport.retry_count == 0
 
 
 def test_apply_uses_exact_lookup_and_is_idempotent(tmp_path: Path) -> None:
