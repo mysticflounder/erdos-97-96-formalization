@@ -5,390 +5,519 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 
 namespace Problem97.P4KalmansonOccurrenceBridgeScratch
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry001 : BridgeEntry :=
   ⟨[-46, -41, -31, -8, -38, -6], .schema6Forward, [0, 3, 4, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry002 : BridgeEntry :=
   ⟨[-46, -41, -39, -9, -31, -6], .schema6Forward, [0, 3, 4, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry003 : BridgeEntry :=
   ⟨[-56, -51, -31, -37, -7, -6], .schema6Forward, [0, 3, 5, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry004 : BridgeEntry :=
   ⟨[-79, -96, -66, -74, -69, -94], .schema6Reflected, [0, 3, 5, 6, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry005 : BridgeEntry :=
   ⟨[-56, -38, -31, -8, -51, -6], .schema6Forward, [0, 3, 5, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry006 : BridgeEntry :=
   ⟨[-56, -51, -31, -9, -39, -6], .schema6Forward, [0, 3, 5, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry007 : BridgeEntry :=
   ⟨[-56, -51, -41, -47, -7, -6], .schema6Forward, [0, 4, 5, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry008 : BridgeEntry :=
   ⟨[-51, -56, -41, -48, -8, -6], .schema6Forward, [0, 4, 5, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry009 : BridgeEntry :=
   ⟨[-56, -51, -49, -41, -9, -6], .schema6Forward, [0, 4, 5, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry010 : BridgeEntry :=
   ⟨[-56, -64, -46, -44, -53, -63], .schema6Reflected, [0, 2, 3, 4, 5, 6], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry011 : BridgeEntry :=
   ⟨[-53, -73, -47, -57, -74, -44], .schema6Reflected, [0, 2, 3, 4, 5, 7], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry012 : BridgeEntry :=
   ⟨[-53, -44, -83, -58, -84, -48], .schema6Reflected, [0, 2, 3, 4, 5, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry013 : BridgeEntry :=
   ⟨[-53, -59, -94, -44, -49, -93], .schema6Reflected, [0, 2, 3, 4, 5, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry014 : BridgeEntry :=
   ⟨[-60, -44, -103, -104, -53, -50], .schema6Reflected, [0, 2, 3, 4, 5, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry015 : BridgeEntry :=
   ⟨[-44, -47, -63, -67, -73, -74], .schema6Reflected, [0, 2, 3, 4, 6, 7], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry016 : BridgeEntry :=
   ⟨[-63, -44, -83, -48, -68, -84], .schema6Reflected, [0, 2, 3, 4, 6, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry017 : BridgeEntry :=
   ⟨[-63, -93, -94, -49, -69, -44], .schema6Reflected, [0, 2, 3, 4, 6, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry018 : BridgeEntry :=
   ⟨[-63, -44, -103, -104, -50, -70], .schema6Reflected, [0, 2, 3, 4, 6, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry019 : BridgeEntry :=
   ⟨[-78, -44, -83, -84, -48, -73], .schema6Reflected, [0, 2, 3, 4, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry020 : BridgeEntry :=
   ⟨[-73, -93, -94, -44, -79, -49], .schema6Reflected, [0, 2, 3, 4, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry021 : BridgeEntry :=
   ⟨[-80, -44, -103, -104, -50, -73], .schema6Reflected, [0, 2, 3, 4, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry022 : BridgeEntry :=
   ⟨[-89, -94, -83, -49, -44, -93], .schema6Reflected, [0, 2, 3, 4, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry023 : BridgeEntry :=
   ⟨[-90, -44, -103, -104, -50, -83], .schema6Reflected, [0, 2, 3, 4, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry024 : BridgeEntry :=
   ⟨[-103, -93, -104, -100, -50, -44], .schema6Reflected, [0, 2, 3, 4, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry025 : BridgeEntry :=
   ⟨[-57, -73, -54, -63, -67, -74], .schema6Reflected, [0, 2, 3, 5, 6, 7], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry026 : BridgeEntry :=
   ⟨[-58, -54, -83, -63, -84, -68], .schema6Reflected, [0, 2, 3, 5, 6, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry027 : BridgeEntry :=
   ⟨[-54, -93, -94, -69, -63, -59], .schema6Reflected, [0, 2, 3, 5, 6, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry028 : BridgeEntry :=
   ⟨[-60, -54, -104, -103, -70, -63], .schema6Reflected, [0, 2, 3, 5, 6, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry029 : BridgeEntry :=
   ⟨[-58, -54, -84, -83, -78, -73], .schema6Reflected, [0, 2, 3, 5, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry030 : BridgeEntry :=
   ⟨[-79, -54, -93, -59, -94, -73], .schema6Reflected, [0, 2, 3, 5, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry031 : BridgeEntry :=
   ⟨[-80, -54, -104, -60, -73, -103], .schema6Reflected, [0, 2, 3, 5, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry032 : BridgeEntry :=
   ⟨[-89, -54, -93, -59, -94, -83], .schema6Reflected, [0, 2, 3, 5, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry033 : BridgeEntry :=
   ⟨[-60, -104, -83, -103, -54, -90], .schema6Reflected, [0, 2, 3, 5, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry034 : BridgeEntry :=
   ⟨[-54, -93, -104, -103, -60, -100], .schema6Reflected, [0, 2, 3, 5, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry035 : BridgeEntry :=
   ⟨[-73, -68, -84, -83, -64, -78], .schema6Reflected, [0, 2, 3, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry036 : BridgeEntry :=
   ⟨[-73, -69, -94, -93, -64, -79], .schema6Reflected, [0, 2, 3, 6, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry037 : BridgeEntry :=
   ⟨[-80, -70, -104, -103, -64, -73], .schema6Reflected, [0, 2, 3, 6, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry038 : BridgeEntry :=
   ⟨[-69, -94, -83, -64, -93, -89], .schema6Reflected, [0, 2, 3, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry039 : BridgeEntry :=
   ⟨[-70, -104, -83, -103, -64, -90], .schema6Reflected, [0, 2, 3, 6, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry040 : BridgeEntry :=
   ⟨[-70, -103, -93, -64, -100, -104], .schema6Reflected, [0, 2, 3, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry041 : BridgeEntry :=
   ⟨[-79, -94, -83, -74, -93, -89], .schema6Reflected, [0, 2, 3, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry042 : BridgeEntry :=
   ⟨[-80, -104, -83, -103, -74, -90], .schema6Reflected, [0, 2, 3, 7, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry043 : BridgeEntry :=
   ⟨[-80, -93, -104, -103, -74, -100], .schema6Reflected, [0, 2, 3, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry044 : BridgeEntry :=
   ⟨[-90, -100, -104, -103, -84, -93], .schema6Reflected, [0, 2, 3, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry045 : BridgeEntry :=
   ⟨[-57, -63, -75, -73, -55, -67], .schema6Reflected, [0, 2, 4, 5, 6, 7], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry046 : BridgeEntry :=
   ⟨[-59, -69, -95, -93, -55, -63], .schema6Reflected, [0, 2, 4, 5, 6, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry047 : BridgeEntry :=
   ⟨[-60, -63, -105, -103, -70, -55], .schema6Reflected, [0, 2, 4, 5, 6, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry048 : BridgeEntry :=
   ⟨[-73, -58, -85, -83, -78, -55], .schema6Reflected, [0, 2, 4, 5, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry049 : BridgeEntry :=
   ⟨[-73, -59, -95, -93, -55, -79], .schema6Reflected, [0, 2, 4, 5, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry050 : BridgeEntry :=
   ⟨[-80, -73, -105, -103, -60, -55], .schema6Reflected, [0, 2, 4, 5, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry051 : BridgeEntry :=
   ⟨[-90, -105, -83, -55, -60, -103], .schema6Reflected, [0, 2, 4, 5, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry052 : BridgeEntry :=
   ⟨[-100, -103, -105, -93, -55, -60], .schema6Reflected, [0, 2, 4, 5, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry053 : BridgeEntry :=
   ⟨[-78, -68, -85, -83, -73, -65], .schema6Reflected, [0, 2, 4, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry054 : BridgeEntry :=
   ⟨[-79, -69, -95, -93, -65, -73], .schema6Reflected, [0, 2, 4, 6, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry055 : BridgeEntry :=
   ⟨[-80, -70, -103, -73, -65, -105], .schema6Reflected, [0, 2, 4, 6, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry056 : BridgeEntry :=
   ⟨[-89, -69, -95, -93, -65, -83], .schema6Reflected, [0, 2, 4, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry057 : BridgeEntry :=
   ⟨[-65, -70, -103, -83, -90, -105], .schema6Reflected, [0, 2, 4, 6, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry058 : BridgeEntry :=
   ⟨[-65, -70, -100, -93, -105, -103], .schema6Reflected, [0, 2, 4, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry059 : BridgeEntry :=
   ⟨[-79, -75, -95, -93, -83, -89], .schema6Reflected, [0, 2, 4, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry060 : BridgeEntry :=
   ⟨[-75, -105, -83, -90, -80, -103], .schema6Reflected, [0, 2, 4, 7, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry061 : BridgeEntry :=
   ⟨[-100, -75, -105, -93, -80, -103], .schema6Reflected, [0, 2, 4, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry062 : BridgeEntry :=
   ⟨[-90, -100, -85, -93, -103, -105], .schema6Reflected, [0, 2, 4, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry063 : BridgeEntry :=
   ⟨[-78, -86, -66, -83, -68, -73], .schema6Reflected, [0, 2, 5, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry064 : BridgeEntry :=
   ⟨[-73, -96, -69, -93, -79, -66], .schema6Reflected, [0, 2, 5, 6, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry065 : BridgeEntry :=
   ⟨[-106, -66, -103, -70, -73, -80], .schema6Reflected, [0, 2, 5, 6, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry066 : BridgeEntry :=
   ⟨[-89, -93, -83, -66, -69, -96], .schema6Reflected, [0, 2, 5, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry067 : BridgeEntry :=
   ⟨[-106, -70, -83, -66, -90, -103], .schema6Reflected, [0, 2, 5, 6, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry068 : BridgeEntry :=
   ⟨[-70, -103, -93, -66, -106, -100], .schema6Reflected, [0, 2, 5, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry069 : BridgeEntry :=
   ⟨[-79, -76, -96, -83, -93, -89], .schema6Reflected, [0, 2, 5, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry070 : BridgeEntry :=
   ⟨[-80, -76, -103, -106, -83, -90], .schema6Reflected, [0, 2, 5, 7, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry071 : BridgeEntry :=
   ⟨[-80, -76, -103, -106, -100, -93], .schema6Reflected, [0, 2, 5, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry072 : BridgeEntry :=
   ⟨[-106, -100, -103, -93, -90, -86], .schema6Reflected, [0, 2, 5, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry073 : BridgeEntry :=
   ⟨[-79, -77, -97, -93, -83, -89], .schema6Reflected, [0, 2, 6, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry074 : BridgeEntry :=
   ⟨[-77, -107, -90, -103, -83, -80], .schema6Reflected, [0, 2, 6, 7, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry075 : BridgeEntry :=
   ⟨[-107, -87, -100, -90, -103, -93], .schema6Reflected, [0, 2, 6, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry076 : BridgeEntry :=
   ⟨[-22, -19, -78, -18, -29, -72], .schema6Forward, [1, 2, 7, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry077 : BridgeEntry :=
   ⟨[-108, -90, -100, -88, -103, -93], .schema6Reflected, [0, 2, 7, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry078 : BridgeEntry :=
   ⟨[-79, -75, -94, -95, -89, -84], .schema6Reflected, [0, 3, 4, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry079 : BridgeEntry :=
   ⟨[-89, -84, -94, -66, -96, -69], .schema6Reflected, [0, 3, 5, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry080 : BridgeEntry :=
   ⟨[-57, -64, -75, -74, -55, -67], .schema6Reflected, [0, 3, 4, 5, 6, 7], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry081 : BridgeEntry :=
   ⟨[-64, -68, -85, -84, -58, -55], .schema6Reflected, [0, 3, 4, 5, 6, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry082 : BridgeEntry :=
   ⟨[-64, -59, -95, -94, -55, -69], .schema6Reflected, [0, 3, 4, 5, 6, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry083 : BridgeEntry :=
   ⟨[-55, -70, -104, -64, -105, -60], .schema6Reflected, [0, 3, 4, 5, 6, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry084 : BridgeEntry :=
   ⟨[-58, -85, -74, -84, -55, -78], .schema6Reflected, [0, 3, 4, 5, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry085 : BridgeEntry :=
   ⟨[-79, -59, -95, -94, -55, -74], .schema6Reflected, [0, 3, 4, 5, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry086 : BridgeEntry :=
   ⟨[-25, -33, -43, -27, -45, -37], .schema6Forward, [2, 3, 4, 5, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry087 : BridgeEntry :=
   ⟨[-80, -74, -105, -104, -55, -60], .schema6Reflected, [0, 3, 4, 5, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry088 : BridgeEntry :=
   ⟨[-59, -84, -95, -94, -55, -89], .schema6Reflected, [0, 3, 4, 5, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry089 : BridgeEntry :=
   ⟨[-25, -33, -45, -43, -28, -38], .schema6Forward, [2, 3, 4, 5, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry090 : BridgeEntry :=
   ⟨[-60, -55, -84, -90, -104, -105], .schema6Reflected, [0, 3, 4, 5, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry091 : BridgeEntry :=
   ⟨[-55, -105, -94, -100, -104, -60], .schema6Reflected, [0, 3, 4, 5, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry092 : BridgeEntry :=
   ⟨[-78, -65, -68, -84, -85, -74], .schema6Reflected, [0, 3, 4, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry093 : BridgeEntry :=
   ⟨[-79, -69, -95, -94, -65, -74], .schema6Reflected, [0, 3, 4, 6, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry094 : BridgeEntry :=
   ⟨[-43, -26, -33, -46, -37, -27], .schema6Forward, [2, 3, 4, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry095 : BridgeEntry :=
   ⟨[-80, -70, -105, -104, -65, -74], .schema6Reflected, [0, 3, 4, 6, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry096 : BridgeEntry :=
   ⟨[-69, -84, -95, -94, -65, -89], .schema6Reflected, [0, 3, 4, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry097 : BridgeEntry :=
   ⟨[-70, -84, -105, -90, -104, -65], .schema6Reflected, [0, 3, 4, 6, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry098 : BridgeEntry :=
   ⟨[-70, -105, -94, -104, -65, -100], .schema6Reflected, [0, 3, 4, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry099 : BridgeEntry :=
   ⟨[-38, -47, -28, -43, -27, -33], .schema6Forward, [2, 3, 4, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry100 : BridgeEntry :=
   ⟨[-90, -75, -105, -104, -84, -80], .schema6Reflected, [0, 3, 4, 7, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry101 : BridgeEntry :=
   ⟨[-27, -43, -39, -29, -33, -47], .schema6Forward, [2, 3, 4, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry102 : BridgeEntry :=
   ⟨[-100, -105, -104, -94, -75, -80], .schema6Reflected, [0, 3, 4, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry103 : BridgeEntry :=
   ⟨[-33, -29, -39, -28, -48, -43], .schema6Forward, [2, 3, 4, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry104 : BridgeEntry :=
   ⟨[-90, -105, -94, -104, -85, -100], .schema6Reflected, [0, 3, 4, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry105 : BridgeEntry :=
   ⟨[-86, -68, -66, -74, -84, -78], .schema6Reflected, [0, 3, 5, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry106 : BridgeEntry :=
   ⟨[-53, -26, -56, -27, -33, -37], .schema6Forward, [2, 3, 5, 6, 7, 8], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry107 : BridgeEntry :=
   ⟨[-80, -70, -104, -74, -106, -66], .schema6Reflected, [0, 3, 5, 6, 7, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry108 : BridgeEntry :=
   ⟨[-53, -26, -56, -38, -33, -28], .schema6Forward, [2, 3, 5, 6, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry109 : BridgeEntry :=
   ⟨[-106, -70, -84, -90, -104, -66], .schema6Reflected, [0, 3, 5, 6, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry110 : BridgeEntry :=
   ⟨[-53, -26, -56, -39, -29, -33], .schema6Forward, [2, 3, 5, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry111 : BridgeEntry :=
   ⟨[-106, -104, -94, -100, -70, -66], .schema6Reflected, [0, 3, 5, 6, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry112 : BridgeEntry :=
   ⟨[-79, -89, -94, -96, -76, -84], .schema6Reflected, [0, 3, 5, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry113 : BridgeEntry :=
   ⟨[-53, -38, -28, -57, -27, -33], .schema6Forward, [2, 3, 5, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry114 : BridgeEntry :=
   ⟨[-80, -90, -104, -76, -106, -84], .schema6Reflected, [0, 3, 5, 7, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry115 : BridgeEntry :=
   ⟨[-53, -57, -29, -39, -27, -33], .schema6Forward, [2, 3, 5, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry116 : BridgeEntry :=
   ⟨[-80, -76, -104, -94, -106, -100], .schema6Reflected, [0, 3, 5, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry117 : BridgeEntry :=
   ⟨[-53, -58, -39, -33, -28, -29], .schema6Forward, [2, 3, 5, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry118 : BridgeEntry :=
   ⟨[-90, -104, -94, -86, -106, -100], .schema6Reflected, [0, 3, 5, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry119 : BridgeEntry :=
   ⟨[-77, -97, -89, -94, -84, -79], .schema6Reflected, [0, 3, 6, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry120 : BridgeEntry :=
   ⟨[-63, -33, -28, -67, -27, -38], .schema6Forward, [2, 3, 6, 7, 8, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry121 : BridgeEntry :=
   ⟨[-80, -107, -90, -104, -84, -77], .schema6Reflected, [0, 3, 6, 7, 8, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry122 : BridgeEntry :=
   ⟨[-63, -27, -29, -39, -33, -67], .schema6Forward, [2, 3, 6, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry123 : BridgeEntry :=
   ⟨[-77, -107, -100, -94, -104, -80], .schema6Reflected, [0, 3, 6, 7, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry124 : BridgeEntry :=
   ⟨[-63, -68, -29, -33, -28, -39], .schema6Forward, [2, 3, 6, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry125 : BridgeEntry :=
   ⟨[-87, -104, -94, -90, -107, -100], .schema6Reflected, [0, 3, 6, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry126 : BridgeEntry :=
   ⟨[-78, -39, -28, -33, -29, -73], .schema6Forward, [2, 3, 7, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry127 : BridgeEntry :=
   ⟨[-108, -90, -104, -94, -88, -100], .schema6Reflected, [0, 3, 7, 8, 9, 10], by decide, by decide, by decide, by decide⟩
 
+/-- Generated P4 Kalmanson bridge entry with checked finite side conditions. -/
 def bridgeChunk12Entry128 : BridgeEntry :=
   ⟨[-79, -66, -75, -69, -95, -96], .schema6Reflected, [0, 4, 5, 6, 7, 9], by decide, by decide, by decide, by decide⟩
 
+/-- Ordered generated P4 Kalmanson bridge entries for chunk bridgeChunk12. -/
 def bridgeChunk12 : List BridgeEntry := [
   bridgeChunk12Entry001,
   bridgeChunk12Entry002,
@@ -520,6 +649,7 @@ def bridgeChunk12 : List BridgeEntry := [
   bridgeChunk12Entry128,
 ]
 
+/-- P4 Kalmanson bridge chunk bridgeChunk12 has exactly 128 entries. -/
 theorem bridgeChunk12_length : bridgeChunk12.length = 128 := by rfl
 
 end Problem97.P4KalmansonOccurrenceBridgeScratch
