@@ -753,3 +753,34 @@ regressions for as long as nobody looks.
 No `.github` workflow is added here.  The audited snapshot tracks none, so a CI
 job would be new surface rather than an updated check; the script is callable
 from one when that decision is made.
+
+## AX — one bank pin is fail-open, and `CHAIN VERIFY COMPLETE` does not cover it
+
+`census/card_head/exact12_core_pair_all_order_common_five_membership_family_bank.py`
+takes its parent pin by import rather than as a literal:
+
+    from ...exact12_center_exchange_all_order_common_five_membership_family_bank import (
+        EXPECTED_BANK_SHA256 as EXPECTED_PARENT_BANK_SHA256,
+    )
+
+and guards on it at line 687, `or bank_sha256 != EXPECTED_PARENT_BANK_SHA256`.
+That constant still reads `ef03d843e977c24f0fb82a38c356b03c166bc9378e8b82e7d2fd79630fd5d9b7`
+while both the refreeze walk and the verify walk observe the parent producing
+`ead04fcb82c71b8f9fc67e8fe0aa2da35a6dac901fe323fdc7cdcc1031e4e0b8`.
+
+MEASURED, not inferred: replacing that constant with sixty-four zeroes and
+re-running
+
+    uv run python scratch/rigid221-sourceheavy-anchor/refreeze_narrowed_chain.py --verify
+
+still prints `CHAIN VERIFY COMPLETE` and exits 0.  The pin is therefore fail-OPEN
+under the verify walk, and `CHAIN VERIFY COMPLETE` is weaker than it reads for
+this one link.  Every other pin in the chain is a literal that the walk does
+compare.
+
+This is not caused by the v4.33.1 migration; the migration only exposed it, by
+being the first event in a long time to move a chain-head source manifest.  It is
+recorded here rather than fixed because changing which pins a proof-carrying
+chain enforces is a separate, reviewable decision, not a toolchain repair.  The
+next agent should NOT read `CHAIN VERIFY COMPLETE` as covering the
+center-exchange to core-pair edge until this is resolved.
