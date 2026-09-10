@@ -29,6 +29,7 @@ JOB_SUCCESS = {"PUBLISHED"}
 PROOF_SUCCESS = {"ACCEPTED", "SKETCH_ACCEPTED"}
 FAILURE = {"FAILED", "ERROR", "WA", "SORRY"}
 ACTIVE = {"PENDING", "COMPILING"}
+MILESTONE_PAGE_SIZE = 100
 NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_']*(?:\.[A-Za-z_][A-Za-z0-9_']*)*$")
 DECL_RE = re.compile(
     r"(?m)^\s*(?:private\s+)?(?:theorem|lemma)\s+"
@@ -1073,11 +1074,71 @@ def _ensure_proof(
 
 
 def _milestone_rows(client: Client, mission_id: str) -> list[dict[str, Any]]:
-    response = client.request("GET", f"/missions/{mission_id}/milestones")
-    rows = response.get("milestones", response) if isinstance(response, dict) else response
-    if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
-        raise SubmissionError("invalid milestone list response")
-    return rows
+    offset = 0
+    collected: list[dict[str, Any]] = []
+    while True:
+        response = client.request(
+            "GET",
+            f"/missions/{mission_id}/milestones",
+            query={"limit": str(MILESTONE_PAGE_SIZE), "offset": str(offset)},
+        )
+        if isinstance(response, list):
+            if offset:
+                raise SubmissionError("invalid milestone pagination response")
+            rows = response
+            if any(not isinstance(row, dict) for row in rows):
+                raise SubmissionError("invalid milestone list response")
+            return rows
+        if not isinstance(response, dict):
+            raise SubmissionError("invalid milestone list response")
+        rows = response.get("milestones")
+        if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
+            raise SubmissionError("invalid milestone list response")
+
+        metadata = {key: response.get(key) for key in ("limit", "offset", "total")}
+        if any(value is None for value in metadata.values()):
+            if offset:
+                raise SubmissionError("invalid milestone pagination response")
+            return rows
+        limit = metadata["limit"]
+        page_offset = metadata["offset"]
+        total = metadata["total"]
+        if any(
+            isinstance(value, bool) or not isinstance(value, int)
+            for value in (limit, page_offset, total)
+        ):
+            raise SubmissionError("invalid milestone pagination response")
+        if limit <= 0 or page_offset != offset or page_offset < 0 or total < 0:
+            raise SubmissionError("invalid milestone pagination response")
+        if page_offset > total or len(rows) > limit or page_offset + len(rows) > total:
+            raise SubmissionError("invalid milestone pagination response")
+
+        collected.extend(rows)
+        if len(collected) == total:
+            return collected
+        if not rows:
+            raise SubmissionError("invalid milestone pagination response")
+        next_offset = page_offset + len(rows)
+        if next_offset <= offset:
+            raise SubmissionError("invalid milestone pagination response")
+        offset = next_offset
+
+
+def _readback_created_milestone(
+    client: Client,
+    mission_id: str,
+    title: str,
+    desired: dict[str, Any],
+) -> dict[str, Any]:
+    """Read back a newly created milestone, tolerating delayed visibility."""
+    deadline = client.monotonic() + client.poll_timeout
+    while True:
+        remote = _exact_milestone(client, mission_id, title)
+        if remote is not None:
+            return _require_milestone_readback(remote, desired)
+        if client.monotonic() >= deadline:
+            raise SubmissionError(f"milestone disappeared during readback: {title}")
+        client.sleep(client.poll_interval)
 
 
 def _milestone_theorem_id(row: dict[str, Any]) -> str | None:
@@ -1157,9 +1218,7 @@ def _ensure_milestone(
         )
         if not isinstance(created, dict):
             raise SubmissionError(f"invalid milestone creation response: {title}")
-        readback = _require_milestone_readback(
-            _exact_milestone(client, mission_id, title), desired
-        )
+        readback = _readback_created_milestone(client, mission_id, title, desired)
         milestone_id = readback.get("id") or readback.get("milestone_id")
         if not isinstance(milestone_id, str):
             raise SubmissionError(f"milestone creation returned no ID: {title}")

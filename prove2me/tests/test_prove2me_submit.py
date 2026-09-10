@@ -754,6 +754,156 @@ def test_milestone_readback_accepts_nested_theorem_and_rejects_drift() -> None:
         MODULE._require_milestone_readback(remote, desired)
 
 
+def test_milestone_rows_reads_target_on_second_page() -> None:
+    first_page = [{"id": f"milestone-{index}", "title": f"Milestone {index}"} for index in range(20)]
+    second_page = [{"id": "milestone-20", "title": "Target"}]
+
+    class PagedClient:
+        def __init__(self) -> None:
+            self.queries: list[dict[str, str]] = []
+
+        def request(
+            self,
+            method: str,
+            path: str,
+            *,
+            query: dict[str, str] | None = None,
+            body: bytes | None = None,
+        ) -> Any:
+            assert method == "GET"
+            assert path == "/missions/mission-1/milestones"
+            assert body is None
+            assert query is not None
+            self.queries.append(query)
+            offset = int(query["offset"])
+            rows = first_page if offset == 0 else second_page
+            return {"milestones": rows, "limit": 20, "offset": offset, "total": 21}
+
+    client = PagedClient()
+    rows = MODULE._milestone_rows(client, "mission-1")
+
+    assert rows[-1] == second_page[0]
+    assert [query["offset"] for query in client.queries] == ["0", "20"]
+    assert all(query["limit"] == str(MODULE.MILESTONE_PAGE_SIZE) for query in client.queries)
+
+
+@pytest.mark.parametrize(
+    "response",
+    [
+        {"milestones": [], "limit": 0, "offset": 0, "total": 0},
+        {"milestones": [], "limit": 20, "offset": 1, "total": 0},
+        {"milestones": [{}], "limit": 20, "offset": 0, "total": 0},
+    ],
+)
+def test_milestone_rows_rejects_invalid_pagination(response: dict[str, Any]) -> None:
+    class InvalidPaginationClient:
+        def request(
+            self,
+            method: str,
+            path: str,
+            *,
+            query: dict[str, str] | None = None,
+            body: bytes | None = None,
+        ) -> Any:
+            return response
+
+    with pytest.raises(SubmissionError, match="invalid milestone pagination response|invalid milestone list response"):
+        MODULE._milestone_rows(InvalidPaginationClient(), "mission-1")
+
+
+def test_created_milestone_readback_retries_delayed_visibility() -> None:
+    desired = {
+        "title": "Target",
+        "milestone_description": "Description",
+        "theorem_id": "theorem-1",
+    }
+    visible = {
+        "id": "milestone-1",
+        "title": "Target",
+        "milestone_description": "Description",
+        "theorem_id": "theorem-1",
+    }
+
+    class DelayedClient:
+        poll_timeout = 5.0
+        poll_interval = 2.0
+
+        def __init__(self) -> None:
+            self.now = 0.0
+            self.responses = [[], [visible]]
+            self.sleeps: list[float] = []
+
+        def monotonic(self) -> float:
+            return self.now
+
+        def sleep(self, seconds: float) -> None:
+            self.sleeps.append(seconds)
+            self.now += seconds
+
+        def request(
+            self,
+            method: str,
+            path: str,
+            *,
+            query: dict[str, str] | None = None,
+            body: bytes | None = None,
+        ) -> Any:
+            rows = self.responses.pop(0)
+            return {"milestones": rows, "limit": 20, "offset": 0, "total": len(rows)}
+
+    client = DelayedClient()
+    assert MODULE._readback_created_milestone(client, "mission-1", "Target", desired) is visible
+    assert client.sleeps == [2.0]
+
+
+def test_created_milestone_readback_fails_immediately_on_mismatch() -> None:
+    desired = {
+        "title": "Target",
+        "milestone_description": "Description",
+        "theorem_id": "theorem-1",
+    }
+
+    class MismatchClient:
+        poll_timeout = 5.0
+        poll_interval = 2.0
+
+        def __init__(self) -> None:
+            self.sleeps: list[float] = []
+
+        def monotonic(self) -> float:
+            return 0.0
+
+        def sleep(self, seconds: float) -> None:
+            self.sleeps.append(seconds)
+
+        def request(
+            self,
+            method: str,
+            path: str,
+            *,
+            query: dict[str, str] | None = None,
+            body: bytes | None = None,
+        ) -> Any:
+            return {
+                "milestones": [
+                    {
+                        "id": "milestone-1",
+                        "title": "Target",
+                        "milestone_description": "Wrong",
+                        "theorem_id": "theorem-1",
+                    }
+                ],
+                "limit": 20,
+                "offset": 0,
+                "total": 1,
+            }
+
+    client = MismatchClient()
+    with pytest.raises(SubmissionError, match="milestone readback mismatch"):
+        MODULE._readback_created_milestone(client, "mission-1", "Target", desired)
+    assert client.sleeps == []
+
+
 def test_mission_description_patch_requires_exact_readback(tmp_path: Path) -> None:
     class StaleMissionClient:
         def request(
