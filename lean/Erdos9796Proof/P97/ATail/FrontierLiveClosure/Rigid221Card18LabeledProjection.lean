@@ -62,8 +62,10 @@ private theorem oppApex2_mem_carrier {A : Finset ℝ²} (S : SurplusCapPacket A)
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]
+    exact S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]
+    exact S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 /-- The eleven source-entitled roles projected into the stored `Fin 18` carrier labeling. -/
@@ -370,15 +372,19 @@ noncomputable def rigid221XvDeletionLabeledData
     rw [roles.xv_point] at hpoint
     exact hpoint
   · apply (K1.mem_labels_iff roles.u).mpr
-    simpa [roles.u_point] using data.rowFacts.1
+    simp only [roles.u_point]
+    exact data.rowFacts.1
   · apply (K2.mem_labels_iff roles.u).mpr
-    simpa [roles.u_point] using data.rowFacts.2.1
+    simp only [roles.u_point]
+    exact data.rowFacts.2.1
   · apply (BO.mem_labels_iff roles.u).mpr
     simpa only [roles.u_point, xvOppositeSupport] using data.rowFacts.2.2.1
   · apply (K1.mem_labels_iff roles.source1).mpr
-    simpa [roles.source1_point] using data.rowFacts.2.2.2.2.1
+    simp only [roles.source1_point]
+    exact data.rowFacts.2.2.2.2.1
   · apply (K2.mem_labels_iff roles.source2).mpr
-    simpa [roles.source2_point] using data.rowFacts.2.2.2.2.2
+    simp only [roles.source2_point]
+    exact data.rowFacts.2.2.2.2.2
 
 /-- Relabel the exact `u`-deletion crossed data without adding any witness. -/
 noncomputable def rigid221UDeletionLabeledData
@@ -424,15 +430,19 @@ noncomputable def rigid221UDeletionLabeledData
     rw [roles.u_point] at hpoint
     exact hpoint
   · apply (K1.mem_labels_iff roles.xv).mpr
-    simpa [roles.xv_point] using data.rowFacts.1
+    simp only [roles.xv_point]
+    exact data.rowFacts.1
   · apply (K2.mem_labels_iff roles.xv).mpr
-    simpa [roles.xv_point] using data.rowFacts.2.1
+    simp only [roles.xv_point]
+    exact data.rowFacts.2.1
   · apply (BO.mem_labels_iff roles.xv).mpr
     simpa only [roles.xv_point, uOppositeSupport] using data.rowFacts.2.2.1
   · apply (K1.mem_labels_iff roles.source1).mpr
-    simpa [roles.source1_point] using data.rowFacts.2.2.2.2.1
+    simp only [roles.source1_point]
+    exact data.rowFacts.2.2.2.2.1
   · apply (K2.mem_labels_iff roles.source2).mpr
-    simpa [roles.source2_point] using data.rowFacts.2.2.2.2.2
+    simp only [roles.source2_point]
+    exact data.rowFacts.2.2.2.2.2
 
 /-- The four labeled supports from the bi-survival arm, with exact overlap transport. -/
 structure Rigid221BothDeletionsLabeledData
