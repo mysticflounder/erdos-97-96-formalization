@@ -91,8 +91,9 @@ def uDeletionFiveIncidenceProfile
       (lateFirstApexSystem R).centerAt source.source₁.1 source.source₁.2 ∈
         SelectedClass (D.A.erase source.packet.xv) S.oppApex2 source.P.rho := by
   simp only [xvDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.actualCenter1_point] using
-    data.BO.mem_labels_iff data.roles.actualCenter1
+  have hmem := data.BO.mem_labels_iff data.roles.actualCenter1
+  simp only [data.roles.actualCenter1_point] at hmem
+  exact hmem
 
 /-- The second `xv`-arm bit is exactly the opposite apex's membership in `K₁`. -/
 @[simp] theorem xvDeletionFiveIncidenceProfile_oppApex2InK1_iff
@@ -107,8 +108,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₁.1
           source.source₁.2).toCriticalFourShell.support := by
   simp only [xvDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.oppApex2_point] using
-    data.K1.mem_labels_iff data.roles.oppApex2
+  have hmem := data.K1.mem_labels_iff data.roles.oppApex2
+  simp only [data.roles.oppApex2_point] at hmem
+  exact hmem
 
 /-- The third `xv`-arm bit is exactly actual center two's membership in `K₁`. -/
 @[simp] theorem xvDeletionFiveIncidenceProfile_actualCenter2InK1_iff
@@ -123,8 +125,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₁.1
           source.source₁.2).toCriticalFourShell.support := by
   simp only [xvDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.actualCenter2_point] using
-    data.K1.mem_labels_iff data.roles.actualCenter2
+  have hmem := data.K1.mem_labels_iff data.roles.actualCenter2
+  simp only [data.roles.actualCenter2_point] at hmem
+  exact hmem
 
 /-- The fourth `xv`-arm bit is exactly the opposite apex's membership in `K₂`. -/
 @[simp] theorem xvDeletionFiveIncidenceProfile_oppApex2InK2_iff
@@ -139,8 +142,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₂.1
           source.source₂.2).toCriticalFourShell.support := by
   simp only [xvDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.oppApex2_point] using
-    data.K2.mem_labels_iff data.roles.oppApex2
+  have hmem := data.K2.mem_labels_iff data.roles.oppApex2
+  simp only [data.roles.oppApex2_point] at hmem
+  exact hmem
 
 /-- The fifth `xv`-arm bit is exactly actual center one's membership in `K₂`. -/
 @[simp] theorem xvDeletionFiveIncidenceProfile_actualCenter1InK2_iff
@@ -155,8 +159,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₂.1
           source.source₂.2).toCriticalFourShell.support := by
   simp only [xvDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.actualCenter1_point] using
-    data.K2.mem_labels_iff data.roles.actualCenter1
+  have hmem := data.K2.mem_labels_iff data.roles.actualCenter1
+  simp only [data.roles.actualCenter1_point] at hmem
+  exact hmem
 
 /-- The first `u`-arm bit is exactly actual center one's geometric membership in `BO`. -/
 @[simp] theorem uDeletionFiveIncidenceProfile_actualCenter1InBO_iff
@@ -170,8 +175,9 @@ def uDeletionFiveIncidenceProfile
       (lateFirstApexSystem R).centerAt source.source₁.1 source.source₁.2 ∈
         SelectedClass (D.A.erase source.P.u.1) S.oppApex2 source.P.rho := by
   simp only [uDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.actualCenter1_point] using
-    data.BO.mem_labels_iff data.roles.actualCenter1
+  have hmem := data.BO.mem_labels_iff data.roles.actualCenter1
+  simp only [data.roles.actualCenter1_point] at hmem
+  exact hmem
 
 /-- The second `u`-arm bit is exactly the opposite apex's membership in `K₁`. -/
 @[simp] theorem uDeletionFiveIncidenceProfile_oppApex2InK1_iff
@@ -186,8 +192,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₁.1
           source.source₁.2).toCriticalFourShell.support := by
   simp only [uDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.oppApex2_point] using
-    data.K1.mem_labels_iff data.roles.oppApex2
+  have hmem := data.K1.mem_labels_iff data.roles.oppApex2
+  simp only [data.roles.oppApex2_point] at hmem
+  exact hmem
 
 /-- The third `u`-arm bit is exactly actual center two's membership in `K₁`. -/
 @[simp] theorem uDeletionFiveIncidenceProfile_actualCenter2InK1_iff
@@ -202,8 +209,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₁.1
           source.source₁.2).toCriticalFourShell.support := by
   simp only [uDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.actualCenter2_point] using
-    data.K1.mem_labels_iff data.roles.actualCenter2
+  have hmem := data.K1.mem_labels_iff data.roles.actualCenter2
+  simp only [data.roles.actualCenter2_point] at hmem
+  exact hmem
 
 /-- The fourth `u`-arm bit is exactly the opposite apex's membership in `K₂`. -/
 @[simp] theorem uDeletionFiveIncidenceProfile_oppApex2InK2_iff
@@ -218,8 +226,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₂.1
           source.source₂.2).toCriticalFourShell.support := by
   simp only [uDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.oppApex2_point] using
-    data.K2.mem_labels_iff data.roles.oppApex2
+  have hmem := data.K2.mem_labels_iff data.roles.oppApex2
+  simp only [data.roles.oppApex2_point] at hmem
+  exact hmem
 
 /-- The fifth `u`-arm bit is exactly actual center one's membership in `K₂`. -/
 @[simp] theorem uDeletionFiveIncidenceProfile_actualCenter1InK2_iff
@@ -234,8 +243,9 @@ def uDeletionFiveIncidenceProfile
         ((lateFirstApexSystem R).selectedAt source.source₂.1
           source.source₂.2).toCriticalFourShell.support := by
   simp only [uDeletionFiveIncidenceProfile, decide_eq_true_eq]
-  simpa only [data.roles.actualCenter1_point] using
-    data.K2.mem_labels_iff data.roles.actualCenter1
+  have hmem := data.K2.mem_labels_iff data.roles.actualCenter1
+  simp only [data.roles.actualCenter1_point] at hmem
+  exact hmem
 
 /-- The source `xv`-arm negation proves that the computed conjunction has a false cell. -/
 theorem xvDeletionFiveIncidenceProfile_conjunctionHasFalse
