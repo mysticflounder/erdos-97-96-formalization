@@ -539,32 +539,45 @@ module whose imports are still stale reports `incompatible header`, not its own 
 repository 149 of the first 153 sweep results were cascade noise.  Dependency order is what
 forces the waves, and only a real build satisfies it.
 
-### AQ.1 — how large the gap is, and how to measure it
+### AQ.1 — how large the gap is, how to measure it, and what was done about it
 
 Counted at the source level rather than from the olean tree:
 
     uv run python scripts/lean_build_closure_orphans.py --lake-root lean \
       --json docs/audits/2026-09-09-lean-build-closure-orphans.json
 
-    modules=6534 in_closure=5150 orphans=1384
-
-So 1384 of the 6534 modules under `lean/Erdos9796/` and `lean/Erdos9796Proof/` are outside
-every declared library target.  They divide as 692 under `P97/ATail`, 385 under
-`P97/ErasedCertificate`, 206 under `P97/Census554`, 17 under `P97/MultiCenter`, and the rest
-scattered.  The 1249 stale oleans deleted on 2026-09-09 were all drawn from this set, which is
+Against the two library roots alone that reported `orphans=1383`: 1383 of the
+6534 modules under `lean/Erdos9796*/` were outside every declared target.  They
+divided as 692 under `P97/ATail`, 385 under `P97/ErasedCertificate`, 206 under
+`P97/Census554`, 17 under `P97/MultiCenter`, and the rest scattered.  The 1249
+stale v4.27 oleans deleted on 2026-09-09 were all drawn from this set, which is
 why deleting them changed no build job count.
 
-Read this before reporting a green build: a green `lake build` of the declared targets says
-nothing about these 1384 modules, and neither does `comparator/check-conformance.sh`, whose
-`Challenge`, `Solution`, and `axiom-audit` targets all reach the library only through
-`Erdos9796Proof`.  To bring them into the build the lakefile would need `globs`, for example
+Read this before reporting a green build: a green `lake build` of the declared
+targets says nothing about the orphans, and neither does
+`comparator/check-conformance.sh`, whose `Challenge`, `Solution`, and
+`axiom-audit` targets all reach the library only through `Erdos9796Proof`.
 
-    [[lean_lib]]
-    name = "Erdos9796Proof"
-    globs = ["Erdos9796Proof.+"]
+WHICH ORPHANS MATTER — the deciding test is not "does the name look on-spine",
+it is "does a bank source manifest name it".  A `census/card_head` bank pins a
+frozen `LEAN_DEPENDENCY_MODULES` tuple and re-mining it needs those modules'
+oleans, so they are supported surface whatever imports them.  Crossing the two
+sets:
 
-which is a deliberate scope change, not a migration repair: it makes every regression in those
-1384 modules a build failure at once.
+    37 of the 90 frozen bank dependency modules were orphans,
+    and their own imports pulled in 11 more, for 48.
+
+FIX — `lean/Erdos9796BankSupport.lean` imports exactly those 37 seeds and is
+declared as a third `lean_lib` in `lean/lakefile.toml`, listed in
+`defaultTargets`.  That is a deliberate scope decision, not a migration repair:
+it turns every regression in those 48 modules into a build failure.  It cost
+thirteen repairs, twelve of them the one-line class AV fix below.  Afterwards
+
+    modules=6535 in_closure=5200 orphans=1335
+
+The remaining 1335 are off-spine by decision: nothing imports them and no bank
+manifest names them.  Bringing them in would need `globs = ["Erdos9796Proof.+"]`
+and is a separate scope question.
 
 ## AR — `bv_decide` moved out of Mathlib and stopped unfolding reducible definitions
 
@@ -625,3 +638,41 @@ on the other and the script reports `rewrote 0, skipped 0` on a module that is p
 AN variant 3, left as a bare `exact h` that fails with a mismatch printing two identical types.
 `scratchpad/repair_variant3.py` recovers the original set from the pre-repair copy and re-emits
 `simp only [<set>] at h` / `exact h`.  Run it as a third pass, keyed on the same error lines.
+
+## AV — a `let`-bound structure instance stops matching under `simpa`
+
+Thirteen generated `*MembershipFamilyCnf` modules close with
+
+    let nogood := SourceOrderPositiveNogood.of<Variant> choices data hvalid
+    apply nogood.refutes hreal order hforced hconv
+    simpa [nogood] using hpositive
+
+`hpositive` has type `PositiveRowsMatch row (entry.definitions.map …)`.  The goal
+after `apply` is `PositiveRowsMatch row nogood.choices`.  `simpa [nogood]` does
+zeta-reduce the `let`, but v4.33.1 then unifies at REDUCIBLE transparency, and
+`SourceOrderPositiveNogood.of<Variant>` is a plain `def`, so the projection
+`(SourceOrderPositiveNogood.of<Variant> …).choices` is left standing:
+
+    Type mismatch: After simplification, term
+      hpositive
+     has type
+      @PositiveRowsMatch Label row (List.map (fun definition => definition.requirement) entry.definitions)
+    but is expected to have type
+      @PositiveRowsMatch Label row
+        (SourceOrderPositiveNogood.of<Variant>
+            (List.map (fun definition => definition.requirement) entry.definitions) entry.data ⋯).choices
+
+The constructor is a structure instance whose field is literally `choices :=
+choices`, so the two types ARE definitionally the same.  FIX — drop the tactic
+that lowered the transparency:
+
+    exact hpositive
+
+`exact` unifies at default transparency, unfolds the `def` and the projection,
+and closes the goal.  This is class AN variant 1, and it is the cheapest repair
+in the catalogue: one line, no simp set to reconstruct.
+
+Recognising it is worth doing early.  Of the thirteen failures in the entire
+bank-support set, twelve were this single shape, in twelve different generated
+modules; the census cost one `lake env lean` sweep and the repair cost one
+`perl -pi -e` over the matched line.

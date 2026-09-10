@@ -1,7 +1,7 @@
 name = "Erdos9796"
 version = "0.1.0"
 keywords = ["math", "combinatorics", "erdos", "discrete-geometry"]
-defaultTargets = ["Erdos9796", "Erdos9796Proof"]
+defaultTargets = ["Erdos9796", "Erdos9796Proof", "Erdos9796BankSupport"]
 # -M: per-module memory cap (MB) for the elaborator. Some of the discrete-
 #     geometry case-split files are heavy; this keeps a single module from
 #     running away. NOTE: moreLeanArgs is part of every module's build trace,
@@ -35,6 +35,13 @@ name = "Erdos9796"
 
 [[lean_lib]]
 name = "Erdos9796Proof"
+
+# The `census/card_head` banks pin a frozen `LEAN_DEPENDENCY_MODULES` tuple that
+# includes modules no spine theorem imports. Without this root `lake build` never
+# compiles them and never reports a regression in them, yet re-mining a bank needs
+# their oleans. See `lean/Erdos9796BankSupport.lean`.
+[[lean_lib]]
+name = "Erdos9796BankSupport"
 
 # Comparator auditability gate (leanprover/comparator). `Challenge` imports
 # mathlib ONLY and states the headline results as `sorry` stubs; `Solution`

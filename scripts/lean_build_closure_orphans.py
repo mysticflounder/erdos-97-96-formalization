@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Report Lean modules outside the declared lake library closure.
 
-`lean/lakefile.toml` declares `lean_lib Erdos9796` and `lean_lib Erdos9796Proof`
-with neither `roots` nor `globs`, so `lake build` compiles exactly the transitive
-import closure of the two root modules `Erdos9796.lean` and `Erdos9796Proof.lean`.
-Any other module under those two source trees is never compiled, never reported,
-and keeps whatever `.olean` it last had.  This script names those modules.
+`lean/lakefile.toml` declares each `lean_lib` with neither `roots` nor `globs`,
+so `lake build` compiles exactly the transitive import closure of the declared
+root modules.  Any other module under the source trees is never compiled, never
+reported, and keeps whatever `.olean` it last had.  This script names those
+modules.
 
 Usage:
     uv run python scripts/lean_build_closure_orphans.py [--lake-root lean]
@@ -23,14 +23,23 @@ import os
 import re
 from pathlib import Path
 
-ROOTS = ("Erdos9796", "Erdos9796Proof")
+# Every module name `lean/lakefile.toml` declares as a build root: the three
+# `lean_lib` roots plus the `erase_m1_gate` executable root.
+ROOTS = (
+    "Erdos9796",
+    "Erdos9796Proof",
+    "Erdos9796BankSupport",
+    "Erdos9796Proof.P97.ErasedCertificate.ErasedNativeEvalGate",
+)
+# Source trees to walk. The executable root lives under `Erdos9796Proof`.
+SOURCE_TREES = ("Erdos9796", "Erdos9796Proof", "Erdos9796BankSupport")
 IMPORT_RE = re.compile(r"^import\s+([A-Za-z0-9_.«»]+)", re.M)
 
 
 def collect(lake_root: Path) -> dict[str, Path]:
     """Map module name -> source path for every module under the two roots."""
     mods: dict[str, Path] = {}
-    for base in ROOTS:
+    for base in SOURCE_TREES:
         top = lake_root / f"{base}.lean"
         if top.exists():
             mods[base] = top
