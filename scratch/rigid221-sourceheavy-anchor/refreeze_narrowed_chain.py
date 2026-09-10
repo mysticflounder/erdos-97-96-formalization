@@ -61,11 +61,51 @@ def entry_points(module):
     return names["build"], names["validate"], names["install"]
 
 
-def main() -> None:
-    from census.card_head.tests.test_exact12_apex_first_opposite_shared_pair_common_five_membership_family_bank import (
-        _parent as _chain_head,
+# The nine installers that sit ABOVE ``CHAIN``.  They carry
+# ``EXPECTED_PARENT_BANK_SHA256`` and no own pin, so a source-manifest change
+# anywhere in the head — one repaired Lean file is enough — fails the walk
+# before it starts unless their parent pins are rewalked here too.
+HEAD_CHAIN = (
+    "exact12_surplus_apex_pair_membership_family_bank",
+    "exact12_adjacent_apex_cross_block_membership_family_bank",
+    "exact12_second_cap_apex_surplus_membership_family_bank",
+    "exact12_surplus_three_triad_membership_family_bank",
+    "exact12_zero_center_cross_block_membership_family_bank",
+    "exact12_apex_zero_cross_block_membership_family_bank",
+    "exact12_apex_pair_cross_block_membership_family_bank",
+    "exact12_apex_shared_pair_cross_block_membership_family_bank",
+    "exact12_apex_internal_shared_pair_common_five_membership_family_bank",
+)
+
+
+def _chain_head():
+    """Materialize the cell-1 head and install the nine banks above ``CHAIN``.
+
+    Mirrors the test helper ``_parent`` but sets each installer's parent pin in
+    memory to the sha its predecessor actually produced, so the walk survives a
+    legitimate source-manifest change.
+    """
+    from census.card_head.exact12_next_row_static_cegar import (
+        materialize_positive_membership_static_cell,
     )
 
+    instance, _compiled, layout, bank = materialize_positive_membership_static_cell(
+        REPO_ROOT, 1
+    )
+    for name in HEAD_CHAIN:
+        module = importlib.import_module(f"census.card_head.{name}")
+        if not VERIFY_ONLY:
+            module.EXPECTED_PARENT_BANK_SHA256 = bank["bank_sha256"]
+        install = next(
+            getattr(module, entry)
+            for entry in module.__all__
+            if entry.startswith("install_")
+        )
+        bank = install(REPO_ROOT, instance, layout, bank, cell_index=1)
+    return instance, layout, bank
+
+
+def main() -> None:
     log("materializing the chain above the first narrowed bank...")
     instance, layout, parent_bank = _chain_head()
     log(f"chain head installed; parent sha {parent_bank['bank_sha256'][:16]}")
