@@ -10,6 +10,14 @@ See the [package-1 audit](../docs/audits/2026-09-05-native-outside-counting.md),
 the [exact-16 coverage audit](../docs/audits/2026-09-06-native-exact16-coverage.md),
 and the [aligned-P5 investigation](../docs/audits/2026-09-06-native-card11-aligned-p5.md).
 
+Current load-bearing revision, 2026-09-10: the non-`IsM44` descent reaches a
+general-`m` CapSelected branch through `PinnedSurplusGeneralM`,
+`CapSelectedPinnedShellBridge`, `CapSelectedCarrierBridge`, and
+`CapSelectedNativeClosureSound`. That branch contains twelve placement checks
+for distinct `p,d ∈ {3,4,5,6}`. Eleven checks are in separate placement modules;
+the `p = 6, d = 4` check is in the classifier. This route takes priority within
+package 2 because it is on the current `RemovableVertexOfLarge` dependency path.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable
@@ -135,6 +143,26 @@ with core-only structural proofs and governed validation. In exact16, the
 OldB/OldC/NewB cases are exhaustive; `NewAMotifOccurs` remains a preserved public
 interface but is unused by the proof. This does not close the remaining broader
 geometric-family coverage work in package 2.
+
+**Current CapSelected pilot:** the first general-`m` case is `p = 3, d = 4`.
+After unfolding `PinnedShellOK`, its missing source theorem is the finite
+structural coverage statement
+
+```lean
+IncidenceOK P →
+  row P 1 = {0, 7, 8, 3} →
+  4 ∈ row P 0 →
+  ClosureCoreAlternative P blocker
+```
+
+where the active alternatives are duplicate center, exact off-circle at center
+`1`, perpendicular bisector, and convex five with a cyclic witness. No indexed
+nonnative theorem currently supplies this coverage. A direct kernel `decide`
+attempt is a bounded diagnostic only: the existing native instance took about
+54 minutes, and replacing the evaluator without exposing reusable structure does
+not satisfy this package. The semantic adapter also reaches
+`fourPointMasks_eq_reference`, a separate 330-mask native authentication; both
+boundaries must be removed before this consumer is core-only.
 
 1. Select one native classifier or finite case family and its immediate consumer.
    Search the existing indexed Lean corpus once for that concrete hypothesis set.

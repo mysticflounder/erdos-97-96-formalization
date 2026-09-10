@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-native-plan-refresh-20260910",
+  "base_head": "acd160679d7751f83e7559bee900c96a5dc93a54",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-native-plan-refresh-20260910.json",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-native-plan-refresh",
+  "created_utc": "2026-09-10T17:20:00Z",
+  "manifest_sha256": "3b2737948740bd658d51cece917a46530d19b88de324450060756abb193d957f"
+}
