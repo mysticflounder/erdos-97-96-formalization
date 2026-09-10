@@ -4,7 +4,7 @@
 
 schema = "prove2me-submit-plan/v1"
 host = "https://prove2.me/api/v1"
-platform_version = "0.9.8"
+platform_version = "0.9.9"
 credentials = "~/prove2me_workspace/credentials.json"
 artifact_root = "../.."
 receipt = "submissions/removable-vertex-descent-milestone/receipt.json"
@@ -20,7 +20,6 @@ tags = ["discrete-geometry", "erdos-97", "convex-position", "descent"]
 
 [[milestone]]
 title = "Descent: a minimal counterexample with more than nine vertices has a removable vertex"
-description = "The formal contract is the platform rendering of the repository theorem Problem97.RemovableVertexOfLarge, stated by Problem97.RemovableVertexOfLargeStatement. For a nonempty A with ConvexIndep A, HasNEquidistantProperty 4 A, 9 < A.card, and the strong-induction hypothesis that every smaller nonempty convex-independent four-equidistant set is contradictory, produce x with IsRemovableVertex A x: x belongs to A and HasNEquidistantProperty 4 (A.erase x). This is the large-n descent engine because erasure lowers cardinality while preserving nonemptiness, convex independence, and the four-equidistant property, contradicting minimality. Combined with the counting lower bound and the n = 9 closure, it closes the positive Problem 97 induction once proved. Status: Open. The source theorem has no local sorry or named axiom, but the non-IsM44 branch transitively reaches ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap with sorryAx, while the pinned-surplus branch uses native/compiler trust through finite certificate banks. This reduction is this project's formalization; Dumitrescu attribution applies to the separate counting route, not wholesale to this theorem."
+description = "Let A be a nonempty finite set in strictly convex position with more than nine vertices and with four equidistant witnesses at every vertex. Assume every smaller nonempty set with the same two properties is contradictory. Prove that some vertex can be deleted while preserving the four-witness property; convex independence and the strict decrease in cardinality then contradict minimality. This is the remaining large-cardinality step. The source formalization still has one unresolved geometric case and another case relying on compiled finite certificates, so it is not yet ready for platform verification. Dumitrescu attribution applies to the separate counting route."
 theorem = "Erdos9796Mission.minimal_counterexample_removable"
 reason = "Identify the existing open mission milestone with the exact repository removable-vertex theorem and explain its role and current trust boundary without submitting an incomplete proof."
-

@@ -28,14 +28,14 @@ tags = ["convex-position", "discrete-geometry", "erdos-97", "exact-cardinality"]
 
 [[milestone]]
 title = "Transfer the existing exact-ten exclusion proof"
-description = "Transfer the existing Lean proof Problem97.FiniteN10Closure into the mission-local theorem Erdos9796Mission.finite_ten_exclusion. This is a proof-porting milestone, not a request to re-prove the exact-ten result from scratch. Preserve the exact-cardinality statement and make the already-published exact-nine endpoint an explicit dependency. The source proof has been audited with native/compiler trust, so submission must report and pass the platform's policy for Lean.ofReduceBool and Lean.trustCompiler."
+description = "Transfer the repository's existing proof that a ten-point set in strictly convex position cannot have four equidistant witnesses at every vertex. Reuse the published exact nine-point result as a dependency. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy."
 theorem = "Erdos9796Mission.finite_ten_exclusion"
 sort_order = 10
 reason = "Expose the already-proved exact-ten endpoint so Prove2Me contributors do not duplicate completed source-project work."
 
 [[milestone]]
 title = "Transfer the existing exact-eleven exclusion proof"
-description = "After the exact-ten transfer, transfer the existing Lean proof Problem97.FiniteN11Closure into the mission-local theorem Erdos9796Mission.finite_eleven_exclusion. This is a proof-porting milestone, not a request to re-prove the exact-eleven result from scratch. Preserve the exact-cardinality statement and import the exact-ten theorem as a dependency. The source proof has been audited with native/compiler trust, so submission must report and pass the platform's policy for Lean.ofReduceBool and Lean.trustCompiler."
+description = "After the exact ten-point transfer, transfer the repository's existing proof that an eleven-point set in strictly convex position cannot have four equidistant witnesses at every vertex. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy."
 theorem = "Erdos9796Mission.finite_eleven_exclusion"
 sort_order = 11
 reason = "Expose the already-proved exact-eleven endpoint after exact ten and prevent duplicate effort on a closed source theorem."
