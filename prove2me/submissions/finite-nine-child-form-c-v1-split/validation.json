@@ -1,0 +1,63 @@
+{
+  "schema": "prove2me-finite-nine-form-c-v1-split-validation/v1",
+  "created_utc": "2026-09-10T04:17:00Z",
+  "result": "ACCEPTED",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.form_c_v1",
+    "id": "0a9dd51c-149f-46d7-950a-fb2454f0c58f",
+    "source_statement_sha256": "253b1f058415bfaef33ea833eb20b052a12e17f7a4b9956802fea8bbbe599296"
+  },
+  "accepted_dependencies": {
+    "Erdos9796FiniteNine_N4dPackets": {
+      "definition_id": "20e77876-f67d-4a4a-bb0e-7613b5d63ace",
+      "status": "PUBLISHED"
+    },
+    "Erdos9796FiniteNine.n4e_core": {
+      "theorem_id": "8092e252-3da6-454a-813c-702397a844f8",
+      "proof_id": "1a2e8096-87cf-4595-b748-0c0ada857b8a",
+      "status": "ACCEPTED"
+    }
+  },
+  "accepted_proof": {
+    "submission_id": "da2c2503-a9f6-4569-beb8-72bc09713eef",
+    "theorem_id": "0a9dd51c-149f-46d7-950a-fb2454f0c58f",
+    "status": "ACCEPTED",
+    "created_at": "2026-09-10T05:37:27.92401+00:00",
+    "accepted_at": "2026-09-10T05:45:27.265408+00:00"
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-form-c-v1-split/platform/Solutions/Sol_Erdos9796FiniteNine_form_c_v1.lean",
+    "bytes": 464631,
+    "sha256": "09d040d6c9130dbe03bc305850628e31d441fdc0ed476f8bacc80f332b6cfc61",
+    "generator_sha256": "a3e1e0d7d4edf41cbe6df378c9b96e44d680b2fe8d64ca3dc642122e0202628c"
+  },
+  "checks": {
+    "generator_replay": "PASS; 464631 bytes and artifact digest matched",
+    "generator_ruff": "PASS",
+    "authenticated_parent": "PASS; parent generator reauthenticated the Form C fragment, full-stream snapshot, current 17-file source manifest, target header, retained preamble/prefix, support declarations, and Lean 4.33 repair sites",
+    "n4e_frontier_subtraction": "PASS; omitted raw units[47:52] are 364106 bytes with SHA-256 09de892952067480541bb8aef6d405994934027cfe07eea2956aeb3e98dc2a73",
+    "form_c_residue": "PASS; four retained declarations are 20136 bytes with SHA-256 e19f7b2a7603fb172fb42a67c3d08d3bf7ed6c47cd40e83b6a49724675a63c9e",
+    "support_projection_rewrite": "PASS; shell-dependent published N4e facts are obtained from the accepted N4eCoreSupport record, while shell-free coordinate identities use private thin wrappers around the public geometry theorem; no N4dFormBBranchSupport import or use remains",
+    "public_definition_collision_scan": "PASS; no generated public declaration duplicates a declaration from Erdos9796FiniteNine_N4dPackets",
+    "lean_433_repairs": "PASS; parent repair assertions and private coordinate injectivity repairs applied",
+    "size_limit": "PASS; 464631 bytes, below the 550 KiB hard stop and the Prove2Me one MiB limit",
+    "forbidden_token_scan": "PASS; generated solution has no proof placeholder, named axiom, native/compiler trust primitive, unsafe or partial declaration, or external implementation",
+    "uploader_plan": "PASS under Prove2Me API 0.9.9; plan digest fff37a246ba0c0b22a7e659881d6f7262ab83b4dc36eaf7971ad1d446e1ee4df; one existing theorem and one proof; no definition or milestone",
+    "lean_4_33_1_solution_elaboration": "PASS; lake-build completed 8752 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/30833-1789016942934093000.log",
+    "final_consumer_axiom_audit": "PASS with statement-mirror caveat; audit lake-build completed 8753 jobs and exited 0; #print axioms solution reported [propext, sorryAx, Classical.choice, Quot.sound]; /Users/adam/prove2me_workspace/.lake/lake-build-logs/34235-1789016986559926000.log",
+    "server_verification": "PASS; proof submission da2c2503-a9f6-4569-beb8-72bc09713eef accepted for theorem 0a9dd51c-149f-46d7-950a-fb2454f0c58f at 2026-09-10T05:45:27.265408+00:00",
+    "skeptic_audit": "CERTIFIED for platform-verified status; local statement mirrors separately introduce sorryAx"
+  },
+  "local_observed_axiom_closure": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "required_server_axiom_closure": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "promotion_status": "platform-verified through accepted proof submission da2c2503-a9f6-4569-beb8-72bc09713eef"
+}
