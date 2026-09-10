@@ -313,7 +313,6 @@ def crossSeparationOKForMasks
 
 /-- Pointwise separation over the finite label-pair list gives the cross-mask
 separation checker for one ordered center pair. -/
-/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem crossSeparationOKForMasks_of_sepOKFor
     {shadow : Shadow} {c cp : Label}
     (hsep : ∀ x y : Label,
@@ -1962,7 +1961,6 @@ private theorem countP_le_allLabels_of_fragment_prefix
 
 /-- Full point-pair no-three bounds imply the prefix pair-count checker used
 by the generated fragment search. -/
-/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
     {shadow : Shadow} {assigned : List Label}
     (hcount : ∀ x y : Label,
@@ -1985,7 +1983,6 @@ theorem pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
 
 /-- The all-label pair-count check contains the same point-pair bounds as
 `noThreeOK`. -/
-/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
     {shadow : Shadow}
     (hcounts :
@@ -2008,7 +2005,6 @@ theorem noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
 
 /-- The full generated DFS prefix is a permutation of `allLabels`, so the
 prefix pair-count interface already contains the all-label no-three check. -/
-/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem noThreeOK_of_PrefixPairCountsOK
     {shadow : Shadow}
     (hcounts : PrefixPairCountsOK shadow) :

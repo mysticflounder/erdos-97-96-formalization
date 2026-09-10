@@ -28,7 +28,6 @@ theorem bridgeClauses_length : bridgeClauses.length = 392 := by
 
 /-- Every entry in the authenticated P4 window is semantically satisfied by
 an exact-two core under any source-faithful index transport. -/
-/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeEntries_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) :
     ∀ e ∈ bridgeEntries, clauseSat v e.clause :=
@@ -37,7 +36,6 @@ theorem bridgeEntries_sat (Q : ExactTwoBoundaryCore R distribution)
 /-- The exact 392 compact clauses in the ledger slice are semantically
 satisfied.  This is a source-semantics bridge only; it does not prove an
 equality with the external DIMACS file or any global UNSAT conclusion. -/
-/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeClauses_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) :
     ∀ clause ∈ bridgeClauses, clauseSat v clause := by

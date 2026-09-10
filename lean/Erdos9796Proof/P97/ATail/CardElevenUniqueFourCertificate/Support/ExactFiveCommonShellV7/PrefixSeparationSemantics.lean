@@ -509,8 +509,8 @@ theorem separationFamily_clauseCount :
     11694 + 1 + 168192 = 179887 := by
   norm_num
 
-@[simp]
 /-- Exact-five common-shell V7 theorem. -/
+@[simp]
 private theorem evalLitD_neg_ofNat
     (valuation : Nat → Bool) (varIndex : Nat) :
     evalLitD valuation (-Int.ofNat varIndex) = !valuation varIndex := by

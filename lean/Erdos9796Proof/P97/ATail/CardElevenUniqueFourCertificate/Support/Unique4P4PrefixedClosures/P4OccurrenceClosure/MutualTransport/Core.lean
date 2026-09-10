@@ -54,7 +54,6 @@ def p4EqPairs (c : Label) : List (Label × Label) :=
 The compact map verifies this prefix directly.  The definition is intentionally
 P4-local: it makes no claim about P5's class numbering or P4 variables after
 the row/equality prefix. -/
-/-- Authenticated mutual-transport bridge declaration. -/
 def p4VarOfAtom : DenseAtom → Nat
   | .row c p => 1 + 10 * c.val + (if p.val < c.val then p.val else p.val - 1)
   | .radius c l r => 111 + 45 * c.val + (p4EqPairs c).idxOf (l, r)
@@ -64,7 +63,6 @@ def toLabel (n : Nat) : Label := ⟨n % 11, Nat.mod_lt n (by decide)⟩
 
 /-- Decode the P4 row/equality prefix.  Values outside it are an arbitrary
 total extension; the selected clauses use only valid prefix atoms. -/
-/-- Authenticated mutual-transport bridge declaration. -/
 def p4AtomOfVar (n : Nat) : DenseAtom :=
   if n ≤ 110 then
     let k := n - 1
@@ -133,14 +131,12 @@ theorem interpAtom_sortedRadius (Q : ExactTwoBoundaryCore R distribution)
 
 /-- A total P4 semantic valuation.  The selected atom prefix has its documented
 meaning; values outside it are intentionally arbitrary via `p4AtomOfVar`. -/
-/-- Authenticated mutual-transport bridge declaration. -/
 def coreVal (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) : Nat → Prop :=
   fun n => interpAtom Q σ (p4AtomOfVar n)
 
 /-- Agreement needed from a total valuation to transport source semantics to
 the compact row/equality literals. -/
-/-- Authenticated mutual-transport bridge declaration. -/
 structure CoreValAgreement (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (v : Nat → Prop) : Prop where
   row : ∀ c p : Label, c ≠ p →
