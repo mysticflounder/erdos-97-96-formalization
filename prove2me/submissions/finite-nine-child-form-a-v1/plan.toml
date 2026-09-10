@@ -1,0 +1,28 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+# Existing theorem ID: 34a0a695-2a9d-47f4-b9c6-c3b38c82705d
+# Accepted dependency theorem/proof: 706aaedc-4e9a-4aad-8ee6-3b57c6a19423 / 4dc55b21-a512-4a1c-9e81-161649b772be
+# Accepted N4e core theorem/proof: 8092e252-3da6-454a-813c-702397a844f8 / 1a2e8096-87cf-4595-b748-0c0ada857b8a
+# Public N4d packet definition: 20e77876-f67d-4a4a-bb0e-7613b5d63ace
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.9"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-child-form-a-v1/receipt.json"
+
+[[theorem]]
+name = "Erdos9796FiniteNine.form_a_v1"
+title = "Finite-nine escaped Form a exclusion at v1"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_a_v1.lean"
+natural_language_statement = "For a finite nine-point endpoint shell, exclusion of Form b at the second distinguished vertex implies that an escaping four-point witness class at the first distinguished vertex cannot have Form a."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/275c906536f3a1484b5c7d869dc91bb8d341df55/lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.form_a_v1"
+file = "submissions/finite-nine-child-form-a-v1/platform/Solutions/Sol_Erdos9796FiniteNine_form_a_v1.lean"
+explanation = "submissions/finite-nine-child-form-a-v1/explanation.md"
+proof_type = "prove"

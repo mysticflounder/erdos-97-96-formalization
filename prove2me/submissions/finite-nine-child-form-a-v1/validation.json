@@ -1,0 +1,99 @@
+{
+  "schema": "prove2me-finite-nine-form-a-v1-validation/v1",
+  "created_utc": "2026-09-10T05:14:22Z",
+  "result": "ACCEPTED",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.form_a_v1",
+    "id": "34a0a695-2a9d-47f4-b9c6-c3b38c82705d",
+    "statement_file_sha256": "77e8bb10aea39879de7305bb38aec3464e320d0bbb60bfec7e1c6c45ad26dd2b",
+    "source_declaration_header_sha256": "da2c99e5fc7d7da7ac9b36359ea318147190939242bf22310b730af4dc82e3b3"
+  },
+  "accepted_dependencies": {
+    "Erdos9796FiniteNine.form_b_v2": {
+      "theorem_id": "706aaedc-4e9a-4aad-8ee6-3b57c6a19423",
+      "proof_id": "4dc55b21-a512-4a1c-9e81-161649b772be"
+    },
+    "Erdos9796FiniteNine.n4e_core": {
+      "theorem_id": "8092e252-3da6-454a-813c-702397a844f8",
+      "proof_id": "1a2e8096-87cf-4595-b748-0c0ada857b8a"
+    },
+    "Erdos9796FiniteNine_N4dPackets": {
+      "definition_id": "20e77876-f67d-4a4a-bb0e-7613b5d63ace"
+    }
+  },
+  "authenticated_sources": {
+    "target_fragment": {
+      "path": "submissions/finite-nine-modular/source-fragments/form_a_v1.lean",
+      "bytes": 171986,
+      "sha256": "89d122f909ca616d7dfae2f4d8f51ae3f02776660103e5c436a663cd34f8a8ed"
+    },
+    "full_stream_snapshot": {
+      "path": "scratch/live-mission-solutions.json",
+      "sha256": "1f69d9f4f5bec3ad50b648f6dbe728a1e4459cd2bba8f2d38fe2bdfc32218b58"
+    },
+    "repaired_shared_prefix": {
+      "bytes": 32828,
+      "sha256": "2ad978b0e8296bbace3f9032a5025934bdb87e5b80516b56f11eddde5474fe83"
+    },
+    "geometry_support_declarations": {
+      "bytes": 2772,
+      "sha256": "10bdd393311b7a17c02eb52f1a8f58914da2d7c1a8a2279d846977da4dcb95f9"
+    },
+    "units_047_049": {
+      "bytes": 4174,
+      "sha256": "aec2eb5f0bcb14c657acf5fe3646f04aeba15c75898858ebab8233551a5caa3f"
+    },
+    "current_FormAEndpointPairKill": {
+      "path": "lean/Erdos9796Proof/P97/N4d/FormAEndpointPairKill.lean",
+      "sha256": "994947e0d70ae3f5a3d351a1895d4111d7ea656a08a1cb4373d95f4609f7285a"
+    },
+    "current_ExcludesFormAv1": {
+      "path": "lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean",
+      "sha256": "050414ccab3250ec0d8f00bcaafe84c5b7f1c62e017e9c9aecd4beaa59e50f1d"
+    }
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-form-a-v1/platform/Solutions/Sol_Erdos9796FiniteNine_form_a_v1.lean",
+    "bytes": 265766,
+    "sha256": "7ec0d0a7fc86089ed2236b947ca35e6026cf3d28f879961ac880aad51e36fea2",
+    "generator_sha256": "ccd2266d8e8269e0e2f0efd4df830f7581bf97f2768fa1573b068ff9d3692d84"
+  },
+  "accepted_proof": {
+    "submission_id": "c8238e1b-ad33-43cc-8566-185a03a405e6",
+    "theorem_id": "34a0a695-2a9d-47f4-b9c6-c3b38c82705d",
+    "created_at": "2026-09-10T05:30:23.712256+00:00",
+    "accepted_at": "2026-09-10T05:37:09.807499+00:00",
+    "status": "ACCEPTED",
+    "theorem_status": "Proved"
+  },
+  "checks": {
+    "generator_replay": "PASS; 265,766 bytes and artifact digest matched",
+    "generator_ruff": "PASS",
+    "uploader_plan": "PASS; plan digest 304b83a1ddc6936a881265184a3254e3a64b25cc20240c4c0ddda023cf668617; one existing theorem and one proof",
+    "authenticated_source_binding": "PASS; fragment, full-stream snapshot, repaired prefix, units 047-049, current source modules, and target declaration header matched pinned hashes",
+    "dependency_minimization": "PASS; unit 050 omitted; only three required geometry declarations retained outside the 32,828-byte prerequisite prefix",
+    "n4e_core_rewiring": "PASS; replaced 3 I2-cardinality, 2 first-selector, 1 second-selector-split, 2 second-cap-side, and 1 zero-defect-layout references at asserted counts",
+    "selector_shape_adapter": "PASS; reconstructed the old selectorShape_v3 result by exhaustive unpacking of the accepted record's three-case selectorShape_v3_split field",
+    "accepted_form_b_v2_application": "PASS; final wrapper applies accepted theorem 706aaedc-4e9a-4aad-8ee6-3b57c6a19423 to the source theorem instead of repeating its proof",
+    "lean_433_repairs": "PASS; three shared shell cardinality repairs and three Form-A center-distance/radius repairs asserted",
+    "source_size": "PASS; 265,766 bytes, below the 400 KiB stop threshold",
+    "forbidden_token_scan": "PASS; generated solution has no proof placeholder, named axiom, native/compiler trust primitive, unsafe or partial declaration, or external implementation",
+    "lean_4_33_1_solution_elaboration": "PASS; lake-build completed 8,752 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/46392-1789017149338893000.log",
+    "final_consumer_axiom_audit": "PASS with offline dependency theorem mirror/stub caveat; audit lake-build completed 8,753 jobs and exited 0; #print axioms solution reported [propext, sorryAx, Classical.choice, Quot.sound]; /Users/adam/prove2me_workspace/.lake/lake-build-logs/52455-1789017224053854000.log",
+    "math_skeptic_audit": "CERTIFIED for platform-verified status; offline dependency theorem mirrors/stubs separately introduce local sorryAx",
+    "worktree_hygiene": "PRE-SUBMISSION CHECK; the lane-wide receipt was pending at audit time and no foreign path was modified by this lane",
+    "server_verification": "PASS; proof submission c8238e1b-ad33-43cc-8566-185a03a405e6 accepted for theorem 34a0a695-2a9d-47f4-b9c6-c3b38c82705d at 2026-09-10T05:37:09.807499+00:00; theorem status Proved"
+  },
+  "local_observed_axiom_closure": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "required_server_axiom_closure": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "promotion_status": "platform-verified through accepted proof submission c8238e1b-ad33-43cc-8566-185a03a405e6"
+}
