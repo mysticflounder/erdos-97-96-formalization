@@ -32,15 +32,21 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 193371
+/-- Exact-five common-shell V7 def. -/
 private def retainedDuplicateCenterCount : Nat := 714
+/-- Exact-five common-shell V7 def. -/
 private def duplicateCenterClauseCount : Nat := 4620
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedDuplicateCenterPayload : String :=
   include_str "data/g3-duplicate-center-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev DuplicateCenterClauseIndex := Fin duplicateCenterClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -62,10 +68,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array DuplicateCenterClauseIndex →
       Option (Array DuplicateCenterClauseIndex)
@@ -85,6 +93,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedDuplicateCenterIndices :
     Option (Array DuplicateCenterClauseIndex) := do
   let bytes ← decodeAscii85 retainedDuplicateCenterPayload
@@ -106,9 +115,11 @@ structure DuplicateCenterOccurrence where
   secondCenter : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def encoderDuplicateCenterTriples : List (List Nat) :=
   combos 3 (List.range 11)
 
+/-- Exact-five common-shell V7 def. -/
 private def duplicateCenterOutside (triple : List Nat) : List Nat :=
   (List.range 11).filter fun center => center ∉ triple
 
@@ -123,21 +134,25 @@ def encoderDuplicateCenterOccurrences :
         toLabel (centers.getD 1 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderDuplicateCenterOccurrences_length :
     encoderDuplicateCenterOccurrences.length =
       duplicateCenterClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def duplicateCenterOccurrenceArray :
     Array DuplicateCenterOccurrence :=
   encoderDuplicateCenterOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def duplicateCenterOccurrenceAt
     (index : DuplicateCenterClauseIndex) : DuplicateCenterOccurrence :=
   duplicateCenterOccurrenceArray[index.val]'(by
     simpa [duplicateCenterOccurrenceArray,
       encoderDuplicateCenterOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def duplicateCenterGlobalEqualityIndex
     (center left right : Label) : Fin 1485 :=
   Fin.ofNat 1485
@@ -177,6 +192,7 @@ def g3DuplicateCenterSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3DuplicateCenterSlice_size :
     g3DuplicateCenterSlice.size = retainedDuplicateCenterCount := by
   native_decide

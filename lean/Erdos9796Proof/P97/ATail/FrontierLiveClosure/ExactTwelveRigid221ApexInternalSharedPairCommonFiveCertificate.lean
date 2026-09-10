@@ -59,6 +59,7 @@ def ApexInternalSharedPairCommonFiveData.rolesValid
     ((data.a.val < data.x.val ∧ data.c.val < data.y.val) ∨
       (data.x.val < data.a.val ∧ data.y.val < data.c.val))
 
+/-- Frontier live-closure instance. -/
 instance instDecidableApexInternalSharedPairCommonFiveRolesValid
     (data : ApexInternalSharedPairCommonFiveData) :
     Decidable data.rolesValid := by

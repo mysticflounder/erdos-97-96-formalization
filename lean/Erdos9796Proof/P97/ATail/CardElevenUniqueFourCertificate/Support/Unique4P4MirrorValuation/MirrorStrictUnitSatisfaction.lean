@@ -32,6 +32,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1 :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
@@ -39,6 +40,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1 :
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem capO2_label_mem (j : Fin 2) :
     (⟨9 + j, by omega⟩ : Fin 11) ∈ Card11Labeling.capO2InteriorLabels := by
   fin_cases j <;> simp [Card11Labeling.capO2InteriorLabels]
@@ -90,6 +92,7 @@ theorem mirror_boundary_strict_firstOpposite_mem
   rw [B.labeling.restInterior_eq]
   exact capO2_label_mem (D := D) (S := S) (B.mirror.order.1.symm j)
 
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem selected_mem_of_strict_firstOpposite_mem
     (P : P4MirrorBoundaryPacket R profile distribution)
     {x : ℝ²} (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -112,6 +115,7 @@ private theorem selected_mem_of_strict_firstOpposite_mem
     omega
   exact (Finset.mem_inter.mp (heq.symm ▸ hx)).1
 
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem classHit_mirror_five
     (P : P4MirrorBoundaryPacket R profile distribution) :
     classHit P.core mirrorIndex 5 := by
@@ -121,6 +125,7 @@ private theorem classHit_mirror_five
     selected_mem_of_strict_firstOpposite_mem P
       (mirror_boundary_strict_firstOpposite_mem P.orientedBoundary 1)
 
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem classHit_mirror_six
     (P : P4MirrorBoundaryPacket R profile distribution) :
     classHit P.core mirrorIndex 6 := by
@@ -133,6 +138,7 @@ private theorem classHit_mirror_six
 set_option linter.constructorNameAsVariable false in
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem classUnit_mirror_five {v : Nat → Prop}
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hv : ValAgreement P.core mirrorIndex v) :
@@ -142,6 +148,7 @@ private theorem classUnit_mirror_five {v : Nat → Prop}
 set_option linter.constructorNameAsVariable false in
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem classUnit_mirror_six {v : Nat → Prop}
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hv : ValAgreement P.core mirrorIndex v) :
@@ -151,6 +158,7 @@ private theorem classUnit_mirror_six {v : Nat → Prop}
 set_option linter.constructorNameAsVariable false in
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem classUnit_mirror_lit632 {v : Nat → Prop}
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hv : ValAgreement P.core mirrorIndex v) :
@@ -160,6 +168,7 @@ private theorem classUnit_mirror_lit632 {v : Nat → Prop}
 set_option linter.constructorNameAsVariable false in
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem classUnit_mirror_lit633 {v : Nat → Prop}
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hv : ValAgreement P.core mirrorIndex v) :
@@ -169,6 +178,7 @@ private theorem classUnit_mirror_lit633 {v : Nat → Prop}
 set_option linter.constructorNameAsVariable false in
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 private theorem strictUnitClauses_sat_mirror {v : Nat → Prop}
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hv : ValAgreement P.core mirrorIndex v) :
@@ -189,6 +199,7 @@ private theorem strictUnitClauses_sat_mirror {v : Nat → Prop}
 set_option linter.constructorNameAsVariable false in
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
+/-- Supports strict-unit satisfaction for the P4 mirror valuation. -/
 theorem mirrorTotalVal_strictUnitClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ strictUnitClauses,

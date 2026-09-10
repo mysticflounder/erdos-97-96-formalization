@@ -66,6 +66,7 @@ noncomputable def firstOppositeCapInteriorIndices
     Finset (Fin A.boundary.n) :=
   Finset.univ.filter fun x ↦ A.inCapInterior x S.oppIndex1
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex1_eq_namedFirstApex
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ) :
@@ -76,6 +77,7 @@ private theorem oppApex1_eq_namedFirstApex
     simp [SurplusCapPacket.oppApex1, SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem mem_firstApexDistanceClassIndices_iff
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (reference : FirstNonHitNamedRole) {d : ℝ}
@@ -96,6 +98,7 @@ private theorem mem_firstApexDistanceClassIndices_iff
   · intro hi
     exact (mem_selectedClass.mp hi).2.trans (mem_selectedClass.mp hreference).2.symm
 
+/-- Frontier live-closure theorem. -/
 private theorem firstApexDistanceClassIndices_image_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (reference : FirstNonHitNamedRole) {d : ℝ}
@@ -119,6 +122,7 @@ private theorem firstApexDistanceClassIndices_image_eq
         (mem_firstApexDistanceClassIndices_iff P Pρ A reference hreference i).mpr hx,
         rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem firstApexDistanceClassIndices_card_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (reference : FirstNonHitNamedRole) {d : ℝ}
@@ -137,6 +141,7 @@ private theorem firstApexDistanceClassIndices_card_eq
         (firstApexDistanceClassIndices_image_eq P Pρ A reference hreference)
     _ = 4 := hcard
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem mem_firstOppositeCapInteriorIndices_iff
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (i : Fin A.boundary.n) :
@@ -144,6 +149,7 @@ private theorem firstApexDistanceClassIndices_card_eq
       A.boundary.boundary i ∈ S.capInteriorByIndex S.oppIndex1 := by
   simp [firstOppositeCapInteriorIndices, A.inCapInterior_iff]
 
+/-- Frontier live-closure theorem. -/
 private theorem distanceClass_inter_firstInterior_eq_pair
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (reference left right : FirstNonHitNamedRole) {d : ℝ}
@@ -198,6 +204,7 @@ private theorem distanceClass_inter_firstInterior_eq_pair
         (mem_firstOppositeCapInteriorIndices_iff P Pρ A i).mpr
           (Finset.mem_inter.mp hpointMem).2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem radiusEq_eq_false_of_distinct_classes
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (left right : FirstNonHitNamedRole) {leftRadius rightRadius : ℝ}
@@ -219,6 +226,7 @@ private theorem radiusEq_eq_false_of_distinct_classes
   exact (mem_selectedClass.mp hright).2.symm.trans <|
     hdist.symm.trans (mem_selectedClass.mp hleft).2
 
+/-- Frontier live-closure theorem. -/
 private theorem roleIndex_ne_of_point_ne
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (left right : FirstNonHitNamedRole)
@@ -233,6 +241,7 @@ private theorem roleIndex_ne_of_point_ne
     _ = A.boundary.boundary (A.roleIndex right) := congrArg _ hindices
     _ = FirstNonHitNamedRole.point P Pρ C Q right := A.roleIndex_point_eq right
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerMap_role_point_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (role : FirstNonHitNamedRole) :
@@ -241,6 +250,7 @@ private theorem blockerMap_role_point_eq
         (FirstNonHitNamedRole.point_mem P Pρ C Q role) := by
   simpa only [A.roleIndex_point_eq] using A.blockerMap_point_eq (A.roleIndex role)
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerMap_index_point_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (i : Fin A.boundary.n) {x : ℝ²} (hx : x ∈ D.A)
@@ -248,6 +258,7 @@ private theorem blockerMap_index_point_eq
     A.boundary.boundary (A.blockerMap i) = H.centerAt x hx := by
   simpa only [hpoint] using A.blockerMap_point_eq i
 
+/-- Frontier live-closure theorem. -/
 private theorem row_mem_iff_index_point
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (source item : Fin A.boundary.n) {x : ℝ²} (hx : x ∈ D.A)

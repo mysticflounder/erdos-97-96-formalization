@@ -24,9 +24,11 @@ namespace Census554
 namespace EqualityCore
 namespace Profile0034
 
+/-- Census-554 certificate-bank def. -/
 def cross (ax ay bx byy cx cy : ℝ) : ℝ :=
   (bx - ax) * (cy - ay) - (byy - ay) * (cx - ax)
 
+/-- Census-554 certificate-bank def. -/
 def qdist (ax ay bx byy : ℝ) : ℝ :=
   (ax - bx) ^ 2 + 3 * (ay - byy) ^ 2
 
@@ -98,6 +100,7 @@ theorem false_of_normalized_pentagon_order
 set_option maxHeartbeats 2000000 in
 -- The normalized nonlinear elimination uses several nested `nlinarith` calls;
 -- the default heartbeat budget is insufficient on a clean build.
+/-- Census-554 certificate-bank theorem. -/
 theorem normalized_first_chain_obstruction
     (px py sx sy : ℝ)
     (hUps : 0 < cross 0 0 px py sx sy)
@@ -238,6 +241,7 @@ theorem normalized_first_chain_obstruction
 set_option maxHeartbeats 2000000 in
 -- Combining the two normalized chains enlarges the nonlinear context enough
 -- that a clean build needs the same bounded heartbeat allowance.
+/-- Census-554 certificate-bank theorem. -/
 theorem normalized_common_obstruction
     (px py sx sy dx dy cx cy : ℝ)
     (hUps : 0 < cross 0 0 px py sx sy)
@@ -398,6 +402,7 @@ theorem normalized_a_before_s_obstruction
     mul_pos (by linarith only [hsy]) (sub_pos.mpr hdx)
   linarith only [hsda, hfirst, hsecond]
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem scaled_cross_eq_signedArea2_div
     (r : ℝ) (hr : r ≠ 0) (X Y Z : ℝ²) :
     cross (X 0) (X 1 / r) (Y 0) (Y 1 / r) (Z 0) (Z 1 / r) =
@@ -405,6 +410,7 @@ private theorem scaled_cross_eq_signedArea2_div
   simp only [cross, signedArea2]
   field_simp
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem scaled_qdist_eq_dist_sq
     (r : ℝ) (hr : r ≠ 0) (hr_sq : r ^ 2 = 3) (X Y : ℝ²) :
     qdist (X 0) (X 1 / r) (Y 0) (Y 1 / r) = dist X Y ^ 2 := by

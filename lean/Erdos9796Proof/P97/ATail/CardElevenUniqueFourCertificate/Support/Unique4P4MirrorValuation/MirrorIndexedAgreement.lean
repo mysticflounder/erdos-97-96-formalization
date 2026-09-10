@@ -32,9 +32,13 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- Supports the P4 mirror valuation analysis. -/
 abbrev asLabel := P4DirectOuterValuationScratch.asLabel
+/-- Supports the P4 mirror valuation analysis. -/
 abbrev fourPointFinset := P4DirectOuterValuationScratch.fourPointFinset
+/-- Supports the P4 mirror valuation analysis. -/
 abbrev bitMaskFinset := P4DirectOuterValuationScratch.bitMaskFinset
+/-- Supports the P4 mirror valuation analysis. -/
 abbrev toSourceSide := P4DirectOuterValuationScratch.toSourceSide
 
 /-- Faithful mirror interpretation of all seven compact P4 atom families. -/
@@ -65,6 +69,7 @@ def mirrorCompactVal
   | some binding => binding.parameters.interpret mirrorAdapter P
   | none => False
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorCompactVal_of_parameterBinding
     (P : P4MirrorBoundaryPacket R profile distribution)
     {dense : Nat} {parameters : AtomParameters}
@@ -79,6 +84,7 @@ theorem mirrorCompactVal_of_parameterBinding
       have hparameters : binding.parameters = parameters := of_decide_eq_true h
       simp [mirrorCompactVal, hlookup, hparameters]
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem rowVariable_parameterBinding
     (center point : Label) (hcenter : center ≠ point) :
     P4DirectOuterValuationScratch.ParameterBinding
@@ -101,12 +107,14 @@ def mirrorTotalVal
     criticalSupportVal P.core mirrorIndex
       (asLabel ((dense - 20000) / 11)) (asLabel ((dense - 20000) % 11))
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_of_lt
     (P : P4MirrorBoundaryPacket R profile distribution)
     {dense : Nat} (hsmall : dense < 10000) :
     mirrorTotalVal P dense ↔ mirrorCompactVal P dense := by
   simp [mirrorTotalVal, hsmall]
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_rowVariable_iff_rowMem
     (P : P4MirrorBoundaryPacket R profile distribution)
     (center point : Label) (hcenter : center ≠ point) :
@@ -119,6 +127,7 @@ theorem mirrorTotalVal_rowVariable_iff_rowMem
   simp [AtomParameters.interpret, mirrorAdapter,
     P4DirectOuterValuationScratch.asLabel_val]
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_radiusVariable_iff_radiusEq
     (P : P4MirrorBoundaryPacket R profile distribution)
     (center left right : Label) (hleftRight : left < right)
@@ -133,6 +142,7 @@ theorem mirrorTotalVal_radiusVariable_iff_radiusEq
   simp [AtomParameters.interpret, mirrorAdapter,
     P4DirectOuterValuationScratch.asLabel_val]
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_classVariable_iff_classHit
     (P : P4MirrorBoundaryPacket R profile distribution) (point : Label) :
     mirrorTotalVal P (classVariable point) ↔
@@ -144,6 +154,7 @@ theorem mirrorTotalVal_classVariable_iff_classHit
   simp [AtomParameters.interpret, mirrorAdapter,
     P4DirectOuterValuationScratch.asLabel_val]
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_blockerVariable_iff_blockerVal
     (P : P4MirrorBoundaryPacket R profile distribution)
     (source center : Label) :
@@ -161,6 +172,7 @@ theorem mirrorTotalVal_blockerVariable_iff_blockerVal
         | exact (hsmall (by decide)).elim
         | exact Iff.rfl
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_supportVariable_iff_criticalSupportVal
     (P : P4MirrorBoundaryPacket R profile distribution)
     (source point : Label) :

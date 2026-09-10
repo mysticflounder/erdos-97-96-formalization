@@ -34,24 +34,31 @@ namespace SeparationGeometry
 
 open SeparationCore
 
+/-- Census-554 certificate-bank def. -/
 private def labelS (i : Fin 3) : Fin 11 :=
   ⟨3 + i, by omega⟩
 
+/-- Census-554 certificate-bank def. -/
 private def labelO1 (i : Fin 3) : Fin 11 :=
   ⟨6 + i, by omega⟩
 
+/-- Census-554 certificate-bank def. -/
 private def labelO2 (i : Fin 2) : Fin 11 :=
   ⟨9 + i, by omega⟩
 
+/-- Census-554 certificate-bank def. -/
 private def directO2Position (i : Fin 2) : Fin 11 :=
   ⟨1 + i, by omega⟩
 
+/-- Census-554 certificate-bank def. -/
 private def directSPosition (i : Fin 3) : Fin 11 :=
   ⟨4 + i, by omega⟩
 
+/-- Census-554 certificate-bank def. -/
 private def directO1Position (i : Fin 3) : Fin 11 :=
   ⟨8 + i, by omega⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem labelS_injective : Function.Injective labelS := by
   intro i j hij
   apply Fin.ext
@@ -59,6 +66,7 @@ private theorem labelS_injective : Function.Injective labelS := by
   simp [labelS] at hval
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem labelO1_injective : Function.Injective labelO1 := by
   intro i j hij
   apply Fin.ext
@@ -66,6 +74,7 @@ private theorem labelO1_injective : Function.Injective labelO1 := by
   simp [labelO1] at hval
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem labelO2_injective : Function.Injective labelO2 := by
   intro i j hij
   apply Fin.ext
@@ -73,6 +82,7 @@ private theorem labelO2_injective : Function.Injective labelO2 := by
   simp [labelO2] at hval
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem directO2Position_injective :
     Function.Injective directO2Position := by
   intro i j hij
@@ -81,6 +91,7 @@ private theorem directO2Position_injective :
   simp [directO2Position] at hval
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem directSPosition_injective :
     Function.Injective directSPosition := by
   intro i j hij
@@ -89,6 +100,7 @@ private theorem directSPosition_injective :
   simp [directSPosition] at hval
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem directO1Position_injective :
     Function.Injective directO1Position := by
   intro i j hij
@@ -97,6 +109,7 @@ private theorem directO1Position_injective :
   simp [directO1Position] at hval
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem image_fin_two {alpha : Type*} [DecidableEq alpha]
     (f : Fin 2 → alpha) :
     Finset.univ.image f = {f 0, f 1} := by
@@ -111,6 +124,7 @@ private theorem image_fin_two {alpha : Type*} [DecidableEq alpha]
     · exact Finset.mem_image.mpr ⟨0, Finset.mem_univ _, rfl⟩
     · exact Finset.mem_image.mpr ⟨1, Finset.mem_univ _, rfl⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem image_fin_three {alpha : Type*} [DecidableEq alpha]
     (f : Fin 3 → alpha) :
     Finset.univ.image f = {f 0, f 1, f 2} := by
@@ -188,6 +202,7 @@ private theorem exists_sorted_triple_points_after
     hixiy, hiyiz, rfl, rfl, rfl, ?_⟩
   simpa [hia, hib, hic] using himage
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem ambient_index_ne_of_label_ne
     {alpha : Type*} {k n : Nat} {pointOf : Fin k → alpha}
     (hpoint : Function.Injective pointOf) {phi : Fin n → alpha}
@@ -250,6 +265,7 @@ private theorem capInteriorAt_onArc_other_apices
         (by simpa [href, hk, hj] using hArc)
     exact hSwap
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem strict_between_of_onArc
     {n : Nat} {phi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon phi)
@@ -294,18 +310,22 @@ private theorem strict_outside_of_onArc_reference_between
     · exact (hqa hqia).elim
     · exact (hqb hqib).elim
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem card11IndexEquiv_zero
     (order : Card11InternalOrder) :
     card11IndexEquiv order 0 = 0 := by rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem card11IndexEquiv_one
     (order : Card11InternalOrder) :
     card11IndexEquiv order 1 = 3 := by rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem card11IndexEquiv_two
     (order : Card11InternalOrder) :
     card11IndexEquiv order 2 = 7 := by rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem card11IndexEquiv_labelS
     (eO2 : Equiv.Perm (Fin 2)) (eS eO1 : Equiv.Perm (Fin 3))
     (i : Fin 3) :
@@ -314,6 +334,7 @@ private theorem card11IndexEquiv_labelS
   simp [labelS, directSPosition,
     SeparationCore.card11IndexEquiv_surplusInterior]
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem card11IndexEquiv_labelO1
     (eO2 : Equiv.Perm (Fin 2)) (eS eO1 : Equiv.Perm (Fin 3))
     (i : Fin 3) :
@@ -322,6 +343,7 @@ private theorem card11IndexEquiv_labelO1
   simp [labelO1, directO1Position,
     SeparationCore.card11IndexEquiv_firstOtherInterior]
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem card11IndexEquiv_labelO2
     (eO2 : Equiv.Perm (Fin 2)) (eS eO1 : Equiv.Perm (Fin 3))
     (i : Fin 2) :
@@ -330,6 +352,7 @@ private theorem card11IndexEquiv_labelO2
   simp [labelO2, directO2Position,
     SeparationCore.card11IndexEquiv_secondOtherInterior]
 
+/-- Census-554 certificate-bank def. -/
 private noncomputable def directLabeling_of_ordered_blocks
     {pointOf : Fin 11 → ℝ²} {n : Nat} {phi : Fin n → ℝ²}
     {iu io20 io21 iv is0 is1 is2 iw io10 io11 io12 : Fin n}
@@ -460,6 +483,7 @@ private noncomputable def directLabeling_of_ordered_blocks
     rw [card11IndexEquiv_labelO2]
     simpa [fO2, gO2] using heO2 1
 
+/-- Census-554 certificate-bank def. -/
 private noncomputable def mirrorLabeling_of_ordered_blocks
     {pointOf : Fin 11 → ℝ²} {n : Nat} {phi : Fin n → ℝ²}
     {iu io10 io11 io12 iw is0 is1 is2 iv io20 io21 : Fin n}

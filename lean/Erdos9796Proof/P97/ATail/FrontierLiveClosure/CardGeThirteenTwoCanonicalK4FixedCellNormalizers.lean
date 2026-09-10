@@ -24,6 +24,7 @@ open CardGeThirteenTwoCanonicalK4FixedCellData
 open CardGeThirteenTwoCanonicalK4FixedCellCertificateBank
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := Fin 13
 
 /-- All distances from one tagged center to a supplied support are equal. -/

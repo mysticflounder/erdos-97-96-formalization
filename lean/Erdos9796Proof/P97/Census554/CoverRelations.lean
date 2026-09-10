@@ -111,19 +111,23 @@ The source pattern below has two participating centers. Swapping source label
 that `RealizesCube` transports both pattern rows through that nontrivial map.
 -/
 
+/-- Census-554 certificate-bank def. -/
 private def twoRowPattern : Pattern := fun c =>
   if c = 0 then {1, 2}
   else if c = 3 then {4, 5}
   else ∅
 
+/-- Census-554 certificate-bank def. -/
 private def twoRowRelabel : Fin 11 → Fin 11 :=
   Equiv.swap (0 : Fin 11) 6
 
+/-- Census-554 certificate-bank def. -/
 private def twoRowCube : Cube := fun c =>
   if c = 6 then {1, 2}
   else if c = 3 then {4, 5}
   else ∅
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem twoRowPattern_embeds :
     PatternEmbedsUnder twoRowPattern twoRowRelabel twoRowCube := by
   refine ⟨(Equiv.swap (0 : Fin 11) 6).injective.injOn, ?_⟩

@@ -90,10 +90,12 @@ def clauseHolds (val : ℕ → Prop) (clause : List ℤ) : Prop :=
 def familyHolds (val : ℕ → Prop) (family : List (List ℤ)) : Prop :=
   ∀ clause ∈ family, clauseHolds val clause
 
+/-- Frontier live-closure theorem. -/
 theorem litHolds_pos {val : ℕ → Prop} {v : ℕ} (hv : 0 < v) :
     litHolds val (pos v) ↔ val v := by
   simp [litHolds, pos, hv]
 
+/-- Frontier live-closure theorem. -/
 theorem litHolds_neg {val : ℕ → Prop} {v : ℕ} : litHolds val (neg v) ↔ ¬ val v := by
   simp [litHolds, neg]
 
@@ -117,6 +119,7 @@ private theorem mem_eraseDups_of_mem_aux {α : Type*} [BEq α] [LawfulBEq α] :
         · rw [List.mem_filter]
           exact ⟨hxs, by simpa using hax⟩
 
+/-- Frontier live-closure theorem. -/
 theorem mem_eraseDups_of_mem {α : Type*} [BEq α] [LawfulBEq α] {l : List α} {a : α}
     (h : a ∈ l) : a ∈ l.eraseDups :=
   mem_eraseDups_of_mem_aux l.length le_rfl h
@@ -125,6 +128,7 @@ theorem mem_eraseDups_of_mem {α : Type*} [BEq α] [LawfulBEq α] {l : List α} 
 theorem mem_normalize_of_mem {l : List ℤ} {lit : ℤ} (h : lit ∈ l) : lit ∈ normalize l :=
   List.mem_mergeSort.mpr (mem_eraseDups_of_mem h)
 
+/-- Frontier live-closure theorem. -/
 theorem clauseHolds_normalize {val : ℕ → Prop} {l : List ℤ} (h : clauseHolds val l) :
     clauseHolds val (normalize l) := by
   obtain ⟨lit, hlit, hh⟩ := h
@@ -132,6 +136,7 @@ theorem clauseHolds_normalize {val : ℕ → Prop} {l : List ℤ} (h : clauseHol
 
 /- ## The enumeration helpers of the mirror -/
 
+/-- Frontier live-closure theorem. -/
 theorem sublist_of_mem_combinations :
     ∀ {xs : List ℕ} {k : ℕ} {l : List ℕ},
       l ∈ combinations xs k → l.Sublist xs ∧ l.length = k
@@ -148,6 +153,7 @@ theorem sublist_of_mem_combinations :
     · obtain ⟨hs, hlen⟩ := sublist_of_mem_combinations h
       exact ⟨hs.cons x, hlen⟩
 
+/-- Frontier live-closure theorem. -/
 theorem mem_combinations_of_mem_pairs {xs : List ℕ} {a b : ℕ} (h : (a, b) ∈ pairs xs) :
     [a, b] ∈ combinations xs 2 := by
   unfold pairs at h
@@ -158,6 +164,7 @@ theorem mem_combinations_of_mem_pairs {xs : List ℕ} {a b : ℕ} (h : (a, b) �
   obtain ⟨rfl, rfl⟩ := hab
   exact hl
 
+/-- Frontier live-closure theorem. -/
 theorem mem_pairs {xs : List ℕ} (hnd : xs.Nodup) {a b : ℕ} (h : (a, b) ∈ pairs xs) :
     a ∈ xs ∧ b ∈ xs ∧ a ≠ b := by
   obtain ⟨hs, -⟩ := sublist_of_mem_combinations (mem_combinations_of_mem_pairs h)
@@ -168,6 +175,7 @@ theorem mem_pairs {xs : List ℕ} (hnd : xs.Nodup) {a b : ℕ} (h : (a, b) ∈ p
   intro hab
   exact hnd'.1 (by simp [hab])
 
+/-- Frontier live-closure theorem. -/
 theorem mem_permutations :
     ∀ {k : ℕ} {xs : List ℕ} {l : List ℕ}, xs.Nodup → l ∈ permutations xs k →
       l.length = k ∧ l.Nodup ∧ l ⊆ xs
@@ -184,15 +192,20 @@ theorem mem_permutations :
       exact ⟨fun hx' => hnd.not_mem_erase (hsub hx'), hnd'⟩
     · exact List.cons_subset.mpr ⟨hx, List.Subset.trans hsub List.erase_subset⟩
 
+/-- Frontier live-closure theorem. -/
 theorem labels_nodup : labels.Nodup := List.nodup_range
 
+/-- Frontier live-closure theorem. -/
 theorem mem_labels {l : ℕ} : l ∈ labels ↔ l < 12 := List.mem_range
 
+/-- Frontier live-closure theorem. -/
 theorem mem_others {center l : ℕ} : l ∈ others center ↔ l < 12 ∧ l ≠ center := by
   simp [others, labels, List.mem_filter]
 
+/-- Frontier live-closure theorem. -/
 theorem others_nodup (center : ℕ) : (others center).Nodup := labels_nodup.filter _
 
+/-- Frontier live-closure theorem. -/
 theorem mem_allocate {α : Type*} {base : ℕ} {keys : List α} {key : α} {v : ℕ}
     (h : (key, v) ∈ allocate base keys) : key ∈ keys ∧ 0 < v := by
   unfold allocate at h
@@ -207,20 +220,25 @@ theorem mem_allocate {α : Type*} {base : ℕ} {keys : List α} {key : α} {v : 
 /-- The `Fin 12` label of a Nat label of the mirror. -/
 def label (l : ℕ) : Fin 12 := ⟨l % 12, Nat.mod_lt l (by norm_num)⟩
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem label_val {l : ℕ} (h : l < 12) : ((label l : Fin 12) : ℕ) = l :=
   Nat.mod_eq_of_lt h
 
+/-- Frontier live-closure theorem. -/
 theorem label_injective {a b : ℕ} (ha : a < 12) (hb : b < 12) (h : label a = label b) :
     a = b := by
   have := congrArg Fin.val h
   rwa [label_val ha, label_val hb] at this
 
+/-- Frontier live-closure theorem. -/
 theorem label_ne {a b : ℕ} (ha : a < 12) (hb : b < 12) (h : a ≠ b) : label a ≠ label b :=
   fun h' => h (label_injective ha hb h')
 
+/-- Frontier live-closure theorem. -/
 theorem mem_edges_of_lt : ∀ a b : Fin 12, a < b → ((a : ℕ), (b : ℕ)) ∈ edges := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 theorem mem_edges_minmax {a b : ℕ} (ha : a < 12) (hb : b < 12) (hab : a ≠ b) :
     (min a b, max a b) ∈ edges := by
   rcases Nat.lt_or_gt_of_ne hab with h | h
@@ -229,6 +247,7 @@ theorem mem_edges_minmax {a b : ℕ} (ha : a < 12) (hb : b < 12) (hab : a ≠ b)
   · rw [min_eq_right h.le, max_eq_left h.le]
     exact mem_edges_of_lt ⟨b, hb⟩ ⟨a, ha⟩ h
 
+/-- Frontier live-closure theorem. -/
 theorem edgeIndex_minmax (a b : ℕ) : edgeIndex (min a b) (max a b) = edgeIndex a b := by
   unfold edgeIndex
   rw [min_eq_left min_le_max, max_eq_right min_le_max]
@@ -237,8 +256,10 @@ theorem edgeIndex_minmax (a b : ℕ) : edgeIndex (min a b) (max a b) = edgeIndex
 theorem edgeIndex_surjective : ∀ i : Fin 66, ∃ e ∈ edges, edgeIndex e.1 e.2 = i := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 theorem equalVar_pos (e e' : ℕ) : 0 < equalVar e e' := Nat.succ_pos _
 
+/-- Frontier live-closure theorem. -/
 theorem dist_label_minmax (pt : Fin 12 → ℝ²) (a b : ℕ) :
     dist (pt (label (min a b))) (pt (label (max a b))) =
       dist (pt (label a)) (pt (label b)) := by
@@ -277,18 +298,23 @@ def directIndex (l : Fin 12) : Fin 12 := ⟨(position l + 5) % 12, Nat.mod_lt _ 
 index `0`, then `I1, A2, IS, A1, I2`. -/
 def mirrorIndex (l : Fin 12) : Fin 12 := ⟨(19 - position l) % 12, Nat.mod_lt _ (by norm_num)⟩
 
+/-- Frontier live-closure theorem. -/
 theorem directIndex_thirdApex : directIndex (label thirdApex) = 0 := by decide
 
+/-- Frontier live-closure theorem. -/
 theorem mirrorIndex_thirdApex : mirrorIndex (label thirdApex) = 0 := by decide
 
+/-- Frontier live-closure instance. -/
 instance instDecidableCyclicThree {n : ℕ} (i j k : Fin n) : Decidable (CyclicThree i j k) :=
   inferInstanceAs (Decidable ((i < j ∧ j < k) ∨ (j < k ∧ k < i) ∨ (k < i ∧ i < j)))
 
+/-- Frontier live-closure theorem. -/
 theorem directIndex_injective : Function.Injective directIndex := by
   intro a b h
   revert a b
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 theorem mirrorIndex_injective : Function.Injective mirrorIndex := by
   intro a b h
   revert a b
@@ -304,6 +330,7 @@ theorem forward_mirror : ∀ i j k : Fin 12, i ≠ j → j ≠ k → i ≠ k →
     (forward i j k = true ↔ CyclicThree (mirrorIndex i) (mirrorIndex k) (mirrorIndex j)) := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 theorem forward_direct_label {i j k : ℕ} (hi : i < 12) (hj : j < 12) (hk : k < 12)
     (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) :
     forward i j k = true ↔
@@ -312,6 +339,7 @@ theorem forward_direct_label {i j k : ℕ} (hi : i < 12) (hj : j < 12) (hk : k <
     (label_ne hi hk hik)
   rwa [label_val hi, label_val hj, label_val hk] at this
 
+/-- Frontier live-closure theorem. -/
 theorem forward_mirror_label {i j k : ℕ} (hi : i < 12) (hj : j < 12) (hk : k < 12)
     (hij : i ≠ j) (hjk : j ≠ k) (hik : i ≠ k) :
     forward i j k = true ↔
@@ -325,25 +353,30 @@ theorem forward_mirror_label {i j k : ℕ} (hi : i < 12) (hj : j < 12) (hk : k <
 /-- The offset of `a` from `f` going forward along the enumeration. -/
 def offset (f a : Fin 12) : ℕ := ((a : ℕ) + 12 - f) % 12
 
+/-- Frontier live-closure theorem. -/
 theorem offset_ne {f a b : Fin 12} (hab : a ≠ b) : offset f a ≠ offset f b := by
   unfold offset
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem cyclicThree_iff_offset {f a b : Fin 12} (ha : a ≠ f) :
     CyclicThree f a b ↔ offset f a < offset f b := by
   unfold CyclicThree offset
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem cyclicThree_mid_iff_offset {f a b : Fin 12} (hb : b ≠ f) :
     CyclicThree a f b ↔ offset f b < offset f a := by
   unfold CyclicThree offset
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem cyclicThree_swap {a b c : Fin 12} (hab : a ≠ b) (hbc : b ≠ c) (hac : a ≠ c) :
     CyclicThree a c b ↔ ¬ CyclicThree a b c := by
   unfold CyclicThree
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem cyclicFive_rot {a b c d e : Fin 12} : CyclicFive a b c d e ↔ CyclicFive b c d e a := by
   unfold CyclicFive
   constructor
@@ -406,6 +439,7 @@ theorem cyclicFive_pattern_of_cyclicThree {w f p x z : Fin 12} (hwf : w ≠ f) (
   · exact Or.inr (cyclicFive_rot.mpr (cyclicFive_rot.mpr (cyclicFive_rot.mpr
       (cyclicFive_of_offset hwf h3 h4 h5))))
 
+/-- Frontier live-closure theorem. -/
 theorem eq_true_iff_not_of_ne {a b : Bool} (h : a ≠ b) : (a = true ↔ ¬ b = true) := by
   cases a <;> cases b <;> simp_all
 
@@ -425,11 +459,13 @@ namespace ConvexBoundaryEnumeration
 
 variable {pt φ : Fin 12 → ℝ²} {idx : Fin 12 → Fin 12}
 
+/-- Frontier live-closure theorem. -/
 theorem idx_injective (hB : ConvexBoundaryEnumeration pt φ idx) : Function.Injective idx := by
   rcases hB.orientation with rfl | rfl
   · exact directIndex_injective
   · exact mirrorIndex_injective
 
+/-- Frontier live-closure theorem. -/
 theorem idx_label_ne (hB : ConvexBoundaryEnumeration pt φ idx) {a b : ℕ} (ha : a < 12)
     (hb : b < 12) (h : a ≠ b) : idx (label a) ≠ idx (label b) :=
   fun h' => label_ne ha hb h (hB.idx_injective h')
@@ -497,6 +533,7 @@ end ConvexBoundaryEnumeration
 
 /- ## The transitivity family -/
 
+/-- Frontier live-closure theorem. -/
 private theorem clauseHolds_three {val : ℕ → Prop} {x y z : ℕ} {P Q R : Prop} (hz : 0 < z)
     (Hx : val x ↔ P) (Hy : val y ↔ Q) (Hz : val z ↔ R) (himp : P → Q → R) :
     clauseHolds val [neg x, neg y, pos z] := by
@@ -614,6 +651,7 @@ def dedupClauses (l : List (List ℕ)) : List (List ℤ) :=
     if state.1.contains clause then state else (state.1.insert clause, state.2.push clause)
   (l.foldl step (Std.HashSet.emptyWithCapacity 8192, #[])).2.toList
 
+/-- Frontier live-closure theorem. -/
 theorem fivePointCircleIsoscelesOrder_eq_dedupClauses :
     fivePointCircleIsoscelesOrder = dedupClauses circleIsoscelesInstances := rfl
 

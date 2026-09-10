@@ -25,6 +25,7 @@ namespace CardGeThirteenTwoCanonicalK4FixedCellData
 
 open GenericRowNogoodCertificate
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := Fin 13
 
 /-- Convert a raw label to its position in the fixed direct cyclic order. -/
@@ -418,6 +419,7 @@ theorem center2PairTerms_expected_length :
     ∀ index, (center2PairTerms index).length = 1 := by
   decide
 
+/-- Frontier live-closure def. -/
 private def center5PairExpectedLength : Fin 27 → Nat :=
   ![2, 1, 1, 1, 2, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 1,
     1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1]
@@ -427,6 +429,7 @@ theorem center5PairTerms_expected_length :
     ∀ index, (center5PairTerms index).length = center5PairExpectedLength index := by
   decide
 
+/-- Frontier live-closure def. -/
 private def jointExpectedLength : Fin 63 → Nat :=
   ![1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,

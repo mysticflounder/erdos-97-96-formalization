@@ -20,31 +20,42 @@ namespace ATailFrontierLiveClosure
 namespace ExactTwelveRigid221Ingress
 namespace StaticLayoutFingerprint
 
+/-- Frontier live-closure def. -/
 def modulus : Nat := 18446744073709551557
+/-- Frontier live-closure def. -/
 def multiplier : Nat := 1000003
+/-- Frontier live-closure def. -/
 def offset : Nat := 1469598103934665603
 
+/-- Frontier live-closure def. -/
 def literalCode (literal : Int) : Nat :=
   2 * literal.natAbs + if literal < 0 then 1 else 0
 
+/-- Frontier live-closure def. -/
 def literalStep (acc : Nat) (literal : Int) : Nat :=
   (acc * multiplier + literalCode literal + 1009) % modulus
 
+/-- Frontier live-closure def. -/
 def clauseStep (acc : Nat) (clause : List Int) : Nat :=
   ((clause.foldl literalStep acc) * multiplier + 997) % modulus
 
+/-- Frontier live-closure def. -/
 def fingerprint (clauses : List (List Int)) : Nat :=
   clauses.foldl clauseStep offset
 
+/-- Frontier live-closure def. -/
 def equalityDeltaSha256 : String :=
   "bca24367d5601a5870432b568848717ea50a0dcb703be03b74cefcfcbc799b83"
 
+/-- Frontier live-closure def. -/
 def geometryDeltaSha256 : String :=
   "dc07e3eff4dc21b32d38e4ca8e1225e90210db62ce306e615b01f969fa4bbb9b"
 
+/-- Frontier live-closure def. -/
 def convexDeltaSha256 : String :=
   "49e6e5d5b8b4c68f7bccb0356d5bf38ce9ee25b0397fe555a00f9cddb2fbafa2"
 
+/-- Frontier live-closure def. -/
 def cell0ParentDimacsSha256 : String :=
   "0d4ab5fa17a63ef862533615eb534b0fb4be5892052788e2a47477e7bd250ff9"
 

@@ -41,6 +41,7 @@ noncomputable def labelsOf {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Label) (S : Finset ℝ²) : Finset Label :=
   Finset.univ.filter fun label => (e.symm label).1 ∈ S
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_labelsOf_iff {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Label) (S : Finset ℝ²) (label : Label) :
     label ∈ labelsOf e S ↔ (e.symm label).1 ∈ S := by

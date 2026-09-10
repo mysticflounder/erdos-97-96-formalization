@@ -56,6 +56,7 @@ noncomputable def roleCarrier (P : B1CardSixLocalRolePacket C) : Finset ℝ² :=
     (B1CardSixRole.value P .vL).1,
     (B1CardSixRole.value P .vR).1}
 
+/-- Frontier live-closure theorem. -/
 theorem roleCarrier_subset (P : B1CardSixLocalRolePacket C) :
     roleCarrier P ⊆ D.A := by
   intro x hx
@@ -202,12 +203,14 @@ noncomputable def ambientCarrierLabel
     (label : CarrierLabel (roleCarrier P)) : CarrierLabel D.A :=
   ⟨label.1, hsubset label.2⟩
 
+/-- Frontier live-closure def. -/
 noncomputable def ambientRoleLabel
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
     (role : B1CardSixRole) : CarrierLabel D.A :=
   ambientCarrierLabel P hsubset (roleLabel P role)
 
+/-- Frontier live-closure def. -/
 noncomputable def ambientRoleIndices
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -215,6 +218,7 @@ noncomputable def ambientRoleIndices
   (roleCarrier P).attach.image
     (fun label => B.indexOf (ambientCarrierLabel P hsubset label))
 
+/-- Frontier live-closure theorem. -/
 private theorem ambientRoleIndex_injective
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -234,6 +238,7 @@ private theorem ambientRoleIndex_injective
       simpa [ambientCarrierLabel] using
         B.point_eq (ambientCarrierLabel P hsubset y)
 
+/-- Frontier live-closure theorem. -/
 theorem ambientRoleIndices_card
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -247,6 +252,7 @@ theorem ambientRoleIndices_card
         (ambientRoleIndex_injective P hsubset B)
     _ = (roleCarrier P).card := Finset.card_attach
 
+/-- Frontier live-closure def. -/
 noncomputable def orderedRoleEmbedding
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -255,6 +261,7 @@ noncomputable def orderedRoleEmbedding
   (ambientRoleIndices P hsubset B).orderEmbOfFin
     (ambientRoleIndices_card P hsubset B)
 
+/-- Frontier live-closure theorem. -/
 theorem orderedRoleEmbedding_image
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -266,6 +273,7 @@ theorem orderedRoleEmbedding_image
       (ambientRoleIndices P hsubset B)
       (ambientRoleIndices_card P hsubset B))
 
+/-- Frontier live-closure theorem. -/
 theorem ambientRoleIndex_mem
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -289,6 +297,7 @@ noncomputable def orderedRoleIndex
     ⟨B.indexOf (ambientCarrierLabel P hsubset label),
       ambientRoleIndex_mem P hsubset B label⟩
 
+/-- Frontier live-closure theorem. -/
 theorem orderedRoleEmbedding_orderedRoleIndex
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -304,17 +313,20 @@ theorem orderedRoleEmbedding_orderedRoleIndex
       (orderedRoleIndex P hsubset B label)
   simpa [orderedRoleEmbedding, orderedRoleIndex] using h.symm
 
+/-- Frontier live-closure def. -/
 noncomputable def roleIndex
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A) (role : B1CardSixRole) :
     Fin (roleCarrier P).card :=
   orderedRoleIndex P (roleCarrier_subset P) B (roleLabel P role)
 
+/-- Frontier live-closure def. -/
 noncomputable def roleEmbedding
     (P : B1CardSixLocalRolePacket C) (B : BoundaryIndexing D.A) :
     Fin (roleCarrier P).card ↪o Fin B.n :=
   orderedRoleEmbedding P (roleCarrier_subset P) B
 
+/-- Frontier live-closure theorem. -/
 theorem roleEmbedding_roleIndex
     (P : B1CardSixLocalRolePacket C) (B : BoundaryIndexing D.A)
     (role : B1CardSixRole) :
@@ -324,6 +336,7 @@ theorem roleEmbedding_roleIndex
     (orderedRoleEmbedding_orderedRoleIndex P (roleCarrier_subset P) B
       (roleLabel P role))
 
+/-- Frontier live-closure theorem. -/
 theorem raw_btw_iff_ambient
     (P : B1CardSixLocalRolePacket C)
     (hsubset : roleCarrier P ⊆ D.A)
@@ -337,6 +350,7 @@ theorem raw_btw_iff_ambient
   unfold SurplusCOMPGBank.btw
   simp only [(orderedRoleEmbedding P hsubset B).lt_iff_lt]
 
+/-- Frontier live-closure theorem. -/
 theorem raw_btw_role_iff_ambient
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
@@ -369,6 +383,7 @@ def RawCardSixBad {n : ℕ}
       (SurplusCOMPGBank.btw apex vBlocker v0 ↔
         SurplusCOMPGBank.btw apex vBlocker v1))
 
+/-- Frontier live-closure theorem. -/
 theorem rawCardSixBad_iff_ambient
     (P : B1CardSixLocalRolePacket C) (B : BoundaryIndexing D.A) :
     RawCardSixBad
@@ -405,6 +420,7 @@ theorem rawCardSixBad_iff_ambient
     raw_btw_role_iff_ambient P B .physicalApex .Bv .v0,
     raw_btw_role_iff_ambient P B .physicalApex .Bv .v1]
 
+/-- Frontier live-closure theorem. -/
 theorem b1LiveSlicesSameBoundaryArc_of_not_rawCardSixBad
     (C : B1GlobalTransportContext (D := D) (S := S) (radius := radius)
       (H := H) (F := F))

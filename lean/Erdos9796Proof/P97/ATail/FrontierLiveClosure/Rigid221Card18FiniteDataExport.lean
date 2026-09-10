@@ -49,6 +49,7 @@ noncomputable def labelsOf {D : CounterexampleData}
     (carrier : Rigid221ExactCardEighteenCarrier D) (S : Finset ℝ²) : Finset Label :=
   Finset.univ.filter fun label => pointOf carrier label ∈ S
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_labelsOf_iff {D : CounterexampleData}
     (carrier : Rigid221ExactCardEighteenCarrier D) (S : Finset ℝ²) (label : Label) :
     label ∈ labelsOf carrier S ↔ pointOf carrier label ∈ S := by

@@ -34,6 +34,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- Supports the P4 mirror valuation ledger. -/
 private theorem p5ClauseSat_normalizeClause_iff
     (v : Nat → Prop) (clause : List Int) :
     P5OccurrenceBridgeScratch.clauseSat v
@@ -43,6 +44,7 @@ private theorem p5ClauseSat_normalizeClause_iff
     P4DirectOuterValuationScratch.normalizeClause, List.mem_mergeSort]
 
 set_option maxRecDepth 100000 in
+/-- Supports the P4 mirror valuation ledger. -/
 theorem directOuterThreeFamilyClauses_normalized_mem_mirrorBridge :
     ∀ clause ∈ directOuterThreeFamilyCompactClauses,
       P4DirectOuterValuationScratch.normalizeClause clause ∈
@@ -50,6 +52,7 @@ theorem directOuterThreeFamilyClauses_normalized_mem_mirrorBridge :
           P4DirectOuterValuationScratch.normalizeClause := by
   native_decide
 
+/-- Supports the P4 mirror valuation ledger. -/
 theorem mirrorTotalVal_directOuterThreeFamilyClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ directOuterThreeFamilyCompactClauses,
@@ -68,6 +71,7 @@ theorem mirrorTotalVal_directOuterThreeFamilyClauses_sat
   exact (p5ClauseSat_normalizeClause_iff
     (mirrorTotalVal P) clause).mp hmirrorNormalized
 
+/-- Supports the P4 mirror valuation ledger. -/
 theorem mirrorTotalVal_p4SourceClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ p4SourceClauses,
@@ -102,6 +106,7 @@ theorem mirrorTotalVal_p4SourceClauses_sat
   rcases List.mem_map.mp hclause with ⟨entry, hentry, rfl⟩
   exact mirrorTotalVal_cegarEntries_sat P entry hentry
 
+/-- Supports the P4 mirror valuation ledger. -/
 theorem mirrorTotalVal_p4CompactLedger_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ P4ExactTwoCertificateClosureScratch.p4CompactLedger,
@@ -126,6 +131,7 @@ theorem mirrorTotalVal_p4CompactLedger_sat
     P5OccurrenceBridgeScratch.clauseSat,
     P5OccurrenceBridgeScratch.litSat] using hledger
 
+/-- Supports the P4 mirror valuation ledger. -/
 theorem false_of_p4MirrorBoundaryPacket
     (P : P4MirrorBoundaryPacket R profile distribution) : False :=
   P4ExactTwoCertificateClosureScratch.false_of_p4CompactLedger_sat

@@ -143,6 +143,7 @@ theorem exists_freshThird_retained_minimalDeletionCoreProducer
 /- The retained branch of the producer is deliberately kept in the same
    contract as the reverse-selected-class branch below.  This is a packet,
    not a contradiction: the retained packet still needs a cap-wide consumer. -/
+/-- Frontier live-closure abbrev. -/
 abbrev FreshThirdRetainedDeletionCorePacket
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ) : Prop :=
   ∃ x y : ℝ²,
@@ -166,6 +167,7 @@ omit hpairsDisjoint hblockersNe
 /- A single source-level producer for the two possible aligned-radii
    outcomes.  The parent can now consume this dichotomy directly; no fixed-n
    census or theorem-bank lookup is involved. -/
+/-- Frontier live-closure theorem. -/
 theorem freshThird_canonical_consumerPacket
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ) :
     FreshThirdRetainedDeletionCorePacket (P := P) (Pρ := Pρ) C ∨
@@ -187,6 +189,7 @@ theorem freshThird_canonical_consumerPacket
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_surface
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
@@ -226,6 +229,7 @@ private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_surface
 
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem false_of_twoCapSources_freshThirdBlockerFiber_on_commonRadius_surface
     (C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (hthird : Nonempty (FreshThirdBlockerFiber P Pρ)) :
@@ -879,6 +883,7 @@ theorem endpointFresh_escape_with_sourceFaithful_cover_twoShellSeed
 /- Endpoint ingress with the source-level all-large context.  This is the
    form available to the live endpoint leaves; it avoids reconstructing the
    obsolete B/L/N/T' residual wrapper solely for cover localization. -/
+/-- Frontier live-closure theorem. -/
 theorem endpointFresh_escape_with_context_sourceFaithful_cover_twoShellSeed
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

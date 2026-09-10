@@ -31,13 +31,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 185150
+/-- Exact-five common-shell V7 def. -/
 private def retainedSelectedGlobalEqCount : Nat := 8199
+/-- Exact-five common-shell V7 def. -/
 private def selectedGlobalEqClauseCount : Nat := 11694
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedSelectedGlobalEqPayload : String :=
   include_str "data/g3-selected-global-eq-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev SelectedGlobalEqClauseIndex := Fin selectedGlobalEqClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -62,10 +67,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array SelectedGlobalEqClauseIndex →
       Option (Array SelectedGlobalEqClauseIndex)
@@ -85,6 +92,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedSelectedGlobalEqIndices :
     Option (Array SelectedGlobalEqClauseIndex) := do
   let bytes ← decodeAscii85 retainedSelectedGlobalEqPayload
@@ -110,6 +118,7 @@ private def encoderSelectedGlobalCandidateRows :
       ⟨toLabel center, candidateIndex⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderSelectedGlobalCandidateRows_length :
     encoderSelectedGlobalCandidateRows.length = 1949 := by
   native_decide
@@ -136,6 +145,7 @@ def encoderSelectedGlobalEqOccurrences :
       ⟨row, toLabel (pair.getD 0 0), toLabel (pair.getD 1 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderSelectedGlobalEqOccurrences_length :
     encoderSelectedGlobalEqOccurrences.length =
       selectedGlobalEqClauseCount := by
@@ -182,6 +192,7 @@ def g3SelectedGlobalEqSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SelectedGlobalEqSlice_size :
     g3SelectedGlobalEqSlice.size = retainedSelectedGlobalEqCount := by
   native_decide

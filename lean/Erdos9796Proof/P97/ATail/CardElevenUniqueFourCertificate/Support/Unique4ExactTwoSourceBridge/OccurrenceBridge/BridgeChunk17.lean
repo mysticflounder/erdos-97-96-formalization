@@ -11,6 +11,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4E
 namespace Problem97
 namespace P5OccurrenceBridgeScratch
 
+/-- Supports the exact-two-source occurrence bridge. -/
 def bridgeChunk17 : List BridgeEntry := [
   ⟨[52, 51, 57, 58, 59, 53, 54], .rowAtLeastFour 5 [1, 0, 7, 8, 9, 2, 3]⟩,
   ⟨[54, 51, 60, 57, 52, 53, 58], .rowAtLeastFour 5 [3, 0, 10, 7, 1, 2, 8]⟩,
@@ -234,6 +235,7 @@ def bridgeChunk17 : List BridgeEntry := [
   ⟨[65, 63, 64, 69, 67, 62, 68], .rowAtLeastFour 6 [4, 2, 3, 9, 7, 1, 8]⟩]
 
 set_option maxRecDepth 8192 in
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem bridgeChunk17_wf : bridgeChunk17.all entryWF = true := by decide
 
 end P5OccurrenceBridgeScratch

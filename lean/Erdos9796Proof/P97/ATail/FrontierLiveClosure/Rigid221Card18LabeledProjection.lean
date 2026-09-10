@@ -40,6 +40,7 @@ noncomputable def roleLabel {D : CounterexampleData}
     pointOf carrier (roleLabel carrier point) = point.1 := by
   simp [pointOf, roleLabel]
 
+/-- Frontier live-closure theorem. -/
 private theorem roleLabel_ne_of_value_ne {D : CounterexampleData}
     (carrier : Rigid221ExactCardEighteenCarrier D) {left right : CarrierVertex D.A}
     (hne : left.1 ≠ right.1) :
@@ -48,6 +49,7 @@ private theorem roleLabel_ne_of_value_ne {D : CounterexampleData}
   apply hne
   exact congrArg Subtype.val (carrier.labeling.injective heq)
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedCenter_mem_carrier {D : CounterexampleData}
     (system : CriticalShellSystem D.A) (point : CarrierVertex D.A) :
     system.centerAt point.1 point.2 ∈ D.A :=
@@ -218,6 +220,7 @@ theorem labelsOf_inter_eq {D : CounterexampleData}
   ext label
   simp only [Finset.mem_inter, mem_labelsOf_iff]
 
+/-- Frontier live-closure theorem. -/
 private theorem qDeletedSupport_subset_carrier
     {D : CounterexampleData} {q center : ℝ²} {support : Finset ℝ²}
     (row : U5QDeletedK4Class D q center support) : support ⊆ D.A := by
@@ -226,6 +229,7 @@ private theorem qDeletedSupport_subset_carrier
   have hskeleton : point ∈ D.skeleton q := (Finset.mem_erase.mp hcenter).2
   exact (Finset.mem_erase.mp hskeleton).2
 
+/-- Frontier live-closure def. -/
 private noncomputable def sourceSupport1
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -235,6 +239,7 @@ private noncomputable def sourceSupport1
   ((lateFirstApexSystem R).selectedAt
     source.source₁.1 source.source₁.2).toCriticalFourShell.support
 
+/-- Frontier live-closure def. -/
 private noncomputable def sourceSupport2
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -244,6 +249,7 @@ private noncomputable def sourceSupport2
   ((lateFirstApexSystem R).selectedAt
     source.source₂.1 source.source₂.2).toCriticalFourShell.support
 
+/-- Frontier live-closure def. -/
 private noncomputable def xvOppositeSupport
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -252,6 +258,7 @@ private noncomputable def xvOppositeSupport
     (source : Rigid221ExactCardEighteenSource D S radius H F R) : Finset ℝ² :=
   SelectedClass (D.A.erase source.packet.xv) S.oppApex2 source.P.rho
 
+/-- Frontier live-closure def. -/
 private noncomputable def uOppositeSupport
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -260,6 +267,7 @@ private noncomputable def uOppositeSupport
     (source : Rigid221ExactCardEighteenSource D S radius H F R) : Finset ℝ² :=
   SelectedClass (D.A.erase source.P.u.1) S.oppApex2 source.P.rho
 
+/-- Frontier live-closure def. -/
 private noncomputable def firstSourceLabeledSupport
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -273,6 +281,7 @@ private noncomputable def firstSourceLabeledSupport
     ((lateFirstApexSystem R).selectedAt
       source.source₁.1 source.source₁.2).toCriticalFourShell.support_card
 
+/-- Frontier live-closure def. -/
 private noncomputable def secondSourceLabeledSupport
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

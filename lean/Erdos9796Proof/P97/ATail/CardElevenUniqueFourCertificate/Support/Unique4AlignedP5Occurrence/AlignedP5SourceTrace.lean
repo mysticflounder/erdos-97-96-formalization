@@ -38,6 +38,7 @@ open Census554.SeparationCore
 
 attribute [local instance] Classical.propDecidable
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -45,6 +46,7 @@ theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -53,6 +55,7 @@ theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -61,6 +64,7 @@ theorem capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem oppApex1_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -70,6 +74,7 @@ theorem oppApex1_eq_oppositeVertexByIndex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem oppApex2_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -89,16 +94,19 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {P : AlignedInteriorFrontier R}
   (Q : AlignedP5BoundaryPacket R profile P)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_mem (i : Fin 11) : Q.boundary i ∈ D.A := by
   have hi :
       Q.boundary i ∈ Finset.univ.image Q.boundary :=
     Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩
   simpa only [Q.boundary_image] using hi
 
+/-- Supports the aligned P5 occurrence analysis. -/
 noncomputable abbrev code : PatternCode :=
   ATailAlignedP5MetricSoundScratch.patternCode Q.boundary Q.boundary_mem
     Q.carrierPattern
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem classAt_zero_eq_firstApex :
     (Q.carrierPattern.classAt
         (Q.boundary 0) (Q.boundary_mem 0)).support =
@@ -117,6 +125,7 @@ theorem classAt_zero_eq_firstApex :
       (Q.carrierPattern.classAt point.1 point.2).support)
     hcenter
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem row_inter_indices_card_eq
     (center : Label) (indices : Finset Label) :
     (row Q.code center ∩ indices).card =
@@ -141,6 +150,7 @@ theorem row_inter_indices_card_eq
           ⟨(mem_row_patternCode_iff Q.boundary Q.boundary_mem
             Q.carrierPattern center label).mpr hsupport, hindices⟩, rfl⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem row_card (center : Label) :
     (row Q.code center).card = 4 := by
   have h := Q.row_inter_indices_card_eq center Finset.univ
@@ -152,6 +162,7 @@ theorem row_card (center : Label) :
     (Q.carrierPattern.classAt
       (Q.boundary center) (Q.boundary_mem center)).support_card
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem center_not_mem_row (center : Label) :
     center ∉ row Q.code center := by
   intro hcenter
@@ -165,6 +176,7 @@ theorem center_not_mem_row (center : Label) :
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem countPoints_labels_eq_card (points : Finset Label) :
     countPoints (maskOfFinset points)
       ATailAlignedP5NativeClassifierScratch.labels = points.card := by
@@ -173,6 +185,7 @@ theorem countPoints_labels_eq_card (points : Finset Label) :
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem countPoints_firstCap_eq_card (points : Finset Label) :
     countPoints (maskOfFinset points) firstCap =
       (points ∩ surplusClosedIndices).card := by
@@ -181,6 +194,7 @@ theorem countPoints_firstCap_eq_card (points : Finset Label) :
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem countPoints_alignedCap_eq_card (points : Finset Label) :
     countPoints (maskOfFinset points) alignedCap =
       (points ∩ firstOppositeClosedIndices).card := by
@@ -189,6 +203,7 @@ theorem countPoints_alignedCap_eq_card (points : Finset Label) :
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem countPoints_shortCap_eq_card (points : Finset Label) :
     countPoints (maskOfFinset points) shortCap =
       (points ∩ secondOppositeClosedIndices).card := by
@@ -197,6 +212,7 @@ theorem countPoints_shortCap_eq_card (points : Finset Label) :
 set_option maxHeartbeats 1000000 in
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem first_row_finite_shape (points : Finset Label)
     (hcard : points.card = 4) (hzero : (0 : Label) ∉ points)
     (hfive : (5 : Label) ∈ points) (hsix : (6 : Label) ∈ points)
@@ -209,41 +225,48 @@ theorem first_row_finite_shape (points : Finset Label)
   native_decide +revert
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem mem_surplusClosedIndices_of_firstCap_contains (center : Label)
     (h : firstCap.contains center.val = true) :
     center ∈ surplusClosedIndices := by
   native_decide +revert
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem mem_firstOppositeClosedIndices_of_alignedCap_contains (center : Label)
     (h : alignedCap.contains center.val = true) :
     center ∈ firstOppositeClosedIndices := by
   native_decide +revert
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem mem_secondOppositeClosedIndices_of_shortCap_contains (center : Label)
     (h : shortCap.contains center.val = true) :
     center ∈ secondOppositeClosedIndices := by
   native_decide +revert
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem eq_zero_or_four_of_firstCapEndpoints_contains (center : Label)
     (h : firstCapEndpoints.contains center.val = true) :
     center = 0 ∨ center = 4 := by
   native_decide +revert
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem eq_four_or_eight_of_alignedCapEndpoints_contains (center : Label)
     (h : alignedCapEndpoints.contains center.val = true) :
     center = 4 ∨ center = 8 := by
   native_decide +revert
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem eq_eight_or_zero_of_shortCapEndpoints_contains (center : Label)
     (h : shortCapEndpoints.contains center.val = true) :
     center = 8 ∨ center = 0 := by
   native_decide +revert
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem countPoints_firstCap_eq_support_inter (center : Label) :
     countPoints (rowOfPattern Q.code center).support firstCap =
       ((Q.carrierPattern.classAt
@@ -255,6 +278,7 @@ theorem countPoints_firstCap_eq_support_inter (center : Label) :
   exact (Q.row_inter_indices_card_eq center surplusClosedIndices).trans <| by
     rw [Q.surplusClosedIndices_image]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem countPoints_alignedCap_eq_support_inter (center : Label) :
     countPoints (rowOfPattern Q.code center).support alignedCap =
       ((Q.carrierPattern.classAt
@@ -267,6 +291,7 @@ theorem countPoints_alignedCap_eq_support_inter (center : Label) :
     (Q.row_inter_indices_card_eq center firstOppositeClosedIndices).trans <| by
       rw [Q.firstOppositeClosedIndices_image]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem countPoints_shortCap_eq_support_inter (center : Label) :
     countPoints (rowOfPattern Q.code center).support shortCap =
       ((Q.carrierPattern.classAt
@@ -279,6 +304,7 @@ theorem countPoints_shortCap_eq_support_inter (center : Label) :
     (Q.row_inter_indices_card_eq center secondOppositeClosedIndices).trans <| by
       rw [Q.secondOppositeClosedIndices_image]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem firstCap_count_le_two (center : Label)
     (hcenter : firstCap.contains center.val = true) :
     countPoints (rowOfPattern Q.code center).support firstCap ≤ 2 := by
@@ -295,6 +321,7 @@ theorem firstCap_count_le_two (center : Label)
       (Q.carrierPattern.classAt
         (Q.boundary center) (Q.boundary_mem center)) hpoint
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem alignedCap_count_le_two (center : Label)
     (hcenter : alignedCap.contains center.val = true) :
     countPoints (rowOfPattern Q.code center).support alignedCap ≤ 2 := by
@@ -311,6 +338,7 @@ theorem alignedCap_count_le_two (center : Label)
       (Q.carrierPattern.classAt
         (Q.boundary center) (Q.boundary_mem center)) hpoint
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem shortCap_count_le_two (center : Label)
     (hcenter : shortCap.contains center.val = true) :
     countPoints (rowOfPattern Q.code center).support shortCap ≤ 2 := by
@@ -327,6 +355,7 @@ theorem shortCap_count_le_two (center : Label)
       (Q.carrierPattern.classAt
         (Q.boundary center) (Q.boundary_mem center)) hpoint
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem firstCap_endpoint_count_le_one (center : Label)
     (hcenter : firstCapEndpoints.contains center.val = true) :
     countPoints (rowOfPattern Q.code center).support firstCap ≤ 1 := by
@@ -346,6 +375,7 @@ theorem firstCap_endpoint_count_le_one (center : Label)
         S.surplusIdx_ne_oppIndex2
         (Q.boundary_four.trans (oppApex2_eq_oppositeVertexByIndex S))
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem alignedCap_endpoint_count_le_one (center : Label)
     (hcenter : alignedCapEndpoints.contains center.val = true) :
     countPoints (rowOfPattern Q.code center).support alignedCap ≤ 1 := by
@@ -364,6 +394,7 @@ theorem alignedCap_endpoint_count_le_one (center : Label)
         (Q.carrierPattern.classAt (Q.boundary 8) (Q.boundary_mem 8))
         S.surplusIdx_ne_oppIndex1.symm Q.boundary_eight
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem shortCap_endpoint_count_le_one (center : Label)
     (hcenter : shortCapEndpoints.contains center.val = true) :
     countPoints (rowOfPattern Q.code center).support shortCap ≤ 1 := by
@@ -382,6 +413,7 @@ theorem shortCap_endpoint_count_le_one (center : Label)
         S.oppIndex1_ne_oppIndex2.symm
         (Q.boundary_zero.trans (oppApex1_eq_oppositeVertexByIndex S))
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem ownCapOK_row (center : Label) :
     ownCapOK center.val (rowOfPattern Q.code center).support = true := by
   have hfirst :
@@ -425,6 +457,7 @@ theorem ownCapOK_row (center : Label) :
     · simp [capBoundOK, hcap]
   simp [ownCapOK, hfirst, haligned, hshort]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem first_row_aligned_hit (i : Fin 3) :
     firstOppositeInteriorIndex i ∈ row Q.code 0 := by
   apply (mem_row_patternCode_iff Q.boundary Q.boundary_mem
@@ -439,6 +472,7 @@ theorem first_row_aligned_hit (i : Fin 3) :
   rw [Q.classAt_zero_eq_firstApex]
   exact hmem
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem alignedClassOK_row (center : Label) :
     alignedClassOK center.val (rowOfPattern Q.code center).support = true := by
   by_cases hcenter : center = 0
@@ -472,6 +506,7 @@ theorem alignedClassOK_row (center : Label) :
       simpa using hzero
     simp [alignedClassOK, hval]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem localCandidateOK_row (center : Label) :
     ATailAlignedP5NativeClassifierScratch.localCandidateOK center.val
       (rowOfPattern Q.code center).support = true := by
@@ -492,6 +527,7 @@ theorem localCandidateOK_row (center : Label) :
     hcount, hself, Q.ownCapOK_row center, Q.alignedClassOK_row center]
   decide
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem candidate_row (center : Label) :
     rowOfPattern Q.code center ∈
       ATailAlignedP5NativeClassifierScratch.candidateRows center.val := by
@@ -505,6 +541,7 @@ theorem candidate_row (center : Label) :
   simp only [Q.localCandidateOK_row center, if_true]
   rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem firstRow :
     ∃ extra,
       extra ∈ alignedExtraPoints ∧
@@ -523,6 +560,7 @@ theorem firstRow :
     ⟨extra, hextra, hrow⟩
   exact ⟨extra.val, hextra, hrow⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem row_inter_card_le_two
     {left right : Label} (hne : left ≠ right) :
     (row Q.code left ∩ row Q.code right).card ≤ 2 := by
@@ -563,6 +601,7 @@ theorem row_inter_card_le_two
     intro hcenters
     exact hne (Q.boundary_injective hcenters)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem pairCenterCountOK : PairCenterCountOK Q.code := by
   intro left right hne
   let hits : Finset Label :=
@@ -602,6 +641,7 @@ theorem pairCenterCountOK : PairCenterCountOK Q.code := by
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem commonPoints_length_maskOfFinset
     (left right : Finset Label) :
     (commonPoints (maskOfFinset left) (maskOfFinset right)).length =
@@ -609,6 +649,7 @@ theorem commonPoints_length_maskOfFinset
   native_decide +revert
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem cyclicSeparated_swap_of_away
     (left right first second : Label)
     (hfirstLeft : first ≠ left) (hfirstRight : first ≠ right)
@@ -620,6 +661,7 @@ theorem cyclicSeparated_swap_of_away
   native_decide +revert
 
 set_option maxRecDepth 10000 in
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem crossSeparationOK_row
     {left right : Label} (hne : left ≠ right) :
     ATailAlignedP5NativeClassifierScratch.crossSeparationOK
@@ -751,6 +793,7 @@ theorem crossSeparationOK_row
             rw [hswap]
             simpa [firstLabel, secondLabel] using hcyclic
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem compatible
     (assignedCenters : List Label) (center : Label)
     (hnodup : assignedCenters.Nodup) (hfresh : center ∉ assignedCenters) :
@@ -776,6 +819,7 @@ theorem compatible
   rw [hpair, hcross]
   rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem exactFirstClass :
     ExactFirstClass Q.boundary Q.boundary_mem Q.carrierPattern := by
   have hfiveSelected :
@@ -822,6 +866,7 @@ theorem exactFirstClass :
   rw [Q.classAt_zero_eq_firstApex]
   exact hsupport
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem metricCore_false
     (centers : List Label) (hcenters : centers.Nodup) :
     metricCore (centers.map (rowOfPattern Q.code)) = false :=

@@ -31,6 +31,7 @@ open TwoSourceExactCollisionRowsTerminal
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure theorem. -/
 theorem selectedFourClass_twoRow_sdiff_card_eq_two
     {A : Finset ℝ²} {B F : ℝ²}
     (KB : SelectedFourClass A B) (KF : SelectedFourClass A F)

@@ -23,6 +23,7 @@ namespace ATailFrontierLiveClosure
 open scoped EuclideanGeometry
 open ATailCriticalPairFrontier
 
+/-- Frontier live-closure theorem. -/
 theorem nonempty_b1EscapeSourceContext_of_fullGeometricCoupledSourceResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

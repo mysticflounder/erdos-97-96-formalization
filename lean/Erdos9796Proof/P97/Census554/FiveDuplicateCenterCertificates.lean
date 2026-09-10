@@ -28,26 +28,33 @@ open EqualityCore
 open Phase3DuplicateCenterCertificate
 open scoped EuclideanGeometry
 
+/-- Census-554 certificate-bank def. -/
 def sourceSweepSha256 : String :=
   "1786357d5c13a16bd105d606ccc3f95bc5fbf9d8f3ac396a118a69d42ffd41fa"
 
+/-- Census-554 certificate-bank def. -/
 def cube08ClauseSha256 : String :=
   "6f3e4142af8f1d88518a31146959210b5eb21827ca358fac87469b886c11301e"
 
+/-- Census-554 certificate-bank def. -/
 def cube09ClauseSha256 : String :=
   "8e8f7c0903030fbf78ac69f4e92226554c643f09fdb86c20205ba7d716b08bf6"
 
+/-- Census-554 certificate-bank def. -/
 def cube16ClauseSha256 : String :=
   "f014051747ec20538854b24f0f1f41d058c8dfe7a742bdc11681271f2d4cbe27"
 
+/-- Census-554 certificate-bank def. -/
 def cube17ClauseSha256 : String :=
   "a3526b9958a57abfb56fffc96ec95900223368060cc4e8a0d4584a96a4ec4302"
 
+/-- Census-554 certificate-bank def. -/
 def cube18ClauseSha256 : String :=
   "c2480021d5f51a346d63d897d5c6e5fcb67eafadfc34dd5f63da51b661b6ad81"
 
 /- Cube 8: triple `(0, 1, 3)`, centers `2` and `8`. -/
 
+/-- Census-554 certificate-bank def. -/
 def cube08MembershipPattern : RowPattern Label :=
 ![
   {2, 7, 8},
@@ -62,6 +69,7 @@ def cube08MembershipPattern : RowPattern Label :=
   {}
 ]
 
+/-- Census-554 certificate-bank def. -/
 def cube08Certificate : DuplicateCenterCertificate := {
   p := 0
   q := 1
@@ -127,20 +135,24 @@ def cube08Certificate : DuplicateCenterCertificate := {
   }
 }
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube08MembershipPattern_card :
     ∑ center, (cube08MembershipPattern center).card = 16 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube08Certificate_check :
     cube08Certificate.check cube08MembershipPattern = true := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube08_not_realizes :
     ¬ ∃ pointOf : Label → ℝ², Realizes cube08MembershipPattern pointOf :=
   cube08Certificate.not_realizes_of_check cube08Certificate_check
 
 /- Cube 9: triple `(0, 1, 2)`, centers `3` and `7`. -/
 
+/-- Census-554 certificate-bank def. -/
 def cube09MembershipPattern : RowPattern Label :=
 ![
   {2, 3},
@@ -155,6 +167,7 @@ def cube09MembershipPattern : RowPattern Label :=
   {}
 ]
 
+/-- Census-554 certificate-bank def. -/
 def cube09Certificate : DuplicateCenterCertificate := {
   p := 0
   q := 1
@@ -203,20 +216,24 @@ def cube09Certificate : DuplicateCenterCertificate := {
   }
 }
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube09MembershipPattern_card :
     ∑ center, (cube09MembershipPattern center).card = 12 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube09Certificate_check :
     cube09Certificate.check cube09MembershipPattern = true := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube09_not_realizes :
     ¬ ∃ pointOf : Label → ℝ², Realizes cube09MembershipPattern pointOf :=
   cube09Certificate.not_realizes_of_check cube09Certificate_check
 
 /- Cube 16: triple `(0, 1, 4)`, centers `6` and `7`. -/
 
+/-- Census-554 certificate-bank def. -/
 def cube16MembershipPattern : RowPattern Label :=
 ![
   {5, 6},
@@ -231,6 +248,7 @@ def cube16MembershipPattern : RowPattern Label :=
   {}
 ]
 
+/-- Census-554 certificate-bank def. -/
 def cube16Certificate : DuplicateCenterCertificate := {
   p := 0
   q := 1
@@ -277,20 +295,24 @@ def cube16Certificate : DuplicateCenterCertificate := {
   }
 }
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube16MembershipPattern_card :
     ∑ center, (cube16MembershipPattern center).card = 10 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube16Certificate_check :
     cube16Certificate.check cube16MembershipPattern = true := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube16_not_realizes :
     ¬ ∃ pointOf : Label → ℝ², Realizes cube16MembershipPattern pointOf :=
   cube16Certificate.not_realizes_of_check cube16Certificate_check
 
 /- Cube 17: triple `(0, 1, 2)`, centers `3` and `7`. -/
 
+/-- Census-554 certificate-bank def. -/
 def cube17MembershipPattern : RowPattern Label :=
 ![
   {3, 7, 8},
@@ -305,6 +327,7 @@ def cube17MembershipPattern : RowPattern Label :=
   {}
 ]
 
+/-- Census-554 certificate-bank def. -/
 def cube17Certificate : DuplicateCenterCertificate := {
   p := 0
   q := 1
@@ -365,20 +388,24 @@ def cube17Certificate : DuplicateCenterCertificate := {
   }
 }
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube17MembershipPattern_card :
     ∑ center, (cube17MembershipPattern center).card = 13 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube17Certificate_check :
     cube17Certificate.check cube17MembershipPattern = true := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube17_not_realizes :
     ¬ ∃ pointOf : Label → ℝ², Realizes cube17MembershipPattern pointOf :=
   cube17Certificate.not_realizes_of_check cube17Certificate_check
 
 /- Cube 18: triple `(0, 3, 4)`, centers `2` and `6`. -/
 
+/-- Census-554 certificate-bank def. -/
 def cube18MembershipPattern : RowPattern Label :=
 ![
   {2, 7},
@@ -393,6 +420,7 @@ def cube18MembershipPattern : RowPattern Label :=
   {2, 3, 6}
 ]
 
+/-- Census-554 certificate-bank def. -/
 def cube18Certificate : DuplicateCenterCertificate := {
   p := 0
   q := 3
@@ -454,14 +482,17 @@ def cube18Certificate : DuplicateCenterCertificate := {
   }
 }
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube18MembershipPattern_card :
     ∑ center, (cube18MembershipPattern center).card = 17 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube18Certificate_check :
     cube18Certificate.check cube18MembershipPattern = true := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube18_not_realizes :
     ¬ ∃ pointOf : Label → ℝ², Realizes cube18MembershipPattern pointOf :=
   cube18Certificate.not_realizes_of_check cube18Certificate_check

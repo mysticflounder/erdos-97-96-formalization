@@ -22,12 +22,16 @@ namespace Rigid221Card18ClauseGadgets
 
 open Rigid221Card18FiniteDataExport
 
+/-- Frontier live-closure abbrev. -/
 private abbrev Clause := Std.Sat.CNF.Clause Nat
 
+/-- Frontier live-closure abbrev. -/
 private abbrev Cnf := Std.Sat.CNF Nat
 
+/-- Frontier live-closure def. -/
 private def labelList : List Label := List.finRange 18
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_finRangeMap_iff (sigma : Nat → Bool) (n : Nat)
     (f : Fin n → Clause) :
     Std.Sat.CNF.eval sigma ((List.finRange n).map f) = true ↔
@@ -40,6 +44,7 @@ private theorem eval_finRangeMap_iff (sigma : Nat → Bool) (n : Nat)
     rcases List.mem_map.mp hc with ⟨i, -, rfl⟩
     exact h i
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_flatMap (sigma : Nat → Bool) (xs : List α) (f : α → Cnf) :
     Std.Sat.CNF.eval sigma (xs.flatMap f) =
       xs.all fun x ↦ Std.Sat.CNF.eval sigma (f x) := by
@@ -47,6 +52,7 @@ private theorem eval_flatMap (sigma : Nat → Bool) (xs : List α) (f : α → C
   | nil => rfl
   | cons x xs ih => simp [ih]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_labelFlatMap_iff (sigma : Nat → Bool) (f : Label → Cnf) :
     Std.Sat.CNF.eval sigma (labelList.flatMap f) = true ↔
       ∀ l : Label, Std.Sat.CNF.eval sigma (f l) = true := by
@@ -57,16 +63,19 @@ private theorem eval_labelFlatMap_iff (sigma : Nat → Bool) (f : Label → Cnf)
   · intro h l _hl
     exact h l
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_singleton_iff (sigma : Nat → Bool) (c : Clause) :
     Std.Sat.CNF.eval sigma [c] = true ↔ Std.Sat.CNF.Clause.eval sigma c = true := by
   simp [Std.Sat.CNF.eval]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_positive_implication_clause_iff (sigma : Nat → Bool) (x y : Nat) :
     Std.Sat.CNF.Clause.eval sigma [(x, false), (y, true)] = true ↔
       sigma x = true → sigma y = true := by
   cases hx : sigma x <;> cases hy : sigma y <;>
     simp [Std.Sat.CNF.Clause.eval, hx, hy]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_negative_implication_clause_iff (sigma : Nat → Bool) (x y : Nat) :
     Std.Sat.CNF.Clause.eval sigma [(x, false), (y, false)] = true ↔
       sigma x = true → sigma y = false := by
@@ -87,18 +96,22 @@ def roleNotMemClauses (a : SearchArm) (r : Role a) (s : Support a) : Std.Sat.CNF
 def roleNeClauses (a : SearchArm) (r q : Role a) : Std.Sat.CNF Nat :=
   labelList.map fun l ↦ [(roleBit a r l, false), (roleBit a q l, false)]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem roleMemClauses_length (a : SearchArm) (r : Role a) (s : Support a) :
     (roleMemClauses a r s).length = 18 := by
   simp [roleMemClauses, labelList]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem roleNotMemClauses_length (a : SearchArm) (r : Role a) (s : Support a) :
     (roleNotMemClauses a r s).length = 18 := by
   simp [roleNotMemClauses, labelList]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem roleNeClauses_length (a : SearchArm) (r q : Role a) :
     (roleNeClauses a r q).length = 18 := by
   simp [roleNeClauses, labelList]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_roleMemClauses_bits_iff (a : SearchArm) (r : Role a)
     (s : Support a) (sigma : Nat → Bool) :
     Std.Sat.CNF.eval sigma (roleMemClauses a r s) = true ↔
@@ -108,6 +121,7 @@ private theorem eval_roleMemClauses_bits_iff (a : SearchArm) (r : Role a)
   rw [eval_finRangeMap_iff]
   simp only [eval_positive_implication_clause_iff]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_roleNotMemClauses_bits_iff (a : SearchArm) (r : Role a)
     (s : Support a) (sigma : Nat → Bool) :
     Std.Sat.CNF.eval sigma (roleNotMemClauses a r s) = true ↔
@@ -117,6 +131,7 @@ private theorem eval_roleNotMemClauses_bits_iff (a : SearchArm) (r : Role a)
   rw [eval_finRangeMap_iff]
   simp only [eval_negative_implication_clause_iff]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_roleNeClauses_bits_iff (a : SearchArm) (r q : Role a)
     (sigma : Nat → Bool) :
     Std.Sat.CNF.eval sigma (roleNeClauses a r q) = true ↔
@@ -218,6 +233,7 @@ theorem eval_roleNeClauses_iff {a : SearchArm} {sigma : Nat → Bool}
 
 /- ## Selected-membership signals -/
 
+/-- Frontier live-closure def. -/
 private def selectedMembershipLabelClauses (a : SearchArm) (r : Role a)
     (s : Support a) (m : Nat) (l : Label) : Cnf :=
   [[(roleBit a r l, false), (supportBit a s l, false), (m, true)],
@@ -228,10 +244,12 @@ def selectedMembershipSignalClauses (a : SearchArm) (r : Role a) (s : Support a)
     (m : Nat) : Std.Sat.CNF Nat :=
   labelList.flatMap (selectedMembershipLabelClauses a r s m)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem selectedMembershipSignalClauses_length (a : SearchArm) (r : Role a)
     (s : Support a) (m : Nat) : (selectedMembershipSignalClauses a r s m).length = 36 := by
   simp [selectedMembershipSignalClauses, selectedMembershipLabelClauses, labelList]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_selectedMembershipLabelClauses_iff (a : SearchArm) (r : Role a)
     (s : Support a) (m : Nat) (sigma : Nat → Bool) (l : Label) :
     Std.Sat.CNF.eval sigma (selectedMembershipLabelClauses a r s m l) = true ↔
@@ -268,14 +286,17 @@ theorem eval_selectedMembershipSignalClauses_iff {a : SearchArm} {sigma : Nat �
 
 /- ## Five-role masks -/
 
+/-- Frontier live-closure def. -/
 private def physicalMaskForwardClauses (a : SearchArm) (roles : Fin 5 → Role a)
     (mask : Label → Nat) (l : Label) : Cnf :=
   (List.finRange 5).map fun i ↦ [(roleBit a (roles i) l, false), (mask l, true)]
 
+/-- Frontier live-closure def. -/
 private def physicalMaskReverseClause (a : SearchArm) (roles : Fin 5 → Role a)
     (mask : Label → Nat) (l : Label) : Clause :=
   (mask l, false) :: (List.finRange 5).map fun i ↦ (roleBit a (roles i) l, true)
 
+/-- Frontier live-closure def. -/
 private def physicalMaskLabelClauses (a : SearchArm) (roles : Fin 5 → Role a)
     (mask : Label → Nat) (l : Label) : Cnf :=
   physicalMaskForwardClauses a roles mask l ++ [physicalMaskReverseClause a roles mask l]
@@ -285,10 +306,12 @@ def physicalMaskClauses (a : SearchArm) (roles : Fin 5 → Role a)
     (mask : Label → Nat) : Std.Sat.CNF Nat :=
   labelList.flatMap (physicalMaskLabelClauses a roles mask)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem physicalMaskClauses_length (a : SearchArm) (roles : Fin 5 → Role a)
     (mask : Label → Nat) : (physicalMaskClauses a roles mask).length = 108 := by
   simp [physicalMaskClauses, physicalMaskLabelClauses, physicalMaskForwardClauses, labelList]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_physicalMaskForwardClauses_iff (a : SearchArm)
     (roles : Fin 5 → Role a) (mask : Label → Nat) (sigma : Nat → Bool) (l : Label) :
     Std.Sat.CNF.eval sigma (physicalMaskForwardClauses a roles mask l) = true ↔
@@ -296,6 +319,7 @@ private theorem eval_physicalMaskForwardClauses_iff (a : SearchArm)
   rw [physicalMaskForwardClauses, eval_finRangeMap_iff]
   simp only [eval_positive_implication_clause_iff]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_physicalMaskReverseClause_iff (a : SearchArm)
     (roles : Fin 5 → Role a) (mask : Label → Nat) (sigma : Nat → Bool) (l : Label) :
     Std.Sat.CNF.Clause.eval sigma (physicalMaskReverseClause a roles mask l) = true ↔
@@ -317,6 +341,7 @@ private theorem eval_physicalMaskReverseClause_iff (a : SearchArm)
     · refine ⟨(roleBit a (roles i) l, true), ?_, by simpa using hi⟩
       exact List.mem_cons_of_mem _ (List.mem_map.mpr ⟨i, List.mem_finRange i, rfl⟩)
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_physicalMaskLabelClauses_iff (a : SearchArm)
     (roles : Fin 5 → Role a) (mask : Label → Nat) (sigma : Nat → Bool) (l : Label) :
     Std.Sat.CNF.eval sigma (physicalMaskLabelClauses a roles mask l) = true ↔
@@ -377,6 +402,7 @@ theorem eval_physicalMaskClauses_iff {a : SearchArm} {sigma : Nat → Bool}
 
 /- ## Aligned intersections -/
 
+/-- Frontier live-closure def. -/
 private def intersectionLabelClauses (left right inter : Label → Nat) (l : Label) : Cnf :=
   [[(inter l, false), (left l, true)],
     [(inter l, false), (right l, true)],
@@ -386,10 +412,12 @@ private def intersectionLabelClauses (left right inter : Label → Nat) (l : Lab
 def intersectionClauses (left right inter : Label → Nat) : Std.Sat.CNF Nat :=
   labelList.flatMap (intersectionLabelClauses left right inter)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem intersectionClauses_length (left right inter : Label → Nat) :
     (intersectionClauses left right inter).length = 54 := by
   simp [intersectionClauses, intersectionLabelClauses, labelList]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_intersectionLabelClauses_iff (left right inter : Label → Nat)
     (sigma : Nat → Bool) (l : Label) :
     Std.Sat.CNF.eval sigma (intersectionLabelClauses left right inter l) = true ↔
@@ -416,6 +444,7 @@ def selectedMembershipDerivedClauses (a : SearchArm) (r : Role a) (s : Support a
     (m : ArmDerivedVar a) : Std.Sat.CNF Nat :=
   selectedMembershipSignalClauses a r s m.toNat
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem selectedMembershipDerivedClauses_length (a : SearchArm) (r : Role a)
     (s : Support a) (m : ArmDerivedVar a) :
     (selectedMembershipDerivedClauses a r s m).length = 36 := by
@@ -433,6 +462,7 @@ def physicalMaskDerivedClauses (a : SearchArm) (roles : Fin 5 → Role a)
     (mask : Label → ArmDerivedVar a) : Std.Sat.CNF Nat :=
   physicalMaskClauses a roles fun l ↦ (mask l).toNat
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem physicalMaskDerivedClauses_length (a : SearchArm)
     (roles : Fin 5 → Role a) (mask : Label → ArmDerivedVar a) :
     (physicalMaskDerivedClauses a roles mask).length = 108 := by
@@ -452,6 +482,7 @@ def intersectionDerivedClauses {a : SearchArm} (left right : Label → Nat)
     (inter : Label → ArmDerivedVar a) : Std.Sat.CNF Nat :=
   intersectionClauses left right fun l ↦ (inter l).toNat
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem intersectionDerivedClauses_length {a : SearchArm}
     (left right : Label → Nat) (inter : Label → ArmDerivedVar a) :
     (intersectionDerivedClauses left right inter).length = 54 := by
@@ -471,6 +502,7 @@ theorem eval_intersectionDerivedClauses_iff {a : SearchArm} (left right : Label 
 def armPhysicalMaskClauses (a : SearchArm) : Std.Sat.CNF Nat :=
   physicalMaskDerivedClauses a (physicalRole a) (ArmDerivedVar.physicalMask a)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem armPhysicalMaskClauses_length (a : SearchArm) :
     (armPhysicalMaskClauses a).length = 108 := by
   simp [armPhysicalMaskClauses]
@@ -486,6 +518,7 @@ theorem eval_armPhysicalMaskClauses_iff {a : SearchArm} {sigma : Nat → Bool}
       (eval_physicalMaskClauses_iff h (physicalRole a)
         (fun l ↦ (ArmDerivedVar.physicalMask a l).toNat))
 
+/-- Frontier live-closure def. -/
 private def physicalRolePairs : List (Fin 5 × Fin 5) :=
   [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
 
@@ -494,10 +527,12 @@ def physicalRoleNeClauses (a : SearchArm) : Std.Sat.CNF Nat :=
   physicalRolePairs.flatMap fun ij ↦
     roleNeClauses a (physicalRole a ij.1) (physicalRole a ij.2)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem physicalRoleNeClauses_length (a : SearchArm) :
     (physicalRoleNeClauses a).length = 180 := by
   simp [physicalRoleNeClauses, physicalRolePairs]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_physicalRoleNeClauses_pairs_iff {a : SearchArm}
     {sigma : Nat → Bool} (h : baseWellFormed a sigma) :
     Std.Sat.CNF.eval sigma (physicalRoleNeClauses a) = true ↔
@@ -511,6 +546,7 @@ private theorem eval_physicalRoleNeClauses_pairs_iff {a : SearchArm}
   · intro hPairs ij hij
     exact (eval_roleNeClauses_iff h _ _).mpr (hPairs ij hij)
 
+/-- Frontier live-closure theorem. -/
 private theorem physicalRolePairs_distinct_iff_injective {a : SearchArm}
     (p : PacketOfArm a) :
     (∀ ij ∈ physicalRolePairs,
@@ -535,12 +571,14 @@ private theorem physicalRolePairs_distinct_iff_injective {a : SearchArm}
     subst j
     fin_cases i <;> simp [physicalRolePairs] at hij
 
+/-- Frontier live-closure theorem. -/
 private theorem physicalFive_eq_image_physicalRole {a : SearchArm} (p : PacketOfArm a) :
     p.physicalFive = Finset.univ.image fun i : Fin 5 ↦ p.role (physicalRole a i) := by
   ext l
   simp only [PacketOfArm.mem_physicalFive_iff_exists_physicalRole,
     Finset.mem_image, Finset.mem_univ, true_and]
 
+/-- Frontier live-closure theorem. -/
 private theorem physicalFive_card_eq_five_iff_injective {a : SearchArm}
     (p : PacketOfArm a) :
     p.physicalFive.card = 5 ↔
@@ -565,6 +603,7 @@ theorem eval_physicalRoleNeClauses_iff {a : SearchArm} {sigma : Nat → Bool}
 /-- The eighteen variables obtained by applying an aligned variable family to canonical labels. -/
 def labelBits (f : Label → Nat) : List Nat := (List.finRange 18).map f
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem labelBits_length (f : Label → Nat) : (labelBits f).length = 18 := by
   simp [labelBits]
 
@@ -577,6 +616,7 @@ theorem labelBits_nodup {f : Label → Nat} (hf : Function.Injective f) :
 def derivedLabelBits {a : SearchArm} (f : Label → ArmDerivedVar a) : List Nat :=
   labelBits fun l ↦ (f l).toNat
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem derivedLabelBits_length {a : SearchArm} (f : Label → ArmDerivedVar a) :
     (derivedLabelBits f).length = 18 := by
   simp [derivedLabelBits]
@@ -591,6 +631,7 @@ theorem derivedLabelBits_nodup {a : SearchArm} {f : Label → ArmDerivedVar a}
 def supportBits (a : SearchArm) (s : Support a) : List Nat :=
   labelBits (supportBit a s)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem supportBits_length (a : SearchArm) (s : Support a) :
     (supportBits a s).length = 18 := by
   simp [supportBits]
@@ -608,6 +649,7 @@ theorem supportBits_nodup (a : SearchArm) (s : Support a) :
     (supportBits a s).Nodup := by
   exact labelBits_nodup (supportBit_injective a s)
 
+/-- Frontier live-closure theorem. -/
 private theorem labelBits_toFinset {f : Label → Nat} :
     (labelBits f).toFinset = Finset.univ.image f := by
   ext v

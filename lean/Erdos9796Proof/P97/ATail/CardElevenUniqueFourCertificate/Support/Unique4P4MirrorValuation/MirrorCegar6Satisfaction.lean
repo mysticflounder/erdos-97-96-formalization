@@ -29,6 +29,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem schemaRole_ne (slot : CegarSlot) (membership : Membership)
     (hmem : membership ∈ slotSchema slot) :
     rolePoint (slotOrderedEight slot).values membership.1 ≠
@@ -40,6 +41,7 @@ private theorem schemaRole_ne (slot : CegarSlot) (membership : Membership)
     rcases hmem with (rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl) <;>
       decide
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem slotCut_mirror (P : P4MirrorBoundaryPacket R profile distribution)
     (slot : CegarSlot) :
     kalmansonCutSat P.core mirrorIndex (slotOrderedEight slot).values (slotSchema slot) := by
@@ -49,6 +51,7 @@ private theorem slotCut_mirror (P : P4MirrorBoundaryPacket R profile distributio
   · cases slot <;> decide
   · cases slot <;> decide
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem schemaLits_sat_mirror (P : P4MirrorBoundaryPacket R profile distribution)
     (slot : CegarSlot) :
     P5OccurrenceBridgeScratch.clauseSat (mirrorTotalVal P) (schemaLits slot) := by

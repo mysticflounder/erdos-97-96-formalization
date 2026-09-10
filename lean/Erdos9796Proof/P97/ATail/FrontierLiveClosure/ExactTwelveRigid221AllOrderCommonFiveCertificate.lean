@@ -69,6 +69,7 @@ def AllOrderCommonFiveData.rolesValid (data : AllOrderCommonFiveData) :
     data.c ≠ data.b ∧ data.c ≠ data.x ∧ data.c ≠ data.y ∧
     orientedAll48 data.a data.x data.b data.c data.y = true
 
+/-- Frontier live-closure instance. -/
 instance instDecidableAllOrderCommonFiveRolesValid
     (data : AllOrderCommonFiveData) : Decidable data.rolesValid := by
   unfold AllOrderCommonFiveData.rolesValid

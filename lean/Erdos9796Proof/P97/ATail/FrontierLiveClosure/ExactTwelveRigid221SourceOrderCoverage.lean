@@ -37,6 +37,7 @@ def SharedLatePairOrderAt (position : Label → Nat)
     (a b c d : Label) : Prop :=
   position a < position b ∧ position b < position c ∧ position c < position d
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne_sourceCoverage
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :
@@ -47,6 +48,7 @@ private theorem FrozenBoundaryOrder.position_ne_of_ne_sourceCoverage
 -- Independent arithmetic replay of the 48 source orders for the frozen-v8
 -- positive-row cut.  No selected-row or metric fact is used here.
 set_option maxHeartbeats 2000000 in
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.sourceOrderCoverage_frozenV8
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     (hforced : FrozenForcedSecondCapOrder order.position) :

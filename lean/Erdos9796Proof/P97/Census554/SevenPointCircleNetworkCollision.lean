@@ -33,53 +33,63 @@ private def circleNetwork_dot (x y : ℝ²) : ℝ :=
 private def circleNetwork_normSq (x : ℝ²) : ℝ :=
   circleNetwork_dot x x
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_dot_comm (x y : ℝ²) :
     circleNetwork_dot x y = circleNetwork_dot y x := by
   simp only [circleNetwork_dot]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_dot_add_right (x y z : ℝ²) :
     circleNetwork_dot x (y + z) = circleNetwork_dot x y + circleNetwork_dot x z := by
   simp only [circleNetwork_dot, PiLp.add_apply]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_dot_sub_left (x y z : ℝ²) :
     circleNetwork_dot (x - y) z = circleNetwork_dot x z - circleNetwork_dot y z := by
   simp only [circleNetwork_dot, PiLp.sub_apply]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_dot_sub_right (x y z : ℝ²) :
     circleNetwork_dot x (y - z) = circleNetwork_dot x y - circleNetwork_dot x z := by
   simp only [circleNetwork_dot, PiLp.sub_apply]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_dot_smul_left (r : ℝ) (x y : ℝ²) :
     circleNetwork_dot (r • x) y = r * circleNetwork_dot x y := by
   simp only [circleNetwork_dot, PiLp.smul_apply, smul_eq_mul]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_dot_smul_right (r : ℝ) (x y : ℝ²) :
     circleNetwork_dot x (r • y) = r * circleNetwork_dot x y := by
   simp only [circleNetwork_dot, PiLp.smul_apply, smul_eq_mul]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_normSq_add (x y : ℝ²) :
     circleNetwork_normSq (x + y) =
       circleNetwork_normSq x + circleNetwork_normSq y + 2 * circleNetwork_dot x y := by
   simp only [circleNetwork_normSq, circleNetwork_dot, PiLp.add_apply]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_normSq_sub (x y : ℝ²) :
     circleNetwork_normSq (x - y) =
       circleNetwork_normSq x + circleNetwork_normSq y - 2 * circleNetwork_dot x y := by
   simp only [circleNetwork_normSq, circleNetwork_dot, PiLp.sub_apply]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_normSq_sub_comm (x y : ℝ²) :
     circleNetwork_normSq (x - y) = circleNetwork_normSq (y - x) := by
   simp only [circleNetwork_normSq, circleNetwork_dot, PiLp.sub_apply]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_normSq_sub_sub_smul (w u b : ℝ²) (r : ℝ) :
     circleNetwork_normSq (w - u - r • b) =
       circleNetwork_normSq w + circleNetwork_normSq u + r ^ 2 * circleNetwork_normSq b
@@ -89,11 +99,13 @@ private theorem circleNetwork_normSq_sub_sub_smul (w u b : ℝ²) (r : ℝ) :
     PiLp.smul_apply, smul_eq_mul]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_normSq_nonneg (x : ℝ²) :
     0 ≤ circleNetwork_normSq x := by
   simp only [circleNetwork_normSq, circleNetwork_dot]
   nlinarith only [sq_nonneg (x 0), sq_nonneg (x 1)]
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem circleNetwork_eq_zero_of_normSq_eq_zero {x : ℝ²}
     (h : circleNetwork_normSq x = 0) : x = 0 := by
   have h' : x 0 ^ 2 + x 1 ^ 2 = 0 := by

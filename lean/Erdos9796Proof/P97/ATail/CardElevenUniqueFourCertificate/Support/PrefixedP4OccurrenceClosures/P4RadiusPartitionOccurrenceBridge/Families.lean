@@ -30,27 +30,33 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Prefixed P4 occurrence-closure inductive. -/
 inductive ClauseShape where
   | radiusTrans (center x y z : Label)
 deriving DecidableEq
 
+/-- Prefixed P4 occurrence-closure def. -/
 def instLits : ClauseShape → List Int
   | .radiusTrans center x y z =>
       [-((p4VarOfAtom (sortedRadius center x y) : Nat) : Int),
        -((p4VarOfAtom (sortedRadius center y z) : Nat) : Int),
        ((p4VarOfAtom (sortedRadius center x z) : Nat) : Int)]
 
+/-- Prefixed P4 occurrence-closure def. -/
 def shapeWF : ClauseShape → Bool
   | .radiusTrans center x y z =>
       decide (x ≠ y ∧ y ≠ z ∧ x ≠ z ∧ center ≠ x ∧ center ≠ y ∧ center ≠ z)
 
+/-- Prefixed P4 occurrence-closure structure. -/
 structure BridgeEntry where
   clause : List Int
   shape : ClauseShape
 
+/-- Prefixed P4 occurrence-closure def. -/
 def entryWF (e : BridgeEntry) : Bool :=
   shapeWF e.shape && litsSubset (instLits e.shape) e.clause
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem radiusTransLitsSat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (center x y z : Label)
     (hshape : x ≠ y ∧ y ≠ z ∧ x ≠ z ∧ center ≠ x ∧ center ≠ y ∧ center ≠ z) :
@@ -77,6 +83,7 @@ theorem radiusTransLitsSat (P : P4DirectBoundaryPacket R profile distribution)
     apply litSat_neg (p4VarOfAtom_pos _)
     exact fun h => hxy (hxyv.mp h)
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem entry_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (e : BridgeEntry)
     (he : entryWF e = true) : clauseSat v e.clause := by
@@ -88,6 +95,7 @@ theorem entry_sat (P : P4DirectBoundaryPacket R profile distribution)
       apply radiusTransLitsSat P hv center x y z
       simpa [shapeWF] using he.1
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem entryList_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (entries : List BridgeEntry)
     (hentries : entries.all entryWF = true) :

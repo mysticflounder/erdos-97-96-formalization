@@ -30,6 +30,7 @@ namespace MECStraddlingRowCore
 
 open EqualityCore
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem scalar_incompatibility
     (a b c d u v w z k : ℝ)
     (hp : (a - 1) ^ 2 + b ^ 2 = 1)
@@ -130,10 +131,12 @@ private theorem scalar_incompatibility
     nlinarith only [hpowerY, hdecompY, hfirst, hsecond]
   linarith
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem dist_sq_coords (x y : ℝ²) :
     dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
   Problem97.dist_sq_coord x y
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normSim_dist_sq_eq_one
     {o a p q : ℝ²} (hoa : o ≠ a) (h : dist o a = dist p q) :
     (normSim o a p 0 - normSim o a q 0) ^ 2 +
@@ -150,6 +153,7 @@ private theorem normSim_dist_sq_eq_one
     zero_sub, one_pow, neg_sq] at hSq
   nlinarith only [hSq]
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normSim_signedArea_pos
     {o a p q r : ℝ²} (hoa : o ≠ a) (h : 0 < signedArea2 p q r) :
     0 < signedArea2 (normSim o a p) (normSim o a q) (normSim o a r) := by
@@ -267,6 +271,7 @@ theorem metric_orientation_incompatibility
   exact scalar_incompatibility A B C D U V W Z K hp hs hx hy hcenter
     hdiskx hdisky ha hb hd hrx hry
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem inner_reflectXAxis_sub (p a o : ℝ²) :
     inner ℝ (reflectXAxis p - reflectXAxis a)
         (reflectXAxis o - reflectXAxis a) =

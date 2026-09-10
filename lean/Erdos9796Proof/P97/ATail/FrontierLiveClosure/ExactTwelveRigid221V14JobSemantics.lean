@@ -95,6 +95,7 @@ def FrozenDistinguishedDAt (row : RowPattern Label)
 def frozenDistinguishedDCenters : Finset Label :=
   {0, 2, 3, 4, 5, 6, 9, 10, 11}
 
+/-- Frontier live-closure theorem. -/
 theorem mem_frozenDistinguishedDCenters_iff (d : Label) :
     d ∈ frozenDistinguishedDCenters ↔ d ≠ 1 ∧ d ≠ 7 ∧ d ≠ 8 := by
   fin_cases d <;> decide

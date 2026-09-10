@@ -142,6 +142,7 @@ theorem capLabel_boundary_between_of_equidistant_core
       simpa [cast] using hcast
 
 /- The public theorem keeps the original finite-profile contract. -/
+/-- Frontier live-closure theorem. -/
 theorem capLabel_boundary_between_of_equidistant
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {C : Finset ℝ²} (B : CGN.StrictCapBlockData D.A C)

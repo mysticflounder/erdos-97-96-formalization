@@ -22,6 +22,7 @@ open ATailUniqueFourExactTwoCurvatureScratch
 open ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource
 open P5IndexedSourceScratch
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 inductive DenseAtom where
   | membership (atom : MembershipAtom)
   | row (atom : RowSupportAtom)
@@ -30,6 +31,7 @@ inductive DenseAtom where
   deriving DecidableEq
 
 /- The authenticated compact-variable map, partitioned only for bounded Lean elaboration. -/
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock00 (n : Nat) : DenseAtom :=
   match n with
   | 1 => .membership ⟨0, 1⟩
@@ -144,6 +146,7 @@ def atomOfVarBlock00 (n : Nat) : DenseAtom :=
   | 110 => .membership ⟨10, 9⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock05 (n : Nat) : DenseAtom :=
   match n with
   | 706 => .arc ⟨0, .left, {0, 1, 2, 3, 4, 5, 6}⟩
@@ -210,6 +213,7 @@ def atomOfVarBlock05 (n : Nat) : DenseAtom :=
   | 767 => .arc ⟨1, .right, {2, 3, 4, 5, 6, 7, 8}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock06 (n : Nat) : DenseAtom :=
   match n with
   | 768 => .row ⟨1, {0, 3, 4, 5}⟩
@@ -342,6 +346,7 @@ def atomOfVarBlock06 (n : Nat) : DenseAtom :=
   | 895 => .row ⟨1, {3, 5, 6, 7}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock07 (n : Nat) : DenseAtom :=
   match n with
   | 896 => .row ⟨1, {3, 5, 6, 8}⟩
@@ -474,6 +479,7 @@ def atomOfVarBlock07 (n : Nat) : DenseAtom :=
   | 1023 => .row ⟨2, {0, 4, 8, 10}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock08 (n : Nat) : DenseAtom :=
   match n with
   | 1024 => .row ⟨2, {0, 4, 9, 10}⟩
@@ -606,6 +612,7 @@ def atomOfVarBlock08 (n : Nat) : DenseAtom :=
   | 1151 => .row ⟨2, {5, 6, 9, 10}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock09 (n : Nat) : DenseAtom :=
   match n with
   | 1152 => .row ⟨2, {5, 7, 8, 9}⟩
@@ -738,6 +745,7 @@ def atomOfVarBlock09 (n : Nat) : DenseAtom :=
   | 1279 => .row ⟨3, {1, 4, 6, 7}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock10 (n : Nat) : DenseAtom :=
   match n with
   | 1280 => .row ⟨3, {1, 4, 6, 8}⟩
@@ -870,6 +878,7 @@ def atomOfVarBlock10 (n : Nat) : DenseAtom :=
   | 1407 => .row ⟨4, {3, 6, 8, 9}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock11 (n : Nat) : DenseAtom :=
   match n with
   | 1408 => .row ⟨4, {3, 6, 8, 10}⟩
@@ -1002,6 +1011,7 @@ def atomOfVarBlock11 (n : Nat) : DenseAtom :=
   | 1535 => .row ⟨5, {1, 2, 9, 10}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock12 (n : Nat) : DenseAtom :=
   match n with
   | 1536 => .row ⟨5, {1, 3, 4, 6}⟩
@@ -1134,6 +1144,7 @@ def atomOfVarBlock12 (n : Nat) : DenseAtom :=
   | 1663 => .row ⟨6, {0, 1, 4, 9}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock13 (n : Nat) : DenseAtom :=
   match n with
   | 1664 => .row ⟨6, {0, 1, 4, 10}⟩
@@ -1266,6 +1277,7 @@ def atomOfVarBlock13 (n : Nat) : DenseAtom :=
   | 1791 => .row ⟨6, {1, 7, 8, 9}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock14 (n : Nat) : DenseAtom :=
   match n with
   | 1792 => .row ⟨6, {1, 7, 8, 10}⟩
@@ -1398,6 +1410,7 @@ def atomOfVarBlock14 (n : Nat) : DenseAtom :=
   | 1919 => .row ⟨7, {2, 3, 6, 8}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock15 (n : Nat) : DenseAtom :=
   match n with
   | 1920 => .row ⟨7, {2, 3, 6, 9}⟩
@@ -1530,6 +1543,7 @@ def atomOfVarBlock15 (n : Nat) : DenseAtom :=
   | 2047 => .row ⟨8, {1, 2, 6, 10}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock16 (n : Nat) : DenseAtom :=
   match n with
   | 2048 => .row ⟨8, {1, 2, 7, 9}⟩
@@ -1662,6 +1676,7 @@ def atomOfVarBlock16 (n : Nat) : DenseAtom :=
   | 2175 => .row ⟨9, {0, 1, 5, 7}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock17 (n : Nat) : DenseAtom :=
   match n with
   | 2176 => .row ⟨9, {0, 1, 5, 8}⟩
@@ -1794,6 +1809,7 @@ def atomOfVarBlock17 (n : Nat) : DenseAtom :=
   | 2303 => .row ⟨9, {2, 3, 4, 10}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock18 (n : Nat) : DenseAtom :=
   match n with
   | 2304 => .row ⟨9, {2, 3, 5, 6}⟩
@@ -1926,6 +1942,7 @@ def atomOfVarBlock18 (n : Nat) : DenseAtom :=
   | 2431 => .row ⟨10, {0, 3, 7, 8}⟩
   | _ => .unused
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVarBlock19 (n : Nat) : DenseAtom :=
   match n with
   | 2432 => .row ⟨10, {0, 3, 7, 9}⟩
@@ -2057,6 +2074,7 @@ def atomOfVarBlock19 (n : Nat) : DenseAtom :=
   | _ => .unused
 
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def atomOfVar (n : Nat) : DenseAtom :=
   match n / 128 with
   | 0 => atomOfVarBlock00 n
@@ -2082,6 +2100,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F}
   (distribution : ExactTwoStrictHitDistribution R) (Q : ExactTwoBoundaryCore R distribution)
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def mirrorVal (n : Nat) : Prop :=
   match atomOfVar n with
   | .membership atom => mirrorMembershipVal Q atom
@@ -2089,12 +2108,15 @@ def mirrorVal (n : Nat) : Prop :=
   | .arc atom => mirrorOuterArcVal Q atom
   | .unused => False
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 structure CoreValAgreement (valuation : Nat → Prop) : Prop where
   atom : ∀ n, valuation n ↔ mirrorVal distribution Q n
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem mirrorVal_agreement : CoreValAgreement distribution Q
     (mirrorVal distribution Q) := ⟨fun _ => Iff.rfl⟩
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem membership_agree (valuation : Nat → Prop)
     (agreement : CoreValAgreement distribution Q valuation)
     (n : Nat) (atom : MembershipAtom)
@@ -2102,6 +2124,7 @@ theorem membership_agree (valuation : Nat → Prop)
     valuation n ↔ mirrorMembershipVal Q atom := by
   simpa [mirrorVal, hatom] using agreement.atom n
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem row_agree (valuation : Nat → Prop)
     (agreement : CoreValAgreement distribution Q valuation)
     (n : Nat) (atom : RowSupportAtom)
@@ -2109,6 +2132,7 @@ theorem row_agree (valuation : Nat → Prop)
     valuation n ↔ mirrorRowSupportVal Q atom := by
   simpa [mirrorVal, hatom] using agreement.atom n
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem arc_agree (valuation : Nat → Prop)
     (agreement : CoreValAgreement distribution Q valuation)
     (n : Nat) (atom : OuterArcAtom)
@@ -2116,9 +2140,11 @@ theorem arc_agree (valuation : Nat → Prop)
     valuation n ↔ mirrorOuterArcVal Q atom := by
   simpa [mirrorVal, hatom] using agreement.atom n
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 abbrev clauseSat (valuation : Nat → Prop) : List Int → Prop :=
   P5OccurrenceBridgeScratch.clauseSat valuation
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 abbrev litsSubset : List Int → List Int → Bool :=
   P5OccurrenceBridgeScratch.litsSubset
 

@@ -68,6 +68,7 @@ def capList : Fin 3 → List Label
   | 1 => [4, 5, 6, 7, 8]
   | 2 => [8, 9, 10, 0]
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem mem_capList : ∀ (k : Fin 3) (p : Label),
     p ∈ cnfCapPositions k → p ∈ capList k := by decide
 
@@ -142,13 +143,16 @@ def shapeWF : ClauseShape → Bool
 
 /- ## Validity helpers -/
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem validAtom_m {c p : Label} (h : c ≠ p) :
     validAtom (.m c p) = true := by simp [validAtom, h]
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem validAtom_eq' {c l r : Label} (h1 : l < r) (h2 : l ≠ c)
     (h3 : r ≠ c) : validAtom (.eq c l r) = true := by
   simp [validAtom, h1, h2, h3]
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem validAtom_class (p : Label) : validAtom (.classA p) = true := rfl
 
 /- ## Per-family satisfaction of the instantiated literals -/
@@ -157,6 +161,7 @@ section FamilyLemmas
 
 variable (Q : ExactTwoBoundaryCore R distribution) (σ : Label → Label)
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem transitivitySat (hQ : DenseFamilySatisfaction Q σ)
     (c w u v : Label) (hwu : w ≠ u) (hwv : w ≠ v) (huv : u ≠ v)
     (hwc : w ≠ c) (huc : u ≠ c) (hvc : v ≠ c) :
@@ -176,6 +181,7 @@ private theorem transitivitySat (hQ : DenseFamilySatisfaction Q σ)
     exact litSat_negAtom Q σ _ (validAtom_sortedEq c w u hwu hwc huc)
       fun hc => h1 ((interpAtom_sortedEq Q σ c w u).mp hc)
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem cyclicSat (hQ : DenseFamilySatisfaction Q σ)
     (l r p q : Label) (hlr : l < r) (hpq : p < q) (hpl : p ≠ l)
     (hpr : p ≠ r) (hql : q ≠ l) (hqr : q ≠ r)
@@ -190,6 +196,7 @@ private theorem cyclicSat (hQ : DenseFamilySatisfaction Q σ)
   · refine ⟨negOf (.eq l p q), by simp [instLits], ?_⟩
     exact litSat_negAtom Q σ _ (validAtom_eq' hpq hpl hql) hA
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem rowAtLeastFourSat' (hQ : DenseFamilySatisfaction Q σ)
     (c : Label) (ps : List Label) (hlen : ps.length = 7)
     (hnodup : ps.Nodup) (hc : c ∉ ps) :
@@ -205,6 +212,7 @@ private theorem rowAtLeastFourSat' (hQ : DenseFamilySatisfaction Q σ)
   · exact litSat_posAtom Q σ _
       (validAtom_m fun h => hc (by rw [h]; exact hp)) hrow
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem rowSubsetRadiusSat (hQ : DenseFamilySatisfaction Q σ)
     (c l r : Label) (hlr : l < r) (hlc : l ≠ c) (hrc : r ≠ c) :
     clauseSat (bridgeVal Q σ) (instLits (.rowSubsetRadius c l r)) := by
@@ -218,6 +226,7 @@ private theorem rowSubsetRadiusSat (hQ : DenseFamilySatisfaction Q σ)
   · refine ⟨negOf (.m c l), by simp [instLits], ?_⟩
     exact litSat_negAtom Q σ _ (validAtom_m (Ne.symm hlc)) h1
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem mutualTriangleSat (hQ : DenseFamilySatisfaction Q σ)
     (a mid bc : Label) (hamid : a ≠ mid) (habc : a ≠ bc)
     (hmidbc : mid ≠ bc) :
@@ -241,6 +250,7 @@ private theorem mutualTriangleSat (hQ : DenseFamilySatisfaction Q σ)
   · refine ⟨negOf (.m a mid), by simp [instLits], ?_⟩
     exact litSat_negAtom Q σ _ (validAtom_m hamid) h1
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem apexRowEqClassSat' (hQ : DenseFamilySatisfaction Q σ)
     (p : Label) (dir : Bool) (hp : p ≠ 0) :
     clauseSat (bridgeVal Q σ) (instLits (.apexRowEqClass p dir)) := by
@@ -260,12 +270,14 @@ private theorem apexRowEqClassSat' (hQ : DenseFamilySatisfaction Q σ)
       · refine ⟨negOf (.m 0 p), by simp [instLits], ?_⟩
         exact litSat_negAtom Q σ _ (validAtom_m (Ne.symm hp)) hrow
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem apexNotOwnClassSat (hQ : DenseFamilySatisfaction Q σ) :
     clauseSat (bridgeVal Q σ) (instLits .apexNotOwnClass) :=
   ⟨negOf (.classA 0), by simp [instLits],
     litSat_negAtom Q σ _ (validAtom_class 0)
       hQ.first_apex_not_in_own_class⟩
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem strictHitsPairSat (hQ : DenseFamilySatisfaction Q σ)
     (i j : Label) (hi : i ∈ cnfStrictFirstOpposite)
     (hj : j ∈ cnfStrictFirstOpposite) (hij : i ≠ j) :
@@ -276,6 +288,7 @@ private theorem strictHitsPairSat (hQ : DenseFamilySatisfaction Q σ)
   · exact ⟨posOf (.classA j), by simp [instLits],
       litSat_posAtom Q σ _ (validAtom_class j) h⟩
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem leftAdjacentSat (hQ : DenseFamilySatisfaction Q σ) :
     clauseSat (bridgeVal Q σ) (instLits .leftAdjacent) := by
   obtain ⟨p, hp, hcl⟩ := hQ.exact_two_left_adjacent_hit_at_least_1
@@ -284,6 +297,7 @@ private theorem leftAdjacentSat (hQ : DenseFamilySatisfaction Q σ) :
   simp only [instLits]
   exact List.mem_map.mpr ⟨p, mem_capList 0 p hp, rfl⟩
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem rightAdjacentSat (hQ : DenseFamilySatisfaction Q σ) :
     clauseSat (bridgeVal Q σ) (instLits .rightAdjacent) := by
   obtain ⟨p, hp, hcl⟩ := hQ.exact_two_right_adjacent_hit_at_least_1
@@ -292,6 +306,7 @@ private theorem rightAdjacentSat (hQ : DenseFamilySatisfaction Q σ) :
   simp only [instLits]
   exact List.mem_map.mpr ⟨p, mem_capList 2 p hp, rfl⟩
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem endpointOwnCapSat (hQ : DenseFamilySatisfaction Q σ)
     (k : Fin 3) (c p q : Label) (hc : c ∈ cnfCapEndpoints k)
     (hp : p ∈ cnfCapPositions k) (hq : q ∈ cnfCapPositions k)
@@ -306,6 +321,7 @@ private theorem endpointOwnCapSat (hQ : DenseFamilySatisfaction Q σ)
   · refine ⟨negOf (.m c p), by simp [instLits], ?_⟩
     exact litSat_negAtom Q σ _ (validAtom_m (Ne.symm hpc)) h1
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem ownCapAtMostTwoSat (hQ : DenseFamilySatisfaction Q σ)
     (k : Fin 3) (c p₁ p₂ p₃ : Label) (hc : c ∈ cnfCapPositions k)
     (hp₁ : p₁ ∈ cnfCapPositions k) (hp₂ : p₂ ∈ cnfCapPositions k)
@@ -325,6 +341,7 @@ private theorem ownCapAtMostTwoSat (hQ : DenseFamilySatisfaction Q σ)
   · refine ⟨negOf (.m c p₁), by simp [instLits], ?_⟩
     exact litSat_negAtom Q σ _ (validAtom_m (Ne.symm h1c)) h1
 
+/-- Supports the exact-two-source occurrence bridge. -/
 private theorem cutSat {roleCount : Nat} {schema : List Membership}
     (hfam : kalmansonFamilySat Q σ roleCount schema)
     (targets : List Label) (hlen : targets.length = roleCount)
@@ -430,6 +447,7 @@ instantiated literal occurs in the stored clause. -/
 def entryWF (e : BridgeEntry) : Bool :=
   shapeWF e.shape && litsSubset (instLits e.shape) e.clause
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem entry_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hQ : DenseFamilySatisfaction Q σ)
     (e : BridgeEntry) (hwf : entryWF e = true) :

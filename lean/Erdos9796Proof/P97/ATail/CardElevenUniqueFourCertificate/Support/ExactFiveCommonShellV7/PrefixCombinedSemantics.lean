@@ -24,6 +24,7 @@ open Census554
 open Census554.CoverCnf
 open Census554.CoverIndexBridge
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.evalClauseD_inherited_eq_separation
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -38,6 +39,7 @@ private theorem CanonicalPacket.evalClauseD_inherited_eq_separation
   exact P.inheritedTailValuation_eq_separation_of_lt
     (hbound literal hliteral)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.evalClauseD_inherited_eq_base
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -71,6 +73,7 @@ theorem baseDimacs_literal_lt_pairIndicatorStart :
       literal.natAbs < 27287 := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem indicatorClause_literal_lt_sourceChoiceStart
     {occurrence : IndicatorOccurrence}
     (hoccurrence : occurrence ∈ encoderIndicatorOccurrences) :
@@ -90,6 +93,7 @@ private theorem indicatorClause_literal_lt_sourceChoiceStart
   · simp [pairIndicatorVar]
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem selectorTotalityClause_literal_lt_sourceChoiceStart :
     ∀ literal ∈ selectorTotalityClause,
       literal.natAbs < 36451 := by
@@ -99,6 +103,7 @@ private theorem selectorTotalityClause_literal_lt_sourceChoiceStart :
   simp [varOfAtom]
   omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem guardedClause_literal_lt_sourceChoiceStart
     (occurrence : GuardedOccurrence) :
     ∀ literal ∈ guardedClause occurrence,
@@ -131,6 +136,7 @@ def CanonicalPacket.BaseSeparationFamilySat
     evalClauseD P.inheritedTailValuation
       (guardedClause occurrence) = true
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.baseSeparationFamily_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -164,6 +170,7 @@ def CanonicalPacket.ShellCasePrefixFamilySat
     (P : CanonicalPacket L) : Prop :=
   P.BaseSeparationFamilySat ∧ P.ShellCaseInheritedTailFamilySat
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.shellCasePrefixFamily_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

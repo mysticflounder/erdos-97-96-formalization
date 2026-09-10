@@ -69,6 +69,7 @@ private def cofactors : List (ℕ × SparsePoly) :=
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- Exact normalization expands the independently generated QQ identity.
+/-- Census-554 certificate-bank theorem. -/
 private theorem checker :
     unitIdealCertCheckerNormalized facts cofactors = true := by
   native_decide
@@ -76,6 +77,7 @@ private theorem checker :
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- The finite case split unfolds the exact generated fact polynomials.
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_incompatible
     (q : Fin 10 → ℝ²)
     (hq0 : q 0 = pt 0 0)
@@ -206,6 +208,7 @@ private def cofactors : List (ℕ × SparsePoly) :=
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- Exact normalization expands the independently generated QQ identity.
+/-- Census-554 certificate-bank theorem. -/
 private theorem checker :
     unitIdealCertCheckerNormalized facts cofactors = true := by
   native_decide
@@ -213,6 +216,7 @@ private theorem checker :
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- The finite case split unfolds the exact generated fact polynomials.
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_incompatible
     (q : Fin 10 → ℝ²)
     (hq0 : q 0 = pt 0 0)
@@ -346,6 +350,7 @@ private def cofactors : List (ℕ × SparsePoly) :=
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- Exact normalization expands the independently generated QQ identity.
+/-- Census-554 certificate-bank theorem. -/
 private theorem checker :
     unitIdealCertCheckerNormalized facts cofactors = true := by
   native_decide
@@ -353,6 +358,7 @@ private theorem checker :
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- The finite case split unfolds the exact generated fact polynomials.
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_incompatible
     (q : Fin 10 → ℝ²)
     (hq0 : q 0 = pt 0 0)

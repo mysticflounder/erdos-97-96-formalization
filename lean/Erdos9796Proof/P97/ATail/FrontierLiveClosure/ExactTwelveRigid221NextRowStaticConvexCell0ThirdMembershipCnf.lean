@@ -34,26 +34,32 @@ open SafeCoverCnf
 open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 
+/-- Frontier live-closure def. -/
 def definition3 : PositiveMembershipDefinition :=
   { varIndex := 44876
     requirement := { center := 3, support := {4, 6} } }
 
+/-- Frontier live-closure def. -/
 def definition6 : PositiveMembershipDefinition :=
   { varIndex := 44877
     requirement := { center := 6, support := {9, 10, 11} } }
 
+/-- Frontier live-closure def. -/
 def definition7 : PositiveMembershipDefinition :=
   { varIndex := 44878
     requirement := { center := 7, support := {4, 6} } }
 
+/-- Frontier live-closure def. -/
 def definition10 : PositiveMembershipDefinition :=
   { varIndex := 44879
     requirement := { center := 10, support := {3, 9} } }
 
+/-- Frontier live-closure def. -/
 def definition11 : PositiveMembershipDefinition :=
   { varIndex := 44880
     requirement := { center := 11, support := {3, 6, 7, 9} } }
 
+/-- Frontier live-closure def. -/
 def definitions : List PositiveMembershipDefinition :=
   [definition3, definition6, definition7, definition10, definition11]
 
@@ -67,24 +73,29 @@ def requirementAt : Nat → RowChoice Label
   | 44880 => definition11.requirement
   | _ => definition3.requirement
 
+/-- Frontier live-closure def. -/
 def candidateIndices3 : List Nat :=
   [1, 29, 56, 62, 63, 64, 65, 66, 113, 140, 146, 147, 148, 149, 150,
     196, 202, 203, 204, 205, 206, 252, 253, 254, 255, 256, 267, 268,
     269, 270, 271, 272, 273, 274, 275, 276]
 
+/-- Frontier live-closure def. -/
 def candidateIndices6 : List Nat :=
   [110, 193, 248, 282, 301, 310, 312, 313]
 
+/-- Frontier live-closure def. -/
 def candidateIndices7 : List Nat :=
   [8, 36, 57, 77, 82, 83, 84, 85, 119, 140, 160, 165, 166, 167, 168,
     195, 215, 220, 221, 222, 223, 249, 254, 255, 256, 257, 283, 284,
     285, 286, 293, 294, 295, 296, 297]
 
+/-- Frontier live-closure def. -/
 def candidateIndices10 : List Nat :=
   [5, 33, 60, 65, 69, 72, 74, 76, 117, 144, 149, 153, 156, 158, 160,
     200, 205, 209, 212, 214, 216, 255, 259, 262, 264, 266, 269, 272,
     274, 276, 278, 280, 282, 283, 285, 286]
 
+/-- Frontier live-closure def. -/
 def candidateIndices11 : List Nat := [278]
 
 /-- The exact 116 compiler implications, in deterministic compiler order. -/
@@ -99,11 +110,13 @@ def implicationDimacs : List (List Int) :=
 def blockingClause : List Int :=
   positiveMembershipBlockingClause definitions
 
+/-- Frontier live-closure theorem. -/
 theorem definitions_requirements :
     definitions.map (fun definition => definition.requirement) =
       nextRowStaticConvexCell0ThirdMembershipChoices := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group3_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)
@@ -126,6 +139,7 @@ private theorem group3_sat
   · native_decide
   · native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group6_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)
@@ -148,6 +162,7 @@ private theorem group6_sat
   · native_decide
   · native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group7_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)
@@ -170,6 +185,7 @@ private theorem group7_sat
   · native_decide
   · native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group10_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)
@@ -192,6 +208,7 @@ private theorem group10_sat
   · native_decide
   · native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group11_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)

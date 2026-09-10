@@ -98,6 +98,7 @@ theorem witnessSameSideAll48_eq_true_iff (z p q : Label) :
   unfold witnessSameSideAll48
   simp only [List.all_eq_true, decide_eq_true_eq]
 
+/-- Frontier live-closure theorem. -/
 private theorem cyclicTripleAt_of_agree {p' q' : Label → Nat}
     (hagree : ∀ i j : Label, p' i < p' j ↔ q' i < q' j) {a b c : Label}
     (h : CyclicTripleAt p' a b c) : CyclicTripleAt q' a b c := by
@@ -384,6 +385,7 @@ structure PhysicalClassPositiveNogood (dLabel vLabel : Label) where
       PhysicalClassRadius pointOf dLabel vLabel ρ →
       PositiveRowsMatch row choices → False
 
+/-- Frontier live-closure theorem. -/
 private theorem row_pair_of_checkPrimitiveStep
     {P : RowPattern Label} {choices : List (RowChoice Label)}
     (hrows : PositiveRowsMatch P choices) {c a b : Label}

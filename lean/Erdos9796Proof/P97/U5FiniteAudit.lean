@@ -40,6 +40,7 @@ abbrev ClassMask := Nat
 edges. -/
 abbrev EdgeMask := Nat
 
+/-- U5 finite-audit def. -/
 def code : U5AuditLabel → Nat
   | p => 0
   | q => 1
@@ -50,20 +51,27 @@ def code : U5AuditLabel → Nat
   | a0 => 6
   | a1 => 7
 
+/-- U5 finite-audit def. -/
 def labels : List U5AuditLabel := [p, q, t1, t2, t3, u, a0, a1]
 
+/-- U5 finite-audit def. -/
 def triple : List U5AuditLabel := [t1, t2, t3]
 
+/-- U5 finite-audit def. -/
 def nonTriple : List U5AuditLabel := [u, a0, a1]
 
+/-- U5 finite-audit def. -/
 def centers : List U5AuditLabel := [t1, t2, t3, u, a0, a1]
 
+/-- U5 finite-audit def. -/
 def has (B : ClassMask) (x : U5AuditLabel) : Bool :=
   B.testBit (code x)
 
+/-- U5 finite-audit def. -/
 def containsAll (B : ClassMask) (xs : List U5AuditLabel) : Bool :=
   xs.all fun x => has B x
 
+/-- U5 finite-audit def. -/
 def labelMask (L : Finset U5AuditLabel) : ClassMask :=
   labels.foldl (fun m x => if x ∈ L then m ||| ((1 : Nat) <<< code x) else m) 0
 
@@ -71,6 +79,7 @@ def labelMask (L : Finset U5AuditLabel) : ClassMask :=
 centers, encoded with `p=0, q=1, t1=2, t2=3, t3=4, u=5, a0=6, a1=7`.  They are
 the direct finite counterpart of `selected_choices` in
 `scripts/u5_global_pattern_sweep.py`. -/
+/-- U5 finite-audit def. -/
 def choices : U5AuditLabel → List ClassMask
   | t1 => [57, 89, 153, 105, 169, 201, 113, 177, 209, 225, 120, 184, 216, 232, 240]
   | t2 => [53, 85, 149, 101, 165, 197, 113, 177, 209, 225, 116, 180, 212, 228, 240]
@@ -81,11 +90,13 @@ def choices : U5AuditLabel → List ClassMask
   | p => []
   | q => []
 
+/-- U5 finite-audit def. -/
 def choice (center : U5AuditLabel) (i : Fin 15) : ClassMask :=
   (choices center).getD i.val 0
 
 set_option maxRecDepth 10000 in
 -- Kernel enumeration over the finite label powerset.
+/-- U5 finite-audit theorem. -/
 theorem exists_choice_index_of_labelMask
     {center : U5AuditLabel} (hcenter : center ∈ centers)
     (L : Finset U5AuditLabel)
@@ -93,6 +104,7 @@ theorem exists_choice_index_of_labelMask
     ∃ i : Fin 15, choice center i = labelMask L := by
   decide +revert
 
+/-- U5 finite-audit def. -/
 def classOf
     (i1 i2 i3 iu ia0 ia1 : Fin 15) :
     U5AuditLabel → ClassMask
@@ -105,14 +117,17 @@ def classOf
   | p => 0
   | q => 0
 
+/-- U5 finite-audit def. -/
 def classContains
     (i1 i2 i3 iu ia0 ia1 : Fin 15)
     (center : U5AuditLabel) (xs : List U5AuditLabel) : Bool :=
   containsAll (classOf i1 i2 i3 iu ia0 ia1 center) xs
 
+/-- U5 finite-audit def. -/
 def overlapAtMostTwo (B C : ClassMask) : Bool :=
   decide ((labels.filter fun x => has B x && has C x).length ≤ 2)
 
+/-- U5 finite-audit def. -/
 def overlapOK (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   centers.all fun x =>
     centers.all fun y =>
@@ -121,21 +136,27 @@ def overlapOK (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
           (classOf i1 i2 i3 iu ia0 ia1 x)
           (classOf i1 i2 i3 iu ia0 ia1 y)
 
+/-- U5 finite-audit def. -/
 def edgeCode (a b : U5AuditLabel) : Nat :=
   8 * code a + code b
 
+/-- U5 finite-audit def. -/
 def edgeBit (a b : U5AuditLabel) : EdgeMask :=
   (1 : Nat) <<< edgeCode a b
 
+/-- U5 finite-audit def. -/
 def insertEdge (E : EdgeMask) (a b : U5AuditLabel) : EdgeMask :=
   E ||| edgeBit a b ||| edgeBit b a
 
+/-- U5 finite-audit def. -/
 def hasEdge (E : EdgeMask) (a b : U5AuditLabel) : Bool :=
   E.testBit (edgeCode a b)
 
+/-- U5 finite-audit def. -/
 def initialUnitEdges : EdgeMask :=
   [t1, t2, t3].foldl (fun E t => insertEdge E p t) 0
 
+/-- U5 finite-audit def. -/
 def addClassEdges
     (i1 i2 i3 iu ia0 ia1 : Fin 15)
     (E : EdgeMask)
@@ -148,25 +169,30 @@ def addClassEdges
   else
     E
 
+/-- U5 finite-audit def. -/
 def unitStep
     (i1 i2 i3 iu ia0 ia1 : Fin 15)
     (E : EdgeMask) : EdgeMask :=
   centers.foldl (fun F center => addClassEdges i1 i2 i3 iu ia0 ia1 F center) E
 
+/-- U5 finite-audit def. -/
 def unitClosure
     (i1 i2 i3 iu ia0 ia1 : Fin 15) : EdgeMask :=
   Nat.iterate (unitStep i1 i2 i3 iu ia0 ia1) 8 initialUnitEdges
 
+/-- U5 finite-audit def. -/
 def unitEdge
     (i1 i2 i3 iu ia0 ia1 : Fin 15)
     (a b : U5AuditLabel) : Bool :=
   hasEdge (unitClosure i1 i2 i3 iu ia0 ia1) a b
 
+/-- U5 finite-audit def. -/
 def unitTriangleIncompatibility (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   unitEdge i1 i2 i3 iu ia0 ia1 t1 t2 &&
   unitEdge i1 i2 i3 iu ia0 ia1 t1 t3 &&
   unitEdge i1 i2 i3 iu ia0 ia1 t2 t3
 
+/-- U5 finite-audit def. -/
 def thirdTriple (a b : U5AuditLabel) : U5AuditLabel :=
   if a = t1 then
     if b = t2 then t3 else t2
@@ -175,6 +201,7 @@ def thirdTriple (a b : U5AuditLabel) : U5AuditLabel :=
   else
     if b = t1 then t2 else t1
 
+/-- U5 finite-audit def. -/
 def equilateralOppositeIncompatibility (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   triple.any fun a =>
     triple.any fun b =>
@@ -184,6 +211,7 @@ def equilateralOppositeIncompatibility (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
         classContains i1 i2 i3 iu ia0 ia1 b [p, a, x] &&
         classContains i1 i2 i3 iu ia0 ia1 x [p, c]
 
+/-- U5 finite-audit def. -/
 def equilateralBisectorIncompatibility (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   triple.any fun a =>
     triple.any fun b =>
@@ -194,20 +222,24 @@ def equilateralBisectorIncompatibility (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
         classContains i1 i2 i3 iu ia0 ia1 x [p, c] &&
         classContains i1 i2 i3 iu ia0 ia1 c [a, b]
 
+/-- U5 finite-audit def. -/
 def commonBisectorTripleIncompatibility (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   nonTriple.any fun x =>
     classContains i1 i2 i3 iu ia0 ia1 x [p, t1, t2, t3]
 
+/-- U5 finite-audit def. -/
 def triplePairDotsForcedEqual (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   let e01 := classContains i1 i2 i3 iu ia0 ia1 t1 [t2, t3]
   let e02 := classContains i1 i2 i3 iu ia0 ia1 t2 [t1, t3]
   let e12 := classContains i1 i2 i3 iu ia0 ia1 t3 [t1, t2]
   (e01 && e02) || (e01 && e12) || (e02 && e12)
 
+/-- U5 finite-audit def. -/
 def tripleWitnessCount
     (i1 i2 i3 iu ia0 ia1 : Fin 15) (center : U5AuditLabel) : Nat :=
   (triple.filter fun t => has (classOf i1 i2 i3 iu ia0 ia1 center) t).length
 
+/-- U5 finite-audit def. -/
 def equilateralCircumcenterIncompatibility
     (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   triplePairDotsForcedEqual i1 i2 i3 iu ia0 ia1 &&
@@ -215,6 +247,7 @@ def equilateralCircumcenterIncompatibility
       has (classOf i1 i2 i3 iu ia0 ia1 x) p &&
       decide (2 ≤ tripleWitnessCount i1 i2 i3 iu ia0 ia1 x)
 
+/-- U5 finite-audit def. -/
 def hasTripleWitness
     (i1 i2 i3 iu ia0 ia1 : Fin 15)
     (center : U5AuditLabel) : Bool :=
@@ -222,6 +255,7 @@ def hasTripleWitness
     decide (t ≠ center) &&
       has (classOf i1 i2 i3 iu ia0 ia1 center) t
 
+/-- U5 finite-audit def. -/
 def equilateralOuterPointIncompatibility
     (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   triplePairDotsForcedEqual i1 i2 i3 iu ia0 ia1 &&
@@ -236,6 +270,7 @@ def equilateralOuterPointIncompatibility
             hasTripleWitness i1 i2 i3 iu ia0 ia1 right &&
             classContains i1 i2 i3 iu ia0 ia1 x [p, opposite]
 
+/-- U5 finite-audit def. -/
 def nontripleEquilateralOnPCircleIncompatibility
     (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   triple.any fun t =>
@@ -243,6 +278,7 @@ def nontripleEquilateralOnPCircleIncompatibility
       classContains i1 i2 i3 iu ia0 ia1 t [p, x] &&
       classContains i1 i2 i3 iu ia0 ia1 x [p, t]
 
+/-- U5 finite-audit def. -/
 def killedByExactPrefilter
     (i1 i2 i3 iu ia0 ia1 : Fin 15) : Bool :=
   unitTriangleIncompatibility i1 i2 i3 iu ia0 ia1 ||
@@ -265,6 +301,7 @@ inductive PrefilterReason where
   | equilateralOuterPoint
   deriving DecidableEq, Repr
 
+/-- U5 finite-audit def. -/
 def prefilterReason (i1 i2 i3 iu ia0 ia1 : Fin 15) :
     Option PrefilterReason :=
   if unitTriangleIncompatibility i1 i2 i3 iu ia0 ia1 then
@@ -284,6 +321,7 @@ def prefilterReason (i1 i2 i3 iu ia0 ia1 : Fin 15) :
   else
     none
 
+/-- U5 finite-audit theorem. -/
 theorem prefilterReason_isSome_of_killedByExactPrefilter
     {i1 i2 i3 iu ia0 ia1 : Fin 15}
     (hkill : killedByExactPrefilter i1 i2 i3 iu ia0 ia1 = true) :
@@ -302,10 +340,12 @@ structure IndexPattern where
   ia1 : Fin 15
   deriving DecidableEq, Repr, Fintype
 
+/-- U5 finite-audit def. -/
 def pairOK (c₁ : U5AuditLabel) (i₁ : Fin 15)
     (c₂ : U5AuditLabel) (i₂ : Fin 15) : Bool :=
   overlapAtMostTwo (choice c₁ i₁) (choice c₂ i₂)
 
+/-- U5 finite-audit def. -/
 def fin15 : List (Fin 15) := List.finRange 15
 
 /-- Pruned finite pattern generator: this is the Lean counterpart of
@@ -338,12 +378,15 @@ def boundedIndexPatterns : List IndexPattern :=
       else
         []
 
+/-- U5 finite-audit def. -/
 def patternOverlapOK (P : IndexPattern) : Bool :=
   overlapOK P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1
 
+/-- U5 finite-audit def. -/
 def patternKilled (P : IndexPattern) : Bool :=
   killedByExactPrefilter P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1
 
+/-- U5 finite-audit def. -/
 def patternReason (P : IndexPattern) : Option PrefilterReason :=
   prefilterReason P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1
 
@@ -417,6 +460,7 @@ theorem killed_of_mem_boundedIndexPatterns {P : IndexPattern}
     patternKilled P = true :=
   List.all_eq_true.mp exact_prefilter_exhaustion P hP
 
+/-- U5 finite-audit theorem. -/
 theorem patternReason_isSome_of_mem_boundedIndexPatterns {P : IndexPattern}
     (hP : P ∈ boundedIndexPatterns) :
     ∃ reason, patternReason P = some reason :=

@@ -34,6 +34,7 @@ open FrozenNextRowNamedDeletionJobCnf
 open StaticRelationAssignment
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Historical additive-arm clause order followed by the static equality,

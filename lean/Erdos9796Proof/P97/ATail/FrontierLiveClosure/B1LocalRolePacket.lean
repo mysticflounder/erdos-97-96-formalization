@@ -271,6 +271,7 @@ noncomputable def sourceMetricRows (P : B1CardSixLocalRolePacket C) :
   fun center => D.A.attach.filter fun point ↦
     dist center.1 point.1 = P.sourceRadius center
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_sourceMetricRows_iff
     (P : B1CardSixLocalRolePacket C) (center point : CarrierLabel D.A) :
     point ∈ P.sourceMetricRows center ↔
@@ -315,36 +316,43 @@ noncomputable def sourceRowChoices (P : B1CardSixLocalRolePacket C) :
     List (RowChoice (CarrierLabel D.A)) :=
   [P.physicalRowChoice, P.commonRowChoice, P.uRowChoice, P.vRowChoice]
 
+/-- Frontier live-closure theorem. -/
 private theorem Bc_ne_physicalApex (P : B1CardSixLocalRolePacket C) :
     P.Bc ≠ P.physicalApex := by
   intro h
   exact C.first.uPacket.actual_blocker_ne_center₂
     (congrArg Subtype.val h)
 
+/-- Frontier live-closure theorem. -/
 private theorem Bu_ne_physicalApex (P : B1CardSixLocalRolePacket C) :
     P.Bu ≠ P.physicalApex := by
   intro h
   exact C.first.uPacket.centers_ne (congrArg Subtype.val h)
 
+/-- Frontier live-closure theorem. -/
 private theorem Bu_ne_Bc (P : B1CardSixLocalRolePacket C) : P.Bu ≠ P.Bc := by
   intro h
   exact C.first.uPacket.actual_blocker_ne_center₁
     (congrArg Subtype.val h).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem Bv_ne_physicalApex (P : B1CardSixLocalRolePacket C) :
     P.Bv ≠ P.physicalApex := by
   intro h
   exact C.first.vPacket.centers_ne (congrArg Subtype.val h)
 
+/-- Frontier live-closure theorem. -/
 private theorem Bv_ne_Bc (P : B1CardSixLocalRolePacket C) : P.Bv ≠ P.Bc := by
   intro h
   exact C.first.vPacket.actual_blocker_ne_center₁
     (congrArg Subtype.val h).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem Bv_ne_Bu (P : B1CardSixLocalRolePacket C) : P.Bv ≠ P.Bu := by
   intro h
   exact C.first.blockers_ne (congrArg Subtype.val h).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem physical_support_subset_sourceMetricRows
     (P : B1CardSixLocalRolePacket C) :
     P.physicalRowChoice.support ⊆ P.sourceMetricRows P.physicalApex := by
@@ -379,6 +387,7 @@ private theorem physical_support_subset_sourceMetricRows
   · exact (mem_selectedClass.mp C.hvClass).2
   · exact (mem_selectedClass.mp hv1Class).2
 
+/-- Frontier live-closure theorem. -/
 private theorem common_support_subset_sourceMetricRows
     (P : B1CardSixLocalRolePacket C) :
     P.commonRowChoice.support ⊆ P.sourceMetricRows P.Bc := by
@@ -415,6 +424,7 @@ private theorem common_support_subset_sourceMetricRows
     exact (K.support_eq_radius _ (by assumption)).trans
       (K.support_eq_radius _ hd1).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem u_support_subset_sourceMetricRows
     (P : B1CardSixLocalRolePacket C) :
     P.uRowChoice.support ⊆ P.sourceMetricRows P.Bu := by
@@ -447,6 +457,7 @@ private theorem u_support_subset_sourceMetricRows
     exact (K.support_eq_radius _ (by assumption)).trans
       (K.support_eq_radius _ hu0).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem v_support_subset_sourceMetricRows
     (P : B1CardSixLocalRolePacket C) :
     P.vRowChoice.support ⊆ P.sourceMetricRows P.Bv := by

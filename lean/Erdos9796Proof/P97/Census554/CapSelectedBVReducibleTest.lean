@@ -7,9 +7,11 @@ Authors: Adam McKenna
 import Mathlib.Tactic
 import Std.Tactic.BVDecide
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev colorAt (bits : BitVec 10) (offset : Nat) : BitVec 2 :=
   bits.extractLsb' offset 2
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev hasDuplicate (bits : BitVec 10) : Bool :=
   colorAt bits 0 == colorAt bits 2 || colorAt bits 0 == colorAt bits 4 ||
   colorAt bits 0 == colorAt bits 6 || colorAt bits 0 == colorAt bits 8 ||

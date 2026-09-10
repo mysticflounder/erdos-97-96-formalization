@@ -30,7 +30,9 @@ open Census554
 open Census554.CoverCnf
 open Census554.CoverIndexBridge
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev CommonSource := Fin 2
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev CommonSourceOccurrence := CommonSource × Fin 84
 
 /-- The two common-source labels, in encoder order: `6`, then `7`. -/
@@ -46,6 +48,7 @@ def commonSourceChoiceIndices (source : CommonSource) : List Nat :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem commonSourceChoiceIndices_length (source : CommonSource) :
     (commonSourceChoiceIndices source).length = 84 := by
   fin_cases source <;> native_decide
@@ -75,6 +78,7 @@ def retainedCommonSourceOccurrences : List CommonSourceOccurrence :=
         else occurrence.2.val != 10 && occurrence.2.val != 74
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem retainedCommonSourceOccurrences_length :
     retainedCommonSourceOccurrences.length = 165 := by
   native_decide
@@ -105,6 +109,7 @@ def shellCaseApexChoiceClause (shellCase : ShellCase) : List Int :=
     Int.ofNat (xVar 1 candidateIndex)
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem ShellCase.erasedCandidateIndex_mem_apexCandidates
     (shellCase : ShellCase) :
     shellCase.erasedCandidateIndex ∈
@@ -117,11 +122,13 @@ def blockerShellChoiceClause : List Int :=
     Int.ofNat (xVar 8 candidateIndex)
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem apexShellChoiceClause_exact :
     apexShellChoiceClause = [211, 223, 224] := by
   native_decide
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem blockerShellChoiceClause_exact :
     blockerShellChoiceClause =
       [1342, 1363, 1378, 1388, 1394, 1400, 1401, 1419, 1434, 1444,
@@ -176,6 +183,7 @@ theorem CanonicalPacket.inheritedTailValuation_eq_separation_of_lt
     dif_neg (by omega), dif_neg (by omega)]
 
 set_option maxRecDepth 10000 in
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.inheritedTailValuation_sourceChoice
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -216,6 +224,7 @@ theorem CanonicalPacket.inheritedTailValuation_sourceChoice
       rfl
     rw [hone]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem commonSourceChoiceRow_facts
     (source : CommonSource) (choice : Fin 84) :
     commonSourceChoiceRow source choice < candCount 8 ∧
@@ -228,6 +237,7 @@ theorem commonSourceChoiceRow_facts
   simpa only [commonSourceChoiceIndices, List.mem_filter, List.mem_range,
     Bool.and_eq_true] using hmem
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.inheritedTailValuation_x
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -244,6 +254,7 @@ theorem CanonicalPacket.inheritedTailValuation_x
     dif_neg (by omega), dif_neg (by omega)]
   exact P.separationValuation_x hcenter hindex
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.commonSourceImplicationClause_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -291,6 +302,7 @@ theorem CanonicalPacket.commonSourceImplicationClause_sat
             (commonSourceChoiceRow occurrence.1 occurrence.2)))]
       exact hx
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.commonSourceTotalityClause_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -348,6 +360,7 @@ theorem CanonicalPacket.commonSourceTotalityClause_sat
     rw [P.inheritedTailValuation_sourceChoice]
     simp [hrow]
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.blockerShellChoiceClause_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -384,6 +397,7 @@ private theorem CanonicalPacket.blockerShellChoiceClause_sat
     rw [P.inheritedTailValuation_x (by omega) hindex]
     exact P.baseValuation_chosen hP (by omega)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.apexShellChoiceClause_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -446,10 +460,12 @@ def CanonicalPacket.InheritedTailFamilySat
     evalClauseD P.inheritedTailValuation
       (commonSourceTotalityClause source) = true
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem inheritedTailFamily_clauseCount :
     2 + retainedCommonSourceOccurrences.length + 2 = 169 := by
   rw [retainedCommonSourceOccurrences_length]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.inheritedTailFamily_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

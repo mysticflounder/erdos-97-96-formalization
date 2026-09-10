@@ -17,6 +17,7 @@ open Census554.CoverCnf
 open Census554.EqualityCore
 open ExactTwelveCarrierIngress
 
+/-- Frontier live-closure theorem. -/
 theorem localSourceZeroSinz_sat
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (cell : FrozenV14JobCoordinate)

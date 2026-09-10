@@ -48,12 +48,14 @@ variable
     {Rρ : FrontierCommonDeletionParentResidual Fρ}
     (Pρ : RetainedInteriorBlockerCollision Rρ)
 
+/-- Frontier live-closure def. -/
 private def transportSelectedFourClass
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
     SelectedFourClass A center₂ :=
   Eq.mp (congrArg (SelectedFourClass A) hcenter) K
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem transportSelectedFourClass_support
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
@@ -61,6 +63,7 @@ private def transportSelectedFourClass
   cases hcenter
   rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem boundary_boundaryPosition
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -77,6 +80,7 @@ private theorem boundary_boundaryPosition
     B.point_eq
       ⟨point P Pρ View role, point_mem_carrier P Pρ View role⟩
 
+/-- Frontier live-closure def. -/
 private def rowClassAtBoundaryCenter
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -94,6 +98,7 @@ private def rowClassAtBoundaryCenter
   transportSelectedFourClass (rowClass P Pρ View row)
     (boundary_boundaryPosition P Pρ View _).symm
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem rowClassAtBoundaryCenter_support
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -109,6 +114,7 @@ private def rowClassAtBoundaryCenter
       rowSupport P Pρ View row := by
   simp [rowClassAtBoundaryCenter, rowClass_support_eq_rowSupport]
 
+/-- Frontier live-closure theorem. -/
 private theorem boundary_mem_rowClassAtBoundaryCenter_of_incident
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}

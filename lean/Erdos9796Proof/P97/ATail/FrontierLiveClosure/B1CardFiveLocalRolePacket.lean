@@ -226,6 +226,7 @@ theorem b1_live_slices_card_five_split
     rw [hunionCard, huTwoEq, hvTwoEq] at hidentity
     omega
 
+/-- Frontier live-closure theorem. -/
 private theorem row_complement_card_eq_three_of_inter_card_eq_one
     {row physicalClass : Finset ℝ²}
     (hrowCard : row.card = 4)
@@ -234,6 +235,7 @@ private theorem row_complement_card_eq_three_of_inter_card_eq_one
   have hidentity := Finset.card_sdiff_add_card_inter row physicalClass
   omega
 
+/-- Frontier live-closure theorem. -/
 private theorem row_complement_card_eq_two_of_inter_card_eq_two
     {row physicalClass : Finset ℝ²}
     (hrowCard : row.card = 4)
@@ -520,6 +522,7 @@ noncomputable def sourceMetricRows (P : B1CardFiveLocalRolePacket C) :
   fun center => D.A.attach.filter fun point ↦
     dist center.1 point.1 = P.sourceRadius center
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_sourceMetricRows_iff
     (P : B1CardFiveLocalRolePacket C) (center point : CarrierLabel D.A) :
     point ∈ P.sourceMetricRows center ↔
@@ -539,6 +542,7 @@ noncomputable def labelsIn (_P : B1CardFiveLocalRolePacket C)
     (row : Finset ℝ²) : Finset (CarrierLabel D.A) :=
   D.A.attach.filter fun point ↦ point.1 ∈ row
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_labelsIn_iff (P : B1CardFiveLocalRolePacket C)
     (row : Finset ℝ²) (point : CarrierLabel D.A) :
     point ∈ P.labelsIn row ↔ point.1 ∈ row := by
@@ -577,36 +581,43 @@ noncomputable def sourceRowChoices (P : B1CardFiveLocalRolePacket C) :
     List (RowChoice (CarrierLabel D.A)) :=
   [P.physicalRowChoice, P.commonRowChoice, P.uRowChoice, P.vRowChoice]
 
+/-- Frontier live-closure theorem. -/
 private theorem Bc_ne_physicalApex (P : B1CardFiveLocalRolePacket C) :
     P.Bc ≠ P.physicalApex := by
   intro h
   exact C.first.uPacket.actual_blocker_ne_center₂
     (congrArg Subtype.val h)
 
+/-- Frontier live-closure theorem. -/
 private theorem Bu_ne_physicalApex (P : B1CardFiveLocalRolePacket C) :
     P.Bu ≠ P.physicalApex := by
   intro h
   exact C.first.uPacket.centers_ne (congrArg Subtype.val h)
 
+/-- Frontier live-closure theorem. -/
 private theorem Bu_ne_Bc (P : B1CardFiveLocalRolePacket C) : P.Bu ≠ P.Bc := by
   intro h
   exact C.first.uPacket.actual_blocker_ne_center₁
     (congrArg Subtype.val h).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem Bv_ne_physicalApex (P : B1CardFiveLocalRolePacket C) :
     P.Bv ≠ P.physicalApex := by
   intro h
   exact C.first.vPacket.centers_ne (congrArg Subtype.val h)
 
+/-- Frontier live-closure theorem. -/
 private theorem Bv_ne_Bc (P : B1CardFiveLocalRolePacket C) : P.Bv ≠ P.Bc := by
   intro h
   exact C.first.vPacket.actual_blocker_ne_center₁
     (congrArg Subtype.val h).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem Bv_ne_Bu (P : B1CardFiveLocalRolePacket C) : P.Bv ≠ P.Bu := by
   intro h
   exact C.first.blockers_ne (congrArg Subtype.val h).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem physical_support_subset_sourceMetricRows
     (P : B1CardFiveLocalRolePacket C) :
     P.physicalRowChoice.support ⊆ P.sourceMetricRows P.physicalApex := by
@@ -616,6 +627,7 @@ private theorem physical_support_subset_sourceMetricRows
   apply (mem_sourceMetricRows_iff P P.physicalApex point).mpr
   simpa [sourceRadius, physicalApex] using (mem_selectedClass.mp hclass).2
 
+/-- Frontier live-closure theorem. -/
 private theorem common_support_subset_sourceMetricRows
     (P : B1CardFiveLocalRolePacket C) :
     P.commonRowChoice.support ⊆ P.sourceMetricRows P.Bc := by
@@ -629,6 +641,7 @@ private theorem common_support_subset_sourceMetricRows
   exact (K.support_eq_radius point.1 hsupport).trans
     (K.support_eq_radius C.first.deleted.1 K.q_mem_support).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem u_support_subset_sourceMetricRows
     (P : B1CardFiveLocalRolePacket C) :
     P.uRowChoice.support ⊆ P.sourceMetricRows P.Bu := by
@@ -642,6 +655,7 @@ private theorem u_support_subset_sourceMetricRows
   exact (K.support_eq_radius point.1 hsupport).trans
     (K.support_eq_radius C.u.1 K.q_mem_support).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem v_support_subset_sourceMetricRows
     (P : B1CardFiveLocalRolePacket C) :
     P.vRowChoice.support ⊆ P.sourceMetricRows P.Bv := by
@@ -671,6 +685,7 @@ theorem positiveRowsMatch_sourceRowChoices
 
 /- A checked duplicate-center record over the four exported source rows is
 inconsistent with their canonical planar realization. -/
+/-- Frontier live-closure theorem. -/
 theorem false_of_duplicateCenterData_of_check
     (P : B1CardFiveLocalRolePacket C)
     (data : DuplicateCenterData (CarrierLabel D.A))
@@ -684,6 +699,7 @@ theorem false_of_duplicateCenterData_of_check
 source rows.  This is the card-five counterpart of the card-six validation
 lemma; it is a local certificate consumer and does not claim that a
 certificate is present. -/
+/-- Frontier live-closure theorem. -/
 theorem not_nonempty_duplicateCenterCore_sourceMetricRows
     (P : B1CardFiveLocalRolePacket C) :
     ¬ Nonempty (DuplicateCenterCore P.sourceMetricRows) := by

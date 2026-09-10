@@ -36,6 +36,7 @@ open Census554.CoverCnf
 
 /- ## One-hot and pairwise-clause satisfaction -/
 
+/-- Frontier live-closure theorem. -/
 theorem onehot_sat (idx : Nat → Nat)
     (hidx : ∀ p, p < 12 → idx p < candCount p) :
     ∀ c ∈ onehotClauses, evalClauseD (finalAssign idx) c = true := by

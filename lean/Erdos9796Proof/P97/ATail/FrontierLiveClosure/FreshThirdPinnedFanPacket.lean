@@ -49,6 +49,7 @@ def source
     CriticalShellSystem.CarrierVertex D.A :=
   ⟨(F.index.symm i).1, Row.support_subset_A (F.index.symm i).2⟩
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem source_mem_support
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}

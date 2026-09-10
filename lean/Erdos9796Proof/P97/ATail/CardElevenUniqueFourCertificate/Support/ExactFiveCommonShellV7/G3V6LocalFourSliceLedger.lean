@@ -32,15 +32,21 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 203775
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6LocalFourCount : Nat := 3024
+/-- Exact-five common-shell V7 def. -/
 private def v6LocalFourClauseCount : Nat := 9240
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6LocalFourPayload : String :=
   include_str "data/g3-v6-local-four-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev V6LocalFourClauseIndex := Fin v6LocalFourClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -62,10 +68,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array V6LocalFourClauseIndex →
       Option (Array V6LocalFourClauseIndex)
@@ -85,6 +93,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedV6LocalFourIndices :
     Option (Array V6LocalFourClauseIndex) := do
   let bytes ← decodeAscii85 retainedV6LocalFourPayload
@@ -108,6 +117,7 @@ structure V6LocalFourOccurrence where
   kind : V6LocalFourKind
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def encoderV6LocalFourKinds : List V6LocalFourKind :=
   [.forward ⟨0, by omega⟩, .forward ⟨1, by omega⟩,
     .forward ⟨2, by omega⟩, .reverse]
@@ -120,30 +130,37 @@ def encoderV6LocalFourOccurrences :
     encoderV6LocalFourKinds.map fun kind => ⟨localFour, kind⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderV6LocalFourOccurrences_length :
     encoderV6LocalFourOccurrences.length = v6LocalFourClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def v6LocalFourOccurrenceArray :
     Array V6LocalFourOccurrence :=
   encoderV6LocalFourOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def v6LocalFourOccurrenceAt
     (index : V6LocalFourClauseIndex) : V6LocalFourOccurrence :=
   v6LocalFourOccurrenceArray[index.val]'(by
     simpa [v6LocalFourOccurrenceArray,
       encoderV6LocalFourOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def v6LocalFourCenter (localFour : Fin 2310) : Label :=
   (localFourRow localFour).center
 
+/-- Exact-five common-shell V7 def. -/
 private def v6LocalFourSupport (localFour : Fin 2310) : List Label :=
   (localFourRow localFour).support
 
+/-- Exact-five common-shell V7 def. -/
 private def v6LocalFourPoint
     (localFour : Fin 2310) (slot : Nat) : Label :=
   (v6LocalFourSupport localFour).getD (slot + 1) 0
 
+/-- Exact-five common-shell V7 def. -/
 private def v6LocalFourEqualityIndex
     (localFour : Fin 2310) (point : Label) : Fin 495 :=
   Fin.ofNat 495
@@ -176,6 +193,7 @@ def g3V6LocalFourSlice : Array V6LocalFourOccurrence :=
 def g3V6LocalFourSliceClauses : List (List Int) :=
   g3V6LocalFourSlice.toList.map renderV6LocalFourOccurrence
 
+/-- Exact-five common-shell V7 def. -/
 private def v6LocalFourIsForward
     (occurrence : V6LocalFourOccurrence) : Bool :=
   match occurrence.kind with
@@ -185,6 +203,7 @@ private def v6LocalFourIsForward
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3V6LocalFourSlice_size :
     g3V6LocalFourSlice.size = retainedV6LocalFourCount := by
   native_decide

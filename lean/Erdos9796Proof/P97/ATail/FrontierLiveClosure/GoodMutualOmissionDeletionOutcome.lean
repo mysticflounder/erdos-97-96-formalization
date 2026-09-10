@@ -91,6 +91,7 @@ inductive GoodMutualOmissionDeletionOutcome
       (q_not_mem_tRow : F.pair.q ∉ (goodMutualOmissionTRow N).support)
       (w_mem_tRow : F.pair.w ∈ (goodMutualOmissionTRow N).support)
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex2_mem_carrier
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -100,6 +101,7 @@ private theorem oppApex2_mem_carrier
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem actualRow_not_mem_of_survives
     {D : CounterexampleData} (H : CriticalShellSystem D.A)
     (source : CriticalShellSystem.CarrierVertex D.A) (deleted : ℝ²)
@@ -114,6 +116,7 @@ private theorem actualRow_not_mem_of_survives
   rw [uniqueFourClass_centerAt_eq_selectedAt_support H source.1 source.2]
   exact hmem
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_selectedFourClass_avoiding_of_survives
     {A : Finset ℝ²} {center deleted : ℝ²}
     (hsurvives : HasNEquidistantPointsAt 4 (A.erase deleted) center) :
@@ -142,6 +145,7 @@ private theorem exists_selectedFourClass_avoiding_of_survives
     exact (Finset.mem_erase.mp
       (mem_selectedClass.mp (hsupport hdeleted)).1).1 rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem commonDeletionOutcome
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

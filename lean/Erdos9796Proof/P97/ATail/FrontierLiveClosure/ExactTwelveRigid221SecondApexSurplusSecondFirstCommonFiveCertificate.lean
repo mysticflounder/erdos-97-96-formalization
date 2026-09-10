@@ -45,6 +45,7 @@ def SecondApexSurplusSecondFirstCommonFiveData.rolesValid
     data.c ∈ secondOppositeInteriorLabels ∧
     data.y ∈ firstOppositeInteriorLabels
 
+/-- Frontier live-closure instance. -/
 instance instDecidableSecondApexSurplusSecondFirstCommonFiveRolesValid
     (data : SecondApexSurplusSecondFirstCommonFiveData) :
     Decidable data.rolesValid := by

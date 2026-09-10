@@ -33,18 +33,22 @@ open SafeCoverCnf
 open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 
+/-- Frontier live-closure def. -/
 def definition1 : PositiveMembershipDefinition :=
   { varIndex := 44876
     requirement := { center := 1, support := {0, 6} } }
 
+/-- Frontier live-closure def. -/
 def definition3 : PositiveMembershipDefinition :=
   { varIndex := 44877
     requirement := { center := 3, support := {0, 1, 5} } }
 
+/-- Frontier live-closure def. -/
 def definition5 : PositiveMembershipDefinition :=
   { varIndex := 44878
     requirement := { center := 5, support := {0, 6} } }
 
+/-- Frontier live-closure def. -/
 def definitions : List PositiveMembershipDefinition :=
   [definition1, definition3, definition5]
 
@@ -56,12 +60,15 @@ def requirementAt : Nat → RowChoice Label
   | 44878 => definition5.requirement
   | _ => definition1.requirement
 
+/-- Frontier live-closure def. -/
 def candidateIndices1 : List Nat :=
   [0, 1, 2, 6, 7, 8, 12, 13, 14, 18, 19, 20, 24, 25, 26]
 
+/-- Frontier live-closure def. -/
 def candidateIndices3 : List Nat :=
   [0, 7, 8, 9, 10, 11, 12]
 
+/-- Frontier live-closure def. -/
 def candidateIndices5 : List Nat :=
   [1, 7, 13, 14, 15, 16, 17, 29, 35, 41, 42, 43, 44, 45, 56, 62,
     63, 64, 65, 66, 77, 78, 79, 80, 81, 92, 93, 94, 95, 96, 97, 98,
@@ -77,11 +84,13 @@ def implicationDimacs : List (List Int) :=
 def blockingClause : List Int :=
   positiveMembershipBlockingClause definitions
 
+/-- Frontier live-closure theorem. -/
 theorem definitions_requirements :
     definitions.map (fun definition => definition.requirement) =
       staticCell1ThirdBlockSpanningMembershipChoices := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group1_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)
@@ -104,6 +113,7 @@ private theorem group1_sat
   · native_decide
   · native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group3_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)
@@ -126,6 +136,7 @@ private theorem group3_sat
   · native_decide
   · native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem group5_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)

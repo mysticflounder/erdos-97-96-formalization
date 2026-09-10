@@ -8,6 +8,7 @@ open scoped EuclideanGeometry
 open Census554.EqualityCore
 open ExactTwelveCarrierIngress
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :

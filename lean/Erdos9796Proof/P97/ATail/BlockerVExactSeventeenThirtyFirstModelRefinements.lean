@@ -25,12 +25,14 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenThirtiethModelRefinements
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def thirtyFirstModelRefinementClauses : Std.Sat.CNF Atom :=
   ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard0.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard1.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard2.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard3.refinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem thirtyFirstModelRefinementClauses_length :
     thirtyFirstModelRefinementClauses.length = 336 := by
   simp only [thirtyFirstModelRefinementClauses, List.length_append,
@@ -39,6 +41,7 @@ theorem thirtyFirstModelRefinementClauses_length :
     ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard2.refinementClauses_length,
     ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard3.refinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_thirtyFirstModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
@@ -58,15 +61,18 @@ theorem sourceAssign_thirtyFirstModelRefinementClauses
     · exact ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard2.sourceAssign_refinementClauses source clause h2
   · exact ATailBlockerVExactSeventeenThirtyFirstModelRefinementsShard3.sourceAssign_refinementClauses source clause h3
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedThirtyFirstModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedThirtiethModelRefinementsCnf ++ thirtyFirstModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedThirtyFirstModelRefinementsCnf_length :
     extendedThirtyFirstModelRefinementsCnf.length = 5847240 := by
   simp only [extendedThirtyFirstModelRefinementsCnf, List.length_append,
     extendedThirtiethModelRefinementsCnf_length,
     thirtyFirstModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtyFirstModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
@@ -81,6 +87,7 @@ theorem sourceAssign_extendedThirtyFirstModelRefinementsCnf
     exact h clause hparent
   · exact sourceAssign_thirtyFirstModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedThirtyFirstModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

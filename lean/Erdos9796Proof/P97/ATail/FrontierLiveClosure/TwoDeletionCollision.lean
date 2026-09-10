@@ -1243,6 +1243,7 @@ theorem exactFour_fourSurvivingCenters_survivalSquare_split
 classification of that apex.  This adapter is intentionally separate from the
 four-way splitter above: the splitter supplies the square, while this lemma
 preserves its branch-local selected-row omission. -/
+/-- Frontier live-closure theorem. -/
 theorem exactFour_survivalSquare_apex_actualBlocker_refinement
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1302,6 +1303,7 @@ theorem exactFour_survivalSquare_apex_actualBlocker_refinement
 /- The decisive known-center test for the physical-apex arm: if its actual
 blocker is the `u` blocker, the physical apex is in the canonical selected row
 of `u`. -/
+/-- Frontier live-closure theorem. -/
 theorem exactFour_survivalSquare_apex_center_eq_u_mem_uRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1816,6 +1818,7 @@ theorem false_of_b1_distinctBlocker_jointDeletions
 /- A favorable B1 source context can be handed back to the exact-four ingress.
    This adapter is intentionally source-producing: the rigid-221 terminal is
    not used here because its current chain still carries an open axiom. -/
+/-- Frontier live-closure theorem. -/
 theorem exists_exactFourMutualOmissionSourceContext_of_b1EscapeSourceContext
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

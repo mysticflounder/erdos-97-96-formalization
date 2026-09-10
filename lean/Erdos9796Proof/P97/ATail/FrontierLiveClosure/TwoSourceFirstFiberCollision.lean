@@ -2316,6 +2316,7 @@ theorem firstFiberOutsidePair_exactRows_or_crossedThreeRows
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem firstFiber_oppApex1_mem_A : S.oppApex1 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
@@ -2325,6 +2326,7 @@ private theorem firstFiber_oppApex1_mem_A : S.oppApex1 ∈ D.A := by
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem firstFiber_oppApex2_mem_A : S.oppApex2 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
@@ -2334,6 +2336,7 @@ private theorem firstFiber_oppApex2_mem_A : S.oppApex2 ∈ D.A := by
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem firstFiber_surplusApex_mem_A : S.surplusApex ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i

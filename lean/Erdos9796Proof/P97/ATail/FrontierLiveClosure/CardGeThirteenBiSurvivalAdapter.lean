@@ -92,6 +92,7 @@ theorem nonempty_biSurvivalCanonicalRows_of_cardGeThirteenStrictPacket
 /- The third exact row is at the physical opposite apex.  Keep that row in
    the two-center packet interface as well: this is the cross-deletion shape
    consumed by the survival-square split. -/
+/-- Frontier live-closure theorem. -/
 theorem nonempty_cardGeThirteenStrictPacket_z_oppApexPackets
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -126,6 +127,7 @@ theorem nonempty_cardGeThirteenStrictPacket_z_oppApexPackets
 /- The retained frontier deletion also survives at the physical opposite
    apex on the robust-surface arm.  This gives the same cross-packet shape for
    `P.base.W.deleted`, rather than only for the uncovered point `P.base.z`. -/
+/-- Frontier live-closure theorem. -/
 theorem nonempty_cardGeThirteenStrictPacket_deleted_oppApexPackets
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -188,6 +190,7 @@ theorem nonempty_cardGeThirteenStrictPacket_deleted_oppApexPackets
    the standard robust-versus-critical split.  Keep the two deletion views
    separate: the uncovered point needs only its exact rows, while the
    retained frontier deletion needs the robust-surface witness. -/
+/-- Frontier live-closure theorem. -/
 theorem cardGeThirteenStrictPacket_z_physicalSecondApex_robust_or_critical
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -204,6 +207,7 @@ theorem cardGeThirteenStrictPacket_z_physicalSecondApex_robust_or_critical
     ATailPhysicalSecondApexCommonDeletion.physicalSecondApex_commonDeletion_robust_or_critical
       packet
 
+/-- Frontier live-closure theorem. -/
 theorem cardGeThirteenStrictPacket_deleted_physicalSecondApex_robust_or_critical
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

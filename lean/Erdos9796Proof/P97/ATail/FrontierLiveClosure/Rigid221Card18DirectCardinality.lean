@@ -35,9 +35,11 @@ def subsetsOfCard (xs : List Nat) (r : Nat) : List (List Nat) :=
 def trueSetCard (sigma : Nat → Bool) (xs : List Nat) : Nat :=
   (xs.toFinset.filter fun v ↦ sigma v = true).card
 
+/-- Frontier live-closure def. -/
 private def clauseOf (polarity : Bool) (ys : List Nat) : Std.Sat.CNF.Clause Nat :=
   ys.map fun v ↦ (v, polarity)
 
+/-- Frontier live-closure def. -/
 private def subsetClauses (xs : List Nat) (r : Nat) (polarity : Bool) : List (Std.Sat.CNF.Clause Nat) :=
   (subsetsOfCard xs r).map (clauseOf polarity)
 
@@ -54,27 +56,33 @@ def atLeastClauses (xs : List Nat) (k : Nat) : List (Std.Sat.CNF.Clause Nat) :=
 def cardEqClauses (xs : List Nat) (k : Nat) : List (Std.Sat.CNF.Clause Nat) :=
   atMostClauses xs k ++ atLeastClauses xs k
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem variableUniverse_toFinset (xs : List Nat) :
     (variableUniverse xs).toFinset = xs.toFinset := by
   simp [variableUniverse]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem variableUniverse_length (xs : List Nat) :
     (variableUniverse xs).length = xs.toFinset.card := by
   simp [variableUniverse]
 
+/-- Frontier live-closure theorem. -/
 theorem variableUniverse_nodup (xs : List Nat) : (variableUniverse xs).Nodup := by
   exact Finset.sort_nodup _ _
 
+/-- Frontier live-closure theorem. -/
 theorem subsetsOfCard_nodup (xs : List Nat) (r : Nat) :
     (subsetsOfCard xs r).Nodup := by
   exact List.nodup_sublistsLen r (variableUniverse_nodup xs)
 
+/-- Frontier live-closure theorem. -/
 private theorem clauseOf_injective (polarity : Bool) :
     Function.Injective (clauseOf polarity) := by
   apply List.map_injective_iff.mpr
   intro a b h
   exact congrArg Prod.fst h
 
+/-- Frontier live-closure theorem. -/
 private theorem subsetClauses_nodup (xs : List Nat) (r : Nat) (polarity : Bool) :
     (subsetClauses xs r polarity).Nodup := by
   exact (subsetsOfCard_nodup xs r).map (clauseOf_injective polarity)
@@ -91,23 +99,27 @@ theorem atLeastClauses_nodup (xs : List Nat) (k : Nat) : (atLeastClauses xs k).N
   · simp only [atLeastClauses, h, if_false]
     simp
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_clauseOf_iff (sigma : Nat → Bool) (polarity : Bool) (ys : List Nat) :
     Std.Sat.CNF.Clause.eval sigma (clauseOf polarity ys) = true ↔
       ∃ v ∈ ys, sigma v = polarity := by
   simp [clauseOf, Std.Sat.CNF.Clause.eval]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_subsetClauses_iff (sigma : Nat → Bool) (xs : List Nat)
     (r : Nat) (polarity : Bool) :
     (subsetClauses xs r polarity).all (Std.Sat.CNF.Clause.eval sigma) = true ↔
       ∀ ys ∈ subsetsOfCard xs r, ∃ v ∈ ys, sigma v = polarity := by
   simp [subsetClauses, eval_clauseOf_iff]
 
+/-- Frontier live-closure theorem. -/
 private theorem trueSetCard_eq_filter_length (sigma : Nat → Bool) (xs : List Nat) :
     trueSetCard sigma xs = ((variableUniverse xs).filter sigma).length := by
   rw [trueSetCard, ← List.toFinset_card_of_nodup
     ((variableUniverse_nodup xs).filter sigma)]
   simp
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_atMostClauses_iff_set (sigma : Nat → Bool) (xs : List Nat) (k : Nat) :
     (atMostClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true ↔ trueSetCard sigma xs ≤ k := by
   rw [atMostClauses, eval_subsetClauses_iff, trueSetCard_eq_filter_length]
@@ -137,6 +149,7 @@ private theorem eval_atMostClauses_iff_set (sigma : Nat → Bool) (xs : List Nat
       rwa [List.countP_eq_length_filter]
     exact List.countP_lt_length_iff.mp hCount
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_atLeastClauses_iff_set (sigma : Nat → Bool) (xs : List Nat) (k : Nat)
     (hk : k ≤ (variableUniverse xs).length) :
     (atLeastClauses xs k).all (Std.Sat.CNF.Clause.eval sigma) = true ↔
@@ -240,6 +253,7 @@ theorem cardEqClauses_length {xs : List Nat} {k : Nat} (hxs : xs.Nodup)
   rw [cardEqClauses, List.length_append, atMostClauses_length hxs hk,
     atLeastClauses_length hxs hk]
 
+/-- Frontier live-closure theorem. -/
 private theorem clauseOf_false_ne_clauseOf_true {ys zs : List Nat} (hys : ys ≠ []) :
     clauseOf false ys ≠ clauseOf true zs := by
   intro h

@@ -34,9 +34,13 @@ open Census554.CoverCnf
 open Census554.CoverIndexBridge
 open Census554.SeparationCore
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev PairIndicatorRow := Label × RawEdge
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev IndicatorOccurrence := Fin 474 × Nat
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev PairCenterOccurrence := Fin 474 × Fin 474
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev GuardedOccurrence := Fin 144 × PairCenterOccurrence
 
 /-- Whether some candidate row at `center` contains both endpoints. -/
@@ -53,14 +57,17 @@ def encoderPairIndicatorRows : List PairIndicatorRow :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderPairIndicatorRows_length :
     encoderPairIndicatorRows.length = 474 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def pairIndicatorRow (i : Fin 474) : PairIndicatorRow :=
   encoderPairIndicatorRows.get
     ⟨i.val, by simpa [encoderPairIndicatorRows_length] using i.isLt⟩
 
+/-- Exact-five common-shell V7 def. -/
 def pairIndicatorVar (i : Fin 474) : Nat :=
   27287 + i.val
 
@@ -78,6 +85,7 @@ def encoderIndicatorOccurrences : List IndicatorOccurrence :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderIndicatorOccurrences_length :
     encoderIndicatorOccurrences.length = 11694 := by
   native_decide
@@ -120,6 +128,7 @@ def encoderGuardedOccurrences : List GuardedOccurrence :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderGuardedOccurrences_length :
     encoderGuardedOccurrences.length = 168192 := by
   native_decide
@@ -238,6 +247,7 @@ theorem CanonicalPacket.separationValuation_eq_base_of_lt
     dif_neg (by omega), dif_neg (by omega)]
 
 set_option maxRecDepth 10000 in
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.separationValuation_pair
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -256,6 +266,7 @@ theorem CanonicalPacket.separationValuation_pair
   rw [hi]
 
 set_option maxRecDepth 10000 in
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.separationValuation_selector
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -276,10 +287,12 @@ theorem CanonicalPacket.separationValuation_selector
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem nX_lt_pairIndicatorStart : nX < 27287 := by
   native_decide
 
 set_option maxRecDepth 10000 in
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.separationValuation_x
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -295,6 +308,7 @@ theorem CanonicalPacket.separationValuation_x
   rw [CanonicalPacket.separationValuation,
     dif_neg (by omega), dif_neg (by omega)]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.pairIndicatorValue_eq_true
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -496,12 +510,14 @@ theorem separationFamily_clauseCount :
   norm_num
 
 @[simp]
+/-- Exact-five common-shell V7 theorem. -/
 private theorem evalLitD_neg_ofNat
     (valuation : Nat → Bool) (varIndex : Nat) :
     evalLitD valuation (-Int.ofNat varIndex) = !valuation varIndex := by
   unfold evalLitD
   cases hvalue : valuation varIndex <;> simp [hvalue] <;> omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem evalLitD_ofNat_of_pos
     (valuation : Nat → Bool) (varIndex : Nat) (hvarIndex : 0 < varIndex) :
     evalLitD valuation (Int.ofNat varIndex) = valuation varIndex := by
@@ -666,6 +682,7 @@ def CanonicalPacket.SeparationFamilySat
     evalClauseD P.separationValuation
       (guardedClause occurrence) = true
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.separationFamily_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

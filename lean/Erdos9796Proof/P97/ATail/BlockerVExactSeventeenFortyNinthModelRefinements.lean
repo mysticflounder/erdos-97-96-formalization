@@ -76,6 +76,7 @@ open ATailBlockerVExactSeventeenFortyEighthModelRefinements
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence0 : WeightedSourceOccurrence :=
   { hits := [(1, 0), (1, 14), (14, 0), (14, 1), (15, 13), (15, 14), (16, 1), (16, 13)],
     forwardChoices := [{ center := 1, support := {0, 14} },
@@ -101,9 +102,11 @@ def occurrence0 : WeightedSourceOccurrence :=
        { left := (0, 2), right := (0, 2), path := ⟨(0, 2), [], (0, 2)⟩ },
        { left := (15, 16), right := (2, 16), path := ⟨(15, 16), [.row 15 16 2, .flip 15 2, .row 2 15 16], (2, 16)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence0_check : occurrence0.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence1 : WeightedSourceOccurrence :=
   { hits := [(1, 3), (1, 10), (3, 12), (3, 16), (8, 10), (8, 12), (10, 3), (10, 16)],
     forwardChoices := [{ center := 1, support := {3, 10} },
@@ -129,9 +132,11 @@ def occurrence1 : WeightedSourceOccurrence :=
        { left := (0, 6), right := (6, 13), path := ⟨(0, 6), [.flip 0 6, .row 6 0 13], (6, 13)⟩ },
        { left := (13, 15), right := (6, 15), path := ⟨(13, 15), [.flip 13 15, .row 15 13 6, .flip 15 6], (6, 15)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence1_check : occurrence1.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence2 : WeightedSourceOccurrence :=
   { hits := [(1, 10), (1, 14), (6, 1), (6, 14), (11, 8), (11, 10), (14, 1), (14, 8)],
     forwardChoices := [{ center := 1, support := {10, 14} },
@@ -157,9 +162,11 @@ def occurrence2 : WeightedSourceOccurrence :=
        { left := (2, 6), right := (2, 6), path := ⟨(2, 6), [], (2, 6)⟩ },
        { left := (10, 15), right := (2, 10), path := ⟨(10, 15), [.row 10 15 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence2_check : occurrence2.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence3 : WeightedSourceOccurrence :=
   { hits := [(5, 3), (5, 7), (7, 3), (7, 6), (9, 5), (9, 7), (12, 5), (12, 6)],
     forwardChoices := [{ center := 5, support := {3, 7} },
@@ -185,9 +192,11 @@ def occurrence3 : WeightedSourceOccurrence :=
        { left := (9, 10), right := (9, 13), path := ⟨(9, 10), [.row 9 10 13], (9, 13)⟩ },
        { left := (4, 11), right := (4, 10), path := ⟨(4, 11), [.row 4 11 10], (4, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence3_check : occurrence3.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence4 : WeightedSourceOccurrence :=
   { hits := [(6, 7), (6, 9), (7, 8), (7, 12), (8, 7), (8, 12), (13, 8), (13, 9)],
     forwardChoices := [{ center := 6, support := {7, 9} },
@@ -213,9 +222,11 @@ def occurrence4 : WeightedSourceOccurrence :=
        { left := (3, 7), right := (3, 8), path := ⟨(3, 7), [.row 3 7 8], (3, 8)⟩ },
        { left := (9, 10), right := (7, 10), path := ⟨(9, 10), [.flip 9 10, .row 10 9 7, .flip 10 7], (7, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence4_check : occurrence4.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence5 : WeightedSourceOccurrence :=
   { hits := [(7, 8), (7, 12), (8, 7), (8, 12), (9, 5), (9, 7), (14, 5), (14, 8)],
     forwardChoices := [{ center := 7, support := {8, 12} },
@@ -241,9 +252,11 @@ def occurrence5 : WeightedSourceOccurrence :=
        { left := (4, 8), right := (4, 9), path := ⟨(4, 8), [.flip 4 8, .row 8 4 9, .flip 8 9, .row 9 8 4, .flip 9 4], (4, 9)⟩ },
        { left := (2, 11), right := (2, 8), path := ⟨(2, 11), [.row 2 11 8], (2, 8)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence5_check : occurrence5.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence6 : WeightedSourceOccurrence :=
   { hits := [(7, 8), (7, 12), (8, 7), (8, 12), (10, 7), (10, 16), (13, 8), (13, 16)],
     forwardChoices := [{ center := 7, support := {8, 12} },
@@ -269,9 +282,11 @@ def occurrence6 : WeightedSourceOccurrence :=
        { left := (0, 3), right := (3, 8), path := ⟨(0, 3), [.flip 0 3, .row 3 0 8], (3, 8)⟩ },
        { left := (6, 9), right := (0, 6), path := ⟨(6, 9), [.row 6 9 0, .flip 6 0], (0, 6)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence6_check : occurrence6.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence7 : WeightedSourceOccurrence :=
   { hits := [(10, 13), (10, 16), (13, 8), (13, 16), (14, 1), (14, 8), (16, 1), (16, 13)],
     forwardChoices := [{ center := 10, support := {13, 16} },
@@ -297,9 +312,11 @@ def occurrence7 : WeightedSourceOccurrence :=
        { left := (2, 6), right := (2, 6), path := ⟨(2, 6), [], (2, 6)⟩ },
        { left := (0, 15), right := (3, 8), path := ⟨(0, 15), [.row 0 15 3, .flip 0 3, .row 3 0 8], (3, 8)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence7_check : occurrence7.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence8 : WeightedSourceOccurrence :=
   { hits := [(1, 0), (1, 14), (13, 14), (13, 16), (14, 0), (14, 1), (15, 13), (15, 16), (16, 1), (16, 13)],
     forwardChoices := [{ center := 1, support := {0, 14} },
@@ -327,9 +344,11 @@ def occurrence8 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (1, 3), path := ⟨(0, 1), [.flip 0 1, .row 1 0 3], (1, 3)⟩ },
        { left := (15, 16), right := (2, 16), path := ⟨(15, 16), [.row 15 16 2, .flip 15 2, .row 2 15 16], (2, 16)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence8_check : occurrence8.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence9 : WeightedSourceOccurrence :=
   { hits := [(1, 3), (1, 10), (6, 1), (6, 7), (7, 3), (7, 8), (8, 7), (8, 10), (14, 1), (14, 8)],
     forwardChoices := [{ center := 1, support := {3, 10} },
@@ -357,9 +376,11 @@ def occurrence9 : WeightedSourceOccurrence :=
        { left := (6, 8), right := (9, 13), path := ⟨(6, 8), [.flip 6 8, .row 8 6 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (2, 15), right := (2, 8), path := ⟨(2, 15), [.row 2 15 8], (2, 8)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence9_check : occurrence9.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence10 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 10), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 10), (14, 1), (14, 8)],
     forwardChoices := [{ center := 2, support := {6, 10} },
@@ -387,9 +408,11 @@ def occurrence10 : WeightedSourceOccurrence :=
        { left := (6, 8), right := (10, 15), path := ⟨(6, 8), [.flip 6 8, .row 8 6 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (2, 15), right := (2, 8), path := ⟨(2, 15), [.row 2 15 8], (2, 8)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence10_check : occurrence10.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence11 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 10), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 10), (13, 8), (13, 14)],
     forwardChoices := [{ center := 2, support := {6, 10} },
@@ -417,9 +440,11 @@ def occurrence11 : WeightedSourceOccurrence :=
        { left := (2, 3), right := (3, 8), path := ⟨(2, 3), [.flip 2 3, .row 3 2 8], (3, 8)⟩ },
        { left := (6, 8), right := (2, 10), path := ⟨(6, 8), [.flip 6 8, .row 8 6 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence11_check : occurrence11.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence12 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 13), (6, 7), (6, 14), (7, 6), (7, 8), (10, 7), (10, 13), (13, 8), (13, 14)],
     forwardChoices := [{ center := 2, support := {6, 13} },
@@ -447,9 +472,11 @@ def occurrence12 : WeightedSourceOccurrence :=
        { left := (3, 6), right := (6, 9), path := ⟨(3, 6), [.flip 3 6, .row 6 3 9], (6, 9)⟩ },
        { left := (8, 9), right := (2, 10), path := ⟨(8, 9), [.flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence12_check : occurrence12.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence13 : WeightedSourceOccurrence :=
   { hits := [(4, 6), (4, 11), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (14, 1), (14, 8)],
     forwardChoices := [{ center := 4, support := {6, 11} },
@@ -477,9 +504,11 @@ def occurrence13 : WeightedSourceOccurrence :=
        { left := (5, 8), right := (10, 15), path := ⟨(5, 8), [.flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (2, 15), right := (2, 8), path := ⟨(2, 15), [.row 2 15 8], (2, 8)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence13_check : occurrence13.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence14 : WeightedSourceOccurrence :=
   { hits := [(4, 6), (4, 11), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (13, 8), (13, 14)],
     forwardChoices := [{ center := 4, support := {6, 11} },
@@ -507,9 +536,11 @@ def occurrence14 : WeightedSourceOccurrence :=
        { left := (2, 3), right := (3, 8), path := ⟨(2, 3), [.flip 2 3, .row 3 2 8], (3, 8)⟩ },
        { left := (5, 8), right := (2, 10), path := ⟨(5, 8), [.flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence14_check : occurrence14.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence15 : WeightedSourceOccurrence :=
   { hits := [(7, 8), (7, 12), (8, 7), (8, 12), (9, 5), (9, 7), (12, 5), (12, 14), (13, 8), (13, 14)],
     forwardChoices := [{ center := 7, support := {8, 12} },
@@ -537,9 +568,11 @@ def occurrence15 : WeightedSourceOccurrence :=
        { left := (2, 3), right := (3, 8), path := ⟨(2, 3), [.flip 2 3, .row 3 2 8], (3, 8)⟩ },
        { left := (4, 8), right := (4, 9), path := ⟨(4, 8), [.flip 4 8, .row 8 4 9, .flip 8 9, .row 9 8 4, .flip 9 4], (4, 9)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence15_check : occurrence15.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence16 : WeightedSourceOccurrence :=
   { hits := [(1, 3), (1, 14), (5, 7), (5, 15), (7, 3), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {3, 14} },
@@ -569,9 +602,11 @@ def occurrence16 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (9, 13), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (13, 15), right := (2, 15), path := ⟨(13, 15), [.flip 13 15, .row 15 13 2, .flip 15 2], (2, 15)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence16_check : occurrence16.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence17 : WeightedSourceOccurrence :=
   { hits := [(1, 3), (1, 14), (6, 1), (6, 7), (7, 3), (7, 8), (8, 7), (8, 11), (14, 1), (14, 8), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {3, 14} },
@@ -601,9 +636,11 @@ def occurrence17 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (1, 5), path := ⟨(1, 2), [.row 1 2 5], (1, 5)⟩ },
        { left := (5, 8), right := (9, 13), path := ⟨(5, 8), [.flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence17_check : occurrence17.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence18 : WeightedSourceOccurrence :=
   { hits := [(1, 10), (1, 14), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 10), (12, 5), (12, 6), (14, 5), (14, 8)],
     forwardChoices := [{ center := 1, support := {10, 14} },
@@ -633,9 +670,11 @@ def occurrence18 : WeightedSourceOccurrence :=
        { left := (6, 8), right := (2, 10), path := ⟨(6, 8), [.flip 6 8, .row 8 6 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (2, 15), right := (6, 15), path := ⟨(2, 15), [.flip 2 15, .row 15 2 6, .flip 15 6], (6, 15)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence18_check : occurrence18.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence19 : WeightedSourceOccurrence :=
   { hits := [(2, 1), (2, 13), (4, 6), (4, 11), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 13)],
     forwardChoices := [{ center := 2, support := {1, 13} },
@@ -665,9 +704,11 @@ def occurrence19 : WeightedSourceOccurrence :=
        { left := (3, 5), right := (10, 15), path := ⟨(3, 5), [.flip 3 5, .row 5 3 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (14, 15), right := (3, 14), path := ⟨(14, 15), [.row 14 15 3, .flip 14 3], (3, 14)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence19_check : occurrence19.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence20 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 10), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 10), (15, 11), (15, 14)],
     forwardChoices := [{ center := 2, support := {6, 10} },
@@ -697,9 +738,11 @@ def occurrence20 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (1, 5), path := ⟨(1, 2), [.row 1 2 5], (1, 5)⟩ },
        { left := (5, 6), right := (2, 10), path := ⟨(5, 6), [.row 5 6 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence20_check : occurrence20.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence21 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 13), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (13, 8), (13, 14), (15, 11), (15, 13)],
     forwardChoices := [{ center := 2, support := {6, 13} },
@@ -729,9 +772,11 @@ def occurrence21 : WeightedSourceOccurrence :=
        { left := (1, 3), right := (1, 5), path := ⟨(1, 3), [.row 1 3 5], (1, 5)⟩ },
        { left := (5, 8), right := (2, 10), path := ⟨(5, 8), [.flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence21_check : occurrence21.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence22 : WeightedSourceOccurrence :=
   { hits := [(4, 6), (4, 11), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 13), (15, 13), (15, 14)],
     forwardChoices := [{ center := 4, support := {6, 11} },
@@ -761,9 +806,11 @@ def occurrence22 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (1, 3), path := ⟨(1, 2), [.row 1 2 3], (1, 3)⟩ },
        { left := (3, 5), right := (2, 10), path := ⟨(3, 5), [.flip 3 5, .row 5 3 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence22_check : occurrence22.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence23 : WeightedSourceOccurrence :=
   { hits := [(5, 3), (5, 15), (6, 7), (6, 14), (7, 3), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (15, 11), (15, 14)],
     forwardChoices := [{ center := 5, support := {3, 15} },
@@ -793,9 +840,11 @@ def occurrence23 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (9, 13), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (11, 13), right := (1, 11), path := ⟨(11, 13), [.row 11 13 1, .flip 11 1], (1, 11)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence23_check : occurrence23.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence24 : WeightedSourceOccurrence :=
   { hits := [(5, 3), (5, 15), (7, 3), (7, 8), (8, 7), (8, 11), (10, 7), (10, 16), (11, 8), (11, 15), (15, 11), (15, 16)],
     forwardChoices := [{ center := 5, support := {3, 15} },
@@ -825,9 +874,11 @@ def occurrence24 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (9, 13), path := ⟨(0, 1), [.flip 0 1, .row 1 0 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (6, 11), right := (6, 11), path := ⟨(6, 11), [], (6, 11)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence24_check : occurrence24.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence25 : WeightedSourceOccurrence :=
   { hits := [(5, 7), (5, 15), (7, 3), (7, 8), (8, 7), (8, 11), (10, 3), (10, 16), (11, 8), (11, 15), (15, 11), (15, 16)],
     forwardChoices := [{ center := 5, support := {7, 15} },
@@ -857,9 +908,11 @@ def occurrence25 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (9, 13), path := ⟨(0, 1), [.flip 0 1, .row 1 0 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (6, 11), right := (6, 11), path := ⟨(6, 11), [], (6, 11)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence25_check : occurrence25.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence26 : WeightedSourceOccurrence :=
   { hits := [(6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (12, 5), (12, 6), (14, 5), (14, 8), (15, 11), (15, 14)],
     forwardChoices := [{ center := 6, support := {7, 14} },
@@ -889,9 +942,11 @@ def occurrence26 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (1, 5), path := ⟨(1, 2), [.row 1 2 5], (1, 5)⟩ },
        { left := (5, 8), right := (2, 10), path := ⟨(5, 8), [.flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence26_check : occurrence26.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence27 : WeightedSourceOccurrence :=
   { hits := [(0, 3), (0, 15), (3, 4), (3, 16), (7, 3), (7, 8), (8, 7), (8, 11), (9, 4), (9, 7), (11, 8), (11, 15), (15, 11), (15, 16)],
     forwardChoices := [{ center := 0, support := {3, 15} },
@@ -923,9 +978,11 @@ def occurrence27 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (9, 13), path := ⟨(0, 1), [.flip 0 1, .row 1 0 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (13, 16), right := (1, 16), path := ⟨(13, 16), [.flip 13 16, .row 16 13 1, .flip 16 1], (1, 16)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence27_check : occurrence27.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence28 : WeightedSourceOccurrence :=
   { hits := [(0, 3), (0, 15), (3, 12), (3, 16), (7, 8), (7, 12), (8, 7), (8, 11), (10, 3), (10, 7), (11, 8), (11, 15), (15, 11), (15, 16)],
     forwardChoices := [{ center := 0, support := {3, 15} },
@@ -957,9 +1014,11 @@ def occurrence28 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (4, 9), path := ⟨(0, 1), [.flip 0 1, .row 1 0 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 4, .flip 9 4], (4, 9)⟩ },
        { left := (13, 16), right := (1, 16), path := ⟨(13, 16), [.flip 13 16, .row 16 13 1, .flip 16 1], (1, 16)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence28_check : occurrence28.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence29 : WeightedSourceOccurrence :=
   { hits := [(1, 10), (1, 14), (2, 6), (2, 10), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (14, 1), (14, 8), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {10, 14} },
@@ -991,9 +1050,11 @@ def occurrence29 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (1, 5), path := ⟨(1, 2), [.row 1 2 5], (1, 5)⟩ },
        { left := (5, 8), right := (10, 15), path := ⟨(5, 8), [.flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence29_check : occurrence29.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence30 : WeightedSourceOccurrence :=
   { hits := [(2, 1), (2, 10), (4, 2), (4, 11), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 10), (12, 2), (12, 6)],
     forwardChoices := [{ center := 2, support := {1, 10} },
@@ -1025,9 +1086,11 @@ def occurrence30 : WeightedSourceOccurrence :=
        { left := (5, 6), right := (10, 15), path := ⟨(5, 6), [.row 5 6 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (12, 14), right := (5, 12), path := ⟨(12, 14), [.row 12 14 5, .flip 12 5], (5, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence30_check : occurrence30.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence31 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 10), (4, 2), (4, 11), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 10), (16, 1), (16, 2)],
     forwardChoices := [{ center := 2, support := {6, 10} },
@@ -1059,9 +1122,11 @@ def occurrence31 : WeightedSourceOccurrence :=
        { left := (5, 6), right := (10, 15), path := ⟨(5, 6), [.row 5 6 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (12, 14), right := (5, 12), path := ⟨(12, 14), [.row 12 14 5, .flip 12 5], (5, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence31_check : occurrence31.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence32 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 10), (4, 2), (4, 11), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 10), (12, 2), (12, 14)],
     forwardChoices := [{ center := 2, support := {6, 10} },
@@ -1093,9 +1158,11 @@ def occurrence32 : WeightedSourceOccurrence :=
        { left := (5, 6), right := (2, 10), path := ⟨(5, 6), [.row 5 6 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (12, 14), right := (5, 12), path := ⟨(12, 14), [.row 12 14 5, .flip 12 5], (5, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence32_check : occurrence32.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence33 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 13), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 13), (13, 14), (13, 16), (15, 11), (15, 16)],
     forwardChoices := [{ center := 2, support := {6, 13} },
@@ -1127,9 +1194,11 @@ def occurrence33 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (1, 5), path := ⟨(0, 1), [.flip 0 1, .row 1 0 5], (1, 5)⟩ },
        { left := (3, 5), right := (2, 10), path := ⟨(3, 5), [.flip 3 5, .row 5 3 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence33_check : occurrence33.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence34 : WeightedSourceOccurrence :=
   { hits := [(4, 2), (4, 15), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (12, 2), (12, 6), (15, 11), (15, 14)],
     forwardChoices := [{ center := 4, support := {2, 15} },
@@ -1161,9 +1230,11 @@ def occurrence34 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (2, 10), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (12, 14), right := (1, 12), path := ⟨(12, 14), [.row 12 14 1, .flip 12 1], (1, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence34_check : occurrence34.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence35 : WeightedSourceOccurrence :=
   { hits := [(4, 6), (4, 11), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (9, 4), (9, 15), (11, 8), (11, 15), (16, 1), (16, 4)],
     forwardChoices := [{ center := 4, support := {6, 11} },
@@ -1195,9 +1266,11 @@ def occurrence35 : WeightedSourceOccurrence :=
        { left := (1, 5), right := (10, 15), path := ⟨(1, 5), [.flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (7, 12), right := (1, 7), path := ⟨(7, 12), [.row 7 12 1, .flip 7 1], (1, 7)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence35_check : occurrence35.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence36 : WeightedSourceOccurrence :=
   { hits := [(4, 6), (4, 15), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (15, 11), (15, 13), (16, 1), (16, 13)],
     forwardChoices := [{ center := 4, support := {6, 15} },
@@ -1229,9 +1302,11 @@ def occurrence36 : WeightedSourceOccurrence :=
        { left := (1, 3), right := (10, 15), path := ⟨(1, 3), [.row 1 3 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (0, 15), right := (0, 3), path := ⟨(0, 15), [.row 0 15 3], (0, 3)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence36_check : occurrence36.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence37 : WeightedSourceOccurrence :=
   { hits := [(4, 6), (4, 15), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (13, 14), (13, 16), (15, 11), (15, 16)],
     forwardChoices := [{ center := 4, support := {6, 15} },
@@ -1263,9 +1338,11 @@ def occurrence37 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (2, 10), path := ⟨(0, 1), [.flip 0 1, .row 1 0 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (10, 12), right := (1, 12), path := ⟨(10, 12), [.flip 10 12, .row 12 10 1, .flip 12 1], (1, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence37_check : occurrence37.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence38 : WeightedSourceOccurrence :=
   { hits := [(6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (9, 5), (9, 15), (11, 8), (11, 15), (12, 5), (12, 6), (15, 11), (15, 14)],
     forwardChoices := [{ center := 6, support := {7, 14} },
@@ -1297,9 +1374,11 @@ def occurrence38 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (2, 10), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (7, 11), right := (1, 7), path := ⟨(7, 11), [.row 7 11 1, .flip 7 1], (1, 7)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence38_check : occurrence38.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence39 : WeightedSourceOccurrence :=
   { hits := [(1, 0), (1, 14), (4, 6), (4, 15), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (14, 0), (14, 1), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {0, 14} },
@@ -1333,9 +1412,11 @@ def occurrence39 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (10, 15), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (15, 16), right := (2, 16), path := ⟨(15, 16), [.row 15 16 2, .flip 15 2, .row 2 15 16], (2, 16)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence39_check : occurrence39.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence40 : WeightedSourceOccurrence :=
   { hits := [(1, 3), (1, 14), (5, 0), (5, 15), (6, 1), (6, 7), (7, 3), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (14, 0), (14, 1), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {3, 14} },
@@ -1369,9 +1450,11 @@ def occurrence40 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (9, 13), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (11, 16), right := (1, 11), path := ⟨(11, 16), [.row 11 16 1, .flip 11 1], (1, 11)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence40_check : occurrence40.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence41 : WeightedSourceOccurrence :=
   { hits := [(1, 3), (1, 14), (6, 1), (6, 7), (7, 3), (7, 8), (8, 7), (8, 11), (9, 5), (9, 15), (11, 8), (11, 15), (14, 1), (14, 5), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {3, 14} },
@@ -1405,9 +1488,11 @@ def occurrence41 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (9, 13), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 13], (9, 13)⟩ },
        { left := (7, 11), right := (1, 7), path := ⟨(7, 11), [.row 7 11 1, .flip 7 1], (1, 7)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence41_check : occurrence41.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence42 : WeightedSourceOccurrence :=
   { hits := [(2, 1), (2, 13), (4, 2), (4, 15), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (12, 2), (12, 6), (15, 11), (15, 13)],
     forwardChoices := [{ center := 2, support := {1, 13} },
@@ -1441,9 +1526,11 @@ def occurrence42 : WeightedSourceOccurrence :=
        { left := (1, 3), right := (10, 15), path := ⟨(1, 3), [.row 1 3 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (12, 14), right := (1, 12), path := ⟨(12, 14), [.row 12 14 1, .flip 12 1], (1, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence42_check : occurrence42.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence43 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 13), (4, 2), (4, 15), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (15, 11), (15, 13), (16, 1), (16, 2)],
     forwardChoices := [{ center := 2, support := {6, 13} },
@@ -1477,9 +1564,11 @@ def occurrence43 : WeightedSourceOccurrence :=
        { left := (1, 3), right := (10, 15), path := ⟨(1, 3), [.row 1 3 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (12, 14), right := (1, 12), path := ⟨(12, 14), [.row 12 14 1, .flip 12 1], (1, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence43_check : occurrence43.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence44 : WeightedSourceOccurrence :=
   { hits := [(2, 6), (2, 13), (4, 2), (4, 15), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (12, 2), (12, 14), (15, 11), (15, 13)],
     forwardChoices := [{ center := 2, support := {6, 13} },
@@ -1513,9 +1602,11 @@ def occurrence44 : WeightedSourceOccurrence :=
        { left := (1, 3), right := (2, 10), path := ⟨(1, 3), [.row 1 3 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (12, 14), right := (1, 12), path := ⟨(12, 14), [.row 12 14 1, .flip 12 1], (1, 12)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence44_check : occurrence44.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence45 : WeightedSourceOccurrence :=
   { hits := [(5, 0), (5, 15), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (12, 5), (12, 6), (14, 0), (14, 5), (15, 11), (15, 14)],
     forwardChoices := [{ center := 5, support := {0, 15} },
@@ -1549,9 +1640,11 @@ def occurrence45 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (2, 10), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (11, 16), right := (1, 11), path := ⟨(11, 16), [.row 11 16 1, .flip 11 1], (1, 11)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence45_check : occurrence45.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence46 : WeightedSourceOccurrence :=
   { hits := [(0, 2), (0, 15), (2, 6), (2, 13), (6, 7), (6, 14), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (13, 14), (13, 16), (15, 11), (15, 16), (16, 2), (16, 13)],
     forwardChoices := [{ center := 0, support := {2, 15} },
@@ -1587,9 +1680,11 @@ def occurrence46 : WeightedSourceOccurrence :=
        { left := (0, 1), right := (2, 10), path := ⟨(0, 1), [.flip 0 1, .row 1 0 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 2, .flip 10 2], (2, 10)⟩ },
        { left := (14, 16), right := (1, 16), path := ⟨(14, 16), [.flip 14 16, .row 16 14 1, .flip 16 1], (1, 16)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence46_check : occurrence46.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence47 : WeightedSourceOccurrence :=
   { hits := [(1, 10), (1, 14), (2, 6), (2, 10), (5, 0), (5, 15), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (11, 8), (11, 15), (14, 0), (14, 1), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {10, 14} },
@@ -1625,9 +1720,11 @@ def occurrence47 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (10, 15), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (11, 16), right := (1, 11), path := ⟨(11, 16), [.row 11 16 1, .flip 11 1], (1, 11)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence47_check : occurrence47.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def occurrence48 : WeightedSourceOccurrence :=
   { hits := [(1, 10), (1, 14), (2, 6), (2, 10), (6, 1), (6, 7), (7, 6), (7, 8), (8, 7), (8, 11), (9, 5), (9, 15), (11, 8), (11, 15), (14, 1), (14, 5), (15, 11), (15, 14)],
     forwardChoices := [{ center := 1, support := {10, 14} },
@@ -1663,28 +1760,35 @@ def occurrence48 : WeightedSourceOccurrence :=
        { left := (1, 2), right := (10, 15), path := ⟨(1, 2), [.row 1 2 5, .flip 1 5, .row 5 1 8, .flip 5 8, .row 8 5 9, .flip 8 9, .row 9 8 10, .flip 9 10, .row 10 9 15], (10, 15)⟩ },
        { left := (7, 11), right := (1, 7), path := ⟨(7, 11), [.row 7 11 1, .flip 7 1], (1, 7)⟩ }] } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem occurrence48_check : occurrence48.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fortyNinthWeightedOccurrences : List WeightedSourceOccurrence :=
   [occurrence0, occurrence1, occurrence2, occurrence3, occurrence4, occurrence5, occurrence6, occurrence7, occurrence8, occurrence9, occurrence10, occurrence11, occurrence12, occurrence13, occurrence14, occurrence15, occurrence16, occurrence17, occurrence18, occurrence19, occurrence20, occurrence21, occurrence22, occurrence23, occurrence24, occurrence25, occurrence26, occurrence27, occurrence28, occurrence29, occurrence30, occurrence31, occurrence32, occurrence33, occurrence34, occurrence35, occurrence36, occurrence37, occurrence38, occurrence39, occurrence40, occurrence41, occurrence42, occurrence43, occurrence44, occurrence45, occurrence46, occurrence47, occurrence48]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortyNinthWeightedOccurrences_length : fortyNinthWeightedOccurrences.length = 49 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortyNinthWeightedOccurrences_check :
     ∀ occurrence ∈ fortyNinthWeightedOccurrences, occurrence.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fortyNinthModelRefinementClauses : Std.Sat.CNF Atom :=
   fortyNinthWeightedOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>
         weightedOccurrenceClause order direction occurrence
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortyNinthModelRefinementClauses_length :
     fortyNinthModelRefinementClauses.length = 196 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fortyNinthModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthModelRefinementClauses,
@@ -1695,15 +1799,18 @@ theorem sourceAssign_fortyNinthModelRefinementClauses
   exact sourceAssign_weightedOccurrenceClause source occurrence
     (fortyNinthWeightedOccurrences_check occurrence hoccur) order direction
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedFortyNinthModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedFortyEighthModelRefinementsCnf ++ fortyNinthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedFortyNinthModelRefinementsCnf_length :
     extendedFortyNinthModelRefinementsCnf.length = 7198668 := by
   simp only [extendedFortyNinthModelRefinementsCnf, List.length_append,
     extendedFortyEighthModelRefinementsCnf_length,
     fortyNinthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedFortyNinthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -1717,6 +1824,7 @@ theorem sourceAssign_extendedFortyNinthModelRefinementsCnf
     exact h clause hparent
   · exact sourceAssign_fortyNinthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyNinthModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

@@ -101,6 +101,7 @@ private theorem subset_image_Ioi {boundary : Fin 12 → ℝ²} {T : Finset ℝ²
   obtain ⟨q, hq1, rfl⟩ := h x hx
   exact Finset.mem_image_of_mem _ (Finset.mem_Ioi.mpr hq1)
 
+/-- Frontier live-closure theorem. -/
 private theorem card_le_of_Ioo {boundary : Fin 12 → ℝ²} {T : Finset ℝ²} {a b : Fin 12}
     (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ q < b ∧ boundary q = x) :
     T.card ≤ (b : ℕ) - a - 1 := by
@@ -109,6 +110,7 @@ private theorem card_le_of_Ioo {boundary : Fin 12 → ℝ²} {T : Finset ℝ²} 
     _ ≤ (Finset.Ioo a b).card := Finset.card_image_le
     _ = (b : ℕ) - a - 1 := Fin.card_Ioo a b
 
+/-- Frontier live-closure theorem. -/
 private theorem card_le_of_Ioi {boundary : Fin 12 → ℝ²} {T : Finset ℝ²} {a : Fin 12}
     (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ boundary q = x) : T.card ≤ 12 - 1 - (a : ℕ) := by
   calc T.card ≤ ((Finset.Ioi a).image boundary).card :=
@@ -124,6 +126,7 @@ private theorem mem_of_subset_image {boundary : Fin 12 → ℝ²} (hinj : Functi
     (by rw [Finset.card_image_of_injective _ hinj]; exact hcard)]
   exact Finset.mem_image_of_mem _ hq
 
+/-- Frontier live-closure theorem. -/
 private theorem mem_of_Ioo {boundary : Fin 12 → ℝ²} (hinj : Function.Injective boundary)
     {T : Finset ℝ²} {a b : Fin 12}
     (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ q < b ∧ boundary q = x)
@@ -132,6 +135,7 @@ private theorem mem_of_Ioo {boundary : Fin 12 → ℝ²} (hinj : Function.Inject
   mem_of_subset_image hinj (subset_image_Ioo h) (by rw [Fin.card_Ioo]; exact hcard)
     (Finset.mem_Ioo.mpr ⟨hq1, hq2⟩)
 
+/-- Frontier live-closure theorem. -/
 private theorem mem_of_Ioi {boundary : Fin 12 → ℝ²} (hinj : Function.Injective boundary)
     {T : Finset ℝ²} {a : Fin 12} (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ boundary q = x)
     (hcard : 12 - 1 - (a : ℕ) ≤ T.card) {q : Fin 12} (hq : a < q) : boundary q ∈ T :=
@@ -318,16 +322,19 @@ namespace LabelMap
 
 variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {pt : Fin 12 → ℝ²}
 
+/-- Frontier live-closure theorem. -/
 theorem image_surplusInterior (hL : LabelMap S pt)
     (h3 : (S.capInteriorByIndex S.surplusIdx).card = 3) :
     surplusInterior.toFinset.image (fun z => pt (label z)) =
       S.capInteriorByIndex S.surplusIdx :=
   image_toFinset_eq hL.injective (by decide) (by decide) hL.surplusInterior_mem h3
 
+/-- Frontier live-closure theorem. -/
 theorem image_firstOppositeInterior (hL : LabelMap S pt) (h2 : S.oppInterior1.card = 2) :
     firstOppositeInterior.toFinset.image (fun z => pt (label z)) = S.oppInterior1 :=
   image_toFinset_eq hL.injective (by decide) (by decide) hL.firstOppositeInterior_mem h2
 
+/-- Frontier live-closure theorem. -/
 theorem image_secondOppositeInterior (hL : LabelMap S pt) (h4 : S.oppInterior2.card = 4) :
     secondOppositeInterior.toFinset.image (fun z => pt (label z)) = S.oppInterior2 :=
   image_toFinset_eq hL.injective (by decide) (by decide) hL.secondOppositeInterior_mem h4

@@ -20,6 +20,7 @@ namespace Balanced555FiniteFormula
 
 open Census554.CoverCnf
 
+/-- Frontier live-closure theorem. -/
 private theorem configurationValuation_rowVariable_eq_true_iff
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point) :
@@ -28,6 +29,7 @@ private theorem configurationValuation_rowVariable_eq_true_iff
   exact (configurationValuation_eq_true_iff configuration _).trans
     (configurationAtom_rowVariable configuration center point hne)
 
+/-- Frontier live-closure theorem. -/
 private theorem evalLitD_positive_row_eq_true
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point) (hmem : point ∈ configuration.selectedAt center) :
@@ -38,6 +40,7 @@ private theorem evalLitD_positive_row_eq_true
   have hpositive : 0 < rowVariable center point := rowVariable_pos center point
   simp [evalLitD, positiveLiteral, hvalue, hpositive]
 
+/-- Frontier live-closure theorem. -/
 private theorem evalLitD_negative_row_eq_true
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point) (hnotMem : point ∉ configuration.selectedAt center) :
@@ -49,12 +52,14 @@ private theorem evalLitD_negative_row_eq_true
         configuration center point hne).1 htrue)
   simp [evalLitD, negativeLiteral, hvalue]
 
+/-- Frontier live-closure theorem. -/
 private theorem evalLitD_negative_atom_eq_true
     (configuration : Balanced555FiniteConfiguration) (atom : Nat)
     (hvalue : configurationValuation configuration atom = false) :
     evalLitD (configurationValuation configuration) (negativeLiteral atom) = true := by
   simp [evalLitD, negativeLiteral, hvalue]
 
+/-- Frontier live-closure theorem. -/
 private theorem evalClauseD_of_literal
     (configuration : Balanced555FiniteConfiguration) {clause : List Int} {literal : Int}
     (hmem : literal ∈ clause)
@@ -63,6 +68,7 @@ private theorem evalClauseD_of_literal
   rw [evalClauseD, List.any_eq_true]
   exact ⟨literal, hmem, hliteral⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem roleSelector_true_iff
     (configuration : Balanced555FiniteConfiguration) (index : Nat) (hindex : index < 6) :
     configurationValuation configuration (133 + index) = true ↔
@@ -72,6 +78,7 @@ private theorem roleSelector_true_iff
   have hrole : 133 ≤ 133 + index ∧ 133 + index ≤ 138 := by omega
   simp [configurationAtom, hrow, hrole]
 
+/-- Frontier live-closure theorem. -/
 private theorem middleSelector_true_iff
     (configuration : Balanced555FiniteConfiguration) (index : Nat) (hindex : index < 10) :
     configurationValuation configuration (139 + index) = true ↔
@@ -82,6 +89,7 @@ private theorem middleSelector_true_iff
   have hmiddle : 139 ≤ 139 + index ∧ 139 + index ≤ 148 := by omega
   simp [configurationAtom, hrow, hrole, hmiddle]
 
+/-- Frontier live-closure theorem. -/
 private theorem roleAtom_iff_of_mem_zipIdx
     (configuration : Balanced555FiniteConfiguration) (deleted retained third : Fin 12)
     (index : Nat)
@@ -93,6 +101,7 @@ private theorem roleAtom_iff_of_mem_zipIdx
   have hnth := List.mem_zipIdx_iff_getElem?.1 hentry
   simp [roleAtom, hnth]
 
+/-- Frontier live-closure theorem. -/
 private theorem middleAtom_iff_of_mem_zipIdx
     (configuration : Balanced555FiniteConfiguration) (middle : Fin 12) (index : Nat)
     (hentry : (middle, index) ∈ (middleLabels configuration.orientation).zipIdx) :
@@ -116,6 +125,7 @@ private theorem roleTriple_avoids_apices
       ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩ <;>
       simp [Balanced555Orientation.firstApex, Balanced555Orientation.secondApex]
 
+/-- Frontier live-closure theorem. -/
 private theorem middleLabel_avoids_apices
     (orientation : Balanced555Orientation) (middle : Fin 12) (index : Nat)
     (hentry : (middle, index) ∈ (middleLabels orientation).zipIdx) :
@@ -126,24 +136,28 @@ private theorem middleLabel_avoids_apices
   have hpredicate := (List.mem_filter.mp hmiddle).2
   simpa using hpredicate
 
+/-- Frontier live-closure theorem. -/
 private theorem deleted_not_mem_first
     (configuration : Balanced555FiniteConfiguration) :
     configuration.deleted ∉ configuration.selectedAt configuration.orientation.firstApex := by
   intro hmem
   exact configuration.deleted_not_mem_threeClasses (by simp [hmem])
 
+/-- Frontier live-closure theorem. -/
 private theorem deleted_not_mem_middle
     (configuration : Balanced555FiniteConfiguration) :
     configuration.deleted ∉ configuration.selectedAt configuration.middle := by
   intro hmem
   exact configuration.deleted_not_mem_threeClasses (by simp [hmem])
 
+/-- Frontier live-closure theorem. -/
 private theorem deleted_not_mem_second
     (configuration : Balanced555FiniteConfiguration) :
     configuration.deleted ∉ configuration.selectedAt configuration.orientation.secondApex := by
   intro hmem
   exact configuration.deleted_not_mem_threeClasses (by simp [hmem])
 
+/-- Frontier live-closure theorem. -/
 private theorem fixedRoleFact_eval
     (configuration : Balanced555FiniteConfiguration) (deleted retained third : Fin 12)
     (index : Nat)
@@ -218,9 +232,11 @@ theorem configurationValuation_satisfies_fixedRoleClauses
   exact fixedRoleFact_eval configuration deleted retained third index hentry center point polarity
     hfact
 
+/-- Frontier live-closure def. -/
 private def tightClause (literals : List Int) : Clause :=
   { family := .tightMembership, literals }
 
+/-- Frontier live-closure theorem. -/
 private theorem roleSelector_mem_middleRoleClause
     (deleted retained middle : Fin 12) (roleIndex middleIndex : Nat) (clause : Clause)
     (hclause : clause ∈
@@ -255,6 +271,7 @@ private theorem roleSelector_mem_middleRoleClause
       subst clause
       exact List.mem_cons_self
 
+/-- Frontier live-closure theorem. -/
 private theorem middleSelector_mem_middleRoleClause
     (deleted retained middle : Fin 12) (roleIndex middleIndex : Nat) (clause : Clause)
     (hclause : clause ∈
@@ -291,6 +308,7 @@ private theorem middleSelector_mem_middleRoleClause
       subst clause
       exact List.mem_cons_of_mem _ List.mem_cons_self
 
+/-- Frontier live-closure theorem. -/
 private theorem middleRoleClause_eval
     (configuration : Balanced555FiniteConfiguration) (deleted retained third : Fin 12)
     (roleIndex : Nat)
@@ -379,6 +397,7 @@ theorem configurationValuation_satisfies_middleRoleClauses
   exact middleRoleClause_eval configuration deleted retained third roleIndex hroleEntry middle
     middleIndex hmiddleEntry clause hclause
 
+/-- Frontier live-closure theorem. -/
 private theorem twoDisjointRowsClause_eval
     (configuration : Balanced555FiniteConfiguration) (firstCenter secondCenter point : Fin 12)
     (leading : List Int)

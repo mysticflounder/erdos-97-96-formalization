@@ -27,6 +27,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- Supports the P4 mirror valuation analysis. -/
 private def rowRadiusAgreement
     (P : P4MirrorBoundaryPacket R profile distribution) :
     P4RowRadiusOccurrenceBridgeScratch.CoreValAgreement
@@ -34,6 +35,7 @@ private def rowRadiusAgreement
   row := (mirrorValAgreement P).row
   radius := (mirrorValAgreement P).radius
 
+/-- Supports the P4 mirror valuation analysis. -/
 private def mutualTransportAgreement
     (P : P4MirrorBoundaryPacket R profile distribution) :
     P4MutualTransportOccurrenceBridgeScratch.CoreValAgreement
@@ -41,6 +43,7 @@ private def mutualTransportAgreement
   row := (mirrorValAgreement P).row
   radius := (mirrorValAgreement P).radius
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_rowRadiusClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ P4RowRadiusOccurrenceBridgeScratch.bridgeClauses,
@@ -48,6 +51,7 @@ theorem mirrorTotalVal_rowRadiusClauses_sat
   P4RowRadiusOccurrenceBridgeScratch.bridgeClauses_sat_mirror
     P (rowRadiusAgreement P)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_mutualTransportClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ P4MutualTransportOccurrenceBridgeScratch.bridgeClauses,
@@ -55,6 +59,7 @@ theorem mirrorTotalVal_mutualTransportClauses_sat
   P4MutualTransportOccurrenceBridgeScratch.bridgeClauses_sat_mirror
     P (mutualTransportAgreement P)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_kalmansonClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ P4KalmansonOccurrenceBridgeScratch.bridgeClauses,
@@ -62,10 +67,12 @@ theorem mirrorTotalVal_kalmansonClauses_sat
   P4KalmansonOccurrenceBridgeScratch.bridgeClauses_sat_mirror
     P.core (mutualTransportAgreement P)
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem mirrorIndex_surjective : Function.Surjective mirrorIndex := by
   intro point
   exact ⟨mirrorIndex point, by simp⟩
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_criticalBridge_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ entry ∈ bridgeEntries,

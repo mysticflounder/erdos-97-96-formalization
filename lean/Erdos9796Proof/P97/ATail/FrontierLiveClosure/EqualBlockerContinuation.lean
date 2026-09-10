@@ -59,6 +59,7 @@ open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure def. -/
 noncomputable def b1CommonBlocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -68,6 +69,7 @@ noncomputable def b1CommonBlocker
   (lateFirstApexSystem C.R).centerAt
     C.first.deleted.1 C.first.deleted.2
 
+/-- Frontier live-closure def. -/
 noncomputable def b1CommonRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -799,6 +801,7 @@ theorem nonempty_b1LiveRowCompletionPairs_of_physicalClass_card_six
           C.v.1 C.v.2).toCriticalFourShell.support_subset_A hx
     · simpa [physicalClass, uRow, vRow] using hcomplements.2
 
+/-- Frontier live-closure def. -/
 noncomputable def b1EscapeBlocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -808,6 +811,7 @@ noncomputable def b1EscapeBlocker
     (t : CarrierVertex D.A) : ℝ² :=
   (lateFirstApexSystem C.R).centerAt t.1 t.2
 
+/-- Frontier live-closure def. -/
 noncomputable def b1EscapeRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1002,6 +1006,7 @@ theorem nonempty_b1EscapeCrossDeletionPacket
 
 namespace B1EscapeCrossDeletionPacket
 
+/-- Frontier live-closure theorem. -/
 theorem deleted_mem_class
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1014,6 +1019,7 @@ theorem deleted_mem_class
   · simpa [h] using C.first.deleted_mem_class
   · simpa [h] using C.second.deleted_mem_class
 
+/-- Frontier live-closure theorem. -/
 theorem deleted_ne_apex
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1028,6 +1034,7 @@ theorem deleted_ne_apex
   rw [h, dist_self] at hdist
   linarith [C.hrho]
 
+/-- Frontier live-closure theorem. -/
 theorem deleted_blocker_eq_common
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1041,6 +1048,7 @@ theorem deleted_blocker_eq_common
   · simp [h, b1CommonBlocker]
   · simpa [h, b1CommonBlocker] using C.hblockersEq.symm
 
+/-- Frontier live-closure theorem. -/
 theorem deleted_row_eq_commonRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1060,6 +1068,7 @@ theorem deleted_row_eq_commonRow
     selectedSupports_eq_of_actualBlockers_eq
       (lateFirstApexSystem C.R) P.deleted.2 C.first.deleted.2 hcenters
 
+/-- Frontier live-closure theorem. -/
 theorem deleted_mem_commonRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1072,6 +1081,7 @@ theorem deleted_mem_commonRow
   exact ((lateFirstApexSystem C.R).selectedAt
     P.deleted.1 P.deleted.2).toCriticalFourShell.q_mem_support
 
+/-- Frontier live-closure theorem. -/
 theorem deleted_survives_uBlocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1085,6 +1095,7 @@ theorem deleted_survives_uBlocker
   · simpa [h] using C.first.uPacket.survives₁
   · simpa [h] using C.second.uPacket.survives₁
 
+/-- Frontier live-closure theorem. -/
 theorem deleted_survives_vBlocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1098,6 +1109,7 @@ theorem deleted_survives_vBlocker
   · simpa [h] using C.first.vPacket.survives₁
   · simpa [h] using C.second.vPacket.survives₁
 
+/-- Frontier live-closure theorem. -/
 theorem reverse_survives_of_not_mem_commonRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1165,6 +1177,7 @@ inductive B1ContinuationCase
         (D.A.erase (b1EscapeBlocker C P.escape.source))
         (b1CommonBlocker C))
 
+/-- Frontier live-closure theorem. -/
 private theorem b1_four_mem_card_four_split
     {α : Type*}
     {K : Finset α} {q a b c d : α}

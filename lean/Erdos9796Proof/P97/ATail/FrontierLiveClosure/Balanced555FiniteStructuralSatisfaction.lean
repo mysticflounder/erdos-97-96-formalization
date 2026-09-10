@@ -22,6 +22,7 @@ namespace Balanced555FiniteFormula
 
 open Census554.CoverCnf
 
+/-- Frontier live-closure theorem. -/
 private theorem combinations_mem_source {xs selection : List α} {count : Nat}
     (hselection : selection ∈ combinations xs count) :
     ∀ value ∈ selection, value ∈ xs := by
@@ -50,6 +51,7 @@ private theorem combinations_mem_source {xs selection : List α} {count : Nat}
           · intro value hvalue
             exact List.mem_cons_of_mem head (ih hselection value hvalue)
 
+/-- Frontier live-closure theorem. -/
 private theorem combinations_length {xs selection : List α} {count : Nat}
     (hselection : selection ∈ combinations xs count) :
     selection.length = count := by
@@ -67,6 +69,7 @@ private theorem combinations_length {xs selection : List α} {count : Nat}
           · simp [ih hrest]
           · exact ih hselection
 
+/-- Frontier live-closure theorem. -/
 private theorem combinations_nodup {xs selection : List α} {count : Nat}
     (hxs : xs.Nodup) (hselection : selection ∈ combinations xs count) :
     selection.Nodup := by
@@ -93,6 +96,7 @@ private theorem combinations_nodup {xs selection : List α} {count : Nat}
               ⟨fun hmem ↦ hhead (combinations_mem_source hrest head hmem), ih htail hrest⟩
           · exact ih htail hselection
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_mem_not_mem_of_card_lt_length
     {selection : List α} {chosen : Finset α}
     (hnodup : selection.Nodup) (hcard : chosen.card < selection.length) :
@@ -104,6 +108,7 @@ private theorem exists_mem_not_mem_of_card_lt_length
     Finset.exists_mem_notMem_of_card_lt_card hcard'
   exact ⟨value, by simpa using hselection, hchosen⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_common_mem_of_card_lt_add [DecidableEq α]
     {selection : List α} {chosen ambient : Finset α}
     (hnodup : selection.Nodup)
@@ -125,6 +130,7 @@ private theorem exists_common_mem_of_card_lt_add [DecidableEq α]
     List.toFinset_card_of_nodup hnodup] at hle
   omega
 
+/-- Frontier live-closure theorem. -/
 private theorem configurationValuation_rowVariable_eq_true_iff
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point) :
@@ -133,6 +139,7 @@ private theorem configurationValuation_rowVariable_eq_true_iff
   exact (configurationValuation_eq_true_iff configuration _).trans
     (configurationAtom_rowVariable configuration center point hne)
 
+/-- Frontier live-closure theorem. -/
 private theorem evalLitD_positive_row_eq_true
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point) (hmem : point ∈ configuration.selectedAt center) :
@@ -143,6 +150,7 @@ private theorem evalLitD_positive_row_eq_true
   have hpositive : 0 < rowVariable center point := rowVariable_pos center point
   simp [evalLitD, positiveLiteral, hvalue, hpositive]
 
+/-- Frontier live-closure theorem. -/
 private theorem evalLitD_negative_row_eq_true
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point) (hnotMem : point ∉ configuration.selectedAt center) :
@@ -154,18 +162,21 @@ private theorem evalLitD_negative_row_eq_true
         configuration center point hne).1 htrue)
   simp [evalLitD, negativeLiteral, hvalue]
 
+/-- Frontier live-closure theorem. -/
 private theorem evalLitD_positive_atom_eq_true
     (configuration : Balanced555FiniteConfiguration) (atom : Nat)
     (hpositive : 0 < atom) (hvalue : configurationValuation configuration atom = true) :
     evalLitD (configurationValuation configuration) (positiveLiteral atom) = true := by
   simp [evalLitD, positiveLiteral, hpositive, hvalue]
 
+/-- Frontier live-closure theorem. -/
 private theorem evalLitD_negative_atom_eq_true
     (configuration : Balanced555FiniteConfiguration) (atom : Nat)
     (hvalue : configurationValuation configuration atom = false) :
     evalLitD (configurationValuation configuration) (negativeLiteral atom) = true := by
   simp [evalLitD, negativeLiteral, hvalue]
 
+/-- Frontier live-closure theorem. -/
 private theorem evalClauseD_of_literal
     (configuration : Balanced555FiniteConfiguration) {clause : List Int} {literal : Int}
     (hmem : literal ∈ clause)
@@ -174,20 +185,24 @@ private theorem evalClauseD_of_literal
   rw [evalClauseD, List.any_eq_true]
   exact ⟨literal, hmem, hliteral⟩
 
+/-- Frontier live-closure def. -/
 private def roleSelected (orientation : Balanced555Orientation)
     (deleted retained third : Fin 12) (index : Fin 6) : Prop :=
   (roleTriples orientation)[index.val]? = some (deleted, retained, third)
 
+/-- Frontier live-closure def. -/
 private def middleSelected (orientation : Balanced555Orientation)
     (middle : Fin 12) (index : Fin 10) : Prop :=
   (middleLabels orientation)[index.val]? = some middle
 
+/-- Frontier live-closure instance. -/
 private instance roleSelectedDecidable (orientation : Balanced555Orientation)
     (deleted retained third : Fin 12) (index : Fin 6) :
     Decidable (roleSelected orientation deleted retained third index) := by
   unfold roleSelected
   infer_instance
 
+/-- Frontier live-closure instance. -/
 private instance middleSelectedDecidable (orientation : Balanced555Orientation)
     (middle : Fin 12) (index : Fin 10) :
     Decidable (middleSelected orientation middle index) := by
@@ -235,6 +250,7 @@ private theorem middleSelected_unique :
   intro orientation
   cases orientation <;> native_decide
 
+/-- Frontier live-closure theorem. -/
 private theorem configurationValuation_roleSelector_iff
     (configuration : Balanced555FiniteConfiguration) (index : Fin 6) :
     configurationValuation configuration (133 + index.val) = true ↔
@@ -253,6 +269,7 @@ private theorem configurationValuation_roleSelector_iff
       rcases triple with ⟨deleted, ⟨retained, third⟩⟩
       simp [eq_comm]
 
+/-- Frontier live-closure theorem. -/
 private theorem configurationValuation_middleSelector_iff
     (configuration : Balanced555FiniteConfiguration) (index : Fin 10) :
     configurationValuation configuration (139 + index.val) = true ↔
@@ -274,6 +291,7 @@ private theorem configurationValuation_middleSelector_iff
       · intro h
         exact (Option.some.inj h).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem roleSelectorTotalityClause_eval
     (configuration : Balanced555FiniteConfiguration) :
     evalClauseD (configurationValuation configuration)
@@ -286,6 +304,7 @@ private theorem roleSelectorTotalityClause_eval
     (List.mem_map.mpr ⟨index.val, List.mem_range.mpr index.isLt, rfl⟩)
   exact evalLitD_positive_atom_eq_true configuration (133 + index.val) (by omega) hvalue
 
+/-- Frontier live-closure theorem. -/
 private theorem middleSelectorTotalityClause_eval
     (configuration : Balanced555FiniteConfiguration) :
     evalClauseD (configurationValuation configuration)
@@ -298,6 +317,7 @@ private theorem middleSelectorTotalityClause_eval
     (List.mem_map.mpr ⟨index.val, List.mem_range.mpr index.isLt, rfl⟩)
   exact evalLitD_positive_atom_eq_true configuration (139 + index.val) (by omega) hvalue
 
+/-- Frontier live-closure theorem. -/
 private theorem roleSelectorPairClause_eval
     (configuration : Balanced555FiniteConfiguration) (first second : Nat)
     (hfirst : first ∈ List.range 6) (hsecond : second ∈ List.range first) :
@@ -334,6 +354,7 @@ private theorem roleSelectorPairClause_eval
       (literal := negativeLiteral (133 + first)) (by simp)
     exact evalLitD_negative_atom_eq_true configuration (133 + first) hfalse
 
+/-- Frontier live-closure theorem. -/
 private theorem middleSelectorPairClause_eval
     (configuration : Balanced555FiniteConfiguration) (first second : Nat)
     (hfirst : first ∈ List.range 10) (hsecond : second ∈ List.range first) :
@@ -367,6 +388,7 @@ private theorem middleSelectorPairClause_eval
       (literal := negativeLiteral (139 + first)) (by simp)
     exact evalLitD_negative_atom_eq_true configuration (139 + first) hfalse
 
+/-- Frontier live-closure theorem. -/
 private theorem rowCardAtMostClause_eval
     (configuration : Balanced555FiniteConfiguration) (center : Fin 12)
     (selection : List (Fin 12))
@@ -389,6 +411,7 @@ private theorem rowCardAtMostClause_eval
   apply evalClauseD_of_literal configuration (List.mem_map.mpr ⟨point, hpoint, rfl⟩)
   exact evalLitD_negative_row_eq_true configuration center point hcandidate.2.symm hpointNotMem
 
+/-- Frontier live-closure theorem. -/
 private theorem rowCardAtLeastClause_eval
     (configuration : Balanced555FiniteConfiguration) (center : Fin 12)
     (selection : List (Fin 12))
@@ -425,6 +448,7 @@ private theorem rowCardAtLeastClause_eval
   apply evalClauseD_of_literal configuration (List.mem_map.mpr ⟨point, hpoint, rfl⟩)
   exact evalLitD_positive_row_eq_true configuration center point hcandidate.2.symm hpointMem
 
+/-- Frontier live-closure theorem. -/
 private theorem boundaryCap_eq_closedCap
     (orientation : Balanced555Orientation) (cap : List (Fin 12))
     (hcap : cap ∈ boundaryCaps) :
@@ -443,11 +467,13 @@ private theorem boundaryCap_eq_closedCap
       · exact ⟨0, by decide⟩
       · exact ⟨2, by decide⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem boundaryCap_nodup (cap : List (Fin 12)) (hcap : cap ∈ boundaryCaps) :
     cap.Nodup := by
   simp only [boundaryCaps, List.mem_cons, List.not_mem_nil, or_false] at hcap
   rcases hcap with rfl | rfl | rfl <;> decide
 
+/-- Frontier live-closure theorem. -/
 private theorem capUpperClause_eval
     (configuration : Balanced555FiniteConfiguration) (cap : List (Fin 12))
     (center : Fin 12) (hcap : cap ∈ boundaryCaps) (hcenter : center ∈ cap)
@@ -483,12 +509,14 @@ private theorem capUpperClause_eval
   apply evalClauseD_of_literal configuration (List.mem_map.mpr ⟨point, hpoint, rfl⟩)
   exact evalLitD_negative_row_eq_true configuration center point hcandidate.2.symm hpointNotMem
 
+/-- Frontier live-closure def. -/
 private def apexInteriorPairs (orientation : Balanced555Orientation) :
     List (Fin 12 × List (Fin 12)) :=
   [ (0, surplusInterior),
     (orientation.firstApex, firstInterior orientation),
     (orientation.secondApex, secondInterior orientation) ]
 
+/-- Frontier live-closure theorem. -/
 private theorem apexInteriorPair_index
     (orientation : Balanced555Orientation) (center : Fin 12) (interior : List (Fin 12))
     (hpair : (center, interior) ∈ apexInteriorPairs orientation) :
@@ -511,11 +539,13 @@ private theorem apexInteriorPair_index
       · exact ⟨1, rfl, by decide⟩
       · exact ⟨2, rfl, by decide⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem strictInterior_card
     (orientation : Balanced555Orientation) (apexIndex : Fin 3) :
     (orientation.strictInterior apexIndex).card = 3 := by
   cases orientation <;> fin_cases apexIndex <;> decide
 
+/-- Frontier live-closure theorem. -/
 private theorem apexInteriorPair_nodup
     (orientation : Balanced555Orientation) (center : Fin 12) (interior : List (Fin 12))
     (hpair : (center, interior) ∈ apexInteriorPairs orientation) : interior.Nodup := by
@@ -525,6 +555,7 @@ private theorem apexInteriorPair_nodup
     rcases hpair with hpair | hpair | hpair <;>
       simp only [Prod.mk.injEq] at hpair <;> rcases hpair with ⟨rfl, rfl⟩ <;> decide
 
+/-- Frontier live-closure theorem. -/
 private theorem apexOppositeInteriorClause_eval
     (configuration : Balanced555FiniteConfiguration) (center : Fin 12)
     (interior selection : List (Fin 12))
@@ -606,6 +637,7 @@ private theorem apex_not_mem_own_closedCap
     orientation.apex apexIndex ∉ orientation.closedCap apexIndex := by
   cases orientation <;> fin_cases apexIndex <;> decide
 
+/-- Frontier live-closure theorem. -/
 private theorem apexAdjacentCapClause_eval
     (configuration : Balanced555FiniteConfiguration) (apexIndex : Fin 3)
     (cap selection : List (Fin 12))

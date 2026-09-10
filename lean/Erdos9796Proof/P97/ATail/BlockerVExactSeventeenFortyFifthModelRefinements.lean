@@ -21,6 +21,7 @@ open ATailBlockerVExactSeventeenFortyFourthModelRefinements
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev Hit := Label × Label
 
 /-- The three positive positional rows in the authenticated order-one witness. -/
@@ -69,6 +70,7 @@ def child45ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (3, 11), right := (3, 12),
           path := ⟨(3, 11), [.row 3 11 12], (3, 12)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def child45Occurrence : WeightedSourceOccurrence :=
   { hits := child45Hits
     forwardChoices := child45ForwardChoices
@@ -76,19 +78,23 @@ def child45Occurrence : WeightedSourceOccurrence :=
     forwardData := child45ForwardData
     reverseData := child45ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem child45Occurrence_check : child45Occurrence.check = true := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fortyFifthModelRefinementClauses : Std.Sat.CNF Atom :=
   [child45Occurrence].flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>
         weightedOccurrenceClause order direction occurrence
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortyFifthModelRefinementClauses_length :
     fortyFifthModelRefinementClauses.length = 4 := by
   simp [fortyFifthModelRefinementClauses, namedOrders, directions]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fortyFifthModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyFifthModelRefinementClauses,
@@ -101,15 +107,18 @@ theorem sourceAssign_fortyFifthModelRefinementClauses
   exact sourceAssign_weightedOccurrenceClause source child45Occurrence
     child45Occurrence_check order direction
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedFortyFifthModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedFortyFourthModelRefinementsCnf ++ fortyFifthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedFortyFifthModelRefinementsCnf_length :
     extendedFortyFifthModelRefinementsCnf.length = 5848828 := by
   simp only [extendedFortyFifthModelRefinementsCnf, List.length_append,
     extendedFortyFourthModelRefinementsCnf_length,
     fortyFifthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedFortyFifthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -123,6 +132,7 @@ theorem sourceAssign_extendedFortyFifthModelRefinementsCnf
     exact h clause hparent
   · exact sourceAssign_fortyFifthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyFifthModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

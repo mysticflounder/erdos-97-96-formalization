@@ -56,6 +56,7 @@ def AllOrderCommonFiveData.sideConditions (data : AllOrderCommonFiveData) :
     data.y ≠ data.a ∧ data.y ≠ data.b ∧
     data.c ≠ data.b ∧ data.c ≠ data.x ∧ data.c ≠ data.y
 
+/-- Frontier live-closure instance. -/
 instance instDecidableAllOrderCommonFiveSideConditions
     (data : AllOrderCommonFiveData) : Decidable data.sideConditions := by
   unfold AllOrderCommonFiveData.sideConditions
@@ -76,6 +77,7 @@ def CorePairCommonFiveData.rolesValid (data : CorePairCommonFiveData) : Prop :=
       data.left.a data.left.x data.left.b data.left.c data.left.y
       data.right.a data.right.x data.right.b data.right.c data.right.y = true
 
+/-- Frontier live-closure instance. -/
 instance instDecidableCorePairCommonFiveRolesValid
     (data : CorePairCommonFiveData) : Decidable data.rolesValid := by
   unfold CorePairCommonFiveData.rolesValid

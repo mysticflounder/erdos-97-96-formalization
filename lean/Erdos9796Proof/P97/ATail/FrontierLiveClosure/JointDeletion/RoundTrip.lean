@@ -241,17 +241,22 @@ def rebase (C : JointDeletionCore D L) (L' : CriticalShellSystem D.A)
 variable (C : JointDeletionCore D L) (L' : CriticalShellSystem D.A)
   (hcenter : L'.centerAt C.source.1 C.source.2 = C.sourceBlocker)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem rebase_source : (C.rebase L' hcenter).source = C.source := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem rebase_sourceBlocker :
     (C.rebase L' hcenter).sourceBlocker = C.sourceBlocker := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem rebase_deleted :
     (C.rebase L' hcenter).deleted = C.deleted := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem rebase_fixedSurvivals :
     (C.rebase L' hcenter).fixedSurvivals = C.fixedSurvivals := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem rebase_fixedOmissions :
     (C.rebase L' hcenter).fixedOmissions = C.fixedOmissions := rfl
 
@@ -321,16 +326,19 @@ noncomputable def JointDeletionCore.toLateChoice
       (chooseCriticalShellSystem D.K4 Rel (C.blockerPreference Rel)) :=
   C.rebase _ (chooseCriticalShellSystem_centerAt_blockerPreference C Rel)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem JointDeletionCore.toLateChoice_source
     {D : CounterexampleData} {L : CriticalShellSystem D.A}
     (C : JointDeletionCore D L) (Rel : CanonicalBlockerRelation D.A) :
     (C.toLateChoice Rel).source = C.source := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem JointDeletionCore.toLateChoice_sourceBlocker
     {D : CounterexampleData} {L : CriticalShellSystem D.A}
     (C : JointDeletionCore D L) (Rel : CanonicalBlockerRelation D.A) :
     (C.toLateChoice Rel).sourceBlocker = C.sourceBlocker := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem JointDeletionCore.toLateChoice_deleted
     {D : CounterexampleData} {L : CriticalShellSystem D.A}
     (C : JointDeletionCore D L) (Rel : CanonicalBlockerRelation D.A) :
@@ -366,6 +374,7 @@ def transport {A : Finset ℝ²} {Rel : CanonicalBlockerRelation A}
           (Rel.isCanonicalBlocker_of_blocks hsource hblocks)⟩
     · exact Or.inr hnone
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem transport_preferred {A : Finset ℝ²}
     {Rel : CanonicalBlockerRelation A} (pref : BlockerPreference Rel)
     (Rel' : CanonicalBlockerRelation A) :
@@ -608,20 +617,24 @@ theorem ofExtension_toExtension
 variable (C : JointDeletionCore D (lateFirstApexSystem R))
   (E : ExactFourMutualOmissionExtension C rho v)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_ofExtension_source :
     (exactFourMutualOmissionJointDeletion_ofExtension C
         E).toJointDeletionCore.source = C.source := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_ofExtension_deleted :
     (exactFourMutualOmissionJointDeletion_ofExtension C
         E).toJointDeletionCore.deleted = C.deleted := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_ofExtension_fixedSurvivals :
     (exactFourMutualOmissionJointDeletion_ofExtension C
         E).toJointDeletionCore.fixedSurvivals =
       {S.oppApex2, (lateFirstApexSystem R).centerAt C.source.1 C.source.2,
         (lateFirstApexSystem R).centerAt v.1 v.2} := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_ofExtension_fixedOmissions :
     (exactFourMutualOmissionJointDeletion_ofExtension C
         E).toJointDeletionCore.fixedOmissions = {C.deleted.1} := rfl
@@ -726,6 +739,7 @@ def ExactFourMutualOmissionJointDeletion.swap
   uPacket := K.vPacket
   vPacket := K.uPacket
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem ExactFourMutualOmissionJointDeletion.swap_deleted
     (K : ExactFourMutualOmissionJointDeletion R rho u v) :
     K.swap.deleted = K.deleted := rfl
@@ -875,6 +889,7 @@ def ExactFourMutualOmissionSourceContext.jointDeletionCore
     subst hz
     exact hctx.other_not_mem_source_row
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem ExactFourMutualOmissionSourceContext.jointDeletionCore_source
     {source other : CriticalShellSystem.CarrierVertex D.A}
     (hctx : ExactFourMutualOmissionSourceContext R rho source other u v)
@@ -884,6 +899,7 @@ def ExactFourMutualOmissionSourceContext.jointDeletionCore
     (hctx.jointDeletionCore fixedSurvivals hsubset hsurvives).source = source :=
   rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem ExactFourMutualOmissionSourceContext.jointDeletionCore_deleted
     {source other : CriticalShellSystem.CarrierVertex D.A}
     (hctx : ExactFourMutualOmissionSourceContext R rho source other u v)
@@ -926,6 +942,7 @@ def SameRadiusJointDeletion.ofJointDeletionCore (C : JointDeletionCore D L)
   deleted_mem_class := hdeleted
   apex_mem_fixedSurvivals := hapex
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem SameRadiusJointDeletion.ofJointDeletionCore_toJointDeletionCore
     (C : JointDeletionCore D L) (radius : ℝ) (hradius : 0 < radius)
     (hsource : C.source.1 ∈ SelectedClass D.A apex radius)
@@ -961,6 +978,7 @@ def CrossRadiusJointDeletion.ofJointDeletionCore (C : JointDeletionCore D L)
   deleted_mem_deletedClass := hdeleted
   apex_mem_fixedSurvivals := hapex
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem CrossRadiusJointDeletion.ofJointDeletionCore_toJointDeletionCore
     (C : JointDeletionCore D L) (sourceRadius : ℝ)
     (hsourceRadius : 0 < sourceRadius) (deletedRadius : ℝ)
@@ -980,11 +998,13 @@ theorem CrossRadiusJointDeletion.ofJointDeletionCore_eta
         J.deletedRadius_pos J.radii_ne J.source_mem_sourceClass
         J.deleted_mem_deletedClass J.apex_mem_fixedSurvivals = J := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem ApexRadiusMode.toJointDeletionCore_sameRadius
     (J : SameRadiusJointDeletion D L apex) :
     (ApexRadiusMode.sameRadius J).toJointDeletionCore =
       J.toJointDeletionCore := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem ApexRadiusMode.toJointDeletionCore_crossRadius
     (J : CrossRadiusJointDeletion D L apex) :
     (ApexRadiusMode.crossRadius J).toJointDeletionCore =
@@ -1464,21 +1484,25 @@ variable (C : JointDeletionCore D (lateFirstApexSystem R))
   (hsurvives : ∀ c ∈ fixedSurvivals,
     HasNEquidistantPointsAt 4 (D.A.erase C.deleted.1) c)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem jointDeletionCoreWide_ofCoreExtension_source :
     ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
         hv).jointDeletionCoreWide fixedSurvivals hsubset hsurvives).source =
       C.source := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem jointDeletionCoreWide_ofCoreExtension_deleted :
     ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
         hv).jointDeletionCoreWide fixedSurvivals hsubset hsurvives).deleted =
       C.deleted := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem jointDeletionCoreWide_ofCoreExtension_fixedSurvivals :
     ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
         hv).jointDeletionCoreWide fixedSurvivals hsubset
       hsurvives).fixedSurvivals = fixedSurvivals := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem jointDeletionCoreWide_ofCoreExtension_fixedOmissions :
     ((exactFourMutualOmissionSourceContext_ofCoreExtension C E
         hv).jointDeletionCoreWide fixedSurvivals hsubset

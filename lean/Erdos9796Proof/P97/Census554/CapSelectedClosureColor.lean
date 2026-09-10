@@ -27,9 +27,11 @@ open CapSelectedFiniteCode
 def edgeIndex (edge : Edge Label) : Nat :=
   edge.1.val * 11 + edge.2.val
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem edgeIndex_pair (left right : Label) :
     edgeIndex (left, right) = left.val * 11 + right.val := rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem edgeIndex_lt_121 (edge : Edge Label) : edgeIndex edge < 121 := by
   rcases edge with ⟨left, right⟩
   have hleft := left.isLt
@@ -37,6 +39,7 @@ private theorem edgeIndex_lt_121 (edge : Edge Label) : edgeIndex edge < 121 := b
   simp only [edgeIndex]
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem edgeIndex_injective : Function.Injective edgeIndex := by
   rintro ⟨left₁, right₁⟩ ⟨left₂, right₂⟩ hindex
   change left₁.val * 11 + right₁.val =
@@ -49,11 +52,13 @@ private theorem edgeIndex_injective : Function.Injective edgeIndex := by
   have hright : right₁.val = right₂.val := by omega
   exact Prod.ext (Fin.ext hleft) (Fin.ext hright)
 
+/-- Census-554 certificate-bank def. -/
 private def IsClassIndex (P : RowPattern Label) (edge : Edge Label)
     (index : Nat) : Prop :=
   ∃ representative : Edge Label,
     edgeIndex representative = index ∧ EdgeClosure P representative edge
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem classIndex_exists (P : RowPattern Label) (edge : Edge Label) :
     ∃ index, IsClassIndex P edge index :=
   ⟨edgeIndex edge, edge, rfl, EdgeClosure.refl edge⟩
@@ -64,11 +69,13 @@ private noncomputable def canonicalIndex (P : RowPattern Label)
   classical
   exact Nat.find (classIndex_exists P edge)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem canonicalIndex_spec (P : RowPattern Label) (edge : Edge Label) :
     IsClassIndex P edge (canonicalIndex P edge) := by
   classical
   simpa [canonicalIndex] using Nat.find_spec (classIndex_exists P edge)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem canonicalIndex_le_of_isClassIndex
     {P : RowPattern Label} {edge : Edge Label} {index : Nat}
     (hindex : IsClassIndex P edge index) : canonicalIndex P edge ≤ index := by
@@ -76,6 +83,7 @@ private theorem canonicalIndex_le_of_isClassIndex
   simpa [canonicalIndex] using
     Nat.find_min' (classIndex_exists P edge) hindex
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem isClassIndex_transport
     {P : RowPattern Label} {left right : Edge Label} {index : Nat}
     (hclosure : EdgeClosure P left right)
@@ -83,6 +91,7 @@ private theorem isClassIndex_transport
   rcases hindex with ⟨representative, hrepresentative, hleft⟩
   exact ⟨representative, hrepresentative, hleft.trans hclosure⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem canonicalIndex_eq_of_edgeClosure
     {P : RowPattern Label} {left right : Edge Label}
     (hclosure : EdgeClosure P left right) :
@@ -93,11 +102,13 @@ private theorem canonicalIndex_eq_of_edgeClosure
   · apply canonicalIndex_le_of_isClassIndex
     exact isClassIndex_transport hclosure (canonicalIndex_spec P left)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem canonicalIndex_le_edgeIndex (P : RowPattern Label)
     (edge : Edge Label) : canonicalIndex P edge ≤ edgeIndex edge := by
   apply canonicalIndex_le_of_isClassIndex
   exact ⟨edge, rfl, EdgeClosure.refl edge⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem canonicalIndex_lt_128 (P : RowPattern Label)
     (edge : Edge Label) : canonicalIndex P edge < 128 :=
   (canonicalIndex_le_edgeIndex P edge).trans_lt
@@ -108,6 +119,7 @@ is the least row-major edge index occurring in the class. -/
 noncomputable def color (P : RowPattern Label) : EdgeColor := fun edge =>
   BitVec.ofNat 7 (canonicalIndex P edge)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem canonicalIndex_eq_of_colorEq
     {P : RowPattern Label} {left right : Edge Label}
     (h : ColorEq (color P) left right) :

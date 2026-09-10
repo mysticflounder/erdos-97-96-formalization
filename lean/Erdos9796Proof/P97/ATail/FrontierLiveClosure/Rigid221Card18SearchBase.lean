@@ -181,6 +181,7 @@ theorem BaseVar.toNat_injective (a : SearchArm) :
 def BaseVar.ofNat? (a : SearchArm) (n : Nat) : Option (BaseVar a) :=
   if h : n < baseVarCount a then some ((baseVarEquiv a).symm ⟨n, h⟩) else none
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem BaseVar.ofNat?_toNat {a : SearchArm} (v : BaseVar a) :
     BaseVar.ofNat? a v.toNat = some v := by
   rw [BaseVar.ofNat?, dif_pos v.toNat_lt]
@@ -197,6 +198,7 @@ def encodeBase {a : SearchArm} (p : PacketOfArm a) (n : Nat) : Bool :=
   | some v => p.evalBaseVar v
   | none => false
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeBase_toNat {a : SearchArm} (p : PacketOfArm a) (v : BaseVar a) :
     encodeBase p v.toNat = p.evalBaseVar v := by
   rw [encodeBase, BaseVar.ofNat?_toNat]
@@ -222,16 +224,19 @@ private def labelFintypeNoChoice : Fintype Label where
     change l ∈ allLabels
     exact List.mem_finRange l
 
+/-- Frontier live-closure def. -/
 private def finFintypeFromNodup (n : Nat) (h : (List.finRange n).Nodup) :
     Fintype (Fin n) where
   elems := ⟨List.finRange n, h⟩
   complete := List.mem_finRange
 
+/-- Frontier live-closure def. -/
 private def roleFintypeNoChoice (a : SearchArm) : Fintype (Role a) :=
   match a with
   | .bi => finFintypeFromNodup 10 (by decide)
   | .u | .xv => finFintypeFromNodup 11 (by decide)
 
+/-- Frontier live-closure def. -/
 private def supportFintypeNoChoice (a : SearchArm) : Fintype (Support a) :=
   match a with
   | .bi => finFintypeFromNodup 6 (by decide)
@@ -259,6 +264,7 @@ def roleOneHot (a : SearchArm) (r : Role a) : Std.Sat.CNF Nat :=
 def RoleExactlyOne (a : SearchArm) (r : Role a) (sigma : Nat → Bool) : Prop :=
   ∃! l : Label, sigma (roleBit a r l) = true
 
+/-- Frontier live-closure theorem. -/
 private theorem rolePositiveClause_eval_iff (a : SearchArm) (r : Role a)
     (sigma : Nat → Bool) :
     Std.Sat.CNF.Clause.eval sigma (rolePositiveClause a r) = true ↔
@@ -273,6 +279,7 @@ private theorem rolePositiveClause_eval_iff (a : SearchArm) (r : Role a)
     · exact List.mem_map.mpr ⟨l, List.mem_finRange l, rfl⟩
     · simpa using hl
 
+/-- Frontier live-closure theorem. -/
 private theorem rolePairClause_eval_iff (a : SearchArm) (r : Role a)
     (sigma : Nat → Bool) (l m : Label) :
     Std.Sat.CNF.Clause.eval sigma
@@ -280,6 +287,7 @@ private theorem rolePairClause_eval_iff (a : SearchArm) (r : Role a)
       sigma (roleBit a r l) = false ∨ sigma (roleBit a r m) = false := by
   simp [Std.Sat.CNF.Clause.eval]
 
+/-- Frontier live-closure theorem. -/
 private theorem rolePairClauses_eval_iff (a : SearchArm) (r : Role a)
     (sigma : Nat → Bool) :
     Std.Sat.CNF.eval sigma (rolePairClauses a r) = true ↔
@@ -328,6 +336,7 @@ theorem roleOneHot_eval_iff (a : SearchArm) (r : Role a) (sigma : Nat → Bool) 
     by_contra hy
     exact hxy ((hunique x hx).trans (hunique y (Bool.eq_true_of_not_eq_false hy)).symm)
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_flatMap (sigma : Nat → Bool) (xs : List α)
     (f : α → Std.Sat.CNF Nat) :
     Std.Sat.CNF.eval sigma (xs.flatMap f) = xs.all fun x ↦ Std.Sat.CNF.eval sigma (f x) := by
@@ -374,6 +383,7 @@ theorem encodeBase_wellFormed {a : SearchArm} (p : PacketOfArm a) :
   simp only [encodeBase_roleBit, decide_eq_true_eq] at hl
   exact hl.symm
 
+/-- Frontier live-closure theorem. -/
 private theorem find?_eq_none_implies_false {n : Nat} {p : Fin n → Bool}
     (h : Fin.find? p = none) (i : Fin n) : p i = false := by
   induction n with
@@ -388,6 +398,7 @@ private theorem find?_eq_none_implies_false {n : Nat} {p : Fin n → Bool}
           | some k => simp [hp, ht] at h
       | true => simp [hp] at h
 
+/-- Frontier live-closure theorem. -/
 private theorem find?_eq_some_implies_true {n : Nat} {p : Fin n → Bool}
     {i : Fin n} (h : Fin.find? p = some i) : p i = true := by
   induction n with
@@ -425,6 +436,7 @@ private def selectedLabel {a : SearchArm} {sigma : Nat → Bool} (r : Role a)
   (Fin.find? fun l : Label ↦ sigma (roleBit a r l)).get
     (selectedLabelScan_isSome r h)
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedLabel_isTrue {a : SearchArm} {sigma : Nat → Bool} (r : Role a)
     (h : RoleExactlyOne a r sigma) : sigma (roleBit a r (selectedLabel r h)) = true := by
   simpa only [selectedLabel] using
@@ -434,6 +446,7 @@ private theorem selectedLabel_isTrue {a : SearchArm} {sigma : Nat → Bool} (r :
         (selectedLabelScan_isSome r h))
       (Option.some_get _).symm)
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedLabel_unique {a : SearchArm} {sigma : Nat → Bool} (r : Role a)
     (h : RoleExactlyOne a r sigma) (l : Label) (hl : sigma (roleBit a r l) = true) :
     l = selectedLabel r h := by
@@ -442,6 +455,7 @@ private theorem selectedLabel_unique {a : SearchArm} {sigma : Nat → Bool} (r :
     (hunique (selectedLabel r ⟨w, hw, hunique⟩)
       (selectedLabel_isTrue r ⟨w, hw, hunique⟩)).symm
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedLabel_decide_eq {a : SearchArm} {sigma : Nat → Bool} (r : Role a)
     (h : RoleExactlyOne a r sigma) (l : Label) :
     decide (selectedLabel r h = l) = sigma (roleBit a r l) := by
@@ -462,6 +476,7 @@ private def decodedSupport (a : SearchArm) (sigma : Nat → Bool) (s : Support a
   letI : Fintype Label := labelFintypeNoChoice
   Finset.univ.filter fun l ↦ sigma (supportBit a s l) = true
 
+/-- Frontier live-closure def. -/
 private def decodedCommonRoles (getRole : Fin 10 → Label) :
     Rigid221Card18AbstractCommonRoles where
   physical := {
@@ -479,6 +494,7 @@ private def decodedCommonRoles (getRole : Fin 10 → Label) :
     actualCenter2 := getRole 9
   }
 
+/-- Frontier live-closure def. -/
 private def decodedCommonData (getRole : Fin 10 → Label)
     (getSupport : Fin 2 → Finset Label) : Rigid221Card18AbstractCommonData where
   roles := decodedCommonRoles getRole
@@ -544,6 +560,7 @@ def decodeBase {a : SearchArm} {sigma : Nat → Bool} (h : baseWellFormed a sigm
   cases a <;> fin_cases s <;>
     simp [decodeBase, decodedCommonData, decodedSupport, PacketOfArm.support]
 
+/-- Frontier live-closure theorem. -/
 private theorem biPacket_ext {p q : PacketOfArm .bi}
     (hrole : ∀ r : Fin 10, p.role r = q.role r)
     (hsupport : ∀ s : Fin 6, p.support s = q.support s) :
@@ -593,6 +610,7 @@ private theorem biPacket_ext {p q : PacketOfArm .bi}
   cases s0; cases s1; cases s2; cases s3; cases s4; cases s5
   rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem crossedPacket_ext {p q : Rigid221Card18AbstractCommonData ×
     Rigid221Card18AbstractCrossedData}
     (hrole : ∀ r : Fin 11, crossedRole p.1 p.2 r = crossedRole q.1 q.2 r)

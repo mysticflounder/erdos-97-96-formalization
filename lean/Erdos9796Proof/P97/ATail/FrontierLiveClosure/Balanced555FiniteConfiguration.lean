@@ -143,23 +143,28 @@ structure Balanced555FiniteConfiguration where
       (SurplusCOMPGBank.btw firstCenter secondCenter firstPoint ↔
         ¬ SurplusCOMPGBank.btw firstCenter secondCenter secondPoint)
 
+/-- Frontier live-closure theorem. -/
 private theorem orientation_apex_zero (orientation : Balanced555Orientation) :
     orientation.apex 0 = orientation.surplusApex := by
   cases orientation <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem orientation_apex_two (orientation : Balanced555Orientation) :
     orientation.apex 2 = orientation.secondApex := by
   cases orientation <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem orientation_strictInterior_one (orientation : Balanced555Orientation) :
     orientation.strictInterior 1 = orientation.firstInterior := by
   cases orientation <;> rfl
 
+/-- Frontier live-closure def. -/
 private def sourceCapIndex {A : Finset ℝ²} (S : SurplusCapPacket A) : Fin 3 → Fin 3
   | 0 => S.surplusIdx
   | 1 => S.oppIndex1
   | 2 => S.oppIndex2
 
+/-- Frontier live-closure theorem. -/
 private theorem sourceCapIndex_injective {A : Finset ℝ²} (S : SurplusCapPacket A) :
     Function.Injective (sourceCapIndex S) := by
   intro i j hij
@@ -174,6 +179,7 @@ private theorem sourceCapIndex_injective {A : Finset ℝ²} (S : SurplusCapPacke
   · exact (S.oppIndex1_ne_oppIndex2 hij.symm).elim
   · rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem capByIndex_eq_insert_outer_vertices {A : Finset ℝ²}
     (S : SurplusCapPacket A) (i : Fin 3) :
     S.capByIndex i =
@@ -205,6 +211,7 @@ private theorem capByIndex_eq_insert_outer_vertices {A : Finset ℝ²}
         ⟨S.triangle.v12_ne.symm, S.partition.v2_mem_C3⟩
     rw [Finset.insert_erase hv2, Finset.insert_erase S.partition.v1_mem_C3]
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_insert_of_mem {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Fin 12) {point : ℝ²} (hpoint : point ∈ A)
     (T : Finset ℝ²) :
@@ -224,23 +231,27 @@ private theorem labelsOf_insert_of_mem {A : Finset ℝ²}
       simp
     · exact Or.inr h
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_union {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Fin 12) (U V : Finset ℝ²) :
     labelsOf e (U ∪ V) = labelsOf e U ∪ labelsOf e V := by
   ext label
   simp only [mem_labelsOf_iff, Finset.mem_union]
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_inter {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Fin 12) (U V : Finset ℝ²) :
     labelsOf e (U ∩ V) = labelsOf e U ∩ labelsOf e V := by
   ext label
   simp only [mem_labelsOf_iff, Finset.mem_inter]
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_singleton_of_mem {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Fin 12) {point : ℝ²} (hpoint : point ∈ A) :
     labelsOf e {point} = {e ⟨point, hpoint⟩} := by
   simpa [labelsOf] using labelsOf_insert_of_mem e hpoint (∅ : Finset ℝ²)
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_erase_of_mem {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Fin 12) {point : ℝ²} (hpoint : point ∈ A)
     (T : Finset ℝ²) :
@@ -262,12 +273,14 @@ private theorem labelsOf_erase_of_mem {A : Finset ℝ²}
     rw [e.symm_apply_apply]
     exact Subtype.ext hsource
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_carrier {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Fin 12) : labelsOf e A = Finset.univ := by
   ext label
   simp only [mem_labelsOf_iff, Finset.mem_univ, iff_true]
   exact (e.symm label).2
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_disjoint {A : Finset ℝ²}
     (e : CarrierLabel A ≃ Fin 12) {U V : Finset ℝ²}
     (hdisjoint : Disjoint U V) : Disjoint (labelsOf e U) (labelsOf e V) := by
@@ -276,6 +289,7 @@ private theorem labelsOf_disjoint {A : Finset ℝ²}
   exact hdisjoint (mem_labelsOf_iff e U label |>.mp hU)
     (mem_labelsOf_iff e V label |>.mp hV)
 
+/-- Frontier live-closure theorem. -/
 private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
@@ -284,6 +298,7 @@ private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     simp only [SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppositeVertexByIndex, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -293,6 +308,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -302,6 +318,7 @@ private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem Balanced555BoundaryLabeling.firstApex_label_eq_firstApex
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -318,6 +335,7 @@ private theorem Balanced555BoundaryLabeling.firstApex_label_eq_firstApex
     hsurplusInterior, hfirstInterior⟩
   cases orientation <;> exact hfirstLabel hfirst
 
+/-- Frontier live-closure theorem. -/
 private theorem Balanced555BoundaryLabeling.secondApex_label_eq_secondApex
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -334,6 +352,7 @@ private theorem Balanced555BoundaryLabeling.secondApex_label_eq_secondApex
     hsurplusInterior, hfirstInterior⟩
   cases orientation <;> exact hsecondLabel hsecond
 
+/-- Frontier live-closure theorem. -/
 private theorem Balanced555BoundaryLabeling.firstInterior_labels_eq_firstInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -351,6 +370,7 @@ private theorem Balanced555BoundaryLabeling.firstInterior_labels_eq_firstInterio
     hsurplusInterior, hfirstInterior⟩
   cases orientation <;> exact hfirstInterior
 
+/-- Frontier live-closure theorem. -/
 private theorem Balanced555BoundaryLabeling.secondInterior_labels_eq_secondInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -368,6 +388,7 @@ private theorem Balanced555BoundaryLabeling.secondInterior_labels_eq_secondInter
     hsurplusInterior, hfirstInterior⟩
   cases orientation <;> exact hsecondInterior
 
+/-- Frontier live-closure theorem. -/
 private theorem boundary_apex_label
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -423,6 +444,7 @@ private theorem boundary_apex_label
       _ = Q.boundary.orientation.secondApex :=
         Q.boundary.secondApex_label_eq_secondApex hsecondMem
 
+/-- Frontier live-closure theorem. -/
 private theorem boundary_strictInterior_labels
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -454,6 +476,7 @@ private theorem boundary_strictInterior_labels
         | .mirror => {9, 10, 11}
     exact Q.boundary.secondInterior_labels_eq_secondInterior
 
+/-- Frontier live-closure theorem. -/
 private theorem boundary_closedCap_labels
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -587,6 +610,7 @@ private theorem boundary_closedCap_labels
     rw [houter0, houter1, hinter]
     rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedFourClass_capInteriorByIndex_card_ge_two
     {A : Finset ℝ²} (S : SurplusCapPacket A) (hconv : ConvexIndep A)
     (i : Fin 3) {center : ℝ²} (K : SelectedFourClass A center)
@@ -652,6 +676,7 @@ private theorem selectedFourClass_capInteriorByIndex_card_ge_two
   rw [K.support_card] at hsplit
   omega
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedFourClass_inter_capByIndex_card_le_one
     {A : Finset ℝ²} (S : SurplusCapPacket A) (hconv : ConvexIndep A)
     {center : ℝ²} (K : SelectedFourClass A center) {i j : Fin 3}

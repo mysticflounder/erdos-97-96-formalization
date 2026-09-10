@@ -100,18 +100,21 @@ end B1CardSixPositiveRow
 
 namespace B1CardSixPointConfigurationPayload
 
+/-- Frontier live-closure def. -/
 noncomputable def roleIndex
     (P : B1CardSixLocalRolePacket C)
     (E : B1EscapeRowProvenanceStar C)
     (role : B1CardSixRole) : Fin E.boundary.n :=
   E.boundary.indexOf (B1CardSixRole.value P role)
 
+/-- Frontier live-closure def. -/
 noncomputable def rowCenter
     (P : B1CardSixLocalRolePacket C)
     (E : B1EscapeRowProvenanceStar C)
     (row : B1CardSixPositiveRow) : Fin E.boundary.n :=
   roleIndex P E (B1CardSixPositiveRow.centerRole row)
 
+/-- Frontier live-closure def. -/
 noncomputable def rowMembers
     (P : B1CardSixLocalRolePacket C)
     (E : B1EscapeRowProvenanceStar C)
@@ -119,6 +122,7 @@ noncomputable def rowMembers
   Finset.image E.boundary.indexOf
     (B1CardSixPositiveRow.choice P row).support
 
+/-- Frontier live-closure def. -/
 noncomputable def rowAnchor
     (P : B1CardSixLocalRolePacket C)
     (E : B1EscapeRowProvenanceStar C)
@@ -132,6 +136,7 @@ The structure below is the Lean-side typed core of a native
 that become positive `common_radius` constraints.  The branch fields are
 copied from the source escape record and add no metric assertions.
 -/
+/-- Frontier live-closure structure. -/
 structure Payload
     (P : B1CardSixLocalRolePacket C)
     (hnormal : B1PhysicalClassFiveSixNormalForm C)
@@ -181,6 +186,7 @@ structure Payload
     C.first.deleted.1 ∉ b1EscapeRow C E.escape.source ∨
       C.second.deleted.1 ∉ b1EscapeRow C E.escape.source
 
+/-- Frontier live-closure theorem. -/
 private theorem choice_mem_sourceRowChoices
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow) :
     B1CardSixPositiveRow.choice P row ∈ P.sourceRowChoices := by
@@ -188,6 +194,7 @@ private theorem choice_mem_sourceRowChoices
     simp [B1CardSixPositiveRow.choice,
       B1CardSixLocalRolePacket.sourceRowChoices]
 
+/-- Frontier live-closure theorem. -/
 private theorem anchor_mem_choice
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow) :
     B1CardSixRole.value P (B1CardSixPositiveRow.anchorRole row) ∈
@@ -200,6 +207,7 @@ private theorem anchor_mem_choice
       B1CardSixLocalRolePacket.uRowChoice,
       B1CardSixLocalRolePacket.vRowChoice]
 
+/-- Frontier live-closure theorem. -/
 private theorem center_value_eq_choice_center
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow) :
     B1CardSixRole.value P (B1CardSixPositiveRow.centerRole row) =

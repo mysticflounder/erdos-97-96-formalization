@@ -315,6 +315,7 @@ theorem equalityClosure_semanticRows_sound
   apply foldl_addRowEqualities_semantic_sound centers initialParents
   exact initialParents_sound (rowPattern P)
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem normalizedRoots_size (parents : Array Nat) :
     (normalizedRoots parents).size = 121 := by
   simp [normalizedRoots]
@@ -423,9 +424,11 @@ theorem exists_three_of_three_le_countP
           by simp [hsecond], by simp [hthird], hfirstSecond,
           hfirstThird, hsecondThird, hpfirst, hpsecond, hpthird⟩
 
+/-- Census-554 certificate-bank theorem. -/
 theorem labels_nodup : labels.Nodup := by
   exact List.nodup_range
 
+/-- Census-554 certificate-bank theorem. -/
 theorem lt_eleven_of_mem_labels {value : Nat} (hvalue : value ∈ labels) :
     value < 11 := by
   simpa [labels] using hvalue
@@ -434,6 +437,7 @@ theorem lt_eleven_of_mem_labels {value : Nat} (hvalue : value ∈ labels) :
 def labelOfMem (value : Nat) (hvalue : value ∈ labels) : Label :=
   ⟨value, lt_eleven_of_mem_labels hvalue⟩
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem labelOfMem_val (value : Nat) (hvalue : value ∈ labels) :
     (labelOfMem value hvalue).val = value := rfl
 
@@ -451,11 +455,13 @@ instance (code : Nat) : Decidable (ValidTripleCode code) := by
   infer_instance
 
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem tripleCodes_valid :
     CapSelectedBVRoleBank.tripleCodes.all
       (fun code => decide (ValidTripleCode code)) = true := by
   native_decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem validTripleCode_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.tripleCodes) :
     ValidTripleCode code := by
@@ -464,28 +470,34 @@ theorem validTripleCode_of_mem {code : Nat}
 
 /-- Decoded labels of a valid base-eleven triple code. -/
 def tripleFirstLabel (code : Nat) : Label := Fin.ofNat 11 (code / 121)
+/-- Census-554 certificate-bank def. -/
 def tripleSecondLabel (code : Nat) : Label :=
   Fin.ofNat 11 ((code / 11) % 11)
+/-- Census-554 certificate-bank def. -/
 def tripleThirdLabel (code : Nat) : Label := Fin.ofNat 11 (code % 11)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem tripleFirstLabel_val_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.tripleCodes) :
     (tripleFirstLabel code).val = code / 121 := by
   simp [tripleFirstLabel,
     Nat.mod_eq_of_lt (validTripleCode_of_mem hcode).1]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem tripleSecondLabel_val_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.tripleCodes) :
     (tripleSecondLabel code).val = (code / 11) % 11 := by
   simp [tripleSecondLabel,
     Nat.mod_eq_of_lt (validTripleCode_of_mem hcode).2.1]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem tripleThirdLabel_val_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.tripleCodes) :
     (tripleThirdLabel code).val = code % 11 := by
   simp [tripleThirdLabel,
     Nat.mod_eq_of_lt (validTripleCode_of_mem hcode).2.2.1]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem tripleLabels_pairwise_ne {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.tripleCodes) :
     tripleFirstLabel code ≠ tripleSecondLabel code /\
@@ -644,6 +656,7 @@ theorem exactPinnedOffCircleCore_sound
   · apply edgeClosure_of_semanticRows_edgesEqual centers
     simpa [onCircle, offCircle] using hoff.2
 
+/-- Census-554 certificate-bank instance. -/
 instance cyclicFiveUpToOrientationDecidable
     (a x b c y : Label) :
     Decidable (CyclicFiveUpToOrientation a x b c y) := by

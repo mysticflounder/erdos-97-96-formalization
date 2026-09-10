@@ -33,11 +33,13 @@ noncomputable def labelOfPoint {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (point : ℝ²) (hpoint : point ∈ A) : Label :=
   Classical.choose (L.carrier_surjective point hpoint)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem pointOf_labelOfPoint {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (point : ℝ²) (hpoint : point ∈ A) :
     L.pointOf (labelOfPoint L point hpoint) = point :=
   Classical.choose_spec (L.carrier_surjective point hpoint)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem blockerPoint_mem_carrier {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (H : CriticalShellSystem A) (q : Label) :
     H.centerAt (L.pointOf q) (L.mem_carrier q) ∈ A :=
@@ -50,12 +52,14 @@ noncomputable def blockerLabel {A : Finset ℝ²} {S : SurplusCapPacket A}
   labelOfPoint L (H.centerAt (L.pointOf q) (L.mem_carrier q))
     (blockerPoint_mem_carrier L H q)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem pointOf_blockerLabel {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (H : CriticalShellSystem A) (q : Label) :
     L.pointOf (blockerLabel L H q) =
       H.centerAt (L.pointOf q) (L.mem_carrier q) :=
   pointOf_labelOfPoint L _ _
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem classAt_support_eq_of_eq {A : Finset ℝ²}
     (F : FaithfulCarrierPattern A) {left right : ℝ²}
     (hleft : left ∈ A) (hright : right ∈ A) (hpoint : left = right) :
@@ -63,6 +67,7 @@ private theorem classAt_support_eq_of_eq {A : Finset ℝ²}
   subst right
   rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem centerAt_congr {A : Finset ℝ²} (H : CriticalShellSystem A)
     {left right : ℝ²} (hleft : left ∈ A) (hright : right ∈ A)
     (hpoint : left = right) :
@@ -70,6 +75,7 @@ private theorem centerAt_congr {A : Finset ℝ²} (H : CriticalShellSystem A)
   subst right
   rfl
 
+/-- Census-554 certificate-bank theorem. -/
 theorem blockerLabel_ne_source {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (H : CriticalShellSystem A) (q : Label) :
     blockerLabel L H q ≠ q := by
@@ -81,6 +87,7 @@ theorem blockerLabel_ne_source {A : Finset ℝ²} {S : SurplusCapPacket A}
   apply hcenterNe
   rw [← pointOf_blockerLabel L H q, hq]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem source_mem_blockerLabel_row {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
     (H : CriticalShellSystem A) (q : Label) :
@@ -93,6 +100,7 @@ theorem source_mem_blockerLabel_row {A : Finset ℝ²} {S : SurplusCapPacket A}
     (F.classAt (H.centerAt (L.pointOf q) (L.mem_carrier q))
       (blockerPoint_mem_carrier L H q))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem labelOfPoint_mem_intS {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) {point : ℝ²} (hpointA : point ∈ A)
     (hpointInt : point ∈ S.capInteriorByIndex S.surplusIdx) :
@@ -100,6 +108,7 @@ private theorem labelOfPoint_mem_intS {A : Finset ℝ²} {S : SurplusCapPacket A
   rw [← L.surplusInterior_eq, L.toCard11Labeling.mem_labelsOf]
   simpa only [pointOf_labelOfPoint] using hpointInt
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem rightPinned_row_eq {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
     {radius : ℝ} {x : ℝ²}

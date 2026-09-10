@@ -57,6 +57,7 @@ open ATailCriticalPairFrontier
 open ATailExactFifteenApexProfile
 open ATailExactFourRobustCapExpansion
 
+/-- Frontier live-closure theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -64,6 +65,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by

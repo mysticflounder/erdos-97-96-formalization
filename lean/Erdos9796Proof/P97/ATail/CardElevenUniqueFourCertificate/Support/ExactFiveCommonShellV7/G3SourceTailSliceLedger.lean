@@ -33,14 +33,20 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 154286
+/-- Exact-five common-shell V7 def. -/
 private def retainedSourceTailCount : Nat := 5247
+/-- Exact-five common-shell V7 def. -/
 private def sourceTailClauseCount : Nat := 26191
+/-- Exact-five common-shell V7 def. -/
 private def commonSourceTailClauseCount : Nat := 26190
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedSourceTailPayload : String :=
   include_str "data/g3-source-tail-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev SourceTailClauseIndex := Fin sourceTailClauseCount
 
 /-- A retained common-tail ordinal.  Ordinal zero is reserved for the
@@ -71,6 +77,7 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
@@ -103,6 +110,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedCommonSourceTailIndices :
     Option (Array RetainedCommonSourceTailIndex) := do
   let bytes ← decodeAscii85 retainedSourceTailPayload
@@ -125,18 +133,22 @@ inductive G3SourceTailSliceWitness where
   | exclusion (source : Label)
       (left right : SourceChoiceIndex source) (ordered : left.val < right.val)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem sourceChoiceCount_pos (source : Label) :
     0 < sourceChoiceCount source := by
   fin_cases source <;> decide
 
+/-- Exact-five common-shell V7 def. -/
 private def sourceChoiceZero (source : Label) : SourceChoiceIndex source :=
   ⟨0, sourceChoiceCount_pos source⟩
 
+/-- Exact-five common-shell V7 structure. -/
 private structure ConsecutiveSourceChoices (source : Label) where
   left : SourceChoiceIndex source
   right : SourceChoiceIndex source
   consecutive : left.val + 1 = right.val
 
+/-- Exact-five common-shell V7 def. -/
 private def consecutiveSourceChoices
     (source : Label) : List (ConsecutiveSourceChoices source) :=
   (List.finRange (sourceChoiceCount source - 1)).map fun left =>
@@ -174,11 +186,13 @@ private def completeCommonSourceTailWitnesses :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem completeCommonSourceTailWitnesses_size :
     completeCommonSourceTailWitnesses.size =
       commonSourceTailClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 private def commonSourceTailWitnessAt
     (sourceIndex : RetainedCommonSourceTailIndex) :
     G3SourceTailSliceWitness :=
@@ -218,6 +232,7 @@ def g3SourceTailSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SourceTailSlice_size :
     g3SourceTailSlice.size = retainedSourceTailCount := by
   native_decide
@@ -236,6 +251,7 @@ theorem g3SourceTailSlice_perm_checkpoint :
           retainedPrefixCount).take retainedSourceTailCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem sourceChoiceVariable_upperBound
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by
@@ -245,6 +261,7 @@ private theorem sourceChoiceVariable_upperBound
       at hchoice ⊢ <;>
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem sourcePrefixVariable_upperBound
     (source : Label) (choice : SourceChoiceIndex source) :
     sourcePrefixVariable source choice < 41005 := by
@@ -254,6 +271,7 @@ private theorem sourcePrefixVariable_upperBound
       at hchoice ⊢ <;>
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem sourceChoiceXVar_bounds
     (source : Label) (choice : SourceChoiceIndex source) :
     0 < xVar (sourceChoiceAt source choice).1.val
@@ -268,6 +286,7 @@ private theorem sourceChoiceXVar_bounds
         (xVar_le_nX (sourceChoiceAt source choice).1.isLt hfacts.1)
         (lt_trans nX_lt_pairIndicatorStart (by omega))⟩
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem sourceWitness_literal_bounds
     (witness : G3SourceTailSliceWitness)
     (hsource :
@@ -334,17 +353,20 @@ private theorem sourceWitness_literal_bounds
           ⟨sourcePrefixVariable_pos source left,
             sourcePrefixVariable_upperBound source left⟩
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem shellCaseApexChoiceClause_literal_bounds
     (route : G3Case) :
     ∀ literal ∈ shellCaseApexChoiceClause route.shellCase,
       0 < literal.natAbs ∧ literal.natAbs < 27287 := by
   cases route <;> native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem blockerShellChoiceClause_literal_bounds :
     ∀ literal ∈ blockerShellChoiceClause,
       0 < literal.natAbs ∧ literal.natAbs < 27287 := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.evalClauseD_fullRadius_eq_inherited_of_bounds
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -370,6 +392,7 @@ private theorem CanonicalPacket.evalClauseD_fullRadius_eq_inherited_of_bounds
     _ = P.inheritedTailValuation literal.natAbs :=
       (P.inheritedTailValuation_eq_separation_of_lt (by omega)).symm
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.sourceWitness_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

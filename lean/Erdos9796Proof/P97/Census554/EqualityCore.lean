@@ -69,6 +69,7 @@ theorem reflectXAxis_injective : Function.Injective reflectXAxis := by
   · have h1 := congrArg (fun z : ℝ² => z 1) h
     simpa [reflectXAxis] using congrArg Neg.neg h1
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem dist_sq_coords_reflection (u v : ℝ²) :
     dist u v ^ 2 = (u 0 - v 0) ^ 2 + (u 1 - v 1) ^ 2 :=
   SurplusCOMPGBank.dist_sq_coord u v

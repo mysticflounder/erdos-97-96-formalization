@@ -37,6 +37,7 @@ open ATailUniqueFourExactTwoSchemaDecoderScratch
 /-- The strict index reversal `ρ'(i) = 10 - i`. -/
 def reflFin : Label → Label := fun i => ⟨10 - i.val, by omega⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem reflFin_lt {i j : Label} (h : i < j) : reflFin j < reflFin i := by
   simp only [reflFin, Fin.lt_def] at h ⊢
   omega
@@ -57,21 +58,25 @@ def shiftedBoundary (Q : ExactTwoBoundaryCore R distribution) :
     Label → ℝ² :=
   fun i => Q.boundary (i + 1)
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem shiftedBoundary_mem (Q : ExactTwoBoundaryCore R distribution)
     (i : Label) : shiftedBoundary Q i ∈ D.A :=
   boundary_mem_carrier Q (i + 1)
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem shiftedBoundary_injective
     (Q : ExactTwoBoundaryCore R distribution) :
     Function.Injective (shiftedBoundary Q) :=
   injective_cyclicShift Q.boundary_injective 1
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem shiftedBoundary_image (Q : ExactTwoBoundaryCore R distribution) :
     Finset.univ.image (shiftedBoundary Q) = D.A := by
   unfold shiftedBoundary
   rw [image_univ_cyclicShift]
   exact Q.boundary_image
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem shiftedBoundary_ccw (Q : ExactTwoBoundaryCore R distribution) :
     EuclideanGeometry.IsCcwConvexPolygon (shiftedBoundary Q) :=
   isCcwConvexPolygon_cyclicShift Q.boundary_injective Q.boundary_ccw 1

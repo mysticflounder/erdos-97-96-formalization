@@ -38,6 +38,7 @@ open ATailTwoCenterCapLocalization
 attribute [local instance] Classical.propDecidable
 
 /- A finite-cardinality extraction used by the source adapter below. -/
+/-- Frontier live-closure theorem. -/
 theorem exists_mem_of_card_ge_five_of_two_traces_card_le_two
     {α : Type*} [DecidableEq α]
     {I C₀ C₁ : Finset α}
@@ -69,6 +70,7 @@ theorem exists_mem_of_card_ge_five_of_two_traces_card_le_two
       _ ≤ (C₀ ∩ I).card + (C₁ ∩ I).card := Finset.card_union_le _ _
   omega
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_shell_sameClass_pair_on_interior_union
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {source center : ℝ²}
@@ -101,6 +103,7 @@ private theorem false_of_shell_sameClass_pair_on_interior_union
     hcenterI hxI hyI hzI hxy hxz hyz hcenterX hcenterY hcenterZne
     hcenterEq hcenterZ
 
+/-- Frontier live-closure theorem. -/
 private theorem actualShell_inter_selectedInteriorUnion_card_le_two
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {source center : ℝ²}
@@ -248,6 +251,7 @@ theorem exactThirteen_secondOpposite_largeInterior_two_three
       constructor <;> omega
   exact ⟨hprofile, horient⟩
 
+/-- Frontier live-closure theorem. -/
 theorem nonempty_cardGeThirteenUncoveredStrictInteriorPacket_or_exactAdjacentCapGrid
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

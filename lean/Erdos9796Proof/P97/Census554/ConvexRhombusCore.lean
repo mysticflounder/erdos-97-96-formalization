@@ -27,6 +27,7 @@ namespace ConvexRhombusCore
 
 open EqualityCore
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma normSim_dist_sq_eq_one
     {a b p q : ℝ²} (hab : a ≠ b) (h : dist a b = dist p q) :
     (normSim a b p 0 - normSim a b q 0) ^ 2 +
@@ -43,6 +44,7 @@ private lemma normSim_dist_sq_eq_one
     zero_sub, one_pow, neg_sq] at hSq
   simpa using hSq.symm
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma normSim_signedArea_pos
     {a b p q r : ℝ²} (hab : a ≠ b) (h : 0 < signedArea2 p q r) :
     0 < signedArea2 (normSim a b p) (normSim a b q) (normSim a b r) := by
@@ -52,6 +54,7 @@ private lemma normSim_signedArea_pos
   rw [← SurplusCOMPGBank.dist_sq_coord b a]
   exact sq_pos_of_pos (dist_pos.mpr hab.symm)
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma rhombus_coordinates
     {u v p q : ℝ} (hv : 0 < v) (hq : 0 < q)
     (hd : u ^ 2 + v ^ 2 = 1)
@@ -89,6 +92,7 @@ private lemma rhombus_coordinates
     linarith
   exact ⟨hpEq, hqEq⟩
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma opposite_equilateral_sum
     {u v r s m n : ℝ}
     (hd : u ^ 2 + v ^ 2 = 1)
@@ -138,6 +142,7 @@ private lemma opposite_equilateral_sum
       v * hdotSum + u * hcrossVector - (s + n - v) * hd
   exact ⟨by linarith, by linarith, hcrossX⟩
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma convex_turns_impossible
     {u v s n k : ℝ}
     (hd : u ^ 2 + v ^ 2 = 1)

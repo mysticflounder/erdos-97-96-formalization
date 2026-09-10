@@ -45,6 +45,7 @@ def frozenV8PositiveChoices : List (RowChoice Label) :=
   , { center := 10, support := {1, 5, 6, 7} }
   , { center := 11, support := {1, 4, 5, 10} } ]
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.boundary_image_eq_pointOf_image_frozenV8
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf) :
     Finset.univ.image order.boundary = Finset.univ.image pointOf := by

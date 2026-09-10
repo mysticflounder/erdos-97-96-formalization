@@ -16,17 +16,20 @@ open Problem97.CheckpointedRup
 open Problem97.CheckpointedRup.CompactIngress
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- Frontier live-closure generated def. -/
 private def actionText : String :=
   include_str "../../data/actions/cd33ac67c9d775ab9c915df793795d5b4439a0d2c50be1f987a0f1aee90ac6c9.cpa85"
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 2000000 in
+/-- Frontier live-closure generated theorem. -/
 theorem accepted :
     checkTerminalCompact (n := n)
       Checkpoint.C0001.text actionText = true := by
   unfold n Checkpoint.C0001.text actionText
   native_decide
 
+/-- Frontier live-closure generated theorem. -/
 theorem sound :
     Unsatisfiable (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0001.text) :=

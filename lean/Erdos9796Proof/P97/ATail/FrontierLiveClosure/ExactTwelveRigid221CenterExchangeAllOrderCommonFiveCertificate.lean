@@ -56,6 +56,7 @@ def AllOrderCommonFiveData.centerExchangeRolesValid
     data.c ≠ data.b ∧ data.c ≠ data.x ∧ data.c ≠ data.y ∧
     centerExchangeOrientedAll48 data.a data.x data.b data.c data.y = true
 
+/-- Frontier live-closure instance. -/
 instance instDecidableAllOrderCommonFiveCenterExchangeRolesValid
     (data : AllOrderCommonFiveData) :
     Decidable data.centerExchangeRolesValid := by

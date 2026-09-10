@@ -38,6 +38,7 @@ open FirstApexUniqueRadiusResidual
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure theorem. -/
 private theorem eq_of_mem_of_mem_of_card_eq_one
     {α : Type*} {s : Finset α} {x y : α}
     (hcard : s.card = 1) (hx : x ∈ s) (hy : y ∈ s) :

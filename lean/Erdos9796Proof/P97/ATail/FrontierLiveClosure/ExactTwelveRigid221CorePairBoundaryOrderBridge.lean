@@ -77,6 +77,7 @@ theorem corePairOrientedAll48_eq_true_iff
 
 /- ## The core-pair transfer bridge -/
 
+/-- Frontier live-closure theorem. -/
 private theorem cyclicTripleAt_of_orderIso' {p q : Label → Nat}
     (hagree : ∀ i j : Label, p i < p j ↔ q i < q j) {a b c : Label}
     (h : CyclicTripleAt p a b c) : CyclicTripleAt q a b c := by
@@ -84,6 +85,7 @@ private theorem cyclicTripleAt_of_orderIso' {p q : Label → Nat}
   simp only [hagree] at h
   exact h
 
+/-- Frontier live-closure theorem. -/
 private theorem commonFiveOrientationAt_of_orderIso' {p q : Label → Nat}
     (hagree : ∀ i j : Label, p i < p j ↔ q i < q j) {a x b c y : Label}
     (h : CommonFiveOrientationAt p a x b c y) :

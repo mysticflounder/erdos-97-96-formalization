@@ -40,6 +40,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
 
 /- ## Role reflection of a fully-true mirror cut instance -/
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem rolePoint_reflected {targets : List Label} {n : Nat}
     (hlen : targets.length = n) {j : Nat} (hj : j < n) :
     rolePoint ((targets.map reflFin).reverse) (n - 1 - j) =
@@ -102,6 +103,7 @@ private theorem false_of_bank_occurrence_mirror
 
 /- ## Sorted-list to reflected ordered-tuple conversion -/
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem reflectedBankOrderedFour_of_sorted {targets : List Label}
     (hlen : targets.length = 4) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFour,
@@ -116,6 +118,7 @@ private theorem reflectedBankOrderedFour_of_sorted {targets : List Label}
   exact ⟨⟨reflFin t3, reflFin t2, reflFin t1, reflFin t0,
     reflFin_lt h23, reflFin_lt h12, reflFin_lt h01⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem reflectedBankOrderedFive_of_sorted {targets : List Label}
     (hlen : targets.length = 5) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
@@ -131,6 +134,7 @@ private theorem reflectedBankOrderedFive_of_sorted {targets : List Label}
     reflFin_lt h34, reflFin_lt h23, reflFin_lt h12, reflFin_lt h01⟩,
     rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem reflectedBankOrderedSix_of_sorted {targets : List Label}
     (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSix,
@@ -146,6 +150,7 @@ private theorem reflectedBankOrderedSix_of_sorted {targets : List Label}
     reflFin t0, reflFin_lt h45, reflFin_lt h34, reflFin_lt h23,
     reflFin_lt h12, reflFin_lt h01⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem reflectedBankOrderedSeven_of_sorted {targets : List Label}
     (hlen : targets.length = 7) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSeven,
@@ -162,6 +167,7 @@ private theorem reflectedBankOrderedSeven_of_sorted {targets : List Label}
     reflFin_lt h34, reflFin_lt h23, reflFin_lt h12, reflFin_lt h01⟩,
     rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem reflectedBankOrderedEight_of_sorted {targets : List Label}
     (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedEight,
@@ -178,6 +184,7 @@ private theorem reflectedBankOrderedEight_of_sorted {targets : List Label}
     reflFin_lt h45, reflFin_lt h34, reflFin_lt h23, reflFin_lt h12,
     reflFin_lt h01⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem reflectedSeededOrderedSix_of_sorted {targets : List Label}
     (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedSix,
@@ -193,6 +200,7 @@ private theorem reflectedSeededOrderedSix_of_sorted {targets : List Label}
     reflFin t0, reflFin_lt h45, reflFin_lt h34, reflFin_lt h23,
     reflFin_lt h12, reflFin_lt h01⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem reflectedSeededOrderedEight_of_sorted
     {targets : List Label}
     (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :

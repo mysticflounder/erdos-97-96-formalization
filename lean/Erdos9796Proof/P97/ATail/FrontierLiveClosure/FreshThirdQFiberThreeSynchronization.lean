@@ -500,6 +500,7 @@ def freshThirdFiniteBetween
   (A.Before first point ∧ A.Before point second) ∨
     (A.Before second point ∧ A.Before point first)
 
+/-- Frontier live-closure instance. -/
 instance freshThirdFiniteBetweenDecidable
     (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (first second point : FreshThirdPinnedEndpointOutsideSeedPointRole) :
@@ -599,6 +600,7 @@ section ComputableFivePointCheck
 
 attribute [-instance] Classical.propDecidable
 
+/-- Frontier live-closure instance. -/
 instance freshThirdVisibleFivePointConstraintCheckDecidable
     (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) :
     Decidable (FreshThirdVisibleFivePointConstraintCheck Config) := by
@@ -607,6 +609,7 @@ instance freshThirdVisibleFivePointConstraintCheckDecidable
 
 end ComputableFivePointCheck
 
+/-- Frontier live-closure theorem. -/
 theorem freshThirdVisibleFivePointConstraint_iff_check
     (Config : FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration) :
     FreshThirdVisibleFivePointConstraint Config ↔

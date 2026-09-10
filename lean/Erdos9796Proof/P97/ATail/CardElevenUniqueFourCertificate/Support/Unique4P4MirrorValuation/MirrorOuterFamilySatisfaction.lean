@@ -33,12 +33,14 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem asLabel_eq_label (n : Nat) :
     P4DirectOuterValuationScratch.asLabel n =
       P4DirectOuterBindingIntegrityScratch.label n := by
   apply Fin.ext
   rfl
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem fourPointFinset_eq_rowSupport
     (point0 point1 point2 point3 : Nat) :
     P4DirectOuterValuationScratch.fourPointFinset
@@ -50,10 +52,12 @@ private theorem fourPointFinset_eq_rowSupport
   simp only [P4DirectOuterValuationScratch.fourPointFinset,
     asLabel_eq_label]
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem bitMaskFinset_eq_maskAtom (mask : Nat) :
     bitMaskFinset mask = maskAtom mask := by
   rfl
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorMembershipVal_iff_rowMem
     (Q : ExactTwoBoundaryCore R distribution) (center point : Fin 11) :
     mirrorMembershipVal Q ⟨center, point⟩ ↔
@@ -72,6 +76,7 @@ theorem mirrorMembershipVal_iff_rowMem
     (boundary_mem_carrier Q (mirrorIndex center))
     (shiftedBoundary_reflFin Q center), shiftedBoundary_reflFin Q point]
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorCompactVal_membership_of_binding
     (P : P4MirrorBoundaryPacket R profile distribution)
     {dense : Nat} {atom : MembershipAtom}
@@ -100,6 +105,7 @@ theorem mirrorCompactVal_membership_of_binding
       | rowSupport center point0 point1 point2 point3 => simp at h
       | outerArc center side mask => simp at h
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorCompactVal_row_of_binding
     (P : P4MirrorBoundaryPacket R profile distribution)
     {dense : Nat} {atom : RowSupportAtom}
@@ -129,6 +135,7 @@ theorem mirrorCompactVal_row_of_binding
             asLabel_eq_label]
       | outerArc center side mask => simp at h
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorCompactVal_outer_of_binding
     (P : P4MirrorBoundaryPacket R profile distribution)
     {dense : Nat} {atom : OuterArcAtom}
@@ -159,6 +166,7 @@ theorem mirrorCompactVal_outer_of_binding
               bitMaskFinset_eq_maskAtom, asLabel_eq_label,
               P4DirectOuterValuationScratch.toSourceSide]
 
+/-- Supports the P4 mirror valuation analysis. -/
 def outerAtomBindingBool (n : Nat) : Bool :=
   match atomOfVar n with
   | .membership atom => membershipBindingBool n atom
@@ -166,14 +174,17 @@ def outerAtomBindingBool (n : Nat) : Bool :=
   | .arc atom => outerBindingBool n atom
   | .unused => false
 
+/-- Supports the P4 mirror valuation analysis. -/
 def mirrorOuterBridgeBindingsOK : Bool :=
   bridgeClauses.all fun clause =>
     clause.all fun literal => outerAtomBindingBool literal.natAbs
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorOuterBridgeBindingsOK_true :
     mirrorOuterBridgeBindingsOK = true := by
   native_decide
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorOuterBridge_literalIndex_lt :
     ∀ clause ∈ bridgeClauses, ∀ literal ∈ clause,
       literal.natAbs < 10000 := by
@@ -185,6 +196,7 @@ theorem mirrorOuterBridge_literalIndex_lt :
   exact of_decide_eq_true
     (List.all_eq_true.mp hclauseCheck literal hliteral)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_agree_outerAtom_of_binding
     (P : P4MirrorBoundaryPacket R profile distribution)
     {n : Nat} (hsmall : n < 10000)
@@ -210,6 +222,7 @@ theorem mirrorTotalVal_agree_outerAtom_of_binding
   | unused =>
       simp [outerAtomBindingBool, hatom] at hbinding
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem litSat_congr {valuation₁ valuation₂ : Nat → Prop} {literal : Int}
     (h : valuation₁ literal.natAbs ↔ valuation₂ literal.natAbs) :
     P5OccurrenceBridgeScratch.litSat valuation₁ literal ↔
@@ -227,6 +240,7 @@ theorem litSat_congr {valuation₁ valuation₂ : Nat → Prop} {literal : Int}
         Int.natAbs_of_nonneg hneg]
     simpa only [if_neg hliteral, heq] using not_congr h
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem clauseSat_congr {valuation₁ valuation₂ : Nat → Prop}
     {clause : List Int}
     (h : ∀ literal ∈ clause,

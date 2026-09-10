@@ -66,6 +66,7 @@ def SecondOppositeInternalTripleApexFirstOppositeCommonFiveData.rolesValid
     ((data.x.val < data.b.val ∧ data.b.val < data.c.val) ∨
       (data.c.val < data.b.val ∧ data.b.val < data.x.val))
 
+/-- Frontier live-closure instance. -/
 instance instDecidableSecondOppositeInternalTripleApexFirstOppositeRolesValid
     (data : SecondOppositeInternalTripleApexFirstOppositeCommonFiveData) :
     Decidable data.rolesValid := by

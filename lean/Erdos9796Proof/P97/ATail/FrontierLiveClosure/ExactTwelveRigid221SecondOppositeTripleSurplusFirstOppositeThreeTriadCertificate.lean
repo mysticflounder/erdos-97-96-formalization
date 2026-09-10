@@ -62,6 +62,7 @@ def SecondOppositeTripleSurplusFirstOppositeThreeTriadData.rolesValid
     data.e ∈ secondOppositeInteriorLabels ∧
     data.a ≠ data.c ∧ data.a ≠ data.e ∧ data.c ≠ data.e
 
+/-- Frontier live-closure instance. -/
 instance secondOppositeTripleSurplusFirstOppositeThreeTriadDecidableRolesValid
     (data : SecondOppositeTripleSurplusFirstOppositeThreeTriadData) :
     Decidable data.rolesValid := by

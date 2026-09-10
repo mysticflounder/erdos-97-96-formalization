@@ -80,6 +80,7 @@ def candidateClasses (p : Fin 11) : Finset (Finset (Fin 11)) :=
   ((Finset.univ : Finset (Fin 11)).powersetCard 4).filter
     fun K => p ∉ K ∧ OnehitOk p K
 
+/-- Census-554 certificate-bank theorem. -/
 theorem mem_candidateClasses {p : Fin 11} {K : Finset (Fin 11)} :
     K ∈ candidateClasses p ↔ IsCandidateClass p K := by
   simp only [candidateClasses, Finset.mem_filter, Finset.mem_powersetCard,

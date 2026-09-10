@@ -54,12 +54,14 @@ predicate; it does not assert that the bank is inhabited or generated. -/
 def ValidKeyCover (bank : List Entry) : Prop :=
   ∀ k ∈ validKeys, ∃ e ∈ bank, KeyEntryCovers k e
 
+/-- Frontier live-closure theorem. -/
 private theorem sourceIndex_eq_orderIndex
     (I : Input) (orientation : Bool) (ho : sourceOrderValid I orientation) :
     I.P.idx = orderIndex orientation := by
   cases orientation <;>
     simpa [sourceOrderValid, orderIndex, I.coarse.profile_eq_secondOpposite] using ho
 
+/-- Frontier live-closure theorem. -/
 private theorem rawSupport_eq_providerSupport
     (I : Input) (k : Key)
     (hsupport : k.supportOf = I.positionalPattern.supportOf)
@@ -80,6 +82,7 @@ private theorem rawSupport_eq_providerSupport
   · intro hx
     exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem keyCandidateMatches_candidatePredicate
     (I : Input) (k : Key) (candidate : Candidate)
     (hsupport : k.supportOf = I.positionalPattern.supportOf)
@@ -94,6 +97,7 @@ private theorem keyCandidateMatches_candidatePredicate
   · rw [rawSupport_eq_providerSupport I k hsupport ho candidate.provider] at hsecond
     exact hsecond
 
+/-- Frontier live-closure theorem. -/
 private theorem positionalEdgeChoice_eq_keyPositionalEdgeChoice
     (I : Input) (k : Key) (candidate : Candidate)
     (ho : sourceOrderValid I k.orientation) :
@@ -101,6 +105,7 @@ private theorem positionalEdgeChoice_eq_keyPositionalEdgeChoice
   unfold positionalEdgeChoice keyPositionalEdgeChoice
   rw [sourceIndex_eq_orderIndex I k.orientation ho]
 
+/-- Frontier live-closure theorem. -/
 private theorem positionalEdgeChoices_eq_keyPositionalEdgeChoices
     (I : Input) (k : Key) (candidates : List Candidate)
     (ho : sourceOrderValid I k.orientation) :

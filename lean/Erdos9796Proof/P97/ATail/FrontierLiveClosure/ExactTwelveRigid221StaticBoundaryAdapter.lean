@@ -49,6 +49,7 @@ theorem terminalStaticDimacs_length (cell : FrozenNextRowCell)
 
 /- The positive-membership endpoint adds its 57 compiler implications and
 the single final blocking clause to the same frozen parent. -/
+/-- Frontier live-closure theorem. -/
 theorem terminalStaticPositiveMembershipDimacs_length
     (cell : FrozenNextRowCell) (bank : List SourceOrderPositiveNogood) :
     (StaticPositiveMembershipTerminalConsumer.terminalStaticPositiveMembershipDimacs
@@ -90,6 +91,7 @@ theorem learnedClause_lit_natAbs_le_baseNumVars
         omega
   simpa [SafeCoverIndexBridge.learnedLiteral] using hx
 
+/-- Frontier live-closure theorem. -/
 theorem terminalStaticDimacs_lit_natAbs_le
     (cell : FrozenNextRowCell) (bank : List SourceOrderPositiveNogood)
     (hencodable :
@@ -119,6 +121,7 @@ theorem terminalStaticDimacs_lit_natAbs_le
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem terminalStaticPositiveMembershipDimacs_lit_natAbs_le
     (cell : FrozenNextRowCell) (bank : List SourceOrderPositiveNogood)
     (hencodable :
@@ -166,6 +169,7 @@ theorem terminalStaticPositiveMembershipDimacs_lit_natAbs_le
         rw [SafeCoverCnf.baseNumVars_eq] at hlearned
         exact le_trans hlearned (by omega)
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_source_namedNextRowStaticTerminalBank
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

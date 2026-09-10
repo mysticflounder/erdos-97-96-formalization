@@ -75,16 +75,19 @@ structure FrozenBoundaryOrder (pointOf : Label → ℝ²) where
     FrozenDirectBoundaryOrder (fun label => (index label).val) ∨
       FrozenMirrorBoundaryOrder (fun label => (index label).val)
 
+/-- Frontier live-closure def. -/
 def FrozenBoundaryOrder.position {pointOf : Label → ℝ²}
     (order : FrozenBoundaryOrder pointOf) : Label → Nat :=
   fun label => (order.index label).val
 
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.position_lt_twelve {pointOf : Label → ℝ²}
     (order : FrozenBoundaryOrder pointOf) (label : Label) :
     order.position label < 12 := by
   rw [FrozenBoundaryOrder.position, ← order.n_eq_twelve]
   exact (order.index label).isLt
 
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.position_injective {pointOf : Label → ℝ²}
     (order : FrozenBoundaryOrder pointOf) :
     Function.Injective order.position := by

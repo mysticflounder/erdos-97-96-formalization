@@ -33,6 +33,7 @@ def apexAt {A : Finset ℝ²} (M : MoserTriangle A) (i : Fin 3) : ℝ² :=
   | ⟨1, _⟩ => M.v2
   | _ => M.v3
 
+/-- Census-554 certificate-bank theorem. -/
 theorem apexAt_mem {A : Finset ℝ²} (M : MoserTriangle A) (i : Fin 3) :
     apexAt M i ∈ A := by
   fin_cases i
@@ -40,6 +41,7 @@ theorem apexAt_mem {A : Finset ℝ²} (M : MoserTriangle A) (i : Fin 3) :
   · exact M.v2_mem
   · exact M.v3_mem
 
+/-- Census-554 certificate-bank theorem. -/
 theorem apexAt_mem_verts {A : Finset ℝ²} (M : MoserTriangle A)
     (i : Fin 3) :
     apexAt M i ∈ M.verts := by
@@ -51,6 +53,7 @@ theorem apexAt_mem_verts {A : Finset ℝ²} (M : MoserTriangle A)
   · show M.v3 ∈ M.verts
     simp [MoserTriangle.verts]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem apexAt_injective {A : Finset ℝ²} (M : MoserTriangle A) :
     Function.Injective (apexAt M) := by
   intro i j hij
@@ -65,6 +68,7 @@ theorem apexAt_injective {A : Finset ℝ²} (M : MoserTriangle A) :
   · exact (M.v23_ne hij.symm).elim
   · rfl
 
+/-- Census-554 certificate-bank theorem. -/
 theorem apexAt_mem_capAt_of_ne {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) {i j : Fin 3} (hji : j ≠ i) :
     apexAt M j ∈ CP.capAt i := by
@@ -87,6 +91,7 @@ def frameIndex {surplus second : Fin 3}
   | 1 => second
   | _ => frame.rest
 
+/-- Census-554 certificate-bank theorem. -/
 theorem frameIndex_injective {surplus second : Fin 3}
     (hsecond : second ≠ surplus)
     (frame : MultiCenter.JointCapIndexFrame surplus second) :
@@ -124,6 +129,7 @@ structure Card11Labeling {A : Finset ℝ²} (M : MoserTriangle A)
 
 namespace Card11Labeling
 
+/-- Census-554 certificate-bank theorem. -/
 theorem range_eq_carrier {A : Finset ℝ²} {M : MoserTriangle A}
     {surplus second : Fin 3}
     {frame : MultiCenter.JointCapIndexFrame surplus second}
@@ -263,6 +269,7 @@ noncomputable def labelsOf {A : Finset ℝ²} {M : MoserTriangle A}
     (L : Card11Labeling M frame) (S : Finset ℝ²) : Finset (Fin 11) :=
   Finset.univ.filter fun p => L.pointOf p ∈ S
 
+/-- Census-554 certificate-bank theorem. -/
 theorem mem_labelsOf {A : Finset ℝ²} {M : MoserTriangle A}
     {surplus second : Fin 3}
     {frame : MultiCenter.JointCapIndexFrame surplus second}
@@ -287,6 +294,7 @@ theorem image_labelsOf_eq {A : Finset ℝ²} {M : MoserTriangle A}
     refine Finset.mem_image.mpr ⟨p, ?_, hp⟩
     exact (L.mem_labelsOf).mpr (hp ▸ hx)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem labelsOf_card_eq {A : Finset ℝ²} {M : MoserTriangle A}
     {surplus second : Fin 3}
     {frame : MultiCenter.JointCapIndexFrame surplus second}
@@ -297,6 +305,7 @@ theorem labelsOf_card_eq {A : Finset ℝ²} {M : MoserTriangle A}
       (Finset.card_image_of_injective _ L.injective).symm
     _ = S.card := congrArg Finset.card (L.image_labelsOf_eq hS)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem capInteriorAt_subset {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) (i : Fin 3) :
     U1LargeCapRouteBTailMetricResidualTarget.capInteriorAt CP i ⊆ A := by
@@ -312,6 +321,7 @@ theorem capInteriorAt_subset {A : Finset ℝ²} {M : MoserTriangle A}
     exact CP.C3_subset
       (Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hx))
 
+/-- Census-554 certificate-bank theorem. -/
 theorem capInteriorAt_subset_capAt {A : Finset ℝ²}
     {M : MoserTriangle A} (CP : CapTriple A M) (i : Fin 3) :
     capInteriorAt CP i ⊆ CP.capAt i := by
@@ -324,6 +334,7 @@ theorem capInteriorAt_subset_capAt {A : Finset ℝ²}
   · change x ∈ (CP.C3.erase M.v1).erase M.v2 at hx
     exact Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hx)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem not_mem_verts_of_mem_capInteriorAt {A : Finset ℝ²}
     {M : MoserTriangle A} (CP : CapTriple A M) {i : Fin 3} {x : ℝ²}
     (hx : x ∈ capInteriorAt CP i) :
@@ -354,6 +365,7 @@ theorem not_mem_verts_of_mem_capInteriorAt {A : Finset ℝ²}
     · exact hx.1 rfl
     · exact CP.v3_notin_C3 hx.2.2
 
+/-- Census-554 certificate-bank theorem. -/
 theorem not_mem_capAt_of_mem_capInteriorAt_of_ne {A : Finset ℝ²}
     {M : MoserTriangle A} (CP : CapTriple A M) {i j : Fin 3}
     (hji : j ≠ i) {x : ℝ²} (hx : x ∈ capInteriorAt CP i) :
@@ -386,6 +398,7 @@ theorem not_mem_capAt_of_mem_capInteriorAt_of_ne {A : Finset ℝ²}
     omega
   · exact (hji rfl).elim
 
+/-- Census-554 certificate-bank theorem. -/
 theorem capInteriorAt_disjoint_of_ne {A : Finset ℝ²}
     {M : MoserTriangle A} (CP : CapTriple A M) {i j : Fin 3}
     (hij : i ≠ j) :
@@ -398,14 +411,17 @@ theorem capInteriorAt_disjoint_of_ne {A : Finset ℝ²}
 /-- Canonical Census554 label blocks for the three strict cap interiors. -/
 def capSInteriorLabels : Finset (Fin 11) := {3, 4, 5}
 
+/-- Census-554 certificate-bank def. -/
 def capO1InteriorLabels : Finset (Fin 11) := {6, 7, 8}
 
+/-- Census-554 certificate-bank def. -/
 def capO2InteriorLabels : Finset (Fin 11) := {9, 10}
 
 /-- Decomposition of the eleven labels into the three apices followed by
 strict-interior blocks of sizes `3`, `3`, and `2`. -/
 abbrev Card11LabelPart := Fin 3 ⊕ (Fin 3 ⊕ (Fin 3 ⊕ Fin 2))
 
+/-- Census-554 certificate-bank def. -/
 def card11LabelSplit : Fin 11 ≃ Card11LabelPart :=
   (finSumFinEquiv : Fin 3 ⊕ Fin 8 ≃ Fin 11).symm |>.trans
     (Equiv.sumCongr (Equiv.refl (Fin 3))
@@ -413,36 +429,47 @@ def card11LabelSplit : Fin 11 ≃ Card11LabelPart :=
         (Equiv.sumCongr (Equiv.refl (Fin 3))
           (finSumFinEquiv : Fin 3 ⊕ Fin 2 ≃ Fin 5).symm)))
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_zero :
     card11LabelSplit 0 = Sum.inl 0 := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_one :
     card11LabelSplit 1 = Sum.inl 1 := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_two :
     card11LabelSplit 2 = Sum.inl 2 := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_three :
     card11LabelSplit 3 = Sum.inr (Sum.inl 0) := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_four :
     card11LabelSplit 4 = Sum.inr (Sum.inl 1) := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_five :
     card11LabelSplit 5 = Sum.inr (Sum.inl 2) := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_six :
     card11LabelSplit 6 = Sum.inr (Sum.inr (Sum.inl 0)) := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_seven :
     card11LabelSplit 7 = Sum.inr (Sum.inr (Sum.inl 1)) := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_eight :
     card11LabelSplit 8 = Sum.inr (Sum.inr (Sum.inl 2)) := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_nine :
     card11LabelSplit 9 = Sum.inr (Sum.inr (Sum.inr 0)) := by decide
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem card11LabelSplit_ten :
     card11LabelSplit 10 = Sum.inr (Sum.inr (Sum.inr 1)) := by decide
 
@@ -454,6 +481,7 @@ noncomputable def interiorLabels {A : Finset ℝ²} {M : MoserTriangle A}
     (i : Fin 3) : Finset (Fin 11) :=
   L.labelsOf (U1LargeCapRouteBTailMetricResidualTarget.capInteriorAt CP i)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem image_interiorLabels_eq {A : Finset ℝ²} {M : MoserTriangle A}
     {surplus second : Fin 3}
     {frame : MultiCenter.JointCapIndexFrame surplus second}
@@ -462,6 +490,7 @@ theorem image_interiorLabels_eq {A : Finset ℝ²} {M : MoserTriangle A}
       U1LargeCapRouteBTailMetricResidualTarget.capInteriorAt CP i :=
   L.image_labelsOf_eq (capInteriorAt_subset CP i)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem interiorLabels_card_eq {A : Finset ℝ²} {M : MoserTriangle A}
     {surplus second : Fin 3}
     {frame : MultiCenter.JointCapIndexFrame surplus second}
@@ -816,6 +845,7 @@ end Card11CapLabeling
 
 namespace Card11CapLabeling
 
+/-- Census-554 certificate-bank theorem. -/
 theorem labelsOf_surplusCap_eq_capS
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -861,6 +891,7 @@ theorem labelsOf_surplusCap_eq_capS
     (CP.capAt_subset_A surplus), hcap]
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem labelsOf_secondCap_eq_capO1
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -906,6 +937,7 @@ theorem labelsOf_secondCap_eq_capO1
     (CP.capAt_subset_A second), hcap]
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem labelsOf_restCap_eq_capO2
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -978,6 +1010,7 @@ noncomputable def cube
     (S : Card11SelectedCube L) : Cube := fun p =>
   L.toCard11Labeling.labelsOf (S.classAt p).support
 
+/-- Census-554 certificate-bank theorem. -/
 theorem mem_cube_iff
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -987,6 +1020,7 @@ theorem mem_cube_iff
     q ∈ S.cube p ↔ L.pointOf q ∈ (S.classAt p).support :=
   Card11Labeling.mem_labelsOf L.toCard11Labeling
 
+/-- Census-554 certificate-bank theorem. -/
 theorem image_cube_eq_support
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -997,6 +1031,7 @@ theorem image_cube_eq_support
   Card11Labeling.image_labelsOf_eq L.toCard11Labeling
     (S.classAt p).support_subset_A
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube_card
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -1007,6 +1042,7 @@ theorem cube_card
   rw [cube, Card11Labeling.labelsOf_card_eq L.toCard11Labeling
     (S.classAt p).support_subset_A, (S.classAt p).support_card]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem center_not_mem_cube
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -1017,6 +1053,7 @@ theorem center_not_mem_cube
   intro hp
   exact (S.classAt p).center_not_mem ((S.mem_cube_iff).mp hp)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube_inter_card_le_two
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -1050,6 +1087,7 @@ theorem equidist_of_mem_cube
   rw [(S.classAt p).support_eq_radius _ ((S.mem_cube_iff).mp ha),
     (S.classAt p).support_eq_radius _ ((S.mem_cube_iff).mp hb)]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem pair_hit_centers_card_le_two
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -1084,11 +1122,13 @@ theorem pair_hit_centers_card_le_two
   change hits.card ≤ 2
   exact hle.trans htarget
 
+/-- Census-554 certificate-bank theorem. -/
 theorem capByIndex_eq_capAt {A : Finset ℝ²}
     (SP : SurplusCapPacket A) (i : Fin 3) :
     SP.capByIndex i = SP.partition.capAt i := by
   fin_cases i <;> rfl
 
+/-- Census-554 certificate-bank theorem. -/
 theorem apexAt_eq_oppositeVertexByIndex {A : Finset ℝ²}
     (SP : SurplusCapPacket A) (i : Fin 3) :
     apexAt SP.triangle i = SP.oppositeVertexByIndex i := by
@@ -1152,6 +1192,7 @@ theorem support_inter_capByIndex_card_le_one
     · exact (hji rfl).elim
   exact (Finset.card_le_card hsub).trans hbound
 
+/-- Census-554 certificate-bank theorem. -/
 theorem cube_inter_labelsOf_card_eq
     {A : Finset ℝ²} {M : MoserTriangle A}
     {CP : CapTriple A M} {surplus second : Fin 3}
@@ -1170,6 +1211,7 @@ theorem cube_inter_labelsOf_card_eq
   rw [hinter, Card11Labeling.labelsOf_card_eq L.toCard11Labeling]
   exact fun x hx => hC (Finset.mem_inter.mp hx).2
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem inter_erase_card_le_one
     {α : Type*} [DecidableEq α] (X Y : Finset α) (p : α)
     (h : (X ∩ Y).card ≤ 1) :

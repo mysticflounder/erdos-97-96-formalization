@@ -35,21 +35,27 @@ open SafeCoverIndexBridge
 
 /- ## Frozen variable allocation -/
 
+/-- Frontier live-closure def. -/
 def deletedVar (p : Nat) : Nat :=
   SafeCoverCnf.baseNumVars + p + 1
 
+/-- Frontier live-closure def. -/
 def blockerVar (p : Nat) : Nat :=
   SafeCoverCnf.baseNumVars + 12 + p + 1
 
+/-- Frontier live-closure def. -/
 def centerVar (p : Nat) : Nat :=
   SafeCoverCnf.baseNumVars + 24 + p + 1
 
+/-- Frontier live-closure def. -/
 def deletedVars : List Nat :=
   (List.range 12).map deletedVar
 
+/-- Frontier live-closure def. -/
 def blockerVars : List Nat :=
   (List.range 12).map blockerVar
 
+/-- Frontier live-closure def. -/
 def centerVars : List Nat :=
   (List.range 12).map centerVar
 
@@ -58,21 +64,26 @@ Sinz auxiliary, matching the Python constructor. -/
 def deletedSinzBase : Nat :=
   SafeCoverCnf.baseNumVars + 36
 
+/-- Frontier live-closure def. -/
 def blockerSinzBase : Nat :=
   deletedSinzBase + sinzVarCount deletedVars.length 1
 
+/-- Frontier live-closure def. -/
 def centerSinzBase : Nat :=
   blockerSinzBase + sinzVarCount blockerVars.length 1
 
+/-- Frontier live-closure def. -/
 def numVars : Nat :=
   centerSinzBase + sinzVarCount centerVars.length 5
 
 /- ## Frozen clause order -/
 
+/-- Frontier live-closure def. -/
 def deletedSelectorClauses : List (List Int) :=
   (deletedVars.map Int.ofNat) ::
     sinzClauses deletedVars 1 deletedSinzBase
 
+/-- Frontier live-closure def. -/
 def blockerSelectorClauses : List (List Int) :=
   (blockerVars.map Int.ofNat) ::
     sinzClauses blockerVars 1 blockerSinzBase
@@ -82,6 +93,7 @@ among twelve labels, no eight center selectors may all be false. -/
 def centerAtLeastFiveClauses : List (List Int) :=
   (combos 8 centerVars).map fun xs => xs.map Int.ofNat
 
+/-- Frontier live-closure def. -/
 def centerSelectorClauses : List (List Int) :=
   sinzClauses centerVars 5 centerSinzBase ++ centerAtLeastFiveClauses
 
@@ -153,12 +165,15 @@ theorem encodingAnchors :
     fiveOmissionDimacs.length = 405266 := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem numVars_eq : numVars = 42680 :=
   encodingAnchors.2.2.2.2.2.2.1
 
+/-- Frontier live-closure theorem. -/
 theorem fiveOmissionDimacs_length : fiveOmissionDimacs.length = 405266 :=
   encodingAnchors.2.2.2.2.2.2.2.2.2
 
+/-- Frontier live-closure theorem. -/
 theorem shardDimacs_length (deleted : Label) :
     (shardDimacs deleted).length = 405267 := by
   unfold shardDimacs

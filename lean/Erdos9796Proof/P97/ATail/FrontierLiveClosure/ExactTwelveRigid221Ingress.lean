@@ -51,8 +51,10 @@ def variableRoleLabels : Finset Label :=
 /-- The three strict cap-interior blocks in the frozen exact-twelve profile. -/
 def surplusInteriorLabels : Finset Label := {3, 4, 5}
 
+/-- Frontier live-closure def. -/
 def firstOppositeInteriorLabels : Finset Label := {10, 11}
 
+/-- Frontier live-closure def. -/
 def secondOppositeInteriorLabels : Finset Label := {6, 7, 8, 9}
 
 /-- Labels of the three Moser apices in the frozen role vocabulary. -/
@@ -61,10 +63,13 @@ def moserLabels : Finset Label := {0, 1, 2}
 /-- The three closed caps in the same frozen label vocabulary. -/
 def surplusCapLabels : Finset Label := {1, 2, 3, 4, 5}
 
+/-- Frontier live-closure def. -/
 def firstOppositeCapLabels : Finset Label := {0, 1, 10, 11}
 
+/-- Frontier live-closure def. -/
 def secondOppositeCapLabels : Finset Label := {0, 2, 6, 7, 8, 9}
 
+/-- Frontier live-closure theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -72,6 +77,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases index <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -80,6 +86,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -88,6 +95,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
@@ -96,6 +104,7 @@ private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     simp only [SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppositeVertexByIndex, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -105,6 +114,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -114,6 +124,7 @@ private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem leftAdjacentCapByIndex_surplusIdx_eq_capByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.leftAdjacentCapByIndex S.surplusIdx = S.capByIndex S.oppIndex1 := by
@@ -124,6 +135,7 @@ private theorem leftAdjacentCapByIndex_surplusIdx_eq_capByIndex_oppIndex1
     _ = S.capByIndex S.oppIndex1 := congrArg S.capByIndex
       S.oppIndex1_eq_leftAdjacentIndex_surplusIdx.symm
 
+/-- Frontier live-closure theorem. -/
 private theorem rightAdjacentCapByIndex_surplusIdx_eq_capByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.rightAdjacentCapByIndex S.surplusIdx = S.capByIndex S.oppIndex2 := by
@@ -134,6 +146,7 @@ private theorem rightAdjacentCapByIndex_surplusIdx_eq_capByIndex_oppIndex2
     _ = S.capByIndex S.oppIndex2 := congrArg S.capByIndex
       S.oppIndex2_eq_rightAdjacentIndex_surplusIdx.symm
 
+/-- Frontier live-closure theorem. -/
 private theorem leftAdjacentCapByIndex_oppIndex2_eq_capByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.leftAdjacentCapByIndex S.oppIndex2 = S.capByIndex S.surplusIdx := by
@@ -146,6 +159,7 @@ private theorem leftAdjacentCapByIndex_oppIndex2_eq_capByIndex_surplusIdx
     _ = S.capByIndex S.surplusIdx :=
       S.leftAdjacentCapByIndex_rightAdjacentIndex S.surplusIdx
 
+/-- Frontier live-closure theorem. -/
 private theorem rightAdjacentCapByIndex_oppIndex1_eq_capByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.rightAdjacentCapByIndex S.oppIndex1 = S.capByIndex S.surplusIdx := by
@@ -636,6 +650,7 @@ theorem FrozenRoleLabeling.moserLabels_eq
       S.triangle.verts_card]
     decide
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenRoleLabeling.row_inter_leftAdjacentCap_card_le_one
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -670,6 +685,7 @@ private theorem FrozenRoleLabeling.row_inter_leftAdjacentCap_card_le_one
     (S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
       D.convex i K.radius)
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenRoleLabeling.row_inter_rightAdjacentCap_card_le_one
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -704,6 +720,7 @@ private theorem FrozenRoleLabeling.row_inter_rightAdjacentCap_card_le_one
     (S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
       D.convex i K.radius)
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenRoleLabeling.row_inter_moserLabels_card_le_two
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -753,6 +770,7 @@ private theorem FrozenRoleLabeling.row_inter_moserLabels_card_le_two
       (K.support_eq_radius _ hv2)
       (K.support_eq_radius _ hv3)
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenRoleLabeling.row_inter_ownCapInterior_card_le_two
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

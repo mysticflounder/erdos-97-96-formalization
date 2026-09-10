@@ -445,25 +445,31 @@ namespace ExactFourMutualOmissionJointDeletion
 
 variable (K : ExactFourMutualOmissionJointDeletion R rho u v)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_source :
     K.toJointDeletionCore.source = u := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_sourceBlocker :
     K.toJointDeletionCore.sourceBlocker =
       (lateFirstApexSystem R).centerAt u.1 u.2 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_exactSourceRow :
     K.toJointDeletionCore.exactSourceRow =
       (lateFirstApexSystem R).selectedAt u.1 u.2 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_deleted :
     K.toJointDeletionCore.deleted = K.deleted := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_fixedSurvivals :
     K.toJointDeletionCore.fixedSurvivals =
       {S.oppApex2, (lateFirstApexSystem R).centerAt u.1 u.2,
         (lateFirstApexSystem R).centerAt v.1 v.2} := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem toJointDeletionCore_fixedOmissions :
     K.toJointDeletionCore.fixedOmissions = {K.deleted.1} := rfl
 

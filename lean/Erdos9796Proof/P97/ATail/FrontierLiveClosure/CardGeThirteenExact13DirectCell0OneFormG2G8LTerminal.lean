@@ -28,6 +28,7 @@ open ProviderRowNogoodCertificate
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormPathL :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 8, directCell0Position 0)
@@ -38,6 +39,7 @@ def directCell0OneFormPathL :
       ]
     last := (directCell0Position 2, directCell0Position 0) }
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormPathG2G8 :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 2, directCell0Position 7)
@@ -48,6 +50,7 @@ def directCell0OneFormPathG2G8 :
       ]
     last := (directCell0Position 8, directCell0Position 7) }
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormData :
     ProviderWeightedKalmansonCancellationData Exact13Provider 13 :=
   { terms :=
@@ -65,6 +68,7 @@ def directCell0OneFormData :
           path := directCell0OneFormPathG2G8 }
       ] }
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormChoices :
     List (ProviderRowChoice Exact13Provider (Fin 13)) :=
   [ exact13ProviderEdgeChoice .l
@@ -75,6 +79,7 @@ def directCell0OneFormChoices :
       (directCell0Position 2) (directCell0Position 7)
   ]
 
+/-- Frontier live-closure structure. -/
 structure DirectCell0OneFormAtoms
     (raw : ProviderRowPattern Exact13Provider (Fin 13)) : Prop where
   l : (2 : Fin 13) ∈ raw.supportOf .l ∧
@@ -84,6 +89,7 @@ structure DirectCell0OneFormAtoms
   g8 : (2 : Fin 13) ∈ raw.supportOf directCell0G8 ∧
     (7 : Fin 13) ∈ raw.supportOf directCell0G8
 
+/-- Frontier live-closure theorem. -/
 private theorem directCell0OneForm_toPositional_mem
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (raw : ProviderRowPattern Exact13Provider (Fin 13))
@@ -96,6 +102,7 @@ private theorem directCell0OneForm_toPositional_mem
   refine Finset.mem_image.mpr ⟨i, hi, ?_⟩
   simp [directCell0Position, hidx]
 
+/-- Frontier live-closure theorem. -/
 private theorem directCell0OneForm_positive
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (raw : ProviderRowPattern Exact13Provider (Fin 13))
@@ -125,6 +132,7 @@ private theorem directCell0OneForm_positive
   · exact hg8₂
   · exact hg8₇
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_directCell0_oneForm_g2g8l
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

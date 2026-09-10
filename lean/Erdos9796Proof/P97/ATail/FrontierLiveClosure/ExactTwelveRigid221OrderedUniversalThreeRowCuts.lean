@@ -67,6 +67,7 @@ theorem false_of_threeRows_core_8_1_2_0_5
   exact order.false_of_convexFivePointCore hreal core
     order.commonOrientation_core_8_1_2_0_5
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne'
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :
@@ -74,6 +75,7 @@ private theorem FrozenBoundaryOrder.position_ne_of_ne'
   intro heq
   exact hne (order.position_injective heq)
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_direct_threeRow_core
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     {a x b c y : Label}
@@ -116,6 +118,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_5_0_11_3_2
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_5_0_11_3_2
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -145,6 +148,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_4_0_2_3_11
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_4_0_2_3_11
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -174,6 +178,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_8_1_2_9_4
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_8_1_2_9_4
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -200,6 +205,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_10_2_0_1_6
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_10_2_0_1_6
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -231,6 +237,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_3_6_0_11_4
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_3_6_0_11_4
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -257,6 +264,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_2_6_0_10_1
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_2_6_0_10_1
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -313,6 +321,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_2_3_0_4_1
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_2_3_0_4_1
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -353,6 +362,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_5_7_8_9_0
     have hapex := hmirror.apex_order
     rcases hforced with hforward | hreverse <;> omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_5_7_8_9_0
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -380,6 +390,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_3_0_2_1_6
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_3_0_2_1_6
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -408,6 +419,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_11_0_3_10_2
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_11_0_3_10_2
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -434,6 +446,7 @@ theorem FrozenBoundaryOrder.commonOrientation_core_0_6_2_3_1
     have hapex := hmirror.apex_order
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_threeRows_core_0_6_2_3_1
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)

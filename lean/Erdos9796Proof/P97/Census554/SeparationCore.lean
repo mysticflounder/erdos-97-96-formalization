@@ -144,22 +144,30 @@ def card11MacroSplit : Fin 11 ≃ Card11MacroPart where
               rfl
             · fin_cases o1 <;> rfl
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev Card11MacroTail4 := Fin 1 ⊕ Fin 3
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev Card11MacroTail7 := Fin 3 ⊕ Card11MacroTail4
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev Card11MacroTail8 := Fin 1 ⊕ Card11MacroTail7
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev Card11MacroTail10 := Fin 2 ⊕ Card11MacroTail8
 
+/-- Census-554 certificate-bank def. -/
 private def card11MacroTail4Equiv : Card11MacroTail4 ≃ Fin 4 :=
   finSumFinEquiv
 
+/-- Census-554 certificate-bank def. -/
 private def card11MacroTail7Equiv : Card11MacroTail7 ≃ Fin 7 :=
   (Equiv.sumCongr (Equiv.refl (Fin 3)) card11MacroTail4Equiv).trans
     finSumFinEquiv
 
+/-- Census-554 certificate-bank def. -/
 private def card11MacroTail8Equiv : Card11MacroTail8 ≃ Fin 8 :=
   (Equiv.sumCongr (Equiv.refl (Fin 1)) card11MacroTail7Equiv).trans
     finSumFinEquiv
 
+/-- Census-554 certificate-bank def. -/
 private def card11MacroTail10Equiv : Card11MacroTail10 ≃ Fin 10 :=
   (Equiv.sumCongr (Equiv.refl (Fin 2)) card11MacroTail8Equiv).trans
     finSumFinEquiv
@@ -229,6 +237,7 @@ non-surplus-cap interior label. -/
 /-- The direct finite surface of the `2! * 3! * 3!` internal orders. -/
 def card11MacroOrders : Finset Card11InternalOrder := Finset.univ
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem mem_card11MacroOrders (order : Card11InternalOrder) :
     order ∈ card11MacroOrders := by
   simp [card11MacroOrders]

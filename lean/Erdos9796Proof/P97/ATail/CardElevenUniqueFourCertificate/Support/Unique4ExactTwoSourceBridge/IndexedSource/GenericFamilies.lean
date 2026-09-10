@@ -109,6 +109,7 @@ private noncomputable def rowHitIndices
     (σ : Label → Label) (c : Label) : Finset Label :=
   Finset.univ.filter fun p => rowMem Q σ c p
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem rowHitIndices_image
     (Q : ExactTwoBoundaryCore R distribution) {σ : Label → Label}
     (hσ : Function.Injective σ) (c : Label) :
@@ -132,6 +133,7 @@ private theorem rowHitIndices_image
     exact Finset.mem_image.mpr
       ⟨p, Finset.mem_filter.mpr ⟨Finset.mem_univ p, hx⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem rowHitIndices_card
     (Q : ExactTwoBoundaryCore R distribution) {σ : Label → Label}
     (hσ : Function.Injective σ) (c : Label) :

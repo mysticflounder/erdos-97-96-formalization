@@ -12,12 +12,14 @@ namespace ExactTwelveRigid221NextRowArmCell0065Replay.Shard1
 
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- Frontier live-closure generated theorem. -/
 theorem throughW0001 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0001.text) :=
   W0001.sound
 
+/-- Frontier live-closure generated theorem. -/
 theorem sound :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)

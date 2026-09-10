@@ -49,10 +49,12 @@ def GlobalThirdApexValid (k : Key) : Prop :=
 def ThirdApexStrongValid (k : Key) : Prop :=
   StrongValid k ∧ GlobalThirdApexValid k
 
+/-- Frontier live-closure def. -/
 @[irreducible] noncomputable def thirdApexStrongValidKeys : Finset Key := by
   classical
   exact Finset.univ.filter ThirdApexStrongValid
 
+/-- Frontier live-closure theorem. -/
 theorem mem_thirdApexStrongValidKeys_iff (k : Key) :
     k ∈ thirdApexStrongValidKeys ↔ ThirdApexStrongValid k := by
   simp only [thirdApexStrongValidKeys, Finset.mem_filter, Finset.mem_univ, true_and]
@@ -62,12 +64,14 @@ def ThirdApexStrongValidKeyCover
     (bank : List CardGeThirteenExact13WeightedProviderBankBridge.Entry) : Prop :=
   ∀ k ∈ thirdApexStrongValidKeys, ∃ e ∈ bank, KeyEntryCovers k e
 
+/-- Frontier live-closure theorem. -/
 private theorem sourceIndex_eq_orderIndex
     (I : Input) (orientation : Bool) (ho : sourceOrderValid I orientation) :
     I.P.idx = orderIndex orientation := by
   cases orientation <;>
     simpa [sourceOrderValid, orderIndex, I.coarse.profile_eq_secondOpposite] using ho
 
+/-- Frontier live-closure theorem. -/
 private theorem rawSupport_eq_providerSupport
     (I : Input) (k : Key)
     (hsupport : k.supportOf = I.positionalPattern.supportOf)
@@ -88,6 +92,7 @@ private theorem rawSupport_eq_providerSupport
   · intro hx
     exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem source_global_support_eq
     (I : Input) (c : Exact13GlobalCenter) (k : Key)
     (hsupport : k.supportOf = I.positionalPattern.supportOf)
@@ -100,6 +105,7 @@ private theorem source_global_support_eq
   simpa [Input.providerPattern, exact13RawProviderPattern_of_dispatch,
     Exact13RawProviderPattern] using h
 
+/-- Frontier live-closure theorem. -/
 private theorem global_third_apex_inter_card_le_one
     (I : Input) (c : Exact13GlobalCenter)
     (hmem : thirdApex ∈ ((I.globalRows).row c).2.rawSupport) :
@@ -135,6 +141,7 @@ private theorem global_third_apex_inter_card_le_one
     I.D.convex M.enclosing hcenter hB hPboundary
     ((I.globalRows).row c).1 ((I.globalRows).row ⟨thirdApex, by decide⟩).1 hPC
 
+/-- Frontier live-closure theorem. -/
 theorem globalThirdApexValid_of_source
     (I : Input) (k : Key)
     (_hcenter : k.centerOf = I.positionalPattern.centerOf)
@@ -184,6 +191,7 @@ theorem globalThirdApexValid_of_source
     rw [hGc, hGThird']
     exact global_third_apex_inter_card_le_one I c hGmem
 
+/-- Frontier live-closure theorem. -/
 theorem exists_mem_thirdApexStrongValidKeys (I : Input) :
     ∃ k ∈ thirdApexStrongValidKeys,
       k.centerOf = I.positionalPattern.centerOf ∧
@@ -196,6 +204,7 @@ theorem exists_mem_thirdApexStrongValidKeys (I : Input) :
   exact ⟨k, (mem_thirdApexStrongValidKeys_iff k).2 ⟨⟨hk, hstrong⟩, hthird⟩,
     hcenter, hsupport, hz, ho⟩
 
+/-- Frontier live-closure theorem. -/
 theorem bankCovers_of_thirdApexStrongValidKeyCover
     (bank : List CardGeThirteenExact13WeightedProviderBankBridge.Entry)
     (hcover : ThirdApexStrongValidKeyCover bank) :

@@ -25,17 +25,21 @@ namespace FirstFiberBoundedEncoding
 open FirstFiberFinitePacketIngress
 open Census554.GeneralCarrierBridge
 
+/-- Frontier live-closure abbrev. -/
 abbrev NamedSlot {n : ℕ} (packet : CombinedIndexedPacket n) :=
   {x : Fin n // x ∈ packet.namedSlots}
 
+/-- Frontier live-closure def. -/
 private noncomputable def namedCardLE {n : ℕ} (packet : CombinedIndexedPacket n) :
     Fintype.card (NamedSlot packet) ≤ 52 := by
   simpa [NamedSlot] using packet.namedSlots_card_le
 
+/-- Frontier live-closure def. -/
 private noncomputable def namedIndex {n : ℕ} (packet : CombinedIndexedPacket n)
     (x : NamedSlot packet) : Fin 52 :=
   Fin.castLE (namedCardLE packet) ((Fintype.equivFin (NamedSlot packet)) x)
 
+/-- Frontier live-closure theorem. -/
 private theorem namedIndex_injective {n : ℕ} (packet : CombinedIndexedPacket n) :
     Function.Injective (namedIndex packet) := by
   intro x y hxy
@@ -43,10 +47,12 @@ private theorem namedIndex_injective {n : ℕ} (packet : CombinedIndexedPacket n
   apply Fin.ext
   exact congrArg (fun z : Fin 52 => z.val) hxy
 
+/-- Frontier live-closure def. -/
 private noncomputable def slotMap {n : ℕ} (packet : CombinedIndexedPacket n) :
     Fin n → Option (Fin 52) := fun x ↦
   if hx : x ∈ packet.namedSlots then some (namedIndex packet ⟨x, hx⟩) else none
 
+/-- Frontier live-closure structure. -/
 structure BoundedNamedSlotEncoding {n : ℕ} (packet : CombinedIndexedPacket n) where
   slot : Fin n → Option (Fin 52)
   slot_named_iff_some : ∀ x, x ∈ packet.namedSlots ↔ ∃ j, slot x = some j
@@ -54,12 +60,14 @@ structure BoundedNamedSlotEncoding {n : ℕ} (packet : CombinedIndexedPacket n) 
   slot_none_iff_not_named : ∀ x, slot x = none ↔ x ∉ packet.namedSlots
   slot_none_iff_overflow : ∀ x, slot x = none ↔ x ∈ packet.overflow
 
+/-- Frontier live-closure theorem. -/
 private theorem slotMap_named_iff_some {n : ℕ} (packet : CombinedIndexedPacket n) (x : Fin n) :
     x ∈ packet.namedSlots ↔ ∃ j, slotMap packet x = some j := by
   by_cases hx : x ∈ packet.namedSlots
   · simp [slotMap, hx]
   · simp [slotMap, hx]
 
+/-- Frontier live-closure theorem. -/
 private theorem slotMap_injective_on_named {n : ℕ} (packet : CombinedIndexedPacket n) :
     Set.InjOn (slotMap packet) (packet.namedSlots : Set (Fin n)) := by
   intro x hx y hy hxy
@@ -72,17 +80,20 @@ private theorem slotMap_injective_on_named {n : ℕ} (packet : CombinedIndexedPa
     namedIndex_injective packet hindex
   exact congrArg Subtype.val hsub
 
+/-- Frontier live-closure theorem. -/
 private theorem slotMap_none_iff_not_named {n : ℕ} (packet : CombinedIndexedPacket n)
     (x : Fin n) : slotMap packet x = none ↔ x ∉ packet.namedSlots := by
   by_cases hx : x ∈ packet.namedSlots
   · simp [slotMap, hx]
   · simp [slotMap, hx]
 
+/-- Frontier live-closure theorem. -/
 private theorem slotMap_none_iff_overflow {n : ℕ} (packet : CombinedIndexedPacket n)
     (x : Fin n) : slotMap packet x = none ↔ x ∈ packet.overflow := by
   rw [slotMap_none_iff_not_named]
   exact (packet.overflow_complete x).symm
 
+/-- Frontier live-closure def. -/
 noncomputable def boundedNamedSlotEncoding {n : ℕ} (packet : CombinedIndexedPacket n) :
     BoundedNamedSlotEncoding packet :=
   { slot := slotMap packet
@@ -91,32 +102,38 @@ noncomputable def boundedNamedSlotEncoding {n : ℕ} (packet : CombinedIndexedPa
     slot_none_iff_not_named := slotMap_none_iff_not_named packet
     slot_none_iff_overflow := slotMap_none_iff_overflow packet }
 
+/-- Frontier live-closure theorem. -/
 theorem exists_boundedNamedSlotEncoding {n : ℕ} (packet : CombinedIndexedPacket n) :
     Nonempty (BoundedNamedSlotEncoding packet) :=
   ⟨boundedNamedSlotEncoding packet⟩
 
+/-- Frontier live-closure theorem. -/
 theorem boundedNamedSlotEncoding_named_iff_some {n : ℕ}
     (packet : CombinedIndexedPacket n) (x : Fin n) :
     x ∈ packet.namedSlots ↔
       ∃ j, (boundedNamedSlotEncoding packet).slot x = some j := by
   exact (boundedNamedSlotEncoding packet).slot_named_iff_some x
 
+/-- Frontier live-closure theorem. -/
 theorem boundedNamedSlotEncoding_injective_on_named {n : ℕ}
     (packet : CombinedIndexedPacket n) :
     Set.InjOn (boundedNamedSlotEncoding packet).slot
       (packet.namedSlots : Set (Fin n)) :=
   (boundedNamedSlotEncoding packet).slot_injective_on_named
 
+/-- Frontier live-closure theorem. -/
 theorem boundedNamedSlotEncoding_none_iff_not_named {n : ℕ}
     (packet : CombinedIndexedPacket n) (x : Fin n) :
     (boundedNamedSlotEncoding packet).slot x = none ↔ x ∉ packet.namedSlots :=
   (boundedNamedSlotEncoding packet).slot_none_iff_not_named x
 
+/-- Frontier live-closure theorem. -/
 theorem boundedNamedSlotEncoding_none_iff_overflow {n : ℕ}
     (packet : CombinedIndexedPacket n) (x : Fin n) :
     (boundedNamedSlotEncoding packet).slot x = none ↔ x ∈ packet.overflow :=
   (boundedNamedSlotEncoding packet).slot_none_iff_overflow x
 
+/-- Frontier live-closure theorem. -/
 theorem exists_roleCombinationPacket_with_boundedNamedSlotEncoding {n : ℕ}
     (hpackets : Nonempty (RoleCombinationPacket n)) :
     ∃ packet : RoleCombinationPacket n,
@@ -124,6 +141,7 @@ theorem exists_roleCombinationPacket_with_boundedNamedSlotEncoding {n : ℕ}
   rcases hpackets with ⟨packet⟩
   exact ⟨packet, exists_boundedNamedSlotEncoding packet.combinedPacket⟩
 
+/-- Frontier live-closure theorem. -/
 theorem exists_indexed_roleCombinationPacket_with_boundedNamedSlotEncoding
     {D : CounterexampleData}
     (hpackets : ∃ I : BoundaryIndexing D.A, Nonempty (RoleCombinationPacket I.n)) :
@@ -141,10 +159,12 @@ the packet's named support.  Thus the default value used by `namedSlotValue`
 is never used to interpret an overflow label in a mapped named set.
 -/
 
+/-- Frontier live-closure def. -/
 noncomputable def namedSlotValue {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (x : Fin n) : Fin 52 :=
   (encoding.slot x).getD 0
 
+/-- Frontier live-closure theorem. -/
 theorem namedSlotValue_spec {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) {x : Fin n}
     (hx : x ∈ packet.namedSlots) :
@@ -152,11 +172,13 @@ theorem namedSlotValue_spec {n : ℕ} {packet : CombinedIndexedPacket n}
   rcases (encoding.slot_named_iff_some x).mp hx with ⟨j, hj⟩
   simp [namedSlotValue, hj]
 
+/-- Frontier live-closure def. -/
 noncomputable def namedSetMap {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
     (_hs : s ⊆ packet.namedSlots) : Finset (Fin 52) :=
   s.image (namedSlotValue encoding)
 
+/-- Frontier live-closure theorem. -/
 theorem namedSetMap_card {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
     (hs : s ⊆ packet.namedSlots) :
@@ -170,6 +192,7 @@ theorem namedSetMap_card {n : ℕ} {packet : CombinedIndexedPacket n}
     _ = some (namedSlotValue encoding b) := congrArg some hab
     _ = encoding.slot b := (namedSlotValue_spec encoding (hs hb)).symm
 
+/-- Frontier live-closure theorem. -/
 theorem namedSetMap_center_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
     (hs : s ⊆ packet.namedSlots) {center : Fin n}
@@ -187,12 +210,14 @@ theorem namedSetMap_center_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
     encoding.slot_injective_on_named hcenter (hs hx) hslot
   exact hcenter_not_mem (hcenter_eq.symm ▸ hx)
 
+/-- Frontier live-closure structure. -/
 structure MappedIndexedExactRow {n : ℕ} (row : IndexedExactRow n) where
   center : Fin 52
   support : Finset (Fin 52)
   support_card : support.card = 4
   center_not_mem : center ∉ support
 
+/-- Frontier live-closure def. -/
 noncomputable def mapIndexedExactRow {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
     (hsupport : row.support ⊆ packet.namedSlots)
@@ -204,6 +229,7 @@ noncomputable def mapIndexedExactRow {n : ℕ} {packet : CombinedIndexedPacket n
     center_not_mem := namedSetMap_center_not_mem encoding row.support hsupport hcenter
       row.center_not_mem }
 
+/-- Frontier live-closure theorem. -/
 theorem mapIndexedExactRow_support_card {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
     (hsupport : row.support ⊆ packet.namedSlots)
@@ -211,6 +237,7 @@ theorem mapIndexedExactRow_support_card {n : ℕ} {packet : CombinedIndexedPacke
     (mapIndexedExactRow encoding row hsupport hcenter).support.card = 4 :=
   (mapIndexedExactRow encoding row hsupport hcenter).support_card
 
+/-- Frontier live-closure theorem. -/
 theorem mapIndexedExactRow_center_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
     (hsupport : row.support ⊆ packet.namedSlots)
@@ -219,6 +246,7 @@ theorem mapIndexedExactRow_center_not_mem {n : ℕ} {packet : CombinedIndexedPac
       (mapIndexedExactRow encoding row hsupport hcenter).support :=
   (mapIndexedExactRow encoding row hsupport hcenter).center_not_mem
 
+/-- Frontier live-closure theorem. -/
 theorem named_deleted_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (s : Finset (Fin n))
     (hs : s ⊆ packet.namedSlots) {deleted : Fin n}
@@ -234,18 +262,21 @@ of every row center and support before any replay map is formed.  In particular,
 it does not infer row-center namedness from the packet's other fields.
 -/
 
+/-- Frontier live-closure structure. -/
 structure IndexedPacketNamedReplayContract {n : ℕ}
     (packet : CombinedIndexedPacket n) (source : IndexedPacket n) where
   deleted_named : source.deleted ∈ packet.namedSlots
   row_center_named : ∀ row ∈ source.rows, row.center ∈ packet.namedSlots
   row_support_named : ∀ row ∈ source.rows, row.support ⊆ packet.namedSlots
 
+/-- Frontier live-closure structure. -/
 structure MappedNamedExactRow where
   center : Fin 52
   support : Finset (Fin 52)
   support_card : support.card = 4
   center_not_mem : center ∉ support
 
+/-- Frontier live-closure def. -/
 noncomputable def mapNamedExactRow {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (row : IndexedExactRow n)
     (hsupport : row.support ⊆ packet.namedSlots)
@@ -257,6 +288,7 @@ noncomputable def mapNamedExactRow {n : ℕ} {packet : CombinedIndexedPacket n}
     center_not_mem := namedSetMap_center_not_mem encoding row.support hsupport hcenter
       row.center_not_mem }
 
+/-- Frontier live-closure def. -/
 noncomputable def mapIndexedPacketRows {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
     (contract : IndexedPacketNamedReplayContract packet source) :
@@ -269,12 +301,14 @@ noncomputable def mapIndexedPacketRows {n : ℕ} {packet : CombinedIndexedPacket
     (fun row hrow => mapNamedExactRow encoding row hrow.2 hrow.1)
     source.rows hrows
 
+/-- Frontier live-closure theorem. -/
 theorem mapIndexedPacketRows_length {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
     (contract : IndexedPacketNamedReplayContract packet source) :
     (mapIndexedPacketRows encoding source contract).length = 5 := by
   simpa [mapIndexedPacketRows] using source.rows_length
 
+/-- Frontier live-closure theorem. -/
 theorem mapIndexedPacketRows_support_card {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
     (contract : IndexedPacketNamedReplayContract packet source)
@@ -287,6 +321,7 @@ theorem mapIndexedPacketRows_support_card {n : ℕ} {packet : CombinedIndexedPac
     (contract.row_support_named row hrow)
     (contract.row_center_named row hrow)).support_card
 
+/-- Frontier live-closure theorem. -/
 theorem mapIndexedPacketRows_center_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
     (contract : IndexedPacketNamedReplayContract packet source)
@@ -299,6 +334,7 @@ theorem mapIndexedPacketRows_center_not_mem {n : ℕ} {packet : CombinedIndexedP
     (contract.row_support_named row hrow)
     (contract.row_center_named row hrow)).center_not_mem
 
+/-- Frontier live-closure theorem. -/
 theorem mapIndexedPacketRows_deleted_not_mem {n : ℕ} {packet : CombinedIndexedPacket n}
     (encoding : BoundedNamedSlotEncoding packet) (source : IndexedPacket n)
     (contract : IndexedPacketNamedReplayContract packet source)
@@ -311,6 +347,7 @@ theorem mapIndexedPacketRows_deleted_not_mem {n : ℕ} {packet : CombinedIndexed
     (contract.row_support_named row hrow) contract.deleted_named
     (source.deleted_not_mem row hrow)
 
+/-- Frontier live-closure theorem. -/
 theorem combine_left_namedReplayContract {n : ℕ}
     (left right : IndexedPacket n) :
     IndexedPacketNamedReplayContract (left.combine right) left := by
@@ -328,6 +365,7 @@ theorem combine_left_namedReplayContract {n : ℕ}
     exact Finset.Subset.trans (left.rows_support_subset_namedSlots row hrow)
       (Finset.subset_union_left)
 
+/-- Frontier live-closure theorem. -/
 theorem combine_right_namedReplayContract {n : ℕ}
     (left right : IndexedPacket n) :
     IndexedPacketNamedReplayContract (left.combine right) right := by
@@ -345,18 +383,21 @@ theorem combine_right_namedReplayContract {n : ℕ}
     exact Finset.Subset.trans (right.rows_support_subset_namedSlots row hrow)
       (Finset.subset_union_right)
 
+/-- Frontier live-closure theorem. -/
 theorem roleCombinationPacket_outside_namedReplayContract {n : ℕ}
     (role : RoleCombinationPacket n) :
     IndexedPacketNamedReplayContract role.combinedPacket role.outsidePacket := by
   rw [role.combinedPacket_eq]
   exact combine_left_namedReplayContract role.outsidePacket role.collisionPacket
 
+/-- Frontier live-closure theorem. -/
 theorem roleCombinationPacket_collision_namedReplayContract {n : ℕ}
     (role : RoleCombinationPacket n) :
     IndexedPacketNamedReplayContract role.combinedPacket role.collisionPacket := by
   rw [role.combinedPacket_eq]
   exact combine_right_namedReplayContract role.outsidePacket role.collisionPacket
 
+/-- Frontier live-closure def. -/
 noncomputable def mapRoleCombinationPacketRows {n : ℕ}
     (role : RoleCombinationPacket n)
     (encoding : BoundedNamedSlotEncoding role.combinedPacket) :
@@ -366,6 +407,7 @@ noncomputable def mapRoleCombinationPacketRows {n : ℕ}
     , mapIndexedPacketRows encoding role.collisionPacket
       (roleCombinationPacket_collision_namedReplayContract role) )
 
+/-- Frontier live-closure theorem. -/
 theorem exists_roleCombinationPacket_replayRows {n : ℕ}
     (role : RoleCombinationPacket n)
     (encoding : BoundedNamedSlotEncoding role.combinedPacket) :
@@ -380,6 +422,7 @@ theorem exists_roleCombinationPacket_replayRows {n : ℕ}
   · exact mapIndexedPacketRows_length encoding role.collisionPacket
       (roleCombinationPacket_collision_namedReplayContract role)
 
+/-- Frontier live-closure theorem. -/
 theorem exists_indexed_roleCombinationPacket_diagnosticReplayIngress
     {D : CounterexampleData}
     (hpackets : ∃ I : BoundaryIndexing D.A, Nonempty (RoleCombinationPacket I.n)) :

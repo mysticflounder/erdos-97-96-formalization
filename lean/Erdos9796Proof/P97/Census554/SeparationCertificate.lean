@@ -336,6 +336,7 @@ structure Card11SeparationCertificate where
 /-- The executable list of the 72 certificate indices. -/
 def card11CertificateIndices : List (Fin 72) := List.ofFn id
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem mem_card11CertificateIndices (i : Fin 72) :
     i ∈ card11CertificateIndices := by
   unfold card11CertificateIndices

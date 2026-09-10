@@ -35,10 +35,12 @@ open ATailUniqueFourExactTwoSchemaDecoderScratch
 
 /- ## `Fin 11` to `Fin A.card` bridge -/
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 def cardBoundary {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Label → ℝ²) : Fin A.card → ℝ² :=
   fun i => boundary (Fin.cast hcard i)
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     (i : Label) : Fin A.card :=
   Fin.cast hcard.symm i
@@ -48,11 +50,13 @@ def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     cardBoundary hcard boundary (toCardIndex hcard i) = boundary i :=
   rfl
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem toCardIndex_lt {A : Finset ℝ²} (hcard : A.card = 11)
     {i j : Label} (h : i < j) :
     toCardIndex hcard i < toCardIndex hcard j := by
   simpa only [toCardIndex, Fin.lt_def, Fin.val_cast] using h
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem cardBoundary_injective {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²} (hinj : Function.Injective boundary) :
     Function.Injective (cardBoundary hcard boundary) := by
@@ -60,6 +64,7 @@ theorem cardBoundary_injective {A : Finset ℝ²} (hcard : A.card = 11)
   apply Fin.cast_injective hcard
   exact hinj hij
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem cardBoundary_image {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
     (himage : Finset.univ.image boundary = A) :
@@ -79,6 +84,7 @@ theorem cardBoundary_image {A : Finset ℝ²} (hcard : A.card = 11)
             simp [cardBoundary]⟩
     _ = A := himage
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem cardBoundary_ccw {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary) :

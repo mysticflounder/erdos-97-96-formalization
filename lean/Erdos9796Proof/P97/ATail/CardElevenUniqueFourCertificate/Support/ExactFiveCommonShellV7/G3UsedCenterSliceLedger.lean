@@ -35,13 +35,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 168810
+/-- Exact-five common-shell V7 def. -/
 private def retainedUsedCenterCount : Nat := 21
+/-- Exact-five common-shell V7 def. -/
 private def usedCenterClauseCount : Nat := 103
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedUsedCenterPayload : String :=
   include_str "data/g3-used-center-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev UsedCenterClauseIndex := Fin usedCenterClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -66,10 +71,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array UsedCenterClauseIndex →
       Option (Array UsedCenterClauseIndex)
@@ -89,6 +96,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedUsedCenterIndices :
     Option (Array UsedCenterClauseIndex) := do
   let bytes ← decodeAscii85 retainedUsedCenterPayload
@@ -117,13 +125,16 @@ def encoderUsedCenterOccurrences : List UsedCenterOccurrence :=
       ++ [.reverse center]
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderUsedCenterOccurrences_length :
     encoderUsedCenterOccurrences.length = usedCenterClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def usedCenterOccurrenceArray : Array UsedCenterOccurrence :=
   encoderUsedCenterOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def usedCenterOccurrenceAt
     (index : UsedCenterClauseIndex) : UsedCenterOccurrence :=
   usedCenterOccurrenceArray[index.val]'(by
@@ -150,6 +161,7 @@ def g3UsedCenterSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3RetainedUsedCenterIndices_size :
     g3RetainedUsedCenterIndices.size = retainedUsedCenterCount := by
   native_decide
@@ -157,6 +169,7 @@ theorem g3RetainedUsedCenterIndices_size :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3UsedCenterSlice_size :
     g3UsedCenterSlice.size = retainedUsedCenterCount := by
   native_decide
@@ -174,6 +187,7 @@ theorem g3UsedCenterSlice_perm_checkpoint :
           retainedPrefixCount).take retainedUsedCenterCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 private def usedCenterOccurrenceAtValid
     (index : UsedCenterClauseIndex) : Prop :=
   match usedCenterOccurrenceAt index with

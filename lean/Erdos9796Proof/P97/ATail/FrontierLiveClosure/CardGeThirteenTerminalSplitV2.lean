@@ -70,6 +70,7 @@ structure CardGeThirteenUncoveredThreeCenterPacket
       ((lateFirstApexSystem R).centerAt W.source₂.1 W.source₂.2)
       S.oppApex2 W.row₁.support W.row₂.support thirdRow.support)
 
+/-- Frontier live-closure def. -/
 private noncomputable def normalized_row₁
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -80,6 +81,7 @@ private noncomputable def normalized_row₁
   ((lateFirstApexSystem R).selectedAt W.source₁.1 W.source₁.2
     |>.toCriticalFourShell).toSelectedFourClass
 
+/-- Frontier live-closure def. -/
 private noncomputable def normalized_row₂
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -90,6 +92,7 @@ private noncomputable def normalized_row₂
   ((lateFirstApexSystem R).selectedAt W.source₂.1 W.source₂.2
     |>.toCriticalFourShell).toSelectedFourClass
 
+/-- Frontier live-closure theorem. -/
 private theorem normalized_row₁_omits
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -100,6 +103,7 @@ private theorem normalized_row₁_omits
     (cross_deletion_survives_iff_not_mem_selected_support
       (lateFirstApexSystem R) W.source₁.2).mp W.source₁_survives
 
+/-- Frontier live-closure theorem. -/
 private theorem normalized_row₂_omits
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -110,6 +114,7 @@ private theorem normalized_row₂_omits
     (cross_deletion_survives_iff_not_mem_selected_support
       (lateFirstApexSystem R) W.source₂.2).mp W.source₂_survives
 
+/-- Frontier live-closure def. -/
 private noncomputable def normalized_witness
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

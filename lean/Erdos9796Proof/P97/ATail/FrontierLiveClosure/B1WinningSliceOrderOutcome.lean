@@ -1104,6 +1104,7 @@ theorem b1_cardSix_escapeSource_twoPoint
 
 /- A card-six order producer needs only one same-arc assertion: the local
 packet supplies the two-point cardinalities for both live slices. -/
+/-- Frontier live-closure def. -/
 def B1CardSixWinningSliceArc
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1371,6 +1372,7 @@ theorem nonempty_b1CardSixEndpointOrderResidual
 
 /- The card-five interface uses the same arc packet, but records the required
 card-two condition because one live slice may be a singleton. -/
+/-- Frontier live-closure def. -/
 def B1CardFiveWinningSliceArc
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1582,6 +1584,7 @@ structure B1EscapeSourceContext
 /- The equal-blocker normal form pins the common-row/class intersection to the
 two canonical deleted sources.  This lets a later producer reselect a source
 from the physical class without separately carrying common-row omission. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_source_not_mem_commonRow_of_class_of_ne_deletions
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1641,6 +1644,7 @@ two source-producing arms: an interior canonical deletion, or an interior
 live-row source.  This is weaker than the parked both-deletions statement,
 but it is the exact provenance that remains available without reopening that
 commented formulation. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_normalForm_interior_deleted_or_live_source
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1666,6 +1670,7 @@ theorem b1_normalForm_interior_deleted_or_live_source
 data needed for a B1 escape witness.  This constructor is independent of the
 outside-first-apex and retained-survival facts, which are added only when the
 source context is formed. -/
+/-- Frontier live-closure def. -/
 def b1EscapeWitness_of_sourceData
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1732,6 +1737,7 @@ def b1EscapeWitness_of_sourceData
 /- A fresh source can be turned into the full B1 source context without using
 the named escape star.  The normal-form cover supplies live-row membership;
 the local witness constructor supplies the escape row and blocker facts. -/
+/-- Frontier live-closure theorem. -/
 theorem b1EscapeSourceContext_of_normalForm_sourceData
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2113,6 +2119,7 @@ theorem false_of_b1PhysicalClassFiveSixNormalForm_of_escapeSource_and_goodCanoni
 already has the retained-survival disjunction required by the source context.
 This form uses the residual's own `interior_q` and `interior_w`, so it does not
 need an identification with the frontier pair stored in `F`. -/
+/-- Frontier live-closure theorem. -/
 theorem b1EscapeSourceContext_of_normalForm_sourceData_of_not_interiorPairBad
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2150,6 +2157,7 @@ theorem b1EscapeSourceContext_of_normalForm_sourceData_of_not_interiorPairBad
 
 /- The named escape source now has a source-context split that is independent
 of the optional frontier-pair identifications. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_escapeSourceContext_or_firstClass_or_interiorPairBad
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2181,6 +2189,7 @@ theorem b1_escapeSourceContext_or_firstClass_or_interiorPairBad
    routed through the neutral source-context adapter.  The only alternatives
    left by this routing are the first-apex class and the explicitly named bad
    outside-source set. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_freshInteriorEscape_context_or_firstClass_or_bad
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2265,6 +2274,7 @@ theorem b1_freshInteriorEscape_context_or_firstClass_or_bad
    retained-deletion witness.  The normal-form adapter therefore succeeds
    unless that good source is one of the two deleted roles; that coincidence
    is kept explicit for the next consumer. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_goodOutsideInteriorSource_context_or_deleted
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2348,6 +2358,7 @@ theorem b1EscapeSourceContext_of_star
 producer retains it for the escape source.  The auxiliary exact-four pair is
 quantified independently: a producer may generate a fresh pair rather than
 reuse the B1 context's named `u,v`. -/
+/-- Frontier live-closure theorem. -/
 theorem b1EscapeSourceContext_of_exactFourSourceContext_any
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2383,6 +2394,7 @@ theorem b1EscapeSourceContext_of_exactFourSourceContext_any
 
 /- Backward-compatible specialization for contexts whose auxiliary pair is
 the ambient B1 pair. -/
+/-- Frontier live-closure theorem. -/
 theorem b1EscapeSourceContext_of_exactFourSourceContext
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2399,6 +2411,7 @@ theorem b1EscapeSourceContext_of_exactFourSourceContext
 /- A carrier-level version of the first-apex class adapter.  Keeping the
 source independent of the named escape star lets fresh interior producers
 reuse the same outside-fiber argument. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_mem_outsideFirstApexFiber_of_not_mem_firstApexClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2427,6 +2440,7 @@ theorem b1_mem_outsideFirstApexFiber_of_not_mem_firstApexClass
 
 /- A class-level non-membership proof is enough to discharge the outside-fiber
 part of the source context. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_escapeSource_mem_outsideFirstApexFiber_of_not_mem_firstClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2442,6 +2456,7 @@ theorem b1_escapeSource_mem_outsideFirstApexFiber_of_not_mem_firstClass
 /- Outside sources that are not in the bad set carry one retained-deletion
 survival witness.  The residual's named interior points must be identified
 with the frontier pair points because the two structures store them separately. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_escapeSource_survives_retained_firstApex_deletion_of_not_bad_of_pair_identifications
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2478,6 +2493,7 @@ theorem b1_escapeSource_survives_retained_firstApex_deletion_of_not_bad_of_pair_
 /- The favorable source branch now packages the two global adapters above
 into the source context consumed downstream.  The pair identifications remain
 explicit because they are not definitional fields of the residual. -/
+/-- Frontier live-closure theorem. -/
 theorem b1EscapeSourceContext_of_escape_source_outside_not_bad
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2502,6 +2518,7 @@ theorem b1EscapeSourceContext_of_escape_source_outside_not_bad
 /- The source-context adapter therefore leaves only two explicit residual
 branches for the named escape source: first-apex-class membership or failure
 of retained-deletion goodness. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_escapeSourceContext_or_firstClass_or_bad
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2536,6 +2553,7 @@ def B1WinningSliceOrderOutcome
 
 /- The card-six producer interface maps one explicit winning-pair arc, or the
 two explicit source-context facts, into the common order-or-context outcome. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_cardSix_orderOutcome_of_arc_or_escapeSourceContext
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2574,6 +2592,7 @@ theorem b1_cardSix_orderOutcome_of_arc_or_escapeSourceContext
 
 /- The card-five trace has a singleton arm.  The producer therefore has to
 choose the two-point slice in the arc arm, or supply the source-context arm. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_cardFive_orderOutcome_of_arc_or_escapeSourceContext
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

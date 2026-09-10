@@ -23,12 +23,14 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenThirtySeventhModelRefinements
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def thirtyEighthModelRefinementClauses : Std.Sat.CNF Atom :=
   ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard0.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard1.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard2.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard3.refinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem thirtyEighthModelRefinementClauses_length :
     thirtyEighthModelRefinementClauses.length = 112 := by
   simp only [thirtyEighthModelRefinementClauses, List.length_append,
@@ -37,6 +39,7 @@ theorem thirtyEighthModelRefinementClauses_length :
     ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard2.refinementClauses_length,
     ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard3.refinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_thirtyEighthModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ thirtyEighthModelRefinementClauses,
@@ -55,15 +58,18 @@ theorem sourceAssign_thirtyEighthModelRefinementClauses
     · exact ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard2.sourceAssign_refinementClauses source clause h2
   · exact ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard3.sourceAssign_refinementClauses source clause h3
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedThirtyEighthModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedThirtySeventhModelRefinementsCnf ++ thirtyEighthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedThirtyEighthModelRefinementsCnf_length :
     extendedThirtyEighthModelRefinementsCnf.length = 5847388 := by
   simp only [extendedThirtyEighthModelRefinementsCnf, List.length_append,
     extendedThirtySeventhModelRefinementsCnf_length,
     thirtyEighthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtyEighthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model) extendedThirtyEighthModelRefinementsCnf = true := by
@@ -76,6 +82,7 @@ theorem sourceAssign_extendedThirtyEighthModelRefinementsCnf
     exact h clause hparent
   · exact sourceAssign_thirtyEighthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedThirtyEighthModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,

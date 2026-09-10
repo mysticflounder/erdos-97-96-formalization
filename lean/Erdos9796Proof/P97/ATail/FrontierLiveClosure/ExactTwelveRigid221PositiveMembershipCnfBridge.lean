@@ -47,6 +47,7 @@ def positiveMembershipAssign (base : Nat → Bool) (cutoff : Nat)
     else decide ((requirementAt v).support ⊆
       row (requirementAt v).center)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem positiveMembershipAssign_of_le
     (base : Nat → Bool) (cutoff : Nat) (row : RowPattern Label)
     (requirementAt : Nat → RowChoice Label) {v : Nat}
@@ -55,6 +56,7 @@ def positiveMembershipAssign (base : Nat → Bool) (cutoff : Nat)
       base v := by
   simp [positiveMembershipAssign, hv]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem positiveMembershipAssign_of_lt
     (base : Nat → Bool) (cutoff : Nat) (row : RowPattern Label)
     (requirementAt : Nat → RowChoice Label) {v : Nat}

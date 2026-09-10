@@ -62,6 +62,7 @@ structure SourceIndexedShadow
 
 namespace SourceIndexedShadow
 
+/-- Exact-five common-shell V7 def. -/
 private def recenterSelectedFourClass
     {A : Finset ℝ²} {center center' : ℝ²}
     (K : SelectedFourClass A center) (h : center = center') :
@@ -77,6 +78,7 @@ private def recenterSelectedFourClass
   center_not_mem := by
     simpa [← h] using K.center_not_mem
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem blockerCenter_mem
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (q : ℝ²) (hq : q ∈ A) :

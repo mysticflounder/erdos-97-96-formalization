@@ -24,8 +24,10 @@ open StaticRelationLayout
 open StaticRelationSemantics
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
+/-- Frontier live-closure def. -/
 def equilateralVars (datum : EquilateralDatum) : List Nat :=
   let p := datum.1
   let a := datum.2.1
@@ -36,6 +38,7 @@ def equilateralVars (datum : EquilateralDatum) : List Nat :=
     relationVar (p, a) (a, b), relationVar (p, a) (a, x),
     relationVar (p, a) (b, x), relationVar (c, x) (c, a)]
 
+/-- Frontier live-closure def. -/
 def equilateralDatumValid (datum : EquilateralDatum) : Bool :=
   decide (datum.1 ≠ datum.2.1) &&
   decide (datum.1 ≠ datum.2.2.2.2) &&
@@ -45,10 +48,12 @@ def equilateralDatumValid (datum : EquilateralDatum) : Bool :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem equilateralData_valid :
     equilateralData.all equilateralDatumValid = true := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem equilateralDatum_facts (datum : EquilateralDatum)
     (hdatum : datum ∈ equilateralData) :
     datum.1 ≠ datum.2.1 ∧
@@ -63,6 +68,7 @@ theorem equilateralDatum_facts (datum : EquilateralDatum)
   intro v hv
   exact of_decide_eq_true ((List.all_eq_true.mp hpositive) v hv)
 
+/-- Frontier live-closure theorem. -/
 theorem equilateralClause_sat
     {row : RowPattern Label} (cell : FrozenNextRowCell)
     (blocker : Fin 5 → Label) (d : Label) (pointOf : Label → ℝ²)

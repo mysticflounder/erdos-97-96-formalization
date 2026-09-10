@@ -92,13 +92,16 @@ def validAtom : DenseAtom → Bool
   | .eq c l r => decide (l < r) && decide (l ≠ c) && decide (r ≠ c)
   | .classA _ => true
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem atomOfVar_varOfAtom_m : ∀ c p : Label, c ≠ p →
     atomOfVar (varOfAtom (.m c p)) = .m c p := by decide
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem atomOfVar_varOfAtom_eq : ∀ c l r : Label,
     l < r → l ≠ c → r ≠ c →
     atomOfVar (varOfAtom (.eq c l r)) = .eq c l r := by decide
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem atomOfVar_varOfAtom_class : ∀ p : Label,
     atomOfVar (varOfAtom (.classA p)) = .classA p := by decide
 
@@ -144,12 +147,14 @@ def litSat (v : Nat → Prop) (l : Int) : Prop :=
 def clauseSat (v : Nat → Prop) (clause : List Int) : Prop :=
   ∃ l ∈ clause, litSat v l
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem litSat_pos {v : Nat → Prop} {n : Nat} (h : v n) :
     litSat v (n : Int) := by
   unfold litSat
   rw [if_pos (Int.natCast_nonneg n)]
   simpa using h
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem litSat_neg {v : Nat → Prop} {n : Nat} (hn : 1 ≤ n) (h : ¬ v n) :
     litSat v (-(n : Int)) := by
   unfold litSat
@@ -200,9 +205,11 @@ theorem clauseSat_of_subset {v : Nat → Prop} {lits clause : List Int}
 def sortedEq (c a b : Label) : DenseAtom :=
   if a < b then .eq c a b else .eq c b a
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem validAtom_sortedEq : ∀ c a b : Label, a ≠ b → a ≠ c → b ≠ c →
     validAtom (sortedEq c a b) = true := by decide
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem interpAtom_sortedEq (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (c a b : Label) :
     interpAtom Q σ (sortedEq c a b) ↔ radiusEq Q σ c a b := by

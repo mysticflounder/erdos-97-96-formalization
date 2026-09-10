@@ -117,14 +117,17 @@ theorem oppApex2_mem_carrier {A : Finset ℝ²} (S : SurplusCapPacket A) :
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem surplusTriApexes_zero
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     surplusTriApexes S 0 = S.surplusApex := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem surplusTriApexes_one
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     surplusTriApexes S 1 = S.oppApex1 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem surplusTriApexes_two
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     surplusTriApexes S 2 = S.oppApex2 := rfl

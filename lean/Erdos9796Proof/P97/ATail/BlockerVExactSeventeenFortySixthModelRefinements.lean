@@ -21,23 +21,28 @@ open ATailBlockerVExactSeventeenFortyFifthModelRefinements
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev Hit := Label × Label
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence00ForwardChoices : List (RowChoice Label) :=
   [{ center := 1, support := {2, 3} },
    { center := 3, support := {9, 11} },
    { center := 9, support := {3, 11} },
    { center := 11, support := {2, 9} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence00ReverseChoices : List (RowChoice Label) :=
   [{ center := 5, support := {7, 14} },
    { center := 7, support := {5, 13} },
    { center := 13, support := {5, 7} },
    { center := 15, support := {13, 14} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence00Hits : List Hit :=
   [(1, 2), (1, 3), (3, 9), (3, 11), (9, 3), (9, 11), (11, 2), (11, 9)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence00ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 2, 3⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨0, 2, 3, 11⟩, form := .adjacentSides, weight := 1 }],
@@ -46,6 +51,7 @@ def waveOccurrence00ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (0, 2), right := (0, 2), path := ⟨(0, 2), [], (0, 2)⟩ },
        { left := (3, 11), right := (2, 11), path := ⟨(3, 11), [.row 3 11 9, .flip 3 9, .row 9 3 11, .flip 9 11, .row 11 9 2, .flip 11 2], (2, 11)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence00ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨13, 14, 15, 16⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨5, 13, 14, 16⟩, form := .adjacentSides, weight := 1 }],
@@ -54,6 +60,7 @@ def waveOccurrence00ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (5, 13), right := (5, 14), path := ⟨(5, 13), [.flip 5 13, .row 13 5 7, .flip 13 7, .row 7 13 5, .flip 7 5, .row 5 7 14], (5, 14)⟩ },
        { left := (14, 16), right := (14, 16), path := ⟨(14, 16), [], (14, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence00 : WeightedSourceOccurrence :=
   { hits := waveOccurrence00Hits
     forwardChoices := waveOccurrence00ForwardChoices
@@ -61,21 +68,26 @@ def waveOccurrence00 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence00ForwardData
     reverseData := waveOccurrence00ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence00_check : waveOccurrence00.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence01ForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {3, 13} },
    { center := 10, support := {0, 13} },
    { center := 14, support := {0, 3} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence01ReverseChoices : List (RowChoice Label) :=
   [{ center := 2, support := {13, 16} },
    { center := 6, support := {3, 16} },
    { center := 16, support := {2, 3, 13} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence01Hits : List Hit :=
   [(0, 3), (0, 13), (0, 14), (10, 0), (10, 13), (14, 0), (14, 3)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence01ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 3, 10, 13⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨0, 3, 13, 14⟩, form := .innerOuter, weight := 1 }],
@@ -84,6 +96,7 @@ def waveOccurrence01ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (3, 13), right := (3, 13), path := ⟨(3, 13), [], (3, 13)⟩ },
        { left := (0, 14), right := (3, 14), path := ⟨(0, 14), [.flip 0 14, .row 14 0 3, .flip 14 3], (3, 14)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence01ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨3, 6, 13, 16⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨2, 3, 13, 16⟩, form := .innerOuter, weight := 1 }],
@@ -92,6 +105,7 @@ def waveOccurrence01ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (3, 13), right := (3, 13), path := ⟨(3, 13), [], (3, 13)⟩ },
        { left := (2, 16), right := (3, 16), path := ⟨(2, 16), [.flip 2 16, .row 16 2 3, .flip 16 3], (3, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence01 : WeightedSourceOccurrence :=
   { hits := waveOccurrence01Hits
     forwardChoices := waveOccurrence01ForwardChoices
@@ -99,8 +113,10 @@ def waveOccurrence01 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence01ForwardData
     reverseData := waveOccurrence01ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence01_check : waveOccurrence01.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence02ForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {2, 14} },
    { center := 1, support := {0, 8, 11, 16} },
@@ -110,6 +126,7 @@ def waveOccurrence02ForwardChoices : List (RowChoice Label) :=
    { center := 14, support := {0, 9} },
    { center := 16, support := {1, 2} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence02ReverseChoices : List (RowChoice Label) :=
   [{ center := 0, support := {14, 15} },
    { center := 2, support := {7, 16} },
@@ -119,9 +136,11 @@ def waveOccurrence02ReverseChoices : List (RowChoice Label) :=
    { center := 15, support := {0, 5, 8, 16} },
    { center := 16, support := {2, 14} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence02Hits : List Hit :=
   [(0, 2), (0, 14), (1, 0), (1, 8), (1, 11), (1, 16), (2, 1), (2, 16), (9, 11), (9, 14), (11, 8), (11, 9), (14, 0), (14, 9), (16, 1), (16, 2)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence02ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 2, 8⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨0, 1, 8, 11⟩, form := .adjacentSides, weight := 1 }],
@@ -130,6 +149,7 @@ def waveOccurrence02ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (0, 1), right := (1, 11), path := ⟨(0, 1), [.flip 0 1, .row 1 0 11], (1, 11)⟩ },
        { left := (8, 11), right := (0, 2), path := ⟨(8, 11), [.flip 8 11, .row 11 8 9, .flip 11 9, .row 9 11 14, .flip 9 14, .row 14 9 0, .flip 14 0, .row 0 14 2], (0, 2)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence02ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨8, 14, 15, 16⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨5, 8, 15, 16⟩, form := .adjacentSides, weight := 1 }],
@@ -138,6 +158,7 @@ def waveOccurrence02ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (5, 8), right := (14, 16), path := ⟨(5, 8), [.row 5 8 7, .flip 5 7, .row 7 5 2, .flip 7 2, .row 2 7 16, .flip 2 16, .row 16 2 14, .flip 16 14], (14, 16)⟩ },
        { left := (15, 16), right := (5, 15), path := ⟨(15, 16), [.row 15 16 5, .flip 15 5], (5, 15)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence02 : WeightedSourceOccurrence :=
   { hits := waveOccurrence02Hits
     forwardChoices := waveOccurrence02ForwardChoices
@@ -145,21 +166,26 @@ def waveOccurrence02 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence02ForwardData
     reverseData := waveOccurrence02ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence02_check : waveOccurrence02.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence03ForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {1, 3, 16} },
    { center := 1, support := {0, 16} },
    { center := 14, support := {0, 3} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence03ReverseChoices : List (RowChoice Label) :=
   [{ center := 2, support := {13, 16} },
    { center := 15, support := {0, 16} },
    { center := 16, support := {0, 13, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence03Hits : List Hit :=
   [(0, 1), (0, 3), (0, 16), (1, 0), (1, 16), (14, 0), (14, 3)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence03ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 3, 14⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨0, 1, 14, 16⟩, form := .innerOuter, weight := 1 }],
@@ -168,6 +194,7 @@ def waveOccurrence03ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (1, 14), right := (1, 14), path := ⟨(1, 14), [], (1, 14)⟩ },
        { left := (0, 16), right := (1, 16), path := ⟨(0, 16), [.row 0 16 1, .flip 0 1, .row 1 0 16], (1, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence03ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨2, 13, 15, 16⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨0, 2, 15, 16⟩, form := .innerOuter, weight := 1 }],
@@ -176,6 +203,7 @@ def waveOccurrence03ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (2, 15), right := (2, 15), path := ⟨(2, 15), [], (2, 15)⟩ },
        { left := (0, 16), right := (0, 15), path := ⟨(0, 16), [.flip 0 16, .row 16 0 15, .flip 16 15, .row 15 16 0, .flip 15 0], (0, 15)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence03 : WeightedSourceOccurrence :=
   { hits := waveOccurrence03Hits
     forwardChoices := waveOccurrence03ForwardChoices
@@ -183,21 +211,26 @@ def waveOccurrence03 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence03ForwardData
     reverseData := waveOccurrence03ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence03_check : waveOccurrence03.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence04ForwardChoices : List (RowChoice Label) :=
   [{ center := 1, support := {8, 11} },
    { center := 2, support := {1, 11} },
    { center := 11, support := {1, 8} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence04ReverseChoices : List (RowChoice Label) :=
   [{ center := 5, support := {8, 15} },
    { center := 14, support := {5, 15} },
    { center := 15, support := {5, 8} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence04Hits : List Hit :=
   [(1, 8), (1, 11), (2, 1), (2, 11), (11, 1), (11, 8)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence04ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 2, 8⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨0, 2, 8, 11⟩, form := .adjacentSides, weight := 1 }],
@@ -206,6 +239,7 @@ def waveOccurrence04ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (0, 2), right := (0, 2), path := ⟨(0, 2), [], (0, 2)⟩ },
        { left := (8, 11), right := (1, 8), path := ⟨(8, 11), [.flip 8 11, .row 11 8 1, .flip 11 1, .row 1 11 8], (1, 8)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence04ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨8, 14, 15, 16⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨5, 8, 14, 16⟩, form := .adjacentSides, weight := 1 }],
@@ -214,6 +248,7 @@ def waveOccurrence04ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (5, 8), right := (8, 15), path := ⟨(5, 8), [.row 5 8 15, .flip 5 15, .row 15 5 8, .flip 15 8], (8, 15)⟩ },
        { left := (14, 16), right := (14, 16), path := ⟨(14, 16), [], (14, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence04 : WeightedSourceOccurrence :=
   { hits := waveOccurrence04Hits
     forwardChoices := waveOccurrence04ForwardChoices
@@ -221,23 +256,28 @@ def waveOccurrence04 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence04ForwardData
     reverseData := waveOccurrence04ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence04_check : waveOccurrence04.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence05ForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {1, 6} },
    { center := 1, support := {0, 6} },
    { center := 2, support := {1, 11} },
    { center := 10, support := {0, 11} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence05ReverseChoices : List (RowChoice Label) :=
   [{ center := 6, support := {5, 16} },
    { center := 14, support := {5, 15} },
    { center := 15, support := {10, 16} },
    { center := 16, support := {10, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence05Hits : List Hit :=
   [(0, 1), (0, 6), (1, 0), (1, 6), (2, 1), (2, 11), (10, 0), (10, 11)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence05ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 2, 6⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨0, 2, 10, 11⟩, form := .adjacentSides, weight := 1 }],
@@ -246,6 +286,7 @@ def waveOccurrence05ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (0, 2), right := (0, 2), path := ⟨(0, 2), [], (0, 2)⟩ },
        { left := (10, 11), right := (0, 10), path := ⟨(10, 11), [.row 10 11 0, .flip 10 0], (0, 10)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence05ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨10, 14, 15, 16⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨5, 6, 14, 16⟩, form := .adjacentSides, weight := 1 }],
@@ -254,6 +295,7 @@ def waveOccurrence05ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (5, 6), right := (6, 16), path := ⟨(5, 6), [.flip 5 6, .row 6 5 16], (6, 16)⟩ },
        { left := (14, 16), right := (14, 16), path := ⟨(14, 16), [], (14, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence05 : WeightedSourceOccurrence :=
   { hits := waveOccurrence05Hits
     forwardChoices := waveOccurrence05ForwardChoices
@@ -261,21 +303,26 @@ def waveOccurrence05 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence05ForwardData
     reverseData := waveOccurrence05ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence05_check : waveOccurrence05.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence06ForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {6, 13} },
    { center := 2, support := {1, 13} },
    { center := 13, support := {1, 2, 6} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence06ReverseChoices : List (RowChoice Label) :=
   [{ center := 3, support := {10, 14, 15} },
    { center := 14, support := {3, 15} },
    { center := 16, support := {3, 10} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence06Hits : List Hit :=
   [(0, 6), (0, 13), (2, 1), (2, 13), (13, 1), (13, 2), (13, 6)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence06ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 2, 13⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨0, 2, 6, 13⟩, form := .adjacentSides, weight := 1 }],
@@ -284,6 +331,7 @@ def waveOccurrence06ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (0, 2), right := (0, 2), path := ⟨(0, 2), [], (0, 2)⟩ },
        { left := (6, 13), right := (2, 13), path := ⟨(6, 13), [.flip 6 13, .row 13 6 2, .flip 13 2], (2, 13)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence06ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨3, 14, 15, 16⟩, form := .innerOuter, weight := 1 },
        { quad := ⟨3, 10, 14, 16⟩, form := .adjacentSides, weight := 1 }],
@@ -292,6 +340,7 @@ def waveOccurrence06ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (3, 10), right := (3, 14), path := ⟨(3, 10), [.row 3 10 14], (3, 14)⟩ },
        { left := (14, 16), right := (14, 16), path := ⟨(14, 16), [], (14, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence06 : WeightedSourceOccurrence :=
   { hits := waveOccurrence06Hits
     forwardChoices := waveOccurrence06ForwardChoices
@@ -299,8 +348,10 @@ def waveOccurrence06 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence06ForwardData
     reverseData := waveOccurrence06ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence06_check : waveOccurrence06.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence07ForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {1, 12} },
    { center := 1, support := {0, 14, 15} },
@@ -308,6 +359,7 @@ def waveOccurrence07ForwardChoices : List (RowChoice Label) :=
    { center := 12, support := {8, 15} },
    { center := 14, support := {1, 8} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence07ReverseChoices : List (RowChoice Label) :=
   [{ center := 2, support := {8, 15} },
    { center := 4, support := {1, 8} },
@@ -315,9 +367,11 @@ def waveOccurrence07ReverseChoices : List (RowChoice Label) :=
    { center := 15, support := {1, 16} },
    { center := 16, support := {4, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence07Hits : List Hit :=
   [(0, 1), (0, 12), (1, 0), (1, 14), (1, 15), (8, 0), (8, 12), (12, 8), (12, 15), (14, 1), (14, 8)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence07ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 8, 14⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨0, 1, 12, 15⟩, form := .adjacentSides, weight := 1 }],
@@ -326,6 +380,7 @@ def waveOccurrence07ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (0, 1), right := (1, 15), path := ⟨(0, 1), [.flip 0 1, .row 1 0 15], (1, 15)⟩ },
        { left := (12, 15), right := (0, 8), path := ⟨(12, 15), [.row 12 15 8, .flip 12 8, .row 8 12 0, .flip 8 0], (0, 8)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence07ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨2, 8, 15, 16⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨1, 4, 15, 16⟩, form := .adjacentSides, weight := 1 }],
@@ -334,6 +389,7 @@ def waveOccurrence07ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (1, 4), right := (8, 16), path := ⟨(1, 4), [.flip 1 4, .row 4 1 8, .flip 4 8, .row 8 4 16], (8, 16)⟩ },
        { left := (15, 16), right := (4, 16), path := ⟨(15, 16), [.flip 15 16, .row 16 15 4, .flip 16 4], (4, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence07 : WeightedSourceOccurrence :=
   { hits := waveOccurrence07Hits
     forwardChoices := waveOccurrence07ForwardChoices
@@ -341,8 +397,10 @@ def waveOccurrence07 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence07ForwardData
     reverseData := waveOccurrence07ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence07_check : waveOccurrence07.check = true := by
   native_decide
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence08ForwardChoices : List (RowChoice Label) :=
   [{ center := 1, support := {0, 15} },
    { center := 2, support := {5, 12} },
@@ -351,6 +409,7 @@ def waveOccurrence08ForwardChoices : List (RowChoice Label) :=
    { center := 11, support := {5, 15} },
    { center := 15, support := {1, 11} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence08ReverseChoices : List (RowChoice Label) :=
   [{ center := 1, support := {5, 15} },
    { center := 5, support := {1, 11} },
@@ -359,9 +418,11 @@ def waveOccurrence08ReverseChoices : List (RowChoice Label) :=
    { center := 14, support := {4, 11} },
    { center := 15, support := {1, 16} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence08Hits : List Hit :=
   [(1, 0), (1, 15), (2, 5), (2, 12), (5, 1), (5, 11), (8, 0), (8, 12), (11, 5), (11, 15), (15, 1), (15, 11)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence08ForwardData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 1, 2, 5⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨0, 2, 8, 12⟩, form := .adjacentSides, weight := 1 }],
@@ -370,6 +431,7 @@ def waveOccurrence08ForwardData : WeightedKalmansonCancellationData Label :=
        { left := (0, 2), right := (0, 2), path := ⟨(0, 2), [], (0, 2)⟩ },
        { left := (8, 12), right := (0, 8), path := ⟨(8, 12), [.row 8 12 0, .flip 8 0], (0, 8)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence08ReverseData : WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨11, 14, 15, 16⟩, form := .adjacentSides, weight := 1 },
        { quad := ⟨4, 8, 14, 16⟩, form := .adjacentSides, weight := 1 }],
@@ -378,6 +440,7 @@ def waveOccurrence08ReverseData : WeightedKalmansonCancellationData Label :=
        { left := (4, 8), right := (8, 16), path := ⟨(4, 8), [.flip 4 8, .row 8 4 16], (8, 16)⟩ },
        { left := (14, 16), right := (14, 16), path := ⟨(14, 16), [], (14, 16)⟩ }] }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrence08 : WeightedSourceOccurrence :=
   { hits := waveOccurrence08Hits
     forwardChoices := waveOccurrence08ForwardChoices
@@ -385,28 +448,35 @@ def waveOccurrence08 : WeightedSourceOccurrence :=
     forwardData := waveOccurrence08ForwardData
     reverseData := waveOccurrence08ReverseData }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrence08_check : waveOccurrence08.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrences : List WeightedSourceOccurrence := [waveOccurrence00, waveOccurrence01, waveOccurrence02, waveOccurrence03, waveOccurrence04, waveOccurrence05, waveOccurrence06, waveOccurrence07, waveOccurrence08]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrences_length : waveOccurrences.length = 9 := by
   rfl
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrences_check :
     ∀ occurrence ∈ waveOccurrences, occurrence.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fortySixthModelRefinementClauses : Std.Sat.CNF Atom :=
   waveOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>
         weightedOccurrenceClause order direction occurrence
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortySixthModelRefinementClauses_length :
     fortySixthModelRefinementClauses.length = 36 := by
   simp [fortySixthModelRefinementClauses, waveOccurrences, namedOrders, directions]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fortySixthModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortySixthModelRefinementClauses,
@@ -417,15 +487,18 @@ theorem sourceAssign_fortySixthModelRefinementClauses
   exact sourceAssign_weightedOccurrenceClause source occurrence
     (waveOccurrences_check occurrence hoccur) order direction
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedFortySixthModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedFortyFifthModelRefinementsCnf ++ fortySixthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedFortySixthModelRefinementsCnf_length :
     extendedFortySixthModelRefinementsCnf.length = 5848864 := by
   simp only [extendedFortySixthModelRefinementsCnf, List.length_append,
     extendedFortyFifthModelRefinementsCnf_length,
     fortySixthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedFortySixthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -439,6 +512,7 @@ theorem sourceAssign_extendedFortySixthModelRefinementsCnf
     exact h clause hparent
   · exact sourceAssign_fortySixthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedFortySixthModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

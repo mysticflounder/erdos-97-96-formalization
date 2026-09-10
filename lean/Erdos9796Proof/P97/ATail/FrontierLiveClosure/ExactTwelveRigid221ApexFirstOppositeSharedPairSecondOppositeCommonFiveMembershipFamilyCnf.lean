@@ -41,10 +41,12 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure def. -/
 private def mkRequirement (center : Label) (support : Finset Label) :
     RowChoice Label :=
   { center := center, support := support }
 
+/-- Frontier live-closure def. -/
 private def fallbackFreshRequirement : RowChoice Label :=
   mkRequirement 6 {3, 0, 10}
 
@@ -59,6 +61,7 @@ def freshRequirements : List (RowChoice Label) :=
         ([6, 7, 8, 9] : List Label).map fun a =>
           mkRequirement y {a, b})
 
+/-- Frontier live-closure def. -/
 private def mkDefinition (index : Nat) : PositiveMembershipDefinition :=
   { varIndex := 45177 + index
     requirement := freshRequirements.getD index fallbackFreshRequirement }
@@ -67,6 +70,7 @@ private def mkDefinition (index : Nat) : PositiveMembershipDefinition :=
 def freshDefinitions : List PositiveMembershipDefinition :=
   (List.range freshRequirements.length).map mkDefinition
 
+/-- Frontier live-closure def. -/
 def d45177 : PositiveMembershipDefinition := freshDefinitions.getD 0
   { varIndex := 45177, requirement := fallbackFreshRequirement }
 
@@ -89,10 +93,12 @@ def reusedDefinitions : List PositiveMembershipDefinition :=
 def definitions : List PositiveMembershipDefinition :=
   freshDefinitions ++ reusedDefinitions
 
+/-- Frontier live-closure def. -/
 def requirementAt (v : Nat) : RowChoice Label :=
   ((freshDefinitions.find? fun definition =>
     decide (definition.varIndex = v)).getD d45177).requirement
 
+/-- Frontier live-closure def. -/
 def candidateIndicesFor
     (definition : PositiveMembershipDefinition) : List Nat :=
   (List.range (SafeCoverCnf.candCount definition.requirement.center.val)).filter
@@ -101,11 +107,13 @@ def candidateIndicesFor
         ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
           candidateIndex 0).testBit a.val = true)
 
+/-- Frontier live-closure def. -/
 def implicationDimacs : List (List Int) :=
   freshDefinitions.flatMap fun definition =>
     positiveMembershipIndexImplicationClauses
       definition.requirement.center (candidateIndicesFor definition) definition
 
+/-- Frontier live-closure def. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (45176 < definition.varIndex ∧
@@ -119,6 +127,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Frontier live-closure theorem. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
@@ -141,6 +150,7 @@ private theorem definition_compiler_valid
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 candidateIndex hcandidateIndex)
 
+/-- Frontier live-closure theorem. -/
 theorem implicationDimacs_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (base : Nat → Bool)
@@ -184,6 +194,7 @@ def familyData :
       ([6, 7, 8, 9] : List Label).flatMap fun c =>
         ([10, 11] : List Label).map fun y => {a := a, b := b, c := c, y := y}
 
+/-- Frontier live-closure def. -/
 def familyChoices
     (data : ApexFirstOppositeSharedPairSecondOppositeCommonFiveData) :
     List (RowChoice Label) :=
@@ -191,21 +202,25 @@ def familyChoices
     {center := data.c, support := {data.b, 0, data.y}},
     {center := data.y, support := {data.a, data.b}}]
 
+/-- Frontier live-closure def. -/
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD d45177
 
+/-- Frontier live-closure structure. -/
 structure FamilyEntry where
   data : ApexFirstOppositeSharedPairSecondOppositeCommonFiveData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Frontier live-closure def. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Frontier live-closure def. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
@@ -218,11 +233,13 @@ theorem family_shape :
         (45177 ≤ definition.varIndex ∧ definition.varIndex ≤ 45224)) = true := by
   native_decide
 
+/-- Frontier live-closure def. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Frontier live-closure theorem. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧
@@ -235,6 +252,7 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 definition hdefinition)
 
+/-- Frontier live-closure theorem. -/
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
@@ -244,6 +262,7 @@ private theorem reused_definition_le_cutoff
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
 
+/-- Frontier live-closure theorem. -/
 private theorem positiveRowsMatch_of_mixed_blockingClause_false
     (base : Nat → Bool) (row : RowPattern Label)
     (entryDefinitions : List PositiveMembershipDefinition)

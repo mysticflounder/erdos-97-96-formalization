@@ -39,6 +39,7 @@ variable
     {Rρ : FrontierCommonDeletionParentResidual Fρ}
     (Pρ : RetainedInteriorBlockerCollision Rρ)
 
+/-- Frontier live-closure theorem. -/
 private theorem first_pair_mem_actualBlockerFiber
     (anchor : CriticalShellSystem.CarrierVertex D.A)
     (source : CriticalShellSystem.CarrierVertex D.A)
@@ -46,6 +47,7 @@ private theorem first_pair_mem_actualBlockerFiber
     source ∈ actualBlockerFiber H anchor := by
   exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, hblockers⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem three_distinct_subset_actualBlockerFiber
     (anchor source₁ source₂ source₃ : CriticalShellSystem.CarrierVertex D.A)
     (h₁ : source₁ ∈ actualBlockerFiber H anchor)

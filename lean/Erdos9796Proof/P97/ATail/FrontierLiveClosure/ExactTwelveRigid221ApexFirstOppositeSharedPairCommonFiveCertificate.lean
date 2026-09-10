@@ -47,6 +47,7 @@ def ApexFirstOppositeSharedPairCommonFiveData.rolesValid
     data.y ∈ firstOppositeInteriorLabels ∧
     data.b ≠ data.y
 
+/-- Frontier live-closure instance. -/
 instance instDecidableApexFirstOppositeSharedPairCommonFiveRolesValid
     (data : ApexFirstOppositeSharedPairCommonFiveData) :
     Decidable data.rolesValid := by

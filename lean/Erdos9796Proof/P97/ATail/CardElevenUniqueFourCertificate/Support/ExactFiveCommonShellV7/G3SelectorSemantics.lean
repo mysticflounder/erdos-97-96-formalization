@@ -55,27 +55,34 @@ def g3SelectorVar : G3Case → Nat
   | .s3_o0 => 49359
   | .s3_o9 => 49360
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem g3SelectorVar_s2_o9 :
     g3SelectorVar .s2_o9 = 49358 := rfl
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem g3SelectorVar_s3_o0 :
     g3SelectorVar .s3_o0 = 49359 := rfl
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem g3SelectorVar_s3_o9 :
     g3SelectorVar .s3_o9 = 49360 := rfl
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SelectorVar_lowerBound (route : G3Case) :
     49358 ≤ g3SelectorVar route := by
   cases route <;> simp [g3SelectorVar]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SelectorVar_upperBound (route : G3Case) :
     g3SelectorVar route < 49361 := by
   cases route <;> simp [g3SelectorVar]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SelectorVar_injective : Function.Injective g3SelectorVar := by
   intro left right heq
   cases left <;> cases right <;> simp_all
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem g3SelectorVar_eq_iff {left right : G3Case} :
     g3SelectorVar left = g3SelectorVar right ↔ left = right :=
   g3SelectorVar_injective.eq_iff
@@ -92,6 +99,7 @@ noncomputable def CanonicalPacket.g3SelectorValuation
   else
     P.inheritedTailValuation varIndex
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.g3SelectorValuation_selector
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -104,6 +112,7 @@ noncomputable def CanonicalPacket.g3SelectorValuation
   simp only [g3SelectorVar_lowerBound, g3SelectorVar_upperBound, and_self,
     ↓reduceIte, g3SelectorVar_eq_iff]
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.g3SelectorValuation_selected
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -113,6 +122,7 @@ noncomputable def CanonicalPacket.g3SelectorValuation
     P.g3SelectorValuation selected (g3SelectorVar selected) = true := by
   simp
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.g3SelectorValuation_unselected
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -123,6 +133,7 @@ theorem CanonicalPacket.g3SelectorValuation_unselected
     P.g3SelectorValuation selected (g3SelectorVar route) = false := by
   simp [hne]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.g3SelectorValuation_eq_inherited_of_lt
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

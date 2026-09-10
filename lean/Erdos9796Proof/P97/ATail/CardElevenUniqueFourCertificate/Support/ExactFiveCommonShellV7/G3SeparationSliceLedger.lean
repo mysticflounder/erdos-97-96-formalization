@@ -31,17 +31,26 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 108705
+/-- Exact-five common-shell V7 def. -/
 private def retainedSeparationCount : Nat := 45581
+/-- Exact-five common-shell V7 def. -/
 private def separationClauseCount : Nat := 179887
+/-- Exact-five common-shell V7 def. -/
 private def indicatorClauseCount : Nat := 11694
+/-- Exact-five common-shell V7 def. -/
 private def guardedClauseCount : Nat := 168192
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedSeparationPayload : String :=
   include_str "data/g3-separation-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev SeparationClauseIndex := Fin separationClauseCount
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev IndicatorClauseIndex := Fin indicatorClauseCount
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev GuardedClauseIndex := Fin guardedClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -66,6 +75,7 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
@@ -91,6 +101,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedSeparationIndices :
     Option (Array SeparationClauseIndex) := do
   let bytes ← decodeAscii85 retainedSeparationPayload
@@ -100,9 +111,11 @@ private def decodeRetainedSeparationIndices :
 def g3RetainedSeparationIndices : Array SeparationClauseIndex :=
   decodeRetainedSeparationIndices.getD #[]
 
+/-- Exact-five common-shell V7 def. -/
 private def indicatorOccurrenceArray : Array IndicatorOccurrence :=
   encoderIndicatorOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 private def guardedOccurrenceArray : Array GuardedOccurrence :=
   encoderGuardedOccurrences.toArray
 
@@ -130,12 +143,14 @@ def decodeSeparationWitness
           indicatorClauseCount] at hsource ⊢
         omega⟩
 
+/-- Exact-five common-shell V7 def. -/
 private def indicatorOccurrenceAt
     (index : IndicatorClauseIndex) : IndicatorOccurrence :=
   indicatorOccurrenceArray[index.val]'(by
     simpa [indicatorOccurrenceArray, indicatorClauseCount,
       encoderIndicatorOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def guardedOccurrenceAt
     (index : GuardedClauseIndex) : GuardedOccurrence :=
   guardedOccurrenceArray[index.val]'(by
@@ -160,6 +175,7 @@ def g3SeparationSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SeparationSlice_size :
     g3SeparationSlice.size = retainedSeparationCount := by
   native_decide
@@ -178,6 +194,7 @@ theorem g3SeparationSlice_perm_checkpoint :
           retainedPrefixCount).take retainedSeparationCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem indicatorOccurrenceAt_mem
     (index : IndicatorClauseIndex) :
     indicatorOccurrenceAt index ∈ encoderIndicatorOccurrences := by
@@ -187,6 +204,7 @@ private theorem indicatorOccurrenceAt_mem
     simpa [indicatorClauseCount, encoderIndicatorOccurrences_length]
       using index.isLt)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem guardedOccurrenceAt_mem
     (index : GuardedClauseIndex) :
     guardedOccurrenceAt index ∈ encoderGuardedOccurrences := by
@@ -196,6 +214,7 @@ private theorem guardedOccurrenceAt_mem
     simpa [guardedClauseCount, encoderGuardedOccurrences_length]
       using index.isLt)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem indicatorClause_literal_bounds
     {occurrence : IndicatorOccurrence}
     (hoccurrence : occurrence ∈ encoderIndicatorOccurrences) :
@@ -215,6 +234,7 @@ private theorem indicatorClause_literal_bounds
   · simp [pairIndicatorVar]
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem selectorTotalityClause_literal_bounds :
     ∀ literal ∈ selectorTotalityClause,
       0 < literal.natAbs ∧ literal.natAbs < 27905 := by
@@ -223,6 +243,7 @@ private theorem selectorTotalityClause_literal_bounds :
   simp [varOfAtom]
   omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem guardedClause_literal_bounds
     (occurrence : GuardedOccurrence) :
     ∀ literal ∈ guardedClause occurrence,
@@ -237,6 +258,7 @@ private theorem guardedClause_literal_bounds
   · simp [pairIndicatorVar]
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem renderG3SeparationSliceWitness_literal_bounds
     (witness : G3SeparationSliceWitness) :
     ∀ literal ∈ renderG3SeparationSliceWitness witness,
@@ -249,6 +271,7 @@ private theorem renderG3SeparationSliceWitness_literal_bounds
   | guarded index =>
       exact guardedClause_literal_bounds (guardedOccurrenceAt index)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.renderG3SeparationSliceWitness_separation_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

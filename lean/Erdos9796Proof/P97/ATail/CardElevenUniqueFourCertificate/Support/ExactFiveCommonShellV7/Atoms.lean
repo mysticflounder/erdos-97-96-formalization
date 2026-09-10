@@ -26,16 +26,22 @@ namespace ExactFiveCommonShellV7
 
 open Census554.SeparationCore
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev Label := Fin 11
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev RawEdge := Label × Label
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev GlobalEqRow := RawEdge × RawEdge
 
+/-- Exact-five common-shell V7 def. -/
 def toLabel (n : Nat) : Label :=
   ⟨n % 11, Nat.mod_lt n (by decide)⟩
 
+/-- Exact-five common-shell V7 def. -/
 def edgeCode (e : RawEdge) : Nat :=
   11 * e.1.val + e.2.val
 
+/-- Exact-five common-shell V7 def. -/
 def canonicalEdge (a b : Label) : RawEdge :=
   if a < b then (a, b) else (b, a)
 
@@ -47,31 +53,37 @@ def canonicalGlobalRow (first second : RawEdge) : GlobalEqRow :=
   else
     (second, first)
 
+/-- Exact-five common-shell V7 def. -/
 def encoderEdges : List RawEdge :=
   (List.finRange 11).flatMap fun a =>
     ((List.finRange 11).filter fun b => decide (a < b)).map fun b =>
       (toLabel a, toLabel b)
 
+/-- Exact-five common-shell V7 def. -/
 def encoderGlobalEqRows : List GlobalEqRow :=
   encoderEdges.flatMap fun first =>
     (encoderEdges.filter fun second =>
       decide (edgeCode first < edgeCode second)).map fun second =>
         (first, second)
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderEdges_length : encoderEdges.length = 55 := by
   decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderGlobalEqRows_length :
     encoderGlobalEqRows.length = 1485 := by
   set_option maxRecDepth 100000 in
     decide
 
+/-- Exact-five common-shell V7 def. -/
 def globalEqRow (i : Fin 1485) : GlobalEqRow :=
   encoderGlobalEqRows.get
     ⟨i.val, by simpa [encoderGlobalEqRows_length] using i.isLt⟩
 
 /- ## The encoder's lexicographic internal-order enumeration -/
 
+/-- Exact-five common-shell V7 def. -/
 def encoderPermTwoAt : Fin 2 → Equiv.Perm (Fin 2)
   | 0 => Equiv.refl _
   | 1 => Equiv.swap 0 1
@@ -87,24 +99,29 @@ def encoderPermThreeAt : Fin 6 → Equiv.Perm (Fin 3)
   | 4 => (Equiv.swap 1 2).trans (Equiv.swap 0 1)
   | 5 => Equiv.swap 0 2
 
+/-- Exact-five common-shell V7 def. -/
 def encoderInternalOrderAt (i : Fin 72) : Card11InternalOrder :=
   let o2 : Fin 2 := ⟨i.val / 36, by omega⟩
   let s : Fin 6 := ⟨(i.val % 36) / 6, by omega⟩
   let o1 : Fin 6 := ⟨i.val % 6, Nat.mod_lt _ (by decide)⟩
   (encoderPermTwoAt o2, (encoderPermThreeAt s, encoderPermThreeAt o1))
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderInternalOrderAt_bijective :
     Function.Bijective encoderInternalOrderAt := by
   set_option maxRecDepth 100000 in
     decide
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def encoderInternalOrderEquiv : Fin 72 ≃ Card11InternalOrder :=
   Equiv.ofBijective encoderInternalOrderAt
     encoderInternalOrderAt_bijective
 
+/-- Exact-five common-shell V7 def. -/
 def selectorInternalIndex (i : Fin 144) : Fin 72 :=
   ⟨i.val % 72, Nat.mod_lt _ (by decide)⟩
 
+/-- Exact-five common-shell V7 def. -/
 def selectorIndexEquiv (i : Fin 144) : Label ≃ Label :=
   if i.val < 72 then
     card11IndexEquiv (encoderInternalOrderAt (selectorInternalIndex i))
@@ -112,15 +129,18 @@ def selectorIndexEquiv (i : Fin 144) : Label ≃ Label :=
     card11MirrorIndexEquiv
       (encoderInternalOrderAt (selectorInternalIndex i))
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def directSelector (order : Card11InternalOrder) : Fin 144 :=
   ⟨(encoderInternalOrderEquiv.symm order).val, by
     exact (encoderInternalOrderEquiv.symm order).isLt.trans (by decide)⟩
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def mirrorSelector (order : Card11InternalOrder) : Fin 144 :=
   ⟨72 + (encoderInternalOrderEquiv.symm order).val, by
     have := (encoderInternalOrderEquiv.symm order).isLt
     omega⟩
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem selectorIndexEquiv_directSelector
     (order : Card11InternalOrder) :
     selectorIndexEquiv (directSelector order) =
@@ -139,6 +159,7 @@ theorem selectorIndexEquiv_directSelector
             simp [selectorInternalIndex, directSelector]
     _ = order := encoderInternalOrderEquiv.apply_symm_apply order
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem selectorIndexEquiv_mirrorSelector
     (order : Card11InternalOrder) :
     selectorIndexEquiv (mirrorSelector order) =
@@ -161,25 +182,30 @@ theorem selectorIndexEquiv_mirrorSelector
 def selectorLabels (i : Fin 144) : List Label :=
   List.ofFn fun position => (selectorIndexEquiv i).symm position
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem selectorLabels_zero :
     selectorLabels 0 = [0, 9, 10, 1, 3, 4, 5, 2, 6, 7, 8] := by
   decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem selectorLabels_seventyTwo :
     selectorLabels 72 = [0, 8, 7, 6, 2, 5, 4, 3, 1, 10, 9] := by
   decide
 
 /- ## Variable-number round trips -/
 
+/-- Exact-five common-shell V7 inductive. -/
 inductive Atom where
   | orderSelector (index : Fin 144)
   | globalEdgeEq (index : Fin 1485)
 deriving DecidableEq
 
+/-- Exact-five common-shell V7 def. -/
 def varOfAtom : Atom → Nat
   | .orderSelector i => 27761 + i.val
   | .globalEdgeEq i => 41603 + i.val
 
+/-- Exact-five common-shell V7 def. -/
 def atomOfVar (n : Nat) : Atom :=
   if hOrder : 27761 ≤ n ∧ n < 27905 then
     .orderSelector ⟨n - 27761, by omega⟩
@@ -188,6 +214,7 @@ def atomOfVar (n : Nat) : Atom :=
   else
     .orderSelector 0
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem atomOfVar_varOfAtom_order (i : Fin 144) :
     atomOfVar (varOfAtom (.orderSelector i)) = .orderSelector i := by
   rw [atomOfVar, varOfAtom, dif_pos (by omega)]
@@ -195,6 +222,7 @@ theorem atomOfVar_varOfAtom_order (i : Fin 144) :
   apply Fin.ext
   simp
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem atomOfVar_varOfAtom_global (i : Fin 1485) :
     atomOfVar (varOfAtom (.globalEdgeEq i)) = .globalEdgeEq i := by
   rw [atomOfVar, varOfAtom, dif_neg (by omega), dif_pos (by omega)]
@@ -202,12 +230,14 @@ theorem atomOfVar_varOfAtom_global (i : Fin 1485) :
   apply Fin.ext
   simp
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem varOfAtom_order_range (i : Fin 144) :
     27761 ≤ varOfAtom (.orderSelector i) ∧
       varOfAtom (.orderSelector i) ≤ 27904 := by
   simp [varOfAtom]
   omega
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem varOfAtom_global_range (i : Fin 1485) :
     41603 ≤ varOfAtom (.globalEdgeEq i) ∧
       varOfAtom (.globalEdgeEq i) ≤ 43087 := by

@@ -24,23 +24,29 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Prefixed P4 occurrence-closure inductive. -/
 inductive ClauseShape where
   | rowAtLeastFour (center : Label) (points : List Label)
 deriving DecidableEq
 
+/-- Prefixed P4 occurrence-closure def. -/
 def instLits : ClauseShape → List Int
   | .rowAtLeastFour c ps => ps.map fun p => ((p4VarOfAtom (.row c p) : Nat) : Int)
 
+/-- Prefixed P4 occurrence-closure def. -/
 def shapeWF : ClauseShape → Bool
   | .rowAtLeastFour c ps => decide (ps.length = 7 ∧ ps.Nodup ∧ c ∉ ps)
 
+/-- Prefixed P4 occurrence-closure structure. -/
 structure BridgeEntry where
   clause : List Int
   shape : ClauseShape
 
+/-- Prefixed P4 occurrence-closure def. -/
 def entryWF (e : BridgeEntry) : Bool :=
   shapeWF e.shape && litsSubset (instLits e.shape) e.clause
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem rowAtLeastFourLitsSat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (c : Label) (ps : List Label)
     (hlen : ps.length = 7) (hnodup : ps.Nodup) (hc : c ∉ ps) :
@@ -57,6 +63,7 @@ theorem rowAtLeastFourLitsSat (P : P4DirectBoundaryPacket R profile distribution
   · apply litSat_pos
     exact (hv.row c p (fun h => hc (by simpa [h] using hp))).mpr hrow
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem entry_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (e : BridgeEntry)
     (he : entryWF e = true) : clauseSat v e.clause := by
@@ -69,6 +76,7 @@ theorem entry_sat (P : P4DirectBoundaryPacket R profile distribution)
         simpa [shapeWF] using he.1
       exact rowAtLeastFourLitsSat P hv c ps hshape.1 hshape.2.1 hshape.2.2
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem entryList_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (entries : List BridgeEntry)
     (hentries : entries.all entryWF = true) :

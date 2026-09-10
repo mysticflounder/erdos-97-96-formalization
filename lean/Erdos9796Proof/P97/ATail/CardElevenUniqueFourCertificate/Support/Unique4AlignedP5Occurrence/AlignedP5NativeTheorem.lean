@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4A
 
 namespace Problem97.ATailAlignedP5NativeClassifierScratch
 
+/-- Supports the aligned P5 native-occurrence classification. -/
 theorem placementCheck_eq_true : placementCheck = true := by
   simp [placementCheck, alignedExtraPoints, placementCheckForExtra_one,
     placementCheckForExtra_two, placementCheckForExtra_three,

@@ -24,6 +24,7 @@ open Census554.CoverCnf
 open Census554.EqualityCore
 open StaticRelationLayout
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Two-element combinations with their exact ordered contents exposed. -/
@@ -48,12 +49,14 @@ def candidateSupport (center candidateIndex : Nat) : List Nat :=
 /-- Compiler datum for one selected-row equality implication. -/
 abbrev RowImplicationDatum := Label × Nat × Label × Label
 
+/-- Frontier live-closure def. -/
 def rowImplicationData : List RowImplicationDatum :=
   (List.range 12).flatMap fun center =>
     (List.range (SafeCoverCnf.candCount center)).flatMap fun candidateIndex =>
       (pairsOf (candidateSupport center candidateIndex)).map fun endpoints =>
         (fin12 center, candidateIndex, fin12 endpoints.1, fin12 endpoints.2)
 
+/-- Frontier live-closure def. -/
 def rowImplicationClause (datum : RowImplicationDatum) : List Int :=
   let center := datum.1
   let a := datum.2.2.1
@@ -61,6 +64,7 @@ def rowImplicationClause (datum : RowImplicationDatum) : List Int :=
   [-Int.ofNat (SafeCoverCnf.xVar center.val datum.2.1),
     Int.ofNat (relationVar (center, a) (center, b))]
 
+/-- Frontier live-closure def. -/
 def rowImplicationClauses : List (List Int) :=
   rowImplicationData.map rowImplicationClause
 
@@ -68,6 +72,7 @@ def rowImplicationClauses : List (List Int) :=
 def relationTripleData : List (Nat × Nat × Nat) :=
   triplesOf (List.range 66)
 
+/-- Frontier live-closure def. -/
 def transitivityClausesAt (datum : Nat × Nat × Nat) : List (List Int) :=
   let first := edgeAt datum.1
   let second := edgeAt datum.2.1
@@ -79,6 +84,7 @@ def transitivityClausesAt (datum : Nat × Nat × Nat) : List (List Int) :=
    [-Int.ofNat firstSecond, -Int.ofNat firstThird, Int.ofNat secondThird],
    [-Int.ofNat firstThird, -Int.ofNat secondThird, Int.ofNat firstSecond]]
 
+/-- Frontier live-closure def. -/
 def transitivityClauses : List (List Int) :=
   relationTripleData.flatMap transitivityClausesAt
 
@@ -86,6 +92,7 @@ def transitivityClauses : List (List Int) :=
 duplicate-center obstruction. -/
 abbrev DuplicateCenterDatum := Label × Label × Label × Label × Label
 
+/-- Frontier live-closure def. -/
 def duplicateCenterData : List DuplicateCenterDatum :=
   SafeCoverCnf.allPairs.flatMap fun centers =>
     let remaining := (List.range 12).filter fun p =>
@@ -94,6 +101,7 @@ def duplicateCenterData : List DuplicateCenterDatum :=
       (fin12 centers.1, fin12 centers.2, fin12 points.1,
         fin12 points.2.1, fin12 points.2.2)
 
+/-- Frontier live-closure def. -/
 def duplicateCenterClause (datum : DuplicateCenterDatum) : List Int :=
   let a := datum.1
   let b := datum.2.1
@@ -104,6 +112,7 @@ def duplicateCenterClause (datum : DuplicateCenterDatum) : List Int :=
     relationVar (b, p) (b, q), relationVar (b, p) (b, r)].map
       fun v => -Int.ofNat v
 
+/-- Frontier live-closure def. -/
 def duplicateCenterClauses : List (List Int) :=
   duplicateCenterData.map duplicateCenterClause
 
@@ -124,6 +133,7 @@ theorem clauseCountAnchors :
 
 set_option maxHeartbeats 0 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem relationVar_comm (e f : Edge Label) :
     relationVar e f = relationVar f e := by
   native_decide +revert

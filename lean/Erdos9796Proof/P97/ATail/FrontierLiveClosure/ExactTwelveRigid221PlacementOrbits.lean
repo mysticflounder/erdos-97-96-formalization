@@ -77,6 +77,7 @@ def frozenSeparatedPlacementDomain : Finset (Label × Label) :=
       ¬ (placement.1 ∈ firstOppositeCapLabels ∧
         placement.2 ∈ firstOppositeCapLabels)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_frozenSeparatedPlacementDomain_iff (d v : Label) :
     (d, v) ∈ frozenSeparatedPlacementDomain ↔
       (d, v) ∈ frozenPlacementDomain ∧

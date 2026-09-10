@@ -127,6 +127,7 @@ structure FirstNonHitFiniteCommonRadiusPayload where
     A.radiusEq (A.roleIndex .firstApex) commonSourceOne
         (A.roleIndex .secondRetainedSourceTwo) = false
 
+/-- Frontier live-closure theorem. -/
 private theorem firstApex_point_eq_oppApex1 :
     A.boundary.boundary (A.roleIndex .firstApex) = S.oppApex1 := by
   rw [A.roleIndex_point_eq]
@@ -136,6 +137,7 @@ private theorem firstApex_point_eq_oppApex1 :
     simp [SurplusCapPacket.oppApex1, SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem index_ne_of_point_ne
     {i j : Fin A.boundary.n} {x y : ℝ²}
     (hi : A.boundary.boundary i = x)
@@ -145,6 +147,7 @@ private theorem index_ne_of_point_ne
   apply hne
   rw [← hi, ← hj, hij]
 
+/-- Frontier live-closure theorem. -/
 private theorem blocker_index_ne_of_center_ne
     {i j : Fin A.boundary.n}
     (hcenter :
@@ -156,6 +159,7 @@ private theorem blocker_index_ne_of_center_ne
   rw [A.blockerMap_point_eq i, A.blockerMap_point_eq j] at hpoint
   exact hcenter hpoint
 
+/-- Frontier live-closure theorem. -/
 private theorem blocker_index_ne_of_point_ne
     {i j : Fin A.boundary.n}
     (hne : H.centerAt (A.boundary.boundary i) (A.boundary_mem i) ≠
@@ -166,6 +170,7 @@ private theorem blocker_index_ne_of_point_ne
   rw [A.blockerMap_point_eq i] at hpoint
   exact hne hpoint
 
+/-- Frontier live-closure theorem. -/
 private theorem common_radius_false_of_ne
     {i j : Fin A.boundary.n} {d e : ℝ}
     (hi : A.boundary.boundary i ∈ SelectedClass D.A S.oppApex1 d)
@@ -186,6 +191,7 @@ private theorem common_radius_false_of_ne
         simpa using hdist
       linarith
 
+/-- Frontier live-closure theorem. -/
 private theorem source_point_eq
     {i : Fin A.boundary.n} {source : CriticalShellSystem.CarrierVertex D.A}
     (hi : A.boundary.boundary i = source.1) :
@@ -194,6 +200,7 @@ private theorem source_point_eq
   apply Subtype.ext
   exact hi
 
+/-- Frontier live-closure theorem. -/
 private theorem finite_hasFour_of_geometric
     {i deleted : Fin A.boundary.n} {x : ℝ²}
     (hdeleted : A.boundary.boundary deleted = x)
@@ -208,6 +215,7 @@ private theorem finite_hasFour_of_geometric
     simpa [hsource] using A.blockerMap_point_eq i
   simpa [hdeleted, hcenter] using h
 
+/-- Frontier live-closure theorem. -/
 private theorem finite_cross_pair_view
     {i : Fin A.boundary.n} {source : CriticalShellSystem.CarrierVertex D.A}
     (hsource : A.boundary.boundary i = source.1)

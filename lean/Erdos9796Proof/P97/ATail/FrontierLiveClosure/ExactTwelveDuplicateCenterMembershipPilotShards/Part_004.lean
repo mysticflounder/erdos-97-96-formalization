@@ -14,6 +14,7 @@ open Problem97.Census554.EqualityCore
 open Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := Fin 12
 
 /-- Journal iteration 794; certificate 4d3184e1c1846fd3ffc2bc28f8d33beb077477caee0697f06f989a1c3c35f95f. -/
@@ -516,14 +517,18 @@ def record99 : DuplicateCenterNogood Label :=
       bp_bq := { first := (9, 0), steps := [.row 9 0 1], last := (9, 1) }
       bp_br := { first := (9, 0), steps := [.row 9 0 3], last := (9, 3) } } }
 
+/-- Frontier live-closure def. -/
 def bank : List (DuplicateCenterNogood Label) :=
   [record75, record76, record77, record78, record79, record80, record81, record82, record83, record84, record85, record86, record87, record88, record89, record90, record91, record92, record93, record94, record95, record96, record97, record98, record99]
 
+/-- Frontier live-closure def. -/
 def bankCheck : Bool := bank.all fun nogood => nogood.check
 
+/-- Frontier live-closure theorem. -/
 theorem bankCheck_true : bankCheck = true := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem bank_valid : ∀ nogood ∈ bank, nogood.check = true := by
   apply List.all_eq_true.mp
   simpa [bankCheck] using bankCheck_true

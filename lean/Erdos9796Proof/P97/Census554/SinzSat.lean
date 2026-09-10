@@ -69,6 +69,7 @@ def sinzExt (σ : Nat → Bool) (xs : List Nat) (k base : Nat) : Nat → Bool :=
 
 /- ## `prefCount` toolkit -/
 
+/-- Census-554 certificate-bank theorem. -/
 theorem prefCount_succ (σ : Nat → Bool) (xs : List Nat) {i : Nat}
     (hi : i < xs.length) :
     prefCount σ xs (i + 1) =

@@ -22,6 +22,7 @@ namespace FiveOmissionCnf
 open Census554.CoverCnf
 open ExactTwelveCarrierIngress
 
+/-- Frontier live-closure def. -/
 def centerSelectorAssign (centers : Finset Label) (v : Nat) : Bool :=
   decide (∃ center ∈ centers, v = centerVar center.val)
 
@@ -38,6 +39,7 @@ theorem centerAtLeastFive_sat :
 
 set_option maxHeartbeats 0 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem centerAtLeastFive_literal_shape :
     ∀ c ∈ centerAtLeastFiveClauses, ∀ l ∈ c,
       ∃ p : Label, l = Int.ofNat (centerVar p.val) := by

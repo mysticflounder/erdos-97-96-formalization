@@ -12,6 +12,7 @@ namespace ExactTwelveRigid221NextRowArmCell0058Replay.Shard2
 
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- Frontier live-closure generated theorem. -/
 theorem sound :
     Unsatisfiable (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0001.text) :=

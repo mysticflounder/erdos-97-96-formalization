@@ -30,6 +30,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {profile : S.surplusCap.card = 5 ∧
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem mirror_sortedRadius
     (P : P4MirrorBoundaryPacket R profile distribution)
     (center left right : Label) (hleftRight : left ≠ right)
@@ -46,6 +47,7 @@ private theorem mirror_sortedRadius
       hrightLeft hrightCenter hleftCenter).trans
         (radiusEq_comm P.core mirrorIndex center right left)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem radiusTransLitsSat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution)
     (center x y z : Label)
@@ -77,6 +79,7 @@ theorem radiusTransLitsSat_mirror
     apply litSat_neg (p4VarOfAtom_pos _)
     exact fun h => hxy (hxyv.mp h)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem entry_sat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution)
     (entry : BridgeEntry) (hentry : entryWF entry = true) :
@@ -89,6 +92,7 @@ theorem entry_sat_mirror
       apply radiusTransLitsSat_mirror P center x y z
       simpa [shapeWF] using hentry.1
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem bridgeClauses_sat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ bridgeClauses,
@@ -119,6 +123,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {profile : S.surplusCap.card = 5 ∧
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem rowAtLeastFourLitsSat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution)
     (center : Label) (points : List Label)
@@ -142,6 +147,7 @@ theorem rowAtLeastFourLitsSat_mirror
     exact ((mirrorValAgreement P).row center point
       (fun h => hcenter (by simpa [h] using hpointList))).mpr hrow
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem entry_sat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution)
     (entry : BridgeEntry) (hentry : entryWF entry = true) :
@@ -157,6 +163,7 @@ theorem entry_sat_mirror
       exact rowAtLeastFourLitsSat_mirror P center points
         hshape.1 hshape.2.1 hshape.2.2
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem bridgeClauses_sat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ bridgeClauses,
@@ -186,6 +193,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {profile : S.surplusCap.card = 5 ∧
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem mirror_sortedRadius
     (P : P4MirrorBoundaryPacket R profile distribution)
     (center left right : Label) (hleftRight : left ≠ right)
@@ -202,6 +210,7 @@ private theorem mirror_sortedRadius
       hrightLeft hrightCenter hleftCenter).trans
         (radiusEq_comm P.core mirrorIndex center right left)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem cyclicLitsSat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution)
     (left right point₁ point₂ : Label)
@@ -239,6 +248,7 @@ theorem cyclicLitsSat_mirror
         hshape.2.1.ne hshape.2.2.1
         hshape.2.2.2.2.1).mp hvalue)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem entry_sat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution)
     (entry : BridgeEntry) (hentry : entryWF entry = true) :
@@ -251,6 +261,7 @@ theorem entry_sat_mirror
       apply cyclicLitsSat_mirror P left right point₁ point₂
       exact of_decide_eq_true hentry.1
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem bridgeClauses_sat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ bridgeClauses,
@@ -277,18 +288,21 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {profile : S.surplusCap.card = 5 ∧
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_radiusPartitionClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses,
       P5OccurrenceBridgeScratch.clauseSat (mirrorTotalVal P) clause :=
   P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses_sat_mirror P
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_rowAtLeastFourClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ P4RowAtLeastFourOccurrenceBridgeScratch.bridgeClauses,
       P5OccurrenceBridgeScratch.clauseSat (mirrorTotalVal P) clause :=
   P4RowAtLeastFourOccurrenceBridgeScratch.bridgeClauses_sat_mirror P
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_cyclicAlternationClauses_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ clause ∈ P4CyclicAlternationOccurrenceBridgeScratch.bridgeClauses,

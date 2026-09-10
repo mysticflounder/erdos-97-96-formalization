@@ -37,6 +37,7 @@ open Census554.GeneralCarrierBridge
 open ExactTwelveCarrierIngress
 open Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := Fin 12
 
 /-- The first replayed structural cut from normalized-v14 cell 0. -/

@@ -198,10 +198,12 @@ def TwoSourceCollisionFrame.collisionρ
     (_frame : TwoSourceCollisionFrame P Pρ) :
     RetainedInteriorBlockerCollision Rρ := Pρ
 
+/-- Frontier live-closure theorem. -/
 theorem TwoSourceCollisionFrame.collision_eq
     (frame : TwoSourceCollisionFrame P Pρ) :
     frame.collision = P := rfl
 
+/-- Frontier live-closure theorem. -/
 theorem TwoSourceCollisionFrame.collisionρ_eq
     (frame : TwoSourceCollisionFrame P Pρ) :
     frame.collisionρ = Pρ := rfl
@@ -260,6 +262,7 @@ def PostCardElevenSurfaceFrame.residual
     (_frame : PostCardElevenSurfaceFrame R) :
     ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F := R
 
+/-- Frontier live-closure theorem. -/
 theorem PostCardElevenSurfaceFrame.residual_eq
     (frame : PostCardElevenSurfaceFrame R) :
     frame.residual = R := rfl

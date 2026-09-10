@@ -34,6 +34,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 1000000 in
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem mirrorResidualShapeSat
     (P : P4MirrorBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : ValAgreement P.core mirrorIndex v)
@@ -167,6 +168,7 @@ private theorem mirrorResidualShapeSat
         apply litSat_neg (rowVariable_pos center p₁)
         exact fun h => h₁ ((hv.row center p₁ hcenter₁).mp h)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_residual55Entries_sat_of_capTerminals
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hendpoint :
@@ -208,6 +210,7 @@ theorem mirrorTotalVal_residual55Entries_sat_of_capTerminals
     (mirrorResidualShapeSat P (mirrorValAgreement P) hendpoint hownCap
       hleftAdjacent hrightAdjacent entry.shape hboth.1)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_residual55Entries_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ entry ∈ residual55Entries,

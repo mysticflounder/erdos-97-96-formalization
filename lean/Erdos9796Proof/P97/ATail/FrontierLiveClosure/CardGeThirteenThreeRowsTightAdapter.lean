@@ -84,6 +84,7 @@ theorem cardGeThirteenPacket_fresh_or_exactThirteenTight
       P.thirdRow.support_subset_A
     P.z_not_mem_row₁ P.z_not_mem_row₂ P.thirdRow_omits
 
+/-- Frontier live-closure theorem. -/
 private theorem pairwise_disjoint_of_exactThirteenCover
     {α : Type*} [DecidableEq α]
     {A C0 C1 K : Finset α} {z : α}
@@ -137,6 +138,7 @@ private theorem pairwise_disjoint_of_exactThirteenCover
 ambient set is contained in the insertion cover.  This gives the compact
 two-arm form used by consumers that only need a fresh point or the exact
 thirteen-point tight cover. -/
+/-- Frontier live-closure theorem. -/
 theorem threeRowsFresh_or_exactThirteenTight_twoArm
     {α : Type*} [DecidableEq α]
     {A C0 C1 K : Finset α} {z : α}

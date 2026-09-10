@@ -512,6 +512,7 @@ structure CardGeThirteenRawOtherOuterSupport
     (Q.thirdRow = secondRow ∧ Lraw.image P.pt = firstRow.support) ∨
     (Q.thirdRow = firstRow ∧ Lraw.image P.pt = secondRow.support)
 
+/-- Frontier live-closure def. -/
 noncomputable def raw_other_outer_support_of_tight
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}
@@ -888,6 +889,7 @@ theorem exists_raw_goodSourceWitness_labels
 class and the tight three-way cover.  This is kept separate from the named
 source witness theorem so consumers that only need the deletion do not have
 to unpack the source and blocker labels. -/
+/-- Frontier live-closure theorem. -/
 theorem exists_raw_deleted_label_with_firstApex_support
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}

@@ -25,24 +25,29 @@ namespace CapSelectedNativeClassifier
 
 open CapSelectedBVRoleBank
 
+/-- Census-554 certificate-bank abbrev. -/
 abbrev RowMask := Nat
 
+/-- Census-554 certificate-bank structure. -/
 structure Row where
   center : Nat
   support : RowMask
 deriving DecidableEq, Repr
 
+/-- Census-554 certificate-bank structure. -/
 structure Domain where
   center : Nat
   rows : List Row
 deriving Repr
 
+/-- Census-554 certificate-bank def. -/
 def labels : List Nat := List.range 11
 
 /-! The support search only admits four-point masks.  Keep this finite table
 explicit so every candidate domain starts from 330 masks instead of scanning
 all 2048 eleven-bit masks and recounting each one.  The ordering is the
 ascending order produced by the old range/filter definition. -/
+/-- Census-554 certificate-bank def. -/
 def fourPointMasks : List RowMask :=
   [15, 23, 27, 29, 30, 39, 43, 45, 46, 51, 53, 54, 57, 58, 60, 71,
    75, 77, 78, 83, 85, 86, 89, 90, 92, 99, 101, 102, 105, 106, 108, 113,
@@ -66,14 +71,18 @@ def fourPointMasks : List RowMask :=
    1569, 1570, 1572, 1576, 1584, 1601, 1602, 1604, 1608, 1616, 1632, 1665, 1666, 1668, 1672, 1680,
    1696, 1728, 1793, 1794, 1796, 1800, 1808, 1824, 1856, 1920]
 
+/-- Census-554 certificate-bank def. -/
 def has (mask point : Nat) : Bool := mask.testBit point
 
+/-- Census-554 certificate-bank def. -/
 def countPoints (mask : RowMask) (points : List Nat) : Nat :=
   points.foldl (fun count point => bif has mask point then count + 1 else count) 0
 
+/-- Census-554 certificate-bank def. -/
 def supportPoints (mask : RowMask) : List Nat :=
   labels.filter fun point => has mask point
 
+/-- Census-554 certificate-bank def. -/
 def fourPointMasksReference : List RowMask :=
   (List.range 2048).filter fun support => countPoints support labels == 4
 
@@ -88,24 +97,29 @@ theorem fourPointMasks_eq_reference :
     fourPointMasks = fourPointMasksReference := by
   native_decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem countPoints_eq_four_of_mem_fourPointMasks
     {support : RowMask} (hsupport : support ∈ fourPointMasks) :
     (countPoints support labels == 4) = true := by
   rw [fourPointMasks_eq_reference, fourPointMasksReference] at hsupport
   exact (List.mem_filter.mp hsupport).2
 
+/-- Census-554 certificate-bank theorem. -/
 theorem fourPointMasks_mem_lt_2048
     {support : RowMask} (hsupport : support ∈ fourPointMasks) :
     support < 2048 := by
   rw [fourPointMasks_eq_reference, fourPointMasksReference] at hsupport
   exact List.mem_range.mp (List.mem_filter.mp hsupport).1
 
+/-- Census-554 certificate-bank def. -/
 def commonPoints (left right : RowMask) : List Nat :=
   labels.filter fun point => has left point && has right point
 
+/-- Census-554 certificate-bank def. -/
 def allEmptyCommon (left right : RowMask) (points : List Nat) : Bool :=
   points.all fun point => !(has left point && has right point)
 
+/-- Census-554 certificate-bank def. -/
 def hullPosition : Nat -> Nat
   | 0 => 0
   | 9 => 1
@@ -120,17 +134,21 @@ def hullPosition : Nat -> Nat
   | 8 => 10
   | _ => 0
 
+/-- Census-554 certificate-bank def. -/
 def cyclicBetween (left right point : Nat) : Bool :=
   let pointOffset := (hullPosition point + 11 - hullPosition left) % 11
   let rightOffset := (hullPosition right + 11 - hullPosition left) % 11
   decide (0 < pointOffset && pointOffset < rightOffset)
 
+/-- Census-554 certificate-bank def. -/
 def cyclicSeparated (left right first second : Nat) : Bool :=
   cyclicBetween left right first != cyclicBetween left right second
 
+/-- Census-554 certificate-bank def. -/
 def cyclicOffset (left right : Nat) : Nat :=
   (hullPosition right + 11 - hullPosition left) % 11
 
+/-- Census-554 certificate-bank def. -/
 def cyclicFive (a x b c y : Nat) : Bool :=
   let ax := cyclicOffset a x
   let ab := cyclicOffset a b
@@ -138,9 +156,11 @@ def cyclicFive (a x b c y : Nat) : Bool :=
   let ay := cyclicOffset a y
   decide (0 < ax && ax < ab && ab < ac && ac < ay)
 
+/-- Census-554 certificate-bank def. -/
 def cyclicFiveUpToOrientation (a x b c y : Nat) : Bool :=
   cyclicFive a x b c y || cyclicFive a y c b x
 
+/-- Census-554 certificate-bank def. -/
 def moserOneHitOK (center : Nat) (support : RowMask) : Bool :=
   match center with
   | 0 => countPoints support [2, 7, 8] <= 1 &&
@@ -151,6 +171,7 @@ def moserOneHitOK (center : Nat) (support : RowMask) : Bool :=
       countPoints support [0, 7, 8] <= 1
   | _ => true
 
+/-- Census-554 certificate-bank def. -/
 def capSelectedCountOK (center : Nat) (support : RowMask) : Bool :=
   if 1 <= center && center <= 6 then
     countPoints support [1, 2, 3, 4, 5, 6] ==
@@ -161,6 +182,7 @@ def capSelectedCountOK (center : Nat) (support : RowMask) : Bool :=
 /-! The four-point count is supplied by `fourPointMasks`.  Keeping the
 remaining local filters separate lets candidate-domain construction avoid
 recounting all eleven labels for every table entry. -/
+/-- Census-554 certificate-bank def. -/
 def localCandidateOKFourPoint (center deleted : Nat) (support : RowMask) : Bool :=
     !has support center &&
     moserOneHitOK center support &&
@@ -168,10 +190,12 @@ def localCandidateOKFourPoint (center deleted : Nat) (support : RowMask) : Bool 
     capSelectedCountOK center support &&
     (if center == 0 then has support deleted else true)
 
+/-- Census-554 certificate-bank def. -/
 def localCandidateOK (center deleted : Nat) (support : RowMask) : Bool :=
   countPoints support labels == 4 &&
     localCandidateOKFourPoint center deleted support
 
+/-- Census-554 certificate-bank theorem. -/
 theorem localCandidateOK_eq_localCandidateOKFourPoint_of_mem
     {center deleted : Nat} {support : RowMask}
     (hsupport : support ∈ fourPointMasks) :
@@ -180,6 +204,7 @@ theorem localCandidateOK_eq_localCandidateOKFourPoint_of_mem
   simp [localCandidateOK,
     countPoints_eq_four_of_mem_fourPointMasks hsupport]
 
+/-- Census-554 certificate-bank def. -/
 def candidateRows (center deleted : Nat) : List Row :=
   fourPointMasks.filterMap fun support =>
     if localCandidateOKFourPoint center deleted support then
@@ -187,6 +212,7 @@ def candidateRows (center deleted : Nat) : List Row :=
     else
       none
 
+/-- Census-554 certificate-bank def. -/
 def q3PairOK (left right : Row) : Bool :=
   let c := left.center
   let d := right.center
@@ -204,23 +230,28 @@ def q3PairOK (left right : Row) : Bool :=
   else
     true
 
+/-- Census-554 certificate-bank def. -/
 def crossSeparationOK (left right : Row) : Bool :=
   match commonPoints left.support right.support with
   | first :: second :: _ =>
       cyclicSeparated left.center right.center first second
   | _ => true
 
+/-- Census-554 certificate-bank def. -/
 def rowsCompatible (left right : Row) : Bool :=
   countPoints left.support (supportPoints right.support) <= 2 &&
     q3PairOK left right &&
     crossSeparationOK left right
 
+/-- Census-554 certificate-bank def. -/
 def decodePair (code : Nat) : Nat × Nat := (code / 11, code % 11)
 
+/-- Census-554 certificate-bank def. -/
 def containsPair (row : Row) (code : Nat) : Bool :=
   let pair := decodePair code
   has row.support pair.1 && has row.support pair.2
 
+/-- Census-554 certificate-bank def. -/
 def pairBoundOK (assigned : List Row) (row : Row) : Bool :=
   pairCodes.all fun code =>
     !containsPair row code ||
@@ -232,53 +263,66 @@ positions.  `once` records pairs seen at least once and `twice` records pairs
 seen at least twice; higher multiplicities do not matter to the classifier.
 The evaluator below remains unwired until its equivalence with `pairBoundOK`
 is proved. -/
+/-- Census-554 certificate-bank structure. -/
 structure PairUse where
   once : Nat
   twice : Nat
 
+/-- Census-554 certificate-bank def. -/
 def rowPairMask (row : Row) : Nat :=
   pairCodes.foldl
     (fun mask code =>
       if containsPair row code then mask ||| ((1 : Nat) <<< code) else mask)
     0
 
+/-- Census-554 certificate-bank def. -/
 def addPairUse (use : PairUse) (row : Row) : PairUse :=
   let mask := rowPairMask row
   { once := use.once ||| mask
     twice := use.twice ||| (use.once &&& mask) }
 
+/-- Census-554 certificate-bank def. -/
 def pairUseOfRows (rows : List Row) : PairUse :=
   rows.foldl addPairUse { once := 0, twice := 0 }
 
+/-- Census-554 certificate-bank def. -/
 def pairBoundOKWithUse (use : PairUse) (row : Row) : Bool :=
   (use.twice &&& rowPairMask row) == 0
 
+/-- Census-554 certificate-bank def. -/
 def compatibleWithPairUse
     (assigned : List Row) (use : PairUse) (row : Row) : Bool :=
   pairBoundOKWithUse use row && assigned.all fun previous => rowsCompatible row previous
 
+/-- Census-554 certificate-bank def. -/
 def compatibleWith (assigned : List Row) (row : Row) : Bool :=
   pairBoundOK assigned row && assigned.all fun previous => rowsCompatible row previous
 
+/-- Census-554 certificate-bank def. -/
 def edgeCode (left right : Nat) : Nat :=
   if left < right then 11 * left + right else 11 * right + left
 
+/-- Census-554 certificate-bank def. -/
 def initialParents : Array Nat := (List.range 121).toArray
 
+/-- Census-554 certificate-bank def. -/
 def rootAux : Nat -> Array Nat -> Nat -> Nat
   | 0, _, edge => edge
   | fuel + 1, parents, edge =>
       let parent := parents[edge]!
       if parent == edge then edge else rootAux fuel parents parent
 
+/-- Census-554 certificate-bank def. -/
 def root (parents : Array Nat) (edge : Nat) : Nat :=
   rootAux 121 parents edge
 
+/-- Census-554 certificate-bank def. -/
 def unionEdges (parents : Array Nat) (left right : Nat) : Array Nat :=
   let leftRoot := root parents left
   let rightRoot := root parents right
   if leftRoot == rightRoot then parents else parents.set! rightRoot leftRoot
 
+/-- Census-554 certificate-bank def. -/
 def addRowEqualities (parents : Array Nat) (row : Row) : Array Nat :=
   match supportPoints row.support with
   | [] => parents
@@ -288,19 +332,24 @@ def addRowEqualities (parents : Array Nat) (row : Row) : Array Nat :=
           unionEdges current (edgeCode row.center first) (edgeCode row.center point))
         parents
 
+/-- Census-554 certificate-bank def. -/
 def equalityClosure (rows : List Row) : Array Nat :=
   rows.foldl addRowEqualities initialParents
 
+/-- Census-554 certificate-bank def. -/
 def normalizedRoots (parents : Array Nat) : Array Nat :=
   (List.range 121).toArray.map fun edge => root parents edge
 
+/-- Census-554 certificate-bank def. -/
 def edgesEqual (roots : Array Nat)
     (left₁ right₁ left₂ right₂ : Nat) : Bool :=
   roots[edgeCode left₁ right₁]! == roots[edgeCode left₂ right₂]!
 
+/-- Census-554 certificate-bank def. -/
 def atLeast (count : Nat) (xs : List Nat) (predicate : Nat -> Bool) : Bool :=
   count <= xs.countP predicate
 
+/-- Census-554 certificate-bank def. -/
 def duplicateCenterCore (roots : Array Nat) : Bool :=
   tripleCodes.any fun code =>
     let p := code / 121
@@ -310,17 +359,20 @@ def duplicateCenterCore (roots : Array Nat) : Bool :=
       edgesEqual roots center p center q &&
         edgesEqual roots center p center r
 
+/-- Census-554 certificate-bank def. -/
 def exactPinnedOffCircleCore (roots : Array Nat) (pinned : RowMask) : Bool :=
   labels.any fun onCircle =>
     has pinned onCircle && labels.any fun offCircle =>
       !has pinned offCircle && edgesEqual roots 1 onCircle 1 offCircle
 
+/-- Census-554 certificate-bank def. -/
 def perpendicularBisectorCore (roots : Array Nat) : Bool :=
   pairCodes.any fun code =>
     let pair := decodePair code
     atLeast 3 labels fun point =>
       edgesEqual roots point pair.1 point pair.2
 
+/-- Census-554 certificate-bank def. -/
 def fivePointCoreAtEndpoints (roots : Array Nat) (a b : Nat) : Bool :=
   let bisectors := labels.filter fun point => edgesEqual roots point a point b
   bisectors.any fun x => bisectors.any fun y =>
@@ -329,12 +381,14 @@ def fivePointCoreAtEndpoints (roots : Array Nat) (a b : Nat) : Bool :=
         edgesEqual roots c b c x &&
         edgesEqual roots c b c y
 
+/-- Census-554 certificate-bank def. -/
 def convexFivePointCore (roots : Array Nat) : Bool :=
   pairCodes.any fun code =>
     let pair := decodePair code
     fivePointCoreAtEndpoints roots pair.1 pair.2 ||
       fivePointCoreAtEndpoints roots pair.2 pair.1
 
+/-- Census-554 certificate-bank def. -/
 def convexRhombusCore (roots : Array Nat) : Bool :=
   sixRoleCodes.any fun code =>
     let d := code % 11
@@ -355,6 +409,7 @@ def convexRhombusCore (roots : Array Nat) : Bool :=
       edgesEqual roots a b x d &&
       edgesEqual roots a b x a
 
+/-- Census-554 certificate-bank def. -/
 def hasPrefixCore (rows : List Row) : Bool :=
   let roots := normalizedRoots (equalityClosure rows)
   let pinned := rows.find? (fun row => row.center == 1)
@@ -365,6 +420,7 @@ def hasPrefixCore (rows : List Row) : Bool :=
     perpendicularBisectorCore roots ||
     convexFivePointCore roots
 
+/-- Census-554 certificate-bank def. -/
 def insertDomain (domain : Domain) : List Domain -> List Domain
   | [] => [domain]
   | next :: rest =>
@@ -373,9 +429,11 @@ def insertDomain (domain : Domain) : List Domain -> List Domain
       else
         next :: insertDomain domain rest
 
+/-- Census-554 certificate-bank def. -/
 def sortDomains (domains : List Domain) : List Domain :=
   domains.foldr insertDomain []
 
+/-- Census-554 certificate-bank def. -/
 def restrictDomain (assigned : List Row) (domain : Domain) : Domain :=
   { domain with rows := domain.rows.filter fun row => compatibleWith assigned row }
 
@@ -396,6 +454,7 @@ def restrictDomainsChecked (assigned : List Row) : List Domain → Option (List 
         | none => none
         | some remaining => some (restricted :: remaining)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem restrictDomainsChecked_none_iff (assigned : List Row) (domains : List Domain) :
     restrictDomainsChecked assigned domains = none ↔
       (domains.map (restrictDomain assigned)).any (fun domain => domain.rows.isEmpty) := by
@@ -420,6 +479,7 @@ theorem restrictDomainsChecked_none_iff (assigned : List Row) (domains : List Do
               exact hnone (ih.mpr hany)
             simp [restrictDomainsChecked, hdomain, hrest, hnotany]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem restrictDomainsChecked_some_map_iff (assigned : List Row) (domains : List Domain) :
     restrictDomainsChecked assigned domains =
         some (domains.map (restrictDomain assigned)) ↔
@@ -452,11 +512,13 @@ theorem restrictDomainsChecked_some_map_iff (assigned : List Row) (domains : Lis
             simp [restrictDomainsChecked, hdomain, hrest, hremaining,
               hnotany]
 
+/-- Census-554 certificate-bank def. -/
 def restrictDomainPairUse
     (assigned : List Row) (use : PairUse) (domain : Domain) : Domain :=
   { domain with
     rows := domain.rows.filter fun row => compatibleWithPairUse assigned use row }
 
+/-- Census-554 certificate-bank def. -/
 def allKilled : Nat -> List Row -> List Domain -> Bool
   | 0, assigned, _ => hasPrefixCore assigned
   | fuel + 1, assigned, domains =>
@@ -477,6 +539,7 @@ def allKilled : Nat -> List Row -> List Domain -> Bool
 
 /-! PARKED-SPEC side-by-side evaluator.  It preserves the old closure calculation and
 domain ordering while replacing repeated pair-count scans with `PairUse`. -/
+/-- Census-554 certificate-bank def. -/
 def allKilledPairUse : Nat -> List Row -> PairUse -> List Domain -> Bool
   | 0, assigned, _, _ => hasPrefixCore assigned
   | fuel + 1, assigned, use, domains =>
@@ -499,12 +562,15 @@ def allKilledPairUse : Nat -> List Row -> PairUse -> List Domain -> Bool
               else
                 true
 
+/-- Census-554 certificate-bank def. -/
 def fixedPinnedRow (pinSource : Nat) : Row :=
   { center := 1
     support := 2 ^ 0 + 2 ^ 7 + 2 ^ 8 + 2 ^ pinSource }
 
+/-- Census-554 certificate-bank def. -/
 def variableCenters : List Nat := [0, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+/-- Census-554 certificate-bank def. -/
 def placementCheck (pinSource deleted : Nat) : Bool :=
   let fixed := fixedPinnedRow pinSource
   if !localCandidateOK fixed.center deleted fixed.support then
@@ -517,6 +583,7 @@ def placementCheck (pinSource deleted : Nat) : Bool :=
     | none => true
     | some domains => allKilled variableCenters.length assigned domains
 
+/-- Census-554 certificate-bank def. -/
 def placementCheckPairUse (pinSource deleted : Nat) : Bool :=
   let fixed := fixedPinnedRow pinSource
   if !localCandidateOK fixed.center deleted fixed.support then
@@ -535,6 +602,7 @@ set_option maxHeartbeats 0 in
 -- Native replay traverses the complete finite placement search tree.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem placementCheck_p6_d4 : placementCheck 6 4 = true := by
   native_decide
 

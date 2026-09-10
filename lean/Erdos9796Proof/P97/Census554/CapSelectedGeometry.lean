@@ -39,10 +39,12 @@ structure CanonicalHull (pointOf : Label -> ℝ²) where
     (∀ label, boundary (card11BoundaryReflection (hullIndex label)) =
       pointOf label)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem hullIndex_injective : Function.Injective hullIndex := by
   intro left right h
   fin_cases left <;> fin_cases right <;> simp_all [hullIndex]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem CanonicalHull.point_eq_direct_or_mirror
     {pointOf : Label -> ℝ²} (H : CanonicalHull pointOf) :
     (∀ label, H.boundary (hullIndex label) = pointOf label) ∨
@@ -133,6 +135,7 @@ def capSelectedFrame {A : Finset ℝ²} (S : SurplusCapPacket A) :
   rest_ne_surplus := S.surplusIdx_ne_oppIndex2.symm
   rest_ne_second := S.oppIndex1_ne_oppIndex2.symm
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem capSelectedFrame_rest
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     (capSelectedFrame S).rest = S.oppIndex2 := rfl
@@ -153,18 +156,21 @@ structure CanonicalLabeling {A : Finset ℝ²} (S : SurplusCapPacket A)
 
 namespace CanonicalLabeling
 
+/-- Census-554 certificate-bank theorem. -/
 theorem point_zero_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) :
     L.pointOf 0 = S.oppositeVertexByIndex S.surplusIdx := by
   exact L.toCard11Labeling.point_zero.trans
     (Card11SelectedCube.apexAt_eq_oppositeVertexByIndex S S.surplusIdx)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem point_one_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) :
     L.pointOf 1 = S.oppositeVertexByIndex S.oppIndex1 := by
   exact L.toCard11Labeling.point_one.trans
     (Card11SelectedCube.apexAt_eq_oppositeVertexByIndex S S.oppIndex1)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem point_two_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) :
     L.pointOf 2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -173,9 +179,11 @@ theorem point_two_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
 
 end CanonicalLabeling
 
+/-- Census-554 certificate-bank def. -/
 private def openIndices (left right : Fin 11) : Finset (Fin 11) :=
   Finset.univ.filter fun index => left < index ∧ index < right
 
+/-- Census-554 certificate-bank def. -/
 private def afterIndices (left : Fin 11) : Finset (Fin 11) :=
   Finset.univ.filter fun index => left < index
 
@@ -190,6 +198,7 @@ private theorem forcedBlockEndpoints :
       left = 3 ∧ right = 8 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem mem_image_iff_of_injective
     {alpha beta : Type*} [DecidableEq beta]
     {f : alpha -> beta} (hf : Function.Injective f)
@@ -203,42 +212,50 @@ private theorem mem_image_iff_of_injective
   · intro hx
     exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem hullIndex_surjective : Function.Surjective hullIndex :=
   Finite.surjective_of_injective hullIndex_injective
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem reflectedHullIndex_surjective :
     Function.Surjective (fun label =>
       card11BoundaryReflection (hullIndex label)) :=
   Finite.surjective_of_injective
     (card11BoundaryReflection.injective.comp hullIndex_injective)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem direct_opp2_membership :
     ∀ label : Label,
       hullIndex label ∈ openIndices 0 3 ↔ label ∈ intO2 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem direct_surplus_membership :
     ∀ label : Label,
       hullIndex label ∈ openIndices 3 8 ↔ label ∈ intS := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem direct_opp1_membership :
     ∀ label : Label,
       hullIndex label ∈ afterIndices 8 ↔ label ∈ intO1 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem mirror_opp1_membership :
     ∀ label : Label,
       card11BoundaryReflection (hullIndex label) ∈ openIndices 0 3 ↔
         label ∈ intO1 := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem mirror_surplus_membership :
     ∀ label : Label,
       card11BoundaryReflection (hullIndex label) ∈ openIndices 3 8 ↔
         label ∈ intS := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem mirror_opp2_membership :
     ∀ label : Label,
       card11BoundaryReflection (hullIndex label) ∈ afterIndices 8 ↔
@@ -495,6 +512,7 @@ theorem BoundaryBlocks.nonempty_canonicalLabeling
         boundary_ccw := hccw
         point_eq := Or.inr (fun _ => rfl) } }⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem capInteriorByIndex_card_eq_four_of_cap_card_eq_six
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     (hcard : (S.capByIndex i).card = 6) :

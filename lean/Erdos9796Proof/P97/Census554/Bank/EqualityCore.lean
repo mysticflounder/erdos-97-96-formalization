@@ -37,21 +37,27 @@ namespace Bank
 
 open Problem97.Census554.EqualityCore
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00084_hp₁p₂ : EdgeClosure pat00084 (0, 1) (0, 2) := by
   exact EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.flip (P := pat00084) 0 1) (EdgeClosure.row (P := pat00084) 1 0 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 1 2)) (EdgeClosure.row (P := pat00084) 2 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 2 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00084_hp₁p₃ : EdgeClosure pat00084 (0, 1) (0, 3) := by
   exact EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.flip (P := pat00084) 0 1) (EdgeClosure.row (P := pat00084) 1 0 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 1 2)) (EdgeClosure.row (P := pat00084) 2 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 2 0)) (EdgeClosure.row (P := pat00084) 0 2 3 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00084_hp₁₁₂ : EdgeClosure pat00084 (0, 1) (1, 2) := by
   exact EdgeClosure.trans (P := pat00084) (EdgeClosure.flip (P := pat00084) 0 1) (EdgeClosure.row (P := pat00084) 1 0 2 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00084_hp₁₁₃ : EdgeClosure pat00084 (0, 1) (1, 3) := by
   exact EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.flip (P := pat00084) 0 1) (EdgeClosure.row (P := pat00084) 1 0 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 1 2)) (EdgeClosure.row (P := pat00084) 2 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 2 0)) (EdgeClosure.row (P := pat00084) 0 2 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 0 3)) (EdgeClosure.row (P := pat00084) 3 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 3 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00084_hp₁₂₃ : EdgeClosure pat00084 (0, 1) (2, 3) := by
   exact EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.trans (P := pat00084) (EdgeClosure.flip (P := pat00084) 0 1) (EdgeClosure.row (P := pat00084) 1 0 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 1 2)) (EdgeClosure.row (P := pat00084) 2 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 2 0)) (EdgeClosure.row (P := pat00084) 0 2 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 0 3)) (EdgeClosure.row (P := pat00084) 3 0 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat00084) 3 2)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat00084 : EqualK4Core pat00084 where
   p := 0
   t₁ := 1
@@ -68,21 +74,27 @@ private def equalK4Core_pat00084 : EqualK4Core pat00084 where
 theorem isDead_pat00084_of_equalK4Core : IsDead pat00084 :=
   isDead_of_equalK4Core equalK4Core_pat00084
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00568_hp₁p₂ : EdgeClosure pat00568 (0, 1) (0, 3) := by
   exact EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.flip (P := pat00568) 0 1) (EdgeClosure.row (P := pat00568) 1 0 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00568) 1 3)) (EdgeClosure.row (P := pat00568) 3 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00568) 3 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00568_hp₁p₃ : EdgeClosure pat00568 (0, 1) (0, 7) := by
   exact EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.flip (P := pat00568) 0 1) (EdgeClosure.row (P := pat00568) 1 0 7 (by decide) (by decide))) (EdgeClosure.flip (P := pat00568) 1 7)) (EdgeClosure.row (P := pat00568) 7 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00568) 7 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00568_hp₁₁₂ : EdgeClosure pat00568 (0, 1) (1, 3) := by
   exact EdgeClosure.trans (P := pat00568) (EdgeClosure.flip (P := pat00568) 0 1) (EdgeClosure.row (P := pat00568) 1 0 3 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00568_hp₁₁₃ : EdgeClosure pat00568 (0, 1) (1, 7) := by
   exact EdgeClosure.trans (P := pat00568) (EdgeClosure.flip (P := pat00568) 0 1) (EdgeClosure.row (P := pat00568) 1 0 7 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00568_hp₁₂₃ : EdgeClosure pat00568 (0, 1) (3, 7) := by
   exact EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.trans (P := pat00568) (EdgeClosure.flip (P := pat00568) 0 1) (EdgeClosure.row (P := pat00568) 1 0 7 (by decide) (by decide))) (EdgeClosure.flip (P := pat00568) 1 7)) (EdgeClosure.row (P := pat00568) 7 1 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00568) 7 3)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat00568 : EqualK4Core pat00568 where
   p := 0
   t₁ := 1
@@ -99,21 +111,27 @@ private def equalK4Core_pat00568 : EqualK4Core pat00568 where
 theorem isDead_pat00568_of_equalK4Core : IsDead pat00568 :=
   isDead_of_equalK4Core equalK4Core_pat00568
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00573_hp₁p₂ : EdgeClosure pat00573 (0, 1) (0, 3) := by
   exact EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.flip (P := pat00573) 0 1) (EdgeClosure.row (P := pat00573) 1 0 7 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 1 7)) (EdgeClosure.row (P := pat00573) 7 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 7 0)) (EdgeClosure.row (P := pat00573) 0 7 3 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00573_hp₁p₃ : EdgeClosure pat00573 (0, 1) (0, 7) := by
   exact EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.flip (P := pat00573) 0 1) (EdgeClosure.row (P := pat00573) 1 0 7 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 1 7)) (EdgeClosure.row (P := pat00573) 7 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 7 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00573_hp₁₁₂ : EdgeClosure pat00573 (0, 1) (1, 3) := by
   exact EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.flip (P := pat00573) 0 1) (EdgeClosure.row (P := pat00573) 1 0 7 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 1 7)) (EdgeClosure.row (P := pat00573) 7 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 7 0)) (EdgeClosure.row (P := pat00573) 0 7 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 0 3)) (EdgeClosure.row (P := pat00573) 3 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 3 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00573_hp₁₁₃ : EdgeClosure pat00573 (0, 1) (1, 7) := by
   exact EdgeClosure.trans (P := pat00573) (EdgeClosure.flip (P := pat00573) 0 1) (EdgeClosure.row (P := pat00573) 1 0 7 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00573_hp₁₂₃ : EdgeClosure pat00573 (0, 1) (3, 7) := by
   exact EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.trans (P := pat00573) (EdgeClosure.flip (P := pat00573) 0 1) (EdgeClosure.row (P := pat00573) 1 0 7 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 1 7)) (EdgeClosure.row (P := pat00573) 7 1 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00573) 7 3)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat00573 : EqualK4Core pat00573 where
   p := 0
   t₁ := 1
@@ -130,21 +148,27 @@ private def equalK4Core_pat00573 : EqualK4Core pat00573 where
 theorem isDead_pat00573_of_equalK4Core : IsDead pat00573 :=
   isDead_of_equalK4Core equalK4Core_pat00573
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00744_hp₁p₂ : EdgeClosure pat00744 (0, 1) (0, 5) := by
   exact EdgeClosure.row (P := pat00744) 0 1 5 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00744_hp₁p₃ : EdgeClosure pat00744 (0, 1) (0, 6) := by
   exact EdgeClosure.row (P := pat00744) 0 1 6 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00744_hp₁₁₂ : EdgeClosure pat00744 (0, 1) (1, 5) := by
   exact EdgeClosure.trans (P := pat00744) (EdgeClosure.trans (P := pat00744) (EdgeClosure.trans (P := pat00744) (EdgeClosure.row (P := pat00744) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat00744) 0 5)) (EdgeClosure.row (P := pat00744) 5 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat00744) 5 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00744_hp₁₁₃ : EdgeClosure pat00744 (0, 1) (1, 6) := by
   exact EdgeClosure.trans (P := pat00744) (EdgeClosure.flip (P := pat00744) 0 1) (EdgeClosure.row (P := pat00744) 1 0 6 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00744_hp₁₂₃ : EdgeClosure pat00744 (0, 1) (5, 6) := by
   exact EdgeClosure.trans (P := pat00744) (EdgeClosure.trans (P := pat00744) (EdgeClosure.row (P := pat00744) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat00744) 0 5)) (EdgeClosure.row (P := pat00744) 5 0 6 (by decide) (by decide))
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat00744 : EqualK4Core pat00744 where
   p := 0
   t₁ := 1
@@ -161,21 +185,27 @@ private def equalK4Core_pat00744 : EqualK4Core pat00744 where
 theorem isDead_pat00744_of_equalK4Core : IsDead pat00744 :=
   isDead_of_equalK4Core equalK4Core_pat00744
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00966_hp₁p₂ : EdgeClosure pat00966 (0, 1) (0, 2) := by
   exact EdgeClosure.row (P := pat00966) 0 1 2 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00966_hp₁p₃ : EdgeClosure pat00966 (0, 1) (0, 5) := by
   exact EdgeClosure.row (P := pat00966) 0 1 5 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00966_hp₁₁₂ : EdgeClosure pat00966 (0, 1) (1, 2) := by
   exact EdgeClosure.trans (P := pat00966) (EdgeClosure.trans (P := pat00966) (EdgeClosure.trans (P := pat00966) (EdgeClosure.row (P := pat00966) 0 1 2 (by decide) (by decide)) (EdgeClosure.flip (P := pat00966) 0 2)) (EdgeClosure.row (P := pat00966) 2 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat00966) 2 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00966_hp₁₁₃ : EdgeClosure pat00966 (0, 1) (1, 5) := by
   exact EdgeClosure.trans (P := pat00966) (EdgeClosure.trans (P := pat00966) (EdgeClosure.trans (P := pat00966) (EdgeClosure.row (P := pat00966) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat00966) 0 5)) (EdgeClosure.row (P := pat00966) 5 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat00966) 5 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00966_hp₁₂₃ : EdgeClosure pat00966 (0, 1) (2, 5) := by
   exact EdgeClosure.trans (P := pat00966) (EdgeClosure.trans (P := pat00966) (EdgeClosure.trans (P := pat00966) (EdgeClosure.row (P := pat00966) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat00966) 0 5)) (EdgeClosure.row (P := pat00966) 5 0 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat00966) 5 2)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat00966 : EqualK4Core pat00966 where
   p := 0
   t₁ := 1
@@ -192,21 +222,27 @@ private def equalK4Core_pat00966 : EqualK4Core pat00966 where
 theorem isDead_pat00966_of_equalK4Core : IsDead pat00966 :=
   isDead_of_equalK4Core equalK4Core_pat00966
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01535_hp₁p₂ : EdgeClosure pat01535 (0, 1) (0, 2) := by
   exact EdgeClosure.row (P := pat01535) 0 1 2 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01535_hp₁p₃ : EdgeClosure pat01535 (0, 1) (0, 5) := by
   exact EdgeClosure.row (P := pat01535) 0 1 5 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01535_hp₁₁₂ : EdgeClosure pat01535 (0, 1) (1, 2) := by
   exact EdgeClosure.trans (P := pat01535) (EdgeClosure.flip (P := pat01535) 0 1) (EdgeClosure.row (P := pat01535) 1 0 2 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01535_hp₁₁₃ : EdgeClosure pat01535 (0, 1) (1, 5) := by
   exact EdgeClosure.trans (P := pat01535) (EdgeClosure.trans (P := pat01535) (EdgeClosure.trans (P := pat01535) (EdgeClosure.row (P := pat01535) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat01535) 0 5)) (EdgeClosure.row (P := pat01535) 5 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat01535) 5 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01535_hp₁₂₃ : EdgeClosure pat01535 (0, 1) (2, 5) := by
   exact EdgeClosure.trans (P := pat01535) (EdgeClosure.trans (P := pat01535) (EdgeClosure.trans (P := pat01535) (EdgeClosure.row (P := pat01535) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat01535) 0 5)) (EdgeClosure.row (P := pat01535) 5 0 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat01535) 5 2)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat01535 : EqualK4Core pat01535 where
   p := 0
   t₁ := 1
@@ -223,21 +259,27 @@ private def equalK4Core_pat01535 : EqualK4Core pat01535 where
 theorem isDead_pat01535_of_equalK4Core : IsDead pat01535 :=
   isDead_of_equalK4Core equalK4Core_pat01535
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01571_hp₁p₂ : EdgeClosure pat01571 (0, 1) (0, 2) := by
   exact EdgeClosure.row (P := pat01571) 0 1 2 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01571_hp₁p₃ : EdgeClosure pat01571 (0, 1) (0, 4) := by
   exact EdgeClosure.row (P := pat01571) 0 1 4 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01571_hp₁₁₂ : EdgeClosure pat01571 (0, 1) (1, 2) := by
   exact EdgeClosure.trans (P := pat01571) (EdgeClosure.flip (P := pat01571) 0 1) (EdgeClosure.row (P := pat01571) 1 0 2 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01571_hp₁₁₃ : EdgeClosure pat01571 (0, 1) (1, 4) := by
   exact EdgeClosure.trans (P := pat01571) (EdgeClosure.trans (P := pat01571) (EdgeClosure.trans (P := pat01571) (EdgeClosure.row (P := pat01571) 0 1 4 (by decide) (by decide)) (EdgeClosure.flip (P := pat01571) 0 4)) (EdgeClosure.row (P := pat01571) 4 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat01571) 4 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat01571_hp₁₂₃ : EdgeClosure pat01571 (0, 1) (2, 4) := by
   exact EdgeClosure.trans (P := pat01571) (EdgeClosure.trans (P := pat01571) (EdgeClosure.row (P := pat01571) 0 1 2 (by decide) (by decide)) (EdgeClosure.flip (P := pat01571) 0 2)) (EdgeClosure.row (P := pat01571) 2 0 4 (by decide) (by decide))
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat01571 : EqualK4Core pat01571 where
   p := 0
   t₁ := 1
@@ -254,21 +296,27 @@ private def equalK4Core_pat01571 : EqualK4Core pat01571 where
 theorem isDead_pat01571_of_equalK4Core : IsDead pat01571 :=
   isDead_of_equalK4Core equalK4Core_pat01571
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02175_hp₁p₂ : EdgeClosure pat02175 (0, 1) (0, 7) := by
   exact EdgeClosure.row (P := pat02175) 0 1 7 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02175_hp₁p₃ : EdgeClosure pat02175 (0, 1) (0, 9) := by
   exact EdgeClosure.row (P := pat02175) 0 1 9 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02175_hp₁₁₂ : EdgeClosure pat02175 (0, 1) (1, 7) := by
   exact EdgeClosure.trans (P := pat02175) (EdgeClosure.flip (P := pat02175) 0 1) (EdgeClosure.row (P := pat02175) 1 0 7 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02175_hp₁₁₃ : EdgeClosure pat02175 (0, 1) (1, 9) := by
   exact EdgeClosure.trans (P := pat02175) (EdgeClosure.trans (P := pat02175) (EdgeClosure.trans (P := pat02175) (EdgeClosure.row (P := pat02175) 0 1 9 (by decide) (by decide)) (EdgeClosure.flip (P := pat02175) 0 9)) (EdgeClosure.row (P := pat02175) 9 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat02175) 9 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02175_hp₁₂₃ : EdgeClosure pat02175 (0, 1) (7, 9) := by
   exact EdgeClosure.trans (P := pat02175) (EdgeClosure.trans (P := pat02175) (EdgeClosure.trans (P := pat02175) (EdgeClosure.row (P := pat02175) 0 1 9 (by decide) (by decide)) (EdgeClosure.flip (P := pat02175) 0 9)) (EdgeClosure.row (P := pat02175) 9 0 7 (by decide) (by decide))) (EdgeClosure.flip (P := pat02175) 9 7)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat02175 : EqualK4Core pat02175 where
   p := 0
   t₁ := 1
@@ -285,21 +333,27 @@ private def equalK4Core_pat02175 : EqualK4Core pat02175 where
 theorem isDead_pat02175_of_equalK4Core : IsDead pat02175 :=
   isDead_of_equalK4Core equalK4Core_pat02175
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02213_hp₁p₂ : EdgeClosure pat02213 (0, 1) (0, 9) := by
   exact EdgeClosure.row (P := pat02213) 0 1 9 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02213_hp₁p₃ : EdgeClosure pat02213 (0, 1) (0, 10) := by
   exact EdgeClosure.row (P := pat02213) 0 1 10 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02213_hp₁₁₂ : EdgeClosure pat02213 (0, 1) (1, 9) := by
   exact EdgeClosure.trans (P := pat02213) (EdgeClosure.trans (P := pat02213) (EdgeClosure.trans (P := pat02213) (EdgeClosure.row (P := pat02213) 0 1 9 (by decide) (by decide)) (EdgeClosure.flip (P := pat02213) 0 9)) (EdgeClosure.row (P := pat02213) 9 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat02213) 9 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02213_hp₁₁₃ : EdgeClosure pat02213 (0, 1) (1, 10) := by
   exact EdgeClosure.trans (P := pat02213) (EdgeClosure.trans (P := pat02213) (EdgeClosure.trans (P := pat02213) (EdgeClosure.row (P := pat02213) 0 1 10 (by decide) (by decide)) (EdgeClosure.flip (P := pat02213) 0 10)) (EdgeClosure.row (P := pat02213) 10 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat02213) 10 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02213_hp₁₂₃ : EdgeClosure pat02213 (0, 1) (9, 10) := by
   exact EdgeClosure.trans (P := pat02213) (EdgeClosure.trans (P := pat02213) (EdgeClosure.trans (P := pat02213) (EdgeClosure.row (P := pat02213) 0 1 10 (by decide) (by decide)) (EdgeClosure.flip (P := pat02213) 0 10)) (EdgeClosure.row (P := pat02213) 10 0 9 (by decide) (by decide))) (EdgeClosure.flip (P := pat02213) 10 9)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat02213 : EqualK4Core pat02213 where
   p := 0
   t₁ := 1
@@ -316,21 +370,27 @@ private def equalK4Core_pat02213 : EqualK4Core pat02213 where
 theorem isDead_pat02213_of_equalK4Core : IsDead pat02213 :=
   isDead_of_equalK4Core equalK4Core_pat02213
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02369_hp₁p₂ : EdgeClosure pat02369 (0, 1) (0, 3) := by
   exact EdgeClosure.row (P := pat02369) 0 1 3 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02369_hp₁p₃ : EdgeClosure pat02369 (0, 1) (0, 4) := by
   exact EdgeClosure.row (P := pat02369) 0 1 4 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02369_hp₁₁₂ : EdgeClosure pat02369 (0, 1) (1, 3) := by
   exact EdgeClosure.trans (P := pat02369) (EdgeClosure.trans (P := pat02369) (EdgeClosure.trans (P := pat02369) (EdgeClosure.row (P := pat02369) 0 1 3 (by decide) (by decide)) (EdgeClosure.flip (P := pat02369) 0 3)) (EdgeClosure.row (P := pat02369) 3 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat02369) 3 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02369_hp₁₁₃ : EdgeClosure pat02369 (0, 1) (1, 4) := by
   exact EdgeClosure.trans (P := pat02369) (EdgeClosure.flip (P := pat02369) 0 1) (EdgeClosure.row (P := pat02369) 1 0 4 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02369_hp₁₂₃ : EdgeClosure pat02369 (0, 1) (3, 4) := by
   exact EdgeClosure.trans (P := pat02369) (EdgeClosure.trans (P := pat02369) (EdgeClosure.trans (P := pat02369) (EdgeClosure.row (P := pat02369) 0 1 4 (by decide) (by decide)) (EdgeClosure.flip (P := pat02369) 0 4)) (EdgeClosure.row (P := pat02369) 4 0 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat02369) 4 3)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat02369 : EqualK4Core pat02369 where
   p := 0
   t₁ := 1
@@ -347,21 +407,27 @@ private def equalK4Core_pat02369 : EqualK4Core pat02369 where
 theorem isDead_pat02369_of_equalK4Core : IsDead pat02369 :=
   isDead_of_equalK4Core equalK4Core_pat02369
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02386_hp₁p₂ : EdgeClosure pat02386 (0, 1) (0, 2) := by
   exact EdgeClosure.row (P := pat02386) 0 1 2 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02386_hp₁p₃ : EdgeClosure pat02386 (0, 1) (0, 6) := by
   exact EdgeClosure.trans (P := pat02386) (EdgeClosure.trans (P := pat02386) (EdgeClosure.trans (P := pat02386) (EdgeClosure.trans (P := pat02386) (EdgeClosure.flip (P := pat02386) 0 1) (EdgeClosure.row (P := pat02386) 1 0 6 (by decide) (by decide))) (EdgeClosure.flip (P := pat02386) 1 6)) (EdgeClosure.row (P := pat02386) 6 1 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat02386) 6 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02386_hp₁₁₂ : EdgeClosure pat02386 (0, 1) (1, 2) := by
   exact EdgeClosure.trans (P := pat02386) (EdgeClosure.flip (P := pat02386) 0 1) (EdgeClosure.row (P := pat02386) 1 0 2 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02386_hp₁₁₃ : EdgeClosure pat02386 (0, 1) (1, 6) := by
   exact EdgeClosure.trans (P := pat02386) (EdgeClosure.flip (P := pat02386) 0 1) (EdgeClosure.row (P := pat02386) 1 0 6 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat02386_hp₁₂₃ : EdgeClosure pat02386 (0, 1) (2, 6) := by
   exact EdgeClosure.trans (P := pat02386) (EdgeClosure.trans (P := pat02386) (EdgeClosure.trans (P := pat02386) (EdgeClosure.trans (P := pat02386) (EdgeClosure.flip (P := pat02386) 0 1) (EdgeClosure.row (P := pat02386) 1 0 6 (by decide) (by decide))) (EdgeClosure.flip (P := pat02386) 1 6)) (EdgeClosure.row (P := pat02386) 6 1 2 (by decide) (by decide))) (EdgeClosure.flip (P := pat02386) 6 2)
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat02386 : EqualK4Core pat02386 where
   p := 0
   t₁ := 1
@@ -378,21 +444,27 @@ private def equalK4Core_pat02386 : EqualK4Core pat02386 where
 theorem isDead_pat02386_of_equalK4Core : IsDead pat02386 :=
   isDead_of_equalK4Core equalK4Core_pat02386
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat03063_hp₁p₂ : EdgeClosure pat03063 (0, 1) (0, 5) := by
   exact EdgeClosure.row (P := pat03063) 0 1 5 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat03063_hp₁p₃ : EdgeClosure pat03063 (0, 1) (0, 8) := by
   exact EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.row (P := pat03063) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat03063) 0 5)) (EdgeClosure.row (P := pat03063) 5 0 8 (by decide) (by decide))) (EdgeClosure.flip (P := pat03063) 5 8)) (EdgeClosure.row (P := pat03063) 8 5 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat03063) 8 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat03063_hp₁₁₂ : EdgeClosure pat03063 (0, 1) (1, 5) := by
   exact EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.row (P := pat03063) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat03063) 0 5)) (EdgeClosure.row (P := pat03063) 5 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat03063) 5 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat03063_hp₁₁₃ : EdgeClosure pat03063 (0, 1) (1, 8) := by
   exact EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.row (P := pat03063) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat03063) 0 5)) (EdgeClosure.row (P := pat03063) 5 0 8 (by decide) (by decide))) (EdgeClosure.flip (P := pat03063) 5 8)) (EdgeClosure.row (P := pat03063) 8 5 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat03063) 8 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat03063_hp₁₂₃ : EdgeClosure pat03063 (0, 1) (5, 8) := by
   exact EdgeClosure.trans (P := pat03063) (EdgeClosure.trans (P := pat03063) (EdgeClosure.row (P := pat03063) 0 1 5 (by decide) (by decide)) (EdgeClosure.flip (P := pat03063) 0 5)) (EdgeClosure.row (P := pat03063) 5 0 8 (by decide) (by decide))
 
+/-- Census-554 certificate-bank def. -/
 private def equalK4Core_pat03063 : EqualK4Core pat03063 where
   p := 0
   t₁ := 1
@@ -409,24 +481,31 @@ private def equalK4Core_pat03063 : EqualK4Core pat03063 where
 theorem isDead_pat03063_of_equalK4Core : IsDead pat03063 :=
   isDead_of_equalK4Core equalK4Core_pat03063
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00128_pa_pb : EdgeClosure pat00128 (2, 1) (2, 0) := by
   exact EdgeClosure.row (P := pat00128) 2 1 0 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00128_pa_pc : EdgeClosure pat00128 (2, 1) (2, 9) := by
   exact EdgeClosure.row (P := pat00128) 2 1 9 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00128_pa_ab : EdgeClosure pat00128 (2, 1) (1, 0) := by
   exact EdgeClosure.trans (P := pat00128) (EdgeClosure.flip (P := pat00128) 2 1) (EdgeClosure.row (P := pat00128) 1 2 0 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00128_pa_ax : EdgeClosure pat00128 (2, 1) (1, 3) := by
   exact EdgeClosure.trans (P := pat00128) (EdgeClosure.trans (P := pat00128) (EdgeClosure.trans (P := pat00128) (EdgeClosure.trans (P := pat00128) (EdgeClosure.trans (P := pat00128) (EdgeClosure.row (P := pat00128) 2 1 0 (by decide) (by decide)) (EdgeClosure.flip (P := pat00128) 2 0)) (EdgeClosure.row (P := pat00128) 0 2 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00128) 0 3)) (EdgeClosure.row (P := pat00128) 3 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat00128) 3 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00128_pa_bx : EdgeClosure pat00128 (2, 1) (0, 3) := by
   exact EdgeClosure.trans (P := pat00128) (EdgeClosure.trans (P := pat00128) (EdgeClosure.row (P := pat00128) 2 1 0 (by decide) (by decide)) (EdgeClosure.flip (P := pat00128) 2 0)) (EdgeClosure.row (P := pat00128) 0 2 3 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00128_cx_ca : EdgeClosure pat00128 (9, 3) (9, 1) := by
   exact EdgeClosure.row (P := pat00128) 9 3 1 (by decide) (by decide)
 
+/-- Census-554 certificate-bank def. -/
 private def equilateralBisectorCore_pat00128 : EquilateralBisectorCollisionCore pat00128 where
   p := 2
   a := 1
@@ -447,24 +526,31 @@ private def equilateralBisectorCore_pat00128 : EquilateralBisectorCollisionCore 
 theorem isDead_pat00128_of_equilateralBisectorCore : IsDead pat00128 :=
   isDead_of_equilateralBisectorCollisionCore equilateralBisectorCore_pat00128
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00134_pa_pb : EdgeClosure pat00134 (2, 0) (2, 1) := by
   exact EdgeClosure.row (P := pat00134) 2 0 1 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00134_pa_pc : EdgeClosure pat00134 (2, 0) (2, 9) := by
   exact EdgeClosure.row (P := pat00134) 2 0 9 (by decide) (by decide)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00134_pa_ab : EdgeClosure pat00134 (2, 0) (0, 1) := by
   exact EdgeClosure.trans (P := pat00134) (EdgeClosure.trans (P := pat00134) (EdgeClosure.trans (P := pat00134) (EdgeClosure.row (P := pat00134) 2 0 1 (by decide) (by decide)) (EdgeClosure.flip (P := pat00134) 2 1)) (EdgeClosure.row (P := pat00134) 1 2 0 (by decide) (by decide))) (EdgeClosure.flip (P := pat00134) 1 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00134_pa_ax : EdgeClosure pat00134 (2, 0) (0, 3) := by
   exact EdgeClosure.trans (P := pat00134) (EdgeClosure.flip (P := pat00134) 2 0) (EdgeClosure.row (P := pat00134) 0 2 3 (by decide) (by decide))
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00134_pa_bx : EdgeClosure pat00134 (2, 0) (1, 3) := by
   exact EdgeClosure.trans (P := pat00134) (EdgeClosure.trans (P := pat00134) (EdgeClosure.trans (P := pat00134) (EdgeClosure.trans (P := pat00134) (EdgeClosure.flip (P := pat00134) 2 0) (EdgeClosure.row (P := pat00134) 0 2 3 (by decide) (by decide))) (EdgeClosure.flip (P := pat00134) 0 3)) (EdgeClosure.row (P := pat00134) 3 0 1 (by decide) (by decide))) (EdgeClosure.flip (P := pat00134) 3 1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem pat00134_cx_ca : EdgeClosure pat00134 (9, 3) (9, 0) := by
   exact EdgeClosure.row (P := pat00134) 9 3 0 (by decide) (by decide)
 
+/-- Census-554 certificate-bank def. -/
 private def equilateralBisectorCore_pat00134 : EquilateralBisectorCollisionCore pat00134 where
   p := 2
   a := 0

@@ -202,6 +202,7 @@ def sourceChoicePrefixExclusionClause
   [-Int.ofNat (sourceChoiceVariable source right),
     -Int.ofNat (sourcePrefixVariable source left)]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem sourceChoiceVariable_pos
     (source : Label) (choice : SourceChoiceIndex source) :
     0 < sourceChoiceVariable source choice := by
@@ -209,6 +210,7 @@ theorem sourceChoiceVariable_pos
     simp [sourceChoiceVariable, sourceChoiceStart] <;>
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem sourcePrefixVariable_pos
     (source : Label) (choice : SourceChoiceIndex source) :
     0 < sourcePrefixVariable source choice := by
@@ -216,6 +218,7 @@ theorem sourcePrefixVariable_pos
     simp [sourcePrefixVariable, sourcePrefixStart] <;>
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem evalClauseD_binary_implication
     (σ : Nat → Bool) {left right : Nat} (hright : 0 < right)
     (himp : σ left = true → σ right = true) :
@@ -227,6 +230,7 @@ private theorem evalClauseD_binary_implication
       Bool.eq_false_of_not_eq_true hleft
     simp [evalClauseD, evalLitD, hright, hleftValue]
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem evalClauseD_binary_exclusion
     (σ : Nat → Bool) {left right : Nat}
     (hexclusion : ¬(σ left = true ∧ σ right = true)) :
@@ -297,6 +301,7 @@ def decodeSourcePrefixVariable (varIndex : Nat) :
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 10000 in
+/-- Exact-five common-shell V7 theorem. -/
 theorem decodeSourceChoiceVariable_exact
     (source : Label) (choice : SourceChoiceIndex source) :
     decodeSourceChoiceVariable (sourceChoiceVariable source choice) =
@@ -312,6 +317,7 @@ theorem decodeSourceChoiceVariable_exact
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 10000 in
+/-- Exact-five common-shell V7 theorem. -/
 theorem decodeSourceChoiceVariable_prefix_none
     (source : Label) (choice : SourceChoiceIndex source) :
     decodeSourceChoiceVariable (sourcePrefixVariable source choice) = none := by
@@ -324,6 +330,7 @@ theorem decodeSourceChoiceVariable_prefix_none
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 10000 in
+/-- Exact-five common-shell V7 theorem. -/
 theorem decodeSourcePrefixVariable_exact
     (source : Label) (choice : SourceChoiceIndex source) :
     decodeSourcePrefixVariable (sourcePrefixVariable source choice) =
@@ -381,6 +388,7 @@ noncomputable def CanonicalPacket.fullSourceChoiceValuation
           decide (P.sourcePrefixHolds shadow occurrence.source occurrence.choice)
       | none => P.separationValuation varIndex
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.fullSourceChoiceValuation_choice
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -394,6 +402,7 @@ theorem CanonicalPacket.fullSourceChoiceValuation_choice
   simp [CanonicalPacket.fullSourceChoiceValuation,
     decodeSourceChoiceVariable_exact]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.fullSourceChoiceValuation_prefix
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -408,6 +417,7 @@ theorem CanonicalPacket.fullSourceChoiceValuation_prefix
     decodeSourceChoiceVariable_prefix_none,
     decodeSourcePrefixVariable_exact]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.fullSourceChoiceValuation_eq_separation_of_lt
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

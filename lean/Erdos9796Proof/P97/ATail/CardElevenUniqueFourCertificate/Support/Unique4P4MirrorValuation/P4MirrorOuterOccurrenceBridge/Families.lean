@@ -15,12 +15,14 @@ open P4DirectOuterArcAdapterScratch
 
 open P4DirectOuterArcAdapterScratch
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem litSat_pos {valuation : Nat → Prop} {varIndex : Nat}
     (h : valuation varIndex) : P5OccurrenceBridgeScratch.litSat valuation (varIndex : Int) := by
   unfold P5OccurrenceBridgeScratch.litSat
   rw [if_pos (Int.natCast_nonneg varIndex)]
   simpa using h
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem litSat_neg {valuation : Nat → Prop} {varIndex : Nat}
     (hpositive : 1 ≤ varIndex) (h : ¬ valuation varIndex) :
     P5OccurrenceBridgeScratch.litSat valuation (-(varIndex : Int)) := by
@@ -28,6 +30,7 @@ theorem litSat_neg {valuation : Nat → Prop} {varIndex : Nat}
   rw [if_neg (by omega)]
   simpa using h
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 structure MembershipRowEntry where
   outputClauseIndex : Nat
   clause : List Int
@@ -38,10 +41,12 @@ structure MembershipRowEntry where
   m3 : Nat × MembershipAtom
   m4 : Nat × MembershipAtom
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def membershipRowLits (e : MembershipRowEntry) : List Int :=
   [-((e.m1.1 : Nat) : Int), -((e.m2.1 : Nat) : Int), -((e.m3.1 : Nat) : Int),
     -((e.m4.1 : Nat) : Int), (e.rowVar : Int)]
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def membershipRowWF (e : MembershipRowEntry) : Bool :=
   decide ((reflectSupport e.row.support).card = 4 ∧
     e.m1.2.center = e.row.center ∧ e.m2.2.center = e.row.center ∧
@@ -53,11 +58,13 @@ def membershipRowWF (e : MembershipRowEntry) : Bool :=
     atomOfVar e.m3.1 = .membership e.m3.2 ∧ atomOfVar e.m4.1 = .membership e.m4.2) &&
   litsSubset (membershipRowLits e) e.clause
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def membershipRowEntry (outputClauseIndex : Nat) (clause : List Int)
     (rowVar : Nat) (row : RowSupportAtom)
     (m1 m2 m3 m4 : Nat × MembershipAtom) : MembershipRowEntry :=
   { outputClauseIndex, clause, rowVar, row, m1, m2, m3, m4 }
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 structure RowArcEntry where
   outputClauseIndex : Nat
   clause : List Int
@@ -67,18 +74,22 @@ structure RowArcEntry where
   arc : OuterArcAtom
   datum : DirectRowArcFiniteDatum
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def rowArcLits (e : RowArcEntry) : List Int := [-((e.rowVar : Nat) : Int), (e.arcVar : Int)]
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def rowArcWF (e : RowArcEntry) : Bool :=
   decide (e.datum.Valid ∧ e.datum.row = reflectRowSupportAtom e.row ∧
     e.datum.arc = reflectOuterArcAtom e.arc ∧ atomOfVar e.rowVar = .row e.row ∧
     atomOfVar e.arcVar = .arc e.arc) && litsSubset (rowArcLits e) e.clause
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def rowArcEntry (outputClauseIndex : Nat) (clause : List Int) (rowVar : Nat)
     (row : RowSupportAtom) (arcVar : Nat) (arc : OuterArcAtom)
     (datum : DirectRowArcFiniteDatum) : RowArcEntry :=
   { outputClauseIndex, clause, rowVar, row, arcVar, arc, datum }
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 structure NoFourEntry where
   outputClauseIndex : Nat
   clause : List Int
@@ -87,10 +98,12 @@ structure NoFourEntry where
   a3 : Nat × OuterArcAtom
   a4 : Nat × OuterArcAtom
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def noFourLits (e : NoFourEntry) : List Int :=
   [-((e.a1.1 : Nat) : Int), -((e.a2.1 : Nat) : Int),
     -((e.a3.1 : Nat) : Int), -((e.a4.1 : Nat) : Int)]
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def noFourWF (e : NoFourEntry) : Bool :=
   decide (atomOfVar e.a1.1 = .arc e.a1.2 ∧ atomOfVar e.a2.1 = .arc e.a2.2 ∧
     atomOfVar e.a3.1 = .arc e.a3.2 ∧ atomOfVar e.a4.1 = .arc e.a4.2 ∧
@@ -102,25 +115,30 @@ def noFourWF (e : NoFourEntry) : Bool :=
     Disjoint (reflectMask e.a3.2.mask) (reflectMask e.a4.2.mask)) &&
   litsSubset (noFourLits e) e.clause
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def noFourEntry (outputClauseIndex : Nat) (clause : List Int)
     (a1 a2 a3 a4 : Nat × OuterArcAtom) : NoFourEntry :=
   { outputClauseIndex, clause, a1, a2, a3, a4 }
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 inductive MirrorEntry where
   | membershipRow (entry : MembershipRowEntry)
   | rowArc (entry : RowArcEntry)
   | noFour (entry : NoFourEntry)
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def MirrorEntry.outputClauseIndex : MirrorEntry → Nat
   | .membershipRow entry => entry.outputClauseIndex
   | .rowArc entry => entry.outputClauseIndex
   | .noFour entry => entry.outputClauseIndex
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def MirrorEntry.clause : MirrorEntry → List Int
   | .membershipRow entry => entry.clause
   | .rowArc entry => entry.clause
   | .noFour entry => entry.clause
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def MirrorEntry.wf : MirrorEntry → Bool
   | .membershipRow entry => membershipRowWF entry
   | .rowArc entry => rowArcWF entry

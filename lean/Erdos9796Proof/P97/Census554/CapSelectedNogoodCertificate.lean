@@ -153,6 +153,7 @@ structure DuplicateCenterData where
   bp_br : ClosurePathData
 deriving DecidableEq, Repr
 
+/-- Census-554 certificate-bank def. -/
 def DuplicateCenterData.check (choices : List RowChoice)
     (data : DuplicateCenterData) : Bool :=
   decide (data.p ≠ data.q /\ data.p ≠ data.r /\
@@ -170,6 +171,7 @@ structure ExactOffCircleData where
   hacz : ClosurePathData
 deriving DecidableEq, Repr
 
+/-- Census-554 certificate-bank def. -/
 def ExactOffCircleData.check (choices : List RowChoice)
     (data : ExactOffCircleData) : Bool :=
   choices.any (fun choice => decide (
@@ -189,6 +191,7 @@ structure PerpBisectorData where
   ra_rb : ClosurePathData
 deriving DecidableEq, Repr
 
+/-- Census-554 certificate-bank def. -/
 def PerpBisectorData.check (choices : List RowChoice)
     (data : PerpBisectorData) : Bool :=
   decide (data.a ≠ data.b /\ data.p ≠ data.q /\
@@ -210,6 +213,7 @@ structure ConvexFivePointData where
   cb_cy : ClosurePathData
 deriving DecidableEq, Repr
 
+/-- Census-554 certificate-bank instance. -/
 instance cyclicFiveUpToOrientationDecidable
     (a x b c y : Label) :
     Decidable (CyclicFiveUpToOrientation a x b c y) := by
@@ -217,6 +221,7 @@ instance cyclicFiveUpToOrientationDecidable
     CapSelectedFiniteCode.CyclicFive CapSelectedFiniteCode.cyclicOffset
   infer_instance
 
+/-- Census-554 certificate-bank def. -/
 def ConvexFivePointData.check (choices : List RowChoice)
     (data : ConvexFivePointData) : Bool :=
   decide (CyclicFiveUpToOrientation data.a data.x data.b data.c data.y) &&
@@ -242,6 +247,7 @@ structure ConvexRhombusData where
   ab_xa : ClosurePathData
 deriving DecidableEq, Repr
 
+/-- Census-554 certificate-bank instance. -/
 instance cyclicSixUpToOrientationDecidable
     (a b c x y d : Label) :
     Decidable (CyclicSixUpToOrientation a b c x y d) := by
@@ -249,6 +255,7 @@ instance cyclicSixUpToOrientationDecidable
     CapSelectedFiniteCode.CyclicSix CapSelectedFiniteCode.cyclicOffset
   infer_instance
 
+/-- Census-554 certificate-bank def. -/
 def ConvexRhombusData.check (choices : List RowChoice)
     (data : ConvexRhombusData) : Bool :=
   decide (CyclicSixUpToOrientation data.a data.b data.c data.x data.y data.d) &&
@@ -269,6 +276,7 @@ inductive CoreData where
   | convexRhombus (data : ConvexRhombusData)
 deriving DecidableEq, Repr
 
+/-- Census-554 certificate-bank def. -/
 def CoreData.check (choices : List RowChoice) : CoreData -> Bool
   | .duplicateCenter data => data.check choices
   | .exactOffCircle data => data.check choices

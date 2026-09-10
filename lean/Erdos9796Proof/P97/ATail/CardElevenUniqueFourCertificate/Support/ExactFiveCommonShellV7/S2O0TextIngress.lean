@@ -78,6 +78,7 @@ derived id of the frozen certificate by one.
 The padding is also unnecessary: the frozen certificate's added clauses mention
 no DIMACS variable above `43085`, which is already inside the bound the frozen
 core itself induces. -/
+/-- Exact-five common-shell V7 def. -/
 def certificatePadding : CNF Nat :=
   ⟨#[[(85275, true), (85275, false)]]⟩
 
@@ -103,6 +104,7 @@ def normalizedLratActionCount? : Option Nat :=
   | .ok actions => some actions.size
   | .error _ => none
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem normalizedLrat_parse_count : normalizedLratActionCount? = some 11650 := by
   native_decide
 
@@ -117,6 +119,7 @@ theorem core_unsat : coreCnf.Unsat := by
   have h := certificateCore_unsat assignment
   simpa [certificateCnf] using h
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem reflectClause_eq_signedClause_map
     (clause : DefaultClause numVarsSucc) :
     clause.clause.map reflectLiteral =

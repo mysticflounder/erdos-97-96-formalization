@@ -37,6 +37,7 @@ def B1SliceSignedAreaProductPositive
     0 < Problem97.signedArea2 (B.boundary ix) apex.1 source.1 *
       Problem97.signedArea2 (B.boundary iy) apex.1 source.1
 
+/-- Frontier live-closure theorem. -/
 private theorem slice_index_ne_endpoints
     {A : Finset ℝ²} (B : BoundaryIndexing A)
     (apex source : CarrierLabel A)
@@ -70,6 +71,7 @@ private theorem slice_index_ne_endpoints
       B.boundary ix = B.boundary (B.indexOf source) := congrArg B.boundary hindex
       _ = source.1 := by simpa [pointOf] using B.point_eq source
 
+/-- Frontier live-closure theorem. -/
 private theorem slice_pair_iff_signedAreaProduct
     {A : Finset ℝ²} (B : BoundaryIndexing A)
     (apex source : CarrierLabel A) (hapexSource : apex ≠ source)
@@ -99,6 +101,7 @@ private theorem slice_pair_iff_signedAreaProduct
   rw [hapexPoint, hsourcePoint] at hbridge
   simpa [cyclicAdjacent] using hbridge
 
+/-- Frontier live-closure theorem. -/
 theorem b1SliceSameBoundaryArc_iff_signedAreaProductPositive
     {A : Finset ℝ²} (B : BoundaryIndexing A)
     (apex source : CarrierLabel A) (hapexSource : apex ≠ source)

@@ -27,6 +27,7 @@ open CheckpointedRup.CompactIngress
 open CheckpointedRup.CompactBoundary
 open CheckpointedRup.SemanticBoundary
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem all_take_of_adjacent_segments
     {α : Type} (xs : List α) (p : α → Prop)
     (start count tailCount : Nat)
@@ -40,6 +41,7 @@ private theorem all_take_of_adjacent_segments
   · apply htail x
     simpa only [List.drop_drop] using hx
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem evalClauseD_fresh_override_eq
     (valuation : Nat → Bool) (fresh : Nat) (clause : List Int)
     (hfresh : ∀ literal ∈ clause, literal.natAbs < fresh) :
@@ -87,6 +89,7 @@ theorem g3Checkpoint0_core_literal_lt_padding :
       ∀ literal ∈ clause, literal.natAbs < 96418 := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.g3Checkpoint0_core_group0_signed_sat
     {D : CounterexampleData} {M : MoserTriangle D.A}
     {CP : CapTriple D.A M}
@@ -137,6 +140,7 @@ private theorem CanonicalPacket.g3Checkpoint0_core_group0_signed_sat
   simpa only using
     all_take_of_adjacent_segments xs sat 0 108705 59788 h0 h1234
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.g3Checkpoint0_core_group1_signed_sat
     {D : CounterexampleData} {M : MoserTriangle D.A}
     {CP : CapTriple D.A M}
@@ -183,6 +187,7 @@ private theorem CanonicalPacket.g3Checkpoint0_core_group1_signed_sat
   exact
     all_take_of_adjacent_segments xs sat 168493 317 5619 h5 h6789
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.g3Checkpoint0_core_group2_signed_sat
     {D : CounterexampleData} {M : MoserTriangle D.A}
     {CP : CapTriple D.A M}
@@ -228,6 +233,7 @@ private theorem CanonicalPacket.g3Checkpoint0_core_group2_signed_sat
   exact
     all_take_of_adjacent_segments xs sat 174429 10721 10228 h10 h11121314
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.g3Checkpoint0_core_group3_signed_sat
     {D : CounterexampleData} {M : MoserTriangle D.A}
     {CP : CapTriple D.A M}

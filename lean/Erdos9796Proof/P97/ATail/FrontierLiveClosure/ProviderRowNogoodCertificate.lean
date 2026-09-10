@@ -58,12 +58,14 @@ inductive ProviderPrimitiveEqualityStep (Provider Label : Type*) where
   | flip (first second : Label)
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def ProviderPrimitiveEqualityStep.source
     {Provider Label : Type*} (P : ProviderRowPattern Provider Label) :
     ProviderPrimitiveEqualityStep Provider Label → Edge Label
   | .row provider first _ => (P.centerOf provider, first)
   | .flip first second => (first, second)
 
+/-- Frontier live-closure def. -/
 def ProviderPrimitiveEqualityStep.target
     {Provider Label : Type*} (P : ProviderRowPattern Provider Label) :
     ProviderPrimitiveEqualityStep Provider Label → Edge Label
@@ -225,18 +227,21 @@ structure ProviderWeightedKalmansonCancellationData
   pairings : List (ProviderWeightedEdgePairingData Provider n)
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def ProviderWeightedKalmansonCancellationData.leftEdges
     {Provider : Type*} {n : ℕ}
     (data : ProviderWeightedKalmansonCancellationData Provider n) :
     List (Edge (Fin n)) :=
   data.terms.flatMap WeightedKalmansonTerm.leftEdges
 
+/-- Frontier live-closure def. -/
 def ProviderWeightedKalmansonCancellationData.rightEdges
     {Provider : Type*} {n : ℕ}
     (data : ProviderWeightedKalmansonCancellationData Provider n) :
     List (Edge (Fin n)) :=
   data.terms.flatMap WeightedKalmansonTerm.rightEdges
 
+/-- Frontier live-closure def. -/
 def ProviderWeightedKalmansonCancellationData.Valid {Provider : Type*}
     [DecidableEq Provider] {n : ℕ}
     (choices : List (ProviderRowChoice Provider (Fin n)))
@@ -249,6 +254,7 @@ def ProviderWeightedKalmansonCancellationData.Valid {Provider : Type*}
   ∀ pairing ∈ data.pairings,
     checkProviderPath choices P pairing.path pairing.left pairing.right = true
 
+/-- Frontier live-closure def. -/
 def ProviderWeightedKalmansonCancellationData.check {Provider : Type*}
     [DecidableEq Provider] {n : ℕ}
     (choices : List (ProviderRowChoice Provider (Fin n)))

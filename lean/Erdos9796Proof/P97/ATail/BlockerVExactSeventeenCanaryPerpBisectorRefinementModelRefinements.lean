@@ -29,14 +29,17 @@ open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open Census554.EqualityCore
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOccurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
 /- ## Common source-orientation transport -/
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -45,6 +48,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -53,6 +57,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -81,6 +86,7 @@ private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
         List.mem_map]
       exact ⟨(choice.center, point), hcover choice hchoice point hpoint, rfl⟩)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -110,16 +116,19 @@ private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         hcover choice hchoice point hpoint, rfl⟩)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem signedArea2_swap13 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 c b a := by
   simp only [signedArea2]
   ring
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
   ring
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem signedArea2_cycle (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]
@@ -132,6 +141,7 @@ def unique06PerpBisectorHits : List Hit :=
   [(15, 13), (15, 10), (13, 2), (13, 0), (11, 13),
     (11, 10), (2, 13), (2, 0), (0, 10), (0, 2)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def unique06PerpBisectorChoices : List (RowChoice Label) :=
   [{ center := 0, support := {2, 10} },
     { center := 2, support := {0, 13} },
@@ -139,6 +149,7 @@ def unique06PerpBisectorChoices : List (RowChoice Label) :=
     { center := 13, support := {0, 2} },
     { center := 15, support := {10, 13} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def unique06PerpBisectorData : PerpBisectorData Label := {
   a := 10
   b := 13
@@ -150,18 +161,22 @@ def unique06PerpBisectorData : PerpBisectorData Label := {
   qa_qb := ⟨(11, 10), [.row 11 10 13], (11, 13)⟩
   ra_rb := ⟨(15, 10), [.row 15 10 13], (15, 13)⟩ }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem unique06PerpBisectorData_check :
     unique06PerpBisectorData.check unique06PerpBisectorChoices = true := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def unique06PerpBisectorClause : Std.Sat.CNF.Clause Atom :=
   unique06PerpBisectorHits.map fun hit => neg (.hit hit.1 hit.2)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem unique06PerpBisectorClause_dimacs :
     unique06PerpBisectorClause.map litToDimacs =
       [-269, -266, -224, -222, -201, -198, -48, -35, -11, -3] := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_unique06PerpBisectorHits {A : Finset ℝ²}
     (source : SourceRealization A)
     (hhits : ∀ hit ∈ unique06PerpBisectorHits,
@@ -219,6 +234,7 @@ private theorem false_of_unique06PerpBisectorHits {A : Finset ℝ²}
     (fun label => boundaryLabel_mem source.boundary source.boundary_image
       source.labelIndex label) core
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_unique06PerpBisectorClause
     {A : Finset ℝ²} (source : SourceRealization A) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -236,6 +252,7 @@ theorem sourceAssign_unique06PerpBisectorClause
 
 /- ## Two source-valid Kalmanson cancellations -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def kalmanson09Occurrence : CancellationOccurrence := {
   hits := [(0, 12), (0, 1), (13, 0), (13, 1),
     (1, 0), (1, 15), (2, 12), (2, 15)]
@@ -270,23 +287,28 @@ def kalmanson09Occurrence : CancellationOccurrence := {
     path3 := ⟨(1, 15), [.flip 1 15, .row 15 1 16, .flip 15 16,
       .row 16 15 4, .flip 16 4], (4, 16)⟩ } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem kalmanson09Occurrence_check : kalmanson09Occurrence.check = true := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def kalmanson09Clause : Std.Sat.CNF.Clause Atom :=
   priorOccurrenceClause kalmanson09Occurrence.hits 0 .forward
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem kalmanson09Clause_dimacs :
     kalmanson09Clause.map litToDimacs =
       [-307, -5, -7, -86, -92, -103, -116, -141, -150] := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_kalmanson09Clause {A : Finset ℝ²}
     (source : SourceRealization A) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model) kalmanson09Clause = true := by
   exact sourceAssign_cancellationOccurrenceClause source kalmanson09Occurrence
     kalmanson09Occurrence_check 0 .forward
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def kalmanson10Occurrence : CancellationOccurrence := {
   hits := [(0, 13), (0, 3), (0, 6), (14, 0), (14, 3),
     (3, 13), (3, 15), (6, 0), (6, 15)]
@@ -322,17 +344,21 @@ def kalmanson10Occurrence : CancellationOccurrence := {
     path2 := ⟨(3, 13), [.flip 3 13, .row 13 3 1, .flip 13 1], (1, 13)⟩
     path3 := ⟨(2, 16), [.row 2 16 13], (2, 13)⟩ } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem kalmanson10Occurrence_check : kalmanson10Occurrence.check = true := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def kalmanson10Clause : Std.Sat.CNF.Clause Atom :=
   priorOccurrenceClause kalmanson10Occurrence.hits 0 .forward
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem kalmanson10Clause_dimacs :
     kalmanson10Clause.map litToDimacs =
       [-307, -6, -12, -13, -18, -29, -193, -201, -205, -218] := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_kalmanson10Clause {A : Finset ℝ²}
     (source : SourceRealization A) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model) kalmanson10Clause = true := by
@@ -341,31 +367,37 @@ theorem sourceAssign_kalmanson10Clause {A : Finset ℝ²}
 
 /- ## Four-point/two-circle occurrence from unique-09 -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointForwardHits : List Hit :=
   [(0, 1), (0, 6), (1, 0), (1, 6), (5, 1), (5, 7), (6, 0), (6, 7)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {1, 6} },
     { center := 1, support := {0, 6} },
     { center := 5, support := {1, 7} },
     { center := 6, support := {0, 7} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointForwardReverseChoices : List (RowChoice Label) :=
   [{ center := 16, support := {10, 15} },
     { center := 15, support := {10, 16} },
     { center := 11, support := {9, 15} },
     { center := 10, support := {9, 16} }]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fourPointForwardCover :
     ∀ choice ∈ fourPointForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ fourPointForwardHits := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fourPointForwardReverseCover :
     ∀ choice ∈ fourPointForwardReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ fourPointForwardHits := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def fourPointForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P fourPointForwardChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -381,6 +413,7 @@ private def fourPointForwardCore {P : RowPattern Label}
     ⟨(7, 5), [.flip 7 5, .row 5 7 1, .flip 5 1], (1, 5)⟩
       (by decide) }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def fourPointForwardReverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P fourPointForwardReverseChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -397,6 +430,7 @@ private def fourPointForwardReverseCore {P : RowPattern Label}
     ⟨(9, 11), [.flip 9 11, .row 11 9 15, .flip 11 15], (15, 11)⟩
       (by decide) }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_fourPointForwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -417,6 +451,7 @@ private theorem false_of_fourPointForwardRows
       (by decide) (by decide)
     linarith
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_fourPointForwardReverseRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -433,6 +468,7 @@ private theorem false_of_fourPointForwardReverseRows
       (i := (10 : Label)) (j := (11 : Label)) (k := (15 : Label))
       (by decide) (by decide)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_fourPointForwardHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -449,14 +485,17 @@ private theorem false_of_fourPointForwardHits {A : Finset ℝ²}
         fourPointForwardHits fourPointForwardReverseChoices
         fourPointForwardReverseCover hall)
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointForwardClause : Std.Sat.CNF.Clause Atom :=
   priorOccurrenceClause fourPointForwardHits 0 .forward
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fourPointForwardClause_dimacs :
     fourPointForwardClause.map litToDimacs =
       [-307, -7, -13, -103, -115, -160, -161, -205, -212] := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fourPointForwardClause {A : Finset ℝ²}
     (source : SourceRealization A) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -467,29 +506,35 @@ theorem sourceAssign_fourPointForwardClause {A : Finset ℝ²}
 
 /- ## Four-point/two-circle occurrence from unique-10 -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointReverseHits : List Hit :=
   [(1, 2), (1, 16), (2, 1), (2, 16), (15, 1), (15, 2)]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointReverseChoices : List (RowChoice Label) :=
   [{ center := 1, support := {2, 16} },
     { center := 2, support := {1, 16} },
     { center := 15, support := {1, 2} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointReverseReflectedChoices : List (RowChoice Label) :=
   [{ center := 15, support := {0, 14} },
     { center := 14, support := {0, 15} },
     { center := 1, support := {14, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fourPointReverseCover :
     ∀ choice ∈ fourPointReverseChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ fourPointReverseHits := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fourPointReverseReflectedCover :
     ∀ choice ∈ fourPointReverseReflectedChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ fourPointReverseHits := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def fourPointReverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P fourPointReverseChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -504,6 +549,7 @@ private def fourPointReverseCore {P : RowPattern Label}
     ⟨(2, 16), [.row 2 16 1, .flip 2 1, .row 1 2 16], (1, 16)⟩
       (by decide) }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def fourPointReverseReflectedCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P fourPointReverseReflectedChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -518,6 +564,7 @@ private def fourPointReverseReflectedCore {P : RowPattern Label}
     ⟨(14, 0), [.row 14 0 15, .flip 14 15, .row 15 14 0], (15, 0)⟩
       (by decide) }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_fourPointReverseRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -532,6 +579,7 @@ private theorem false_of_fourPointReverseRows
       (i := (1 : Label)) (j := (15 : Label)) (k := (16 : Label))
       (by decide) (by decide)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_fourPointReverseReflectedRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -552,6 +600,7 @@ private theorem false_of_fourPointReverseReflectedRows
       (by decide) (by decide)
     linarith
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_fourPointReverseHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -568,14 +617,17 @@ private theorem false_of_fourPointReverseHits {A : Finset ℝ²}
         fourPointReverseHits fourPointReverseReflectedChoices
         fourPointReverseReflectedCover hall)
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def fourPointReverseClause : Std.Sat.CNF.Clause Atom :=
   priorOccurrenceClause fourPointReverseHits 0 .forward
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fourPointReverseClause_dimacs :
     fourPointReverseClause.map litToDimacs =
       [-307, -111, -117, -143, -151, -228, -230] := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fourPointReverseClause {A : Finset ℝ²}
     (source : SourceRealization A) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -586,14 +638,17 @@ theorem sourceAssign_fourPointReverseClause {A : Finset ℝ²}
 
 /- ## Cumulative successor -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def canaryPerpBisectorModelRefinementClauses : Std.Sat.CNF Atom :=
   [unique06PerpBisectorClause, kalmanson09Clause, fourPointForwardClause,
     fourPointReverseClause, kalmanson10Clause]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem canaryPerpBisectorModelRefinementClauses_length :
     canaryPerpBisectorModelRefinementClauses.length = 5 := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem canaryPerpBisectorModelRefinementClauses_dimacs :
     canaryPerpBisectorModelRefinementClauses.map (List.map litToDimacs) =
       [[-269, -266, -224, -222, -201, -198, -48, -35, -11, -3],
@@ -603,16 +658,19 @@ theorem canaryPerpBisectorModelRefinementClauses_dimacs :
        [-307, -6, -12, -13, -18, -29, -193, -201, -205, -218]] := by
   decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def canaryPerpBisectorModelRefinementCnf : Std.Sat.CNF Atom :=
   ATailBlockerVExactSeventeenCanaryPerpBisectorRefinement.canaryPerpBisectorRefinementCnf ++
     canaryPerpBisectorModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem canaryPerpBisectorModelRefinementCnf_length :
     canaryPerpBisectorModelRefinementCnf.length = 7409301 := by
   rw [canaryPerpBisectorModelRefinementCnf, List.length_append,
     ATailBlockerVExactSeventeenCanaryPerpBisectorRefinement.canaryPerpBisectorRefinementCnf_length,
     canaryPerpBisectorModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_canaryPerpBisectorModelRefinementCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :

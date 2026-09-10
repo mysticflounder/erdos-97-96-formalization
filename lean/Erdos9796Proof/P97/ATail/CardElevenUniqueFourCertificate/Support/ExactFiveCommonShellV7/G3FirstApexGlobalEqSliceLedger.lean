@@ -30,15 +30,21 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 193349
+/-- Exact-five common-shell V7 def. -/
 private def retainedFirstApexGlobalEqCount : Nat := 22
+/-- Exact-five common-shell V7 def. -/
 private def firstApexGlobalEqClauseCount : Nat := 30
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedFirstApexGlobalEqPayload : String :=
   include_str "data/g3-first-apex-global-eq-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev FirstApexGlobalEqClauseIndex := Fin firstApexGlobalEqClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -60,10 +66,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array FirstApexGlobalEqClauseIndex →
       Option (Array FirstApexGlobalEqClauseIndex)
@@ -83,6 +91,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedFirstApexGlobalEqIndices :
     Option (Array FirstApexGlobalEqClauseIndex) := do
   let bytes ← decodeAscii85 retainedFirstApexGlobalEqPayload
@@ -100,17 +109,21 @@ structure FirstApexGlobalEqOccurrence where
   right : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def encoderG3Routes : List G3Case :=
   [.s2_o9, .s3_o0, .s3_o9]
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexGlobalEqSupport (route : G3Case) : List Nat :=
   (List.range 11).filter fun label =>
     toLabel label ∈ route.shellCase.support
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexGlobalEqPairs (route : G3Case) : List (Label × Label) :=
   (combos 2 (firstApexGlobalEqSupport route)).map fun pair =>
     (toLabel (pair.getD 0 0), toLabel (pair.getD 1 0))
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexGlobalEqPairAt
     (route : G3Case) (position : Nat) : Label × Label :=
   (firstApexGlobalEqPairs route).getD position (0, 0)
@@ -124,15 +137,18 @@ def encoderFirstApexGlobalEqOccurrences :
       ⟨route, pair.1, pair.2⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderFirstApexGlobalEqOccurrences_length :
     encoderFirstApexGlobalEqOccurrences.length =
       firstApexGlobalEqClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def firstApexGlobalEqOccurrenceArray :
     Array FirstApexGlobalEqOccurrence :=
   encoderFirstApexGlobalEqOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def firstApexGlobalEqOccurrenceAt
     (index : FirstApexGlobalEqClauseIndex) :
     FirstApexGlobalEqOccurrence :=
@@ -170,6 +186,7 @@ def g3FirstApexGlobalEqSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3FirstApexGlobalEqSlice_size :
     g3FirstApexGlobalEqSlice.size = retainedFirstApexGlobalEqCount := by
   native_decide
@@ -187,6 +204,7 @@ theorem g3FirstApexGlobalEqSlice_perm_checkpoint :
           retainedPrefixCount).take retainedFirstApexGlobalEqCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem firstApexGlobalEqOccurrenceAt_valid :
     ∀ index : FirstApexGlobalEqClauseIndex,
       let occurrence := firstApexGlobalEqOccurrenceAt index

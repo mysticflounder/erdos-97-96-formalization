@@ -98,6 +98,7 @@ def freshThirdQFiberThreeCarrierRowCenter :
   | .inr (.boundaryFanBlocker row) =>
       .inr (.boundaryFanBlockerCenter row)
 
+/-- Frontier live-closure theorem. -/
 private theorem carrier_finset_eq_univ_image_equiv
     {α : Type} [DecidableEq α] (support : Finset α)
     (index : support ≃ Fin 4) :
@@ -329,6 +330,7 @@ theorem rowSupport_eq_slot_image
                 ).toCriticalFourShell.support)
             (index := View.boundaryFanBlockerRowIndex i))
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem rowClass_support_eq_rowSupport
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -417,25 +419,32 @@ deriving DecidableEq
 
 namespace FreshThirdQFiberThreeCarrierFiniteAssignment
 
+/-- Frontier live-closure abbrev. -/
 abbrev PointRole := FreshThirdQFiberThreeCarrierPointRole
+/-- Frontier live-closure abbrev. -/
 abbrev RowRole := FreshThirdQFiberThreeCarrierRowRole
 
+/-- Frontier live-closure def. -/
 def Same (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (left right : PointRole) : Prop :=
   A.samePoint left right = true
 
+/-- Frontier live-closure def. -/
 def Incident (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (point : PointRole) (row : RowRole) : Prop :=
   A.incident point row = true
 
+/-- Frontier live-closure def. -/
 def InCap (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (point : PointRole) (cap : Fin 3) : Prop :=
   A.inCap point cap = true
 
+/-- Frontier live-closure def. -/
 def InCapInterior (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (point : PointRole) (cap : Fin 3) : Prop :=
   A.inCapInterior point cap = true
 
+/-- Frontier live-closure def. -/
 def Before (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (left right : PointRole) : Prop :=
   A.before left right = true
@@ -451,15 +460,18 @@ def NoAlternatingCap (A : FreshThirdQFiberThreeCarrierFiniteAssignment) : Prop :
           (¬ A.InCap a cap ∧ A.InCap b cap ∧
             ¬ A.InCap c cap ∧ A.InCap d cap))
 
+/-- Frontier live-closure def. -/
 def SameDistanceFrom (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (center left right : PointRole) : Prop :=
   A.sameDistanceFrom center left right = true
 
+/-- Frontier live-closure def. -/
 def HasFourAfterDeleting
     (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (deleted atCenter : PointRole) : Prop :=
   A.hasFourAfterDeleting deleted atCenter = true
 
+/-- Frontier live-closure def. -/
 def Nonrobust (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (center : PointRole) : Prop :=
   A.nonrobust center = true
@@ -522,6 +534,7 @@ noncomputable def ofView
     (¬ FullyDeletionRobustAt D
       (FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View centerRole))
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem same_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -540,6 +553,7 @@ noncomputable def ofView
         FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View right := by
   simp [Same, ofView]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem incident_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -558,6 +572,7 @@ noncomputable def ofView
         FreshThirdQFiberThreeCarrierFiniteView.rowSupport P Pρ View row := by
   simp [Incident, ofView]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem inCapInterior_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -576,6 +591,7 @@ noncomputable def ofView
         S.capInteriorByIndex cap := by
   simp [InCapInterior, ofView]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem inCap_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -594,6 +610,7 @@ noncomputable def ofView
         S.capByIndex cap := by
   simp [InCap, ofView]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem before_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -782,6 +799,7 @@ theorem noAlternatingCap_ofView
             B.boundary_ccw B.boundary_injective B.boundary_image
             hbic hcia hic hia hib)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem sameDistanceFrom_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -802,6 +820,7 @@ theorem noAlternatingCap_ofView
           (FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View right) := by
   simp [SameDistanceFrom, ofView]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem hasFourAfterDeleting_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -822,6 +841,7 @@ theorem noAlternatingCap_ofView
         (FreshThirdQFiberThreeCarrierFiniteView.point P Pρ View atCenter) := by
   simp [HasFourAfterDeleting, ofView]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem nonrobust_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}

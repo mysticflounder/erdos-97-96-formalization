@@ -52,6 +52,7 @@ attribute [local instance] Classical.propDecidable
    three of its members in the strict second opposite cap.  This is a
    source-clean producer-side constraint; it does not assert that any one of
    those interior members is omitted from both live rows. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_physicalClass_secondCapInterior_card_ge_three
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {rho : ℝ}
     (hrho : 0 < rho)
@@ -400,6 +401,7 @@ theorem b1_live_two_interior_sources_or_third_interior_joint_deletion
 records the exact remaining cover alternative: a point outside the two live
 rows can be fed to the prescribed joint-deletion producer, while failure to
 find such a point is retained as a finite-set cover obligation. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_live_interior_joint_deletion_or_small_cover
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -689,6 +691,7 @@ theorem b1_source_mem_outsideFirstApexFiber_of_not_mem_firstApexClass
       lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
         (frontier_pair_q_mem_firstApexClass F)
 
+/-- Frontier live-closure theorem. -/
 theorem b1_secondCapInterior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex2) :

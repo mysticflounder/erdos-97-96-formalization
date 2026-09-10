@@ -32,15 +32,19 @@ open ATailBlockerVExactSeventeenTwentyThirdModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open Census554.EqualityCore
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOccurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOccurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -49,6 +53,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -57,6 +62,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -84,6 +90,7 @@ private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
         List.mem_map]
       exact ⟨(choice.center, point), hcover choice hchoice point hpoint, rfl⟩)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -112,16 +119,19 @@ private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         hcover choice hchoice point hpoint, rfl⟩)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem signedArea2_swap12 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 b a c := by
   simp only [signedArea2]
   ring
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
   ring
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem signedArea2_cycle (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]
@@ -129,32 +139,38 @@ private theorem signedArea2_cycle (a b c : ℝ²) :
 
 /- ## First two-circle bisector occurrence -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def bisectorOneForwardChoices : List (RowChoice Label) :=
   [{ center := 6, support := {13, 15} },
     { center := 13, support := {0, 1} },
     { center := 1, support := {0, 13} },
     { center := 0, support := {1, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def bisectorOneReverseChoices : List (RowChoice Label) :=
   [{ center := 10, support := {1, 3} },
     { center := 3, support := {15, 16} },
     { center := 15, support := {3, 16} },
     { center := 16, support := {1, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def bisectorOneHits : List Hit :=
   [(6, 15), (6, 13), (13, 1), (13, 0),
     (1, 13), (1, 0), (0, 15), (0, 1)]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem bisectorOneForwardCover :
     ∀ choice ∈ bisectorOneForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ bisectorOneHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem bisectorOneReverseCover :
     ∀ choice ∈ bisectorOneReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ bisectorOneHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def bisectorOneForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P bisectorOneForwardChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -173,6 +189,7 @@ private def bisectorOneForwardCore {P : RowPattern Label}
       .flip 1 0, .row 0 1 15, .flip 0 15], (15, 0)⟩
       (by native_decide) }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def bisectorOneReverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P bisectorOneReverseChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -191,6 +208,7 @@ private def bisectorOneReverseCore {P : RowPattern Label}
       .flip 15 16, .row 16 15 1, .flip 16 1], (1, 16)⟩
       (by native_decide) }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_bisectorOneForwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -211,6 +229,7 @@ private theorem false_of_bisectorOneForwardRows
       (by decide) (by decide)
     linarith
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_bisectorOneReverseRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -227,6 +246,7 @@ private theorem false_of_bisectorOneReverseRows
       (i := (1 : Label)) (j := (10 : Label)) (k := (16 : Label))
       (by decide) (by decide)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_bisectorOneHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -242,6 +262,7 @@ private theorem false_of_bisectorOneHits {A : Finset ℝ²}
       (positiveRowsMatch_of_ne source source.model.order direction rfl hsame
         bisectorOneHits bisectorOneReverseChoices bisectorOneReverseCover hall)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_bisectorOneClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -252,29 +273,35 @@ theorem sourceAssign_bisectorOneClause {A : Finset ℝ²}
 
 /- ## Second two-circle bisector occurrence -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def bisectorTwoForwardChoices : List (RowChoice Label) :=
   [{ center := 2, support := {12, 14} },
     { center := 12, support := {0, 14} },
     { center := 14, support := {0, 12} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def bisectorTwoReverseChoices : List (RowChoice Label) :=
   [{ center := 14, support := {2, 4} },
     { center := 4, support := {2, 16} },
     { center := 2, support := {4, 16} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def bisectorTwoHits : List Hit :=
   [(2, 14), (2, 12), (12, 0), (12, 14), (14, 0), (14, 12)]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem bisectorTwoForwardCover :
     ∀ choice ∈ bisectorTwoForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ bisectorTwoHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem bisectorTwoReverseCover :
     ∀ choice ∈ bisectorTwoReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ bisectorTwoHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def bisectorTwoForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P bisectorTwoForwardChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -292,6 +319,7 @@ private def bisectorTwoForwardCore {P : RowPattern Label}
     ⟨(12, 0), [.row 12 0 14, .flip 12 14, .row 14 12 0], (14, 0)⟩
       (by native_decide) }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def bisectorTwoReverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P bisectorTwoReverseChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -309,6 +337,7 @@ private def bisectorTwoReverseCore {P : RowPattern Label}
     ⟨(4, 16), [.row 4 16 2, .flip 4 2, .row 2 4 16],
       (2, 16)⟩ (by native_decide) }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_bisectorTwoForwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -329,6 +358,7 @@ private theorem false_of_bisectorTwoForwardRows
       (by decide) (by decide)
     linarith
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_bisectorTwoReverseRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -345,6 +375,7 @@ private theorem false_of_bisectorTwoReverseRows
       (i := (2 : Label)) (j := (14 : Label)) (k := (16 : Label))
       (by decide) (by decide)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_bisectorTwoHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -360,6 +391,7 @@ private theorem false_of_bisectorTwoHits {A : Finset ℝ²}
       (positiveRowsMatch_of_ne source source.model.order direction rfl hsame
         bisectorTwoHits bisectorTwoReverseChoices bisectorTwoReverseCover hall)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_bisectorTwoClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -370,32 +402,38 @@ theorem sourceAssign_bisectorTwoClause {A : Finset ℝ²}
 
 /- ## Convex-five occurrence -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def convexFiveForwardChoices : List (RowChoice Label) :=
   [{ center := 8, support := {5, 13} },
     { center := 13, support := {0, 1} },
     { center := 1, support := {0, 5, 13} },
     { center := 0, support := {1, 8} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def convexFiveReverseChoices : List (RowChoice Label) :=
   [{ center := 8, support := {3, 11} },
     { center := 3, support := {15, 16} },
     { center := 15, support := {3, 11, 16} },
     { center := 16, support := {8, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def convexFiveHits : List Hit :=
   [(8, 5), (8, 13), (13, 1), (13, 0),
     (1, 5), (1, 13), (1, 0), (0, 8), (0, 1)]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem convexFiveForwardCover :
     ∀ choice ∈ convexFiveForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ convexFiveHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem convexFiveReverseCover :
     ∀ choice ∈ convexFiveReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ convexFiveHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def convexFiveForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P convexFiveForwardChoices) :
     Census554.ConvexFivePointCore.Core P := {
@@ -425,6 +463,7 @@ private def convexFiveForwardCore {P : RowPattern Label}
       .row 1 13 0, .flip 1 0], (0, 1)⟩
       (by native_decide) }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 private def convexFiveReverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P convexFiveReverseChoices) :
     Census554.ConvexFivePointCore.Core P := {
@@ -454,6 +493,7 @@ private def convexFiveReverseCore {P : RowPattern Label}
       .row 15 3 16, .flip 15 16], (16, 15)⟩
       (by native_decide) }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_convexFiveForwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -471,6 +511,7 @@ private theorem false_of_convexFiveForwardRows
       (i := (0 : Label)) (j := (1 : Label)) (k := (13 : Label))
       (by decide) (by decide)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_convexFiveReverseRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -491,6 +532,7 @@ private theorem false_of_convexFiveReverseRows
       (by decide) (by decide)
     linarith
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_convexFiveHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -506,6 +548,7 @@ private theorem false_of_convexFiveHits {A : Finset ℝ²}
       (positiveRowsMatch_of_ne source source.model.order direction rfl hsame
         convexFiveHits convexFiveReverseChoices convexFiveReverseCover hall)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_convexFiveClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -516,29 +559,35 @@ theorem sourceAssign_convexFiveClause {A : Finset ℝ²}
 
 /- ## Two-Kalmanson cancellation occurrence -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationForwardChoices : List (RowChoice Label) :=
   [{ center := 2, support := {1, 14} },
     { center := 11, support := {0, 1} },
     { center := 12, support := {0, 14} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationReverseChoices : List (RowChoice Label) :=
   [{ center := 14, support := {2, 15} },
     { center := 5, support := {15, 16} },
     { center := 4, support := {2, 16} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationHits : List Hit :=
   [(2, 1), (2, 14), (11, 0), (11, 1), (12, 0), (12, 14)]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationForwardCover :
     ∀ choice ∈ cancellationForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ cancellationHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationReverseCover :
     ∀ choice ∈ cancellationReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ cancellationHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationForwardData : TwoKalmansonCancellationData Label := {
   firstQuad := ⟨0, 1, 2, 11⟩
   firstForm := .innerOuter
@@ -550,6 +599,7 @@ def cancellationForwardData : TwoKalmansonCancellationData Label := {
   path2 := ⟨(0, 2), [], (0, 2)⟩
   path3 := ⟨(12, 14), [.row 12 14 0, .flip 12 0], (0, 12)⟩ }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationReverseData : TwoKalmansonCancellationData Label := {
   firstQuad := ⟨5, 14, 15, 16⟩
   firstForm := .innerOuter
@@ -561,14 +611,17 @@ def cancellationReverseData : TwoKalmansonCancellationData Label := {
   path2 := ⟨(2, 4), [.flip 2 4, .row 4 2 16], (4, 16)⟩
   path3 := ⟨(14, 16), [], (14, 16)⟩ }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationForwardData_check :
     cancellationForwardData.check cancellationForwardChoices = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationReverseData_check :
     cancellationReverseData.check cancellationReverseChoices = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_cancellationHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -590,6 +643,7 @@ private theorem false_of_cancellationHits {A : Finset ℝ²}
         cancellationHits cancellationReverseChoices cancellationReverseCover hall)
       cancellationReverseData cancellationReverseData_check
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_cancellationClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -600,32 +654,38 @@ theorem sourceAssign_cancellationClause {A : Finset ℝ²}
 
 /- ## Duplicate-center obstruction -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def duplicateCenterForwardChoices : List (RowChoice Label) :=
   [{ center := 3, support := {15, 16} },
     { center := 15, support := {3, 16} },
     { center := 16, support := {1, 15} },
     { center := 10, support := {1, 3, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def duplicateCenterReverseChoices : List (RowChoice Label) :=
   [{ center := 13, support := {0, 1} },
     { center := 1, support := {0, 13} },
     { center := 0, support := {1, 15} },
     { center := 6, support := {1, 13, 15} }]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def duplicateCenterHits : List Hit :=
   [(3, 15), (3, 16), (15, 3), (15, 16),
     (16, 1), (16, 15), (10, 1), (10, 3), (10, 15)]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem duplicateCenterForwardCover :
     ∀ choice ∈ duplicateCenterForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ duplicateCenterHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem duplicateCenterReverseCover :
     ∀ choice ∈ duplicateCenterReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ duplicateCenterHits := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def duplicateCenterForwardData : DuplicateCenterData Label := {
   p := 1
   q := 3
@@ -640,6 +700,7 @@ def duplicateCenterForwardData : DuplicateCenterData Label := {
   bp_bq := ⟨(10, 1), [.row 10 1 3], (10, 3)⟩
   bp_br := ⟨(10, 1), [.row 10 1 15], (10, 15)⟩ }
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def duplicateCenterReverseData : DuplicateCenterData Label := {
   p := 15
   q := 13
@@ -654,14 +715,17 @@ def duplicateCenterReverseData : DuplicateCenterData Label := {
   bp_bq := ⟨(6, 15), [.row 6 15 13], (6, 13)⟩
   bp_br := ⟨(6, 15), [.row 6 15 1], (6, 1)⟩ }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem duplicateCenterForwardData_check :
     duplicateCenterForwardData.check duplicateCenterForwardChoices = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem duplicateCenterReverseData_check :
     duplicateCenterReverseData.check duplicateCenterReverseChoices = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_duplicateCenterHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -683,6 +747,7 @@ private theorem false_of_duplicateCenterHits {A : Finset ℝ²}
     exact Census554.EqualityCore.not_realizes_of_duplicateCenterCore core
       ⟨source.boundary, hreal⟩
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_duplicateCenterClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -693,17 +758,21 @@ theorem sourceAssign_duplicateCenterClause {A : Finset ℝ²}
 
 /- ## Complete five-family suffix and successor CNF -/
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def twentyFourthOccurrenceHits : List (List Hit) :=
   [bisectorOneHits, bisectorTwoHits, convexFiveHits,
     cancellationHits, duplicateCenterHits]
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def twentyFourthModelRefinementClauses : Std.Sat.CNF Atom :=
   twentyFourthOccurrenceHits.flatMap priorOccurrenceClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem twentyFourthModelRefinementClauses_length :
     twentyFourthModelRefinementClauses.length = 20 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_twentyFourthModelRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ twentyFourthModelRefinementClauses,
@@ -724,14 +793,17 @@ theorem sourceAssign_twentyFourthModelRefinementClauses {A : Finset ℝ²}
   · exact sourceAssign_cancellationClause source order direction
   · exact sourceAssign_duplicateCenterClause source order direction
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedTwentyFourthModelRefinementsCnf : Std.Sat.CNF Atom :=
   ATailBlockerVExactSeventeenTwentyThirdModelRefinements.extendedTwentyThirdModelRefinementsCnf ++
     twentyFourthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedTwentyFourthModelRefinementsCnf_length :
     extendedTwentyFourthModelRefinementsCnf.length = 5846252 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedTwentyFourthModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -747,6 +819,7 @@ theorem sourceAssign_extendedTwentyFourthModelRefinementsCnf {A : Finset ℝ²}
     exact h clause hparent
   · exact sourceAssign_twentyFourthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedTwentyFourthModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,

@@ -30,16 +30,22 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 194085
+/-- Exact-five common-shell V7 def. -/
 private def retainedPerpendicularBisectorCount : Nat := 1293
+/-- Exact-five common-shell V7 def. -/
 private def perpendicularBisectorClauseCount : Nat := 4620
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPerpendicularBisectorPayload : String :=
   include_str "data/g3-perpendicular-bisector-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev PerpendicularBisectorClauseIndex :=
   Fin perpendicularBisectorClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -61,10 +67,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array PerpendicularBisectorClauseIndex →
       Option (Array PerpendicularBisectorClauseIndex)
@@ -84,6 +92,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedPerpendicularBisectorIndices :
     Option (Array PerpendicularBisectorClauseIndex) := do
   let bytes ← decodeAscii85 retainedPerpendicularBisectorPayload
@@ -104,6 +113,7 @@ structure PerpendicularBisectorOccurrence where
   r : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def perpendicularBisectorOutside (focus : List Nat) : List Nat :=
   (List.range 11).filter fun point => point ∉ focus
 
@@ -118,15 +128,18 @@ def encoderPerpendicularBisectorOccurrences :
         toLabel (triple.getD 2 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderPerpendicularBisectorOccurrences_length :
     encoderPerpendicularBisectorOccurrences.length =
       perpendicularBisectorClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def perpendicularBisectorOccurrenceArray :
     Array PerpendicularBisectorOccurrence :=
   encoderPerpendicularBisectorOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def perpendicularBisectorOccurrenceAt
     (index : PerpendicularBisectorClauseIndex) :
     PerpendicularBisectorOccurrence :=
@@ -134,6 +147,7 @@ def perpendicularBisectorOccurrenceAt
     simpa [perpendicularBisectorOccurrenceArray,
       encoderPerpendicularBisectorOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def perpendicularBisectorGlobalEqualityIndex
     (point a b : Label) : Fin 1485 :=
   Fin.ofNat 1485
@@ -172,6 +186,7 @@ def g3PerpendicularBisectorSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3PerpendicularBisectorSlice_size :
     g3PerpendicularBisectorSlice.size =
       retainedPerpendicularBisectorCount := by

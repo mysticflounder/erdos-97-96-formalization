@@ -20,6 +20,7 @@ namespace FrozenV14JobCnf
 open Census554.CoverCnf
 open SafeCoverCnf
 
+/-- Frontier live-closure theorem. -/
 theorem sourceSinzAssign_eq_local_zero_of_le
     (cell : FrozenV14JobCoordinate) (σ : Nat → Bool) (v : Nat)
     (hv : v ≤ sourceSinzBase cell 0 + (sourceBlockerVars cell 0).length) :

@@ -25,16 +25,19 @@ namespace FirstFiberFinitePacketIngress
 open ATailFiveCenterDeletionBoundary
 open Census554.GeneralCarrierBridge
 
+/-- Frontier live-closure structure. -/
 structure IndexedExactRow (n : ℕ) where
   center : Fin n
   support : Finset (Fin n)
   support_card : support.card = 4
   center_not_mem : center ∉ support
 
+/-- Frontier live-closure def. -/
 def rowSupportUnion {n : ℕ} : List (IndexedExactRow n) → Finset (Fin n)
   | [] => ∅
   | row :: rows => row.support ∪ rowSupportUnion rows
 
+/-- Frontier live-closure theorem. -/
 private theorem rowSupportUnion_contains {n : ℕ}
     {rows : List (IndexedExactRow n)} {row : IndexedExactRow n}
     (hrow : row ∈ rows) : row.support ⊆ rowSupportUnion rows := by
@@ -46,6 +49,7 @@ private theorem rowSupportUnion_contains {n : ℕ}
     · simp [rowSupportUnion]
     · exact Finset.Subset.trans (ih hrow) (Finset.subset_union_right)
 
+/-- Frontier live-closure theorem. -/
 private theorem rowSupportUnion_card_le {n : ℕ}
     (rows : List (IndexedExactRow n)) :
     (rowSupportUnion rows).card ≤ 4 * rows.length := by
@@ -61,6 +65,7 @@ private theorem rowSupportUnion_card_le {n : ℕ}
         exact Nat.add_le_add (le_of_eq row.support_card) ih
       _ = 4 * (row :: rows).length := by simp; omega
 
+/-- Frontier live-closure structure. -/
 structure IndexedPacket (n : ℕ) where
   deleted : Fin n
   order : Fin n → Fin n
@@ -98,6 +103,7 @@ structure CombinedIndexedPacket (n : ℕ) where
   overflow_disjoint : Disjoint overflow namedSlots
   overflow_complete : ∀ x, x ∈ overflow ↔ x ∉ namedSlots
 
+/-- Frontier live-closure def. -/
 noncomputable def IndexedPacket.combine {n : ℕ}
     (left right : IndexedPacket n) : CombinedIndexedPacket n := by
   let namedSlots : Finset (Fin n) := left.namedSlots ∪ right.namedSlots
@@ -125,6 +131,7 @@ noncomputable def IndexedPacket.combine {n : ℕ}
 -- The enum `Fintype` derive handler needs this under Lean 4.33, as in
 -- `MathlibTest/DeriveFintype.lean`.
 set_option backward.isDefEq.respectTransparency false in
+/-- Frontier live-closure inductive. -/
 inductive OutsideDeletionArm
   | source
   | other
@@ -133,6 +140,7 @@ deriving DecidableEq, Fintype
 -- The enum `Fintype` derive handler needs this under Lean 4.33, as in
 -- `MathlibTest/DeriveFintype.lean`.
 set_option backward.isDefEq.respectTransparency false in
+/-- Frontier live-closure inductive. -/
 inductive CollisionRowsArm
   | first
   | second
@@ -140,6 +148,7 @@ inductive CollisionRowsArm
   | fourth
 deriving DecidableEq, Fintype
 
+/-- Frontier live-closure structure. -/
 structure RolePair where
   outside : OutsideDeletionArm
   collision : CollisionRowsArm
@@ -150,33 +159,43 @@ structure RolePacket (n : ℕ) where
   role : RolePair
   packet : IndexedPacket n
 
+/-- Frontier live-closure def. -/
 def outsideDeletionArms : Finset OutsideDeletionArm := Finset.univ
 
+/-- Frontier live-closure def. -/
 def collisionRowsArms : Finset CollisionRowsArm := Finset.univ
 
+/-- Frontier live-closure def. -/
 def rolePairs : Finset RolePair := Finset.univ
 
+/-- Frontier live-closure def. -/
 def cartesianRolePairs : Finset RolePair :=
   (outsideDeletionArms.product collisionRowsArms).image
     (fun pair => { outside := pair.1, collision := pair.2 })
 
+/-- Frontier live-closure theorem. -/
 theorem outsideDeletionArm_card : Fintype.card OutsideDeletionArm = 2 := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem collisionRowsArm_card : Fintype.card CollisionRowsArm = 4 := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem rolePair_card : Fintype.card RolePair = 8 := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem outsideDeletionArm_unique (x : OutsideDeletionArm) :
     x = .source ∨ x = .other := by
   cases x <;> simp
 
+/-- Frontier live-closure theorem. -/
 theorem collisionRowsArm_unique (x : CollisionRowsArm) :
     x = .first ∨ x = .second ∨ x = .third ∨ x = .fourth := by
   cases x <;> simp
 
+/-- Frontier live-closure theorem. -/
 theorem rolePair_ext {a b : RolePair}
     (houtside : a.outside = b.outside)
     (hcollision : a.collision = b.collision) :
@@ -185,12 +204,15 @@ theorem rolePair_ext {a b : RolePair}
   cases b
   simp_all
 
+/-- Frontier live-closure theorem. -/
 theorem rolePairs_eq_cartesian : rolePairs = cartesianRolePairs := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem rolePairs_card : rolePairs.card = 8 := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem rolePair_decompose (role : RolePair) :
     role = { outside := .source, collision := .first } ∨
     role = { outside := .source, collision := .second } ∨
@@ -216,6 +238,7 @@ structure RoleCombinationPacket (n : ℕ) where
   combinedPacket : CombinedIndexedPacket n
   combinedPacket_eq : combinedPacket = outsidePacket.combine collisionPacket
 
+/-- Frontier live-closure def. -/
 noncomputable def RoleCombinationPacket.fromFamilies {n : ℕ}
     (outsidePackets : OutsideDeletionArm → IndexedPacket n)
     (collisionPackets : CollisionRowsArm → IndexedPacket n) :
@@ -231,6 +254,7 @@ noncomputable def RoleCombinationPacket.fromFamilies {n : ℕ}
       combinedPacket := outsidePacket.combine collisionPacket
       combinedPacket_eq := by rfl }
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem RoleCombinationPacket.fromFamilies_outsideArm
     {n : ℕ} (outsidePackets : OutsideDeletionArm → IndexedPacket n)
     (collisionPackets : CollisionRowsArm → IndexedPacket n) (role : RolePair) :
@@ -238,6 +262,7 @@ noncomputable def RoleCombinationPacket.fromFamilies {n : ℕ}
       role.outside := by
   rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem RoleCombinationPacket.fromFamilies_collisionArm
     {n : ℕ} (outsidePackets : OutsideDeletionArm → IndexedPacket n)
     (collisionPackets : CollisionRowsArm → IndexedPacket n) (role : RolePair) :
@@ -245,6 +270,7 @@ noncomputable def RoleCombinationPacket.fromFamilies {n : ℕ}
       role.collision := by
   rfl
 
+/-- Frontier live-closure theorem. -/
 theorem RoleCombinationPacket.fromFamilies_combinedPacket
     {n : ℕ} (outsidePackets : OutsideDeletionArm → IndexedPacket n)
     (collisionPackets : CollisionRowsArm → IndexedPacket n) (role : RolePair) :
@@ -252,14 +278,17 @@ theorem RoleCombinationPacket.fromFamilies_combinedPacket
       (outsidePackets role.outside).combine (collisionPackets role.collision) := by
   rfl
 
+/-- Frontier live-closure def. -/
 private def pointIndex {A : Finset ℝ²} (B : BoundaryIndexing A)
     {x : ℝ²} (hx : x ∈ A) : Fin B.n :=
   B.indexOf ⟨x, hx⟩
 
+/-- Frontier live-closure def. -/
 private def mapSupport {A : Finset ℝ²} (B : BoundaryIndexing A)
     {support : Finset ℝ²} (hsupport : support ⊆ A) : Finset (Fin B.n) :=
   support.attach.image (fun z => pointIndex B (hsupport z.property))
 
+/-- Frontier live-closure theorem. -/
 private theorem deletedRow_subset_A
     {D : CounterexampleData} {q center : ℝ²} {support : Finset ℝ²}
     (K : U5QDeletedK4Class D q center support) : support ⊆ D.A := by
@@ -268,6 +297,7 @@ private theorem deletedRow_subset_A
   have hx'' : x ∈ D.skeleton q := (Finset.mem_erase.mp hx').2
   exact (Finset.mem_erase.mp (by simpa [CounterexampleData.skeleton] using hx'')).2
 
+/-- Frontier live-closure theorem. -/
 private theorem mapSupport_card
     {A : Finset ℝ²} (B : BoundaryIndexing A)
     {support : Finset ℝ²} (hsupport : support ⊆ A)
@@ -287,6 +317,7 @@ private theorem mapSupport_card
     exact congrArg (fun z : CarrierLabel A => z.1) hlabels
   simpa [hcard] using hcardImage
 
+/-- Frontier live-closure theorem. -/
 private theorem mapSupport_center_not_mem
     {D : CounterexampleData} (I : BoundaryIndexing D.A)
     {q center : ℝ²} {support : Finset ℝ²}
@@ -303,6 +334,7 @@ private theorem mapSupport_center_not_mem
     simpa [this] using z.2
   exact (Finset.mem_erase.mp (K.subset hcenter)).1 rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem mapSupport_deleted_not_mem
     {D : CounterexampleData} (I : BoundaryIndexing D.A)
     {q center : ℝ²} {support : Finset ℝ²} (hq : q ∈ D.A)
@@ -319,6 +351,7 @@ private theorem mapSupport_deleted_not_mem
     simpa [hzq] using z.2
   exact qDeletedK4Class_deleted_not_mem_support K hq_support
 
+/-- Frontier live-closure def. -/
 private def indexedRow
     {D : CounterexampleData} {q center : ℝ²} {support : Finset ℝ²}
     (I : BoundaryIndexing D.A) (hc : center ∈ D.A)
@@ -329,6 +362,7 @@ private def indexedRow
     support_card := mapSupport_card I (deletedRow_subset_A K) hcard
     center_not_mem := mapSupport_center_not_mem I hc K }
 
+/-- Frontier live-closure def. -/
 noncomputable def FiveSurvivorExactRowsBoundary.toIndexedPacket
     {D : CounterexampleData} {H : CriticalShellSystem D.A}
     {q : ℝ²} {hq : q ∈ D.A} {c₀ c₁ c₂ c₃ c₄ : ℝ²}
@@ -451,6 +485,7 @@ noncomputable def FiveSurvivorExactRowsBoundary.toIndexedPacket
   · simpa [r₃, indexedRow] using mapSupport_deleted_not_mem I hq R.K₃
   · simpa [r₄, indexedRow] using mapSupport_deleted_not_mem I hq R.K₄
 
+/-- Frontier live-closure def. -/
 noncomputable def FiveSurvivorFaithfulCarrierBoundary.toIndexedPacket
     {D : CounterexampleData} {H : CriticalShellSystem D.A}
     {q : ℝ²} {hq : q ∈ D.A} {c₀ c₁ c₂ c₃ c₄ : ℝ²}

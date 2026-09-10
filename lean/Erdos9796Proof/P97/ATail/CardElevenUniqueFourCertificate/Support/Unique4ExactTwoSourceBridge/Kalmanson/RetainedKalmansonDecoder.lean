@@ -28,6 +28,7 @@ open ATailUniqueFourExactTwoSchemaDecoderScratch
 open ATailAlignedP5FinElevenKalmansonScratch
 open MissingRetainedKalmansonOrientationsScratch
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 structure OrderedFour where
   i0 : Label
   i1 : Label
@@ -37,9 +38,11 @@ structure OrderedFour where
   h12 : i1 < i2
   h23 : i2 < i3
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def OrderedFour.values (T : OrderedFour) : List Label :=
   [T.i0, T.i1, T.i2, T.i3]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 structure OrderedFive where
   i0 : Label
   i1 : Label
@@ -51,9 +54,11 @@ structure OrderedFive where
   h23 : i2 < i3
   h34 : i3 < i4
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def OrderedFive.values (T : OrderedFive) : List Label :=
   [T.i0, T.i1, T.i2, T.i3, T.i4]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 structure OrderedSix where
   i0 : Label
   i1 : Label
@@ -67,9 +72,11 @@ structure OrderedSix where
   h34 : i3 < i4
   h45 : i4 < i5
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def OrderedSix.values (T : OrderedSix) : List Label :=
   [T.i0, T.i1, T.i2, T.i3, T.i4, T.i5]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 structure OrderedSeven where
   i0 : Label
   i1 : Label
@@ -85,9 +92,11 @@ structure OrderedSeven where
   h45 : i4 < i5
   h56 : i5 < i6
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def OrderedSeven.values (T : OrderedSeven) : List Label :=
   [T.i0, T.i1, T.i2, T.i3, T.i4, T.i5, T.i6]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 structure OrderedEight where
   i0 : Label
   i1 : Label
@@ -105,40 +114,51 @@ structure OrderedEight where
   h56 : i5 < i6
   h67 : i6 < i7
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def OrderedEight.values (T : OrderedEight) : List Label :=
   [T.i0, T.i1, T.i2, T.i3, T.i4, T.i5, T.i6, T.i7]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema0 : List Membership :=
   [(0, 1), (0, 2), (4, 1), (4, 3), (5, 2), (5, 3)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema1 : List Membership :=
   [(0, 1), (0, 3), (4, 2), (4, 3), (5, 1), (5, 2)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema2 : List Membership :=
   [(0, 1), (0, 2), (1, 2), (1, 3), (2, 1), (2, 3)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema3 : List Membership :=
   [(0, 1), (0, 5), (1, 0), (1, 2), (2, 0), (2, 1), (2, 5),
     (3, 0), (3, 2)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema4 : List Membership :=
   [(0, 1), (0, 3), (2, 3), (2, 4), (3, 1), (3, 4)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema5 : List Membership :=
   [(0, 1), (0, 2), (0, 4), (2, 3), (2, 4), (3, 2), (3, 4),
     (4, 1), (4, 3)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema6 : List Membership :=
   [(0, 3), (0, 4), (1, 0), (1, 4), (2, 0), (2, 3)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema7 : List Membership :=
   [(0, 1), (0, 5), (1, 0), (1, 3), (1, 4), (2, 0), (2, 5),
     (3, 1), (3, 4), (6, 0), (6, 3)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema8 : List Membership :=
   [(0, 1), (0, 2), (0, 7), (5, 1), (5, 4), (5, 6), (6, 3),
     (6, 4), (6, 7), (7, 2), (7, 3), (7, 6)]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 def schema9 : List Membership :=
   [(0, 1), (0, 3), (0, 5), (4, 1), (4, 2), (5, 2), (5, 3)]
 
@@ -158,10 +178,12 @@ def reducedCoreCnfSha256 : String :=
 def reducedCoreMapSha256 : String :=
   "9c43ca5fadd445ba22bde5dc5617ea9414caf4df8c82de198706c6076ee51747"
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private def cardBoundary {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Label → ℝ²) : Fin A.card → ℝ² :=
   fun i => boundary (Fin.cast hcard i)
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem cardBoundary_injective
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²} (hinj : Function.Injective boundary) :
@@ -170,6 +192,7 @@ private theorem cardBoundary_injective
   apply Fin.cast_injective hcard
   exact hinj hij
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem cardBoundary_image
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
@@ -190,6 +213,7 @@ private theorem cardBoundary_image
             simp [cardBoundary]⟩
     _ = A := himage
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem cardBoundary_ccw
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
@@ -198,6 +222,7 @@ private theorem cardBoundary_ccw
   intro i j k hij hjk
   apply hccw <;> simpa
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     (i : Label) : Fin A.card :=
   Fin.cast hcard.symm i
@@ -208,12 +233,14 @@ private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     cardBoundary hcard boundary (toCardIndex hcard i) = boundary i := by
   simp [cardBoundary, toCardIndex]
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem toCardIndex_lt
     {A : Finset ℝ²} (hcard : A.card = 11)
     {i j : Label} (hij : i < j) :
     toCardIndex hcard i < toCardIndex hcard j := by
   simpa [toCardIndex] using hij
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem support_mem_of_schemaAt
     {A : Finset ℝ²} (boundary : Label → ℝ²)
     (hmem : ∀ i, boundary i ∈ A)
@@ -233,6 +260,7 @@ private theorem support_mem_of_schemaAt
   exact (patternCode_eq_true_iff boundary hmem F _ _).mp
     (hall (center, point) hpair)
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaZero_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -266,6 +294,7 @@ private theorem false_of_schemaZero_normalized_at
   · exact m 5 2 (by simp [schema0])
   · exact m 5 3 (by simp [schema0])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaZero_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -300,6 +329,7 @@ private theorem false_of_schemaZero_reflected_at
   · exact m 5 3 (by simp [schema0, reflectSchema])
   · exact m 5 4 (by simp [schema0, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaOne_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -326,6 +356,7 @@ private theorem false_of_schemaOne_normalized_at
   · exact m 5 1 (by simp [schema1])
   · exact m 5 2 (by simp [schema1])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaOne_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -355,6 +386,7 @@ private theorem false_of_schemaOne_reflected_at
   · exact m 5 2 (by simp [schema1, reflectSchema])
   · exact m 5 4 (by simp [schema1, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaTwo_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -385,6 +417,7 @@ private theorem false_of_schemaTwo_normalized_at
   · exact m 2 1 (by simp [schema2])
   · exact m 2 3 (by simp [schema2])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaTwo_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -418,6 +451,7 @@ private theorem false_of_schemaTwo_reflected_at
   · exact m 3 1 (by simp [schema2, reflectSchema])
   · exact m 3 2 (by simp [schema2, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaThree_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -453,6 +487,7 @@ private theorem false_of_schemaThree_normalized_at
   · exact m 3 0 (by simp [schema3])
   · exact m 3 2 (by simp [schema3])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaThree_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -491,6 +526,7 @@ private theorem false_of_schemaThree_reflected_at
   · exact m 5 0 (by simp [schema3, reflectSchema])
   · exact m 5 4 (by simp [schema3, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaFour_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -517,6 +553,7 @@ private theorem false_of_schemaFour_normalized_at
   · exact m 3 1 (by simp [schema4])
   · exact m 3 4 (by simp [schema4])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaFour_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -546,6 +583,7 @@ private theorem false_of_schemaFour_reflected_at
   · exact m 4 1 (by simp [schema4, reflectSchema])
   · exact m 4 3 (by simp [schema4, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaFive_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -584,6 +622,7 @@ private theorem false_of_schemaFive_reflected_at
   · exact m 4 2 (by simp [schema5, reflectSchema])
   · exact m 4 3 (by simp [schema5, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaSix_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -610,6 +649,7 @@ private theorem false_of_schemaSix_normalized_at
   · exact m 2 0 (by simp [schema6])
   · exact m 2 3 (by simp [schema6])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaSix_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -639,6 +679,7 @@ private theorem false_of_schemaSix_reflected_at
   · exact m 5 1 (by simp [schema6, reflectSchema])
   · exact m 5 2 (by simp [schema6, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaSeven_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -678,6 +719,7 @@ private theorem false_of_schemaSeven_normalized_at
   · exact m 6 0 (by simp [schema7])
   · exact m 6 3 (by simp [schema7])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaSeven_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -720,6 +762,7 @@ private theorem false_of_schemaSeven_reflected_at
   · exact m 6 1 (by simp [schema7, reflectSchema])
   · exact m 6 5 (by simp [schema7, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaEight_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -762,6 +805,7 @@ private theorem false_of_schemaEight_reflected_at
   · exact m 7 5 (by simp [schema8, reflectSchema])
   · exact m 7 6 (by simp [schema8, reflectSchema])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaNine_normalized_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)
@@ -789,6 +833,7 @@ private theorem false_of_schemaNine_normalized_at
   · exact m 5 2 (by simp [schema9])
   · exact m 5 3 (by simp [schema9])
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem false_of_schemaNine_reflected_at
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     (boundary : Label → ℝ²) (hmem : ∀ i, boundary i ∈ A)

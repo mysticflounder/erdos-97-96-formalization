@@ -46,6 +46,7 @@ def FirstOppositePairSurplusSecondOppositeCommonFiveData.rolesValid
     data.b ∈ surplusInteriorLabels ∧
     data.c ∈ secondOppositeInteriorLabels
 
+/-- Frontier live-closure instance. -/
 instance firstOppositePairSurplusSecondOppositeCommonFiveDecidableRolesValid
     (data : FirstOppositePairSurplusSecondOppositeCommonFiveData) :
     Decidable data.rolesValid := by

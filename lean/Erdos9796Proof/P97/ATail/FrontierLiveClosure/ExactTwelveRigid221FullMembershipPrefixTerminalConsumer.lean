@@ -66,6 +66,7 @@ open StaticTerminalConsumer
 open TerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Source meaning of every positive-membership variable in the frozen prefix.
@@ -101,75 +102,99 @@ def globalMembershipAssign (base : Nat → Bool) (row : RowPattern Label) :
     Nat → Bool :=
   positiveMembershipAssign base 44875 row globalRequirementAt
 
+/-- Frontier live-closure def. -/
 private def blockSpanningLayerDimacs : List (List Int) :=
   BlockSpanningMembershipFamilyCnf.implicationDimacs ++ BlockSpanningMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def surplusApexPairLayerDimacs : List (List Int) :=
   SurplusApexPairMembershipFamilyCnf.implicationDimacs ++ SurplusApexPairMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def adjacentApexCrossBlockLayerDimacs : List (List Int) :=
   AdjacentApexCrossBlockMembershipFamilyCnf.implicationDimacs ++ AdjacentApexCrossBlockMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def secondCapApexSurplusLayerDimacs : List (List Int) :=
   SecondCapApexSurplusMembershipFamilyCnf.implicationDimacs ++ SecondCapApexSurplusMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def surplusThreeTriadLayerDimacs : List (List Int) :=
   SurplusThreeTriadMembershipFamilyCnf.implicationDimacs ++ SurplusThreeTriadMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def zeroCenterCrossBlockLayerDimacs : List (List Int) :=
   ZeroCenterCrossBlockMembershipFamilyCnf.implicationDimacs ++ ZeroCenterCrossBlockMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexZeroCrossBlockLayerDimacs : List (List Int) :=
   ApexZeroCrossBlockMembershipFamilyCnf.implicationDimacs ++ ApexZeroCrossBlockMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexPairCrossBlockLayerDimacs : List (List Int) :=
   ApexPairCrossBlockMembershipFamilyCnf.implicationDimacs ++ ApexPairCrossBlockMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexSharedPairCrossBlockLayerDimacs : List (List Int) :=
   ApexSharedPairCrossBlockMembershipFamilyCnf.implicationDimacs ++ ApexSharedPairCrossBlockMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexInternalSharedPairCommonFiveLayerDimacs : List (List Int) :=
   ApexInternalSharedPairCommonFiveMembershipFamilyCnf.implicationDimacs ++ ApexInternalSharedPairCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexFirstOppositeSharedPairCommonFiveLayerDimacs : List (List Int) :=
   ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.implicationDimacs ++ ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexFirstOppositeSharedPairSecondOppositeCommonFiveLayerDimacs : List (List Int) :=
   ApexFirstOppositeSharedPairSecondOppositeCommonFiveMembershipFamilyCnf.implicationDimacs ++ ApexFirstOppositeSharedPairSecondOppositeCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexTripleSurplusSecondOppositeCommonFiveLayerDimacs : List (List Int) :=
   ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyCnf.implicationDimacs ++ ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def surplusPairSecondOppositeApexPairCommonFiveLayerDimacs : List (List Int) :=
   SurplusPairSecondOppositeApexPairCommonFiveMembershipFamilyCnf.implicationDimacs ++ SurplusPairSecondOppositeApexPairCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexFirstSurplusSecondCommonFiveLayerDimacs : List (List Int) :=
   ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.implicationDimacs ++ ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def secondApexSurplusSecondFirstCommonFiveLayerDimacs : List (List Int) :=
   SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf.implicationDimacs ++ SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def apexFirstOppositeSharedPairSurplusCommonFiveLayerDimacs : List (List Int) :=
   ApexFirstOppositeSharedPairSurplusCommonFiveMembershipFamilyCnf.implicationDimacs ++ ApexFirstOppositeSharedPairSurplusCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def reciprocalFirstOppositeSurplusSecondOppositeCommonFiveLayerDimacs : List (List Int) :=
   ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyCnf.implicationDimacs ++ ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def firstOppositePairSurplusSecondOppositeCommonFiveLayerDimacs : List (List Int) :=
   FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyCnf.implicationDimacs ++ FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def secondOppositeTripleSurplusFirstOppositeThreeTriadLayerDimacs : List (List Int) :=
   SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.implicationDimacs ++ SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def allOrderCommonFiveLayerDimacs : List (List Int) :=
   AllOrderCommonFiveMembershipFamilyCnf.implicationDimacs ++ AllOrderCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def centerExchangeAllOrderCommonFiveLayerDimacs : List (List Int) :=
   CenterExchangeAllOrderCommonFiveMembershipFamilyCnf.implicationDimacs ++ CenterExchangeAllOrderCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def corePairAllOrderCommonFiveLayerDimacs : List (List Int) :=
   CorePairAllOrderCommonFiveMembershipFamilyCnf.implicationDimacs ++ CorePairAllOrderCommonFiveMembershipFamilyCnf.blockingClauses
 
+/-- Frontier live-closure def. -/
 private def staticThreeTriadLayerDimacs : List (List Int) :=
   StaticCell1AfterFamilyThreeTriadMembershipCnf.implicationDimacs ++
     [StaticCell1AfterFamilyThreeTriadMembershipCnf.blockingClause]
@@ -222,6 +247,7 @@ private theorem globalAssignment_satisfies_reused
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem blockSpanning_clause_requirements :
     ∀ clause ∈ blockSpanningLayerDimacs, ∀ literal ∈ clause,
       44875 < literal.natAbs →
@@ -232,6 +258,7 @@ private theorem blockSpanning_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem surplusApexPair_clause_requirements :
     ∀ clause ∈ surplusApexPairLayerDimacs, ∀ literal ∈ clause,
       44902 < literal.natAbs →
@@ -242,6 +269,7 @@ private theorem surplusApexPair_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem adjacentApexCrossBlock_clause_requirements :
     ∀ clause ∈ adjacentApexCrossBlockLayerDimacs, ∀ literal ∈ clause,
       44925 < literal.natAbs →
@@ -252,6 +280,7 @@ private theorem adjacentApexCrossBlock_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem secondCapApexSurplus_clause_requirements :
     ∀ clause ∈ secondCapApexSurplusLayerDimacs, ∀ literal ∈ clause,
       44964 < literal.natAbs →
@@ -262,6 +291,7 @@ private theorem secondCapApexSurplus_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem surplusThreeTriad_clause_requirements :
     ∀ clause ∈ surplusThreeTriadLayerDimacs, ∀ literal ∈ clause,
       45000 < literal.natAbs →
@@ -272,6 +302,7 @@ private theorem surplusThreeTriad_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem zeroCenterCrossBlock_clause_requirements :
     ∀ clause ∈ zeroCenterCrossBlockLayerDimacs, ∀ literal ∈ clause,
       45010 < literal.natAbs →
@@ -282,6 +313,7 @@ private theorem zeroCenterCrossBlock_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexZeroCrossBlock_clause_requirements :
     ∀ clause ∈ apexZeroCrossBlockLayerDimacs, ∀ literal ∈ clause,
       45054 < literal.natAbs →
@@ -292,6 +324,7 @@ private theorem apexZeroCrossBlock_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexPairCrossBlock_clause_requirements :
     ∀ clause ∈ apexPairCrossBlockLayerDimacs, ∀ literal ∈ clause,
       45077 < literal.natAbs →
@@ -302,6 +335,7 @@ private theorem apexPairCrossBlock_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexSharedPairCrossBlock_clause_requirements :
     ∀ clause ∈ apexSharedPairCrossBlockLayerDimacs, ∀ literal ∈ clause,
       45077 < literal.natAbs →
@@ -312,6 +346,7 @@ private theorem apexSharedPairCrossBlock_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexInternalSharedPairCommonFive_clause_requirements :
     ∀ clause ∈ apexInternalSharedPairCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45077 < literal.natAbs →
@@ -322,6 +357,7 @@ private theorem apexInternalSharedPairCommonFive_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairCommonFive_clause_requirements :
     ∀ clause ∈ apexFirstOppositeSharedPairCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45162 < literal.natAbs →
@@ -332,6 +368,7 @@ private theorem apexFirstOppositeSharedPairCommonFive_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairSecondOppositeCommonFive_clause_requirements :
     ∀ clause ∈ apexFirstOppositeSharedPairSecondOppositeCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45176 < literal.natAbs →
@@ -342,6 +379,7 @@ private theorem apexFirstOppositeSharedPairSecondOppositeCommonFive_clause_requi
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexTripleSurplusSecondOppositeCommonFive_clause_requirements :
     ∀ clause ∈ apexTripleSurplusSecondOppositeCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45224 < literal.natAbs →
@@ -352,6 +390,7 @@ private theorem apexTripleSurplusSecondOppositeCommonFive_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem surplusPairSecondOppositeApexPairCommonFive_clause_requirements :
     ∀ clause ∈ surplusPairSecondOppositeApexPairCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45241 < literal.natAbs →
@@ -362,6 +401,7 @@ private theorem surplusPairSecondOppositeApexPairCommonFive_clause_requirements 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstSurplusSecondCommonFive_clause_requirements :
     ∀ clause ∈ apexFirstSurplusSecondCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45247 < literal.natAbs →
@@ -372,6 +412,7 @@ private theorem apexFirstSurplusSecondCommonFive_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem secondApexSurplusSecondFirstCommonFive_clause_requirements :
     ∀ clause ∈ secondApexSurplusSecondFirstCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45277 < literal.natAbs →
@@ -382,6 +423,7 @@ private theorem secondApexSurplusSecondFirstCommonFive_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairSurplusCommonFive_clause_requirements :
     ∀ clause ∈ apexFirstOppositeSharedPairSurplusCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45307 < literal.natAbs →
@@ -392,6 +434,7 @@ private theorem apexFirstOppositeSharedPairSurplusCommonFive_clause_requirements
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem reciprocalFirstOppositeSurplusSecondOppositeCommonFive_clause_requirements :
     ∀ clause ∈ reciprocalFirstOppositeSurplusSecondOppositeCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45337 < literal.natAbs →
@@ -402,6 +445,7 @@ private theorem reciprocalFirstOppositeSurplusSecondOppositeCommonFive_clause_re
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem firstOppositePairSurplusSecondOppositeCommonFive_clause_requirements :
     ∀ clause ∈ firstOppositePairSurplusSecondOppositeCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45357 < literal.natAbs →
@@ -412,6 +456,7 @@ private theorem firstOppositePairSurplusSecondOppositeCommonFive_clause_requirem
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem secondOppositeTripleSurplusFirstOppositeThreeTriad_clause_requirements :
     ∀ clause ∈ secondOppositeTripleSurplusFirstOppositeThreeTriadLayerDimacs, ∀ literal ∈ clause,
       45369 < literal.natAbs →
@@ -422,6 +467,7 @@ private theorem secondOppositeTripleSurplusFirstOppositeThreeTriad_clause_requir
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem allOrderCommonFive_clause_requirements :
     ∀ clause ∈ allOrderCommonFiveLayerDimacs, ∀ literal ∈ clause,
       45489 < literal.natAbs →
@@ -432,6 +478,7 @@ private theorem allOrderCommonFive_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem centerExchangeAllOrderCommonFive_clause_requirements :
     ∀ clause ∈ centerExchangeAllOrderCommonFiveLayerDimacs, ∀ literal ∈ clause,
       47136 < literal.natAbs →
@@ -444,6 +491,7 @@ set_option maxHeartbeats 0 in
 -- unbounded exactly as it is for the thirty-four sibling layer lemmas above.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem corePairAllOrderCommonFive_clause_requirements :
     ∀ clause ∈ corePairAllOrderCommonFiveLayerDimacs, ∀ literal ∈ clause,
       47174 < literal.natAbs →
@@ -454,6 +502,7 @@ private theorem corePairAllOrderCommonFive_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem staticThreeTriad_clause_requirements :
     ∀ clause ∈ staticThreeTriadLayerDimacs, ∀ literal ∈ clause,
       44897 < literal.natAbs →
@@ -464,6 +513,7 @@ private theorem staticThreeTriad_clause_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexInternalSharedPairCommonFive_reused_requirements :
     ∀ definition ∈ ApexInternalSharedPairCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -473,6 +523,7 @@ private theorem apexInternalSharedPairCommonFive_reused_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairSecondOppositeCommonFive_reused_requirements :
     ∀ definition ∈ ApexFirstOppositeSharedPairSecondOppositeCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -482,6 +533,7 @@ private theorem apexFirstOppositeSharedPairSecondOppositeCommonFive_reused_requi
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem surplusPairSecondOppositeApexPairCommonFive_reused_requirements :
     ∀ definition ∈ SurplusPairSecondOppositeApexPairCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -491,6 +543,7 @@ private theorem surplusPairSecondOppositeApexPairCommonFive_reused_requirements 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstSurplusSecondCommonFive_reused_requirements :
     ∀ definition ∈ ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -500,6 +553,7 @@ private theorem apexFirstSurplusSecondCommonFive_reused_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem secondApexSurplusSecondFirstCommonFive_reused_requirements :
     ∀ definition ∈ SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -509,6 +563,7 @@ private theorem secondApexSurplusSecondFirstCommonFive_reused_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairSurplusCommonFive_reused_requirements :
     ∀ definition ∈ ApexFirstOppositeSharedPairSurplusCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -518,6 +573,7 @@ private theorem apexFirstOppositeSharedPairSurplusCommonFive_reused_requirements
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem reciprocalFirstOppositeSurplusSecondOppositeCommonFive_reused_requirements :
     ∀ definition ∈ ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -527,6 +583,7 @@ private theorem reciprocalFirstOppositeSurplusSecondOppositeCommonFive_reused_re
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem firstOppositePairSurplusSecondOppositeCommonFive_reused_requirements :
     ∀ definition ∈ FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -536,6 +593,7 @@ private theorem firstOppositePairSurplusSecondOppositeCommonFive_reused_requirem
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem secondOppositeTripleSurplusFirstOppositeThreeTriad_reused_requirements :
     ∀ definition ∈ SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -545,6 +603,7 @@ private theorem secondOppositeTripleSurplusFirstOppositeThreeTriad_reused_requir
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem allOrderCommonFive_reused_requirements :
     ∀ definition ∈ AllOrderCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -554,6 +613,7 @@ private theorem allOrderCommonFive_reused_requirements :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem centerExchangeAllOrderCommonFive_reused_requirements :
     ∀ definition ∈ CenterExchangeAllOrderCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
@@ -565,12 +625,14 @@ set_option maxHeartbeats 0 in
 -- unbounded exactly as it is for the thirty-four sibling layer lemmas above.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem corePairAllOrderCommonFive_reused_requirements :
     ∀ definition ∈ CorePairAllOrderCommonFiveMembershipFamilyCnf.reusedDefinitions,
       44875 < definition.varIndex ∧
         globalRequirementAt definition.varIndex = definition.requirement := by
   native_decide +revert
 
+/-- Frontier live-closure theorem. -/
 private theorem blockSpanningLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -608,6 +670,7 @@ private theorem blockSpanningLayer_sat
             BlockSpanningMembershipFamilyCnf.requirementAt (by omega)
               (blockSpanning_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem surplusApexPairLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -645,6 +708,7 @@ private theorem surplusApexPairLayer_sat
             SurplusApexPairMembershipFamilyCnf.requirementAt (by omega)
               (surplusApexPair_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem adjacentApexCrossBlockLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -682,6 +746,7 @@ private theorem adjacentApexCrossBlockLayer_sat
             AdjacentApexCrossBlockMembershipFamilyCnf.requirementAt (by omega)
               (adjacentApexCrossBlock_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem secondCapApexSurplusLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -719,6 +784,7 @@ private theorem secondCapApexSurplusLayer_sat
             SecondCapApexSurplusMembershipFamilyCnf.requirementAt (by omega)
               (secondCapApexSurplus_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem surplusThreeTriadLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -756,6 +822,7 @@ private theorem surplusThreeTriadLayer_sat
             SurplusThreeTriadMembershipFamilyCnf.requirementAt (by omega)
               (surplusThreeTriad_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem zeroCenterCrossBlockLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -793,6 +860,7 @@ private theorem zeroCenterCrossBlockLayer_sat
             ZeroCenterCrossBlockMembershipFamilyCnf.requirementAt (by omega)
               (zeroCenterCrossBlock_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexZeroCrossBlockLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -830,6 +898,7 @@ private theorem apexZeroCrossBlockLayer_sat
             ApexZeroCrossBlockMembershipFamilyCnf.requirementAt (by omega)
               (apexZeroCrossBlock_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexPairCrossBlockLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -867,6 +936,7 @@ private theorem apexPairCrossBlockLayer_sat
             ApexPairCrossBlockMembershipFamilyCnf.requirementAt (by omega)
               (apexPairCrossBlock_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexSharedPairCrossBlockLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -904,6 +974,7 @@ private theorem apexSharedPairCrossBlockLayer_sat
             ApexSharedPairCrossBlockMembershipFamilyCnf.requirementAt (by omega)
               (apexSharedPairCrossBlock_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexInternalSharedPairCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -943,6 +1014,7 @@ private theorem apexInternalSharedPairCommonFiveLayer_sat
             ApexInternalSharedPairCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (apexInternalSharedPairCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -980,6 +1052,7 @@ private theorem apexFirstOppositeSharedPairCommonFiveLayer_sat
             ApexFirstOppositeSharedPairCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (apexFirstOppositeSharedPairCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairSecondOppositeCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1019,6 +1092,7 @@ private theorem apexFirstOppositeSharedPairSecondOppositeCommonFiveLayer_sat
             ApexFirstOppositeSharedPairSecondOppositeCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (apexFirstOppositeSharedPairSecondOppositeCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexTripleSurplusSecondOppositeCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1056,6 +1130,7 @@ private theorem apexTripleSurplusSecondOppositeCommonFiveLayer_sat
             ApexTripleSurplusSecondOppositeCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (apexTripleSurplusSecondOppositeCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem surplusPairSecondOppositeApexPairCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1095,6 +1170,7 @@ private theorem surplusPairSecondOppositeApexPairCommonFiveLayer_sat
             SurplusPairSecondOppositeApexPairCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (surplusPairSecondOppositeApexPairCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstSurplusSecondCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1134,6 +1210,7 @@ private theorem apexFirstSurplusSecondCommonFiveLayer_sat
             ApexFirstSurplusSecondCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (apexFirstSurplusSecondCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem secondApexSurplusSecondFirstCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1173,6 +1250,7 @@ private theorem secondApexSurplusSecondFirstCommonFiveLayer_sat
             SecondApexSurplusSecondFirstCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (secondApexSurplusSecondFirstCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem apexFirstOppositeSharedPairSurplusCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1212,6 +1290,7 @@ private theorem apexFirstOppositeSharedPairSurplusCommonFiveLayer_sat
             ApexFirstOppositeSharedPairSurplusCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (apexFirstOppositeSharedPairSurplusCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem reciprocalFirstOppositeSurplusSecondOppositeCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1251,6 +1330,7 @@ private theorem reciprocalFirstOppositeSurplusSecondOppositeCommonFiveLayer_sat
             ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (reciprocalFirstOppositeSurplusSecondOppositeCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem firstOppositePairSurplusSecondOppositeCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1290,6 +1370,7 @@ private theorem firstOppositePairSurplusSecondOppositeCommonFiveLayer_sat
             FirstOppositePairSurplusSecondOppositeCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (firstOppositePairSurplusSecondOppositeCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem secondOppositeTripleSurplusFirstOppositeThreeTriadLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1329,6 +1410,7 @@ private theorem secondOppositeTripleSurplusFirstOppositeThreeTriadLayer_sat
             SecondOppositeTripleSurplusFirstOppositeThreeTriadMembershipFamilyCnf.requirementAt (by omega)
               (secondOppositeTripleSurplusFirstOppositeThreeTriad_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem allOrderCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1368,6 +1450,7 @@ private theorem allOrderCommonFiveLayer_sat
             AllOrderCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (allOrderCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem centerExchangeAllOrderCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1407,6 +1490,7 @@ private theorem centerExchangeAllOrderCommonFiveLayer_sat
             CenterExchangeAllOrderCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (centerExchangeAllOrderCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem corePairAllOrderCommonFiveLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1446,6 +1530,7 @@ private theorem corePairAllOrderCommonFiveLayer_sat
             CorePairAllOrderCommonFiveMembershipFamilyCnf.requirementAt (by omega)
               (corePairAllOrderCommonFive_clause_requirements clause hclause)))
 
+/-- Frontier live-closure theorem. -/
 private theorem staticThreeTriadLayer_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)
@@ -1518,6 +1603,7 @@ def fullMembershipPrefixDimacs : List (List Int) :=
     corePairAllOrderCommonFiveLayerDimacs
 
 set_option maxRecDepth 100000 in
+/-- Frontier live-closure theorem. -/
 private theorem fullMembershipPrefix_sat
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (base : Nat → Bool)

@@ -27,6 +27,7 @@ open CheckpointedRup.SemanticBoundary
 -- The final 21-family membership split unfolds a deeply nested append chain.
 set_option maxRecDepth 1000000
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0RetainedRenderedClauses_sat
     (sigma : Nat → Bool) (family : S2O0RetainedFamily)
     (render : Fin family.sourceCount → List Int)
@@ -38,6 +39,7 @@ private theorem s2O0RetainedRenderedClauses_sat
   obtain ⟨index, _hindex, rfl⟩ := List.mem_map.mp hclause
   exact hsat index
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0RetainedCoreSourceClauses_decompose :
     s2O0RetainedCoreSourceClauses =
       s2O0InheritedBaseClauses ++
@@ -63,6 +65,7 @@ private theorem s2O0RetainedCoreSourceClauses_decompose :
       s2O0V7TwoCenterBisectorClauses := by
   rfl
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0RetainedCoreSourceClauses_mem_iff (clause : List Int) :
     clause ∈ s2O0RetainedCoreSourceClauses ↔
       clause ∈ s2O0InheritedBaseClauses ∨

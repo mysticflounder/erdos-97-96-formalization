@@ -34,6 +34,7 @@ def rowOfPattern (P : PatternCode) (center : Label) : Row :=
   { center := center.val
     support := rowMaskOf P center }
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem has_rowMaskOf (P : PatternCode) (center point : Label) :
     has (rowMaskOf P center) point.val = P center point := by
   simp only [rowMaskOf, has_maskOfFinset, mem_row_iff]
@@ -147,6 +148,7 @@ theorem q3PairOK_rowOfPattern
   fin_cases left <;> fin_cases right <;>
     simp_all [q3PairOK, rowOfPattern, rowMaskOf]
 
+/-- Census-554 certificate-bank instance. -/
 instance cyclicSeparatedDecidable (left right first second : Label) :
     Decidable (CyclicSeparated left right first second) := by
   unfold CapSelectedFiniteCode.CyclicSeparated
@@ -157,22 +159,26 @@ set_option maxHeartbeats 1000000 in
 -- Exhaustive comparison of the two cyclic-separation implementations.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem cyclicSeparated_val_iff (left right first second : Label) :
     cyclicSeparated left.val right.val first.val second.val = true ↔
       CyclicSeparated left right first second := by
   native_decide +revert
 
+/-- Census-554 certificate-bank theorem. -/
 theorem commonPoints_nodup (left right : RowMask) :
     (commonPoints left right).Nodup := by
   unfold commonPoints labels
   exact (List.nodup_range (n := 11)).filter _
 
+/-- Census-554 certificate-bank theorem. -/
 theorem lt_eleven_of_mem_commonPoints
     {left right point : Nat} (hpoint : point ∈ commonPoints left right) :
     point < 11 := by
   have hlabels : point ∈ labels := (List.mem_filter.mp hpoint).1
   simpa [labels] using hlabels
 
+/-- Census-554 certificate-bank theorem. -/
 theorem mem_commonPoints_rowMaskOf
     (P : PatternCode) (left right point : Label) :
     point.val ∈ commonPoints (rowMaskOf P left) (rowMaskOf P right) ↔
@@ -249,11 +255,13 @@ instance (code : Nat) : Decidable (ValidPairCode code) := by
   infer_instance
 
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem pairCodes_valid :
     CapSelectedBVRoleBank.pairCodes.all
       (fun code => decide (ValidPairCode code)) = true := by
   native_decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem validPairCode_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
     ValidPairCode code := by
@@ -266,18 +274,21 @@ def pairFirstLabel (code : Nat) : Label := Fin.ofNat 11 (code / 11)
 /-- Second decoded label of a base-eleven pair code. -/
 def pairSecondLabel (code : Nat) : Label := Fin.ofNat 11 (code % 11)
 
+/-- Census-554 certificate-bank theorem. -/
 theorem pairFirstLabel_val_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
     (pairFirstLabel code).val = code / 11 := by
   have hvalid := validPairCode_of_mem hcode
   simp [pairFirstLabel, Nat.mod_eq_of_lt hvalid.1]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem pairSecondLabel_val_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
     (pairSecondLabel code).val = code % 11 := by
   have hvalid := validPairCode_of_mem hcode
   simp [pairSecondLabel, Nat.mod_eq_of_lt hvalid.2.1]
 
+/-- Census-554 certificate-bank theorem. -/
 theorem pairLabels_ne_of_mem {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
     pairFirstLabel code ≠ pairSecondLabel code := by
@@ -288,6 +299,7 @@ theorem pairLabels_ne_of_mem {code : Nat}
   rw [hfirst, hsecond] at hval
   exact (validPairCode_of_mem hcode).2.2 hval
 
+/-- Census-554 certificate-bank theorem. -/
 theorem containsPair_rowOfPattern_iff
     (P : PatternCode) (center : Label) {code : Nat}
     (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :

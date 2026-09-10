@@ -54,19 +54,30 @@ open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open P4DirectOuterArcAdapterScratch
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def compactFormulaSha256 : String := "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def occurrenceLedgerSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def stableManifestSha256 : String := "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def sourceCoreSha256 : String := "739a55ce7a818cbcdfb8c9fa0731b19b564933e546c303b17c2366871078241b"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def sourceOccurrenceMapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def selectedLedgerSha256 : String := "740043231ec9d2b8c86cee39f427f29dadcac62aad89f1331b81ff307d660517"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def selectedCompactCnfSha256 : String := "ddc21ca6ef49608d3638eddffd798eb08a39cc8ab7874adfc6dfba01233f8408"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def selectedSourceCoreSha256 : String := "efbb9031cceaa0e99a526e1cff549f05f55ad9ea3fcc4dc3424c0fff2b9d4045"
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def selectedClauseCount : Nat := 10614
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def bridgeEntries : List MirrorEntry :=
   bridgeChunk01 ++ bridgeChunk02 ++ bridgeChunk03 ++ bridgeChunk04 ++ bridgeChunk05 ++ bridgeChunk06 ++ bridgeChunk07 ++ bridgeChunk08 ++ bridgeChunk09 ++ bridgeChunk10 ++ bridgeChunk11 ++ bridgeChunk12 ++ bridgeChunk13 ++ bridgeChunk14 ++ bridgeChunk15 ++ bridgeChunk16 ++ bridgeChunk17 ++ bridgeChunk18 ++ bridgeChunk19 ++ bridgeChunk20 ++ bridgeChunk21 ++ bridgeChunk22 ++ bridgeChunk23 ++ bridgeChunk24 ++ bridgeChunk25 ++ bridgeChunk26 ++ bridgeChunk27 ++ bridgeChunk28 ++ bridgeChunk29 ++ bridgeChunk30 ++ bridgeChunk31 ++ bridgeChunk32 ++ bridgeChunk33 ++ bridgeChunk34 ++ bridgeChunk35 ++ bridgeChunk36 ++ bridgeChunk37 ++ bridgeChunk38 ++ bridgeChunk39 ++ bridgeChunk40 ++ bridgeChunk41 ++ bridgeChunk42
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem bridgeEntries_length : bridgeEntries.length = 10614 := by
   have hlen : ∀ (l₁ l₂ : List MirrorEntry) (a b : Nat),
       l₁.length = a → l₂.length = b → (l₁ ++ l₂).length = a + b := by
@@ -74,6 +85,7 @@ theorem bridgeEntries_length : bridgeEntries.length = 10614 := by
     rw [List.length_append, h₁, h₂]
   exact (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ bridgeChunk01_length bridgeChunk02_length) bridgeChunk03_length) bridgeChunk04_length) bridgeChunk05_length) bridgeChunk06_length) bridgeChunk07_length) bridgeChunk08_length) bridgeChunk09_length) bridgeChunk10_length) bridgeChunk11_length) bridgeChunk12_length) bridgeChunk13_length) bridgeChunk14_length) bridgeChunk15_length) bridgeChunk16_length) bridgeChunk17_length) bridgeChunk18_length) bridgeChunk19_length) bridgeChunk20_length) bridgeChunk21_length) bridgeChunk22_length) bridgeChunk23_length) bridgeChunk24_length) bridgeChunk25_length) bridgeChunk26_length) bridgeChunk27_length) bridgeChunk28_length) bridgeChunk29_length) bridgeChunk30_length) bridgeChunk31_length) bridgeChunk32_length) bridgeChunk33_length) bridgeChunk34_length) bridgeChunk35_length) bridgeChunk36_length) bridgeChunk37_length) bridgeChunk38_length) bridgeChunk39_length) bridgeChunk40_length) bridgeChunk41_length) bridgeChunk42_length)
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem bridgeEntries_wf : bridgeEntries.all MirrorEntry.wf = true := by
   have happ : ∀ l₁ l₂ : List MirrorEntry,
       l₁.all MirrorEntry.wf = true → l₂.all MirrorEntry.wf = true →

@@ -24,166 +24,216 @@ open Rigid221Card18CrossedIncidenceProjection
 open Rigid221Card18ClauseGadgets
 open Rigid221Card18DirectCardinality
 
+/-- Frontier live-closure abbrev. -/
 private abbrev Clause := Std.Sat.CNF.Clause Nat
 
+/-- Frontier live-closure abbrev. -/
 private abbrev Cnf := Std.Sat.CNF Nat
 
 /- ## Canonical role and support slots -/
 
+/-- Frontier live-closure def. -/
 private def commonRoleSlot (a : SearchArm) (i : Fin 10) : Role a :=
   ⟨i.val, by
     cases a with
     | bi => exact i.isLt
     | u | xv => simpa [roleCount] using Nat.lt_succ_of_lt i.isLt⟩
 
+/-- Frontier live-closure def. -/
 private def uRole (a : SearchArm) : Role a := commonRoleSlot a 0
 
+/-- Frontier live-closure def. -/
 private def vRole (a : SearchArm) : Role a := commonRoleSlot a 1
 
+/-- Frontier live-closure def. -/
 private def xvRole (a : SearchArm) : Role a := commonRoleSlot a 3
 
+/-- Frontier live-closure def. -/
 private def deletedRole (a : SearchArm) : Role a := commonRoleSlot a 4
 
+/-- Frontier live-closure def. -/
 private def source1Role (a : SearchArm) : Role a := commonRoleSlot a 5
 
+/-- Frontier live-closure def. -/
 private def source2Role (a : SearchArm) : Role a := commonRoleSlot a 6
 
+/-- Frontier live-closure def. -/
 private def deletedCenterRole (a : SearchArm) : Role a := commonRoleSlot a 7
 
+/-- Frontier live-closure def. -/
 private def actualCenter1Role (a : SearchArm) : Role a := commonRoleSlot a 8
 
+/-- Frontier live-closure def. -/
 private def actualCenter2Role (a : SearchArm) : Role a := commonRoleSlot a 9
 
+/-- Frontier live-closure def. -/
 private def oppApex2RoleU : Role .u := Fin.last 10
 
+/-- Frontier live-closure def. -/
 private def oppApex2RoleXv : Role .xv := Fin.last 10
 
+/-- Frontier live-closure def. -/
 private def supportSlot (a : SearchArm) (i : Fin 5) : Support a :=
   ⟨i.val, by
     cases a with
     | bi => simpa [supportCount] using Nat.lt_succ_of_lt i.isLt
     | u | xv => exact i.isLt⟩
 
+/-- Frontier live-closure def. -/
 private def selectedXvRowSupport (a : SearchArm) : Support a := supportSlot a 0
 
+/-- Frontier live-closure def. -/
 private def deletedCenterRowSupport (a : SearchArm) : Support a := supportSlot a 1
 
+/-- Frontier live-closure def. -/
 private def thirdSupport (a : SearchArm) : Support a := supportSlot a 2
 
+/-- Frontier live-closure def. -/
 private def fourthSupport (a : SearchArm) : Support a := supportSlot a 3
 
+/-- Frontier live-closure def. -/
 private def fifthSupport (a : SearchArm) : Support a := supportSlot a 4
 
+/-- Frontier live-closure def. -/
 private def xvB2Support : Support .bi := ⟨5, by decide⟩
 
+/-- Frontier live-closure def. -/
 private def packetCommon : {a : SearchArm} → PacketOfArm a →
     Rigid221Card18AbstractCommonData
   | .bi, p => p.1
   | .u, p => p.1
   | .xv, p => p.1
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem commonRoles_eq_packetCommon_roles {a : SearchArm}
     (p : PacketOfArm a) : p.commonRoles = (packetCommon p).roles := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_uRole {a : SearchArm} (p : PacketOfArm a) :
     p.role (uRole a) = (packetCommon p).roles.u := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_vRole {a : SearchArm} (p : PacketOfArm a) :
     p.role (vRole a) = (packetCommon p).roles.v := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_xvRole {a : SearchArm} (p : PacketOfArm a) :
     p.role (xvRole a) = (packetCommon p).roles.xv := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_deletedRole {a : SearchArm} (p : PacketOfArm a) :
     p.role (deletedRole a) = (packetCommon p).roles.deleted := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_source1Role {a : SearchArm} (p : PacketOfArm a) :
     p.role (source1Role a) = (packetCommon p).roles.source1 := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_source2Role {a : SearchArm} (p : PacketOfArm a) :
     p.role (source2Role a) = (packetCommon p).roles.source2 := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_deletedCenterRole {a : SearchArm} (p : PacketOfArm a) :
     p.role (deletedCenterRole a) = (packetCommon p).roles.deletedCenter := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_actualCenter1Role {a : SearchArm} (p : PacketOfArm a) :
     p.role (actualCenter1Role a) = (packetCommon p).roles.actualCenter1 := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_actualCenter2Role {a : SearchArm} (p : PacketOfArm a) :
     p.role (actualCenter2Role a) = (packetCommon p).roles.actualCenter2 := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_oppApex2RoleU (p : PacketOfArm .u) :
     p.role oppApex2RoleU = p.2.oppApex2 := by
   rcases p with ⟨common, data⟩
   rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem role_oppApex2RoleXv (p : PacketOfArm .xv) :
     p.role oppApex2RoleXv = p.2.oppApex2 := by
   rcases p with ⟨common, data⟩
   rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_selectedXvRow {a : SearchArm} (p : PacketOfArm a) :
     p.support (selectedXvRowSupport a) = (packetCommon p).selectedXvRow := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_deletedCenterRow {a : SearchArm} (p : PacketOfArm a) :
     p.support (deletedCenterRowSupport a) = (packetCommon p).deletedCenterRow := by
   cases a <;> rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_uB1 (p : PacketOfArm .bi) :
     p.support (thirdSupport .bi) = p.2.uB1 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_uB2 (p : PacketOfArm .bi) :
     p.support (fourthSupport .bi) = p.2.uB2 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_xvB1 (p : PacketOfArm .bi) :
     p.support (fifthSupport .bi) = p.2.xvB1 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_xvB2 (p : PacketOfArm .bi) :
     p.support xvB2Support = p.2.xvB2 := by
   simp [xvB2Support, PacketOfArm.support]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_uK1 (p : PacketOfArm .u) :
     p.support (thirdSupport .u) = p.2.K1 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_uK2 (p : PacketOfArm .u) :
     p.support (fourthSupport .u) = p.2.K2 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_uBO (p : PacketOfArm .u) :
     p.support (fifthSupport .u) = p.2.BO := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_xvK1 (p : PacketOfArm .xv) :
     p.support (thirdSupport .xv) = p.2.K1 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_xvK2 (p : PacketOfArm .xv) :
     p.support (fourthSupport .xv) = p.2.K2 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem support_xvBO (p : PacketOfArm .xv) :
     p.support (fifthSupport .xv) = p.2.BO := rfl
 
 /- ## Reusable ordered blocks -/
 
+/-- Frontier live-closure def. -/
 private def supportCardEqFourClauses (a : SearchArm) (s : Support a) : Cnf :=
   cardEqClauses (supportBits a s) 4
 
+/-- Frontier live-closure def. -/
 private def derivedAtMostClauses {a : SearchArm} (f : Label → ArmDerivedVar a)
     (k : Nat) : Cnf :=
   atMostClauses (derivedLabelBits f) k
 
+/-- Frontier live-closure def. -/
 private def deletedCenterPhysicalNeClauses (a : SearchArm) : Cnf :=
   (List.finRange 5).flatMap fun i ↦
     roleNeClauses a (deletedCenterRole a) (physicalRole a i)
 
+/-- Frontier live-closure def. -/
 private def fiveIncidenceNegativeClause {a : SearchArm}
     (incidence : CrossedIncidence → ArmDerivedVar a) : Clause :=
   [((incidence .actualCenter1InBO).toNat, false),
@@ -192,6 +242,7 @@ private def fiveIncidenceNegativeClause {a : SearchArm}
     ((incidence .oppApex2InK2).toNat, false),
     ((incidence .actualCenter1InK2).toNat, false)]
 
+/-- Frontier live-closure def. -/
 private def fiveIncidenceNegativeCnf {a : SearchArm}
     (incidence : CrossedIncidence → ArmDerivedVar a) : Cnf :=
   [fiveIncidenceNegativeClause incidence]
@@ -218,6 +269,7 @@ def commonSemanticsCnf (a : SearchArm) : Std.Sat.CNF Nat :=
       (ArmDerivedVar.deletedPhysical a),
     derivedAtMostClauses (ArmDerivedVar.deletedPhysical a) 1].flatten
 
+/-- Frontier live-closure def. -/
 private def biSpecificCnf : Cnf :=
   [supportCardEqFourClauses .bi (thirdSupport .bi),
     supportCardEqFourClauses .bi (fourthSupport .bi),
@@ -240,6 +292,7 @@ private def biSpecificCnf : Cnf :=
     roleNeClauses .bi (vRole .bi) (actualCenter1Role .bi),
     roleNeClauses .bi (vRole .bi) (actualCenter2Role .bi)].flatten
 
+/-- Frontier live-closure def. -/
 private def crossedSpecificCnf (a : SearchArm) (deleted retained oppApex2 : Role a)
     (incidence : CrossedIncidence → ArmDerivedVar a) : Cnf :=
   [supportCardEqFourClauses a (thirdSupport a),
@@ -287,35 +340,41 @@ def armCnf : (a : SearchArm) → Std.Sat.CNF Nat
 
 /- ## Structural clause counts -/
 
+/-- Frontier live-closure theorem. -/
 private theorem physicalMask_injective (a : SearchArm) :
     Function.Injective (ArmDerivedVar.physicalMask a) := by
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem deletedPhysical_injective (a : SearchArm) :
     Function.Injective (ArmDerivedVar.deletedPhysical a) := by
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem uBIntersection_injective :
     Function.Injective ArmDerivedVar.uBIntersection := by
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem xvBIntersection_injective :
     Function.Injective ArmDerivedVar.xvBIntersection := by
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem supportCardEqFourClauses_length (a : SearchArm) (s : Support a) :
     (supportCardEqFourClauses a s).length = 9384 := by
   rw [supportCardEqFourClauses, cardEqClauses_length (supportBits_nodup a s) (by simp)]
   norm_num [Nat.choose]
 
+/-- Frontier live-closure theorem. -/
 private theorem derivedAtMostClauses_length {a : SearchArm}
     {f : Label → ArmDerivedVar a} (hf : Function.Injective f) {k n : Nat}
     (hk : k ≤ 18) (hn : Nat.choose 18 (k + 1) = n) :
@@ -324,29 +383,35 @@ private theorem derivedAtMostClauses_length {a : SearchArm}
     atMostClauses_length (derivedLabelBits_nodup hf) (by simpa using hk)]
   simpa using hn
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem deletedPhysicalAtMostOne_length (a : SearchArm) :
     (derivedAtMostClauses (ArmDerivedVar.deletedPhysical a) 1).length = 153 := by
   apply derivedAtMostClauses_length (deletedPhysical_injective a) (by decide)
   norm_num [Nat.choose]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem uBIntersectionAtMostTwo_length :
     (derivedAtMostClauses ArmDerivedVar.uBIntersection 2).length = 816 := by
   apply derivedAtMostClauses_length uBIntersection_injective (by decide)
   norm_num [Nat.choose]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem xvBIntersectionAtMostTwo_length :
     (derivedAtMostClauses ArmDerivedVar.xvBIntersection 2).length = 816 := by
   apply derivedAtMostClauses_length xvBIntersection_injective (by decide)
   norm_num [Nat.choose]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem deletedCenterPhysicalNeClauses_length (a : SearchArm) :
     (deletedCenterPhysicalNeClauses a).length = 90 := by
   simp [deletedCenterPhysicalNeClauses]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem fiveIncidenceNegativeCnf_length {a : SearchArm}
     (incidence : CrossedIncidence → ArmDerivedVar a) :
     (fiveIncidenceNegativeCnf incidence).length = 1 := rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem finRangeEighteen_filter_ne_length (l : Label) :
     ((List.finRange 18).filter fun m ↦ l != m).length = 17 := by
   rw [← List.toFinset_card_of_nodup ((List.nodup_finRange 18).filter _)]
@@ -359,6 +424,7 @@ private theorem finRangeEighteen_filter_ne_length (l : Label) :
   rw [hset]
   simp
 
+/-- Frontier live-closure theorem. -/
 private theorem roleOneHot_length (a : SearchArm) (r : Role a) :
     (roleOneHot a r).length = 307 := by
   simp only [roleOneHot, rolePairClauses, List.length_cons, List.length_flatMap,
@@ -368,37 +434,47 @@ private theorem roleOneHot_length (a : SearchArm) (r : Role a) :
       ((List.finRange 18).filter fun m ↦ l != m).length).sum + 1 = 307
   simp [finRangeEighteen_filter_ne_length]
 
+/-- Frontier live-closure theorem. -/
 private theorem roleOneHotCnf_length (a : SearchArm) :
     (roleOneHotCnf a).length = 307 * roleCount a := by
   simp [roleOneHotCnf, roleOneHot_length, Nat.mul_comm]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem commonSemanticsCnf_length (a : SearchArm) :
     (commonSemanticsCnf a).length = 19479 := by
   simp [commonSemanticsCnf]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem biSpecificCnf_length : biSpecificCnf.length = 39420 := by
   simp [biSpecificCnf]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem crossedSpecificCnf_length (a : SearchArm) (deleted retained opp : Role a)
     (incidence : CrossedIncidence → ArmDerivedVar a) :
     (crossedSpecificCnf a deleted retained opp incidence).length = 28477 := by
   simp [crossedSpecificCnf]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem biSemanticsCnf_length : biSemanticsCnf.length = 58899 := by
   simp [biSemanticsCnf]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem uSemanticsCnf_length : uSemanticsCnf.length = 47956 := by
   simp [uSemanticsCnf]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem xvSemanticsCnf_length : xvSemanticsCnf.length = 47956 := by
   simp [xvSemanticsCnf]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem armCnf_bi_length : (armCnf .bi).length = 61969 := by
   simp [armCnf, roleOneHotCnf_length, roleCount]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem armCnf_u_length : (armCnf .u).length = 51333 := by
   simp [armCnf, roleOneHotCnf_length, roleCount]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem armCnf_xv_length : (armCnf .xv).length = 51333 := by
   simp [armCnf, roleOneHotCnf_length, roleCount]
 
@@ -408,6 +484,7 @@ private theorem roleOneHotCnf_length (a : SearchArm) :
 def PacketOfArm.Valid {a : SearchArm} (p : PacketOfArm a) : Prop :=
   p.toAbstractPacket.Valid
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem deletedCenterRow_eq_packetCommon {a : SearchArm}
     (p : PacketOfArm a) : p.deletedCenterRow = (packetCommon p).deletedCenterRow := by
   cases a <;> rfl
@@ -425,6 +502,7 @@ theorem decodeBase_encodeArm {a : SearchArm} (p : PacketOfArm a) :
     rw [mem_decodeBase_support_iff]
     simp
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_flatMap_iff (sigma : Nat → Bool) (xs : List α) (f : α → Cnf) :
     Std.Sat.CNF.eval sigma (xs.flatMap f) = true ↔
       ∀ x ∈ xs, Std.Sat.CNF.eval sigma (f x) = true := by
@@ -433,6 +511,7 @@ private theorem eval_flatMap_iff (sigma : Nat → Bool) (xs : List α) (f : α �
   | cons x xs ih =>
       simp [Std.Sat.CNF.eval_append, Bool.and_eq_true, ih]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_flatten_iff (sigma : Nat → Bool) (blocks : List Cnf) :
     Std.Sat.CNF.eval sigma blocks.flatten = true ↔
       ∀ block ∈ blocks, Std.Sat.CNF.eval sigma block = true := by
@@ -441,6 +520,7 @@ private theorem eval_flatten_iff (sigma : Nat → Bool) (blocks : List Cnf) :
   | cons block blocks ih =>
       simp [Std.Sat.CNF.eval_append, Bool.and_eq_true, ih]
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_flatten_cons_eq_true (sigma : Nat → Bool) (block : Cnf)
     (blocks : List Cnf) :
     Std.Sat.CNF.eval sigma (block :: blocks).flatten = true ↔
@@ -448,9 +528,11 @@ private theorem eval_flatten_cons_eq_true (sigma : Nat → Bool) (block : Cnf)
         Std.Sat.CNF.eval sigma blocks.flatten = true := by
   rw [List.flatten_cons, Std.Sat.CNF.eval_append, Bool.and_eq_true]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem eval_flatten_nil_eq_true (sigma : Nat → Bool) :
     Std.Sat.CNF.eval sigma ([] : List Cnf).flatten = true := rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_deletedCenterPhysicalNeClauses_iff {a : SearchArm}
     {sigma : Nat → Bool} (h : baseWellFormed a sigma) :
     Std.Sat.CNF.eval sigma (deletedCenterPhysicalNeClauses a) = true ↔
@@ -470,6 +552,7 @@ private theorem eval_deletedCenterPhysicalNeClauses_iff {a : SearchArm}
     apply ((decodeBase h).mem_physicalFive_iff_exists_physicalRole _).mpr
     exact ⟨i, by simpa using heq.symm⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem eval_fiveIncidenceNegativeCnf_iff {a : SearchArm} (sigma : Nat → Bool)
     (incidence : CrossedIncidence → ArmDerivedVar a) :
     Std.Sat.CNF.eval sigma (fiveIncidenceNegativeCnf incidence) = true ↔
@@ -485,6 +568,7 @@ private theorem eval_fiveIncidenceNegativeCnf_iff {a : SearchArm} (sigma : Nat �
 
 /- ## Common semantic direction proofs -/
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_commonSemanticsCnf {a : SearchArm} (p : PacketOfArm a)
     (hp : (packetCommon p).Valid) :
     Std.Sat.CNF.eval (encodeArm p) (commonSemanticsCnf a) = true := by
@@ -588,6 +672,7 @@ private theorem encodeArm_commonSemanticsCnf {a : SearchArm} (p : PacketOfArm a)
     hSource2NotMem, hPhysicalNe, hPhysicalMask, hDeletedCard, hDeletedMem,
     hDeletedNotPhysical, hIntersection, hDeletedAtMost⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem commonSemanticsCnf_decodes {a : SearchArm} {sigma : Nat → Bool}
     (h : baseWellFormed a sigma)
     (hEval : Std.Sat.CNF.eval sigma (commonSemanticsCnf a) = true) :
@@ -636,6 +721,7 @@ private theorem commonSemanticsCnf_decodes {a : SearchArm} {sigma : Nat → Bool
 
 /- ## BI-specific semantic direction proofs -/
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_biSpecificCnf (p : PacketOfArm .bi) (hp : p.2.Valid p.1) :
     Std.Sat.CNF.eval (encodeArm p) biSpecificCnf = true := by
   let h : baseWellFormed .bi (encodeArm p) := encodeArm_wellFormed p
@@ -760,6 +846,7 @@ private theorem encodeArm_biSpecificCnf (p : PacketOfArm .bi) (hp : p.2.Valid p.
     hXvNotXvB1, hXvNotXvB2, hUIntersection, hUAtMost, hXvIntersection, hXvAtMost,
     hXvNeActual1, hXvNeActual2, hVNeActual1, hVNeActual2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem biSpecificCnf_decodes {sigma : Nat → Bool}
     (h : baseWellFormed .bi sigma)
     (hEval : Std.Sat.CNF.eval sigma biSpecificCnf = true) :
@@ -821,6 +908,7 @@ private theorem biSpecificCnf_decodes {sigma : Nat → Bool}
 
 /- ## U-specific semantic direction proofs -/
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_uSpecificCnf (p : PacketOfArm .u)
     (hp : p.2.Valid p.1 p.1.roles.u p.1.roles.xv) :
     Std.Sat.CNF.eval (encodeArm p)
@@ -940,6 +1028,7 @@ private theorem encodeArm_uSpecificCnf (p : PacketOfArm .u)
     hActualCenter1InBO, hOppApex2InK1, hActualCenter2InK1, hOppApex2InK2,
     hActualCenter1InK2, hNegative⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem uSpecificCnf_decodes {sigma : Nat → Bool}
     (h : baseWellFormed .u sigma)
     (hEval : Std.Sat.CNF.eval sigma
@@ -991,6 +1080,7 @@ private theorem uSpecificCnf_decodes {sigma : Nat → Bool}
 
 /- ## XV-specific semantic direction proofs -/
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_xvSpecificCnf (p : PacketOfArm .xv)
     (hp : p.2.Valid p.1 p.1.roles.xv p.1.roles.u) :
     Std.Sat.CNF.eval (encodeArm p)
@@ -1110,6 +1200,7 @@ private theorem encodeArm_xvSpecificCnf (p : PacketOfArm .xv)
     hActualCenter1InBO, hOppApex2InK1, hActualCenter2InK1, hOppApex2InK2,
     hActualCenter1InK2, hNegative⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem xvSpecificCnf_decodes {sigma : Nat → Bool}
     (h : baseWellFormed .xv sigma)
     (hEval : Std.Sat.CNF.eval sigma
@@ -1161,6 +1252,7 @@ private theorem xvSpecificCnf_decodes {sigma : Nat → Bool}
 
 /- ## Complete semantic formulas -/
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_biSemanticsCnf (p : PacketOfArm .bi)
     (hp : PacketOfArm.Valid p) :
     Std.Sat.CNF.eval (encodeArm p) biSemanticsCnf = true := by
@@ -1168,6 +1260,7 @@ private theorem encodeArm_biSemanticsCnf (p : PacketOfArm .bi)
   rw [biSemanticsCnf, Std.Sat.CNF.eval_append, Bool.and_eq_true]
   exact ⟨encodeArm_commonSemanticsCnf p hp.1, encodeArm_biSpecificCnf p hp.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_uSemanticsCnf (p : PacketOfArm .u)
     (hp : PacketOfArm.Valid p) :
     Std.Sat.CNF.eval (encodeArm p) uSemanticsCnf = true := by
@@ -1175,6 +1268,7 @@ private theorem encodeArm_uSemanticsCnf (p : PacketOfArm .u)
   rw [uSemanticsCnf, Std.Sat.CNF.eval_append, Bool.and_eq_true]
   exact ⟨encodeArm_commonSemanticsCnf p hp.1, encodeArm_uSpecificCnf p hp.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_xvSemanticsCnf (p : PacketOfArm .xv)
     (hp : PacketOfArm.Valid p) :
     Std.Sat.CNF.eval (encodeArm p) xvSemanticsCnf = true := by
@@ -1182,6 +1276,7 @@ private theorem encodeArm_xvSemanticsCnf (p : PacketOfArm .xv)
   rw [xvSemanticsCnf, Std.Sat.CNF.eval_append, Bool.and_eq_true]
   exact ⟨encodeArm_commonSemanticsCnf p hp.1, encodeArm_xvSpecificCnf p hp.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem biSemanticsCnf_decodes {sigma : Nat → Bool}
     (h : baseWellFormed .bi sigma)
     (hEval : Std.Sat.CNF.eval sigma biSemanticsCnf = true) :
@@ -1191,6 +1286,7 @@ private theorem biSemanticsCnf_decodes {sigma : Nat → Bool}
   exact ⟨by simpa [packetCommon] using commonSemanticsCnf_decodes h hEval.1,
     biSpecificCnf_decodes h hEval.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem uSemanticsCnf_decodes {sigma : Nat → Bool}
     (h : baseWellFormed .u sigma)
     (hEval : Std.Sat.CNF.eval sigma uSemanticsCnf = true) :
@@ -1202,6 +1298,7 @@ private theorem uSemanticsCnf_decodes {sigma : Nat → Bool}
   exact ⟨by simpa [packetCommon] using commonSemanticsCnf_decodes h hEval.1,
     uSpecificCnf_decodes h hEval.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem xvSemanticsCnf_decodes {sigma : Nat → Bool}
     (h : baseWellFormed .xv sigma)
     (hEval : Std.Sat.CNF.eval sigma xvSemanticsCnf = true) :
@@ -1215,6 +1312,7 @@ private theorem xvSemanticsCnf_decodes {sigma : Nat → Bool}
 
 /- ## Complete model correspondence -/
 
+/-- Frontier live-closure theorem. -/
 private theorem encodeArm_armCnf {a : SearchArm} (p : PacketOfArm a)
     (hp : PacketOfArm.Valid p) : Std.Sat.CNF.Sat (encodeArm p) (armCnf a) := by
   change Std.Sat.CNF.eval (encodeArm p) (armCnf a) = true
@@ -1232,6 +1330,7 @@ private theorem encodeArm_armCnf {a : SearchArm} (p : PacketOfArm a)
       exact ⟨(roleOneHotCnf_eval_iff_baseWellFormed _ _).mpr (encodeArm_wellFormed p),
         encodeArm_xvSemanticsCnf p hp⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem armCnf_baseWellFormed {a : SearchArm} {sigma : Nat → Bool}
     (hEval : Std.Sat.CNF.Sat sigma (armCnf a)) : baseWellFormed a sigma := by
   change Std.Sat.CNF.eval sigma (armCnf a) = true at hEval
@@ -1240,6 +1339,7 @@ private theorem armCnf_baseWellFormed {a : SearchArm} {sigma : Nat → Bool}
       rw [armCnf, Std.Sat.CNF.eval_append, Bool.and_eq_true] at hEval
       exact (roleOneHotCnf_eval_iff_baseWellFormed _ _).mp hEval.1
 
+/-- Frontier live-closure theorem. -/
 private theorem armCnf_decodes {a : SearchArm} {sigma : Nat → Bool}
     (h : baseWellFormed a sigma) (hEval : Std.Sat.CNF.Sat sigma (armCnf a)) :
     PacketOfArm.Valid (decodeBase h) := by

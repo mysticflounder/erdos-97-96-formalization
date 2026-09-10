@@ -111,11 +111,13 @@ theorem point_mem
 end
 end FirstNonHitNamedRole
 
+/-- Frontier live-closure def. -/
 private def pullback
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (U : Finset ℝ²) :
     Finset (Fin boundary.n) :=
   Finset.univ.filter fun i ↦ boundary.boundary i ∈ U
 
+/-- Frontier live-closure theorem. -/
 private theorem boundary_point_mem
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (i : Fin boundary.n) :
     boundary.boundary i ∈ A := by
@@ -123,11 +125,13 @@ private theorem boundary_point_mem
     Finset.mem_image.mpr ⟨i, Finset.mem_univ i, rfl⟩
   rwa [boundary.boundary_image] at hi
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem mem_pullback_iff
     {A U : Finset ℝ²} (boundary : BoundaryIndexing A) (i : Fin boundary.n) :
     i ∈ pullback boundary U ↔ boundary.boundary i ∈ U := by
   simp [pullback]
 
+/-- Frontier live-closure theorem. -/
 private theorem image_pullback_eq
     {A U : Finset ℝ²} (boundary : BoundaryIndexing A) (hU : U ⊆ A) :
     (pullback boundary U).image boundary.boundary = U := by
@@ -144,6 +148,7 @@ private theorem image_pullback_eq
     exact Finset.mem_image.mpr
       ⟨i, (mem_pullback_iff boundary i).mpr hx, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem card_pullback_eq
     {A U : Finset ℝ²} (boundary : BoundaryIndexing A) (hU : U ⊆ A) :
     (pullback boundary U).card = U.card := by
@@ -153,6 +158,7 @@ private theorem card_pullback_eq
       (Finset.card_image_of_injective _ boundary.boundary_injective).symm
     _ = U.card := congrArg Finset.card (image_pullback_eq boundary hU)
 
+/-- Frontier live-closure theorem. -/
 private theorem boundary_card_eq
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) :
     boundary.n = A.card := by
@@ -162,6 +168,7 @@ private theorem boundary_card_eq
       (Finset.card_image_of_injective _ boundary.boundary_injective).symm
     _ = A.card := congrArg Finset.card boundary.boundary_image
 
+/-- Frontier live-closure theorem. -/
 private theorem pullback_erase_eq
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (deleted : Fin boundary.n) :
     pullback boundary (A.erase (boundary.boundary deleted)) =
@@ -171,6 +178,7 @@ private theorem pullback_erase_eq
     Finset.mem_univ, and_true]
   exact not_congr boundary.boundary_injective.eq_iff
 
+/-- Frontier live-closure theorem. -/
 private theorem image_univ_erase_eq
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (deleted : Fin boundary.n) :
     (Finset.univ.erase deleted).image boundary.boundary =
@@ -178,6 +186,7 @@ private theorem image_univ_erase_eq
   rw [← pullback_erase_eq boundary deleted]
   exact image_pullback_eq boundary (Finset.erase_subset _ _)
 
+/-- Frontier live-closure def. -/
 private def indexedBlockerMap
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A) :
     Fin boundary.n → Fin boundary.n :=
@@ -185,6 +194,7 @@ private def indexedBlockerMap
     boundary.indexOf
       (H.blockerVertex ⟨boundary.boundary i, boundary_point_mem boundary i⟩)
 
+/-- Frontier live-closure theorem. -/
 private theorem indexedBlockerMap_point_eq
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (i : Fin boundary.n) :
@@ -194,6 +204,7 @@ private theorem indexedBlockerMap_point_eq
     boundary.point_eq
       (H.blockerVertex ⟨boundary.boundary i, boundary_point_mem boundary i⟩)
 
+/-- Frontier live-closure theorem. -/
 private theorem indexedBlockerMap_ne
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (i : Fin boundary.n) :
@@ -206,12 +217,14 @@ private theorem indexedBlockerMap_ne
   simpa [CriticalShellSystem.blockerVertex] using
     (indexedBlockerMap_point_eq boundary H i).symm.trans hboundary
 
+/-- Frontier live-closure def. -/
 private def indexedRadiusEq
     {A : Finset ℝ²} (boundary : BoundaryIndexing A)
     (center x y : Fin boundary.n) : Bool :=
   decide (dist (boundary.boundary center) (boundary.boundary x) =
     dist (boundary.boundary center) (boundary.boundary y))
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem indexedRadiusEq_eq_true_iff
     {A : Finset ℝ²} (boundary : BoundaryIndexing A)
     (center x y : Fin boundary.n) :
@@ -220,6 +233,7 @@ private def indexedRadiusEq
         dist (boundary.boundary center) (boundary.boundary y) := by
   simp [indexedRadiusEq]
 
+/-- Frontier live-closure def. -/
 private def indexedRow
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (source : Fin boundary.n) : Finset (Fin boundary.n) :=
@@ -227,6 +241,7 @@ private def indexedRow
     (H.selectedAt (boundary.boundary source)
       (boundary_point_mem boundary source)).toCriticalFourShell.support
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem mem_indexedRow_iff
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (source x : Fin boundary.n) :
@@ -236,6 +251,7 @@ private def indexedRow
           (boundary_point_mem boundary source)).toCriticalFourShell.support := by
   simp [indexedRow]
 
+/-- Frontier live-closure theorem. -/
 private theorem indexedRow_image_eq
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (source : Fin boundary.n) :
@@ -246,6 +262,7 @@ private theorem indexedRow_image_eq
     (H.selectedAt (boundary.boundary source)
       (boundary_point_mem boundary source)).toCriticalFourShell.support_subset_A
 
+/-- Frontier live-closure theorem. -/
 private theorem indexedRow_card
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (source : Fin boundary.n) :
@@ -257,6 +274,7 @@ private theorem indexedRow_card
     (H.selectedAt (boundary.boundary source)
       (boundary_point_mem boundary source)).toCriticalFourShell.support_card
 
+/-- Frontier live-closure theorem. -/
 private theorem indexedRow_source_mem
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (source : Fin boundary.n) :
@@ -266,6 +284,7 @@ private theorem indexedRow_source_mem
     (H.selectedAt (boundary.boundary source)
       (boundary_point_mem boundary source)).toCriticalFourShell.q_mem_support
 
+/-- Frontier live-closure theorem. -/
 private theorem mem_indexedRow_iff_radiusEq
     {A : Finset ℝ²} (boundary : BoundaryIndexing A) (H : CriticalShellSystem A)
     (source x : Fin boundary.n) :
@@ -284,6 +303,7 @@ private theorem mem_indexedRow_iff_radiusEq
     exact K.off_row_named_label_forbidden (boundary_point_mem boundary x)
       (hdist.trans (K.support_eq_radius _ K.q_mem_support))
 
+/-- Frontier live-closure def. -/
 private def indexedHasFourAfterDeleting
     {A : Finset ℝ²} (boundary : BoundaryIndexing A)
     (deleted center : Fin boundary.n) : Bool :=
@@ -292,6 +312,7 @@ private def indexedHasFourAfterDeleting
       ((Finset.univ.erase deleted).image boundary.boundary)
       (boundary.boundary center))
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem indexedHasFourAfterDeleting_eq_true_iff
     {A : Finset ℝ²} (boundary : BoundaryIndexing A)
     (deleted center : Fin boundary.n) :
@@ -301,11 +322,13 @@ private def indexedHasFourAfterDeleting
         (boundary.boundary center) := by
   simp [indexedHasFourAfterDeleting, image_univ_erase_eq]
 
+/-- Frontier live-closure def. -/
 private def indexedInCap
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (boundary : BoundaryIndexing D.A) (source : Fin boundary.n) (cap : Fin 3) : Bool :=
   decide (boundary.boundary source ∈ S.capByIndex cap)
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem indexedInCap_eq_true_iff
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (boundary : BoundaryIndexing D.A) (source : Fin boundary.n) (cap : Fin 3) :
@@ -313,11 +336,13 @@ private def indexedInCap
       boundary.boundary source ∈ S.capByIndex cap := by
   simp [indexedInCap]
 
+/-- Frontier live-closure def. -/
 private def indexedInCapInterior
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (boundary : BoundaryIndexing D.A) (source : Fin boundary.n) (cap : Fin 3) : Bool :=
   decide (boundary.boundary source ∈ S.capInteriorByIndex cap)
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem indexedInCapInterior_eq_true_iff
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (boundary : BoundaryIndexing D.A) (source : Fin boundary.n) (cap : Fin 3) :
@@ -325,6 +350,7 @@ private def indexedInCapInterior
       boundary.boundary source ∈ S.capInteriorByIndex cap := by
   simp [indexedInCapInterior]
 
+/-- Frontier live-closure structure. -/
 private structure BoundaryPacket
     {D : CounterexampleData} (S : SurplusCapPacket D.A) where
   boundary : BoundaryIndexing D.A
@@ -342,6 +368,7 @@ private structure BoundaryPacket
     DirectBoundaryBlocks S boundary.boundary boundary_pos opp1Cut opp2Cut ∨
       MirrorBoundaryBlocks S boundary.boundary boundary_pos opp1Cut opp2Cut
 
+/-- Frontier live-closure theorem. -/
 private theorem boundaryPacket_nonempty
     {D : CounterexampleData} (S : SurplusCapPacket D.A) :
     Nonempty (BoundaryPacket S) := by
@@ -358,6 +385,7 @@ private theorem boundaryPacket_nonempty
     opp2Cut_eq := opp2Cut_eq
     capBlocks := capBlocks }⟩
 
+/-- Frontier live-closure def. -/
 private noncomputable def boundaryPacket
     {D : CounterexampleData} (S : SurplusCapPacket D.A) : BoundaryPacket S :=
   Classical.choice (boundaryPacket_nonempty S)

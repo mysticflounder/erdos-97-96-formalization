@@ -49,10 +49,12 @@ def GlobalOneBoundaryValid (k : Key) : Prop :=
 /-- The old finite validity predicate together with the source-derived guard. -/
 def StrongValid (k : Key) : Prop := k.Valid ∧ GlobalOneBoundaryValid k
 
+/-- Frontier live-closure def. -/
 @[irreducible] noncomputable def strongValidKeys : Finset Key := by
   classical
   exact Finset.univ.filter StrongValid
 
+/-- Frontier live-closure theorem. -/
 theorem mem_strongValidKeys_iff (k : Key) :
     k ∈ strongValidKeys ↔ StrongValid k := by
   simp only [strongValidKeys, Finset.mem_filter, Finset.mem_univ, true_and]
@@ -62,12 +64,14 @@ def StrongValidKeyCover
     (bank : List CardGeThirteenExact13WeightedProviderBankBridge.Entry) : Prop :=
   ∀ k ∈ strongValidKeys, ∃ e ∈ bank, KeyEntryCovers k e
 
+/-- Frontier live-closure theorem. -/
 private theorem sourceIndex_eq_orderIndex
     (I : Input) (orientation : Bool) (ho : sourceOrderValid I orientation) :
     I.P.idx = orderIndex orientation := by
   cases orientation <;>
     simpa [sourceOrderValid, orderIndex, I.coarse.profile_eq_secondOpposite] using ho
 
+/-- Frontier live-closure theorem. -/
 private theorem rawSupport_eq_providerSupport
     (I : Input) (k : Key)
     (hsupport : k.supportOf = I.positionalPattern.supportOf)
@@ -88,6 +92,7 @@ private theorem rawSupport_eq_providerSupport
   · intro hx
     exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem mec_boundary_data (I : Input) :
     (MEC.mec I.D.A I.S.hA).center ∈
         convexHull ℝ {q : ℝ² | q ∈ I.D.A ∧
@@ -115,11 +120,13 @@ private theorem mec_boundary_data (I : Input) :
     · exact I.S.triangleNonObtuse.toMoserTriangle.v2_boundary
   exact ⟨hcenter, hPboundary⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem global_center_mem_carrier (I : Input) (c : Exact13GlobalCenter) :
     I.P.pt c.1 ∈ I.D.A := by
   rw [← I.P.labelMap.image_eq]
   exact Finset.mem_image.mpr ⟨c.1, Finset.mem_univ _, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem global_inter_card_le_one
     (I : Input) (c : Exact13GlobalCenter)
     (Fraw : Finset (Fin 13)) {Fcenter : ℝ²}
@@ -145,6 +152,7 @@ private theorem global_inter_card_le_one
     I.D.convex M.enclosing hcenter (global_center_mem_carrier I c)
     hPboundary ((I.globalRows).row c).1 F hPC
 
+/-- Frontier live-closure theorem. -/
 private theorem global_inter_card_le_one_first
     (I : Input) (c : Exact13GlobalCenter)
     (Fraw : Finset (Fin 13)) {Fcenter : ℝ²}
@@ -177,6 +185,7 @@ private theorem global_inter_card_le_one_first
         simpa [M] using I.S.triangleNonObtuse.toMoserTriangle.v1_boundary)
     ((I.globalRows).row c).1 F hPC
 
+/-- Frontier live-closure theorem. -/
 private theorem source_global_support_eq
     (I : Input) (c : Exact13GlobalCenter) (k : Key)
     (hsupport : k.supportOf = I.positionalPattern.supportOf)
@@ -189,6 +198,7 @@ private theorem source_global_support_eq
   simpa [Input.providerPattern, exact13RawProviderPattern_of_dispatch,
     Exact13RawProviderPattern] using h
 
+/-- Frontier live-closure theorem. -/
 theorem globalOneBoundaryValid_of_source
     (I : Input) (k : Key)
     (_hcenter : k.centerOf = I.positionalPattern.centerOf)
@@ -297,6 +307,7 @@ theorem globalOneBoundaryValid_of_source
       I.X.fivePositionalRows.firstApexRow.rawSupport
       hTclass I.P.labelMap.firstApex_eq.symm hTimage hfirst'
 
+/-- Frontier live-closure theorem. -/
 theorem exists_mem_strongValidKeys (I : Input) :
     ∃ k ∈ strongValidKeys,
       k.centerOf = I.positionalPattern.centerOf ∧
@@ -308,6 +319,7 @@ theorem exists_mem_strongValidKeys (I : Input) :
   exact ⟨k, (mem_strongValidKeys_iff k).2 ⟨hk, hstrong⟩,
     hcenter, hsupport, hz, ho⟩
 
+/-- Frontier live-closure theorem. -/
 theorem bankCovers_of_strongValidKeyCover
     (bank : List CardGeThirteenExact13WeightedProviderBankBridge.Entry)
     (hcover : StrongValidKeyCover bank) :

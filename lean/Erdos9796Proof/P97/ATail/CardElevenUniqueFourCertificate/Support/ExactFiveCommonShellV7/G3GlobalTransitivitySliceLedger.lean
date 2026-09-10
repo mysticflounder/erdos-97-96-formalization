@@ -30,15 +30,21 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 174429
+/-- Exact-five common-shell V7 def. -/
 private def retainedGlobalTransitivityCount : Nat := 10721
+/-- Exact-five common-shell V7 def. -/
 private def globalTransitivityClauseCount : Nat := 78705
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedGlobalTransitivityPayload : String :=
   include_str "data/g3-global-transitivity-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev GlobalTransitivityClauseIndex := Fin globalTransitivityClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -60,10 +66,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array GlobalTransitivityClauseIndex →
       Option (Array GlobalTransitivityClauseIndex)
@@ -83,6 +91,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedGlobalTransitivityIndices :
     Option (Array GlobalTransitivityClauseIndex) := do
   let bytes ← decodeAscii85 retainedGlobalTransitivityPayload
@@ -109,10 +118,12 @@ private def encoderGlobalEqualityTriangles : List GlobalEqualityTriangle :=
       encoderEdges.getD (triple.getD 2 0) (0, 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderGlobalEqualityTriangles_length :
     encoderGlobalEqualityTriangles.length = 26235 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 private def globalEqualityIndex (left right : RawEdge) : Fin 1485 :=
   Fin.ofNat 1485 (encoderGlobalEqRows.idxOf (left, right))
 
@@ -130,6 +141,7 @@ def encoderGlobalTransitivityOccurrences :
       ⟨triangle, Fin.ofNat 3 branch⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderGlobalTransitivityOccurrences_length :
     encoderGlobalTransitivityOccurrences.length =
       globalTransitivityClauseCount := by
@@ -170,6 +182,7 @@ def g3GlobalTransitivitySliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3GlobalTransitivitySlice_size :
     g3GlobalTransitivitySlice.size = retainedGlobalTransitivityCount := by
   native_decide
@@ -187,6 +200,7 @@ theorem g3GlobalTransitivitySlice_perm_checkpoint :
           retainedPrefixCount).take retainedGlobalTransitivityCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem globalTransitivityOccurrenceAt_rows :
     ∀ index : GlobalTransitivityClauseIndex,
       let occurrence := globalTransitivityOccurrenceAt index

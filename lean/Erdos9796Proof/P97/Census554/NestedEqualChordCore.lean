@@ -26,6 +26,7 @@ namespace NestedEqualChordCore
 
 open EqualityCore
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma normSim_dist_sq_eq_one
     {o a p q : ℝ²} (hoa : o ≠ a) (h : dist o a = dist p q) :
     (normSim o a p 0 - normSim o a q 0) ^ 2 +
@@ -42,6 +43,7 @@ private lemma normSim_dist_sq_eq_one
     zero_sub, one_pow, neg_sq] at hSq
   simpa using hSq.symm
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma normSim_signedArea_pos
     {o a p q r : ℝ²} (hoa : o ≠ a) (h : 0 < signedArea2 p q r) :
     0 < signedArea2 (normSim o a p) (normSim o a q) (normSim o a r) := by
@@ -51,6 +53,7 @@ private lemma normSim_signedArea_pos
   rw [← SurplusCOMPGBank.dist_sq_coord a o]
   exact sq_pos_of_pos (dist_pos.mpr hoa.symm)
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma nested_equal_chords_coordinates
     {u v p q m n : ℝ}
     (hb : u ^ 2 + v ^ 2 = 1)

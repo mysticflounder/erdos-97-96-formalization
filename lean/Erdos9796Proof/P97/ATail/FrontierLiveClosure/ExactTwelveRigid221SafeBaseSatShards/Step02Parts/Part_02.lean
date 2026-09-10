@@ -33,6 +33,7 @@ open Census554.CoverCnf
 
 /- ## Incident-variable counting and the generic C4 fold -/
 
+/-- Frontier live-closure theorem. -/
 theorem center_filter_count (idx : Nat → Nat)
     (hidx : ∀ p, p < 12 → idx p < candCount p) (a b p : Nat) (hp : p < 12) :
     (((List.range (candCount p)).filterMap (fun i =>

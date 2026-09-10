@@ -38,6 +38,7 @@ def staticCell1LateThreeCoreCommonFivePositiveChoices : List (RowChoice Label) :
   , { center := 6, support := {4, 5, 9, 10} }
   , { center := 10, support := {3, 5, 8, 11} } ]
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne_staticCell1LateThreeCore
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :
@@ -45,6 +46,7 @@ private theorem FrozenBoundaryOrder.position_ne_of_ne_staticCell1LateThreeCore
   intro heq
   exact hne (order.position_injective heq)
 
+/-- Frontier live-closure theorem. -/
 private theorem six_orders_of_pairwise_ne_staticCell1LateThreeCore
     {a b c : Nat} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
     (a < b ∧ b < c) ∨
@@ -57,6 +59,7 @@ private theorem six_orders_of_pairwise_ne_staticCell1LateThreeCore
 
 -- Arithmetic replay of all 48 source-entitled orders for the three cores.
 set_option maxHeartbeats 2000000 in
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.sourceOrderCoverage_staticCell1LateThreeCoreCommonFive
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     (hforced : FrozenForcedSecondCapOrder order.position) :

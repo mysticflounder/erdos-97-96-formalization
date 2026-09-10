@@ -44,17 +44,24 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure def. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
     requirement := { center := center, support := support } }
 
 -- The six ordered-distinct surplus-center requirements.
+/-- Frontier live-closure def. -/
 def definition3_04 := mkDefinition 45242 3 {0, 4}
+/-- Frontier live-closure def. -/
 def definition3_05 := mkDefinition 45243 3 {0, 5}
+/-- Frontier live-closure def. -/
 def definition4_03 := mkDefinition 45244 4 {0, 3}
+/-- Frontier live-closure def. -/
 def definition4_05 := mkDefinition 45245 4 {0, 5}
+/-- Frontier live-closure def. -/
 def definition5_03 := mkDefinition 45246 5 {0, 3}
+/-- Frontier live-closure def. -/
 def definition5_04 := mkDefinition 45247 5 {0, 4}
 
 /-- The six genuinely fresh definitions, in compiler allocation order. -/
@@ -119,6 +126,7 @@ def implicationDimacs : List (List Int) :=
     positiveMembershipIndexImplicationClauses
       definition.requirement.center (candidateIndicesFor definition) definition
 
+/-- Frontier live-closure def. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (45241 < definition.varIndex ∧
@@ -132,6 +140,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Frontier live-closure theorem. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
@@ -208,6 +217,7 @@ def familyData :
     {a := 5, x := 6, y := 4}, {a := 5, x := 7, y := 4},
     {a := 5, x := 8, y := 4}, {a := 5, x := 9, y := 4}]
 
+/-- Frontier live-closure def. -/
 def familyChoices
     (data : SurplusPairSecondOppositeApexPairCommonFiveData) :
     List (RowChoice Label) :=
@@ -215,6 +225,7 @@ def familyChoices
     {center := data.y, support := {data.a, 0}},
     {center := 1, support := {0, data.x, data.y}}]
 
+/-- Frontier live-closure structure. -/
 structure FamilyEntry where
   data : SurplusPairSecondOppositeApexPairCommonFiveData
   definitions : List PositiveMembershipDefinition
@@ -295,6 +306,7 @@ def entries : List FamilyEntry :=
      definitions := [ApexZeroCrossBlockMembershipFamilyCnf.definition9_05,
        definition4_05, ApexPairCrossBlockMembershipFamilyCnf.definition1_049] }]
 
+/-- Frontier live-closure def. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
@@ -308,11 +320,13 @@ theorem family_shape :
         (45242 ≤ definition.varIndex ∧ definition.varIndex ≤ 45247)) = true := by
   native_decide
 
+/-- Frontier live-closure def. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Frontier live-closure theorem. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧
@@ -325,6 +339,7 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 definition hdefinition)
 
+/-- Frontier live-closure theorem. -/
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
@@ -334,6 +349,7 @@ private theorem reused_definition_le_cutoff
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
 
+/-- Frontier live-closure theorem. -/
 private theorem positiveRowsMatch_of_mixed_blockingClause_false
     (base : Nat → Bool) (row : RowPattern Label)
     (entryDefinitions : List PositiveMembershipDefinition)

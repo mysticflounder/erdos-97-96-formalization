@@ -42,6 +42,7 @@ open StaticTerminalConsumer
 open TerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Exact formula order emitted by the family runner: frozen static parent,

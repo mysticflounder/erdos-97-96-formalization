@@ -31,12 +31,14 @@ open Rigid221Card18FiniteDataExport
 open Rigid221Card18LabeledProjection
 open Rigid221Card18CrossedIncidenceProjection
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedCenter_mem_carrier {D : CounterexampleData}
     (system : CriticalShellSystem D.A) (point : CarrierVertex D.A) :
     system.centerAt point.1 point.2 ∈ D.A :=
   Finset.mem_of_mem_erase
     (system.selectedAt point.1 point.2).toCriticalFourShell.center_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem pointOf_injective {D : CounterexampleData}
     (carrier : Rigid221ExactCardEighteenCarrier D) :
     Function.Injective (pointOf carrier) := by
@@ -86,6 +88,7 @@ noncomputable def deletedCenterSupport
     (deletedCenterVertex source).1
     (deletedCenterVertex source).2).toCriticalFourShell.support
 
+/-- Frontier live-closure theorem. -/
 private theorem physicalFiveSupport_subset_carrier
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -97,6 +100,7 @@ private theorem physicalFiveSupport_subset_carrier
   exact (mem_selectedClass.mp (by
     simpa [physicalFiveSupport] using hpoint)).1
 
+/-- Frontier live-closure def. -/
 private noncomputable def selectedXvLabeledSupport
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -110,6 +114,7 @@ private noncomputable def selectedXvLabeledSupport
     ((lateFirstApexSystem R).selectedAt
       source.packet.xv source.Q.hxvA).toCriticalFourShell.support_card
 
+/-- Frontier live-closure def. -/
 private noncomputable def deletedCenterLabeledSupport
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

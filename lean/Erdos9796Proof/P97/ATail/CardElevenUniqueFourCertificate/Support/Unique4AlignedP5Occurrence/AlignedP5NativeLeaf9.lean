@@ -5,6 +5,7 @@ namespace Problem97.ATailAlignedP5NativeClassifierScratch
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Verifies the aligned P5 placement check for the indicated extra point. -/
 theorem placementCheckForExtra_nine : placementCheckForExtra 9 = true := by
   native_decide
 

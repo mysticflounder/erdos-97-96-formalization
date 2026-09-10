@@ -33,15 +33,21 @@ open CheckpointedRup.SemanticBoundary
 set_option maxRecDepth 100000
 set_option maxHeartbeats 0
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 195378
+/-- Exact-five common-shell V7 def. -/
 private def retainedConvexFiveCount : Nat := 8397
+/-- Exact-five common-shell V7 def. -/
 private def convexFiveClauseCount : Nat := 332640
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedConvexFivePayload : String :=
   include_str "data/g3-convex-five-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev ConvexFiveClauseIndex := Fin convexFiveClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -63,10 +69,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array ConvexFiveClauseIndex →
       Option (Array ConvexFiveClauseIndex)
@@ -86,6 +94,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedConvexFiveIndices :
     Option (Array ConvexFiveClauseIndex) := do
   let bytes ← decodeAscii85 retainedConvexFivePayload
@@ -126,13 +135,16 @@ private def encoderConvexFiveOccurrences : List ConvexFiveOccurrence :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderConvexFiveOccurrences_length :
     encoderConvexFiveOccurrences.length = convexFiveClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 private def convexFiveComboTable : Array (List Nat) :=
   (combos 4 (List.range 10)).toArray
 
+/-- Exact-five common-shell V7 def. -/
 def convexFiveOccurrenceAt
     (index : ConvexFiveClauseIndex) : ConvexFiveOccurrence :=
   let selector := index.val / 2310
@@ -149,6 +161,7 @@ def convexFiveOccurrenceAt
     toLabel (positions.getD 2 0 + 1),
     toLabel (positions.getD 3 0 + 1)⟩
 
+/-- Exact-five common-shell V7 def. -/
 private def convexFiveGlobalEqualityIndex
     (center left right : Label) : Fin 1485 :=
   Fin.ofNat 1485
@@ -190,6 +203,7 @@ def g3ConvexFiveSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3ConvexFiveSlice_size :
     g3ConvexFiveSlice.size = retainedConvexFiveCount := by
   native_decide
@@ -274,6 +288,7 @@ private theorem g3ConvexFiveSlice_all_offsets_valid :
         occurrence.cOffset < occurrence.yOffset)) = true := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem g3ConvexFiveSlice_offsets_valid
     (occurrence : ConvexFiveOccurrence)
     (hoccurrence : occurrence ∈ g3ConvexFiveSlice) :
@@ -285,6 +300,7 @@ private theorem g3ConvexFiveSlice_offsets_valid
   exact of_decide_eq_true
     (hall occurrence (Array.mem_toList_iff.mpr hoccurrence))
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem convexFiveLabelAt_ne_of_ne
     (occurrence : ConvexFiveOccurrence) {first second : Label}
     (h : first ≠ second) :
@@ -295,6 +311,7 @@ private theorem convexFiveLabelAt_ne_of_ne
   intro hsum
   exact h (add_right_cancel hsum)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem convexFiveGlobalEqualityIndex_spec
     (center left right : Label)
     (hcenterLeft : center ≠ left)
@@ -320,6 +337,7 @@ private theorem convexFiveGlobalEqualityIndex_spec
   rw [hindex]
   exact List.idxOf_get hlt
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem g3ConvexFiveSlice_valid
     (occurrence : ConvexFiveOccurrence)
     (hoccurrence : occurrence ∈ g3ConvexFiveSlice) :
@@ -347,6 +365,7 @@ private theorem g3ConvexFiveSlice_valid
       (labelNe (ne_of_lt hcy))
       (labelNe (ne_of_lt (lt_trans hbc hcy)))
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem evalClauseD_five_negative
     (σ : Nat → Bool) {first second third fourth fifth : Nat}
     (hcontra :

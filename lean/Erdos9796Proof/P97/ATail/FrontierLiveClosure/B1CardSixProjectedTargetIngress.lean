@@ -59,6 +59,7 @@ def projectedRawCardSixBad
         (projectedLabelIndex P B (projectedRoleLabel P .Bv))
         (projectedLabelIndex P B (projectedRoleLabel P .v1))))
 
+/-- Frontier live-closure theorem. -/
 theorem projectedRawCardSixBad_iff_raw
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A) :

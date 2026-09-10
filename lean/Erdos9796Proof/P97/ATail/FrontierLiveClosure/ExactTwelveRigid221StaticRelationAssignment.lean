@@ -30,6 +30,7 @@ open StaticRelationSemantics
 open TerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Preserve the complete source-faithful next-row assignment and use actual
@@ -41,6 +42,7 @@ noncomputable def staticAssign
     if v ≤ nextRowFinalNumVars cell then nextRowAssign cell blocker row d v
     else relationAssign pointOf v
 
+/-- Frontier live-closure theorem. -/
 theorem staticAssign_eq_nextRowAssign_of_le
     (cell : FrozenNextRowCell) (blocker : Fin 5 → Label)
     (row : RowPattern Label) (d : Label) (pointOf : Label → ℝ²)
@@ -58,6 +60,7 @@ theorem relationVar_bounds :
       42730 < relationVar e f ∧ relationVar e f ≤ 44875 := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem staticAssign_eq_relationAssign
     (cell : FrozenNextRowCell) (blocker : Fin 5 → Label)
     (row : RowPattern Label) (d : Label) (pointOf : Label → ℝ²)

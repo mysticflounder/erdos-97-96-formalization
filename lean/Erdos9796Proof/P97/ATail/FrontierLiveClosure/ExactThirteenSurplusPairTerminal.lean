@@ -37,6 +37,7 @@ def SurplusRowDistancesEqual (boundary : Fin 13 → ℝ²) (center : Fin 13)
 /-- The two support normal forms left at either adjacent surplus label. -/
 def surplusPairSupport₀ : Finset (Fin 13) := {2, 6, 10, 12}
 
+/-- Frontier live-closure def. -/
 def surplusPairSupport₁ : Finset (Fin 13) := {3, 6, 10, 12}
 
 /-- The source-facing packet for the four-leaf surplus-pair terminal. -/
@@ -50,18 +51,21 @@ structure SurplusPairRows (boundary : Fin 13 → ℝ²) where
   row3 : SurplusRowDistancesEqual boundary 7 support3
   row4 : SurplusRowDistancesEqual boundary 8 support4
 
+/-- Frontier live-closure def. -/
 private def unitTerm (a b c d : Fin 13) (form : KalmansonForm) :
     WeightedKalmansonTerm (Fin 13) :=
   { quad := { a := a, b := b, c := c, d := d }
     form := form
     weight := 1 }
 
+/-- Frontier live-closure theorem. -/
 private theorem oneTerm_check (a b c d : Fin 13) (form : KalmansonForm)
     (hab : a < b) (hbc : b < c) (hcd : c < d) :
     (unitTerm a b c d form).check = true := by
   simp only [WeightedKalmansonTerm.check, unitTerm]
   exact decide_eq_true ⟨hab, hbc, hcd, by decide⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_one_surplusTerm
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {boundary : Fin 13 → ℝ²}
@@ -77,6 +81,7 @@ private theorem false_of_one_surplusTerm
     hA hinj himage hccw [term]
     (by simp) (by simpa using hcheck) (by simpa using hcancel)
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_surplusPair_support₀_support₀
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {boundary : Fin 13 → ℝ²}
@@ -105,6 +110,7 @@ private theorem false_of_surplusPair_support₀_support₀
       OrderedQuadData.rightEdge1, List.map_append, List.map_replicate,
       List.sum_append, List.sum_replicate, nsmul_eq_mul, edgeDist] using hcancel'
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_surplusPair_support₀_support₁
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {boundary : Fin 13 → ℝ²}
@@ -133,6 +139,7 @@ private theorem false_of_surplusPair_support₀_support₁
       OrderedQuadData.rightEdge1, List.map_append, List.map_replicate,
       List.sum_append, List.sum_replicate, nsmul_eq_mul, edgeDist] using hcancel'
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_surplusPair_support₁_support₀
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {boundary : Fin 13 → ℝ²}
@@ -161,6 +168,7 @@ private theorem false_of_surplusPair_support₁_support₀
       OrderedQuadData.rightEdge1, List.map_append, List.map_replicate,
       List.sum_append, List.sum_replicate, nsmul_eq_mul, edgeDist] using hcancel'
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_surplusPair_support₁_support₁
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {boundary : Fin 13 → ℝ²}

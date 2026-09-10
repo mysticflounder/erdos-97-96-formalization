@@ -27,6 +27,7 @@ open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
@@ -160,9 +161,11 @@ def cancellationOccurrences : List CancellationOccurrence := [
       path3 := ⟨(11, 12), [.flip 11 12, .row 12 11 4, .flip 12 4], (4, 12)⟩ } }
 ]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 4 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
@@ -171,6 +174,7 @@ theorem cancellationOccurrences_all_check :
 def fullModelRefinementClauses : Std.Sat.CNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fullModelRefinementClauses_length : fullModelRefinementClauses.length = 16 := by
   native_decide
 
@@ -178,6 +182,7 @@ theorem fullModelRefinementClauses_length : fullModelRefinementClauses.length = 
 def novelModelRefinementClauseIndices : List Nat :=
   [0, 1, 2, 3, 4, 6, 8, 10, 12]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem novelModelRefinementClauseIndices_length :
     novelModelRefinementClauseIndices.length = 9 := by
   native_decide
@@ -187,13 +192,16 @@ def modelRefinementClauses : Std.Sat.CNF Atom :=
   fullModelRefinementClauses.zipIdx.filterMap fun (clause, index) =>
     if index ∈ novelModelRefinementClauseIndices then some clause else none
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem modelRefinementClauses_length : modelRefinementClauses.length = 9 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem modelRefinementClauses_subset :
     ∀ clause ∈ modelRefinementClauses, clause ∈ fullModelRefinementClauses := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fullModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fullModelRefinementClauses,
@@ -208,6 +216,7 @@ theorem sourceAssign_fullModelRefinementClauses
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_modelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ modelRefinementClauses,
@@ -222,6 +231,7 @@ def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixH
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf ++
     modelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf_length :
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf.length =
       7409295 := by
@@ -231,6 +241,7 @@ theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmanson
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf_length,
     modelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :

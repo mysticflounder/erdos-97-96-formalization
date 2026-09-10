@@ -70,45 +70,58 @@ open ATailUniqueFourLateChoiceTerminalScratch
 
 /- ## The variable ranges of the layout -/
 
+/-- Frontier live-closure theorem. -/
 private theorem equalVar_le : ∀ e ∈ edges, ∀ e' ∈ edges, e ≠ e' →
     equalVar (edgeIndex e.1 e.2) (edgeIndex e'.1 e'.2) ≤ 2145 := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem edgeIndex_lt : ∀ e ∈ edges, edgeIndex e.1 e.2 < 66 := by decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem edgeIndex_injOn :
     ∀ e ∈ edges, ∀ e' ∈ edges, edgeIndex e.1 e.2 = edgeIndex e'.1 e'.2 → e = e' := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem xVar_range : ∀ z ∈ others secondApex, 2145 < xVar z ∧ xVar z ≤ 2156 := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem yVar_range : ∀ z ∈ others secondApex, 2156 < yVar z ∧ yVar z ≤ 2167 := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem uVar_range : ∀ z ∈ others firstApex, 2167 < uVar z ∧ uVar z ≤ 2178 := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem k4Selector_range : ∀ c ∈ labels, ∀ qs ∈ k4Selectors c,
     2178 + c * 330 < qs.2 ∧ qs.2 ≤ 2178 + (c + 1) * 330 := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem chiVar_range : ∀ z ∈ labels, ∀ c ∈ blockerCenters z,
     6138 < chiVar z c ∧ chiVar z c ≤ 6259 := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem chiVar_inj : ∀ z ∈ labels, ∀ c ∈ blockerCenters z, ∀ z' ∈ labels,
     ∀ c' ∈ blockerCenters z', chiVar z c = chiVar z' c' → z = z' ∧ c = c' := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem srcVar_range : ∀ z ∈ labels, 6259 < srcVar z ∧ srcVar z ≤ 6271 := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem deletedVar_range : ∀ p ∈ deletedVars, 6271 < p.2 ∧ p.2 ≤ 6279 := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem b2x_eq : b2x = 6280 := by decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem b2y_eq : b2y = 6281 := by decide +kernel
 
 /- ## Injectivity of the relation-variable index -/
@@ -116,16 +129,20 @@ private theorem b2y_eq : b2y = 6281 := by decide +kernel
 /-- The index of the first pair with left element `l` in `combinations(range(66), 2)`. -/
 private def pairBase (l : ℕ) : ℕ := l * 65 - l * (l - 1) / 2
 
+/-- Frontier live-closure theorem. -/
 private theorem pairIndex_eq (l r : ℕ) : pairIndex 66 l r = pairBase l + (r - l - 1) := rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem pairBase_succ :
     ∀ l : Fin 66, pairBase ((l : ℕ) + 1) = pairBase l + (65 - (l : ℕ)) := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem pairBase_succ_le :
     ∀ l l' : Fin 66, l < l' → pairBase ((l : ℕ) + 1) ≤ pairBase l' := by
   decide +kernel
 
+/-- Frontier live-closure theorem. -/
 private theorem pairIndex_lt_of_lt {l r l' r' : ℕ} (hlr : l < r) (hr : r < 66)
     (hl' : l' < r') (hr' : r' < 66) (h : l < l') :
     pairIndex 66 l r < pairIndex 66 l' r' := by
@@ -185,6 +202,7 @@ section PacketVal
 
 variable {pt : Fin 12 → ℝ²} {P : PacketData} {quad : ℕ → Finset ℕ}
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_relation {v : ℕ} (h : v ≤ 2145) :
     packetVal pt P quad v ↔ ∃ e ∈ edges, ∃ e' ∈ edges, e ≠ e' ∧
       v = equalVar (edgeIndex e.1 e.2) (edgeIndex e'.1 e'.2) ∧
@@ -192,27 +210,32 @@ private theorem packetVal_relation {v : ℕ} (h : v ≤ 2145) :
   unfold packetVal
   rw [if_pos h]
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_x {v : ℕ} (h1 : 2145 < v) (h2 : v ≤ 2156) :
     packetVal pt P quad v ↔ ∃ z ∈ others secondApex, v = xVar z ∧ z ∈ P.firstRow := by
   unfold packetVal
   rw [if_neg (by omega), if_pos h2]
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_y {v : ℕ} (h1 : 2156 < v) (h2 : v ≤ 2167) :
     packetVal pt P quad v ↔ ∃ z ∈ others secondApex, v = yVar z ∧ z ∈ P.secondRow := by
   unfold packetVal
   rw [if_neg (by omega), if_neg (by omega), if_pos h2]
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_u {v : ℕ} (h1 : 2167 < v) (h2 : v ≤ 2178) :
     packetVal pt P quad v ↔ ∃ z ∈ others firstApex, v = uVar z ∧ z ∈ P.apexClass := by
   unfold packetVal
   rw [if_neg (by omega), if_neg (by omega), if_neg (by omega), if_pos h2]
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_k4 {v : ℕ} (h1 : 2178 < v) (h2 : v ≤ 6138) :
     packetVal pt P quad v ↔
       ∃ c ∈ labels, ∃ qs ∈ k4Selectors c, v = qs.2 ∧ qs.1.toFinset = quad c := by
   unfold packetVal
   rw [if_neg (by omega), if_neg (by omega), if_neg (by omega), if_neg (by omega), if_pos h2]
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_chi {v : ℕ} (h1 : 6138 < v) (h2 : v ≤ 6259) :
     packetVal pt P quad v ↔
       ∃ z ∈ labels, ∃ c ∈ blockerCenters z, v = chiVar z c ∧ P.blocker z = c := by
@@ -220,28 +243,33 @@ private theorem packetVal_chi {v : ℕ} (h1 : 6138 < v) (h2 : v ≤ 6259) :
   rw [if_neg (by omega), if_neg (by omega), if_neg (by omega), if_neg (by omega),
     if_neg (by omega), if_pos h2]
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_src {v : ℕ} (h1 : 6259 < v) (h2 : v ≤ 6271) :
     packetVal pt P quad v ↔ ∃ z ∈ labels, v = srcVar z ∧ z = P.source := by
   unfold packetVal
   rw [if_neg (by omega), if_neg (by omega), if_neg (by omega), if_neg (by omega),
     if_neg (by omega), if_neg (by omega), if_pos h2]
 
+/-- Frontier live-closure theorem. -/
 private theorem packetVal_deleted {v : ℕ} (h1 : 6271 < v) (h2 : v ≤ 6279) :
     packetVal pt P quad v ↔ ∃ d w, (d, w) ∈ deletedVars ∧ v = w ∧ d = P.deleted := by
   unfold packetVal
   rw [if_neg (by omega), if_neg (by omega), if_neg (by omega), if_neg (by omega),
     if_neg (by omega), if_neg (by omega), if_neg (by omega), if_pos h2]
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_b2x : packetVal pt P quad b2x ↔ P.chosenRow = P.firstRow := by
   rw [b2x_eq]
   unfold packetVal
   simp
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_b2y : packetVal pt P quad b2y ↔ P.chosenRow = P.secondRow := by
   rw [b2y_eq]
   unfold packetVal
   simp
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_xVar {z : ℕ} (hz : z ∈ others secondApex) :
     packetVal pt P quad (xVar z) ↔ z ∈ P.firstRow := by
   obtain ⟨h1, h2⟩ := xVar_range z hz
@@ -253,6 +281,7 @@ theorem packetVal_xVar {z : ℕ} (hz : z ∈ others secondApex) :
   · intro h
     exact ⟨z, hz, rfl, h⟩
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_yVar {z : ℕ} (hz : z ∈ others secondApex) :
     packetVal pt P quad (yVar z) ↔ z ∈ P.secondRow := by
   obtain ⟨h1, h2⟩ := yVar_range z hz
@@ -264,6 +293,7 @@ theorem packetVal_yVar {z : ℕ} (hz : z ∈ others secondApex) :
   · intro h
     exact ⟨z, hz, rfl, h⟩
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_uVar {z : ℕ} (hz : z ∈ others firstApex) :
     packetVal pt P quad (uVar z) ↔ z ∈ P.apexClass := by
   obtain ⟨h1, h2⟩ := uVar_range z hz
@@ -275,6 +305,7 @@ theorem packetVal_uVar {z : ℕ} (hz : z ∈ others firstApex) :
   · intro h
     exact ⟨z, hz, rfl, h⟩
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_chiVar {z c : ℕ} (hz : z ∈ labels) (hc : c ∈ blockerCenters z) :
     packetVal pt P quad (chiVar z c) ↔ P.blocker z = c := by
   obtain ⟨h1, h2⟩ := chiVar_range z hz c hc
@@ -286,6 +317,7 @@ theorem packetVal_chiVar {z c : ℕ} (hz : z ∈ labels) (hc : c ∈ blockerCent
   · intro h
     exact ⟨z, hz, c, hc, rfl, h⟩
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_srcVar {z : ℕ} (hz : z ∈ labels) :
     packetVal pt P quad (srcVar z) ↔ z = P.source := by
   obtain ⟨h1, h2⟩ := srcVar_range z hz
@@ -297,6 +329,7 @@ theorem packetVal_srcVar {z : ℕ} (hz : z ∈ labels) :
   · intro h
     exact ⟨z, hz, rfl, h⟩
 
+/-- Frontier live-closure theorem. -/
 theorem packetVal_deletedVar {d w : ℕ} (hdw : (d, w) ∈ deletedVars) :
     packetVal pt P quad w ↔ d = P.deleted := by
   obtain ⟨h1, h2⟩ := deletedVar_range (d, w) hdw
@@ -391,10 +424,12 @@ open Classical in
 noncomputable def labelsOf (pt : Fin 12 → ℝ²) (T : Finset ℝ²) : Finset ℕ :=
   (Finset.range 12).filter fun z => pt (label z) ∈ T
 
+/-- Frontier live-closure theorem. -/
 theorem mem_labelsOf {pt : Fin 12 → ℝ²} {T : Finset ℝ²} {z : ℕ} :
     z ∈ labelsOf pt T ↔ z < 12 ∧ pt (label z) ∈ T := by
   simp [labelsOf]
 
+/-- Frontier live-closure theorem. -/
 theorem labelsOf_inter (pt : Fin 12 → ℝ²) (T T' : Finset ℝ²) :
     labelsOf pt (T ∩ T') = labelsOf pt T ∩ labelsOf pt T' := by
   ext z
@@ -405,14 +440,17 @@ theorem labelsOf_inter (pt : Fin 12 → ℝ²) (T T' : Finset ℝ²) :
 noncomputable def labelOf (pt : Fin 12 → ℝ²) (x : ℝ²) : ℕ :=
   if h : ∃ l : Fin 12, pt l = x then ((Classical.choose h : Fin 12) : ℕ) else 0
 
+/-- Frontier live-closure theorem. -/
 theorem labelOf_lt (pt : Fin 12 → ℝ²) (x : ℝ²) : labelOf pt x < 12 := by
   unfold labelOf
   split
   · exact Fin.isLt _
   · norm_num
 
+/-- Frontier live-closure theorem. -/
 theorem label_coe (l : Fin 12) : label (l : ℕ) = l := Fin.ext (label_val l.isLt)
 
+/-- Frontier live-closure theorem. -/
 theorem pt_label_labelOf {pt : Fin 12 → ℝ²} {x : ℝ²} (h : ∃ l : Fin 12, pt l = x) :
     pt (label (labelOf pt x)) = x := by
   unfold labelOf
@@ -423,28 +461,34 @@ namespace LabelMap
 
 variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {pt : Fin 12 → ℝ²}
 
+/-- Frontier live-closure theorem. -/
 theorem mem_A (hL : LabelMap S pt) (l : Fin 12) : pt l ∈ D.A := by
   rw [← hL.image_eq]
   exact Finset.mem_image_of_mem pt (Finset.mem_univ l)
 
+/-- Frontier live-closure theorem. -/
 theorem exists_label (hL : LabelMap S pt) {x : ℝ²} (hx : x ∈ D.A) :
     ∃ l : Fin 12, pt l = x := by
   rw [← hL.image_eq] at hx
   obtain ⟨l, -, hl⟩ := Finset.mem_image.mp hx
   exact ⟨l, hl⟩
 
+/-- Frontier live-closure theorem. -/
 theorem pt_labelOf (hL : LabelMap S pt) {x : ℝ²} (hx : x ∈ D.A) :
     pt (label (labelOf pt x)) = x :=
   pt_label_labelOf (hL.exists_label hx)
 
+/-- Frontier live-closure theorem. -/
 theorem label_inj (hL : LabelMap S pt) {a b : ℕ} (ha : a < 12) (hb : b < 12)
     (h : pt (label a) = pt (label b)) : a = b :=
   label_injective ha hb (hL.injective h)
 
+/-- Frontier live-closure theorem. -/
 theorem labelOf_pt (hL : LabelMap S pt) {z : ℕ} (hz : z < 12) :
     labelOf pt (pt (label z)) = z :=
   hL.label_inj (labelOf_lt pt _) hz (hL.pt_labelOf (hL.mem_A _))
 
+/-- Frontier live-closure theorem. -/
 theorem card_labelsOf (hL : LabelMap S pt) {T : Finset ℝ²} (hT : T ⊆ D.A) :
     (labelsOf pt T).card = T.card := by
   have himg : (labelsOf pt T).image (fun z => pt (label z)) = T := by
@@ -481,6 +525,7 @@ theorem toFinset_eq_labelsOf (hL : LabelMap S pt) {l : List ℕ} (hl : ∀ z ∈
     rw [← hL.label_inj (hl z' hz') hz12 heq]
     exact hz'
 
+/-- Frontier live-closure theorem. -/
 theorem card_toFinset_inter_labelsOf (hL : LabelMap S pt) {l : List ℕ} (hl : ∀ z ∈ l, z < 12)
     {I : Finset ℝ²} (himg : l.toFinset.image (fun z => pt (label z)) = I) {T : Finset ℝ²}
     (hT : T ⊆ D.A) : (l.toFinset ∩ labelsOf pt T).card = (I ∩ T).card := by
@@ -489,6 +534,7 @@ theorem card_toFinset_inter_labelsOf (hL : LabelMap S pt) {l : List ℕ} (hl : �
 
 end LabelMap
 
+/-- Frontier live-closure theorem. -/
 theorem image_append_singleton {pt : Fin 12 → ℝ²} {l : List ℕ} {I : Finset ℝ²}
     (hI : l.toFinset.image (fun z => pt (label z)) = I) (a : ℕ) :
     (l ++ [a]).toFinset.image (fun z => pt (label z)) = I ∪ {pt (label a)} := by
@@ -497,6 +543,7 @@ theorem image_append_singleton {pt : Fin 12 → ℝ²} {l : List ℕ} {I : Finse
 
 /- ## Closed caps as interiors plus apexes -/
 
+/-- Frontier live-closure theorem. -/
 private theorem mem_iff_erase_erase {C : Finset ℝ²} {v w : ℝ²} (hv : v ∈ C) (hw : w ∈ C)
     (x : ℝ²) : x ∈ C ↔ x ∈ (C.erase v).erase w ∨ x = v ∨ x = w := by
   simp only [Finset.mem_erase]
@@ -600,6 +647,7 @@ section Rows
 
 variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {pt : Fin 12 → ℝ²}
 
+/-- Frontier live-closure theorem. -/
 private theorem row_equidistant (hL : LabelMap S pt) (row : SelectedFourClass D.A S.oppApex2) :
     ∀ a ∈ others secondApex, ∀ b ∈ others secondApex,
       a ∈ labelsOf pt row.support → b ∈ labelsOf pt row.support →
@@ -609,6 +657,7 @@ private theorem row_equidistant (hL : LabelMap S pt) (row : SelectedFourClass D.
   rw [hL.secondApex_eq, row.support_eq_radius _ (mem_labelsOf.mp ha).2,
     row.support_eq_radius _ (mem_labelsOf.mp hb).2]
 
+/-- Frontier live-closure theorem. -/
 private theorem row_closed (hL : LabelMap S pt) (row : SelectedFourClass D.A S.oppApex2)
     (hrow : row.support = SelectedClass D.A S.oppApex2 row.radius) :
     ∀ a ∈ others secondApex, ∀ b ∈ others secondApex, a ∈ labelsOf pt row.support →
@@ -685,14 +734,17 @@ end Rows
 
 /- ## The late blocker centers and the ingress -/
 
+/-- Frontier live-closure theorem. -/
 private theorem centerAt_mem_A {A : Finset ℝ²} (H : CriticalShellSystem A) {q : ℝ²}
     (hq : q ∈ A) : H.centerAt q hq ∈ A :=
   (Finset.mem_erase.mp (H.selectedAt q hq).toCriticalFourShell.center_mem).2
 
+/-- Frontier live-closure theorem. -/
 private theorem centerAt_ne_self {A : Finset ℝ²} (H : CriticalShellSystem A) {q : ℝ²}
     (hq : q ∈ A) : H.centerAt q hq ≠ q :=
   (Finset.mem_erase.mp (H.selectedAt q hq).toCriticalFourShell.center_mem).1
 
+/-- Frontier live-closure theorem. -/
 private theorem centerAt_congr {A : Finset ℝ²} (H : CriticalShellSystem A) {x y : ℝ²}
     (hx : x ∈ A) (hy : y ∈ A) (h : x = y) : H.centerAt x hx = H.centerAt y hy := by
   subst h
@@ -742,6 +794,7 @@ private theorem shell_iff_of {D : CounterexampleData} {S : SurplusCapPacket D.A}
     exact (H.selectedAt src hsrc).toCriticalFourShell.support_eq_radius _
       (H.selectedAt src hsrc).toCriticalFourShell.q_mem_support
 
+/-- Frontier live-closure theorem. -/
 private theorem mem_deletedKeys_of {d : ℕ} (h12 : d < 12) (hIS : d ∉ surplusInterior)
     (h1 : d ≠ firstApex) : d ∈ deletedKeys := by
   interval_cases d <;> first | decide | exact absurd (by decide) hIS | exact absurd rfl h1

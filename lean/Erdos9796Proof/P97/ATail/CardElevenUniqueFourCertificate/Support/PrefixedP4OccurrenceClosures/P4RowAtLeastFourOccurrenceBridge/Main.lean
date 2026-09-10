@@ -19,16 +19,20 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Prefixed P4 occurrence-closure def. -/
 def bridgeClauses : List (List Int) := bridgeEntries.map BridgeEntry.clause
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem bridgeClauses_length : bridgeClauses.length = 981 := by
   simp [bridgeClauses, bridgeEntries_length]
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem bridgeEntries_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) :
     ∀ e ∈ bridgeEntries, clauseSat v e.clause :=
   entryList_sat P hv bridgeEntries bridgeEntries_wf
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem bridgeClauses_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) :
     ∀ clause ∈ bridgeClauses, clauseSat v clause := by

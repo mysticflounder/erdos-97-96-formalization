@@ -19,6 +19,7 @@ open scoped EuclideanGeometry
 namespace Problem97
 namespace ATailFrontierLiveClosure
 
+/-- Frontier live-closure theorem. -/
 private theorem btw_iff_signedArea2_pos_of_lt
     {n : ℕ} {psi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon psi)
@@ -35,6 +36,7 @@ private theorem btw_iff_signedArea2_pos_of_lt
   · intro hpos
     exact Or.inl (htrich.1.mp hpos)
 
+/-- Frontier live-closure theorem. -/
 private theorem btw_iff_signedArea2_neg_of_gt
     {n : ℕ} {psi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon psi)
@@ -60,6 +62,7 @@ private theorem btw_iff_signedArea2_neg_of_gt
       rw [hswap]
       constructor <;> intro h <;> linarith
 
+/-- Frontier live-closure theorem. -/
 private theorem signedArea2_ne_zero_of_ne_endpoints
     {n : ℕ} {psi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon psi)
@@ -72,6 +75,7 @@ private theorem signedArea2_ne_zero_of_ne_endpoints
   · exact hki rfl
   · exact hkj rfl
 
+/-- Frontier live-closure theorem. -/
 private theorem signedArea2_ne_zero_of_ne_endpoints_any
     {n : ℕ} {psi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon psi)
@@ -93,6 +97,7 @@ private theorem signedArea2_ne_zero_of_ne_endpoints_any
     rw [hswap] at hzero
     linarith
 
+/-- Frontier live-closure theorem. -/
 private theorem iff_same_side_mul_pos
     {P Q : Prop} {a b : ℝ}
     (ha : a ≠ 0) (hb : b ≠ 0)
@@ -138,6 +143,7 @@ private theorem iff_same_side_mul_pos
         · exact (hP h).elim
         · exact (hQ h).elim
 
+/-- Frontier live-closure theorem. -/
 private theorem iff_not_iff_of_iff
     {P Q : Prop} : (¬ P ↔ ¬ Q) ↔ (P ↔ Q) := by
   constructor
@@ -213,6 +219,7 @@ theorem signedArea2_mul_neg_of_two_circle_intersections
   rw [show Problem97.signedArea2 y a b = -Problem97.signedArea2 x a b by linarith [hsep]]
   nlinarith [sq_pos_of_ne_zero hA_ne]
 
+/-- Frontier live-closure theorem. -/
 theorem cyclicAdjacent_iff_signedArea2_mul_pos
     {n : ℕ} {psi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon psi)
@@ -259,6 +266,7 @@ theorem cyclicAdjacent_iff_signedArea2_mul_pos
     have hnegSame := iff_same_side_mul_pos hpn hqn hp_pos hq_pos
     exact iff_not_iff_of_iff.symm.trans hnegSame
 
+/-- Frontier live-closure theorem. -/
 theorem not_cyclicAdjacent_iff_signedArea2_mul_neg
     {n : ℕ} {psi : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon psi)

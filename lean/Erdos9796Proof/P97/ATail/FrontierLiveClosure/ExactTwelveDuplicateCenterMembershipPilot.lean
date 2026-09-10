@@ -15,11 +15,14 @@ namespace Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershi
 
 open Problem97.ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := Fin 12
 
+/-- Frontier live-closure def. -/
 def bank : List (DuplicateCenterNogood Label) :=
   Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_001.bank ++ Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_002.bank ++ Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_003.bank ++ Problem97.ATailFrontierLiveClosure.ExactTwelveDuplicateCenterMembershipPilotShards.Part_004.bank
 
+/-- Frontier live-closure theorem. -/
 theorem bank_valid : ∀ nogood ∈ bank, nogood.check = true := by
   intro nogood hmem
   simp only [bank, List.mem_append] at hmem

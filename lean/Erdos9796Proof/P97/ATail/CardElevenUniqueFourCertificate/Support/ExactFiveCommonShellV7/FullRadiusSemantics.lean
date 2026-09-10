@@ -281,6 +281,7 @@ noncomputable def CanonicalPacket.fullRadiusValuation
   | some meaning => P.fullRadiusMeaningValue shadow selected meaning
   | none => false
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_encodeG3Var
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -293,6 +294,7 @@ noncomputable def CanonicalPacket.fullRadiusValuation
       P.fullRadiusMeaningValue shadow selected meaning := by
   simp [CanonicalPacket.fullRadiusValuation, decodeG3Var_encodeG3Var]
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_prefix
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -327,6 +329,7 @@ theorem CanonicalPacket.fullRadiusValuation_eq_fullSourceChoice_of_lt
   rw [← hindex]
   exact P.fullRadiusValuation_prefix shadow selected index
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_localEquality
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -342,6 +345,7 @@ theorem CanonicalPacket.fullRadiusValuation_eq_fullSourceChoice_of_lt
     P.fullRadiusValuation_encodeG3Var shadow selected
       (.localEquality index)
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_sourceCenter
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -357,6 +361,7 @@ theorem CanonicalPacket.fullRadiusValuation_eq_fullSourceChoice_of_lt
     P.fullRadiusValuation_encodeG3Var shadow selected
       (.sourceCenter index)
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_usedCenter
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -371,6 +376,7 @@ theorem CanonicalPacket.fullRadiusValuation_eq_fullSourceChoice_of_lt
   simpa [CanonicalPacket.fullRadiusMeaningValue] using
     P.fullRadiusValuation_encodeG3Var shadow selected (.usedCenter index)
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_globalEquality
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -386,6 +392,7 @@ theorem CanonicalPacket.fullRadiusValuation_eq_fullSourceChoice_of_lt
     P.fullRadiusValuation_encodeG3Var shadow selected
       (.globalEquality index)
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_localFour
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -400,6 +407,7 @@ theorem CanonicalPacket.fullRadiusValuation_eq_fullSourceChoice_of_lt
   simpa [CanonicalPacket.fullRadiusMeaningValue] using
     P.fullRadiusValuation_encodeG3Var shadow selected (.localFour index)
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_qDeletedPair
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -415,6 +423,7 @@ theorem CanonicalPacket.fullRadiusValuation_eq_fullSourceChoice_of_lt
     P.fullRadiusValuation_encodeG3Var shadow selected
       (.qDeletedPair index)
 
+/-- Exact-five common-shell V7 theorem. -/
 @[simp] theorem CanonicalPacket.fullRadiusValuation_selector
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

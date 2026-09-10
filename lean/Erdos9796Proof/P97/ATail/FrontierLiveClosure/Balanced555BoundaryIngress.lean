@@ -95,6 +95,7 @@ def Balanced555BoundaryLabeling.pointOf
     (L : Balanced555BoundaryLabeling R C N I) : Fin 12 → ℝ² :=
   fun i ↦ (L.labels.symm i).1
 
+/-- Frontier live-closure theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -102,6 +103,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem subset_image_Ioo {boundary : Fin 12 → ℝ²} {T : Finset ℝ²}
     {a b : Fin 12}
     (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ q < b ∧ boundary q = x) :
@@ -110,6 +112,7 @@ private theorem subset_image_Ioo {boundary : Fin 12 → ℝ²} {T : Finset ℝ²
   obtain ⟨q, hq1, hq2, rfl⟩ := h x hx
   exact Finset.mem_image_of_mem _ (Finset.mem_Ioo.mpr ⟨hq1, hq2⟩)
 
+/-- Frontier live-closure theorem. -/
 private theorem subset_image_Ioi {boundary : Fin 12 → ℝ²} {T : Finset ℝ²}
     {a : Fin 12} (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ boundary q = x) :
     T ⊆ (Finset.Ioi a).image boundary := by
@@ -117,6 +120,7 @@ private theorem subset_image_Ioi {boundary : Fin 12 → ℝ²} {T : Finset ℝ²
   obtain ⟨q, hq, rfl⟩ := h x hx
   exact Finset.mem_image_of_mem _ (Finset.mem_Ioi.mpr hq)
 
+/-- Frontier live-closure theorem. -/
 private theorem card_le_of_Ioo {boundary : Fin 12 → ℝ²} {T : Finset ℝ²}
     {a b : Fin 12}
     (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ q < b ∧ boundary q = x) :
@@ -127,6 +131,7 @@ private theorem card_le_of_Ioo {boundary : Fin 12 → ℝ²} {T : Finset ℝ²}
     _ ≤ (Finset.Ioo a b).card := Finset.card_image_le
     _ = (b : ℕ) - a - 1 := Fin.card_Ioo a b
 
+/-- Frontier live-closure theorem. -/
 private theorem card_le_of_Ioi {boundary : Fin 12 → ℝ²} {T : Finset ℝ²}
     {a : Fin 12} (h : ∀ x ∈ T, ∃ q : Fin 12, a < q ∧ boundary q = x) :
     T.card ≤ 12 - 1 - (a : ℕ) := by
@@ -136,6 +141,7 @@ private theorem card_le_of_Ioi {boundary : Fin 12 → ℝ²} {T : Finset ℝ²}
     _ ≤ (Finset.Ioi a).card := Finset.card_image_le
     _ = 12 - 1 - (a : ℕ) := Fin.card_Ioi a
 
+/-- Frontier live-closure theorem. -/
 private theorem labelsOf_eq_of_exact_block
     {A T : Finset ℝ²} {boundary : Fin 12 → ℝ²}
     (labels : CarrierLabel A ≃ Fin 12)

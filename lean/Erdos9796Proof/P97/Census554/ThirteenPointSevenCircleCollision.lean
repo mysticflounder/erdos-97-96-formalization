@@ -31,12 +31,14 @@ namespace Problem97
 namespace Census554
 namespace EqualityCore
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma epsilon_t_sq
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (epsilon * t) ^ 2 = 3 := by
   rw [mul_pow, hepsilon, ht]
   norm_num
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma first_coefficient_sq
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (3 + epsilon * t) ^ 2 = 12 + 6 * (epsilon * t) := by
@@ -45,6 +47,7 @@ private lemma first_coefficient_sq
         9 + 6 * (epsilon * t) + epsilon ^ 2 * t ^ 2 := by ring
     _ = 12 + 6 * (epsilon * t) := by rw [hepsilon, ht]; ring
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma second_coefficient_sq
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (5 * epsilon + 3 * t) ^ 2 = 52 + 30 * (epsilon * t) := by
@@ -53,6 +56,7 @@ private lemma second_coefficient_sq
         25 * epsilon ^ 2 + 30 * (epsilon * t) + 9 * t ^ 2 := by ring
     _ = 52 + 30 * (epsilon * t) := by rw [hepsilon, ht]; ring
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma coefficient_product
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (3 + epsilon * t) * (5 * epsilon + 3 * t) = 24 * epsilon + 14 * t := by
@@ -62,6 +66,7 @@ private lemma coefficient_product
       ring
     _ = 24 * epsilon + 14 * t := by rw [hepsilon, ht]; ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem branch_quadratic_invariants
     (epsilon t c s : ℝ)
     (hepsilon : epsilon ^ 2 = 1)
@@ -116,6 +121,7 @@ private theorem branch_quadratic_invariants
           _ = epsilon / 4 := by rw [hepsilon, ht]; ring
   exact ⟨hc, hs, hcs⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem forced_left_sq
     (epsilon t c s : ℝ)
     (hepsilon : epsilon ^ 2 = 1)
@@ -142,6 +148,7 @@ private theorem forced_left_sq
     _ = 62 + 35 * (epsilon * t) := by
       nlinarith
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem forced_right_sq
     (epsilon t : ℝ)
     (hepsilon : epsilon ^ 2 = 1)
@@ -150,6 +157,7 @@ private theorem forced_right_sq
   have het := epsilon_t_sq epsilon t hepsilon ht
   nlinarith
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem residual_conjugate_identity
     (epsilon t c s : ℝ)
     (hepsilon : epsilon ^ 2 = 1)
@@ -165,6 +173,7 @@ private theorem residual_conjugate_identity
   have het := epsilon_t_sq epsilon t hepsilon ht
   nlinarith
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem final_linear_equality_impossible
     (epsilon t c s : ℝ)
     (hepsilon : epsilon ^ 2 = 1)
@@ -184,12 +193,15 @@ private theorem final_linear_equality_impossible
   rw [hsquares] at hcertificate
   norm_num at hcertificate
 
+/-- Census-554 certificate-bank def. -/
 private noncomputable def p11X (t c s : ℝ) : ℝ :=
   1 + (c - t * s) / 2
 
+/-- Census-554 certificate-bank def. -/
 private noncomputable def p11Y (t c s : ℝ) : ℝ :=
   (t * c + s) / 2
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma p11_norm_sq
     (t c s : ℝ)
     (ht : t ^ 2 = 3)
@@ -202,6 +214,7 @@ private lemma p11_norm_sq
       ring
     _ = 2 + c - t * s := by rw [ht, hunit]; ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_k4_membership_forces_linear_equality
     (epsilon t c s A : ℝ)
     (hepsilon : epsilon ^ 2 = 1)
@@ -270,6 +283,7 @@ private theorem normalized_k4_membership_forces_linear_equality
   rw [hp11Circle'] at htwice
   linarith
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_k4_membership_impossible
     (epsilon t c s A : ℝ)
     (hepsilon : epsilon ^ 2 = 1)
@@ -289,6 +303,7 @@ private theorem normalized_k4_membership_impossible
   exact final_linear_equality_impossible
     epsilon t c s hepsilon ht hc hs hcs hforced
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem second_circle_intersection_coordinates
     (t c s u v : ℝ)
     (ht : t ^ 2 = 3)
@@ -362,6 +377,7 @@ private theorem second_circle_intersection_coordinates
     sub_eq_zero.mp ((mul_eq_zero.mp hvProduct).resolve_left hs)
   exact ⟨hu, hv⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem coord_sqdist_eq_of_dist_eq {a b c d : ℝ²}
     (h : dist a b = dist c d) :
     (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 =
@@ -369,6 +385,7 @@ private theorem coord_sqdist_eq_of_dist_eq {a b c d : ℝ²}
   have hsq := congrArg (fun x : ℝ => x ^ 2) h
   simpa only [Problem97.dist_sq_coord] using hsq
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem plane_eq_of_coords {p q : ℝ²}
     (h0 : p 0 = q 0) (h1 : p 1 = q 1) : p = q := by
   ext i
@@ -376,6 +393,7 @@ private theorem plane_eq_of_coords {p q : ℝ²}
   · exact h0
   · exact h1
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_base_frame
     (pointOf : Fin 13 → ℝ²)
     (hinjective : Function.Injective pointOf)
@@ -466,6 +484,7 @@ private theorem normalized_base_frame
     · simpa [pt] using hy6
   exact ⟨t, ht, h3, h1, h6⟩
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_thirteenPointSevenCircle_incompatible
     (pointOf : Fin 13 → ℝ²)
     (hinjective : Function.Injective pointOf)

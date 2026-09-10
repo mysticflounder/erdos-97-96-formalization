@@ -34,6 +34,7 @@ attribute [local instance] Classical.propDecidable
 /-- The non-apex raw labels, represented without hard-coded label pins. -/
 def Exact13GlobalCenter : Type := {c : Fin 13 // 2 ≤ c.val}
 
+/-- Frontier live-closure instance. -/
 instance instDecidableEqExact13GlobalCenter : DecidableEq Exact13GlobalCenter :=
   fun a b =>
     if h : a.val = b.val then

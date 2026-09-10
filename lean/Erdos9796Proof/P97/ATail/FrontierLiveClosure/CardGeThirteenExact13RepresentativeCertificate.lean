@@ -29,11 +29,15 @@ open ProviderRowNogoodCertificate
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure def. -/
 def mirrorPosition (i : Fin 13) : Fin 13 := orderIndex true i
 
+/-- Frontier live-closure def. -/
 def wave5G12 : Exact13Provider := .g ⟨12, by decide⟩
+/-- Frontier live-closure def. -/
 def wave5G8 : Exact13Provider := .g ⟨8, by decide⟩
 
+/-- Frontier live-closure def. -/
 def oneFormCenters : Exact13Provider → Fin 13
   | .c0 => 10
   | .c1 => 12
@@ -42,6 +46,7 @@ def oneFormCenters : Exact13Provider → Fin 13
   | .t => 7
   | .g center => mirrorPosition center.1
 
+/-- Frontier live-closure def. -/
 def oneFormSupports : Exact13Provider → Finset (Fin 13)
   | .c0 => {1, 2, 11, 12}
   | .c1 => {3, 4, 5, 6}
@@ -55,6 +60,7 @@ def oneFormSupports : Exact13Provider → Finset (Fin 13)
       else if center.1 = 12 then ∅
       else {9, 10, 11, 12}
 
+/-- Frontier live-closure def. -/
 def oneFormKey : Key where
   centerOf := oneFormCenters
   supportOf := oneFormSupports
@@ -64,10 +70,12 @@ def oneFormKey : Key where
   b := 12
   other := .c0
 
+/-- Frontier live-closure def. -/
 def oneFormChoices : List (ProviderRowChoice Exact13Provider (Fin 13)) :=
   [ exact13ProviderEdgeChoice .l (mirrorPosition 11) (mirrorPosition 8)
   , exact13ProviderEdgeChoice .t (mirrorPosition 11) (mirrorPosition 8) ]
 
+/-- Frontier live-closure def. -/
 def oneFormData : ProviderWeightedKalmansonCancellationData Exact13Provider 13 :=
   { terms :=
       [ { quad := ⟨mirrorPosition 0, mirrorPosition 1,
@@ -88,16 +96,19 @@ def oneFormData : ProviderWeightedKalmansonCancellationData Exact13Provider 13 :
               steps := [ .row .t (mirrorPosition 8) (mirrorPosition 11) ]
               last := (mirrorPosition 1, mirrorPosition 11) } } ] }
 
+/-- Frontier live-closure def. -/
 def oneFormEntry : Entry where
   centers := oneFormCenters
   choices := oneFormChoices
   data := oneFormData
   checked := by decide
 
+/-- Frontier live-closure def. -/
 def oneFormCandidates : List Candidate :=
   [ ⟨.l, 11, 8, true⟩
   , ⟨.t, 11, 8, true⟩ ]
 
+/-- Frontier live-closure def. -/
 def twoFormCenters : Exact13Provider → Fin 13
   | .c0 => 11
   | .c1 => 1
@@ -106,6 +117,7 @@ def twoFormCenters : Exact13Provider → Fin 13
   | .t => 7
   | .g center => mirrorPosition center.1
 
+/-- Frontier live-closure def. -/
 def twoFormSupports : Exact13Provider → Finset (Fin 13)
   | .c0 => {0, 4, 6, 9}
   | .c1 => {3, 5, 7, 12}
@@ -125,6 +137,7 @@ def twoFormSupports : Exact13Provider → Finset (Fin 13)
       else if center.1 = 5 then {2, 4, 7, 8}
       else {0, 1, 6, 7}
 
+/-- Frontier live-closure def. -/
 def twoFormKey : Key where
   centerOf := twoFormCenters
   supportOf := twoFormSupports
@@ -134,11 +147,13 @@ def twoFormKey : Key where
   b := 2
   other := .c0
 
+/-- Frontier live-closure def. -/
 def twoFormChoices : List (ProviderRowChoice Exact13Provider (Fin 13)) :=
   [ exact13ProviderEdgeChoice .l (mirrorPosition 12) (mirrorPosition 9)
   , exact13ProviderEdgeChoice wave5G12 (mirrorPosition 9) (mirrorPosition 1)
   , exact13ProviderEdgeChoice wave5G8 (mirrorPosition 1) (mirrorPosition 12) ]
 
+/-- Frontier live-closure def. -/
 def twoFormData : ProviderWeightedKalmansonCancellationData Exact13Provider 13 :=
   { terms :=
       [ { quad := ⟨mirrorPosition 0, mirrorPosition 1,
@@ -180,25 +195,30 @@ def twoFormData : ProviderWeightedKalmansonCancellationData Exact13Provider 13 :
                 , .row wave5G8 (mirrorPosition 1) (mirrorPosition 12) ]
               last := (mirrorPosition 8, mirrorPosition 12) } } ] }
 
+/-- Frontier live-closure def. -/
 def twoFormEntry : Entry where
   centers := twoFormCenters
   choices := twoFormChoices
   data := twoFormData
   checked := by decide
 
+/-- Frontier live-closure def. -/
 def twoFormCandidates : List Candidate :=
   [ ⟨.l, 12, 9, true⟩
   , ⟨wave5G12, 9, 1, true⟩
   , ⟨wave5G8, 1, 12, true⟩ ]
 
+/-- Frontier live-closure theorem. -/
 theorem oneForm_data_check :
     oneFormEntry.data.check oneFormEntry.choices oneFormEntry.checkPattern = true :=
   oneFormEntry.checked
 
+/-- Frontier live-closure theorem. -/
 theorem twoForm_data_check :
     twoFormEntry.data.check twoFormEntry.choices twoFormEntry.checkPattern = true :=
   twoFormEntry.checked
 
+/-- Frontier live-closure theorem. -/
 theorem keyEntryCovers_of_source_candidates
     (k : Key) (e : Entry) (hcenters : e.centers = k.centerOf)
     (candidates : List Candidate)
@@ -207,6 +227,7 @@ theorem keyEntryCovers_of_source_candidates
     KeyEntryCovers k e :=
   ⟨hcenters, candidates, hsource, hchoices⟩
 
+/-- Frontier live-closure theorem. -/
 theorem oneForm_keyEntryCovers :
     KeyEntryCovers oneFormKey oneFormEntry := by
   apply keyEntryCovers_of_source_candidates oneFormKey oneFormEntry rfl
@@ -225,6 +246,7 @@ theorem oneForm_keyEntryCovers :
         Key.rawSupport, orderIndex, mirrorIndex, mirrorValue]
   · rfl
 
+/-- Frontier live-closure theorem. -/
 theorem twoForm_keyEntryCovers :
     KeyEntryCovers twoFormKey twoFormEntry := by
   apply keyEntryCovers_of_source_candidates twoFormKey twoFormEntry rfl

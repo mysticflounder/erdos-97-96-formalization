@@ -23,11 +23,14 @@ namespace U5AuditLabel
 
 open U5AuditLabel
 
+/-- U5 finite-audit def. -/
 noncomputable def labelFinset : Finset U5AuditLabel := labels.toFinset
 
+/-- U5 finite-audit def. -/
 noncomputable def supportSet (pt : U5AuditLabel → ℝ²) : Finset ℝ² :=
   labelFinset.image pt
 
+/-- U5 finite-audit def. -/
 noncomputable def classLabels (pt : U5AuditLabel → ℝ²) (B : Finset ℝ²) :
     Finset U5AuditLabel :=
   labelFinset.filter fun l => pt l ∈ B
@@ -55,6 +58,7 @@ theorem classLabels_card_eq_of_subset_support
   rw [himage, hcard] at hcard_image
   exact hcard_image.symm
 
+/-- U5 finite-audit theorem. -/
 theorem label_not_mem_classLabels
     {pt : U5AuditLabel → ℝ²} {B : Finset ℝ²} {l : U5AuditLabel}
     (h : pt l ∉ B) :
@@ -84,12 +88,14 @@ structure PointLabeling where
   point : U5AuditLabel → ℝ²
   injective : Function.Injective point
 
+/-- U5 finite-audit theorem. -/
 theorem PointLabeling.ne_of_label_ne (Λ : PointLabeling)
     {l₁ l₂ : U5AuditLabel} (hlabel : l₁ ≠ l₂) :
     Λ.point l₁ ≠ Λ.point l₂ := by
   intro hpoint
   exact hlabel (Λ.injective hpoint)
 
+/-- U5 finite-audit def. -/
 noncomputable def pointOf (P Q T1 T2 T3 U A0 A1 : ℝ²) :
     U5AuditLabel → ℝ²
   | p => P
@@ -101,6 +107,7 @@ noncomputable def pointOf (P Q T1 T2 T3 U A0 A1 : ℝ²) :
   | a0 => A0
   | a1 => A1
 
+/-- U5 finite-audit theorem. -/
 theorem pointOf_injective
     {P Q T1 T2 T3 U A0 A1 : ℝ²}
     (hPQ : P ≠ Q) (hPT1 : P ≠ T1) (hPT2 : P ≠ T2) (hPT3 : P ≠ T3)
@@ -118,6 +125,7 @@ theorem pointOf_injective
   fin_cases x <;> fin_cases y <;>
     simp [pointOf] at hxy ⊢ <;> aesop
 
+/-- U5 finite-audit theorem. -/
 theorem supportSet_pointOf_eq_boundedSupport
     (D : CounterexampleData) (q p t1 t2 t3 u a0 a1 : ℝ²) :
     supportSet (pointOf p q t1 t2 t3 u a0 a1) =
@@ -126,6 +134,7 @@ theorem supportSet_pointOf_eq_boundedSupport
   simp [supportSet, labelFinset, labels, pointOf, U5BoundedSupport]
   tauto
 
+/-- U5 finite-audit theorem. -/
 theorem ne_of_mem_skeleton_erase
     {D : CounterexampleData} {q p x : ℝ²}
     (hx : x ∈ (D.skeleton q).erase p) :
@@ -143,6 +152,7 @@ set_option maxHeartbeats 1000000 in
 -- compiler-trust profile as `bv_decide`.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- U5 finite-audit theorem. -/
 theorem overlapAtMostTwo_labelMask_of_card_le
     {L₁ L₂ : Finset U5AuditLabel}
     (h : (L₁ ∩ L₂).card ≤ 2) :
@@ -154,16 +164,19 @@ set_option maxHeartbeats 1000000 in
 -- compiler-trust profile as `bv_decide`.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- U5 finite-audit theorem. -/
 theorem mem_of_has_labelMask {L : Finset U5AuditLabel} {l : U5AuditLabel}
     (h : has (labelMask L) l = true) : l ∈ L := by
   native_decide +revert
 
+/-- U5 finite-audit theorem. -/
 theorem point_mem_of_has_labelMask_classLabels
     {pt : U5AuditLabel → ℝ²} {B : Finset ℝ²} {l : U5AuditLabel}
     (h : has (labelMask (classLabels pt B)) l = true) :
     pt l ∈ B := by
   exact (Finset.mem_filter.mp (mem_of_has_labelMask h)).2
 
+/-- U5 finite-audit theorem. -/
 theorem point_mem_of_containsAll_labelMask_classLabels
     {pt : U5AuditLabel → ℝ²} {B : Finset ℝ²}
     {xs : List U5AuditLabel}
@@ -172,6 +185,7 @@ theorem point_mem_of_containsAll_labelMask_classLabels
   intro l hl
   exact point_mem_of_has_labelMask_classLabels (List.all_eq_true.mp h l hl)
 
+/-- U5 finite-audit def. -/
 noncomputable def selectedClass
     (Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²) :
     U5AuditLabel → Finset ℝ²
@@ -184,6 +198,7 @@ noncomputable def selectedClass
   | p => ∅
   | q => ∅
 
+/-- U5 finite-audit structure. -/
 structure RoutedPatternData (D : CounterexampleData)
     (pt : U5AuditLabel → ℝ²) where
   Bt1 : Finset ℝ²
@@ -209,16 +224,19 @@ structure RoutedPatternData (D : CounterexampleData)
   reason : PrefilterReason
   hreason : patternReason P = some reason
 
+/-- U5 finite-audit theorem. -/
 theorem false_of_has_zero {l : U5AuditLabel}
     (h : has 0 l = true) : False := by
   fin_cases l <;> simp [has, code] at h
 
+/-- U5 finite-audit theorem. -/
 theorem false_of_containsAll_zero
     {xs : List U5AuditLabel} {l : U5AuditLabel}
     (h : containsAll 0 xs = true) (hl : l ∈ xs) : False := by
   have hhas := List.all_eq_true.mp h l hl
   exact false_of_has_zero hhas
 
+/-- U5 finite-audit theorem. -/
 theorem point_mem_of_has_selected
     {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -255,6 +273,7 @@ theorem point_mem_of_has_selected
       simpa [classOf, h1a] using h
     exact point_mem_of_has_labelMask_classLabels h'
 
+/-- U5 finite-audit theorem. -/
 theorem point_mem_of_classContains_selected
     {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -294,20 +313,24 @@ theorem point_mem_of_classContains_selected
       simpa [classContains, classOf, h1a] using h
     exact point_mem_of_containsAll_labelMask_classLabels h' l hl
 
+/-- U5 finite-audit theorem. -/
 theorem mem_centers_of_mem_triple {x : U5AuditLabel}
     (hx : x ∈ triple) : x ∈ centers := by
   fin_cases x <;> simp [triple, centers] at hx ⊢
 
+/-- U5 finite-audit theorem. -/
 theorem mem_centers_of_mem_nonTriple {x : U5AuditLabel}
     (hx : x ∈ nonTriple) : x ∈ centers := by
   fin_cases x <;> simp [nonTriple, centers] at hx ⊢
 
+/-- U5 finite-audit theorem. -/
 theorem thirdTriple_mem_triple {a b : U5AuditLabel}
     (ha : a ∈ triple) (hb : b ∈ triple) :
     thirdTriple a b ∈ triple := by
   fin_cases a <;> fin_cases b <;>
     simp [thirdTriple, triple] at ha hb ⊢
 
+/-- U5 finite-audit theorem. -/
 theorem radius_of_mem_triple
     {Λ : PointLabeling}
     (ht1_radius : dist (Λ.point p) (Λ.point t1) =
@@ -329,6 +352,7 @@ theorem radius_of_mem_triple
   · simp [triple] at ht
   · simp [triple] at ht
 
+/-- U5 finite-audit theorem. -/
 theorem off_circle_of_mem_nonTriple
     {Λ : PointLabeling}
     (hu_off : dist (Λ.point p) (Λ.point u) ≠
@@ -350,6 +374,7 @@ theorem off_circle_of_mem_nonTriple
   · exact ha0_off
   · exact ha1_off
 
+/-- U5 finite-audit def. -/
 noncomputable def selectedKOfCenter
     {D : CounterexampleData} {Λ : PointLabeling}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -372,12 +397,14 @@ noncomputable def selectedKOfCenter
   · exact Ka0
   · exact Ka1
 
+/-- U5 finite-audit theorem. -/
 theorem unitTriangleIncompatibility_of_patternReason_eq {P : IndexPattern}
     (h : patternReason P = some PrefilterReason.unitTriangleOnPCircle) :
     unitTriangleIncompatibility P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1 = true := by
   unfold patternReason prefilterReason at h
   repeat split at h <;> simp_all
 
+/-- U5 finite-audit theorem. -/
 theorem nontripleEquilateralOnPCircleIncompatibility_of_patternReason_eq
     {P : IndexPattern}
     (h : patternReason P =
@@ -387,6 +414,7 @@ theorem nontripleEquilateralOnPCircleIncompatibility_of_patternReason_eq
   unfold patternReason prefilterReason at h
   repeat split at h <;> simp_all
 
+/-- U5 finite-audit theorem. -/
 theorem equilateralOppositeIncompatibility_of_patternReason_eq
     {P : IndexPattern}
     (h : patternReason P = some PrefilterReason.equilateralOppositePoint) :
@@ -395,6 +423,7 @@ theorem equilateralOppositeIncompatibility_of_patternReason_eq
   unfold patternReason prefilterReason at h
   repeat split at h <;> simp_all
 
+/-- U5 finite-audit theorem. -/
 theorem equilateralBisectorIncompatibility_of_patternReason_eq
     {P : IndexPattern}
     (h : patternReason P = some PrefilterReason.equilateralBisector) :
@@ -403,6 +432,7 @@ theorem equilateralBisectorIncompatibility_of_patternReason_eq
   unfold patternReason prefilterReason at h
   repeat split at h <;> simp_all
 
+/-- U5 finite-audit theorem. -/
 theorem commonBisectorTripleIncompatibility_of_patternReason_eq
     {P : IndexPattern}
     (h : patternReason P = some PrefilterReason.commonBisectorTriple) :
@@ -411,6 +441,7 @@ theorem commonBisectorTripleIncompatibility_of_patternReason_eq
   unfold patternReason prefilterReason at h
   repeat split at h <;> simp_all
 
+/-- U5 finite-audit theorem. -/
 theorem equilateralCircumcenterIncompatibility_of_patternReason_eq
     {P : IndexPattern}
     (h : patternReason P =
@@ -420,6 +451,7 @@ theorem equilateralCircumcenterIncompatibility_of_patternReason_eq
   unfold patternReason prefilterReason at h
   repeat split at h <;> simp_all
 
+/-- U5 finite-audit theorem. -/
 theorem equilateralOuterPointIncompatibility_of_patternReason_eq
     {P : IndexPattern}
     (h : patternReason P = some PrefilterReason.equilateralOuterPoint) :
@@ -428,6 +460,7 @@ theorem equilateralOuterPointIncompatibility_of_patternReason_eq
   unfold patternReason prefilterReason at h
   repeat split at h <;> simp_all
 
+/-- U5 finite-audit theorem. -/
 theorem exists_nontripleEquilateralOnPCircle_witness {P : IndexPattern}
     (h : nontripleEquilateralOnPCircleIncompatibility
       P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1 = true) :
@@ -440,6 +473,7 @@ theorem exists_nontripleEquilateralOnPCircle_witness {P : IndexPattern}
   rw [Bool.and_eq_true] at hxbool
   exact ⟨t, ht, x, hx, hxbool.1, hxbool.2⟩
 
+/-- U5 finite-audit theorem. -/
 theorem exists_commonBisectorTriple_witness {P : IndexPattern}
     (h : commonBisectorTripleIncompatibility
       P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1 = true) :
@@ -449,6 +483,7 @@ theorem exists_commonBisectorTriple_witness {P : IndexPattern}
   unfold commonBisectorTripleIncompatibility at h
   exact List.any_eq_true.mp h
 
+/-- U5 finite-audit theorem. -/
 theorem exists_equilateralOpposite_witness {P : IndexPattern}
     (h : equilateralOppositeIncompatibility
       P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1 = true) :
@@ -473,6 +508,7 @@ theorem exists_equilateralOpposite_witness {P : IndexPattern}
   rcases habcx with ⟨hac, hbc⟩
   exact ⟨a, ha, b, hb, hba, x, hx, hac, hbc, hxc⟩
 
+/-- U5 finite-audit theorem. -/
 theorem exists_equilateralBisector_witness {P : IndexPattern}
     (h : equilateralBisectorIncompatibility
       P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1 = true) :
@@ -501,6 +537,7 @@ theorem exists_equilateralBisector_witness {P : IndexPattern}
   rcases habc with ⟨hac, hbc⟩
   exact ⟨a, ha, b, hb, hba, x, hx, hac, hbc, hxc, hcc⟩
 
+/-- U5 finite-audit theorem. -/
 theorem exists_two_triple_of_count {B : ClassMask}
     (h : 2 ≤ (triple.filter fun t => has B t).length) :
     ∃ a, a ∈ triple ∧ ∃ b, b ∈ triple ∧ a ≠ b ∧
@@ -510,6 +547,7 @@ theorem exists_two_triple_of_count {B : ClassMask}
   by_cases h3 : has B t3 = true <;>
     simp [triple, h1, h2, h3] at h ⊢
 
+/-- U5 finite-audit theorem. -/
 theorem route_nontripleEquilateralOnPCircle
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -564,6 +602,7 @@ theorem route_nontripleEquilateralOnPCircle
     (point_mem_of_classContains_selected h1 h2 h3 hu h0 h1a hxt
       (by simp))
 
+/-- U5 finite-audit theorem. -/
 theorem route_commonBisectorTriple
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -609,6 +648,7 @@ theorem route_commonBisectorTriple
     (point_mem_of_classContains_selected h1 h2 h3 hu h0 h1a hcontains
       (by simp))
 
+/-- U5 finite-audit theorem. -/
 theorem route_equilateralOpposite
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -677,6 +717,7 @@ theorem route_equilateralOpposite
     (point_mem_of_classContains_selected h1 h2 h3 hu h0 h1a hxclass
       (by simp [c]))
 
+/-- U5 finite-audit theorem. -/
 theorem route_equilateralBisector
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -751,6 +792,7 @@ theorem route_equilateralBisector
     (point_mem_of_classContains_selected h1 h2 h3 hu h0 h1a hcclass
       (by simp))
 
+/-- U5 finite-audit theorem. -/
 theorem triple_pair_distances_equal_of_forced
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -850,6 +892,7 @@ theorem triple_pair_distances_equal_of_forced
         _ = dist (Λ.point t1) (Λ.point t3) := h13_23.symm,
       h12_23⟩
 
+/-- U5 finite-audit theorem. -/
 theorem dist_pair_eq_base
     {Λ : PointLabeling}
     (h12_13 : dist (Λ.point t1) (Λ.point t2) =
@@ -876,18 +919,21 @@ theorem dist_pair_eq_base
         dist_comm (Λ.point t3) (Λ.point t2)
       _ = dist (Λ.point t1) (Λ.point t2) := h12_23.symm
 
+/-- U5 finite-audit theorem. -/
 theorem thirdTriple_ne_left {a b : U5AuditLabel}
     (ha : a ∈ triple) (hb : b ∈ triple) (hne : a ≠ b) :
     a ≠ thirdTriple a b := by
   fin_cases a <;> fin_cases b <;>
     simp [thirdTriple, triple] at ha hb hne ⊢
 
+/-- U5 finite-audit theorem. -/
 theorem thirdTriple_ne_right {a b : U5AuditLabel}
     (ha : a ∈ triple) (hb : b ∈ triple) (hne : a ≠ b) :
     b ≠ thirdTriple a b := by
   fin_cases a <;> fin_cases b <;>
     simp [thirdTriple, triple] at ha hb hne ⊢
 
+/-- U5 finite-audit theorem. -/
 theorem pair_eqs_for_triple_labels
     {Λ : PointLabeling}
     (h12_13 : dist (Λ.point t1) (Λ.point t2) =
@@ -912,6 +958,7 @@ theorem pair_eqs_for_triple_labels
   exact ⟨hab_base.trans hac_base.symm, hab_base.trans hbc_base.symm,
     dist_pos.mpr (Λ.ne_of_label_ne hne)⟩
 
+/-- U5 finite-audit theorem. -/
 theorem dist_eq_for_triple_pairs
     {Λ : PointLabeling}
     (h12_13 : dist (Λ.point t1) (Λ.point t2) =
@@ -925,6 +972,7 @@ theorem dist_eq_for_triple_pairs
     (dist_pair_eq_base h12_13 h12_23 ha hb hab).trans
       (dist_pair_eq_base h12_13 h12_23 ha hc hac).symm
 
+/-- U5 finite-audit theorem. -/
 theorem exists_hasTripleWitness_witness {P : IndexPattern}
     {center : U5AuditLabel}
     (h : hasTripleWitness P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1 center =
@@ -937,6 +985,7 @@ theorem exists_hasTripleWitness_witness {P : IndexPattern}
   rw [Bool.and_eq_true] at htbool
   exact ⟨t, ht, of_decide_eq_true htbool.1, htbool.2⟩
 
+/-- U5 finite-audit theorem. -/
 theorem exists_equilateralOuter_witness {P : IndexPattern}
     (h : equilateralOuterPointIncompatibility
       P.i1 P.i2 P.i3 P.iu P.ia0 P.ia1 = true) :
@@ -973,14 +1022,17 @@ theorem exists_equilateralOuter_witness {P : IndexPattern}
     ⟨x, hx, left, hleft, right, hright, hne, hleftx, hrightx,
       hwl, hwr, hxclass⟩
 
+/-- U5 finite-audit def. -/
 def EdgeSound (Λ : PointLabeling) (r : ℝ) (E : EdgeMask) : Prop :=
   ∀ a b, hasEdge E a b = true → dist (Λ.point a) (Λ.point b) = r
 
+/-- U5 finite-audit theorem. -/
 theorem edgeCode_eq_iff {a b x y : U5AuditLabel} :
     edgeCode a b = edgeCode x y ↔ a = x ∧ b = y := by
   fin_cases a <;> fin_cases b <;> fin_cases x <;> fin_cases y <;>
     decide
 
+/-- U5 finite-audit theorem. -/
 theorem hasEdge_insertEdge {E : EdgeMask} {a b x y : U5AuditLabel} :
     hasEdge (insertEdge E a b) x y =
       (hasEdge E x y || decide (a = x ∧ b = y) ||
@@ -988,6 +1040,7 @@ theorem hasEdge_insertEdge {E : EdgeMask} {a b x y : U5AuditLabel} :
   simp [insertEdge, hasEdge, edgeBit, Nat.shiftLeft_eq, Nat.testBit_two_pow,
     edgeCode_eq_iff, and_comm]
 
+/-- U5 finite-audit theorem. -/
 theorem edgeSound_insertEdge
     {Λ : PointLabeling} {r : ℝ} {E : EdgeMask} {a b : U5AuditLabel}
     (hE : EdgeSound Λ r E)
@@ -1004,11 +1057,13 @@ theorem edgeSound_insertEdge
   · rcases hnew with ⟨rfl, rfl⟩
     simpa [dist_comm] using hab
 
+/-- U5 finite-audit theorem. -/
 theorem edgeSound_zero {Λ : PointLabeling} {r : ℝ} :
     EdgeSound Λ r 0 := by
   intro a b h
   simp [hasEdge] at h
 
+/-- U5 finite-audit theorem. -/
 theorem edgeSound_fold_insertClass
     {Λ : PointLabeling} {r : ℝ} {E B : EdgeMask}
     {center : U5AuditLabel}
@@ -1030,6 +1085,7 @@ theorem edgeSound_fold_insertClass
           cases h : has B z <;> simp_all
         simpa [List.foldl_cons, hz_false] using ih (E := E) hE
 
+/-- U5 finite-audit theorem. -/
 theorem edgeSound_addClassEdges
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -1094,6 +1150,7 @@ theorem edgeSound_addClassEdges
               hasEdge E center x) <;> simp_all
     simpa [hany_false] using hE
 
+/-- U5 finite-audit theorem. -/
 theorem edgeSound_unitStep
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -1120,6 +1177,7 @@ theorem edgeSound_unitStep
         h1 h2 h3 hu h0 h1a (by simp [centers])
     | exact hE
 
+/-- U5 finite-audit theorem. -/
 theorem edgeSound_initialUnitEdges
     {Λ : PointLabeling} {r : ℝ}
     (ht1 : dist (Λ.point p) (Λ.point t1) = r)
@@ -1135,6 +1193,7 @@ theorem edgeSound_initialUnitEdges
         ht2)
       ht3
 
+/-- U5 finite-audit theorem. -/
 theorem edgeSound_unitClosure
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -1169,6 +1228,7 @@ theorem edgeSound_unitClosure
     | exact h0sound
     | apply hstep
 
+/-- U5 finite-audit theorem. -/
 theorem route_unitTriangle
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -1210,6 +1270,7 @@ theorem route_unitTriangle
     (hsound t2 t3 (by simpa [unitEdge] using h23))
 
 
+/-- U5 finite-audit theorem. -/
 theorem route_equilateralCircumcenter
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -1281,6 +1342,7 @@ theorem route_equilateralCircumcenter
     (point_mem_of_has_selected h1 h2 h3 hu h0 h1a ha_has)
     (point_mem_of_has_selected h1 h2 h3 hu h0 h1a hb_has)
 
+/-- U5 finite-audit theorem. -/
 theorem route_equilateralOuter
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}
@@ -1375,6 +1437,7 @@ theorem route_equilateralOuter
     (point_mem_of_classContains_selected h1 h2 h3 hu h0 h1a hxclass
       (by simp [opposite]))
 
+/-- U5 finite-audit theorem. -/
 theorem route_patternReason
     {D : CounterexampleData} {Λ : PointLabeling} {P : IndexPattern}
     {Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset ℝ²}

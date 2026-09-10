@@ -28,6 +28,7 @@ set_option maxRecDepth 1000000
 
 attribute [local instance] Classical.propDecidable
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.s2O0_evalClauseD_fullRadius_eq_inherited
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -54,6 +55,7 @@ private theorem CanonicalPacket.s2O0_evalClauseD_fullRadius_eq_inherited
     _ = P.inheritedTailValuation literal.natAbs :=
       (P.inheritedTailValuation_eq_separation_of_lt (by omega)).symm
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.s2O0_evalClauseD_fullRadius_eq_fullSourceChoice
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -73,17 +75,20 @@ private theorem CanonicalPacket.s2O0_evalClauseD_fullRadius_eq_fullSourceChoice
     (hbound literal hliteral).1 (hbound literal hliteral).2
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0ShellCaseApexChoiceClause_literal_bounds :
     ∀ literal ∈ shellCaseApexChoiceClause s2O0ShellCase,
       0 < literal.natAbs ∧ literal.natAbs < 27287 := by
   native_decide
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0BlockerShellChoiceClause_literal_bounds :
     ∀ literal ∈ blockerShellChoiceClause,
       0 < literal.natAbs ∧ literal.natAbs < 27287 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 private def commonSourceChoiceAsFull
     (source : CommonSource) (choice : Fin 84) :
     SourceChoiceIndex (commonSourceLabel source) :=
@@ -94,6 +99,7 @@ private def commonSourceChoiceAsFull
 set_option maxHeartbeats 0 in
 -- Native reduction exhausts the two common sources and their 84 choices.
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem commonSourceImplicationClause_eq_full :
     ∀ occurrence : CommonSourceOccurrence,
       commonSourceImplicationClause occurrence =
@@ -104,12 +110,14 @@ private theorem commonSourceImplicationClause_eq_full :
 set_option maxHeartbeats 0 in
 -- Native reduction exhausts the two common-source totality clauses.
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem commonSourceTotalityClause_eq_full :
     ∀ source : CommonSource,
       commonSourceTotalityClause source =
         sourceChoiceTotalityClause (commonSourceLabel source) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0SourceChoiceVariable_upperBound
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by
@@ -119,6 +127,7 @@ private theorem s2O0SourceChoiceVariable_upperBound
       at hchoice ⊢ <;>
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0SourceChoiceXVar_bounds
     (source : Label) (choice : SourceChoiceIndex source) :
     0 < xVar (sourceChoiceAt source choice).1.val
@@ -132,6 +141,7 @@ private theorem s2O0SourceChoiceXVar_bounds
       (xVar_le_nX (sourceChoiceAt source choice).1.isLt hfacts.1)
       (lt_trans nX_lt_pairIndicatorStart (by omega))⟩
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem commonSourceImplicationClause_literal_bounds
     (occurrence : CommonSourceOccurrence) :
     ∀ literal ∈ commonSourceImplicationClause occurrence,
@@ -151,6 +161,7 @@ private theorem commonSourceImplicationClause_literal_bounds
       (commonSourceLabel occurrence.1)
       (commonSourceChoiceAsFull occurrence.1 occurrence.2)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem commonSourceTotalityClause_literal_bounds
     (source : CommonSource) :
     ∀ literal ∈ commonSourceTotalityClause source,
@@ -229,6 +240,7 @@ theorem CanonicalPacket.s2O0InheritedSourceTailClauses_sat
     rw [commonSourceTotalityClause_eq_full 1]
     exact hsource.2.1 (commonSourceLabel 1)
 
+/-- Exact-five common-shell V7 def. -/
 private def s2O0FirstApexExactFiveKindAtValid
     (index : Fin S2O0RetainedFamily.firstApexExactFive.sourceCount) : Prop :=
   match s2O0FirstApexExactFiveKindAt s2O0ShellCase index with
@@ -257,6 +269,7 @@ private instance
 set_option maxHeartbeats 0 in
 -- Native reduction exhausts the retained first-apex exact-five family.
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0FirstApexExactFiveKindAt_valid :
     ∀ index : Fin S2O0RetainedFamily.firstApexExactFive.sourceCount,
       s2O0FirstApexExactFiveKindAtValid index := by
@@ -321,6 +334,7 @@ theorem CanonicalPacket.s2O0FirstApexExactFiveClause_sat
 set_option maxHeartbeats 0 in
 -- Native reduction exhausts the retained first-apex global-equality family.
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem s2O0FirstApexGlobalEqPairAt_valid :
     ∀ index : Fin S2O0RetainedFamily.firstApexGlobalEquality.sourceCount,
       let pair := s2O0FirstApexGlobalEqPairAt s2O0ShellCase index

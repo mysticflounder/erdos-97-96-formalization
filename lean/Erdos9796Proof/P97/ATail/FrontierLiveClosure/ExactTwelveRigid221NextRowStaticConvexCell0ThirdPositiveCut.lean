@@ -39,6 +39,7 @@ def nextRowStaticConvexCell0ThirdPositiveChoices : List (RowChoice Label) :=
   , { center := 10, support := {0, 3, 8, 9} }
   , { center := 11, support := {3, 6, 7, 9} } ]
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne_nextRowStaticConvexCell0Third
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :
@@ -48,6 +49,7 @@ private theorem FrozenBoundaryOrder.position_ne_of_ne_nextRowStaticConvexCell0Th
 
 -- Arithmetic replay of all 48 source-entitled orders for this survivor.
 set_option maxHeartbeats 2000000 in
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.sourceOrderCoverage_nextRowStaticConvexCell0Third
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     (hforced : FrozenForcedSecondCapOrder order.position) :

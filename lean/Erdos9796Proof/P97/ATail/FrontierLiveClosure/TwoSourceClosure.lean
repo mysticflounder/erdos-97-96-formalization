@@ -51,6 +51,7 @@ open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -60,6 +61,7 @@ private theorem oppApex1_mem_A
   · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -69,6 +71,7 @@ private theorem oppApex2_mem_A
   · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem surplusApex_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex ∈ A := by
@@ -78,6 +81,7 @@ private theorem surplusApex_mem_A
   · simp only [SurplusCapPacket.surplusApex, hi]; exact S.triangle.v2_mem
   · simpa [SurplusCapPacket.surplusApex, hi] using S.triangle.v3_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem five_point_literal_card_le
     {a b c d e : ℝ²} :
     ({a, b, c, d, e} : Finset ℝ²).card ≤ 5 := by
@@ -88,6 +92,7 @@ private theorem five_point_literal_card_le
   have h5 : ({e} : Finset ℝ²).card = 1 := Finset.card_singleton e
   omega
 
+/-- Frontier live-closure theorem. -/
 private theorem first_two_ne_of_six_point_literal_card
     {a b c d e f : ℝ²}
     (hcard : ({a, b, c, d, e, f} : Finset ℝ²).card = 6) :
@@ -100,6 +105,7 @@ private theorem first_two_ne_of_six_point_literal_card
     (five_point_literal_card_le (a := a) (b := c) (c := d) (d := e) (e := f))
   omega
 
+/-- Frontier live-closure theorem. -/
 private theorem false_of_six_point_literal_subset_five
     {a b c d e f u v w x y : ℝ²}
     (hcard : ({a, b, c, d, e, f} : Finset ℝ²).card = 6)
@@ -472,6 +478,7 @@ theorem exists_mutualBlockerCapIndices_distinct
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem false_of_three_firstCap_hits_at_firstCap_blocker
     (source source' : CriticalShellSystem.CarrierVertex D.A)
     (z : ℝ²)
@@ -875,6 +882,7 @@ theorem exists_mutualBlocker_firstCap_or_off
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem false_of_three_firstCap_hits_in_selected_row
     (center left right : CriticalShellSystem.CarrierVertex D.A)
     (hcenterCap : center.1 ∈ S.capByIndex S.oppIndex1)

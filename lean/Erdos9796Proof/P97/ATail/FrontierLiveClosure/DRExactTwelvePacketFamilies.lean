@@ -56,6 +56,7 @@ open DRExactTwelveDimacs
 
 /- ## Family combinators -/
 
+/-- Frontier live-closure theorem. -/
 theorem familyHolds_append {val : ℕ → Prop} {l₁ l₂ : List (List ℤ)}
     (h₁ : familyHolds val l₁) (h₂ : familyHolds val l₂) : familyHolds val (l₁ ++ l₂) := by
   intro clause hclause
@@ -63,6 +64,7 @@ theorem familyHolds_append {val : ℕ → Prop} {l₁ l₂ : List (List ℤ)}
   · exact h₁ clause h
   · exact h₂ clause h
 
+/-- Frontier live-closure theorem. -/
 theorem familyHolds_flatMap {α : Type*} {val : ℕ → Prop} {l : List α}
     {f : α → List (List ℤ)} (h : ∀ a ∈ l, familyHolds val (f a)) :
     familyHolds val (l.flatMap f) := by
@@ -70,16 +72,19 @@ theorem familyHolds_flatMap {α : Type*} {val : ℕ → Prop} {l : List α}
   obtain ⟨a, ha, hc⟩ := List.mem_flatMap.mp hclause
   exact h a ha clause hc
 
+/-- Frontier live-closure theorem. -/
 theorem familyHolds_map {α : Type*} {val : ℕ → Prop} {l : List α} {f : α → List ℤ}
     (h : ∀ a ∈ l, clauseHolds val (f a)) : familyHolds val (l.map f) := by
   intro clause hclause
   obtain ⟨a, ha, rfl⟩ := List.mem_map.mp hclause
   exact h a ha
 
+/-- Frontier live-closure theorem. -/
 theorem familyHolds_nil {val : ℕ → Prop} : familyHolds val [] := by
   intro clause hclause
   simp at hclause
 
+/-- Frontier live-closure theorem. -/
 theorem familyHolds_cons {val : ℕ → Prop} {clause : List ℤ} {l : List (List ℤ)}
     (h : clauseHolds val clause) (hl : familyHolds val l) : familyHolds val (clause :: l) := by
   intro c hc
@@ -113,6 +118,7 @@ private theorem not_val_of_pos_mem {val : ℕ → Prop} {l : List ℤ}
 
 /- ## The variable tables -/
 
+/-- Frontier live-closure theorem. -/
 theorem map_fst_allocate {α : Type*} (base : ℕ) (keys : List α) :
     (allocate base keys).map Prod.fst = keys := by
   unfold allocate
@@ -122,6 +128,7 @@ theorem map_fst_allocate {α : Type*} (base : ℕ) (keys : List α) :
     rfl
   rw [this, List.zipIdx_map_fst]
 
+/-- Frontier live-closure theorem. -/
 theorem mem_allocate_iff {α : Type*} {base : ℕ} {keys : List α} {k : α} {v : ℕ} :
     (k, v) ∈ allocate base keys ↔ ∃ i, keys[i]? = some k ∧ v = base + i + 1 := by
   unfold allocate
@@ -134,6 +141,7 @@ theorem mem_allocate_iff {α : Type*} {base : ℕ} {keys : List α} {k : α} {v 
   · rintro ⟨i, hi, rfl⟩
     exact ⟨(k, i), List.mem_zipIdx_iff_getElem?.mpr hi, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 theorem allocate_nodup {α : Type*} {base : ℕ} {keys : List α} (hnd : keys.Nodup) :
     (allocate base keys).Nodup :=
   List.Nodup.of_map Prod.fst (by rwa [map_fst_allocate])
@@ -158,6 +166,7 @@ theorem snd_eq_of_mem_allocate {α : Type*} {base : ℕ} {keys : List α} (hnd :
   have := (List.getElem?_inj hlen hnd).mp (hi.trans hj.symm)
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem exists_mem_allocate {α : Type*} {base : ℕ} {keys : List α} {k : α} (h : k ∈ keys) :
     ∃ v, (k, v) ∈ allocate base keys := by
   have hmap := map_fst_allocate base keys
@@ -182,14 +191,17 @@ theorem lookup_mem_of_fst_mem {α : Type*} [BEq α] [LawfulBEq α] :
       simp only [lookup, List.find?_cons, hbeq] at ih ⊢
       exact List.mem_cons_of_mem _ ih
 
+/-- Frontier live-closure theorem. -/
 theorem lookup_mem {α : Type*} [BEq α] [LawfulBEq α] {base : ℕ} {keys : List α} {k : α}
     (h : k ∈ keys) : (k, lookup (allocate base keys) k) ∈ allocate base keys :=
   lookup_mem_of_fst_mem (by rwa [map_fst_allocate])
 
+/-- Frontier live-closure theorem. -/
 theorem lookup_pos {α : Type*} [BEq α] [LawfulBEq α] {base : ℕ} {keys : List α} {k : α}
     (h : k ∈ keys) : 0 < lookup (allocate base keys) k :=
   (mem_allocate (lookup_mem h)).2
 
+/-- Frontier live-closure theorem. -/
 theorem lookup_injOn {α : Type*} [BEq α] [LawfulBEq α] {base : ℕ} {keys : List α} {k k' : α}
     (hk : k ∈ keys) (hk' : k' ∈ keys)
     (h : lookup (allocate base keys) k = lookup (allocate base keys) k') : k = k' :=
@@ -197,50 +209,65 @@ theorem lookup_injOn {α : Type*} [BEq α] [LawfulBEq α] {base : ℕ} {keys : L
 
 /- ## The label lists of the packet -/
 
+/-- Frontier live-closure theorem. -/
 theorem mem_blockerCenters {z c : ℕ} :
     c ∈ blockerCenters z ↔ c < 12 ∧ c ≠ z ∧ c ≠ secondApex := by
   simp [blockerCenters, labels, List.mem_filter]
 
+/-- Frontier live-closure theorem. -/
 theorem blockerCenters_nodup (z : ℕ) : (blockerCenters z).Nodup := labels_nodup.filter _
 
+/-- Frontier live-closure theorem. -/
 theorem deletedKeys_nodup : deletedKeys.Nodup := labels_nodup.filter _
 
+/-- Frontier live-closure theorem. -/
 theorem mem_others_firstApex_of_mem_deletedKeys :
     ∀ d ∈ deletedKeys, d ∈ others firstApex := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem xVar_pos {z : ℕ} (hz : z ∈ others secondApex) : 0 < xVar z := lookup_pos hz
 
+/-- Frontier live-closure theorem. -/
 theorem yVar_pos {z : ℕ} (hz : z ∈ others secondApex) : 0 < yVar z := lookup_pos hz
 
+/-- Frontier live-closure theorem. -/
 theorem uVar_pos {z : ℕ} (hz : z ∈ others firstApex) : 0 < uVar z := lookup_pos hz
 
+/-- Frontier live-closure theorem. -/
 theorem chiVar_pos {z c : ℕ} (hc : c ∈ blockerCenters z) : 0 < chiVar z c := lookup_pos hc
 
+/-- Frontier live-closure theorem. -/
 theorem chiVar_injOn {z c c' : ℕ} (hc : c ∈ blockerCenters z) (hc' : c' ∈ blockerCenters z)
     (h : chiVar z c = chiVar z c') : c = c' :=
   lookup_injOn hc hc' h
 
+/-- Frontier live-closure theorem. -/
 theorem srcVar_pos {z : ℕ} (hz : z ∈ labels) : 0 < srcVar z := lookup_pos hz
 
+/-- Frontier live-closure theorem. -/
 theorem srcVar_injOn {z z' : ℕ} (hz : z ∈ labels) (hz' : z' ∈ labels)
     (h : srcVar z = srcVar z') : z = z' :=
   lookup_injOn hz hz' h
 
+/-- Frontier live-closure theorem. -/
 theorem b2x_pos : 0 < b2x := by
   unfold b2x
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem b2y_pos : 0 < b2y := by
   unfold b2y
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem b2x_ne_b2y : b2x ≠ b2y := by
   unfold b2y
   omega
 
 /- ## Pairs and sublists -/
 
+/-- Frontier live-closure theorem. -/
 theorem mem_combinations_of_sublist :
     ∀ {xs l : List ℕ}, l.Sublist xs → l ∈ combinations xs l.length
   | _, _, List.Sublist.slnil => by simp [combinations]
@@ -256,10 +283,12 @@ theorem mem_combinations_of_sublist :
     simp only [List.length_cons, combinations, List.mem_append, List.mem_map]
     exact Or.inl ⟨_, ih, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 theorem mem_pairs_of_sublist {l : List ℕ} {a b : ℕ} (h : [a, b].Sublist l) :
     (a, b) ∈ pairs l :=
   List.mem_filterMap.mpr ⟨[a, b], mem_combinations_of_sublist h, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 theorem sublist_pair_of_mem :
     ∀ {l : List ℕ} {a b : ℕ}, a ∈ l → b ∈ l → a ≠ b →
       [a, b].Sublist l ∨ [b, a].Sublist l
@@ -554,6 +583,7 @@ namespace PacketValuation
 
 variable {pt : Fin 12 → ℝ²} {val : ℕ → Prop} {P : PacketData}
 
+/-- Frontier live-closure theorem. -/
 theorem firstRow_ne_secondRow (hP : PacketValuation pt val P) : P.firstRow ≠ P.secondRow := by
   intro heq
   have hpos : 0 < (secondOppositeInterior.toFinset ∩ P.firstRow).card := by
@@ -564,6 +594,7 @@ theorem firstRow_ne_secondRow (hP : PacketValuation pt val P) : P.firstRow ≠ P
   have hsub : ∀ k ∈ secondOppositeInterior, k ∈ others secondApex := by decide
   exact hP.rows_disjoint a (hsub a ha.1) ⟨ha.2, heq ▸ ha.2⟩
 
+/-- Frontier live-closure theorem. -/
 theorem source_mem_shell (hP : PacketValuation pt val P) : P.source ∈ P.shell := by
   obtain ⟨hb12, hbs, -⟩ := mem_blockerCenters.mp (hP.blocker_mem P.source hP.source_mem)
   exact (hP.shell_iff P.source

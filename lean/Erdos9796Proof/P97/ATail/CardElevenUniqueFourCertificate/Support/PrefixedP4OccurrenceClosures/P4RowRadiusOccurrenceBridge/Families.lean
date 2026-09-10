@@ -30,27 +30,33 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Prefixed P4 occurrence-closure inductive. -/
 inductive ClauseShape where
   | selectedRowRadius (center left right : Label)
 deriving DecidableEq
 
+/-- Prefixed P4 occurrence-closure def. -/
 def instLits : ClauseShape → List Int
   | .selectedRowRadius center left right =>
       [-((p4VarOfAtom (.row center left) : Nat) : Int),
        -((p4VarOfAtom (.row center right) : Nat) : Int),
        ((p4VarOfAtom (sortedRadius center left right) : Nat) : Int)]
 
+/-- Prefixed P4 occurrence-closure def. -/
 def shapeWF : ClauseShape → Bool
   | .selectedRowRadius center left right =>
       decide (left ≠ right ∧ center ≠ left ∧ center ≠ right)
 
+/-- Prefixed P4 occurrence-closure structure. -/
 structure BridgeEntry where
   clause : List Int
   shape : ClauseShape
 
+/-- Prefixed P4 occurrence-closure def. -/
 def entryWF (e : BridgeEntry) : Bool :=
   shapeWF e.shape && litsSubset (instLits e.shape) e.clause
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem selectedRowRadiusLitsSat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v)
     (center left right : Label)
@@ -73,6 +79,7 @@ theorem selectedRowRadiusLitsSat (Q : ExactTwoBoundaryCore R distribution)
     apply litSat_neg (p4VarOfAtom_pos _)
     exact fun h => hl ((hv.row center left hdist.2.1).mp h)
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem entry_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) (e : BridgeEntry)
     (he : entryWF e = true) : clauseSat v e.clause := by
@@ -84,6 +91,7 @@ theorem entry_sat (Q : ExactTwoBoundaryCore R distribution)
       apply selectedRowRadiusLitsSat Q σ hv center left right
       simpa [shapeWF] using he.1
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem entryList_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v)
     (entries : List BridgeEntry)

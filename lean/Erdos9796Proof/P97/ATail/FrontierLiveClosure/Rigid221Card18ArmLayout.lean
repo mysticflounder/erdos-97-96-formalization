@@ -28,6 +28,7 @@ def physicalRole (a : SearchArm) (i : Fin 5) : Role a :=
 def physicalRoles (a : SearchArm) : List (Role a) :=
   (List.finRange 5).map (physicalRole a)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem physicalRoles_length (a : SearchArm) : (physicalRoles a).length = 5 := by
   simp [physicalRoles]
 
@@ -75,17 +76,21 @@ def CrossedIncidence.ofNat? : Nat → Option CrossedIncidence
   | 4 => some .actualCenter1InK2
   | _ => none
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem CrossedIncidence.ofNat?_toNat (i : CrossedIncidence) :
     CrossedIncidence.ofNat? i.toNat = some i := by
   cases i <;> rfl
 
+/-- Frontier live-closure theorem. -/
 theorem CrossedIncidence.toNat_lt_five (i : CrossedIncidence) : i.toNat < 5 := by
   cases i <;> decide
 
+/-- Frontier live-closure theorem. -/
 theorem CrossedIncidence.toNat_injective : Function.Injective CrossedIncidence.toNat := by
   intro i j h
   cases i <;> cases j <;> simp_all [CrossedIncidence.toNat]
 
+/-- Frontier live-closure theorem. -/
 private theorem CrossedIncidence.exists_of_lt_five {n : Nat} (h : n < 5) :
     ∃ i, CrossedIncidence.ofNat? n = some i ∧ i.toNat = n := by
   interval_cases n <;> simp [CrossedIncidence.ofNat?, CrossedIncidence.toNat]
@@ -108,16 +113,22 @@ def derivedVarCount : SearchArm → Nat
 /-- Total number of base and retained derived variables in an arm. -/
 def totalVarCount (a : SearchArm) : Nat := baseVarCount a + derivedVarCount a
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem derivedVarCount_bi : derivedVarCount .bi = 72 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem derivedVarCount_u : derivedVarCount .u = 41 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem derivedVarCount_xv : derivedVarCount .xv = 41 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem totalVarCount_bi : totalVarCount .bi = 360 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem totalVarCount_u : totalVarCount .u = 329 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem totalVarCount_xv : totalVarCount .xv = 329 := rfl
 
 /-- Zero-based offset of a retained derived variable from the end of the base block. -/
@@ -152,6 +163,7 @@ def ArmDerivedVar.ofNat? : (a : SearchArm) → Nat → Option (ArmDerivedVar a)
       else if h2 : n < 324 then some (.deletedPhysical .xv ⟨n - 306, by omega⟩)
       else CrossedIncidence.ofNat? (n - 324) |>.map .xvIncidence
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem ArmDerivedVar.ofNat?_toNat {a : SearchArm} (v : ArmDerivedVar a) :
     ArmDerivedVar.ofNat? a v.toNat = some v := by
   cases v with
@@ -329,51 +341,63 @@ def armDerivedVars : (a : SearchArm) → List (ArmDerivedVar a)
   | .u => physicalMaskVars .u ++ deletedPhysicalVars .u ++ uIncidenceVars
   | .xv => physicalMaskVars .xv ++ deletedPhysicalVars .xv ++ xvIncidenceVars
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem physicalMaskVars_length (a : SearchArm) :
     (physicalMaskVars a).length = 18 := by
   simp [physicalMaskVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem deletedPhysicalVars_length (a : SearchArm) :
     (deletedPhysicalVars a).length = 18 := by
   simp [deletedPhysicalVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem uBIntersectionVars_length : uBIntersectionVars.length = 18 := by
   simp [uBIntersectionVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem xvBIntersectionVars_length : xvBIntersectionVars.length = 18 := by
   simp [xvBIntersectionVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem uIncidenceVars_length : uIncidenceVars.length = 5 := rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem xvIncidenceVars_length : xvIncidenceVars.length = 5 := rfl
 
+/-- Frontier live-closure theorem. -/
 theorem physicalMaskVars_nodup (a : SearchArm) : (physicalMaskVars a).Nodup := by
   apply (List.nodup_finRange 18).map
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 theorem deletedPhysicalVars_nodup (a : SearchArm) : (deletedPhysicalVars a).Nodup := by
   apply (List.nodup_finRange 18).map
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 theorem uBIntersectionVars_nodup : uBIntersectionVars.Nodup := by
   apply (List.nodup_finRange 18).map
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 theorem xvBIntersectionVars_nodup : xvBIntersectionVars.Nodup := by
   apply (List.nodup_finRange 18).map
   intro l m h
   cases h
   rfl
 
+/-- Frontier live-closure theorem. -/
 theorem uIncidenceVars_nodup : uIncidenceVars.Nodup := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem xvIncidenceVars_nodup : xvIncidenceVars.Nodup := by
   decide
 
@@ -410,69 +434,86 @@ def uIncidenceNatVars : List Nat := derivedNatVars uIncidenceVars
 /-- Numeric indices of the five ordered XV crossed-incidence atoms. -/
 def xvIncidenceNatVars : List Nat := derivedNatVars xvIncidenceVars
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem physicalMaskNatVars_length (a : SearchArm) :
     (physicalMaskNatVars a).length = 18 := by
   simp [physicalMaskNatVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem deletedPhysicalNatVars_length (a : SearchArm) :
     (deletedPhysicalNatVars a).length = 18 := by
   simp [deletedPhysicalNatVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem uBIntersectionNatVars_length : uBIntersectionNatVars.length = 18 := by
   simp [uBIntersectionNatVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem xvBIntersectionNatVars_length : xvBIntersectionNatVars.length = 18 := by
   simp [xvBIntersectionNatVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem uIncidenceNatVars_length : uIncidenceNatVars.length = 5 := by
   simp [uIncidenceNatVars]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem xvIncidenceNatVars_length : xvIncidenceNatVars.length = 5 := by
   simp [xvIncidenceNatVars]
 
+/-- Frontier live-closure theorem. -/
 theorem physicalMaskNatVars_nodup (a : SearchArm) : (physicalMaskNatVars a).Nodup := by
   exact derivedNatVars_nodup (physicalMaskVars_nodup a)
 
+/-- Frontier live-closure theorem. -/
 theorem deletedPhysicalNatVars_nodup (a : SearchArm) :
     (deletedPhysicalNatVars a).Nodup := by
   exact derivedNatVars_nodup (deletedPhysicalVars_nodup a)
 
+/-- Frontier live-closure theorem. -/
 theorem uBIntersectionNatVars_nodup : uBIntersectionNatVars.Nodup := by
   exact derivedNatVars_nodup uBIntersectionVars_nodup
 
+/-- Frontier live-closure theorem. -/
 theorem xvBIntersectionNatVars_nodup : xvBIntersectionNatVars.Nodup := by
   exact derivedNatVars_nodup xvBIntersectionVars_nodup
 
+/-- Frontier live-closure theorem. -/
 theorem uIncidenceNatVars_nodup : uIncidenceNatVars.Nodup := by
   exact derivedNatVars_nodup uIncidenceVars_nodup
 
+/-- Frontier live-closure theorem. -/
 theorem xvIncidenceNatVars_nodup : xvIncidenceNatVars.Nodup := by
   exact derivedNatVars_nodup xvIncidenceVars_nodup
 
+/-- Frontier live-closure theorem. -/
 theorem physicalMaskVars_range {a : SearchArm} {v : ArmDerivedVar a}
     (h : v ∈ physicalMaskVars a) : 288 ≤ v.toNat ∧ v.toNat < 306 := by
   rcases List.mem_map.mp h with ⟨l, _, rfl⟩
   simp [ArmDerivedVar.toNat, ArmDerivedVar.toOffset]
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem deletedPhysicalVars_range {a : SearchArm} {v : ArmDerivedVar a}
     (h : v ∈ deletedPhysicalVars a) : 306 ≤ v.toNat ∧ v.toNat < 324 := by
   rcases List.mem_map.mp h with ⟨l, _, rfl⟩
   simp [ArmDerivedVar.toNat, ArmDerivedVar.toOffset]
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem uBIntersectionVars_range {v : ArmDerivedVar .bi} (h : v ∈ uBIntersectionVars) :
     324 ≤ v.toNat ∧ v.toNat < 342 := by
   rcases List.mem_map.mp h with ⟨l, _, rfl⟩
   simp [ArmDerivedVar.toNat, ArmDerivedVar.toOffset]
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem xvBIntersectionVars_range {v : ArmDerivedVar .bi} (h : v ∈ xvBIntersectionVars) :
     342 ≤ v.toNat ∧ v.toNat < 360 := by
   rcases List.mem_map.mp h with ⟨l, _, rfl⟩
   simp [ArmDerivedVar.toNat, ArmDerivedVar.toOffset]
   omega
 
+/-- Frontier live-closure theorem. -/
 theorem uIncidenceVars_range {v : ArmDerivedVar .u} (h : v ∈ uIncidenceVars) :
     324 ≤ v.toNat ∧ v.toNat < 329 := by
   change v ∈
@@ -485,6 +526,7 @@ theorem uIncidenceVars_range {v : ArmDerivedVar .u} (h : v ∈ uIncidenceVars) :
   rcases h with rfl | rfl | rfl | rfl | rfl <;>
     decide
 
+/-- Frontier live-closure theorem. -/
 theorem xvIncidenceVars_range {v : ArmDerivedVar .xv} (h : v ∈ xvIncidenceVars) :
     324 ≤ v.toNat ∧ v.toNat < 329 := by
   change v ∈
@@ -497,13 +539,16 @@ theorem xvIncidenceVars_range {v : ArmDerivedVar .xv} (h : v ∈ xvIncidenceVars
   rcases h with rfl | rfl | rfl | rfl | rfl <;>
     decide
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem armDerivedVars_length (a : SearchArm) :
     (armDerivedVars a).length = derivedVarCount a := by
   cases a <;> simp [armDerivedVars, derivedVarCount]
 
+/-- Frontier live-closure theorem. -/
 theorem armDerivedVars_nodup (a : SearchArm) : (armDerivedVars a).Nodup := by
   cases a <;> decide
 
+/-- Frontier live-closure theorem. -/
 theorem ArmDerivedVar.mem_armDerivedVars {a : SearchArm} (v : ArmDerivedVar a) :
     v ∈ armDerivedVars a := by
   cases v with
@@ -516,6 +561,7 @@ theorem ArmDerivedVar.mem_armDerivedVars {a : SearchArm} (v : ArmDerivedVar a) :
   | uIncidence i => cases i <;> simp [armDerivedVars, uIncidenceVars]
   | xvIncidence i => cases i <;> simp [armDerivedVars, xvIncidenceVars]
 
+/-- Frontier live-closure instance. -/
 instance instFintypeArmDerivedVar (a : SearchArm) : Fintype (ArmDerivedVar a) where
   elems := ⟨armDerivedVars a, armDerivedVars_nodup a⟩
   complete := ArmDerivedVar.mem_armDerivedVars
@@ -595,6 +641,7 @@ def encodeArm {a : SearchArm} (p : PacketOfArm a) (n : Nat) : Bool :=
       | some v => p.evalDerivedVar v
       | none => false
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_baseVar {a : SearchArm} (p : PacketOfArm a) (v : BaseVar a) :
     encodeArm p v.toNat = p.evalBaseVar v := by
   simp [encodeArm]
@@ -620,36 +667,43 @@ theorem encodeArm_wellFormed {a : SearchArm} (p : PacketOfArm a) :
     rw [← encodeArm_agreesOnBase p (.inl (r, m))]
     exact hm
 
+/-- Frontier live-closure theorem. -/
 theorem encodeArm_eq_encodeBase_on_base {a : SearchArm} (p : PacketOfArm a) (n : Nat)
     (h : n < 288) : encodeArm p n = encodeBase p n := by
   rw [encodeArm, encodeBase]
   simp only [BaseVar.ofNat?]
   rw [dif_pos (by simpa [baseVarCount_eq_288] using h)]
 
+/-- Frontier live-closure theorem. -/
 private theorem baseVarLookup_derived_toNat {a : SearchArm} (v : ArmDerivedVar a) :
     BaseVar.ofNat? a v.toNat = none := by
   rw [BaseVar.ofNat?, dif_neg]
   rw [baseVarCount_eq_288]
   exact not_lt_of_ge v.toNat_ge_288
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_derivedVar {a : SearchArm} (p : PacketOfArm a)
     (v : ArmDerivedVar a) : encodeArm p v.toNat = p.evalDerivedVar v := by
   simp [encodeArm, baseVarLookup_derived_toNat]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_roleBit {a : SearchArm} (p : PacketOfArm a)
     (r : Role a) (l : Label) : encodeArm p (roleBit a r l) = decide (p.role r = l) := by
   exact encodeArm_baseVar p (.inl (r, l))
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_supportBit {a : SearchArm} (p : PacketOfArm a)
     (s : Support a) (l : Label) :
     encodeArm p (supportBit a s l) = decide (l ∈ p.support s) := by
   exact encodeArm_baseVar p (.inr (s, l))
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_physicalMask {a : SearchArm} (p : PacketOfArm a) (l : Label) :
     encodeArm p (ArmDerivedVar.physicalMask a l).toNat =
       decide (l ∈ p.physicalFive) := by
   cases a <;> simp [PacketOfArm.evalDerivedVar, PacketOfArm.physicalFive]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_deletedPhysical {a : SearchArm} (p : PacketOfArm a) (l : Label) :
     encodeArm p (ArmDerivedVar.deletedPhysical a l).toNat =
       decide (l ∈ p.deletedCenterRow ∩ p.physicalFive) := by
@@ -657,20 +711,24 @@ private theorem baseVarLookup_derived_toNat {a : SearchArm} (v : ArmDerivedVar a
     simp [PacketOfArm.evalDerivedVar, PacketOfArm.deletedCenterRow,
       PacketOfArm.physicalFive]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_uBIntersection (p : PacketOfArm .bi) (l : Label) :
     encodeArm p (ArmDerivedVar.uBIntersection l).toNat =
       decide (l ∈ p.2.uB1 ∩ p.2.uB2) := by
   simp [PacketOfArm.evalDerivedVar]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_xvBIntersection (p : PacketOfArm .bi) (l : Label) :
     encodeArm p (ArmDerivedVar.xvBIntersection l).toNat =
       decide (l ∈ p.2.xvB1 ∩ p.2.xvB2) := by
   simp [PacketOfArm.evalDerivedVar]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_uIncidence (p : PacketOfArm .u) (i : CrossedIncidence) :
     encodeArm p (ArmDerivedVar.uIncidence i).toNat = i.eval p.1 p.2 := by
   simp [PacketOfArm.evalDerivedVar]
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem encodeArm_xvIncidence (p : PacketOfArm .xv) (i : CrossedIncidence) :
     encodeArm p (ArmDerivedVar.xvIncidence i).toNat = i.eval p.1 p.2 := by
   simp [PacketOfArm.evalDerivedVar]

@@ -43,43 +43,74 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure def. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
     requirement := { center := center, support := support } }
 
 -- The 24 fresh second-opposite-center requirements.
+/-- Frontier live-closure def. -/
 def definition6_0310 := mkDefinition 45278 6 {0, 3, 10}
+/-- Frontier live-closure def. -/
 def definition6_0311 := mkDefinition 45279 6 {0, 3, 11}
+/-- Frontier live-closure def. -/
 def definition6_0410 := mkDefinition 45280 6 {0, 4, 10}
+/-- Frontier live-closure def. -/
 def definition6_0411 := mkDefinition 45281 6 {0, 4, 11}
+/-- Frontier live-closure def. -/
 def definition6_0510 := mkDefinition 45282 6 {0, 5, 10}
+/-- Frontier live-closure def. -/
 def definition6_0511 := mkDefinition 45283 6 {0, 5, 11}
+/-- Frontier live-closure def. -/
 def definition7_0310 := mkDefinition 45284 7 {0, 3, 10}
+/-- Frontier live-closure def. -/
 def definition7_0311 := mkDefinition 45285 7 {0, 3, 11}
+/-- Frontier live-closure def. -/
 def definition7_0410 := mkDefinition 45286 7 {0, 4, 10}
+/-- Frontier live-closure def. -/
 def definition7_0411 := mkDefinition 45287 7 {0, 4, 11}
+/-- Frontier live-closure def. -/
 def definition7_0510 := mkDefinition 45288 7 {0, 5, 10}
+/-- Frontier live-closure def. -/
 def definition7_0511 := mkDefinition 45289 7 {0, 5, 11}
+/-- Frontier live-closure def. -/
 def definition8_0310 := mkDefinition 45290 8 {0, 3, 10}
+/-- Frontier live-closure def. -/
 def definition8_0311 := mkDefinition 45291 8 {0, 3, 11}
+/-- Frontier live-closure def. -/
 def definition8_0410 := mkDefinition 45292 8 {0, 4, 10}
+/-- Frontier live-closure def. -/
 def definition8_0411 := mkDefinition 45293 8 {0, 4, 11}
+/-- Frontier live-closure def. -/
 def definition8_0510 := mkDefinition 45294 8 {0, 5, 10}
+/-- Frontier live-closure def. -/
 def definition8_0511 := mkDefinition 45295 8 {0, 5, 11}
+/-- Frontier live-closure def. -/
 def definition9_0310 := mkDefinition 45296 9 {0, 3, 10}
+/-- Frontier live-closure def. -/
 def definition9_0311 := mkDefinition 45297 9 {0, 3, 11}
+/-- Frontier live-closure def. -/
 def definition9_0410 := mkDefinition 45298 9 {0, 4, 10}
+/-- Frontier live-closure def. -/
 def definition9_0411 := mkDefinition 45299 9 {0, 4, 11}
+/-- Frontier live-closure def. -/
 def definition9_0510 := mkDefinition 45300 9 {0, 5, 10}
+/-- Frontier live-closure def. -/
 def definition9_0511 := mkDefinition 45301 9 {0, 5, 11}
 
 -- The six fresh first-opposite-center requirements.
+/-- Frontier live-closure def. -/
 def definition10_23 := mkDefinition 45302 10 {2, 3}
+/-- Frontier live-closure def. -/
 def definition10_24 := mkDefinition 45303 10 {2, 4}
+/-- Frontier live-closure def. -/
 def definition10_25 := mkDefinition 45304 10 {2, 5}
+/-- Frontier live-closure def. -/
 def definition11_23 := mkDefinition 45305 11 {2, 3}
+/-- Frontier live-closure def. -/
 def definition11_24 := mkDefinition 45306 11 {2, 4}
+/-- Frontier live-closure def. -/
 def definition11_25 := mkDefinition 45307 11 {2, 5}
 
 /-- The 30 genuinely fresh definitions, in compiler allocation order. -/
@@ -110,6 +141,7 @@ valid frozen row never contains its own center. -/
 def outOfFamilyRequirement : RowChoice Label :=
   { center := 0, support := {0} }
 
+/-- Frontier live-closure theorem. -/
 theorem outOfFamilyRequirement_not_satisfied
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row) :
     ¬outOfFamilyRequirement.support ⊆ row outOfFamilyRequirement.center := by
@@ -137,6 +169,7 @@ def implicationDimacs : List (List Int) :=
     positiveMembershipIndexImplicationClauses
       definition.requirement.center (candidateIndicesFor definition) definition
 
+/-- Frontier live-closure def. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (45277 < definition.varIndex ∧
@@ -150,6 +183,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Frontier live-closure theorem. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
@@ -216,6 +250,7 @@ def familyData : List SecondApexSurplusSecondFirstCommonFiveData :=
     ([6, 7, 8, 9] : List Label).flatMap fun c =>
       ([10, 11] : List Label).map fun y => {b := b, c := c, y := y}
 
+/-- Frontier live-closure def. -/
 def familyChoices
     (data : SecondApexSurplusSecondFirstCommonFiveData) :
     List (RowChoice Label) :=
@@ -223,21 +258,25 @@ def familyChoices
     {center := data.c, support := {0, data.b, data.y}},
     {center := data.y, support := {2, data.b}}]
 
+/-- Frontier live-closure def. -/
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD definition6_0310
 
+/-- Frontier live-closure structure. -/
 structure FamilyEntry where
   data : SecondApexSurplusSecondFirstCommonFiveData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Frontier live-closure def. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Frontier live-closure def. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
@@ -268,11 +307,13 @@ theorem family_shape :
         (45278 ≤ definition.varIndex ∧ definition.varIndex ≤ 45307)) = true := by
   native_decide
 
+/-- Frontier live-closure def. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Frontier live-closure theorem. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧
@@ -286,6 +327,7 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 definition hdefinition)
 
+/-- Frontier live-closure theorem. -/
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
@@ -296,6 +338,7 @@ private theorem reused_definition_le_cutoff
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
 
+/-- Frontier live-closure theorem. -/
 private theorem positiveRowsMatch_of_mixed_blockingClause_false
     (base : Nat → Bool) (row : RowPattern Label)
     (entryDefinitions : List PositiveMembershipDefinition)

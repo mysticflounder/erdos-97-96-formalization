@@ -36,6 +36,7 @@ def frozenPlacementDomain : Finset (Label × Label) :=
   (variableRoleLabels ×ˢ variableRoleLabels).filter fun placement =>
     placement.1 ≠ placement.2
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_frozenPlacementDomain_iff (d v : Label) :
     (d, v) ∈ frozenPlacementDomain ↔
       d ∈ variableRoleLabels ∧ v ∈ variableRoleLabels ∧ d ≠ v := by

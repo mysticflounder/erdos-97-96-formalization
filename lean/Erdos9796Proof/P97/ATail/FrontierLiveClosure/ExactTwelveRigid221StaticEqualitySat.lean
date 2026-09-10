@@ -24,8 +24,10 @@ open StaticRelationLayout
 open StaticRelationSemantics
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
+/-- Frontier live-closure def. -/
 def rowDatumValid (datum : RowImplicationDatum) : Bool :=
   decide (datum.2.1 < SafeCoverCnf.candCount datum.1.val) &&
   ((SafeCoverCnf.candMasks datum.1.val).getD datum.2.1 0).testBit
@@ -38,10 +40,12 @@ def rowDatumValid (datum : RowImplicationDatum) : Bool :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem rowImplicationData_valid :
     rowImplicationData.all rowDatumValid = true := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem rowDatum_facts (datum : RowImplicationDatum)
     (hdatum : datum ∈ rowImplicationData) :
     datum.2.1 < SafeCoverCnf.candCount datum.1.val ∧
@@ -56,6 +60,7 @@ theorem rowDatum_facts (datum : RowImplicationDatum)
   rcases hvalid with ⟨⟨⟨hindex, hleft⟩, hright⟩, hpositive⟩
   exact ⟨hindex, hleft, hright, hpositive⟩
 
+/-- Frontier live-closure def. -/
 def transitivityDatumValid (datum : Nat × Nat × Nat) : Bool :=
   let first := edgeAt datum.1
   let second := edgeAt datum.2.1
@@ -66,10 +71,12 @@ def transitivityDatumValid (datum : Nat × Nat × Nat) : Bool :=
 
 set_option maxHeartbeats 0 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem relationTripleData_valid :
     relationTripleData.all transitivityDatumValid = true := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem transitivityDatum_facts (datum : Nat × Nat × Nat)
     (hdatum : datum ∈ relationTripleData) :
     let first := edgeAt datum.1
@@ -83,6 +90,7 @@ theorem transitivityDatum_facts (datum : Nat × Nat × Nat)
   rcases hvalid with ⟨⟨hfirstSecond, hfirstThird⟩, hsecondThird⟩
   exact ⟨hfirstSecond, hfirstThird, hsecondThird⟩
 
+/-- Frontier live-closure def. -/
 def duplicateCenterDatumValid (datum : DuplicateCenterDatum) : Bool :=
   decide (datum.1 ≠ datum.2.1) &&
   decide (datum.2.2.1 ≠ datum.2.2.2.1) &&
@@ -99,10 +107,12 @@ def duplicateCenterDatumValid (datum : DuplicateCenterDatum) : Bool :=
 
 set_option maxHeartbeats 0 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem duplicateCenterData_valid :
     duplicateCenterData.all duplicateCenterDatumValid = true := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem duplicateCenterDatum_facts (datum : DuplicateCenterDatum)
     (hdatum : datum ∈ duplicateCenterData) :
     datum.1 ≠ datum.2.1 ∧
@@ -124,6 +134,7 @@ theorem duplicateCenterDatum_facts (datum : DuplicateCenterDatum)
     ⟨⟨⟨⟨⟨⟨⟨hab, hpq⟩, hpr⟩, hqr⟩, h₁⟩, h₂⟩, h₃⟩, h₄⟩
   exact ⟨hab, hpq, hpr, hqr, h₁, h₂, h₃, h₄⟩
 
+/-- Frontier live-closure theorem. -/
 theorem rowImplicationClause_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (cell : FrozenNextRowCell) (blocker : Fin 5 → Label) (d : Label)
@@ -147,6 +158,7 @@ theorem rowImplicationClause_sat
     evalClauseD_rowImplication σ relationVar hmetric hreal
       (SafeCoverCnf.xVar datum.1.val datum.2.1) hchoice hpositive
 
+/-- Frontier live-closure theorem. -/
 theorem transitivityClausesAt_sat
     {row : RowPattern Label} (cell : FrozenNextRowCell)
     (blocker : Fin 5 → Label) (d : Label) (pointOf : Label → ℝ²)
@@ -176,6 +188,7 @@ theorem transitivityClausesAt_sat
         first third second hfirstThird
         (by simpa [relationVar_comm] using hsecondThird) hfirstSecond
 
+/-- Frontier live-closure theorem. -/
 theorem duplicateCenterClause_sat
     {row : RowPattern Label} (cell : FrozenNextRowCell)
     (blocker : Fin 5 → Label) (d : Label) (pointOf : Label → ℝ²)

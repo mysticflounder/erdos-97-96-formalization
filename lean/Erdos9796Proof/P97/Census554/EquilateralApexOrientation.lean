@@ -65,6 +65,7 @@ theorem normSim_equilateralHinge_orientation
     · simpa [pt] using hcoords.1
     · simpa [pt] using hy'
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem baseCoordSquare_ne_zero {A B : ℝ²} (hAB : A ≠ B) :
     (B 0 - A 0) ^ 2 + (B 1 - A 1) ^ 2 ≠ 0 := by
   intro hzero
@@ -79,6 +80,7 @@ private theorem baseCoordSquare_ne_zero {A B : ℝ²} (hAB : A ≠ B) :
   · exact hx.symm
   · exact hy.symm
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem original_eq_rotate60_of_normSim_eq
     {A B H : ℝ²}
     (hAB : A ≠ B)
@@ -115,6 +117,7 @@ private theorem original_eq_rotate60_of_normSim_eq
   · simpa [rotate60, pt] using congrArg (fun x : ℝ ↦ A 0 + x) hux
   · simpa [rotate60, pt] using congrArg (fun x : ℝ ↦ A 1 + x) huy
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem original_eq_rotateNeg60_of_normSim_eq
     {A B H : ℝ²}
     (hAB : A ≠ B)

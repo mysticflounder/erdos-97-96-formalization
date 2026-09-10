@@ -31,16 +31,22 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 220324
+/-- Exact-five common-shell V7 def. -/
 private def retainedTwoCenterBisectorCount : Nat := 52693
+/-- Exact-five common-shell V7 def. -/
 private def twoCenterBisectorClauseCount : Nat := 190080
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedTwoCenterBisectorPayload : String :=
   include_str "data/g3-v7-two-center-bisector-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev TwoCenterBisectorClauseIndex :=
   Fin twoCenterBisectorClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -62,10 +68,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array TwoCenterBisectorClauseIndex →
       Option (Array TwoCenterBisectorClauseIndex)
@@ -85,6 +93,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedTwoCenterBisectorIndices :
     Option (Array TwoCenterBisectorClauseIndex) := do
   let bytes ← decodeAscii85 retainedTwoCenterBisectorPayload
@@ -104,10 +113,12 @@ structure TwoCenterBisectorOccurrence where
   secondCenter : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def TwoCenterBisectorOccurrence.position
     (occurrence : TwoCenterBisectorOccurrence) (label : Label) : Label :=
   selectorIndexEquiv occurrence.selector label
 
+/-- Exact-five common-shell V7 def. -/
 private def TwoCenterBisectorOccurrence.nonalternating
     (occurrence : TwoCenterBisectorOccurrence) : Bool :=
   let firstCenter := occurrence.position occurrence.firstCenter
@@ -138,15 +149,18 @@ def encoderTwoCenterBisectorOccurrences :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderTwoCenterBisectorOccurrences_length :
     encoderTwoCenterBisectorOccurrences.length =
       twoCenterBisectorClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def twoCenterBisectorOccurrenceArray :
     Array TwoCenterBisectorOccurrence :=
   encoderTwoCenterBisectorOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def twoCenterBisectorOccurrenceAt
     (index : TwoCenterBisectorClauseIndex) :
     TwoCenterBisectorOccurrence :=
@@ -154,6 +168,7 @@ def twoCenterBisectorOccurrenceAt
     simpa [twoCenterBisectorOccurrenceArray,
       encoderTwoCenterBisectorOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def twoCenterGlobalEqualityIndex
     (center left right : Label) : Fin 1485 :=
   Fin.ofNat 1485
@@ -185,6 +200,7 @@ def g3TwoCenterBisectorSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3TwoCenterBisectorSlice_size :
     g3TwoCenterBisectorSlice.size =
       retainedTwoCenterBisectorCount := by

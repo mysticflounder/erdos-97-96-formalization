@@ -83,6 +83,7 @@ structure OrderedFive where
   h23 : i2 < i3
   h34 : i3 < i4
 
+/-- Supports the aligned P5 occurrence analysis. -/
 def OrderedFive.values (T : OrderedFive) : List Nat :=
   [T.i0.val, T.i1.val, T.i2.val, T.i3.val, T.i4.val]
 
@@ -100,9 +101,11 @@ structure OrderedSix where
   h34 : i3 < i4
   h45 : i4 < i5
 
+/-- Supports the aligned P5 occurrence analysis. -/
 def OrderedSix.values (T : OrderedSix) : List Nat :=
   [T.i0.val, T.i1.val, T.i2.val, T.i3.val, T.i4.val, T.i5.val]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem lt_eleven_of_mem_targets {targets : List Nat} {point : Nat}
     (hsub : targets.Sublist
       ATailAlignedP5NativeClassifierScratch.labels)
@@ -110,6 +113,7 @@ private theorem lt_eleven_of_mem_targets {targets : List Nat} {point : Nat}
     point < 11 := by
   exact List.mem_range.mp (hsub.subset hpoint)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem exists_orderedFive_of_mem_increasingTargets
     {targets : List Nat} (htargets : targets ∈ increasingTargets 5) :
     ∃ T : OrderedFive, targets = T.values := by
@@ -168,6 +172,7 @@ theorem exists_orderedFive_of_mem_increasingTargets
     h34 := by simpa [i3, i4] using hde }, by
       simp [OrderedFive.values, i0, i1, i2, i3, i4]⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem exists_orderedSix_of_mem_increasingTargets
     {targets : List Nat} (htargets : targets ∈ increasingTargets 6) :
     ∃ T : OrderedSix, targets = T.values := by

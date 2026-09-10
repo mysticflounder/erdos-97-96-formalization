@@ -35,6 +35,7 @@ open SourceOrderTerminalBankConsumer
 open TerminalBankConsumer
 
 /- The relabeled carrier points enumerate the original finite carrier. -/
+/-- Frontier live-closure theorem. -/
 private theorem labeledPointImage_eq
     {A : Finset ℝ²} (e : CarrierLabel A ≃ Label) :
     (Finset.univ : Finset Label).image

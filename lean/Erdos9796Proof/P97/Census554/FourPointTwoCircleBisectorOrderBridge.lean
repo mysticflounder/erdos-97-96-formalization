@@ -29,9 +29,11 @@ namespace FourPointTwoCircleBisectorOrderBridge
 
 open EqualityCore GeneralCarrierBridge
 
+/-- Census-554 certificate-bank def. -/
 private def CyclicThree {n : ℕ} (i j k : Fin n) : Prop :=
   (i < j ∧ j < k) ∨ (j < k ∧ k < i) ∨ (k < i ∧ i < j)
 
+/-- Census-554 certificate-bank def. -/
 private def CyclicFourIndices {n : ℕ} (q u y v : Fin n) : Prop :=
   (q < u ∧ u < y ∧ y < v) ∨
   (u < y ∧ y < v ∧ v < q) ∨
@@ -45,6 +47,7 @@ def CyclicSubsequence {carrier : Finset ℝ²}
   CyclicFourIndices (boundary.indexOf q) (boundary.indexOf u)
     (boundary.indexOf y) (boundary.indexOf v)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem cyclicFour_required_triples {n : ℕ}
     {q u y v : Fin n} (h : CyclicFourIndices q u y v) :
     CyclicThree u v q ∧ CyclicThree y v q := by
@@ -52,26 +55,31 @@ private theorem cyclicFour_required_triples {n : ℕ}
   unfold CyclicThree
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem cyclicFour_u_ne_y {n : ℕ}
     {q u y v : Fin n} (h : CyclicFourIndices q u y v) : u ≠ y := by
   unfold CyclicFourIndices at h
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem signedArea2_swap12 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 b a c := by
   simp only [signedArea2]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem signedArea2_rotate (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]
   ring
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem signedArea2_neg_of_lt {n : ℕ} {boundary : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
     (hinj : Function.Injective boundary) {i j k : Fin n}
@@ -81,6 +89,7 @@ private theorem signedArea2_neg_of_lt {n : ℕ} {boundary : Fin n → ℝ²}
   rw [signedArea2_swap12 (boundary i) (boundary j) (boundary k)]
   linarith
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem signedArea2_neg_of_cyclic {n : ℕ}
     {boundary : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
@@ -95,6 +104,7 @@ private theorem signedArea2_neg_of_cyclic {n : ℕ}
       signedArea2_rotate (boundary j) (boundary k) (boundary i)]
     exact signedArea2_neg_of_lt hccw hinj hki hij
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem boundary_signedArea2_neg
     {carrier : Finset ℝ²} (boundary : BoundaryIndexing carrier)
     {p q r : CarrierLabel carrier}

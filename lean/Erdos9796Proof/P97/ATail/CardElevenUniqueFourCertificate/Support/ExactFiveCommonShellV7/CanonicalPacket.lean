@@ -26,6 +26,7 @@ open Census554.SeparationCore
 -- The enum `Fintype` derive handler needs this under Lean 4.33, as in
 -- `MathlibTest/DeriveFintype.lean`.
 set_option backward.isDefEq.respectTransparency false in
+/-- Exact-five common-shell V7 inductive. -/
 inductive SurplusShellChoice
   | labelTwo
   | labelThree
@@ -34,27 +35,33 @@ deriving DecidableEq, Fintype
 -- The enum `Fintype` derive handler needs this under Lean 4.33, as in
 -- `MathlibTest/DeriveFintype.lean`.
 set_option backward.isDefEq.respectTransparency false in
+/-- Exact-five common-shell V7 inductive. -/
 inductive OtherShellChoice
   | labelZero
   | labelNine
 deriving DecidableEq, Fintype
 
+/-- Exact-five common-shell V7 structure. -/
 structure ShellCase where
   surplus : SurplusShellChoice
   other : OtherShellChoice
 deriving DecidableEq, Fintype
 
+/-- Exact-five common-shell V7 def. -/
 def SurplusShellChoice.label : SurplusShellChoice → Label
   | .labelTwo => 2
   | .labelThree => 3
 
+/-- Exact-five common-shell V7 def. -/
 def OtherShellChoice.label : OtherShellChoice → Label
   | .labelZero => 0
   | .labelNine => 9
 
+/-- Exact-five common-shell V7 def. -/
 def ShellCase.support (c : ShellCase) : Finset Label :=
   {c.other.label, c.surplus.label, 6, 7, 8}
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem ShellCase.support_cases (c : ShellCase) :
     c.support = ({0, 2, 6, 7, 8} : Finset Label) ∨
     c.support = ({9, 2, 6, 7, 8} : Finset Label) ∨
@@ -66,6 +73,7 @@ theorem ShellCase.support_cases (c : ShellCase) :
         simp [ShellCase.support, SurplusShellChoice.label,
           OtherShellChoice.label]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem exists_shellCase_of_support_cases (T : Finset Label)
     (h :
       T = ({0, 2, 6, 7, 8} : Finset Label) ∨
@@ -97,6 +105,7 @@ structure SelectedBoundaryOrder (pointOf : Label → ℝ²) where
   point_eq : ∀ label,
     boundary (selectorIndexEquiv selector label) = pointOf label
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def SelectedBoundaryOrder.ofDirect {pointOf : Label → ℝ²}
     (L : Card11MacroCcwLabeling pointOf) :
     SelectedBoundaryOrder pointOf where
@@ -108,6 +117,7 @@ noncomputable def SelectedBoundaryOrder.ofDirect {pointOf : Label → ℝ²}
     rw [selectorIndexEquiv_directSelector]
     exact L.point_eq label
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def SelectedBoundaryOrder.ofMirror {pointOf : Label → ℝ²}
     (L : Card11MirrorMacroCcwLabeling pointOf) :
     SelectedBoundaryOrder pointOf where
@@ -119,6 +129,7 @@ noncomputable def SelectedBoundaryOrder.ofMirror {pointOf : Label → ℝ²}
     rw [selectorIndexEquiv_mirrorSelector]
     exact L.point_eq label
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def SelectedBoundaryOrder.ofDirectOrMirror {pointOf : Label → ℝ²} :
     Card11DirectOrMirrorCcwLabeling pointOf →
       SelectedBoundaryOrder pointOf

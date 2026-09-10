@@ -35,20 +35,31 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure def. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
     requirement := { center := center, support := support } }
 
+/-- Frontier live-closure def. -/
 def definition6_39 := mkDefinition 45001 6 {3, 9}
+/-- Frontier live-closure def. -/
 def definition6_49 := mkDefinition 45002 6 {4, 9}
+/-- Frontier live-closure def. -/
 def definition6_59 := mkDefinition 45003 6 {5, 9}
+/-- Frontier live-closure def. -/
 def definition7_368 := mkDefinition 45004 7 {3, 6, 8}
+/-- Frontier live-closure def. -/
 def definition7_468 := mkDefinition 45005 7 {4, 6, 8}
+/-- Frontier live-closure def. -/
 def definition7_568 := mkDefinition 45006 7 {5, 6, 8}
+/-- Frontier live-closure def. -/
 def definition8_369 := mkDefinition 45007 8 {3, 6, 9}
+/-- Frontier live-closure def. -/
 def definition8_469 := mkDefinition 45008 8 {4, 6, 9}
+/-- Frontier live-closure def. -/
 def definition8_569 := mkDefinition 45009 8 {5, 6, 9}
+/-- Frontier live-closure def. -/
 def definition9_67 := mkDefinition 45010 9 {6, 7}
 
 /-- Fresh definitions in exactly the lexicographic order used by the Python
@@ -122,6 +133,7 @@ def implicationDimacs : List (List Int) :=
     positiveMembershipIndexImplicationClauses
       definition.requirement.center (candidateIndicesFor definition) definition
 
+/-- Frontier live-closure def. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (45000 < definition.varIndex ∧
@@ -135,6 +147,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Frontier live-closure theorem. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ definitions) :
@@ -198,35 +211,42 @@ theorem implicationDimacs_sat
 def familyData : List SurplusThreeTriadData :=
   [{a := 3}, {a := 4}, {a := 5}]
 
+/-- Frontier live-closure def. -/
 def familyChoices (data : SurplusThreeTriadData) : List (RowChoice Label) :=
   [{center := 6, support := {data.a, 9}},
     {center := 7, support := {data.a, 6, 8}},
     {center := 8, support := {data.a, 6, 9}},
     {center := 9, support := {6, 7}}]
 
+/-- Frontier live-closure def. -/
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD definition6_39
 
+/-- Frontier live-closure structure. -/
 structure FamilyEntry where
   data : SurplusThreeTriadData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Frontier live-closure def. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Frontier live-closure def. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
+/-- Frontier live-closure def. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Frontier live-closure theorem. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧

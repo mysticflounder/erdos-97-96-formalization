@@ -31,13 +31,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 173914
+/-- Exact-five common-shell V7 def. -/
 private def retainedNoQFreeCount : Nat := 426
+/-- Exact-five common-shell V7 def. -/
 private def noQFreeClauseCount : Nat := 11592
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedNoQFreePayload : String :=
   include_str "data/g3-no-qfree-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev NoQFreeClauseIndex := Fin noQFreeClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -62,10 +67,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array NoQFreeClauseIndex →
       Option (Array NoQFreeClauseIndex)
@@ -85,6 +92,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedNoQFreeIndices :
     Option (Array NoQFreeClauseIndex) := do
   let bytes ← decodeAscii85 retainedNoQFreePayload
@@ -119,19 +127,23 @@ def encoderNoQFreeOccurrences : List NoQFreeOccurrence :=
         point₃ := toLabel (support.getD 3 0) }
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderNoQFreeOccurrences_length :
     encoderNoQFreeOccurrences.length = noQFreeClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def noQFreeOccurrenceArray : Array NoQFreeOccurrence :=
   encoderNoQFreeOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def noQFreeOccurrenceAt
     (index : NoQFreeClauseIndex) : NoQFreeOccurrence :=
   noQFreeOccurrenceArray[index.val]'(by
     simpa [noQFreeOccurrenceArray,
       encoderNoQFreeOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def noQFreeLocalFourIndex
     (occurrence : NoQFreeOccurrence) : Fin 2310 :=
   Fin.ofNat 2310
@@ -140,6 +152,7 @@ private def noQFreeLocalFourIndex
         [occurrence.anchor, occurrence.point₁, occurrence.point₂,
           occurrence.point₃]⟩)
 
+/-- Exact-five common-shell V7 def. -/
 private def noQFreeLocalEqualityIndex
     (occurrence : NoQFreeOccurrence) (point : Label) : Fin 495 :=
   Fin.ofNat 495
@@ -166,6 +179,7 @@ def g3NoQFreeSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3RetainedNoQFreeIndices_size :
     g3RetainedNoQFreeIndices.size = retainedNoQFreeCount := by
   native_decide
@@ -173,6 +187,7 @@ theorem g3RetainedNoQFreeIndices_size :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3NoQFreeSlice_size :
     g3NoQFreeSlice.size = retainedNoQFreeCount := by
   native_decide

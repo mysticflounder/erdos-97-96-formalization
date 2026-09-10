@@ -26,6 +26,7 @@ open scoped EuclideanGeometry
 
 /- ## The exact finite occurrence surface -/
 
+/-- Exact-five common-shell V7 structure. -/
 structure PositionTuple where
   leftCenter : Label
   rightCenter : Label
@@ -33,6 +34,7 @@ structure PositionTuple where
   rightEndpoint : Label
 deriving DecidableEq, Fintype
 
+/-- Exact-five common-shell V7 def. -/
 def positionValid (t : PositionTuple) : Bool :=
   decide (
     t.leftCenter < t.rightCenter ∧
@@ -46,8 +48,10 @@ def positionValid (t : PositionTuple) : Bool :=
       (t.leftCenter < t.rightEndpoint ∧
         t.rightEndpoint < t.rightCenter)))
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev PositionOccurrence := {t : PositionTuple // positionValid t = true}
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem positionOccurrence_card :
     Fintype.card PositionOccurrence = 1320 := by
   set_option maxRecDepth 100000 in
@@ -57,10 +61,12 @@ theorem positionOccurrence_card :
 1,320 nonalternating position occurrences. -/
 abbrev Occurrence := Fin 144 × PositionOccurrence
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem occurrence_card :
     Fintype.card Occurrence = 190080 := by
   simp [Occurrence, positionOccurrence_card]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem PositionOccurrence.valid (o : PositionOccurrence) :
     o.1.leftCenter < o.1.rightCenter ∧
     o.1.leftEndpoint < o.1.rightEndpoint ∧
@@ -88,20 +94,24 @@ theorem PositionOccurrence.valid (o : PositionOccurrence) :
 
 /- ## Exact global-equality row lookup -/
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem canonicalEdge_mem_encoderEdges :
     ∀ a b : Label, a ≠ b →
       canonicalEdge a b ∈ encoderEdges := by
   decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem canonicalStarEdges_ne :
     ∀ center first second : Label,
       center ≠ first → center ≠ second → first ≠ second →
       canonicalEdge center first ≠ canonicalEdge center second := by
   decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem edgeCode_injective : Function.Injective edgeCode := by
   decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem canonicalGlobalStarRow_mem
     (center first second : Label)
     (hcf : center ≠ first) (hcs : center ≠ second)
@@ -133,6 +143,7 @@ theorem canonicalGlobalStarRow_mem
       List.mem_map.mpr ⟨firstEdge,
         List.mem_filter.mpr ⟨hfirst, by simpa using hlt⟩, rfl⟩⟩
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem exists_globalEqIndex :
     ∀ center first second : Label,
       center ≠ first → center ≠ second → first ≠ second →
@@ -149,6 +160,7 @@ theorem exists_globalEqIndex :
   refine ⟨index, ?_⟩
   simpa [globalEqRow, index] using hi
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def globalEqIndex
     (center first second : Label)
     (hcf : center ≠ first) (hcs : center ≠ second)
@@ -156,6 +168,7 @@ noncomputable def globalEqIndex
   Classical.choose
     (exists_globalEqIndex center first second hcf hcs hfs)
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem globalEqRow_globalEqIndex
     (center first second : Label)
     (hcf : center ≠ first) (hcs : center ≠ second)
@@ -167,12 +180,14 @@ theorem globalEqRow_globalEqIndex
   Classical.choose_spec
     (exists_globalEqIndex center first second hcf hcs hfs)
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem decoded_ne (selector : Fin 144) {a b : Label}
     (h : a ≠ b) :
     (selectorIndexEquiv selector).symm a ≠
       (selectorIndexEquiv selector).symm b :=
   (selectorIndexEquiv selector).symm.injective.ne h
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def occurrenceLeftEqIndex (o : Occurrence) : Fin 1485 :=
   let t := o.2.1
   let valid := o.2.valid
@@ -184,6 +199,7 @@ noncomputable def occurrenceLeftEqIndex (o : Occurrence) : Fin 1485 :=
     (decoded_ne o.1 valid.2.2.2.2.1.symm)
     (decoded_ne o.1 (ne_of_lt valid.2.1))
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def occurrenceRightEqIndex (o : Occurrence) : Fin 1485 :=
   let t := o.2.1
   let valid := o.2.valid
@@ -195,6 +211,7 @@ noncomputable def occurrenceRightEqIndex (o : Occurrence) : Fin 1485 :=
     (decoded_ne o.1 valid.2.2.2.2.2.1.symm)
     (decoded_ne o.1 (ne_of_lt valid.2.1))
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem occurrenceLeftEqRow (o : Occurrence) :
     globalEqRow (occurrenceLeftEqIndex o) =
       canonicalGlobalRow
@@ -207,6 +224,7 @@ theorem occurrenceLeftEqRow (o : Occurrence) :
   simp only [occurrenceLeftEqIndex]
   exact globalEqRow_globalEqIndex _ _ _ _ _ _
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem occurrenceRightEqRow (o : Occurrence) :
     globalEqRow (occurrenceRightEqIndex o) =
       canonicalGlobalRow
@@ -221,6 +239,7 @@ theorem occurrenceRightEqRow (o : Occurrence) :
 
 /- ## Clause construction and aggregate satisfaction -/
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def occurrenceClause (o : Occurrence) : List Int :=
   [
     -((varOfAtom (.orderSelector o.1) : Nat) : Int),
@@ -228,16 +247,19 @@ noncomputable def occurrenceClause (o : Occurrence) : List Int :=
     -((varOfAtom (.globalEdgeEq (occurrenceRightEqIndex o)) : Nat) : Int)
   ]
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem orderVar_pos (selector : Fin 144) :
     1 ≤ varOfAtom (.orderSelector selector) := by
   have h := (varOfAtom_order_range selector).1
   omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem globalVar_pos (i : Fin 1485) :
     1 ≤ varOfAtom (.globalEdgeEq i) := by
   have h := (varOfAtom_global_range i).1
   omega
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem occurrenceClause_sat
     {pointOf : Label → ℝ²}
     (P : SelectedBoundaryOrder pointOf)
@@ -277,6 +299,7 @@ theorem occurrenceClause_sat
     exact P5OccurrenceBridgeScratch.litSat_neg
       (orderVar_pos o.1) hselector
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem allOccurrenceClauses_sat
     {pointOf : Label → ℝ²}
     (P : SelectedBoundaryOrder pointOf)

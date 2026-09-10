@@ -50,6 +50,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4E
 namespace Problem97
 namespace P5OccurrenceBridgeScratch
 
+/-- Supports the exact-two-source occurrence bridge. -/
 def bridgeEntries : List BridgeEntry :=
   bridgeChunk01 ++
   bridgeChunk02 ++
@@ -92,6 +93,7 @@ def bridgeEntries : List BridgeEntry :=
   bridgeChunk39 ++
   bridgeChunk40
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by
   have happ : ∀ l₁ l₂ : List BridgeEntry,
       l₁.all entryWF = true → l₂.all entryWF = true →

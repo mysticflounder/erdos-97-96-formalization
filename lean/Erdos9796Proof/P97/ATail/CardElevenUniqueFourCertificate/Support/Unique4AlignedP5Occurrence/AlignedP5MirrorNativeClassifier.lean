@@ -25,18 +25,28 @@ namespace ATailAlignedP5MirrorNativeClassifierScratch
 
 open Census554.CapSelectedNativeClassifier
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 abbrev RowMask := ATailAlignedP5NativeClassifierScratch.RowMask
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 abbrev Row := ATailAlignedP5NativeClassifierScratch.Row
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 abbrev Domain := ATailAlignedP5NativeClassifierScratch.Domain
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def secondOppositeCap : List Nat := [0, 1, 2, 3]
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def firstOppositeCap : List Nat := [3, 4, 5, 6, 7]
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def surplusCap : List Nat := [7, 8, 9, 10, 0]
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def secondOppositeEndpoints : List Nat := [0, 3]
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def firstOppositeEndpoints : List Nat := [3, 7]
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def surplusEndpoints : List Nat := [7, 0]
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def ownCapOK (center : Nat) (support : RowMask) : Bool :=
   ATailAlignedP5NativeClassifierScratch.capBoundOK
       secondOppositeCap secondOppositeEndpoints center support &&
@@ -45,27 +55,34 @@ def ownCapOK (center : Nat) (support : RowMask) : Bool :=
       ATailAlignedP5NativeClassifierScratch.capBoundOK
         surplusCap surplusEndpoints center support
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def exactFirstClassOK (center : Nat) (support : RowMask) : Bool :=
   if center = 0 then has support 4 && has support 5 && has support 6 else true
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def localCandidateOK (center : Nat) (support : RowMask) : Bool :=
   countPoints support ATailAlignedP5NativeClassifierScratch.labels = 4 &&
     !has support center &&
       ownCapOK center support &&
         exactFirstClassOK center support
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def candidateRows (center : Nat) : List Row :=
   (List.range 2048).filterMap fun support =>
     if localCandidateOK center support then some { center, support } else none
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def extraPoints : List Nat := [1, 2, 3, 7, 8, 9, 10]
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def fixedFirstRow (extra : Nat) : Row :=
   { center := 0
     support := 2 ^ 4 + 2 ^ 5 + 2 ^ 6 + 2 ^ extra }
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def variableCenters : List Nat := [3, 7, 1, 2, 4, 5, 6, 8, 9, 10]
 
+/-- Verifies the aligned P5 placement check for the indicated extra point. -/
 def placementCheckForExtra (extra : Nat) : Bool :=
   let fixed := fixedFirstRow extra
   if !extraPoints.contains extra ||
@@ -82,6 +99,7 @@ def placementCheckForExtra (extra : Nat) : Bool :=
       ATailAlignedP5NativeClassifierScratch.allKilled
         variableCenters.length assigned domains
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 def placementCheck : Bool :=
   extraPoints.all placementCheckForExtra
 

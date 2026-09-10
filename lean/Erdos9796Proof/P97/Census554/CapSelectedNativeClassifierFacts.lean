@@ -30,6 +30,7 @@ set_option maxHeartbeats 1000000 in
 -- Exhaustive check over the 2,048 finite label sets and eleven labels.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem has_maskOfFinset (points : Finset Label) (point : Label) :
     has (maskOfFinset points) point.val = decide (point ∈ points) := by
   native_decide +revert
@@ -38,6 +39,7 @@ set_option maxHeartbeats 1000000 in
 -- Exhaustive bound check over all eleven-bit finite label sets.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem maskOfFinset_lt_2048 (points : Finset Label) :
     maskOfFinset points < 2048 := by
   native_decide +revert
@@ -46,6 +48,7 @@ set_option maxHeartbeats 0 in
 -- Exhaustive identity over all pairs of eleven-label finite sets.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem countPoints_supportPoints_maskOfFinset
     (left right : Finset Label) :
     countPoints (maskOfFinset left) (supportPoints (maskOfFinset right)) =
@@ -56,6 +59,7 @@ set_option maxHeartbeats 0 in
 -- One exhaustive pass checks all three fixed Q3 interior blocks.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem allEmptyCommon_capBlocks_iff (left right : Finset Label) :
     (allEmptyCommon (maskOfFinset left) (maskOfFinset right) [7, 8] = true ↔
       left ∩ right ∩ intO1 = ∅) ∧
@@ -65,16 +69,19 @@ theorem allEmptyCommon_capBlocks_iff (left right : Finset Label) :
         [3, 4, 5, 6] = true ↔ left ∩ right ∩ intS = ∅) := by
   native_decide +revert
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem allEmptyCommon_intO1_iff (left right : Finset Label) :
     allEmptyCommon (maskOfFinset left) (maskOfFinset right) [7, 8] = true ↔
       left ∩ right ∩ intO1 = ∅ :=
   (allEmptyCommon_capBlocks_iff left right).1
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem allEmptyCommon_intO2_iff (left right : Finset Label) :
     allEmptyCommon (maskOfFinset left) (maskOfFinset right) [9, 10] = true ↔
       left ∩ right ∩ intO2 = ∅ :=
   (allEmptyCommon_capBlocks_iff left right).2.1
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem allEmptyCommon_intS_iff (left right : Finset Label) :
     allEmptyCommon (maskOfFinset left) (maskOfFinset right)
       [3, 4, 5, 6] = true ↔ left ∩ right ∩ intS = ∅ :=
@@ -108,6 +115,7 @@ set_option maxHeartbeats 1000000 in
 -- Exhaustive equivalence check over centers, deleted labels, and row masks.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem localCandidateOK_maskOfFinset_iff
     (center deleted : Label) (points : Finset Label) :
     localCandidateOK center.val deleted.val (maskOfFinset points) = true ↔
@@ -118,6 +126,7 @@ set_option maxHeartbeats 1000000 in
 -- Exhaustive identity over the four possible pinned surplus-interior labels.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem maskOfFinset_pinnedRow (pinSource : Label)
     (hpinSource : pinSource ∈ intS) :
     maskOfFinset ({0, 7, 8, pinSource} : Finset Label) =

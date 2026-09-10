@@ -24,14 +24,17 @@ namespace FirstFiberOrderProjection
 open FirstFiberFinitePacketIngress
 open Census554.GeneralCarrierBridge
 
+/-- Frontier live-closure abbrev. -/
 abbrev NamedSlot {n : ℕ} (packet : CombinedIndexedPacket n) :=
   {x : Fin n // x ∈ packet.namedSlots}
 
+/-- Frontier live-closure def. -/
 noncomputable def namedProjection {n : ℕ} (packet : CombinedIndexedPacket n) :
     NamedSlot packet → Fin 52 := fun x =>
   Fin.castLE packet.namedSlots_card_le
     ((packet.namedSlots.orderIsoOfFin rfl).symm x)
 
+/-- Frontier live-closure theorem. -/
 theorem namedProjection_injective {n : ℕ} (packet : CombinedIndexedPacket n) :
     Function.Injective (namedProjection packet) := by
   intro x y hxy
@@ -46,17 +49,20 @@ theorem namedProjection_injective {n : ℕ} (packet : CombinedIndexedPacket n) :
     exact Fin.ext hval
   exact congrArg Subtype.val ((packet.namedSlots.orderIsoOfFin rfl).symm.injective hfin)
 
+/-- Frontier live-closure theorem. -/
 theorem namedProjection_mem {n : ℕ} (packet : CombinedIndexedPacket n)
     (x : Fin n) (hx : x ∈ packet.namedSlots) :
     (⟨x, hx⟩ : NamedSlot packet).val ∈ packet.namedSlots :=
   hx
 
+/-- Frontier live-closure def. -/
 noncomputable def namedProjectionOption {n : ℕ} (packet : CombinedIndexedPacket n) :
     Fin n → Option (Fin 52) := fun x =>
   if hx : x ∈ packet.namedSlots then
     some (namedProjection packet ⟨x, hx⟩)
   else none
 
+/-- Frontier live-closure theorem. -/
 theorem namedProjectionOption_some_iff_named {n : ℕ}
     (packet : CombinedIndexedPacket n) (x : Fin n) :
     x ∈ packet.namedSlots ↔ ∃ j, namedProjectionOption packet x = some j := by
@@ -64,6 +70,7 @@ theorem namedProjectionOption_some_iff_named {n : ℕ}
   · simp [namedProjectionOption, hx]
   · simp [namedProjectionOption, hx]
 
+/-- Frontier live-closure theorem. -/
 theorem namedProjection_strictMono {n : ℕ} (packet : CombinedIndexedPacket n) :
     StrictMono (fun x : NamedSlot packet => namedProjection packet x) := by
   intro x y hxy
@@ -76,6 +83,7 @@ theorem namedProjection_strictMono {n : ℕ} (packet : CombinedIndexedPacket n) 
         ((packet.namedSlots.orderIsoOfFin rfl).symm y).val := horder
   simpa only [namedProjection, Fin.lt_def, Fin.val_castLE] using hval
 
+/-- Frontier live-closure theorem. -/
 theorem namedProjection_lt_of_lt {n : ℕ} (packet : CombinedIndexedPacket n)
     {x y : Fin n} (hx : x ∈ packet.namedSlots) (hy : y ∈ packet.namedSlots)
     (hxy : x < y) :

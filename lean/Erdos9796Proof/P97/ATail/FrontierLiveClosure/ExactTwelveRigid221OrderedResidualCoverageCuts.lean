@@ -26,6 +26,7 @@ open scoped EuclideanGeometry
 open Census554.EqualityCore
 open ExactTwelveCarrierIngress
 
+/-- Frontier live-closure def. -/
 private def directThreeRowCore
     {row : RowPattern Label} {a x b c y : Label}
     (hab : a ≠ b) (hxy : x ≠ y)
@@ -45,6 +46,7 @@ private def directThreeRowCore
     cb_cx := EdgeClosure.row c b x hcb hcx
     cb_cy := EdgeClosure.row c b y hcb hcy }
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne''
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :
@@ -52,6 +54,7 @@ private theorem FrozenBoundaryOrder.position_ne_of_ne''
   intro heq
   exact hne (order.position_injective heq)
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenForcedSecondCapOrder.change_index
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     (hforced : FrozenForcedSecondCapOrder order.position) :
@@ -90,6 +93,7 @@ theorem FrozenBoundaryOrder.commonOrientationCoverage_orderedCut_7808
     have h11 := hmirror.firstOpposite_between 11 (by decide)
     rcases hforced' with hforward | hreverse <;> omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_orderedCut_7808
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -144,6 +148,7 @@ theorem FrozenBoundaryOrder.commonOrientationCoverage_orderedCut_8077
     have h9 := hmirror.secondOpposite_after 9 (by decide)
     omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_orderedCut_8077
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)
@@ -196,6 +201,7 @@ theorem FrozenBoundaryOrder.commonOrientationCoverage_orderedCut_8556
     have h11 := hmirror.firstOpposite_between 11 (by decide)
     rcases hforced' with hforward | hreverse <;> omega
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_orderedCut_8556
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)

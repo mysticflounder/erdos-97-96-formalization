@@ -30,6 +30,7 @@ open Census554.GeneralCarrierBridge
 
 /- The three explicit residual arms are: failure of simultaneous strict
    interior, the U-bad/V-first cross arm, and its symmetric mate. -/
+/-- Frontier live-closure def. -/
 def B1CardSixSourceCrossResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

@@ -278,6 +278,7 @@ theorem b1_live_bisectorSet_eq_pair
    initially an escape from the saturated common row rather than a third point
    on the deleted-source bisector.  Record that producer explicitly: it is the
    datum a blocker-multiplicity consumer must use next. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_live_exists_third_interior_escape
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -427,6 +428,7 @@ so the existing critical-shell theorem gives the at-most-two alternative for
 the escaped point's selected shell.  This is deliberately a packet theorem,
 not a contradiction: the missing global producer would have to force at least
 three common support points. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_live_escape_small_overlap
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -491,6 +493,7 @@ theorem b1_live_escape_small_overlap
    unresolved large-multiplicity centre: criticality makes every such centre
    a unique-four centre.  This is the centre-transport half of the producer
    split; it leaves the genuinely noncanonical μ ≥ 5 branch explicit. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_live_canonical_blocker_pinnedMultiplicity_eq_four
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -506,6 +509,7 @@ theorem b1_live_canonical_blocker_pinnedMultiplicity_eq_four
    radius class.  It is phrased against the existing overlap consumer so a
    future global producer can use physical-class language without silently
    changing the selected-shell trust boundary. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_live_escape_physicalClass_inter_firstShell_card_le_two
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -655,6 +659,7 @@ theorem b1_live_false_of_third_bisector_carrier
 /- A finite-certificate producer may naturally return a lower bound on the
 bisector fiber rather than a named third point.  Keep that interface
 source-level and reduce it immediately to the same checked B1 consumer. -/
+/-- Frontier live-closure theorem. -/
 theorem false_of_bisector_fiber_card_ge_three_of_eq_pair
     {A : Finset ℝ²} {q r blocker apex : ℝ²}
     (hblockerNeApex : blocker ≠ apex)
@@ -672,6 +677,7 @@ theorem false_of_bisector_fiber_card_ge_three_of_eq_pair
 /- The B1-specific cardinality interface.  This is deliberately a consumer
 only: the missing global producer must prove `hfiberCard`; the physical
 five-point hypothesis is not used to manufacture it. -/
+/-- Frontier live-closure theorem. -/
 theorem b1_live_false_of_bisector_fiber_card_ge_three
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -728,6 +734,7 @@ This is a checked consumer contract, not an assertion that the disjunction is
 available.  It is deliberately not a load-bearing `sorry` or a publish target.
 The missing producer and its arbitrary-cardinality lift remain separate.
 -/
+/-- Frontier live-closure structure. -/
 structure B1GlobalTransportContext
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -756,6 +763,7 @@ structure B1GlobalTransportContext
     (lateFirstApexSystem R).centerAt first.deleted.1 first.deleted.2 =
       (lateFirstApexSystem R).centerAt second.deleted.1 second.deleted.2
 
+/-- Frontier live-closure def. -/
 def B1GlobalGapOrClosedTerminal
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -789,6 +797,7 @@ def B1GlobalGapOrClosedTerminal
             ((lateFirstApexSystem C.R).selectedAt
               C.first.deleted.1 C.first.deleted.2).toCriticalFourShell.support).card)
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_b1_global_gap_or_closed_terminal
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

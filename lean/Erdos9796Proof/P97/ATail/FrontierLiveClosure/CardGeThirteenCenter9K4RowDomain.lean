@@ -164,6 +164,7 @@ def requiredSupport : Fin 29 → Finset (Fin 13) := ![
 abbrev Center9SupportDomain :=
   (↑(((Finset.univ : Finset (Fin 13)).erase 2).powersetCard 4) : Type)
 
+/-- Frontier live-closure theorem. -/
 theorem center9SupportDomain_card :
     (((Finset.univ : Finset (Fin 13)).erase 2).powersetCard 4).card = 495 := by
   rw [Finset.card_powersetCard]
@@ -181,6 +182,7 @@ theorem requiredSupport_covers_center9SupportDomain :
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- Reduction unfolds the full transparent 29-entry tuple table.
+/-- Frontier live-closure theorem. -/
 theorem certificateTerms_length :
     ∀ family : Fin 29,
       (certificateTerms family).length = 1 ∨
@@ -191,6 +193,7 @@ theorem certificateTerms_length :
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
 -- Reduction checks every ordered quadruple and positive unit weight in the bank.
+/-- Frontier live-closure theorem. -/
 theorem certificateTerms_check :
     ∀ family : Fin 29,
       (certificateTerms family).all WeightedKalmansonTerm.check = true := by

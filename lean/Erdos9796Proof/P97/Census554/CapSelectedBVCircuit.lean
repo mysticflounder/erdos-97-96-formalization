@@ -19,6 +19,7 @@ namespace Problem97.Census554.CapSelectedBVCircuit
 
 set_option maxRecDepth 100000
 
+/-- Census-554 certificate-bank def. -/
 def commonAntecedent (rows : RowBits) (colors : ColorBits) : Bool :=
   common000 rows colors &&
     common001 rows colors &&
@@ -67,6 +68,7 @@ def commonAntecedent (rows : RowBits) (colors : ColorBits) : Bool :=
     common044 rows colors &&
     common045 rows colors
 
+/-- Census-554 certificate-bank def. -/
 def prefixCore (rows : RowBits) (colors : ColorBits) : Bool :=
   core000 rows colors ||
     core001 rows colors ||
@@ -111,6 +113,7 @@ def prefixCore (rows : RowBits) (colors : ColorBits) : Bool :=
     core040 rows colors ||
     core041 rows colors
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP3D4 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -126,6 +129,7 @@ def antecedentP3D4 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 4
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP3D5 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -141,6 +145,7 @@ def antecedentP3D5 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 5
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP3D6 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -156,6 +161,7 @@ def antecedentP3D6 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 6
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP4D3 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -171,6 +177,7 @@ def antecedentP4D3 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 3
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP4D5 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -186,6 +193,7 @@ def antecedentP4D5 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 5
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP4D6 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -201,6 +209,7 @@ def antecedentP4D6 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 6
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP5D3 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -216,6 +225,7 @@ def antecedentP5D3 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 3
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP5D4 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -231,6 +241,7 @@ def antecedentP5D4 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 4
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP5D6 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -246,6 +257,7 @@ def antecedentP5D6 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 6
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP6D3 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -261,6 +273,7 @@ def antecedentP6D3 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 3
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP6D4 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&
@@ -276,6 +289,7 @@ def antecedentP6D4 (rows : RowBits) (colors : ColorBits) : Bool :=
     (rowBit rows 1 10 == false) &&
     rowBit rows 0 4
 
+/-- Census-554 certificate-bank def. -/
 def antecedentP6D5 (rows : RowBits) (colors : ColorBits) : Bool :=
   commonAntecedent rows colors &&
     (rowBit rows 1 0 == true) &&

@@ -34,6 +34,7 @@ open UniqueFourKalmansonReflectionScratch
 
 attribute [local instance] Classical.propDecidable
 
+/-- Supports the exact-two-source mirror schema. -/
 private theorem support_dist_eq
     {A : Finset ℝ²} {center x y : ℝ²}
     (Row : SelectedFourClass A center)
@@ -186,10 +187,12 @@ private theorem false_of_three_endpoint_kalmanson_four_selected_rows_of_decreasi
       h56 h45 (h12.trans (h23.trans h34))
   linarith
 
+/-- Supports the exact-two-source mirror schema. -/
 private def cardBoundary {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Label → ℝ²) : Fin A.card → ℝ² :=
   fun i => boundary (Fin.cast hcard i)
 
+/-- Supports the exact-two-source mirror schema. -/
 private theorem cardBoundary_injective
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²} (hinj : Function.Injective boundary) :
@@ -198,6 +201,7 @@ private theorem cardBoundary_injective
   apply Fin.cast_injective hcard
   exact hinj hij
 
+/-- Supports the exact-two-source mirror schema. -/
 private theorem cardBoundary_image
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
@@ -218,6 +222,7 @@ private theorem cardBoundary_image
             simp [cardBoundary]⟩
     _ = A := himage
 
+/-- Supports the exact-two-source mirror schema. -/
 private theorem cardBoundary_ccw
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
@@ -226,6 +231,7 @@ private theorem cardBoundary_ccw
   intro i j k hij hjk
   apply hccw <;> simpa
 
+/-- Supports the exact-two-source mirror schema. -/
 private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     (i : Label) : Fin A.card :=
   Fin.cast hcard.symm i
@@ -236,12 +242,14 @@ private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     cardBoundary hcard boundary (toCardIndex hcard i) = boundary i := by
   simp [cardBoundary, toCardIndex]
 
+/-- Supports the exact-two-source mirror schema. -/
 private theorem toCardIndex_lt
     {A : Finset ℝ²} (hcard : A.card = 11)
     {i j : Label} (hij : i < j) :
     toCardIndex hcard i < toCardIndex hcard j := by
   simpa [toCardIndex] using hij
 
+/-- Supports the exact-two-source mirror schema. -/
 private theorem support_mem_of_schemaAt
     {A : Finset ℝ²} (boundary : Label → ℝ²)
     (hmem : ∀ i, boundary i ∈ A)

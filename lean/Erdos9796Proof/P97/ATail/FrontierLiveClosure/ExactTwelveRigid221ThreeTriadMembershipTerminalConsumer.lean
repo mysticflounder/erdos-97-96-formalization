@@ -43,6 +43,7 @@ open StaticTerminalConsumer
 open TerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Exact clause order emitted after both fixed membership layers. -/
@@ -59,6 +60,7 @@ def terminalStaticThreeTriadMembershipDimacs (cell : FrozenNextRowCell)
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem familyImplicationDimacs_lit_bound :
     ∀ clause ∈ BlockSpanningMembershipFamilyCnf.implicationDimacs,
       ∀ literal ∈ clause,
@@ -68,12 +70,14 @@ private theorem familyImplicationDimacs_lit_bound :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 private theorem familyBlockingClauses_lit_bound :
     ∀ clause ∈ BlockSpanningMembershipFamilyCnf.blockingClauses,
       ∀ literal ∈ clause,
       literal.natAbs ≤ 44897 := by
   native_decide +revert
 
+/-- Frontier live-closure theorem. -/
 private theorem evalClauseD_supplement_preserves_family
     (familyAssign : Nat → Bool) (row : RowPattern Label)
     {clause : List Int}

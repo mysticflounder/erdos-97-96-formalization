@@ -33,11 +33,13 @@ structure SelectedRowEqualityWitness
   first_mem : boundary first ∈ row.support
   second_mem : boundary second ∈ row.support
 
+/-- Frontier live-closure def. -/
 def SelectedRowEqualityWitness.leftEdge
     {A : Finset ℝ²} {n : ℕ} {boundary : Fin n → ℝ²}
     (w : SelectedRowEqualityWitness (A := A) boundary) : Edge (Fin n) :=
   (w.center, w.first)
 
+/-- Frontier live-closure def. -/
 def SelectedRowEqualityWitness.rightEdge
     {A : Finset ℝ²} {n : ℕ} {boundary : Fin n → ℝ²}
     (w : SelectedRowEqualityWitness (A := A) boundary) : Edge (Fin n) :=
@@ -49,12 +51,14 @@ inductive PathStep
   | row (w : SelectedRowEqualityWitness (A := A) boundary)
   | flip (first second : Fin n)
 
+/-- Frontier live-closure def. -/
 def PathStep.source
     {A : Finset ℝ²} {n : ℕ} {boundary : Fin n → ℝ²}
     : PathStep (A := A) boundary → Edge (Fin n)
   | .row w => w.leftEdge
   | .flip first second => (first, second)
 
+/-- Frontier live-closure def. -/
 def PathStep.target
     {A : Finset ℝ²} {n : ℕ} {boundary : Fin n → ℝ²}
     : PathStep (A := A) boundary → Edge (Fin n)
@@ -69,6 +73,7 @@ def PathData
   | first, step :: steps, last =>
       first = step.source ∧ PathData boundary step.target steps last
 
+/-- Frontier live-closure theorem. -/
 theorem edgeDist_eq_of_selectedRowEqualityWitness
     {A : Finset ℝ²} {n : ℕ} {boundary : Fin n → ℝ²}
     (w : SelectedRowEqualityWitness (A := A) boundary) :
@@ -78,6 +83,7 @@ theorem edgeDist_eq_of_selectedRowEqualityWitness
   exact (w.row.support_eq_radius _ w.first_mem).trans
     (w.row.support_eq_radius _ w.second_mem).symm
 
+/-- Frontier live-closure theorem. -/
 theorem edgeDist_eq_of_selectedRowPathStep
     {A : Finset ℝ²} {n : ℕ} {boundary : Fin n → ℝ²}
     (step : PathStep (A := A) boundary) :
@@ -86,6 +92,7 @@ theorem edgeDist_eq_of_selectedRowPathStep
   | row w => exact edgeDist_eq_of_selectedRowEqualityWitness w
   | flip first second => simp [PathStep.source, PathStep.target, edgeDist, dist_comm]
 
+/-- Frontier live-closure theorem. -/
 theorem edgeDist_eq_of_selectedRowPath
     {A : Finset ℝ²} {n : ℕ} {boundary : Fin n → ℝ²}
     {first last : Edge (Fin n)}
@@ -128,6 +135,7 @@ theorem false_of_complementaryArc_selectedRowEqualityChain
 
 /- The two `Fin 10` wrappers used by the exact structural replay. -/
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_complementaryArc_selectedRowEqualityChain_fin10_r2
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {boundary : Fin 10 → ℝ²}
@@ -201,6 +209,7 @@ theorem false_of_complementaryArc_selectedRowEqualityChain_fin10_r2
       SelectedRowEqualityWitness.leftEdge,
       SelectedRowEqualityWitness.rightEdge]
 
+/-- Frontier live-closure theorem. -/
 theorem false_of_complementaryArc_selectedRowEqualityChain_fin10_r3
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {boundary : Fin 10 → ℝ²}

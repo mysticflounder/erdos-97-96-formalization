@@ -46,6 +46,7 @@ def ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveData.rolesValid
     data.x ∈ surplusInteriorLabels ∧
     data.c ∈ secondOppositeInteriorLabels
 
+/-- Frontier live-closure instance. -/
 instance instDecidableReciprocalFirstOppositeSurplusSecondOppositeCommonFiveRolesValid
     (data : ReciprocalFirstOppositeSurplusSecondOppositeCommonFiveData) :
     Decidable data.rolesValid := by

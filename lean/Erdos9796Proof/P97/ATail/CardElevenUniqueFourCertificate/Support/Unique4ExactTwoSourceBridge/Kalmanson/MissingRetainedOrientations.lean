@@ -27,6 +27,7 @@ namespace MissingRetainedKalmansonOrientationsScratch
 open CapCrossingKalmansonBridge
 open UniqueFourKalmansonReflectionScratch
 
+/-- Supports the exact-two-source Kalmanson analysis. -/
 private theorem support_dist_eq
     {carrier : Finset ℝ²} {center x y : ℝ²}
     (Row : SelectedFourClass carrier center)

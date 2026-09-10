@@ -39,8 +39,10 @@ open CheckpointedRup.ParsedClauseNormalization
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedBaseCount : Nat := 108704
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedBasePayload : String :=
   include_str "data/g3-base-slice-positions.a85"
 
@@ -69,6 +71,7 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
@@ -94,6 +97,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedBaseIndices :
     Option (Array CensusBaseIndex) := do
   let bytes ← decodeAscii85 retainedBasePayload
@@ -105,6 +109,7 @@ malformed payload decodes to the empty array and is therefore rejected by
 def g3RetainedBaseIndices : Array CensusBaseIndex :=
   decodeRetainedBaseIndices.getD #[]
 
+/-- Exact-five common-shell V7 def. -/
 private def baseClauseArray : Array (List Int) :=
   baseDimacs.toArray
 
@@ -152,6 +157,7 @@ theorem g3BaseSlice_perm_checkpoint :
         (retainedBaseCount + 1)) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3BaseClauseAt_mem_baseDimacs
     (sourceIndex : CensusBaseIndex) :
     renderG3BaseSliceWitness (.censusBase sourceIndex) ∈ baseDimacs := by

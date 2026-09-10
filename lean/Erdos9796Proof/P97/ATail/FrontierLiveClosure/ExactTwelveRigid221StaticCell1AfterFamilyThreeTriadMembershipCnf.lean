@@ -33,24 +33,33 @@ open SafeCoverCnf
 open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 
+/-- Frontier live-closure def. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
     requirement := { center := center, support := support } }
 
+/-- Frontier live-closure def. -/
 def definition0 := mkDefinition 44898 0 {1, 2}
+/-- Frontier live-closure def. -/
 def definition1 := mkDefinition 44899 1 {0, 6}
+/-- Frontier live-closure def. -/
 def definition2 := mkDefinition 44900 2 {0, 1, 11}
+/-- Frontier live-closure def. -/
 def definition6 := mkDefinition 44901 6 {2, 9, 11}
+/-- Frontier live-closure def. -/
 def definition9 := mkDefinition 44902 9 {1, 2, 11}
 
+/-- Frontier live-closure def. -/
 def definitions : List PositiveMembershipDefinition :=
   [definition0, definition1, definition2, definition6, definition9]
 
+/-- Frontier live-closure def. -/
 def requirementAt (v : Nat) : RowChoice Label :=
   ((definitions.find? fun definition =>
     decide (definition.varIndex = v)).getD definition0).requirement
 
+/-- Frontier live-closure def. -/
 def candidateIndicesFor (definition : PositiveMembershipDefinition) : List Nat :=
   match definition.varIndex with
   | 44898 => [0, 1, 2]
@@ -66,14 +75,17 @@ def implicationDimacs : List (List Int) :=
     positiveMembershipIndexImplicationClauses
       definition.requirement.center (candidateIndicesFor definition) definition
 
+/-- Frontier live-closure def. -/
 def blockingClause : List Int :=
   positiveMembershipBlockingClause definitions
 
+/-- Frontier live-closure theorem. -/
 theorem definitions_requirements :
     definitions.map (fun definition => definition.requirement) =
       staticCell1AfterFamilyThreeTriadPositiveChoices := by
   native_decide
 
+/-- Frontier live-closure def. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (44897 < definition.varIndex ∧
@@ -87,6 +99,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Frontier live-closure theorem. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ definitions) :

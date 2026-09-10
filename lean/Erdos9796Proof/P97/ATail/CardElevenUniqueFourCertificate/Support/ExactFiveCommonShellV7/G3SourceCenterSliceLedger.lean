@@ -31,13 +31,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 168493
+/-- Exact-five common-shell V7 def. -/
 private def retainedSourceCenterCount : Nat := 317
+/-- Exact-five common-shell V7 def. -/
 private def sourceCenterClauseCount : Nat := 6642
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedSourceCenterPayload : String :=
   include_str "data/g3-source-center-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev SourceCenterClauseIndex := Fin sourceCenterClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -62,10 +67,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array SourceCenterClauseIndex →
       Option (Array SourceCenterClauseIndex)
@@ -85,6 +92,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedSourceCenterIndices :
     Option (Array SourceCenterClauseIndex) := do
   let bytes ← decodeAscii85 retainedSourceCenterPayload
@@ -119,13 +127,16 @@ def encoderSourceCenterOccurrences : List SourceCenterOccurrence :=
       ++ [.reverse sourceCenter]
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderSourceCenterOccurrences_length :
     encoderSourceCenterOccurrences.length = sourceCenterClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def sourceCenterOccurrenceArray : Array SourceCenterOccurrence :=
   encoderSourceCenterOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def sourceCenterOccurrenceAt
     (index : SourceCenterClauseIndex) : SourceCenterOccurrence :=
   sourceCenterOccurrenceArray[index.val]'(by
@@ -167,6 +178,7 @@ def g3SourceCenterSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SourceCenterSlice_size :
     g3SourceCenterSlice.size = retainedSourceCenterCount := by
   native_decide
@@ -185,6 +197,7 @@ theorem g3SourceCenterSlice_perm_checkpoint :
           retainedPrefixCount).take retainedSourceCenterCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 private def sourceCenterOccurrenceAtValid
     (index : SourceCenterClauseIndex) : Prop :=
   match sourceCenterOccurrenceAt index with
@@ -223,6 +236,7 @@ private theorem sourceCenterRow_center_mem :
         sourceChoiceCenters (sourceCenterRow sourceCenter).source := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem sourceChoiceVariable_upperBound
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by

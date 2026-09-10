@@ -27,6 +27,7 @@ open FrozenNextRowJobCnf
 open StaticRelationAssignment
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- The exact clause order presented by the Python static-convex compiler. -/
@@ -38,6 +39,7 @@ def frozenParentDimacs (cell : FrozenNextRowCell) : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem frozenParentClauseCount (cell : FrozenNextRowCell) :
     (frozenParentDimacs cell).length = 634859 := by
   native_decide +revert

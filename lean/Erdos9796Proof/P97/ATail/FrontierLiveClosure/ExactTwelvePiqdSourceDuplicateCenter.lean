@@ -32,13 +32,21 @@ abbrev Label := Fin 12
 
 /-- Canonical JSON hash of the validated source classifier. -/
 def canonicalClassifierSha256 : String := "f183e53818371bcb4b060ed981301e67db0b51d9fc7ed9072571f05fefb30c91"
+/-- Frontier live-closure def. -/
 def modelSha256 : String := "1c9c7ef27850fa1c2d50d49b3fe886f24ce0d6aba7d74cbe9fdffcdeafd3557e"
+/-- Frontier live-closure def. -/
 def sourceJobSha256 : String := "8b597e1cc2092cdbf2c4b4dc06b5dc5e3ae9f57e21cf7107e14259c1e81d1191"
+/-- Frontier live-closure def. -/
 def discoveryCnfSha256 : String := "cfc268f2915ff31e1af24a66a036e41e81f93aca0967e88c1b4a4158eb67a379"
+/-- Frontier live-closure def. -/
 def sourceBundleSha256 : String := "51bf83555104a9045bdcdaf5b04c4980bc722fec7c149477fdbca84ca2a146b1"
+/-- Frontier live-closure def. -/
 def cubeSha256 : String := "ac75e36047af69bfa66959d5d6e706c48b77b4497bf3e83cd1ca8c30479a35dc"
+/-- Frontier live-closure def. -/
 def detectorContractSha256 : String := "6dcd58dfcb4dae2756882162e978e5763fb7e005d8c16ca5bf516f5446294968"
+/-- Frontier live-closure def. -/
 def certificateSha256 : String := "202acebee1d1d043f7c081ac042482a317aa1f603d8ea0f0f4465accd3683ca0"
+/-- Frontier live-closure def. -/
 def selectedPositiveVariablesSha256 : String := "e9b440646e2443a6924905fe6cc8eea5eebfbf37be475c9980ece4349ab715df"
 
 /-- The captured detector sources are not authenticated as executed bytes. -/

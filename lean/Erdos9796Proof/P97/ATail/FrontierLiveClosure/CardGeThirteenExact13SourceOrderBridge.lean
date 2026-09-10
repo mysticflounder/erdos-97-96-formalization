@@ -62,6 +62,7 @@ structure Input where
 /- The global rows are taken from the source existential at every admissible
 center.  Keeping this as a constructor, rather than an arbitrary `Input`
 field, prevents a replay caller from silently substituting non-source rows. -/
+/-- Frontier live-closure def. -/
 noncomputable def Input.globalRows (I : Input) : Exact13GlobalRows I.P :=
   Exact13GlobalRows.ofIngress I.P
 
@@ -82,6 +83,7 @@ def providerElems : Finset Exact13Provider :=
     (Finset.univ.image (fun center : Exact13GlobalCenter =>
       Exact13Provider.g center))
 
+/-- Frontier live-closure instance. -/
 instance instFintypeExact13Provider : Fintype Exact13Provider where
   elems := providerElems
   complete := by

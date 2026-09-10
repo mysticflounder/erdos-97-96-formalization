@@ -140,6 +140,7 @@ def s2O0RetainedFamilies : List S2O0RetainedFamily :=
     .convexFive, .v6LocalFour, .v6QDeletedPair, .v6U5Nontriple,
     .v6U5CommonBisector, .v7TwoCenterBisector]
 
+/-- Exact-five common-shell V7 def. -/
 private def S2O0RetainedFamily.payload :
     S2O0RetainedFamily → String
   | .inheritedBase =>
@@ -185,6 +186,7 @@ private def S2O0RetainedFamily.payload :
   | .v7TwoCenterBisector =>
       include_str "data/s2_o0_retained_core/v7-global-two-center-bisector-parity-ordinals.a85"
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux (upperBound : Nat) :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -206,10 +208,12 @@ private def readPositiveVarUIntAux (upperBound : Nat) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (upperBound : Nat)
     (bytes : ByteArray) (position : Nat) : Option (Nat × Nat) :=
   readPositiveVarUIntAux upperBound 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (upperBound : Nat) (bytes : ByteArray) :
     Nat → Nat → Nat → Array (Fin upperBound) →
       Option (Array (Fin upperBound))
@@ -229,6 +233,7 @@ private def decodePositiveDeltasAux (upperBound : Nat) (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedIndices (family : S2O0RetainedFamily) :
     Option (Array (Fin family.sourceCount)) := do
   let bytes ← decodeAscii85 family.payload
@@ -242,16 +247,19 @@ def s2O0RetainedIndices (family : S2O0RetainedFamily) :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem s2O0RetainedIndices_size (family : S2O0RetainedFamily) :
     (s2O0RetainedIndices family).size = family.retainedCount := by
   cases family <;> native_decide
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem s2O0RetainedFamily_count :
     s2O0RetainedFamilies.length = 21 := by
   native_decide
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem s2O0RetainedClause_count :
     (s2O0RetainedFamilies.map S2O0RetainedFamily.retainedCount).sum =
       81253 := by
@@ -266,10 +274,12 @@ def s2O0RetainedRenderedClauses (family : S2O0RetainedFamily)
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem s2O0BaseDimacs_length :
     Census554.CoverCnf.baseDimacs.length = 207969 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0BaseIndex
     (index : Fin S2O0RetainedFamily.inheritedBase.sourceCount) :
     CensusBaseIndex :=
@@ -277,14 +287,17 @@ def s2O0BaseIndex
     rw [s2O0BaseDimacs_length]
     exact index.isLt⟩
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0InheritedBaseClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .inheritedBase fun index =>
     renderG3BaseSliceWitness (.censusBase (s2O0BaseIndex index))
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0InheritedSeparationClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .inheritedSeparation fun index =>
     renderG3SeparationSliceWitness (decodeSeparationWitness index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0RetainedCommonSourceOccurrences
     (source : CommonSource) : List CommonSourceOccurrence :=
   retainedCommonSourceOccurrences.filter fun occurrence =>
@@ -331,14 +344,17 @@ theorem s2O0InheritedSourceTail_ordinals :
 def s2O0ShellCase : ShellCase :=
   ⟨.labelTwo, .labelZero⟩
 
+/-- Exact-five common-shell V7 def. -/
 private def s2O0FirstApexSupport (shellCase : ShellCase) : List Label :=
   ((List.range 11).filter fun label =>
       toLabel label ∈ shellCase.support).map toLabel
 
+/-- Exact-five common-shell V7 def. -/
 private def s2O0FirstApexOutside (shellCase : ShellCase) : List Label :=
   ((List.range 11).filter fun label =>
       label != 1 && toLabel label ∉ shellCase.support).map toLabel
 
+/-- Exact-five common-shell V7 def. -/
 private def s2O0FirstApexExactFiveKinds (shellCase : ShellCase) :
     List FirstApexExactFiveKind :=
   ((s2O0FirstApexSupport shellCase).flatMap fun left =>
@@ -349,12 +365,14 @@ private def s2O0FirstApexExactFiveKinds (shellCase : ShellCase) :
       (s2O0FirstApexOutside shellCase).map fun outside =>
         .exclusion inside outside)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0FirstApexExactFiveKindAt
     (shellCase : ShellCase)
     (index : Fin S2O0RetainedFamily.firstApexExactFive.sourceCount) :
     FirstApexExactFiveKind :=
   (s2O0FirstApexExactFiveKinds shellCase).getD index.val (.equality 0 0)
 
+/-- Exact-five common-shell V7 def. -/
 private def s2O0FirstApexGlobalEqPairs
     (shellCase : ShellCase) : List (Label × Label) :=
   (combos 2
@@ -362,89 +380,107 @@ private def s2O0FirstApexGlobalEqPairs
       toLabel label ∈ shellCase.support)).map fun pair =>
     (toLabel (pair.getD 0 0), toLabel (pair.getD 1 0))
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0FirstApexGlobalEqPairAt
     (shellCase : ShellCase)
     (index : Fin S2O0RetainedFamily.firstApexGlobalEquality.sourceCount) :
     Label × Label :=
   (s2O0FirstApexGlobalEqPairs shellCase).getD index.val (0, 0)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0LocalTransitivityClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .localEqualityTransitivity fun index =>
     renderLocalTransitivityOccurrence
       (localTransitivityOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0SelectedLocalEqualityClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .selectedLocalEquality fun index =>
     renderSelectedLocalEqOccurrence
       (selectedLocalEqOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0SourceCenterClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .sourceCenter fun index =>
     renderSourceCenterOccurrence (sourceCenterOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0UsedCenterClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .usedCenter fun index =>
     renderUsedCenterOccurrence (usedCenterOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0ExactBlockerClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .exactBlocker fun index =>
     renderExactBlockerOccurrence (exactBlockerOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0NoQFreeClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .noQFree fun index =>
     renderNoQFreeOccurrence (noQFreeOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0FirstApexExactFiveClauses
     (shellCase : ShellCase) : List (List Int) :=
   s2O0RetainedRenderedClauses .firstApexExactFive fun index =>
     firstApexExactFivePayload
       (s2O0FirstApexExactFiveKindAt shellCase index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0GlobalTransitivityClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .globalEqualityTransitivity fun index =>
     renderGlobalTransitivityOccurrence
       (globalTransitivityOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0SelectedGlobalEqualityClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .selectedGlobalEquality fun index =>
     renderSelectedGlobalEqOccurrence
       (selectedGlobalEqOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0FirstApexGlobalEqualityClauses
     (shellCase : ShellCase) : List (List Int) :=
   s2O0RetainedRenderedClauses .firstApexGlobalEquality fun index =>
     let pair := s2O0FirstApexGlobalEqPairAt shellCase index
     firstApexGlobalEqUnit pair.1 pair.2
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0DuplicateCenterClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .duplicateCenter fun index =>
     renderDuplicateCenterOccurrence
       (duplicateCenterOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0PerpendicularBisectorClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .perpendicularBisector fun index =>
     renderPerpendicularBisectorOccurrence
       (perpendicularBisectorOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0V6LocalFourClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .v6LocalFour fun index =>
     renderV6LocalFourOccurrence (v6LocalFourOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0V6QDeletedPairClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .v6QDeletedPair fun index =>
     renderV6QDeletedPairOccurrence
       (v6QDeletedPairOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0V6U5NontripleClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .v6U5Nontriple fun index =>
     renderV6U5NontripleOccurrence
       (v6U5NontripleOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0V6U5CommonBisectorClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .v6U5CommonBisector fun index =>
     renderV6U5CommonBisectorOccurrence
       (v6U5CommonBisectorOccurrenceAt index)
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0V7TwoCenterBisectorClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .v7TwoCenterBisector fun index =>
     renderTwoCenterBisectorOccurrence

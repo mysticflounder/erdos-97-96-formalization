@@ -30,13 +30,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 159533
+/-- Exact-five common-shell V7 def. -/
 private def retainedLocalTransitivityCount : Nat := 341
+/-- Exact-five common-shell V7 def. -/
 private def localTransitivityClauseCount : Nat := 3960
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedLocalTransitivityPayload : String :=
   include_str "data/g3-local-transitivity-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev LocalTransitivityClauseIndex := Fin localTransitivityClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -61,10 +66,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array LocalTransitivityClauseIndex →
       Option (Array LocalTransitivityClauseIndex)
@@ -84,6 +91,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedLocalTransitivityIndices :
     Option (Array LocalTransitivityClauseIndex) := do
   let bytes ← decodeAscii85 retainedLocalTransitivityPayload
@@ -111,6 +119,7 @@ private def encoderLocalEqualityTriangles : List LocalEqualityTriangle :=
         toLabel (triple.getD 1 0), toLabel (triple.getD 2 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderLocalEqualityTriangles_length :
     encoderLocalEqualityTriangles.length = 1320 := by
   native_decide
@@ -129,6 +138,7 @@ structure LocalTransitivityOccurrence where
   branch : Fin 3
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 def encoderLocalTransitivityOccurrences :
     List LocalTransitivityOccurrence :=
   encoderLocalEqualityTriangles.flatMap fun triangle =>
@@ -136,15 +146,18 @@ def encoderLocalTransitivityOccurrences :
       ⟨triangle, Fin.ofNat 3 branch⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderLocalTransitivityOccurrences_length :
     encoderLocalTransitivityOccurrences.length =
       localTransitivityClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def localTransitivityOccurrenceArray :
     Array LocalTransitivityOccurrence :=
   encoderLocalTransitivityOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def localTransitivityOccurrenceAt
     (index : LocalTransitivityClauseIndex) : LocalTransitivityOccurrence :=
   localTransitivityOccurrenceArray[index.val]'(by
@@ -177,6 +190,7 @@ def g3LocalTransitivitySliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3LocalTransitivitySlice_size :
     g3LocalTransitivitySlice.size = retainedLocalTransitivityCount := by
   native_decide
@@ -195,6 +209,7 @@ theorem g3LocalTransitivitySlice_perm_checkpoint :
           retainedPrefixCount).take retainedLocalTransitivityCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem localTransitivityOccurrenceAt_rows :
     ∀ index : LocalTransitivityClauseIndex,
       let occurrence := localTransitivityOccurrenceAt index

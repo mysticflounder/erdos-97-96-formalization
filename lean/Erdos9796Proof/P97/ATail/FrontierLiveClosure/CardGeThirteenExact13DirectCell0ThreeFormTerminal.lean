@@ -28,16 +28,24 @@ open ProviderRowNogoodCertificate
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure def. -/
 def directCell0Position (i : Fin 13) : Fin 13 :=
   directIndex .secondOpposite i
 
+/-- Frontier live-closure def. -/
 def directCell0G2 : Exact13Provider := .g ⟨2, by decide⟩
+/-- Frontier live-closure def. -/
 def directCell0G3 : Exact13Provider := .g ⟨3, by decide⟩
+/-- Frontier live-closure def. -/
 def directCell0G5 : Exact13Provider := .g ⟨5, by decide⟩
+/-- Frontier live-closure def. -/
 def directCell0G6 : Exact13Provider := .g ⟨6, by decide⟩
+/-- Frontier live-closure def. -/
 def directCell0G8 : Exact13Provider := .g ⟨8, by decide⟩
+/-- Frontier live-closure def. -/
 def directCell0G11 : Exact13Provider := .g ⟨11, by decide⟩
 
+/-- Frontier live-closure def. -/
 def directCell0Path0 :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 2, directCell0Position 8)
@@ -47,6 +55,7 @@ def directCell0Path0 :
       ]
     last := (directCell0Position 8, directCell0Position 6) }
 
+/-- Frontier live-closure def. -/
 def directCell0Path1 :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 5, directCell0Position 0)
@@ -56,6 +65,7 @@ def directCell0Path1 :
       ]
     last := (directCell0Position 0, directCell0Position 7) }
 
+/-- Frontier live-closure def. -/
 def directCell0Path2 :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 2, directCell0Position 7)
@@ -63,12 +73,14 @@ def directCell0Path2 :
       [ .row directCell0G2 (directCell0Position 7) (directCell0Position 11) ]
     last := (directCell0Position 2, directCell0Position 11) }
 
+/-- Frontier live-closure def. -/
 def directCell0Path3 :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 8, directCell0Position 7)
     steps := []
     last := (directCell0Position 8, directCell0Position 7) }
 
+/-- Frontier live-closure def. -/
 def directCell0Path4 :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 0, directCell0Position 6)
@@ -87,6 +99,7 @@ def directCell0Path4 :
       ]
     last := (directCell0Position 2, directCell0Position 5) }
 
+/-- Frontier live-closure def. -/
 def directCell0Path5 :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 8, directCell0Position 11)
@@ -99,6 +112,7 @@ def directCell0Path5 :
       ]
     last := (directCell0Position 8, directCell0Position 0) }
 
+/-- Frontier live-closure def. -/
 def directCell0ThreeFormData :
     ProviderWeightedKalmansonCancellationData Exact13Provider 13 :=
   { terms :=
@@ -136,6 +150,7 @@ def directCell0ThreeFormData :
           path := directCell0Path5 }
       ] }
 
+/-- Frontier live-closure def. -/
 def directCell0ThreeFormChoices :
     List (ProviderRowChoice Exact13Provider (Fin 13)) :=
   [ exact13ProviderEdgeChoice directCell0G8
@@ -160,6 +175,7 @@ def directCell0ThreeFormChoices :
       (directCell0Position 11) (directCell0Position 8)
   ]
 
+/-- Frontier live-closure structure. -/
 structure DirectCell0ThreeFormAtoms
     (raw : ProviderRowPattern Exact13Provider (Fin 13)) : Prop where
   c1 : (1 : Fin 13) ∈ raw.supportOf .c1 ∧
@@ -185,6 +201,7 @@ structure DirectCell0ThreeFormAtoms
 
 /- The live raw pattern is kept as a definition so the theorem below cannot
    replace the source-selected rows by the synthetic probe pattern. -/
+/-- Frontier live-closure def. -/
 noncomputable def directCell0RawProviderPattern
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -202,6 +219,7 @@ noncomputable def directCell0RawProviderPattern
   exact13RawProviderPattern_of_dispatch R surface firstRow secondRow Q P X O
     X.fivePositionalRows (Exact13GlobalRows.ofIngress P)
 
+/-- Frontier live-closure theorem. -/
 private theorem directCell0_toPositional_mem
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (raw : ProviderRowPattern Exact13Provider (Fin 13))
@@ -214,6 +232,7 @@ private theorem directCell0_toPositional_mem
   refine Finset.mem_image.mpr ⟨i, hi, ?_⟩
   simp [Exact13RawProviderPattern.toPositional, directCell0Position, hidx]
 
+/-- Frontier live-closure theorem. -/
 private theorem directCell0_threeForm_positive
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (raw : ProviderRowPattern Exact13Provider (Fin 13))
@@ -274,6 +293,7 @@ private theorem directCell0_threeForm_positive
 /- The direct-cell terminal.  The source packet, not the probe, supplies the
    provider realization; the ten raw incidences are the only cell-specific
    support premises. -/
+/-- Frontier live-closure theorem. -/
 theorem false_of_directCell0_threeForm
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

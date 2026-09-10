@@ -26,9 +26,11 @@ open Census554
 open Census554.SeparationCore
 open P5IndexedSourceScratch
 
+/-- Exact-five common-shell V7 def. -/
 noncomputable def edgeDistance (pointOf : Label → ℝ²) (edge : RawEdge) : ℝ :=
   dist (pointOf edge.1) (pointOf edge.2)
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem edgeDistance_canonicalEdge (pointOf : Label → ℝ²)
     (a b : Label) :
     edgeDistance pointOf (canonicalEdge a b) =
@@ -38,6 +40,7 @@ theorem edgeDistance_canonicalEdge (pointOf : Label → ℝ²)
   · rfl
   · exact dist_comm _ _
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem edgeDistance_eq_of_canonicalGlobalRow
     (pointOf : Label → ℝ²) (first second : RawEdge)
     (h :
@@ -49,6 +52,7 @@ theorem edgeDistance_eq_of_canonicalGlobalRow
   · exact h
   · exact h.symm
 
+/-- Exact-five common-shell V7 def. -/
 def interpAtom {pointOf : Label → ℝ²}
     (P : SelectedBoundaryOrder pointOf) : Atom → Prop
   | .orderSelector i => i = P.selector
@@ -56,10 +60,12 @@ def interpAtom {pointOf : Label → ℝ²}
       edgeDistance pointOf (globalEqRow i).1 =
         edgeDistance pointOf (globalEqRow i).2
 
+/-- Exact-five common-shell V7 def. -/
 def sourceVal {pointOf : Label → ℝ²}
     (P : SelectedBoundaryOrder pointOf) : Nat → Prop :=
   fun n => interpAtom P (atomOfVar n)
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem sourceVal_order {pointOf : Label → ℝ²}
     (P : SelectedBoundaryOrder pointOf) (i : Fin 144) :
     sourceVal P (varOfAtom (.orderSelector i)) ↔ i = P.selector := by
@@ -67,6 +73,7 @@ theorem sourceVal_order {pointOf : Label → ℝ²}
   rw [atomOfVar_varOfAtom_order]
   rfl
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem sourceVal_global {pointOf : Label → ℝ²}
     (P : SelectedBoundaryOrder pointOf) (i : Fin 1485) :
     sourceVal P (varOfAtom (.globalEdgeEq i)) ↔
@@ -76,6 +83,7 @@ theorem sourceVal_global {pointOf : Label → ℝ²}
   rw [atomOfVar_varOfAtom_global]
   rfl
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem Card11Labeling.image_pointOf_eq
     {A : Finset ℝ²} {M : MoserTriangle A}
     {surplus second : Fin 3}
@@ -91,6 +99,7 @@ theorem Card11Labeling.image_pointOf_eq
     rcases L.carrier_surjective x hx with ⟨p, rfl⟩
     exact Finset.mem_image.mpr ⟨p, Finset.mem_univ _, rfl⟩
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem SelectedBoundaryOrder.image_boundary_eq
     {A : Finset ℝ²} {pointOf : Label → ℝ²}
     (P : SelectedBoundaryOrder pointOf)
@@ -137,6 +146,7 @@ def CyclicAlternationSat {pointOf : Label → ℝ²}
     ¬(sourceVal P (varOfAtom (.globalEdgeEq leftEq)) ∧
       sourceVal P (varOfAtom (.globalEdgeEq rightEq)))
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem cyclicAlternationSat
     {A : Finset ℝ²} (hconv : ConvexIndep A) (hcard : A.card = 11)
     {pointOf : Label → ℝ²}

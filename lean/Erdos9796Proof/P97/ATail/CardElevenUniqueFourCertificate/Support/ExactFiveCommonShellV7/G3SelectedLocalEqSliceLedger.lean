@@ -31,13 +31,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 159874
+/-- Exact-five common-shell V7 def. -/
 private def retainedSelectedLocalEqCount : Nat := 8619
+/-- Exact-five common-shell V7 def. -/
 private def selectedLocalEqClauseCount : Nat := 11694
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedSelectedLocalEqPayload : String :=
   include_str "data/g3-selected-local-eq-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev SelectedLocalEqClauseIndex := Fin selectedLocalEqClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -62,10 +67,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array SelectedLocalEqClauseIndex →
       Option (Array SelectedLocalEqClauseIndex)
@@ -85,6 +92,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedSelectedLocalEqIndices :
     Option (Array SelectedLocalEqClauseIndex) := do
   let bytes ← decodeAscii85 retainedSelectedLocalEqPayload
@@ -109,6 +117,7 @@ private def encoderSelectedCandidateRows : List SelectedCandidateRow :=
       ⟨toLabel center, candidateIndex⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderSelectedCandidateRows_length :
     encoderSelectedCandidateRows.length = 1949 := by
   native_decide
@@ -134,15 +143,18 @@ def encoderSelectedLocalEqOccurrences :
       ⟨row, toLabel (pair.getD 0 0), toLabel (pair.getD 1 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderSelectedLocalEqOccurrences_length :
     encoderSelectedLocalEqOccurrences.length =
       selectedLocalEqClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def selectedLocalEqOccurrenceArray :
     Array SelectedLocalEqOccurrence :=
   encoderSelectedLocalEqOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def selectedLocalEqOccurrenceAt
     (index : SelectedLocalEqClauseIndex) : SelectedLocalEqOccurrence :=
   selectedLocalEqOccurrenceArray[index.val]'(by
@@ -175,6 +187,7 @@ def g3SelectedLocalEqSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3SelectedLocalEqSlice_size :
     g3SelectedLocalEqSlice.size = retainedSelectedLocalEqCount := by
   native_decide

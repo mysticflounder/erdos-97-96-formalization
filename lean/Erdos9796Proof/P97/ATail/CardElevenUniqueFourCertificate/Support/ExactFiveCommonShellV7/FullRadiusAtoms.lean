@@ -23,22 +23,26 @@ namespace ExactFiveCommonShellV7
 
 open Census554.CoverCnf
 
+/-- Exact-five common-shell V7 structure. -/
 structure LocalEqRow where
   center : Label
   left : Label
   right : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 structure. -/
 structure SourceCenterRow where
   source : Label
   center : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 structure. -/
 structure LocalFourRow where
   center : Label
   support : List Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 structure. -/
 structure QDeletedPairRow where
   deleted : Label
   center : Label
@@ -46,18 +50,22 @@ structure QDeletedPairRow where
   second : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 def encoderIncidentLabels (center : Nat) : List Nat :=
   (List.range 11).filter fun label => label != center
 
+/-- Exact-five common-shell V7 def. -/
 def encoderLocalEqRows : List LocalEqRow :=
   (List.range 11).flatMap fun center =>
     (combos 2 (encoderIncidentLabels center)).map fun pair =>
       ⟨toLabel center, toLabel (pair.getD 0 0), toLabel (pair.getD 1 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderLocalEqRows_length : encoderLocalEqRows.length = 495 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def localEqRow (i : Fin 495) : LocalEqRow :=
   encoderLocalEqRows.get
     ⟨i.val, by simpa [encoderLocalEqRows_length] using i.isLt⟩
@@ -73,28 +81,34 @@ def encoderSourceCenterRows : List SourceCenterRow :=
     centers.map fun center => ⟨toLabel source, toLabel center⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderSourceCenterRows_length :
     encoderSourceCenterRows.length = 92 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def sourceCenterRow (i : Fin 92) : SourceCenterRow :=
   encoderSourceCenterRows.get
     ⟨i.val, by simpa [encoderSourceCenterRows_length] using i.isLt⟩
 
+/-- Exact-five common-shell V7 def. -/
 def encoderLocalFourRows : List LocalFourRow :=
   (List.range 11).flatMap fun center =>
     (combos 4 (encoderIncidentLabels center)).map fun support =>
       ⟨toLabel center, support.map toLabel⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderLocalFourRows_length :
     encoderLocalFourRows.length = 2310 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def localFourRow (i : Fin 2310) : LocalFourRow :=
   encoderLocalFourRows.get
     ⟨i.val, by simpa [encoderLocalFourRows_length] using i.isLt⟩
 
+/-- Exact-five common-shell V7 def. -/
 def encoderQDeletedPairRows : List QDeletedPairRow :=
   (List.range 11).flatMap fun deleted =>
     ((List.range 11).filter fun center => center != deleted).flatMap fun center =>
@@ -106,10 +120,12 @@ def encoderQDeletedPairRows : List QDeletedPairRow :=
           toLabel (pair.getD 0 0), toLabel (pair.getD 1 0)⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderQDeletedPairRows_length :
     encoderQDeletedPairRows.length = 3960 := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def qDeletedPairRow (i : Fin 3960) : QDeletedPairRow :=
   encoderQDeletedPairRows.get
     ⟨i.val, by simpa [encoderQDeletedPairRows_length] using i.isLt⟩
@@ -128,6 +144,7 @@ inductive G3VarMeaning where
   | selector (route : G3Case)
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 def encodeG3Var : G3VarMeaning → Nat
   | .prefixVar index => 1 + index.val
   | .localEquality index => 41005 + index.val
@@ -138,6 +155,7 @@ def encodeG3Var : G3VarMeaning → Nat
   | .qDeletedPair index => 45398 + index.val
   | .selector route => g3SelectorVar route
 
+/-- Exact-five common-shell V7 def. -/
 def decodeG3Var (varIndex : Nat) : Option G3VarMeaning :=
   if h : 1 ≤ varIndex ∧ varIndex < 41005 then
     some (.prefixVar ⟨varIndex - 1, by omega⟩)
@@ -162,6 +180,7 @@ def decodeG3Var (varIndex : Nat) : Option G3VarMeaning :=
   else
     none
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem encodeG3Var_pos (meaning : G3VarMeaning) :
     0 < encodeG3Var meaning := by
   cases meaning with
@@ -177,6 +196,7 @@ theorem encodeG3Var_pos (meaning : G3VarMeaning) :
       simp only [encodeG3Var]
       omega
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem encodeG3Var_le (meaning : G3VarMeaning) :
     encodeG3Var meaning ≤ 49360 := by
   cases meaning with
@@ -213,6 +233,7 @@ theorem encodeG3Var_le (meaning : G3VarMeaning) :
       simp only [encodeG3Var]
       omega
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem decodeG3Var_encodeG3Var (meaning : G3VarMeaning) :
     decodeG3Var (encodeG3Var meaning) = some meaning := by
   cases meaning with

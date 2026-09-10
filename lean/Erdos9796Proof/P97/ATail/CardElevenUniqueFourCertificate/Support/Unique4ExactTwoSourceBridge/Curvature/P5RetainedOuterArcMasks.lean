@@ -65,12 +65,14 @@ def ofExactTwoBoundaryCore
   boundary_image := core.boundary_image
   carrierPattern := core.carrierPattern
 
+/-- Supports the exact-two-source bridge analysis. -/
 theorem boundary_mem {A : Finset ℝ²} (Q : P5CurvatureSource A) (i : Fin 11) :
     Q.boundary i ∈ A := by
   have hi : Q.boundary i ∈ Finset.univ.image Q.boundary :=
     Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩
   simpa only [Q.boundary_image] using hi
 
+/-- Supports the exact-two-source bridge analysis. -/
 private theorem exists_boundaryIndexOf {A : Finset ℝ²}
     (Q : P5CurvatureSource A) (x : CarrierLabel A) :
     ∃ i : Fin 11, Q.boundary i = x.1 := by
@@ -85,11 +87,13 @@ noncomputable def boundaryIndexOf {A : Finset ℝ²}
     (Q : P5CurvatureSource A) (x : CarrierLabel A) : Fin 11 :=
   Classical.choose (Q.exists_boundaryIndexOf x)
 
+/-- Supports the exact-two-source bridge analysis. -/
 theorem boundary_boundaryIndexOf {A : Finset ℝ²}
     (Q : P5CurvatureSource A) (x : CarrierLabel A) :
     Q.boundary (Q.boundaryIndexOf x) = x.1 :=
   Classical.choose_spec (Q.exists_boundaryIndexOf x)
 
+/-- Supports the exact-two-source bridge analysis. -/
 theorem boundaryIndexOf_injective {A : Finset ℝ²}
     (Q : P5CurvatureSource A) : Function.Injective Q.boundaryIndexOf := by
   intro x y hxy
@@ -99,6 +103,7 @@ theorem boundaryIndexOf_injective {A : Finset ℝ²}
     _ = Q.boundary (Q.boundaryIndexOf y) := congrArg Q.boundary hxy
     _ = y.1 := Q.boundary_boundaryIndexOf y
 
+/-- Supports the exact-two-source bridge analysis. -/
 theorem boundaryIndexOf_boundary {A : Finset ℝ²}
     (Q : P5CurvatureSource A) (i : Fin 11) :
     Q.boundaryIndexOf ⟨Q.boundary i, Q.boundary_mem i⟩ = i := by
@@ -169,10 +174,12 @@ structure RetainedOuterArc where
 
 namespace RetainedOuterArc
 
+/-- Supports the exact-two-source bridge analysis. -/
 noncomputable def centerLabel {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (arc : RetainedOuterArc) : CarrierLabel A :=
   ⟨Q.boundary arc.center, Q.boundary_mem arc.center⟩
 
+/-- Supports the exact-two-source bridge analysis. -/
 noncomputable def start {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (arc : RetainedOuterArc) : ℕ :=
   let B := Q.indexing
@@ -185,6 +192,7 @@ noncomputable def start {A : Finset ℝ²} (Q : P5CurvatureSource A)
       B.globalChartStartAt (selectedClassCenterLabel K center.2) +
         B.selectedCenteredSupportIndex K center.2 2
 
+/-- Supports the exact-two-source bridge analysis. -/
 noncomputable def turnCount {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (arc : RetainedOuterArc) : ℕ :=
   let B := Q.indexing
@@ -194,6 +202,7 @@ noncomputable def turnCount {A : Finset ℝ²} (Q : P5CurvatureSource A)
   | .left => B.selectedCenteredSupportIndex K center.2 1 - 1
   | .right => 10 - B.selectedCenteredSupportIndex K center.2 2
 
+/-- Supports the exact-two-source bridge analysis. -/
 noncomputable def finish {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (arc : RetainedOuterArc) : ℕ :=
   arc.start Q + arc.turnCount Q + 1
@@ -204,6 +213,7 @@ noncomputable def turnMask {A : Finset ℝ²} (Q : P5CurvatureSource A)
   (Finset.range (arc.turnCount Q)).image fun k ↦
     ⟨(arc.start Q + k) % 11, Nat.mod_lt _ (by omega)⟩
 
+/-- Supports the exact-two-source bridge analysis. -/
 theorem turnCount_pos {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (arc : RetainedOuterArc) : 0 < arc.turnCount Q := by
   rcases arc with ⟨arcCenter, arcSide⟩
@@ -237,6 +247,7 @@ theorem turnCount_pos {A : Finset ℝ²} (Q : P5CurvatureSource A)
         10 - B.selectedCenteredSupportIndex K center.2 2
       omega
 
+/-- Supports the exact-two-source bridge analysis. -/
 theorem turnCount_le_eleven {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (arc : RetainedOuterArc) : arc.turnCount Q ≤ 11 := by
   rcases arc with ⟨arcCenter, arcSide⟩
@@ -255,6 +266,7 @@ theorem turnCount_le_eleven {A : Finset ℝ²} (Q : P5CurvatureSource A)
       change 10 - B.selectedCenteredSupportIndex K center.2 2 ≤ 11
       omega
 
+/-- Supports the exact-two-source bridge analysis. -/
 theorem start_add_turnCount_lt_twentyTwo {A : Finset ℝ²}
     (Q : P5CurvatureSource A) (arc : RetainedOuterArc) :
     arc.start Q + arc.turnCount Q < 22 := by
@@ -337,6 +349,7 @@ theorem quarterTurn {A : Finset ℝ²} (Q : P5CurvatureSource A)
 
 end RetainedOuterArc
 
+/-- Supports the exact-two-source bridge analysis. -/
 private theorem edgeLift_add_count_sub
     (point : Fin 11 → ℝ²) (start count : ℕ) :
     edgeLift point (start + count) - edgeLift point start =
@@ -354,6 +367,7 @@ private theorem edgeLift_add_count_sub
         _ = (∑ k ∈ Finset.range count, exteriorTurn point (start + k)) +
               exteriorTurn point (start + count) := by rw [ih]
 
+/-- Supports the exact-two-source bridge analysis. -/
 private theorem exteriorTurn_eq_mod_eleven
     (point : Fin 11 → ℝ²) {i : ℕ} (hi : i < 22) :
     exteriorTurn point i = exteriorTurn point (i % 11) := by
@@ -370,6 +384,7 @@ private theorem exteriorTurn_eq_mod_eleven
         exteriorTurn_add_period (n := 10) (i := i - 11) point
       _ = exteriorTurn point (i % 11) := by rw [hmod]
 
+/-- Supports the exact-two-source bridge analysis. -/
 private theorem turnMask_sum_eq_arcTurnSum
     (point : Fin 11 → ℝ²) (start count : ℕ)
     (hcount : count ≤ 11) (hbound : start + count < 22) :
@@ -426,6 +441,7 @@ theorem sum_turnWeight_eq_two_pi {A : Finset ℝ²}
   dsimp [edgeLift] at hfull
   linarith
 
+/-- Supports the exact-two-source bridge analysis. -/
 private theorem disjoint_union_left_of_pairwise
     {M₁ M₂ M₃ : Finset (Fin 11)}
     (h₁₃ : Disjoint M₁ M₃) (h₂₃ : Disjoint M₂ M₃) :

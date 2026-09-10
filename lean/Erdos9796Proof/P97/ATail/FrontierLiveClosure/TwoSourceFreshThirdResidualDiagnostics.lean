@@ -31,6 +31,7 @@ The two deliberate aliases are `pinnedCenter = canonicalSource` and
 
 section DiagnosticChecks
 
+/-- Frontier live-closure def. -/
 private def diagnosticRank :
     FreshThirdPinnedEndpointOutsideSeedPointRole → Nat
   | .freshSourceOne => 0
@@ -46,10 +47,12 @@ private def diagnosticRank :
   | .blockerRowSource i j =>
       if j = 0 then 8 + i else 20 + 3 * i + (j.1 - 1)
 
+/-- Frontier live-closure def. -/
 private def diagnosticSame
     (left right : FreshThirdPinnedEndpointOutsideSeedPointRole) : Bool :=
   decide (diagnosticRank left = diagnosticRank right)
 
+/-- Frontier live-closure def. -/
 private def diagnosticIncident
     (point : FreshThirdPinnedEndpointOutsideSeedPointRole)
     (row : FreshThirdPinnedEndpointOutsideSeedRowRole) : Bool :=
@@ -57,6 +60,7 @@ private def diagnosticIncident
     diagnosticRank point =
       diagnosticRank (freshThirdPinnedEndpointOutsideSeedRowSlot row i))
 
+/-- Frontier live-closure def. -/
 private def diagnosticInCap
     (point : FreshThirdPinnedEndpointOutsideSeedPointRole) (cap : Fin 3) : Bool :=
   let rank := diagnosticRank point
@@ -69,6 +73,7 @@ private def diagnosticInCap
       (rank ≠ 1 ∧ rank ≠ 2 ∧ rank ≠ 3 ∧ rank ≠ 4 ∧ rank ≠ 5 ∧
         ¬ (16 ≤ rank ∧ rank < 20) ∧ rank ≠ 12 ∧ rank ≠ 13 ∧ cap = 1))
 
+/-- Frontier live-closure def. -/
 private def diagnosticInCapInterior
     (point : FreshThirdPinnedEndpointOutsideSeedPointRole) (cap : Fin 3) : Bool :=
   let rank := diagnosticRank point
@@ -77,10 +82,12 @@ private def diagnosticInCapInterior
       (rank = 1 ∧ cap = 1) ∨
       (16 ≤ rank ∧ rank < 20 ∧ cap = 1))
 
+/-- Frontier live-closure def. -/
 private def diagnosticBefore
     (left right : FreshThirdPinnedEndpointOutsideSeedPointRole) : Bool :=
   decide (diagnosticRank left < diagnosticRank right)
 
+/-- Frontier live-closure def. -/
 private def diagnosticSameDistanceFrom
     (center left right : FreshThirdPinnedEndpointOutsideSeedPointRole) : Bool :=
   decide
@@ -91,6 +98,7 @@ private def diagnosticSameDistanceFrom
           diagnosticIncident left row = true ∧
           diagnosticIncident right row = true)
 
+/-- Frontier live-closure def. -/
 private def diagnosticHasFourAfterDeleting
     (deleted center : FreshThirdPinnedEndpointOutsideSeedPointRole) : Bool :=
   decide
@@ -122,6 +130,7 @@ def diagnosticConfiguration :
   rowCap := 2
   blockerCap := fun _ ↦ 1
 
+/-- Frontier live-closure theorem. -/
 private theorem diagnostic_seed_sameDistanceFrom_pinned_iff_eq (i j : Fin 6) :
     diagnosticAssignment.SameDistanceFrom .pinnedCenter
         (freshThirdPinnedEndpointOutsideSeedSeedRole i)
@@ -315,6 +324,7 @@ theorem diagnosticConfiguration_visibleRowSharedPairSeparationConstraint :
   fin_cases left <;> fin_cases right <;>
     fin_cases i <;> fin_cases j <;> decide
 
+/-- Frontier live-closure theorem. -/
 private theorem diagnostic_bc_row_pair :
     ∀ bRow cRow : FreshThirdPinnedEndpointOutsideSeedRowRole,
       diagnosticAssignment.Before
@@ -325,12 +335,14 @@ private theorem diagnostic_bc_row_pair :
       bRow = .boundary ∧ cRow = .source := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem diagnostic_no_boundary_point_before_boundary_center :
     ∀ a : FreshThirdPinnedEndpointOutsideSeedPointRole,
       diagnosticAssignment.Before a .boundaryCenter →
       diagnosticAssignment.Incident a .boundary → False := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem diagnostic_de_row_pair :
     ∀ dRow eRow : FreshThirdPinnedEndpointOutsideSeedRowRole,
       diagnosticAssignment.Before
@@ -342,12 +354,14 @@ private theorem diagnostic_de_row_pair :
         (dRow = .source ∧ eRow = .fan) := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem diagnostic_no_fresh_boundary_common_point :
     ∀ a : FreshThirdPinnedEndpointOutsideSeedPointRole,
       diagnosticAssignment.Incident a .fresh →
       diagnosticAssignment.Incident a .boundary → False := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem diagnostic_no_source_fan_common_point :
     ∀ a : FreshThirdPinnedEndpointOutsideSeedPointRole,
       diagnosticAssignment.Incident a .source →

@@ -26,9 +26,11 @@ open GenericRowNogoodCertificate
 open SafeCoverIndexBridge
 open TerminalBankConsumer
 
+/-- Frontier live-closure def. -/
 def deletedSelectorAssign (deleted : Label) (v : Nat) : Bool :=
   decide (v = deletedVar deleted.val)
 
+/-- Frontier live-closure def. -/
 def blockerSelectorAssign (blocker : Label) (v : Nat) : Bool :=
   decide (v = blockerVar blocker.val)
 
@@ -46,27 +48,32 @@ def selectorAssign (σ : Nat → Bool) (deleted blocker : Label)
     centerSelectorAssign centers v
   else false
 
+/-- Frontier live-closure def. -/
 def deletedSinzAssign (σ : Nat → Bool) (deleted blocker : Label)
     (centers : Finset Label) : Nat → Bool :=
   sinzExt (selectorAssign σ deleted blocker centers)
     deletedVars 1 deletedSinzBase
 
+/-- Frontier live-closure def. -/
 def blockerSinzAssign (σ : Nat → Bool) (deleted blocker : Label)
     (centers : Finset Label) : Nat → Bool :=
   sinzExt (deletedSinzAssign σ deleted blocker centers)
     blockerVars 1 blockerSinzBase
 
+/-- Frontier live-closure def. -/
 def fiveOmissionAssign (σ : Nat → Bool) (deleted blocker : Label)
     (centers : Finset Label) : Nat → Bool :=
   sinzExt (blockerSinzAssign σ deleted blocker centers)
     centerVars 5 centerSinzBase
 
+/-- Frontier live-closure theorem. -/
 theorem selectorAssign_base_low (σ : Nat → Bool) (deleted blocker : Label)
     (centers : Finset Label) {v : Nat}
     (hv : v ≤ SafeCoverCnf.baseNumVars) :
     selectorAssign σ deleted blocker centers v = σ v := by
   simp [selectorAssign, hv]
 
+/-- Frontier live-closure theorem. -/
 theorem fiveOmissionAssign_base_low (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) {v : Nat}
     (hv : v ≤ SafeCoverCnf.baseNumVars) :
@@ -82,6 +89,7 @@ theorem fiveOmissionAssign_base_low (σ : Nat → Bool)
   rw [deletedSinzAssign, sinzExt_le _ _ _ _ hvDeleted]
   exact selectorAssign_base_low σ deleted blocker centers hv
 
+/-- Frontier live-closure theorem. -/
 theorem selectorAssign_deletedVar (σ : Nat → Bool)
     (deleted blocker p : Label) (centers : Finset Label) :
     selectorAssign σ deleted blocker centers (deletedVar p.val) =
@@ -94,6 +102,7 @@ theorem selectorAssign_deletedVar (σ : Nat → Bool)
     omega
   simp [selectorAssign, hbase, hrange]
 
+/-- Frontier live-closure theorem. -/
 theorem selectorAssign_blockerVar (σ : Nat → Bool)
     (deleted blocker p : Label) (centers : Finset Label) :
     selectorAssign σ deleted blocker centers (blockerVar p.val) =
@@ -109,6 +118,7 @@ theorem selectorAssign_blockerVar (σ : Nat → Bool)
     omega
   simp [selectorAssign, hbase, hdeleted, hrange]
 
+/-- Frontier live-closure theorem. -/
 theorem selectorAssign_centerVar (σ : Nat → Bool)
     (deleted blocker p : Label) (centers : Finset Label) :
     selectorAssign σ deleted blocker centers (centerVar p.val) =
@@ -144,6 +154,7 @@ theorem fiveOmissionAssign_selector_low (σ : Nat → Bool)
 
 set_option maxHeartbeats 0 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem deletedSelector_filter_length :
     ∀ deleted : Label,
       (deletedVars.filter (deletedSelectorAssign deleted)).length = 1 := by
@@ -151,11 +162,13 @@ theorem deletedSelector_filter_length :
 
 set_option maxHeartbeats 0 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem blockerSelector_filter_length :
     ∀ blocker : Label,
       (blockerVars.filter (blockerSelectorAssign blocker)).length = 1 := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem centerSelector_filter_length :
     ∀ centers : Finset Label,
       (centerVars.filter (centerSelectorAssign centers)).length =
@@ -213,17 +226,20 @@ theorem centerSelector_filter_length :
       exact Fin.ext (hcenterVarInjective hpq))
 
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem deletedSelectorAssign_deletedVar :
     ∀ deleted p : Label,
       deletedSelectorAssign deleted (deletedVar p.val) = decide (p = deleted) := by
   native_decide
 
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem blockerSelectorAssign_blockerVar :
     ∀ blocker p : Label,
       blockerSelectorAssign blocker (blockerVar p.val) = decide (p = blocker) := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem centerSelectorAssign_centerVar :
     ∀ centers : Finset Label, ∀ p : Label,
       centerSelectorAssign centers (centerVar p.val) = decide (p ∈ centers) := by
@@ -241,6 +257,7 @@ theorem centerSelectorAssign_centerVar :
       exact ⟨p, hp, rfl⟩
   simp [centerSelectorAssign, hiff]
 
+/-- Frontier live-closure theorem. -/
 theorem fiveOmissionAssign_deletedVar (σ : Nat → Bool)
     (deleted blocker p : Label) (centers : Finset Label) :
     fiveOmissionAssign σ deleted blocker centers (deletedVar p.val) =
@@ -250,6 +267,7 @@ theorem fiveOmissionAssign_deletedVar (σ : Nat → Bool)
     omega)]
   rw [selectorAssign_deletedVar, deletedSelectorAssign_deletedVar]
 
+/-- Frontier live-closure theorem. -/
 theorem fiveOmissionAssign_blockerVar (σ : Nat → Bool)
     (deleted blocker p : Label) (centers : Finset Label) :
     fiveOmissionAssign σ deleted blocker centers (blockerVar p.val) =
@@ -259,6 +277,7 @@ theorem fiveOmissionAssign_blockerVar (σ : Nat → Bool)
     omega)]
   rw [selectorAssign_blockerVar, blockerSelectorAssign_blockerVar]
 
+/-- Frontier live-closure theorem. -/
 theorem fiveOmissionAssign_centerVar (σ : Nat → Bool)
     (deleted blocker p : Label) (centers : Finset Label) :
     fiveOmissionAssign σ deleted blocker centers (centerVar p.val) =
@@ -268,6 +287,7 @@ theorem fiveOmissionAssign_centerVar (σ : Nat → Bool)
     omega)]
   rw [selectorAssign_centerVar, centerSelectorAssign_centerVar]
 
+/-- Frontier live-closure theorem. -/
 theorem selectorAssign_deleted_filter_length (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) :
     (deletedVars.filter (selectorAssign σ deleted blocker centers)).length = 1 := by
@@ -277,6 +297,7 @@ theorem selectorAssign_deleted_filter_length (σ : Nat → Bool)
     exact selectorAssign_deletedVar σ deleted blocker ⟨p, by
       simpa using List.mem_range.mp hp⟩ centers
 
+/-- Frontier live-closure theorem. -/
 theorem selectorAssign_blocker_filter_length (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) :
     (blockerVars.filter (selectorAssign σ deleted blocker centers)).length = 1 := by
@@ -286,6 +307,7 @@ theorem selectorAssign_blocker_filter_length (σ : Nat → Bool)
     exact selectorAssign_blockerVar σ deleted blocker ⟨p, by
       simpa using List.mem_range.mp hp⟩ centers
 
+/-- Frontier live-closure theorem. -/
 theorem selectorAssign_center_filter_length (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) :
     (centerVars.filter (selectorAssign σ deleted blocker centers)).length =
@@ -296,6 +318,7 @@ theorem selectorAssign_center_filter_length (σ : Nat → Bool)
     exact selectorAssign_centerVar σ deleted blocker ⟨p, by
       simpa using List.mem_range.mp hp⟩ centers
 
+/-- Frontier live-closure theorem. -/
 theorem deletedSinzAssign_selector_low (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) {v : Nat}
     (hv : v ≤ deletedSinzBase) :
@@ -303,6 +326,7 @@ theorem deletedSinzAssign_selector_low (σ : Nat → Bool)
       selectorAssign σ deleted blocker centers v := by
   exact sinzExt_le _ _ _ _ hv
 
+/-- Frontier live-closure theorem. -/
 theorem blockerSinzAssign_selector_low (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) {v : Nat}
     (hv : v ≤ deletedSinzBase) :
@@ -313,6 +337,7 @@ theorem blockerSinzAssign_selector_low (σ : Nat → Bool)
   rw [blockerSinzAssign, sinzExt_le _ _ _ _ hvBlocker]
   exact deletedSinzAssign_selector_low σ deleted blocker centers hv
 
+/-- Frontier live-closure theorem. -/
 theorem deletedSinzAssign_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) {c : List Int}
     (hc : c ∈ sinzClauses deletedVars 1 deletedSinzBase) :
@@ -340,6 +365,7 @@ theorem deletedSinzAssign_sat (σ : Nat → Bool)
       exact sinzExt_le _ _ _ _ hblocker
     _ = true := hlocal
 
+/-- Frontier live-closure theorem. -/
 theorem blockerSinzAssign_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) {c : List Int}
     (hc : c ∈ sinzClauses blockerVars 1 blockerSinzBase) :
@@ -377,6 +403,7 @@ theorem blockerSinzAssign_sat (σ : Nat → Bool)
       exact sinzExt_le _ _ _ _ hcenter
     _ = true := hlocal
 
+/-- Frontier live-closure theorem. -/
 theorem centerSinzAssign_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label)
     (hcenters : centers.card = 5) {c : List Int}
@@ -402,6 +429,7 @@ theorem centerSinzAssign_sat (σ : Nat → Bool)
     (blockerSinzAssign σ deleted blocker centers) centerVars 5 centerSinzBase
     (by decide) hcount hbelow c hc
 
+/-- Frontier live-closure theorem. -/
 theorem deletedPositiveClause_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) :
     evalClauseD (fiveOmissionAssign σ deleted blocker centers)
@@ -414,6 +442,7 @@ theorem deletedPositiveClause_sat (σ : Nat → Bool)
       fiveOmissionAssign_deletedVar]
     simp
 
+/-- Frontier live-closure theorem. -/
 theorem blockerPositiveClause_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label) :
     evalClauseD (fiveOmissionAssign σ deleted blocker centers)
@@ -426,6 +455,7 @@ theorem blockerPositiveClause_sat (σ : Nat → Bool)
       fiveOmissionAssign_blockerVar]
     simp
 
+/-- Frontier live-closure theorem. -/
 theorem centerAtLeastFiveAssign_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label)
     (hcenters : centers.card = 5) {c : List Int}
@@ -442,6 +472,7 @@ theorem centerAtLeastFiveAssign_sat (σ : Nat → Bool)
       rw [fiveOmissionAssign_centerVar, centerSelectorAssign_centerVar]
     _ = true := centerAtLeastFive_sat centers hcenters c hc
 
+/-- Frontier live-closure theorem. -/
 theorem roleDistinctness_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label)
     (hblockerDeleted : blocker ≠ deleted)
@@ -468,6 +499,7 @@ theorem roleDistinctness_sat (σ : Nat → Bool)
     · simp [hpb, hblockerCenters]
     · simp [hpb]
 
+/-- Frontier live-closure theorem. -/
 theorem fiveOmissionAssign_xVar_eq_true_iff
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (deleted blocker : Label) (centers : Finset Label)
@@ -487,6 +519,7 @@ theorem fiveOmissionAssign_xVar_eq_true_iff
     SafeCoverCnf.baseAssign_iff (coverIndex row)
       (fun _ hq => coverIndex_lt_of_safeCubeOK hrow hq) hp hi]
 
+/-- Frontier live-closure theorem. -/
 theorem boundaryClause_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (deleted : Label) (B : FrozenFiveOmissionBoundary row deleted)
@@ -585,6 +618,7 @@ theorem boundaryClause_sat
         exact fiveOmissionAssign_deletedVar _ deleted B.blocker d B.centers]
       simp [hd]
 
+/-- Frontier live-closure theorem. -/
 theorem boundaryClauses_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (deleted : Label) (B : FrozenFiveOmissionBoundary row deleted)
@@ -598,6 +632,7 @@ theorem boundaryClauses_sat
   rw [← hci]
   exact boundaryClause_sat hrow deleted B ⟨d, hd⟩ ⟨p, hp⟩ hi
 
+/-- Frontier live-closure theorem. -/
 theorem deletedSelectorClauses_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label)
     {c : List Int} (hc : c ∈ deletedSelectorClauses) :
@@ -607,6 +642,7 @@ theorem deletedSelectorClauses_sat (σ : Nat → Bool)
   · exact deletedPositiveClause_sat σ deleted blocker centers
   · exact deletedSinzAssign_sat σ deleted blocker centers hc
 
+/-- Frontier live-closure theorem. -/
 theorem blockerSelectorClauses_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label)
     {c : List Int} (hc : c ∈ blockerSelectorClauses) :
@@ -616,6 +652,7 @@ theorem blockerSelectorClauses_sat (σ : Nat → Bool)
   · exact blockerPositiveClause_sat σ deleted blocker centers
   · exact blockerSinzAssign_sat σ deleted blocker centers hc
 
+/-- Frontier live-closure theorem. -/
 theorem centerSelectorClauses_sat (σ : Nat → Bool)
     (deleted blocker : Label) (centers : Finset Label)
     (hcenters : centers.card = 5)
@@ -626,6 +663,7 @@ theorem centerSelectorClauses_sat (σ : Nat → Bool)
   · exact centerSinzAssign_sat σ deleted blocker centers hcenters hc
   · exact centerAtLeastFiveAssign_sat σ deleted blocker centers hcenters hc
 
+/-- Frontier live-closure theorem. -/
 theorem baseDimacs_sat
     {row : RowPattern Label} (hrow : FrozenSafeCubeOK row)
     (deleted : Label) (B : FrozenFiveOmissionBoundary row deleted)

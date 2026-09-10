@@ -231,23 +231,28 @@ theorem allKilled_eq_false_of_semanticTrace
           simpa [allKilled, hprefix, hsort] using hallFalse
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 native-occurrence classification. -/
 theorem labels_nodup : labels.Nodup := by
   native_decide
 
+/-- Supports the aligned P5 native-occurrence classification. -/
 theorem label_lt_eleven {center : Nat} (hcenter : center ∈ labels) :
     center < 11 := by
   simpa [labels] using hcenter
 
 set_option linter.style.nativeDecide false in
+/-- Supports the aligned P5 native-occurrence classification. -/
 theorem variableCenters_nodup : variableCenters.Nodup := by
   native_decide
 
+/-- Supports the aligned P5 native-occurrence classification. -/
 theorem variableCenter_lt_eleven {center : Nat}
     (hcenter : center ∈ variableCenters) :
     center < 11 := by
   simp [variableCenters] at hcenter
   omega
 
+/-- Supports the aligned P5 native-occurrence classification. -/
 theorem variableCenter_ne_zero {center : Nat}
     (hcenter : center ∈ variableCenters) :
     center ≠ 0 := by

@@ -118,10 +118,12 @@ def noGoodClause (data : Balanced555KalmansonOccurrenceData) :
     Std.Sat.CNF.Clause (Fin 12 × Fin 12) :=
   data.positiveAtoms.map fun atom ↦ (atom, false)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem positiveAtoms_length (data : Balanced555KalmansonOccurrenceData) :
     data.positiveAtoms.length = 6 := by
   rfl
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem noGoodClause_length (data : Balanced555KalmansonOccurrenceData) :
     data.noGoodClause.length = 6 := by
   simp [noGoodClause]
@@ -142,6 +144,7 @@ def selectedAssignment (configuration : Balanced555FiniteConfiguration) :
     Fin 12 × Fin 12 → Bool :=
   fun atom ↦ decide (atom.2 ∈ configuration.selectedAt atom.1)
 
+/-- Frontier live-closure theorem. -/
 private theorem positiveRowsMatch_of_atoms_true
     (configuration : Balanced555FiniteConfiguration)
     (data : Balanced555KalmansonOccurrenceData)
@@ -180,6 +183,7 @@ private theorem positiveRowsMatch_of_atoms_true
         hall (data.row2.center, data.row2.second)
           (by simp [Balanced555KalmansonOccurrenceData.positiveAtoms])
 
+/-- Frontier live-closure theorem. -/
 private theorem atoms_true_of_noGoodClause_false
     (configuration : Balanced555FiniteConfiguration)
     (data : Balanced555KalmansonOccurrenceData)

@@ -8,23 +8,36 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Prefixed
 
 namespace Problem97.P4RowRadiusOccurrenceBridgeScratch
 
+/-- Prefixed P4 occurrence-closure def. -/
 def compactFormulaSha256 : String := "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+/-- Prefixed P4 occurrence-closure def. -/
 def occurrenceLedgerSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+/-- Prefixed P4 occurrence-closure def. -/
 def stableManifestSha256 : String := "8d5b8f5adf40cda367e7e7f72f6afc58e75201011e140ff198ace1c836521dd1"
+/-- Prefixed P4 occurrence-closure def. -/
 def sourceCoreSha256 : String := "739a55ce7a818cbcdfb8c9fa0731b19b564933e546c303b17c2366871078241b"
+/-- Prefixed P4 occurrence-closure def. -/
 def sourceOccurrenceMapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedFamily : String := "selected_row_subset_radius_class"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedLedgerSha256 : String := "6069793c0aab9d0762baa4e34dd1961c170428bbd66432bc52b71ea567803660"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedCompactCnfSha256 : String := "eaa7177c528e38c2855a3566e42143cc67621ffd951e0febdfbce17c2bdf55ba"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedSourceCoreSha256 : String := "f1d3af58f148a6279b4bc812b6856e3675f226e2e084a4d923150330a27bbe1a"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedClauseCount : Nat := 441
 
+/-- Prefixed P4 occurrence-closure def. -/
 def bridgeEntries : List BridgeEntry :=
   bridgeChunk01 ++ bridgeChunk02 ++ bridgeChunk03 ++ bridgeChunk04
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem bridgeEntries_length : bridgeEntries.length = 441 := by
   simp [bridgeEntries, bridgeChunk01_length, bridgeChunk02_length, bridgeChunk03_length, bridgeChunk04_length]
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by
   simp [bridgeEntries, bridgeChunk01_wf, bridgeChunk02_wf, bridgeChunk03_wf, bridgeChunk04_wf]
 

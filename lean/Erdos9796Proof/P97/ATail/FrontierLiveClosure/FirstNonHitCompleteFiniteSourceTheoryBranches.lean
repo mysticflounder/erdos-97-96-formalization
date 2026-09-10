@@ -227,6 +227,7 @@ structure FirstNonHitNamedSourceFiniteFacts : Prop where
       A.hasFourAfterDeleting (A.roleIndex .secondRetainedSourceTwo)
         (A.blockerMap (A.roleIndex .canonicalSourceTwo)) = true
 
+/-- Frontier live-closure theorem. -/
 private theorem roleIndex_ne_of_point_ne
     {r s : FirstNonHitNamedRole}
     (h : FirstNonHitNamedRole.point P Pρ C Q r ≠
@@ -236,6 +237,7 @@ private theorem roleIndex_ne_of_point_ne
   apply h
   rw [← A.roleIndex_point_eq r, ← A.roleIndex_point_eq s, hrs]
 
+/-- Frontier live-closure theorem. -/
 private theorem center_roleIndex_eq (r : FirstNonHitNamedRole) :
     H.centerAt (A.boundary.boundary (A.roleIndex r))
         (A.boundary_mem (A.roleIndex r)) =
@@ -249,6 +251,7 @@ private theorem center_roleIndex_eq (r : FirstNonHitNamedRole) :
     Subtype.ext (A.roleIndex_point_eq r)
   exact congrArg (fun v ↦ H.centerAt v.1 v.2) hr
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedSupport_roleIndex_eq (r : FirstNonHitNamedRole) :
     (H.selectedAt (A.boundary.boundary (A.roleIndex r))
         (A.boundary_mem (A.roleIndex r))).toCriticalFourShell.support =
@@ -263,6 +266,7 @@ private theorem selectedSupport_roleIndex_eq (r : FirstNonHitNamedRole) :
   exact congrArg
     (fun v ↦ (H.selectedAt v.1 v.2).toCriticalFourShell.support) hr
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerMap_eq_of_center_eq
     {r s : FirstNonHitNamedRole}
     (h :
@@ -276,6 +280,7 @@ private theorem blockerMap_eq_of_center_eq
   apply A.boundary.boundary_injective
   simpa only [A.blockerMap_point_eq, center_roleIndex_eq P Pρ C Q A] using h
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerMap_ne_of_center_ne
     {r s : FirstNonHitNamedRole}
     (h :
@@ -291,6 +296,7 @@ private theorem blockerMap_ne_of_center_ne
   have := congrArg A.boundary.boundary hrs
   simpa only [A.blockerMap_point_eq, center_roleIndex_eq P Pρ C Q A] using this
 
+/-- Frontier live-closure theorem. -/
 private theorem row_mem_of_source_mem
     {source x : FirstNonHitNamedRole}
     (h : FirstNonHitNamedRole.point P Pρ C Q x ∈
@@ -302,6 +308,7 @@ private theorem row_mem_of_source_mem
   rw [selectedSupport_roleIndex_eq P Pρ C Q A]
   simpa only [A.roleIndex_point_eq] using h
 
+/-- Frontier live-closure theorem. -/
 private theorem row_not_mem_of_source_not_mem
     {source x : FirstNonHitNamedRole}
     (h : FirstNonHitNamedRole.point P Pρ C Q x ∉
@@ -315,6 +322,7 @@ private theorem row_not_mem_of_source_not_mem
   rw [selectedSupport_roleIndex_eq P Pρ C Q A] at hx'
   simpa only [A.roleIndex_point_eq] using hx'
 
+/-- Frontier live-closure theorem. -/
 private theorem row_eq_of_support_eq
     {r s : FirstNonHitNamedRole}
     (h :
@@ -350,6 +358,7 @@ private theorem row_eq_of_support_eq
     rw [selectedSupport_roleIndex_eq P Pρ C Q A]
     exact hxPoint'
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteSameBlocker_of_source
     {source : FirstNonHitNamedRole}
     (hcenter :
@@ -369,6 +378,7 @@ private theorem finiteSameBlocker_of_source
       row_eq_of_support_eq P Pρ C Q A
         (by simpa only [FirstNonHitNamedRole.point] using hsupport)⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteSourceRowOmission_of_freshOne
     {source : FirstNonHitNamedRole}
     (hnot : Q.source₁.1 ∉
@@ -389,6 +399,7 @@ private theorem finiteSourceRowOmission_of_freshOne
       center_roleIndex_eq P Pρ C Q A]
     exact hsurvives
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteSourceRowOmission_of_freshTwo
     {source : FirstNonHitNamedRole}
     (hnot : Q.source₂.1 ∉
@@ -409,6 +420,7 @@ private theorem finiteSourceRowOmission_of_freshTwo
       center_roleIndex_eq P Pρ C Q A]
     exact hsurvives
 
+/-- Frontier live-closure theorem. -/
 private theorem hasFourAfterDeleting_of_source
     {deleted source : FirstNonHitNamedRole}
     (h :
@@ -424,6 +436,7 @@ private theorem hasFourAfterDeleting_of_source
     center_roleIndex_eq P Pρ C Q A]
   exact h
 
+/-- Frontier live-closure theorem. -/
 private theorem inCap_of_source_mem
     {source : FirstNonHitNamedRole} {cap : Fin 3}
     (h : FirstNonHitNamedRole.point P Pρ C Q source ∈ S.capByIndex cap) :
@@ -431,6 +444,7 @@ private theorem inCap_of_source_mem
   apply (A.inCap_iff _ _).mpr
   simpa [A.roleIndex_point_eq] using h
 
+/-- Frontier live-closure theorem. -/
 private theorem inCapInterior_of_source_mem
     {source : FirstNonHitNamedRole} {cap : Fin 3}
     (h :
@@ -439,6 +453,7 @@ private theorem inCapInterior_of_source_mem
   apply (A.inCapInterior_iff _ _).mpr
   simpa [A.roleIndex_point_eq] using h
 
+/-- Frontier live-closure theorem. -/
 private theorem blocker_inCapInterior_of_center_mem
     {source : FirstNonHitNamedRole} {cap : Fin 3}
     (h :
@@ -451,6 +466,7 @@ private theorem blocker_inCapInterior_of_center_mem
   rw [A.blockerMap_point_eq, center_roleIndex_eq P Pρ C Q A]
   exact h
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteOverlap_of_support_inter_eq
     {source : FirstNonHitNamedRole}
     (h :
@@ -581,6 +597,7 @@ theorem firstNonHitFiniteSecondInteraction_of_assignment :
     · exact Or.inr (inCap_of_source_mem P Pρ C Q A
         (by simpa only [FirstNonHitNamedRole.point] using hsecond))
 
+/-- Frontier live-closure theorem. -/
 private theorem retained_canonicalRadii_ne
     (hretained : FreshThirdAlignedRetainedConsumerPacket
       (P := P) (Pρ := Pρ) C) :
@@ -596,6 +613,7 @@ private theorem retained_canonicalRadii_ne
       have hdist := (A.radiusEq_iff _ _ _).mp hradius
       simpa [A.roleIndex_point_eq, FirstNonHitNamedRole.point] using hdist
 
+/-- Frontier live-closure theorem. -/
 private theorem common_canonicalRadii_eq
     (hcommon : Nonempty (CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ))
     (hcommonSurface :

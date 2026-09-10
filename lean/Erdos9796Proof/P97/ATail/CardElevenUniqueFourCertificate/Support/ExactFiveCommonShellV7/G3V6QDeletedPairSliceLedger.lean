@@ -31,15 +31,21 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 206799
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6QDeletedPairCount : Nat := 13214
+/-- Exact-five common-shell V7 def. -/
 private def v6QDeletedPairClauseCount : Nat := 87120
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6QDeletedPairPayload : String :=
   include_str "data/g3-v6-qdeleted-pair-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev V6QDeletedPairClauseIndex := Fin v6QDeletedPairClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -61,10 +67,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array V6QDeletedPairClauseIndex →
       Option (Array V6QDeletedPairClauseIndex)
@@ -84,6 +92,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedV6QDeletedPairIndices :
     Option (Array V6QDeletedPairClauseIndex) := do
   let bytes ← decodeAscii85 retainedV6QDeletedPairPayload
@@ -107,6 +116,7 @@ structure V6QDeletedPairOccurrence where
   kind : V6QDeletedPairKind
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def v6QDeletedPairExtraLabels
     (qDeletedPair : Fin 3960) : List Nat :=
   let row := qDeletedPairRow qDeletedPair
@@ -114,10 +124,12 @@ private def v6QDeletedPairExtraLabels
     label != row.deleted.val && label != row.center.val &&
       label != row.first.val && label != row.second.val
 
+/-- Exact-five common-shell V7 def. -/
 private def v6QDeletedPairWitnessPairs
     (qDeletedPair : Fin 3960) : List (List Nat) :=
   combos 2 (v6QDeletedPairExtraLabels qDeletedPair)
 
+/-- Exact-five common-shell V7 def. -/
 private def v6QDeletedPairWitnessSupport
     (qDeletedPair : Fin 3960) (pair : List Nat) : List Label :=
   let row := qDeletedPairRow qDeletedPair
@@ -125,6 +137,7 @@ private def v6QDeletedPairWitnessSupport
     label == row.first.val || label == row.second.val ||
       label == pair.getD 0 0 || label == pair.getD 1 0).map toLabel
 
+/-- Exact-five common-shell V7 def. -/
 private def v6QDeletedPairWitnessIndex
     (qDeletedPair : Fin 3960) (pair : List Nat) : Fin 2310 :=
   let row := qDeletedPairRow qDeletedPair
@@ -139,6 +152,7 @@ def v6QDeletedPairWitnesses
   (v6QDeletedPairWitnessPairs qDeletedPair).map fun pair =>
     v6QDeletedPairWitnessIndex qDeletedPair pair
 
+/-- Exact-five common-shell V7 def. -/
 private def encoderV6QDeletedPairKinds : List V6QDeletedPairKind :=
   ((List.finRange 21).map fun slot => .forward slot) ++ [.reverse]
 
@@ -150,15 +164,18 @@ def encoderV6QDeletedPairOccurrences :
     encoderV6QDeletedPairKinds.map fun kind => ⟨qDeletedPair, kind⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderV6QDeletedPairOccurrences_length :
     encoderV6QDeletedPairOccurrences.length =
       v6QDeletedPairClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def v6QDeletedPairOccurrenceArray :
     Array V6QDeletedPairOccurrence :=
   encoderV6QDeletedPairOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def v6QDeletedPairOccurrenceAt
     (index : V6QDeletedPairClauseIndex) : V6QDeletedPairOccurrence :=
   v6QDeletedPairOccurrenceArray[index.val]'(by
@@ -185,6 +202,7 @@ def g3V6QDeletedPairSlice : Array V6QDeletedPairOccurrence :=
 def g3V6QDeletedPairSliceClauses : List (List Int) :=
   g3V6QDeletedPairSlice.toList.map renderV6QDeletedPairOccurrence
 
+/-- Exact-five common-shell V7 def. -/
 private def v6QDeletedPairIsForward
     (occurrence : V6QDeletedPairOccurrence) : Bool :=
   match occurrence.kind with
@@ -194,6 +212,7 @@ private def v6QDeletedPairIsForward
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3V6QDeletedPairSlice_size :
     g3V6QDeletedPairSlice.size = retainedV6QDeletedPairCount := by
   native_decide

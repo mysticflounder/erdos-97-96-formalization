@@ -88,6 +88,7 @@ abbrev FirstFiberCollisionSixCenterAcyclicFaithfulResidual
         (H.centerAt P.source₁ P.source₁_mem_A) a₂ a₃
         (H.centerAt Pρ.source₁ Pρ.source₁_mem_A))
 
+/-- Frontier live-closure theorem. -/
 private theorem firstFiberAcyclic_oppApex1_mem_A : S.oppApex1 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
@@ -95,6 +96,7 @@ private theorem firstFiberAcyclic_oppApex1_mem_A : S.oppApex1 ∈ D.A := by
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem firstFiberAcyclic_oppApex2_mem_A : S.oppApex2 ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
@@ -102,6 +104,7 @@ private theorem firstFiberAcyclic_oppApex2_mem_A : S.oppApex2 ∈ D.A := by
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem firstFiberAcyclic_surplusApex_mem_A :
     S.surplusApex ∈ D.A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩

@@ -27,6 +27,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {profile : S.surplusCap.card = 5 ∧
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem mirrorShortEndpointSat
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hshort :
@@ -62,6 +63,7 @@ private theorem mirrorShortEndpointSat
     exact fun hleftVal =>
       hleftMem ((hv.row center left hcenterLeft).mp hleftVal)
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem mirrorRightEndpointSat
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hendpoint :
@@ -97,6 +99,7 @@ private theorem mirrorRightEndpointSat
     exact fun hleftVal =>
       hleftMem ((hv.row center left hcenterLeft).mp hleftVal)
 
+/-- Supports the P4 mirror valuation analysis. -/
 private theorem mirrorRightOwnCapSat
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hownCap :
@@ -147,6 +150,7 @@ private theorem mirrorRightOwnCapSat
     exact fun hfirstVal =>
       hfirstMem ((hv.row center first hcenterFirst).mp hfirstVal)
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_rightCapOccurrences_sat_of_capTerminals
     (P : P4MirrorBoundaryPacket R profile distribution)
     (hshort :
@@ -206,6 +210,7 @@ theorem mirrorTotalVal_rightCapOccurrences_sat_of_capTerminals
         hentryWF.2.2.2.2.2.2.2.2.1 hentryWF.2.2.2.2.2.2.2.2.2.1
         hentryWF.2.2.2.2.2.2.2.2.2.2
 
+/-- Supports the P4 mirror valuation analysis. -/
 theorem mirrorTotalVal_rightCapOccurrences_sat
     (P : P4MirrorBoundaryPacket R profile distribution) :
     ∀ entry ∈ rightCapOccurrences,

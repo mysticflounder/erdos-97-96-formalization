@@ -41,6 +41,7 @@ def staticCell1R13MixedPositiveChoices : List (RowChoice Label) :=
   , { center := 10, support := {3, 5, 8, 11} }
   , { center := 11, support := {2, 5, 8, 9} } ]
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne_staticCell1R13Mixed
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :

@@ -30,20 +30,32 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Prefixed
 
 namespace Problem97.P4RadiusPartitionOccurrenceBridgeScratch
 
+/-- Prefixed P4 occurrence-closure def. -/
 def compactFormulaSha256 : String := "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+/-- Prefixed P4 occurrence-closure def. -/
 def occurrenceLedgerSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+/-- Prefixed P4 occurrence-closure def. -/
 def stableManifestSha256 : String := "8d5b8f5adf40cda367e7e7f72f6afc58e75201011e140ff198ace1c836521dd1"
+/-- Prefixed P4 occurrence-closure def. -/
 def sourceCoreSha256 : String := "739a55ce7a818cbcdfb8c9fa0731b19b564933e546c303b17c2366871078241b"
+/-- Prefixed P4 occurrence-closure def. -/
 def sourceOccurrenceMapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedFamily : String := "radius_partition_transitivity"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedLedgerSha256 : String := "53c4f0c5bc43337c899e4391ec183278ab01cabe00135039637898878682e653"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedCompactCnfSha256 : String := "652bf0077b55dbfb581354fba2f13f6664ca94e215805a354be67fa1ff2d9893"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedSourceCoreSha256 : String := "46ab1ceab9d5875871cde120f7399a42c1b0f30161450ab723097dcba01e08de"
+/-- Prefixed P4 occurrence-closure def. -/
 def selectedClauseCount : Nat := 3218
 
+/-- Prefixed P4 occurrence-closure def. -/
 def bridgeEntries : List BridgeEntry :=
   bridgeChunk01 ++ bridgeChunk02 ++ bridgeChunk03 ++ bridgeChunk04 ++ bridgeChunk05 ++ bridgeChunk06 ++ bridgeChunk07 ++ bridgeChunk08 ++ bridgeChunk09 ++ bridgeChunk10 ++ bridgeChunk11 ++ bridgeChunk12 ++ bridgeChunk13 ++ bridgeChunk14 ++ bridgeChunk15 ++ bridgeChunk16 ++ bridgeChunk17 ++ bridgeChunk18 ++ bridgeChunk19 ++ bridgeChunk20 ++ bridgeChunk21 ++ bridgeChunk22 ++ bridgeChunk23 ++ bridgeChunk24 ++ bridgeChunk25 ++ bridgeChunk26
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem bridgeEntries_length : bridgeEntries.length = 3218 := by
   have hlen : ∀ (l₁ l₂ : List BridgeEntry) (a b : Nat),
       l₁.length = a → l₂.length = b → (l₁ ++ l₂).length = a + b := by
@@ -51,6 +63,7 @@ theorem bridgeEntries_length : bridgeEntries.length = 3218 := by
     rw [List.length_append, h₁, h₂]
   exact (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ (hlen _ _ _ _ bridgeChunk01_length bridgeChunk02_length) bridgeChunk03_length) bridgeChunk04_length) bridgeChunk05_length) bridgeChunk06_length) bridgeChunk07_length) bridgeChunk08_length) bridgeChunk09_length) bridgeChunk10_length) bridgeChunk11_length) bridgeChunk12_length) bridgeChunk13_length) bridgeChunk14_length) bridgeChunk15_length) bridgeChunk16_length) bridgeChunk17_length) bridgeChunk18_length) bridgeChunk19_length) bridgeChunk20_length) bridgeChunk21_length) bridgeChunk22_length) bridgeChunk23_length) bridgeChunk24_length) bridgeChunk25_length) bridgeChunk26_length)
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by
   have happ : ∀ l₁ l₂ : List BridgeEntry,
       l₁.all entryWF = true → l₂.all entryWF = true →

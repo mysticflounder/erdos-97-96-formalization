@@ -21,6 +21,7 @@ namespace StaticGeometryCnf
 open StaticEqualityCnf
 open StaticRelationLayout
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Length-`k` permutations in the same lexicographic recursive order as
@@ -33,6 +34,7 @@ def lexKPerms : Nat → List Nat → List (List Nat)
 /-- Compiler datum `(p,a,b,c,x)`. -/
 abbrev EquilateralDatum := Label × Label × Label × Label × Label
 
+/-- Frontier live-closure def. -/
 def equilateralData : List EquilateralDatum :=
   (lexKPerms 5 (List.range 12)).filterMap fun labels =>
     match labels with
@@ -40,6 +42,7 @@ def equilateralData : List EquilateralDatum :=
         some (fin12 p, fin12 a, fin12 b, fin12 c, fin12 x)
     | _ => none
 
+/-- Frontier live-closure def. -/
 def equilateralClause (datum : EquilateralDatum) : List Int :=
   let p := datum.1
   let a := datum.2.1
@@ -51,12 +54,14 @@ def equilateralClause (datum : EquilateralDatum) : List Int :=
     relationVar (p, a) (b, x), relationVar (c, x) (c, a)].map
       fun v => -Int.ofNat v
 
+/-- Frontier live-closure def. -/
 def clauseDelta : List (List Int) :=
   equilateralData.map equilateralClause
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem clauseCountAnchor : clauseDelta.length = 95040 := by
   native_decide
 

@@ -29,6 +29,7 @@ attribute [local instance] Classical.propDecidable
 /- The minimal live-pair packet used by the direct two-circle signed-area
    consumer.  It keeps only the row choice, actual selected-class membership,
    actual row support membership, and the alleged nonnegative product. -/
+/-- Frontier live-closure def. -/
 def B1ActualLivePairSignedAreaProductNonnegative
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

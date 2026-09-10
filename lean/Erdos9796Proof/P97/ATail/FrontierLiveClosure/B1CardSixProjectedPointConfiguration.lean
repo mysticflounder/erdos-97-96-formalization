@@ -52,11 +52,13 @@ noncomputable def projectedRoleLabel
     CarrierLabel (roleCarrier P) :=
   B1CardSixRawOrderIngress.roleLabel P role
 
+/-- Frontier live-closure theorem. -/
 private theorem projectedRoleLabel_val
     (P : B1CardSixLocalRolePacket C) (role : B1CardSixRole) :
     (projectedRoleLabel P role).1 = (B1CardSixRole.value P role).1 := by
   cases role <;> rfl
 
+/-- Frontier live-closure theorem. -/
 theorem roleIndex_alias_preserved
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
@@ -97,6 +99,7 @@ noncomputable def projectedBoundary
     (B : BoundaryIndexing D.A) : Fin (roleCarrier P).card → ℝ² :=
   fun i => B.boundary (roleEmbedding P B i)
 
+/-- Frontier live-closure theorem. -/
 theorem projectedBoundary_image
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A) :
@@ -143,6 +146,7 @@ theorem projectedBoundary_image
         B.point_eq (ambientCarrierLabel P (roleCarrier_subset P) label)
       _ = point := by rfl
 
+/-- Frontier live-closure theorem. -/
 theorem projectedBoundary_injective
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A) :
@@ -152,6 +156,7 @@ theorem projectedBoundary_injective
   apply B.boundary_injective
   exact hij
 
+/-- Frontier live-closure theorem. -/
 theorem projectedBoundary_ccw
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A) :
@@ -161,6 +166,7 @@ theorem projectedBoundary_ccw
   exact isCcwConvexPolygon_subsequence B.boundary_ccw
     (roleEmbedding P B).strictMono
 
+/-- Frontier live-closure theorem. -/
 theorem projectedIndex_point_eq
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
@@ -176,6 +182,7 @@ theorem projectedIndex_point_eq
 
 /- Boundary indexing whose order is inherited from the ambient boundary. -/
 set_option maxHeartbeats 3000000 in
+/-- Frontier live-closure def. -/
 noncomputable def projectedBoundaryIndexing
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A) : BoundaryIndexing (roleCarrier P) := by
@@ -199,12 +206,14 @@ noncomputable def projectedBoundaryIndexing
       (orderedRoleIndex P (roleCarrier_subset P) B label) = label.1
     exact projectedIndex_point_eq P B label
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedRoleIndex
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
     (role : B1CardSixRole) : Fin R.n :=
   R.indexOf (projectedRoleLabel P role)
 
+/-- Frontier live-closure theorem. -/
 theorem projectedRoleIndex_alias_preserved
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
@@ -226,6 +235,7 @@ theorem projectedRoleIndex_alias_preserved
           (projectedRoleLabel_val P s).symm)
     exact congrArg R.indexOf hlabels
 
+/-- Frontier live-closure theorem. -/
 private theorem row_choice_mem_sourceRowChoices
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow) :
     B1CardSixPositiveRow.choice P row ∈ P.sourceRowChoices := by
@@ -233,6 +243,7 @@ private theorem row_choice_mem_sourceRowChoices
     simp [B1CardSixPositiveRow.choice,
       B1CardSixLocalRolePacket.sourceRowChoices]
 
+/-- Frontier live-closure theorem. -/
 private theorem row_support_has_role
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow)
     {point : CarrierLabel D.A}
@@ -282,6 +293,7 @@ private theorem row_support_has_role
       · exact ⟨.vL, h⟩
       · exact ⟨.vR, h⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem row_support_mem_roleCarrier
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow)
     {point : CarrierLabel D.A}
@@ -291,6 +303,7 @@ private theorem row_support_mem_roleCarrier
   rw [hrole]
   exact (roleLabel P role).2
 
+/-- Frontier live-closure theorem. -/
 private theorem row_anchor_mem_choice
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow) :
     B1CardSixRole.value P (B1CardSixPositiveRow.anchorRole row) ∈
@@ -303,12 +316,14 @@ private theorem row_anchor_mem_choice
       B1CardSixLocalRolePacket.uRowChoice,
       B1CardSixLocalRolePacket.vRowChoice]
 
+/-- Frontier live-closure theorem. -/
 private theorem row_center_value_eq_choice_center
     (P : B1CardSixLocalRolePacket C) (row : B1CardSixPositiveRow) :
     B1CardSixRole.value P (B1CardSixPositiveRow.centerRole row) =
       (B1CardSixPositiveRow.choice P row).center := by
   cases row <;> rfl
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedRowMembers
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
@@ -317,18 +332,21 @@ noncomputable def projectedRowMembers
     (fun point => R.indexOf ⟨point.1.1,
       row_support_mem_roleCarrier P row point.2⟩)
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedRowCenter
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
     (row : B1CardSixPositiveRow) : Fin R.n :=
   projectedRoleIndex P R (B1CardSixPositiveRow.centerRole row)
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedRowAnchor
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
     (row : B1CardSixPositiveRow) : Fin R.n :=
   projectedRoleIndex P R (B1CardSixPositiveRow.anchorRole row)
 
+/-- Frontier live-closure theorem. -/
 theorem projectedRowAnchor_mem
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
@@ -341,6 +359,7 @@ theorem projectedRowAnchor_mem
   · simp
   · rfl
 
+/-- Frontier live-closure theorem. -/
 theorem projectedRow_positive
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
@@ -389,6 +408,7 @@ theorem projectedRow_positive
   simpa [projectedRoleLabel, pointOf] using hdist
 
 set_option maxHeartbeats 3000000 in
+/-- Frontier live-closure theorem. -/
 theorem projectedPhysicalRow_card
     (P : B1CardSixLocalRolePacket C)
     (R : BoundaryIndexing (roleCarrier P))
@@ -418,10 +438,12 @@ theorem projectedPhysicalRow_card
         B1CardSixLocalRolePacket.physicalRowChoice] using
         physicalRowChoice_support_card_eq_six P hnormal hsix
 
+/-- Frontier live-closure def. -/
 noncomputable def physicalRolePoints
     (P : B1CardSixLocalRolePacket C) : Finset ℝ² :=
   Finset.image (pointOf (A := D.A)) P.physicalRowChoice.support
 
+/-- Frontier live-closure theorem. -/
 private theorem physicalRolePoints_subset_roleCarrier
     (P : B1CardSixLocalRolePacket C) :
     physicalRolePoints P ⊆ roleCarrier P := by
@@ -444,6 +466,7 @@ private theorem physicalRolePoints_subset_roleCarrier
   rw [hrole]
   exact (roleLabel P role).2
 
+/-- Frontier live-closure theorem. -/
 theorem physicalRolePoints_card_eq_six
     (P : B1CardSixLocalRolePacket C)
     (hnormal : B1PhysicalClassFiveSixNormalForm C)
@@ -455,6 +478,7 @@ theorem physicalRolePoints_card_eq_six
   rw [Finset.card_image_of_injective _ Subtype.val_injective]
   exact physicalRowChoice_support_card_eq_six P hnormal hsix
 
+/-- Frontier live-closure theorem. -/
 theorem roleCarrier_card_ge_six
     (P : B1CardSixLocalRolePacket C)
     (hnormal : B1PhysicalClassFiveSixNormalForm C)
@@ -466,12 +490,14 @@ theorem roleCarrier_card_ge_six
     _ ≤ (roleCarrier P).card :=
       Finset.card_le_card (physicalRolePoints_subset_roleCarrier P)
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedLabelIndex
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
     (label : CarrierLabel (roleCarrier P)) : Fin (roleCarrier P).card :=
   orderedRoleIndex P (roleCarrier_subset P) B label
 
+/-- Frontier live-closure theorem. -/
 theorem projectedLabelIndex_injective
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A) :
@@ -482,6 +508,7 @@ theorem projectedLabelIndex_injective
     ((congrArg (projectedBoundary P B) hxy).trans
       (projectedIndex_point_eq P B y))
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedRowMembersOnAmbient
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
@@ -490,18 +517,21 @@ noncomputable def projectedRowMembersOnAmbient
     (fun point => projectedLabelIndex P B ⟨point.1.1,
       row_support_mem_roleCarrier P row point.2⟩)
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedRowCenterOnAmbient
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
     (row : B1CardSixPositiveRow) : Fin (roleCarrier P).card :=
   roleIndex P B (B1CardSixPositiveRow.centerRole row)
 
+/-- Frontier live-closure def. -/
 noncomputable def projectedRowAnchorOnAmbient
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
     (row : B1CardSixPositiveRow) : Fin (roleCarrier P).card :=
   roleIndex P B (B1CardSixPositiveRow.anchorRole row)
 
+/-- Frontier live-closure theorem. -/
 theorem projectedRowAnchorOnAmbient_mem
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
@@ -515,6 +545,7 @@ theorem projectedRowAnchorOnAmbient_mem
   · simp
   · rfl
 
+/-- Frontier live-closure theorem. -/
 theorem projectedRow_positive_onAmbient
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)
@@ -588,6 +619,7 @@ theorem projectedRow_positive_onAmbient
     pointOf] using hdist
 
 set_option maxHeartbeats 3000000 in
+/-- Frontier live-closure theorem. -/
 theorem projectedPhysicalRow_card_onAmbient
     (P : B1CardSixLocalRolePacket C)
     (B : BoundaryIndexing D.A)

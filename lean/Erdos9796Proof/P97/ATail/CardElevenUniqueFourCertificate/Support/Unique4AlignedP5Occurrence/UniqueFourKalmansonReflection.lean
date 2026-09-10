@@ -59,6 +59,7 @@ theorem complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
     (complementary_dist_add_dist_lt_diagonal_sum_of_ccw hcarrier
       hboundaryInjective hboundaryImage hboundaryCcw hdc hcb hba)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem selectedFourClass_support_dist_eq
     {carrier : Finset ℝ²} {center x y : ℝ²}
     (Row : SelectedFourClass carrier center)

@@ -11,6 +11,7 @@ namespace Problem97.Census554.CapSelectedBVCircuit
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
+/-- Census-554 certificate-bank theorem. -/
 theorem prefixCore_of_p5_d6 (rows : RowBits) (colors : ColorBits)
     (h : antecedentP5D6 rows colors = true) :
     prefixCore rows colors = true := by

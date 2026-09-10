@@ -83,6 +83,7 @@ theorem canonicalBoundaryOrders_length : canonicalBoundaryOrders.length = 48 := 
 theorem canonicalBoundaryOrders_nodup : canonicalBoundaryOrders.Nodup := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem canonicalBoundaryOrders_complete :
     ∀ L ∈ canonicalBoundaryOrders, ∀ label : Label, label ∈ L := by
   decide
@@ -126,6 +127,7 @@ theorem orientedAll48_eq_true_iff (a x b c y : Label) :
 
 /- ## Order transfer -/
 
+/-- Frontier live-closure theorem. -/
 private theorem cyclicTripleAt_of_orderIso {p q : Label → Nat}
     (hagree : ∀ i j : Label, p i < p j ↔ q i < q j) {a b c : Label}
     (h : CyclicTripleAt p a b c) : CyclicTripleAt q a b c := by
@@ -133,6 +135,7 @@ private theorem cyclicTripleAt_of_orderIso {p q : Label → Nat}
   simp only [hagree] at h
   exact h
 
+/-- Frontier live-closure theorem. -/
 private theorem commonFiveOrientationAt_of_orderIso {p q : Label → Nat}
     (hagree : ∀ i j : Label, p i < p j ↔ q i < q j) {a x b c y : Label}
     (h : CommonFiveOrientationAt p a x b c y) :
@@ -180,6 +183,7 @@ private theorem positionInList_lt_iff_of_isChain
       exact Nat.lt_irrefl _ hlt
     · exact absurd hlt (Nat.lt_asymm (hmono j i h))
 
+/-- Frontier live-closure theorem. -/
 private theorem commonFiveOrientationAt_of_canonicalChain
     {position : Label → Nat} {a x b c y : Label} {L : List Label}
     (hall : ∀ L' ∈ canonicalBoundaryOrders,
@@ -194,6 +198,7 @@ private theorem commonFiveOrientationAt_of_canonicalChain
 
 /- ## Membership of the assembled boundary lists -/
 
+/-- Frontier live-closure theorem. -/
 private theorem directBoundaryList_mem_canonical
     {second surplus first : List Label}
     (hs : second ∈ secondOppositeBlocks) (hu : surplus ∈ surplusBlocks)
@@ -204,6 +209,7 @@ private theorem directBoundaryList_mem_canonical
   simp only [List.mem_flatMap, List.mem_map]
   exact ⟨second, hs, surplus, hu, first, hf, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem mirrorBoundaryList_mem_canonical
     {second surplus first : List Label}
     (hs : second ∈ secondOppositeBlocks) (hu : surplus ∈ surplusBlocks)
@@ -216,6 +222,7 @@ private theorem mirrorBoundaryList_mem_canonical
 
 /- ## Chain assembly from cap blocks -/
 
+/-- Frontier live-closure theorem. -/
 private theorem isChain_directBoundaryList
     {R : Label → Label → Prop} {second surplus first : List Label}
     (hs : List.IsChain R ((0 : Label) :: (second ++ [2])))
@@ -230,6 +237,7 @@ private theorem isChain_directBoundaryList
   rw [List.isChain_split]
   exact ⟨hu, hf⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem isChain_mirrorBoundaryList
     {R : Label → Label → Prop} {second surplus first : List Label}
     (hf : List.IsChain R ((0 : Label) :: (first ++ [1])))
@@ -246,6 +254,7 @@ private theorem isChain_mirrorBoundaryList
 
 /- ## Block chains from the frozen hypotheses -/
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_secondOpposite_bounded
     {position : Label → Nat} {lo hi : Label}
     (h6 : position lo < position 6 ∧ position 6 < position hi)
@@ -264,6 +273,7 @@ private theorem exists_secondOpposite_bounded
       List.isChain_singleton, and_true]
     omega
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_secondOpposite_tail
     {position : Label → Nat} {lo : Label}
     (h6 : position lo < position 6) (h9 : position lo < position 9)
@@ -278,6 +288,7 @@ private theorem exists_secondOpposite_tail
     simp only [List.isChain_cons_cons, List.isChain_singleton, and_true]
     omega
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_surplus_bounded
     {position : Label → Nat} {lo hi : Label}
     (h3 : position lo < position 3 ∧ position 3 < position hi)
@@ -319,6 +330,7 @@ private theorem exists_surplus_bounded
           List.isChain_singleton, and_true]
         omega
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_firstOpposite_bounded
     {position : Label → Nat} {lo hi : Label}
     (h10 : position lo < position 10 ∧ position 10 < position hi)
@@ -337,6 +349,7 @@ private theorem exists_firstOpposite_bounded
       List.isChain_singleton, and_true]
     omega
 
+/-- Frontier live-closure theorem. -/
 private theorem exists_firstOpposite_tail
     {position : Label → Nat} {lo : Label}
     (h10 : position lo < position 10) (h11 : position lo < position 11)

@@ -14,6 +14,7 @@ set_option maxHeartbeats 0 in
 -- Native replay traverses the complete finite placement search tree.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem placementCheck_p5_d6 : placementCheck 5 6 = true := by
   native_decide
 

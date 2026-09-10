@@ -111,11 +111,13 @@ def finalNumVars (cell : FrozenV14JobCoordinate) : Nat :=
     ((List.range 12).map fun center =>
       sinzVarCount (centerBlockerVars cell center).length 1).sum
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerCenters_length_label (source : Label)
     (hne : source ≠ 1) :
     (blockerCenters source.val).length = 10 := by
   fin_cases source <;> simp_all [blockerCenters] <;> decide
 
+/-- Frontier live-closure theorem. -/
 private theorem representative_components_ne_one
     (placement : FrozenV14Placement) :
     (placement.1 : Label × Label).1 ≠ 1 ∧

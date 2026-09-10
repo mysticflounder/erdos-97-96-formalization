@@ -41,6 +41,7 @@ def staticCell1SecondCommonFivePositiveChoices : List (RowChoice Label) :=
   , { center := 9, support := {1, 3, 7, 11} }
   , { center := 10, support := {4, 7, 9, 11} } ]
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne_staticCell1SecondCommonFive
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :
@@ -48,6 +49,7 @@ private theorem FrozenBoundaryOrder.position_ne_of_ne_staticCell1SecondCommonFiv
   intro heq
   exact hne (order.position_injective heq)
 
+/-- Frontier live-closure theorem. -/
 private theorem six_orders_of_pairwise_ne_staticCell1SecondCommonFive
     {a b c : Nat} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
     (a < b ∧ b < c) ∨

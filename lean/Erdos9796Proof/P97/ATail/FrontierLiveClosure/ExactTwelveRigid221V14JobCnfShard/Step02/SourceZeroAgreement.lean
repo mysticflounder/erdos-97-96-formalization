@@ -15,6 +15,7 @@ namespace ExactTwelveRigid221Ingress
 namespace FrozenV14JobCnf
 
 open Census554.CoverCnf
+/-- Frontier live-closure theorem. -/
 theorem sourceSinzAssign_agrees_local_zero_on_clause
     (cell : FrozenV14JobCoordinate) (σ : Nat → Bool) {c : List Int}
     (hc : c ∈ sinzClauses (sourceBlockerVars cell 0) 1

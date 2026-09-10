@@ -50,6 +50,7 @@ structure Core {α : Type*} [DecidableEq α] (P : RowPattern α) where
   label_nine_ne_label_zero : label 9 ≠ label 0
   mem : ∀ i j, j ∈ pattern i → label j ∈ P (label i)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem all_facts_zero {α : Type*} [DecidableEq α]
     {P : RowPattern α} {pointOf : α → ℝ²}
     (core : Core P) (hreal : Realizes P pointOf) :

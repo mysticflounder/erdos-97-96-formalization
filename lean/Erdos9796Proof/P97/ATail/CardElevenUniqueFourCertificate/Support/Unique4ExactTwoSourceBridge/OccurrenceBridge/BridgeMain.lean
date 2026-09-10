@@ -46,6 +46,7 @@ def bridgeClauses : List (List Int) :=
   bridgeEntries.map BridgeEntry.clause
 
 set_option maxRecDepth 8192 in
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem bridgeClauses_length : bridgeClauses.length = 8703 := by
   have h01 : bridgeChunk01.length = 220 := by decide
   have h02 : bridgeChunk02.length = 220 := by decide
@@ -121,11 +122,13 @@ noncomputable def bridgeBoolVal (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) : Nat → Bool :=
   fun n => @decide (bridgeVal Q σ n) (Classical.propDecidable _)
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem bridgeBoolVal_iff (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (n : Nat) :
     bridgeBoolVal Q σ n = true ↔ bridgeVal Q σ n := by
   simp [bridgeBoolVal]
 
+/-- Supports the exact-two-source occurrence bridge. -/
 theorem evalClause_of_clauseSat {v : Nat → Prop} {b : Nat → Bool}
     (hvb : ∀ n, b n = true ↔ v n) {clause : List Int}
     (h : clauseSat v clause) : evalClause b clause = true := by

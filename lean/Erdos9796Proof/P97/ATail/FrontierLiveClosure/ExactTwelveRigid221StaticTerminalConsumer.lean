@@ -39,6 +39,7 @@ open StaticRelationAssignment
 open TerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- The complete frozen static parent followed by proof-carrying source-order

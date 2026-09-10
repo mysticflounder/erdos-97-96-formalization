@@ -195,14 +195,17 @@ theorem allKilled_eq_false_of_semanticTrace
           exact hallFalse
 
 set_option linter.style.nativeDecide false in
+/-- Census-554 certificate-bank theorem. -/
 theorem variableCenters_nodup : variableCenters.Nodup := by
   native_decide
 
+/-- Census-554 certificate-bank theorem. -/
 theorem variableCenter_lt_eleven {center : Nat}
     (hcenter : center ∈ variableCenters) : center < 11 := by
   simp [variableCenters] at hcenter
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 theorem variableCenter_ne_one {center : Nat}
     (hcenter : center ∈ variableCenters) : center ≠ 1 := by
   simp [variableCenters] at hcenter

@@ -49,33 +49,43 @@ structure Rigid221Card18AbstractCommonRoles where
   sourceCenters : Rigid221Card18AbstractSourceCenterRoles
   deriving DecidableEq, Fintype
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.u
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.physical.u
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.v
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.physical.v
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.xu
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.physical.xu
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.xv
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.physical.xv
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.deleted
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.physical.deleted
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.source1
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.sourceCenters.source1
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.source2
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.sourceCenters.source2
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.deletedCenter
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.sourceCenters.deletedCenter
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.actualCenter1
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.sourceCenters.actualCenter1
 
+/-- Frontier live-closure def. -/
 def Rigid221Card18AbstractCommonRoles.actualCenter2
     (roles : Rigid221Card18AbstractCommonRoles) : Label := roles.sourceCenters.actualCenter2
 
@@ -182,11 +192,13 @@ def Rigid221Card18AbstractBiData.Valid
     common.roles.v ≠ common.roles.actualCenter1 ∧
     common.roles.v ≠ common.roles.actualCenter2
 
+/-- Frontier live-closure instance. -/
 instance instDecidableAbstractCommonDataValid
     (common : Rigid221Card18AbstractCommonData) : Decidable common.Valid := by
   unfold Rigid221Card18AbstractCommonData.Valid
   infer_instance
 
+/-- Frontier live-closure instance. -/
 instance instDecidableAbstractCrossedDataValid
     (data : Rigid221Card18AbstractCrossedData)
     (common : Rigid221Card18AbstractCommonData) (deleted retained : Label) :
@@ -194,6 +206,7 @@ instance instDecidableAbstractCrossedDataValid
   unfold Rigid221Card18AbstractCrossedData.Valid
   infer_instance
 
+/-- Frontier live-closure instance. -/
 instance instDecidableAbstractBiDataValid
     (data : Rigid221Card18AbstractBiData)
     (common : Rigid221Card18AbstractCommonData) : Decidable (data.Valid common) := by
@@ -208,6 +221,7 @@ def Valid : Rigid221Card18AbstractPacket → Prop
   | .u common data => common.Valid ∧ data.Valid common common.roles.u common.roles.xv
   | .xv common data => common.Valid ∧ data.Valid common common.roles.xv common.roles.u
 
+/-- Frontier live-closure instance. -/
 instance instDecidableValid :
     ∀ packet : Rigid221Card18AbstractPacket, Decidable packet.Valid
   | .bi common data => by
@@ -253,6 +267,7 @@ def deletionProfile : Rigid221Card18AbstractPacket → Rigid221FourCellProfile
         xvActualCenter1 := .survives
         xvActualCenter2 := .survives }
 
+/-- Frontier live-closure def. -/
 private def abstractCommonRoles
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -273,6 +288,7 @@ private def abstractCommonRoles
       actualCenter1 := roles.actualCenter1
       actualCenter2 := roles.actualCenter2 }
 
+/-- Frontier live-closure def. -/
 private def abstractCommonData
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -286,6 +302,7 @@ private def abstractCommonData
   selectedXvRow := common.selectedXvRow.labels
   deletedCenterRow := common.deletedCenterRow.labels
 
+/-- Frontier live-closure theorem. -/
 private theorem abstractCommonData_valid
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -324,6 +341,7 @@ private theorem abstractCommonData_valid
   · rw [← common.physicalFive_eq_roles]
     exact common.deletedCenterRow_physicalFive_inter_le_one
 
+/-- Frontier live-closure def. -/
 private def abstractUData
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -337,6 +355,7 @@ private def abstractUData
   K2 := data.original.K2.labels
   BO := data.original.BO.labels
 
+/-- Frontier live-closure def. -/
 private def abstractXvData
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -350,6 +369,7 @@ private def abstractXvData
   K2 := data.original.K2.labels
   BO := data.original.BO.labels
 
+/-- Frontier live-closure theorem. -/
 private theorem abstractUData_valid
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -371,6 +391,7 @@ private theorem abstractUData_valid
     uDeletionFiveIncidenceProfile] using
       uDeletionFiveIncidenceProfile_conjunctionHasFalse data.original
 
+/-- Frontier live-closure theorem. -/
 private theorem abstractXvData_valid
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -392,6 +413,7 @@ private theorem abstractXvData_valid
     xvDeletionFiveIncidenceProfile] using
       xvDeletionFiveIncidenceProfile_conjunctionHasFalse data.original
 
+/-- Frontier live-closure def. -/
 private def abstractBiData
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -405,6 +427,7 @@ private def abstractBiData
   xvB1 := data.original.xvB1.labels
   xvB2 := data.original.xvB2.labels
 
+/-- Frontier live-closure theorem. -/
 private theorem abstractBiData_valid
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

@@ -28,6 +28,7 @@ namespace SixPointNestedCenterOrderCore
 
 open EqualityCore
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma normSim_dist_sq_eq_one
     {o a x y : ℝ²} (hoa : o ≠ a) (h : dist o a = dist x y) :
     (normSim o a x 0 - normSim o a y 0) ^ 2 +
@@ -44,6 +45,7 @@ private lemma normSim_dist_sq_eq_one
     zero_sub, one_pow, neg_sq] at hSq
   simpa using hSq.symm
 
+/-- Census-554 certificate-bank lemma. -/
 private lemma normSim_signedArea_pos
     {o a x y z : ℝ²} (hoa : o ≠ a) (h : 0 < signedArea2 x y z) :
     0 < signedArea2 (normSim o a x) (normSim o a y) (normSim o a z) := by
@@ -53,6 +55,7 @@ private lemma normSim_signedArea_pos
   rw [← SurplusCOMPGBank.dist_sq_coord a o]
   exact sq_pos_of_pos (dist_pos.mpr hoa.symm)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_order_incompatible
     {h u v w z r s : ℝ}
     (hhsq : h ^ 2 = 3 / 4)

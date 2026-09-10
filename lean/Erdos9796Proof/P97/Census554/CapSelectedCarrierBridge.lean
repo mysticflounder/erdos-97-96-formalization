@@ -36,6 +36,7 @@ noncomputable def patternCode {A : Finset ℝ²} {S : SurplusCapPacket A}
     L.pointOf point ∈
       (F.classAt (L.pointOf center) (L.mem_carrier center)).support
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem mem_row_patternCode_iff
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
@@ -91,6 +92,7 @@ theorem realizes_patternCode
     ((F.classAt (L.pointOf center) (L.mem_carrier center)).support_eq_radius
       _ hrightSupport).symm
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem cyclicSeparated_of_direct_btw :
     ∀ c d a b : Label,
       c ≠ d → a ≠ c → a ≠ d → b ≠ c → b ≠ d →
@@ -100,6 +102,7 @@ private theorem cyclicSeparated_of_direct_btw :
       CyclicSeparated c d a b := by
   decide
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem cyclicSeparated_of_reflected_btw :
     ∀ c d a b : Label,
       c ≠ d → a ≠ c → a ≠ d → b ≠ c → b ≠ d →
@@ -362,6 +365,7 @@ theorem crossSeparationOK_patternCode
     simpa [core, reflectedIndex,
       SeparationCore.SharedPairSeparationCore.SatisfiedBy] using hsat
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -477,6 +481,7 @@ theorem labelsOf_oppCap2_eq_capO2
   · decide
   · exact S.capByIndex_subset S.oppIndex2
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem mem_intS_iff_point_mem_surplusInterior
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (point : Label) :
@@ -484,6 +489,7 @@ theorem labelsOf_oppCap2_eq_capO2
       L.pointOf point ∈ S.capInteriorByIndex S.surplusIdx := by
   rw [← L.surplusInterior_eq, L.toCard11Labeling.mem_labelsOf]
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem mem_intO1_iff_point_mem_oppInterior1
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (point : Label) :
@@ -492,6 +498,7 @@ theorem labelsOf_oppCap2_eq_capO2
   rw [← L.oppInterior1_eq, L.toCard11Labeling.mem_labelsOf]
   rfl
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem mem_intO2_iff_point_mem_oppInterior2
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (point : Label) :
@@ -500,6 +507,7 @@ theorem labelsOf_oppCap2_eq_capO2
   rw [← L.oppInterior2_eq, L.toCard11Labeling.mem_labelsOf]
   rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem leftAdjacentIndex_oppIndex1_eq_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     SurplusCapPacket.leftAdjacentIndex S.oppIndex1 = S.oppIndex2 := by
@@ -509,6 +517,7 @@ private theorem leftAdjacentIndex_oppIndex1_eq_oppIndex2
       SurplusCapPacket.oppIndex2, hi] <;>
     rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem rightAdjacentIndex_oppIndex1_eq_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     SurplusCapPacket.rightAdjacentIndex S.oppIndex1 = S.surplusIdx := by
@@ -518,6 +527,7 @@ private theorem rightAdjacentIndex_oppIndex1_eq_surplusIdx
       hi] <;>
     rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem leftAdjacentIndex_oppIndex2_eq_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     SurplusCapPacket.leftAdjacentIndex S.oppIndex2 = S.surplusIdx := by
@@ -527,6 +537,7 @@ private theorem leftAdjacentIndex_oppIndex2_eq_surplusIdx
       hi] <;>
     rfl
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem rightAdjacentIndex_oppIndex2_eq_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     SurplusCapPacket.rightAdjacentIndex S.oppIndex2 = S.oppIndex1 := by
@@ -560,6 +571,7 @@ theorem row_inter_labelsOf_card_eq
   intro point hpoint
   exact hC (Finset.mem_inter.mp hpoint).2
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem inter_erase_card_le_one
     {alpha : Type*} [DecidableEq alpha]
     (left right : Finset alpha) (point : alpha)
@@ -734,6 +746,7 @@ theorem pairCenterCountOK_patternCode
   intro left right hne
   exact pairCenterCount_patternCode L F hconv hne
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem exists_mem_target_of_row_card_four_of_two_oneHit
     (selected target left right : Finset Label)
     (hcard : selected.card = 4)
@@ -761,6 +774,7 @@ private theorem exists_mem_target_of_row_card_four_of_two_oneHit
   rw [← heq, hcard] at hunion
   omega
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem exists_row_zero_mem_intS {P : PatternCode}
     (hlocal : LocalRowsOK P) :
     ∃ point, point ∈ CapSelectedFiniteCode.intS ∧ point ∈ row P 0 := by
@@ -776,6 +790,7 @@ private theorem exists_row_zero_mem_intS {P : PatternCode}
   exact exists_mem_target_of_row_card_four_of_two_oneHit _ _ _ _
     (hlocal.1 0).1 hcover (hlocal.2.1.1.1) (hlocal.2.1.1.2)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem exists_row_one_mem_intO1 {P : PatternCode}
     (hlocal : LocalRowsOK P) :
     ∃ point, point ∈ CapSelectedFiniteCode.intO1 ∧ point ∈ row P 1 := by
@@ -791,6 +806,7 @@ private theorem exists_row_one_mem_intO1 {P : PatternCode}
   exact exists_mem_target_of_row_card_four_of_two_oneHit _ _ _ _
     (hlocal.1 1).1 hcover (hlocal.2.1.2.1.1) (hlocal.2.1.2.1.2)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem exists_row_two_mem_intO2 {P : PatternCode}
     (hlocal : LocalRowsOK P) :
     ∃ point, point ∈ CapSelectedFiniteCode.intO2 ∧ point ∈ row P 2 := by
@@ -806,6 +822,7 @@ private theorem exists_row_two_mem_intO2 {P : PatternCode}
   exact exists_mem_target_of_row_card_four_of_two_oneHit _ _ _ _
     (hlocal.1 2).1 hcover (hlocal.2.1.2.2.1) (hlocal.2.1.2.2.2)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem row_zero_one_intO2_eq_empty
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
@@ -844,6 +861,7 @@ private theorem row_zero_one_intO2_eq_empty
     (by simpa only [hcenter1] using mem_selectedClass_of_mem_row L F hz1)
     (by simpa only [hcenter1] using mem_selectedClass_of_mem_row L F hq1)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem row_zero_two_intO1_eq_empty
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
@@ -882,6 +900,7 @@ private theorem row_zero_two_intO1_eq_empty
     (by simpa only [hcenter0] using mem_selectedClass_of_mem_row L F hz0)
     (by simpa only [hcenter0] using mem_selectedClass_of_mem_row L F hq0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem row_one_two_intS_eq_empty
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
@@ -920,6 +939,7 @@ private theorem row_one_two_intS_eq_empty
     (by simpa only [hcenter2] using mem_selectedClass_of_mem_row L F hz2)
     (by simpa only [hcenter2] using mem_selectedClass_of_mem_row L F hq2)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem sharedPair_sameSide_false
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)

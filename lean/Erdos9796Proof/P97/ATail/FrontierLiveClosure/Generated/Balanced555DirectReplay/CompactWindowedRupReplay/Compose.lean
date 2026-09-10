@@ -13,6 +13,7 @@ namespace Balanced555DirectReplay
 
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- Frontier live-closure generated theorem. -/
 theorem startUnsatisfiable :
     Unsatisfiable (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text) :=

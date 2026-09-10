@@ -68,6 +68,7 @@ def firstNonHitRetainedRhoEndpoint
   if choice = 0 then A.roleIndex .secondRetainedSourceOne
   else A.roleIndex .secondRetainedSourceTwo
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem firstNonHitRetainedEndpoint_zero
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) :
     A.boundary.boundary
@@ -75,6 +76,7 @@ def firstNonHitRetainedRhoEndpoint
   simp [firstNonHitRetainedEndpoint, FirstNonHitNamedRole.point,
     A.roleIndex_point_eq]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem firstNonHitRetainedEndpoint_one
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) :
     A.boundary.boundary
@@ -82,6 +84,7 @@ def firstNonHitRetainedRhoEndpoint
   simp [firstNonHitRetainedEndpoint, FirstNonHitNamedRole.point,
     A.roleIndex_point_eq]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem firstNonHitRetainedRhoEndpoint_zero
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) :
     A.boundary.boundary
@@ -89,6 +92,7 @@ def firstNonHitRetainedRhoEndpoint
   simp [firstNonHitRetainedRhoEndpoint, FirstNonHitNamedRole.point,
     A.roleIndex_point_eq]
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem firstNonHitRetainedRhoEndpoint_one
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) :
     A.boundary.boundary
@@ -105,6 +109,7 @@ def firstNonHitFinitePairHasFourAfterDeleting
       4 ≤ (((Finset.univ.erase deleted₁).erase deleted₂).filter fun x ↦
         A.radiusEq center x anchor).card
 
+/-- Frontier live-closure theorem. -/
 private theorem image_finitePairRadiusClass_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (deleted₁ deleted₂ center anchor : Fin A.boundary.n) :
@@ -148,6 +153,7 @@ private theorem image_finitePairRadiusClass_eq
         exact hx₁ (congrArg A.boundary.boundary hieq)
     · exact (A.radiusEq_iff center i anchor).mpr hradius
 
+/-- Frontier live-closure theorem. -/
 private theorem card_finitePairRadiusClass_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (deleted₁ deleted₂ center anchor : Fin A.boundary.n) :
@@ -161,6 +167,7 @@ private theorem card_finitePairRadiusClass_eq
   rw [← image_finitePairRadiusClass_eq P Pρ C Q A deleted₁ deleted₂ center anchor]
   exact (Finset.card_image_of_injective _ A.boundary.boundary_injective).symm
 
+/-- Frontier live-closure theorem. -/
 theorem firstNonHitFinitePairHasFourAfterDeleting_iff
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (deleted₁ deleted₂ center : Fin A.boundary.n) :
@@ -252,6 +259,7 @@ structure FirstNonHitRetainedDeletionFinitePayload
     FirstNonHitRetainedDeletionFiniteRowPayload P Pρ C Q A
       (A.roleIndex .canonicalSourceTwo)
 
+/-- Frontier live-closure theorem. -/
 private theorem firstNonHitSingleRestorations_of_core
     (x y : ℝ²) (hxy : x ≠ y)
     (hcore : Nonempty
@@ -298,6 +306,7 @@ private theorem firstNonHitSingleRestorations_of_core
       Ky.support_subset_A hz⟩
   exact ⟨hKx, hKy⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem firstNonHitRetainedDeletionFiniteRowPayload_of_packet
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (hρne : ρ ≠ radius)

@@ -130,12 +130,14 @@ mask members. -/
 def support (P : Pattern) : Finset (Fin 11) :=
   (Finset.univ.filter fun c => (P c).Nonempty) ∪ Finset.univ.biUnion P
 
+/-- Census-554 certificate-bank theorem. -/
 theorem center_mem_support {P : Pattern} {c a : Fin 11} (ha : a ∈ P c) :
     c ∈ support P := by
   simp only [support, Finset.mem_union, Finset.mem_filter, Finset.mem_univ,
     true_and]
   exact Or.inl ⟨a, ha⟩
 
+/-- Census-554 certificate-bank theorem. -/
 theorem mem_support_of_mem {P : Pattern} {c a : Fin 11} (ha : a ∈ P c) :
     a ∈ support P := by
   simp only [support, Finset.mem_union, Finset.mem_biUnion, Finset.mem_univ,

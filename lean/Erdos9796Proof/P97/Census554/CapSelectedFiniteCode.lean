@@ -39,6 +39,7 @@ abbrev PatternCode := Label -> Label -> Bool
 def row (P : PatternCode) (center : Label) : Finset Label :=
   Finset.univ.filter fun point => P center point
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem mem_row_iff (P : PatternCode) (center point : Label) :
     point ∈ row P center ↔ P center point = true := by
   simp [row]
@@ -87,6 +88,7 @@ def hullIndex : Label -> Fin 11
 def cyclicOffset (a b : Label) : Nat :=
   ((hullIndex b).val + 11 - (hullIndex a).val) % 11
 
+/-- Census-554 certificate-bank theorem. -/
 @[simp] theorem cyclicOffset_self (a : Label) : cyclicOffset a a = 0 := by
   unfold cyclicOffset
   have hval :
@@ -128,6 +130,7 @@ the canonical convex boundary. -/
 def CyclicSixUpToOrientation (a b c x y d : Label) : Prop :=
   CyclicSix a b c x y d ∨ CyclicSix a d y x c b
 
+/-- Census-554 certificate-bank theorem. -/
 theorem CyclicFiveUpToOrientation.a_ne_b {a x b c y : Label}
     (h : CyclicFiveUpToOrientation a x b c y) : a ≠ b := by
   intro hab
@@ -135,6 +138,7 @@ theorem CyclicFiveUpToOrientation.a_ne_b {a x b c y : Label}
   · simp [CyclicFive, hab] at h
   · simp [CyclicFive, hab] at h
 
+/-- Census-554 certificate-bank theorem. -/
 theorem CyclicFiveUpToOrientation.x_ne_y {a x b c y : Label}
     (h : CyclicFiveUpToOrientation a x b c y) : x ≠ y := by
   intro hxy
@@ -144,6 +148,7 @@ theorem CyclicFiveUpToOrientation.x_ne_y {a x b c y : Label}
   · simp [CyclicFive, hxy] at h
     omega
 
+/-- Census-554 certificate-bank theorem. -/
 theorem CyclicSixUpToOrientation.a_ne_b {a b c x y d : Label}
     (h : CyclicSixUpToOrientation a b c x y d) : a ≠ b := by
   intro hab

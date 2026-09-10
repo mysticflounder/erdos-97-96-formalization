@@ -23,8 +23,10 @@ open GenericRowNogoodCertificate
 open CardGeThirteenTwoCanonicalK4FixedCellData
 open Census554.EqualityCore
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := Fin 13
 
+/-- Frontier live-closure abbrev. -/
 private abbrev SearchNode :=
   Edge Label × List (PrimitiveEqualityStep Label)
 

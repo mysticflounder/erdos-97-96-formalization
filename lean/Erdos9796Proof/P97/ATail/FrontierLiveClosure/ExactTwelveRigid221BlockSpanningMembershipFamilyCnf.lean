@@ -35,32 +35,55 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure def. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
     requirement := { center := center, support := support } }
 
+/-- Frontier live-closure def. -/
 def definition1_06 := mkDefinition 44876 1 {0, 6}
+/-- Frontier live-closure def. -/
 def definition1_07 := mkDefinition 44877 1 {0, 7}
+/-- Frontier live-closure def. -/
 def definition1_08 := mkDefinition 44878 1 {0, 8}
+/-- Frontier live-closure def. -/
 def definition1_09 := mkDefinition 44879 1 {0, 9}
+/-- Frontier live-closure def. -/
 def definition3_014 := mkDefinition 44880 3 {0, 1, 4}
+/-- Frontier live-closure def. -/
 def definition3_015 := mkDefinition 44881 3 {0, 1, 5}
+/-- Frontier live-closure def. -/
 def definition3_06 := mkDefinition 44882 3 {0, 6}
+/-- Frontier live-closure def. -/
 def definition3_07 := mkDefinition 44883 3 {0, 7}
+/-- Frontier live-closure def. -/
 def definition3_08 := mkDefinition 44884 3 {0, 8}
+/-- Frontier live-closure def. -/
 def definition3_09 := mkDefinition 44885 3 {0, 9}
+/-- Frontier live-closure def. -/
 def definition4_013 := mkDefinition 44886 4 {0, 1, 3}
+/-- Frontier live-closure def. -/
 def definition4_015 := mkDefinition 44887 4 {0, 1, 5}
+/-- Frontier live-closure def. -/
 def definition4_06 := mkDefinition 44888 4 {0, 6}
+/-- Frontier live-closure def. -/
 def definition4_07 := mkDefinition 44889 4 {0, 7}
+/-- Frontier live-closure def. -/
 def definition4_08 := mkDefinition 44890 4 {0, 8}
+/-- Frontier live-closure def. -/
 def definition4_09 := mkDefinition 44891 4 {0, 9}
+/-- Frontier live-closure def. -/
 def definition5_013 := mkDefinition 44892 5 {0, 1, 3}
+/-- Frontier live-closure def. -/
 def definition5_014 := mkDefinition 44893 5 {0, 1, 4}
+/-- Frontier live-closure def. -/
 def definition5_06 := mkDefinition 44894 5 {0, 6}
+/-- Frontier live-closure def. -/
 def definition5_07 := mkDefinition 44895 5 {0, 7}
+/-- Frontier live-closure def. -/
 def definition5_08 := mkDefinition 44896 5 {0, 8}
+/-- Frontier live-closure def. -/
 def definition5_09 := mkDefinition 44897 5 {0, 9}
 
 /-- Fresh definitions in exactly the lexicographic order used by the Python
@@ -87,21 +110,25 @@ private def pair06CandidateIndices : List Nat :=
     63, 64, 65, 66, 77, 78, 79, 80, 81, 92, 93, 94, 95, 96, 97, 98,
     99, 100, 101]
 
+/-- Frontier live-closure def. -/
 private def pair07CandidateIndices : List Nat :=
   [2, 8, 13, 18, 19, 20, 21, 30, 36, 41, 46, 47, 48, 49, 57, 62,
     67, 68, 69, 70, 77, 82, 83, 84, 85, 92, 93, 94, 95, 102, 103,
     104, 105, 106, 107]
 
+/-- Frontier live-closure def. -/
 private def pair08CandidateIndices : List Nat :=
   [3, 9, 14, 18, 22, 23, 24, 31, 37, 42, 46, 50, 51, 52, 58, 63,
     67, 71, 72, 73, 78, 82, 86, 87, 88, 92, 96, 97, 98, 102, 103,
     104, 108, 109, 110]
 
+/-- Frontier live-closure def. -/
 private def pair09CandidateIndices : List Nat :=
   [4, 10, 15, 19, 22, 25, 26, 32, 38, 43, 47, 50, 53, 54, 59, 64,
     68, 71, 74, 75, 79, 83, 86, 89, 90, 93, 96, 99, 100, 102, 105,
     106, 108, 109, 111]
 
+/-- Frontier live-closure def. -/
 def candidateIndicesFor (definition : PositiveMembershipDefinition) : List Nat :=
   match definition.varIndex with
   | 44876 => [0, 1, 2, 6, 7, 8, 12, 13, 14, 18, 19, 20, 24, 25, 26]
@@ -134,6 +161,7 @@ def implicationDimacs : List (List Int) :=
     positiveMembershipIndexImplicationClauses
       definition.requirement.center (candidateIndicesFor definition) definition
 
+/-- Frontier live-closure def. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (44875 < definition.varIndex ∧
@@ -147,6 +175,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Frontier live-closure theorem. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ definitions) :
@@ -221,6 +250,7 @@ def familyData : List BlockSpanningCommonFiveData :=
     {a := 9, x := 4, c := 3}, {a := 9, x := 4, c := 5},
     {a := 9, x := 5, c := 3}, {a := 9, x := 5, c := 4}]
 
+/-- Frontier live-closure def. -/
 def familyChoices (data : BlockSpanningCommonFiveData) : List (RowChoice Label) :=
   let first : RowChoice Label := { center := 1, support := {0, data.a} }
   let xRow : RowChoice Label := { center := data.x, support := {0, data.a} }
@@ -229,28 +259,34 @@ def familyChoices (data : BlockSpanningCommonFiveData) : List (RowChoice Label) 
   if data.x.val < data.c.val then [first, xRow, cRow]
   else [first, cRow, xRow]
 
+/-- Frontier live-closure def. -/
 def lookupDefinition (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD definition1_06
 
+/-- Frontier live-closure structure. -/
 structure FamilyEntry where
   data : BlockSpanningCommonFiveData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Frontier live-closure def. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Frontier live-closure def. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
+/-- Frontier live-closure def. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Frontier live-closure theorem. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧

@@ -21,11 +21,13 @@ namespace StaticConvexCnf
 open StaticEqualityCnf
 open StaticRelationLayout
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- Compiler datum `(a,b,p,q,r)`. -/
 abbrev PerpBisectorDatum := Label × Label × Label × Label × Label
 
+/-- Frontier live-closure def. -/
 def perpBisectorData : List PerpBisectorDatum :=
   SafeCoverCnf.allPairs.flatMap fun focus =>
     let nonfocus := (List.range 12).filter fun point =>
@@ -34,6 +36,7 @@ def perpBisectorData : List PerpBisectorDatum :=
       (fin12 focus.1, fin12 focus.2, fin12 points.1,
         fin12 points.2.1, fin12 points.2.2)
 
+/-- Frontier live-closure def. -/
 def perpBisectorClause (datum : PerpBisectorDatum) : List Int :=
   let a := datum.1
   let b := datum.2.1
@@ -43,12 +46,14 @@ def perpBisectorClause (datum : PerpBisectorDatum) : List Int :=
   [relationVar (p, a) (p, b), relationVar (q, a) (q, b),
     relationVar (r, a) (r, b)].map fun v => -Int.ofNat v
 
+/-- Frontier live-closure def. -/
 def clauseDelta : List (List Int) :=
   perpBisectorData.map perpBisectorClause
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem clauseCountAnchor : clauseDelta.length = 7920 := by
   native_decide
 

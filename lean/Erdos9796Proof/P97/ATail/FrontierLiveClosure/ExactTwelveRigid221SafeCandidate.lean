@@ -80,6 +80,7 @@ def frozenSafeCandidateClasses (center : Label) : Finset (Finset Label) :=
   (Finset.univ : Finset Label).powerset.filter
     (FrozenSafeCandidateAt center)
 
+/-- Frontier live-closure theorem. -/
 theorem mem_frozenSafeCandidateClasses {center : Label} {row : Finset Label} :
     row ∈ frozenSafeCandidateClasses center <->
       FrozenSafeCandidateAt center row := by

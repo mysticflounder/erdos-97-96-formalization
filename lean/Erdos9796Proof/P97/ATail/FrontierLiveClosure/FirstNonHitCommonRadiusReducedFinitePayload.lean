@@ -268,6 +268,7 @@ structure FirstNonHitCommonRadiusReducedFinitePayload where
     FirstNonHitCommonRadiusFiniteInteractionIngress P Pρ C Q A common
   reduced : FirstNonHitCommonRadiusFiniteReducedCase P Pρ C Q A common
 
+/-- Frontier live-closure structure. -/
 private structure CommonPayloadSourceBinding
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ) where
   common : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A
@@ -275,6 +276,7 @@ private structure CommonPayloadSourceBinding
   second_point_eq :
     A.boundary.boundary common.commonSourceTwo = G.surface.secondSource.1
 
+/-- Frontier live-closure theorem. -/
 private theorem carrier_eq_of_point_eq
     {i : Fin A.boundary.n} {source : CriticalShellSystem.CarrierVertex D.A}
     (hpoint : A.boundary.boundary i = source.1) :
@@ -282,6 +284,7 @@ private theorem carrier_eq_of_point_eq
       CriticalShellSystem.CarrierVertex D.A) = source := by
   exact Subtype.ext hpoint
 
+/-- Frontier live-closure theorem. -/
 private theorem center_index_eq
     {i : Fin A.boundary.n} {source : CriticalShellSystem.CarrierVertex D.A}
     (hpoint : A.boundary.boundary i = source.1) :
@@ -290,6 +293,7 @@ private theorem center_index_eq
   exact congrArg (fun v ↦ H.centerAt v.1 v.2)
     (carrier_eq_of_point_eq P Pρ C Q A hpoint)
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedSupport_index_eq
     {i : Fin A.boundary.n} {source : CriticalShellSystem.CarrierVertex D.A}
     (hpoint : A.boundary.boundary i = source.1) :
@@ -300,14 +304,17 @@ private theorem selectedSupport_index_eq
     (fun v ↦ (H.selectedAt v.1 v.2).toCriticalFourShell.support)
     (carrier_eq_of_point_eq P Pρ C Q A hpoint)
 
+/-- Frontier live-closure theorem. -/
 private theorem freshOne_point_eq :
     A.boundary.boundary (A.roleIndex .freshSourceOne) = Q.source₁.1 := by
   simpa [FirstNonHitNamedRole.point] using A.roleIndex_point_eq .freshSourceOne
 
+/-- Frontier live-closure theorem. -/
 private theorem freshTwo_point_eq :
     A.boundary.boundary (A.roleIndex .freshSourceTwo) = Q.source₂.1 := by
   simpa [FirstNonHitNamedRole.point] using A.roleIndex_point_eq .freshSourceTwo
 
+/-- Frontier live-closure theorem. -/
 private theorem firstApex_point_eq :
     A.boundary.boundary (A.roleIndex .firstApex) = S.oppApex1 := by
   rw [A.roleIndex_point_eq]
@@ -317,6 +324,7 @@ private theorem firstApex_point_eq :
     simp [SurplusCapPacket.oppApex1, SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem secondApex_point_eq :
     A.boundary.boundary (A.roleIndex .secondApex) = S.oppApex2 := by
   rw [A.roleIndex_point_eq]
@@ -326,6 +334,7 @@ private theorem secondApex_point_eq :
     simp [SurplusCapPacket.oppApex2, SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem surplusApex_point_eq :
     A.boundary.boundary (A.roleIndex .surplusApex) = S.surplusApex := by
   rw [A.roleIndex_point_eq]
@@ -334,6 +343,7 @@ private theorem surplusApex_point_eq :
   interval_cases i <;>
     simp [SurplusCapPacket.surplusApex, SurplusCapPacket.oppositeVertexByIndex, hi]
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerMap_eq_of_centers_eq
     {i j : Fin A.boundary.n}
     {source source' : CriticalShellSystem.CarrierVertex D.A}
@@ -346,6 +356,7 @@ private theorem blockerMap_eq_of_centers_eq
     center_index_eq P Pρ C Q A hi, center_index_eq P Pρ C Q A hj]
   exact hcenters
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerMap_ne_of_centers_ne
     {i j : Fin A.boundary.n}
     {source source' : CriticalShellSystem.CarrierVertex D.A}
@@ -360,6 +371,7 @@ private theorem blockerMap_ne_of_centers_ne
     center_index_eq P Pρ C Q A hi, center_index_eq P Pρ C Q A hj] at hpoints
   exact hpoints
 
+/-- Frontier live-closure theorem. -/
 private theorem row_mem_of_point_mem
     {i x : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A} {point : ℝ²}
@@ -372,6 +384,7 @@ private theorem row_mem_of_point_mem
   rw [selectedSupport_index_eq P Pρ C Q A hi, hx]
   exact hmem
 
+/-- Frontier live-closure theorem. -/
 private theorem row_not_mem_of_point_not_mem
     {i x : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A} {point : ℝ²}
@@ -386,6 +399,7 @@ private theorem row_not_mem_of_point_not_mem
   rw [selectedSupport_index_eq P Pρ C Q A hi, hx] at hpoint
   exact hpoint
 
+/-- Frontier live-closure theorem. -/
 private theorem row_eq_of_support_eq
     {i j : Fin A.boundary.n}
     {source source' : CriticalShellSystem.CarrierVertex D.A}
@@ -400,6 +414,7 @@ private theorem row_eq_of_support_eq
     selectedSupport_index_eq P Pρ C Q A hi,
     selectedSupport_index_eq P Pρ C Q A hj, hsupport]
 
+/-- Frontier live-closure theorem. -/
 private theorem finite_hasFourAfterDeleting
     {deleted center : Fin A.boundary.n} {deletedPoint centerPoint : ℝ²}
     (hdeleted : A.boundary.boundary deleted = deletedPoint)
@@ -409,6 +424,7 @@ private theorem finite_hasFourAfterDeleting
   apply (A.hasFourAfterDeleting_iff _ _).mpr
   simpa [hdeleted, hcenter] using hsurvives
 
+/-- Frontier live-closure theorem. -/
 private theorem finite_hasFourAfterDeleting_at_source
     {deleted sourceIndex : Fin A.boundary.n} {deletedPoint : ℝ²}
     {source : CriticalShellSystem.CarrierVertex D.A}
@@ -421,6 +437,7 @@ private theorem finite_hasFourAfterDeleting_at_source
   · rw [A.blockerMap_point_eq, center_index_eq P Pρ C Q A hsource]
   · exact hsurvives
 
+/-- Frontier live-closure theorem. -/
 private theorem blocker_inCapInterior_of_center_mem
     {sourceIndex : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A} {cap : Fin 3}
@@ -431,6 +448,7 @@ private theorem blocker_inCapInterior_of_center_mem
   rw [A.blockerMap_point_eq, center_index_eq P Pρ C Q A hsource]
   exact hmem
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteSameBlocker_of_source
     {sourceIndex : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A}
@@ -447,6 +465,7 @@ private theorem finiteSameBlocker_of_source
       row_eq_of_support_eq P Pρ C Q A hsource
         (freshOne_point_eq P Pρ C Q A) hsupport⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteSourceOmission_of_source
     {sourceIndex : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A}
@@ -470,6 +489,7 @@ private theorem finiteSourceOmission_of_source
     · exact finite_hasFourAfterDeleting_at_source P Pρ C Q A
         (freshTwo_point_eq P Pρ C Q A) hsource hsurvives
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteCrossRowHit_of_source
     {sourceIndex : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A}
@@ -484,6 +504,7 @@ private theorem finiteCrossRowHit_of_source
       row_mem_of_point_mem P Pρ C Q A hsource
         (freshTwo_point_eq P Pρ C Q A) hhit.2.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteOverlap_of_support_inter_eq
     {sourceIndex : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A}
@@ -528,6 +549,7 @@ private theorem finiteOverlap_of_support_inter_eq
         (freshOne_point_eq P Pρ C Q A)]
       exact hxFresh
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteNonHit_of_source
     {sourceIndex : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A}
@@ -543,6 +565,7 @@ private theorem finiteNonHit_of_source
         finiteSourceOmission_of_source P Pρ C Q A hsource
           deleted hdeleted hnot hsurvives
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteInteraction_of_source
     {sourceIndex : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A}
@@ -584,6 +607,7 @@ private theorem finiteInteraction_of_source
       · exact Or.inr <| (A.inCap_iff _ _).mpr <| by
           simpa [freshTwo_point_eq P Pρ C Q A] using hfreshTwo
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteNormalizedResidual_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -604,6 +628,7 @@ private theorem finiteNormalizedResidual_of_source
         (finiteCrossRowHit_of_source P Pρ C Q A hsecond hsecondHit)
         (blockerMap_eq_of_centers_eq P Pρ C Q A hfirst hsecond hcenters)
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteInteractionIngress_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -621,6 +646,7 @@ private theorem finiteInteractionIngress_of_source
         finiteNormalizedResidual_of_source P Pρ C Q A G W
           hfirst hsecond hresidual }
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteFirstCapExactPair_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -661,26 +687,31 @@ private theorem finiteFirstCapExactPair_of_source
       exact hxRow
     · exact (A.inCap_iff _ _).mpr hxCap
 
+/-- Frontier live-closure theorem. -/
 private theorem firstRetainedOne_point_eq :
     A.boundary.boundary (A.roleIndex .firstRetainedSourceOne) = P.source₁ := by
   simpa [FirstNonHitNamedRole.point] using
     A.roleIndex_point_eq .firstRetainedSourceOne
 
+/-- Frontier live-closure theorem. -/
 private theorem firstRetainedTwo_point_eq :
     A.boundary.boundary (A.roleIndex .firstRetainedSourceTwo) = P.source₂ := by
   simpa [FirstNonHitNamedRole.point] using
     A.roleIndex_point_eq .firstRetainedSourceTwo
 
+/-- Frontier live-closure theorem. -/
 private theorem secondRetainedOne_point_eq :
     A.boundary.boundary (A.roleIndex .secondRetainedSourceOne) = Pρ.source₁ := by
   simpa [FirstNonHitNamedRole.point] using
     A.roleIndex_point_eq .secondRetainedSourceOne
 
+/-- Frontier live-closure theorem. -/
 private theorem secondRetainedTwo_point_eq :
     A.boundary.boundary (A.roleIndex .secondRetainedSourceTwo) = Pρ.source₂ := by
   simpa [FirstNonHitNamedRole.point] using
     A.roleIndex_point_eq .secondRetainedSourceTwo
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteRetainedOmissions_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -722,6 +753,7 @@ private theorem finiteRetainedOmissions_of_source
           row_not_mem_of_point_not_mem P Pρ C Q A hsecond
             (secondRetainedTwo_point_eq P Pρ C Q A) h.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteExactTrace_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -746,6 +778,7 @@ private theorem finiteExactTrace_of_source
   · exact finiteRetainedOmissions_of_source P Pρ C Q A G W hfirst hsecond
       htrace.2.2.2.2
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteOneSidedDeletion_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -760,6 +793,7 @@ private theorem finiteOneSidedDeletion_of_source
   · exact Or.inr <| finite_hasFourAfterDeleting_at_source P Pρ C Q A
       hfirst hsecond hsurvival
 
+/-- Frontier live-closure theorem. -/
 private theorem index_ne_of_points_ne
     {i j : Fin A.boundary.n} {x y : ℝ²}
     (hi : A.boundary.boundary i = x)
@@ -769,6 +803,7 @@ private theorem index_ne_of_points_ne
   apply hne
   rw [← hi, ← hj, hij]
 
+/-- Frontier live-closure theorem. -/
 private theorem blockerMap_ne_index_of_center_ne_point
     {i j : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A} {point : ℝ²}
@@ -782,6 +817,7 @@ private theorem blockerMap_ne_index_of_center_ne_point
   rw [A.blockerMap_point_eq, center_index_eq P Pρ C Q A hi, hj] at hpoints
   exact hpoints
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteCrossPairView_of_source
     {sourceIndex left right : Fin A.boundary.n}
     {source : CriticalShellSystem.CarrierVertex D.A} {x y : ℝ²}
@@ -797,6 +833,7 @@ private theorem finiteCrossPairView_of_source
   · exact Or.inr <|
       finite_hasFourAfterDeleting_at_source P Pρ C Q A hright hsource h
 
+/-- Frontier live-closure theorem. -/
 private theorem commonRadius_false_of_ne
     {i j : Fin A.boundary.n} {d e : ℝ}
     (hi : A.boundary.boundary i ∈ SelectedClass D.A S.oppApex1 d)
@@ -817,6 +854,7 @@ private theorem commonRadius_false_of_ne
         simpa using hdist
       linarith
 
+/-- Frontier live-closure def. -/
 private noncomputable def commonPayloadSourceBinding
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ) :
     CommonPayloadSourceBinding P Pρ C Q A G := by
@@ -989,6 +1027,7 @@ private noncomputable def commonPayloadSourceBinding
       first_point_eq := hcommonOne
       second_point_eq := hcommonTwo }
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteFiveCenterSurvival_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -1015,6 +1054,7 @@ private theorem finiteFiveCenterSurvival_of_source
       finite_hasFourAfterDeleting P Pρ C Q A
         hdeleted (surplusApex_point_eq P Pρ C Q A) hsurvival.2.2.2.2⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteFiveCenterDeletion_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)
@@ -1045,6 +1085,7 @@ private theorem finiteFiveCenterDeletion_of_source
       G W hfirst (secondRetainedTwo_point_eq P Pρ C Q A)
         (firstRetainedOne_point_eq P Pρ C Q A) h
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteReducedCase_of_source
     (G : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ)
     (W : FirstNonHitFiniteCommonRadiusPayload P Pρ C Q A)

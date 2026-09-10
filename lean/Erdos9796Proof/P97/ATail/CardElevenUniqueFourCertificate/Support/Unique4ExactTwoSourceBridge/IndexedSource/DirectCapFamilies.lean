@@ -41,6 +41,7 @@ open ATailUniqueFourExactTwoSchemaDecoderScratch
 /- ## Cap identification helpers (clones of private aligned-boundary
 helpers) -/
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -48,6 +49,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -56,6 +58,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -64,6 +67,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
     (hji : j ≠ i) :
@@ -85,6 +89,7 @@ private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
       SurplusCapPacket.capByIndex] using S.partition.v2_mem_C3
   · exact False.elim (hji rfl)
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem oppApex1_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -94,6 +99,7 @@ private theorem oppApex1_eq_indexedVertex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem oppApex2_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -103,6 +109,7 @@ private theorem oppApex2_eq_indexedVertex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem leftAdjacent_oppIndex1_eq_capByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.leftAdjacentCapByIndex S.oppIndex1 = S.capByIndex S.oppIndex2 := by
@@ -111,6 +118,7 @@ private theorem leftAdjacent_oppIndex1_eq_capByIndex_oppIndex2
     simp only [SurplusCapPacket.leftAdjacentCapByIndex,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem rightAdjacent_oppIndex1_eq_capByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.rightAdjacentCapByIndex S.oppIndex1 =
@@ -136,6 +144,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
 
 /- ## Closed-cap image lemmas on the bare direct aligned boundary -/
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem directSurplusClosedIndices_image (B : DirectAlignedBoundary S)
     (hprofile : S.surplusCap.card = 5 ∧
       S.oppCap1.card = 5 ∧ S.oppCap2.card = 4) :
@@ -170,6 +179,7 @@ theorem directSurplusClosedIndices_image (B : DirectAlignedBoundary S)
       Finset.card_image_of_injective _ B.boundary_injective]
     decide
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem directFirstOppositeClosedIndices_image
     (B : DirectAlignedBoundary S)
     (hprofile : S.surplusCap.card = 5 ∧
@@ -204,6 +214,7 @@ theorem directFirstOppositeClosedIndices_image
       Finset.card_image_of_injective _ B.boundary_injective]
     decide
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem directSecondOppositeClosedIndices_image
     (B : DirectAlignedBoundary S)
     (hprofile : S.surplusCap.card = 5 ∧

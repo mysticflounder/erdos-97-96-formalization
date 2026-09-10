@@ -51,8 +51,10 @@ namespace ExclusiveApex18Input
 
 variable (I : ExclusiveApex18Input)
 
+/-- Frontier live-closure def. -/
 noncomputable def pRaw (_ : ExclusiveApex18Input) : Fin 13 := secondApex
 
+/-- Frontier live-closure theorem. -/
 theorem uncovered_ne_secondApex : I.Q.base.z ≠ I.S.oppApex2 := by
   intro h
   rcases Finset.mem_union.mp I.Q.base.z_mem_rows with hzF | hzS
@@ -61,6 +63,7 @@ theorem uncovered_ne_secondApex : I.Q.base.z ≠ I.S.oppApex2 := by
   · apply I.secondRow.center_not_mem
     simpa only [h] using hzS
 
+/-- Frontier live-closure theorem. -/
 theorem pRaw_ne_zraw : pRaw I ≠ I.X.tightSupport.zraw := by
   intro h
   have himage := congrArg I.P.pt h
@@ -68,6 +71,7 @@ theorem pRaw_ne_zraw : pRaw I ≠ I.X.tightSupport.zraw := by
   rw [I.P.labelMap.secondApex_eq, I.X.tightSupport.zraw_image] at himage
   exact (uncovered_ne_secondApex I) himage.symm
 
+/-- Frontier live-closure theorem. -/
 theorem pRaw_not_mem_Kraw :
     pRaw I ∉ I.X.tightSupport.Kraw := by
   intro hp
@@ -76,6 +80,7 @@ theorem pRaw_not_mem_Kraw :
     exact Finset.mem_image.mpr ⟨pRaw I, hp, I.P.labelMap.secondApex_eq⟩
   exact I.Q.base.thirdRow.center_not_mem hphys
 
+/-- Frontier live-closure theorem. -/
 theorem pRaw_not_mem_Lraw :
     pRaw I ∉ I.O.Lraw := by
   intro hp
@@ -93,10 +98,12 @@ theorem pRaw_not_mem_Lraw :
     rw [I.P.labelMap.secondApex_eq] at hphys
     exact I.secondRow.center_not_mem hphys
 
+/-- Frontier live-closure theorem. -/
 theorem Lraw_erase_zraw_card :
     (I.O.Lraw.erase I.X.tightSupport.zraw).card = 3 := by
   rw [Finset.card_erase_of_mem I.O.Lraw_mem_zraw, I.O.Lraw_card]
 
+/-- Frontier live-closure theorem. -/
 theorem Uraw_card :
     (Finset.univ \ (I.X.tightSupport.Kraw ∪ I.O.Lraw ∪
       {pRaw I})).card = 4 := by
@@ -122,6 +129,7 @@ theorem Uraw_card :
   rw [Finset.card_sdiff_of_subset hsub, Finset.card_univ, hremoved]
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem physical_blocker_inter_card_le_one
     {A : Finset ℝ²} {C P b : ℝ²} {r : ℝ}
     (hconv : EuclideanGeometry.ConvexIndep (A : Set ℝ²))
@@ -454,6 +462,7 @@ structure RawOccurrenceHandoff (I : ExclusiveApex18Input) where
   orientation :
     I.P.idx = directIndex I.P.profile ∨ I.P.idx = mirrorIndex I.P.profile
 
+/-- Frontier live-closure def. -/
 def raw_occurrence_handoff (I : ExclusiveApex18Input) :
     RawOccurrenceHandoff I :=
   { profile_eq_secondOpposite := I.X.rawPartition.profile_eq_secondOpposite

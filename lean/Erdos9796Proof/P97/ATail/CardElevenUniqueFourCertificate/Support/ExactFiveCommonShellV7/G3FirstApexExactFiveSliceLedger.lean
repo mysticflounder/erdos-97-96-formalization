@@ -31,13 +31,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 174340
+/-- Exact-five common-shell V7 def. -/
 private def retainedFirstApexExactFiveCount : Nat := 89
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFiveClauseCount : Nat := 105
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedFirstApexExactFivePayload : String :=
   include_str "data/g3-first-apex-exact-five-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev FirstApexExactFiveClauseIndex :=
   Fin firstApexExactFiveClauseCount
 
@@ -63,10 +68,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array FirstApexExactFiveClauseIndex →
       Option (Array FirstApexExactFiveClauseIndex)
@@ -86,6 +93,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedFirstApexExactFiveIndices :
     Option (Array FirstApexExactFiveClauseIndex) := do
   let bytes ← decodeAscii85 retainedFirstApexExactFivePayload
@@ -96,6 +104,7 @@ def g3RetainedFirstApexExactFiveIndices :
     Array FirstApexExactFiveClauseIndex :=
   decodeRetainedFirstApexExactFiveIndices.getD #[]
 
+/-- Exact-five common-shell V7 inductive. -/
 inductive FirstApexExactFiveKind
   | equality (left right : Label)
   | exclusion (inside outside : Label)
@@ -107,17 +116,21 @@ structure FirstApexExactFiveOccurrence where
   kind : FirstApexExactFiveKind
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def encoderG3Routes : List G3Case :=
   [.s2_o9, .s3_o0, .s3_o9]
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFiveSupport (route : G3Case) : List Label :=
   ((List.range 11).filter fun label =>
       toLabel label ∈ route.shellCase.support).map toLabel
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFiveOutside (route : G3Case) : List Label :=
   ((List.range 11).filter fun label =>
       label != 1 && toLabel label ∉ route.shellCase.support).map toLabel
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFivePairs (route : G3Case) :
     List FirstApexExactFiveKind :=
   (firstApexExactFiveSupport route).flatMap fun left =>
@@ -125,16 +138,19 @@ private def firstApexExactFivePairs (route : G3Case) :
         left.val < right.val).map fun right =>
       .equality left right
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFiveExclusions (route : G3Case) :
     List FirstApexExactFiveKind :=
   (firstApexExactFiveSupport route).flatMap fun inside =>
     (firstApexExactFiveOutside route).map fun outside =>
       .exclusion inside outside
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFiveKinds (route : G3Case) :
     List FirstApexExactFiveKind :=
   firstApexExactFivePairs route ++ firstApexExactFiveExclusions route
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFiveKindAt
     (route : G3Case) (position : Nat) : FirstApexExactFiveKind :=
   (firstApexExactFiveKinds route).getD position (.equality 0 0)
@@ -147,15 +163,18 @@ def encoderFirstApexExactFiveOccurrences :
       ⟨route, firstApexExactFiveKindAt route position⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderFirstApexExactFiveOccurrences_length :
     encoderFirstApexExactFiveOccurrences.length =
       firstApexExactFiveClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def firstApexExactFiveOccurrenceArray :
     Array FirstApexExactFiveOccurrence :=
   encoderFirstApexExactFiveOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def firstApexExactFiveOccurrenceAt
     (index : FirstApexExactFiveClauseIndex) :
     FirstApexExactFiveOccurrence :=
@@ -210,6 +229,7 @@ def g3FirstApexExactFiveSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3RetainedFirstApexExactFiveIndices_size :
     g3RetainedFirstApexExactFiveIndices.size =
       retainedFirstApexExactFiveCount := by
@@ -218,6 +238,7 @@ theorem g3RetainedFirstApexExactFiveIndices_size :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3FirstApexExactFiveSlice_size :
     g3FirstApexExactFiveSlice.size =
       retainedFirstApexExactFiveCount := by
@@ -237,6 +258,7 @@ theorem g3FirstApexExactFiveSlice_perm_checkpoint :
             retainedFirstApexExactFiveCount) := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 private def firstApexExactFiveOccurrenceAtValid
     (index : FirstApexExactFiveClauseIndex) : Prop :=
   let occurrence := firstApexExactFiveOccurrenceAt index

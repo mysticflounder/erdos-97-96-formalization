@@ -26,6 +26,7 @@ open Census554.CoverIndexBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem evalClauseD_three_negative
     (σ : Nat → Bool) {first second third : Nat}
     (hcontra :
@@ -43,6 +44,7 @@ theorem evalClauseD_three_negative
   · have hfirstFalse := Bool.eq_false_of_not_eq_true hfirst
     simp [evalClauseD, evalLitD, hfirstFalse]
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem evalClauseD_four_negative
     (σ : Nat → Bool) {first second third fourth : Nat}
     (hcontra :
@@ -122,6 +124,7 @@ theorem CanonicalPacket.selectedRowIndex_eq_baseIndex
     exact hseparation
   exact (P.baseValuation_x_iff hP center.isLt hindex).mp hbase
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.exactBlockerClause_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}
@@ -208,6 +211,7 @@ theorem CanonicalPacket.not_localFourHolds_of_sourceCenterHolds
     (L.mem_carrier sourceCenter.source)
   simpa [hcenterPoint] using hfour
 
+/-- Exact-five common-shell V7 theorem. -/
 theorem CanonicalPacket.sourceCenterNoQFreeClause_sat
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

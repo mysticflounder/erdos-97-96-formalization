@@ -74,6 +74,7 @@ def candMasks (p : Nat) : List Nat := candTable.getD p []
 /-- Candidate counts per center (nullary, computed once). -/
 def candCounts : List Nat := candTable.map List.length
 
+/-- Census-554 certificate-bank def. -/
 def candCount (p : Nat) : Nat := candCounts.getD p 0
 
 /-- Total number of `x` variables. -/
@@ -153,6 +154,7 @@ def c4Fold : Nat × List (List Int) :=
       let xs := incidentVars pq.1 pq.2
       (acc.1 + sinzVarCount xs.length 2, acc.2 ++ sinzClauses xs 2 acc.1)
 
+/-- Census-554 certificate-bank def. -/
 def c4Clauses : List (List Int) := c4Fold.2
 
 /-- Total DIMACS variable count of the base instance

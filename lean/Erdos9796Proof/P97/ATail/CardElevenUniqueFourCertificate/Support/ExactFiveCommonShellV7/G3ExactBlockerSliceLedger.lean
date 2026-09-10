@@ -31,13 +31,18 @@ open CheckpointedRup.SemanticBoundary
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 168831
+/-- Exact-five common-shell V7 def. -/
 private def retainedExactBlockerCount : Nat := 5083
+/-- Exact-five common-shell V7 def. -/
 private def exactBlockerClauseCount : Nat := 46776
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedExactBlockerPayload : String :=
   include_str "data/g3-exact-blocker-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev ExactBlockerClauseIndex := Fin exactBlockerClauseCount
 
 /-- Read one canonical positive LEB128 value from a byte array. -/
@@ -62,10 +67,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array ExactBlockerClauseIndex →
       Option (Array ExactBlockerClauseIndex)
@@ -85,6 +92,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedExactBlockerIndices :
     Option (Array ExactBlockerClauseIndex) := do
   let bytes ← decodeAscii85 retainedExactBlockerPayload
@@ -100,6 +108,7 @@ structure ExactBlockerCandidateRow where
   candidateIndex : Nat
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def encoderExactBlockerCandidateRows :
     List ExactBlockerCandidateRow :=
   (List.range 11).flatMap fun center =>
@@ -107,6 +116,7 @@ private def encoderExactBlockerCandidateRows :
       ⟨toLabel center, candidateIndex⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderExactBlockerCandidateRows_length :
     encoderExactBlockerCandidateRows.length = 1949 := by
   native_decide
@@ -143,13 +153,16 @@ def encoderExactBlockerOccurrences :
         ⟨row, inside, outside⟩
 
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderExactBlockerOccurrences_length :
     encoderExactBlockerOccurrences.length = exactBlockerClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def exactBlockerOccurrenceArray : Array ExactBlockerOccurrence :=
   encoderExactBlockerOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def exactBlockerOccurrenceAt
     (index : ExactBlockerClauseIndex) : ExactBlockerOccurrence :=
   exactBlockerOccurrenceArray[index.val]'(by
@@ -165,6 +178,7 @@ private def canonicalExactBlockerLocalEqRow
   else
     ⟨center, right, left⟩
 
+/-- Exact-five common-shell V7 def. -/
 private def exactBlockerLocalEqualityIndex
     (center left right : Label) : Fin 495 :=
   Fin.ofNat 495
@@ -189,6 +203,7 @@ def g3ExactBlockerSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3RetainedExactBlockerIndices_size :
     g3RetainedExactBlockerIndices.size = retainedExactBlockerCount := by
   native_decide
@@ -196,6 +211,7 @@ theorem g3RetainedExactBlockerIndices_size :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3ExactBlockerSlice_size :
     g3ExactBlockerSlice.size = retainedExactBlockerCount := by
   native_decide

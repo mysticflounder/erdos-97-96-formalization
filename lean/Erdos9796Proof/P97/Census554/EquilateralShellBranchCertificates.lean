@@ -24,6 +24,7 @@ namespace Problem97
 namespace Census554
 namespace EqualityCore
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -35,6 +36,7 @@ private abbrev branch_mmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmmmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -44,6 +46,7 @@ private theorem not_branch_mmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmmmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -55,6 +58,7 @@ private abbrev branch_mmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmmmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -64,6 +68,7 @@ private theorem not_branch_mmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmmmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -75,6 +80,7 @@ private abbrev branch_mmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmmpm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -84,6 +90,7 @@ private theorem not_branch_mmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmmpm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -95,6 +102,7 @@ private abbrev branch_mmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmmpp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -104,6 +112,7 @@ private theorem not_branch_mmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmmpp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -115,6 +124,7 @@ private abbrev branch_mmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmpmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -124,6 +134,7 @@ private theorem not_branch_mmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmpmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -135,6 +146,7 @@ private abbrev branch_mmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmpmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -144,6 +156,7 @@ private theorem not_branch_mmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmpmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -155,6 +168,7 @@ private abbrev branch_mmppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmppm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -164,6 +178,7 @@ private theorem not_branch_mmppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmppm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mmppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -175,6 +190,7 @@ private abbrev branch_mmppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mmppp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mmppp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -184,6 +200,7 @@ private theorem not_branch_mmppp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mmppp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mpmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -195,6 +212,7 @@ private abbrev branch_mpmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mpmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mpmmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -204,6 +222,7 @@ private theorem not_branch_mpmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mpmmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mpmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -215,6 +234,7 @@ private abbrev branch_mpmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mpmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mpmmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -224,6 +244,7 @@ private theorem not_branch_mpmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mpmmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mpmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -235,6 +256,7 @@ private abbrev branch_mpmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mpmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mpmpm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -244,6 +266,7 @@ private theorem not_branch_mpmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mpmpm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mpmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -255,6 +278,7 @@ private abbrev branch_mpmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mpmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mpmpp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -264,6 +288,7 @@ private theorem not_branch_mpmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mpmpp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mppmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -275,6 +300,7 @@ private abbrev branch_mppmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mppmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mppmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -284,6 +310,7 @@ private theorem not_branch_mppmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mppmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mppmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -295,6 +322,7 @@ private abbrev branch_mppmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x + a * z1y + a * z2x * z3y - a * z2y * z3x + a * z2y + a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mppmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mppmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -304,6 +332,7 @@ private theorem not_branch_mppmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mppmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mpppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -315,6 +344,7 @@ private abbrev branch_mpppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mpppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mpppm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -324,6 +354,7 @@ private theorem not_branch_mpppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mpppm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_mpppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -335,6 +366,7 @@ private abbrev branch_mpppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x + a * z1y - a * z2x * z3y + a * z2y * z3x + a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_mpppp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_mpppp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -344,6 +376,7 @@ private theorem not_branch_mpppp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_mpppp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -355,6 +388,7 @@ private abbrev branch_pmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmmmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -364,6 +398,7 @@ private theorem not_branch_pmmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmmmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -375,6 +410,7 @@ private abbrev branch_pmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmmmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -384,6 +420,7 @@ private theorem not_branch_pmmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmmmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -395,6 +432,7 @@ private abbrev branch_pmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmmpm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -404,6 +442,7 @@ private theorem not_branch_pmmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmmpm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -415,6 +454,7 @@ private abbrev branch_pmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmmpp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -424,6 +464,7 @@ private theorem not_branch_pmmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmmpp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -435,6 +476,7 @@ private abbrev branch_pmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmpmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -444,6 +486,7 @@ private theorem not_branch_pmpmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmpmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -455,6 +498,7 @@ private abbrev branch_pmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmpmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -464,6 +508,7 @@ private theorem not_branch_pmpmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmpmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -475,6 +520,7 @@ private abbrev branch_pmppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z1x * z2y + a * z1x * z3y - a * z1y * z2x - a * z1y * z3x + a * z1y + a * z2y + a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmppm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -484,6 +530,7 @@ private theorem not_branch_pmppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmppm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pmppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -495,6 +542,7 @@ private abbrev branch_pmppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z2y - a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pmppp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pmppp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -504,6 +552,7 @@ private theorem not_branch_pmppp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pmppp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_ppmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -515,6 +564,7 @@ private abbrev branch_ppmmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_ppmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_ppmmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -524,6 +574,7 @@ private theorem not_branch_ppmmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_ppmmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_ppmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -535,6 +586,7 @@ private abbrev branch_ppmmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_ppmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_ppmmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -544,6 +596,7 @@ private theorem not_branch_ppmmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_ppmmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_ppmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -555,6 +608,7 @@ private abbrev branch_ppmpm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_ppmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_ppmpm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -564,6 +618,7 @@ private theorem not_branch_ppmpm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_ppmpm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_ppmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -575,6 +630,7 @@ private abbrev branch_ppmpp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_ppmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_ppmpp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -584,6 +640,7 @@ private theorem not_branch_ppmpp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_ppmpp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pppmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -595,6 +652,7 @@ private abbrev branch_pppmm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pppmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pppmm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -604,6 +662,7 @@ private theorem not_branch_pppmm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pppmm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_pppmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -615,6 +674,7 @@ private abbrev branch_pppmp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (a * z1x * z3y - a * z1y * z3x - a * z1y + a * z2x * z3y - a * z2y * z3x - a * z2y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 + 2 * z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_pppmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_pppmp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -624,6 +684,7 @@ private theorem not_branch_pppmp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_pppmp
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_ppppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -635,6 +696,7 @@ private abbrev branch_ppppm (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (a * z2y + a * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_ppppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_ppppm a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩
@@ -644,6 +706,7 @@ private theorem not_branch_ppppm (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 =
 
 -- END_BRANCH_ppppm
 
+/-- Census-554 certificate-bank abbrev. -/
 private abbrev branch_ppppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
   (z1x ^ 2 + z1y ^ 2 - 1 = 0) ∧
     (z2x ^ 2 + z2y ^ 2 - 1 = 0) ∧
@@ -655,6 +718,7 @@ private abbrev branch_ppppp (a z1x z1y z2x z2y z3x z3y : ℝ) : Prop :=
     (-a * z1x * z3y + a * z1y * z3x - a * z1y - a * z2x * z3y + a * z2y * z3x - a * z2y - a * z3y + z1x ^ 2 + 2 * z1x * z2x + z1x * z3x + z1x + z1y ^ 2 + 2 * z1y * z2y + z1y * z3y + z2x ^ 2 + z2x * z3x + z2x + z2y ^ 2 + z2y * z3y + z3x ^ 2 - z3x + z3y ^ 2 = 0) ∧
     (-a * z1x * z2y - a * z1x * z3y + a * z1y * z2x + a * z1y * z3x - a * z1y - a * z2y - a * z3y + 3 * z1x ^ 2 + 3 * z1x * z2x + 3 * z1x * z3x + 3 * z1x + 3 * z1y ^ 2 + 3 * z1y * z2y + 3 * z1y * z3y + z2x ^ 2 + 2 * z2x * z3x + z2x + z2y ^ 2 + 2 * z2y * z3y + z3x ^ 2 + z3x + z3y ^ 2 = 0)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem not_branch_ppppp (a z1x z1y z2x z2y z3x z3y : ℝ) (ha : a ^ 2 = 3) :
     ¬ branch_ppppp a z1x z1y z2x z2y z3x z3y := by
   rintro ⟨h0, h1, h2, h3, h4, h5, h6, h7, h8⟩

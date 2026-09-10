@@ -23,10 +23,12 @@ namespace ATailAlignedP5FinElevenKalmansonScratch
 open UniqueFourKalmansonReflectionScratch
 open UniqueFourKalmansonCoresScratch
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def cardBoundary {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Fin 11 → ℝ²) : Fin A.card → ℝ² :=
   fun i => boundary (Fin.cast hcard i)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem cardBoundary_injective
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Fin 11 → ℝ²}
@@ -36,6 +38,7 @@ private theorem cardBoundary_injective
   apply Fin.cast_injective hcard
   exact hinj hij
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem cardBoundary_image
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Fin 11 → ℝ²}
@@ -56,6 +59,7 @@ private theorem cardBoundary_image
             simp [cardBoundary]⟩
     _ = A := himage
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem cardBoundary_ccw
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Fin 11 → ℝ²}
@@ -66,6 +70,7 @@ private theorem cardBoundary_ccw
   · simpa using hij
   · simpa using hjk
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     (i : Fin 11) : Fin A.card :=
   Fin.cast hcard.symm i
@@ -76,6 +81,7 @@ private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     cardBoundary hcard boundary (toCardIndex hcard i) = boundary i := by
   simp [cardBoundary, toCardIndex]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem toCardIndex_lt
     {A : Finset ℝ²} (hcard : A.card = 11)
     {i j : Fin 11} (hij : i < j) :

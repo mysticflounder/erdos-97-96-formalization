@@ -48,6 +48,7 @@ variable
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ)
 
+/-- Frontier live-closure abbrev. -/
 abbrev FirstNonHitFiniteAssignment :=
   FirstNonHitSourceTotalFiniteAssignment P Pρ C Q
 
@@ -118,6 +119,7 @@ structure FirstNonHitFiniteMirrorBlocks
   opp2_after : ∀ source, A.inCapInterior source S.oppIndex2 = true →
     A.opp1Cut < source
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteDirectBlocks_of_source
     (A : FirstNonHitFiniteAssignment P Pρ C Q)
     (hblocks : DirectBoundaryBlocks S A.boundary.boundary A.boundary_pos
@@ -143,6 +145,7 @@ private theorem finiteDirectBlocks_of_source
     have hq : q = source := A.boundary.boundary_injective hqeq
     simpa [hq] using hq2
 
+/-- Frontier live-closure theorem. -/
 private theorem finiteMirrorBlocks_of_source
     (A : FirstNonHitFiniteAssignment P Pρ C Q)
     (hblocks : MirrorBoundaryBlocks S A.boundary.boundary A.boundary_pos
@@ -185,6 +188,7 @@ def FirstNonHitFiniteHasFourAfterDeleting
     4 ≤ ((Finset.univ.erase deleted).filter fun x ↦
       A.radiusEq center x anchor).card
 
+/-- Frontier live-closure theorem. -/
 private theorem image_finiteRadiusClass_eq
     (A : FirstNonHitFiniteAssignment P Pρ C Q)
     (deleted center anchor : Fin A.boundary.n) :
@@ -215,6 +219,7 @@ private theorem image_finiteRadiusClass_eq
         (Finset.mem_erase.mp hx).1 (congrArg A.boundary.boundary hieq)), Finset.mem_univ _⟩
     · exact (A.radiusEq_iff center i anchor).mpr hradius
 
+/-- Frontier live-closure theorem. -/
 private theorem card_finiteRadiusClass_eq
     (A : FirstNonHitFiniteAssignment P Pρ C Q)
     (deleted center anchor : Fin A.boundary.n) :

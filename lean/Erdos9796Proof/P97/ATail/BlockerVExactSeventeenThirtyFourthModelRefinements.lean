@@ -25,13 +25,16 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenThirtyThirdModelRefinements
 open ATailBlockerVExactSeventeenThirtyFourthPerpendicularBisectorRefinement
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def thirtyFourthModelRefinementClauses : Std.Sat.CNF Atom :=
   child34PerpBisectorClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem thirtyFourthModelRefinementClauses_length :
     thirtyFourthModelRefinementClauses.length = 4 := by
   simpa only [thirtyFourthModelRefinementClauses] using child34PerpBisectorClauses_length
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_thirtyFourthModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
@@ -40,15 +43,18 @@ theorem sourceAssign_thirtyFourthModelRefinementClauses
   intro clause hclause
   exact sourceAssign_child34PerpBisectorClauses source clause hclause
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedThirtyFourthModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedThirtyThirdModelRefinementsCnf ++ thirtyFourthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedThirtyFourthModelRefinementsCnf_length :
     extendedThirtyFourthModelRefinementsCnf.length = 5847260 := by
   simp only [extendedThirtyFourthModelRefinementsCnf, List.length_append,
     extendedThirtyThirdModelRefinementsCnf_length,
     thirtyFourthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtyFourthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
@@ -63,6 +69,7 @@ theorem sourceAssign_extendedThirtyFourthModelRefinementsCnf
     exact h clause hparent
   · exact sourceAssign_thirtyFourthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedThirtyFourthModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

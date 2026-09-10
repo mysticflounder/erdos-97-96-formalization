@@ -27,8 +27,10 @@ open ProviderRowNogoodCertificate
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure def. -/
 def directCell0G7 : Exact13Provider := .g ⟨7, by decide⟩
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormG8Path :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 8, directCell0Position 7)
@@ -36,6 +38,7 @@ def directCell0OneFormG8Path :
       [ .row directCell0G8 (directCell0Position 7) (directCell0Position 5) ]
     last := (directCell0Position 8, directCell0Position 5) }
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormG5G7Path :
     ProviderClosurePathData Exact13Provider (Fin 13) :=
   { first := (directCell0Position 3, directCell0Position 5)
@@ -48,6 +51,7 @@ def directCell0OneFormG5G7Path :
       ]
     last := (directCell0Position 3, directCell0Position 7) }
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormG5G7G8Data :
     ProviderWeightedKalmansonCancellationData Exact13Provider 13 :=
   { terms :=
@@ -65,6 +69,7 @@ def directCell0OneFormG5G7G8Data :
           path := directCell0OneFormG5G7Path }
       ] }
 
+/-- Frontier live-closure def. -/
 def directCell0OneFormG5G7G8Choices :
     List (ProviderRowChoice Exact13Provider (Fin 13)) :=
   [ exact13ProviderEdgeChoice directCell0G8
@@ -75,6 +80,7 @@ def directCell0OneFormG5G7G8Choices :
       (directCell0Position 5) (directCell0Position 3)
   ]
 
+/-- Frontier live-closure structure. -/
 structure DirectCell0OneFormG5G7G8Atoms
     (raw : ProviderRowPattern Exact13Provider (Fin 13)) : Prop where
   g8 : (7 : Fin 13) ∈ raw.supportOf directCell0G8 ∧
@@ -84,6 +90,7 @@ structure DirectCell0OneFormG5G7G8Atoms
   g7 : (5 : Fin 13) ∈ raw.supportOf directCell0G7 ∧
     (3 : Fin 13) ∈ raw.supportOf directCell0G7
 
+/-- Frontier live-closure theorem. -/
 private theorem directCell0OneForm_toPositional_mem
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (raw : ProviderRowPattern Exact13Provider (Fin 13))
@@ -96,6 +103,7 @@ private theorem directCell0OneForm_toPositional_mem
   refine Finset.mem_image.mpr ⟨i, hi, ?_⟩
   simp [directCell0Position, hidx]
 
+/-- Frontier live-closure theorem. -/
 private theorem directCell0OneForm_positive
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (raw : ProviderRowPattern Exact13Provider (Fin 13))
@@ -127,6 +135,7 @@ private theorem directCell0OneForm_positive
 
 /- The direct one-form terminal uses the source-selected raw pattern and only
    the six provider incidences encoded by `DirectCell0OneFormG5G7G8Atoms`. -/
+/-- Frontier live-closure theorem. -/
 theorem false_of_directCell0_oneForm_g5g7g8
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

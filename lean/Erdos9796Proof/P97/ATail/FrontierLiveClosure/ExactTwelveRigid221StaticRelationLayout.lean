@@ -29,6 +29,7 @@ open Census554.EqualityCore
 open StaticRelationSemantics
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
 /-- The compiler's 66 undirected carrier edges, represented by endpoint
@@ -82,6 +83,7 @@ def relationKeyAt (v : Nat) : Nat × Nat :=
 def normalizeEdge (e : Edge Label) : Edge Label :=
   if e.1.val < e.2.val then e else (e.2, e.1)
 
+/-- Frontier live-closure theorem. -/
 theorem edgeDist_normalizeEdge (pointOf : Label → ℝ²) (e : Edge Label) :
     edgeDist pointOf (normalizeEdge e) = edgeDist pointOf e := by
   by_cases h : e.1.val < e.2.val

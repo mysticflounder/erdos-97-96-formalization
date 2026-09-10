@@ -60,6 +60,7 @@ def firstNonHitFiniteCapIndices
     Finset (Fin A.boundary.n) :=
   Finset.univ.filter fun source ↦ A.inCap source cap
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_firstNonHitFiniteCapIndices_iff
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (cap : Fin 3) (source : Fin A.boundary.n) :
@@ -67,6 +68,7 @@ def firstNonHitFiniteCapIndices
       A.boundary.boundary source ∈ S.capByIndex cap := by
   simp [firstNonHitFiniteCapIndices, A.inCap_iff]
 
+/-- Frontier live-closure theorem. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne_for_projection
     {i j : Fin 3} (hij : i ≠ j) :
     S.oppositeVertexByIndex i ∈ S.capByIndex j := by
@@ -200,11 +202,13 @@ theorem firstNonHitFiniteCapIndices_sum
       SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] using S.capSum
 
+/-- Frontier live-closure def. -/
 private def firstNonHitFinitePullback
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q) (U : Finset ℝ²) :
     Finset (Fin A.boundary.n) :=
   Finset.univ.filter fun source ↦ A.boundary.boundary source ∈ U
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem mem_firstNonHitFinitePullback_iff
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (U : Finset ℝ²) (source : Fin A.boundary.n) :
@@ -212,6 +216,7 @@ private def firstNonHitFinitePullback
       A.boundary.boundary source ∈ U := by
   simp [firstNonHitFinitePullback]
 
+/-- Frontier live-closure theorem. -/
 private theorem firstNonHitFinitePullback_image_eq
     (A : FirstNonHitSourceTotalFiniteAssignment P Pρ C Q)
     (U : Finset ℝ²) (hU : U ⊆ D.A) :
@@ -231,6 +236,7 @@ private theorem firstNonHitFinitePullback_image_eq
         (mem_firstNonHitFinitePullback_iff P Pρ C Q A U source).mpr hx,
         rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem selectedSupport_eq_of_point_eq
     (q p : ℝ²) (hq : q ∈ D.A) (hp : p ∈ D.A) (heq : q = p) :
     (H.selectedAt q hq).toCriticalFourShell.support =

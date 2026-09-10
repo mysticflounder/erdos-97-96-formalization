@@ -33,6 +33,7 @@ private def NonalternatingPairData (four centers : List (Fin 12)) : Prop :=
       ¬(SurplusCOMPGBank.btw firstCenter secondCenter firstPoint ↔
         ¬SurplusCOMPGBank.btw firstCenter secondCenter secondPoint)
 
+/-- Frontier live-closure def. -/
 private def nonalternatingPairData (four centers : List (Fin 12)) : Bool :=
   match centers, four.filter (fun point ↦ decide (point ∉ centers)) with
   | [firstCenter, secondCenter], [firstPoint, secondPoint] =>
@@ -46,6 +47,7 @@ private def nonalternatingPairData (four centers : List (Fin 12)) : Bool :=
           ¬SurplusCOMPGBank.btw firstCenter secondCenter secondPoint))
   | _, _ => false
 
+/-- Frontier live-closure theorem. -/
 private theorem nonalternatingPairData_eq_true_iff (four centers : List (Fin 12)) :
     nonalternatingPairData four centers = true ↔ NonalternatingPairData four centers := by
   constructor
@@ -77,6 +79,7 @@ private theorem generated_center_pair_table :
         alternatingCenters four centers || nonalternatingPairData four centers) = true := by
   decide
 
+/-- Frontier live-closure theorem. -/
 private theorem nonalternatingPairData_of_generated
     (four centers : List (Fin 12))
     (hfour : four ∈ combinations labels 4)
@@ -91,6 +94,7 @@ private theorem nonalternatingPairData_of_generated
     simpa [hnonalternating] using hentry
   exact (nonalternatingPairData_eq_true_iff four centers).1 hdata
 
+/-- Frontier live-closure theorem. -/
 private theorem configurationValuation_rowVariable_eq_true_iff'
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point) :
@@ -99,6 +103,7 @@ private theorem configurationValuation_rowVariable_eq_true_iff'
   exact (configurationValuation_eq_true_iff configuration _).trans
     (configurationAtom_rowVariable configuration center point hne)
 
+/-- Frontier live-closure theorem. -/
 private theorem selected_of_negative_row_literal_false
     (configuration : Balanced555FiniteConfiguration) (center point : Fin 12)
     (hne : center ≠ point)

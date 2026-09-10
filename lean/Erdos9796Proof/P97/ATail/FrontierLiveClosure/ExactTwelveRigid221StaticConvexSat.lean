@@ -24,8 +24,10 @@ open StaticRelationLayout
 open StaticRelationSemantics
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := ExactTwelveCarrierIngress.Label
 
+/-- Frontier live-closure def. -/
 def perpBisectorVars (datum : PerpBisectorDatum) : List Nat :=
   let a := datum.1
   let b := datum.2.1
@@ -35,6 +37,7 @@ def perpBisectorVars (datum : PerpBisectorDatum) : List Nat :=
   [relationVar (p, a) (p, b), relationVar (q, a) (q, b),
     relationVar (r, a) (r, b)]
 
+/-- Frontier live-closure def. -/
 def perpBisectorDatumValid (datum : PerpBisectorDatum) : Bool :=
   decide (datum.1 ≠ datum.2.1) &&
   decide (datum.2.2.1 ≠ datum.2.2.2.1) &&
@@ -45,10 +48,12 @@ def perpBisectorDatumValid (datum : PerpBisectorDatum) : Bool :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Frontier live-closure theorem. -/
 theorem perpBisectorData_valid :
     perpBisectorData.all perpBisectorDatumValid = true := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem perpBisectorDatum_facts (datum : PerpBisectorDatum)
     (hdatum : datum ∈ perpBisectorData) :
     datum.1 ≠ datum.2.1 ∧
@@ -64,6 +69,7 @@ theorem perpBisectorDatum_facts (datum : PerpBisectorDatum)
   intro v hv
   exact of_decide_eq_true ((List.all_eq_true.mp hpositive) v hv)
 
+/-- Frontier live-closure theorem. -/
 theorem perpBisectorClause_sat
     {row : RowPattern Label} (cell : FrozenNextRowCell)
     (blocker : Fin 5 → Label) (d : Label) (pointOf : Label → ℝ²)

@@ -33,6 +33,7 @@ open Census554.CoverCnf
 
 /- ## C4 satisfaction and DIMACS nonzero facts -/
 
+/-- Frontier live-closure theorem. -/
 theorem c4_sat (idx : Nat → Nat)
     (hidx : ∀ p, p < 12 → idx p < candCount p)
     (hc4 : ∀ a b, a < 12 → b < 12 → a ≠ b →

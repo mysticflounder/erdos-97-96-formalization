@@ -439,6 +439,7 @@ theorem endpointDeletionPairSurvivingRow_capSplit
       ⟨i, hcenter, hinter, houtside⟩
     exact Or.inr ⟨K, i, havoid, hcenter, hinter, houtside⟩
 
+/-- Frontier live-closure theorem. -/
 theorem endpointDeletionPair_blocked_or_survivingRow
     {A : Finset ℝ²} {center firstDeleted secondDeleted : ℝ²} :
     (¬ HasNEquidistantPointsAt 4 (A.erase firstDeleted) center ∧
@@ -914,6 +915,7 @@ abbrev FirstFiberCapSourceWitness
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe
   LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem firstFiberCapSourceWitness_of_crossPairSurvivals
     (hcap : 8 ≤ (S.capByIndex S.oppIndex1).card)
     (source : CriticalShellSystem.CarrierVertex D.A)
@@ -1174,6 +1176,7 @@ abbrev TwoCapSourcesMutualCrossMembership
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 private theorem common_omission_or_complementary_membership
     {α : Type*}
     (K K' : Finset α) (a b : α)
@@ -1927,6 +1930,7 @@ behind the single residual `¬ FreshThirdSameCapCrossRowAlignment`.  The
 following packet records the checked alternatives explicitly: equal blocker
 centers, a surviving one-point deletion, distinct blocker caps, or a same-cap
 fiber source. -/
+/-- Frontier live-closure inductive. -/
 inductive FreshThirdCapSourceInteraction
     (source : CriticalShellSystem.CarrierVertex D.A)
     (Q : FreshThirdBlockerFiber P Pρ) : Type where
@@ -2156,6 +2160,7 @@ inductive FreshThirdNormalizedResidualCase
 interaction shape.  Keep the other positive shapes explicit so the
 load-bearing residual leaf cannot silently widen back to the original
 constructor product. -/
+/-- Frontier live-closure inductive. -/
 inductive FreshThirdNonCanonicalInteraction
     (source : CriticalShellSystem.CarrierVertex D.A)
     (Q : FreshThirdBlockerFiber P Pρ) : Prop where
@@ -2754,6 +2759,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
 /- Normalize a cap-source/fresh-fiber pair into the four positive
 interaction cases. The only excluded case is the already checked impossible
 same-cap alignment with both fiber sources outside the common cap. -/
+/-- Frontier live-closure theorem. -/
 theorem nonempty_freshThirdCapSourceInteraction_of_noAlignment
     (source : CriticalShellSystem.CarrierVertex D.A)
     (hsource : CapSourceThirdCanonicalRowWitness P Pρ source)
@@ -2879,6 +2885,7 @@ inductive FreshThirdTwoCapSourceObstruction : Type where
 
 /- A source-clean positive packet for the exceptional canonical-source /
    different-fresh-cap branch. -/
+/-- Frontier live-closure def. -/
 def FreshThirdExceptionalBoundaryMetricPacket
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2918,6 +2925,7 @@ def FreshThirdExceptionalBoundaryMetricPacket
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 theorem freshThird_exceptionalBoundaryMetricPacket_of_endpoint
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}
@@ -2948,6 +2956,7 @@ theorem freshThird_exceptionalBoundaryMetricPacket_of_endpoint
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Frontier live-closure theorem. -/
 theorem freshThird_exceptionalBoundaryMetricPacket_of_dual_interactions
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}

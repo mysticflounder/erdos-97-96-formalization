@@ -25,6 +25,7 @@ open Census554.EqualityCore
 open GenericRowNogoodCertificate
 open scoped EuclideanGeometry
 
+/-- Frontier live-closure abbrev. -/
 abbrev Label := Fin 12
 
 /-- First duplicate-center record in the authenticated v7 common-arm journal.
@@ -38,16 +39,19 @@ def record0Rows : List (RowChoice Label) := [
   { center := 9, support := {0, 2, 3, 5} }
 ]
 
+/-- Frontier live-closure def. -/
 def record0ApAq : ClosurePathData Label :=
   { first := (3, 0)
     steps := [.row 3 0 1]
     last := (3, 1) }
 
+/-- Frontier live-closure def. -/
 def record0ApAr : ClosurePathData Label :=
   { first := (3, 0)
     steps := [.row 3 0 7]
     last := (3, 7) }
 
+/-- Frontier live-closure def. -/
 def record0BpAq : ClosurePathData Label :=
   { first := (5, 0)
     steps := [
@@ -63,6 +67,7 @@ def record0BpAq : ClosurePathData Label :=
       .row 5 2 1]
     last := (5, 1) }
 
+/-- Frontier live-closure def. -/
 def record0BpAr : ClosurePathData Label :=
   { first := (5, 0)
     steps := [
@@ -78,6 +83,7 @@ def record0BpAr : ClosurePathData Label :=
       .row 5 2 7]
     last := (5, 7) }
 
+/-- Frontier live-closure def. -/
 def record0 : DuplicateCenterData Label :=
   { p := 0
     q := 1
@@ -94,9 +100,11 @@ def record0Nogood : DuplicateCenterNogood Label :=
   { choices := record0Rows
     data := record0 }
 
+/-- Frontier live-closure theorem. -/
 theorem record0_check : record0.check record0Rows = true := by
   decide
 
+/-- Frontier live-closure theorem. -/
 theorem record0Nogood_check : record0Nogood.check = true := by
   decide
 

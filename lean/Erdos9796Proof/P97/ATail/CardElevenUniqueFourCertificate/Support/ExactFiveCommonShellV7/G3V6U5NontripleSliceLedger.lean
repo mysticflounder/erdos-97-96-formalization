@@ -34,15 +34,21 @@ attribute [local instance] Classical.propDecidable
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 220013
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6U5NontripleCount : Nat := 275
+/-- Exact-five common-shell V7 def. -/
 private def v6U5NontripleClauseCount : Nat := 117900
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6U5NontriplePayload : String :=
   include_str "data/g3-v6-u5-nontriple-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev V6U5NontripleClauseIndex := Fin v6U5NontripleClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -64,10 +70,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array V6U5NontripleClauseIndex →
       Option (Array V6U5NontripleClauseIndex)
@@ -87,6 +95,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedV6U5NontripleIndices :
     Option (Array V6U5NontripleClauseIndex) := do
   let bytes ← decodeAscii85 retainedV6U5NontriplePayload
@@ -108,16 +117,19 @@ structure V6U5NontripleOccurrence where
   x : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def sourceChoiceSupport
     (source : Label) (choice : SourceChoiceIndex source) : List Label :=
   let decoded := sourceChoiceAt source choice
   (List.finRange 11).filter fun label =>
     ((candMasks decoded.1.val).getD decoded.2 0).testBit label.val
 
+/-- Exact-five common-shell V7 def. -/
 private def sourceChoiceInside
     (source : Label) (choice : SourceChoiceIndex source) : List Label :=
   (sourceChoiceSupport source choice).filter fun label => label != source
 
+/-- Exact-five common-shell V7 def. -/
 private def sourceChoiceOutside
     (source : Label) (choice : SourceChoiceIndex source) : List Label :=
   let decoded := sourceChoiceAt source choice
@@ -125,6 +137,7 @@ private def sourceChoiceOutside
     !((candMasks decoded.1.val).getD decoded.2 0).testBit label.val &&
       label != decoded.1
 
+/-- Exact-five common-shell V7 def. -/
 def encoderSourceChoiceOccurrences :
     List SourceChoiceOccurrence :=
   (List.finRange 11).flatMap fun source =>
@@ -134,6 +147,7 @@ def encoderSourceChoiceOccurrences :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderSourceChoiceOccurrences_length :
     encoderSourceChoiceOccurrences.length = 6550 := by
   native_decide
@@ -152,26 +166,31 @@ def encoderV6U5NontripleOccurrences :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderV6U5NontripleOccurrences_length :
     encoderV6U5NontripleOccurrences.length =
       v6U5NontripleClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def v6U5NontripleOccurrenceArray :
     Array V6U5NontripleOccurrence :=
   encoderV6U5NontripleOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def v6U5NontripleOccurrenceAt
     (index : V6U5NontripleClauseIndex) : V6U5NontripleOccurrence :=
   v6U5NontripleOccurrenceArray[index.val]'(by
     simpa [v6U5NontripleOccurrenceArray,
       encoderV6U5NontripleOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def canonicalQDeletedPairRow
     (deleted center first second : Label) : QDeletedPairRow :=
   if first ≤ second then ⟨deleted, center, first, second⟩
   else ⟨deleted, center, second, first⟩
 
+/-- Exact-five common-shell V7 def. -/
 private def canonicalQDeletedPairIndex
     (deleted center first second : Label) : Fin 3960 :=
   let centerOrdinal :=
@@ -213,6 +232,7 @@ def g3V6U5NontripleSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3V6U5NontripleSlice_size :
     g3V6U5NontripleSlice.size = retainedV6U5NontripleCount := by
   native_decide
@@ -259,6 +279,7 @@ theorem v6U5NontripleOccurrenceAt_valid :
             occurrence.center occurrence.t := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem sourceChoiceVariable_lt
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by
@@ -267,6 +288,7 @@ private theorem sourceChoiceVariable_lt
     simp only [sourceChoiceVariable, sourceChoiceStart, sourceChoiceCount] at hlt ⊢ <;>
     omega
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem CanonicalPacket.qDeletedPairHolds_canonical_iff
     {A : Finset ℝ²} {M : MoserTriangle A} {CP : CapTriple A M}
     {surplus second : Fin 3}

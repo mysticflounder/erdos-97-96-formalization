@@ -69,6 +69,7 @@ theorem noAlternatingCap_of_threePhaseCapRepresentation
       simp [ThreePhaseCapMembership, hOrientation] at ha hb hc hd <;>
       omega
 
+/-- Frontier live-closure def. -/
 private def BeforeConvex
     (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (property : PointRole → Prop) : Prop :=
@@ -76,6 +77,7 @@ private def BeforeConvex
     A.Before a b → A.Before b c →
       property a → property c → property b
 
+/-- Frontier live-closure theorem. -/
 private theorem capMembership_beforeConvex_or_complement
     {A : FreshThirdQFiberThreeCarrierFiniteAssignment}
     (hRelational : FreshThirdQFiberThreeCarrierFiniteView.RelationalTheory A)
@@ -97,11 +99,13 @@ private theorem capMembership_beforeConvex_or_complement
     · exact hNoAlternation cap x y b c hxy hyb hbc
         (Or.inr ⟨hx, hy, hb, hc⟩)
 
+/-- Frontier live-closure def. -/
 private noncomputable def capPhaseOrientation
     (A : FreshThirdQFiberThreeCarrierFiniteAssignment) (cap : Fin 3) : Bool := by
   classical
   exact if BeforeConvex A (fun point ↦ A.InCap point cap) then false else true
 
+/-- Frontier live-closure def. -/
 private noncomputable def capPhaseMiddle
     (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (cap : Fin 3) (point : PointRole) : Prop := by
@@ -111,6 +115,7 @@ private noncomputable def capPhaseMiddle
   else
     ¬ A.InCap point cap
 
+/-- Frontier live-closure def. -/
 private noncomputable def capPhase
     (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (cap : Fin 3) (point : PointRole) : Fin 3 := by
@@ -122,6 +127,7 @@ private noncomputable def capPhase
   else
     2
 
+/-- Frontier live-closure theorem. -/
 private theorem capPhase_eq_one_iff
     (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (cap : Fin 3) (point : PointRole) :
@@ -135,6 +141,7 @@ private theorem capPhase_eq_one_iff
   · intro hm
     simp [capPhase, hm]
 
+/-- Frontier live-closure theorem. -/
 private theorem capPhaseMiddle_congr
     {A : FreshThirdQFiberThreeCarrierFiniteAssignment}
     (hRelational : FreshThirdQFiberThreeCarrierFiniteView.RelationalTheory A)
@@ -145,6 +152,7 @@ private theorem capPhaseMiddle_congr
   · simpa [capPhaseMiddle, hConvex] using hRelational.inCap_congr hSame
   · simpa [capPhaseMiddle, hConvex] using not_congr (hRelational.inCap_congr hSame)
 
+/-- Frontier live-closure theorem. -/
 private theorem capPhase_eq_of_same
     {A : FreshThirdQFiberThreeCarrierFiniteAssignment}
     (hRelational : FreshThirdQFiberThreeCarrierFiniteView.RelationalTheory A)
@@ -168,6 +176,7 @@ private theorem capPhase_eq_of_same
   simp only [capPhase]
   rw [if_congr hMiddle rfl rfl, if_congr hLater rfl rfl]
 
+/-- Frontier live-closure theorem. -/
 private theorem capPhaseMiddle_beforeConvex
     {A : FreshThirdQFiberThreeCarrierFiniteAssignment}
     (hRelational : FreshThirdQFiberThreeCarrierFiniteView.RelationalTheory A)
@@ -191,6 +200,7 @@ private theorem capPhaseMiddle_beforeConvex
     rw [hMiddle]
     exact hComplement
 
+/-- Frontier live-closure theorem. -/
 private theorem capPhase_mono_of_before
     {A : FreshThirdQFiberThreeCarrierFiniteAssignment}
     (hRelational : FreshThirdQFiberThreeCarrierFiniteView.RelationalTheory A)
@@ -224,6 +234,7 @@ private theorem capPhase_mono_of_before
         rw [hRightPhase]
         exact Fin.le_last _
 
+/-- Frontier live-closure theorem. -/
 private theorem inCap_iff_selected_threePhaseCapMembership
     (A : FreshThirdQFiberThreeCarrierFiniteAssignment)
     (cap : Fin 3) (point : PointRole) :

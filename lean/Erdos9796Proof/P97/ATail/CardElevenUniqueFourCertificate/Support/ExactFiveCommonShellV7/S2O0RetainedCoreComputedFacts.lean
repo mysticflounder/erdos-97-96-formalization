@@ -29,6 +29,7 @@ private instance (occurrence : ConvexFiveOccurrence) :
   unfold ConvexFiveOccurrence.Valid
   infer_instance
 
+/-- Exact-five common-shell V7 def. -/
 def s2O0ConvexFiveClauses : List (List Int) :=
   s2O0RetainedRenderedClauses .convexFive fun index =>
     renderConvexFiveOccurrence (convexFiveOccurrenceAt index)

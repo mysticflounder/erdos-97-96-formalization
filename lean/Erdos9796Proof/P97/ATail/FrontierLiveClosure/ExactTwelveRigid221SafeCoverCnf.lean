@@ -58,10 +58,13 @@ def candTable : List (List Nat) :=
     ((combos 4 ((List.range 12).filter fun q => q != p)).map maskOf).filter
       (safeCandidateOkB p)
 
+/-- Frontier live-closure def. -/
 def candMasks (p : Nat) : List Nat := candTable.getD p []
 
+/-- Frontier live-closure def. -/
 def candCounts : List Nat := candTable.map List.length
 
+/-- Frontier live-closure def. -/
 def candCount (p : Nat) : Nat := candCounts.getD p 0
 
 /-- Total number of candidate-choice variables. -/
@@ -70,6 +73,7 @@ def nX : Nat := candCounts.sum
 /-- First one-based candidate-choice variable for center `p`. -/
 def xOffset (p : Nat) : Nat := 1 + (candCounts.take p).sum
 
+/-- Frontier live-closure def. -/
 def xVar (p i : Nat) : Nat := xOffset p + i
 
 /-- Base variable count immediately before the one-hot Sinz block at `p`. -/
@@ -116,13 +120,17 @@ def c4ClauseStep (acc : Nat × List (List Int)) (pq : Nat × Nat) :
 def c4Fold : Nat × List (List Int) :=
   allPairs.foldl c4ClauseStep (nX + nX, ([] : List (List Int)))
 
+/-- Frontier live-closure def. -/
 def c4Clauses : List (List Int) := c4Fold.2
 
+/-- Frontier live-closure def. -/
 def baseNumVars : Nat := c4Fold.1
 
+/-- Frontier live-closure def. -/
 def baseDimacs : List (List Int) :=
   onehotClauses ++ c2Clauses ++ c4Clauses
 
+/-- Frontier live-closure def. -/
 def baseCnf : Std.Sat.CNF Nat :=
   ⟨(baseDimacs.map fun c => c.map toLit).toArray⟩
 
@@ -143,17 +151,22 @@ theorem encodingAnchors :
     c2Clauses.length = 268031 := by
   native_decide
 
+/-- Frontier live-closure theorem. -/
 theorem candCounts_eq :
     candCounts = [53, 101, 20, 322, 322, 322, 314, 314, 314, 314, 322, 322] :=
   encodingAnchors.1
 
+/-- Frontier live-closure theorem. -/
 theorem nX_eq : nX = 3040 := encodingAnchors.2.1
 
+/-- Frontier live-closure theorem. -/
 theorem baseNumVars_eq : baseNumVars = 42560 := encodingAnchors.2.2.1
 
+/-- Frontier live-closure theorem. -/
 theorem baseDimacs_length : baseDimacs.length = 368075 :=
   encodingAnchors.2.2.2.1
 
+/-- Frontier live-closure theorem. -/
 theorem c2Clauses_length : c2Clauses.length = 268031 :=
   encodingAnchors.2.2.2.2
 

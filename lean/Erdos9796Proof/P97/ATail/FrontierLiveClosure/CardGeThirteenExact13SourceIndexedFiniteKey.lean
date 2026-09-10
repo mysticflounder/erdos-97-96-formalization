@@ -45,9 +45,11 @@ deriving DecidableEq, Fintype
 
 attribute [irreducible] instFintypeKey
 
+/-- Frontier live-closure def. -/
 def orderIndex (o : Bool) : Fin 13 → Fin 13 :=
   if o then mirrorIndex .secondOpposite else directIndex .secondOpposite
 
+/-- Frontier live-closure def. -/
 def rawOrder (o : Bool) : List (Fin 13) :=
   if o then mirrorOrder .secondOpposite else directOrder .secondOpposite
 
@@ -55,6 +57,7 @@ def rawOrder (o : Bool) : List (Fin 13) :=
 def Key.rawSupport (k : Key) (j : Exact13Provider) : Finset (Fin 13) :=
   Finset.univ.filter fun x => orderIndex k.orientation x ∈ k.supportOf j
 
+/-- Frontier live-closure def. -/
 def Key.CenterValid (k : Key) : Prop :=
   k.centerOf .k = orderIndex k.orientation secondApex ∧
   k.centerOf .l = orderIndex k.orientation secondApex ∧
@@ -69,6 +72,7 @@ def Key.CenterValid (k : Key) : Prop :=
       if c.1 = b0 ∨ c.1 = b1 then k.rawSupport (.g c) = ∅
       else (k.rawSupport (.g c)).card = 4
 
+/-- Frontier live-closure def. -/
 def Key.RowValid (k : Key) : Prop :=
   (∀ j, k.centerOf j ∉ k.supportOf j) ∧
   (k.rawSupport .c0).card = 4 ∧ (k.rawSupport .c1).card = 4 ∧
@@ -81,6 +85,7 @@ def Key.RowValid (k : Key) : Prop :=
   (k.rawSupport .c0 ∪ k.rawSupport .c1) ∪ k.rawSupport .k =
     Finset.univ.erase k.z
 
+/-- Frontier live-closure def. -/
 def Key.CoarseValid (k : Key) : Prop :=
   let J := secondOppositeInterior .secondOpposite
   k.z ∈ J ∧ k.z ∈ k.rawSupport .l ∧ k.z ∉ k.rawSupport .k ∧
@@ -90,6 +95,7 @@ def Key.CoarseValid (k : Key) : Prop :=
   (k.rawSupport .c0 ∩ k.rawSupport .l).card ≤ 2 ∧
   (k.rawSupport .c1 ∩ k.rawSupport .l).card ≤ 2
 
+/-- Frontier live-closure def. -/
 def Key.RoleValid (k : Key) : Prop :=
   ∃ s0 s1 d : Fin 13, s0 ≠ s1 ∧
     s0 ∈ k.rawSupport .c0 ∧ s1 ∈ k.rawSupport .c1 ∧
@@ -97,6 +103,7 @@ def Key.RoleValid (k : Key) : Prop :=
     d ∈ k.rawSupport .t ∧ d ∉ k.rawSupport .c0 ∧ d ∉ k.rawSupport .c1 ∧
     (d = k.z ∨ d ∈ k.rawSupport .k)
 
+/-- Frontier live-closure def. -/
 def Key.OccurrenceValid (k : Key) : Prop :=
   let L := k.rawSupport .l
   let U := Finset.univ \ (k.rawSupport .k ∪ L ∪ {secondApex})
@@ -112,6 +119,7 @@ def Key.OccurrenceValid (k : Key) : Prop :=
     ((C = k.rawSupport .c0 ∧ k.rawSupport k.other = k.rawSupport .c1) ∨
       (C = k.rawSupport .c1 ∧ k.rawSupport k.other = k.rawSupport .c0))
 
+/-- Frontier live-closure def. -/
 def Key.OrderValid (k : Key) : Prop :=
   (rawOrder k.orientation).map (orderIndex k.orientation) = List.ofFn id ∧
   (rawOrder k.orientation).Pairwise
@@ -131,9 +139,11 @@ instance (k : Key) : Decidable k.Valid := by
 /-- The finite valid domain is defined without enumerating it during compilation. -/
 @[irreducible] def validKeys : Finset Key := Finset.univ.filter Key.Valid
 
+/-- Frontier live-closure theorem. -/
 theorem mem_validKeys_iff (k : Key) : k ∈ validKeys ↔ k.Valid := by
   simp only [validKeys, Finset.mem_filter, Finset.mem_univ, true_and]
 
+/-- Frontier live-closure def. -/
 noncomputable def ofInput (I : Input) (j : Exact13Provider) (a b : Fin 13)
     (o : Bool) : Key where
   centerOf := I.positionalPattern.centerOf
@@ -144,10 +154,12 @@ noncomputable def ofInput (I : Input) (j : Exact13Provider) (a b : Fin 13)
   b := b
   other := j
 
+/-- Frontier live-closure theorem. -/
 private theorem source_index (I : Input) (o : Bool) (ho : sourceOrderValid I o) :
     I.P.idx = orderIndex o := by
   cases o <;> simpa [sourceOrderValid, orderIndex, I.coarse.profile_eq_secondOpposite] using ho
 
+/-- Frontier live-closure theorem. -/
 private theorem rawSupport_ofInput (I : Input) (j : Exact13Provider)
     (a b : Fin 13) (o : Bool) (ho : sourceOrderValid I o) (p : Exact13Provider) :
     (ofInput I j a b o).rawSupport p = I.providerPattern.supportOf p := by
@@ -164,12 +176,14 @@ private theorem rawSupport_ofInput (I : Input) (j : Exact13Provider)
   · intro hx
     exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem row_raw_card {I : Input} {c : Fin 13} {S : Finset ℝ²} {r : ℝ}
     (V : PositionalFourSupportRow I.P c S r) : V.rawSupport.card = 4 := by
   have h := V.card_eq_four
   rw [V.support_eq, Finset.card_image_of_injective _ I.P.boundaryEnumeration.idx_injective] at h
   exact h
 
+/-- Frontier live-closure theorem. -/
 private theorem row_raw_center {I : Input} {c : Fin 13} {S : Finset ℝ²} {r : ℝ}
     (V : PositionalFourSupportRow I.P c S r) : c ∉ V.rawSupport := by
   intro h
@@ -177,6 +191,7 @@ private theorem row_raw_center {I : Input} {c : Fin 13} {S : Finset ℝ²} {r : 
   rw [V.support_eq]
   exact Finset.mem_image.mpr ⟨c, h, rfl⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem source_raw_center (I : Input) (j : Exact13Provider) :
     I.providerPattern.centerOf j ∉ I.providerPattern.supportOf j := by
   cases j with
@@ -196,6 +211,7 @@ private theorem source_raw_center (I : Input) (j : Exact13Provider) :
     · simp
     · exact Exact13GlobalRows.raw_center_not_mem I.P I.globalRows c
 
+/-- Frontier live-closure theorem. -/
 private theorem center_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
     (o : Bool) (ho : sourceOrderValid I o) : (ofInput I j a b o).CenterValid := by
   unfold Key.CenterValid
@@ -220,6 +236,7 @@ private theorem center_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
     · simp [guardedGlobalSupport, hc]
     · simpa [guardedGlobalSupport, hc] using row_raw_card (I.globalRows.row c).2
 
+/-- Frontier live-closure theorem. -/
 private theorem row_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
     (o : Bool) (ho : sourceOrderValid I o) : (ofInput I j a b o).RowValid := by
   unfold Key.RowValid
@@ -236,6 +253,7 @@ private theorem row_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
   obtain ⟨x, hx, heq⟩ := Finset.mem_image.mp hp
   exact source_raw_center I p (I.P.boundaryEnumeration.idx_injective heq ▸ hx)
 
+/-- Frontier live-closure theorem. -/
 private theorem coarse_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
     (o : Bool) (ho : sourceOrderValid I o) : (ofInput I j a b o).CoarseValid := by
   unfold Key.CoarseValid
@@ -244,6 +262,7 @@ private theorem coarse_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
     I.coarse.slice_partition, I.coarse.slice_cards,
     I.coarse.C0raw_Lraw_inter_card_le_two, I.coarse.C1raw_Lraw_inter_card_le_two⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem role_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
     (o : Bool) (ho : sourceOrderValid I o) : (ofInput I j a b o).RoleValid := by
   unfold Key.RoleValid
@@ -254,6 +273,7 @@ private theorem role_valid (I : Input) (j : Exact13Provider) (a b : Fin 13)
     I.sourceRole.d_mem_firstApex, I.sourceRole.d_not_C0, I.sourceRole.d_not_C1,
     I.sourceRole.d_z_or_K⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem order_valid (k : Key) : k.OrderValid := by
   cases ho : k.orientation
   · exact ⟨by simpa [Key.OrderValid, rawOrder, orderIndex, ho] using
@@ -293,6 +313,7 @@ theorem exists_valid_key (I : Input) :
   exact ⟨center_valid I j a b o ho, row_valid I j a b o ho,
       coarse_valid I j a b o ho, role_valid I j a b o ho, hocc, order_valid _⟩
 
+/-- Frontier live-closure theorem. -/
 theorem exists_mem_validKeys (I : Input) :
     ∃ k ∈ validKeys, k.centerOf = I.positionalPattern.centerOf ∧
       k.supportOf = I.positionalPattern.supportOf ∧ sourceOrderValid I k.orientation := by

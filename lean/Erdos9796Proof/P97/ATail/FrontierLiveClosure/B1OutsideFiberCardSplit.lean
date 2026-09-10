@@ -74,6 +74,7 @@ theorem freshOutsideFirst_otherOutsidePoint_mem_actualBlockerFiber_of_card_eq_fo
   rw [hsource_eq'] at hsource
   simpa [anchor, other] using hsource
 
+/-- Frontier live-closure theorem. -/
 private theorem freshOutsideFirst_four_distinct_sources
     (Q : FreshOutsideFirstBlockerFiber P Pρ) :
     ({(⟨P.source₁, P.source₁_mem_A⟩ :

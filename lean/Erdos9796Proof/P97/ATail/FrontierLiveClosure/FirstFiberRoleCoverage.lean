@@ -37,6 +37,7 @@ namespace FirstFiberRoleCoverage
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure theorem. -/
 private theorem firstFiberRole_oppApex1_mem_A
     {D : CounterexampleData} {S : SurplusCapPacket D.A} :
     S.oppApex1 ∈ D.A := by
@@ -46,6 +47,7 @@ private theorem firstFiberRole_oppApex1_mem_A
   · simp only [SurplusCapPacket.oppApex1, hi]; exact S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem firstFiberRole_oppApex2_mem_A
     {D : CounterexampleData} {S : SurplusCapPacket D.A} :
     S.oppApex2 ∈ D.A := by
@@ -55,6 +57,7 @@ private theorem firstFiberRole_oppApex2_mem_A
   · simp only [SurplusCapPacket.oppApex2, hi]; exact S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- Frontier live-closure theorem. -/
 private theorem firstFiberRole_surplusApex_mem_A
     {D : CounterexampleData} {S : SurplusCapPacket D.A} :
     S.surplusApex ∈ D.A := by

@@ -40,16 +40,19 @@ def CommonFiveOrientationAt (position : Label → Nat)
   (CyclicTripleAt position a x b ∧ CyclicTripleAt position b c y) ∨
     (CyclicTripleAt position a b x ∧ CyclicTripleAt position b y c)
 
+/-- Frontier live-closure theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
   ring
 
+/-- Frontier live-closure theorem. -/
 private theorem signedArea2_rotate (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]
   ring
 
+/-- Frontier live-closure theorem. -/
 private theorem signedArea2_neg_of_cyclic
     {n : Nat} {boundary : Fin n → ℝ²}
     (hinjective : Function.Injective boundary)
@@ -65,6 +68,7 @@ private theorem signedArea2_neg_of_cyclic
   · rw [signedArea2_rotate, signedArea2_rotate]
     exact hneg_of_ccw hinjective hccw hki.1 hki.2
 
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.signedArea2_neg_of_cyclicTripleAt
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {a b c : Label} (hcyclic : CyclicTripleAt order.position a b c) :
@@ -73,6 +77,7 @@ theorem FrozenBoundaryOrder.signedArea2_neg_of_cyclicTripleAt
   apply signedArea2_neg_of_cyclic order.boundary_injective order.boundary_ccw
   exact hcyclic
 
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.signedArea2_pos_of_reverseCyclicTripleAt
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {a b c : Label} (hcyclic : CyclicTripleAt order.position a c b) :

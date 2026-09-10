@@ -88,6 +88,7 @@ def reindexRowPattern {α β : Type*} [DecidableEq β]
     (e : α ≃ β) (P : RowPattern α) : RowPattern β :=
   fun center => (P (e.symm center)).map e.toEmbedding
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem mem_reindexRowPattern_iff
     {α β : Type*} [DecidableEq β] (e : α ≃ β) (P : RowPattern α)
     (center point : β) :
@@ -114,6 +115,7 @@ theorem realizes_reindexRowPattern
 def reindexEdge {α β : Type*} (e : α ≃ β) : Edge α → Edge β
   | (first, second) => (e first, e second)
 
+/-- Frontier live-closure theorem. -/
 @[simp] theorem reindexEdge_symm_apply
     {α β : Type*} (e : α ≃ β) (edge : Edge β) :
     reindexEdge e.symm edge = (e.symm edge.1, e.symm edge.2) := by
@@ -207,6 +209,7 @@ noncomputable def allRowChoices {α : Type*} [Fintype α] [DecidableEq α]
   Finset.univ.toList.map fun center =>
     { center := center, support := P center }
 
+/-- Frontier live-closure theorem. -/
 theorem rowsMatch_allRowChoices
     {α : Type*} [Fintype α] [DecidableEq α] (P : RowPattern α) :
     RowsMatch P (allRowChoices P) := by
@@ -221,11 +224,13 @@ inductive PrimitiveEqualityStep (α : Type*) where
   | flip (first second : α)
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def PrimitiveEqualityStep.source {α : Type*} :
     PrimitiveEqualityStep α → Edge α
   | .row center first _ => (center, first)
   | .flip first second => (first, second)
 
+/-- Frontier live-closure def. -/
 def PrimitiveEqualityStep.target {α : Type*} :
     PrimitiveEqualityStep α → Edge α
   | .row center _ second => (center, second)
@@ -263,6 +268,7 @@ def checkPath {α : Type*} [DecidableEq α]
   (decide (path.first = first) && decide (path.last = last)) &&
     checkStepChain choices path.first path.steps path.last
 
+/-- Frontier live-closure theorem. -/
 theorem edgeClosure_of_checkPrimitiveStep
     {α : Type*} [DecidableEq α] {P : RowPattern α}
     {choices : List (RowChoice α)} (hrows : RowsMatch P choices)
@@ -309,6 +315,7 @@ theorem edgeClosure_of_checkPrimitiveStep_positive
   | flip first second =>
       exact EdgeClosure.flip first second
 
+/-- Frontier live-closure theorem. -/
 theorem edgeClosure_of_checkStepChain
     {α : Type*} [DecidableEq α] {P : RowPattern α}
     {choices : List (RowChoice α)} (hrows : RowsMatch P choices)
@@ -329,6 +336,7 @@ theorem edgeClosure_of_checkStepChain
         (edgeClosure_of_checkPrimitiveStep hrows step hstep)
         (ih htail)
 
+/-- Frontier live-closure theorem. -/
 theorem edgeClosure_of_checkStepChain_positive
     {α : Type*} [DecidableEq α] {P : RowPattern α}
     {choices : List (RowChoice α)} (hrows : PositiveRowsMatch P choices)
@@ -349,6 +357,7 @@ theorem edgeClosure_of_checkStepChain_positive
         (edgeClosure_of_checkPrimitiveStep_positive hrows step hstep)
         (ih htail)
 
+/-- Frontier live-closure theorem. -/
 theorem edgeClosure_of_checkPath
     {α : Type*} [DecidableEq α] {P : RowPattern α}
     {choices : List (RowChoice α)} (hrows : RowsMatch P choices)
@@ -361,6 +370,7 @@ theorem edgeClosure_of_checkPath
   subst last
   exact edgeClosure_of_checkStepChain hrows hsteps
 
+/-- Frontier live-closure theorem. -/
 theorem edgeClosure_of_checkPath_positive
     {α : Type*} [DecidableEq α] {P : RowPattern α}
     {choices : List (RowChoice α)} (hrows : PositiveRowsMatch P choices)
@@ -389,19 +399,23 @@ structure OrderedQuadData (α : Type*) where
   d : α
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def OrderedQuadData.leftEdge0 {α : Type*}
     (q : OrderedQuadData α) : KalmansonForm → Edge α
   | .adjacentSides => (q.a, q.b)
   | .innerOuter => (q.b, q.c)
 
+/-- Frontier live-closure def. -/
 def OrderedQuadData.leftEdge1 {α : Type*}
     (q : OrderedQuadData α) : KalmansonForm → Edge α
   | .adjacentSides => (q.c, q.d)
   | .innerOuter => (q.a, q.d)
 
+/-- Frontier live-closure def. -/
 def OrderedQuadData.rightEdge0 {α : Type*}
     (q : OrderedQuadData α) : Edge α := (q.a, q.c)
 
+/-- Frontier live-closure def. -/
 def OrderedQuadData.rightEdge1 {α : Type*}
     (q : OrderedQuadData α) : Edge α := (q.b, q.d)
 
@@ -413,6 +427,7 @@ structure Permutation4Data where
   image3 : Fin 4
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def Permutation4Data.apply (p : Permutation4Data) : Fin 4 → Fin 4 :=
   ![p.image0, p.image1, p.image2, p.image3]
 
@@ -422,6 +437,7 @@ def Permutation4Data.check (p : Permutation4Data) : Bool :=
     p.image0 ≠ p.image3 ∧ p.image1 ≠ p.image2 ∧
     p.image1 ≠ p.image3 ∧ p.image2 ≠ p.image3)
 
+/-- Frontier live-closure theorem. -/
 theorem Permutation4Data.sum_comp_eq_of_check
     (p : Permutation4Data) (f : Fin 4 → ℝ)
     (hcheck : p.check = true) :
@@ -447,6 +463,7 @@ structure TwoKalmansonCancellationData (α : Type*) where
   path3 : ClosurePathData α
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def TwoKalmansonCancellationData.leftEdge {α : Type*}
     (data : TwoKalmansonCancellationData α) : Fin 4 → Edge α :=
   ![data.firstQuad.leftEdge0 data.firstForm,
@@ -454,6 +471,7 @@ def TwoKalmansonCancellationData.leftEdge {α : Type*}
     data.secondQuad.leftEdge0 data.secondForm,
     data.secondQuad.leftEdge1 data.secondForm]
 
+/-- Frontier live-closure def. -/
 def TwoKalmansonCancellationData.rightEdge {α : Type*}
     (data : TwoKalmansonCancellationData α) : Fin 4 → Edge α :=
   ![data.firstQuad.rightEdge0, data.firstQuad.rightEdge1,
@@ -572,21 +590,25 @@ structure WeightedKalmansonTerm (α : Type*) where
   weight : ℕ
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def WeightedKalmansonTerm.leftEdges {α : Type*}
     (term : WeightedKalmansonTerm α) : List (Edge α) :=
   List.replicate term.weight (term.quad.leftEdge0 term.form) ++
     List.replicate term.weight (term.quad.leftEdge1 term.form)
 
+/-- Frontier live-closure def. -/
 def WeightedKalmansonTerm.rightEdges {α : Type*}
     (term : WeightedKalmansonTerm α) : List (Edge α) :=
   List.replicate term.weight term.quad.rightEdge0 ++
     List.replicate term.weight term.quad.rightEdge1
 
+/-- Frontier live-closure def. -/
 def WeightedKalmansonTerm.check {n : ℕ}
     (term : WeightedKalmansonTerm (Fin n)) : Bool :=
   decide (term.quad.a < term.quad.b ∧ term.quad.b < term.quad.c ∧
     term.quad.c < term.quad.d ∧ 0 < term.weight)
 
+/-- Frontier live-closure theorem. -/
 theorem WeightedKalmansonTerm.sum_lt
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {boundary : Fin n → ℝ²}
@@ -623,14 +645,17 @@ structure WeightedKalmansonCancellationData (α : Type*) where
   pairings : List (WeightedEdgePairingData α)
 deriving DecidableEq, Repr
 
+/-- Frontier live-closure def. -/
 def WeightedKalmansonCancellationData.leftEdges {α : Type*}
     (data : WeightedKalmansonCancellationData α) : List (Edge α) :=
   data.terms.flatMap WeightedKalmansonTerm.leftEdges
 
+/-- Frontier live-closure def. -/
 def WeightedKalmansonCancellationData.rightEdges {α : Type*}
     (data : WeightedKalmansonCancellationData α) : List (Edge α) :=
   data.terms.flatMap WeightedKalmansonTerm.rightEdges
 
+/-- Frontier live-closure def. -/
 def WeightedKalmansonCancellationData.Valid {n : ℕ}
     (choices : List (RowChoice (Fin n)))
     (data : WeightedKalmansonCancellationData (Fin n)) : Prop :=
@@ -654,6 +679,7 @@ def WeightedKalmansonCancellationData.check {n : ℕ}
   data.pairings.all (fun pairing =>
     checkPath choices pairing.path pairing.left pairing.right)
 
+/-- Frontier live-closure theorem. -/
 theorem WeightedKalmansonCancellationData.valid_of_check {n : ℕ}
     (choices : List (RowChoice (Fin n)))
     (data : WeightedKalmansonCancellationData (Fin n))
@@ -664,6 +690,7 @@ theorem WeightedKalmansonCancellationData.valid_of_check {n : ℕ}
   rcases hcheck with ⟨⟨⟨⟨hne, hterms⟩, hleft⟩, hright⟩, hpairings⟩
   exact ⟨hne, hterms, hleft, hright, hpairings⟩
 
+/-- Frontier live-closure theorem. -/
 theorem sum_lt_of_weightedKalmansonTerms
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {boundary : Fin n → ℝ²}
@@ -690,6 +717,7 @@ theorem sum_lt_of_weightedKalmansonTerms
         simp only [List.flatMap_cons, List.map_append, List.sum_append]
         linarith
 
+/-- Frontier live-closure theorem. -/
 theorem sum_weightedEdgePairings_eq
     {n : ℕ} {boundary : Fin n → ℝ²} {P : RowPattern (Fin n)}
     (hreal : Realizes P boundary)
@@ -766,6 +794,7 @@ structure DuplicateCenterData (α : Type*) where
   bp_br : ClosurePathData α
 deriving DecidableEq
 
+/-- Frontier live-closure def. -/
 def DuplicateCenterData.check {α : Type*} [DecidableEq α]
     (choices : List (RowChoice α)) (data : DuplicateCenterData α) : Bool :=
   decide (data.p ≠ data.q ∧ data.p ≠ data.r ∧
@@ -898,6 +927,7 @@ def DuplicateCenterNogood.fourSupportedCheck {α : Type*} [DecidableEq α]
     (nogood : DuplicateCenterNogood α) : Bool :=
   nogood.choices.all fun choice => decide (choice.support.card = 4)
 
+/-- Frontier live-closure theorem. -/
 theorem DuplicateCenterNogood.fourSupported_of_check
     {α : Type*} [DecidableEq α] (nogood : DuplicateCenterNogood α)
     (hcheck : nogood.fourSupportedCheck = true) :

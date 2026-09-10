@@ -230,23 +230,28 @@ theorem allKilled_eq_false_of_semanticTrace
             exact Bool.eq_false_iff.mp hbranch
           simpa [allKilled, hprefix, hsort] using hallFalse
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 theorem labels_nodup : labels.Nodup := by
   decide
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 theorem label_lt_eleven {center : Nat} (hcenter : center ∈ labels) :
     center < 11 := by
   simpa [labels] using hcenter
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 theorem variableCenters_nodup :
     ATailAlignedP5MirrorNativeClassifierScratch.variableCenters.Nodup := by
   decide
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 theorem variableCenter_lt_eleven {center : Nat}
     (hcenter : center ∈ ATailAlignedP5MirrorNativeClassifierScratch.variableCenters) :
     center < 11 := by
   simp [ATailAlignedP5MirrorNativeClassifierScratch.variableCenters] at hcenter
   omega
 
+/-- Supports the aligned P5 mirror-occurrence classification. -/
 theorem variableCenter_ne_zero {center : Nat}
     (hcenter : center ∈ ATailAlignedP5MirrorNativeClassifierScratch.variableCenters) :
     center ≠ 0 := by

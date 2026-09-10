@@ -72,6 +72,7 @@ def mirrorIndex : Label → Label := fun i => -i
 
 @[simp] theorem mirrorIndex_zero : mirrorIndex 0 = 0 := by decide
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 theorem mirrorIndex_injective : Function.Injective mirrorIndex :=
   fun _ _ h => neg_injective h
 
@@ -229,6 +230,7 @@ def ExactTwoStrictHitsAtLeastTwoSat
 
 /-- Family `exact_two_left_adjacent_hit_at_least_1`: the surplus closed cap
 (the encoder's LEFT adjacent cap, CNF positions `{0,…,4}`) contains a
+/-- Supports the indexed exact-two-source valuation bridge. -/
 class hit.  The Lean-side distribution field with this content is the
 CROSSED-named `right_adjacent_hit_eq_one`. -/
 def ExactTwoLeftAdjacentHitAtLeastOneSat
@@ -343,6 +345,7 @@ def VerifiedKalmansonOrderSchemaCutSat
 
 /-- Full dense-formula satisfaction: one field per retained family of the
 selected p5 formula, each quantified over the family's full emittable
+/-- Supports the indexed exact-two-source valuation bridge. -/
 instance set (families `seeded_full_linear_kalmanson_cut` and
 `verified_kalmanson_order_schema_cut` over the retained schema/orientation
 set).  A record of this structure together with the authenticated trimmed

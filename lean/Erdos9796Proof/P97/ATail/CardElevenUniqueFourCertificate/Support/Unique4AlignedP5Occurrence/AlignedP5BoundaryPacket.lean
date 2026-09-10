@@ -108,8 +108,10 @@ occupies positions `8,9,10`. -/
 def mirrorSurplusInteriorIndex (i : Fin 3) : Fin 11 :=
   ⟨8 + i, by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def reverseFin2 (i : Fin 2) : Fin 2 := ⟨1 - i, by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def reverseFin3 (i : Fin 3) : Fin 3 := ⟨2 - i, by omega⟩
 
 @[simp] theorem image_firstOppositeInteriorIndex :
@@ -172,6 +174,7 @@ theorem firstOppositeInterior_subset_exactClass
   have : x ∈ T ∩ I := by simpa [heq] using hx
   exact (Finset.mem_inter.mp this).1
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -179,6 +182,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -187,6 +191,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -195,6 +200,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
     (hji : j ≠ i) :
@@ -203,6 +209,7 @@ private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
   rw [← Card11SelectedCube.apexAt_eq_oppositeVertexByIndex]
   exact apexAt_mem_capAt_of_ne S.partition hji
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem oppApex1_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -212,6 +219,7 @@ private theorem oppApex1_eq_indexedVertex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem oppApex2_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -286,6 +294,7 @@ structure DirectAlignedBoundary
 
 namespace DirectAlignedBoundary
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem oppApex1_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -295,6 +304,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem oppApex2_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -304,6 +314,7 @@ private theorem oppApex2_eq_oppositeVertexByIndex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem capInteriorByIndex_eq_capInteriorAt
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.capInteriorByIndex i =
@@ -316,21 +327,25 @@ def boundary {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) : Fin 11 → ℝ² :=
   fun i => B.direct.boundary (i + 3)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def surplusInteriorLabel
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 3) : Fin 11 :=
   ⟨3 + B.direct.order.2.1.symm i, by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def firstOppositeInteriorLabel
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 3) : Fin 11 :=
   ⟨6 + B.direct.order.2.2.symm i, by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def secondOppositeInteriorLabel
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 2) : Fin 11 :=
   ⟨9 + B.direct.order.1.symm i, by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem boundary_surplusInteriorIndex_eq
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 3) :
@@ -351,6 +366,7 @@ private theorem boundary_surplusInteriorIndex_eq
   congr 1
   fin_cases i <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem boundary_firstOppositeInteriorIndex_eq
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 3) :
@@ -372,6 +388,7 @@ private theorem boundary_firstOppositeInteriorIndex_eq
   congr 1
   fin_cases i <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem boundary_secondOppositeInteriorIndex_eq
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 2) :
@@ -393,17 +410,20 @@ private theorem boundary_secondOppositeInteriorIndex_eq
   congr 1
   fin_cases i <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_injective {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) :
     Function.Injective B.boundary :=
   injective_cyclicShift B.direct.boundary_injective 3
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_ccw {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) :
     EuclideanGeometry.IsCcwConvexPolygon B.boundary :=
   isCcwConvexPolygon_cyclicShift B.direct.boundary_injective
     B.direct.boundary_ccw 3
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) :
     Finset.univ.image B.boundary = A := by
@@ -424,6 +444,7 @@ theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
       ⟨card11IndexEquiv B.direct.order label, Finset.mem_univ _,
         B.direct.point_eq label⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_zero {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) :
     B.boundary 0 = S.oppApex1 := by
@@ -438,6 +459,7 @@ theorem boundary_zero {A : Finset ℝ²} {S : SurplusCapPacket A}
   exact hpoint.trans (hlabel.trans
     (oppApex1_eq_oppositeVertexByIndex S).symm)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_four {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) :
     B.boundary 4 = S.oppApex2 := by
@@ -452,6 +474,7 @@ theorem boundary_four {A : Finset ℝ²} {S : SurplusCapPacket A}
   exact hpoint.trans (hlabel.trans
     (oppApex2_eq_oppositeVertexByIndex S).symm)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_eight {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) :
     B.boundary 8 = S.oppositeVertexByIndex S.surplusIdx := by
@@ -466,6 +489,7 @@ theorem boundary_eight {A : Finset ℝ²} {S : SurplusCapPacket A}
     S.oppositeVertexByIndex S.surplusIdx
   exact hpoint.trans hlabel
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_surplusInteriorIndex_mem
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 3) :
@@ -481,6 +505,7 @@ theorem boundary_surplusInteriorIndex_mem
   fin_cases j <;>
     simp [surplusInteriorLabel, hj, Card11Labeling.capSInteriorLabels]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_firstOppositeInteriorIndex_mem
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 3) :
@@ -497,6 +522,7 @@ theorem boundary_firstOppositeInteriorIndex_mem
     simp [firstOppositeInteriorLabel, hj,
       Card11Labeling.capO1InteriorLabels]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_secondOppositeInteriorIndex_mem
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectAlignedBoundary S) (i : Fin 2) :
@@ -529,32 +555,38 @@ def boundary {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) : Fin 11 → ℝ² :=
   fun i => B.mirror.boundary (i + 8)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def surplusInteriorLabel
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 3) : Fin 11 :=
   ⟨3 + B.mirror.order.2.1.symm (reverseFin3 i), by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def firstOppositeInteriorLabel
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 3) : Fin 11 :=
   ⟨6 + B.mirror.order.2.2.symm (reverseFin3 i), by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private def secondOppositeInteriorLabel
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 2) : Fin 11 :=
   ⟨9 + B.mirror.order.1.symm (reverseFin2 i), by omega⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_injective {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) :
     Function.Injective B.boundary :=
   injective_cyclicShift B.mirror.boundary_injective 8
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_ccw {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) :
     EuclideanGeometry.IsCcwConvexPolygon B.boundary :=
   isCcwConvexPolygon_cyclicShift B.mirror.boundary_injective
     B.mirror.boundary_ccw 8
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) :
     Finset.univ.image B.boundary = A := by
@@ -575,6 +607,7 @@ theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
       ⟨card11MirrorIndexEquiv B.mirror.order label, Finset.mem_univ _,
         B.mirror.point_eq label⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_zero {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) :
     B.boundary 0 = S.oppApex1 := by
@@ -589,6 +622,7 @@ theorem boundary_zero {A : Finset ℝ²} {S : SurplusCapPacket A}
   exact hpoint.trans (hlabel.trans
     (oppApex1_eq_indexedVertex S).symm)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_three {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) :
     B.boundary 3 = S.oppositeVertexByIndex S.surplusIdx := by
@@ -603,6 +637,7 @@ theorem boundary_three {A : Finset ℝ²} {S : SurplusCapPacket A}
     S.oppositeVertexByIndex S.surplusIdx
   exact hpoint.trans hlabel
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_seven {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) :
     B.boundary 7 = S.oppApex2 := by
@@ -617,6 +652,7 @@ theorem boundary_seven {A : Finset ℝ²} {S : SurplusCapPacket A}
   exact hpoint.trans (hlabel.trans
     (oppApex2_eq_indexedVertex S).symm)
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem boundary_surplusInteriorIndex_eq
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 3) :
@@ -647,6 +683,7 @@ private theorem boundary_surplusInteriorIndex_eq
   congr 1
   fin_cases i <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem boundary_firstOppositeInteriorIndex_eq
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 3) :
@@ -679,6 +716,7 @@ private theorem boundary_firstOppositeInteriorIndex_eq
   congr 1
   fin_cases i <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem boundary_secondOppositeInteriorIndex_eq
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 2) :
@@ -711,6 +749,7 @@ private theorem boundary_secondOppositeInteriorIndex_eq
   congr 1
   fin_cases i <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 private theorem capInteriorByIndex_eq_capInteriorAt
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.capInteriorByIndex i =
@@ -718,6 +757,7 @@ private theorem capInteriorByIndex_eq_capInteriorAt
         S.partition i := by
   fin_cases i <;> rfl
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_surplusInteriorIndex_mem
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 3) :
@@ -733,6 +773,7 @@ theorem boundary_surplusInteriorIndex_mem
   fin_cases j <;>
     simp [surplusInteriorLabel, hj, Card11Labeling.capSInteriorLabels]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_firstOppositeInteriorIndex_mem
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 3) :
@@ -749,6 +790,7 @@ theorem boundary_firstOppositeInteriorIndex_mem
     simp [firstOppositeInteriorLabel, hj,
       Card11Labeling.capO1InteriorLabels]
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_secondOppositeInteriorIndex_mem
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorAlignedBoundary S) (i : Fin 2) :
@@ -882,6 +924,7 @@ theorem nonempty_alignedP5BoundaryPacket_or_mirror
 
 namespace AlignedP5BoundaryPacket
 
+/-- Supports the aligned P5 occurrence analysis. -/
 abbrev boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -892,6 +935,7 @@ abbrev boundary
     (Q : AlignedP5BoundaryPacket R profile P) : Fin 11 → ℝ² :=
   Q.orientedBoundary.boundary
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_injective
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -903,6 +947,7 @@ theorem boundary_injective
     Function.Injective Q.boundary :=
   Q.orientedBoundary.boundary_injective
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_ccw
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -914,6 +959,7 @@ theorem boundary_ccw
     EuclideanGeometry.IsCcwConvexPolygon Q.boundary :=
   Q.orientedBoundary.boundary_ccw
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_image
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -942,6 +988,7 @@ noncomputable def boundaryIndexOf
     rcases Finset.mem_image.mp hmem with ⟨i, _hi, hpoint⟩
     exact ⟨i, hpoint⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_boundaryIndexOf
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -959,6 +1006,7 @@ theorem boundary_boundaryIndexOf
     rcases Finset.mem_image.mp hmem with ⟨i, _hi, hpoint⟩
     exact ⟨i, hpoint⟩
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundaryIndexOf_injective
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1016,6 +1064,7 @@ noncomputable def toShellBoundaryIndexing
   index_injective := Q.boundaryIndexOf_injective
   point_eq := Q.boundary_boundaryIndexOf
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_zero
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1027,6 +1076,7 @@ theorem boundary_zero
     Q.boundary 0 = S.oppApex1 :=
   Q.orientedBoundary.boundary_zero
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_four
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1038,6 +1088,7 @@ theorem boundary_four
     Q.boundary 4 = S.oppApex2 :=
   Q.orientedBoundary.boundary_four
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_eight
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1245,6 +1296,7 @@ end AlignedP5BoundaryPacket
 
 namespace AlignedP5MirrorBoundaryPacket
 
+/-- Supports the aligned P5 occurrence analysis. -/
 abbrev boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1255,6 +1307,7 @@ abbrev boundary
     (Q : AlignedP5MirrorBoundaryPacket R profile P) : Fin 11 → ℝ² :=
   Q.orientedBoundary.boundary
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_injective
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1266,6 +1319,7 @@ theorem boundary_injective
     Function.Injective Q.boundary :=
   Q.orientedBoundary.boundary_injective
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_ccw
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1277,6 +1331,7 @@ theorem boundary_ccw
     EuclideanGeometry.IsCcwConvexPolygon Q.boundary :=
   Q.orientedBoundary.boundary_ccw
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_image
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1288,6 +1343,7 @@ theorem boundary_image
     Finset.univ.image Q.boundary = D.A :=
   Q.orientedBoundary.boundary_image
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_zero
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1299,6 +1355,7 @@ theorem boundary_zero
     Q.boundary 0 = S.oppApex1 :=
   Q.orientedBoundary.boundary_zero
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_three
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1310,6 +1367,7 @@ theorem boundary_three
     Q.boundary 3 = S.oppositeVertexByIndex S.surplusIdx :=
   Q.orientedBoundary.boundary_three
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem boundary_seven
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1381,6 +1439,7 @@ theorem carrierLabelAt_firstOppositeInteriorIndex_mem_rowPattern
   rw [Q.firstApex_row_eq]
   exact Q.boundary_firstOppositeInteriorIndex_mem_exactClass i
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem mirrorSecondOppositeClosedIndices_image
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1415,6 +1474,7 @@ theorem mirrorSecondOppositeClosedIndices_image
       Finset.card_image_of_injective _ Q.boundary_injective]
     decide
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem mirrorFirstOppositeClosedIndices_image
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -1453,6 +1513,7 @@ theorem mirrorFirstOppositeClosedIndices_image
       Finset.card_image_of_injective _ Q.boundary_injective]
     decide
 
+/-- Supports the aligned P5 occurrence analysis. -/
 theorem mirrorSurplusClosedIndices_image
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

@@ -326,6 +326,7 @@ structure SixPointFiveCircleCollisionCoreC {alpha : Type*} (P : RowPattern alpha
   CO_CE : EdgeClosure P (C, O) (C, E)
   FA_FE : EdgeClosure P (F, A) (F, E)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem collision_of_coreA
     {alpha : Type*} {P : RowPattern alpha} {pointOf : alpha → ℝ²}
     (hreal : Realizes P pointOf) (core : SixPointFiveCircleCollisionCoreA P) :
@@ -343,6 +344,7 @@ private theorem collision_of_coreA
     (by simpa [edgeDist] using sound core.EO_EF)
     (by simpa [edgeDist] using sound core.FO_FA)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem collision_of_coreB
     {alpha : Type*} {P : RowPattern alpha} {pointOf : alpha → ℝ²}
     (hreal : Realizes P pointOf) (core : SixPointFiveCircleCollisionCoreB P) :
@@ -360,6 +362,7 @@ private theorem collision_of_coreB
     (by simpa [edgeDist] using sound core.FA_FE)
     (by simpa [edgeDist] using sound core.FA_FC)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem collision_of_coreC
     {alpha : Type*} {P : RowPattern alpha} {pointOf : alpha → ℝ²}
     (hreal : Realizes P pointOf) (core : SixPointFiveCircleCollisionCoreC P) :

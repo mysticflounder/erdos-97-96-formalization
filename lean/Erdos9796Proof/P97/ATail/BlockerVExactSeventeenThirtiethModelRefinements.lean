@@ -26,9 +26,11 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailBlockerVExactSeventeenTwentyNinthModelRefinements
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 [
   { hits := [(0, 5), (0, 9), (5, 9), (5, 16), (13, 5), (13, 16)]
@@ -1157,20 +1159,25 @@ def cancellationOccurrences : List CancellationOccurrence :=
       path3 := ⟨(0, 12), [.row 0 12 3, .flip 0 3, .row 3 0 10], (3, 10)⟩ } }]
 
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 40 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def thirtiethModelRefinementClauses : Std.Sat.CNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem thirtiethModelRefinementClauses_length :
     thirtiethModelRefinementClauses.length = 160 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_thirtiethModelRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ thirtiethModelRefinementClauses,
@@ -1185,14 +1192,17 @@ theorem sourceAssign_thirtiethModelRefinementClauses {A : Finset ℝ²}
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def extendedThirtiethModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedTwentyNinthModelRefinementsCnf ++
     thirtiethModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedThirtiethModelRefinementsCnf_length :
     extendedThirtiethModelRefinementsCnf.length = 5846904 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtiethModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -1206,6 +1216,7 @@ theorem sourceAssign_extendedThirtiethModelRefinementsCnf {A : Finset ℝ²}
     exact h clause hparent
   · exact sourceAssign_thirtiethModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedThirtiethModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,

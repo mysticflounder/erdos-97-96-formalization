@@ -61,6 +61,7 @@ theorem litSat_of_litHolds {val : ℕ → Prop} {lit : ℤ} (hlit : lit ≠ 0)
     rw [hnat]
     exact h
 
+/-- Frontier live-closure theorem. -/
 theorem clauseSat_of_clauseHolds {val : ℕ → Prop} {clause : List ℤ}
     (hnz : ∀ lit ∈ clause, lit ≠ 0) (h : clauseHolds val clause) :
     clauseSat val clause := by

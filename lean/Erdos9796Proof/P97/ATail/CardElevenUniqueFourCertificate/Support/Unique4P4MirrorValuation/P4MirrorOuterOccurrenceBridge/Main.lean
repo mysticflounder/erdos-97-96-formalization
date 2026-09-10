@@ -14,6 +14,7 @@ open ATailUniqueFourExactTwoBoundaryScratch
 open P4DirectOuterArcAdapterScratch
 
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem membership_var_pos {n : Nat} {atom : MembershipAtom}
     (h : atomOfVar n = .membership atom) : 1 ≤ n := by
   by_contra hn
@@ -21,6 +22,7 @@ theorem membership_var_pos {n : Nat} {atom : MembershipAtom}
   subst n
   simp [atomOfVar, atomOfVarBlock00] at h
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem row_var_pos {n : Nat} {atom : RowSupportAtom}
     (h : atomOfVar n = .row atom) : 1 ≤ n := by
   by_contra hn
@@ -28,6 +30,7 @@ theorem row_var_pos {n : Nat} {atom : RowSupportAtom}
   subst n
   simp [atomOfVar, atomOfVarBlock00] at h
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem arc_var_pos {n : Nat} {atom : OuterArcAtom}
     (h : atomOfVar n = .arc atom) : 1 ≤ n := by
   by_contra hn
@@ -45,6 +48,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem membershipRow_sat (Q : ExactTwoBoundaryCore R distribution)
     {valuation : Nat → Prop} (agreement : CoreValAgreement distribution Q valuation)
     (e : MembershipRowEntry) (he : membershipRowWF e = true) : clauseSat valuation e.clause := by
@@ -83,6 +87,7 @@ theorem membershipRow_sat (Q : ExactTwoBoundaryCore R distribution)
   · refine ⟨-((e.m1.1 : Nat) : Int), by simp [membershipRowLits], litSat_neg (membership_var_pos hm1) ?_⟩
     intro h; exact h1 ((membership_agree distribution Q valuation agreement e.m1.1 e.m1.2 hm1).mp h)
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem rowArc_sat (Q : ExactTwoBoundaryCore R distribution)
     {valuation : Nat → Prop} (agreement : CoreValAgreement distribution Q valuation)
     (e : RowArcEntry) (he : rowArcWF e = true) : clauseSat valuation e.clause := by
@@ -98,6 +103,7 @@ theorem rowArc_sat (Q : ExactTwoBoundaryCore R distribution)
   · refine ⟨-((e.rowVar : Nat) : Int), by simp [rowArcLits], litSat_neg (row_var_pos hrow) ?_⟩
     intro h; exact hrowval ((row_agree distribution Q valuation agreement e.rowVar e.row hrow).mp h)
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem noFour_sat (Q : ExactTwoBoundaryCore R distribution)
     {valuation : Nat → Prop} (agreement : CoreValAgreement distribution Q valuation)
     (e : NoFourEntry) (he : noFourWF e = true) : clauseSat valuation e.clause := by
@@ -119,6 +125,7 @@ theorem noFour_sat (Q : ExactTwoBoundaryCore R distribution)
   · refine ⟨-((e.a1.1 : Nat) : Int), by simp [noFourLits], litSat_neg (arc_var_pos ha1) ?_⟩
     intro h; exact h1 ((arc_agree distribution Q valuation agreement e.a1.1 e.a1.2 ha1).mp h)
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem entry_sat (Q : ExactTwoBoundaryCore R distribution)
     {valuation : Nat → Prop} (agreement : CoreValAgreement distribution Q valuation)
     (entry : MirrorEntry) (hentry : entry.wf = true) : clauseSat valuation entry.clause := by
@@ -127,6 +134,7 @@ theorem entry_sat (Q : ExactTwoBoundaryCore R distribution)
   | rowArc entry => exact rowArc_sat Q agreement entry hentry
   | noFour entry => exact noFour_sat Q agreement entry hentry
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem entryList_sat (Q : ExactTwoBoundaryCore R distribution)
     {valuation : Nat → Prop} (agreement : CoreValAgreement distribution Q valuation)
     (entries : List MirrorEntry) (hentries : entries.all MirrorEntry.wf = true) :
@@ -142,11 +150,14 @@ theorem entryList_sat (Q : ExactTwoBoundaryCore R distribution)
         exact entry_sat Q agreement head hentries.1
       · exact ih hentries.2 target htarget
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 def bridgeClauses : List (List Int) := bridgeEntries.map MirrorEntry.clause
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem bridgeClauses_length : bridgeClauses.length = selectedClauseCount := by
   simp [bridgeClauses, bridgeEntries_length, selectedClauseCount]
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem bridgeClauses_sat (Q : ExactTwoBoundaryCore R distribution)
     {valuation : Nat → Prop} (agreement : CoreValAgreement distribution Q valuation)
     (hentries : bridgeEntries.all MirrorEntry.wf = true) :
@@ -156,6 +167,7 @@ theorem bridgeClauses_sat (Q : ExactTwoBoundaryCore R distribution)
   rcases hclause with ⟨entry, hentry, rfl⟩
   exact entryList_sat Q agreement bridgeEntries hentries entry hentry
 
+/-- Supports the P4 mirror outer-occurrence bridge. -/
 theorem authenticated_bridgeClauses_sat (Q : ExactTwoBoundaryCore R distribution)
     {valuation : Nat → Prop} (agreement : CoreValAgreement distribution Q valuation) :
     ∀ clause ∈ bridgeClauses, clauseSat valuation clause :=

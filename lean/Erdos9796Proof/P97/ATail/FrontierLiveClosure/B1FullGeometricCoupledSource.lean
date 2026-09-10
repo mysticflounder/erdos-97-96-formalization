@@ -30,6 +30,7 @@ open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- Frontier live-closure def. -/
 noncomputable def b1FullGeometricActualRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -140,6 +141,7 @@ def B1FullGeometricFirstMissingPremise
       (H := H) (F := F)) : Prop :=
   B1WinningLiveSliceSameBoundaryArc C
 
+/-- Frontier live-closure theorem. -/
 theorem B1FullGeometricFirstMissingPremise_eq_winning_arc
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -148,6 +150,7 @@ theorem B1FullGeometricFirstMissingPremise_eq_winning_arc
       (H := H) (F := F)) :
     B1FullGeometricFirstMissingPremise C = B1WinningLiveSliceSameBoundaryArc C := rfl
 
+/-- Frontier live-closure theorem. -/
 theorem nonempty_b1FullGeometricCoupledSourceResidual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

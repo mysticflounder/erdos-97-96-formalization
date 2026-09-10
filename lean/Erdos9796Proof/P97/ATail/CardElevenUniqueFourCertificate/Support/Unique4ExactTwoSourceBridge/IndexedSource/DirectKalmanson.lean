@@ -64,6 +64,7 @@ private theorem false_of_bank_occurrence
 
 /- ## Sorted-list to ordered-tuple conversion -/
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem bankOrderedFour_of_sorted {targets : List Label}
     (hlen : targets.length = 4) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFour,
@@ -77,6 +78,7 @@ private theorem bankOrderedFour_of_sorted {targets : List Label}
   obtain ⟨h01, h12, h23⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, h01, h12, h23⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem bankOrderedFive_of_sorted {targets : List Label}
     (hlen : targets.length = 5) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
@@ -90,6 +92,7 @@ private theorem bankOrderedFive_of_sorted {targets : List Label}
   obtain ⟨h01, h12, h23, h34⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, h01, h12, h23, h34⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem bankOrderedSix_of_sorted {targets : List Label}
     (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSix,
@@ -103,6 +106,7 @@ private theorem bankOrderedSix_of_sorted {targets : List Label}
   obtain ⟨h01, h12, h23, h34, h45⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, t5, h01, h12, h23, h34, h45⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem bankOrderedSeven_of_sorted {targets : List Label}
     (hlen : targets.length = 7) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedSeven,
@@ -117,6 +121,7 @@ private theorem bankOrderedSeven_of_sorted {targets : List Label}
   exact ⟨⟨t0, t1, t2, t3, t4, t5, t6,
     h01, h12, h23, h34, h45, h56⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem bankOrderedEight_of_sorted {targets : List Label}
     (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedEight,
@@ -131,6 +136,7 @@ private theorem bankOrderedEight_of_sorted {targets : List Label}
   exact ⟨⟨t0, t1, t2, t3, t4, t5, t6, t7,
     h01, h12, h23, h34, h45, h56, h67⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem seededOrderedSix_of_sorted {targets : List Label}
     (hlen : targets.length = 6) (hchain : targets.IsChain (· < ·)) :
     ∃ T : ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedSix,
@@ -144,6 +150,7 @@ private theorem seededOrderedSix_of_sorted {targets : List Label}
   obtain ⟨h01, h12, h23, h34, h45⟩ := hchain
   exact ⟨⟨t0, t1, t2, t3, t4, t5, h01, h12, h23, h34, h45⟩, rfl⟩
 
+/-- Supports the indexed exact-two-source valuation bridge. -/
 private theorem seededOrderedEight_of_sorted {targets : List Label}
     (hlen : targets.length = 8) (hchain : targets.IsChain (· < ·)) :
     ∃ T : ATailUniqueFourExactTwoSchemaDecoderScratch.OrderedEight,

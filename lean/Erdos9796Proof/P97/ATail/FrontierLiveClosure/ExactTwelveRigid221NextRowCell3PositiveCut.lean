@@ -44,6 +44,7 @@ def nextRowCell3PositiveChoices : List (RowChoice Label) :=
   , { center := 10, support := {5, 7, 8, 9} }
   , { center := 11, support := {1, 2, 5, 10} } ]
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3Path30_35 : ClosurePathData Label :=
   { first := (3, 0)
     steps :=
@@ -54,41 +55,49 @@ private def nextRowCell3Path30_35 : ClosurePathData Label :=
       , .flip 5 3 ]
     last := (3, 5) }
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3Path90_95 : ClosurePathData Label :=
   { first := (9, 0)
     steps := [.row 9 0 5]
     last := (9, 5) }
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3Path65_63 : ClosurePathData Label :=
   { first := (6, 5)
     steps := [.row 6 5 3]
     last := (6, 3) }
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3Path65_69 : ClosurePathData Label :=
   { first := (6, 5)
     steps := [.row 6 5 9]
     last := (6, 9) }
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3Path20_2ten : ClosurePathData Label :=
   { first := (2, 0)
     steps := [.row 2 0 10]
     last := (2, 10) }
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3Path50_5ten : ClosurePathData Label :=
   { first := (5, 0)
     steps := [.row 5 0 10]
     last := (5, 10) }
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3PathElevenTen_11two : ClosurePathData Label :=
   { first := (11, 10)
     steps := [.row 11 10 2]
     last := (11, 2) }
 
+/-- Frontier live-closure def. -/
 private def nextRowCell3PathElevenTen_11five : ClosurePathData Label :=
   { first := (11, 10)
     steps := [.row 11 10 5]
     last := (11, 5) }
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.position_ne_of_ne_nextRowCell3
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     {left right : Label} (hne : left ≠ right) :
@@ -100,6 +109,7 @@ private theorem FrozenBoundaryOrder.position_ne_of_ne_nextRowCell3
 -- positive rows.
 set_option maxHeartbeats 2000000 in
 -- `omega` discharges the complete direct/mirror and forced-order case table.
+/-- Frontier live-closure theorem. -/
 theorem FrozenBoundaryOrder.sourceOrderCoverage_nextRowCell3
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     (hforced : FrozenForcedSecondCapOrder order.position) :
@@ -184,6 +194,7 @@ theorem FrozenBoundaryOrder.sourceOrderCoverage_nextRowCell3
       have h11 := hmirror.firstOpposite_between 11 (by decide)
       omega
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.boundary_image_eq_pointOf_image_nextRowCell3
     {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf) :
     Finset.univ.image order.boundary = Finset.univ.image pointOf := by
@@ -203,6 +214,7 @@ private theorem FrozenBoundaryOrder.boundary_image_eq_pointOf_image_nextRowCell3
     exact Finset.mem_image.mpr
       ⟨order.index label, Finset.mem_univ _, order.point_eq label⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem FrozenBoundaryOrder.false_of_kalmansonOrderAt_nextRowCell3
     {row : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes row pointOf) (order : FrozenBoundaryOrder pointOf)

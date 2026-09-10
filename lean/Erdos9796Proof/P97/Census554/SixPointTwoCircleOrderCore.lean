@@ -56,6 +56,7 @@ private lemma normSim_signedArea_pos
   rw [← SurplusCOMPGBank.dist_sq_coord b a]
   exact sq_pos_of_pos (dist_pos.mpr hab.symm)
 
+/-- Census-554 certificate-bank theorem. -/
 private theorem normalized_twoCircle_order_incompatible
     {h u v p q r s : ℝ}
     (hhsq : h ^ 2 = 3 / 4)

@@ -35,11 +35,13 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Prefixed P4 occurrence-closure inductive. -/
 inductive DenseAtom where
   | row (center point : Label)
   | radius (center left right : Label)
 deriving DecidableEq
 
+/-- Prefixed P4 occurrence-closure def. -/
 def p4EqPairs (c : Label) : List (Label × Label) :=
   (((List.finRange 11).flatMap fun l =>
     (List.finRange 11).map fun r => (l, r)).filter
@@ -51,6 +53,7 @@ def p4VarOfAtom : DenseAtom → Nat
   | .row c p => 1 + 10 * c.val + (if p.val < c.val then p.val else p.val - 1)
   | .radius c l r => 111 + 45 * c.val + (p4EqPairs c).idxOf (l, r)
 
+/-- Prefixed P4 occurrence-closure def. -/
 def toLabel (n : Nat) : Label := ⟨n % 11, Nat.mod_lt n (by decide)⟩
 
 /-- Decode the P4 row/equality prefix; values outside it are arbitrary. -/
@@ -67,30 +70,37 @@ def p4AtomOfVar (n : Nat) : DenseAtom :=
   else
     .row 0 1
 
+/-- Prefixed P4 occurrence-closure def. -/
 def validAtom : DenseAtom → Bool
   | .row c p => decide (c ≠ p)
   | .radius c l r => decide (l < r) && decide (l ≠ c) && decide (r ≠ c)
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem p4AtomOfVar_p4VarOfAtom_row : ∀ c p : Label, c ≠ p →
     p4AtomOfVar (p4VarOfAtom (.row c p)) = .row c p := by decide
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem p4AtomOfVar_p4VarOfAtom_radius : ∀ c l r : Label,
     l < r → l ≠ c → r ≠ c →
     p4AtomOfVar (p4VarOfAtom (.radius c l r)) = .radius c l r := by decide
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem p4VarOfAtom_pos (a : DenseAtom) : 1 ≤ p4VarOfAtom a := by
   cases a with
   | row c p => simp only [p4VarOfAtom]; split <;> omega
   | radius c l r => simp only [p4VarOfAtom]; omega
 
+/-- Prefixed P4 occurrence-closure def. -/
 def sortedRadius (c a b : Label) : DenseAtom :=
   if a < b then .radius c a b else .radius c b a
 
+/-- Prefixed P4 occurrence-closure def. -/
 def interpAtom (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) : DenseAtom → Prop
   | .row c p => rowMem Q σ c p
   | .radius c l r => radiusEq Q σ c l r
 
+/-- Prefixed P4 occurrence-closure def. -/
 def coreVal (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) : Nat → Prop :=
   fun n => interpAtom Q σ (p4AtomOfVar n)
@@ -106,6 +116,7 @@ structure CoreValAgreement (Q : ExactTwoBoundaryCore R distribution)
   radius : ∀ c l r : Label, l < r → l ≠ c → r ≠ c →
     (v (p4VarOfAtom (.radius c l r)) ↔ radiusEq Q σ c l r)
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem coreValAgreement (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) :
     CoreValAgreement Q σ (coreVal Q σ) := by
@@ -117,6 +128,7 @@ theorem coreValAgreement (Q : ExactTwoBoundaryCore R distribution)
     unfold coreVal interpAtom
     rw [p4AtomOfVar_p4VarOfAtom_radius c l r hlr hlc hrc]
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem CoreValAgreement.sortedRadius (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) (c a b : Label)
     (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
@@ -129,15 +141,19 @@ theorem CoreValAgreement.sortedRadius (Q : ExactTwoBoundaryCore R distribution)
     exact (hv.radius c b a hba hbc hac).trans
       (radiusEq_comm Q σ c b a)
 
+/-- Prefixed P4 occurrence-closure abbrev. -/
 abbrev clauseSat := P5OccurrenceBridgeScratch.clauseSat
+/-- Prefixed P4 occurrence-closure abbrev. -/
 abbrev litsSubset := P5OccurrenceBridgeScratch.litsSubset
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem litSat_pos {v : Nat → Prop} {n : Nat} (h : v n) :
     P5OccurrenceBridgeScratch.litSat v (n : Int) := by
   unfold P5OccurrenceBridgeScratch.litSat
   rw [if_pos (Int.natCast_nonneg n)]
   simpa using h
 
+/-- Prefixed P4 occurrence-closure theorem. -/
 theorem litSat_neg {v : Nat → Prop} {n : Nat} (hn : 1 ≤ n) (h : ¬ v n) :
     P5OccurrenceBridgeScratch.litSat v (-(n : Int)) := by
   unfold P5OccurrenceBridgeScratch.litSat

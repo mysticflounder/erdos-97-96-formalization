@@ -89,6 +89,7 @@ private noncomputable def redesignateFirstOppCapAsSurplus
       (simp only [SurplusCapPacket.oppIndex1, SurplusCapPacket.oppCap1, hi] at hgt ⊢;
        exact hgt)
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem redesignateFirstOppCapAsSurplus_oppCap1
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -156,6 +157,7 @@ private noncomputable def redesignateSecondOppCapAsSurplus
       (simp only [SurplusCapPacket.oppIndex2, SurplusCapPacket.oppCap2, hi] at hgt ⊢;
        exact hgt)
 
+/-- Frontier live-closure theorem. -/
 @[simp] private theorem redesignateSecondOppCapAsSurplus_oppCap1
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -434,6 +436,7 @@ theorem nonempty_retainedInteriorDirectedOmission_of_collision_of_frontierClass_
 /- A checked E-specific normal form for a retained directed omission.  The
 orientation and reverse-incidence disjunctions have already been eliminated by
 the upstream common-deletion and reverse-coupling producers. -/
+/-- Frontier live-closure inductive. -/
 inductive RetainedOmissionAllLargeNormalForm
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -786,6 +789,7 @@ at most two — either because its blocker sits in that same cap, or because it
 sits in another strict cap and the cross-cap one-hit rule applies to both
 classes.  The two bounds meet, which forces the whole census below. -/
 
+/-- Frontier live-closure theorem. -/
 private theorem grid_capInterior_counts
     {Cint Cc Cc' Kfirst Ksecond : Finset ℝ²}
     (hclassDisj : Disjoint Cc Cc')
@@ -814,6 +818,7 @@ private theorem grid_capInterior_counts
       hsame]
   omega
 
+/-- Frontier live-closure theorem. -/
 private theorem grid_retained_slice_eq_pair
     {Cint Cc : Finset ℝ²} {a b : ℝ²}
     (ha : a ∈ Cc) (hb : b ∈ Cc) (haI : a ∈ Cint) (hbI : b ∈ Cint)
@@ -830,6 +835,7 @@ private theorem grid_retained_slice_eq_pair
       rw [Finset.card_insert_of_notMem (by simpa using hab), Finset.card_singleton]
     omega
 
+/-- Frontier live-closure theorem. -/
 private theorem grid_shell_other_slice_card_eq_one
     {Cint Cc Cc' K : Finset ℝ²} {a b : ℝ²}
     (hclassDisj : Disjoint Cc Cc')
@@ -1280,6 +1286,7 @@ private structure OrientedTwoPointSlice (s t : ℝ²) (interior : Finset ℝ²) 
   inside_mem : inside ∈ interior
   escape_not_mem : escape ∉ interior
 
+/-- Frontier live-closure theorem. -/
 private theorem OrientedTwoPointSlice.inside_ne_escape
     {s t : ℝ²} {interior : Finset ℝ²}
     (Q : OrientedTwoPointSlice s t interior) (hne : s ≠ t) :
@@ -1700,6 +1707,7 @@ private theorem nonempty_pairedGridNestedPrimary
         smallPair_ne := labels.deletedOther.inside_ne_escape Gr.deletedOther_ne
         largePair_ne := Gr.deletedPartner_ne_deleted.symm }⟩
 
+/-- Frontier live-closure theorem. -/
 private theorem PairedGridNestedPrimary.apex_ne_blocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1729,6 +1737,7 @@ private theorem PairedGridNestedPrimary.apex_ne_blocker
         (mem_selectedClass.mp Q.largeInside_mem_largeClass).2
   exact (ne_of_lt Q.smallRadius_lt_largeRadius) hradii
 
+/-- Frontier live-closure theorem. -/
 private theorem PairedGridNestedPrimary.smallPair_scaledCoordinates
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1760,6 +1769,7 @@ private theorem PairedGridNestedPrimary.smallPair_scaledCoordinates
       Q.smallInside_mem_primaryShell Q.smallEscape_mem_primaryShell
       Q.smallInside_mem_smallClass Q.smallEscape_mem_smallClass Q.smallPair_ne
 
+/-- Frontier live-closure theorem. -/
 private theorem PairedGridNestedPrimary.largePair_scaledCoordinates
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1791,6 +1801,7 @@ private theorem PairedGridNestedPrimary.largePair_scaledCoordinates
       Q.largeInside_mem_primaryShell Q.largeEscape_mem_primaryShell
       Q.largeInside_mem_largeClass Q.largeEscape_mem_largeClass Q.largePair_ne
 
+/-- Frontier live-closure theorem. -/
 private theorem PairedGridNestedPrimary.smallRadius_scaledNorm
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1819,6 +1830,7 @@ private theorem PairedGridNestedPrimary.smallRadius_scaledNorm
       (mem_selectedClass.mp Q.smallInside_mem_smallClass).2]
   rw [hdist]
 
+/-- Frontier live-closure theorem. -/
 private theorem eq_of_mem_of_mem_of_card_eq_one
     {T : Finset ℝ²} (hcard : T.card = 1) {x y : ℝ²}
     (hx : x ∈ T) (hy : y ∈ T) :
@@ -5299,6 +5311,7 @@ theorem false_of_retainedOmission_reverseHitFresh_triApexAllLarge_core
 /- The actual E1 coordinator.  The paired arm retains its D1/D2 outcome split;
 the reverse-hit arm now reaches D1 directly through the joint-deletion selector
 before any endpoint classification. -/
+/-- Frontier live-closure theorem. -/
 theorem false_of_retainedOmission_triApexAllLarge_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -5342,6 +5355,7 @@ theorem false_of_retainedInteriorDirectedOmission_triApexAllLargeContext
   exact false_of_retainedOmission_triApexAllLarge_core (P := P) R Q G
 
 /- Compatibility wrapper retaining the old public theorem and caller API. -/
+/-- Frontier live-closure theorem. -/
 theorem false_of_retainedInteriorDirectedOmission_and_all_low_hits
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

@@ -34,6 +34,7 @@ open ATailBlockerVExactSeventeenThirtyFifthModelRefinements
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
@@ -41,9 +42,11 @@ private abbrev occurrenceClauses :=
 def child36CancellationHits : List Hit :=
   [(0, 2), (0, 8), (10, 2), (10, 3), (9, 3), (9, 8)]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem child36CancellationHits_length : child36CancellationHits.length = 6 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem child36CancellationHits_nodup : child36CancellationHits.Nodup := by
   native_decide
 
@@ -80,6 +83,7 @@ def child36CancellationOccurrence : CancellationOccurrence :=
       path2 := ⟨(7, 8), [.row 7 8 13], (7, 13)⟩
       path3 := ⟨(13, 16), [], (13, 16)⟩ } }
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem child36CancellationOccurrence_check :
     child36CancellationOccurrence.check = true := by
   native_decide
@@ -89,10 +93,12 @@ cancellation. -/
 def thirtySixthModelRefinementClauses : Std.Sat.CNF Atom :=
   occurrenceClauses child36CancellationHits
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem thirtySixthModelRefinementClauses_length :
     thirtySixthModelRefinementClauses.length = 4 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_thirtySixthModelRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
@@ -114,12 +120,14 @@ theorem sourceAssign_thirtySixthModelRefinementClauses
 def extendedThirtySixthModelRefinementsCnf : Std.Sat.CNF Atom :=
   extendedThirtyFifthModelRefinementsCnf ++ thirtySixthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedThirtySixthModelRefinementsCnf_length :
     extendedThirtySixthModelRefinementsCnf.length = 5847268 := by
   simp only [extendedThirtySixthModelRefinementsCnf, List.length_append,
     extendedThirtyFifthModelRefinementsCnf_length,
     thirtySixthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtySixthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
@@ -134,6 +142,7 @@ theorem sourceAssign_extendedThirtySixthModelRefinementsCnf
     exact h clause hparent
   · exact sourceAssign_thirtySixthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedThirtySixthModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

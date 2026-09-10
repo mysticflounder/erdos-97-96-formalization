@@ -32,16 +32,22 @@ attribute [local instance] Classical.propDecidable
 
 set_option maxRecDepth 100000
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedPrefixCount : Nat := 220288
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6U5CommonBisectorCount : Nat := 36
+/-- Exact-five common-shell V7 def. -/
 private def v6U5CommonBisectorClauseCount : Nat := 39300
 
+/-- Exact-five common-shell V7 def. -/
 private def retainedV6U5CommonBisectorPayload : String :=
   include_str "data/g3-v6-u5-common-bisector-slice-ordinals.a85"
 
+/-- Exact-five common-shell V7 abbrev. -/
 abbrev V6U5CommonBisectorClauseIndex :=
   Fin v6U5CommonBisectorClauseCount
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUIntAux :
     Nat → Nat → Nat → Nat → Nat → ByteArray → Option (Nat × Nat)
   | 0, _, _, _, _, _ => none
@@ -63,10 +69,12 @@ private def readPositiveVarUIntAux :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def readPositiveVarUInt (bytes : ByteArray) (position : Nat) :
     Option (Nat × Nat) :=
   readPositiveVarUIntAux 10 0 1 0 position bytes
 
+/-- Exact-five common-shell V7 def. -/
 private def decodePositiveDeltasAux (bytes : ByteArray) :
     Nat → Nat → Nat → Array V6U5CommonBisectorClauseIndex →
       Option (Array V6U5CommonBisectorClauseIndex)
@@ -86,6 +94,7 @@ private def decodePositiveDeltasAux (bytes : ByteArray) :
       else
         none
 
+/-- Exact-five common-shell V7 def. -/
 private def decodeRetainedV6U5CommonBisectorIndices :
     Option (Array V6U5CommonBisectorClauseIndex) := do
   let bytes ← decodeAscii85 retainedV6U5CommonBisectorPayload
@@ -109,17 +118,20 @@ structure V6U5CommonBisectorOccurrence where
   x : Label
 deriving DecidableEq, Repr
 
+/-- Exact-five common-shell V7 def. -/
 private def commonBisectorChoiceSupport
     (source : Label) (choice : SourceChoiceIndex source) : List Label :=
   let decoded := sourceChoiceAt source choice
   (List.finRange 11).filter fun label =>
     ((candMasks decoded.1.val).getD decoded.2 0).testBit label.val
 
+/-- Exact-five common-shell V7 def. -/
 private def commonBisectorChoiceInside
     (source : Label) (choice : SourceChoiceIndex source) : List Label :=
   (commonBisectorChoiceSupport source choice).filter fun label =>
     label != source
 
+/-- Exact-five common-shell V7 def. -/
 private def commonBisectorChoiceOutside
     (source : Label) (choice : SourceChoiceIndex source) : List Label :=
   let decoded := sourceChoiceAt source choice
@@ -127,6 +139,7 @@ private def commonBisectorChoiceOutside
     !((candMasks decoded.1.val).getD decoded.2 0).testBit label.val &&
       label != decoded.1
 
+/-- Exact-five common-shell V7 def. -/
 private def encoderCommonBisectorSourceChoices :
     List SourceChoiceOccurrence :=
   (List.finRange 11).flatMap fun source =>
@@ -136,6 +149,7 @@ private def encoderCommonBisectorSourceChoices :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 private theorem encoderCommonBisectorSourceChoices_length :
     encoderCommonBisectorSourceChoices.length = 6550 := by
   native_decide
@@ -156,15 +170,18 @@ def encoderV6U5CommonBisectorOccurrences :
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem encoderV6U5CommonBisectorOccurrences_length :
     encoderV6U5CommonBisectorOccurrences.length =
       v6U5CommonBisectorClauseCount := by
   native_decide
 
+/-- Exact-five common-shell V7 def. -/
 def v6U5CommonBisectorOccurrenceArray :
     Array V6U5CommonBisectorOccurrence :=
   encoderV6U5CommonBisectorOccurrences.toArray
 
+/-- Exact-five common-shell V7 def. -/
 def v6U5CommonBisectorOccurrenceAt
     (index : V6U5CommonBisectorClauseIndex) :
     V6U5CommonBisectorOccurrence :=
@@ -172,6 +189,7 @@ def v6U5CommonBisectorOccurrenceAt
     simpa [v6U5CommonBisectorOccurrenceArray,
       encoderV6U5CommonBisectorOccurrences_length] using index.isLt)
 
+/-- Exact-five common-shell V7 def. -/
 private def canonicalCommonBisectorLocalEqRow
     (center left right : Label) : LocalEqRow :=
   if left.val < right.val then
@@ -179,18 +197,21 @@ private def canonicalCommonBisectorLocalEqRow
   else
     ⟨center, right, left⟩
 
+/-- Exact-five common-shell V7 def. -/
 private def commonBisectorLocalEqualityIndex
     (center left right : Label) : Fin 495 :=
   Fin.ofNat 495
     (encoderLocalEqRows.idxOf
       (canonicalCommonBisectorLocalEqRow center left right))
 
+/-- Exact-five common-shell V7 def. -/
 private def commonBisectorLocalFourSupport
     (occurrence : V6U5CommonBisectorOccurrence) : List Label :=
   (List.finRange 11).filter fun label =>
     label == occurrence.center || label == occurrence.t1 ||
       label == occurrence.t2 || label == occurrence.t3
 
+/-- Exact-five common-shell V7 def. -/
 private def commonBisectorLocalFourIndex
     (occurrence : V6U5CommonBisectorOccurrence) : Fin 2310 :=
   let available :=
@@ -233,6 +254,7 @@ def g3V6U5CommonBisectorSliceClauses : List (List Int) :=
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 1000000 in
 set_option linter.style.nativeDecide false in
+/-- Exact-five common-shell V7 theorem. -/
 theorem g3V6U5CommonBisectorSlice_size :
     g3V6U5CommonBisectorSlice.size =
       retainedV6U5CommonBisectorCount := by
@@ -310,6 +332,7 @@ theorem v6U5CommonBisectorOccurrenceAt_valid :
             ⟨occurrence.x, occurrence.t3, occurrence.center⟩) := by
   native_decide
 
+/-- Exact-five common-shell V7 theorem. -/
 private theorem commonBisectorSourceChoiceVariable_lt
     (source : Label) (choice : SourceChoiceIndex source) :
     sourceChoiceVariable source choice < 41005 := by
