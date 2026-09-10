@@ -1,0 +1,6 @@
+import Solutions.Sol_Erdos9796FiniteNine_n4d_formb_branch
+import Theorems.Thm_Erdos9796FiniteNine_n4d_formb_branch
+
+#check Erdos9796FiniteNine.n4d_formb_branch
+#check solution
+#print axioms solution

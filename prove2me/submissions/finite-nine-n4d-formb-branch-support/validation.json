@@ -1,0 +1,51 @@
+{
+  "schema": "prove2me-validation/v1",
+  "date": "2026-09-09",
+  "platform_version": "0.9.8",
+  "dependency_state": {
+    "definition_id": "20e77876-f67d-4a4a-bb0e-7613b5d63ace",
+    "theorem_id": "8092e252-3da6-454a-813c-702397a844f8",
+    "submission_id": "1a2e8096-87cf-4595-b748-0c0ada857b8a",
+    "submission_status": "ACCEPTED"
+  },
+  "result_state": {
+    "definition_id": "3cf4e4b9-6989-4b26-85ca-ae7d5c56a13e",
+    "definition_status": "PUBLISHED",
+    "theorem_id": "42459e69-2295-4399-8a78-05eecc61a975",
+    "theorem_status": "PUBLISHED",
+    "submission_id": "e7aae940-ff91-4c37-a2d9-a7284461f1ba",
+    "submission_status": "ACCEPTED"
+  },
+  "artifacts": {
+    "definition": {
+      "bytes": 4203,
+      "sha256": "4520c6473827647987b258249397b238308ac08c7f75d6c70ad68b4e5cfcb94c"
+    },
+    "solution": {
+      "bytes": 327541,
+      "sha256": "d74b6bbfd85f747ba38bf07f8a346e10dfeb37d72f5ca47a96c827e92f4eb1f2"
+    },
+    "theorem": {
+      "bytes": 655,
+      "sha256": "73907671361e570657330ff9204aaa54f5f76cb1fd8800d78f22f7161cb8d9e0"
+    }
+  },
+  "checks": {
+    "definition_elaboration": "PASS; lake-build exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/68296-1789006314797448000.log",
+    "solution_elaboration": "PASS; lake-build exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/40510-1789007093171080000.log",
+    "theorem_elaboration": "PASS; lake-build exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/47846-1789007161526989000.log",
+    "final_consumer_axiom_audit": "PASS with platform-stub caveat; lake-build exited 0; #print axioms solution reported [propext, sorryAx, Classical.choice, Quot.sound]; /Users/adam/prove2me_workspace/.lake/lake-build-logs/56463-1789007237660337000.log",
+    "generator_check": "PASS",
+    "generator_ruff": "PASS after executable-bit repair",
+    "uploader_plan": "PASS; plan digest b432d4dbf0fab74a8b932870069be20002191335bfa01439bff00aeabe0e4588",
+    "forbidden_token_scan": "PASS in generated definition and solution",
+    "server_verification": "PASS; proof submission e7aae940-ff91-4c37-a2d9-a7284461f1ba accepted"
+  },
+  "trust": {
+    "generated_solution_contains_sorry": false,
+    "local_dependency_mirrors_contain_sorry": true,
+    "local_observed_axiom_closure": ["propext", "sorryAx", "Classical.choice", "Quot.sound"],
+    "required_server_axiom_closure": ["propext", "Classical.choice", "Quot.sound"],
+    "server_core_clean_status": "PLATFORM_VERIFIED; a local transitive core-only axiom closure was not separately observed"
+  }
+}

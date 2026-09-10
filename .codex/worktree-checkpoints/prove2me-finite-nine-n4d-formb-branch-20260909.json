@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-n4d-formb-branch-20260909",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-n4d-formb-branch-20260909.json",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/README.md",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/explanation.md",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/generate.py",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/plan.toml",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/platform/Definitions/Def_Erdos9796FiniteNine_N4dFormBBranchSupport.lean",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/platform/Solutions/Sol_Erdos9796FiniteNine_n4d_formb_branch.lean",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/platform/Theorems/Thm_Erdos9796FiniteNine_n4d_formb_branch.lean",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/provenance.md",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/receipt.json",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/skeptic-audit-2026-09-09.md",
+    "prove2me/submissions/finite-nine-n4d-formb-branch-support/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-n4d-formb-branch",
+  "base_head": "97f5e00c7973f53f6366d7531c6f352dfdc38123",
+  "created_utc": "2026-09-10T02:00:00Z",
+  "manifest_sha256": "e941f8ea0ebcec413b896572646ad73406f569dd1de1960f5d693f78076b1a5e"
+}

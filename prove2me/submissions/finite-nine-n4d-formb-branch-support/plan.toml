@@ -1,0 +1,33 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-n4d-formb-branch-support/receipt.json"
+
+[[definition]]
+name = "Erdos9796FiniteNine_N4dFormBBranchSupport"
+file = "submissions/finite-nine-n4d-formb-branch-support/platform/Definitions/Def_Erdos9796FiniteNine_N4dFormBBranchSupport.lean"
+title = "Finite-nine N4d Form B branch-support interface"
+natural_language_statement = "A public record of the eight geometric contradictions proved by the middle N4e slice for a fixed finite-nine endpoint shell and zero-defect cap layout."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0707e2c26e2e570e2b56ce656242cf5dec4d2584/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "support"]
+private = false
+
+[[theorem]]
+name = "Erdos9796FiniteNine.n4d_formb_branch"
+title = "Finite-nine N4d Form B branch contradictions"
+file = "submissions/finite-nine-n4d-formb-branch-support/platform/Theorems/Thm_Erdos9796FiniteNine_n4d_formb_branch.lean"
+natural_language_statement = "For every finite-nine endpoint shell and fixed zero-defect cap layout, the eight middle-N4e Form B branch contradictions hold."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0707e2c26e2e570e2b56ce656242cf5dec4d2584/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.n4d_formb_branch"
+file = "submissions/finite-nine-n4d-formb-branch-support/platform/Solutions/Sol_Erdos9796FiniteNine_n4d_formb_branch.lean"
+explanation = "submissions/finite-nine-n4d-formb-branch-support/explanation.md"
+proof_type = "prove"

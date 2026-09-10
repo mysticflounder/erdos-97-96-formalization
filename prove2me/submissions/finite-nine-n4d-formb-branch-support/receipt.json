@@ -1,0 +1,52 @@
+{
+  "definitions": {
+    "Erdos9796FiniteNine_N4dFormBBranchSupport": {
+      "definition_id": "3cf4e4b9-6989-4b26-85ca-ae7d5c56a13e",
+      "job_id": "caca53fa-8730-40e7-9591-1573bf1ce342",
+      "status": "PUBLISHED"
+    }
+  },
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "definition:Erdos9796FiniteNine_N4dFormBBranchSupport": {
+      "job_id": "caca53fa-8730-40e7-9591-1573bf1ce342",
+      "payload_sha256": "9659edb06b34e4f1e01fd82f8a33c10e0b5c888c35f1a3750abef6d5bd731474",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796FiniteNine.n4d_formb_branch": {
+      "payload_sha256": "bffad86eba3b545fec7eb380043650ccb148fc07e70a60df23513898b063c003",
+      "state": "RECORDED",
+      "submission_id": "e7aae940-ff91-4c37-a2d9-a7284461f1ba"
+    },
+    "theorem:Erdos9796FiniteNine.n4d_formb_branch": {
+      "job_id": "46c67dd6-ad02-4ccf-813d-096ff7a3d63c",
+      "payload_sha256": "8f3900231ce90690390e93dae61bb02d69f6130ba192429f59852eefb03df10e",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "b432d4dbf0fab74a8b932870069be20002191335bfa01439bff00aeabe0e4588",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796FiniteNine.n4d_formb_branch": {
+      "created_at": "2026-09-10T02:40:04.563449+00:00",
+      "error_message": "",
+      "file_path": "42459e69-2295-4399-8a78-05eecc61a975/6ac78adb-dda3-4892-bb46-d4c86f102d16/e7aae940-ff91-4c37-a2d9-a7284461f1ba.lean",
+      "id": "e7aae940-ff91-4c37-a2d9-a7284461f1ba",
+      "status": "ACCEPTED",
+      "submission_id": "e7aae940-ff91-4c37-a2d9-a7284461f1ba",
+      "theorem_id": "42459e69-2295-4399-8a78-05eecc61a975",
+      "updated_at": "2026-09-10T02:46:07.341542+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796FiniteNine.n4d_formb_branch": {
+      "job_id": "46c67dd6-ad02-4ccf-813d-096ff7a3d63c",
+      "status": "PUBLISHED",
+      "theorem_id": "42459e69-2295-4399-8a78-05eecc61a975"
+    }
+  }
+}
