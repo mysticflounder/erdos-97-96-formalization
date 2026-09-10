@@ -1,0 +1,73 @@
+{
+  "schema": "prove2me-finite-nine-form-b-v2-validation/v1",
+  "created_utc": "2026-09-10T04:32:29Z",
+  "result": "ACCEPTED",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.form_b_v2",
+    "id": "706aaedc-4e9a-4aad-8ee6-3b57c6a19423",
+    "statement_file_sha256": "f07efb36a598f81f0fe5e24027178490082ca182d54d5f32cf5938cf14a391e7",
+    "source_declaration_header_sha256": "4e9345900b2af7106cccc0550fce33876ccaeef68a82670f44f285a1c1ea2006"
+  },
+  "accepted_dependencies": {
+    "Erdos9796FiniteNine.form_b_v1": {
+      "theorem_id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+      "proof_id": "03e034b0-3f2c-4371-bf58-a37f96e453a2"
+    }
+  },
+  "authenticated_sources": {
+    "target_fragment": {
+      "path": "submissions/finite-nine-modular/source-fragments/form_b_v2.lean",
+      "bytes": 644,
+      "sha256": "dd805a29601e3b8fa2290b87ac62bb338f0a616914c1b4d050359ea079058437"
+    },
+    "cyclic_fragment": {
+      "path": "submissions/finite-nine-modular/source-fragments/cyclic_forms.lean",
+      "bytes": 12271,
+      "sha256": "246d74d5159947ad68c26e2725fa6af7e62b9226a28968a0f5319d3f1087e32c"
+    },
+    "current_module": {
+      "path": "lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean",
+      "sha256": "edbf1d9caed20389ae0b93b9f13ea65433b6ae9230b7a85a53e45b1f408e794c"
+    }
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-form-b-v2/platform/Solutions/Sol_Erdos9796FiniteNine_form_b_v2.lean",
+    "bytes": 5656,
+    "sha256": "5e0d54bf96571ccc92686c1d527f795a48cdf23bc6be2bb1e6771181b7eea583",
+    "generator_sha256": "2a4306a95f5cb90af93c6f0aad526e6bc86a058008e5262d1067e642b347c5b0"
+  },
+  "accepted_proof": {
+    "submission_id": "4dc55b21-a512-4a1c-9e81-161649b772be",
+    "theorem_id": "706aaedc-4e9a-4aad-8ee6-3b57c6a19423",
+    "status": "ACCEPTED",
+    "theorem_status": "Proved"
+  },
+  "checks": {
+    "generator_replay": "PASS; 5,656 bytes and artifact digest matched",
+    "authenticated_slice_extraction": "PASS; target fragment, cyclic fragment, current module, and target declaration header matched pinned hashes",
+    "minimal_support_slice": "PASS; retained the first cyclic shift and its private non-membership antecedent; excluded cyclicShift3 and unrelated public exclusions",
+    "accepted_predecessor_projection": "PASS; replaced the source-private Form-b-at-v1 call by accepted theorem b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+    "lean_433_repairs": "PASS; none required in the authenticated cyclic support or target proof",
+    "isolation_scope_adjustment": "PASS; opened EuclideanGeometry at module scope for the public wrapper after the authenticated source section closes",
+    "one_mib_limit": "PASS; 5,656 bytes",
+    "forbidden_token_scan": "PASS; generated solution has no proof placeholder, named assumption, native/compiler trust primitive, unsafe or partial declaration, or external implementation",
+    "ruff": "PASS",
+    "uploader_plan": "PASS; plan digest 1d3c366c56231f1f8574ab44f57e847a5036c31d6b1aa8c4de34e584bdccf825; one existing theorem and one proof; no definition or milestone",
+    "lean_4_33_1_solution_elaboration": "PASS; lake-build completed 8,722 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/70692-1789013774290973000.log",
+    "final_consumer_axiom_audit": "PASS with statement-mirror caveat; audit lake-build completed 8,723 jobs and exited 0; #print axioms solution reported [propext, sorryAx, Classical.choice, Quot.sound]; /Users/adam/prove2me_workspace/.lake/lake-build-logs/76510-1789013821185260000.log",
+    "server_verification": "PASS; proof submission 4dc55b21-a512-4a1c-9e81-161649b772be accepted for theorem 706aaedc-4e9a-4aad-8ee6-3b57c6a19423; theorem status Proved",
+    "independent_skeptic_audit": "CERTIFIED for platform-verified status; local statement mirror separately introduces sorryAx"
+  },
+  "local_observed_axiom_closure": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "required_server_axiom_closure": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "promotion_status": "platform-verified through accepted proof submission 4dc55b21-a512-4a1c-9e81-161649b772be"
+}

@@ -1,0 +1,25 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+# Existing theorem ID: 706aaedc-4e9a-4aad-8ee6-3b57c6a19423
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-child-form-b-v2/receipt.json"
+
+[[theorem]]
+name = "Erdos9796FiniteNine.form_b_v2"
+title = "Finite-nine escaped Form b exclusion at v2"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_form_b_v2.lean"
+natural_language_statement = "For a finite nine-point endpoint shell, an escaping witness class with at least four points at the second distinguished vertex cannot have Form b."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/8b0181efef0c57bda90179d862e234961a822fb1/lean/Erdos9796Proof/P97/N4d/CyclicTransport.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.form_b_v2"
+file = "submissions/finite-nine-child-form-b-v2/platform/Solutions/Sol_Erdos9796FiniteNine_form_b_v2.lean"
+explanation = "submissions/finite-nine-child-form-b-v2/explanation.md"
+proof_type = "prove"
