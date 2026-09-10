@@ -47,22 +47,28 @@ inductive Profile : Type
   | firstOpposite
   deriving DecidableEq, Fintype
 
+/-- Definition of `secondApex` used by the surrounding construction. -/
 def secondApex : Fin 13 := 0
 
+/-- Definition of `firstApex` used by the surrounding construction. -/
 def firstApex : Fin 13 := 1
 
+/-- Definition of `thirdApex` used by the surrounding construction. -/
 def thirdApex : Fin 13 := 2
 
+/-- Definition of `surplusInterior` used by the surrounding construction. -/
 def surplusInterior : Profile → Finset (Fin 13)
   | .secondOpposite => Finset.Ico 3 6
   | .surplus => Finset.Ico 3 7
   | .firstOpposite => Finset.Ico 3 6
 
+/-- Definition of `firstOppositeInterior` used by the surrounding construction. -/
 def firstOppositeInterior : Profile → Finset (Fin 13)
   | .secondOpposite => Finset.Ico 6 8
   | .surplus => Finset.Ico 7 9
   | .firstOpposite => Finset.Ico 6 9
 
+/-- Definition of `secondOppositeInterior` used by the surrounding construction. -/
 def secondOppositeInterior : Profile → Finset (Fin 13)
   | .secondOpposite => Finset.Icc 8 12
   | .surplus => Finset.Icc 9 12
@@ -70,16 +76,19 @@ def secondOppositeInterior : Profile → Finset (Fin 13)
 
 /- Regression guards for the finite profile tables.  In particular, these
    checks prevent a `Fin 13` upper endpoint from silently wrapping to zero. -/
+/-- Proves the property stated by `secondOppositeInterior_card_profile`. -/
 theorem secondOppositeInterior_card_profile :
     (secondOppositeInterior .secondOpposite).card = 5 ∧
       (secondOppositeInterior .surplus).card = 4 ∧
       (secondOppositeInterior .firstOpposite).card = 4 := by
   decide
 
+/-- Proves the property stated by `nine_mem_secondOppositeInterior`. -/
 theorem nine_mem_secondOppositeInterior (p : Profile) :
     (9 : Fin 13) ∈ secondOppositeInterior p := by
   cases p <;> decide
 
+/-- Proves the property stated by `eight_mem_secondOppositeInterior_iff`. -/
 theorem eight_mem_secondOppositeInterior_iff (p : Profile) :
     (8 : Fin 13) ∈ secondOppositeInterior p ↔ p = .secondOpposite := by
   cases p <;> decide
@@ -113,24 +122,31 @@ def mirrorOrder : Profile → List (Fin 13)
   | .surplus => [2, 7, 8, 0, 3, 4, 5, 6, 1, 9, 10, 11, 12]
   | .firstOpposite => [2, 6, 7, 8, 0, 3, 4, 5, 1, 9, 10, 11, 12]
 
+/-- Proves the property stated by `mem_directOrder`. -/
 theorem mem_directOrder (p : Profile) (l : Fin 13) : l ∈ directOrder p := by
   cases p <;> fin_cases l <;> decide
 
+/-- Proves the property stated by `mem_mirrorOrder`. -/
 theorem mem_mirrorOrder (p : Profile) (l : Fin 13) : l ∈ mirrorOrder p := by
   cases p <;> fin_cases l <;> decide
 
+/-- Proves the property stated by `directOrder_nodup`. -/
 theorem directOrder_nodup (p : Profile) : (directOrder p).Nodup := by
   cases p <;> decide
 
+/-- Proves the property stated by `mirrorOrder_nodup`. -/
 theorem mirrorOrder_nodup (p : Profile) : (mirrorOrder p).Nodup := by
   cases p <;> decide
 
+/-- Internal helper. proves the property stated by `directOrder_length`. -/
 private theorem directOrder_length (p : Profile) : (directOrder p).length = 13 := by
   cases p <;> decide
 
+/-- Internal helper. proves the property stated by `mirrorOrder_length`. -/
 private theorem mirrorOrder_length (p : Profile) : (mirrorOrder p).length = 13 := by
   cases p <;> decide
 
+/-- Internal helper. proves the property stated by `image_univ_comp`. -/
 private theorem image_univ_comp {α : Type*} {β : Type*} [Fintype α]
     [DecidableEq α] [DecidableEq β]
     {boundary : α → β} {idx : α → α} (hidx : Function.Injective idx) :
@@ -146,6 +162,7 @@ private theorem image_univ_comp {α : Type*} {β : Type*} [Fintype α]
 
 /- The maps are written arithmetically rather than through `findIdx`: this
 keeps the finite order lemmas reducible for the kernel. -/
+/-- Definition of `directValue` used by the surrounding construction. -/
 def directValue (p : Profile) (l : Fin 13) : Nat :=
   match p with
   | .secondOpposite =>
@@ -164,6 +181,7 @@ def directValue (p : Profile) (l : Fin 13) : Nat :=
       else if l.val < 9 then 10 + (l.val - 6)
       else 1 + (l.val - 9)
 
+/-- Definition of `mirrorValue` used by the surrounding construction. -/
 def mirrorValue (p : Profile) (l : Fin 13) : Nat :=
   match p with
   | .secondOpposite =>
@@ -182,36 +200,47 @@ def mirrorValue (p : Profile) (l : Fin 13) : Nat :=
       else if l.val < 9 then 1 + (l.val - 6)
       else 9 + (l.val - 9)
 
+/-- Internal helper. proves the property stated by `directValue_lt`. -/
 private theorem directValue_lt (p : Profile) (l : Fin 13) : directValue p l < 13 := by
   cases p <;> fin_cases l <;> decide
 
+/-- Internal helper. proves the property stated by `mirrorValue_lt`. -/
 private theorem mirrorValue_lt (p : Profile) (l : Fin 13) : mirrorValue p l < 13 := by
   cases p <;> fin_cases l <;> decide
 
+/-- Definition of `directIndex` used by the surrounding construction. -/
 def directIndex (p : Profile) (l : Fin 13) : Fin 13 :=
   ⟨directValue p l, directValue_lt p l⟩
 
+/-- Definition of `mirrorIndex` used by the surrounding construction. -/
 def mirrorIndex (p : Profile) (l : Fin 13) : Fin 13 :=
   ⟨mirrorValue p l, mirrorValue_lt p l⟩
 
+/-- Proves the property stated by `directIndex_injective`. -/
 theorem directIndex_injective (p : Profile) : Function.Injective (directIndex p) := by
   cases p <;> decide +kernel
 
+/-- Proves the property stated by `mirrorIndex_injective`. -/
 theorem mirrorIndex_injective (p : Profile) : Function.Injective (mirrorIndex p) := by
   cases p <;> decide +kernel
 
+/-- Proves the property stated by `directIndex_bijective`. -/
 theorem directIndex_bijective (p : Profile) : Function.Bijective (directIndex p) := by
   exact ⟨directIndex_injective p, Finite.injective_iff_surjective.mp (directIndex_injective p)⟩
 
+/-- Proves the property stated by `mirrorIndex_bijective`. -/
 theorem mirrorIndex_bijective (p : Profile) : Function.Bijective (mirrorIndex p) := by
   exact ⟨mirrorIndex_injective p, Finite.injective_iff_surjective.mp (mirrorIndex_injective p)⟩
 
+/-- Proves the property stated by `directIndex_thirdApex`. -/
 theorem directIndex_thirdApex (p : Profile) : directIndex p thirdApex = 0 := by
   cases p <;> decide
 
+/-- Proves the property stated by `mirrorIndex_thirdApex`. -/
 theorem mirrorIndex_thirdApex (p : Profile) : mirrorIndex p thirdApex = 0 := by
   cases p <;> decide
 
+/-- Proves the property stated by `directIndex_secondApex`. -/
 theorem directIndex_secondApex (p : Profile) : directIndex p secondApex =
     match p with
     | .secondOpposite => 10
@@ -219,6 +248,7 @@ theorem directIndex_secondApex (p : Profile) : directIndex p secondApex =
     | .firstOpposite => 9 := by
   cases p <;> decide
 
+/-- Proves the property stated by `directIndex_firstApex`. -/
 theorem directIndex_firstApex (p : Profile) : directIndex p firstApex =
     match p with
     | .secondOpposite => 6
@@ -226,6 +256,7 @@ theorem directIndex_firstApex (p : Profile) : directIndex p firstApex =
     | .firstOpposite => 5 := by
   cases p <;> decide
 
+/-- Proves the property stated by `mirrorIndex_secondApex`. -/
 theorem mirrorIndex_secondApex (p : Profile) : mirrorIndex p secondApex =
     match p with
     | .secondOpposite => 3
@@ -233,6 +264,7 @@ theorem mirrorIndex_secondApex (p : Profile) : mirrorIndex p secondApex =
     | .firstOpposite => 4 := by
   cases p <;> decide
 
+/-- Proves the property stated by `mirrorIndex_firstApex`. -/
 theorem mirrorIndex_firstApex (p : Profile) : mirrorIndex p firstApex =
     match p with
     | .secondOpposite => 7
@@ -240,6 +272,7 @@ theorem mirrorIndex_firstApex (p : Profile) : mirrorIndex p firstApex =
     | .firstOpposite => 8 := by
   cases p <;> decide
 
+/-- Proves the property stated by `directIndex_surplus_order`. -/
 theorem directIndex_surplus_order (p : Profile) :
     ∀ z ∈ surplusInterior p,
       directIndex p firstApex < directIndex p z ∧
@@ -247,12 +280,14 @@ theorem directIndex_surplus_order (p : Profile) :
   cases p <;> intro z hz <;> fin_cases z <;>
     simp [surplusInterior, directIndex, directValue, firstApex, secondApex] at hz ⊢
 
+/-- Proves the property stated by `directIndex_firstOpposite_order`. -/
 theorem directIndex_firstOpposite_order (p : Profile) :
     ∀ z ∈ firstOppositeInterior p,
       directIndex p secondApex < directIndex p z := by
   cases p <;> intro z hz <;> fin_cases z <;>
     simp [firstOppositeInterior, directIndex, directValue, secondApex] at hz ⊢
 
+/-- Proves the property stated by `directIndex_secondOpposite_order`. -/
 theorem directIndex_secondOpposite_order (p : Profile) :
     ∀ z ∈ secondOppositeInterior p,
       (0 : Fin 13) < directIndex p z ∧
@@ -261,6 +296,7 @@ theorem directIndex_secondOpposite_order (p : Profile) :
     simp [secondOppositeInterior, directIndex, directValue,
       firstApex] at hz ⊢
 
+/-- Proves the property stated by `mirrorIndex_firstOpposite_order`. -/
 theorem mirrorIndex_firstOpposite_order (p : Profile) :
     ∀ z ∈ firstOppositeInterior p,
       (0 : Fin 13) < mirrorIndex p z ∧
@@ -268,6 +304,7 @@ theorem mirrorIndex_firstOpposite_order (p : Profile) :
   cases p <;> intro z hz <;> fin_cases z <;>
     simp [firstOppositeInterior, mirrorIndex, mirrorValue, secondApex] at hz ⊢
 
+/-- Proves the property stated by `mirrorIndex_surplus_order`. -/
 theorem mirrorIndex_surplus_order (p : Profile) :
     ∀ z ∈ surplusInterior p,
       mirrorIndex p secondApex < mirrorIndex p z ∧
@@ -275,6 +312,7 @@ theorem mirrorIndex_surplus_order (p : Profile) :
   cases p <;> intro z hz <;> fin_cases z <;>
     simp [surplusInterior, mirrorIndex, mirrorValue, firstApex, secondApex] at hz ⊢
 
+/-- Proves the property stated by `mirrorIndex_secondOpposite_order`. -/
 theorem mirrorIndex_secondOpposite_order (p : Profile) :
     ∀ z ∈ secondOppositeInterior p,
       mirrorIndex p firstApex < mirrorIndex p z := by
@@ -284,6 +322,7 @@ theorem mirrorIndex_secondOpposite_order (p : Profile) :
 
 /- ## Label and boundary contracts -/
 
+/-- Bundles the data used by `LabelMap`. -/
 structure LabelMap (p : Profile) {D : CounterexampleData}
     (S : SurplusCapPacket D.A) (pt : Fin 13 → ℝ²) : Prop where
   secondApex_eq : pt secondApex = S.oppApex2
@@ -298,6 +337,7 @@ structure LabelMap (p : Profile) {D : CounterexampleData}
   injective : Function.Injective pt
   image_eq : Finset.univ.image pt = D.A
 
+/-- Internal helper. proves the property stated by `image_eq_of_mem_of_card`. -/
 private theorem image_eq_of_mem_of_card
     {α β : Type*} [DecidableEq β]
     {I : Finset α} {T : Finset β} {pt : α → β}
@@ -445,6 +485,7 @@ theorem frontier_bisector_interior_of_labels
   · exact hc_ne
   · simpa only [hq, hw] using heq
 
+/-- Bundles the data used by `ConvexBoundaryEnumeration`. -/
 structure ConvexBoundaryEnumeration (p : Profile)
     (pt φ : Fin 13 → ℝ²) (idx : Fin 13 → Fin 13) : Prop where
   injective : Function.Injective φ
@@ -453,6 +494,7 @@ structure ConvexBoundaryEnumeration (p : Profile)
   pt_eq : ∀ l, pt l = φ (idx l)
   orientation : idx = directIndex p ∨ idx = mirrorIndex p
 
+/-- Proves the property stated by `ConvexBoundaryEnumeration.idx_injective`. -/
 theorem ConvexBoundaryEnumeration.idx_injective {p : Profile}
     {pt φ : Fin 13 → ℝ²} {idx : Fin 13 → Fin 13}
     (hB : ConvexBoundaryEnumeration p pt φ idx) : Function.Injective idx := by
@@ -467,6 +509,7 @@ The retained cap block is indexed in the ambient boundary order, while a
 the local cap indices from `cap_image`; it does not add local-index data to
 the label contract. -/
 
+/-- Proves the property stated by `capLabel_not_equidistant_of_boundary_not_between`. -/
 theorem capLabel_not_equidistant_of_boundary_not_between
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {C : Finset ℝ²} (B : CGN.StrictCapBlockData D.A C)
@@ -551,6 +594,7 @@ The two non-wrapping blocks retain the original boundary.  The remaining
 block is made ordinary by cutting the same cyclic boundary at `iw`; its
 explicit shifted enumeration is part of the result. -/
 
+/-- Proves the property stated by `capBlock_of_interval_on_boundary`. -/
 theorem capBlock_of_interval_on_boundary
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (B : BoundaryIndexing D.A) {i : Fin 3}
@@ -585,6 +629,7 @@ theorem capBlock_of_interval_on_boundary
   change HEq B.boundary B.boundary
   exact HEq.rfl
 
+/-- Proves the property stated by `wrapping_capBlock_of_direct_zeroCutBlocks`. -/
 theorem wrapping_capBlock_of_direct_zeroCutBlocks
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
@@ -704,6 +749,7 @@ theorem wrapping_capBlock_of_direct_zeroCutBlocks
   · change HEq phi (fun q : Fin B.n => B.boundary (q + iw))
     rfl
 
+/-- Proves the property stated by `wrapping_capBlock_of_mirror_zeroCutBlocks`. -/
 theorem wrapping_capBlock_of_mirror_zeroCutBlocks
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
@@ -817,6 +863,7 @@ theorem wrapping_capBlock_of_mirror_zeroCutBlocks
   · change HEq phi (fun q : Fin B.n => B.boundary (q + iw))
     rfl
 
+/-- Proves the property stated by `all_capBlocks_of_zeroCutBlocks`. -/
 theorem all_capBlocks_of_zeroCutBlocks
     {D : CounterexampleData} (S : SurplusCapPacket D.A)
     (B : BoundaryIndexing D.A) (hn : 0 < B.n) (iv iw : Fin B.n)
@@ -949,6 +996,7 @@ saturation/partition lemma, which is intentionally kept as a downstream
 obligation.
 -/
 
+/-- Internal helper. proves the property stated by `card_le_of_Ioo`. -/
 private theorem card_le_of_Ioo {n : ℕ} {boundary : Fin n → ℝ²} {T : Finset ℝ²}
     {a b : Fin n}
     (h : ∀ x ∈ T, ∃ q : Fin n, a < q ∧ q < b ∧ boundary q = x) :
@@ -963,6 +1011,7 @@ private theorem card_le_of_Ioo {n : ℕ} {boundary : Fin n → ℝ²} {T : Finse
     _ ≤ (Finset.Ioo a b).card := Finset.card_image_le
     _ = (b : ℕ) - a - 1 := Fin.card_Ioo a b
 
+/-- Internal helper. proves the property stated by `card_le_of_Ioi`. -/
 private theorem card_le_of_Ioi {n : ℕ} {boundary : Fin n → ℝ²} {T : Finset ℝ²}
     {a : Fin n}
     (h : ∀ x ∈ T, ∃ q : Fin n, a < q ∧ boundary q = x) :
@@ -977,6 +1026,7 @@ private theorem card_le_of_Ioi {n : ℕ} {boundary : Fin n → ℝ²} {T : Finse
     _ ≤ (Finset.Ioi a).card := Finset.card_image_le
     _ = n - 1 - (a : ℕ) := Fin.card_Ioi a
 
+/-- Proves the property stated by `direct_boundary_interval_card_le`. -/
 theorem direct_boundary_interval_card_le
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S)
@@ -989,6 +1039,7 @@ theorem direct_boundary_interval_card_le
     card_le_of_Ioo B.surplus_between,
     card_le_of_Ioi B.opp1_after⟩
 
+/-- Proves the property stated by `mirror_boundary_interval_card_le`. -/
 theorem mirror_boundary_interval_card_le
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S)
@@ -1001,6 +1052,7 @@ theorem mirror_boundary_interval_card_le
     card_le_of_Ioo B.surplus_between,
     card_le_of_Ioi B.opp2_after⟩
 
+/-- Internal helper. proves the property stated by `interval_image_eq_of_saturation`. -/
 private theorem interval_image_eq_of_saturation {n : ℕ}
     {boundary : Fin n → ℝ²} (hinj : Function.Injective boundary)
     {T : Finset ℝ²} {a b : Fin n}
@@ -1016,6 +1068,7 @@ private theorem interval_image_eq_of_saturation {n : ℕ}
     rw [Finset.card_image_of_injective _ hinj]
     exact Nat.le_of_eq hsat.symm)).symm
 
+/-- Internal helper. proves the property stated by `ray_image_eq_of_saturation`. -/
 private theorem ray_image_eq_of_saturation {n : ℕ}
     {boundary : Fin n → ℝ²} (hinj : Function.Injective boundary)
     {T : Finset ℝ²} {a : Fin n}
@@ -1031,6 +1084,7 @@ private theorem ray_image_eq_of_saturation {n : ℕ}
     rw [Finset.card_image_of_injective _ hinj]
     exact Nat.le_of_eq hsat.symm)).symm
 
+/-- Internal helper. proves the property stated by `surplusApex_eq_oppositeVertexByIndex`. -/
 private theorem surplusApex_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
@@ -1039,6 +1093,7 @@ private theorem surplusApex_eq_oppositeVertexByIndex
     simp only [SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppositeVertexByIndex, hi]
 
+/-- Internal helper. proves the property stated by `oppApex1_eq_oppositeVertexByIndex`. -/
 private theorem oppApex1_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -1048,6 +1103,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- Internal helper. proves the property stated by `oppApex2_eq_oppositeVertexByIndex`. -/
 private theorem oppApex2_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -1061,6 +1117,7 @@ private theorem oppApex2_eq_oppositeVertexByIndex
 three interval saturation equalities.  The unconditional block package only
 provides the corresponding inclusions; this theorem isolates exactly the
 extra source-order hypothesis needed to realize the finite labels. -/
+/-- Proves the property stated by `direct_labelMap_of_saturated_boundaryBlocks_with_boundary`. -/
 theorem direct_labelMap_of_saturated_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
@@ -1257,6 +1314,7 @@ theorem direct_labelMap_of_saturated_boundaryBlocks
       hsat2 hsatS hsat1
   exact ⟨pt, φ, idx, hL, hE⟩
 
+/-- Proves the property stated by `mirror_labelMap_of_saturated_boundaryBlocks_with_boundary`. -/
 theorem mirror_labelMap_of_saturated_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
@@ -1465,6 +1523,7 @@ thirteen boundary positions, the three upper bounds are simultaneously tight.
 These wrappers expose that arithmetic step before invoking the saturated label
 map constructors. -/
 
+/-- Proves the property stated by `direct_labelMap_of_profile_boundaryBlocks_with_boundary`. -/
 theorem direct_labelMap_of_profile_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
@@ -1522,6 +1581,7 @@ theorem direct_labelMap_of_profile_boundaryBlocks
     direct_labelMap_of_profile_boundaryBlocks_with_boundary P p hprofile B
   exact ⟨pt, φ, idx, hL, hE⟩
 
+/-- Proves the property stated by `mirror_labelMap_of_profile_boundaryBlocks_with_boundary`. -/
 theorem mirror_labelMap_of_profile_boundaryBlocks_with_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) (p : Profile)
@@ -1581,6 +1641,7 @@ theorem mirror_labelMap_of_profile_boundaryBlocks
 
 /- The block package carries a strict profile disjunction; this is the
 finite choice needed by the profile-parametrized label map. -/
+/-- Proves the property stated by `exists_profile_of_boundaryBlocks`. -/
 theorem exists_profile_of_boundaryBlocks
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (P : ExactThirteenBoundaryBlocks S) :

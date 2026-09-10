@@ -3,20 +3,25 @@ import Families
 
 namespace Problem97.P4MirrorOuterOccurrenceBridgeScratch
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09197 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 5, 6, 7}⟩, ⟨8, .right, {0, 1, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09197 : MirrorEntry := .rowArc (rowArcEntry 9197 [986, -1103]
   1103 ⟨2, {3, 4, 5, 10}⟩ 986 ⟨2, .left, {0, 1, 2, 3, 4, 9, 10}⟩
   reflectedDatum_09197)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09198 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 5, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09198 : MirrorEntry := .rowArc (rowArcEntry 9198 [951, -1103]
   1103 ⟨2, {3, 4, 5, 10}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09198)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09199 : MirrorEntry := .membershipRow (membershipRowEntry 9199 [-26, 1104, -23, -24, -27]
   1104 ⟨2, {3, 4, 6, 7}⟩
   (26, ⟨2, 6⟩)
@@ -24,20 +29,25 @@ def entry_09199 : MirrorEntry := .membershipRow (membershipRowEntry 9199 [-26, 1
   (24, ⟨2, 4⟩)
   (27, ⟨2, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09200 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {3, 4, 6, 7}⟩, ⟨8, .right, {0, 1, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09200 : MirrorEntry := .rowArc (rowArcEntry 9200 [988, -1104]
   1104 ⟨2, {3, 4, 6, 7}⟩ 988 ⟨2, .left, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_09200)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09201 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {3, 4, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09201 : MirrorEntry := .rowArc (rowArcEntry 9201 [951, -1104]
   1104 ⟨2, {3, 4, 6, 7}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09201)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09202 : MirrorEntry := .membershipRow (membershipRowEntry 9202 [-26, 1105, -23, -24, -28]
   1105 ⟨2, {3, 4, 6, 8}⟩
   (26, ⟨2, 6⟩)
@@ -45,20 +55,25 @@ def entry_09202 : MirrorEntry := .membershipRow (membershipRowEntry 9202 [-26, 1
   (24, ⟨2, 4⟩)
   (28, ⟨2, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09203 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 4, 6, 7}⟩, ⟨8, .right, {0, 1, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09203 : MirrorEntry := .rowArc (rowArcEntry 9203 [988, -1105]
   1105 ⟨2, {3, 4, 6, 8}⟩ 988 ⟨2, .left, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_09203)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09204 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 4, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09204 : MirrorEntry := .rowArc (rowArcEntry 9204 [951, -1105]
   1105 ⟨2, {3, 4, 6, 8}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09204)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09205 : MirrorEntry := .membershipRow (membershipRowEntry 9205 [-26, -24, -29, -23, 1106]
   1106 ⟨2, {3, 4, 6, 9}⟩
   (26, ⟨2, 6⟩)
@@ -66,20 +81,25 @@ def entry_09205 : MirrorEntry := .membershipRow (membershipRowEntry 9205 [-26, -
   (29, ⟨2, 9⟩)
   (23, ⟨2, 3⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09206 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 4, 6, 7}⟩, ⟨8, .right, {0, 1, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09206 : MirrorEntry := .rowArc (rowArcEntry 9206 [988, -1106]
   1106 ⟨2, {3, 4, 6, 9}⟩ 988 ⟨2, .left, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_09206)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09207 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 4, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09207 : MirrorEntry := .rowArc (rowArcEntry 9207 [951, -1106]
   1106 ⟨2, {3, 4, 6, 9}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09207)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09208 : MirrorEntry := .membershipRow (membershipRowEntry 9208 [-26, 1107, -23, -24, -30]
   1107 ⟨2, {3, 4, 6, 10}⟩
   (26, ⟨2, 6⟩)
@@ -87,20 +107,25 @@ def entry_09208 : MirrorEntry := .membershipRow (membershipRowEntry 9208 [-26, 1
   (24, ⟨2, 4⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09209 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 4, 6, 7}⟩, ⟨8, .right, {0, 1, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09209 : MirrorEntry := .rowArc (rowArcEntry 9209 [988, -1107]
   1107 ⟨2, {3, 4, 6, 10}⟩ 988 ⟨2, .left, {0, 1, 2, 3, 9, 10}⟩
   reflectedDatum_09209)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09210 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 4, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09210 : MirrorEntry := .rowArc (rowArcEntry 9210 [951, -1107]
   1107 ⟨2, {3, 4, 6, 10}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09210)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09211 : MirrorEntry := .membershipRow (membershipRowEntry 9211 [-23, -24, 1108, -27, -28]
   1108 ⟨2, {3, 4, 7, 8}⟩
   (23, ⟨2, 3⟩)
@@ -108,20 +133,25 @@ def entry_09211 : MirrorEntry := .membershipRow (membershipRowEntry 9211 [-23, -
   (27, ⟨2, 7⟩)
   (28, ⟨2, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09212 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 6, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09212 : MirrorEntry := .rowArc (rowArcEntry 9212 [990, -1108]
   1108 ⟨2, {3, 4, 7, 8}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09212)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09213 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09213 : MirrorEntry := .rowArc (rowArcEntry 9213 [951, -1108]
   1108 ⟨2, {3, 4, 7, 8}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09213)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09214 : MirrorEntry := .membershipRow (membershipRowEntry 9214 [1109, -23, -24, -27, -29]
   1109 ⟨2, {3, 4, 7, 9}⟩
   (23, ⟨2, 3⟩)
@@ -129,20 +159,25 @@ def entry_09214 : MirrorEntry := .membershipRow (membershipRowEntry 9214 [1109, 
   (27, ⟨2, 7⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09215 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 6, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09215 : MirrorEntry := .rowArc (rowArcEntry 9215 [990, -1109]
   1109 ⟨2, {3, 4, 7, 9}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09215)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09216 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09216 : MirrorEntry := .rowArc (rowArcEntry 9216 [951, -1109]
   1109 ⟨2, {3, 4, 7, 9}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09216)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09217 : MirrorEntry := .membershipRow (membershipRowEntry 9217 [1110, -23, -24, -27, -30]
   1110 ⟨2, {3, 4, 7, 10}⟩
   (23, ⟨2, 3⟩)
@@ -150,20 +185,25 @@ def entry_09217 : MirrorEntry := .membershipRow (membershipRowEntry 9217 [1110, 
   (27, ⟨2, 7⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09218 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 6, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09218 : MirrorEntry := .rowArc (rowArcEntry 9218 [990, -1110]
   1110 ⟨2, {3, 4, 7, 10}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09218)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09219 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09219 : MirrorEntry := .rowArc (rowArcEntry 9219 [951, -1110]
   1110 ⟨2, {3, 4, 7, 10}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09219)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09220 : MirrorEntry := .membershipRow (membershipRowEntry 9220 [-23, -24, 1111, -28, -29]
   1111 ⟨2, {3, 4, 8, 9}⟩
   (23, ⟨2, 3⟩)
@@ -171,20 +211,25 @@ def entry_09220 : MirrorEntry := .membershipRow (membershipRowEntry 9220 [-23, -
   (28, ⟨2, 8⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09221 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 6, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09221 : MirrorEntry := .rowArc (rowArcEntry 9221 [992, -1111]
   1111 ⟨2, {3, 4, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09221)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09222 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09222 : MirrorEntry := .rowArc (rowArcEntry 9222 [951, -1111]
   1111 ⟨2, {3, 4, 8, 9}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09222)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09223 : MirrorEntry := .membershipRow (membershipRowEntry 9223 [-23, -24, 1112, -28, -30]
   1112 ⟨2, {3, 4, 8, 10}⟩
   (23, ⟨2, 3⟩)
@@ -192,20 +237,25 @@ def entry_09223 : MirrorEntry := .membershipRow (membershipRowEntry 9223 [-23, -
   (28, ⟨2, 8⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09224 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 6, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09224 : MirrorEntry := .rowArc (rowArcEntry 9224 [992, -1112]
   1112 ⟨2, {3, 4, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09224)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09225 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09225 : MirrorEntry := .rowArc (rowArcEntry 9225 [951, -1112]
   1112 ⟨2, {3, 4, 8, 10}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09225)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09226 : MirrorEntry := .membershipRow (membershipRowEntry 9226 [1113, -23, -29, -24, -30]
   1113 ⟨2, {3, 4, 9, 10}⟩
   (23, ⟨2, 3⟩)
@@ -213,20 +263,25 @@ def entry_09226 : MirrorEntry := .membershipRow (membershipRowEntry 9226 [1113, 
   (24, ⟨2, 4⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09227 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 6, 7}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09227 : MirrorEntry := .rowArc (rowArcEntry 9227 [994, -1113]
   1113 ⟨2, {3, 4, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09227)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09228 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 6, 7}⟩, ⟨8, .left, {3}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09228 : MirrorEntry := .rowArc (rowArcEntry 9228 [951, -1113]
   1113 ⟨2, {3, 4, 9, 10}⟩ 951 ⟨2, .right, {7}⟩
   reflectedDatum_09228)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09229 : MirrorEntry := .membershipRow (membershipRowEntry 9229 [-25, -23, -28, -27, 1114]
   1114 ⟨2, {3, 5, 7, 8}⟩
   (25, ⟨2, 5⟩)
@@ -234,20 +289,25 @@ def entry_09229 : MirrorEntry := .membershipRow (membershipRowEntry 9229 [-25, -
   (28, ⟨2, 8⟩)
   (27, ⟨2, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09230 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 5, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09230 : MirrorEntry := .rowArc (rowArcEntry 9230 [990, -1114]
   1114 ⟨2, {3, 5, 7, 8}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09230)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09231 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 5, 7}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09231 : MirrorEntry := .rowArc (rowArcEntry 9231 [953, -1114]
   1114 ⟨2, {3, 5, 7, 8}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09231)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09232 : MirrorEntry := .membershipRow (membershipRowEntry 9232 [-25, -27, -23, -29, 1115]
   1115 ⟨2, {3, 5, 7, 9}⟩
   (25, ⟨2, 5⟩)
@@ -255,20 +315,25 @@ def entry_09232 : MirrorEntry := .membershipRow (membershipRowEntry 9232 [-25, -
   (23, ⟨2, 3⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09233 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 5, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09233 : MirrorEntry := .rowArc (rowArcEntry 9233 [990, -1115]
   1115 ⟨2, {3, 5, 7, 9}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09233)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09234 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 5, 7}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09234 : MirrorEntry := .rowArc (rowArcEntry 9234 [953, -1115]
   1115 ⟨2, {3, 5, 7, 9}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09234)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09235 : MirrorEntry := .membershipRow (membershipRowEntry 9235 [-25, -27, -23, -30, 1116]
   1116 ⟨2, {3, 5, 7, 10}⟩
   (25, ⟨2, 5⟩)
@@ -276,20 +341,25 @@ def entry_09235 : MirrorEntry := .membershipRow (membershipRowEntry 9235 [-25, -
   (23, ⟨2, 3⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09236 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 5, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09236 : MirrorEntry := .rowArc (rowArcEntry 9236 [990, -1116]
   1116 ⟨2, {3, 5, 7, 10}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09236)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09237 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 5, 7}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09237 : MirrorEntry := .rowArc (rowArcEntry 9237 [953, -1116]
   1116 ⟨2, {3, 5, 7, 10}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09237)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09238 : MirrorEntry := .membershipRow (membershipRowEntry 9238 [-25, -23, -28, -29, 1117]
   1117 ⟨2, {3, 5, 8, 9}⟩
   (25, ⟨2, 5⟩)
@@ -297,20 +367,25 @@ def entry_09238 : MirrorEntry := .membershipRow (membershipRowEntry 9238 [-25, -
   (28, ⟨2, 8⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09239 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 5, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09239 : MirrorEntry := .rowArc (rowArcEntry 9239 [992, -1117]
   1117 ⟨2, {3, 5, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09239)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09240 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 5, 7}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09240 : MirrorEntry := .rowArc (rowArcEntry 9240 [953, -1117]
   1117 ⟨2, {3, 5, 8, 9}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09240)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09241 : MirrorEntry := .membershipRow (membershipRowEntry 9241 [-25, 1118, -23, -28, -30]
   1118 ⟨2, {3, 5, 8, 10}⟩
   (25, ⟨2, 5⟩)
@@ -318,20 +393,25 @@ def entry_09241 : MirrorEntry := .membershipRow (membershipRowEntry 9241 [-25, 1
   (28, ⟨2, 8⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09242 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 5, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09242 : MirrorEntry := .rowArc (rowArcEntry 9242 [992, -1118]
   1118 ⟨2, {3, 5, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09242)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09243 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 5, 7}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09243 : MirrorEntry := .rowArc (rowArcEntry 9243 [953, -1118]
   1118 ⟨2, {3, 5, 8, 10}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09243)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09244 : MirrorEntry := .membershipRow (membershipRowEntry 9244 [-25, 1119, -29, -23, -30]
   1119 ⟨2, {3, 5, 9, 10}⟩
   (25, ⟨2, 5⟩)
@@ -339,20 +419,25 @@ def entry_09244 : MirrorEntry := .membershipRow (membershipRowEntry 9244 [-25, 1
   (23, ⟨2, 3⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09245 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 5, 7}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09245 : MirrorEntry := .rowArc (rowArcEntry 9245 [994, -1119]
   1119 ⟨2, {3, 5, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09245)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09246 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 5, 7}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09246 : MirrorEntry := .rowArc (rowArcEntry 9246 [953, -1119]
   1119 ⟨2, {3, 5, 9, 10}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09246)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09247 : MirrorEntry := .membershipRow (membershipRowEntry 9247 [-26, -23, -28, -27, 1120]
   1120 ⟨2, {3, 6, 7, 8}⟩
   (26, ⟨2, 6⟩)
@@ -360,20 +445,25 @@ def entry_09247 : MirrorEntry := .membershipRow (membershipRowEntry 9247 [-26, -
   (28, ⟨2, 8⟩)
   (27, ⟨2, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09248 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 4, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09248 : MirrorEntry := .rowArc (rowArcEntry 9248 [990, -1120]
   1120 ⟨2, {3, 6, 7, 8}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09248)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09249 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 4, 7}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09249 : MirrorEntry := .rowArc (rowArcEntry 9249 [955, -1120]
   1120 ⟨2, {3, 6, 7, 8}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09249)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09250 : MirrorEntry := .membershipRow (membershipRowEntry 9250 [-26, -27, -23, -29, 1121]
   1121 ⟨2, {3, 6, 7, 9}⟩
   (26, ⟨2, 6⟩)
@@ -381,20 +471,25 @@ def entry_09250 : MirrorEntry := .membershipRow (membershipRowEntry 9250 [-26, -
   (23, ⟨2, 3⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09251 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 4, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09251 : MirrorEntry := .rowArc (rowArcEntry 9251 [990, -1121]
   1121 ⟨2, {3, 6, 7, 9}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09251)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09252 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 4, 7}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09252 : MirrorEntry := .rowArc (rowArcEntry 9252 [955, -1121]
   1121 ⟨2, {3, 6, 7, 9}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09252)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09253 : MirrorEntry := .membershipRow (membershipRowEntry 9253 [-26, 1122, -27, -23, -30]
   1122 ⟨2, {3, 6, 7, 10}⟩
   (26, ⟨2, 6⟩)
@@ -402,20 +497,25 @@ def entry_09253 : MirrorEntry := .membershipRow (membershipRowEntry 9253 [-26, 1
   (23, ⟨2, 3⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09254 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 4, 7}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09254 : MirrorEntry := .rowArc (rowArcEntry 9254 [990, -1122]
   1122 ⟨2, {3, 6, 7, 10}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09254)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09255 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 4, 7}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09255 : MirrorEntry := .rowArc (rowArcEntry 9255 [955, -1122]
   1122 ⟨2, {3, 6, 7, 10}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09255)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09256 : MirrorEntry := .membershipRow (membershipRowEntry 9256 [-26, -23, -29, -28, 1123]
   1123 ⟨2, {3, 6, 8, 9}⟩
   (26, ⟨2, 6⟩)
@@ -423,20 +523,25 @@ def entry_09256 : MirrorEntry := .membershipRow (membershipRowEntry 9256 [-26, -
   (29, ⟨2, 9⟩)
   (28, ⟨2, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09257 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 4, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09257 : MirrorEntry := .rowArc (rowArcEntry 9257 [992, -1123]
   1123 ⟨2, {3, 6, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09257)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09258 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 4, 7}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09258 : MirrorEntry := .rowArc (rowArcEntry 9258 [955, -1123]
   1123 ⟨2, {3, 6, 8, 9}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09258)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09259 : MirrorEntry := .membershipRow (membershipRowEntry 9259 [-26, 1124, -23, -28, -30]
   1124 ⟨2, {3, 6, 8, 10}⟩
   (26, ⟨2, 6⟩)
@@ -444,20 +549,25 @@ def entry_09259 : MirrorEntry := .membershipRow (membershipRowEntry 9259 [-26, 1
   (28, ⟨2, 8⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09260 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 4, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09260 : MirrorEntry := .rowArc (rowArcEntry 9260 [992, -1124]
   1124 ⟨2, {3, 6, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09260)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09261 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 4, 7}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09261 : MirrorEntry := .rowArc (rowArcEntry 9261 [955, -1124]
   1124 ⟨2, {3, 6, 8, 10}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09261)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09262 : MirrorEntry := .membershipRow (membershipRowEntry 9262 [-26, 1125, -23, -29, -30]
   1125 ⟨2, {3, 6, 9, 10}⟩
   (26, ⟨2, 6⟩)
@@ -465,20 +575,25 @@ def entry_09262 : MirrorEntry := .membershipRow (membershipRowEntry 9262 [-26, 1
   (29, ⟨2, 9⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09263 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 4, 7}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09263 : MirrorEntry := .rowArc (rowArcEntry 9263 [994, -1125]
   1125 ⟨2, {3, 6, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09263)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09264 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 4, 7}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09264 : MirrorEntry := .rowArc (rowArcEntry 9264 [955, -1125]
   1125 ⟨2, {3, 6, 9, 10}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09264)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09265 : MirrorEntry := .membershipRow (membershipRowEntry 9265 [-27, -23, -28, 1126, -29]
   1126 ⟨2, {3, 7, 8, 9}⟩
   (27, ⟨2, 7⟩)
@@ -486,20 +601,25 @@ def entry_09265 : MirrorEntry := .membershipRow (membershipRowEntry 9265 [-27, -
   (28, ⟨2, 8⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09266 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09266 : MirrorEntry := .rowArc (rowArcEntry 9266 [992, -1126]
   1126 ⟨2, {3, 7, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09266)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09267 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 7}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09267 : MirrorEntry := .rowArc (rowArcEntry 9267 [957, -1126]
   1126 ⟨2, {3, 7, 8, 9}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09267)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09268 : MirrorEntry := .membershipRow (membershipRowEntry 9268 [-27, -23, -28, 1127, -30]
   1127 ⟨2, {3, 7, 8, 10}⟩
   (27, ⟨2, 7⟩)
@@ -507,20 +627,25 @@ def entry_09268 : MirrorEntry := .membershipRow (membershipRowEntry 9268 [-27, -
   (28, ⟨2, 8⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09269 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 7}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09269 : MirrorEntry := .rowArc (rowArcEntry 9269 [992, -1127]
   1127 ⟨2, {3, 7, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09269)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09270 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 7}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09270 : MirrorEntry := .rowArc (rowArcEntry 9270 [957, -1127]
   1127 ⟨2, {3, 7, 8, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09270)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09271 : MirrorEntry := .membershipRow (membershipRowEntry 9271 [1128, -27, -30, -23, -29]
   1128 ⟨2, {3, 7, 9, 10}⟩
   (27, ⟨2, 7⟩)
@@ -528,34 +653,43 @@ def entry_09271 : MirrorEntry := .membershipRow (membershipRowEntry 9271 [1128, 
   (23, ⟨2, 3⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09272 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 7}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09272 : MirrorEntry := .rowArc (rowArcEntry 9272 [994, -1128]
   1128 ⟨2, {3, 7, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09272)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09273 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 7}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09273 : MirrorEntry := .rowArc (rowArcEntry 9273 [957, -1128]
   1128 ⟨2, {3, 7, 9, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09273)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09274 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 7}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09274 : MirrorEntry := .rowArc (rowArcEntry 9274 [994, -1129]
   1129 ⟨2, {3, 8, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09274)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09275 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 7}⟩, ⟨8, .left, {3, 4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09275 : MirrorEntry := .rowArc (rowArcEntry 9275 [959, -1129]
   1129 ⟨2, {3, 8, 9, 10}⟩ 959 ⟨2, .right, {3, 4, 5, 6, 7}⟩
   reflectedDatum_09275)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09276 : MirrorEntry := .membershipRow (membershipRowEntry 9276 [-25, -27, -24, -28, 1130]
   1130 ⟨2, {4, 5, 7, 8}⟩
   (25, ⟨2, 5⟩)
@@ -563,20 +697,25 @@ def entry_09276 : MirrorEntry := .membershipRow (membershipRowEntry 9276 [-25, -
   (24, ⟨2, 4⟩)
   (28, ⟨2, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09277 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 5, 6}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09277 : MirrorEntry := .rowArc (rowArcEntry 9277 [990, -1130]
   1130 ⟨2, {4, 5, 7, 8}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09277)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09278 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 5, 6}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09278 : MirrorEntry := .rowArc (rowArcEntry 9278 [953, -1130]
   1130 ⟨2, {4, 5, 7, 8}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09278)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09279 : MirrorEntry := .membershipRow (membershipRowEntry 9279 [-25, -27, -29, -24, 1131]
   1131 ⟨2, {4, 5, 7, 9}⟩
   (25, ⟨2, 5⟩)
@@ -584,20 +723,25 @@ def entry_09279 : MirrorEntry := .membershipRow (membershipRowEntry 9279 [-25, -
   (29, ⟨2, 9⟩)
   (24, ⟨2, 4⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09280 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 5, 6}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09280 : MirrorEntry := .rowArc (rowArcEntry 9280 [990, -1131]
   1131 ⟨2, {4, 5, 7, 9}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09280)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09281 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 5, 6}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09281 : MirrorEntry := .rowArc (rowArcEntry 9281 [953, -1131]
   1131 ⟨2, {4, 5, 7, 9}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09281)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09282 : MirrorEntry := .membershipRow (membershipRowEntry 9282 [-25, -27, -24, -30, 1132]
   1132 ⟨2, {4, 5, 7, 10}⟩
   (25, ⟨2, 5⟩)
@@ -605,20 +749,25 @@ def entry_09282 : MirrorEntry := .membershipRow (membershipRowEntry 9282 [-25, -
   (24, ⟨2, 4⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09283 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 5, 6}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09283 : MirrorEntry := .rowArc (rowArcEntry 9283 [990, -1132]
   1132 ⟨2, {4, 5, 7, 10}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09283)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09284 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 5, 6}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09284 : MirrorEntry := .rowArc (rowArcEntry 9284 [953, -1132]
   1132 ⟨2, {4, 5, 7, 10}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09284)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09285 : MirrorEntry := .membershipRow (membershipRowEntry 9285 [-25, 1133, -29, -24, -28]
   1133 ⟨2, {4, 5, 8, 9}⟩
   (25, ⟨2, 5⟩)
@@ -626,20 +775,25 @@ def entry_09285 : MirrorEntry := .membershipRow (membershipRowEntry 9285 [-25, 1
   (24, ⟨2, 4⟩)
   (28, ⟨2, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09286 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 5, 6}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09286 : MirrorEntry := .rowArc (rowArcEntry 9286 [992, -1133]
   1133 ⟨2, {4, 5, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09286)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09287 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 5, 6}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09287 : MirrorEntry := .rowArc (rowArcEntry 9287 [953, -1133]
   1133 ⟨2, {4, 5, 8, 9}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09287)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09288 : MirrorEntry := .membershipRow (membershipRowEntry 9288 [1134, -25, -24, -28, -30]
   1134 ⟨2, {4, 5, 8, 10}⟩
   (25, ⟨2, 5⟩)
@@ -647,20 +801,25 @@ def entry_09288 : MirrorEntry := .membershipRow (membershipRowEntry 9288 [1134, 
   (28, ⟨2, 8⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09289 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 5, 6}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09289 : MirrorEntry := .rowArc (rowArcEntry 9289 [992, -1134]
   1134 ⟨2, {4, 5, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09289)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09290 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 5, 6}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09290 : MirrorEntry := .rowArc (rowArcEntry 9290 [953, -1134]
   1134 ⟨2, {4, 5, 8, 10}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09290)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09291 : MirrorEntry := .membershipRow (membershipRowEntry 9291 [-25, -30, -29, -24, 1135]
   1135 ⟨2, {4, 5, 9, 10}⟩
   (25, ⟨2, 5⟩)
@@ -668,20 +827,25 @@ def entry_09291 : MirrorEntry := .membershipRow (membershipRowEntry 9291 [-25, -
   (29, ⟨2, 9⟩)
   (24, ⟨2, 4⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09292 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 5, 6}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09292 : MirrorEntry := .rowArc (rowArcEntry 9292 [994, -1135]
   1135 ⟨2, {4, 5, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09292)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09293 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 5, 6}⟩, ⟨8, .left, {3, 4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09293 : MirrorEntry := .rowArc (rowArcEntry 9293 [953, -1135]
   1135 ⟨2, {4, 5, 9, 10}⟩ 953 ⟨2, .right, {6, 7}⟩
   reflectedDatum_09293)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09294 : MirrorEntry := .membershipRow (membershipRowEntry 9294 [-26, -27, -24, -28, 1136]
   1136 ⟨2, {4, 6, 7, 8}⟩
   (26, ⟨2, 6⟩)
@@ -689,20 +853,25 @@ def entry_09294 : MirrorEntry := .membershipRow (membershipRowEntry 9294 [-26, -
   (24, ⟨2, 4⟩)
   (28, ⟨2, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09295 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 4, 6}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09295 : MirrorEntry := .rowArc (rowArcEntry 9295 [990, -1136]
   1136 ⟨2, {4, 6, 7, 8}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09295)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09296 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 4, 6}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09296 : MirrorEntry := .rowArc (rowArcEntry 9296 [955, -1136]
   1136 ⟨2, {4, 6, 7, 8}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09296)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09297 : MirrorEntry := .membershipRow (membershipRowEntry 9297 [-26, -27, -29, -24, 1137]
   1137 ⟨2, {4, 6, 7, 9}⟩
   (26, ⟨2, 6⟩)
@@ -710,20 +879,25 @@ def entry_09297 : MirrorEntry := .membershipRow (membershipRowEntry 9297 [-26, -
   (29, ⟨2, 9⟩)
   (24, ⟨2, 4⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09298 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 4, 6}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09298 : MirrorEntry := .rowArc (rowArcEntry 9298 [990, -1137]
   1137 ⟨2, {4, 6, 7, 9}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09298)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09299 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 4, 6}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09299 : MirrorEntry := .rowArc (rowArcEntry 9299 [955, -1137]
   1137 ⟨2, {4, 6, 7, 9}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09299)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09300 : MirrorEntry := .membershipRow (membershipRowEntry 9300 [-26, 1138, -27, -24, -30]
   1138 ⟨2, {4, 6, 7, 10}⟩
   (26, ⟨2, 6⟩)
@@ -731,20 +905,25 @@ def entry_09300 : MirrorEntry := .membershipRow (membershipRowEntry 9300 [-26, 1
   (24, ⟨2, 4⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09301 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 4, 6}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09301 : MirrorEntry := .rowArc (rowArcEntry 9301 [990, -1138]
   1138 ⟨2, {4, 6, 7, 10}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09301)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09302 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 4, 6}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09302 : MirrorEntry := .rowArc (rowArcEntry 9302 [955, -1138]
   1138 ⟨2, {4, 6, 7, 10}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09302)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09303 : MirrorEntry := .membershipRow (membershipRowEntry 9303 [-26, 1139, -29, -24, -28]
   1139 ⟨2, {4, 6, 8, 9}⟩
   (26, ⟨2, 6⟩)
@@ -752,20 +931,25 @@ def entry_09303 : MirrorEntry := .membershipRow (membershipRowEntry 9303 [-26, 1
   (24, ⟨2, 4⟩)
   (28, ⟨2, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09304 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 4, 6}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09304 : MirrorEntry := .rowArc (rowArcEntry 9304 [992, -1139]
   1139 ⟨2, {4, 6, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09304)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09305 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 4, 6}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09305 : MirrorEntry := .rowArc (rowArcEntry 9305 [955, -1139]
   1139 ⟨2, {4, 6, 8, 9}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09305)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09306 : MirrorEntry := .membershipRow (membershipRowEntry 9306 [-26, 1140, -24, -28, -30]
   1140 ⟨2, {4, 6, 8, 10}⟩
   (26, ⟨2, 6⟩)
@@ -773,20 +957,25 @@ def entry_09306 : MirrorEntry := .membershipRow (membershipRowEntry 9306 [-26, 1
   (28, ⟨2, 8⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09307 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 4, 6}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09307 : MirrorEntry := .rowArc (rowArcEntry 9307 [992, -1140]
   1140 ⟨2, {4, 6, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09307)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09308 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 4, 6}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09308 : MirrorEntry := .rowArc (rowArcEntry 9308 [955, -1140]
   1140 ⟨2, {4, 6, 8, 10}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09308)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09309 : MirrorEntry := .membershipRow (membershipRowEntry 9309 [-26, -30, -24, -29, 1141]
   1141 ⟨2, {4, 6, 9, 10}⟩
   (26, ⟨2, 6⟩)
@@ -794,20 +983,25 @@ def entry_09309 : MirrorEntry := .membershipRow (membershipRowEntry 9309 [-26, -
   (24, ⟨2, 4⟩)
   (29, ⟨2, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09310 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 4, 6}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09310 : MirrorEntry := .rowArc (rowArcEntry 9310 [994, -1141]
   1141 ⟨2, {4, 6, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09310)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09311 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 4, 6}⟩, ⟨8, .left, {3, 4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09311 : MirrorEntry := .rowArc (rowArcEntry 9311 [955, -1141]
   1141 ⟨2, {4, 6, 9, 10}⟩ 955 ⟨2, .right, {5, 6, 7}⟩
   reflectedDatum_09311)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09312 : MirrorEntry := .membershipRow (membershipRowEntry 9312 [-27, -29, -28, 1142, -24]
   1142 ⟨2, {4, 7, 8, 9}⟩
   (27, ⟨2, 7⟩)
@@ -815,20 +1009,25 @@ def entry_09312 : MirrorEntry := .membershipRow (membershipRowEntry 9312 [-27, -
   (28, ⟨2, 8⟩)
   (24, ⟨2, 4⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09313 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 6}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09313 : MirrorEntry := .rowArc (rowArcEntry 9313 [992, -1142]
   1142 ⟨2, {4, 7, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09313)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09314 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 6}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09314 : MirrorEntry := .rowArc (rowArcEntry 9314 [957, -1142]
   1142 ⟨2, {4, 7, 8, 9}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09314)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09315 : MirrorEntry := .membershipRow (membershipRowEntry 9315 [-27, -24, 1143, -28, -30]
   1143 ⟨2, {4, 7, 8, 10}⟩
   (27, ⟨2, 7⟩)
@@ -836,20 +1035,25 @@ def entry_09315 : MirrorEntry := .membershipRow (membershipRowEntry 9315 [-27, -
   (28, ⟨2, 8⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09316 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 6}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09316 : MirrorEntry := .rowArc (rowArcEntry 9316 [992, -1143]
   1143 ⟨2, {4, 7, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09316)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09317 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 6}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09317 : MirrorEntry := .rowArc (rowArcEntry 9317 [957, -1143]
   1143 ⟨2, {4, 7, 8, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09317)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09318 : MirrorEntry := .membershipRow (membershipRowEntry 9318 [1144, -27, -29, -24, -30]
   1144 ⟨2, {4, 7, 9, 10}⟩
   (27, ⟨2, 7⟩)
@@ -857,342 +1061,439 @@ def entry_09318 : MirrorEntry := .membershipRow (membershipRowEntry 9318 [1144, 
   (24, ⟨2, 4⟩)
   (30, ⟨2, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09319 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 6}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09319 : MirrorEntry := .rowArc (rowArcEntry 9319 [994, -1144]
   1144 ⟨2, {4, 7, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09319)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09320 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 6}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09320 : MirrorEntry := .rowArc (rowArcEntry 9320 [957, -1144]
   1144 ⟨2, {4, 7, 9, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09320)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09321 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 6}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09321 : MirrorEntry := .rowArc (rowArcEntry 9321 [994, -1145]
   1145 ⟨2, {4, 8, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09321)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09322 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 6}⟩, ⟨8, .left, {3, 4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09322 : MirrorEntry := .rowArc (rowArcEntry 9322 [959, -1145]
   1145 ⟨2, {4, 8, 9, 10}⟩ 959 ⟨2, .right, {3, 4, 5, 6, 7}⟩
   reflectedDatum_09322)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09323 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {2, 3, 4, 5}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09323 : MirrorEntry := .rowArc (rowArcEntry 9323 [990, -1146]
   1146 ⟨2, {5, 6, 7, 8}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09323)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09324 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 3, 4, 5}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09324 : MirrorEntry := .rowArc (rowArcEntry 9324 [990, -1147]
   1147 ⟨2, {5, 6, 7, 9}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09324)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09325 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 3, 4, 5}⟩, ⟨8, .right, {0, 1, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09325 : MirrorEntry := .rowArc (rowArcEntry 9325 [990, -1148]
   1148 ⟨2, {5, 6, 7, 10}⟩ 990 ⟨2, .left, {0, 1, 2, 9, 10}⟩
   reflectedDatum_09325)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09326 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 4, 5}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09326 : MirrorEntry := .rowArc (rowArcEntry 9326 [992, -1149]
   1149 ⟨2, {5, 6, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09326)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09327 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 4, 5}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09327 : MirrorEntry := .rowArc (rowArcEntry 9327 [992, -1150]
   1150 ⟨2, {5, 6, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09327)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09328 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 4, 5}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09328 : MirrorEntry := .rowArc (rowArcEntry 9328 [994, -1151]
   1151 ⟨2, {5, 6, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09328)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09329 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 5}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09329 : MirrorEntry := .rowArc (rowArcEntry 9329 [992, -1152]
   1152 ⟨2, {5, 7, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09329)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09330 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 5}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09330 : MirrorEntry := .rowArc (rowArcEntry 9330 [957, -1152]
   1152 ⟨2, {5, 7, 8, 9}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09330)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09331 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 5}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09331 : MirrorEntry := .rowArc (rowArcEntry 9331 [992, -1153]
   1153 ⟨2, {5, 7, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09331)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09332 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 5}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09332 : MirrorEntry := .rowArc (rowArcEntry 9332 [957, -1153]
   1153 ⟨2, {5, 7, 8, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09332)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09333 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 5}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09333 : MirrorEntry := .rowArc (rowArcEntry 9333 [994, -1154]
   1154 ⟨2, {5, 7, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09333)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09334 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 5}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09334 : MirrorEntry := .rowArc (rowArcEntry 9334 [957, -1154]
   1154 ⟨2, {5, 7, 9, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09334)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09335 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 5}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09335 : MirrorEntry := .rowArc (rowArcEntry 9335 [994, -1155]
   1155 ⟨2, {5, 8, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09335)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09336 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 5}⟩, ⟨8, .left, {3, 4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09336 : MirrorEntry := .rowArc (rowArcEntry 9336 [959, -1155]
   1155 ⟨2, {5, 8, 9, 10}⟩ 959 ⟨2, .right, {3, 4, 5, 6, 7}⟩
   reflectedDatum_09336)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09337 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 4}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09337 : MirrorEntry := .rowArc (rowArcEntry 9337 [992, -1156]
   1156 ⟨2, {6, 7, 8, 9}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09337)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09338 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {1, 2, 3, 4}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09338 : MirrorEntry := .rowArc (rowArcEntry 9338 [957, -1156]
   1156 ⟨2, {6, 7, 8, 9}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09338)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09339 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 4}⟩, ⟨8, .right, {0, 1, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09339 : MirrorEntry := .rowArc (rowArcEntry 9339 [992, -1157]
   1157 ⟨2, {6, 7, 8, 10}⟩ 992 ⟨2, .left, {0, 1, 9, 10}⟩
   reflectedDatum_09339)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09340 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 2, 3, 4}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09340 : MirrorEntry := .rowArc (rowArcEntry 9340 [957, -1157]
   1157 ⟨2, {6, 7, 8, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09340)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09341 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 4}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09341 : MirrorEntry := .rowArc (rowArcEntry 9341 [994, -1158]
   1158 ⟨2, {6, 7, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09341)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09342 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 3, 4}⟩, ⟨8, .left, {3, 4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09342 : MirrorEntry := .rowArc (rowArcEntry 9342 [957, -1158]
   1158 ⟨2, {6, 7, 9, 10}⟩ 957 ⟨2, .right, {4, 5, 6, 7}⟩
   reflectedDatum_09342)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09343 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 4}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09343 : MirrorEntry := .rowArc (rowArcEntry 9343 [994, -1159]
   1159 ⟨2, {6, 8, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09343)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09344 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 4}⟩, ⟨8, .left, {3, 4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09344 : MirrorEntry := .rowArc (rowArcEntry 9344 [959, -1159]
   1159 ⟨2, {6, 8, 9, 10}⟩ 959 ⟨2, .right, {3, 4, 5, 6, 7}⟩
   reflectedDatum_09344)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09345 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 3}⟩, ⟨8, .right, {0, 1, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09345 : MirrorEntry := .rowArc (rowArcEntry 9345 [994, -1160]
   1160 ⟨2, {7, 8, 9, 10}⟩ 994 ⟨2, .left, {0, 9, 10}⟩
   reflectedDatum_09345)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09346 : DirectRowArcFiniteDatum :=
   ⟨⟨8, {0, 1, 2, 3}⟩, ⟨8, .left, {3, 4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09346 : MirrorEntry := .rowArc (rowArcEntry 9346 [959, -1160]
   1160 ⟨2, {7, 8, 9, 10}⟩ 959 ⟨2, .right, {3, 4, 5, 6, 7}⟩
   reflectedDatum_09346)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09347 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {6, 8, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09347 : MirrorEntry := .rowArc (rowArcEntry 9347 [1163, -1161]
   1161 ⟨3, {0, 1, 2, 4}⟩ 1163 ⟨3, .right, {0, 1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09347)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09348 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {5, 8, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09348 : MirrorEntry := .rowArc (rowArcEntry 9348 [1163, -1164]
   1164 ⟨3, {0, 1, 2, 5}⟩ 1163 ⟨3, .right, {0, 1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09348)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09349 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {4, 8, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09349 : MirrorEntry := .rowArc (rowArcEntry 9349 [1163, -1165]
   1165 ⟨3, {0, 1, 2, 6}⟩ 1163 ⟨3, .right, {0, 1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09349)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09350 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 8, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09350 : MirrorEntry := .rowArc (rowArcEntry 9350 [1163, -1166]
   1166 ⟨3, {0, 1, 2, 7}⟩ 1163 ⟨3, .right, {0, 1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09350)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09351 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 8, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09351 : MirrorEntry := .rowArc (rowArcEntry 9351 [1163, -1167]
   1167 ⟨3, {0, 1, 2, 8}⟩ 1163 ⟨3, .right, {0, 1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09351)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09352 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 8, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09352 : MirrorEntry := .rowArc (rowArcEntry 9352 [1163, -1168]
   1168 ⟨3, {0, 1, 2, 9}⟩ 1163 ⟨3, .right, {0, 1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09352)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09353 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 8, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9, 10}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09353 : MirrorEntry := .rowArc (rowArcEntry 9353 [1163, -1169]
   1169 ⟨3, {0, 1, 2, 10}⟩ 1163 ⟨3, .right, {0, 1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09353)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09354 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {5, 6, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09354 : MirrorEntry := .rowArc (rowArcEntry 9354 [1171, -1170]
   1170 ⟨3, {0, 1, 4, 5}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09354)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09355 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {5, 6, 9, 10}⟩, ⟨7, .left, {4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09355 : MirrorEntry := .rowArc (rowArcEntry 9355 [-1170, 1172]
   1170 ⟨3, {0, 1, 4, 5}⟩ 1172 ⟨3, .right, {6}⟩
   reflectedDatum_09355)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09356 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {4, 6, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09356 : MirrorEntry := .rowArc (rowArcEntry 9356 [1171, -1173]
   1173 ⟨3, {0, 1, 4, 6}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09356)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09357 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {4, 6, 9, 10}⟩, ⟨7, .left, {4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09357 : MirrorEntry := .rowArc (rowArcEntry 9357 [1174, -1173]
   1173 ⟨3, {0, 1, 4, 6}⟩ 1174 ⟨3, .right, {5, 6}⟩
   reflectedDatum_09357)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09358 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 6, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09358 : MirrorEntry := .rowArc (rowArcEntry 9358 [1171, -1175]
   1175 ⟨3, {0, 1, 4, 7}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09358)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09359 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 6, 9, 10}⟩, ⟨7, .left, {4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09359 : MirrorEntry := .rowArc (rowArcEntry 9359 [1176, -1175]
   1175 ⟨3, {0, 1, 4, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
   reflectedDatum_09359)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09360 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 6, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09360 : MirrorEntry := .rowArc (rowArcEntry 9360 [1171, -1177]
   1177 ⟨3, {0, 1, 4, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09360)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09361 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 6, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09361 : MirrorEntry := .rowArc (rowArcEntry 9361 [1178, -1177]
   1177 ⟨3, {0, 1, 4, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09361)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09362 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 6, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09362 : MirrorEntry := .rowArc (rowArcEntry 9362 [1171, -1179]
   1179 ⟨3, {0, 1, 4, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09362)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09363 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 6, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09363 : MirrorEntry := .rowArc (rowArcEntry 9363 [1180, -1179]
   1179 ⟨3, {0, 1, 4, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09363)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09364 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 6, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09364 : MirrorEntry := .rowArc (rowArcEntry 9364 [1171, -1181]
   1181 ⟨3, {0, 1, 4, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09364)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09365 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 6, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09365 : MirrorEntry := .rowArc (rowArcEntry 9365 [1182, -1181]
   1181 ⟨3, {0, 1, 4, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09365)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09366 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {4, 5, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09366 : MirrorEntry := .rowArc (rowArcEntry 9366 [1171, -1183]
   1183 ⟨3, {0, 1, 5, 6}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09366)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09367 : MirrorEntry := .membershipRow (membershipRowEntry 9367 [-32, -35, -31, -37, 1184]
   1184 ⟨3, {0, 1, 5, 7}⟩
   (32, ⟨3, 1⟩)
@@ -1200,20 +1501,25 @@ def entry_09367 : MirrorEntry := .membershipRow (membershipRowEntry 9367 [-32, -
   (31, ⟨3, 0⟩)
   (37, ⟨3, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09368 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 5, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09368 : MirrorEntry := .rowArc (rowArcEntry 9368 [1171, -1184]
   1184 ⟨3, {0, 1, 5, 7}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09368)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09369 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 5, 9, 10}⟩, ⟨7, .left, {4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09369 : MirrorEntry := .rowArc (rowArcEntry 9369 [1176, -1184]
   1184 ⟨3, {0, 1, 5, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
   reflectedDatum_09369)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09370 : MirrorEntry := .membershipRow (membershipRowEntry 9370 [-32, -35, -31, -38, 1185]
   1185 ⟨3, {0, 1, 5, 8}⟩
   (32, ⟨3, 1⟩)
@@ -1221,20 +1527,25 @@ def entry_09370 : MirrorEntry := .membershipRow (membershipRowEntry 9370 [-32, -
   (31, ⟨3, 0⟩)
   (38, ⟨3, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09371 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 5, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09371 : MirrorEntry := .rowArc (rowArcEntry 9371 [1171, -1185]
   1185 ⟨3, {0, 1, 5, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09371)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09372 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 5, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09372 : MirrorEntry := .rowArc (rowArcEntry 9372 [1178, -1185]
   1185 ⟨3, {0, 1, 5, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09372)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09373 : MirrorEntry := .membershipRow (membershipRowEntry 9373 [1186, -35, -31, -39, -32]
   1186 ⟨3, {0, 1, 5, 9}⟩
   (35, ⟨3, 5⟩)
@@ -1242,20 +1553,25 @@ def entry_09373 : MirrorEntry := .membershipRow (membershipRowEntry 9373 [1186, 
   (39, ⟨3, 9⟩)
   (32, ⟨3, 1⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09374 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 5, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09374 : MirrorEntry := .rowArc (rowArcEntry 9374 [1171, -1186]
   1186 ⟨3, {0, 1, 5, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09374)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09375 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 5, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09375 : MirrorEntry := .rowArc (rowArcEntry 9375 [1180, -1186]
   1186 ⟨3, {0, 1, 5, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09375)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09376 : MirrorEntry := .membershipRow (membershipRowEntry 9376 [-32, -35, -40, -31, 1187]
   1187 ⟨3, {0, 1, 5, 10}⟩
   (32, ⟨3, 1⟩)
@@ -1263,20 +1579,25 @@ def entry_09376 : MirrorEntry := .membershipRow (membershipRowEntry 9376 [-32, -
   (40, ⟨3, 10⟩)
   (31, ⟨3, 0⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09377 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 5, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09377 : MirrorEntry := .rowArc (rowArcEntry 9377 [1171, -1187]
   1187 ⟨3, {0, 1, 5, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09377)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09378 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 5, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09378 : MirrorEntry := .rowArc (rowArcEntry 9378 [1182, -1187]
   1187 ⟨3, {0, 1, 5, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09378)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09379 : MirrorEntry := .membershipRow (membershipRowEntry 9379 [-32, -36, -31, -37, 1188]
   1188 ⟨3, {0, 1, 6, 7}⟩
   (32, ⟨3, 1⟩)
@@ -1284,20 +1605,25 @@ def entry_09379 : MirrorEntry := .membershipRow (membershipRowEntry 9379 [-32, -
   (31, ⟨3, 0⟩)
   (37, ⟨3, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09380 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 4, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09380 : MirrorEntry := .rowArc (rowArcEntry 9380 [1171, -1188]
   1188 ⟨3, {0, 1, 6, 7}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09380)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09381 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 4, 9, 10}⟩, ⟨7, .left, {4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09381 : MirrorEntry := .rowArc (rowArcEntry 9381 [1176, -1188]
   1188 ⟨3, {0, 1, 6, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
   reflectedDatum_09381)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09382 : MirrorEntry := .membershipRow (membershipRowEntry 9382 [-32, -36, -31, -38, 1189]
   1189 ⟨3, {0, 1, 6, 8}⟩
   (32, ⟨3, 1⟩)
@@ -1305,20 +1631,25 @@ def entry_09382 : MirrorEntry := .membershipRow (membershipRowEntry 9382 [-32, -
   (31, ⟨3, 0⟩)
   (38, ⟨3, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09383 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 4, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09383 : MirrorEntry := .rowArc (rowArcEntry 9383 [1171, -1189]
   1189 ⟨3, {0, 1, 6, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09383)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09384 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 4, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09384 : MirrorEntry := .rowArc (rowArcEntry 9384 [1178, -1189]
   1189 ⟨3, {0, 1, 6, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09384)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09385 : MirrorEntry := .membershipRow (membershipRowEntry 9385 [-32, -36, -39, -31, 1190]
   1190 ⟨3, {0, 1, 6, 9}⟩
   (32, ⟨3, 1⟩)
@@ -1326,20 +1657,25 @@ def entry_09385 : MirrorEntry := .membershipRow (membershipRowEntry 9385 [-32, -
   (39, ⟨3, 9⟩)
   (31, ⟨3, 0⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09386 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 4, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09386 : MirrorEntry := .rowArc (rowArcEntry 9386 [1171, -1190]
   1190 ⟨3, {0, 1, 6, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09386)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09387 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 4, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09387 : MirrorEntry := .rowArc (rowArcEntry 9387 [1180, -1190]
   1190 ⟨3, {0, 1, 6, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09387)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09388 : MirrorEntry := .membershipRow (membershipRowEntry 9388 [-32, -36, -31, 1191, -40]
   1191 ⟨3, {0, 1, 6, 10}⟩
   (32, ⟨3, 1⟩)
@@ -1347,20 +1683,25 @@ def entry_09388 : MirrorEntry := .membershipRow (membershipRowEntry 9388 [-32, -
   (31, ⟨3, 0⟩)
   (40, ⟨3, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09389 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 4, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09389 : MirrorEntry := .rowArc (rowArcEntry 9389 [1171, -1191]
   1191 ⟨3, {0, 1, 6, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09389)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09390 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 4, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09390 : MirrorEntry := .rowArc (rowArcEntry 9390 [1182, -1191]
   1191 ⟨3, {0, 1, 6, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09390)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09391 : MirrorEntry := .membershipRow (membershipRowEntry 9391 [-32, 1192, -31, -38, -37]
   1192 ⟨3, {0, 1, 7, 8}⟩
   (32, ⟨3, 1⟩)
@@ -1368,20 +1709,25 @@ def entry_09391 : MirrorEntry := .membershipRow (membershipRowEntry 9391 [-32, 1
   (38, ⟨3, 8⟩)
   (37, ⟨3, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09392 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 3, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09392 : MirrorEntry := .rowArc (rowArcEntry 9392 [1171, -1192]
   1192 ⟨3, {0, 1, 7, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09392)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09393 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 3, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09393 : MirrorEntry := .rowArc (rowArcEntry 9393 [1178, -1192]
   1192 ⟨3, {0, 1, 7, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09393)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09394 : MirrorEntry := .membershipRow (membershipRowEntry 9394 [-32, 1193, -31, -37, -39]
   1193 ⟨3, {0, 1, 7, 9}⟩
   (32, ⟨3, 1⟩)
@@ -1389,20 +1735,25 @@ def entry_09394 : MirrorEntry := .membershipRow (membershipRowEntry 9394 [-32, 1
   (37, ⟨3, 7⟩)
   (39, ⟨3, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09395 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 3, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09395 : MirrorEntry := .rowArc (rowArcEntry 9395 [1171, -1193]
   1193 ⟨3, {0, 1, 7, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09395)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09396 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 3, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09396 : MirrorEntry := .rowArc (rowArcEntry 9396 [1180, -1193]
   1193 ⟨3, {0, 1, 7, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09396)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09397 : MirrorEntry := .membershipRow (membershipRowEntry 9397 [-32, 1194, -31, -37, -40]
   1194 ⟨3, {0, 1, 7, 10}⟩
   (32, ⟨3, 1⟩)
@@ -1410,20 +1761,25 @@ def entry_09397 : MirrorEntry := .membershipRow (membershipRowEntry 9397 [-32, 1
   (37, ⟨3, 7⟩)
   (40, ⟨3, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09398 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 3, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09398 : MirrorEntry := .rowArc (rowArcEntry 9398 [1171, -1194]
   1194 ⟨3, {0, 1, 7, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09398)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09399 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 3, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09399 : MirrorEntry := .rowArc (rowArcEntry 9399 [1182, -1194]
   1194 ⟨3, {0, 1, 7, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09399)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09400 : MirrorEntry := .membershipRow (membershipRowEntry 9400 [-32, 1195, -38, -31, -39]
   1195 ⟨3, {0, 1, 8, 9}⟩
   (32, ⟨3, 1⟩)
@@ -1431,20 +1787,25 @@ def entry_09400 : MirrorEntry := .membershipRow (membershipRowEntry 9400 [-32, 1
   (31, ⟨3, 0⟩)
   (39, ⟨3, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09401 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 2, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09401 : MirrorEntry := .rowArc (rowArcEntry 9401 [1171, -1195]
   1195 ⟨3, {0, 1, 8, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09401)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09402 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 2, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09402 : MirrorEntry := .rowArc (rowArcEntry 9402 [1180, -1195]
   1195 ⟨3, {0, 1, 8, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09402)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09403 : MirrorEntry := .membershipRow (membershipRowEntry 9403 [-32, 1196, -40, -31, -38]
   1196 ⟨3, {0, 1, 8, 10}⟩
   (32, ⟨3, 1⟩)
@@ -1452,20 +1813,25 @@ def entry_09403 : MirrorEntry := .membershipRow (membershipRowEntry 9403 [-32, 1
   (31, ⟨3, 0⟩)
   (38, ⟨3, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09404 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 2, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09404 : MirrorEntry := .rowArc (rowArcEntry 9404 [1171, -1196]
   1196 ⟨3, {0, 1, 8, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09404)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09405 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 2, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09405 : MirrorEntry := .rowArc (rowArcEntry 9405 [1182, -1196]
   1196 ⟨3, {0, 1, 8, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09405)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09406 : MirrorEntry := .membershipRow (membershipRowEntry 9406 [-32, -40, -31, -39, 1197]
   1197 ⟨3, {0, 1, 9, 10}⟩
   (32, ⟨3, 1⟩)
@@ -1473,111 +1839,142 @@ def entry_09406 : MirrorEntry := .membershipRow (membershipRowEntry 9406 [-32, -
   (31, ⟨3, 0⟩)
   (39, ⟨3, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09407 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 1, 9, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09407 : MirrorEntry := .rowArc (rowArcEntry 9407 [1171, -1197]
   1197 ⟨3, {0, 1, 9, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09407)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09408 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 1, 9, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09408 : MirrorEntry := .rowArc (rowArcEntry 9408 [1182, -1197]
   1197 ⟨3, {0, 1, 9, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09408)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09409 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {5, 6, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09409 : MirrorEntry := .rowArc (rowArcEntry 9409 [1171, -1198]
   1198 ⟨3, {0, 2, 4, 5}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09409)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09410 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {5, 6, 8, 10}⟩, ⟨7, .left, {4}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09410 : MirrorEntry := .rowArc (rowArcEntry 9410 [-1198, 1172]
   1198 ⟨3, {0, 2, 4, 5}⟩ 1172 ⟨3, .right, {6}⟩
   reflectedDatum_09410)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09411 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {4, 6, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09411 : MirrorEntry := .rowArc (rowArcEntry 9411 [1171, -1199]
   1199 ⟨3, {0, 2, 4, 6}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09411)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09412 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {4, 6, 8, 10}⟩, ⟨7, .left, {4, 5}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09412 : MirrorEntry := .rowArc (rowArcEntry 9412 [1174, -1199]
   1199 ⟨3, {0, 2, 4, 6}⟩ 1174 ⟨3, .right, {5, 6}⟩
   reflectedDatum_09412)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09413 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 6, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09413 : MirrorEntry := .rowArc (rowArcEntry 9413 [1171, -1200]
   1200 ⟨3, {0, 2, 4, 7}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09413)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09414 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 6, 8, 10}⟩, ⟨7, .left, {4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09414 : MirrorEntry := .rowArc (rowArcEntry 9414 [1176, -1200]
   1200 ⟨3, {0, 2, 4, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
   reflectedDatum_09414)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09415 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 6, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09415 : MirrorEntry := .rowArc (rowArcEntry 9415 [1171, -1201]
   1201 ⟨3, {0, 2, 4, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09415)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09416 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 6, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09416 : MirrorEntry := .rowArc (rowArcEntry 9416 [1178, -1201]
   1201 ⟨3, {0, 2, 4, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09416)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09417 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 6, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09417 : MirrorEntry := .rowArc (rowArcEntry 9417 [1171, -1202]
   1202 ⟨3, {0, 2, 4, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09417)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09418 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 6, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09418 : MirrorEntry := .rowArc (rowArcEntry 9418 [1180, -1202]
   1202 ⟨3, {0, 2, 4, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09418)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09419 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 6, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09419 : MirrorEntry := .rowArc (rowArcEntry 9419 [1171, -1203]
   1203 ⟨3, {0, 2, 4, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09419)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09420 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 6, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09420 : MirrorEntry := .rowArc (rowArcEntry 9420 [1182, -1203]
   1203 ⟨3, {0, 2, 4, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09420)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09421 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {4, 5, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09421 : MirrorEntry := .rowArc (rowArcEntry 9421 [1171, -1204]
   1204 ⟨3, {0, 2, 5, 6}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09421)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09422 : MirrorEntry := .membershipRow (membershipRowEntry 9422 [-35, -33, -31, -37, 1205]
   1205 ⟨3, {0, 2, 5, 7}⟩
   (35, ⟨3, 5⟩)
@@ -1585,20 +1982,25 @@ def entry_09422 : MirrorEntry := .membershipRow (membershipRowEntry 9422 [-35, -
   (31, ⟨3, 0⟩)
   (37, ⟨3, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09423 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 5, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09423 : MirrorEntry := .rowArc (rowArcEntry 9423 [1171, -1205]
   1205 ⟨3, {0, 2, 5, 7}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09423)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09424 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 5, 8, 10}⟩, ⟨7, .left, {4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09424 : MirrorEntry := .rowArc (rowArcEntry 9424 [1176, -1205]
   1205 ⟨3, {0, 2, 5, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
   reflectedDatum_09424)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09425 : MirrorEntry := .membershipRow (membershipRowEntry 9425 [-35, -33, -31, -38, 1206]
   1206 ⟨3, {0, 2, 5, 8}⟩
   (35, ⟨3, 5⟩)
@@ -1606,20 +2008,25 @@ def entry_09425 : MirrorEntry := .membershipRow (membershipRowEntry 9425 [-35, -
   (31, ⟨3, 0⟩)
   (38, ⟨3, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09426 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 5, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09426 : MirrorEntry := .rowArc (rowArcEntry 9426 [1171, -1206]
   1206 ⟨3, {0, 2, 5, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09426)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09427 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 5, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09427 : MirrorEntry := .rowArc (rowArcEntry 9427 [1178, -1206]
   1206 ⟨3, {0, 2, 5, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09427)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09428 : MirrorEntry := .membershipRow (membershipRowEntry 9428 [1207, -35, -31, -39, -33]
   1207 ⟨3, {0, 2, 5, 9}⟩
   (35, ⟨3, 5⟩)
@@ -1627,20 +2034,25 @@ def entry_09428 : MirrorEntry := .membershipRow (membershipRowEntry 9428 [1207, 
   (39, ⟨3, 9⟩)
   (33, ⟨3, 2⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09429 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 5, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09429 : MirrorEntry := .rowArc (rowArcEntry 9429 [1171, -1207]
   1207 ⟨3, {0, 2, 5, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09429)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09430 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 5, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09430 : MirrorEntry := .rowArc (rowArcEntry 9430 [1180, -1207]
   1207 ⟨3, {0, 2, 5, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09430)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09431 : MirrorEntry := .membershipRow (membershipRowEntry 9431 [-35, -33, -31, -40, 1208]
   1208 ⟨3, {0, 2, 5, 10}⟩
   (35, ⟨3, 5⟩)
@@ -1648,20 +2060,25 @@ def entry_09431 : MirrorEntry := .membershipRow (membershipRowEntry 9431 [-35, -
   (31, ⟨3, 0⟩)
   (40, ⟨3, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09432 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 5, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09432 : MirrorEntry := .rowArc (rowArcEntry 9432 [1171, -1208]
   1208 ⟨3, {0, 2, 5, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09432)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09433 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 5, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09433 : MirrorEntry := .rowArc (rowArcEntry 9433 [1182, -1208]
   1208 ⟨3, {0, 2, 5, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09433)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09434 : MirrorEntry := .membershipRow (membershipRowEntry 9434 [-33, -36, -31, -37, 1209]
   1209 ⟨3, {0, 2, 6, 7}⟩
   (33, ⟨3, 2⟩)
@@ -1669,20 +2086,25 @@ def entry_09434 : MirrorEntry := .membershipRow (membershipRowEntry 9434 [-33, -
   (31, ⟨3, 0⟩)
   (37, ⟨3, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09435 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 4, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09435 : MirrorEntry := .rowArc (rowArcEntry 9435 [1171, -1209]
   1209 ⟨3, {0, 2, 6, 7}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09435)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09436 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {3, 4, 8, 10}⟩, ⟨7, .left, {4, 5, 6}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09436 : MirrorEntry := .rowArc (rowArcEntry 9436 [1176, -1209]
   1209 ⟨3, {0, 2, 6, 7}⟩ 1176 ⟨3, .right, {4, 5, 6}⟩
   reflectedDatum_09436)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09437 : MirrorEntry := .membershipRow (membershipRowEntry 9437 [-36, -33, -31, -38, 1210]
   1210 ⟨3, {0, 2, 6, 8}⟩
   (36, ⟨3, 6⟩)
@@ -1690,20 +2112,25 @@ def entry_09437 : MirrorEntry := .membershipRow (membershipRowEntry 9437 [-36, -
   (31, ⟨3, 0⟩)
   (38, ⟨3, 8⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09438 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 4, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09438 : MirrorEntry := .rowArc (rowArcEntry 9438 [1171, -1210]
   1210 ⟨3, {0, 2, 6, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09438)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09439 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 4, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09439 : MirrorEntry := .rowArc (rowArcEntry 9439 [1178, -1210]
   1210 ⟨3, {0, 2, 6, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09439)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09440 : MirrorEntry := .membershipRow (membershipRowEntry 9440 [-36, 1211, -39, -31, -33]
   1211 ⟨3, {0, 2, 6, 9}⟩
   (36, ⟨3, 6⟩)
@@ -1711,20 +2138,25 @@ def entry_09440 : MirrorEntry := .membershipRow (membershipRowEntry 9440 [-36, 1
   (31, ⟨3, 0⟩)
   (33, ⟨3, 2⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09441 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 4, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09441 : MirrorEntry := .rowArc (rowArcEntry 9441 [1171, -1211]
   1211 ⟨3, {0, 2, 6, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09441)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09442 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 4, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09442 : MirrorEntry := .rowArc (rowArcEntry 9442 [1180, -1211]
   1211 ⟨3, {0, 2, 6, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09442)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09443 : MirrorEntry := .membershipRow (membershipRowEntry 9443 [-36, 1212, -31, -33, -40]
   1212 ⟨3, {0, 2, 6, 10}⟩
   (36, ⟨3, 6⟩)
@@ -1732,20 +2164,25 @@ def entry_09443 : MirrorEntry := .membershipRow (membershipRowEntry 9443 [-36, 1
   (33, ⟨3, 2⟩)
   (40, ⟨3, 10⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09444 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 4, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09444 : MirrorEntry := .rowArc (rowArcEntry 9444 [1171, -1212]
   1212 ⟨3, {0, 2, 6, 10}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09444)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09445 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {0, 4, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8, 9}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09445 : MirrorEntry := .rowArc (rowArcEntry 9445 [1182, -1212]
   1212 ⟨3, {0, 2, 6, 10}⟩ 1182 ⟨3, .right, {1, 2, 3, 4, 5, 6}⟩
   reflectedDatum_09445)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09446 : MirrorEntry := .membershipRow (membershipRowEntry 9446 [1213, -33, -31, -38, -37]
   1213 ⟨3, {0, 2, 7, 8}⟩
   (33, ⟨3, 2⟩)
@@ -1753,20 +2190,25 @@ def entry_09446 : MirrorEntry := .membershipRow (membershipRowEntry 9446 [1213, 
   (38, ⟨3, 8⟩)
   (37, ⟨3, 7⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09447 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 3, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09447 : MirrorEntry := .rowArc (rowArcEntry 9447 [1171, -1213]
   1213 ⟨3, {0, 2, 7, 8}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09447)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09448 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {2, 3, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09448 : MirrorEntry := .rowArc (rowArcEntry 9448 [1178, -1213]
   1213 ⟨3, {0, 2, 7, 8}⟩ 1178 ⟨3, .right, {3, 4, 5, 6}⟩
   reflectedDatum_09448)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09449 : MirrorEntry := .membershipRow (membershipRowEntry 9449 [-33, 1214, -31, -37, -39]
   1214 ⟨3, {0, 2, 7, 9}⟩
   (33, ⟨3, 2⟩)
@@ -1774,20 +2216,25 @@ def entry_09449 : MirrorEntry := .membershipRow (membershipRowEntry 9449 [-33, 1
   (37, ⟨3, 7⟩)
   (39, ⟨3, 9⟩))
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09450 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 3, 8, 10}⟩, ⟨7, .right, {1, 2}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09450 : MirrorEntry := .rowArc (rowArcEntry 9450 [1171, -1214]
   1214 ⟨3, {0, 2, 7, 9}⟩ 1171 ⟨3, .left, {8, 9}⟩
   reflectedDatum_09450)
 
+/-- Reflected finite datum used by this authenticated mirror entry. -/
 def reflectedDatum_09451 : DirectRowArcFiniteDatum :=
   ⟨⟨7, {1, 3, 8, 10}⟩, ⟨7, .left, {4, 5, 6, 7, 8}⟩⟩
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09451 : MirrorEntry := .rowArc (rowArcEntry 9451 [1180, -1214]
   1214 ⟨3, {0, 2, 7, 9}⟩ 1180 ⟨3, .right, {2, 3, 4, 5, 6}⟩
   reflectedDatum_09451)
 
+/-- Authenticated mirror-valuation bridge entry. -/
 def entry_09452 : MirrorEntry := .membershipRow (membershipRowEntry 9452 [-33, 1215, -31, -37, -40]
   1215 ⟨3, {0, 2, 7, 10}⟩
   (33, ⟨3, 2⟩)
@@ -1795,6 +2242,7 @@ def entry_09452 : MirrorEntry := .membershipRow (membershipRowEntry 9452 [-33, 1
   (37, ⟨3, 7⟩)
   (40, ⟨3, 10⟩))
 
+/-- Ordered mirror entries for this generated bridge chunk. -/
 def bridgeChunk04 : List MirrorEntry := [
   entry_09197,
   entry_09198,
@@ -2054,8 +2502,10 @@ def bridgeChunk04 : List MirrorEntry := [
   entry_09452,
 ]
 
+/-- Every entry in the generated mirror chunk satisfies its well-formedness predicate. -/
 theorem bridgeChunk04_wf : bridgeChunk04.all MirrorEntry.wf = true := by native_decide
 
+/-- The generated mirror chunk has the expected finite length. -/
 theorem bridgeChunk04_length : bridgeChunk04.length = 256 := by simp [bridgeChunk04]
 
 end Problem97.P4MirrorOuterOccurrenceBridgeScratch

@@ -379,7 +379,8 @@ def render_chunk(number: int, entries: list[dict[str, Any]]) -> str:
         elif shape["kind"] == "row_arc":
             datum = shape["reflected_datum"]
             datum_name = f"reflectedDatum_{entry['output']:05d}"
-            lines += [f"def {datum_name} : DirectRowArcFiniteDatum :=",
+            lines += ["/-- Reflected finite datum used by this authenticated mirror entry. -/",
+                      f"def {datum_name} : DirectRowArcFiniteDatum :=",
                       f"  ⟨{lean_row(datum['row'])}, {lean_arc(datum['arc'])}⟩", ""]
             body = f'''.rowArc (rowArcEntry {entry['output']} {lean_ints(entry['clause'])}
   {shape['row_var']} {lean_row(shape['row'])} {shape['arc_var']} {lean_arc(shape['arc'])}
@@ -389,10 +390,14 @@ def render_chunk(number: int, entries: list[dict[str, Any]]) -> str:
             body = f'''.noFour (noFourEntry {entry['output']} {lean_ints(entry['clause'])}
   ({arcs[0]['var']}, {lean_arc(arcs[0])}) ({arcs[1]['var']}, {lean_arc(arcs[1])})
   ({arcs[2]['var']}, {lean_arc(arcs[2])}) ({arcs[3]['var']}, {lean_arc(arcs[3])}))'''
-        lines += [f"def {name} : MirrorEntry := {body}", ""]
+        lines += ["/-- Authenticated mirror-valuation bridge entry. -/",
+                  f"def {name} : MirrorEntry := {body}", ""]
     list_name = f"bridgeChunk{number:02d}"
-    lines += [f"def {list_name} : List MirrorEntry := [", *[f"  {name}," for name in names], "]", "",
+    lines += ["/-- Ordered mirror entries for this generated bridge chunk. -/",
+              f"def {list_name} : List MirrorEntry := [", *[f"  {name}," for name in names], "]", "",
+              "/-- Every entry in the generated mirror chunk satisfies its well-formedness predicate. -/",
               f"theorem {list_name}_wf : {list_name}.all MirrorEntry.wf = true := by native_decide", "",
+              "/-- The generated mirror chunk has the expected finite length. -/",
               f"theorem {list_name}_length : {list_name}.length = {len(entries)} := by simp [{list_name}]", "",
               "end Problem97.P4MirrorOuterOccurrenceBridgeScratch", ""]
     return "\n".join(lines)

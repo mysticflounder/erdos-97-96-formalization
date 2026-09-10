@@ -41,6 +41,7 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Internal helper. builds one positive-membership definition from its index and support. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
@@ -48,6 +49,7 @@ private def mkDefinition (varIndex : Nat) (center : Label)
 
 /- The 38 genuinely fresh definitions, in compiler allocation order,
 in 64-entry chunks. -/
+/-- Generated chunk `000` of fresh positive-membership definitions. -/
 def freshDefinitionsChunk000 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47137 3 {1, 2, 4},
@@ -89,11 +91,13 @@ def freshDefinitionsChunk000 : List PositiveMembershipDefinition :=
     mkDefinition 47173 11 {0, 1, 10},
     mkDefinition 47174 11 {1, 10}]
 
+/-- Definition of `freshDefinitions` used by the surrounding construction. -/
 def freshDefinitions : List PositiveMembershipDefinition :=
   freshDefinitionsChunk000
 
 /- The 1,335 parent-chain definitions reused by the compiler, in compiler
 scan order, with their exact inherited variables. -/
+/-- Generated chunk `000` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk000 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44926 0 {1, 3},
@@ -161,6 +165,7 @@ def reusedDefinitionsChunk000 : List PositiveMembershipDefinition :=
     mkDefinition 45029 0 {5, 7, 10},
     mkDefinition 45030 0 {5, 7, 11}]
 
+/-- Generated chunk `001` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk001 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45107 0 {5, 8},
@@ -228,6 +233,7 @@ def reusedDefinitionsChunk001 : List PositiveMembershipDefinition :=
     mkDefinition 45602 1 {4, 7, 8},
     mkDefinition 45603 1 {4, 7, 9}]
 
+/-- Generated chunk `002` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk002 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45604 1 {4, 7, 10},
@@ -295,6 +301,7 @@ def reusedDefinitionsChunk002 : List PositiveMembershipDefinition :=
     mkDefinition 45689 2 {3, 6},
     mkDefinition 45308 2 {3, 6, 10}]
 
+/-- Generated chunk `003` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk003 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45309 2 {3, 6, 11},
@@ -362,6 +369,7 @@ def reusedDefinitionsChunk003 : List PositiveMembershipDefinition :=
     mkDefinition 44883 3 {0, 7},
     mkDefinition 45742 3 {0, 7, 9}]
 
+/-- Generated chunk `004` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk004 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44884 3 {0, 8},
@@ -429,6 +437,7 @@ def reusedDefinitionsChunk004 : List PositiveMembershipDefinition :=
     mkDefinition 45850 3 {5, 8},
     mkDefinition 45852 3 {5, 8, 10}]
 
+/-- Generated chunk `005` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk005 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45853 3 {5, 8, 11},
@@ -496,6 +505,7 @@ def reusedDefinitionsChunk005 : List PositiveMembershipDefinition :=
     mkDefinition 45950 4 {1, 7, 9},
     mkDefinition 45041 4 {1, 8}]
 
+/-- Generated chunk `006` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk006 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45953 4 {1, 8, 9},
@@ -563,6 +573,7 @@ def reusedDefinitionsChunk006 : List PositiveMembershipDefinition :=
     mkDefinition 46046 4 {6, 10, 11},
     mkDefinition 45379 4 {6, 11}]
 
+/-- Generated chunk `007` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk007 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46047 4 {7, 8},
@@ -630,6 +641,7 @@ def reusedDefinitionsChunk007 : List PositiveMembershipDefinition :=
     mkDefinition 46164 5 {2, 10, 11},
     mkDefinition 46165 5 {2, 11}]
 
+/-- Generated chunk `008` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk008 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46166 5 {3, 6},
@@ -697,6 +709,7 @@ def reusedDefinitionsChunk008 : List PositiveMembershipDefinition :=
     mkDefinition 46233 5 {9, 10, 11},
     mkDefinition 45393 5 {9, 11}]
 
+/-- Generated chunk `009` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk009 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46234 5 {10, 11},
@@ -764,6 +777,7 @@ def reusedDefinitionsChunk009 : List PositiveMembershipDefinition :=
     mkDefinition 46333 6 {2, 7, 11},
     mkDefinition 44972 6 {2, 8}]
 
+/-- Generated chunk `010` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk010 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46335 6 {2, 8, 10},
@@ -831,6 +845,7 @@ def reusedDefinitionsChunk010 : List PositiveMembershipDefinition :=
     mkDefinition 46367 6 {8, 10},
     mkDefinition 46368 6 {8, 10, 11}]
 
+/-- Generated chunk `011` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk011 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46369 6 {8, 11},
@@ -898,6 +913,7 @@ def reusedDefinitionsChunk011 : List PositiveMembershipDefinition :=
     mkDefinition 46473 7 {2, 8, 10},
     mkDefinition 46474 7 {2, 8, 11}]
 
+/-- Generated chunk `012` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk012 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46475 7 {2, 9},
@@ -965,6 +981,7 @@ def reusedDefinitionsChunk012 : List PositiveMembershipDefinition :=
     mkDefinition 45438 7 {6, 9, 10},
     mkDefinition 45439 7 {6, 9, 11}]
 
+/-- Generated chunk `013` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk013 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46504 7 {6, 10},
@@ -1032,6 +1049,7 @@ def reusedDefinitionsChunk013 : List PositiveMembershipDefinition :=
     mkDefinition 46611 8 {2, 6, 10},
     mkDefinition 46612 8 {2, 6, 11}]
 
+/-- Generated chunk `014` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk014 : List PositiveMembershipDefinition :=
   [
     mkDefinition 44986 8 {2, 7},
@@ -1099,6 +1117,7 @@ def reusedDefinitionsChunk014 : List PositiveMembershipDefinition :=
     mkDefinition 45366 8 {5, 10, 11},
     mkDefinition 45271 8 {5, 11}]
 
+/-- Generated chunk `015` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk015 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45462 8 {6, 9, 10},
@@ -1166,6 +1185,7 @@ def reusedDefinitionsChunk015 : List PositiveMembershipDefinition :=
     mkDefinition 44915 9 {2, 3},
     mkDefinition 46733 9 {2, 3, 7}]
 
+/-- Generated chunk `016` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk016 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46734 9 {2, 3, 8},
@@ -1233,6 +1253,7 @@ def reusedDefinitionsChunk016 : List PositiveMembershipDefinition :=
     mkDefinition 45480 9 {5, 7, 10},
     mkDefinition 45481 9 {5, 7, 11}]
 
+/-- Generated chunk `017` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk017 : List PositiveMembershipDefinition :=
   [
     mkDefinition 45162 9 {5, 8},
@@ -1300,6 +1321,7 @@ def reusedDefinitionsChunk017 : List PositiveMembershipDefinition :=
     mkDefinition 46897 10 {3, 4, 9},
     mkDefinition 46899 10 {3, 5}]
 
+/-- Generated chunk `018` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk018 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46900 10 {3, 5, 6},
@@ -1367,6 +1389,7 @@ def reusedDefinitionsChunk018 : List PositiveMembershipDefinition :=
     mkDefinition 46958 10 {7, 9, 11},
     mkDefinition 46959 10 {7, 11}]
 
+/-- Generated chunk `019` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk019 : List PositiveMembershipDefinition :=
   [
     mkDefinition 46960 10 {8, 9},
@@ -1434,6 +1457,7 @@ def reusedDefinitionsChunk019 : List PositiveMembershipDefinition :=
     mkDefinition 47082 11 {3, 7, 8},
     mkDefinition 47083 11 {3, 7, 9}]
 
+/-- Generated chunk `020` of reused positive-membership definitions. -/
 def reusedDefinitionsChunk020 : List PositiveMembershipDefinition :=
   [
     mkDefinition 47084 11 {3, 7, 10},
@@ -1492,6 +1516,7 @@ def reusedDefinitionsChunk020 : List PositiveMembershipDefinition :=
     mkDefinition 47135 11 {8, 10},
     mkDefinition 47136 11 {9, 10}]
 
+/-- Definition of `reusedDefinitions` used by the surrounding construction. -/
 def reusedDefinitions : List PositiveMembershipDefinition :=
   reusedDefinitionsChunk000 ++
     reusedDefinitionsChunk001 ++
@@ -1546,6 +1571,7 @@ def implicationDimacs : List (List Int) :=
       definition.requirement.center (candidateIndicesFor definition) definition
 
 /- BEGIN GENERATED IMPLICATION CLAUSE ANCHOR -/
+/-- Generated expected implication-clause block `000`. -/
 def expectedImplicationDimacs000 : List (List Int) :=
   [
         [-287, 47137], [-288, 47137], [-289, 47137], [-290, 47137],
@@ -1565,6 +1591,7 @@ def expectedImplicationDimacs000 : List (List Int) :=
         [-287, 47140], [-294, 47140], [-295, 47140], [-296, 47140],
         [-297, 47140], [-298, 47140], [-299, 47140], [-315, 47140]]
 
+/-- Generated expected implication-clause block `001`. -/
 def expectedImplicationDimacs001 : List (List Int) :=
   [
         [-316, 47140], [-317, 47140], [-318, 47140], [-319, 47140],
@@ -1584,6 +1611,7 @@ def expectedImplicationDimacs001 : List (List Int) :=
         [-210, 47142], [-211, 47142], [-212, 47142], [-213, 47142],
         [-214, 47142], [-215, 47142], [-287, 47142], [-294, 47142]]
 
+/-- Generated expected implication-clause block `002`. -/
 def expectedImplicationDimacs002 : List (List Int) :=
   [
         [-295, 47142], [-296, 47142], [-297, 47142], [-298, 47142],
@@ -1603,6 +1631,7 @@ def expectedImplicationDimacs002 : List (List Int) :=
         [-639, 47145], [-640, 47145], [-641, 47145], [-642, 47145],
         [-643, 47145], [-644, 47145], [-645, 47145], [-646, 47145]]
 
+/-- Generated expected implication-clause block `003`. -/
 def expectedImplicationDimacs003 : List (List Int) :=
   [
         [-647, 47145], [-648, 47145], [-649, 47145], [-650, 47145],
@@ -1622,6 +1651,7 @@ def expectedImplicationDimacs003 : List (List Int) :=
         [-612, 47147], [-613, 47147], [-614, 47147], [-615, 47147],
         [-693, 47147], [-694, 47147], [-695, 47147], [-696, 47147]]
 
+/-- Generated expected implication-clause block `004`. -/
 def expectedImplicationDimacs004 : List (List Int) :=
   [
         [-697, 47147], [-698, 47147], [-699, 47147], [-700, 47147],
@@ -1641,6 +1671,7 @@ def expectedImplicationDimacs004 : List (List Int) :=
         [-935, 47149], [-936, 47149], [-937, 47149], [-931, 47150],
         [-938, 47150], [-939, 47150], [-940, 47150], [-941, 47150]]
 
+/-- Generated expected implication-clause block `005`. -/
 def expectedImplicationDimacs005 : List (List Int) :=
   [
         [-942, 47150], [-943, 47150], [-819, 47151], [-820, 47151],
@@ -1660,6 +1691,7 @@ def expectedImplicationDimacs005 : List (List Int) :=
         [-964, 47152], [-980, 47152], [-981, 47152], [-982, 47152],
         [-983, 47152], [-984, 47152], [-985, 47152], [-986, 47152]]
 
+/-- Generated expected implication-clause block `006`. -/
 def expectedImplicationDimacs006 : List (List Int) :=
   [
         [-987, 47152], [-988, 47152], [-989, 47152], [-990, 47152],
@@ -1679,6 +1711,7 @@ def expectedImplicationDimacs006 : List (List Int) :=
         [-943, 47154], [-1015, 47154], [-1016, 47154], [-1017, 47154],
         [-1018, 47154], [-1019, 47154], [-1020, 47154], [-1036, 47154]]
 
+/-- Generated expected implication-clause block `007`. -/
 def expectedImplicationDimacs007 : List (List Int) :=
   [
         [-1037, 47154], [-1038, 47154], [-1039, 47154], [-1040, 47154],
@@ -1698,6 +1731,7 @@ def expectedImplicationDimacs007 : List (List Int) :=
         [-1474, 47161], [-1502, 47161], [-1523, 47161], [-1538, 47161],
         [-1548, 47161], [-1559, 47161], [-1560, 47161], [-1502, 47162]]
 
+/-- Generated expected implication-clause block `008`. -/
 def expectedImplicationDimacs008 : List (List Int) :=
   [
         [-1585, 47162], [-1661, 47162], [-1676, 47162], [-1686, 47162],
@@ -1717,6 +1751,7 @@ def expectedImplicationDimacs008 : List (List Int) :=
         [-2121, 47170], [-2126, 47170], [-2130, 47170], [-2133, 47170],
         [-2136, 47170], [-2137, 47170], [-2403, 47171], [-2409, 47171]]
 
+/-- Generated expected implication-clause block `009`. -/
 def expectedImplicationDimacs009 : List (List Int) :=
   [
         [-2414, 47171], [-2418, 47171], [-2421, 47171], [-2423, 47171],
@@ -1736,6 +1771,7 @@ def expectedImplicationDimacs009 : List (List Int) :=
         [-2848, 47174], [-2852, 47174], [-2855, 47174], [-2857, 47174],
         [-2858, 47174], [-2864, 47174], [-2869, 47174], [-2873, 47174]]
 
+/-- Generated expected implication-clause block `010`. -/
 def expectedImplicationDimacs010 : List (List Int) :=
   [
         [-2876, 47174], [-2878, 47174], [-2879, 47174], [-2884, 47174],
@@ -1744,6 +1780,7 @@ def expectedImplicationDimacs010 : List (List Int) :=
         [-2907, 47174], [-2909, 47174], [-2910, 47174], [-2912, 47174],
         [-2913, 47174], [-2914, 47174]]
 
+/-- Concatenated expected implication clauses for the family. -/
 def expectedImplicationDimacs : List (List Int) :=
   expectedImplicationDimacs000 ++
     expectedImplicationDimacs001 ++
@@ -1764,6 +1801,7 @@ theorem implicationDimacs_eq :
     implicationDimacs = expectedImplicationDimacs := by
   native_decide
 
+/-- Internal helper. definition of `definitionCompilerValid` used by the surrounding construction. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (47136 < definition.varIndex ∧
@@ -1777,6 +1815,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Internal helper. proves the property stated by `definition_compiler_valid`. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
@@ -1838,6 +1877,7 @@ theorem implicationDimacs_sat
 
 /- The 2,546 realizable roles, in Python compiler order, in 96-entry
 chunks. -/
+/-- Generated family-data chunk `000`. -/
 def familyDataChunk000 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 1, c := 7, x := 6, y := 8},
@@ -1937,6 +1977,7 @@ def familyDataChunk000 : List AllOrderCommonFiveData :=
     {a := 0, b := 5, c := 4, x := 1, y := 8},
     {a := 0, b := 5, c := 4, x := 1, y := 9}]
 
+/-- Generated family-data chunk `001`. -/
 def familyDataChunk001 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 5, c := 4, x := 2, y := 10},
@@ -2036,6 +2077,7 @@ def familyDataChunk001 : List AllOrderCommonFiveData :=
     {a := 0, b := 8, c := 3, x := 9, y := 11},
     {a := 0, b := 8, c := 4, x := 1, y := 6}]
 
+/-- Generated family-data chunk `002`. -/
 def familyDataChunk002 : List AllOrderCommonFiveData :=
   [
     {a := 0, b := 8, c := 4, x := 1, y := 7},
@@ -2135,6 +2177,7 @@ def familyDataChunk002 : List AllOrderCommonFiveData :=
     {a := 0, b := 11, c := 8, x := 6, y := 9},
     {a := 0, b := 11, c := 8, x := 7, y := 9}]
 
+/-- Generated family-data chunk `003`. -/
 def familyDataChunk003 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 0, c := 7, x := 6, y := 8},
@@ -2234,6 +2277,7 @@ def familyDataChunk003 : List AllOrderCommonFiveData :=
     {a := 1, b := 5, c := 8, x := 4, y := 10},
     {a := 1, b := 5, c := 8, x := 4, y := 11}]
 
+/-- Generated family-data chunk `004`. -/
 def familyDataChunk004 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 5, c := 8, x := 6, y := 9},
@@ -2333,6 +2377,7 @@ def familyDataChunk004 : List AllOrderCommonFiveData :=
     {a := 1, b := 8, c := 7, x := 0, y := 4},
     {a := 1, b := 8, c := 7, x := 0, y := 5}]
 
+/-- Generated family-data chunk `005`. -/
 def familyDataChunk005 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 8, c := 7, x := 2, y := 10},
@@ -2432,6 +2477,7 @@ def familyDataChunk005 : List AllOrderCommonFiveData :=
     {a := 1, b := 11, c := 8, x := 4, y := 10},
     {a := 1, b := 11, c := 8, x := 5, y := 10}]
 
+/-- Generated family-data chunk `006`. -/
 def familyDataChunk006 : List AllOrderCommonFiveData :=
   [
     {a := 1, b := 11, c := 8, x := 6, y := 9},
@@ -2531,6 +2577,7 @@ def familyDataChunk006 : List AllOrderCommonFiveData :=
     {a := 2, b := 5, c := 10, x := 3, y := 8},
     {a := 2, b := 5, c := 10, x := 3, y := 9}]
 
+/-- Generated family-data chunk `007`. -/
 def familyDataChunk007 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 5, c := 10, x := 4, y := 6},
@@ -2630,6 +2677,7 @@ def familyDataChunk007 : List AllOrderCommonFiveData :=
     {a := 2, b := 8, c := 10, x := 3, y := 9},
     {a := 2, b := 8, c := 10, x := 4, y := 6}]
 
+/-- Generated family-data chunk `008`. -/
 def familyDataChunk008 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 8, c := 10, x := 4, y := 7},
@@ -2729,6 +2777,7 @@ def familyDataChunk008 : List AllOrderCommonFiveData :=
     {a := 2, b := 11, c := 10, x := 5, y := 6},
     {a := 2, b := 11, c := 10, x := 5, y := 7}]
 
+/-- Generated family-data chunk `009`. -/
 def familyDataChunk009 : List AllOrderCommonFiveData :=
   [
     {a := 2, b := 11, c := 10, x := 5, y := 8},
@@ -2828,6 +2877,7 @@ def familyDataChunk009 : List AllOrderCommonFiveData :=
     {a := 3, b := 9, c := 6, x := 2, y := 10},
     {a := 3, b := 9, c := 6, x := 2, y := 11}]
 
+/-- Generated family-data chunk `010`. -/
 def familyDataChunk010 : List AllOrderCommonFiveData :=
   [
     {a := 3, b := 9, c := 7, x := 0, y := 2},
@@ -2927,6 +2977,7 @@ def familyDataChunk010 : List AllOrderCommonFiveData :=
     {a := 4, b := 6, c := 11, x := 1, y := 8},
     {a := 4, b := 6, c := 11, x := 1, y := 9}]
 
+/-- Generated family-data chunk `011`. -/
 def familyDataChunk011 : List AllOrderCommonFiveData :=
   [
     {a := 4, b := 7, c := 6, x := 0, y := 2},
@@ -3026,6 +3077,7 @@ def familyDataChunk011 : List AllOrderCommonFiveData :=
     {a := 5, b := 3, c := 0, x := 6, y := 10},
     {a := 5, b := 3, c := 0, x := 6, y := 11}]
 
+/-- Generated family-data chunk `012`. -/
 def familyDataChunk012 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 3, c := 0, x := 7, y := 10},
@@ -3125,6 +3177,7 @@ def familyDataChunk012 : List AllOrderCommonFiveData :=
     {a := 5, b := 10, c := 6, x := 2, y := 11},
     {a := 5, b := 10, c := 7, x := 2, y := 11}]
 
+/-- Generated family-data chunk `013`. -/
 def familyDataChunk013 : List AllOrderCommonFiveData :=
   [
     {a := 5, b := 10, c := 7, x := 6, y := 8},
@@ -3224,6 +3277,7 @@ def familyDataChunk013 : List AllOrderCommonFiveData :=
     {a := 6, b := 3, c := 8, x := 4, y := 7},
     {a := 6, b := 3, c := 8, x := 5, y := 7}]
 
+/-- Generated family-data chunk `014`. -/
 def familyDataChunk014 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 3, c := 8, x := 7, y := 10},
@@ -3323,6 +3377,7 @@ def familyDataChunk014 : List AllOrderCommonFiveData :=
     {a := 6, b := 8, c := 1, x := 4, y := 10},
     {a := 6, b := 8, c := 1, x := 4, y := 11}]
 
+/-- Generated family-data chunk `015`. -/
 def familyDataChunk015 : List AllOrderCommonFiveData :=
   [
     {a := 6, b := 8, c := 1, x := 5, y := 10},
@@ -3422,6 +3477,7 @@ def familyDataChunk015 : List AllOrderCommonFiveData :=
     {a := 7, b := 1, c := 9, x := 5, y := 8},
     {a := 7, b := 1, c := 9, x := 8, y := 10}]
 
+/-- Generated family-data chunk `016`. -/
 def familyDataChunk016 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 1, c := 9, x := 8, y := 11},
@@ -3521,6 +3577,7 @@ def familyDataChunk016 : List AllOrderCommonFiveData :=
     {a := 7, b := 5, c := 4, x := 6, y := 9},
     {a := 7, b := 5, c := 9, x := 0, y := 8}]
 
+/-- Generated family-data chunk `017`. -/
 def familyDataChunk017 : List AllOrderCommonFiveData :=
   [
     {a := 7, b := 5, c := 9, x := 1, y := 8},
@@ -3620,6 +3677,7 @@ def familyDataChunk017 : List AllOrderCommonFiveData :=
     {a := 8, b := 0, c := 6, x := 7, y := 10},
     {a := 8, b := 0, c := 6, x := 7, y := 11}]
 
+/-- Generated family-data chunk `018`. -/
 def familyDataChunk018 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 0, c := 10, x := 6, y := 9},
@@ -3719,6 +3777,7 @@ def familyDataChunk018 : List AllOrderCommonFiveData :=
     {a := 8, b := 4, c := 11, x := 0, y := 5},
     {a := 8, b := 4, c := 11, x := 6, y := 9}]
 
+/-- Generated family-data chunk `019`. -/
 def familyDataChunk019 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 4, c := 11, x := 7, y := 9},
@@ -3818,6 +3877,7 @@ def familyDataChunk019 : List AllOrderCommonFiveData :=
     {a := 8, b := 11, c := 10, x := 0, y := 4},
     {a := 8, b := 11, c := 10, x := 0, y := 5}]
 
+/-- Generated family-data chunk `020`. -/
 def familyDataChunk020 : List AllOrderCommonFiveData :=
   [
     {a := 8, b := 11, c := 10, x := 6, y := 9},
@@ -3917,6 +3977,7 @@ def familyDataChunk020 : List AllOrderCommonFiveData :=
     {a := 9, b := 4, c := 3, x := 2, y := 10},
     {a := 9, b := 4, c := 3, x := 2, y := 11}]
 
+/-- Generated family-data chunk `021`. -/
 def familyDataChunk021 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 4, c := 5, x := 0, y := 2},
@@ -4016,6 +4077,7 @@ def familyDataChunk021 : List AllOrderCommonFiveData :=
     {a := 9, b := 10, c := 6, x := 5, y := 8},
     {a := 9, b := 10, c := 6, x := 7, y := 11}]
 
+/-- Generated family-data chunk `022`. -/
 def familyDataChunk022 : List AllOrderCommonFiveData :=
   [
     {a := 9, b := 10, c := 6, x := 8, y := 11},
@@ -4115,6 +4177,7 @@ def familyDataChunk022 : List AllOrderCommonFiveData :=
     {a := 10, b := 4, c := 7, x := 6, y := 8},
     {a := 10, b := 4, c := 7, x := 6, y := 9}]
 
+/-- Generated family-data chunk `023`. -/
 def familyDataChunk023 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 4, c := 8, x := 0, y := 3},
@@ -4214,6 +4277,7 @@ def familyDataChunk023 : List AllOrderCommonFiveData :=
     {a := 10, b := 8, c := 7, x := 0, y := 3},
     {a := 10, b := 8, c := 7, x := 0, y := 4}]
 
+/-- Generated family-data chunk `024`. -/
 def familyDataChunk024 : List AllOrderCommonFiveData :=
   [
     {a := 10, b := 8, c := 7, x := 0, y := 5},
@@ -4313,6 +4377,7 @@ def familyDataChunk024 : List AllOrderCommonFiveData :=
     {a := 11, b := 4, c := 6, x := 0, y := 3},
     {a := 11, b := 4, c := 6, x := 0, y := 5}]
 
+/-- Generated family-data chunk `025`. -/
 def familyDataChunk025 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 4, c := 7, x := 0, y := 3},
@@ -4412,6 +4477,7 @@ def familyDataChunk025 : List AllOrderCommonFiveData :=
     {a := 11, b := 8, c := 6, x := 0, y := 4},
     {a := 11, b := 8, c := 6, x := 0, y := 5}]
 
+/-- Generated family-data chunk `026`. -/
 def familyDataChunk026 : List AllOrderCommonFiveData :=
   [
     {a := 11, b := 8, c := 7, x := 0, y := 1},
@@ -4465,6 +4531,7 @@ def familyDataChunk026 : List AllOrderCommonFiveData :=
     {a := 11, b := 10, c := 8, x := 6, y := 9},
     {a := 11, b := 10, c := 8, x := 7, y := 9}]
 
+/-- Definition of `familyData` used by the surrounding construction. -/
 def familyData : List AllOrderCommonFiveData :=
   familyDataChunk000 ++
     familyDataChunk001 ++
@@ -4509,25 +4576,30 @@ def familyChoices (data : AllOrderCommonFiveData) :
     (insertByCenter {center := data.y, support := {data.a, data.b}}
       [{center := data.c, support := {data.b, data.x, data.y}}])
 
+/-- Definition of `lookupDefinition` used by the surrounding construction. -/
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD (mkDefinition 47137 3 {1, 2, 4})
 
+/-- Bundles the data used by `FamilyEntry`. -/
 structure FamilyEntry where
   data : AllOrderCommonFiveData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Definition of `entries` used by the surrounding construction. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Definition of `blockingClauses` used by the surrounding construction. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
 /- BEGIN GENERATED BLOCKING CLAUSE ANCHOR -/
+/-- Generated expected blocking-clause block `000`. -/
 def expectedBlockingClauses000 : List (List Int) :=
   [
         [-46235, -46436, -46515], [-46235, -46437, -46653], [-46235, -46578, -46653],
@@ -4547,6 +4619,7 @@ def expectedBlockingClauses000 : List (List Int) :=
         [-45056, -45665, -47137], [-45056, -45758, -45059], [-45056, -45759, -45062],
         [-45056, -45760, -45065], [-45056, -45761, -45068], [-45665, -45791, -46801]]
 
+/-- Generated expected blocking-clause block `001`. -/
 def expectedBlockingClauses001 : List (List Int) :=
   [
         [-45665, -45792, -46974], [-45822, -45059, -46801], [-45823, -45059, -46974],
@@ -4566,6 +4639,7 @@ def expectedBlockingClauses001 : List (List Int) :=
         [-45856, -45069, -46977], [-45057, -45668, -47144], [-45057, -45938, -45060],
         [-45057, -45939, -45063], [-45057, -45940, -45066], [-45057, -45941, -45069]]
 
+/-- Generated expected blocking-clause block `002`. -/
 def expectedBlockingClauses002 : List (List Int) :=
   [
         [-45668, -45971, -46804], [-45668, -45972, -46977], [-46017, -45060, -46804],
@@ -4585,6 +4659,7 @@ def expectedBlockingClauses002 : List (List Int) :=
         [-46212, -46397, -46979], [-46215, -46538, -46806], [-46216, -46538, -46979],
         [-46218, -46676, -46806], [-46219, -46676, -46979], [-45632, -46258, -46811]]
 
+/-- Generated expected blocking-clause block `003`. -/
 def expectedBlockingClauses003 : List (List Int) :=
   [
         [-45633, -46258, -46984], [-45645, -46542, -46811], [-45646, -46542, -46984],
@@ -4604,6 +4679,7 @@ def expectedBlockingClauses003 : List (List Int) :=
         [-45868, -46263, -46988], [-45875, -46401, -46815], [-45876, -46401, -46988],
         [-45882, -46685, -46815], [-45883, -46685, -46988], [-44878, -45945, -46263]]
 
+/-- Generated expected blocking-clause block `004`. -/
 def expectedBlockingClauses004 : List (List Int) :=
   [
         [-44878, -45949, -46401], [-44878, -45953, -46685], [-46041, -46263, -46815],
@@ -4623,6 +4699,7 @@ def expectedBlockingClauses004 : List (List Int) :=
         [-44879, -46124, -46405], [-44879, -46127, -46546], [-46218, -46267, -46818],
         [-46219, -46267, -46991], [-46226, -46405, -46818], [-46227, -46405, -46991]]
 
+/-- Generated expected blocking-clause block `005`. -/
 def expectedBlockingClauses005 : List (List Int) :=
   [
         [-46230, -46546, -46818], [-46231, -46546, -46991], [-45163, -45167, -45176],
@@ -4642,6 +4719,7 @@ def expectedBlockingClauses005 : List (List Int) :=
         [-46232, -45172, -45175], [-46233, -45174, -45175], [-45168, -45437, -45172],
         [-45168, -45439, -45174], [-45168, -45463, -45174], [-45170, -45465, -45174]]
 
+/-- Generated expected blocking-clause block `006`. -/
 def expectedBlockingClauses006 : List (List Int) :=
   [
         [-46235, -46398, -46515], [-46235, -47161, -46653], [-46235, -47166, -46653],
@@ -4661,6 +4739,7 @@ def expectedBlockingClauses006 : List (List Int) :=
         [-45540, -47152, -46837], [-45541, -47152, -47010], [-44927, -47139, -46246],
         [-44927, -47152, -46251], [-47139, -46347, -46837], [-47139, -46348, -47010]]
 
+/-- Generated expected blocking-clause block `007`. -/
 def expectedBlockingClauses007 : List (List Int) :=
   [
         [-47152, -46359, -46837], [-47152, -46360, -47010], [-44927, -47139, -46385],
@@ -4680,6 +4759,7 @@ def expectedBlockingClauses007 : List (List Int) :=
         [-44928, -47140, -46527], [-44928, -47146, -46531], [-47140, -46632, -46844],
         [-47140, -46633, -47017], [-47146, -46638, -46844], [-47146, -46639, -47017]]
 
+/-- Generated expected blocking-clause block `008`. -/
 def expectedBlockingClauses008 : List (List Int) :=
   [
         [-44931, -45009, -44940], [-44934, -45152, -44940], [-44928, -47140, -46665],
@@ -4699,6 +4779,7 @@ def expectedBlockingClauses008 : List (List Int) :=
         [-45043, -45478, -45047], [-45043, -45479, -45051], [-45509, -45677, -47155],
         [-45509, -45036, -46248], [-45509, -45040, -46252], [-45509, -45044, -46255]]
 
+/-- Generated expected blocking-clause block `009`. -/
 def expectedBlockingClauses009 : List (List Int) :=
   [
         [-45677, -46332, -45048], [-45677, -46333, -45052], [-45036, -45394, -45048],
@@ -4718,6 +4799,7 @@ def expectedBlockingClauses009 : List (List Int) :=
         [-45045, -45408, -45049], [-45045, -45409, -45053], [-45510, -45680, -47159],
         [-45510, -45037, -46388], [-45510, -45041, -46392], [-45510, -45045, -46395]]
 
+/-- Generated expected blocking-clause block `010`. -/
 def expectedBlockingClauses010 : List (List Int) :=
   [
         [-45680, -46473, -45049], [-45680, -46474, -45053], [-45037, -45420, -45049],
@@ -4737,6 +4819,7 @@ def expectedBlockingClauses010 : List (List Int) :=
         [-45046, -45434, -45050], [-45046, -45435, -45054], [-45511, -45683, -47165],
         [-45511, -45038, -46530], [-45511, -45042, -46534], [-45511, -45046, -46537]]
 
+/-- Generated expected blocking-clause block `011`. -/
 def expectedBlockingClauses011 : List (List Int) :=
   [
         [-45683, -46617, -45050], [-45683, -46618, -45054], [-45038, -45446, -45050],
@@ -4756,6 +4839,7 @@ def expectedBlockingClauses011 : List (List Int) :=
         [-46311, -45437, -46590], [-46311, -45439, -46729], [-45688, -46620, -47172],
         [-45786, -45364, -47172], [-45960, -45365, -47172], [-46134, -45366, -47172]]
 
+/-- Generated expected blocking-clause block `012`. -/
 def expectedBlockingClauses012 : List (List Int) :=
   [
         [-46311, -45463, -46729], [-46449, -45465, -46729], [-45688, -46759, -47172],
@@ -4775,6 +4859,7 @@ def expectedBlockingClauses012 : List (List Int) :=
         [-47153, -44906, -47073], [-47153, -44909, -47074], [-47153, -44912, -47075],
         [-47153, -44915, -47076], [-45522, -47141, -44907], [-45523, -47141, -44910]]
 
+/-- Generated expected blocking-clause block `013`. -/
 def expectedBlockingClauses013 : List (List Int) :=
   [
         [-45524, -47141, -44913], [-45525, -47141, -44916], [-45536, -47154, -44907],
@@ -4794,6 +4879,7 @@ def expectedBlockingClauses013 : List (List Int) :=
         [-44905, -47142, -46799], [-44905, -47148, -46802], [-47142, -44908, -46900],
         [-47142, -44911, -46901], [-47142, -44914, -46902], [-47142, -44917, -46903]]
 
+/-- Generated expected blocking-clause block `014`. -/
 def expectedBlockingClauses014 : List (List Int) :=
   [
         [-47148, -44908, -46917], [-47148, -44911, -46918], [-47148, -44914, -46919],
@@ -4813,6 +4899,7 @@ def expectedBlockingClauses014 : List (List Int) :=
         [-45973, -46609, -47096], [-45973, -46748, -47097], [-46147, -46468, -47106],
         [-46147, -46609, -47107], [-46147, -46748, -47108], [-45581, -44965, -44971]]
 
+/-- Generated expected blocking-clause block `015`. -/
 def expectedBlockingClauses015 : List (List Int) :=
   [
         [-45586, -44965, -44986], [-45587, -44965, -44990], [-45597, -44967, -44971],
@@ -4832,6 +4919,7 @@ def expectedBlockingClauses015 : List (List Int) :=
         [-45572, -44982, -46854], [-45572, -44991, -46857], [-44966, -44972, -46906],
         [-44966, -44982, -46909], [-44966, -44991, -46912], [-44968, -44972, -46923]]
 
+/-- Generated expected blocking-clause block `016`. -/
 def expectedBlockingClauses016 : List (List Int) :=
   [
         [-44968, -44982, -46926], [-44968, -44991, -46929], [-44970, -44972, -46934],
@@ -4851,6 +4939,7 @@ def expectedBlockingClauses016 : List (List Int) :=
         [-45812, -46475, -47083], [-45812, -46616, -47085], [-45986, -46337, -47097],
         [-45986, -46475, -47100], [-45986, -46616, -47102], [-46160, -46337, -47108]]
 
+/-- Generated expected blocking-clause block `017`. -/
 def expectedBlockingClauses017 : List (List Int) :=
   [
         [-46160, -46475, -47111], [-46160, -46616, -47113], [-46340, -45436, -46619],
@@ -4870,6 +4959,7 @@ def expectedBlockingClauses017 : List (List Int) :=
         [-45991, -46342, -46925], [-45991, -46480, -46928], [-45991, -46621, -46930],
         [-45991, -46760, -46931], [-46165, -46342, -46936], [-46165, -46480, -46939]]
 
+/-- Generated expected blocking-clause block `018`. -/
 def expectedBlockingClauses018 : List (List Int) :=
   [
         [-46165, -46621, -46941], [-46165, -46760, -46942], [-45058, -46398, -45064],
@@ -4889,6 +4979,7 @@ def expectedBlockingClauses018 : List (List Int) :=
         [-45097, -45689, -47163], [-45109, -45689, -46553], [-45689, -46611, -45201],
         [-45689, -46612, -45213], [-45097, -45689, -47168], [-45109, -45689, -46692]]
 
+/-- Generated expected blocking-clause block `019`. -/
 def expectedBlockingClauses019 : List (List Int) :=
   [
         [-45689, -46751, -45201], [-45689, -46752, -45213], [-45109, -45133, -46850],
@@ -4908,6 +4999,7 @@ def expectedBlockingClauses019 : List (List Int) :=
         [-45111, -45134, -47027], [-45111, -45156, -47030], [-45100, -45692, -47157],
         [-45112, -45692, -46276], [-45692, -46338, -45204], [-45692, -46339, -45216]]
 
+/-- Generated expected blocking-clause block `020`. -/
 def expectedBlockingClauses020 : List (List Int) :=
   [
         [-45100, -45692, -47160], [-45112, -45692, -46414], [-45692, -46476, -45204],
@@ -4927,6 +5019,7 @@ def expectedBlockingClauses020 : List (List Int) :=
         [-45059, -46398, -45065], [-45059, -47161, -45068], [-45059, -47166, -45068],
         [-45062, -46543, -45068], [-44930, -46436, -44936], [-44930, -46437, -44939]]
 
+/-- Generated expected blocking-clause block `021`. -/
 def expectedBlockingClauses021 : List (List Int) :=
   [
         [-44930, -46578, -44939], [-44933, -46582, -44939], [-44907, -46469, -44913],
@@ -4946,6 +5039,7 @@ def expectedBlockingClauses021 : List (List Int) :=
         [-45113, -45136, -46850], [-45113, -45146, -46851], [-45113, -45157, -46852],
         [-45113, -45136, -47023], [-45113, -45146, -47024], [-45113, -45157, -47025]]
 
+/-- Generated expected blocking-clause block `022`. -/
 def expectedBlockingClauses022 : List (List Int) :=
   [
         [-45102, -45695, -47155], [-45114, -45695, -46274], [-45695, -46332, -45206],
@@ -4965,6 +5059,7 @@ def expectedBlockingClauses022 : List (List Int) :=
         [-45697, -46476, -45208], [-45697, -46477, -45220], [-45104, -45697, -47165],
         [-45116, -45697, -46555], [-45697, -46617, -45208], [-45697, -46618, -45220]]
 
+/-- Generated expected blocking-clause block `023`. -/
 def expectedBlockingClauses023 : List (List Int) :=
   [
         [-45116, -45002, -46852], [-45116, -45138, -46855], [-45116, -45149, -46857],
@@ -4984,6 +5079,7 @@ def expectedBlockingClauses023 : List (List Int) :=
         [-44908, -46469, -44914], [-44908, -47162, -44917], [-44908, -47167, -44917],
         [-44911, -46613, -44917], [-45011, -46349, -46899], [-45012, -46349, -47072]]
 
+/-- Generated expected blocking-clause block `024`. -/
 def expectedBlockingClauses024 : List (List Int) :=
   [
         [-45013, -46487, -46899], [-45014, -46487, -47072], [-45015, -46628, -46899],
@@ -5003,6 +5099,7 @@ def expectedBlockingClauses024 : List (List Int) :=
         [-45700, -46332, -45210], [-45700, -46333, -45222], [-45106, -45700, -47164],
         [-45118, -45700, -46554], [-45700, -46614, -45210], [-45700, -46615, -45222]]
 
+/-- Generated expected blocking-clause block `025`. -/
 def expectedBlockingClauses025 : List (List Int) :=
   [
         [-45106, -45700, -47169], [-45118, -45700, -46693], [-45700, -46754, -45210],
@@ -5022,6 +5119,7 @@ def expectedBlockingClauses025 : List (List Int) :=
         [-45120, -45153, -46857], [-45120, -45003, -47025], [-45120, -45141, -47028],
         [-45120, -45153, -47030], [-45344, -46341, -47116], [-45344, -46479, -47116]]
 
+/-- Generated expected blocking-clause block `026`. -/
 def expectedBlockingClauses026 : List (List Int) :=
   [
         [-45258, -45436, -45270], [-45258, -45438, -45276], [-45344, -46620, -47116],
@@ -5041,6 +5139,7 @@ def expectedBlockingClauses026 : List (List Int) :=
         [-46538, -46686, -46806], [-46538, -46687, -46979], [-45508, -46435, -46520],
         [-45674, -46435, -46554], [-45035, -46435, -46561], [-45039, -46435, -46567]]
 
+/-- Generated expected blocking-clause block `027`. -/
 def expectedBlockingClauses027 : List (List Int) :=
   [
         [-45043, -46435, -46572], [-46435, -46583, -45047], [-46435, -46584, -45051],
@@ -5060,6 +5159,7 @@ def expectedBlockingClauses027 : List (List Int) :=
         [-45689, -46140, -45213], [-45097, -45133, -46529], [-45109, -45133, -46561],
         [-45689, -45133, -46594], [-45992, -45133, -46624], [-46166, -45133, -46630]]
 
+/-- Generated expected blocking-clause block `028`. -/
 def expectedBlockingClauses028 : List (List Int) :=
   [
         [-45133, -45444, -45201], [-45133, -45445, -45213], [-45097, -45133, -46667],
@@ -5079,6 +5179,7 @@ def expectedBlockingClauses028 : List (List Int) :=
         [-45818, -45146, -46764], [-46187, -45136, -46775], [-46187, -45146, -46776],
         [-45136, -45474, -45205], [-45136, -45475, -45217], [-45146, -45476, -45205]]
 
+/-- Generated expected blocking-clause block `029`. -/
 def expectedBlockingClauses029 : List (List Int) :=
   [
         [-45146, -45477, -45217], [-45101, -45818, -46798], [-45101, -46187, -46802],
@@ -5098,6 +5199,7 @@ def expectedBlockingClauses029 : List (List Int) :=
         [-45620, -46208, -46944], [-45621, -46208, -47117], [-45591, -45865, -46948],
         [-45592, -45865, -47121], [-45607, -46039, -46948], [-45608, -46039, -47121]]
 
+/-- Generated expected blocking-clause block `030`. -/
 def expectedBlockingClauses030 : List (List Int) :=
   [
         [-45623, -46213, -46948], [-45624, -46213, -47121], [-45593, -45869, -46951],
@@ -5117,6 +5219,7 @@ def expectedBlockingClauses030 : List (List Int) :=
         [-45705, -46506, -46615], [-45371, -46506, -45445], [-45379, -46506, -45451],
         [-45387, -46506, -45457], [-46506, -46647, -46953], [-45543, -46506, -46684]]
 
+/-- Generated expected blocking-clause block `031`. -/
 def expectedBlockingClauses031 : List (List Int) :=
   [
         [-45543, -46644, -46687], [-45642, -46506, -46723], [-45642, -46644, -46726],
@@ -5136,6 +5239,7 @@ def expectedBlockingClauses031 : List (List Int) :=
         [-45509, -46581, -46659], [-45677, -46581, -46694], [-45036, -46581, -46701],
         [-45040, -46581, -46707], [-45044, -46581, -46712], [-46581, -46725, -45048]]
 
+/-- Generated expected blocking-clause block `032`. -/
 def expectedBlockingClauses032 : List (List Int) :=
   [
         [-46581, -46726, -45052], [-46297, -46581, -46851], [-46297, -46720, -46852],
@@ -5155,6 +5259,7 @@ def expectedBlockingClauses032 : List (List Int) :=
         [-45143, -45470, -45202], [-45143, -45471, -45214], [-45098, -45998, -46798],
         [-45098, -46172, -46799], [-45127, -45143, -46906], [-45127, -45155, -46907]]
 
+/-- Generated expected blocking-clause block `033`. -/
 def expectedBlockingClauses033 : List (List Int) :=
   [
         [-45098, -45998, -46971], [-45098, -46172, -46972], [-45127, -45143, -47079],
@@ -5174,6 +5279,7 @@ def expectedBlockingClauses033 : List (List Int) :=
         [-45118, -45700, -47144], [-45700, -45971, -45210], [-45700, -45972, -45222],
         [-46015, -45131, -45151], [-46016, -45131, -45161], [-45106, -45151, -46675]]
 
+/-- Generated expected blocking-clause block `034`. -/
 def expectedBlockingClauses034 : List (List Int) :=
   [
         [-45118, -45151, -46712], [-45700, -45151, -46745], [-45845, -45151, -46770],
@@ -5193,6 +5299,7 @@ def expectedBlockingClauses034 : List (List Int) :=
         [-46218, -46363, -46784], [-45544, -46646, -46686], [-45650, -46646, -46725],
         [-45706, -46646, -46756], [-45372, -46646, -45470], [-45380, -46646, -45476]]
 
+/-- Generated expected blocking-clause block `035`. -/
 def expectedBlockingClauses035 : List (List Int) :=
   [
         [-45388, -46646, -45482], [-46646, -46788, -47132], [-45544, -45650, -47173],
@@ -5212,6 +5319,7 @@ def expectedBlockingClauses035 : List (List Int) :=
         [-44878, -46239, -46401], [-44884, -46248, -46401], [-44890, -46252, -46401],
         [-44896, -46255, -46401], [-46261, -46401, -46815], [-46262, -46401, -46988]]
 
+/-- Generated expected blocking-clause block `036`. -/
 def expectedBlockingClauses036 : List (List Int) :=
   [
         [-46263, -46685, -46809], [-46401, -46685, -46813], [-46263, -46685, -46982],
@@ -5231,6 +5339,7 @@ def expectedBlockingClauses036 : List (List Int) :=
         [-45111, -45691, -47143], [-45691, -45965, -45203], [-45691, -45966, -45215],
         [-45995, -45128, -45156], [-46000, -45134, -45156], [-45099, -45691, -46068]]
 
+/-- Generated expected blocking-clause block `037`. -/
 def expectedBlockingClauses037 : List (List Int) :=
   [
         [-45111, -45691, -47149], [-45691, -46139, -45203], [-45691, -46140, -45215],
@@ -5250,6 +5359,7 @@ def expectedBlockingClauses037 : List (List Int) :=
         [-45103, -46198, -46802], [-45130, -45159, -46924], [-45137, -45159, -46927],
         [-45103, -45829, -46971], [-45103, -46198, -46975], [-45130, -45159, -47097]]
 
+/-- Generated expected blocking-clause block `038`. -/
 def expectedBlockingClauses038 : List (List Int) :=
   [
         [-45137, -45159, -47100], [-45615, -45132, -45162], [-45619, -45140, -45162],
@@ -5269,6 +5379,7 @@ def expectedBlockingClauses038 : List (List Int) :=
         [-45593, -45881, -46960], [-45594, -45881, -47133], [-45609, -46055, -46960],
         [-45610, -46055, -47133], [-45625, -46229, -46960], [-45626, -46229, -47133]]
 
+/-- Generated expected blocking-clause block `039`. -/
 def expectedBlockingClauses039 : List (List Int) :=
   [
         [-45639, -46367, -46787], [-45648, -46508, -46787], [-45708, -45816, -47135],
@@ -5288,6 +5399,7 @@ def expectedBlockingClauses039 : List (List Int) :=
         [-46364, -46510, -46962], [-45547, -45656, -47171], [-45547, -45709, -46796],
         [-45547, -45375, -46800], [-45547, -45383, -46803], [-45547, -45391, -46805]]
 
+/-- Generated expected blocking-clause block `040`. -/
 def expectedBlockingClauses040 : List (List Int) :=
   [
         [-46369, -46789, -46952], [-46510, -46789, -46958], [-44879, -46239, -46405],
@@ -5307,6 +5419,7 @@ def expectedBlockingClauses040 : List (List Int) :=
         [-45576, -46275, -46616], [-45812, -46314, -46475], [-45812, -46315, -46616],
         [-45986, -46320, -46475], [-45986, -46321, -46616], [-46160, -46325, -46475]]
 
+/-- Generated expected blocking-clause block `041`. -/
 def expectedBlockingClauses041 : List (List Int) :=
   [
         [-46160, -46326, -46616], [-46332, -46475, -46890], [-46333, -46475, -47063],
@@ -5326,6 +5439,7 @@ def expectedBlockingClauses041 : List (List Int) :=
         [-45100, -46007, -46971], [-45100, -46181, -46972], [-45104, -45697, -45720],
         [-45116, -45697, -47137], [-45697, -45791, -45208], [-45697, -45792, -45220]]
 
+/-- Generated expected blocking-clause block `042`. -/
 def expectedBlockingClauses042 : List (List Int) :=
   [
         [-45104, -45697, -46069], [-45116, -45697, -47150], [-45697, -46145, -45208],
@@ -5345,6 +5459,7 @@ def expectedBlockingClauses042 : List (List Int) :=
         [-45702, -46326, -45153], [-45854, -46350, -45141], [-45854, -46351, -45153],
         [-46028, -46356, -45141], [-46028, -46357, -45153], [-45406, -45141, -45212]]
 
+/-- Generated expected blocking-clause block `043`. -/
 def expectedBlockingClauses043 : List (List Int) :=
   [
         [-45407, -45141, -45224], [-45408, -45153, -45212], [-45409, -45153, -45224],
@@ -5364,6 +5479,7 @@ def expectedBlockingClauses043 : List (List Int) :=
         [-45376, -45396, -46649], [-45384, -45400, -46511], [-45384, -45402, -46649],
         [-45392, -45406, -46511], [-45392, -45408, -46649], [-46364, -46511, -47136]]
 
+/-- Generated expected blocking-clause block `044`. -/
 def expectedBlockingClauses044 : List (List Int) :=
   [
         [-46368, -46649, -47136], [-45548, -46403, -46649], [-45657, -46442, -46649],
@@ -5383,6 +5499,7 @@ def expectedBlockingClauses044 : List (List Int) :=
         [-45167, -46398, -45171], [-45167, -47161, -45173], [-45167, -47166, -45173],
         [-45169, -46543, -45173], [-46309, -46436, -46588], [-46309, -46437, -46727]]
 
+/-- Generated expected blocking-clause block `045`. -/
 def expectedBlockingClauses045 : List (List Int) :=
   [
         [-46309, -46578, -46727], [-46447, -46582, -46727], [-46340, -46469, -46619],
@@ -5402,6 +5519,7 @@ def expectedBlockingClauses045 : List (List Int) :=
         [-45250, -45836, -46246], [-45250, -46205, -46251], [-45250, -45836, -46385],
         [-45250, -46205, -46390], [-45256, -45005, -45268], [-45256, -46500, -45274]]
 
+/-- Generated expected blocking-clause block `046`. -/
 def expectedBlockingClauses046 : List (List Int) :=
   [
         [-45250, -45836, -46526], [-45250, -46205, -46531], [-45256, -45008, -45274],
@@ -5421,6 +5539,7 @@ def expectedBlockingClauses046 : List (List Int) :=
         [-45542, -45378, -46391], [-45542, -45386, -46394], [-45542, -45641, -46519],
         [-45542, -45704, -47163], [-45542, -45370, -46528], [-45542, -45378, -46532]]
 
+/-- Generated expected blocking-clause block `047`. -/
 def expectedBlockingClauses047 : List (List Int) :=
   [
         [-45542, -45386, -46535], [-45542, -45641, -46657], [-45542, -45704, -47168],
@@ -5440,6 +5559,7 @@ def expectedBlockingClauses047 : List (List Int) :=
         [-45546, -45382, -46253], [-45546, -45390, -46256], [-45546, -45655, -46379],
         [-45546, -45708, -47159], [-45546, -45374, -46388], [-45546, -45382, -46392]]
 
+/-- Generated expected blocking-clause block `048`. -/
 def expectedBlockingClauses048 : List (List Int) :=
   [
         [-45546, -45390, -46395], [-45546, -45655, -46659], [-45546, -45708, -47170],
@@ -5459,6 +5579,7 @@ def expectedBlockingClauses048 : List (List Int) :=
         [-46373, -45437, -46652], [-46373, -45439, -46790], [-46373, -45463, -46790],
         [-46514, -45465, -46790], [-45168, -46398, -45172], [-45168, -47161, -45174]]
 
+/-- Generated expected blocking-clause block `049`. -/
 def expectedBlockingClauses049 : List (List Int) :=
   [
         [-45168, -47166, -45174], [-45170, -46543, -45174], [-46311, -46436, -46590],
@@ -5478,6 +5599,7 @@ def expectedBlockingClauses049 : List (List Int) :=
         [-45612, -46112, -45257], [-45612, -46113, -45263], [-45612, -46114, -45269],
         [-45612, -46115, -45275], [-45251, -45838, -46246], [-45251, -46207, -46251]]
 
+/-- Generated expected blocking-clause block `050`. -/
 def expectedBlockingClauses050 : List (List Int) :=
   [
         [-45251, -45838, -46385], [-45251, -46207, -46390], [-45257, -45005, -45269],
@@ -5497,6 +5619,7 @@ def expectedBlockingClauses050 : List (List Int) :=
         [-45642, -46120, -46782], [-45543, -45642, -46378], [-45543, -45705, -47158],
         [-45543, -45371, -46387], [-45543, -45379, -46391], [-45543, -45387, -46394]]
 
+/-- Generated expected blocking-clause block `051`. -/
 def expectedBlockingClauses051 : List (List Int) :=
   [
         [-45543, -45642, -46519], [-45543, -45705, -47163], [-45543, -45371, -46528],
@@ -5516,6 +5639,7 @@ def expectedBlockingClauses051 : List (List Int) :=
         [-45656, -46127, -46789], [-45547, -45656, -46240], [-45547, -45709, -47156],
         [-45547, -45375, -46249], [-45547, -45383, -46253], [-45547, -45391, -46256]]
 
+/-- Generated expected blocking-clause block `052`. -/
 def expectedBlockingClauses052 : List (List Int) :=
   [
         [-45547, -45656, -46379], [-45547, -45709, -47159], [-45547, -45375, -46388],
@@ -5535,10 +5659,12 @@ def expectedBlockingClauses052 : List (List Int) :=
         [-45324, -46234, -46373], [-45326, -46234, -46514], [-45328, -46234, -46652],
         [-45330, -46234, -46790], [-46373, -45436, -46652], [-46373, -45438, -46790]]
 
+/-- Generated expected blocking-clause block `053`. -/
 def expectedBlockingClauses053 : List (List Int) :=
   [
         [-46373, -45462, -46790], [-46514, -45464, -46790]]
 
+/-- Concatenated expected blocking clauses for the family. -/
 def expectedBlockingClauses : List (List Int) :=
   expectedBlockingClauses000 ++
     expectedBlockingClauses001 ++
@@ -5611,11 +5737,13 @@ theorem family_shape :
         (47137 ≤ definition.varIndex ∧ definition.varIndex ≤ 47174)) = true := by
   native_decide
 
+/-- Internal helper. definition of `entryValid` used by the surrounding construction. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.centerExchangeCheck
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Internal helper. proves the property stated by `entry_valid`. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.centerExchangeCheck
         (entry.definitions.map fun definition => definition.requirement) = true ∧
@@ -5629,6 +5757,7 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 definition hdefinition)
 
+/-- Internal helper. proves the property stated by `reused_definition_le_cutoff`. -/
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
@@ -5639,6 +5768,7 @@ private theorem reused_definition_le_cutoff
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
 
+/-- Internal helper. proves the property stated by `positiveRowsMatch_of_mixed_blockingClause_false`. -/
 private theorem positiveRowsMatch_of_mixed_blockingClause_false
     (base : Nat → Bool) (row : RowPattern Label)
     (entryDefinitions : List PositiveMembershipDefinition)

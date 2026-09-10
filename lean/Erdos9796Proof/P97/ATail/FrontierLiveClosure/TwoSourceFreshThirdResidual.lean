@@ -61,12 +61,14 @@ attribute [local instance] Classical.propDecidable
 
 namespace TwoSourceExactCollisionRowsTerminal
 
+/-- Internal helper. definition of `transportFreshThirdSelectedFourClass` used by the surrounding construction. -/
 private def transportFreshThirdSelectedFourClass
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
     SelectedFourClass A center₂ :=
   Eq.mp (congrArg (SelectedFourClass A) hcenter) K
 
+/-- Internal helper. proves the property stated by `transportFreshThirdSelectedFourClass_support`. -/
 @[simp] private theorem transportFreshThirdSelectedFourClass_support
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
@@ -123,6 +125,7 @@ interaction.  Keeping this seed separate from the older three-shell seed is
 important: the exact overlap theorem below makes this a six-point object,
 so the global-minimality continuation has only the named points of the two
 rows as possible pinned centers. -/
+/-- Definition of `freshThirdCrossRowTwoShellSeed` used by the surrounding construction. -/
 noncomputable def freshThirdCrossRowTwoShellSeed
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ) : Finset ℝ² :=
@@ -805,6 +808,7 @@ equal-center/`oppIndex1` interaction.  The positive equal-center packet now
 stores only distinct-cap or noncanonical same-cap interactions; the original
 same-blocker and source-row-omission constructors are eliminated by the hit
 hypotheses before this packet is built. -/
+/-- Definition of `FreshThirdNormalizedResidualRemainingCase` used by the surrounding construction. -/
 inductive FreshThirdNormalizedResidualRemainingCase
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ) : Prop where
@@ -3842,6 +3846,7 @@ theorem freshThird_orderSelectedEndpointCapSplitSurvivingRow_exists_two_outside_
 
 omit P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Internal helper. proves the property stated by `fourPointSupport_twoShellCover_exactSplit`. -/
 private theorem fourPointSupport_twoShellCover_exactSplit
     {α : Type*} [DecidableEq α] (R K L : Finset α)
     (hR : R.card = 4)
@@ -4427,6 +4432,7 @@ theorem freshThird_pinnedEndpointRow_escape_or_offEndpoint
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Internal helper. proves the property stated by `freshThird_pinnedCenter_ne_of_support_subset_seed`. -/
 private theorem freshThird_pinnedCenter_ne_of_support_subset_seed
     (C : TwoCapSourceThirdCanonicalRowSurface P Pρ)
     (Q : FreshThirdBlockerFiber P Pρ)
@@ -4565,6 +4571,7 @@ private def SharedPairCyclicSeparation
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Internal helper. proves the property stated by `SharedPairCyclicSeparation.swap`. -/
 private theorem SharedPairCyclicSeparation.swap
     {B : BoundaryIndexing D.A}
     {firstCenter secondCenter firstPoint secondPoint : CarrierLabel D.A}
@@ -6988,6 +6995,7 @@ noncomputable def rowClass
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `rowClass_support_eq_rowSupport`. -/
 @[simp] theorem rowClass_support_eq_rowSupport
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7081,6 +7089,7 @@ theorem freshRow_support_eq_pair_union_remainder
 
 omit P Pρ hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Internal helper. proves the property stated by `finset_eq_univ_image_equiv`. -/
 private theorem finset_eq_univ_image_equiv
     {α : Type} [DecidableEq α] (support : Finset α)
     (index : support ≃ Fin 4) :
@@ -7484,81 +7493,99 @@ deriving DecidableEq
 
 namespace FreshThirdPinnedEndpointOutsideSeedFiniteAssignment
 
+/-- Definition of `PointRole` used by the surrounding construction. -/
 abbrev PointRole := FreshThirdPinnedEndpointOutsideSeedPointRole
+/-- Definition of `RowRole` used by the surrounding construction. -/
 abbrev RowRole := FreshThirdPinnedEndpointOutsideSeedRowRole
 
+/-- Definition of `Same` used by the surrounding construction. -/
 def Same (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (left right : PointRole) : Prop :=
   A.samePoint left right = true
 
+/-- Definition of `Incident` used by the surrounding construction. -/
 def Incident (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (point : PointRole) (row : RowRole) : Prop :=
   A.incident point row = true
 
+/-- Definition of `InCap` used by the surrounding construction. -/
 def InCap (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (point : PointRole) (cap : Fin 3) : Prop :=
   A.inCap point cap = true
 
+/-- Definition of `InCapInterior` used by the surrounding construction. -/
 def InCapInterior (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (point : PointRole) (cap : Fin 3) : Prop :=
   A.inCapInterior point cap = true
 
+/-- Definition of `Before` used by the surrounding construction. -/
 def Before (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (left right : PointRole) : Prop :=
   A.before left right = true
 
+/-- Definition of `SameDistanceFrom` used by the surrounding construction. -/
 def SameDistanceFrom
     (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (center left right : PointRole) : Prop :=
   A.sameDistanceFrom center left right = true
 
+/-- Definition of `HasFourAfterDeleting` used by the surrounding construction. -/
 def HasFourAfterDeleting
     (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (deleted atCenter : PointRole) : Prop :=
   A.hasFourAfterDeleting deleted atCenter = true
 
+/-- Definition of `Nonrobust` used by the surrounding construction. -/
 def Nonrobust (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (center : PointRole) : Prop :=
   A.nonrobust center = true
 
+/-- Definition of `decidableSame` used by the surrounding construction. -/
 instance decidableSame (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (left right : PointRole) : Decidable (A.Same left right) := by
   unfold Same
   infer_instance
 
+/-- Definition of `decidableIncident` used by the surrounding construction. -/
 instance decidableIncident (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (point : PointRole) (row : RowRole) : Decidable (A.Incident point row) := by
   unfold Incident
   infer_instance
 
+/-- Definition of `decidableInCap` used by the surrounding construction. -/
 instance decidableInCap (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (point : PointRole) (cap : Fin 3) : Decidable (A.InCap point cap) := by
   unfold InCap
   infer_instance
 
+/-- Definition of `decidableInCapInterior` used by the surrounding construction. -/
 instance decidableInCapInterior
     (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (point : PointRole) (cap : Fin 3) : Decidable (A.InCapInterior point cap) := by
   unfold InCapInterior
   infer_instance
 
+/-- Definition of `decidableBefore` used by the surrounding construction. -/
 instance decidableBefore (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (left right : PointRole) : Decidable (A.Before left right) := by
   unfold Before
   infer_instance
 
+/-- Definition of `decidableSameDistanceFrom` used by the surrounding construction. -/
 instance decidableSameDistanceFrom
     (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (center left right : PointRole) : Decidable (A.SameDistanceFrom center left right) := by
   unfold SameDistanceFrom
   infer_instance
 
+/-- Definition of `decidableHasFourAfterDeleting` used by the surrounding construction. -/
 instance decidableHasFourAfterDeleting
     (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (deleted atCenter : PointRole) : Decidable (A.HasFourAfterDeleting deleted atCenter) := by
   unfold HasFourAfterDeleting
   infer_instance
 
+/-- Definition of `decidableNonrobust` used by the surrounding construction. -/
 instance decidableNonrobust
     (A : FreshThirdPinnedEndpointOutsideSeedFiniteAssignment)
     (center : PointRole) : Decidable (A.Nonrobust center) := by
@@ -7612,6 +7639,7 @@ noncomputable def ofView
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `same_ofView_iff`. -/
 @[simp] theorem same_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7630,6 +7658,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `incident_ofView_iff`. -/
 @[simp] theorem incident_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7648,6 +7677,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `inCap_ofView_iff`. -/
 @[simp] theorem inCap_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7666,6 +7696,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `inCapInterior_ofView_iff`. -/
 @[simp] theorem inCapInterior_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7684,6 +7715,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `before_ofView_iff`. -/
 @[simp] theorem before_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7702,6 +7734,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `sameDistanceFrom_ofView_iff`. -/
 @[simp] theorem sameDistanceFrom_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7720,6 +7753,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `hasFourAfterDeleting_ofView_iff`. -/
 @[simp] theorem hasFourAfterDeleting_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7742,6 +7776,7 @@ omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
   hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP in
+/-- Proves the property stated by `nonrobust_ofView_iff`. -/
 @[simp] theorem nonrobust_ofView_iff
     {C : CommonRadiusTwoCapSourceThirdCanonicalRowSurface P Pρ}
     {Q : FreshThirdBlockerFiber P Pρ}
@@ -7930,7 +7965,9 @@ deriving DecidableEq
 
 namespace FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration
 
+/-- Definition of `PointRole` used by the surrounding construction. -/
 abbrev PointRole := FreshThirdPinnedEndpointOutsideSeedPointRole
+/-- Definition of `RowRole` used by the surrounding construction. -/
 abbrev RowRole := FreshThirdPinnedEndpointOutsideSeedRowRole
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
@@ -8274,9 +8311,13 @@ end FreshThirdPinnedEndpointOutsideSeedFiniteRelationalTheory
 
 namespace FreshThirdPinnedEndpointOutsideSeedFiniteConstraint
 
+/-- Definition of `PointRole` used by the surrounding construction. -/
 abbrev PointRole := FreshThirdPinnedEndpointOutsideSeedPointRole
+/-- Definition of `RowRole` used by the surrounding construction. -/
 abbrev RowRole := FreshThirdPinnedEndpointOutsideSeedRowRole
+/-- Definition of `Assignment` used by the surrounding construction. -/
 abbrev Assignment := FreshThirdPinnedEndpointOutsideSeedFiniteAssignment
+/-- Definition of `Configuration` used by the surrounding construction. -/
 abbrev Configuration := FreshThirdPinnedEndpointOutsideSeedFiniteConfiguration
 
 /-- One exact four-slot row support is contained in another.  Under the

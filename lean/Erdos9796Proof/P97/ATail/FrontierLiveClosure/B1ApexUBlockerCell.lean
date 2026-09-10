@@ -94,6 +94,7 @@ structure B1ApexUBlockerCardSixTestOutcome
           C.u.1 C.u.2).toCriticalFourShell.support ∩
             SelectedClass D.A S.oppApex2 C.rho)
 
+/-- Internal helper. proves the property stated by `physicalApex_ne_uBlocker`. -/
 private theorem physicalApex_ne_uBlocker
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -106,6 +107,7 @@ private theorem physicalApex_ne_uBlocker
   simpa [B1CardSixLocalRolePacket.physicalApex,
     B1CardSixLocalRolePacket.Bu] using (congrArg Subtype.val h).symm
 
+/-- Internal helper. proves the property stated by `apex_mem_uRow_of_cell`. -/
 private theorem apex_mem_uRow_of_cell
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -123,6 +125,7 @@ private theorem apex_mem_uRow_of_cell
   exact ((lateFirstApexSystem C.R).selectedAt
     S.oppApex2 (b1_oppApex2_mem_A S)).toCriticalFourShell.q_mem_support
 
+/-- Internal helper. proves the property stated by `apex_completion_alias_of_cell`. -/
 private theorem apex_completion_alias_of_cell
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -158,6 +161,7 @@ private theorem apex_completion_alias_of_cell
     apply Subtype.ext
     simpa [B1CardSixLocalRolePacket.physicalApex] using hright
 
+/-- Internal helper. proves the property stated by `u_mem_apex_selectedSupport_of_cell`. -/
 private theorem u_mem_apex_selectedSupport_of_cell
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -175,6 +179,7 @@ private theorem u_mem_apex_selectedSupport_of_cell
   exact ((lateFirstApexSystem C.R).selectedAt
     C.u.1 C.u.2).toCriticalFourShell.q_mem_support
 
+/-- Internal helper. proves the property stated by `exists_alternating_uSlice_boundary`. -/
 private theorem exists_alternating_uSlice_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -246,27 +251,43 @@ namespace B1ApexUBlockerRationalTest
 
 noncomputable section
 
+/-- Definition of `point` used by the surrounding construction. -/
 def point (x y : ℝ) : ℝ² :=
   (EuclideanSpace.equiv (Fin 2) ℝ).symm ![x, y]
 
+/-- Proves the property stated by `point_apply_zero`. -/
 @[simp] theorem point_apply_zero (x y : ℝ) : point x y 0 = x := by
   simp [point]
 
+/-- Proves the property stated by `point_apply_one`. -/
 @[simp] theorem point_apply_one (x y : ℝ) : point x y 1 = y := by
   simp [point]
 
+/-- Definition of `apex` used by the surrounding construction. -/
 def apex : ℝ² := point 0 0
+/-- Definition of `uLow` used by the surrounding construction. -/
 def uLow : ℝ² := point (3 / 5) (-(4 / 5))
+/-- Definition of `deleted` used by the surrounding construction. -/
 def deleted : ℝ² := point (21 / 29) (-(20 / 29))
+/-- Definition of `vLow` used by the surrounding construction. -/
 def vLow : ℝ² := point (4 / 5) (-(3 / 5))
+/-- Definition of `uBlocker` used by the surrounding construction. -/
 def uBlocker : ℝ² := point (5 / 6) 0
+/-- Definition of `vHigh` used by the surrounding construction. -/
 def vHigh : ℝ² := point (4 / 5) (3 / 5)
+/-- Definition of `dHigh` used by the surrounding construction. -/
 def dHigh : ℝ² := point (21 / 29) (20 / 29)
+/-- Definition of `u` used by the surrounding construction. -/
 def u : ℝ² := point (3 / 5) (4 / 5)
+/-- Definition of `uRight` used by the surrounding construction. -/
 def uRight : ℝ² := point (1 / 3) (2 / 3)
+/-- Definition of `commonBlocker` used by the surrounding construction. -/
 def commonBlocker : ℝ² := point (1 / 4) (-(21 / 20))
+/-- Definition of `common0` used by the surrounding construction. -/
 def common0 : ℝ² := point (-(234 / 725)) (-(643 / 725))
+/-- Definition of `common1` used by the surrounding construction. -/
 def common1 : ℝ² := point (-(501 / 1450)) (-(764 / 725))
+/-- Definition of `common2` used by the surrounding construction. -/
 def common2 : ℝ² := point (-(49 / 145)) (-(166 / 145))
 
 /-- The orientation expected by the project's `IsCcwConvexPolygon` API. -/
@@ -274,6 +295,7 @@ def boundary : Fin 13 → ℝ² :=
   ![common0, apex, uRight, u, dHigh, vHigh, uBlocker,
     vLow, deleted, uLow, commonBlocker, common2, common1]
 
+/-- Definition of `rationalBoundary` used by the surrounding construction. -/
 def rationalBoundary : Fin 13 → ℚ × ℚ :=
   ![(-(234 / 725), -(643 / 725)), (0, 0), (1 / 3, 2 / 3),
     (3 / 5, 4 / 5), (21 / 29, 20 / 29), (4 / 5, 3 / 5), (5 / 6, 0),
@@ -281,61 +303,84 @@ def rationalBoundary : Fin 13 → ℚ × ℚ :=
     (1 / 4, -(21 / 20)), (-(49 / 145), -(166 / 145)),
     (-(501 / 1450), -(764 / 725))]
 
+/-- The rational signed-area value used by the boundary check. -/
 def rationalSignedArea (i j k : Fin 13) : ℚ :=
   ((rationalBoundary j).1 - (rationalBoundary i).1) *
       ((rationalBoundary k).2 - (rationalBoundary i).2) -
     ((rationalBoundary k).1 - (rationalBoundary i).1) *
       ((rationalBoundary j).2 - (rationalBoundary i).2)
 
+/-- Rational boundary point at finite index `0`. -/
 @[simp] theorem rationalBoundary_0 :
     rationalBoundary 0 = (-(234 / 725), -(643 / 725)) := by simp [rationalBoundary]
+/-- Rational boundary point at finite index `1`. -/
 @[simp] theorem rationalBoundary_1 : rationalBoundary 1 = (0, 0) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `2`. -/
 @[simp] theorem rationalBoundary_2 : rationalBoundary 2 = (1 / 3, 2 / 3) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `3`. -/
 @[simp] theorem rationalBoundary_3 : rationalBoundary 3 = (3 / 5, 4 / 5) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `4`. -/
 @[simp] theorem rationalBoundary_4 : rationalBoundary 4 = (21 / 29, 20 / 29) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `5`. -/
 @[simp] theorem rationalBoundary_5 : rationalBoundary 5 = (4 / 5, 3 / 5) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `6`. -/
 @[simp] theorem rationalBoundary_6 : rationalBoundary 6 = (5 / 6, 0) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `7`. -/
 @[simp] theorem rationalBoundary_7 : rationalBoundary 7 = (4 / 5, -(3 / 5)) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `8`. -/
 @[simp] theorem rationalBoundary_8 : rationalBoundary 8 = (21 / 29, -(20 / 29)) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `9`. -/
 @[simp] theorem rationalBoundary_9 : rationalBoundary 9 = (3 / 5, -(4 / 5)) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `10`. -/
 @[simp] theorem rationalBoundary_10 : rationalBoundary 10 = (1 / 4, -(21 / 20)) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `11`. -/
 @[simp] theorem rationalBoundary_11 : rationalBoundary 11 = (-(49 / 145), -(166 / 145)) := by
   simp [rationalBoundary]
+/-- Rational boundary point at finite index `12`. -/
 @[simp] theorem rationalBoundary_12 :
     rationalBoundary 12 = (-(501 / 1450), -(764 / 725)) := by simp [rationalBoundary]
 
+/-- Definition of `previous` used by the surrounding construction. -/
 def previous : Fin 13 → ℝ² :=
   ![common1, common0, apex, uRight, u, dHigh, vHigh,
     uBlocker, vLow, deleted, uLow, commonBlocker, common2]
 
+/-- Definition of `next` used by the surrounding construction. -/
 def next : Fin 13 → ℝ² :=
   ![apex, uRight, u, dHigh, vHigh, uBlocker, vLow,
     deleted, uLow, commonBlocker, common2, common1, common0]
 
+/-- Definition of `carrier` used by the surrounding construction. -/
 def carrier : Finset ℝ² := Finset.univ.image boundary
 
+/-- Definition of `physicalCircle` used by the surrounding construction. -/
 def physicalCircle : Finset ℝ² :=
   {uLow, deleted, vLow, vHigh, dHigh, u}
 
+/-- Definition of `uRow` used by the surrounding construction. -/
 def uRow : Finset ℝ² := {apex, uLow, u, uRight}
 
+/-- Definition of `commonRow` used by the surrounding construction. -/
 def commonRow : Finset ℝ² := {deleted, common0, common1, common2}
 
+/-- Definition of `apexDeletedRow` used by the surrounding construction. -/
 def apexDeletedRow : Finset ℝ² := {uLow, vLow, vHigh, dHigh}
 
+/-- Definition of `squaredSupport` used by the surrounding construction. -/
 def squaredSupport (center : ℝ²) (radiusSq : ℝ) : Finset ℝ² :=
   carrier.filter fun z => dist center z ^ 2 = radiusSq
 
+/-- Internal helper. proves the property stated by `chordFunctional_linear`. -/
 private theorem chordFunctional_linear (a b : ℝ²) :
     IsLinearMap ℝ (fun z : ℝ² =>
       (b 0 - a 0) * z 1 - (b 1 - a 1) * z 0) := by
@@ -347,6 +392,7 @@ private theorem chordFunctional_linear (a b : ℝ²) :
     simp only [PiLp.smul_apply, smul_eq_mul]
     ring
 
+/-- Internal helper. proves the property stated by `convexIndep_image_of_neighbor_separation`. -/
 private theorem convexIndep_image_of_neighbor_separation
     {n : ℕ} (point prev succ : Fin n → ℝ²)
     (hself : ∀ i, 0 < signedArea2 (prev i) (succ i) (point i))
@@ -388,6 +434,7 @@ private theorem convexIndep_image_of_neighbor_separation
 
 set_option maxHeartbeats 1000000 in
 -- The explicit `Fin 13` separation table expands to 169 arithmetic goals.
+/-- Proves the property stated by `boundary_neighbor_separation`. -/
 theorem boundary_neighbor_separation :
     (∀ i, 0 < signedArea2 (previous i) (next i) (boundary i)) ∧
       (∀ i j, j ≠ i →
@@ -406,6 +453,7 @@ theorem boundary_neighbor_separation :
           deleted, vLow, uBlocker, vHigh, dHigh, u, uRight, commonBlocker,
           common0, common1, common2]
 
+/-- Proves the property stated by `boundary_injective`. -/
 theorem boundary_injective : Function.Injective boundary := by
   intro i j hij
   by_contra hne
@@ -414,6 +462,7 @@ theorem boundary_injective : Function.Injective boundary := by
   rw [← hij] at hnonpos
   linarith
 
+/-- Proves the property stated by `boundary_eq_rationalPoint`. -/
 theorem boundary_eq_rationalPoint (i : Fin 13) :
     boundary i = point (rationalBoundary i).1 (rationalBoundary i).2 := by
   fin_cases i <;>
@@ -421,79 +470,93 @@ theorem boundary_eq_rationalPoint (i : Fin 13) :
       uBlocker, vHigh, dHigh, u, uRight, commonBlocker, common0, common1,
       common2]
 
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_0`. -/
 private theorem rationalBoundary_hneg_0 {j k : Fin 13}
     (hij : (0 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 0 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_1`. -/
 private theorem rationalBoundary_hneg_1 {j k : Fin 13}
     (hij : (1 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 1 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_2`. -/
 private theorem rationalBoundary_hneg_2 {j k : Fin 13}
     (hij : (2 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 2 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_3`. -/
 private theorem rationalBoundary_hneg_3 {j k : Fin 13}
     (hij : (3 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 3 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_4`. -/
 private theorem rationalBoundary_hneg_4 {j k : Fin 13}
     (hij : (4 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 4 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_5`. -/
 private theorem rationalBoundary_hneg_5 {j k : Fin 13}
     (hij : (5 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 5 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_6`. -/
 private theorem rationalBoundary_hneg_6 {j k : Fin 13}
     (hij : (6 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 6 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_7`. -/
 private theorem rationalBoundary_hneg_7 {j k : Fin 13}
     (hij : (7 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 7 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_8`. -/
 private theorem rationalBoundary_hneg_8 {j k : Fin 13}
     (hij : (8 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 8 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_9`. -/
 private theorem rationalBoundary_hneg_9 {j k : Fin 13}
     (hij : (9 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 9 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_10`. -/
 private theorem rationalBoundary_hneg_10 {j k : Fin 13}
     (hij : (10 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 10 j k < 0 := by
   fin_cases j <;> fin_cases k <;>
     simp at hij hjk
   all_goals simp [rationalSignedArea]
   all_goals norm_num [rationalBoundary]
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_11`. -/
 private theorem rationalBoundary_hneg_11 {j k : Fin 13}
     (hij : (11 : Fin 13) < j) (hjk : j < k) : rationalSignedArea 11 j k < 0 := by
   omega
+/-- Internal helper. proves the property stated by `rationalBoundary_hneg_12`. -/
 private theorem rationalBoundary_hneg_12 {j k : Fin 13}
     (hij : (12 : Fin 13) < j) (_hjk : j < k) : rationalSignedArea 12 j k < 0 := by
   omega
 
+/-- Proves the property stated by `rationalBoundary_hneg`. -/
 theorem rationalBoundary_hneg :
     ∀ {i j k : Fin 13}, i < j → j < k → rationalSignedArea i j k < 0 := by
   intro i j k hij hjk
@@ -512,6 +575,7 @@ theorem rationalBoundary_hneg :
   · exact rationalBoundary_hneg_11 hij hjk
   · exact rationalBoundary_hneg_12 hij hjk
 
+/-- Proves the property stated by `signedArea_boundary_eq_rationalSignedArea`. -/
 theorem signedArea_boundary_eq_rationalSignedArea (i j k : Fin 13) :
     signedArea2 (boundary i) (boundary j) (boundary k) =
       (rationalSignedArea i j k : ℝ) := by
@@ -520,16 +584,19 @@ theorem signedArea_boundary_eq_rationalSignedArea (i j k : Fin 13) :
   simp only [signedArea2, point_apply_zero, point_apply_one, rationalSignedArea,
     Rat.cast_sub, Rat.cast_mul]
 
+/-- Proves the property stated by `boundary_ccw`. -/
 theorem boundary_ccw : EuclideanGeometry.IsCcwConvexPolygon boundary := by
   apply ccw_of_hneg boundary_injective
   intro i j k hij hjk
   rw [signedArea_boundary_eq_rationalSignedArea]
   exact_mod_cast rationalBoundary_hneg hij hjk
 
+/-- Proves the property stated by `carrier_convexIndependent`. -/
 theorem carrier_convexIndependent : ConvexIndep carrier := by
   exact convexIndep_image_of_neighbor_separation boundary previous next
     boundary_neighbor_separation.1 boundary_neighbor_separation.2
 
+/-- Proves the property stated by `mem_carrier_iff`. -/
 theorem mem_carrier_iff (z : ℝ²) :
     z ∈ carrier ↔
       z = common0 ∨ z = apex ∨ z = uRight ∨ z = u ∨ z = dHigh ∨
@@ -558,6 +625,7 @@ theorem mem_carrier_iff (z : ℝ²) :
     · exact ⟨11, by simp [boundary]⟩
     · exact ⟨12, by simp [boundary]⟩
 
+/-- Proves the property stated by `physicalCircle_exact`. -/
 theorem physicalCircle_exact : squaredSupport apex 1 = physicalCircle := by
   ext z
   simp only [squaredSupport, Finset.mem_filter]
@@ -580,6 +648,7 @@ theorem physicalCircle_exact : squaredSupport apex 1 = physicalCircle := by
       · norm_num [dist_sq_coord, point, apex, uLow, deleted, vLow, uBlocker,
           vHigh, dHigh, u, uRight, commonBlocker, common0, common1, common2]
 
+/-- Proves the property stated by `uRow_exact`. -/
 theorem uRow_exact : squaredSupport uBlocker (25 / 36) = uRow := by
   ext z
   simp only [squaredSupport, Finset.mem_filter]
@@ -602,6 +671,7 @@ theorem uRow_exact : squaredSupport uBlocker (25 / 36) = uRow := by
       · norm_num [dist_sq_coord, point, apex, uLow, deleted, vLow, uBlocker,
           vHigh, dHigh, u, uRight, commonBlocker, common0, common1, common2]
 
+/-- Proves the property stated by `commonRow_exact`. -/
 theorem commonRow_exact :
     squaredSupport commonBlocker (2057 / 5800) = commonRow := by
   ext z
@@ -625,6 +695,7 @@ theorem commonRow_exact :
       · norm_num [dist_sq_coord, point, apex, uLow, deleted, vLow, uBlocker,
           vHigh, dHigh, u, uRight, commonBlocker, common0, common1, common2]
 
+/-- Internal helper. proves the property stated by `dist_eq_of_sq_eq`. -/
 private theorem dist_eq_of_sq_eq {x y : ℝ²} {center : ℝ²}
     (h : dist center x ^ 2 = dist center y ^ 2) :
     dist center x = dist center y := by
@@ -632,6 +703,7 @@ private theorem dist_eq_of_sq_eq {x y : ℝ²} {center : ℝ²}
   have hy : 0 ≤ dist center y := dist_nonneg
   nlinarith
 
+/-- Proves the property stated by `physicalCircle_sameRadius`. -/
 theorem physicalCircle_sameRadius :
     ∀ z ∈ physicalCircle, dist apex z = dist apex u := by
   intro z hz
@@ -645,6 +717,7 @@ theorem physicalCircle_sameRadius :
   exact (Finset.mem_filter.mp hzSupport).2.trans
     (Finset.mem_filter.mp huSupport).2.symm
 
+/-- Proves the property stated by `uRow_sameRadius`. -/
 theorem uRow_sameRadius :
     ∀ z ∈ uRow, dist uBlocker z = dist uBlocker apex := by
   intro z hz
@@ -658,6 +731,7 @@ theorem uRow_sameRadius :
   exact (Finset.mem_filter.mp hzSupport).2.trans
     (Finset.mem_filter.mp hapexSupport).2.symm
 
+/-- Proves the property stated by `commonRow_sameRadius`. -/
 theorem commonRow_sameRadius :
     ∀ z ∈ commonRow,
       dist commonBlocker z = dist commonBlocker deleted := by
@@ -673,22 +747,28 @@ theorem commonRow_sameRadius :
   exact (Finset.mem_filter.mp hzSupport).2.trans
     (Finset.mem_filter.mp hdeletedSupport).2.symm
 
+/-- Proves the property stated by `carrier_card`. -/
 theorem carrier_card : carrier.card = 13 := by
   rw [carrier, Finset.card_image_of_injective _ boundary_injective]
   simp
 
+/-- Proves the property stated by `physicalCircle_card`. -/
 theorem physicalCircle_card : physicalCircle.card = 6 := by
   norm_num [physicalCircle, point, apex, uLow, deleted, vLow, vHigh, dHigh, u]
 
+/-- Proves the property stated by `uRow_card`. -/
 theorem uRow_card : uRow.card = 4 := by
   norm_num [uRow, point, apex, uLow, u, uRight]
 
+/-- Proves the property stated by `commonRow_card`. -/
 theorem commonRow_card : commonRow.card = 4 := by
   norm_num [commonRow, point, deleted, common0, common1, common2]
 
+/-- Proves the property stated by `apexDeletedRow_card`. -/
 theorem apexDeletedRow_card : apexDeletedRow.card = 4 := by
   norm_num [apexDeletedRow, point, uLow, vLow, vHigh, dHigh]
 
+/-- Proves the property stated by `uRow_subset_delete`. -/
 theorem uRow_subset_delete : uRow ⊆ carrier.erase deleted := by
   intro z hz
   have hcarrier : z ∈ carrier := by
@@ -701,6 +781,7 @@ theorem uRow_subset_delete : uRow ⊆ carrier.erase deleted := by
       norm_num [point, apex, uLow, u, uRight, deleted]
   exact Finset.mem_erase.mpr ⟨hne, hcarrier⟩
 
+/-- Proves the property stated by `apexDeletedRow_subset_delete`. -/
 theorem apexDeletedRow_subset_delete :
     apexDeletedRow ⊆ carrier.erase deleted := by
   intro z hz
@@ -714,6 +795,7 @@ theorem apexDeletedRow_subset_delete :
       norm_num [point, uLow, vLow, vHigh, dHigh, deleted]
   exact Finset.mem_erase.mpr ⟨hne, hcarrier⟩
 
+/-- Proves the property stated by `apexDeletedRow_sameRadius`. -/
 theorem apexDeletedRow_sameRadius :
     ∀ z ∈ apexDeletedRow, dist apex z = dist apex u := by
   intro z hz
@@ -722,6 +804,7 @@ theorem apexDeletedRow_sameRadius :
   simp only [physicalCircle, Finset.mem_insert, Finset.mem_singleton]
   aesop
 
+/-- Proves the property stated by `commonRow_subset_apexDeletion`. -/
 theorem commonRow_subset_apexDeletion :
     commonRow ⊆ carrier.erase apex := by
   intro z hz
@@ -735,6 +818,7 @@ theorem commonRow_subset_apexDeletion :
       norm_num [point, deleted, common0, common1, common2, apex]
   exact Finset.mem_erase.mpr ⟨hne, hcarrier⟩
 
+/-- Internal helper. proves the property stated by `hasFour_of_row`. -/
 private theorem hasFour_of_row
     {A B : Finset ℝ²} {center anchor : ℝ²}
     (hsubset : B ⊆ A) (hcard : B.card = 4)
@@ -747,36 +831,43 @@ private theorem hasFour_of_row
   have hle := Finset.card_le_card hfilter
   omega
 
+/-- Proves the property stated by `uRow_survives_deleted`. -/
 theorem uRow_survives_deleted :
     HasNEquidistantPointsAt 4 (carrier.erase deleted) uBlocker := by
   apply hasFour_of_row uRow_subset_delete uRow_card uRow_sameRadius
   norm_num [point, uBlocker, apex]
 
+/-- Proves the property stated by `apexDeletedRow_survives_deleted`. -/
 theorem apexDeletedRow_survives_deleted :
     HasNEquidistantPointsAt 4 (carrier.erase deleted) apex := by
   apply hasFour_of_row apexDeletedRow_subset_delete apexDeletedRow_card
     apexDeletedRow_sameRadius
   norm_num [point, apex, u]
 
+/-- Proves the property stated by `commonRow_survives_apexDeletion`. -/
 theorem commonRow_survives_apexDeletion :
     HasNEquidistantPointsAt 4 (carrier.erase apex) commonBlocker := by
   apply hasFour_of_row commonRow_subset_apexDeletion commonRow_card
     commonRow_sameRadius
   norm_num [point, commonBlocker, deleted]
 
+/-- Proves the property stated by `uPacket_overlap_le_two`. -/
 theorem uPacket_overlap_le_two :
     (uRow ∩ apexDeletedRow).card ≤ 2 := by
   norm_num [uRow, apexDeletedRow, point, apex, uLow, u, uRight, vLow, vHigh,
     dHigh]
 
+/-- Proves the property stated by `mutual_canonical_hits`. -/
 theorem mutual_canonical_hits : apex ∈ uRow ∧ u ∈ uRow := by
   simp [uRow]
 
+/-- Proves the property stated by `alternating_boundary_positions`. -/
 theorem alternating_boundary_positions :
     boundary 1 = apex ∧ boundary 3 = u ∧ boundary 6 = uBlocker ∧
       boundary 9 = uLow := by
   simp [boundary]
 
+/-- Proves the property stated by `physical_u_intersection`. -/
 theorem physical_u_intersection :
     physicalCircle ∩ uRow = {uLow, u} := by
   ext z
@@ -791,9 +882,11 @@ theorem physical_u_intersection :
     · norm_num [point, uRight, uLow, deleted, vLow, vHigh, dHigh, u] at hphysical
   · aesop
 
+/-- Proves the property stated by `commonRow_omits_apex`. -/
 theorem commonRow_omits_apex : apex ∉ commonRow := by
   norm_num [commonRow, point, apex, deleted, common0, common1, common2]
 
+/-- Proves the property stated by `deleted_omitted_from_uPacketRows`. -/
 theorem deleted_omitted_from_uPacketRows :
     deleted ∉ uRow ∧ deleted ∉ apexDeletedRow := by
   norm_num [uRow, apexDeletedRow, point, apex, uLow, u, uRight, deleted,
@@ -845,6 +938,7 @@ structure AbstractLocalPatternCertificate : Prop where
     deleted ∉ uRow ∧ deleted ∉ apexDeletedRow
   uPacket_overlap_bound : (uRow ∩ apexDeletedRow).card ≤ 2
 
+/-- Proves the property stated by `rationalPattern_certificate`. -/
 theorem rationalPattern_certificate : AbstractLocalPatternCertificate where
   carrier_card_exact := carrier_card
   carrier_convex_independent := carrier_convexIndependent

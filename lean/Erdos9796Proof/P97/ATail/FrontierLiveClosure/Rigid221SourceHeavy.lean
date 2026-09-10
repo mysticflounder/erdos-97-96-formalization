@@ -370,6 +370,7 @@ theorem exactFourRigid221_sourceHeavy_exactFive_other_eq_xv
     exact hxuSupport
   · exact hxv
 
+/-- Internal helper. proves the property stated by `capByIndex_oppIndex2_eq_oppCap2_sourceHeavy`. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2_sourceHeavy
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -1056,6 +1057,7 @@ theorem
         (by simpa [Hlate, xu, xv] using hxuNotXvRow)
         first second hdeletedNe
 
+/-- Internal helper. proves the property stated by `equilateral_inner_nonneg`. -/
 private theorem equilateral_inner_nonneg {a b c : ℝ²}
     (hab : dist a b = dist a c)
     (habc : dist a b = dist b c) :
@@ -2374,6 +2376,7 @@ theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_directe
   exact D.convex S.oppApex2 (Finset.mem_coe.mpr happA)
     (convexHull_mono hsub hhull)
 
+/-- Proves the property stated by `false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet`. -/
 theorem false_of_exactFourRigid221_sourceHeavyOtherXv_exactFivePlacement_packet
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3075,6 +3078,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_vXuRow
               hVDel P.jointDeletion.deleted_not_mem_vRow
               first second hdeletionsNe
 
+/-- Internal helper. proves the property stated by `exactFourRigid221_sourceHeavy_row_class_pair`. -/
 private theorem exactFourRigid221_sourceHeavy_row_class_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -3989,6 +3993,7 @@ theorem exactFourRigid221_sourceHeavy_pentagon_xu_center_class_reduction
     the `xu` center is `v`, the deleted-row center cannot be either source
     endpoint.  The returned row traces retain the exact source row, so a
     later consumer does not have to reconstruct provenance. -/
+/-- Proves the property stated by `exactFourRigid221_sourceHeavy_pentagon_tagged_offClass_strictCap_row_center`. -/
 theorem exactFourRigid221_sourceHeavy_pentagon_tagged_offClass_strictCap_row_center
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -4308,6 +4313,7 @@ theorem exactFourRigid221_sourceHeavy_pentagon_tagged_offClass_strictCap_row_cen
    closed by the tagged center split: each returned center is off the physical
    class but remains in the strict interior, while the four named class points
    occupy that interior. -/
+/-- Proves the property stated by `false_of_exactFourRigid221_sourceHeavy_pentagonBlockerDeleted_card_eq_six`. -/
 theorem false_of_exactFourRigid221_sourceHeavy_pentagonBlockerDeleted_card_eq_six
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -5627,6 +5633,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
   · simpa only [hiu, hiv, hiy] using hV
   · simpa only [hix, hiv, hiy] using hX
 
+/-- Internal helper. proves the property stated by `blockerV_vRowBlockerDeleted_centerDeletedInterior`. -/
 private theorem blockerV_vRowBlockerDeleted_centerDeletedInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -5696,6 +5703,7 @@ private theorem blockerV_vRowBlockerDeleted_centerDeletedInterior
       simpa only [Hlate, hcenterV, h] using Kv.q_mem_support)
     hX hphysicalDeletedV
 
+/-- Proves the property stated by `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerClass`. -/
 theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -6525,6 +6533,7 @@ private theorem
     (by simpa only [I] using hbInterior)
     hca hcb hab hdc hda hdb hdca hdcb
 
+/-- Internal helper. proves the property stated by `injective_finCast_domain`. -/
 private theorem injective_finCast_domain
     {n m : ℕ} (h : n = m) {α : Type} {f : Fin n → α}
     (hf : Function.Injective f) :
@@ -6532,6 +6541,7 @@ private theorem injective_finCast_domain
   subst m
   simpa using hf
 
+/-- Internal helper. proves the property stated by `image_univ_finCast_domain`. -/
 private theorem image_univ_finCast_domain
     {n m : ℕ} (h : n = m) {α : Type} [DecidableEq α]
     (f : Fin n → α) :
@@ -6540,6 +6550,7 @@ private theorem image_univ_finCast_domain
   subst m
   rfl
 
+/-- Internal helper. proves the property stated by `ccw_finCast_domain`. -/
 private theorem ccw_finCast_domain
     {n m : ℕ} (h : n = m) {f : Fin n → ℝ²}
     (hf : EuclideanGeometry.IsCcwConvexPolygon f) :
@@ -6548,6 +6559,7 @@ private theorem ccw_finCast_domain
   subst m
   simpa using hf
 
+/-- Internal helper. proves the property stated by `filter_decide_mem_card_eq`. -/
 private theorem filter_decide_mem_card_eq
     {n : ℕ} {α : Type} [DecidableEq α]
     (f : Fin n → α) (hf : Function.Injective f)
@@ -6573,6 +6585,7 @@ private theorem filter_decide_mem_card_eq
       rw [Finset.card_image_of_injective _ hf]
     _ = support.card := congrArg Finset.card hfilteredImage
 
+/-- Internal helper. proves the property stated by `filter_decide_mem_and_mask_card_le`. -/
 private theorem filter_decide_mem_and_mask_card_le
     {n : ℕ} {α : Type} [DecidableEq α]
     (f : Fin n → α) (hf : Function.Injective f)
@@ -6594,6 +6607,7 @@ private theorem filter_decide_mem_and_mask_card_le
   rw [Finset.card_image_of_injective _ hf] at hcardImage
   exact hcardImage
 
+/-- Internal helper. proves the property stated by `not_mem_of_inter_card_le_two_of_three_cap_points`. -/
 private theorem not_mem_of_inter_card_le_two_of_three_cap_points
     {α : Type} [DecidableEq α]
     {support cap : Finset α} {extra first second : α}
@@ -6617,6 +6631,7 @@ private theorem not_mem_of_inter_card_le_two_of_three_cap_points
   have := (Finset.card_le_card hsubset).trans hcard
   omega
 
+/-- Internal helper. proves the property stated by `support_subset_image_skip`. -/
 private theorem support_subset_image_skip
     {n : ℕ} {α : Type} [DecidableEq α]
     {boundary : Fin (n + 1) → α} {carrier support : Finset α}
@@ -6637,6 +6652,7 @@ private theorem support_subset_image_skip
   exact Finset.mem_image.mpr
     ⟨index', Finset.mem_univ _, by simpa [hindex'] using hindex⟩
 
+/-- Internal helper. proves the property stated by `support_subset_image_double_skip`. -/
 private theorem support_subset_image_double_skip
     {n : ℕ} {α : Type} [DecidableEq α]
     {boundary : Fin (n + 2) → α} {carrier support : Finset α}
@@ -6651,6 +6667,7 @@ private theorem support_subset_image_double_skip
     support_subset_image_skip hboundaryImage hsupport outer houter
   exact support_subset_image_skip rfl hafterOuter inner hinner
 
+/-- Internal helper. proves the property stated by `support_subset_image_skip_reindex`. -/
 private theorem support_subset_image_skip_reindex
     {n : ℕ} {α : Type} [DecidableEq α]
     {boundary : Fin (n + 1) → α} {carrier support : Finset α}
@@ -6667,6 +6684,7 @@ private theorem support_subset_image_skip_reindex
   exact Finset.mem_image.mpr
     ⟨label, Finset.mem_univ _, hpointIndex⟩
 
+/-- Internal helper. proves the property stated by `support_subset_image_double_skip_reindex`. -/
 private theorem support_subset_image_double_skip_reindex
     {n : ℕ} {α : Type} [DecidableEq α]
     {boundary : Fin (n + 2) → α} {carrier support : Finset α}
@@ -6686,6 +6704,7 @@ private theorem support_subset_image_double_skip_reindex
   exact Finset.mem_image.mpr
     ⟨label, Finset.mem_univ _, hpointIndex⟩
 
+/-- Internal helper. proves the property stated by `seven_strict_interior_indices_ten`. -/
 private theorem seven_strict_interior_indices_ten
     (a b c d e f g : Fin 10)
     (ha : 0 < a) (hab : a < b) (hbc : b < c) (hcd : c < d)
@@ -6763,6 +6782,7 @@ private theorem seven_strict_interior_indices_ten
     hsucc e 5 (by simpa using hposE), hsucc f 6 (by simpa using hposF),
     hsucc g 7 (by simpa using hposG)⟩
 
+/-- Internal helper. definition of `SevenSkipOrder` used by the surrounding construction. -/
 private def SevenSkipOrder
     (a b c d e f g : Fin 10) : Prop :=
   ∃ gap : Fin 10,
@@ -6775,6 +6795,7 @@ private def SevenSkipOrder
     f = gap.succAbove (6 : Fin 9) ∧
     g = gap.succAbove (7 : Fin 9)
 
+/-- Internal helper. proves the property stated by `seven_index_order_classification_ten`. -/
 private theorem seven_index_order_classification_ten
     (iu iv ic id ixv ie ixu : Fin 10)
     (hu0 : 0 < iu) (hu8 : iu < 9)
@@ -6842,6 +6863,7 @@ private theorem seven_index_order_classification_ten
       exact seven_strict_interior_indices_ten ixu ixv ie id ic iv iu
         hxu0 hXv.1 hgt hE'.2 hC'.1 hC'.2 hV'.2 hu8
 
+/-- Internal helper. proves the property stated by `exists_unused_strict_interior_eleven`. -/
 private theorem exists_unused_strict_interior_eleven
     (a b c d e f g : Fin 11)
     (ha : 0 < a) (hab : a < b) (hbc : b < c) (hcd : c < d)
@@ -6891,6 +6913,7 @@ private theorem exists_unused_strict_interior_eleven
     simp only [Fin.val_castSucc, outer] at hval
     omega
 
+/-- Internal helper. proves the property stated by `seven_strict_interior_indices_eleven`. -/
 private theorem seven_strict_interior_indices_eleven
     (a b c d e f g : Fin 11)
     (ha : 0 < a) (hab : a < b) (hbc : b < c) (hcd : c < d)
@@ -6975,6 +6998,7 @@ private theorem seven_strict_interior_indices_eleven
     hfRec.symm.trans (congrArg outer.castSucc.succAbove hfIn),
     hgRec.symm.trans (congrArg outer.castSucc.succAbove hgIn)⟩
 
+/-- Internal helper. definition of `SevenDoubleSkipOrder` used by the surrounding construction. -/
 private def SevenDoubleSkipOrder
     (a b c d e f g : Fin 11) : Prop :=
   ∃ outer inner : Fin 10,
@@ -6987,6 +7011,7 @@ private def SevenDoubleSkipOrder
     f = outer.castSucc.succAbove (inner.succAbove (6 : Fin 9)) ∧
     g = outer.castSucc.succAbove (inner.succAbove (7 : Fin 9))
 
+/-- Internal helper. proves the property stated by `seven_index_order_classification_eleven`. -/
 private theorem seven_index_order_classification_eleven
     (iu iv ic id ixv ie ixu : Fin 11)
     (hu0 : 0 < iu) (hu10 : iu < 10)
@@ -7054,6 +7079,7 @@ private theorem seven_index_order_classification_eleven
       exact seven_strict_interior_indices_eleven ixu ixv ie id ic iv iu
         hxu0 hXv.1 hgt hE'.2 hC'.1 hC'.2 hV'.2 hu10
 
+/-- Internal helper. proves the property stated by `skip_position_embedding_forward`. -/
 private theorem skip_position_embedding_forward
     (gap : Fin 16) (order : Fin 2) :
     BlockerVExactFifteenFourRowCoverage.PositionEmbedding
@@ -7063,6 +7089,7 @@ private theorem skip_position_embedding_forward
   intro point₁ point₂ hlt
   exact Fin.succAbove_lt_succAbove_iff.mpr hlt
 
+/-- Internal helper. proves the property stated by `skip_position_embedding_reverse`. -/
 private theorem skip_position_embedding_reverse
     (gap : Fin 16) (order : Fin 2) :
     BlockerVExactFifteenFourRowCoverage.PositionEmbedding
@@ -7084,6 +7111,7 @@ private theorem skip_position_embedding_reverse
     (Fin.succAbove_lt_succAbove_iff (p := gap)).mpr hlt
   omega
 
+/-- Internal helper. proves the property stated by `double_skip_position_embedding_forward`. -/
 private theorem double_skip_position_embedding_forward
     (outer : Fin 17) (inner : Fin 16) (order : Fin 2) :
     BlockerVExactFifteenFourRowCoverage.PositionEmbedding
@@ -7094,6 +7122,7 @@ private theorem double_skip_position_embedding_forward
   exact Fin.succAbove_lt_succAbove_iff.mpr
     (Fin.succAbove_lt_succAbove_iff.mpr hlt)
 
+/-- Internal helper. proves the property stated by `double_skip_position_embedding_reverse`. -/
 private theorem double_skip_position_embedding_reverse
     (outer : Fin 17) (inner : Fin 16) (order : Fin 2) :
     BlockerVExactFifteenFourRowCoverage.PositionEmbedding
@@ -7121,6 +7150,7 @@ private theorem double_skip_position_embedding_reverse
     Fin.succAbove_lt_succAbove_iff.mpr hinner
   omega
 
+/-- Internal helper. proves the property stated by `skip_exactSixteen_position_embedding_forward`. -/
 private theorem skip_exactSixteen_position_embedding_forward
     (gap : Fin 17) (order : Fin 2) :
     BlockerVExactSixteenFourRowCoverage.PositionEmbedding
@@ -7130,6 +7160,7 @@ private theorem skip_exactSixteen_position_embedding_forward
   intro point₁ point₂ hlt
   exact Fin.succAbove_lt_succAbove_iff.mpr hlt
 
+/-- Internal helper. proves the property stated by `skip_exactSixteen_position_embedding_reverse`. -/
 private theorem skip_exactSixteen_position_embedding_reverse
     (gap : Fin 17) (order : Fin 2) :
     BlockerVExactSixteenFourRowCoverage.PositionEmbedding
@@ -7151,6 +7182,7 @@ private theorem skip_exactSixteen_position_embedding_reverse
     (Fin.succAbove_lt_succAbove_iff (p := gap)).mpr hlt
   omega
 
+/-- Internal helper. proves the property stated by `seven_index_order_classification_ten_of_eq`. -/
 private theorem seven_index_order_classification_ten_of_eq
     {m : ℕ} (hm : m = 10)
     (iu iv ic id ixv ie ixu : Fin m)
@@ -7186,6 +7218,7 @@ private theorem seven_index_order_classification_ten_of_eq
       hidLower hidUpper hixvLower hixvUpper hieLower hieUpper
       hixuLower hixuUpper hieNeIxv hXv hV hDel hCenter hXuCenter
 
+/-- Internal helper. proves the property stated by `seven_index_order_classification_eleven_of_eq`. -/
 private theorem seven_index_order_classification_eleven_of_eq
     {m : ℕ} (hm : m = 11)
     (iu iv ic id ixv ie ixu : Fin m)
@@ -7221,9 +7254,11 @@ private theorem seven_index_order_classification_eleven_of_eq
       hidLower hidUpper hixvLower hixvUpper hieLower hieUpper
       hixuLower hixuUpper hieNeIxv hXv hV hDel hCenter hXuCenter
 
+/-- Internal helper. definition of `reverseGapTen` used by the surrounding construction. -/
 private def reverseGapTen (gap : Fin 10) : Fin 10 :=
   ⟨9 - gap.val, by omega⟩
 
+/-- Internal helper. proves the property stated by `reverse_gap_succAbove_sum`. -/
 private theorem reverse_gap_succAbove_sum
     (gap : Fin 10) (j p : Fin 9) (hsum : p.val + j.val = 8) :
     ((reverseGapTen gap).succAbove p).val + (gap.succAbove j).val = 9 := by
@@ -7246,6 +7281,7 @@ private theorem reverse_gap_succAbove_sum
     simp only [Fin.val_succ, Fin.val_castSucc]
     omega
 
+/-- Internal helper. proves the property stated by `gapTen_castLE_succAbove_val`. -/
 private theorem gapTen_castLE_succAbove_val
     (gap : Fin 10) (p : Fin 15) (j : Fin 9) (hp : p.val = j.val) :
     ((Fin.castLE (by omega) gap : Fin 16).succAbove p).val =
@@ -7270,6 +7306,7 @@ private theorem gapTen_castLE_succAbove_val
     simp only [Fin.val_succ]
     omega
 
+/-- Internal helper. proves the property stated by `gapTen_castLE_succAbove_val_exactSeventeen`. -/
 private theorem gapTen_castLE_succAbove_val_exactSeventeen
     (gap : Fin 10) (p : Fin 16) (j : Fin 9) (hp : p.val = j.val) :
     ((Fin.castLE (by omega) gap : Fin 17).succAbove p).val =
@@ -7294,6 +7331,7 @@ private theorem gapTen_castLE_succAbove_val_exactSeventeen
     simp only [Fin.val_succ]
     omega
 
+/-- Internal helper. proves the property stated by `gapEleven_castLE_succAbove_val`. -/
 private theorem gapEleven_castLE_succAbove_val
     (gap : Fin 11) (p : Fin 16) (j : Fin 10) (hp : p.val = j.val) :
     ((Fin.castLE (by omega) gap : Fin 17).succAbove p).val =
@@ -7318,6 +7356,7 @@ private theorem gapEleven_castLE_succAbove_val
     simp only [Fin.val_succ]
     omega
 
+/-- Internal helper. proves the property stated by `reverseGapTen_castLE_succAbove_sum`. -/
 private theorem reverseGapTen_castLE_succAbove_sum
     (gap : Fin 10) (p : Fin 15) (j : Fin 9) (hsum : p.val + j.val = 8) :
     ((Fin.castLE (by omega) (reverseGapTen gap) : Fin 16).succAbove p).val +
@@ -7328,6 +7367,7 @@ private theorem reverseGapTen_castLE_succAbove_sum
   have hrev := reverse_gap_succAbove_sum gap j p9 (by simpa [p9] using hsum)
   omega
 
+/-- Internal helper. proves the property stated by `reverseGapTen_castLE_succAbove_sum_exactSeventeen`. -/
 private theorem reverseGapTen_castLE_succAbove_sum_exactSeventeen
     (gap : Fin 10) (p : Fin 16) (j : Fin 9) (hsum : p.val + j.val = 8) :
     ((Fin.castLE (by omega) (reverseGapTen gap) : Fin 17).succAbove p).val +
@@ -7339,6 +7379,7 @@ private theorem reverseGapTen_castLE_succAbove_sum_exactSeventeen
   have hrev := reverse_gap_succAbove_sum gap j p9 (by simpa [p9] using hsum)
   omega
 
+/-- Internal helper. proves the property stated by `reverse_gap_eleven_succAbove_sum`. -/
 private theorem reverse_gap_eleven_succAbove_sum
     (gap : Fin 11) (j p : Fin 10) (hsum : p.val + j.val = 9) :
     ((Fin.rev gap).succAbove p).val + (gap.succAbove j).val = 10 := by
@@ -7363,6 +7404,7 @@ private theorem reverse_gap_eleven_succAbove_sum
     simp only [Fin.val_succ, Fin.val_castSucc]
     omega
 
+/-- Internal helper. proves the property stated by `reverseGapEleven_castLE_succAbove_sum_exactSeventeen`. -/
 private theorem reverseGapEleven_castLE_succAbove_sum_exactSeventeen
     (gap : Fin 11) (p : Fin 16) (j : Fin 10)
     (hsum : p.val + j.val = 9) :
@@ -7375,6 +7417,7 @@ private theorem reverseGapEleven_castLE_succAbove_sum_exactSeventeen
     (by simpa [p10] using hsum)
   omega
 
+/-- Internal helper. proves the property stated by `seven_index_order_classification`. -/
 private theorem seven_index_order_classification
     {m : ℕ} (hm : m = 9)
     (iu iv ic id ixv ie ixu : Fin m)
@@ -7439,6 +7482,7 @@ private theorem seven_index_order_classification
     · right; right; left; omega
     · right; right; right; omega
 
+/-- Internal helper. proves the property stated by `false_of_blockerVExactFifteen_bank_of_covered_source_rows`. -/
 private theorem false_of_blockerVExactFifteen_bank_of_covered_source_rows
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -7663,6 +7707,7 @@ private theorem false_of_blockerVExactFifteen_bank_of_covered_source_rows
       orientation order labelIndex membership hposition htotal hfixed₁
       hfixed₂ hlong hshell
 
+/-- Internal helper. proves the property stated by `false_of_blockerVExactSixteen_bank_of_covered_source_rows`. -/
 private theorem false_of_blockerVExactSixteen_bank_of_covered_source_rows
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -13618,6 +13663,7 @@ theorem false_of_exactSeventeen_secondCapNine_exactCover
       (by simp [position]; omega) (by simp [position]; omega)
       (by simp [position]; omega) (by simp [position]; omega)
 
+/-- Proves the property stated by `false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine`. -/
 theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowBlockerDeleted_deletedRowBlockerOffClass_card_eq_seventeen_secondCapNine
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -13669,6 +13715,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
       hcenterDeletedInterior hcenterDeletedOffClass hcard hcapCard
       _hnextRowPhysicalHits hexactCover
 
+/-- Proves the property stated by `pentagonOffClassBlocker_u_ne_xv`. -/
 theorem pentagonOffClassBlocker_u_ne_xv
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -16740,6 +16787,7 @@ theorem false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlock
     false_of_exactFourRigid221_sourceHeavy_secondOppositeLarge_pentagonBlockerV_vRowCircleWedge
       Q
 
+/-- Proves the property stated by `pentagonOffClassBlocker_u_mem_secondCapInterior`. -/
 theorem pentagonOffClassBlocker_u_mem_secondCapInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -16755,6 +16803,7 @@ theorem pentagonOffClassBlocker_u_mem_secondCapInterior
     simp
   exact (Finset.mem_inter.mp huPair).2
 
+/-- Proves the property stated by `pentagonOffClassBlocker_xu_ne_xv`. -/
 theorem pentagonOffClassBlocker_xu_ne_xv
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -16784,6 +16833,7 @@ theorem pentagonOffClassBlocker_xu_ne_xv
     congrArg (fun z : ℝ² ↦ z ∈ Ku.support) hcenter
   exact Ku.center_not_mem_support (hmemEq.mpr hxvKu)
 
+/-- Proves the property stated by `pentagonOffClassBlocker_xu_mem_secondCapInterior`. -/
 theorem pentagonOffClassBlocker_xu_mem_secondCapInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -16799,6 +16849,7 @@ theorem pentagonOffClassBlocker_xu_mem_secondCapInterior
     simp
   exact (Finset.mem_inter.mp hxuPair).2
 
+/-- Internal helper. proves the property stated by `pentagonOffClassBlocker_capByIndex_oppIndex2_eq_oppCap2`. -/
 private theorem pentagonOffClassBlocker_capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -16807,6 +16858,7 @@ private theorem pentagonOffClassBlocker_capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- Internal helper. proves the property stated by `pentagonOffClassBlocker_xvRow_secondCap_eq_pair`. -/
 private theorem pentagonOffClassBlocker_xvRow_secondCap_eq_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -17630,6 +17682,7 @@ theorem pentagonOffClassBlocker_nextRowOnlyHit_interior_center_eq_u_or_xv
 This set-level form is useful when transporting the arm into a finite row
 pattern; it records the support residue without making a claim about the
 next center or a terminal contradiction. -/
+/-- Proves the property stated by `pentagonOffClassBlocker_nextRowOnlyHit_namedTriple_inter_eq_xu`. -/
 theorem pentagonOffClassBlocker_nextRowOnlyHit_namedTriple_inter_eq_xu
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -18128,6 +18181,7 @@ theorem pentagonOffClassBlocker_exact_physical_cycle_traces
           hdeletedClass⟩
       · exact ⟨by simpa only [Hlate] using Q.hvDeletedRow, hvClass⟩
 
+/-- Internal helper. proves the property stated by `five_cycle_edgeMap_injective`. -/
 private theorem five_cycle_edgeMap_injective
     {α : Type} [DecidableEq α] {a b c d e : α}
     (hcard : ({a, b, c, d, e} : Finset α).card = 5) :

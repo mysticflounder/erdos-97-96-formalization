@@ -37,130 +37,251 @@ open SafeCoverIndexBridge
 open SourceOrderTerminalBankConsumer
 open scoped EuclideanGeometry
 
+/-- Internal helper. builds one positive-membership definition from its index and support. -/
 private def mkDefinition (varIndex : Nat) (center : Label)
     (support : Finset Label) : PositiveMembershipDefinition :=
   { varIndex := varIndex
     requirement := { center := center, support := support } }
 
+/-- Positive-membership definition for compiler variable `45370`. -/
 def d45370 := mkDefinition 45370 3 {6, 10}
+/-- Positive-membership definition for compiler variable `45371`. -/
 def d45371 := mkDefinition 45371 3 {6, 11}
+/-- Positive-membership definition for compiler variable `45372`. -/
 def d45372 := mkDefinition 45372 3 {7, 10}
+/-- Positive-membership definition for compiler variable `45373`. -/
 def d45373 := mkDefinition 45373 3 {7, 11}
+/-- Positive-membership definition for compiler variable `45374`. -/
 def d45374 := mkDefinition 45374 3 {8, 10}
+/-- Positive-membership definition for compiler variable `45375`. -/
 def d45375 := mkDefinition 45375 3 {8, 11}
+/-- Positive-membership definition for compiler variable `45376`. -/
 def d45376 := mkDefinition 45376 3 {9, 10}
+/-- Positive-membership definition for compiler variable `45377`. -/
 def d45377 := mkDefinition 45377 3 {9, 11}
+/-- Positive-membership definition for compiler variable `45378`. -/
 def d45378 := mkDefinition 45378 4 {6, 10}
+/-- Positive-membership definition for compiler variable `45379`. -/
 def d45379 := mkDefinition 45379 4 {6, 11}
+/-- Positive-membership definition for compiler variable `45380`. -/
 def d45380 := mkDefinition 45380 4 {7, 10}
+/-- Positive-membership definition for compiler variable `45381`. -/
 def d45381 := mkDefinition 45381 4 {7, 11}
+/-- Positive-membership definition for compiler variable `45382`. -/
 def d45382 := mkDefinition 45382 4 {8, 10}
+/-- Positive-membership definition for compiler variable `45383`. -/
 def d45383 := mkDefinition 45383 4 {8, 11}
+/-- Positive-membership definition for compiler variable `45384`. -/
 def d45384 := mkDefinition 45384 4 {9, 10}
+/-- Positive-membership definition for compiler variable `45385`. -/
 def d45385 := mkDefinition 45385 4 {9, 11}
+/-- Positive-membership definition for compiler variable `45386`. -/
 def d45386 := mkDefinition 45386 5 {6, 10}
+/-- Positive-membership definition for compiler variable `45387`. -/
 def d45387 := mkDefinition 45387 5 {6, 11}
+/-- Positive-membership definition for compiler variable `45388`. -/
 def d45388 := mkDefinition 45388 5 {7, 10}
+/-- Positive-membership definition for compiler variable `45389`. -/
 def d45389 := mkDefinition 45389 5 {7, 11}
+/-- Positive-membership definition for compiler variable `45390`. -/
 def d45390 := mkDefinition 45390 5 {8, 10}
+/-- Positive-membership definition for compiler variable `45391`. -/
 def d45391 := mkDefinition 45391 5 {8, 11}
+/-- Positive-membership definition for compiler variable `45392`. -/
 def d45392 := mkDefinition 45392 5 {9, 10}
+/-- Positive-membership definition for compiler variable `45393`. -/
 def d45393 := mkDefinition 45393 5 {9, 11}
+/-- Positive-membership definition for compiler variable `45394`. -/
 def d45394 := mkDefinition 45394 6 {3, 7, 10}
+/-- Positive-membership definition for compiler variable `45395`. -/
 def d45395 := mkDefinition 45395 6 {3, 7, 11}
+/-- Positive-membership definition for compiler variable `45396`. -/
 def d45396 := mkDefinition 45396 6 {3, 8, 10}
+/-- Positive-membership definition for compiler variable `45397`. -/
 def d45397 := mkDefinition 45397 6 {3, 8, 11}
+/-- Positive-membership definition for compiler variable `45398`. -/
 def d45398 := mkDefinition 45398 6 {3, 9, 10}
+/-- Positive-membership definition for compiler variable `45399`. -/
 def d45399 := mkDefinition 45399 6 {3, 9, 11}
+/-- Positive-membership definition for compiler variable `45400`. -/
 def d45400 := mkDefinition 45400 6 {4, 7, 10}
+/-- Positive-membership definition for compiler variable `45401`. -/
 def d45401 := mkDefinition 45401 6 {4, 7, 11}
+/-- Positive-membership definition for compiler variable `45402`. -/
 def d45402 := mkDefinition 45402 6 {4, 8, 10}
+/-- Positive-membership definition for compiler variable `45403`. -/
 def d45403 := mkDefinition 45403 6 {4, 8, 11}
+/-- Positive-membership definition for compiler variable `45404`. -/
 def d45404 := mkDefinition 45404 6 {4, 9, 10}
+/-- Positive-membership definition for compiler variable `45405`. -/
 def d45405 := mkDefinition 45405 6 {4, 9, 11}
+/-- Positive-membership definition for compiler variable `45406`. -/
 def d45406 := mkDefinition 45406 6 {5, 7, 10}
+/-- Positive-membership definition for compiler variable `45407`. -/
 def d45407 := mkDefinition 45407 6 {5, 7, 11}
+/-- Positive-membership definition for compiler variable `45408`. -/
 def d45408 := mkDefinition 45408 6 {5, 8, 10}
+/-- Positive-membership definition for compiler variable `45409`. -/
 def d45409 := mkDefinition 45409 6 {5, 8, 11}
+/-- Positive-membership definition for compiler variable `45410`. -/
 def d45410 := mkDefinition 45410 6 {5, 9, 10}
+/-- Positive-membership definition for compiler variable `45411`. -/
 def d45411 := mkDefinition 45411 6 {5, 9, 11}
+/-- Positive-membership definition for compiler variable `45412`. -/
 def d45412 := mkDefinition 45412 6 {7, 8, 10}
+/-- Positive-membership definition for compiler variable `45413`. -/
 def d45413 := mkDefinition 45413 6 {7, 8, 11}
+/-- Positive-membership definition for compiler variable `45414`. -/
 def d45414 := mkDefinition 45414 6 {7, 9, 10}
+/-- Positive-membership definition for compiler variable `45415`. -/
 def d45415 := mkDefinition 45415 6 {7, 9, 11}
+/-- Positive-membership definition for compiler variable `45416`. -/
 def d45416 := mkDefinition 45416 6 {8, 9, 10}
+/-- Positive-membership definition for compiler variable `45417`. -/
 def d45417 := mkDefinition 45417 6 {8, 9, 11}
+/-- Positive-membership definition for compiler variable `45418`. -/
 def d45418 := mkDefinition 45418 7 {3, 6, 10}
+/-- Positive-membership definition for compiler variable `45419`. -/
 def d45419 := mkDefinition 45419 7 {3, 6, 11}
+/-- Positive-membership definition for compiler variable `45420`. -/
 def d45420 := mkDefinition 45420 7 {3, 8, 10}
+/-- Positive-membership definition for compiler variable `45421`. -/
 def d45421 := mkDefinition 45421 7 {3, 8, 11}
+/-- Positive-membership definition for compiler variable `45422`. -/
 def d45422 := mkDefinition 45422 7 {3, 9, 10}
+/-- Positive-membership definition for compiler variable `45423`. -/
 def d45423 := mkDefinition 45423 7 {3, 9, 11}
+/-- Positive-membership definition for compiler variable `45424`. -/
 def d45424 := mkDefinition 45424 7 {4, 6, 10}
+/-- Positive-membership definition for compiler variable `45425`. -/
 def d45425 := mkDefinition 45425 7 {4, 6, 11}
+/-- Positive-membership definition for compiler variable `45426`. -/
 def d45426 := mkDefinition 45426 7 {4, 8, 10}
+/-- Positive-membership definition for compiler variable `45427`. -/
 def d45427 := mkDefinition 45427 7 {4, 8, 11}
+/-- Positive-membership definition for compiler variable `45428`. -/
 def d45428 := mkDefinition 45428 7 {4, 9, 10}
+/-- Positive-membership definition for compiler variable `45429`. -/
 def d45429 := mkDefinition 45429 7 {4, 9, 11}
+/-- Positive-membership definition for compiler variable `45430`. -/
 def d45430 := mkDefinition 45430 7 {5, 6, 10}
+/-- Positive-membership definition for compiler variable `45431`. -/
 def d45431 := mkDefinition 45431 7 {5, 6, 11}
+/-- Positive-membership definition for compiler variable `45432`. -/
 def d45432 := mkDefinition 45432 7 {5, 8, 10}
+/-- Positive-membership definition for compiler variable `45433`. -/
 def d45433 := mkDefinition 45433 7 {5, 8, 11}
+/-- Positive-membership definition for compiler variable `45434`. -/
 def d45434 := mkDefinition 45434 7 {5, 9, 10}
+/-- Positive-membership definition for compiler variable `45435`. -/
 def d45435 := mkDefinition 45435 7 {5, 9, 11}
+/-- Positive-membership definition for compiler variable `45436`. -/
 def d45436 := mkDefinition 45436 7 {6, 8, 10}
+/-- Positive-membership definition for compiler variable `45437`. -/
 def d45437 := mkDefinition 45437 7 {6, 8, 11}
+/-- Positive-membership definition for compiler variable `45438`. -/
 def d45438 := mkDefinition 45438 7 {6, 9, 10}
+/-- Positive-membership definition for compiler variable `45439`. -/
 def d45439 := mkDefinition 45439 7 {6, 9, 11}
+/-- Positive-membership definition for compiler variable `45440`. -/
 def d45440 := mkDefinition 45440 7 {8, 9, 10}
+/-- Positive-membership definition for compiler variable `45441`. -/
 def d45441 := mkDefinition 45441 7 {8, 9, 11}
+/-- Positive-membership definition for compiler variable `45442`. -/
 def d45442 := mkDefinition 45442 8 {3, 6, 10}
+/-- Positive-membership definition for compiler variable `45443`. -/
 def d45443 := mkDefinition 45443 8 {3, 6, 11}
+/-- Positive-membership definition for compiler variable `45444`. -/
 def d45444 := mkDefinition 45444 8 {3, 7, 10}
+/-- Positive-membership definition for compiler variable `45445`. -/
 def d45445 := mkDefinition 45445 8 {3, 7, 11}
+/-- Positive-membership definition for compiler variable `45446`. -/
 def d45446 := mkDefinition 45446 8 {3, 9, 10}
+/-- Positive-membership definition for compiler variable `45447`. -/
 def d45447 := mkDefinition 45447 8 {3, 9, 11}
+/-- Positive-membership definition for compiler variable `45448`. -/
 def d45448 := mkDefinition 45448 8 {4, 6, 10}
+/-- Positive-membership definition for compiler variable `45449`. -/
 def d45449 := mkDefinition 45449 8 {4, 6, 11}
+/-- Positive-membership definition for compiler variable `45450`. -/
 def d45450 := mkDefinition 45450 8 {4, 7, 10}
+/-- Positive-membership definition for compiler variable `45451`. -/
 def d45451 := mkDefinition 45451 8 {4, 7, 11}
+/-- Positive-membership definition for compiler variable `45452`. -/
 def d45452 := mkDefinition 45452 8 {4, 9, 10}
+/-- Positive-membership definition for compiler variable `45453`. -/
 def d45453 := mkDefinition 45453 8 {4, 9, 11}
+/-- Positive-membership definition for compiler variable `45454`. -/
 def d45454 := mkDefinition 45454 8 {5, 6, 10}
+/-- Positive-membership definition for compiler variable `45455`. -/
 def d45455 := mkDefinition 45455 8 {5, 6, 11}
+/-- Positive-membership definition for compiler variable `45456`. -/
 def d45456 := mkDefinition 45456 8 {5, 7, 10}
+/-- Positive-membership definition for compiler variable `45457`. -/
 def d45457 := mkDefinition 45457 8 {5, 7, 11}
+/-- Positive-membership definition for compiler variable `45458`. -/
 def d45458 := mkDefinition 45458 8 {5, 9, 10}
+/-- Positive-membership definition for compiler variable `45459`. -/
 def d45459 := mkDefinition 45459 8 {5, 9, 11}
+/-- Positive-membership definition for compiler variable `45460`. -/
 def d45460 := mkDefinition 45460 8 {6, 7, 10}
+/-- Positive-membership definition for compiler variable `45461`. -/
 def d45461 := mkDefinition 45461 8 {6, 7, 11}
+/-- Positive-membership definition for compiler variable `45462`. -/
 def d45462 := mkDefinition 45462 8 {6, 9, 10}
+/-- Positive-membership definition for compiler variable `45463`. -/
 def d45463 := mkDefinition 45463 8 {6, 9, 11}
+/-- Positive-membership definition for compiler variable `45464`. -/
 def d45464 := mkDefinition 45464 8 {7, 9, 10}
+/-- Positive-membership definition for compiler variable `45465`. -/
 def d45465 := mkDefinition 45465 8 {7, 9, 11}
+/-- Positive-membership definition for compiler variable `45466`. -/
 def d45466 := mkDefinition 45466 9 {3, 6, 10}
+/-- Positive-membership definition for compiler variable `45467`. -/
 def d45467 := mkDefinition 45467 9 {3, 6, 11}
+/-- Positive-membership definition for compiler variable `45468`. -/
 def d45468 := mkDefinition 45468 9 {3, 7, 10}
+/-- Positive-membership definition for compiler variable `45469`. -/
 def d45469 := mkDefinition 45469 9 {3, 7, 11}
+/-- Positive-membership definition for compiler variable `45470`. -/
 def d45470 := mkDefinition 45470 9 {3, 8, 10}
+/-- Positive-membership definition for compiler variable `45471`. -/
 def d45471 := mkDefinition 45471 9 {3, 8, 11}
+/-- Positive-membership definition for compiler variable `45472`. -/
 def d45472 := mkDefinition 45472 9 {4, 6, 10}
+/-- Positive-membership definition for compiler variable `45473`. -/
 def d45473 := mkDefinition 45473 9 {4, 6, 11}
+/-- Positive-membership definition for compiler variable `45474`. -/
 def d45474 := mkDefinition 45474 9 {4, 7, 10}
+/-- Positive-membership definition for compiler variable `45475`. -/
 def d45475 := mkDefinition 45475 9 {4, 7, 11}
+/-- Positive-membership definition for compiler variable `45476`. -/
 def d45476 := mkDefinition 45476 9 {4, 8, 10}
+/-- Positive-membership definition for compiler variable `45477`. -/
 def d45477 := mkDefinition 45477 9 {4, 8, 11}
+/-- Positive-membership definition for compiler variable `45478`. -/
 def d45478 := mkDefinition 45478 9 {5, 6, 10}
+/-- Positive-membership definition for compiler variable `45479`. -/
 def d45479 := mkDefinition 45479 9 {5, 6, 11}
+/-- Positive-membership definition for compiler variable `45480`. -/
 def d45480 := mkDefinition 45480 9 {5, 7, 10}
+/-- Positive-membership definition for compiler variable `45481`. -/
 def d45481 := mkDefinition 45481 9 {5, 7, 11}
+/-- Positive-membership definition for compiler variable `45482`. -/
 def d45482 := mkDefinition 45482 9 {5, 8, 10}
+/-- Positive-membership definition for compiler variable `45483`. -/
 def d45483 := mkDefinition 45483 9 {5, 8, 11}
+/-- Positive-membership definition for compiler variable `45484`. -/
 def d45484 := mkDefinition 45484 9 {6, 7, 10}
+/-- Positive-membership definition for compiler variable `45485`. -/
 def d45485 := mkDefinition 45485 9 {6, 7, 11}
+/-- Positive-membership definition for compiler variable `45486`. -/
 def d45486 := mkDefinition 45486 9 {6, 8, 10}
+/-- Positive-membership definition for compiler variable `45487`. -/
 def d45487 := mkDefinition 45487 9 {6, 8, 11}
+/-- Positive-membership definition for compiler variable `45488`. -/
 def d45488 := mkDefinition 45488 9 {7, 8, 10}
+/-- Positive-membership definition for compiler variable `45489`. -/
 def d45489 := mkDefinition 45489 9 {7, 8, 11}
 
 /-- The 120 genuinely fresh definitions, in compiler allocation order. -/
@@ -222,6 +343,7 @@ def implicationDimacs : List (List Int) :=
       definition.requirement.center (candidateIndicesFor definition) definition
 
 /- BEGIN GENERATED IMPLICATION CLAUSE ANCHOR -/
+/-- Generated expected implication-clause block `00`. -/
 def expectedImplicationDimacs00 : List (List Int) :=
   [
         [-191, 45370], [-219, 45370], [-240, 45370], [-255, 45370],
@@ -241,6 +363,7 @@ def expectedImplicationDimacs00 : List (List Int) :=
         [-416, 45371], [-431, 45371], [-445, 45371], [-448, 45371],
         [-450, 45371], [-451, 45371], [-465, 45371], [-468, 45371]]
 
+/-- Generated expected implication-clause block `01`. -/
 def expectedImplicationDimacs01 : List (List Int) :=
   [
         [-470, 45371], [-471, 45371], [-484, 45371], [-486, 45371],
@@ -260,6 +383,7 @@ def expectedImplicationDimacs01 : List (List Int) :=
         [-363, 45373], [-365, 45373], [-366, 45373], [-385, 45373],
         [-400, 45373], [-410, 45373], [-419, 45373], [-421, 45373]]
 
+/-- Generated expected implication-clause block `02`. -/
 def expectedImplicationDimacs02 : List (List Int) :=
   [
         [-422, 45373], [-435, 45373], [-445, 45373], [-454, 45373],
@@ -279,6 +403,7 @@ def expectedImplicationDimacs02 : List (List Int) :=
         [-273, 45375], [-279, 45375], [-284, 45375], [-285, 45375],
         [-311, 45375], [-332, 45375], [-347, 45375], [-357, 45375]]
 
+/-- Generated expected implication-clause block `03`. -/
 def expectedImplicationDimacs03 : List (List Int) :=
   [
         [-363, 45375], [-368, 45375], [-369, 45375], [-388, 45375],
@@ -298,6 +423,7 @@ def expectedImplicationDimacs03 : List (List Int) :=
         [-491, 45376], [-492, 45376], [-495, 45376], [-496, 45376],
         [-201, 45377], [-229, 45377], [-250, 45377], [-265, 45377]]
 
+/-- Generated expected implication-clause block `04`. -/
 def expectedImplicationDimacs04 : List (List Int) :=
   [
         [-275, 45377], [-281, 45377], [-284, 45377], [-286, 45377],
@@ -317,6 +443,7 @@ def expectedImplicationDimacs04 : List (List Int) :=
         [-771, 45378], [-773, 45378], [-786, 45378], [-789, 45378],
         [-791, 45378], [-793, 45378], [-805, 45378], [-807, 45378]]
 
+/-- Generated expected implication-clause block `05`. -/
 def expectedImplicationDimacs05 : List (List Int) :=
   [
         [-809, 45378], [-810, 45378], [-812, 45378], [-813, 45378],
@@ -336,6 +463,7 @@ def expectedImplicationDimacs05 : List (List Int) :=
         [-721, 45380], [-731, 45380], [-740, 45380], [-742, 45380],
         [-744, 45380], [-756, 45380], [-766, 45380], [-775, 45380]]
 
+/-- Generated expected implication-clause block `06`. -/
 def expectedImplicationDimacs06 : List (List Int) :=
   [
         [-777, 45380], [-779, 45380], [-786, 45380], [-795, 45380],
@@ -355,6 +483,7 @@ def expectedImplicationDimacs06 : List (List Int) :=
         [-632, 45382], [-653, 45382], [-668, 45382], [-678, 45382],
         [-684, 45382], [-689, 45382], [-691, 45382], [-709, 45382]]
 
+/-- Generated expected implication-clause block `07`. -/
 def expectedImplicationDimacs07 : List (List Int) :=
   [
         [-724, 45382], [-734, 45382], [-740, 45382], [-745, 45382],
@@ -374,6 +503,7 @@ def expectedImplicationDimacs07 : List (List Int) :=
         [-522, 45384], [-550, 45384], [-571, 45384], [-586, 45384],
         [-596, 45384], [-602, 45384], [-605, 45384], [-608, 45384]]
 
+/-- Generated expected implication-clause block `08`. -/
 def expectedImplicationDimacs08 : List (List Int) :=
   [
         [-634, 45384], [-655, 45384], [-670, 45384], [-680, 45384],
@@ -393,6 +523,7 @@ def expectedImplicationDimacs08 : List (List Int) :=
         [-801, 45385], [-803, 45385], [-808, 45385], [-811, 45385],
         [-813, 45385], [-815, 45385], [-817, 45385], [-818, 45385]]
 
+/-- Generated expected implication-clause block `09`. -/
 def expectedImplicationDimacs09 : List (List Int) :=
   [
         [-835, 45386], [-863, 45386], [-884, 45386], [-899, 45386],
@@ -412,6 +543,7 @@ def expectedImplicationDimacs09 : List (List Int) :=
         [-1060, 45387], [-1075, 45387], [-1089, 45387], [-1092, 45387],
         [-1094, 45387], [-1095, 45387], [-1109, 45387], [-1112, 45387]]
 
+/-- Generated expected implication-clause block `10`. -/
 def expectedImplicationDimacs10 : List (List Int) :=
   [
         [-1114, 45387], [-1115, 45387], [-1128, 45387], [-1130, 45387],
@@ -431,6 +563,7 @@ def expectedImplicationDimacs10 : List (List Int) :=
         [-1007, 45389], [-1009, 45389], [-1010, 45389], [-1029, 45389],
         [-1044, 45389], [-1054, 45389], [-1063, 45389], [-1065, 45389]]
 
+/-- Generated expected implication-clause block `11`. -/
 def expectedImplicationDimacs11 : List (List Int) :=
   [
         [-1066, 45389], [-1079, 45389], [-1089, 45389], [-1098, 45389],
@@ -450,6 +583,7 @@ def expectedImplicationDimacs11 : List (List Int) :=
         [-917, 45391], [-923, 45391], [-928, 45391], [-929, 45391],
         [-955, 45391], [-976, 45391], [-991, 45391], [-1001, 45391]]
 
+/-- Generated expected implication-clause block `12`. -/
 def expectedImplicationDimacs12 : List (List Int) :=
   [
         [-1007, 45391], [-1012, 45391], [-1013, 45391], [-1032, 45391],
@@ -469,6 +603,7 @@ def expectedImplicationDimacs12 : List (List Int) :=
         [-1135, 45392], [-1136, 45392], [-1139, 45392], [-1140, 45392],
         [-845, 45393], [-873, 45393], [-894, 45393], [-909, 45393]]
 
+/-- Generated expected implication-clause block `13`. -/
 def expectedImplicationDimacs13 : List (List Int) :=
   [
         [-919, 45393], [-925, 45393], [-928, 45393], [-930, 45393],
@@ -488,6 +623,7 @@ def expectedImplicationDimacs13 : List (List Int) :=
         [-1214, 45397], [-1297, 45397], [-1352, 45397], [-1401, 45397],
         [-1411, 45397], [-1416, 45397], [-1421, 45397], [-1422, 45397]]
 
+/-- Generated expected implication-clause block `14`. -/
 def expectedImplicationDimacs14 : List (List Int) :=
   [
         [-1215, 45398], [-1298, 45398], [-1353, 45398], [-1402, 45398],
@@ -507,6 +643,7 @@ def expectedImplicationDimacs14 : List (List Int) :=
         [-1231, 45405], [-1314, 45405], [-1369, 45405], [-1403, 45405],
         [-1432, 45405], [-1437, 45405], [-1440, 45405], [-1442, 45405]]
 
+/-- Generated expected implication-clause block `15`. -/
 def expectedImplicationDimacs15 : List (List Int) :=
   [
         [-1235, 45406], [-1318, 45406], [-1373, 45406], [-1407, 45406],
@@ -526,6 +663,7 @@ def expectedImplicationDimacs15 : List (List Int) :=
         [-1327, 45413], [-1382, 45413], [-1416, 45413], [-1435, 45413],
         [-1444, 45413], [-1452, 45413], [-1245, 45414], [-1328, 45414]]
 
+/-- Generated expected implication-clause block `16`. -/
 def expectedImplicationDimacs16 : List (List Int) :=
   [
         [-1383, 45414], [-1417, 45414], [-1436, 45414], [-1445, 45414],
@@ -545,6 +683,7 @@ def expectedImplicationDimacs16 : List (List Int) :=
         [-1735, 45421], [-1736, 45421], [-1529, 45422], [-1612, 45422],
         [-1667, 45422], [-1716, 45422], [-1726, 45422], [-1731, 45422]]
 
+/-- Generated expected implication-clause block `17`. -/
 def expectedImplicationDimacs17 : List (List Int) :=
   [
         [-1734, 45422], [-1737, 45422], [-1530, 45423], [-1613, 45423],
@@ -564,6 +703,7 @@ def expectedImplicationDimacs17 : List (List Int) :=
         [-1754, 45429], [-1756, 45429], [-1549, 45430], [-1632, 45430],
         [-1687, 45430], [-1721, 45430], [-1740, 45430], [-1757, 45430]]
 
+/-- Generated expected implication-clause block `18`. -/
 def expectedImplicationDimacs18 : List (List Int) :=
   [
         [-1759, 45430], [-1761, 45430], [-1550, 45431], [-1633, 45431],
@@ -583,6 +723,7 @@ def expectedImplicationDimacs18 : List (List Int) :=
         [-1559, 45438], [-1642, 45438], [-1697, 45438], [-1731, 45438],
         [-1750, 45438], [-1759, 45438], [-1767, 45438], [-1560, 45439]]
 
+/-- Generated expected implication-clause block `19`. -/
 def expectedImplicationDimacs19 : List (List Int) :=
   [
         [-1643, 45439], [-1698, 45439], [-1732, 45439], [-1751, 45439],
@@ -602,6 +743,7 @@ def expectedImplicationDimacs19 : List (List Int) :=
         [-2040, 45446], [-2045, 45446], [-2048, 45446], [-2051, 45446],
         [-1844, 45447], [-1927, 45447], [-1982, 45447], [-2031, 45447]]
 
+/-- Generated expected implication-clause block `20`. -/
 def expectedImplicationDimacs20 : List (List Int) :=
   [
         [-2041, 45447], [-2046, 45447], [-2049, 45447], [-2051, 45447],
@@ -621,6 +763,7 @@ def expectedImplicationDimacs20 : List (List Int) :=
         [-2054, 45454], [-2071, 45454], [-2073, 45454], [-2075, 45454],
         [-1864, 45455], [-1947, 45455], [-2002, 45455], [-2036, 45455]]
 
+/-- Generated expected implication-clause block `21`. -/
 def expectedImplicationDimacs21 : List (List Int) :=
   [
         [-2055, 45455], [-2072, 45455], [-2074, 45455], [-2075, 45455],
@@ -640,6 +783,7 @@ def expectedImplicationDimacs21 : List (List Int) :=
         [-2081, 45462], [-1874, 45463], [-1957, 45463], [-2012, 45463],
         [-2046, 45463], [-2065, 45463], [-2074, 45463], [-2081, 45463]]
 
+/-- Generated expected implication-clause block `22`. -/
 def expectedImplicationDimacs22 : List (List Int) :=
   [
         [-1876, 45464], [-1959, 45464], [-2014, 45464], [-2048, 45464],
@@ -659,6 +803,7 @@ def expectedImplicationDimacs22 : List (List Int) :=
         [-2296, 45471], [-2345, 45471], [-2355, 45471], [-2360, 45471],
         [-2363, 45471], [-2365, 45471], [-2167, 45472], [-2250, 45472]]
 
+/-- Generated expected implication-clause block `23`. -/
 def expectedImplicationDimacs23 : List (List Int) :=
   [
         [-2305, 45472], [-2339, 45472], [-2368, 45472], [-2376, 45472],
@@ -678,6 +823,7 @@ def expectedImplicationDimacs23 : List (List Int) :=
         [-2316, 45479], [-2350, 45479], [-2369, 45479], [-2386, 45479],
         [-2388, 45479], [-2389, 45479], [-2180, 45480], [-2263, 45480]]
 
+/-- Generated expected implication-clause block `24`. -/
 def expectedImplicationDimacs24 : List (List Int) :=
   [
         [-2318, 45480], [-2352, 45480], [-2371, 45480], [-2385, 45480],
@@ -697,11 +843,13 @@ def expectedImplicationDimacs24 : List (List Int) :=
         [-2388, 45487], [-2395, 45487], [-2190, 45488], [-2273, 45488],
         [-2328, 45488], [-2362, 45488], [-2381, 45488], [-2390, 45488]]
 
+/-- Generated expected implication-clause block `25`. -/
 def expectedImplicationDimacs25 : List (List Int) :=
   [
         [-2396, 45488], [-2191, 45489], [-2274, 45489], [-2329, 45489],
         [-2363, 45489], [-2382, 45489], [-2391, 45489], [-2396, 45489]]
 
+/-- Concatenated expected implication clauses for the family. -/
 def expectedImplicationDimacs : List (List Int) :=
   expectedImplicationDimacs00 ++
     expectedImplicationDimacs01 ++
@@ -736,6 +884,7 @@ theorem implicationDimacs_eq :
     implicationDimacs = expectedImplicationDimacs := by
   native_decide
 
+/-- Internal helper. definition of `definitionCompilerValid` used by the surrounding construction. -/
 private def definitionCompilerValid
     (definition : PositiveMembershipDefinition) : Bool :=
   decide (45369 < definition.varIndex ∧
@@ -749,6 +898,7 @@ private def definitionCompilerValid
           ((SafeCoverCnf.candMasks definition.requirement.center.val).getD
             candidateIndex 0).testBit a.val = true)
 
+/-- Internal helper. proves the property stated by `definition_compiler_valid`. -/
 private theorem definition_compiler_valid
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ freshDefinitions) :
@@ -970,25 +1120,30 @@ def familyChoices
         {center := data.c, support := {data.a, data.d, data.e}}]) ++
     [{center := data.d, support := {data.a, data.b}}]
 
+/-- Definition of `lookupDefinition` used by the surrounding construction. -/
 def lookupDefinition
     (requirement : RowChoice Label) : PositiveMembershipDefinition :=
   (definitions.find? fun definition =>
     decide (definition.requirement = requirement)).getD d45370
 
+/-- Bundles the data used by `FamilyEntry`. -/
 structure FamilyEntry where
   data : SecondOppositeTripleSurplusFirstOppositeThreeTriadData
   definitions : List PositiveMembershipDefinition
 deriving DecidableEq
 
+/-- Definition of `entries` used by the surrounding construction. -/
 def entries : List FamilyEntry :=
   familyData.map fun data =>
     { data := data
       definitions := (familyChoices data).map lookupDefinition }
 
+/-- Definition of `blockingClauses` used by the surrounding construction. -/
 def blockingClauses : List (List Int) :=
   entries.map fun entry => positiveMembershipBlockingClause entry.definitions
 
 /- BEGIN GENERATED BLOCKING CLAUSE ANCHOR -/
+/-- Generated expected blocking-clause block `00`. -/
 def expectedBlockingClauses00 : List (List Int) :=
   [
         [-45372, -45436, -45442, -45201], [-45372, -45438, -45466, -45201], [-45373, -45437, -45443, -45213],
@@ -1008,6 +1163,7 @@ def expectedBlockingClauses00 : List (List Int) :=
         [-45375, -45395, -45461, -45214], [-45375, -45465, -45469, -45214], [-45376, -45394, -45484, -45202],
         [-45376, -45444, -45488, -45202], [-45377, -45395, -45485, -45214], [-45377, -45445, -45489, -45214]]
 
+/-- Generated expected blocking-clause block `01`. -/
 def expectedBlockingClauses01 : List (List Int) :=
   [
         [-45378, -45412, -45450, -45206], [-45378, -45414, -45474, -45206], [-45379, -45413, -45451, -45218],
@@ -1027,6 +1183,7 @@ def expectedBlockingClauses01 : List (List Int) :=
         [-45381, -45403, -45437, -45219], [-45381, -45441, -45477, -45219], [-45384, -45402, -45486, -45207],
         [-45384, -45426, -45488, -45207], [-45385, -45403, -45487, -45219], [-45385, -45427, -45489, -45219]]
 
+/-- Generated expected blocking-clause block `02`. -/
 def expectedBlockingClauses02 : List (List Int) :=
   [
         [-45386, -45412, -45432, -45211], [-45386, -45416, -45482, -45211], [-45387, -45413, -45433, -45223],
@@ -1046,6 +1203,7 @@ def expectedBlockingClauses02 : List (List Int) :=
         [-45389, -45411, -45439, -45224], [-45389, -45441, -45459, -45224], [-45390, -45410, -45462, -45212],
         [-45390, -45434, -45464, -45212], [-45391, -45411, -45463, -45224], [-45391, -45435, -45465, -45224]]
 
+/-- Concatenated expected blocking clauses for the family. -/
 def expectedBlockingClauses : List (List Int) :=
   expectedBlockingClauses00 ++
     expectedBlockingClauses01 ++
@@ -1067,11 +1225,13 @@ theorem family_shape :
         (45370 ≤ definition.varIndex ∧ definition.varIndex ≤ 45489)) = true := by
   native_decide
 
+/-- Internal helper. definition of `entryValid` used by the surrounding construction. -/
 private def entryValid (entry : FamilyEntry) : Bool :=
   entry.data.check
       (entry.definitions.map fun definition => definition.requirement) &&
     entry.definitions.all fun definition => decide (definition ∈ definitions)
 
+/-- Internal helper. proves the property stated by `entry_valid`. -/
 private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
     entry.data.check
         (entry.definitions.map fun definition => definition.requirement) = true ∧
@@ -1085,6 +1245,7 @@ private theorem entry_valid {entry : FamilyEntry} (hentry : entry ∈ entries) :
   exact of_decide_eq_true
     (List.all_eq_true.mp hvalid.2 definition hdefinition)
 
+/-- Internal helper. proves the property stated by `reused_definition_le_cutoff`. -/
 private theorem reused_definition_le_cutoff
     {definition : PositiveMembershipDefinition}
     (hdefinition : definition ∈ reusedDefinitions) :
@@ -1095,6 +1256,7 @@ private theorem reused_definition_le_cutoff
   exact of_decide_eq_true
     (List.all_eq_true.mp hall definition hdefinition)
 
+/-- Internal helper. proves the property stated by `positiveRowsMatch_of_mixed_blockingClause_false`. -/
 private theorem positiveRowsMatch_of_mixed_blockingClause_false
     (base : Nat → Bool) (row : RowPattern Label)
     (entryDefinitions : List PositiveMembershipDefinition)

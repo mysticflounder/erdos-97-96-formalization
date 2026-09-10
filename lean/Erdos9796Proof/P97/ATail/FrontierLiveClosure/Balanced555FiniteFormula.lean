@@ -42,12 +42,14 @@ def variableBound : Nat := 149
 /-- The twelve boundary labels in increasing order. -/
 def labels : List (Fin 12) := List.finRange 12
 
+/-- Internal helper. the finite twelve-label carrier used by the formula. -/
 private def fin12 (value : Nat) : Fin 12 :=
   ⟨value % 12, Nat.mod_lt _ (by omega)⟩
 
 /-- Reflection of the cyclic labels across the zero cut: `p ↦ -p mod 12`. -/
 def reflectLabel (label : Fin 12) : Fin 12 := fin12 (12 - label.val)
 
+/-- Proves the property stated by `reflectLabel_involutive`. -/
 @[simp] theorem reflectLabel_involutive (label : Fin 12) :
     reflectLabel (reflectLabel label) = label := by
   fin_cases label <;> rfl
@@ -157,15 +159,19 @@ structure Clause where
   occurrence : Option KalmansonOccurrence := none
   deriving Repr, DecidableEq
 
+/-- Internal helper. the unnormalized clause representation used by the finite formula. -/
 private def plainClause (family : ClauseFamily) (literals : List Int) : Clause :=
   { family, literals }
 
+/-- The labels excluding the diagonal label. -/
 def offDiagonalLabels (center : Fin 12) : List (Fin 12) :=
   labels.filter fun point ↦ decide (point ≠ center)
 
+/-- Internal helper. the intersection cardinality used by the finite formula. -/
 private def interCard (left right : List (Fin 12)) : Nat :=
   (left.filter fun point ↦ decide (point ∈ right)).length
 
+/-- Definition of `apexAdjacentCaps` used by the surrounding construction. -/
 def apexAdjacentCaps (orientation : Balanced555Orientation)
     (center : Fin 12) : List (List (Fin 12)) :=
   if center = 0 then
@@ -179,6 +185,7 @@ def apexAdjacentCaps (orientation : Balanced555Orientation)
     | .direct => [boundaryCaps[1]!, boundaryCaps[2]!]
     | .mirror => [boundaryCaps[0]!, boundaryCaps[1]!]
 
+/-- Internal helper. definition of `oppositeInterior` used by the surrounding construction. -/
 private def oppositeInterior (orientation : Balanced555Orientation)
     (center : Fin 12) : List (Fin 12) :=
   if center = 0 then surplusInterior
@@ -202,12 +209,14 @@ def localDomain (orientation : Balanced555Orientation)
   (combinations (offDiagonalLabels center) 4).filter fun support ↦
     localSupportOK orientation center support
 
+/-- Internal helper. bundles the data used by `KalmansonSchemaData`. -/
 private structure KalmansonSchemaData where
   schema : KalmansonSchema
   size : Nat
   rowPairs : List (Nat × Nat × Nat)
   orderedRows : List (Nat × List Nat)
 
+/-- Internal helper. definition of `schemaData` used by the surrounding construction. -/
 private def schemaData : List KalmansonSchemaData :=
   [ { schema := .s5a, size := 5,
       rowPairs := [(0, 1, 2), (1, 2, 3), (4, 1, 3)],
@@ -225,6 +234,7 @@ private def schemaData : List KalmansonSchemaData :=
       rowPairs := [(0, 1, 3), (4, 1, 2), (5, 2, 3)],
       orderedRows := [(1, [0, 1, 2, 4]), (1, [0, 2, 3, 5])] } ]
 
+/-- Internal helper. definition of `imagePosition` used by the surrounding construction. -/
 private def imagePosition (subset : List (Fin 12)) (offset : Nat)
     (reflected : Bool) (position : Nat) : Fin 12 :=
   let size := subset.length
@@ -233,6 +243,7 @@ private def imagePosition (subset : List (Fin 12)) (offset : Nat)
     else (offset + position) % size
   subset[index]!
 
+/-- Internal helper. definition of `occurrenceRequirements` used by the surrounding construction. -/
 private def occurrenceRequirements (data : KalmansonSchemaData)
     (subset : List (Fin 12)) (offset : Nat) (reflected : Bool) :
     List RowPairRequirement :=
@@ -241,6 +252,7 @@ private def occurrenceRequirements (data : KalmansonSchemaData)
       first := imagePosition subset offset reflected first
       second := imagePosition subset offset reflected second }
 
+/-- Internal helper. definition of `occurrenceOrderedRows` used by the surrounding construction. -/
 private def occurrenceOrderedRows (data : KalmansonSchemaData)
     (subset : List (Fin 12)) (offset : Nat) (reflected : Bool) :
     List OrderedQuadruple :=
@@ -248,6 +260,7 @@ private def occurrenceOrderedRows (data : KalmansonSchemaData)
     { kind
       points := positions.map (imagePosition subset offset reflected) }
 
+/-- Internal helper. definition of `requirementExtendable` used by the surrounding construction. -/
 private def requirementExtendable (domains : List (List (List (Fin 12))))
     (requirement : RowPairRequirement) : Bool :=
   domains[requirement.center.val]!.any fun support ↦
@@ -273,15 +286,18 @@ def kalmansonOccurrences (orientation : Balanced555Orientation) : List Kalmanson
 
 /- ## Transport to the checked Kalmanson no-good interface -/
 
+/-- Internal helper. definition of `checkedRowPair` used by the surrounding construction. -/
 private def checkedRowPair (requirement : RowPairRequirement) :
     Balanced555RequiredRowPair :=
   { center := requirement.center
     first := requirement.first
     second := requirement.second }
 
+/-- Internal helper. definition of `defaultCheckedRowPair` used by the surrounding construction. -/
 private def defaultCheckedRowPair : Balanced555RequiredRowPair :=
   { center := 0, first := 0, second := 0 }
 
+/-- Internal helper. definition of `sortedOrderedQuad` used by the surrounding construction. -/
 private def sortedOrderedQuad (quad : OrderedQuadruple) : OrderedQuadData (Fin 12) :=
   let points := quad.points.mergeSort fun left right ↦ decide (left < right)
   { a := points[0]!
@@ -289,8 +305,10 @@ private def sortedOrderedQuad (quad : OrderedQuadruple) : OrderedQuadData (Fin 1
     c := points[2]!
     d := points[3]! }
 
+/-- Internal helper. definition of `transportedKinds` used by the surrounding construction. -/
 private def transportedKinds : List Balanced555KalmansonKind := [.k1, .k2]
 
+/-- Internal helper. definition of `permutationCandidates` used by the surrounding construction. -/
 private def permutationCandidates : List Permutation4Data :=
   (List.finRange 4).flatMap fun image0 ↦
     (List.finRange 4).flatMap fun image1 ↦
@@ -299,6 +317,7 @@ private def permutationCandidates : List Permutation4Data :=
           let permutation : Permutation4Data := { image0, image1, image2, image3 }
           if permutation.check then some permutation else none
 
+/-- Internal helper. definition of `rowClosureSteps` used by the surrounding construction. -/
 private def rowClosureSteps (rows : List Balanced555RequiredRowPair)
     (edge : Edge (Fin 12)) : List (PrimitiveEqualityStep (Fin 12)) :=
   rows.flatMap fun row ↦
@@ -308,10 +327,12 @@ private def rowClosureSteps (rows : List Balanced555RequiredRowPair)
       [.row row.center row.second row.first]
     else []
 
+/-- Internal helper. definition of `outgoingClosureSteps` used by the surrounding construction. -/
 private def outgoingClosureSteps (rows : List Balanced555RequiredRowPair)
     (edge : Edge (Fin 12)) : List (PrimitiveEqualityStep (Fin 12)) :=
   .flip edge.1 edge.2 :: rowClosureSteps rows edge
 
+/-- Internal helper. definition of `firstSome` used by the surrounding construction. -/
 private def firstSome (f : α → Option β) : List α → Option β
   | [] => none
   | value :: values =>
@@ -319,6 +340,7 @@ private def firstSome (f : α → Option β) : List α → Option β
       | some result => some result
       | none => firstSome f values
 
+/-- Internal helper. definition of `closureSteps?` used by the surrounding construction. -/
 private def closureSteps? (rows : List Balanced555RequiredRowPair) :
     Nat → Edge (Fin 12) → Edge (Fin 12) → Option (List (PrimitiveEqualityStep (Fin 12)))
   | 0, first, last => if first = last then some [] else none
@@ -337,6 +359,7 @@ private def closurePath (rows : List Balanced555RequiredRowPair)
     steps := (closureSteps? rows 3 first last).getD []
     last }
 
+/-- Internal helper. definition of `transportedCandidate` used by the surrounding construction. -/
 private def transportedCandidate (occurrence : KalmansonOccurrence)
     (firstKind secondKind : Balanced555KalmansonKind)
     (permutation : Permutation4Data) : Balanced555KalmansonOccurrenceData :=
@@ -365,6 +388,7 @@ private def transportedCandidate (occurrence : KalmansonOccurrence)
     path2 := closurePath rows leftEdges[2]! rightEdges[(permutation.apply 2).val]!
     path3 := closurePath rows leftEdges[3]! rightEdges[(permutation.apply 3).val]! }
 
+/-- Internal helper. definition of `transportedCandidates` used by the surrounding construction. -/
 private def transportedCandidates (occurrence : KalmansonOccurrence) :
     List Balanced555KalmansonOccurrenceData :=
   transportedKinds.flatMap fun firstKind ↦
@@ -372,6 +396,7 @@ private def transportedCandidates (occurrence : KalmansonOccurrence) :
       permutationCandidates.map fun permutation ↦
         transportedCandidate occurrence firstKind secondKind permutation
 
+/-- Internal helper. definition of `firstValidTransport` used by the surrounding construction. -/
 private def firstValidTransport :
     List Balanced555KalmansonOccurrenceData → Option Balanced555KalmansonOccurrenceData
   | [] => none
@@ -379,21 +404,25 @@ private def firstValidTransport :
       if data.cancellationData.check data.rowChoices then some data
       else firstValidTransport candidates
 
+/-- Internal helper. bundles the data used by `TransportChoice`. -/
 private structure TransportChoice where
   firstKind : Balanced555KalmansonKind
   secondKind : Balanced555KalmansonKind
   permutation : Permutation4Data
 
+/-- Internal helper. definition of `defaultTransportChoice` used by the surrounding construction. -/
 private def defaultTransportChoice : TransportChoice :=
   { firstKind := .k1
     secondKind := .k1
     permutation := { image0 := 0, image1 := 1, image2 := 2, image3 := 3 } }
 
+/-- Internal helper. definition of `choiceOfData` used by the surrounding construction. -/
 private def choiceOfData (data : Balanced555KalmansonOccurrenceData) : TransportChoice :=
   { firstKind := data.firstKind
     secondKind := data.secondKind
     permutation := data.permutation }
 
+/-- Internal helper. definition of `canonicalOccurrence` used by the surrounding construction. -/
 private def canonicalOccurrence (data : KalmansonSchemaData)
     (offset : Nat) (reflected : Bool) : KalmansonOccurrence :=
   let subset := (List.range data.size).map fin12
@@ -404,6 +433,7 @@ private def canonicalOccurrence (data : KalmansonSchemaData)
     rowRequirements := occurrenceRequirements data subset offset reflected
     orderedRows := occurrenceOrderedRows data subset offset reflected }
 
+/-- Internal helper. bundles the data used by `TransportTableEntry`. -/
 private structure TransportTableEntry where
   schema : KalmansonSchema
   offset : Nat
@@ -425,6 +455,7 @@ private def transportTable : List TransportTableEntry :=
           reflected
           choice := choice.getD defaultTransportChoice }
 
+/-- Internal helper. definition of `transportChoice` used by the surrounding construction. -/
 private def transportChoice (occurrence : KalmansonOccurrence) : TransportChoice :=
   ((transportTable.find? fun entry ↦
       entry.schema == occurrence.schema && entry.offset == occurrence.offset &&
@@ -466,6 +497,7 @@ def checkedKalmansonOccurrence (orientation : Balanced555Orientation)
       rw [transportedOccurrencesValid, List.all_eq_true] at hall
       exact hall occurrence hoccurrence }
 
+/-- Definition of `rowCardinalityClauses` used by the surrounding construction. -/
 def rowCardinalityClauses : List Clause :=
   labels.flatMap fun center ↦
     let candidates := offDiagonalLabels center
@@ -477,6 +509,7 @@ def rowCardinalityClauses : List Clause :=
       plainClause .rowCardAtLeast
         (subset.map fun point ↦ positiveLiteral (rowVariable center point)))
 
+/-- Definition of `capUpperClauses` used by the surrounding construction. -/
 def capUpperClauses : List Clause :=
   boundaryCaps.flatMap fun cap ↦
     cap.flatMap fun center ↦
@@ -484,6 +517,7 @@ def capUpperClauses : List Clause :=
       (combinations candidates 3).map fun subset ↦
         plainClause .capUpper (subset.map fun point ↦ negativeLiteral (rowVariable center point))
 
+/-- Definition of `apexClauses` used by the surrounding construction. -/
 def apexClauses (orientation : Balanced555Orientation) : List Clause :=
   let apexes := [(0 : Fin 12), orientation.firstApex, orientation.secondApex]
   let interiors := [surplusInterior, firstInterior orientation, secondInterior orientation]
@@ -498,10 +532,12 @@ def apexClauses (orientation : Balanced555Orientation) : List Clause :=
         plainClause .apexAdjacentCap
           (subset.map fun point ↦ negativeLiteral (rowVariable center point))
 
+/-- Definition of `lowerPairs` used by the surrounding construction. -/
 def lowerPairs (count : Nat) : List (Nat × Nat) :=
   (List.range count).flatMap fun first ↦
     (List.range first).map fun second ↦ (first, second)
 
+/-- Definition of `selectorClauses` used by the surrounding construction. -/
 def selectorClauses : List Clause :=
   [plainClause .roleExactOne ((List.range 6).map fun index ↦ positiveLiteral (133 + index))]
   ++ (lowerPairs 6).map (fun (first, second) ↦
@@ -510,6 +546,7 @@ def selectorClauses : List Clause :=
   ++ (lowerPairs 10).map (fun (first, second) ↦
       plainClause .middleExactOne [negativeLiteral (139 + first), negativeLiteral (139 + second)])
 
+/-- Definition of `fixedRoleClauses` used by the surrounding construction. -/
 def fixedRoleClauses (orientation : Balanced555Orientation) : List Clause :=
   (roleTriples orientation).zipIdx.flatMap fun ((deleted, retained, third), index) ↦
     let role := 133 + index
@@ -525,6 +562,7 @@ def fixedRoleClauses (orientation : Balanced555Orientation) : List Clause :=
         else negativeLiteral (rowVariable center point)
       plainClause .tightMembership [negativeLiteral role, literal]
 
+/-- Definition of `middleRoleClauses` used by the surrounding construction. -/
 def middleRoleClauses (orientation : Balanced555Orientation) : List Clause :=
   (roleTriples orientation).zipIdx.flatMap fun ((deleted, retained, _third), roleIndex) ↦
     let role := 133 + roleIndex
@@ -543,6 +581,7 @@ def middleRoleClauses (orientation : Balanced555Orientation) : List Clause :=
         else
           [plainClause .tightMembership [negativeLiteral role, negativeLiteral middleSelector]])
 
+/-- Definition of `intersectionClauses` used by the surrounding construction. -/
 def intersectionClauses (orientation : Balanced555Orientation) : List Clause :=
   let firstSecond :=
     (labels.filter fun point ↦
@@ -571,6 +610,7 @@ def intersectionClauses (orientation : Balanced555Orientation) : List Clause :=
           else none
   firstSecond ++ middleSecond ++ firstMiddle
 
+/-- Definition of `coverClauses` used by the surrounding construction. -/
 def coverClauses (orientation : Balanced555Orientation) : List Clause :=
   (roleTriples orientation).zipIdx.flatMap fun ((deleted, _retained, _third), roleIndex) ↦
     (middleLabels orientation).zipIdx.flatMap fun (middle, middleIndex) ↦
@@ -585,12 +625,14 @@ def coverClauses (orientation : Balanced555Orientation) : List Clause :=
                   [positiveLiteral (rowVariable orientation.secondApex point)] else [])
           some <| plainClause .cover literals
 
+/-- Definition of `alternatingCenters` used by the surrounding construction. -/
 def alternatingCenters (four centers : List (Fin 12)) : Bool :=
   match four with
   | [first, second, third, fourth] =>
       decide (centers = [first, third] ∨ centers = [second, fourth])
   | _ => false
 
+/-- Definition of `sharedAlternationClauses` used by the surrounding construction. -/
 def sharedAlternationClauses : List Clause :=
   (combinations labels 4).flatMap fun four ↦
     (combinations four 2).filterMap fun centers ↦
@@ -620,6 +662,7 @@ def encodedNoGoodClause (data : Balanced555KalmansonOccurrenceData) : List Int :
 def kalmansonSignedClauses (orientation : Balanced555Orientation) : List (List Int) :=
   (kalmansonOccurrences orientation).map signedClauseOfOccurrence
 
+/-- Internal helper. definition of `transportedOccurrencesExact` used by the surrounding construction. -/
 private def transportedOccurrencesExact (orientation : Balanced555Orientation) : Bool :=
   (kalmansonOccurrences orientation).all fun occurrence ↦
     let data := transportedOccurrenceData occurrence
@@ -633,6 +676,7 @@ theorem transportedOccurrencesExact_eq_true (orientation : Balanced555Orientatio
     transportedOccurrencesExact orientation = true := by
   cases orientation <;> native_decide
 
+/-- Proves the property stated by `transportedOccurrence_exact_and_offDiagonal`. -/
 theorem transportedOccurrence_exact_and_offDiagonal
     (orientation : Balanced555Orientation) (occurrence : KalmansonOccurrence)
     (hoccurrence : occurrence ∈ kalmansonOccurrences orientation) :
@@ -666,6 +710,7 @@ theorem exists_checkedOccurrence_of_mem_kalmansonSignedClauses
   let occurrence := checkedKalmansonOccurrence orientation source hsource
   exact ⟨occurrence, transportedOccurrence_exact_and_offDiagonal orientation source hsource⟩
 
+/-- Internal helper. definition of `kalmansonClauses` used by the surrounding construction. -/
 private def kalmansonClauses (orientation : Balanced555Orientation) : List Clause :=
   (kalmansonOccurrences orientation).map fun occurrence ↦
     { family := .kalmanson
@@ -729,20 +774,24 @@ def rowPoint (atom : Nat) : Fin 12 :=
   let offset := (atom - 1) % 11
   fin12 (if offset < center then offset else offset + 1)
 
+/-- Proves the property stated by `rowVariable_pos`. -/
 theorem rowVariable_pos (center point : Fin 12) :
     1 ≤ rowVariable center point := by
   simp [rowVariable]
 
+/-- Proves the property stated by `rowVariable_le`. -/
 theorem rowVariable_le (center point : Fin 12) :
     rowVariable center point ≤ 132 := by
   simp only [rowVariable]
   split <;> omega
 
+/-- Proves the property stated by `rowCenter_rowVariable`. -/
 @[simp] theorem rowCenter_rowVariable (center point : Fin 12) (hne : center ≠ point) :
     rowCenter (rowVariable center point) = center := by
   fin_cases center <;> fin_cases point <;>
     simp [rowCenter, rowVariable, fin12] at hne ⊢
 
+/-- Proves the property stated by `rowPoint_rowVariable`. -/
 @[simp] theorem rowPoint_rowVariable (center point : Fin 12) (hne : center ≠ point) :
     rowPoint (rowVariable center point) = point := by
   fin_cases center <;> fin_cases point <;>
@@ -777,6 +826,7 @@ def reflectVariable (atom : Nat) : Nat :=
     139 + reflectMiddleIndex (atom - 139)
   else atom
 
+/-- Proves the property stated by `reflectVariable_rowVariable`. -/
 @[simp] theorem reflectVariable_rowVariable (center point : Fin 12) (hne : center ≠ point) :
     reflectVariable (rowVariable center point) =
       rowVariable (reflectLabel center) (reflectLabel point) := by
@@ -786,12 +836,14 @@ def reflectVariable (atom : Nat) : Nat :=
   simp [reflectVariable, hbounds, rowCenter_rowVariable center point hne,
     rowPoint_rowVariable center point hne]
 
+/-- Proves the property stated by `reflectVariable_roleSelector`. -/
 @[simp] theorem reflectVariable_roleSelector (index : Fin 6) :
     reflectVariable (133 + index.val) = 133 + reflectRoleIndex index.val := by
   have hnotRow : ¬(1 ≤ 133 + index.val ∧ 133 + index.val ≤ 132) := by omega
   have hrole : 133 ≤ 133 + index.val ∧ 133 + index.val ≤ 138 := by omega
   simp [reflectVariable, hnotRow, hrole]
 
+/-- Proves the property stated by `reflectVariable_middleSelector`. -/
 @[simp] theorem reflectVariable_middleSelector (index : Fin 10) :
     reflectVariable (139 + index.val) = 139 + reflectMiddleIndex index.val := by
   have hnotRow : ¬(1 ≤ 139 + index.val ∧ 139 + index.val ≤ 132) := by omega
@@ -799,6 +851,7 @@ def reflectVariable (atom : Nat) : Nat :=
   have hmiddle : 139 ≤ 139 + index.val ∧ 139 + index.val ≤ 148 := by omega
   simp [reflectVariable, hnotRow, hnotRole, hmiddle]
 
+/-- Proves the property stated by `reflectVariable_pos`. -/
 theorem reflectVariable_pos {atom : Nat} (hpos : 0 < atom) :
     0 < reflectVariable atom := by
   unfold reflectVariable
@@ -824,6 +877,7 @@ def reflectedDirectClauses : List (List Int) :=
 def normalizeClause (clause : List Int) : List Int :=
   clause.mergeSort fun left right ↦ decide (left < right)
 
+/-- Internal helper. definition of `clauseLess` used by the surrounding construction. -/
 private def clauseLess : List Int → List Int → Bool
   | [], [] => false
   | [], _ :: _ => true
@@ -871,6 +925,7 @@ theorem clauseSat_normalizeClause_iff (valuation : Nat → Prop) (clause : List 
     clauseSat valuation (normalizeClause clause) ↔ clauseSat valuation clause := by
   simp [clauseSat, normalizeClause, List.mem_mergeSort]
 
+/-- Proves the property stated by `evalLiteral_reflectLiteral`. -/
 theorem evalLiteral_reflectLiteral (valuation : Nat → Bool) (literal : Int) :
     evalLitD valuation (reflectLiteral literal) =
       evalLitD (fun atom ↦ valuation (reflectVariable atom)) literal := by
@@ -893,6 +948,7 @@ theorem evalLiteral_reflectLiteral (valuation : Nat → Bool) (literal : Int) :
         simp [hnegative]]
       cases valuation (reflectVariable (predecessor + 1)) <;> rfl
 
+/-- Proves the property stated by `evalClause_reflectClause`. -/
 theorem evalClause_reflectClause (valuation : Nat → Bool) (clause : List Int) :
     evalClauseD valuation (reflectClause clause) =
       evalClauseD (fun atom ↦ valuation (reflectVariable atom)) clause := by
@@ -906,6 +962,7 @@ theorem evalClause_reflectClause (valuation : Nat → Bool) (clause : List Int) 
             evalClauseD (fun atom ↦ valuation (reflectVariable atom)) clause)
       rw [evalLiteral_reflectLiteral, ih]
 
+/-- Proves the property stated by `evalClause_normalizeClause`. -/
 theorem evalClause_normalizeClause (valuation : Nat → Bool) (clause : List Int) :
     evalClauseD valuation (normalizeClause clause) = evalClauseD valuation clause := by
   rw [Bool.eq_iff_iff]
@@ -948,20 +1005,25 @@ theorem mirror_unsatisfiable_of_direct_checked
     DimacsUnsatisfiable (clauses .mirror) :=
   mirror_unsatisfiable_of_direct directReflectionCoveredByMirror hdirect
 
+/-- Proves the property stated by `labels_length`. -/
 @[simp] theorem labels_length : labels.length = 12 := by
   decide
 
+/-- Proves the property stated by `boundaryCaps_length`. -/
 @[simp] theorem boundaryCaps_length : boundaryCaps.length = 3 := by
   decide
 
+/-- Proves the property stated by `roleTriples_length`. -/
 @[simp] theorem roleTriples_length (orientation : Balanced555Orientation) :
     (roleTriples orientation).length = 6 := by
   cases orientation <;> decide
 
+/-- Proves the property stated by `middleLabels_length`. -/
 @[simp] theorem middleLabels_length (orientation : Balanced555Orientation) :
     (middleLabels orientation).length = 10 := by
   cases orientation <;> decide
 
+/-- Definition of `roleAtom` used by the surrounding construction. -/
 def roleAtom (configuration : Balanced555FiniteConfiguration)
     (index : Nat) : Prop :=
   match (roleTriples configuration.orientation)[index]? with
@@ -970,6 +1032,7 @@ def roleAtom (configuration : Balanced555FiniteConfiguration)
         configuration.third = third
   | none => False
 
+/-- Definition of `middleAtom` used by the surrounding construction. -/
 def middleAtom (configuration : Balanced555FiniteConfiguration)
     (index : Nat) : Prop :=
   match (middleLabels configuration.orientation)[index]? with
@@ -1022,6 +1085,7 @@ theorem configurationValuation_rowVariable_eq_selectedAssignment
     configurationAtom_rowVariable configuration center point hne]
   simp [Balanced555KalmansonOccurrence.selectedAssignment]
 
+/-- Internal helper. proves the property stated by `evalLitD_encodeSelectedLiteral`. -/
 private theorem evalLitD_encodeSelectedLiteral
     (configuration : Balanced555FiniteConfiguration)
     (literal : (Fin 12 × Fin 12) × Bool) (hne : literal.1.1 ≠ literal.1.2) :
@@ -1036,6 +1100,7 @@ private theorem evalLitD_encodeSelectedLiteral
     simp [encodeSelectedLiteral, evalLitD, positiveLiteral, negativeLiteral, hpos,
       hnotNegative, hvalue]
 
+/-- Internal helper. proves the property stated by `evalEncodedNoGoodAtoms`. -/
 private theorem evalEncodedNoGoodAtoms
     (configuration : Balanced555FiniteConfiguration) (atoms : List (Fin 12 × Fin 12))
     (hoffDiagonal : ∀ atom ∈ atoms, atom.1 ≠ atom.2) :

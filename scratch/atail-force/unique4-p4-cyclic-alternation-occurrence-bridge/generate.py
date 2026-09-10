@@ -134,12 +134,17 @@ def render_chunk(number: int, entries: list[dict]) -> str:
              "namespace Problem97.P4CyclicAlternationOccurrenceBridgeScratch", ""]
     for name_i, entry in zip(names, entries, strict=True):
         l, r, p, q = entry["shape"]
-        lines.append(f"def {name_i} : BridgeEntry := ⟨{lean_list(entry['dense_literals'])}, .cyclic {l} {r} {p} {q}⟩")
-    lines += ["", f"def {name} : List BridgeEntry := [", *[f"  {x}," for x in names], "]", ""]
+        lines += ["/-- Authenticated cyclic-alternation bridge entry. -/",
+                  f"def {name_i} : BridgeEntry := ⟨{lean_list(entry['dense_literals'])}, .cyclic {l} {r} {p} {q}⟩"]
+    lines += ["", "/-- Ordered cyclic-alternation entries for this generated bridge chunk. -/",
+              f"def {name} : List BridgeEntry := [", *[f"  {x}," for x in names], "]", ""]
     for name_i in names:
-        lines += [f"theorem {name_i}_wf : entryWF {name_i} = true := by decide", ""]
-    lines += [f"theorem {name}_wf : {name}.all entryWF = true := by",
+        lines += ["/-- This cyclic-alternation bridge entry satisfies the finite entry predicate. -/",
+                  f"theorem {name_i}_wf : entryWF {name_i} = true := by decide", ""]
+    lines += ["/-- Every entry in the generated cyclic-alternation chunk is well formed. -/",
+              f"theorem {name}_wf : {name}.all entryWF = true := by",
               f"  simp [{name}, " + ", ".join(f"{x}_wf" for x in names) + "]", "",
+              "/-- The generated cyclic-alternation chunk has the expected finite length. -/",
               f"theorem {name}_length : {name}.length = {len(entries)} := by simp [{name}]", "",
               "end Problem97.P4CyclicAlternationOccurrenceBridgeScratch", ""]
     return "\n".join(lines)
