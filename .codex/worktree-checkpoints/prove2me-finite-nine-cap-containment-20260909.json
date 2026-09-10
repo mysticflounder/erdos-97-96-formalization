@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-cap-containment-20260909",
+  "base_head": "9b7f6c4d46928aeb35765f61a996d93881a974ff",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-cap-containment-20260909.json",
+    "prove2me/submissions/finite-nine-child-cap-containment/README.md",
+    "prove2me/submissions/finite-nine-child-cap-containment/explanation.md",
+    "prove2me/submissions/finite-nine-child-cap-containment/generate.py",
+    "prove2me/submissions/finite-nine-child-cap-containment/plan.toml",
+    "prove2me/submissions/finite-nine-child-cap-containment/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-child-cap-containment/platform/Solutions/Sol_Erdos9796FiniteNine_cap_containment.lean",
+    "prove2me/submissions/finite-nine-child-cap-containment/provenance.md",
+    "prove2me/submissions/finite-nine-child-cap-containment/receipt.json",
+    "prove2me/submissions/finite-nine-child-cap-containment/skeptic-audit-2026-09-09.md",
+    "prove2me/submissions/finite-nine-child-cap-containment/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-cap-containment",
+  "created_utc": "2026-09-10T06:35:00Z",
+  "manifest_sha256": "4bfd6f4e7dac20025189e6adeed5fedf867e5fdc3a362ddf8c6c856ce40d1b8e"
+}

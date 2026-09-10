@@ -1,0 +1,26 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+# Existing theorem ID: 2636c407-2850-4f3e-ac20-18e12aa740fa
+# Accepted inputs: N4d Form-B branch support, Form A v1, Form B v1, Form B v2, Form C v1, cyclic forms
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.9"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-child-cap-containment/receipt.json"
+
+[[theorem]]
+name = "Erdos9796FiniteNine.cap_containment"
+title = "Finite-nine N4 cap containment"
+file = "submissions/finite-nine-stage3-theorems/platform/Theorems/Thm_Erdos9796FiniteNine_cap_containment.lean"
+natural_language_statement = "For a finite nine-point endpoint shell, the accepted N4d form exclusions imply cap containment at all three distinguished vertices."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/131426e570e951b782fde7f6366409d47b849d82/prove2me/submissions/finite-nine-modular/source-fragments/cap_containment.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.cap_containment"
+file = "submissions/finite-nine-child-cap-containment/platform/Solutions/Sol_Erdos9796FiniteNine_cap_containment.lean"
+explanation = "submissions/finite-nine-child-cap-containment/explanation.md"
+proof_type = "prove"

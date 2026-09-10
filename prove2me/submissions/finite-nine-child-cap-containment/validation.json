@@ -1,0 +1,41 @@
+{
+  "schema": "prove2me-finite-nine-cap-containment-validation/v1",
+  "created_utc": "2026-09-10T06:49:05.81592Z",
+  "result": "PLATFORM_VERIFIED_LOCAL_BUILD_PASS_OFFLINE_SORRYAX",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.cap_containment",
+    "id": "2636c407-2850-4f3e-ac20-18e12aa740fa",
+    "source_statement_sha256": "390be73f9070019fe4171dc4ac4900d1793d2fd7fb6fed56ef8cd88b231411dd"
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-cap-containment/platform/Solutions/Sol_Erdos9796FiniteNine_cap_containment.lean",
+    "bytes": 52762,
+    "sha256": "e3a4894569b73bb244f4a7945ebf397e6a85e5db6a8aa6cd0679f70c7658780c"
+  },
+  "checks": {
+    "generator_check": "PASS; 52762 bytes",
+    "generator_ruff": "PASS",
+    "authenticated_fragment": "PASS; 808 bytes; c1dce51523622316761cc2066704591ce1c958a473de61c0dad445e05613c071",
+    "authenticated_form_b_split": "PASS; 374744 bytes; 261fc4de1e90b0bafb3fdba4f40f8406bbd526e00deda3930259d92203d3fc12",
+    "authenticated_n4e_tail": "PASS; 52954 bytes; 521a9c821ae591fc7e4edfb7d2578bdb646178d0973f81c010a483e541c33850",
+    "minimal_declaration_extraction": "PASS; five helper declarations, three form splits, N4c/N4d aliases and bridges",
+    "forbidden_token_scan": "PASS; no sorry, sorryAx, native/compiler trust, unsafe, partial, external implementation, or named axiom token",
+    "plan_validation": "PASS; digest 317cb4b52219e1cf8cbbb039322bb09b7a4f78f28534e3230cfad44e6a0220ef",
+    "solution_elaboration": "PASS; lake-build completed 8758 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/50224-1789022081751543000.log",
+    "audit_elaboration": "PASS; lake-build completed 8760 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/57531-1789022131486278000.log",
+    "axiom_audit": "PASS local audit; [propext, sorryAx, Classical.choice, Quot.sound]",
+    "offline_dependency_mirrors": "n4e_core, n4d_formb_branch, Form A v1, Form B v1, Form B v2, Form C v1, and cyclic forms are statement-only mirrors in the local workspace; sorryAx is thereby expected",
+    "reuse_preflight": "PASS; indexed revision a16f3070d, exact N4c/N4d declarations located in Erdos9796Proof.P97.N9Endpoint.N4e; first missing antecedent classification bridge; immediate consumer circle_placement",
+    "platform_submission": "PASS; accepted proof 2ab7afe0-25de-4ecb-b326-1bcb63a31b23",
+    "platform_created_utc": "2026-09-10T06:49:05.81592+00:00",
+    "platform_accepted_utc": "2026-09-10T06:51:33.432619+00:00",
+    "platform_theorem_status": "Proved"
+  },
+  "local_observed_axiom_closure": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "promotion_status": "platform verified through accepted proof 2ab7afe0-25de-4ecb-b326-1bcb63a31b23; locally elaborated and audited but not source-clean because offline dependency mirrors contribute sorryAx"
+}
