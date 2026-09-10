@@ -1,0 +1,26 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+# Existing theorem ID: e655c70a-0709-4c62-8e4a-e4645fad237b
+# Accepted dependencies are listed in provenance.md.
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.9"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-root/receipt.json"
+
+[[theorem]]
+name = "Erdos9796Mission.finite_nine_exclusion"
+title = "Base case: exclude a nine-vertex counterexample"
+file = "submissions/finite-nine-root/platform/Theorems/Thm_Erdos9796Mission_finite_nine_exclusion.lean"
+natural_language_statement = "For every set A of exactly nine points in strictly convex position in the Euclidean plane, some vertex has no four other vertices at a common positive distance."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796Mission.finite_nine_exclusion"
+file = "submissions/finite-nine-root/platform/Solutions/Sol_Erdos9796Mission_finite_nine_exclusion.lean"
+explanation = "submissions/finite-nine-root/explanation.md"
+proof_type = "prove"

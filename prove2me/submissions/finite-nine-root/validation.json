@@ -1,0 +1,54 @@
+{
+  "schema": "prove2me-finite-nine-root-validation/v1",
+  "validated_utc": "2026-09-10T08:24:38Z",
+  "result": "PLATFORM_ACCEPTED_LOCAL_BUILD_PASS_OFFLINE_MIRROR_SORRYAX",
+  "theorem": {
+    "id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+    "name": "Erdos9796Mission.finite_nine_exclusion",
+    "statement": "∀ A : Finset Plane, A.card = 9 → ConvexIndep (A : Set Plane) → ¬ HasNEquidistantProperty 4 A",
+    "bytes": 471,
+    "sha256": "3a7fe27f9558730657c5776d26e309fe7d00dcdb2810ee74645296124eee4f16"
+  },
+  "artifact": {
+    "solution": {
+      "bytes": 5614,
+      "sha256": "934aef013ee9666638491b8988026177eb75407cb328fa258d853bce2ba0c558"
+    },
+    "audit": {
+      "bytes": 249,
+      "sha256": "af1fd59dd4fbf99c21517ffb0410e0b63ca569851d09e2ce52ecb2d942793a94"
+    },
+    "generator": {
+      "bytes": 9177,
+      "sha256": "8fe15f1bab31e40142f4c9ddc15bef7e5638d7b7c487b76021f67afb7dd70d80"
+    },
+    "plan": {
+      "bytes": 1420,
+      "sha256": "80b515954a74a26353981fcab583d1b3e32d2d85573e1f0353adbc0f161ac09d"
+    }
+  },
+  "checks": {
+    "generator_replay": "PASS; theorem exact-body emission PASS; solution 5614 bytes; 934aef013ee9666638491b8988026177eb75407cb328fa258d853bce2ba0c558",
+    "generator_ruff": "PASS",
+    "plan_validation": "PASS; digest 24b2a88f621e90457a79251f05abbc08dfc27a203c7aa73506464021046d6a22",
+    "statement_marker": "PASS; exactly one -- PROVE2ME_FORMAL_STATEMENT marker",
+    "remote_statement_body": "PASS; exact byte-for-byte post-marker body reproduced",
+    "direct_child_imports": "PASS; all nine public child theorem modules imported",
+    "forbidden_token_scan": "PASS; solution contains no sorry, sorryAx, native/compiler trust, unsafe, partial, implemented_by, or extern token",
+    "solution_elaboration": "PASS; lake-build completed 8730 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/3533-1789028076643492000.log",
+    "audit_elaboration": "PASS; lake-build completed 8731 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/6029-1789028092342516000.log",
+    "theorem_stub_elaboration": "PASS; lake-build completed 8707 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/35753-1789028322843601000.log",
+    "axiom_audit": "PASS local classification; [propext, sorryAx, Classical.choice, Quot.sound]",
+    "offline_dependency_mirrors": "sorryAx is inherited from the nine statement-only public child theorem mirrors in the offline workspace; it does not occur in the generated solution source",
+    "build_warnings": "9 expected child statement-mirror sorry warnings; no root solution errors"
+  },
+  "platform": {
+    "version": "0.9.9",
+    "theorem_id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+    "proof_submission_id": "5fe2c335-e30b-4c66-8aaa-39e172428132",
+    "created_utc": "2026-09-10T08:21:00.854075+00:00",
+    "accepted_utc": "2026-09-10T08:22:37.577536+00:00",
+    "theorem_status": "Proved",
+    "submission": "accepted"
+  }
+}

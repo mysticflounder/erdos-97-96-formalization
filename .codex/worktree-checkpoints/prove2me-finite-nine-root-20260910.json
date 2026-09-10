@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-root-20260910",
+  "base_head": "cebf9f17221cb9b61048c40ecc62432e93a75bac",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-root-20260910.json",
+    "prove2me/submissions/finite-nine-root/README.md",
+    "prove2me/submissions/finite-nine-root/explanation.md",
+    "prove2me/submissions/finite-nine-root/generate.py",
+    "prove2me/submissions/finite-nine-root/plan.toml",
+    "prove2me/submissions/finite-nine-root/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-root/platform/Solutions/Sol_Erdos9796Mission_finite_nine_exclusion.lean",
+    "prove2me/submissions/finite-nine-root/platform/Theorems/Thm_Erdos9796Mission_finite_nine_exclusion.lean",
+    "prove2me/submissions/finite-nine-root/provenance.md",
+    "prove2me/submissions/finite-nine-root/receipt.json",
+    "prove2me/submissions/finite-nine-root/skeptic-audit-2026-09-10.md",
+    "prove2me/submissions/finite-nine-root/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-finite-nine-root",
+  "created_utc": "2026-09-10T07:51:00Z",
+  "manifest_sha256": "f49af094e0ff7798b893346473033a58bacdeffa17338dcf436eccb36070af95"
+}

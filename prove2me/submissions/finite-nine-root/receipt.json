@@ -1,0 +1,35 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Erdos9796Mission.finite_nine_exclusion": {
+      "payload_sha256": "20e95fb9aed1462d8154bb3316a8f9ea8d9c5ad6e1dad557800a4a31e3057734",
+      "state": "RECORDED",
+      "submission_id": "5fe2c335-e30b-4c66-8aaa-39e172428132"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "24b2a88f621e90457a79251f05abbc08dfc27a203c7aa73506464021046d6a22",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.finite_nine_exclusion": {
+      "created_at": "2026-09-10T08:21:00.854075+00:00",
+      "error_message": "",
+      "file_path": "e655c70a-0709-4c62-8e4a-e4645fad237b/6ac78adb-dda3-4892-bb46-d4c86f102d16/5fe2c335-e30b-4c66-8aaa-39e172428132.lean",
+      "id": "5fe2c335-e30b-4c66-8aaa-39e172428132",
+      "status": "ACCEPTED",
+      "submission_id": "5fe2c335-e30b-4c66-8aaa-39e172428132",
+      "theorem_id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+      "updated_at": "2026-09-10T08:22:37.577536+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.finite_nine_exclusion": {
+      "status": "Proved",
+      "theorem_id": "e655c70a-0709-4c62-8e4a-e4645fad237b"
+    }
+  }
+}
