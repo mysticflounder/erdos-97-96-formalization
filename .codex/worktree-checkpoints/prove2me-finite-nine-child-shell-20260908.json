@@ -15,7 +15,10 @@
     "prove2me/submissions/finite-nine-child-shell/validation.json"
   ],
   "generated_roots": [],
-  "durable_paths": [],
+  "durable_paths": [
+    "prove2me/submissions/finite-nine-child-shell/receipt-wa-namespaced-solution.json",
+    "prove2me/submissions/finite-nine-child-shell/receipt.json"
+  ],
   "created_utc": "2026-09-09T06:39:50Z",
-  "manifest_sha256": "8dc4bcc0b304b47e625f3641466bff0cf7f4aac109e5fad29251696dcffdef4f"
+  "manifest_sha256": "e44e78f2341c5049d9897e4500db54d6699f470dce08f3260acbdc4e0a8f7270"
 }

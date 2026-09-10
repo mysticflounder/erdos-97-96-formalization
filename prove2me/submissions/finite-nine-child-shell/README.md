@@ -1,8 +1,8 @@
 # Finite-nine shell child
 
-This packet closes the first Stage-3 child statement, `Erdos9796FiniteNine.shell`, offline. It constructs the public `Batch3N9.Problem97.FiniteEndpointShell` from a nonempty convex-independent nine-point set with the four-distance property.
+This packet closes the first Stage-3 child statement, `Erdos9796FiniteNine.shell`. It constructs the public `Batch3N9.Problem97.FiniteEndpointShell` from a nonempty convex-independent nine-point set with the four-distance property.
 
-The 3,263-byte solution is a direct public-boundary rewrite of the authenticated `finiteEndpointShellOfCounterexample` construction. It imports the published `Erdos9796FiniteNine_Shell` definition bundle and five already-published counting theorems; it does not copy their proofs or re-establish their geometry.
+The 3,207-byte solution is a direct public-boundary rewrite of the authenticated `finiteEndpointShellOfCounterexample` construction. It imports the published `Erdos9796FiniteNine_Shell` definition bundle and five already-published counting theorems; it does not copy their proofs or re-establish their geometry.
 
 ## Validation status
 
@@ -13,7 +13,7 @@ The 3,263-byte solution is a direct public-boundary rewrite of the authenticated
 - A local `#print axioms` over downloaded public theorem stubs reports `{propext, sorryAx, Classical.choice, Quot.sound}`. The `sorryAx` is expected from Prove2Me's downloaded statement-only theorem modules; all five corresponding proof submissions are `PUBLISHED` and their proof-bearing source closure was independently audited without `sorryAx`.
 - No native reduction, unsafe declaration, external implementation, or compiler-trust boundary occurs in the solution or either audited dependency frontier.
 
-This is an offline proof packet, not a platform promotion. The Stage-3 theorem node is now public as `a8773adc-86d1-4bff-b1e3-5380e4ae8974`. `plan.toml` names the exact theorem and statement; on apply, the generic uploader performs an exact remote lookup and submits the proof to the ID returned for that match. The expected ID is pinned in the plan comment and validation record. Submit only after an independent promotion review.
+The Stage-3 theorem node is public as `a8773adc-86d1-4bff-b1e3-5380e4ae8974`, and the corrected top-level solution was accepted as submission `1e741eb6-3b25-4609-9c63-9e8fb24eb101`. The earlier namespaced-solution rejection is retained separately for diagnosis and replay.
 
 ## Files
 

@@ -65,6 +65,10 @@
     "plan_validated": true,
     "plan_digest": "b7b8815d7176e9a6ca652c0c694c3dd0026a61647a486e156e360cc28d349cb9",
     "target_binding": "The generic uploader reconciles the exact theorem name and formal statement, then submits to the returned remote theorem ID; the expected current ID is pinned above.",
-    "network_actions": false
+    "network_actions": true,
+    "accepted_submission_id": "1e741eb6-3b25-4609-9c63-9e8fb24eb101",
+    "accepted_status": "ACCEPTED",
+    "failed_attempt_receipt": "receipt-wa-namespaced-solution.json",
+    "accepted_receipt": "receipt.json"
   }
 }
