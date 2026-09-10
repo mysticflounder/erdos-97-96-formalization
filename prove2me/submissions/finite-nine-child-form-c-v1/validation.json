@@ -1,0 +1,33 @@
+{
+  "schema": "prove2me-finite-nine-form-c-v1-validation/v1",
+  "created_utc": "2026-09-10T01:10:00Z",
+  "result": "LOCAL_BUILD_PASS_SPLIT_RECOMMENDED",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.form_c_v1",
+    "id": "0a9dd51c-149f-46d7-950a-fb2454f0c58f",
+    "source_statement_sha256": "253b1f058415bfaef33ea833eb20b052a12e17f7a4b9956802fea8bbbe599296"
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-form-c-v1/platform/Solutions/Sol_Erdos9796FiniteNine_form_c_v1.lean",
+    "bytes": 815939,
+    "sha256": "af6c52e92be3f505d1a43ebb9301c03bcf2aeafa4e3164aa29182fe21f566351"
+  },
+  "checks": {
+    "generator_check": "PASS",
+    "generator_ruff": "PASS",
+    "authenticated_fragment": "PASS; a653d138d81fcaf23ad2e68015fbc4ccc2978dcf9f5d52f55f61535a2c6d246b",
+    "current_source_binding": "PASS; 17 of 17 dependency and Form c source hashes match",
+    "support_source_binding": "PASS; authenticated preamble, units 1-46, five-unit N4e frontier, and 20 support declarations match",
+    "lean_433_repairs": "PASS; three shell cardinality repairs and 18 distance repairs asserted",
+    "public_declaration_subtraction": "PASS; published shell structure and eight definitions plus 21 N4e witness/Form/exclusion declarations removed; Form c fragment has no public-definition collisions",
+    "one_mib_limit": "PASS; 815939 bytes",
+    "server_runtime_risk": "HIGH; this 815939-byte source is larger than the 694176-byte Form b payload that timed out twice after 300 seconds; monolithic submission intentionally withheld",
+    "forbidden_token_scan": "PASS; no sorry, sorryAx, native/compiler trust, unsafe, partial, external implementation, or named axiom token",
+    "uploader_plan": "PASS; plan digest 03136d975e3c8e0710a8de8383c2bc89377b0c8451aba819e9b807604d7c54f6",
+    "lean_4_33_1_solution_elaboration": "PASS; 8750 jobs, exit 0, /Users/adam/prove2me_workspace/.lake/lake-build-logs/31913-1789002926005018000.log",
+    "audit_elaboration": "PASS; 8751 jobs, exit 0, /Users/adam/prove2me_workspace/.lake/lake-build-logs/75344-1789003576314362000.log",
+    "final_consumer_axiom_audit": "NEEDS WORK; #print axioms solution reports [propext, sorryAx, Classical.choice, Quot.sound] because accepted theorem nodes are represented locally by statement-only by sorry stubs",
+    "independent_skeptic_audit": "NEEDS WORK pending smaller-node server verification"
+  },
+  "promotion_status": "local elaboration passed; do not submit the monolith; split authenticated support into smaller server-verified nodes before the final consumer"
+}
