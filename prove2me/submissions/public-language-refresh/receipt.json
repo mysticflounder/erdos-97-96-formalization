@@ -1,0 +1,169 @@
+{
+  "digest": "400ab412438077c6430d70fed62807e59a6ed12aacce352d0f2359815c460fe0",
+  "milestones": {
+    "00776b3e-ffc7-40be-a2c5-63c385c0fe9c": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Exclude the two-interior-point pattern at the first triangle vertex"
+    },
+    "111a680c-140e-4e85-8e19-f9d54f8093f0": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Transfer the existing nine-point endpoint configuration proof"
+    },
+    "17fa2f22-a231-4cf2-a51f-fcfbeabfbe2f": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Exclude the interior-point/opposite-vertex pattern at the second triangle vertex"
+    },
+    "36209758-7e1a-4a37-8aa2-bba0651825ab": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Exclude the opposite-vertex/interior-point pattern at the first triangle vertex"
+    },
+    "4361cbe8-9e80-464b-9962-4fcb0401fe5a": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Alternative resolution — construct a Problem 97 counterexample"
+    },
+    "627fe1e6-b078-4521-9d16-47946d93759e": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Prove cap containment for four-point distance classes"
+    },
+    "6a21e43b-3377-4fd9-b23b-775befaf9167": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Exclude the interior-point/opposite-vertex pattern at the first triangle vertex"
+    },
+    "7002b558-63eb-4c51-9931-ec96f8b93bf2": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Exclude the remaining cyclic witness-location patterns"
+    },
+    "9afe2715-caf8-4ae3-a84c-8be5bfe422c5": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Exclude a four-witness point from every cap interior"
+    },
+    "b39a02b2-d3c5-4bfb-91ee-1362b4c65f49": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Transfer the existing exact-eleven exclusion proof"
+    },
+    "bc3ac2d3-e0ba-4259-b305-c1facbb9b953": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Problem 97 supporting lemma: overlap among four two-point supports"
+    },
+    "cea298d2-663b-475e-9f63-bf66672bfea6": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Transfer the existing exact-ten exclusion proof"
+    },
+    "e0085905-edbd-4e77-801f-cc348f53b3a8": {
+      "changed": true,
+      "status": "VERIFIED",
+      "title": "Descent: a minimal counterexample with more than nine vertices has a removable vertex"
+    },
+    "f4589b5d-2049-4d10-ae2c-be069055f35c": {
+      "changed": false,
+      "status": "VERIFIED",
+      "title": "Place all three cap regions on equal-radius circles"
+    }
+  },
+  "mission": {
+    "changed": false,
+    "id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+    "status": "VERIFIED"
+  },
+  "schema": "prove2me-public-language-refresh-receipt/v1",
+  "status": "VERIFIED",
+  "theorems": {
+    "0a9dd51c-149f-46d7-950a-fb2454f0c58f": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.form_c_v1"
+    },
+    "0e9040fa-76aa-44d0-9f4a-f78e0f838e21": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.circle_placement"
+    },
+    "0ecda05b-fa42-4a3f-9e58-f77d7226bc26": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.cyclic_forms"
+    },
+    "20e77876-f67d-4a4a-bb0e-7613b5d63ace": {
+      "changed": true,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine_N4dPackets"
+    },
+    "2636c407-2850-4f3e-ac20-18e12aa740fa": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.cap_containment"
+    },
+    "34a0a695-2a9d-47f4-b9c6-c3b38c82705d": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.form_a_v1"
+    },
+    "3cf4e4b9-6989-4b26-85ca-ae7d5c56a13e": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine_N4dFormBBranchSupport"
+    },
+    "42459e69-2295-4399-8a78-05eecc61a975": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.n4d_formb_branch"
+    },
+    "6e11ed01-822c-41c9-949a-26607c7290d7": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine_CountingCore"
+    },
+    "706aaedc-4e9a-4aad-8ee6-3b57c6a19423": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.form_b_v2"
+    },
+    "8092e252-3da6-454a-813c-702397a844f8": {
+      "changed": true,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.n4e_core"
+    },
+    "8338ae4d-30db-4944-bb5e-fa2cdb502144": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine_N8Interface"
+    },
+    "a8773adc-86d1-4bff-b1e3-5380e4ae8974": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.shell"
+    },
+    "b5c8965d-f45d-4911-a606-655ddfa6899d": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.single_apex_exhaustion"
+    },
+    "b6bb5e30-c060-4622-9cea-acaa92a6be0d": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine.form_b_v1"
+    },
+    "ce37debe-f180-46db-96cb-4cea533473dc": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine_Shell"
+    },
+    "e3a66ec7-cdfc-43f6-a6ab-a05bdf87951b": {
+      "changed": false,
+      "status": "VERIFIED",
+      "theorem_name": "Erdos9796FiniteNine_Forms"
+    }
+  }
+}

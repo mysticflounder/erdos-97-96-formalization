@@ -23,9 +23,8 @@ seek a reverse implication.
 
 # Setting
 
-Let $A\subset\mathbb R^2$ be finite. Strict convex position is represented by
-the upstream predicate `EuclideanGeometry.ConvexIndep`: every point of $A$ is
-an extreme point of the convex hull of $A$. For $p\in A$, the pinned
+Let $A\subset\mathbb R^2$ be finite. Strict convex position means that every
+point of $A$ is an extreme point of the convex hull of $A$. For $p\in A$, the pinned
 multiplicity at radius $r>0$ counts points $q\in A$ with
 $\lVert p-q\rVert=r$. Problem 97 asks for a point where no radius has four
 such other points. Problem 96 counts unordered pairs at distance $1$, then
@@ -107,19 +106,20 @@ family proving that no such bound exists.
 # Formalization scope
 
 The canonical source is pinned at commit
-`757d852766f377f7c1a0ffeeef6d3526bc0cb7a4`. Source-repository exports are
-[`Problem97.erdos97_rhs`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30)
-and [`Problem96.erdos96_rhs`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96).
+`757d852766f377f7c1a0ffeeef6d3526bc0cb7a4`. It contains the formal source
+statements for [Problem 97](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30)
+and [Problem 96](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96).
 The source repository reports closed proofs of the conditional bridge to the $3n$ bound
-([`unit_distance_pairs_bound_of_erdos97`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L273)),
+([conditional three-times bound](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L273)),
 the $|A|\ge9$ counting milestone
-([`counterexample_card_ge_nine`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/Counting.lean#L95)),
+([nine-point counting bound](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/Counting.lean#L95)),
 and the exact nine-point exclusion
-([`FiniteN9Closure`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56)).
-The large-cardinality milestone is
-[`RemovableVertexOfLarge`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50),
-with its minimality hypothesis retained. The current platform draft contains
-statement-level sketches and no imported source proofs. Its definitions make
+([exact nine-point exclusion theorem](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56)).
+The remaining large-cardinality milestone is the
+[removable-vertex step](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50),
+with its minimality hypothesis retained. The current platform mission contains
+accepted transfers of the counting argument, the conditional bridge, and the
+exact nine-point exclusion, while the removable-vertex step remains open. Its definitions make
 convex independence and the positive-radius condition explicit; no theorem is
 assumed inside a definition. Singletons and two-point sets are included in
 Problem 97, while Problem 96's counting definitions also include the empty set.
@@ -134,7 +134,7 @@ These source results establish the intended dependency graph: the P97 universal
 root feeds low-unit-degree extraction, strong induction, and then the P96
 supremum bound. The platform mission records those contracts and milestones;
 it does not claim to have transplanted their proof bodies.
-Planned milestones are the two canonical roots, their conditional bridge, the
+The milestones include the two canonical roots, their conditional bridge, the
 `|A| ≥ 9` count, the `n = 9` exclusion, the `|A| > 9` removable-vertex step,
 the documented Danzer nine-point three-neighbor example, the parallel goal of
 constructing a Problem 97 counterexample, and the superlinear-family route to
