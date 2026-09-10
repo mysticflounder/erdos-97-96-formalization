@@ -1,0 +1,58 @@
+{
+  "schema": "prove2me-finite-nine-form-b-v1-validation/v1",
+  "created_utc": "2026-09-09T23:30:00Z",
+  "result": "SERVER_TIMEOUT_SPLIT_REQUIRED",
+  "theorem": {
+    "name": "Erdos9796FiniteNine.form_b_v1",
+    "id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+    "source_statement_sha256": "b600c24284540190c04eb98739da46b851cd12011b3b47b85c1915624355e186"
+  },
+  "artifact": {
+    "path": "submissions/finite-nine-child-form-b-v1/platform/Solutions/Sol_Erdos9796FiniteNine_form_b_v1.lean",
+    "bytes": 694176,
+    "sha256": "e37226e68c7d5c71ced4a1fb6e0a1af59d9b7802761cd73115d697f499db8d40"
+  },
+  "server_attempts": [
+    {
+      "submission_id": "e79c8662-4da5-4028-a16a-ae1139352bd1",
+      "status": "ERROR",
+      "error_message": "Verification timed out after 300s"
+    },
+    {
+      "submission_id": "c48a71c4-7c62-4cd8-8fb6-0e12fad9dada",
+      "retry_of_submission_id": "e79c8662-4da5-4028-a16a-ae1139352bd1",
+      "status": "ERROR",
+      "error_message": "Verification timed out after 300s"
+    }
+  ],
+  "checks": {
+    "generator_check": "PASS",
+    "generator_ruff": "PASS",
+    "authenticated_fragment": "PASS; d899a1396d1d9303b35fc6fbfde7d59f4582a0c808316c7e3a943dfc8721925f",
+    "current_source_binding": "PASS; 18 of 18 Form b source hashes match",
+    "support_source_binding": "PASS; authenticated full 87-unit stream, 51,853-byte preamble, and 76,512-byte units 1-46 prefix match",
+    "lean_433_repairs": "PASS; 11 distance repairs, three shell cardinality repairs, and the swapI2 repair asserted",
+    "support_declaration_extraction": "PASS; complete authenticated alias/export preamble and units 1-46 retained; minimal unit-55 side-support slice authenticated and inserted",
+    "shell_public_declaration_subtraction": "PASS; published shell structure, eight definitions, and final shell constructor removed",
+    "public_declaration_subtraction": "PASS; exactly 21 imported public definitions removed",
+    "one_mib_limit": "PASS; 694176 bytes",
+    "forbidden_token_scan": "PASS; no sorry, sorryAx, native/compiler trust, unsafe, partial, external implementation, or named axiom token",
+    "uploader_plan": "PASS; plan digest 6cbaa72aaf8f5b435f8425bed9997d97165fefe2c008ffe62c72a421388bb1c2",
+    "lean_4_33_1_solution_elaboration": "PASS; lake-build completed 8749 jobs and exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/38963-1788998969947664000.log",
+    "final_consumer_axiom_audit": "PASS with platform-stub caveat; audit lake-build completed 8750 jobs and exited 0; #print axioms solution reported [propext, sorryAx, Classical.choice, Quot.sound]; /Users/adam/prove2me_workspace/.lake/lake-build-logs/51512-1788999144350622000.log",
+    "server_verification": "TIMEOUT twice after 300s; no Lean diagnostic rejected the monolithic proof",
+    "independent_skeptic_audit": "NEEDS WORK; local mirrors introduce sorryAx and two monolithic server attempts timed out"
+  },
+  "local_observed_axiom_closure": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "required_server_axiom_closure": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "promotion_status": "monolithic source builds locally but exceeded the server verification window twice; split support nodes before retrying the final proof"
+}

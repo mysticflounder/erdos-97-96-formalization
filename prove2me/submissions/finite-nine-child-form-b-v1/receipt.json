@@ -1,0 +1,56 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Erdos9796FiniteNine.form_b_v1": {
+      "payload_sha256": "270d9b461f860aa6bfb8bed5cfcdf8d887423d28e09e4c269b5516ff3e9e45f3",
+      "state": "RECORDED",
+      "submission_id": "e79c8662-4da5-4028-a16a-ae1139352bd1"
+    },
+    "proof:Erdos9796FiniteNine.form_b_v1:retry:1": {
+      "payload_sha256": "270d9b461f860aa6bfb8bed5cfcdf8d887423d28e09e4c269b5516ff3e9e45f3",
+      "retry_of_submission_id": "e79c8662-4da5-4028-a16a-ae1139352bd1",
+      "state": "RECORDED",
+      "submission_id": "c48a71c4-7c62-4cd8-8fb6-0e12fad9dada"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "6cbaa72aaf8f5b435f8425bed9997d97165fefe2c008ffe62c72a421388bb1c2",
+  "proof_attempts": {
+    "Erdos9796FiniteNine.form_b_v1": [
+      {
+        "created_at": "2026-09-10T00:17:36.705241+00:00",
+        "error_message": "Verification timed out after 300s",
+        "file_path": "b6bb5e30-c060-4622-9cea-acaa92a6be0d/6ac78adb-dda3-4892-bb46-d4c86f102d16/e79c8662-4da5-4028-a16a-ae1139352bd1.lean",
+        "id": "e79c8662-4da5-4028-a16a-ae1139352bd1",
+        "status": "ERROR",
+        "submission_id": "e79c8662-4da5-4028-a16a-ae1139352bd1",
+        "theorem_id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+        "updated_at": "2026-09-10T00:28:33.433084+00:00",
+        "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+      }
+    ]
+  },
+  "proofs": {
+    "Erdos9796FiniteNine.form_b_v1": {
+      "created_at": "2026-09-10T00:39:47.804029+00:00",
+      "error_message": "Verification timed out after 300s",
+      "file_path": "b6bb5e30-c060-4622-9cea-acaa92a6be0d/6ac78adb-dda3-4892-bb46-d4c86f102d16/c48a71c4-7c62-4cd8-8fb6-0e12fad9dada.lean",
+      "id": "c48a71c4-7c62-4cd8-8fb6-0e12fad9dada",
+      "intent_key": "proof:Erdos9796FiniteNine.form_b_v1:retry:1",
+      "status": "ERROR",
+      "submission_id": "c48a71c4-7c62-4cd8-8fb6-0e12fad9dada",
+      "theorem_id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+      "updated_at": "2026-09-10T00:45:34.585812+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796FiniteNine.form_b_v1": {
+      "status": "Open",
+      "theorem_id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d"
+    }
+  }
+}
