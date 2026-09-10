@@ -65,6 +65,7 @@ distance from its centre. -/
     q ∈ SelectedClass A s d ↔ q ∈ A ∧ dist s q = d := by
   simp [SelectedClass]
 
+/-- P97 WitnessPacketInterface theorem. -/
 theorem selectedClass_erase_eq
     (A : Finset ℝ²) (x s : ℝ²) (d : ℝ) :
     SelectedClass (A.erase x) s d = (SelectedClass A s d).erase x := by

@@ -302,14 +302,17 @@ theorem allKilledRight_eq_false_of_semanticTrace
           simpa [allKilledRight, hprefix, hsort] using hallFalse
 
 set_option linter.style.nativeDecide false in
+/-- P97 EndpointCertificate theorem. -/
 theorem variableCentersRight_nodup : variableCentersRight.Nodup := by
   native_decide
 
+/-- P97 EndpointCertificate theorem. -/
 theorem variableCentersRight_lt_eleven {center : Nat}
     (hcenter : center ∈ variableCentersRight) : center < 11 := by
   simp [variableCentersRight] at hcenter
   omega
 
+/-- P97 EndpointCertificate theorem. -/
 theorem variableCentersRight_ne_two {center : Nat}
     (hcenter : center ∈ variableCentersRight) : center ≠ 2 := by
   simp [variableCentersRight] at hcenter

@@ -34,6 +34,7 @@ open ATailUniqueArmRouteAuditScratch
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail support UniqueFourLateChoiceTerminal theorem. -/
 private theorem firstApex_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by

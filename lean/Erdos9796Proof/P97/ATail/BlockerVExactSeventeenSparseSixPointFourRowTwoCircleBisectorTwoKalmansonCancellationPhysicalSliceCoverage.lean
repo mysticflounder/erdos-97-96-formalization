@@ -30,6 +30,7 @@ def sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmansonCancellationPhysicalSliceCoverage theorem. -/
 theorem sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf_length
     (center : Label) (category : PhysicalSliceCategory) :
     (sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf

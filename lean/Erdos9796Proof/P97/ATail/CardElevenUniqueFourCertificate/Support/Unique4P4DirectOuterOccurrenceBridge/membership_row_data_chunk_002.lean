@@ -8,6 +8,7 @@ namespace Problem97.P4DirectMembershipRowOccurrenceBridgeScratch
 open P4DirectOuterArcAdapterScratch
 open ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource
 
+/-- P97 ATail support def. -/
 def membershipRowOccurrencesChunk002 : List MembershipRowOccurrence := [
   {
     familyOrdinal := 201

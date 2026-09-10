@@ -30,6 +30,7 @@ open ATailLargeCapUniqueFiveLowHit
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RobustLargeRadiusReduction theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by

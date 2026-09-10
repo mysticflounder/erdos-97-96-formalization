@@ -14,6 +14,7 @@ open ExactTwelveCarrierIngress
 open GenericRowNogoodCertificate
 open SourceOrderTerminalBankConsumer
 
+/-- Indexed scratch Lean theorem. -/
 theorem source48CoverageDirect {pointOf : Label → ℝ²} (order : FrozenBoundaryOrder pointOf)
     (hforced : FrozenForcedSecondCapOrder order.position) :
     CommonFiveOrientationAt order.position 3 2 6 1 8 ∨

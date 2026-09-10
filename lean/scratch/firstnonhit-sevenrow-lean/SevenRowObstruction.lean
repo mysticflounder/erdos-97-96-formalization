@@ -21,12 +21,14 @@ open Problem97
 open Problem97.Census554.EqualityCore
 open scoped EuclideanGeometry
 
+/-- Indexed scratch Lean lemma. -/
 private lemma epsilon_t_sq
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (epsilon * t) ^ 2 = 3 := by
   rw [mul_pow, hepsilon, ht]
   norm_num
 
+/-- Indexed scratch Lean lemma. -/
 private lemma first_coefficient_sq
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (3 + epsilon * t) ^ 2 = 12 + 6 * (epsilon * t) := by
@@ -35,6 +37,7 @@ private lemma first_coefficient_sq
         9 + 6 * (epsilon * t) + epsilon ^ 2 * t ^ 2 := by ring
     _ = 12 + 6 * (epsilon * t) := by rw [hepsilon, ht]; ring
 
+/-- Indexed scratch Lean lemma. -/
 private lemma second_coefficient_sq
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (5 * epsilon + 3 * t) ^ 2 = 52 + 30 * (epsilon * t) := by
@@ -43,6 +46,7 @@ private lemma second_coefficient_sq
         25 * epsilon ^ 2 + 30 * (epsilon * t) + 9 * t ^ 2 := by ring
     _ = 52 + 30 * (epsilon * t) := by rw [hepsilon, ht]; ring
 
+/-- Indexed scratch Lean lemma. -/
 private lemma coefficient_product
     (epsilon t : ℝ) (hepsilon : epsilon ^ 2 = 1) (ht : t ^ 2 = 3) :
     (3 + epsilon * t) * (5 * epsilon + 3 * t) = 24 * epsilon + 14 * t := by
@@ -213,6 +217,7 @@ noncomputable def p11X (t c s : ℝ) : ℝ := 1 + (c - t * s) / 2
 /-- The normalized y-coordinate of the second `K2`/`K5` circle intersection. -/
 noncomputable def p11Y (t c s : ℝ) : ℝ := (t * c + s) / 2
 
+/-- Indexed scratch Lean lemma. -/
 private lemma p11_norm_sq
     (t c s : ℝ)
     (ht : t ^ 2 = 3)
@@ -396,6 +401,7 @@ theorem second_circle_intersection_coordinates
 /- ## Source-level row pattern -/
 
 /- The compressed order is `(0,1,2,3,4,5,6,8,9,10,11,13,14)`. -/
+/-- Indexed scratch Lean abbrev. -/
 abbrev PacketLabel := Fin 13
 
 /-- The seven rows exactly as emitted by the first-nonhit search packet. -/
@@ -409,6 +415,7 @@ noncomputable def sevenRowPattern : RowPattern PacketLabel := fun center =>
   else if center = 8 then {12, 2, 3, 7}
   else ∅
 
+/-- Indexed scratch Lean theorem. -/
 private theorem realizes_normSim
     {P : RowPattern PacketLabel} {pointOf : PacketLabel → ℝ²}
     (hreal : Realizes P pointOf) (a b : PacketLabel) (hab : a ≠ b) :
@@ -433,6 +440,7 @@ private theorem realizes_normSim
       dist_eq_zero.mp ((mul_eq_zero.mp hzero).resolve_left hscale)
     exact hreal.injective hpij
 
+/-- Indexed scratch Lean theorem. -/
 private theorem coord_sqdist_eq_of_dist_eq {a b c d : ℝ²}
     (h : dist a b = dist c d) :
     (a 0 - b 0) ^ 2 + (a 1 - b 1) ^ 2 =
@@ -440,6 +448,7 @@ private theorem coord_sqdist_eq_of_dist_eq {a b c d : ℝ²}
   have hsq := congrArg (fun x : ℝ => x ^ 2) h
   simpa only [Problem97.dist_sq_coord] using hsq
 
+/-- Indexed scratch Lean theorem. -/
 private theorem plane_eq_of_coords {p q : ℝ²}
     (h0 : p 0 = q 0) (h1 : p 1 = q 1) : p = q := by
   ext i
@@ -447,6 +456,7 @@ private theorem plane_eq_of_coords {p q : ℝ²}
   · exact h0
   · exact h1
 
+/-- Indexed scratch Lean theorem. -/
 private theorem normalized_base_frame
     (pointOf : PacketLabel → ℝ²)
     (hreal : Realizes sevenRowPattern pointOf)
@@ -545,6 +555,7 @@ private theorem normalized_base_frame
     · simpa [pt] using hy6
   exact ⟨t, ht, h3, h1, h6⟩
 
+/-- Indexed scratch Lean theorem. -/
 private theorem normalized_packet_impossible
     (pointOf : PacketLabel → ℝ²)
     (hreal : Realizes sevenRowPattern pointOf)

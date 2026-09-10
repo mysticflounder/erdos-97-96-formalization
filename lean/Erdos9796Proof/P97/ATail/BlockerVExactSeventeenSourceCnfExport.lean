@@ -15,6 +15,7 @@ This executable writes the canonical DIMACS bytes defined in
 
 open Problem97.ATailBlockerVExactSeventeenSourceCnf
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfExport def. -/
 def main (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>

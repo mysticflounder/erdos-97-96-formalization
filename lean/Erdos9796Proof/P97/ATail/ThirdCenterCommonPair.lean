@@ -30,6 +30,7 @@ open ATailCriticalPairFrontier
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail ThirdCenterCommonPair theorem. -/
 private theorem firstApex_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -39,6 +40,7 @@ private theorem firstApex_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail ThirdCenterCommonPair theorem. -/
 private theorem blocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {source : ℝ²} (hsource : source ∈ A) :
@@ -305,6 +307,7 @@ theorem frontierDeletionSurvival_or_actualBlocker_eq_knownCenter
       · exact Or.inr (Or.inr (Or.inl hfirst))
       · exact Or.inr (Or.inr (Or.inr hblocker))
 
+/-- P97 ATail ThirdCenterCommonPair theorem. -/
 private theorem q_firstApex_survives_of_double
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}
@@ -319,6 +322,7 @@ private theorem q_firstApex_survives_of_double
   rcases Finset.mem_filter.mp hz with ⟨hzErase, hzdist⟩
   exact Finset.mem_filter.mpr ⟨(Finset.mem_erase.mp hzErase).2, hzdist⟩
 
+/-- P97 ATail ThirdCenterCommonPair theorem. -/
 private theorem q_firstApex_survives_of_five_le
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}

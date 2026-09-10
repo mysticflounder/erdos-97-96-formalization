@@ -42,6 +42,7 @@ attribute [local instance] Classical.propDecidable
 
 noncomputable section
 
+/-- P97 ATail FrontierCommonDeletionEscape theorem. -/
 private theorem equidistant_mono
     {n : ℕ} {A B : Finset ℝ²} {center : ℝ²}
     (hAB : A ⊆ B)
@@ -53,6 +54,7 @@ private theorem equidistant_mono
   rcases Finset.mem_filter.mp hz with ⟨hzA, hzdist⟩
   exact Finset.mem_filter.mpr ⟨hAB hzA, hzdist⟩
 
+/-- P97 ATail FrontierCommonDeletionEscape theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -60,6 +62,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi] <;> rfl
 
+/-- P97 ATail FrontierCommonDeletionEscape theorem. -/
 private theorem oppApex1_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ S.surplusCap := by
@@ -72,6 +75,7 @@ private theorem oppApex1_mem_surplusCap
   · simpa [SurplusCapPacket.surplusCap,
       SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
 
+/-- P97 ATail FrontierCommonDeletionEscape theorem. -/
 private theorem blocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {q : ℝ²} (hq : q ∈ A) :

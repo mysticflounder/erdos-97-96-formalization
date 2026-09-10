@@ -22,6 +22,7 @@ two-hit branch row to the exact mixed overlap `{J, x}` with `x` outside the cap.
 The extra `Kb`/membership/two-hit inputs below are deliberately explicit: the
 current endpoint leaf does not yet produce them.
 -/
+/-- Indexed scratch Lean theorem. -/
 theorem audit_exactMixedOverlap_left_of_suppliedBranchRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -67,6 +68,7 @@ theorem audit_exactMixedOverlap_left_of_suppliedBranchRow
   exact SelectedFourClass.exact_overlap_of_cap_singleton
     Q.row Kb hAb hcap (Finset.mem_inter.mpr ⟨Q.J_mem_row, hJb⟩) htwo
 
+/-- Indexed scratch Lean theorem. -/
 theorem audit_exactMixedOverlap_right_of_suppliedBranchRow
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -115,6 +117,7 @@ theorem audit_exactMixedOverlap_right_of_suppliedBranchRow
 /- The stronger fact in the current source: the shared-blocker shell itself is
 the branch row, and the second shared point is already the named endpoint `C`.
 -/
+/-- Indexed scratch Lean theorem. -/
 theorem audit_live_exactMixedOverlap_left
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -159,6 +162,7 @@ theorem audit_live_exactMixedOverlap_left
   simpa [KB, CriticalFourShell.toSelectedFourClass, Finset.inter_comm,
     Finset.pair_comm] using hinter
 
+/-- Indexed scratch Lean theorem. -/
 theorem audit_live_exactMixedOverlap_right
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

@@ -208,15 +208,18 @@ def labelOfHullFin : Fin 10 → Label
   | ⟨9, _⟩ => .Pu
   | ⟨n + 10, h⟩ => by omega
 
+/-- P97 SurplusCOMPGBankSep theorem. -/
 @[simp] theorem labelOfHullFin_hullFin (label : Label) :
     labelOfHullFin (hullFin label) = label := by
   cases label <;> rfl
 
+/-- P97 SurplusCOMPGBankSep theorem. -/
 @[simp] theorem hullFin_labelOfHullFin (i : Fin 10) :
     hullFin (labelOfHullFin i) = i := by
   rcases i with ⟨i, hi⟩
   interval_cases i <;> rfl
 
+/-- P97 SurplusCOMPGBankSep theorem. -/
 @[simp] theorem hullFin_inj {a b : Label} :
     hullFin a = hullFin b ↔ a = b := by
   constructor

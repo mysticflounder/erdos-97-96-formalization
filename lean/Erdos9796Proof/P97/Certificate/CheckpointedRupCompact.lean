@@ -72,22 +72,28 @@ namespace Problem97.CheckpointedRup.CompactIngress
 
 open Problem97.CheckpointedRup
 
+/-- P97 Certificate def. -/
 private def maxUInt32 : Nat := 4294967295
 
+/-- P97 Certificate def. -/
 private def maxVarUInt : Nat := 18446744073709551615
 
+/-- P97 Certificate def. -/
 private def varUIntModulus : Nat := 18446744073709551616
 
+/-- P97 Certificate def. -/
 private def byteAt? (bytes : ByteArray) (index : Nat) : Option Nat :=
   if h : index < bytes.size then
     some (bytes.get index h).toNat
   else
     none
 
+/-- P97 Certificate def. -/
 private def ascii85DigitAt? (bytes : ByteArray) (index : Nat) : Option Nat := do
   let value ← byteAt? bytes index
   if value < 33 ∨ 117 < value then none else some (value - 33)
 
+/-- P97 Certificate def. -/
 private def ascii85Digit (word position : Nat) : Nat :=
   let divisor :=
     match position with
@@ -98,6 +104,7 @@ private def ascii85Digit (word position : Nat) : Nat :=
     | _ => 1
   word / divisor % 85
 
+/-- P97 Certificate def. -/
 private def canonicalPartialWord (word groupLength : Nat) : Nat :=
   let first := word / 16777216
   let second := word / 65536 % 256
@@ -108,6 +115,7 @@ private def canonicalPartialWord (word groupLength : Nat) : Nat :=
   | 4 => first * 16777216 + second * 65536 + third * 256
   | _ => word
 
+/-- P97 Certificate def. -/
 private def partialGroupIsCanonical
     (word groupLength d0 d1 d2 d3 : Nat) : Bool :=
   let canonical := canonicalPartialWord word groupLength
@@ -126,6 +134,7 @@ private def partialGroupIsCanonical
         d3 == ascii85Digit canonical 3
   | _ => true
 
+/-- P97 Certificate def. -/
 private def pushWordPrefix (output : ByteArray) (word groupLength : Nat) : ByteArray :=
   let output := output.push (UInt8.ofNat (word / 16777216))
   if groupLength = 2 then
@@ -138,6 +147,7 @@ private def pushWordPrefix (output : ByteArray) (word groupLength : Nat) : ByteA
       let output := output.push (UInt8.ofNat (word / 256 % 256))
       if groupLength = 4 then output else output.push (UInt8.ofNat (word % 256))
 
+/-- P97 Certificate def. -/
 private def decodeAscii85Group (input : ByteArray) (position groupLength : Nat)
     (output : ByteArray) : Option ByteArray := do
   let d0 ← ascii85DigitAt? input position
@@ -154,6 +164,7 @@ private def decodeAscii85Group (input : ByteArray) (position groupLength : Nat)
   else
     some (pushWordPrefix output word groupLength)
 
+/-- P97 Certificate def. -/
 private def decodeAscii85Aux (input : ByteArray) (position : Nat) :
     Nat → ByteArray → Option ByteArray
   | 0, _ => none
@@ -182,13 +193,16 @@ def decodeAscii85 (text : String) : Option ByteArray :=
   let input := text.toUTF8
   decodeAscii85Aux input 0 (input.size / 5 + 1) ByteArray.empty
 
+/-- P97 Certificate structure. -/
 private structure Cursor where
   bytes : ByteArray
   position : Nat
 
+/-- P97 Certificate def. -/
 private def Cursor.atEnd (cursor : Cursor) : Bool :=
   cursor.position == cursor.bytes.size
 
+/-- P97 Certificate def. -/
 private def Cursor.readByte (cursor : Cursor) : Option (UInt8 × Cursor) :=
   if h : cursor.position < cursor.bytes.size then
     some (cursor.bytes.get cursor.position h,
@@ -196,12 +210,14 @@ private def Cursor.readByte (cursor : Cursor) : Option (UInt8 × Cursor) :=
   else
     none
 
+/-- P97 Certificate def. -/
 private def Cursor.readExpected : Cursor → List Nat → Option Cursor
   | cursor, [] => some cursor
   | cursor, expected :: rest => do
       let (byte, next) ← cursor.readByte
       if byte.toNat = expected then next.readExpected rest else none
 
+/-- P97 Certificate def. -/
 private def readVarUIntAux :
     Nat → Nat → Nat → Nat → Cursor → Option (Nat × Cursor)
   | 0, _, _, _, _ => none
@@ -217,6 +233,7 @@ private def readVarUIntAux :
       else
         readVarUIntAux fuel (used + 1) (multiplier * 128) candidate next
 
+/-- P97 Certificate def. -/
 private def Cursor.readVarUInt (cursor : Cursor) : Option (Nat × Cursor) :=
   readVarUIntAux 10 0 1 0 cursor
 
@@ -228,12 +245,14 @@ def decodeVarUInt (bytes : ByteArray) : Option Nat := do
   let (value, cursor) ← Cursor.readVarUInt { bytes, position := 0 }
   if cursor.atEnd then some value else none
 
+/-- P97 Certificate def. -/
 private def zigZagValue (value : Nat) : Int :=
   if value % 2 = 0 then
     Int.ofNat (value / 2)
   else
     -(Int.ofNat (value / 2)) - 1
 
+/-- P97 Certificate def. -/
 private def Cursor.readZigZag (cursor : Cursor) : Option (Int × Cursor) := do
   let (value, next) ← cursor.readVarUInt
   some (zigZagValue value, next)
@@ -246,6 +265,7 @@ def decodeZigZag (bytes : ByteArray) : Option Int := do
   let (value, cursor) ← Cursor.readVarUInt { bytes, position := 0 }
   if cursor.atEnd then some (zigZagValue value) else none
 
+/-- P97 Certificate theorem. -/
 private theorem pairwiseVariable_nodupkey {n : Nat}
     {literals : List (Literal (PosFin n))}
     (h : List.Pairwise (fun a b => a.1 ≠ b.1) literals) :
@@ -284,6 +304,7 @@ private theorem pairwiseVariable_nodupkey {n : Nat}
             exact hv (congrArg Prod.fst heq).symm
           simp [hhead, hneg]
 
+/-- P97 Certificate theorem. -/
 private theorem pairwiseVariable_nodup {n : Nat}
     {literals : List (Literal (PosFin n))}
     (h : List.Pairwise (fun a b => a.1 ≠ b.1) literals) :
@@ -291,6 +312,7 @@ private theorem pairwiseVariable_nodup {n : Nat}
   rw [List.nodup_iff_pairwise_ne]
   exact h.imp (fun hab heq => hab (congrArg Prod.fst heq))
 
+/-- P97 Certificate def. -/
 private def Cursor.readLiteral {n : Nat} (cursor : Cursor) :
     Option (Literal (PosFin n) × Cursor) := do
   let (signed, next) ← cursor.readZigZag
@@ -304,6 +326,7 @@ private def Cursor.readLiteral {n : Nat} (cursor : Cursor) :
   else
     none
 
+/-- P97 Certificate def. -/
 private def readLiteralsAux {n : Nat} :
     Nat → Cursor → List (Literal (PosFin n)) →
       Option (List (Literal (PosFin n)) × Cursor)
@@ -312,6 +335,7 @@ private def readLiteralsAux {n : Nat} :
       let (literal, next) ← cursor.readLiteral
       readLiteralsAux count next (literal :: reversed)
 
+/-- P97 Certificate def. -/
 private def Cursor.readClause {n : Nat} (cursor : Cursor) :
     Option (DefaultClause n × Cursor) := do
   let (literalCount, afterCount) ← cursor.readVarUInt
@@ -325,6 +349,7 @@ private def Cursor.readClause {n : Nat} (cursor : Cursor) :
   else
     none
 
+/-- P97 Certificate def. -/
 private def readClausesAux {n : Nat} :
     Nat → Cursor → Array (Option (DefaultClause n)) →
       Option (Array (Option (DefaultClause n)) × Cursor)
@@ -333,6 +358,7 @@ private def readClausesAux {n : Nat} :
       let (clause, next) ← cursor.readClause
       readClausesAux count next (clauses.push (some clause))
 
+/-- P97 Certificate def. -/
 private def parseFormulaBytes {n : Nat} (bytes : ByteArray) :
     Option (Array (Option (DefaultClause n))) := do
   let cursor ← (Cursor.mk bytes 0).readExpected [67, 80, 70, 49]
@@ -353,10 +379,12 @@ def parseFormula {n : Nat} (text : String) :
   let bytes ← decodeAscii85 text
   parseFormulaBytes bytes
 
+/-- P97 Certificate def. -/
 private def readPositiveVarUInt (cursor : Cursor) : Option (Nat × Cursor) := do
   let (value, next) ← cursor.readVarUInt
   if value = 0 then none else some (value, next)
 
+/-- P97 Certificate def. -/
 private def readPositiveArrayAux :
     Nat → Cursor → Array Nat → Option (Array Nat × Cursor)
   | 0, cursor, values => some (values, cursor)
@@ -364,6 +392,7 @@ private def readPositiveArrayAux :
       let (value, next) ← readPositiveVarUInt cursor
       readPositiveArrayAux count next (values.push value)
 
+/-- P97 Certificate def. -/
 private def Cursor.readAction {n : Nat} (cursor : Cursor) :
     Option (Action n × Bool × Cursor) := do
   let (tag, afterTag) ← cursor.readByte
@@ -379,6 +408,7 @@ private def Cursor.readAction {n : Nat} (cursor : Cursor) :
       some (.del ids, false, next)
   | _ => none
 
+/-- P97 Certificate def. -/
 private def readActionsAux {n : Nat} :
     Nat → Nat → Cursor → List (Action n) →
       Option (List (Action n) × Nat × Cursor)
@@ -402,6 +432,7 @@ structure ParsedActions (n : Nat) where
   actions : List (Action n)
   nextAdditionId : Nat
 
+/-- P97 Certificate def. -/
 private def parseActionsBytes {n : Nat} (firstAdditionId : Nat) (bytes : ByteArray) :
     Option (ParsedActions n) := do
   if varUIntModulus ≤ firstAdditionId then

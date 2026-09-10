@@ -19,6 +19,7 @@ open ATAILStageOneMinimalDeletionCore
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 theorem exists_canonicalSingletonGlobalDeletionOutcome
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius radiusρ : ℝ} {H : CriticalShellSystem D.A}

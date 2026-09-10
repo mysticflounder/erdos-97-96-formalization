@@ -15,17 +15,20 @@ interior residual.  It does not contain metric certificates.
 namespace Problem97
 namespace ErasedPinCountRows
 
+/-- P97 ErasedPinCountRows inductive. -/
 inductive Side where
   | right
   | left
   deriving DecidableEq, BEq, Repr
 
+/-- P97 ErasedPinCountRows inductive. -/
 inductive Route where
   | leftRightSubpacket
   | sameSideHeavy
   | oneSidedTerminal
   deriving DecidableEq, BEq, Repr
 
+/-- P97 ErasedPinCountRows structure. -/
 structure Row where
   id : String
   side : Side
@@ -35,9 +38,11 @@ structure Row where
   r : Nat
   deriving Repr
 
+/-- P97 ErasedPinCountRows def. -/
 def Row.supportNeeded (row : Row) : Nat :=
   (row.s - 1) + (row.l - 2) + (row.r - 2)
 
+/-- P97 ErasedPinCountRows def. -/
 def Row.valid (row : Row) : Bool :=
   decide (row.m + row.s + row.l + row.r = 4) &&
     decide (row.m <= 2) &&
@@ -46,6 +51,7 @@ def Row.valid (row : Row) : Bool :=
     | .right => decide (1 <= row.r)
     | .left => decide (1 <= row.l)
 
+/-- P97 ErasedPinCountRows def. -/
 def Row.route (row : Row) : Route :=
   if 0 < row.l && 0 < row.r then
     .leftRightSubpacket
@@ -58,9 +64,11 @@ def Row.route (row : Row) : Route :=
   else
     .sameSideHeavy
 
+/-- P97 ErasedPinCountRows def. -/
 def routeCount (route : Route) (rows : List Row) : Nat :=
   rows.foldl (fun acc row => if row.route == route then acc + 1 else acc) 0
 
+/-- P97 ErasedPinCountRows def. -/
 def rightRows : List Row :=
   [
     { id := "ep_right_m0_s0_l3_r1", side := .right, m := 0, s := 0, l := 3, r := 1 },
@@ -80,6 +88,7 @@ def rightRows : List Row :=
     { id := "ep_right_m2_s1_l0_r1", side := .right, m := 2, s := 1, l := 0, r := 1 }
   ]
 
+/-- P97 ErasedPinCountRows def. -/
 def leftRows : List Row :=
   [
     { id := "ep_left_m0_s0_l1_r3", side := .left, m := 0, s := 0, l := 1, r := 3 },
@@ -99,34 +108,44 @@ def leftRows : List Row :=
     { id := "ep_left_m2_s1_l1_r0", side := .left, m := 2, s := 1, l := 1, r := 0 }
   ]
 
+/-- P97 ErasedPinCountRows def. -/
 def rows : List Row := rightRows ++ leftRows
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem rightRows_length : rightRows.length = 15 := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem leftRows_length : leftRows.length = 15 := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem rows_length : rows.length = 30 := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem rightRows_all_valid : rightRows.all Row.valid = true := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem leftRows_all_valid : leftRows.all Row.valid = true := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem rows_all_valid : rows.all Row.valid = true := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem leftRightSubpacket_count :
     routeCount .leftRightSubpacket rows = 18 := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem sameSideHeavy_count :
     routeCount .sameSideHeavy rows = 10 := by
   native_decide
 
+/-- P97 ErasedPinCountRows theorem. -/
 theorem oneSidedTerminal_count :
     routeCount .oneSidedTerminal rows = 2 := by
   native_decide

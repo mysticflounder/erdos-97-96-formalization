@@ -46,6 +46,7 @@ def zeroAtom1232 : WeightedSourceOccurrence :=
       terms := [{ quad := ⟨6, 8, 14, 15⟩, form := .adjacentSides, weight := 1 }],
       pairings := [{ left := (6, 8), right := (8, 15), path := ⟨(6, 8), [.row 6 8 7, .flip 6 7, .row 7 6 16, .flip 7 16, .row 16 7 15, .flip 16 15, .row 15 16 8, .flip 15 8], (8, 15)⟩ }, { left := (14, 15), right := (6, 14), path := ⟨(14, 15), [.row 14 15 6, .flip 14 6], (6, 14)⟩ }] } }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem zeroAtom1232_check : zeroAtom1232.check = true := by
   native_decide
 
@@ -61,6 +62,7 @@ def zeroAtom2271 : WeightedSourceOccurrence :=
       terms := [{ quad := ⟨2, 7, 12, 14⟩, form := .innerOuter, weight := 1 }],
       pairings := [{ left := (7, 12), right := (7, 14), path := ⟨(7, 12), [.flip 7 12, .row 12 7 3, .flip 12 3, .row 3 12 15, .flip 3 15, .row 15 3 16, .flip 15 16, .row 16 15 7, .flip 16 7, .row 7 16 14], (7, 14)⟩ }, { left := (2, 14), right := (2, 12), path := ⟨(2, 14), [.row 2 14 12], (2, 12)⟩ }] } }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem zeroAtom2271_check : zeroAtom2271.check = true := by
   native_decide
 
@@ -76,6 +78,7 @@ def zeroAtom3458 : WeightedSourceOccurrence :=
       terms := [{ quad := ⟨7, 8, 10, 12⟩, form := .adjacentSides, weight := 1 }],
       pairings := [{ left := (7, 8), right := (8, 12), path := ⟨(7, 8), [.flip 7 8, .row 8 7 12], (8, 12)⟩ }, { left := (10, 12), right := (7, 10), path := ⟨(10, 12), [.flip 10 12, .row 12 10 3, .flip 12 3, .row 3 12 15, .flip 3 15, .row 15 3 16, .flip 15 16, .row 16 15 7, .flip 16 7, .row 7 16 10], (7, 10)⟩ }] } }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem zeroAtom3458_check : zeroAtom3458.check = true := by
   native_decide
 
@@ -91,31 +94,38 @@ def zeroAtom3459 : WeightedSourceOccurrence :=
       terms := [{ quad := ⟨7, 8, 10, 12⟩, form := .innerOuter, weight := 1 }],
       pairings := [{ left := (8, 10), right := (8, 12), path := ⟨(8, 10), [.row 8 10 12], (8, 12)⟩ }, { left := (7, 12), right := (7, 10), path := ⟨(7, 12), [.flip 7 12, .row 12 7 3, .flip 12 3, .row 3 12 15, .flip 3 15, .row 15 3 16, .flip 15 16, .row 16 15 7, .flip 16 7, .row 7 16 10], (7, 10)⟩ }] } }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem zeroAtom3459_check : zeroAtom3459.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas def. -/
 def fortyNinthZeroAtomWeightedOccurrences : List WeightedSourceOccurrence :=
   [zeroAtom1232, zeroAtom2271, zeroAtom3458, zeroAtom3459]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem fortyNinthZeroAtomWeightedOccurrences_length :
     fortyNinthZeroAtomWeightedOccurrences.length = 4 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem fortyNinthZeroAtomWeightedOccurrences_check :
     ∀ occurrence ∈ fortyNinthZeroAtomWeightedOccurrences,
       occurrence.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas def. -/
 def fortyNinthZeroAtomSchemaClauses : Std.Sat.CNF Atom :=
   fortyNinthZeroAtomWeightedOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>
         weightedOccurrenceClause order direction occurrence
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem fortyNinthZeroAtomSchemaClauses_length :
     fortyNinthZeroAtomSchemaClauses.length = 16 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthZeroAtomSchemas theorem. -/
 theorem sourceAssign_fortyNinthZeroAtomSchemaClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthZeroAtomSchemaClauses,

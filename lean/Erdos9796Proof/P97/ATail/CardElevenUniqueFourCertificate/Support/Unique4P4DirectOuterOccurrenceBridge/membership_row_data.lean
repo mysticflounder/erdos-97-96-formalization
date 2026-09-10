@@ -18,6 +18,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 
 namespace Problem97.P4DirectMembershipRowOccurrenceBridgeScratch
 
+/-- P97 ATail support def. -/
 def membershipRowOccurrences : List MembershipRowOccurrence :=
   membershipRowOccurrencesChunk000 ++
   membershipRowOccurrencesChunk001 ++

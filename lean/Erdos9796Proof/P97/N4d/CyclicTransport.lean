@@ -45,6 +45,7 @@ private theorem cyclicShift_hCirc {A : Finset ℝ²} (S : FiniteEndpointShell A)
   obtain ⟨h12, h23, h13, _⟩ := S.hCirc
   exact ⟨h23, h13.symm, h12.symm, rfl⟩
 
+/-- P97 N4d theorem. -/
 private theorem not_mem_verts_of_not_mem_cyclicShift_verts
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {v : ℝ²}
     (hv : v ∉ ((cyclicShiftMT S).toMoserTriangle.toStructural
@@ -146,6 +147,7 @@ private theorem cyclicShift3_hCirc {A : Finset ℝ²} (S : FiniteEndpointShell A
   obtain ⟨h12, h23, h13, _⟩ := S.hCirc
   exact ⟨h13.symm, h12, h23.symm, rfl⟩
 
+/-- P97 N4d theorem. -/
 private theorem not_mem_verts_of_not_mem_cyclicShift3_verts
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {v : ℝ²}
     (hv : v ∉ ((cyclicShift3MT S).toMoserTriangle.toStructural
@@ -244,66 +246,82 @@ theorem cyclicShift3_witnessClassAt_v1 {A : Finset ℝ²}
     (S.cyclicShift3).witnessClassAt_v1 r = S.witnessClassAt_v3 r := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_I1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).I1 = S.I2 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_I2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).I2 = S.I3 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_I3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).I3 = S.I1 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_I1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).I1 = S.I3 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_I2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).I2 = S.I1 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_I3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).I3 = S.I2 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_CP_C1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).CP.C1 = S.CP.C2 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_CP_C2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).CP.C2 = S.CP.C3 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_CP_C3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).CP.C3 = S.CP.C1 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_CP_C1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).CP.C1 = S.CP.C3 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_CP_C2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).CP.C2 = S.CP.C1 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_CP_C3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).CP.C3 = S.CP.C2 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_triangle_v2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).triangle.v2 = S.triangle.v3 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift_triangle_v3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift).triangle.v3 = S.triangle.v1 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_triangle_v2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).triangle.v2 = S.triangle.v1 := by
   rfl
 
+/-- P97 N4d theorem. -/
 theorem cyclicShift3_triangle_v3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     (S.cyclicShift3).triangle.v3 = S.triangle.v2 := by
   rfl

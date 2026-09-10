@@ -17,16 +17,19 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenCocircularPentagonOrderSatRefinementPromotion
 open ATailBlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementPromotion def. -/
 def extendedCocircularOrderConvexFiveRefinementCnf : Std.Sat.CNF Atom :=
   extendedCocircularOrderSatRefinementCnf ++
     cocircularOrderConvexFiveRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementPromotion theorem. -/
 theorem extendedCocircularOrderConvexFiveRefinementCnf_length :
     extendedCocircularOrderConvexFiveRefinementCnf.length = 7198861 := by
   simp only [extendedCocircularOrderConvexFiveRefinementCnf,
     List.length_append, extendedCocircularOrderSatRefinementCnf_length,
     cocircularOrderConvexFiveRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementPromotion theorem. -/
 theorem sourceAssign_extendedCocircularOrderConvexFiveRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (horder : source.model.order = 0) :
@@ -43,6 +46,7 @@ theorem sourceAssign_extendedCocircularOrderConvexFiveRefinementCnf
   · exact sourceAssign_cocircularOrderConvexFiveRefinementClauses source clause
       hsuffix
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementPromotion theorem. -/
 theorem false_of_sourceRealization_of_extendedCocircularOrderConvexFiveRefinementCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)

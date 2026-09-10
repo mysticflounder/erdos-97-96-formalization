@@ -15,6 +15,7 @@ open ATailRetainedMatchingEndpointCollisionLocalization
 open Census554
 open Census554.GeneralCarrierBridge
 
+/-- Indexed scratch Lean theorem. -/
 theorem probe_sharedBlocker_mixed_packet
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

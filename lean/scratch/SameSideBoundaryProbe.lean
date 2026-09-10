@@ -15,6 +15,7 @@ open ATailRetainedMatchingEndpointCollisionLocalization
 open Census554
 open Census554.GeneralCarrierBridge
 
+/-- Indexed scratch Lean theorem. -/
 theorem probe_terminal_signatures_force_alternation
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -42,6 +43,7 @@ theorem probe_terminal_signatures_force_alternation
 
 /- A same-side assertion has the same two centers and points, but is not
 derivable: combined with the forced alternation it is contradictory. -/
+/-- Indexed scratch Lean theorem. -/
 theorem probe_same_side_would_be_inconsistent
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

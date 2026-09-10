@@ -17,14 +17,17 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenFortyNinthWaveV3ZeroAtomPromotion
 open ATailBlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion def. -/
 def fortyNinthWaveV4ThreeZeroAtomPromotionClauses : Std.Sat.CNF Atom :=
   fortyNinthWaveV4ThreeZeroAtomSchemaClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion theorem. -/
 theorem fortyNinthWaveV4ThreeZeroAtomPromotionClauses_length :
     fortyNinthWaveV4ThreeZeroAtomPromotionClauses.length = 12 := by
   simpa [fortyNinthWaveV4ThreeZeroAtomPromotionClauses] using
     fortyNinthWaveV4ThreeZeroAtomSchemaClauses_length
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion theorem. -/
 theorem sourceAssign_fortyNinthWaveV4ThreeZeroAtomPromotionClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV4ThreeZeroAtomPromotionClauses,
@@ -32,16 +35,19 @@ theorem sourceAssign_fortyNinthWaveV4ThreeZeroAtomPromotionClauses
   simpa [fortyNinthWaveV4ThreeZeroAtomPromotionClauses] using
     sourceAssign_fortyNinthWaveV4ThreeZeroAtomSchemaClauses source
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion def. -/
 def extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf : Std.Sat.CNF Atom :=
   extendedFortyNinthWaveV3ZeroAtomPromotionCnf ++
     fortyNinthWaveV4ThreeZeroAtomPromotionClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion theorem. -/
 theorem extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf_length :
     extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf.length = 7198720 := by
   simp only [extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf, List.length_append,
     extendedFortyNinthWaveV3ZeroAtomPromotionCnf_length,
     fortyNinthWaveV4ThreeZeroAtomPromotionClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion theorem. -/
 theorem sourceAssign_extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -55,6 +61,7 @@ theorem sourceAssign_extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf
     exact h clause hparent
   · exact sourceAssign_fortyNinthWaveV4ThreeZeroAtomPromotionClauses source clause hsubset
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

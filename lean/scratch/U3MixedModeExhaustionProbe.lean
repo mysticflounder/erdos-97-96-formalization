@@ -4,32 +4,40 @@ namespace Problem97.U3MixedFiniteExtraction
 
 open Problem97 U5AuditLabel
 
+/-- Indexed scratch Lean def. -/
 def maskSupport (m : Fin 256) : Finset U5AuditLabel :=
   labels.toFinset.filter (fun x => has m.val x)
 
 set_option maxRecDepth 100000 in
+/-- Indexed scratch Lean theorem. -/
 theorem labelMask_lt_256 (L : Finset U5AuditLabel) : labelMask L < 256 := by
   decide +revert
 
+/-- Indexed scratch Lean def. -/
 def supportMask (L : Finset U5AuditLabel) : Fin 256 :=
   ⟨labelMask L, labelMask_lt_256 L⟩
 
 set_option maxRecDepth 100000 in
+/-- Indexed scratch Lean theorem. -/
 theorem maskSupport_supportMask (L : Finset U5AuditLabel) :
     maskSupport (supportMask L) = L := by
   decide +revert
 
+/-- Indexed scratch Lean def. -/
 def allMasks : List (Fin 256) := List.finRange 256
 
+/-- Indexed scratch Lean def. -/
 def shellMasks (center : U5AuditLabel) : List (Fin 256) :=
   allMasks.filter fun m =>
     let B := maskSupport m
     decide (B.card = 4) && decide (q ∈ B) && decide (center ∉ B) &&
       decide ((B ∩ dangerousCircleLabels).card ≤ 2)
 
+/-- Indexed scratch Lean def. -/
 def overlapBool (B C : Finset U5AuditLabel) : Bool :=
   decide ((B ∩ C).card ≤ 2)
 
+/-- Indexed scratch Lean def. -/
 def shellPatternOK
     (Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset U5AuditLabel) : Bool :=
   decide ((Bt1 ∩ Bt2).card ≤ 2) &&
@@ -68,6 +76,7 @@ def shellPatternOK
   decide ¬ (p ∈ Bt3 ∧ p ∈ Ba0 ∧ p ∈ Ba1) &&
   decide ¬ (p ∈ Bu ∧ p ∈ Ba0 ∧ p ∈ Ba1)
 
+/-- Indexed scratch Lean def. -/
 def shellPatternExists : Bool :=
   (shellMasks t1).any fun mt1 =>
     (shellMasks t2).any fun mt2 =>
@@ -82,17 +91,25 @@ def shellPatternExists : Bool :=
 set_option maxHeartbeats 10000000 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- Indexed scratch Lean theorem. -/
 theorem shellPatternExists_false : shellPatternExists = false := by
   native_decide
 
+/-- Indexed scratch Lean def. -/
 def ct1 : MixedCenter := ⟨t1, by simp [centers]⟩
+/-- Indexed scratch Lean def. -/
 def ct2 : MixedCenter := ⟨t2, by simp [centers]⟩
+/-- Indexed scratch Lean def. -/
 def ct3 : MixedCenter := ⟨t3, by simp [centers]⟩
+/-- Indexed scratch Lean def. -/
 def cu : MixedCenter := ⟨u, by simp [centers]⟩
+/-- Indexed scratch Lean def. -/
 def ca0 : MixedCenter := ⟨a0, by simp [centers]⟩
+/-- Indexed scratch Lean def. -/
 def ca1 : MixedCenter := ⟨a1, by simp [centers]⟩
 
 set_option maxRecDepth 100000 in
+/-- Indexed scratch Lean theorem. -/
 theorem exists_qDeleted_mode_of_mixedSixRowPatternWithDangerousCircle
     (P : MixedSixRowPatternWithDangerousCircle)
     (hall : ∀ c : MixedCenter, (P.row c).mode = .criticalFourShell) :

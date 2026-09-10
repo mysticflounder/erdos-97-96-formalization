@@ -33,6 +33,7 @@ namespace EndpointCertificate
 
 namespace Variables
 
+/-- P97 EndpointCertificate def. -/
 private def ep_Q2_020_row : ShadowBank.EndpointRow :=
   ShadowBank.endpointRowsQ2.get (Fin.mk 20 (by decide))
 

@@ -41,6 +41,7 @@ def parameterBindingBool (dense : Nat) (parameters : AtomParameters) : Bool :=
   | some binding => decide (binding.parameters = parameters)
   | none => false
 
+/-- P97 ATail support def. -/
 def ParameterBinding (dense : Nat) (parameters : AtomParameters) : Prop :=
   parameterBindingBool dense parameters = true
 
@@ -58,10 +59,12 @@ theorem directVal_of_parameterBinding
       have hparameters : binding.parameters = parameters := of_decide_eq_true h
       simp [directVal, hlookup, hparameters]
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem asLabel_val (point : Label) : asLabel point.val = point := by
   apply Fin.ext
   simp [asLabel]
 
+/-- P97 ATail support theorem. -/
 theorem radiusVariable_parameterBinding
     (center left right : Label) (hleftRight : left < right)
     (hleftCenter : left ≠ center) (hrightCenter : right ≠ center) :
@@ -78,11 +81,13 @@ theorem radiusVariable_parameterBinding
     | exact (not_lt_of_ge (by decide) hleftRight).elim
     | native_decide
 
+/-- P97 ATail support theorem. -/
 theorem classVariable_parameterBinding (point : Label) :
     ParameterBinding (classVariable point) (.firstApexClass point.val) := by
   change parameterBindingBool (classVariable point) (.firstApexClass point.val) = true
   fin_cases point <;> native_decide
 
+/-- P97 ATail support theorem. -/
 theorem blockerVariable_parameterBinding (source center : Label)
     (hsmall : blockerVariable source center < 10000) :
     ParameterBinding (blockerVariable source center)
@@ -94,6 +99,7 @@ theorem blockerVariable_parameterBinding (source center : Label)
     | exact (not_lt_of_ge (by decide) hsmall).elim
     | native_decide
 
+/-- P97 ATail support theorem. -/
 theorem supportVariable_parameterBinding (source point : Label)
     (hsmall : supportVariable source point < 10000) :
     ParameterBinding (supportVariable source point)
@@ -118,23 +124,28 @@ def directTotalVal (Q : DirectSource R profile distribution) (dense : Nat) : Pro
     criticalSupportVal Q.packet.core directIndex
       (asLabel ((dense - 20000) / 11)) (asLabel ((dense - 20000) % 11))
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_of_lt
     (Q : DirectSource R profile distribution) {dense : Nat} (hsmall : dense < 10000) :
     directTotalVal Q dense ↔ directVal Q dense := by
   simp [directTotalVal, hsmall]
 
+/-- P97 ATail support theorem. -/
 theorem rowVariable_lt_10000 (center point : Label) :
     rowVariable center point < 10000 := by
   fin_cases center <;> fin_cases point <;> native_decide
 
+/-- P97 ATail support theorem. -/
 theorem radiusVariable_lt_10000 (center left right : Label) :
     radiusVariable center left right < 10000 := by
   fin_cases center <;> fin_cases left <;> fin_cases right <;> native_decide
 
+/-- P97 ATail support theorem. -/
 theorem classVariable_lt_10000 (point : Label) :
     classVariable point < 10000 := by
   fin_cases point <;> native_decide
 
+/-- P97 ATail support theorem. -/
 theorem directVal_radiusVariable_iff_radiusEq
     (Q : DirectSource R profile distribution)
     (center left right : Label) (hleftRight : left < right)
@@ -145,6 +156,7 @@ theorem directVal_radiusVariable_iff_radiusEq
     (radiusVariable_parameterBinding center left right hleftRight hleftCenter hrightCenter)]
   simp [AtomParameters.interpret, directAdapter, directIndex]
 
+/-- P97 ATail support theorem. -/
 theorem directVal_classVariable_iff_classHit
     (Q : DirectSource R profile distribution) (point : Label) :
     directVal Q (classVariable point) ↔
@@ -152,6 +164,7 @@ theorem directVal_classVariable_iff_classHit
   rw [directVal_of_parameterBinding Q (classVariable_parameterBinding point)]
   simp [AtomParameters.interpret, directAdapter, directIndex]
 
+/-- P97 ATail support theorem. -/
 theorem directVal_blockerVariable_iff_blockerVal
     (Q : DirectSource R profile distribution) (source center : Label)
     (hsmall : blockerVariable source center < 10000) :
@@ -161,6 +174,7 @@ theorem directVal_blockerVariable_iff_blockerVal
     (blockerVariable_parameterBinding source center hsmall)]
   simp [AtomParameters.interpret, directAdapter, directIndex]
 
+/-- P97 ATail support theorem. -/
 theorem directVal_supportVariable_iff_criticalSupportVal
     (Q : DirectSource R profile distribution) (source point : Label)
     (hsmall : supportVariable source point < 10000) :

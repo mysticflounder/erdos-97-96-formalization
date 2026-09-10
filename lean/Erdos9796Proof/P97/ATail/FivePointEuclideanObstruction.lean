@@ -29,6 +29,7 @@ namespace FivePointEuclideanObstruction
 
 open Census554.EqualityCore
 
+/-- P97 ATail FivePointEuclideanObstruction theorem. -/
 private theorem row_identity
     (U X Y H wx wu xnorm : ℝ)
     (hlag : U * xnorm = X ^ 2 + Y ^ 2)
@@ -38,6 +39,7 @@ private theorem row_identity
     X ^ 2 + Y ^ 2 = U * X + 2 * H * Y := by
   linear_combination -hlag - U * hcx + 2 * hdot + X * hcu
 
+/-- P97 ATail FivePointEuclideanObstruction theorem. -/
 private theorem orientation_formula
     (U X Y H O wu : ℝ)
     (hraw : U * O = wu * Y - H * X + U * H - U * Y)
@@ -45,6 +47,7 @@ private theorem orientation_formula
     2 * U * O = 2 * H * (U - X) - U * Y := by
   linear_combination 2 * hraw + Y * hcu
 
+/-- P97 ATail FivePointEuclideanObstruction theorem. -/
 private theorem key_identity
     (U X Y H O : ℝ)
     (hrow : X ^ 2 + Y ^ 2 = U * X + 2 * H * Y)
@@ -52,6 +55,7 @@ private theorem key_identity
     2 * U * Y * O = -X * ((X - U) ^ 2 + Y ^ 2) := by
   linear_combination Y * hO - (U - X) * hrow
 
+/-- P97 ATail FivePointEuclideanObstruction theorem. -/
 private theorem second_key_identity
     (U X Y H M N O : ℝ)
     (hcircleC : 2 * M * X + 2 * N * Y = X ^ 2 + Y ^ 2)
@@ -68,6 +72,7 @@ private theorem second_key_identity
     2 * (4 * H ^ 2 - 4 * H * Y + U ^ 2 - 2 * U * X) * hcircleC +
     (-2 * H * Y - U * X + 2 * X ^ 2 + 2 * Y ^ 2) * hcircleE
 
+/-- P97 ATail FivePointEuclideanObstruction theorem. -/
 private theorem second_algebraic_core
     (U X Y H M N O : ℝ)
     (hU : 0 < U)

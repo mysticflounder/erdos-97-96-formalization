@@ -35,6 +35,7 @@ noncomputable def selectedFourRowPattern
   fun center => Finset.univ.filter fun point =>
     boundary point ∈ (rows center).support
 
+/-- P97 ATail SelectedFourClassWeightedKalmansonIngress theorem. -/
 @[simp] theorem mem_selectedFourRowPattern
     {A : Finset ℝ²} {n : ℕ} (boundary : Fin n → ℝ²)
     (rows : ∀ center, SelectedFourClass A (boundary center))

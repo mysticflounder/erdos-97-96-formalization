@@ -27,12 +27,15 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement def. -/
 def canonicalHits : List Hit :=
   [(0, 13), (0, 16), (3, 15), (3, 16), (7, 13), (7, 15)]
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement def. -/
 def canonicalOccurrence : CancellationOccurrence :=
   { hits := canonicalHits
     forwardChoices := [{ center := 0, support := {13, 16} },
@@ -62,16 +65,20 @@ def canonicalOccurrence : CancellationOccurrence :=
       path2 := ⟨(3, 9), [.flip 3 9, .row 9 3 1, .flip 9 1], (1, 9)⟩
       path3 := ⟨(1, 13), [.flip 1 13, .row 13 1 0, .flip 13 0], (0, 13)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement theorem. -/
 theorem canonicalOccurrence_check :
     canonicalOccurrence.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement def. -/
 def canonicalClauses : Std.Sat.CNF Atom :=
   occurrenceClauses canonicalHits
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement theorem. -/
 theorem canonicalClauses_length : canonicalClauses.length = 4 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement theorem. -/
 theorem sourceAssign_canonicalClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ canonicalClauses,

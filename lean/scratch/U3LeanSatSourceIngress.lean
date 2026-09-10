@@ -16,17 +16,21 @@ namespace Problem97
 
 /- ## Canonical finite indexing of a carrier -/
 
+/-- Indexed scratch Lean def. -/
 noncomputable def carrierPoint (A : Finset ℝ²) : Fin A.card → ℝ² :=
   fun i => ((Finset.equivFinOfCardEq rfl).symm i).1
 
+/-- Indexed scratch Lean def. -/
 noncomputable def carrierIndex {A : Finset ℝ²} (x : ℝ²) (hx : x ∈ A) :
     Fin A.card :=
   Finset.equivFinOfCardEq rfl ⟨x, hx⟩
 
+/-- Indexed scratch Lean theorem. -/
 theorem carrierPoint_index {A : Finset ℝ²} {x : ℝ²} (hx : x ∈ A) :
     carrierPoint A (carrierIndex x hx) = x := by
   simp [carrierPoint, carrierIndex]
 
+/-- Indexed scratch Lean theorem. -/
 theorem carrierIndex_injective {A : Finset ℝ²} {x y : ℝ²}
     (hx : x ∈ A) (hy : y ∈ A)
     (hxy : carrierIndex x hx = carrierIndex y hy) : x = y := by
@@ -35,10 +39,12 @@ theorem carrierIndex_injective {A : Finset ℝ²} {x y : ℝ²}
     _ = carrierPoint A (carrierIndex y hy) := congrArg (carrierPoint A) hxy
     _ = y := carrierPoint_index hy
 
+/-- Indexed scratch Lean def. -/
 noncomputable def indexSet (A S : Finset ℝ²) (hS : S ⊆ A) :
     Finset (Fin A.card) :=
   S.attach.image (fun y => carrierIndex y.1 (hS y.2))
 
+/-- Indexed scratch Lean theorem. -/
 theorem indexSet_card {A S : Finset ℝ²} (hS : S ⊆ A) :
     (indexSet A S hS).card = S.card := by
   classical
@@ -52,6 +58,7 @@ theorem indexSet_card {A S : Finset ℝ²} (hS : S ⊆ A) :
     (Finset.card_image_of_injective S.attach hf).trans
       Finset.card_attach
 
+/-- Indexed scratch Lean theorem. -/
 theorem mem_indexSet_of_mem {A S : Finset ℝ²} (hS : S ⊆ A)
   {x : ℝ²} (hx : x ∈ A) (hxs : x ∈ S) :
     carrierIndex x hx ∈ indexSet A S hS := by
@@ -61,6 +68,7 @@ theorem mem_indexSet_of_mem {A S : Finset ℝ²} (hS : S ⊆ A)
   · simp
   · rfl
 
+/-- Indexed scratch Lean theorem. -/
 theorem mem_of_mem_indexSet {A S : Finset ℝ²} (hS : S ⊆ A)
     {x : ℝ²} (hx : x ∈ A)
     (hxi : carrierIndex x hx ∈ indexSet A S hS) : x ∈ S := by
@@ -70,6 +78,7 @@ theorem mem_of_mem_indexSet {A S : Finset ℝ²} (hS : S ⊆ A)
     carrierIndex_injective (hS hyS) hx hxy
   simpa [hpoint] using hyS
 
+/-- Indexed scratch Lean theorem. -/
 theorem mem_indexSet_iff {A S : Finset ℝ²} (hS : S ⊆ A)
     {i : Fin A.card} :
     i ∈ indexSet A S hS ↔ carrierPoint A i ∈ S := by
@@ -89,6 +98,7 @@ theorem mem_indexSet_iff {A S : Finset ℝ²} (hS : S ⊆ A)
       simp [carrierIndex, carrierPoint]
     simpa [hidx] using mem_indexSet_of_mem hS hA hi
 
+/-- Indexed scratch Lean theorem. -/
 private theorem indexSet_inter_eq
     {A S T : Finset ℝ²} (hS : S ⊆ A) (hT : T ⊆ A) :
     indexSet A (S ∩ T) (by intro y hy; exact hS (Finset.mem_inter.mp hy).1) =
@@ -99,6 +109,7 @@ private theorem indexSet_inter_eq
     mem_indexSet_iff hS, mem_indexSet_iff hT]
   simp only [Finset.mem_inter]
 
+/-- Indexed scratch Lean theorem. -/
 private theorem indexSet_sdiff_eq
     {A S T : Finset ℝ²} (hS : S ⊆ A) (hT : T ⊆ A) :
     indexSet A (S \ T) (by intro y hy; exact hS (Finset.mem_sdiff.mp hy).1) =
@@ -109,11 +120,13 @@ private theorem indexSet_sdiff_eq
     mem_indexSet_iff hS, mem_indexSet_iff hT]
   simp only [Finset.mem_sdiff]
 
+/-- Indexed scratch Lean theorem. -/
 private theorem indexSet_inter_card
     {A S T : Finset ℝ²} (hS : S ⊆ A) (hT : T ⊆ A) :
     (indexSet A S hS ∩ indexSet A T hT).card = (S ∩ T).card := by
   rw [← indexSet_inter_eq hS hT, indexSet_card]
 
+/-- Indexed scratch Lean theorem. -/
 private theorem indexSet_sdiff_card
     {A S T : Finset ℝ²} (hS : S ⊆ A) (hT : T ⊆ A) :
     (indexSet A S hS \ indexSet A T hT).card = (S \ T).card := by
@@ -121,6 +134,7 @@ private theorem indexSet_sdiff_card
 
 /- ## The finite row payload -/
 
+/-- Indexed scratch Lean inductive. -/
 inductive U3FiniteEscapeRow (n : ℕ) (q : Fin n) where
   | qDeleted (support : Finset (Fin n))
       (support_card : support.card = 4)
@@ -131,10 +145,12 @@ inductive U3FiniteEscapeRow (n : ℕ) (q : Fin n) where
 
 namespace U3FiniteEscapeRow
 
+/-- Indexed scratch Lean def. -/
 def support {n : ℕ} {q : Fin n} : U3FiniteEscapeRow n q → Finset (Fin n)
   | .qDeleted B _ _ => B
   | .criticalShell K _ _ => K
 
+/-- Indexed scratch Lean theorem. -/
 theorem support_card {n : ℕ} {q : Fin n}
     (R : U3FiniteEscapeRow n q) : R.support.card = 4 := by
   cases R <;> simp [support, *]
@@ -173,6 +189,7 @@ structure U3FiniteEscapePacket (A : Finset ℝ²) where
 
 /- The critical-shell arm has no escaping point in the source packet, so it
 has a separate finite record rather than an invented optional witness. -/
+/-- Indexed scratch Lean structure. -/
 structure U3FiniteCriticalShellPacket (A : Finset ℝ²) where
   point : Fin A.card → ℝ²
   point_injective : Function.Injective point
@@ -199,15 +216,18 @@ structure U3FiniteCriticalShellPacket (A : Finset ℝ²) where
 
 namespace U3FiniteEscapePacket
 
+/-- Indexed scratch Lean def. -/
 noncomputable def dangerousSet (A : Finset ℝ²) (q p t1 t2 t3 : ℝ²)
     (h : insert q ({t1, t2, t3} : Finset ℝ²) ⊆ A) :
     Finset (Fin A.card) :=
   indexSet A (insert q ({t1, t2, t3} : Finset ℝ²)) h
 
+/-- Indexed scratch Lean def. -/
 noncomputable def exactRadiusSet (A : Finset ℝ²) (S : Finset ℝ²)
     (hS : S ⊆ A) : Finset (Fin A.card) :=
   indexSet A S hS
 
+/-- Indexed scratch Lean def. -/
 noncomputable def boundedSet (A : Finset ℝ²) (S : Finset ℝ²)
     (hS : S ⊆ A) : Finset (Fin A.card) :=
   indexSet A S hS
@@ -216,10 +236,12 @@ end U3FiniteEscapePacket
 
 /- ## Source extraction helpers -/
 
+/-- Indexed scratch Lean theorem. -/
 private theorem mem_A_of_mem_skeleton {D : CounterexampleData} {q x : ℝ²}
     (hx : x ∈ D.skeleton q) : x ∈ D.A := by
   simpa [CounterexampleData.skeleton] using (Finset.mem_of_mem_erase hx)
 
+/-- Indexed scratch Lean theorem. -/
 private theorem dangerous_subset_A
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (H : U3FixedTripleAuditFrame D q p t1 t2 t3) :
@@ -235,6 +257,7 @@ private theorem dangerous_subset_A
   · exact mem_A_of_mem_skeleton (Finset.mem_erase.mp
       (H.dangerous.T_subset (by simp))).2
 
+/-- Indexed scratch Lean theorem. -/
 private theorem bounded_subset_A
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (H : U3FixedTripleAuditFrame D q p t1 t2 t3) :
@@ -254,6 +277,7 @@ private theorem bounded_subset_A
   · exact mem_A_of_mem_skeleton (Finset.mem_erase.mp
       (H.dangerous.T_subset (by simp))).2
 
+/-- Indexed scratch Lean theorem. -/
 private theorem exact_radius_subset_A
     {D : CounterexampleData} {q p : ℝ²} :
     ((D.skeleton q).erase p).filter (fun y => dist p y = dist p q) ⊆ D.A := by
@@ -263,6 +287,7 @@ private theorem exact_radius_subset_A
 
 /- ## q-deleted source arm -/
 
+/-- Indexed scratch Lean theorem. -/
 theorem U3FixedTripleAuditFrame.toFiniteQDeletedEscapePacket
     {D : CounterexampleData} {q p t1 t2 t3 x z : ℝ²}
     {B : Finset ℝ²}
@@ -396,6 +421,7 @@ theorem U3FixedTripleAuditFrame.toFiniteQDeletedEscapePacket
     z_mem_row := hzrow
     z_not_mem_bounded := hzbounded }⟩
 
+/-- Indexed scratch Lean theorem. -/
 theorem U3FixedTripleAuditFrame.toFiniteCriticalShellPacket
     {D : CounterexampleData} {q p t1 t2 t3 x : ℝ²}
     (H : U3FixedTripleAuditFrame D q p t1 t2 t3)

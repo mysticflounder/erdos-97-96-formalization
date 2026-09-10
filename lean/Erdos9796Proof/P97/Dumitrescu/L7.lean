@@ -127,6 +127,7 @@ noncomputable def crossCapEdges
   (A.powersetCard 2).filter
     (fun uv => ¬ uv ⊆ CP.C1 ∧ ¬ uv ⊆ CP.C2 ∧ ¬ uv ⊆ CP.C3)
 
+/-- P97 Dumitrescu lemma. -/
 lemma mem_crossCapEdges_iff
     {A : Finset ℝ²} {M : Problem97.MoserTriangle A}
     {CP : Problem97.CapTriple A M} {uv : Finset ℝ²} :
@@ -135,6 +136,7 @@ lemma mem_crossCapEdges_iff
   rw [Finset.mem_filter, Finset.mem_powersetCard]
   tauto
 
+/-- P97 Dumitrescu lemma. -/
 lemma crossCapEdges_subset_powersetCard
     {A : Finset ℝ²} {M : Problem97.MoserTriangle A}
     (CP : Problem97.CapTriple A M) :

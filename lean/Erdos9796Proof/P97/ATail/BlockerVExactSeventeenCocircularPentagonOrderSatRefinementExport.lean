@@ -13,6 +13,7 @@ namespace ATailBlockerVExactSeventeenCocircularPentagonOrderSatRefinementExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenCocircularPentagonOrderSatRefinementPromotion
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementExport def. -/
 def extendedCocircularOrderSatRefinementDimacsString : String :=
   let dimacs := extendedCocircularOrderSatRefinementCnf.map fun clause =>
     clause.map litToDimacs
@@ -22,6 +23,7 @@ def extendedCocircularOrderSatRefinementDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -34,5 +36,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenCocircularPentagonOrderSatRefinementExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenCocircularPentagonOrderSatRefinementExport.run args

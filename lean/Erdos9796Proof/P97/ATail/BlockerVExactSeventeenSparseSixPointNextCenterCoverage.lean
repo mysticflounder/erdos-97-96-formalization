@@ -30,6 +30,7 @@ def sparseSixPointNextCenterCellCnf (center : Label) : Std.Sat.CNF Atom :=
   extendedCocircularOrderSparseSixPointFullBankCnf ++
     sparseSixPointNextCenterUnitCnf center
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterCoverage theorem. -/
 theorem sparseSixPointNextCenterCellCnf_length (center : Label) :
     (sparseSixPointNextCenterCellCnf center).length = 7409254 := by
   simp [sparseSixPointNextCenterCellCnf, sparseSixPointNextCenterUnitCnf,

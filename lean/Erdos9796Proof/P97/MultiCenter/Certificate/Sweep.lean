@@ -389,6 +389,7 @@ def rows : List SweepRow :=
     sourceArtifactCount := 1 }
 ]
 
+/-- P97 MultiCenter theorem. -/
 private theorem list_all_eq_true_of_mem
     {α : Type _} {p : α → Bool} {a : α} :
     ∀ {items : List α}, items.all p = true → a ∈ items → p a = true
@@ -401,12 +402,15 @@ private theorem list_all_eq_true_of_mem
       · exact hall.1
       · exact list_all_eq_true_of_mem hall.2 htail
 
+/-- P97 MultiCenter def. -/
 def allRowsMetadataOK : Bool :=
   rows.all SweepRow.metadataOK
 
+/-- P97 MultiCenter def. -/
 def rowsHaveSources : Bool :=
   rows.all (fun row => decide (0 < row.sourceArtifactCount))
 
+/-- P97 MultiCenter def. -/
 def stableFromPreviousNs : List Nat :=
   (rows.filter (fun row => row.stableFromPrevious)).map SweepRow.n
 

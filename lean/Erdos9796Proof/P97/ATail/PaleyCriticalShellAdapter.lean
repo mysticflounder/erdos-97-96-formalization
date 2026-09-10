@@ -24,32 +24,38 @@ open Census554.CirclePowerMatrix
 open ATailCriticalShellLift
 open PaleyDeterminantNormalization
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem columns_pointFeature_eq_liftedFour (a b c d : ℝ²) :
     columns (pointFeature a) (pointFeature b) (pointFeature c) (pointFeature d) =
       liftedFour a b c d := by
   ext i j
   fin_cases i <;> fin_cases j <;> rfl
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem updateCol_zero_columns (a b c d x : Vec4) :
     (columns a b c d).updateCol 0 x = columns x b c d := by
   ext i j
   fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem updateCol_one_columns (a b c d x : Vec4) :
     (columns a b c d).updateCol 1 x = columns a x c d := by
   ext i j
   fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem updateCol_two_columns (a b c d x : Vec4) :
     (columns a b c d).updateCol 2 x = columns a b x d := by
   ext i j
   fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem updateCol_three_columns (a b c d x : Vec4) :
     (columns a b c d).updateCol 3 x = columns a b c x := by
   ext i j
   fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem det_columns_swap_zero_one_ne_zero
     (a b c d : Vec4) (h : (columns a b c d).det ≠ 0) :
     (columns b a c d).det ≠ 0 := by
@@ -63,6 +69,7 @@ private theorem det_columns_swap_zero_one_ne_zero
   rw [hperm]
   simpa [Equiv.Perm.sign_swap (by decide : (0 : Fin 4) ≠ 1)] using h
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem det_columns_swap_one_two_ne_zero
     (a b c d : Vec4) (h : (columns a b c d).det ≠ 0) :
     (columns a c b d).det ≠ 0 := by
@@ -82,6 +89,7 @@ private theorem det_columns_swap_one_two_ne_zero
   rw [hperm]
   simpa [Equiv.Perm.sign_swap (by decide : (1 : Fin 4) ≠ 2)] using h
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem det_columns_swap_two_three_ne_zero
     (a b c d : Vec4) (h : (columns a b c d).det ≠ 0) :
     (columns a b d c).det ≠ 0 := by
@@ -101,6 +109,7 @@ private theorem det_columns_swap_two_three_ne_zero
   rw [hperm]
   simpa [Equiv.Perm.sign_swap (by decide : (2 : Fin 4) ≠ 3)] using h
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem det_columns_rotate_right_ne_zero
     (a b c d : Vec4) (h : (columns a b c d).det ≠ 0) :
     (columns d a b c).det ≠ 0 := by
@@ -110,6 +119,7 @@ private theorem det_columns_rotate_right_ne_zero
     det_columns_swap_one_two_ne_zero a b d c h₁
   exact det_columns_swap_zero_one_ne_zero a d b c h₂
 
+/-- P97 ATail PaleyCriticalShellAdapter theorem. -/
 private theorem det_columns_reorder_0153_ne_zero
     (v₀ v₁ v₃ v₅ : Vec4) (h : (columns v₁ v₃ v₅ v₀).det ≠ 0) :
     (columns v₀ v₁ v₅ v₃).det ≠ 0 := by

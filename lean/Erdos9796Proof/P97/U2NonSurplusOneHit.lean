@@ -29,6 +29,7 @@ namespace U2NonSurplusSqueeze
 
 noncomputable section
 
+/-- P97 U2NonSurplusOneHit def. -/
 private def triangle231 (D : CounterexampleData) : MoserTriangle D.A := {
   v1 := D.packet.triangle.v2
   v2 := D.packet.triangle.v3
@@ -41,6 +42,7 @@ private def triangle231 (D : CounterexampleData) : MoserTriangle D.A := {
   v23_ne := Ne.symm D.packet.triangle.v13_ne
 }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private def triangle312 (D : CounterexampleData) : MoserTriangle D.A := {
   v1 := D.packet.triangle.v3
   v2 := D.packet.triangle.v1
@@ -53,10 +55,12 @@ private def triangle312 (D : CounterexampleData) : MoserTriangle D.A := {
   v23_ne := D.packet.triangle.v12_ne
 }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private def baseMecPacket (D : CounterexampleData) :
     CircumscribedMECPacket D.A D.packet.triangle :=
   CircumscribedMECPacket.ofNonObtuse D.packet.triangleNonObtuse D.packet.hCirc
 
+/-- P97 U2NonSurplusOneHit def. -/
 private def mecPacket231 (D : CounterexampleData) :
     CircumscribedMECPacket D.A (triangle231 D) := {
   center := (baseMecPacket D).center
@@ -77,6 +81,7 @@ private def mecPacket231 (D : CounterexampleData) :
   disk_contains_A := (baseMecPacket D).disk_contains_A
 }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private def mecPacket312 (D : CounterexampleData) :
     CircumscribedMECPacket D.A (triangle312 D) := {
   center := (baseMecPacket D).center
@@ -97,6 +102,7 @@ private def mecPacket312 (D : CounterexampleData) :
   disk_contains_A := (baseMecPacket D).disk_contains_A
 }
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem endpointSwap_arc {A C : Finset ℝ²} {M : MoserTriangle A}
     (hC_arc : ∀ x ∈ A, x ∈ C ↔ OnArcOpposite M.v1 M.v2 M.v3 x) :
     ∀ x ∈ A, x ∈ C ↔ OnArcOpposite M.v1 M.v3 M.v2 x := by
@@ -111,6 +117,7 @@ private theorem endpointSwap_arc {A C : Finset ℝ²} {M : MoserTriangle A}
     simp [signedArea2]
   rw [hx, hM, neg_mul_neg]
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem onArcOpposite_swap_chord (vi vj vk v : ℝ²) :
     OnArcOpposite vi vj vk v ↔ OnArcOpposite vi vk vj v := by
   unfold OnArcOpposite
@@ -120,6 +127,7 @@ private theorem onArcOpposite_swap_chord (vi vj vk v : ℝ²) :
     simp [signedArea2]
   rw [hv, hi, neg_mul_neg]
 
+/-- P97 U2NonSurplusOneHit def. -/
 private def endpointSwapMecPacket {A : Finset ℝ²} {M : MoserTriangle A}
     (P : CircumscribedMECPacket A M) :
     CircumscribedMECPacket A ({
@@ -148,6 +156,7 @@ private def endpointSwapMecPacket {A : Finset ℝ²} {M : MoserTriangle A}
   disk_contains_A := P.disk_contains_A
 }
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem exactRadius_inter_supportCap_at_v2_card_le_one
     {A C : Finset ℝ²} {M : MoserTriangle A}
     (hA : ConvexIndep A)
@@ -174,6 +183,7 @@ private theorem exactRadius_inter_supportCap_at_v2_card_le_one
   exact FiniteEndpoint.one_hit_sameRadius_at_v2_of_supportCap
     hA hnoncoll hC_subset hC_arc hv_mem hw_mem P hacute hsub hrad
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem exactRadius_inter_supportCap_at_v3_card_le_one
     {A C : Finset ℝ²} {M : MoserTriangle A}
     (hA : ConvexIndep A)
@@ -469,6 +479,7 @@ theorem oppApex2_squeeze_of_isM44 (D : CounterexampleData) (r : ℝ)
     (oppApex2_otherCap_one_hit D r)
     hK4
 
+/-- P97 U2NonSurplusOneHit lemma. -/
 private lemma eq_of_mem_of_mem_card_eq_one {α : Type _}
     {S : Finset α} {a b : α} (ha : a ∈ S) (hb : b ∈ S)
     (hcard : S.card = 1) : a = b := by
@@ -560,17 +571,20 @@ theorem oppApex2_containment_of_adjacent_hits (D : CounterexampleData) (r : ℝ)
     simpa [hxt] using htOpp
   · exact hxInterior.1
 
+/-- P97 U2NonSurplusOneHit def. -/
 private def surplusApexLocal (D : CounterexampleData) : ℝ² :=
   match D.packet.surplusIdx with
   | ⟨0, _⟩ => D.packet.triangle.v1
   | ⟨1, _⟩ => D.packet.triangle.v2
   | _ => D.packet.triangle.v3
 
+/-- P97 U2NonSurplusOneHit lemma. -/
 private lemma mem_moserVerts_cases {A : Finset ℝ²} {M : MoserTriangle A}
     {x : ℝ²} (hx : x ∈ M.verts) :
     x = M.v1 ∨ x = M.v2 ∨ x = M.v3 := by
   simpa [MoserTriangle.verts] using hx
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem center_not_mem_large_exactRadiusClass
     (A : Finset ℝ²) (p : ℝ²) (r : ℝ)
     (hK4 : 4 ≤ (A.filter (fun x => dist x p = r)).card) :
@@ -589,6 +603,7 @@ private theorem center_not_mem_large_exactRadiusClass
     exact (Finset.card_le_card hsub).trans (by simp)
   omega
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem oppCap1_subset_A (D : CounterexampleData) :
     D.packet.oppCap1 ⊆ D.A := by
   set CP := D.packet.partition
@@ -598,6 +613,7 @@ private theorem oppCap1_subset_A (D : CounterexampleData) :
   · simpa only [CP, SurplusCapPacket.oppCap1, hi] using CP.C3_subset
   · simpa [CP, SurplusCapPacket.oppCap1, hi] using CP.C1_subset
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem oppCap2_subset_A (D : CounterexampleData) :
     D.packet.oppCap2 ⊆ D.A := by
   set CP := D.packet.partition
@@ -607,6 +623,7 @@ private theorem oppCap2_subset_A (D : CounterexampleData) :
   · simpa only [CP, SurplusCapPacket.oppCap2, hi] using CP.C1_subset
   · simpa [CP, SurplusCapPacket.oppCap2, hi] using CP.C2_subset
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem oppApex2_mem_oppCap1 (D : CounterexampleData) :
     D.packet.oppApex2 ∈ D.packet.oppCap1 := by
   set CP := D.packet.partition
@@ -619,6 +636,7 @@ private theorem oppApex2_mem_oppCap1 (D : CounterexampleData) :
   · simpa [CP, SurplusCapPacket.oppCap1, SurplusCapPacket.oppApex2, hi] using
       CP.v2_mem_C1
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem oppApex2_mem_surplusCap (D : CounterexampleData) :
     D.packet.oppApex2 ∈ D.packet.surplusCap := by
   set CP := D.packet.partition
@@ -631,6 +649,7 @@ private theorem oppApex2_mem_surplusCap (D : CounterexampleData) :
   · simpa [CP, SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex2, hi] using
       CP.v2_mem_C3
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem oppApex1_mem_oppCap2 (D : CounterexampleData) :
     D.packet.oppApex1 ∈ D.packet.oppCap2 := by
   set CP := D.packet.partition
@@ -643,6 +662,7 @@ private theorem oppApex1_mem_oppCap2 (D : CounterexampleData) :
   · simpa [CP, SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi] using
       CP.v1_mem_C2
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem oppApex1_mem_surplusCap (D : CounterexampleData) :
     D.packet.oppApex1 ∈ D.packet.surplusCap := by
   set CP := D.packet.partition
@@ -827,6 +847,7 @@ theorem oppApex2_filter_subset_oppCap2_of_endpointRadius
     have hxC2 : x ∈ CP.C2 := ((CP.arc_membership x hxA).2.1).mpr hArc
     simpa [CP, SurplusCapPacket.oppCap2, hi] using hxC2
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem surplus_inter_oppCap2_subset_oppApex1 (D : CounterexampleData) :
     D.packet.surplusCap ∩ D.packet.oppCap2 ⊆
       ({D.packet.oppApex1} : Finset ℝ²) := by
@@ -1093,6 +1114,7 @@ theorem oppApex2_containment_or_strict_adjacent_escape
             D r hK4 hxT hxOther hxNotOpp2)⟩
     · exact False.elim (hxNotOpp2 hxInterior.1)
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem surplusApexLocal_mem_oppCap1 (D : CounterexampleData) :
     surplusApexLocal D ∈ D.packet.oppCap1 := by
   set CP := D.packet.partition
@@ -1105,6 +1127,7 @@ private theorem surplusApexLocal_mem_oppCap1 (D : CounterexampleData) :
   · simpa [surplusApexLocal, CP, SurplusCapPacket.oppCap1, hi] using
       CP.v3_mem_C1
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem surplusApexLocal_mem_oppCap2 (D : CounterexampleData) :
     surplusApexLocal D ∈ D.packet.oppCap2 := by
   set CP := D.packet.partition
@@ -1420,6 +1443,7 @@ def NoStrictAdjacentEscapeAtOppApex2 (D : CounterexampleData) : Prop :=
     4 ≤ (D.A.filter (fun x => dist x D.packet.oppApex2 = r)).card →
       ¬ StrictAdjacentEscapeAtOppApex2 D r
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def swap23NonObtuse {A : Finset ℝ²} (S : SurplusCapPacket A) :
     MEC.NonObtuseCircumscribedMoserTriangle A S.hA S.hncol := {
   toMoserTriangle := {
@@ -1442,6 +1466,7 @@ private noncomputable def swap23NonObtuse {A : Finset ℝ²} (S : SurplusCapPack
   inner_at_v3 := by
     simpa [real_inner_comm] using S.triangleNonObtuse.inner_at_v2 }
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem swap23_hCirc {A : Finset ℝ²} (S : SurplusCapPacket A) :
     ∃ h12 h23 h13,
       (swap23NonObtuse S).toMoserTriangle.case_split =
@@ -1449,6 +1474,7 @@ private theorem swap23_hCirc {A : Finset ℝ²} (S : SurplusCapPacket A) :
   obtain ⟨h12, h23, h13, _⟩ := S.hCirc
   exact ⟨h13, h23.symm, h12, rfl⟩
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def swap13NonObtuse {A : Finset ℝ²} (S : SurplusCapPacket A) :
     MEC.NonObtuseCircumscribedMoserTriangle A S.hA S.hncol := {
   toMoserTriangle := {
@@ -1471,6 +1497,7 @@ private noncomputable def swap13NonObtuse {A : Finset ℝ²} (S : SurplusCapPack
   inner_at_v3 := by
     simpa [real_inner_comm] using S.triangleNonObtuse.inner_at_v1 }
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem swap13_hCirc {A : Finset ℝ²} (S : SurplusCapPacket A) :
     ∃ h12 h23 h13,
       (swap13NonObtuse S).toMoserTriangle.case_split =
@@ -1478,6 +1505,7 @@ private theorem swap13_hCirc {A : Finset ℝ²} (S : SurplusCapPacket A) :
   obtain ⟨h12, h23, h13, _⟩ := S.hCirc
   exact ⟨h23.symm, h12.symm, h13.symm, rfl⟩
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def swap12NonObtuse {A : Finset ℝ²} (S : SurplusCapPacket A) :
     MEC.NonObtuseCircumscribedMoserTriangle A S.hA S.hncol := {
   toMoserTriangle := {
@@ -1500,6 +1528,7 @@ private noncomputable def swap12NonObtuse {A : Finset ℝ²} (S : SurplusCapPack
   inner_at_v3 := by
     simpa [real_inner_comm] using S.triangleNonObtuse.inner_at_v3 }
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem swap12_hCirc {A : Finset ℝ²} (S : SurplusCapPacket A) :
     ∃ h12 h23 h13,
       (swap12NonObtuse S).toMoserTriangle.case_split =
@@ -1507,6 +1536,7 @@ private theorem swap12_hCirc {A : Finset ℝ²} (S : SurplusCapPacket A) :
   obtain ⟨h12, h23, h13, _⟩ := S.hCirc
   exact ⟨h12.symm, h13, h23, rfl⟩
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem not_mem_verts_swap23 {A : Finset ℝ²} (S : SurplusCapPacket A)
     {v : ℝ²}
     (hv : v ∉ ((swap23NonObtuse S).toMoserTriangle.toStructural
@@ -1520,6 +1550,7 @@ private theorem not_mem_verts_swap23 {A : Finset ℝ²} (S : SurplusCapPacket A)
   · exact Or.inr (Or.inr h)
   · exact Or.inr (Or.inl h)
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem not_mem_verts_swap13 {A : Finset ℝ²} (S : SurplusCapPacket A)
     {v : ℝ²}
     (hv : v ∉ ((swap13NonObtuse S).toMoserTriangle.toStructural
@@ -1533,6 +1564,7 @@ private theorem not_mem_verts_swap13 {A : Finset ℝ²} (S : SurplusCapPacket A)
   · exact Or.inr (Or.inl h)
   · exact Or.inl h
 
+/-- P97 U2NonSurplusOneHit theorem. -/
 private theorem not_mem_verts_swap12 {A : Finset ℝ²} (S : SurplusCapPacket A)
     {v : ℝ²}
     (hv : v ∉ ((swap12NonObtuse S).toMoserTriangle.toStructural
@@ -1546,6 +1578,7 @@ private theorem not_mem_verts_swap12 {A : Finset ℝ²} (S : SurplusCapPacket A)
   · exact Or.inl h
   · exact Or.inr (Or.inr h)
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def swap23Partition {A : Finset ℝ²} (S : SurplusCapPacket A) :
     CapTriple A ((swap23NonObtuse S).toMoserTriangle.toStructural
       (swap23_hCirc S)) := {
@@ -1581,6 +1614,7 @@ private noncomputable def swap23Partition {A : Finset ℝ²} (S : SurplusCapPack
       by
         exact (h.2.1.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def swap13Partition {A : Finset ℝ²} (S : SurplusCapPacket A) :
     CapTriple A ((swap13NonObtuse S).toMoserTriangle.toStructural
       (swap13_hCirc S)) := {
@@ -1616,6 +1650,7 @@ private noncomputable def swap13Partition {A : Finset ℝ²} (S : SurplusCapPack
       by
         exact (h.1.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def swap12Partition {A : Finset ℝ²} (S : SurplusCapPacket A) :
     CapTriple A ((swap12NonObtuse S).toMoserTriangle.toStructural
       (swap12_hCirc S)) := {
@@ -1651,6 +1686,7 @@ private noncomputable def swap12Partition {A : Finset ℝ²} (S : SurplusCapPack
       by
         exact (h.2.2.trans (onArcOpposite_swap_chord _ _ _ _))⟩ }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def fixedSurplusSwapPacket0 (D : CounterexampleData)
     (hidx : D.packet.surplusIdx = (⟨0, by decide⟩ : Fin 3)) :
     SurplusCapPacket D.A := {
@@ -1665,6 +1701,7 @@ private noncomputable def fixedSurplusSwapPacket0 (D : CounterexampleData)
     rw [hidx] at h
     simpa only [swap23Partition] using h }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def fixedSurplusSwapPacket1 (D : CounterexampleData)
     (hidx : D.packet.surplusIdx = (⟨1, by decide⟩ : Fin 3)) :
     SurplusCapPacket D.A := {
@@ -1679,6 +1716,7 @@ private noncomputable def fixedSurplusSwapPacket1 (D : CounterexampleData)
     rw [hidx] at h
     simpa only [swap13Partition] using h }
 
+/-- P97 U2NonSurplusOneHit def. -/
 private noncomputable def fixedSurplusSwapPacket2 (D : CounterexampleData)
     (hidx : D.packet.surplusIdx = (⟨2, by decide⟩ : Fin 3)) :
     SurplusCapPacket D.A := {

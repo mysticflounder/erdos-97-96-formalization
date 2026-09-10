@@ -50,18 +50,21 @@ noncomputable def StrictApexFourFamily.support
     (W : StrictApexFourFamily A S) : Finset ℝ² :=
   Finset.univ.biUnion (fun i => W.supportAt i)
 
+/-- P97 ATail TriApexFourWitness theorem. -/
 theorem StrictApexFourFamily.mem_support_iff
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (W : StrictApexFourFamily A S) {x : ℝ²} :
     x ∈ W.support ↔ ∃ i : Fin 3, x ∈ W.supportAt i := by
   simp [StrictApexFourFamily.support]
 
+/-- P97 ATail TriApexFourWitness theorem. -/
 theorem StrictApexFourFamily.supportAt_subset_capInterior
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (W : StrictApexFourFamily A S) (i : Fin 3) :
     W.supportAt i ⊆ S.capInteriorByIndex i := by
   exact (W i).support_subset_capInterior
 
+/-- P97 ATail TriApexFourWitness theorem. -/
 theorem StrictApexFourFamily.support_pairwise_disjoint
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (W : StrictApexFourFamily A S) :
@@ -76,6 +79,7 @@ theorem StrictApexFourFamily.support_pairwise_disjoint
     (S.capInteriorByIndex_subset_capByIndex j
       (W.supportAt_subset_capInterior j hxj))
 
+/-- P97 ATail TriApexFourWitness theorem. -/
 theorem StrictApexFourFamily.support_card_eq_twelve
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (W : StrictApexFourFamily A S) : W.support.card = 12 := by
@@ -85,6 +89,7 @@ theorem StrictApexFourFamily.support_card_eq_twelve
     (W i).support_card_eq_four
   simp [hcard]
 
+/-- P97 ATail TriApexFourWitness theorem. -/
 theorem StrictApexFourFamily.exists_index_mem_supportAt
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (W : StrictApexFourFamily A S) {x : ℝ²}
@@ -107,6 +112,7 @@ theorem StrictApexFourFamily.four_le_card_support_sdiff_two
   have htotal : W.support.card = 12 := W.support_card_eq_twelve
   omega
 
+/-- P97 ATail TriApexFourWitness theorem. -/
 theorem StrictApexFourFamily.exists_index_mem_supportAt_of_mem_sdiff_two
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (W : StrictApexFourFamily A S) {K₁ K₂ : Finset ℝ²} {x : ℝ²}

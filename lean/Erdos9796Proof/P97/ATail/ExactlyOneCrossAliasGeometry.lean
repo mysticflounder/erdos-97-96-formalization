@@ -25,6 +25,7 @@ namespace ColoredPaleyOneCrossAlias
 
 open Problem97.ColoredPaleyThreeFanOrderMetric
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry abbrev. -/
 abbrev oneCrossEqualities {φ : ThreeFanPos → ℝ²}
     (x b c y z : ThreeFanPos) : Prop :=
   dist (φ x) (φ 0) = dist (φ x) (φ b) ∧
@@ -59,6 +60,7 @@ abbrev oneCrossAliasOrderOrbit (x b c y d z : ThreeFanPos) : Prop :=
       (threeFanOneCrossOrder₁ z c d x y ∨
         threeFanOneCrossOrder₂ z c d x y)))
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem oneCrossEqualities_of_xd
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : oneCrossAliasEqualities (φ := φ) x b c y d z)
@@ -66,6 +68,7 @@ private theorem oneCrossEqualities_of_xd
   rcases h with ⟨h₁, h₂, h₃, h₄, h₅, h₆⟩
   exact ⟨h₁, h₂, h₃, by simpa [hxd] using h₄, h₅, by simpa [hxd] using h₆⟩
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem oneCrossEqualities_of_yc
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : oneCrossAliasEqualities (φ := φ) x b c y d z)
@@ -75,6 +78,7 @@ private theorem oneCrossEqualities_of_yc
   exact ⟨h₃, h₄, h₁, by simpa [hyc] using h₂, h₅.trans h₆,
     by simpa [hyc] using h₆.symm⟩
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem oneCrossEqualities_of_zb
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : oneCrossAliasEqualities (φ := φ) x b c y d z)
@@ -84,6 +88,7 @@ private theorem oneCrossEqualities_of_zb
   exact ⟨h₅, h₆, h₁.trans h₂, by simpa [hzb] using h₂.symm,
     h₃.trans h₄, by simpa [hzb] using h₄.symm⟩
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem reflection_coordinates_at_origin
     {ax ay yx yy bx byc : ℝ}
     (hr_pos : 0 < yx ^ 2 + yy ^ 2)
@@ -170,6 +175,7 @@ private theorem reflection_coordinates_at_origin
             (yx ^ 2 + yy ^ 2) * ay := by ring
 
 set_option maxHeartbeats 1000000 in
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem false_of_normalized_one_cross_alias
     {A B C Y : ℝ²}
     (hOA_OB : dist (pt 0 0) A = dist (pt 0 0) B)
@@ -439,6 +445,7 @@ private theorem false_of_normalized_one_cross_alias
   exact Census554.EqualityCore.false_of_threeFan_one_cross_alias_order_scalar
     hbase hh_pos ha_lt_one hy_pos hu_lt_one hy_before_mid hY_eq hAYB_pos
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem false_of_one_cross_alias_order₁_oriented
     {A B C Y O I : ℝ²}
     (hOI_ne : O ≠ I)
@@ -539,6 +546,7 @@ theorem false_of_threeFan_one_cross_alias_order₁
   · exact hneg_of_ccw hinj hccw h0y hyb
   · exact hAOB0
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem signedArea2_pos_of_ccw_swap_last
     {n : ℕ} {φ : Fin n → ℝ²}
     (hinj : Function.Injective φ)
@@ -553,6 +561,7 @@ private theorem signedArea2_pos_of_ccw_swap_last
   rw [hswap]
   linarith
 
+/-- P97 ATail ExactlyOneCrossAliasGeometry theorem. -/
 private theorem signedArea2_pos_of_ccw_descending
     {n : ℕ} {φ : Fin n → ℝ²}
     (hinj : Function.Injective φ)

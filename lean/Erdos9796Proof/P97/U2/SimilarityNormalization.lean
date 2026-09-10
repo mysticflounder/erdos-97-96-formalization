@@ -63,6 +63,7 @@ chord (`signedArea2 v vⱼ vₖ ≠ 0`).  This is the reusable interior-centre p
 def OnArcInterior (vi vj vk v : ℝ²) : Prop :=
   OnArcOpposite vi vj vk v ∧ signedArea2 v vj vk ≠ 0
 
+/-- P97 U2 theorem. -/
 theorem OnArcInterior.onArcOpposite {vi vj vk v : ℝ²}
     (h : OnArcInterior vi vj vk v) : OnArcOpposite vi vj vk v := h.1
 

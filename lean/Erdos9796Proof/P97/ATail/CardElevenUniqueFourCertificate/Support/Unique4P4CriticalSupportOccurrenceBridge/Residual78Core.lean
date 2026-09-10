@@ -55,6 +55,7 @@ def capList : Fin 3 → List Label
   | 1 => [4, 5, 6, 7, 8]
   | 2 => [8, 9, 10, 0]
 
+/-- P97 ATail support theorem. -/
 theorem mem_capList : ∀ (k : Fin 3) (point : Label),
     point ∈ cnfCapPositions k → point ∈ capList k := by decide
 
@@ -63,6 +64,7 @@ The source family supplies its witness in `cnfCapPositions 2`, which is a
 subset of this actual emitted literal list. -/
 def rightAdjacentClausePoints : List Label := [7, 8, 9, 10, 0]
 
+/-- P97 ATail support theorem. -/
 theorem mem_rightAdjacentClausePoints : ∀ (point : Label),
     point ∈ cnfCapPositions 2 → point ∈ rightAdjacentClausePoints := by decide
 
@@ -103,10 +105,12 @@ structure NonKalmansonEntry where
   clause : List Int
   shape : NonKalmansonShape
 
+/-- P97 ATail support def. -/
 def residualEntryWF (entry : NonKalmansonEntry) : Bool :=
   residualShapeWF entry.shape &&
     P5OccurrenceBridgeScratch.litsSubset (residualShapeLits entry.shape) entry.clause
 
+/-- P97 ATail support theorem. -/
 theorem shapeSat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : ValAgreement Q σ v)
     (hfamilies : DenseFamilySatisfaction Q σ) (shape : NonKalmansonShape)
@@ -194,6 +198,7 @@ theorem shapeSat (Q : ExactTwoBoundaryCore R distribution)
         apply litSat_neg (rowVariable_pos center p₁)
         exact fun h => h₁ ((hv.row center p₁ hcenter₁).mp h)
 
+/-- P97 ATail support theorem. -/
 theorem entrySat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : ValAgreement Q σ v)
     (hfamilies : DenseFamilySatisfaction Q σ) (entry : NonKalmansonEntry)

@@ -60,18 +60,21 @@ def fourRowTwoCircleHits (order : NamedOrder) (direction : Orientation) :
     (orientedLabelAtPosition order direction hit.1,
       orientedLabelAtPosition order direction hit.2)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem baseHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ forwardChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (choice.center, point) ∈ baseHits := by
   decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem reflectedBaseHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ reflectedChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (Fin.rev choice.center, Fin.rev point) ∈ baseHits := by
   decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -80,6 +83,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -88,6 +92,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem positiveRowsMatch_forward {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -112,6 +117,7 @@ private theorem positiveRowsMatch_forward {A : Finset ℝ²}
       exact ⟨(choice.center, point),
         baseHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem positiveRowsMatch_reflected {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -136,6 +142,7 @@ private theorem positiveRowsMatch_reflected {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         reflectedBaseHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector def. -/
 private def forwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P forwardChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P :=
@@ -170,6 +177,7 @@ private def forwardCore {P : RowPattern Label}
                 (hrows ({ center := 6, support := {7, 8} } : RowChoice Label)
                   (by decide) (by decide))))))) }
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector def. -/
 private def reflectedCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P reflectedChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P :=
@@ -204,16 +212,19 @@ private def reflectedCore {P : RowPattern Label}
                 (hrows ({ center := 10, support := {8, 9} } : RowChoice Label)
                   (by decide) (by decide))))))) }
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem signedArea2_cycle (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 c a b := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem signedArea2_swap12 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 b a c := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem false_of_forwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -234,6 +245,7 @@ private theorem false_of_forwardRows
       (by decide) (by decide)
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem false_of_reflectedRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -252,6 +264,7 @@ private theorem false_of_reflectedRows
       (i := (8 : Label)) (j := (10 : Label)) (k := (15 : Label))
       (by decide) (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 private theorem false_of_fourRowTwoCircleHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -270,6 +283,7 @@ def fourRowTwoCircleClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom :=
   nogoodClause order (fourRowTwoCircleHits order direction)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 theorem sourceAssign_fourRowTwoCircleClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) :
@@ -284,9 +298,11 @@ def fourRowTwoCircleClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => fourRowTwoCircleClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 theorem fourRowTwoCircleClauses_length : fourRowTwoCircleClauses.length = 4 := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 theorem sourceAssign_fourRowTwoCircleClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ fourRowTwoCircleClauses,
@@ -300,6 +316,7 @@ theorem sourceAssign_fourRowTwoCircleClauses {A : Finset ℝ²}
 def extendedCocircularOrderSparseSixPointFourRowBisectorCnf : Std.Sat.CNF Atom :=
   extendedCocircularOrderSparseSixPointFullBankCnf ++ fourRowTwoCircleClauses
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 theorem extendedCocircularOrderSparseSixPointFourRowBisectorCnf_length :
     extendedCocircularOrderSparseSixPointFourRowBisectorCnf.length = 7409257 := by
   simp [extendedCocircularOrderSparseSixPointFourRowBisectorCnf,
@@ -320,6 +337,7 @@ theorem orderZero_forward_clause_dimacs :
       [-307, -113, -115, -45, -42, -122, -132, -212, -207] := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :

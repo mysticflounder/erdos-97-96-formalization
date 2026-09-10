@@ -15,9 +15,11 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard7 abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard7 def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 [
   { hits := [(0, 12), (0, 16), (3, 4), (3, 16), (8, 3), (8, 12), (10, 2), (10, 3), (12, 0), (12, 4), (16, 0), (16, 2)]
@@ -253,19 +255,24 @@ def cancellationOccurrences : List CancellationOccurrence :=
       path3 := ⟨(12, 13), [.flip 12 13, .row 13 12 0, .flip 13 0], (0, 13)⟩ } }
 ]
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard7 theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 7 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard7 theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard7 def. -/
 def refinementClauses : Std.Sat.CNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard7 theorem. -/
 theorem refinementClauses_length : refinementClauses.length = 28 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard7 theorem. -/
 theorem sourceAssign_refinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ refinementClauses,

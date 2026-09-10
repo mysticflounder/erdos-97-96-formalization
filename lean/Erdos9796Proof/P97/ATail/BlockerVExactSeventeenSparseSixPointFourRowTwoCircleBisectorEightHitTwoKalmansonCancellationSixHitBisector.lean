@@ -57,18 +57,21 @@ def sixHitBisectorHits (order : NamedOrder) (direction : Orientation) : List Hit
     (orientedLabelAtPosition order direction hit.1,
       orientedLabelAtPosition order direction hit.2)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem positiveHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ positiveChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (choice.center, point) ∈ sixHitBisectorBaseHits := by
   decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem reflectedNegativeHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ negativeChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (Fin.rev choice.center, Fin.rev point) ∈ sixHitBisectorBaseHits := by
   decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -77,6 +80,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -85,6 +89,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem positiveRowsMatch_positive {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -109,6 +114,7 @@ private theorem positiveRowsMatch_positive {A : Finset ℝ²}
       exact ⟨(choice.center, point),
         positiveHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem positiveRowsMatch_negative {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -133,6 +139,7 @@ private theorem positiveRowsMatch_negative {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         reflectedNegativeHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector def. -/
 private def positiveCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P positiveChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -150,6 +157,7 @@ private def positiveCore {P : RowPattern Label}
     ⟨(14, 4), [.row 14 4 15, .flip 14 15, .row 15 14 4],
       (15, 4)⟩ (by decide) }
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector def. -/
 private def negativeCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P negativeChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -167,16 +175,19 @@ private def negativeCore {P : RowPattern Label}
     ⟨(2, 12), [.row 2 12 1, .flip 2 1, .row 1 2 12],
       (1, 12)⟩ (by decide) }
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem signedArea2_cycle (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 c a b := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem signedArea2_swap12 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 b a c := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem false_of_positiveRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -197,6 +208,7 @@ private theorem false_of_positiveRows
       (by decide) (by decide)
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem false_of_negativeRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -213,6 +225,7 @@ private theorem false_of_negativeRows
       (i := (1 : Label)) (j := (11 : Label)) (k := (12 : Label))
       (by decide) (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 private theorem false_of_sixHitBisectorHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -231,6 +244,7 @@ def sixHitBisectorClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom :=
   nogoodClause order (sixHitBisectorHits order direction)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 theorem sourceAssign_sixHitBisectorClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) :
@@ -245,9 +259,11 @@ def sixHitBisectorClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => sixHitBisectorClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 theorem sixHitBisectorClauses_length : sixHitBisectorClauses.length = 4 := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 theorem sourceAssign_sixHitBisectorClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ sixHitBisectorClauses,
@@ -263,6 +279,7 @@ def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixH
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonCnf ++
     sixHitBisectorClauses
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf_length :
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf.length =
       7409265 := by
@@ -282,6 +299,7 @@ theorem orderZero_reverse_clause_dimacs :
       [-307, -60, -58, -141, -143, -111, -107] := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector theorem. -/
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :

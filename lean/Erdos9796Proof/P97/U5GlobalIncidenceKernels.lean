@@ -203,10 +203,12 @@ theorem u5_common_bisector_triple_incompatibility
   · apply hT_noncol
     simpa [h32] using (collinear_pair (k := ℝ) t1 t2)
 
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
     dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
   Problem97.dist_sq_coord x y
 
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem dist_eq_of_sq_eq {a b c : ℝ²}
     (h : dist a c ^ 2 = dist b c ^ 2) :
     dist a c = dist b c := by
@@ -474,6 +476,7 @@ theorem U5QCriticalTripleClass.two_triple_centers_third_common_incompatibility
 set_option maxHeartbeats 1000000 in
 -- Scalar form of the two Gram-factor eliminations in
 -- `u5_qcritical_aux_center_metric_incompatibility`.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 theorem u5_chain_antipodal_coord
     {q0 q1 a0 a1 b0 b1 c0 c1 R : ℝ}
     (hR : 0 < R)
@@ -558,6 +561,7 @@ theorem u5_chain_antipodal_coord
 set_option maxHeartbeats 1000000 in
 -- First half of the q-critical chain: the second intersection of the
 -- `p`- and `t₁`-circles is forced by a planar Gram determinant.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_first_chain_coord
     {q0 q1 a0 a1 b0 b1 R : ℝ}
     (hR : 0 < R)
@@ -603,6 +607,7 @@ private theorem u5_first_chain_coord
 set_option maxHeartbeats 1000000 in
 -- This scalar proof uses a planar Gram determinant plus polynomial
 -- square-zero extraction.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_collinear_aux_center_coord_incompatibility
     {q0 q1 a0 a1 u0 u1 x0 x1 R S : ℝ}
     (hR : 0 < R)
@@ -652,6 +657,7 @@ private theorem u5_collinear_aux_center_coord_incompatibility
     nlinarith [hx_uq_twice, hSeq]
   nlinarith [hR, hx_uq_zero, hx_uq_R]
 
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_dot_difference_of_sqdist_eq
     {x0 x1 y0 y1 z0 z1 Y Z : ℝ}
     (hy : y0 ^ 2 + y1 ^ 2 = Y)
@@ -668,6 +674,7 @@ set_option linter.unusedVariables false in
 set_option maxHeartbeats 1000000 in
 -- The first-chain scalar data force `|u - q|^2 = 4R`, contradicting a tail
 -- equation that forces `|u - q|^2 = R`.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_selected_tail_radius_coord_incompatibility
     {q0 q1 a0 a1 u0 u1 R S : ℝ}
     (hR : 0 < R)
@@ -706,6 +713,7 @@ private theorem u5_selected_tail_radius_coord_incompatibility
 set_option maxHeartbeats 1000000 in
 -- First-chain scalar data force the selected point to the third vertex of the
 -- `q,t₁,u` collinear chain.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_first_chain_selected_coord
     {q0 q1 a0 a1 u0 u1 R S : ℝ}
     (hR : 0 < R)
@@ -744,6 +752,7 @@ private theorem u5_first_chain_selected_coord
   · nlinarith [hu_line_sq, sq_nonneg (u0 - (2 * a0 - q0)),
       sq_nonneg (u1 - (2 * a1 - q1))]
 
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_antipodal_aux_center_coord_incompatibility
     {q0 q1 c0 c1 x0 x1 R S : ℝ}
     (hR : 0 < R) (hqc0 : q0 + c0 = 0) (hqc1 : q1 + c1 = 0)
@@ -1712,6 +1721,7 @@ theorem U5QCriticalTripleClass.qcritical_exact_exact_selected_antipodal_incompat
     (htriple.T_same_radius t₂ ht₂) (htriple.T_same_radius t₃ ht₃)
     ht₁q ht₁t₂ ht₁u ht₂t₃ ht₂u ht₃u hq_ne_t₂ ht₁_ne_t₃ hp_ne_u
 
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_equilateral_opposite_point_coord_incompatibility
     {a0 a1 b0 b1 c0 c1 x0 x1 R S : ℝ}
     (hR : 0 < R)
@@ -1868,6 +1878,7 @@ theorem u5_equilateral_opposite_point_incompatibility
 
 set_option maxHeartbeats 2000000 in
 -- The proof eliminates three planar Gram determinants.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_equilateral_bisector_coord_incompatibility
     {a0 a1 b0 b1 c0 c1 x0 x1 R S : ℝ}
     (hR : 0 < R)
@@ -2044,6 +2055,7 @@ theorem u5_equilateral_bisector_incompatibility
 
 set_option maxHeartbeats 1000000 in
 -- The proof first forces the common triple dot product, then eliminates ABX.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_equilateral_circumcenter_coord_on_circle
     {a0 a1 b0 b1 c0 c1 x0 x1 R S Y : ℝ}
     (hR : 0 < R)
@@ -2206,6 +2218,7 @@ theorem u5_equilateral_circumcenter_on_p_circle_incompatibility
 
 set_option maxHeartbeats 1000000 in
 -- The proof eliminates the outer equilateral point by three Gram determinants.
+/-- P97 U5GlobalIncidenceKernels theorem. -/
 private theorem u5_equilateral_outer_point_coord_incompatibility
     {a0 a1 b0 b1 c0 c1 x0 x1 R S Y : ℝ}
     (hR : 0 < R)

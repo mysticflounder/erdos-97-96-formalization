@@ -35,6 +35,7 @@ open ATailRetainedMatchingGeometricReduction
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RetainedMatchingLargeCapConsumer theorem. -/
 private theorem oppApex1_eq_oppositeVertex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -44,6 +45,7 @@ private theorem oppApex1_eq_oppositeVertex_oppIndex1
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- P97 ATail RetainedMatchingLargeCapConsumer theorem. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
     (hij : i ≠ j) :
@@ -65,6 +67,7 @@ private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
       SurplusCapPacket.capByIndex] using S.partition.v3_mem_C2
   · exact False.elim (hij rfl)
 
+/-- P97 ATail RetainedMatchingLargeCapConsumer theorem. -/
 private theorem false_of_two_cap_centers_equidistant_outside_pair
     {D : CounterexampleData} (S : SurplusCapPacket D.A) (k : Fin 3)
     {c apex a b : ℝ²}
@@ -300,6 +303,7 @@ inductive RetainedReverseCouplingOutcome
         CommonDeletionTwoCenterPacket D H O.kept S.oppApex1
           (H.centerAt O.deleted O.deleted_mem_A))
 
+/-- P97 ATail RetainedMatchingLargeCapConsumer theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -488,6 +492,7 @@ theorem actualRow_center_eq_reverseBlocker_of_reverseHit
       hcandidate_ne_first.symm, Ne.symm hcandidateBlocker⟩
   omega
 
+/-- P97 ATail RetainedMatchingLargeCapConsumer theorem. -/
 private theorem capInteriorByIndex_card_add_two
     {A : Finset ℝ²} (S : SurplusCapPacket A) (k : Fin 3) :
     (S.capInteriorByIndex k).card + 2 = (S.capByIndex k).card := by

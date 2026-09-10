@@ -19,13 +19,17 @@ source p4 occurrence.
 namespace Problem97
 namespace P4Cegar6OccurrenceBridgeScratch
 
+/-- P97 ATail support def. -/
 def compactFormulaSha256 : String :=
   "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
 
+/-- P97 ATail support def. -/
 def compactFormulaClauseCount : Nat := 19048
 
+/-- P97 ATail support def. -/
 def compactFormulaVariableCount : Nat := 2557
 
+/-- P97 ATail support def. -/
 def cegarEntries : List CegarEntry :=
   [ ⟨.reflected48600, [-92, -96, -81, -66, -98, -67, -82, -89, -61]⟩
   , ⟨.reflected48601, [-106, -67, -61, -90, -108, -81, -102, -66, -82]⟩
@@ -34,18 +38,23 @@ def cegarEntries : List CegarEntry :=
   , ⟨.forward48604, [-20, -33, -40, -35, -19, -11, -9, -2, -5]⟩
   , ⟨.forward48605, [-44, -30, -45, -29, -50, -21, -9, -3, -5]⟩ ]
 
+/-- P97 ATail support theorem. -/
 theorem cegarEntries_length : cegarEntries.length = 6 := by decide
 
+/-- P97 ATail support theorem. -/
 theorem cegarEntries_wf : cegarEntries.all entryWF = true := by decide
 
+/-- P97 ATail support theorem. -/
 theorem cegarEntries_compactIndices :
     (cegarEntries.map fun entry => slotCompactClause entry.slot) =
       [19043, 19044, 19045, 19046, 19047, 19048] := by decide
 
+/-- P97 ATail support theorem. -/
 theorem cegarEntries_sourceIndices :
     (cegarEntries.map fun entry => slotSourceCore entry.slot) =
       [48600, 48601, 48602, 48603, 48604, 48605] := by decide
 
+/-- P97 ATail support theorem. -/
 theorem cegarEntries_terminalIndices :
     (cegarEntries.map fun entry => slotTerminalClause entry.slot) =
       [2765382, 2765384, 2765386, 2765388, 2765395, 2765401] := by decide

@@ -117,10 +117,12 @@ namespace PairedApexClassJointDeletion
 
 variable {O : OrientedRetainedCommonDeletion P}
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem source_mem_A (J : PairedApexClassJointDeletion O) :
     J.source ∈ D.A :=
   (mem_selectedClass.mp J.source_mem_class).1
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem source_ne_kept (J : PairedApexClassJointDeletion O) :
     J.source ≠ O.kept := by
   intro h
@@ -128,6 +130,7 @@ theorem source_ne_kept (J : PairedApexClassJointDeletion O) :
   rw [h]
   exact (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.q_mem_support
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem source_ne_deleted (J : PairedApexClassJointDeletion O) :
     J.source ≠ O.deleted := by
   intro h
@@ -151,6 +154,7 @@ theorem blocker_ne_keptBlocker (J : PairedApexClassJointDeletion O) :
   rw [← hsupports]
   exact (H.selectedAt J.source J.source_mem_A).toCriticalFourShell.q_mem_support
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem blocker_ne_deletedBlocker (J : PairedApexClassJointDeletion O) :
     H.centerAt J.source J.source_mem_A ≠
       H.centerAt O.deleted O.deleted_mem_A := by
@@ -290,15 +294,18 @@ namespace PairedTwoRadiusGrid
 
 variable {O : OrientedRetainedCommonDeletion P}
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem kept_mem_keptShell (_Gr : PairedTwoRadiusGrid O) :
     O.kept ∈ (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support :=
   (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.q_mem_support
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem deleted_mem_deletedShell (_Gr : PairedTwoRadiusGrid O) :
     O.deleted ∈
       (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support :=
   (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.q_mem_support
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 private theorem mem_of_inter_eq_pair
     {K C : Finset ℝ²} {s t z : ℝ²} (heq : K ∩ C = {s, t})
     (hz : z ∈ ({s, t} : Finset ℝ²)) :
@@ -306,56 +313,68 @@ private theorem mem_of_inter_eq_pair
   have : z ∈ K ∩ C := by rw [heq]; exact hz
   exact ⟨(Finset.mem_inter.mp this).1, (Finset.mem_inter.mp this).2⟩
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptPartner_mem_keptShell (Gr : PairedTwoRadiusGrid O) :
     Gr.keptPartner ∈
       (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support :=
   (mem_of_inter_eq_pair Gr.keptShell_inter_retained_eq (by simp)).1
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptPartner_mem_retained (Gr : PairedTwoRadiusGrid O) :
     Gr.keptPartner ∈ SelectedClass D.A S.oppApex1 radius :=
   (mem_of_inter_eq_pair Gr.keptShell_inter_retained_eq (by simp)).2
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem deletedPartner_mem_deletedShell (Gr : PairedTwoRadiusGrid O) :
     Gr.deletedPartner ∈
       (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support :=
   (mem_of_inter_eq_pair Gr.deletedShell_inter_retained_eq (by simp)).1
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem deletedPartner_mem_retained (Gr : PairedTwoRadiusGrid O) :
     Gr.deletedPartner ∈ SelectedClass D.A S.oppApex1 radius :=
   (mem_of_inter_eq_pair Gr.deletedShell_inter_retained_eq (by simp)).2
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptOtherFirst_mem_keptShell (Gr : PairedTwoRadiusGrid O) :
     Gr.keptOtherFirst ∈
       (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support :=
   (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).1
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptOtherFirst_mem_other (Gr : PairedTwoRadiusGrid O) :
     Gr.keptOtherFirst ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
   (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).2
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptOtherSecond_mem_keptShell (Gr : PairedTwoRadiusGrid O) :
     Gr.keptOtherSecond ∈
       (H.selectedAt O.kept O.kept_mem_A).toCriticalFourShell.support :=
   (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).1
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptOtherSecond_mem_other (Gr : PairedTwoRadiusGrid O) :
     Gr.keptOtherSecond ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
   (mem_of_inter_eq_pair Gr.keptShell_inter_other_eq (by simp)).2
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem deletedOtherFirst_mem_deletedShell (Gr : PairedTwoRadiusGrid O) :
     Gr.deletedOtherFirst ∈
       (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support :=
   (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).1
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem deletedOtherFirst_mem_other (Gr : PairedTwoRadiusGrid O) :
     Gr.deletedOtherFirst ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
   (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).2
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem deletedOtherSecond_mem_deletedShell (Gr : PairedTwoRadiusGrid O) :
     Gr.deletedOtherSecond ∈
       (H.selectedAt O.deleted O.deleted_mem_A).toCriticalFourShell.support :=
   (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).1
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem deletedOtherSecond_mem_other (Gr : PairedTwoRadiusGrid O) :
     Gr.deletedOtherSecond ∈ SelectedClass D.A S.oppApex1 Gr.otherRadius :=
   (mem_of_inter_eq_pair Gr.deletedShell_inter_other_eq (by simp)).2
@@ -371,16 +390,19 @@ theorem ne_of_mem_keptShell_of_mem_deletedShell (Gr : PairedTwoRadiusGrid O)
   intro h
   exact (Finset.disjoint_left.mp Gr.shells_disjoint) hu (h ▸ hv)
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptPartner_ne_deleted (Gr : PairedTwoRadiusGrid O) :
     Gr.keptPartner ≠ O.deleted :=
   Gr.ne_of_mem_keptShell_of_mem_deletedShell Gr.keptPartner_mem_keptShell
     Gr.deleted_mem_deletedShell
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem kept_ne_deletedPartner (Gr : PairedTwoRadiusGrid O) :
     O.kept ≠ Gr.deletedPartner :=
   Gr.ne_of_mem_keptShell_of_mem_deletedShell Gr.kept_mem_keptShell
     Gr.deletedPartner_mem_deletedShell
 
+/-- P97 ATail PairedCommonDeletionNormalForm theorem. -/
 theorem keptPartner_ne_deletedPartner (Gr : PairedTwoRadiusGrid O) :
     Gr.keptPartner ≠ Gr.deletedPartner :=
   Gr.ne_of_mem_keptShell_of_mem_deletedShell Gr.keptPartner_mem_keptShell

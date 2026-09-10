@@ -55,6 +55,7 @@ theorem nonempty_of_ne {surplus second : Fin 3} (hsecond : second ≠ surplus) :
 
 end JointCapIndexFrame
 
+/-- P97 MultiCenter theorem. -/
 private theorem jointProfile_eq {P Q : JointProfile}
     (h : ∀ cap, P.capSize cap = Q.capSize cap) : P = Q := by
   cases P with

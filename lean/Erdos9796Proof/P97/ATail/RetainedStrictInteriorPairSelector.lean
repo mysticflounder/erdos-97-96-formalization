@@ -30,6 +30,7 @@ open ATailRetainedMatchingLargeCapConsumer
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RetainedStrictInteriorPairSelector theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -39,6 +40,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail RetainedStrictInteriorPairSelector theorem. -/
 private theorem capInteriorByIndex_card_add_two
     {A : Finset ℝ²} (S : SurplusCapPacket A) (k : Fin 3) :
     (S.capInteriorByIndex k).card + 2 = (S.capByIndex k).card := by
@@ -56,6 +58,7 @@ private theorem capInteriorByIndex_card_add_two
       U1OppositeCapLowerBounds.interior3] using
       U1OppositeCapLowerBounds.interior3_card_add_two S.partition
 
+/-- P97 ATail RetainedStrictInteriorPairSelector theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -164,12 +167,14 @@ theorem nonempty_retainedInteriorPairOutcome
     · exact Or.inl ⟨hyx,
         (cross_deletion_survives_iff_not_mem_selected_support H hxA).mpr hyx⟩
 
+/-- P97 ATail RetainedStrictInteriorPairSelector def. -/
 private def transportSelectedFourClass
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
     SelectedFourClass A center₂ :=
   Eq.mp (congrArg (SelectedFourClass A) hcenter) K
 
+/-- P97 ATail RetainedStrictInteriorPairSelector theorem. -/
 @[simp] private theorem transportSelectedFourClass_support
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :

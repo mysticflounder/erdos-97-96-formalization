@@ -294,6 +294,7 @@ theorem sourceAssign_fourRoleCycleClause {A : Finset ℝ²}
   · exact hall (placedLabel order direction cut d, placedLabel order direction cut b)
       (by simp [fourRoleCycleHits])
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements def. -/
 private def completeSmallRoleClauseFamily (choices : List (List Label))
     (hits : NamedOrder → Orientation → Label → List Label → List Hit) :
     Std.Sat.CNF Atom :=
@@ -311,6 +312,7 @@ def fiveRoleCycleClauses : Std.Sat.CNF Atom :=
 def fourRoleCycleClauses : Std.Sat.CNF Atom :=
   completeSmallRoleClauseFamily fourRoleOffsetChoices fourRoleCycleHits
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements theorem. -/
 private theorem mem_completeSmallRoleClauseFamily
     {choices : List (List Label)}
     {hits : NamedOrder → Orientation → Label → List Label → List Hit}
@@ -357,14 +359,17 @@ theorem sourceAssign_smallRoleCycleClauses {A : Finset ℝ²}
   · exact sourceAssign_fiveRoleCycleClauses r clause hfive
   · exact sourceAssign_fourRoleCycleClauses r clause hfour
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements theorem. -/
 theorem fiveRoleCycleClauses_length : fiveRoleCycleClauses.length = 123760 := by
   simp [fiveRoleCycleClauses, completeSmallRoleClauseFamily, namedOrders,
     directions, labels, fiveRoleOffsetChoices_length]
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements theorem. -/
 theorem fourRoleCycleClauses_length : fourRoleCycleClauses.length = 37128 := by
   simp [fourRoleCycleClauses, completeSmallRoleClauseFamily, namedOrders,
     directions, labels, fourRoleOffsetChoices_length]
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements theorem. -/
 theorem smallRoleCycleClauses_length : smallRoleCycleClauses.length = 160888 := by
   simp [smallRoleCycleClauses, fiveRoleCycleClauses_length, fourRoleCycleClauses_length]
 
@@ -373,6 +378,7 @@ small-role cycle bank. -/
 def extendedSmallRoleCycleCnf : Std.Sat.CNF Atom :=
   extendedCurrentRootTwoKalmansonSuccessorCnf ++ smallRoleCycleClauses
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements theorem. -/
 theorem extendedSmallRoleCycleCnf_length : extendedSmallRoleCycleCnf.length = 7198388 := by
   simp [extendedSmallRoleCycleCnf, extendedCurrentRootTwoKalmansonSuccessorCnf_length,
     smallRoleCycleClauses_length]

@@ -24,6 +24,7 @@ open scoped EuclideanGeometry InnerProductSpace
 namespace Problem97
 namespace BlockerVExactSeventeenCocircularPentagonOrder
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrder theorem. -/
 private theorem sum_ne_zero_of_strict_halfplane
     {P p q w : ℝ²}
     (hp : 0 < ⟪w, p - P⟫_ℝ) (hq : 0 < ⟪w, q - P⟫_ℝ) :
@@ -34,16 +35,19 @@ private theorem sum_ne_zero_of_strict_halfplane
   rw [inner_add_right, inner_zero_right] at hinner
   linarith
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrder theorem. -/
 private theorem area_cyclic (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrder theorem. -/
 private theorem area_swap (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrder theorem. -/
 private theorem fan_parameters
     {P u v d e x y w : ℝ²} {radius : ℝ}
     (hP_u : dist P u = radius) (hP_v : dist P v = radius)
@@ -104,6 +108,7 @@ private theorem fan_parameters
   exact ⟨tx, tv, td, te, htx, htv, htd, by linarith,
     hxrep, hvrep, hdrep, herep⟩
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrder theorem. -/
 private theorem five_point_halfplane
     {A : Finset ℝ²} {P u v d x y : ℝ²} {radius : ℝ}
     (hA : ConvexIndep A) (hP_mem : P ∈ A)

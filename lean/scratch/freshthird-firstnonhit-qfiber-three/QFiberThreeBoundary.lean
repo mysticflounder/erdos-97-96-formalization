@@ -355,15 +355,24 @@ Q rows form a six-point seed, and the pinned fan row escapes that seed.  The
 fan row can nevertheless be disjoint from the Q row. -/
 namespace FreshThirdQFiberThreeIncidenceCounterpattern
 
+/-- Indexed scratch Lean def. -/
 def qRow : Finset Nat := {0, 1, 2, 3}
+/-- Indexed scratch Lean def. -/
 def qFiberImage : Finset Nat := {0, 1, 2}
+/-- Indexed scratch Lean def. -/
 def boundarySource : Nat := 3
+/-- Indexed scratch Lean def. -/
 def boundarySourceRow : Finset Nat := {2, 3, 4, 5}
+/-- Indexed scratch Lean def. -/
 def canonicalSourceRow : Finset Nat := {0, 1, 4, 5}
+/-- Indexed scratch Lean def. -/
 def twoShellSeed : Finset Nat := qRow ∪ canonicalSourceRow
+/-- Indexed scratch Lean def. -/
 def pinnedFanRow : Finset Nat := {6, 7, 8, 9}
+/-- Indexed scratch Lean def. -/
 def endpointBoundaryRow : Finset Nat := pinnedFanRow
 
+/-- Indexed scratch Lean theorem. -/
 theorem exact_interface_projection :
     qRow.card = 4 ∧
       qFiberImage.card = 3 ∧

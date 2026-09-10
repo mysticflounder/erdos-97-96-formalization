@@ -25,6 +25,7 @@ open scoped Convex EuclideanGeometry
 namespace Problem97
 namespace TwoCircleEqualityChainBridge
 
+/-- P97 ATail TwoCircleEqualityChainSchemas theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]

@@ -698,6 +698,7 @@ def reversedPeriodicBoundaryPoint {n : ℕ} (hn : 0 < n)
     (point : Fin n → ℝ²) (i : ℕ) : ℝ² :=
   point (Fin.rev ⟨i % n, Nat.mod_lt i hn⟩)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem reversedPeriodicBoundaryPoint_of_lt {n i : ℕ} (hn : 0 < n)
     (point : Fin n → ℝ²) (hi : i < n) :
     reversedPeriodicBoundaryPoint hn point i = point (Fin.rev ⟨i, hi⟩) := by
@@ -707,6 +708,7 @@ theorem reversedPeriodicBoundaryPoint_of_lt {n i : ℕ} (hn : 0 < n)
   apply Fin.ext
   exact Nat.mod_eq_of_lt hi
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem reversedPeriodicBoundaryPoint_period {n : ℕ} (hn : 0 < n)
     (point : Fin n → ℝ²) :
     reversedPeriodicBoundaryPoint hn point n =
@@ -824,6 +826,7 @@ theorem OpenFundamentalWindowAngleChart.apex_sign_pos
   rw [hrotate] at hswap
   simpa using hswap.symm
 
+/-- P97 ConvexCyclicOrder theorem. -/
 private theorem isProperFundamentalWindowChord_of_chain
     (chart : OpenFundamentalWindowAngleChart) {i j : ℕ}
     (hstart : chart.windowStart ≤ i) (hij : i < j)

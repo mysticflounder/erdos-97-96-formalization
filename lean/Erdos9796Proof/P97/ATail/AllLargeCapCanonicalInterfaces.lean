@@ -128,6 +128,7 @@ theorem criticalShellCenter_mem_capInteriorByIndex_of_two_hits
     hcenterA hcenterNe hqClassInterior.2 hwClassInterior.2 hqw
     hcenterEq hapexEq
 
+/-- P97 ATail AllLargeCapCanonicalInterfaces theorem. -/
 theorem triApexAllLargeContext_index_cases
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     i = S.oppIndex1 ∨ i = S.oppIndex2 ∨ i = S.surplusIdx := by
@@ -299,6 +300,7 @@ theorem selectedFourClass_outside_overlap_card_le_one
 /- The indexed context consumed by the E1 core.  The old residual chain is
 flattened here once; the core need not repeatedly distinguish the surplus and
 the two named opposite roles. -/
+/-- P97 ATail AllLargeCapCanonicalInterfaces structure. -/
 structure TriApexAllLargeContext
     (D : CounterexampleData) (S : SurplusCapPacket D.A) : Prop where
   cap_card_ge_six :
@@ -347,6 +349,7 @@ theorem exists_criticalShell_center_mem_capInteriorByIndex_of_triApexAllLarge
   · exact hcap
 
 
+/-- P97 ATail AllLargeCapCanonicalInterfaces theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -355,6 +358,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1_for_triApexAllLargeContext
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail AllLargeCapCanonicalInterfaces theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -363,6 +367,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2_for_triApexAllLargeContext
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- P97 ATail AllLargeCapCanonicalInterfaces theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap_for_triApexAllLargeContext
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by

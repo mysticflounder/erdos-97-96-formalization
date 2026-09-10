@@ -14,17 +14,26 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 
 namespace Problem97.P4CyclicAlternationOccurrenceBridgeScratch
 
+/-- P97 ATail support def. -/
 def compactFormulaSha256 : String := "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+/-- P97 ATail support def. -/
 def occurrenceLedgerSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+/-- P97 ATail support def. -/
 def stableManifestSha256 : String := "8d5b8f5adf40cda367e7e7f72f6afc58e75201011e140ff198ace1c836521dd1"
+/-- P97 ATail support def. -/
 def selectedLedgerSha256 : String := "8202b22e1f1edb7de9196f9dfdcc80ffe146609cfc6295601dfd943f1bae83de"
+/-- P97 ATail support def. -/
 def selectedCompactCnfSha256 : String := "dd04c405abdd030964da9ba9fec25c53af742a5ab52d56f68bc58e4d5ed3b33a"
+/-- P97 ATail support def. -/
 def selectedSourceCoreSha256 : String := "dc760a136ad9dc78267e21ad166c69aa851dd00e11f69072b34ed8f3cb8970df"
+/-- P97 ATail support def. -/
 def bridgeEntries : List BridgeEntry := bridgeChunk01 ++ bridgeChunk02 ++ bridgeChunk03 ++ bridgeChunk04 ++ bridgeChunk05 ++ bridgeChunk06 ++ bridgeChunk07 ++ bridgeChunk08 ++ bridgeChunk09 ++ bridgeChunk10
 
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by
   simp [bridgeEntries, bridgeChunk01_wf, bridgeChunk02_wf, bridgeChunk03_wf, bridgeChunk04_wf, bridgeChunk05_wf, bridgeChunk06_wf, bridgeChunk07_wf, bridgeChunk08_wf, bridgeChunk09_wf, bridgeChunk10_wf]
 
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_length : bridgeEntries.length = 1279 := by
   simp [bridgeEntries, bridgeChunk01_length, bridgeChunk02_length, bridgeChunk03_length, bridgeChunk04_length, bridgeChunk05_length, bridgeChunk06_length, bridgeChunk07_length, bridgeChunk08_length, bridgeChunk09_length, bridgeChunk10_length]
 

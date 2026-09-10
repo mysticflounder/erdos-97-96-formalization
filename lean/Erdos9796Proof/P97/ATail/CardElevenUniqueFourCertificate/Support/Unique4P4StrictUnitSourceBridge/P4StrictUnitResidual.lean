@@ -55,6 +55,7 @@ def strictUnitSourceCoreIndices : List Nat := [7379, 7380]
 /-- The two authenticated one-literal compact clauses. -/
 def strictUnitClauses : List (List Int) := [[632], [633]]
 
+/-- P97 ATail support theorem. -/
 theorem strictUnitClauses_length : strictUnitClauses.length = 2 := by decide
 
 /-- The direct P4 source valuation satisfies both compact strict-unit clauses. -/

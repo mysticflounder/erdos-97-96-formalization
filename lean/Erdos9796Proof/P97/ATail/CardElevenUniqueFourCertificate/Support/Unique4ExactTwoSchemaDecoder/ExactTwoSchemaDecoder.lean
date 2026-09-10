@@ -33,7 +33,9 @@ open CorrectedOwnCapKalmansonCoresScratch
 open UniqueFourKalmansonOccurrenceScratch
 open UniqueFourKalmansonReflectionScratch
 
+/-- P97 ATail support abbrev. -/
 abbrev Label := Fin 11
+/-- P97 ATail support abbrev. -/
 abbrev Membership := Nat × Nat
 
 /-- Pull the selected geometric support at every boundary point back to a
@@ -45,6 +47,7 @@ noncomputable def patternCode {A : Finset ℝ²}
     boundary point ∈
       (F.classAt (boundary center) (hmem center)).support
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem patternCode_eq_true_iff
     {A : Finset ℝ²} (boundary : Label → ℝ²)
     (hmem : ∀ i, boundary i ∈ A) (F : FaithfulCarrierPattern A)
@@ -72,6 +75,7 @@ structure OrderedEight where
   h56 : i5 < i6
   h67 : i6 < i7
 
+/-- P97 ATail support def. -/
 def OrderedEight.values (T : OrderedEight) : List Label :=
   [T.i0, T.i1, T.i2, T.i3, T.i4, T.i5, T.i6, T.i7]
 
@@ -89,6 +93,7 @@ structure OrderedSix where
   h34 : i3 < i4
   h45 : i4 < i5
 
+/-- P97 ATail support def. -/
 def OrderedSix.values (T : OrderedSix) : List Label :=
   [T.i0, T.i1, T.i2, T.i3, T.i4, T.i5]
 
@@ -113,27 +118,33 @@ def p5TriangleASchema : List Membership :=
 def p5TriangleBSchema : List Membership :=
   [(0, 4), (0, 5), (1, 3), (1, 4), (2, 3), (2, 5)]
 
+/-- P97 ATail support def. -/
 def reflectSchema (roleCount : Nat) (schema : List Membership) : List Membership :=
   schema.map fun membership =>
     (roleCount - 1 - membership.1, roleCount - 1 - membership.2)
 
+/-- P97 ATail support def. -/
 def rolePoint (targets : List Label) (role : Nat) : Label :=
   targets[role]!
 
+/-- P97 ATail support def. -/
 def schemaAt (P : PatternCode) (targets : List Label)
     (schema : List Membership) : Bool :=
   schema.all fun membership =>
     P (rolePoint targets membership.1) (rolePoint targets membership.2)
 
+/-- P97 ATail support def. -/
 def orientedSchemaAt (P : PatternCode) (targets : List Label)
     (schema : List Membership) : Bool :=
   schemaAt P targets schema ||
     schemaAt P targets (reflectSchema targets.length schema)
 
+/-- P97 ATail support def. -/
 private def cardBoundary {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Label → ℝ²) : Fin A.card → ℝ² :=
   fun i => boundary (Fin.cast hcard i)
 
+/-- P97 ATail support theorem. -/
 private theorem cardBoundary_injective
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²} (hinj : Function.Injective boundary) :
@@ -142,6 +153,7 @@ private theorem cardBoundary_injective
   apply Fin.cast_injective hcard
   exact hinj hij
 
+/-- P97 ATail support theorem. -/
 private theorem cardBoundary_image
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
@@ -162,6 +174,7 @@ private theorem cardBoundary_image
             simp [cardBoundary]⟩
     _ = A := himage
 
+/-- P97 ATail support theorem. -/
 private theorem cardBoundary_ccw
     {A : Finset ℝ²} (hcard : A.card = 11)
     {boundary : Label → ℝ²}
@@ -172,16 +185,19 @@ private theorem cardBoundary_ccw
   · simpa using hij
   · simpa using hjk
 
+/-- P97 ATail support def. -/
 private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     (i : Label) : Fin A.card :=
   Fin.cast hcard.symm i
 
+/-- P97 ATail support theorem. -/
 @[simp] private theorem cardBoundary_toCardIndex
     {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Label → ℝ²) (i : Label) :
     cardBoundary hcard boundary (toCardIndex hcard i) = boundary i := by
   simp [cardBoundary, toCardIndex]
 
+/-- P97 ATail support theorem. -/
 private theorem toCardIndex_lt
     {A : Finset ℝ²} (hcard : A.card = 11)
     {i j : Label} (hij : i < j) :
@@ -467,6 +483,7 @@ theorem false_of_p5TriangleBSchemaAt_normalized
     hfields.1 hfields.2.1 hfields.2.2.1 hfields.2.2.2.1
     hfields.2.2.2.2.1 hfields.2.2.2.2.2
 
+/-- P97 ATail support theorem. -/
 private theorem k2_of_decreasing_fin11
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     {boundary : Label → ℝ²}
@@ -487,6 +504,7 @@ private theorem k2_of_decreasing_fin11
       (toCardIndex_lt hcard hdc)
   simpa only [cardBoundary_toCardIndex] using h
 
+/-- P97 ATail support theorem. -/
 private theorem k1_of_decreasing_fin11
     {A : Finset ℝ²} (hA : ConvexIndep A) (hcard : A.card = 11)
     {boundary : Label → ℝ²}

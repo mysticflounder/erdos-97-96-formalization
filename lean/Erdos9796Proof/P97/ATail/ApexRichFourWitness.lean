@@ -49,6 +49,7 @@ noncomputable def StrictApexFourWitness.support
   | .oneRadius _ _ T _ _ => T
   | .twoRadii _ _ _ _ _ T₁ T₂ _ _ _ _ => T₁ ∪ T₂
 
+/-- P97 ATail ApexRichFourWitness theorem. -/
 theorem StrictApexFourWitness.support_subset_capInterior
     {A : Finset ℝ²} {S : SurplusCapPacket A} {i : Fin 3}
     (W : StrictApexFourWitness A S i) :
@@ -63,6 +64,7 @@ theorem StrictApexFourWitness.support_subset_capInterior
       · exact (Finset.mem_inter.mp (hT₁ hx)).2
       · exact (Finset.mem_inter.mp (hT₂ hx)).2
 
+/-- P97 ATail ApexRichFourWitness theorem. -/
 theorem StrictApexFourWitness.support_card_eq_four
     {A : Finset ℝ²} {S : SurplusCapPacket A} {i : Fin 3}
     (W : StrictApexFourWitness A S i) : W.support.card = 4 := by

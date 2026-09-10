@@ -30,6 +30,7 @@ open ATailCriticalPairFrontier
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail support card_five_interior_critical_frontier theorem. -/
 private theorem interior_oppIndex1_not_mem_surplusCap_for_frontier
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -41,6 +42,7 @@ private theorem interior_oppIndex1_not_mem_surplusCap_for_frontier
     simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
+/-- P97 ATail support card_five_interior_critical_frontier theorem. -/
 private theorem oppApex2_mem_A_for_interior_frontier
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -50,6 +52,7 @@ private theorem oppApex2_mem_A_for_interior_frontier
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail support card_five_interior_critical_frontier theorem. -/
 private theorem equidistant_mono_for_interior_frontier
     {n : ℕ} {S T : Finset ℝ²} {p : ℝ²}
     (hsub : S ⊆ T)

@@ -1276,6 +1276,7 @@ theorem false_of_f1t2_extra_omit3_of_branch0_choices
       (by simpa [packet] using hrow_t3_t1_f1)
       (by simpa [packet] using hextra_f1_t2)
 
+/-- P97 U1Depth5QT3PilotRecord001F1T2Omit3 theorem. -/
 private theorem branch0_pairwise_of_noCollision
     {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane}

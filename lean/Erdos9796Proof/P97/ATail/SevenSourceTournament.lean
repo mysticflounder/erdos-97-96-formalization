@@ -47,6 +47,7 @@ def paleyArc (i j : Vertex) : Bool :=
 def paleySupport (i : Vertex) : Finset Vertex :=
   insert i (Finset.univ.filter fun j ↦ paleyArc i j = true)
 
+/-- P97 ATail SevenSourceTournament theorem. -/
 private theorem all_paleySupport_eq :
     ∀ i : Vertex, paleySupport i = {i, i + 1, i + 2, i + 4} := by
   native_decide
@@ -103,18 +104,22 @@ theorem exists_perm_of_isSupportBounded (bits : UpperPair → Bool)
 def bitsOfSupports (B : Vertex → Finset Vertex) : UpperPair → Bool :=
   fun p ↦ decide (p.1.2 ∈ B p.1.1)
 
+/-- P97 ATail SevenSourceTournament abbrev. -/
 private abbrev Incidence (B : Vertex → Finset Vertex) :=
   Σ i : Vertex, ↑(B i)
 
+/-- P97 ATail SevenSourceTournament def. -/
 private def unorderedSlot (i j : Vertex) (hij : i ≠ j) : UpperPair :=
   if h : i < j then ⟨(i, j), h⟩
   else ⟨(j, i), lt_of_le_of_ne (le_of_not_gt h) (Ne.symm hij)⟩
 
+/-- P97 ATail SevenSourceTournament def. -/
 private def incidenceSlot {B : Vertex → Finset Vertex} (x : Incidence B) :
     Vertex ⊕ UpperPair :=
   if h : x.1 = x.2.1 then Sum.inl x.1
   else Sum.inr (unorderedSlot x.1 x.2.1 h)
 
+/-- P97 ATail SevenSourceTournament theorem. -/
 private theorem incidenceSlot_swap {B : Vertex → Finset Vertex}
     {i j : Vertex} (hij : i ≠ j) (hji : j ∈ B i) (hij' : i ∈ B j) :
     incidenceSlot (⟨i, ⟨j, hji⟩⟩ : Incidence B) =
@@ -125,6 +130,7 @@ private theorem incidenceSlot_swap {B : Vertex → Finset Vertex}
   · have hjlt : j < i := lt_of_le_of_ne (le_of_not_gt hlt) (Ne.symm hij)
     simp [incidenceSlot, unorderedSlot, hij, Ne.symm hij, hlt, hjlt]
 
+/-- P97 ATail SevenSourceTournament theorem. -/
 private theorem card_vertex_sum_upperPair :
     Fintype.card (Vertex ⊕ UpperPair) = 28 := by
   decide
@@ -190,6 +196,7 @@ theorem exact_support_surface_of_card_le_four_and_pairCovered
       · exact hji
       · exact (hnot hijmem).elim
 
+/-- P97 ATail SevenSourceTournament theorem. -/
 private theorem arc_bitsOfSupports_iff
     {B : Vertex → Finset Vertex}
     (hone : ∀ i j, i ≠ j → (j ∈ B i ↔ i ∉ B j))
@@ -200,6 +207,7 @@ private theorem arc_bitsOfSupports_iff
   · have hji : j < i := lt_of_le_of_ne (le_of_not_gt hlt) (Ne.symm hij)
     simpa [arc, bitsOfSupports, hlt, hji] using (hone i j hij).symm
 
+/-- P97 ATail SevenSourceTournament theorem. -/
 private theorem outNeighbors_bitsOfSupports_eq_erase
     {B : Vertex → Finset Vertex}
     (hone : ∀ i j, i ≠ j → (j ∈ B i ↔ i ∉ B j))
@@ -212,6 +220,7 @@ private theorem outNeighbors_bitsOfSupports_eq_erase
   · have hji : j ≠ i := Ne.symm hij
     simp [outNeighbors, hji, arc_bitsOfSupports_iff hone hij]
 
+/-- P97 ATail SevenSourceTournament theorem. -/
 private theorem encodedSupport_bitsOfSupports_eq
     {B : Vertex → Finset Vertex}
     (hself : ∀ i, i ∈ B i)

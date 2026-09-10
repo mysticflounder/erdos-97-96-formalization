@@ -144,6 +144,7 @@ noncomputable def chordFrame (M e n : ℝ²) (scale : ℝ) : ℝ² → ℝ² :=
     (EuclideanSpace.equiv (Fin 2) ℝ).symm (fun i : Fin 2 =>
       if i = 0 then scale * ⟪z - M, e⟫_ℝ else scale * ⟪z - M, n⟫_ℝ)
 
+/-- P97 CGN theorem. -/
 @[simp] theorem chordFrame_center (M e n : ℝ²) (scale : ℝ) :
     chordFrame M e n scale M = 0 := by
   ext i

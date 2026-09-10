@@ -27,9 +27,11 @@ open Census554.EqualityCore
 open Phase3DuplicateCenterCertificate
 open scoped EuclideanGeometry
 
+/-- P97 Phase3DuplicateCenterA2B5P0Q1R6 def. -/
 def learnedClauseSha256 : String :=
   "eaf997a3a2a5f8b46576ae6e604b6e79744c62cc64353269f7b046476462e083"
 
+/-- P97 Phase3DuplicateCenterA2B5P0Q1R6 def. -/
 def certificateNogoodSha256 : String :=
   "a951a0c64cc3794dc9f5bf2d3bb1ef7773d4132c5d224e1dd07c2e95c8400779"
 

@@ -25,24 +25,29 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas abbrev. -/
 private abbrev Hit := Label × Label
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
 def cocircularOrderSatOccurrenceHits : List Hit :=
   [(0, 1), (0, 16), (1, 0), (1, 15),
     (12, 15), (12, 16), (16, 0), (16, 1)]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
 def cocircularOrderSatOccurrenceForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {1, 16} },
     { center := 1, support := {0, 15} },
     { center := 12, support := {15, 16} },
     { center := 16, support := {0, 1} }]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
 def cocircularOrderSatOccurrenceReverseChoices : List (RowChoice Label) :=
   [{ center := 0, support := {15, 16} },
     { center := 4, support := {0, 1} },
     { center := 15, support := {1, 16} },
     { center := 16, support := {0, 15} }]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
 def cocircularOrderSatOccurrenceForwardData :
     WeightedKalmansonCancellationData Label :=
   { terms :=
@@ -59,6 +64,7 @@ def cocircularOrderSatOccurrenceForwardData :
        { left := (2, 16), right := (2, 16),
          path := ⟨(2, 16), [], (2, 16)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
 def cocircularOrderSatOccurrenceReverseData :
     WeightedKalmansonCancellationData Label :=
   { terms :=
@@ -75,6 +81,7 @@ def cocircularOrderSatOccurrenceReverseData :
        { left := (0, 10), right := (0, 10),
          path := ⟨(0, 10), [], (0, 10)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
 def cocircularOrderSatOccurrence : WeightedSourceOccurrence :=
   { hits := cocircularOrderSatOccurrenceHits
     forwardChoices := cocircularOrderSatOccurrenceForwardChoices
@@ -82,19 +89,23 @@ def cocircularOrderSatOccurrence : WeightedSourceOccurrence :=
     forwardData := cocircularOrderSatOccurrenceForwardData
     reverseData := cocircularOrderSatOccurrenceReverseData }
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas theorem. -/
 theorem cocircularOrderSatOccurrence_check :
     cocircularOrderSatOccurrence.check = true := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
 def cocircularOrderSatRefinementClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction =>
       weightedOccurrenceClause order direction cocircularOrderSatOccurrence
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas theorem. -/
 theorem cocircularOrderSatRefinementClauses_length :
     cocircularOrderSatRefinementClauses.length = 4 := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas theorem. -/
 theorem sourceAssign_cocircularOrderSatRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ cocircularOrderSatRefinementClauses,

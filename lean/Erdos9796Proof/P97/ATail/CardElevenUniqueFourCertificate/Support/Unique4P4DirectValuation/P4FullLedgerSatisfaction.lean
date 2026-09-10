@@ -43,6 +43,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- P97 ATail support def. -/
 private def radiusPartitionAgreement
     (Q : DirectSource R profile distribution) :
     P4RadiusPartitionOccurrenceBridgeScratch.CoreValAgreement
@@ -58,6 +59,7 @@ private def radiusPartitionAgreement
       radiusEq Q.packet.core directIndex center left right
     exact (directValAgreement Q).radius center left right hlr hlc hrc
 
+/-- P97 ATail support def. -/
 private def rowAtLeastFourAgreement
     (Q : DirectSource R profile distribution) :
     P4RowAtLeastFourOccurrenceBridgeScratch.CoreValAgreement
@@ -68,6 +70,7 @@ private def rowAtLeastFourAgreement
       rowMem Q.packet.core directIndex center point
     exact (directValAgreement Q).row center point hne
 
+/-- P97 ATail support def. -/
 private def rowRadiusAgreement
     (Q : DirectSource R profile distribution) :
     P4RowRadiusOccurrenceBridgeScratch.CoreValAgreement
@@ -83,6 +86,7 @@ private def rowRadiusAgreement
       radiusEq Q.packet.core directIndex center left right
     exact (directValAgreement Q).radius center left right hlr hlc hrc
 
+/-- P97 ATail support def. -/
 private def mutualTransportAgreement
     (Q : DirectSource R profile distribution) :
     P4MutualTransportOccurrenceBridgeScratch.CoreValAgreement
@@ -98,6 +102,7 @@ private def mutualTransportAgreement
       radiusEq Q.packet.core directIndex center left right
     exact (directValAgreement Q).radius center left right hlr hlc hrc
 
+/-- P97 ATail support def. -/
 private def cyclicAlternationAgreement
     (Q : DirectSource R profile distribution) :
     P4CyclicAlternationOccurrenceBridgeScratch.CoreValAgreement
@@ -113,6 +118,7 @@ private def cyclicAlternationAgreement
       radiusEq Q.packet.core directIndex center left right
     exact (directValAgreement Q).radius center left right hlr hlc hrc
 
+/-- P97 ATail support def. -/
 def p4SourceClauses : List (List Int) :=
   P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses ++
   (P4RowRadiusOccurrenceBridgeScratch.bridgeClauses ++
@@ -128,25 +134,30 @@ def p4SourceClauses : List (List Int) :=
                       cegarEntries.map CegarEntry.clause))))))))))
 
 set_option maxRecDepth 100000 in
+/-- P97 ATail support theorem. -/
 theorem p4SourceClauses_length : p4SourceClauses.length = 19048 := by
   native_decide
 
+/-- P97 ATail support def. -/
 def normalizeClause (clause : List Int) : List Int :=
   clause.mergeSort fun left right => decide (left < right)
 
 set_option maxRecDepth 100000 in
+/-- P97 ATail support theorem. -/
 theorem p4CompactLedger_normalized_mem_p4SourceClauses :
     ∀ clause ∈ P4ExactTwoCertificateClosureScratch.p4CompactLedger,
       normalizeClause clause ∈ p4SourceClauses.map normalizeClause := by
   native_decide
 
 set_option maxRecDepth 100000 in
+/-- P97 ATail support theorem. -/
 theorem p4SourceClauses_normalized_mem_p4CompactLedger :
     ∀ clause ∈ p4SourceClauses,
       normalizeClause clause ∈
         P4ExactTwoCertificateClosureScratch.p4CompactLedger.map normalizeClause := by
   native_decide
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_radiusPartitionClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses,
@@ -154,6 +165,7 @@ theorem directTotalVal_radiusPartitionClauses_sat
   P4RadiusPartitionOccurrenceBridgeScratch.bridgeClauses_sat
     Q.packet (radiusPartitionAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_rowRadiusClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ P4RowRadiusOccurrenceBridgeScratch.bridgeClauses,
@@ -161,6 +173,7 @@ theorem directTotalVal_rowRadiusClauses_sat
   P4RowRadiusOccurrenceBridgeScratch.bridgeClauses_sat_direct
     Q.packet (rowRadiusAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_rowAtLeastFourClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ P4RowAtLeastFourOccurrenceBridgeScratch.bridgeClauses,
@@ -168,6 +181,7 @@ theorem directTotalVal_rowAtLeastFourClauses_sat
   P4RowAtLeastFourOccurrenceBridgeScratch.bridgeClauses_sat
     Q.packet (rowAtLeastFourAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_mutualTransportClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ P4MutualTransportOccurrenceBridgeScratch.bridgeClauses,
@@ -175,6 +189,7 @@ theorem directTotalVal_mutualTransportClauses_sat
   P4MutualTransportOccurrenceBridgeScratch.bridgeClauses_sat_direct
     Q.packet (mutualTransportAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_cyclicAlternationClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ P4CyclicAlternationOccurrenceBridgeScratch.bridgeClauses,
@@ -182,6 +197,7 @@ theorem directTotalVal_cyclicAlternationClauses_sat
   P4CyclicAlternationOccurrenceBridgeScratch.bridgeClauses_sat
     Q.packet (cyclicAlternationAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_kalmansonClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ P4KalmansonOccurrenceBridgeScratch.bridgeClauses,
@@ -189,15 +205,18 @@ theorem directTotalVal_kalmansonClauses_sat
   P4KalmansonOccurrenceBridgeScratch.bridgeClauses_sat_direct
     Q.packet.core (mutualTransportAgreement Q)
 
+/-- P97 ATail support def. -/
 private def literalIndex (literal : Int) : Nat :=
   if 0 ≤ literal then literal.toNat else (-literal).toNat
 
 set_option maxRecDepth 100000 in
+/-- P97 ATail support theorem. -/
 private theorem directOuterThreeFamily_literalIndex_lt :
     ∀ clause ∈ directOuterThreeFamilyCompactClauses,
       ∀ literal ∈ clause, literalIndex literal < 10000 := by
   native_decide
 
+/-- P97 ATail support theorem. -/
 private theorem p5LitSat_directTotal_of_directVal
     (Q : DirectSource R profile distribution) {literal : Int}
     (hsmall : literalIndex literal < 10000)
@@ -212,6 +231,7 @@ private theorem p5LitSat_directTotal_of_directVal
     exact hsat ((directTotalVal_of_lt Q
       (by simpa [literalIndex, hnonnegative] using hsmall)).mp htotal)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_directOuterThreeFamilyClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ directOuterThreeFamilyCompactClauses,
@@ -227,6 +247,7 @@ theorem directTotalVal_directOuterThreeFamilyClauses_sat
   exact ⟨literal, hliteral, p5LitSat_directTotal_of_directVal Q
     (directOuterThreeFamily_literalIndex_lt clause hclause literal hliteral) hsat⟩
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_p4SourceClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ p4SourceClauses,
@@ -261,6 +282,7 @@ theorem directTotalVal_p4SourceClauses_sat
   rcases List.mem_map.mp hclause with ⟨entry, hentry, rfl⟩
   exact directTotalVal_cegarEntries_sat Q entry hentry
 
+/-- P97 ATail support theorem. -/
 private theorem p5ClauseSat_normalizeClause_iff
     (v : Nat → Prop) (clause : List Int) :
     P5OccurrenceBridgeScratch.clauseSat v (normalizeClause clause) ↔
@@ -268,6 +290,7 @@ private theorem p5ClauseSat_normalizeClause_iff
   simp only [P5OccurrenceBridgeScratch.clauseSat, normalizeClause,
     List.mem_mergeSort]
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_p4CompactLedger_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ P4ExactTwoCertificateClosureScratch.p4CompactLedger,
@@ -292,6 +315,7 @@ theorem directTotalVal_p4CompactLedger_sat
     P5OccurrenceBridgeScratch.clauseSat,
     P5OccurrenceBridgeScratch.litSat] using hledger
 
+/-- P97 ATail support theorem. -/
 theorem false_of_directSource
     (Q : DirectSource R profile distribution) : False :=
   P4ExactTwoCertificateClosureScratch.false_of_p4CompactLedger_sat

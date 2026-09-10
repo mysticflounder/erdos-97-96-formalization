@@ -27,16 +27,19 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open Census554.EqualityCore
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement def. -/
 def canaryPerpBisectorHits : List Hit :=
   [(5, 2), (5, 14), (6, 2), (6, 14),
     (8, 5), (8, 6), (14, 5), (14, 6)]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement def. -/
 def canaryPerpBisectorChoices : List (RowChoice Label) :=
   [{ center := 5, support := {2, 14} },
     { center := 6, support := {2, 14} },
     { center := 8, support := {5, 6} },
     { center := 14, support := {5, 6} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement def. -/
 def canaryPerpBisectorData : PerpBisectorData Label := {
   a := 5
   b := 6
@@ -48,10 +51,12 @@ def canaryPerpBisectorData : PerpBisectorData Label := {
   qa_qb := ⟨(8, 5), [.row 8 5 6], (8, 6)⟩
   ra_rb := ⟨(14, 5), [.row 14 5 6], (14, 6)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement theorem. -/
 theorem canaryPerpBisectorData_check :
     canaryPerpBisectorData.check canaryPerpBisectorChoices = true := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement def. -/
 def canaryPerpBisectorClause : Std.Sat.CNF.Clause Atom :=
   canaryPerpBisectorHits.map fun hit => neg (.hit hit.1 hit.2)
 
@@ -61,6 +66,7 @@ theorem canaryPerpBisectorClause_dimacs :
       [-88, -100, -105, -117, -142, -143, -244, -245] := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement theorem. -/
 private theorem false_of_canaryPerpBisectorHits {A : Finset ℝ²}
     (source : SourceRealization A)
     (hhits : ∀ hit ∈ canaryPerpBisectorHits,
@@ -112,6 +118,7 @@ private theorem false_of_canaryPerpBisectorHits {A : Finset ℝ²}
     (fun label => boundaryLabel_mem source.boundary source.boundary_image
       source.labelIndex label) core
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement theorem. -/
 theorem sourceAssign_canaryPerpBisectorClause
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -127,16 +134,19 @@ theorem sourceAssign_canaryPerpBisectorClause
   · simp [canaryPerpBisectorClause, neg, hhits]
   · simp [sourceAssign, hnotmem]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement def. -/
 def canaryPerpBisectorRefinementCnf : Std.Sat.CNF Atom :=
   ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinements.extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf ++
     [canaryPerpBisectorClause]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement theorem. -/
 theorem canaryPerpBisectorRefinementCnf_length :
     canaryPerpBisectorRefinementCnf.length = 7409296 := by
   rw [canaryPerpBisectorRefinementCnf, List.length_append,
     ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinements.extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf_length]
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement theorem. -/
 theorem sourceAssign_canaryPerpBisectorRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :

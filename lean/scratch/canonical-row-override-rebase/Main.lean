@@ -23,6 +23,7 @@ open ATailTwoCollisionGlobalProducer
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 private theorem exists_second_outside_two_pairs
     {α : Type*} [DecidableEq α]
     (K : Finset α) (q a b c d : α)
@@ -79,6 +80,7 @@ private theorem exists_second_outside_two_pairs
   exact ⟨v, (Finset.mem_sdiff.mp hv).1, hvq,
     by simpa [E] using (Finset.mem_sdiff.mp hv).2⟩
 
+/-- Indexed scratch Lean theorem. -/
 private theorem overrideAt_selectedSupport_eq_of_ne
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {q center z : ℝ²} (C : CriticalSelectedFourClass A q center)
@@ -90,6 +92,7 @@ private theorem overrideAt_selectedSupport_eq_of_ne
     CriticalShellSystem.overrideAt]
   rw [dif_neg hzq]
 
+/-- Indexed scratch Lean theorem. -/
 private theorem overrideAt_selectedSupport_eq
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {q center : ℝ²} (C : CriticalSelectedFourClass A q center)
@@ -101,6 +104,7 @@ private theorem overrideAt_selectedSupport_eq
     CriticalShellSystem.overrideAt]
   rw [dif_pos rfl]
 
+/-- Indexed scratch Lean def. -/
 private def rebaseCrossPairDeletionView
     {D : CounterexampleData} {H H' : CriticalShellSystem D.A}
     (source : CriticalShellSystem.CarrierVertex D.A)
@@ -118,6 +122,7 @@ private def rebaseCrossPairDeletionView
         have homits := view.omits
         simpa [CrossPairSelectedSupportOmission, hsupport] using homits)
 
+/-- Indexed scratch Lean def. -/
 private def rebaseRetainedInteriorBlockerCollision
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H H' : CriticalShellSystem D.A}
@@ -144,6 +149,7 @@ private def rebaseRetainedInteriorBlockerCollision
   source₂_mem_capInterior := P.source₂_mem_capInterior
   blockers_eq := hcenter₁.trans (P.blockers_eq.trans hcenter₂.symm)
 
+/-- Indexed scratch Lean def. -/
 private def rebaseLocalizedCollisionCommonDeletion
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H H' : CriticalShellSystem D.A}
@@ -173,6 +179,7 @@ private def rebaseLocalizedCollisionCommonDeletion
   packet := by
     simpa [hcenter] using rebaseCommonDeletionSystem LP.packet H'
 
+/-- Indexed scratch Lean def. -/
 private def rebaseLocalizedCollisionMutualOmissionCycle
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H H' : CriticalShellSystem D.A}
@@ -280,6 +287,7 @@ variable
 include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   T hpairsDisjoint hblockersNe LPρ hLPρ MPρ LP hLP MP
 
+/-- Indexed scratch Lean theorem. -/
 theorem false_of_freshCanonicalRowOverride
     (source q : CriticalShellSystem.CarrierVertex D.A)
     (hsource :

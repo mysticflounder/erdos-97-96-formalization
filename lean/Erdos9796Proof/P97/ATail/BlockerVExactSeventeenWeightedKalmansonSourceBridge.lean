@@ -45,9 +45,11 @@ structure WeightedSourceOccurrence where
   reverseData : WeightedKalmansonCancellationData Label
 deriving DecidableEq
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonSourceBridge abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonSourceBridge theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -56,6 +58,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonSourceBridge theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -125,6 +128,7 @@ theorem positiveRowsMatch_of_ne
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         hcover choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonSourceBridge def. -/
 def WeightedSourceOccurrence.check (occurrence : WeightedSourceOccurrence) : Bool :=
   occurrence.forwardData.check occurrence.forwardChoices &&
   occurrence.reverseData.check occurrence.reverseChoices &&
@@ -176,6 +180,7 @@ theorem weightedOccurrenceClause_eval_false_of_all_hits
       simp [sourceAssign, hselected] at heval
   exact Bool.eq_false_of_not_eq_true hne
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonSourceBridge theorem. -/
 private theorem false_of_weightedSourceOccurrenceHits
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (occurrence : WeightedSourceOccurrence)

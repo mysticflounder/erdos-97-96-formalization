@@ -150,12 +150,18 @@ finite occurrence bridge; the arithmetic theorem does not itself authenticate
 the clauses.
 -/
 
+/-- P97 ATail support def. -/
 def radiusPartitionTransitivityClauseCount : ℕ := 3218
+/-- P97 ATail support def. -/
 def selectedRowSubsetRadiusClassClauseCount : ℕ := 441
+/-- P97 ATail support def. -/
 def mutualTriangleCrossCenterRadiusTransportClauseCount : ℕ := 392
+/-- P97 ATail support def. -/
 def rowAtLeastFourClauseCount : ℕ := 981
+/-- P97 ATail support def. -/
 def fullClassCyclicAlternationClauseCount : ℕ := 1279
 
+/-- P97 ATail support def. -/
 def curvatureGenericClauseCount : ℕ :=
   radiusPartitionTransitivityClauseCount +
     selectedRowSubsetRadiusClassClauseCount +
@@ -163,6 +169,7 @@ def curvatureGenericClauseCount : ℕ :=
     rowAtLeastFourClauseCount +
     fullClassCyclicAlternationClauseCount
 
+/-- P97 ATail support theorem. -/
 theorem curvatureGenericClauseCount_eq :
     curvatureGenericClauseCount = 6311 := by
   norm_num [curvatureGenericClauseCount,

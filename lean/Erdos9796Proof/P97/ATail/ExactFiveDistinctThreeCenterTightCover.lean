@@ -77,6 +77,7 @@ theorem intersections_of_card_four_union_card_eleven
    first-row/blocker-row intersection.  This is the source-facing form of the
    finite cardinality calculation above, and rules out any later argument
    that needs two distinct points shared by those rows. -/
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 theorem tightPhysical_firstApex_blocker_intersection_eq_retained
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -99,6 +100,7 @@ theorem tightPhysical_firstApex_blocker_intersection_eq_retained
 
 /- A convenient contradiction form for the metric radius-drop route: in the
    tight branch, no two distinct sources can lie in both of the relevant rows. -/
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 theorem tightPhysical_no_two_distinct_firstApex_blocker_sources
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1268,6 +1270,7 @@ structure BalancedTightCoverInvariant
         S.capInteriorByIndex S.oppIndex2 =
       S.capInteriorByIndex S.oppIndex2
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -1275,6 +1278,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -1283,6 +1287,7 @@ private theorem oppApex2_eq_oppositeVertexByIndex_oppIndex2
     simp only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppositeVertexByIndex, hi] <;> rfl
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.surplusApex = S.oppositeVertexByIndex S.surplusIdx := by
@@ -1291,6 +1296,7 @@ private theorem surplusApex_eq_oppositeVertexByIndex_surplusIdx
     simp only [SurplusCapPacket.surplusApex,
       SurplusCapPacket.oppositeVertexByIndex, hi]
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem mem_capByIndex_endpoint_or_interior
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {point : ℝ²}
     (hpoint : point ∈ S.capByIndex i) :
@@ -1317,6 +1323,7 @@ private theorem mem_capByIndex_endpoint_or_interior
     · exact Or.inr <| Or.inr <| Finset.mem_erase.mpr
         ⟨hthird, Finset.mem_erase.mpr ⟨hsecond, hpoint⟩⟩
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem mem_roleEnvelope_of_mem_not_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {point : ℝ²}
     (hpointA : point ∈ A) (hpointNotSurplus : point ∉ S.surplusCap)
@@ -1377,6 +1384,7 @@ private theorem mem_roleEnvelope_of_mem_not_surplusCap
     · exact Finset.mem_insert.mpr <| Or.inr <|
         Finset.mem_union.mpr <| Or.inr hinterior
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem firstResidual_inter_surplusCap_card_le_one
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1418,6 +1426,7 @@ private theorem firstResidual_inter_surplusCap_card_le_one
   · rw [hcap]
     exact hpointCap
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem secondRow_inter_surplusCap_card_le_one
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1457,6 +1466,7 @@ private theorem secondRow_inter_surplusCap_card_le_one
   · rw [hcap]
     exact hpointCap
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem deleted_not_mem_surplusCap_of_balancedTightCover
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1475,6 +1485,7 @@ private theorem deleted_not_mem_surplusCap_of_balancedTightCover
   exact S.capInteriorByIndex_not_mem_capByIndex_of_ne hdeletedInterior
     S.surplusIdx_ne_oppIndex1.symm
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem retained_not_mem_surplusCap_of_balancedTightCover
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1493,6 +1504,7 @@ private theorem retained_not_mem_surplusCap_of_balancedTightCover
   exact S.capInteriorByIndex_not_mem_capByIndex_of_ne hretainedInterior
     S.surplusIdx_ne_oppIndex1.symm
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem firstInteriorThird_not_mem_surplusCap_of_balancedTightCover
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1511,6 +1523,7 @@ private theorem firstInteriorThird_not_mem_surplusCap_of_balancedTightCover
   exact S.capInteriorByIndex_not_mem_capByIndex_of_ne hthirdInterior
     S.surplusIdx_ne_oppIndex1.symm
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem surplusCap_subset_balancedTightCover_rowIntersections
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -1552,6 +1565,7 @@ private theorem surplusCap_subset_balancedTightCover_rowIntersections
     · exact Finset.mem_union.mpr <| Or.inr <|
         Finset.mem_inter.mpr ⟨hpointSecond, hpointCap⟩
 
+/-- P97 ATail ExactFiveDistinctThreeCenterTightCover theorem. -/
 private theorem blockerResidual_inter_surplusCap_eq_blockerInter
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

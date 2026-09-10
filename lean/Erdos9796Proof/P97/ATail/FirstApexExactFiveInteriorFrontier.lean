@@ -27,6 +27,7 @@ open ATailCriticalPairFrontier
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem selectedClass_capInterior_card_ge_three_of_card_eq_five
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3) {radius : ℝ}
@@ -74,6 +75,7 @@ private theorem selectedClass_capInterior_card_ge_three_of_card_eq_five
   change 3 ≤ (T ∩ S.capInteriorByIndex i).card
   omega
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -83,6 +85,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi, Fin.val_zero, Fin.val_one]
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem firstApex_interior_card_ge_three_of_card_eq_five
     (D : CounterexampleData) (S : SurplusCapPacket D.A) {r : ℝ}
     (hr : 0 < r)
@@ -93,6 +96,7 @@ private theorem firstApex_interior_card_ge_three_of_card_eq_five
   exact selectedClass_capInterior_card_ge_three_of_card_eq_five
     S D.convex S.oppIndex1 hr hcard
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier structure. -/
 private structure SurvivingPair
     (D : CounterexampleData) (S : SurplusCapPacket D.A) (r : ℝ) where
   q : ℝ²
@@ -105,6 +109,7 @@ private structure SurvivingPair
   q_survives : HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
   w_survives : HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem interior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -116,6 +121,7 @@ private theorem interior_not_mem_surplusCap
     simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier def. -/
 private def SurvivingPair.toRelocation
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     (P : SurvivingPair D S r)
@@ -154,6 +160,7 @@ private def SurvivingPair.toRelocation
     w_blocker_ne_oppApex2 :=
       actual_blocker_ne_of_deletion_survives H hwA P.w_survives }
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem oppApex2_mem
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -163,6 +170,7 @@ private theorem oppApex2_mem
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem equidistant_mono
     {n : ℕ} {S T : Finset ℝ²} {p : ℝ²}
     (hsub : S ⊆ T)
@@ -174,6 +182,7 @@ private theorem equidistant_mono
   rcases Finset.mem_filter.mp hz with ⟨hzS, hzdist⟩
   exact Finset.mem_filter.mpr ⟨hsub hzS, hzdist⟩
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier structure. -/
 private structure Witness
     (D : CounterexampleData) (S : SurplusCapPacket D.A) (r : ℝ) where
   q : ℝ²
@@ -186,6 +195,7 @@ private structure Witness
   secondApexDouble :
     HasNEquidistantPointsAt 4 ((D.A.erase q).erase w) S.oppApex2
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem nonempty_witness
     (D : CounterexampleData) (S : SurplusCapPacket D.A) {r : ℝ}
     (hr : 0 < r)
@@ -258,6 +268,7 @@ private theorem nonempty_witness
     secondApexDouble := ⟨rho, hrho, by
       simpa [SelectedClass] using hfourDouble⟩ }⟩
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier def. -/
 private def Witness.toSurvivingPair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     (P : Witness D S r) :
@@ -285,6 +296,7 @@ private def Witness.toSurvivingPair
     q_survives := hqSurvives
     w_survives := hwSurvives }
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier def. -/
 private def Witness.toRelocation
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     (P : Witness D S r)
@@ -292,6 +304,7 @@ private def Witness.toRelocation
     SurvivorPairRelocationPacket D S r H :=
   P.toSurvivingPair.toRelocation H
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier theorem. -/
 private theorem oppApex1_mem
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -301,6 +314,7 @@ private theorem oppApex1_mem
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail FirstApexExactFiveInteriorFrontier def. -/
 private def Witness.toCriticalPairFrontier
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     (P : Witness D S r)

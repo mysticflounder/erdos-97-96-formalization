@@ -21,6 +21,7 @@ open ExactFourAdjacentGridKalmanson
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -30,6 +31,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi]
 
+/-- Indexed scratch Lean theorem. -/
 private theorem direct_signedArea_order
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {B : BoundaryIndexing A} {hn : 0 < B.n} {iv iw : Fin B.n}
@@ -47,6 +49,7 @@ private theorem direct_signedArea_order
     hiv.trans (oppApex1_eq_oppositeVertexByIndex_oppIndex1 S).symm
   simpa [hapex, hixPoint, hiyPoint] using hneg
 
+/-- Indexed scratch Lean theorem. -/
 private theorem mirror_signedArea_order
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {B : BoundaryIndexing A} {hn : 0 < B.n} {iv iw : Fin B.n}

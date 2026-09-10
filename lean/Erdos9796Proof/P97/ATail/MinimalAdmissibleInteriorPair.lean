@@ -302,6 +302,7 @@ theorem MinimalAdmissibleInteriorPair.bisector_not_mem_firstApexClass
   exact ⟨by simpa [q, w] using hshortQ,
     by simpa [q, w] using hshortW⟩
 
+/-- P97 ATail MinimalAdmissibleInteriorPair theorem. -/
 private theorem capInterior_card_eq_three_of_cap_card_eq_five
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     (hcard : (S.capByIndex i).card = 5) :
@@ -329,6 +330,7 @@ private theorem capInterior_card_eq_three_of_cap_card_eq_five
     rw [Finset.card_erase_of_mem hv2,
       Finset.card_erase_of_mem S.partition.v1_mem_C3, hcard]
 
+/-- P97 ATail MinimalAdmissibleInteriorPair theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by

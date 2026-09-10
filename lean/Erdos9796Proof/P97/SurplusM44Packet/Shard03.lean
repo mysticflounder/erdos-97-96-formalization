@@ -26,6 +26,7 @@ namespace Problem97
 
 namespace SurplusCapPacket
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightPrivateSecondHit_reflection_false
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     {radius rho : ℝ} {x y : ℝ²}
@@ -87,6 +88,7 @@ theorem rightPrivateSecondHit_reflection_false
       (by simpa [oppositeVertexByIndex, triangleByIndex] using hxFirst)
       (by simpa [oppositeVertexByIndex, triangleByIndex] using hyFirst)
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftPrivateSecondHit_reflection_false
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     {radius rho : ℝ} {x y : ℝ²}
@@ -264,6 +266,7 @@ theorem capInterior_pair_dist_ne_leftOuter_of_selectedClass
       (by simpa [oppositeVertexByIndex, triangleByIndex] using hp₁First)
       (by simpa [oppositeVertexByIndex, triangleByIndex] using hp₂First)
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightEndpointEscapeData_elim
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     {radius rho : ℝ} {x : ℝ²}
@@ -285,6 +288,7 @@ theorem rightEndpointEscapeData_elim
   · exact S.rightEndpointOnFirstRadius_false i hxT hxEsc hxρ hsharedρ
       (not_not.mp hsharedFirst)
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftEndpointEscapeData_elim
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     {radius rho : ℝ} {x : ℝ²}
@@ -306,6 +310,7 @@ theorem leftEndpointEscapeData_elim
   · exact S.leftEndpointOnFirstRadius_false i hxT hxEsc hxρ hsharedρ
       (not_not.mp hsharedFirst)
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightStrictEscape_endpointData_elim
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3)
@@ -357,6 +362,7 @@ theorem rightStrictEscape_endpointData_elim
       exact S.rightPrivateSecondHit_reflection_false i hxT hxEsc hyI hyT
         hxρ hyρ
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftStrictEscape_endpointData_elim
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3)

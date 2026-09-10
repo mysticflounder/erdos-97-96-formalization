@@ -136,11 +136,13 @@ underlying surplus-cap packet is `IsM44`. -/
 def CounterexampleData.IsM44 (D : CounterexampleData) : Prop :=
   D.packet.IsM44
 
+/-- P97 U1TwoShortCapReduction theorem. -/
 theorem CounterexampleData.IsM44.surplus_card_eq
     {D : CounterexampleData} (h : D.IsM44) :
     D.packet.surplusCap.card + 5 = D.A.card :=
   SurplusCapPacket.IsM44.surplus_card_eq h
 
+/-- P97 U1TwoShortCapReduction theorem. -/
 theorem CounterexampleData.IsM44.surplus_card_ge_five
     {D : CounterexampleData} (h : D.IsM44) :
     5 ≤ D.packet.surplusCap.card :=

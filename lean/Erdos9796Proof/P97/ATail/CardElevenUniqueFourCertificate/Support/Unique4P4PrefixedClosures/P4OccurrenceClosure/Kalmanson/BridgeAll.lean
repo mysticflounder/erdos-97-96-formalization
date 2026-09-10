@@ -19,21 +19,29 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 
 namespace Problem97.P4KalmansonOccurrenceBridgeScratch
 
+/-- P97 ATail support def. -/
 def bridgeEntries : List BridgeEntry := bridgeChunk01 ++ bridgeChunk02 ++ bridgeChunk03 ++ bridgeChunk04 ++ bridgeChunk05 ++ bridgeChunk06 ++ bridgeChunk07 ++ bridgeChunk08 ++ bridgeChunk09 ++ bridgeChunk10 ++ bridgeChunk11 ++ bridgeChunk12 ++ bridgeChunk13 ++ bridgeChunk14 ++ bridgeChunk15
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_length : bridgeEntries.length = 1907 := by
   simp [bridgeEntries, bridgeChunk01_length, bridgeChunk02_length, bridgeChunk03_length, bridgeChunk04_length, bridgeChunk05_length, bridgeChunk06_length, bridgeChunk07_length, bridgeChunk08_length, bridgeChunk09_length, bridgeChunk10_length, bridgeChunk11_length, bridgeChunk12_length, bridgeChunk13_length, bridgeChunk14_length, bridgeChunk15_length]
 
 /-- Authenticated compact P4 Kalmanson window metadata. -/
 def compactWindowSha256 : String := "4891dac3b1630c85cad7227add2d42178c3f94326a72647bc11aae5b9dd10f70"
+/-- P97 ATail support def. -/
 def ledgerWindowSha256 : String := "41a03f8a0ed14364d11c12778aa7d3cb4228185d3a2e7a0fc45cdc07e80b432a"
+/-- P97 ATail support def. -/
 def sourceWindowSha256 : String := "ab08792ac52be3ddb99b35eeb6a081f6277c8c5dfd11c7eb9742940bb3ef4f3e"
+/-- P97 ATail support def. -/
 def compactFormulaSha256 : String := "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+/-- P97 ATail support def. -/
 def sourceMapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- P97 ATail support def. -/
 def compactStableSha256 : String := "8d5b8f5adf40cda367e7e7f72f6afc58e75201011e140ff198ace1c836521dd1"
 
 /-- The only canonical forward-schema-5 entries, each discharged by the
 explicit direct and reflected-boundary terminals in `KalmansonCore`. -/
 def schema5ForwardCompactIndices : List Nat := [7721, 7722]
+/-- P97 ATail support def. -/
 def schema5ForwardSourceIndices : List Nat := [28606, 28607]
 
 end Problem97.P4KalmansonOccurrenceBridgeScratch

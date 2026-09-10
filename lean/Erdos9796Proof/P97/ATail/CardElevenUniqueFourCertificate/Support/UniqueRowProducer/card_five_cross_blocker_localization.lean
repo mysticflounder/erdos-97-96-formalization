@@ -109,6 +109,7 @@ theorem false_of_two_cap_centers_equidistant_outside_pair
       (by simpa [hia] using hapexEq)
       (by simpa [hic] using hcEq)
 
+/-- P97 ATail support card_five_cross_blocker_localization theorem. -/
 private theorem blocker_ne_oppApex1_of_card_five
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}

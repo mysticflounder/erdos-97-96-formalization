@@ -569,6 +569,7 @@ noncomputable def packetRightAdjCount
     ℕ :=
   (T ∩ S.rightAdjacentInteriorByIndex i).card
 
+/-- P97 SurplusM44Packet theorem. -/
 private theorem packet_inter_card_le_selected_inter_card
     {T U C : Finset ℝ²} (hTsub : T ⊆ U) :
     (T ∩ C).card ≤ (U ∩ C).card := by
@@ -578,11 +579,13 @@ private theorem packet_inter_card_le_selected_inter_card
       ⟨hTsub (Finset.mem_of_mem_inter_left hq),
         Finset.mem_of_mem_inter_right hq⟩)
 
+/-- P97 SurplusM44Packet theorem. -/
 private theorem inter_card_eq_sum_indicator (T C : Finset ℝ²) :
     (T ∩ C).card = ∑ q ∈ T, (if q ∈ C then 1 else 0) := by
   rw [← Finset.card_filter (fun q => q ∈ C) T]
   rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 private theorem indicator_le_indicator_of_imp
     {p q : Prop} [Decidable p] [Decidable q] (h : p → q) :
     (if p then 1 else 0 : ℕ) ≤ if q then 1 else 0 := by

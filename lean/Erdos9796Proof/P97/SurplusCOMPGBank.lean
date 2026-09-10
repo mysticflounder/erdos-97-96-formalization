@@ -54,6 +54,7 @@ def Label.index : Label -> Nat
 def Label.bit (label : Label) : Nat :=
   2 ^ label.index
 
+/-- P97 SurplusCOMPGBank theorem. -/
 @[simp] theorem Label.beq_eq_decide_eq (left right : Label) :
     (left == right) = decide (left = right) := by
   cases left <;> cases right <;> native_decide

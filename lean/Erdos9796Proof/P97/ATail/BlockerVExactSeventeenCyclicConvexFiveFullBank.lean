@@ -35,18 +35,22 @@ structure CyclicConvexFiveData where
   a : Label
 deriving DecidableEq, Repr
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 def CyclicConvexFiveData.Valid (data : CyclicConvexFiveData) : Prop :=
   0 < data.c ∧ data.c < data.b ∧
     data.b < data.x ∧ data.x < data.a
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 def CyclicConvexFiveData.check (data : CyclicConvexFiveData) : Bool :=
   decide (0 < data.c ∧ data.c < data.b ∧
     data.b < data.x ∧ data.x < data.a)
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 theorem CyclicConvexFiveData.validOfCheck (data : CyclicConvexFiveData)
     (hcheck : data.check = true) : data.Valid := by
   simpa [CyclicConvexFiveData.check, CyclicConvexFiveData.Valid] using hcheck
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 def CyclicConvexFiveData.placed
     (data : CyclicConvexFiveData) : DirectConvexFiveData :=
   { a := data.a + data.cut
@@ -64,6 +68,7 @@ theorem rev_add_diff :
         Fin.rev (z + cut) := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 private theorem forwardOrientation (data : CyclicConvexFiveData)
     (hvalid : data.Valid) {pointOf : Label → ℝ²}
     (hinj : Function.Injective pointOf)
@@ -90,6 +95,7 @@ private theorem forwardOrientation (data : CyclicConvexFiveData)
     rw [signedArea2_swap13]
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 private theorem reverseOrientation (data : CyclicConvexFiveData)
     (hvalid : data.Valid) {pointOf : Label → ℝ²}
     (hinj : Function.Injective pointOf)
@@ -142,6 +148,7 @@ private theorem reverseOrientation (data : CyclicConvexFiveData)
     simpa only [CyclicConvexFiveData.placed, reverseCut, db, dc, da,
       hbId, hcId, hyId', Fin.zero_add] using h
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 def CyclicConvexFiveData.occurrence (data : CyclicConvexFiveData)
     (hvalid : data.Valid) : ConvexFiveSourceOccurrence :=
   { hits := data.placed.hits
@@ -152,6 +159,7 @@ def CyclicConvexFiveData.occurrence (data : CyclicConvexFiveData)
     forwardOrientation := forwardOrientation data hvalid
     reverseOrientation := reverseOrientation data hvalid }
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 theorem CyclicConvexFiveData.occurrence_check
     (data : CyclicConvexFiveData) (hvalid : data.Valid) :
     (data.occurrence hvalid).check = true := by
@@ -176,13 +184,16 @@ theorem CyclicConvexFiveData.occurrence_check
     exact (ne_of_gt (hvalid.1.trans (hvalid.2.1.trans hvalid.2.2.1)))
       (by simpa [CyclicConvexFiveData.placed] using this)
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank abbrev. -/
 private abbrev orientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 def CyclicConvexFiveData.clause (data : CyclicConvexFiveData)
     (direction : Orientation) : Std.Sat.CNF.Clause Atom :=
   nogoodClause 0 (orientedHits data.placed.hits 0 direction)
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 theorem sourceAssign_cyclicConvexFiveClause
     {A : Finset ℝ²} (source : SourceRealization A)
     (data : CyclicConvexFiveData) (hvalid : data.Valid)
@@ -194,16 +205,19 @@ theorem sourceAssign_cyclicConvexFiveClause
     sourceAssign_convexFiveOccurrenceClause source (data.occurrence hvalid)
       (data.occurrence_check hvalid) 0 direction
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 private def dataOfCutAndOffsets
     (cut : Label) : List Label → CyclicConvexFiveData
   | [c, b, x, a] => ⟨cut, c, b, x, a⟩
   | _ => ⟨cut, 0, 0, 0, 0⟩
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 def cyclicConvexFiveMissingData : List CyclicConvexFiveData :=
   (labels.flatMap fun cut =>
     (positiveOffsets.sublistsLen 4).map (dataOfCutAndOffsets cut)).filter
       fun data => data.check && decide (17 ≤ data.cut.val + data.a.val)
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 theorem valid_of_mem_cyclicConvexFiveMissingData
     {data : CyclicConvexFiveData}
     (hdata : data ∈ cyclicConvexFiveMissingData) : data.Valid := by
@@ -211,18 +225,22 @@ theorem valid_of_mem_cyclicConvexFiveMissingData
   simp only [Bool.and_eq_true] at hcheck
   exact data.validOfCheck hcheck.1
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
 def cyclicConvexFiveMissingClauses : Std.Sat.CNF Atom :=
   cyclicConvexFiveMissingData.flatMap fun data =>
     directions.map data.clause
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 theorem cyclicConvexFiveMissingData_length :
     cyclicConvexFiveMissingData.length = 24752 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 theorem cyclicConvexFiveMissingClauses_length :
     cyclicConvexFiveMissingClauses.length = 49504 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank theorem. -/
 theorem sourceAssign_cyclicConvexFiveMissingClauses
     {A : Finset ℝ²} (source : SourceRealization A) :
     ∀ clause ∈ cyclicConvexFiveMissingClauses,

@@ -72,6 +72,7 @@ structure DirectFourArcOccurrenceAgreement
   a3 : valuation e.a3.1 ↔ outerArcVal Q.curvature e.a3.2
   a4 : valuation e.a4.1 ↔ outerArcVal Q.curvature e.a4.2
 
+/-- P97 ATail support theorem. -/
 private theorem literalSat_neg {valuation : Nat → Prop} {n : Nat}
     (hn : 0 < n) (hfalse : ¬ valuation n) :
     literalSat valuation (-(n : Int)) := by
@@ -121,6 +122,7 @@ theorem directNoFourOccurrences_length :
 def directNoFourOutputIndices : List Nat :=
   directNoFourOccurrences.map FourArcOccurrence.outputClauseIndex
 
+/-- P97 ATail support theorem. -/
 theorem directNoFourOutputIndices_eq_range :
     directNoFourOutputIndices =
       List.range' firstDirectNoFourOutput directNoFourOccurrenceCount := by
@@ -131,6 +133,7 @@ theorem directNoFourOccurrences_wf :
     directNoFourOccurrences.all FourArcOccurrence.wf = true := by
   native_decide
 
+/-- P97 ATail support theorem. -/
 private theorem all_clauseSat_of_direct
     (Q : DirectSource R profile distribution) (valuation : Nat → Prop) :
     ∀ (entries : List FourArcOccurrence),

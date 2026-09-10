@@ -53,28 +53,35 @@ instance (e : RowArcOccurrence) (f : DirectRowArcFiniteOccurrence) :
   unfold RowArcFiniteOccurrenceMatches
   infer_instance
 
+/-- P97 ATail support def. -/
 def rowArcFiniteOccurrenceMatchBool (e : RowArcOccurrence)
     (f : DirectRowArcFiniteOccurrence) : Bool :=
   decide (RowArcFiniteOccurrenceMatches e f)
 
+/-- P97 ATail support def. -/
 def rowArcFiniteForwardMatchCheck : Bool :=
   rowArcOccurrences.all fun e =>
     directRowArcFiniteOccurrences.any (rowArcFiniteOccurrenceMatchBool e)
 
+/-- P97 ATail support def. -/
 def rowArcFiniteReverseMatchCheck : Bool :=
   directRowArcFiniteOccurrences.all fun f =>
     rowArcOccurrences.any fun e => rowArcFiniteOccurrenceMatchBool e f
 
+/-- P97 ATail support def. -/
 def rowArcOccurrenceKey (e : RowArcOccurrence) : Nat × Nat × Nat :=
   (e.outputClauseIndex, e.coreClauseIndex, e.terminalClauseIndex)
 
+/-- P97 ATail support def. -/
 def directRowArcFiniteOccurrenceKey
     (f : DirectRowArcFiniteOccurrence) : Nat × Nat × Nat :=
   (f.outputClauseIndex, f.coreClauseIndex, f.terminalClauseIndex)
 
+/-- P97 ATail support def. -/
 def rowArcOccurrenceKeysNodupCheck : Bool :=
   decide (rowArcOccurrences.map rowArcOccurrenceKey).Nodup
 
+/-- P97 ATail support def. -/
 def directRowArcFiniteOccurrenceKeysNodupCheck : Bool :=
   decide (directRowArcFiniteOccurrences.map directRowArcFiniteOccurrenceKey).Nodup
 
@@ -86,33 +93,39 @@ def rowArcFiniteBijectionCheck : Bool :=
       (rowArcOccurrenceKeysNodupCheck &&
         directRowArcFiniteOccurrenceKeysNodupCheck))
 
+/-- P97 ATail support theorem. -/
 theorem rowArcFiniteBijectionCheck_true : rowArcFiniteBijectionCheck = true := by
   native_decide
 
+/-- P97 ATail support theorem. -/
 theorem rowArcFiniteForwardMatchCheck_true :
     rowArcFiniteForwardMatchCheck = true := by
   have h := rowArcFiniteBijectionCheck_true
   simp only [rowArcFiniteBijectionCheck, Bool.and_eq_true] at h
   exact h.1
 
+/-- P97 ATail support theorem. -/
 theorem rowArcFiniteReverseMatchCheck_true :
     rowArcFiniteReverseMatchCheck = true := by
   have h := rowArcFiniteBijectionCheck_true
   simp only [rowArcFiniteBijectionCheck, Bool.and_eq_true] at h
   exact h.2.1
 
+/-- P97 ATail support theorem. -/
 theorem rowArcOccurrenceKeysNodupCheck_true :
     rowArcOccurrenceKeysNodupCheck = true := by
   have h := rowArcFiniteBijectionCheck_true
   simp only [rowArcFiniteBijectionCheck, Bool.and_eq_true] at h
   exact h.2.2.1
 
+/-- P97 ATail support theorem. -/
 theorem directRowArcFiniteOccurrenceKeysNodupCheck_true :
     directRowArcFiniteOccurrenceKeysNodupCheck = true := by
   have h := rowArcFiniteBijectionCheck_true
   simp only [rowArcFiniteBijectionCheck, Bool.and_eq_true] at h
   exact h.2.2.2
 
+/-- P97 ATail support theorem. -/
 theorem rowArcFiniteOccurrence_exists (e : RowArcOccurrence)
     (he : e ∈ rowArcOccurrences) :
     ∃ f ∈ directRowArcFiniteOccurrences,
@@ -123,6 +136,7 @@ theorem rowArcFiniteOccurrence_exists (e : RowArcOccurrence)
   change decide (RowArcFiniteOccurrenceMatches e f) = true at hmatch
   exact of_decide_eq_true hmatch
 
+/-- P97 ATail support theorem. -/
 theorem directRowArcFiniteDatum_valid_of_mem
     (f : DirectRowArcFiniteOccurrence) (hf : f ∈ directRowArcFiniteOccurrences) :
     f.datum.Valid :=

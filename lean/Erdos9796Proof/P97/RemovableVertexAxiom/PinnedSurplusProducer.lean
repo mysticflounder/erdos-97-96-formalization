@@ -20,6 +20,7 @@ namespace Problem97
 
 open SurplusCOMPGBank
 
+/-- P97 RemovableVertexAxiom abbrev. -/
 private abbrev SameRadiusPointClasses
     (pointOf : Label → ℝ²) (centerClass : Label → Finset ℝ²) : Prop :=
   ∀ center a b : Label,
@@ -28,6 +29,7 @@ private abbrev SameRadiusPointClasses
         dist (pointOf center) (pointOf a) =
           dist (pointOf center) (pointOf b)
 
+/-- P97 RemovableVertexAxiom abbrev. -/
 private abbrev PinnedSurplusSupportClasses
     (pointOf : Label → ℝ²) (sstar : Label)
     (centerClass : Label → Finset ℝ²) : Prop :=
@@ -39,6 +41,7 @@ private abbrev PinnedSurplusSupportClasses
     ∀ center : Label, center ≠ .v → center ≠ .w →
       pointMask pointOf (centerClass center) ∈ candidateMasks sstar center
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem noThreeOK_shadowOfPointClasses_of_sameRadius
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     {pointOf : Label → ℝ²}
@@ -54,12 +57,14 @@ private theorem noThreeOK_shadowOfPointClasses_of_sameRadius
     (pointPairClassCount_le_two_of_sameRadius hconv hinj hpointMem
       hsame hpointPair)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem orderedLabelPairs_ne_local {c cp : Label}
     (hpair : (c, cp) ∈ orderedLabelPairs) : c ≠ cp := by
   intro hEq
   subst cp
   cases c <;> simp [orderedLabelPairs] at hpair
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem wSelectorMask_mem_candidateMasks
     {sstar leftHit rightHit : Label}
     (hsstar : isSurplusStar sstar = true)
@@ -73,6 +78,7 @@ private theorem wSelectorMask_mem_candidateMasks
     rcases hright with rfl | rfl | rfl <;>
     cases sstar <;> simp [isSurplusStar] at hsstar <;> decide)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pointMask_eq_QQSelectorMask
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
     (hinj : Function.Injective pointOf) {leftHit rightHit : Label}
@@ -91,11 +97,13 @@ private theorem pointMask_eq_QQSelectorMask
     simp [pointMask, allLabels, maskOfLabels, hpoint_eq, Label.bit,
       Label.index]
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem surplusStar_eq_s1_or_s2_or_s3 {label : Label}
     (hlabel : isSurplusStar label = true) :
     label = .s1 ∨ label = .s2 ∨ label = .s3 := by
   cases label <;> simp [isSurplusStar] at hlabel ⊢
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem wSelectorClass_mem_candidateMasks
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
     {T : Finset α} {sstar leftHit rightHit : Label}
@@ -111,6 +119,7 @@ private theorem wSelectorClass_mem_candidateMasks
   rw [hT, pointMask_eq_QQSelectorMask hinj hleft hright]
   exact wSelectorMask_mem_candidateMasks hsstar hleft hright
 
+/-- P97 RemovableVertexAxiom def. -/
 private noncomputable def pinnedSurplusCenterClass
     (A : Finset ℝ²) (pointOf : Label → ℝ²)
     (vRadius wRadius : ℝ)
@@ -126,6 +135,7 @@ private noncomputable def pinnedSurplusCenterClass
   | .Q1 => supportClass .Q1
   | .Q2 => supportClass .Q2
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pointMask_foldl_preserve_bit_of_forall_lt
     {α : Type _} [DecidableEq α] (pointOf : Label → α)
     (T : Finset α) (labels : List Label) {k acc : Nat}
@@ -149,6 +159,7 @@ private theorem pointMask_foldl_preserve_bit_of_forall_lt
       · rw [ih hrest]
         simp [hmem]
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pointMask_maskHas_true_of_mem_of_prefix_suffix
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α}
@@ -185,6 +196,7 @@ private theorem pointMask_maskHas_true_of_mem_of_prefix_suffix
   rw [Nat.testBit_two_pow_add_eq]
   simpa [Label.bit] using congrArg Bool.not hprefixFalse
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pointMask_maskHas_true_of_mem
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α} {label : Label}
@@ -231,12 +243,14 @@ private theorem pointMask_maskHas_true_of_mem
       (pref := [.u, .v, .w, .s1, .s2, .s3, .Pw, .Pu, .Q1])
       (suff := []) rfl (by decide) (by decide) hmem
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pointMask_maskHas_iff_mem
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α} {label : Label} :
     maskHas (pointMask pointOf T) label = true ↔ pointOf label ∈ T :=
   ⟨pointMask_maskHas_mem, pointMask_maskHas_true_of_mem⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem foldl_count_true
     {α : Type _} (predicate : α → Bool) (items : List α) (acc : Nat) :
     items.foldl (fun count item => if predicate item then count + 1 else count)
@@ -252,6 +266,7 @@ private theorem foldl_count_true
           cases h : predicate item <;> simp_all
         simp [hfalse, ih]
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskCard_pointMask_eq_card_of_subset_range
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} (hinj : Function.Injective pointOf)
@@ -287,6 +302,7 @@ private theorem maskCard_pointMask_eq_card_of_subset_range
       (Finset.card_image_of_injective _ hinj).symm
     _ = T.card := by rw [himage]
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskInterCard_pointMask_le_inter_card
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} (hinj : Function.Injective pointOf)
@@ -318,6 +334,7 @@ private theorem maskInterCard_pointMask_le_inter_card
       (Finset.card_image_of_injective _ hinj).symm
     _ ≤ (T ∩ C).card := Finset.card_le_card himageSub
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskHas_cvNoUMask_cases {label : Label}
     (hlabel : maskHas cvNoUMask label = true) :
     label = .w ∨ label = .Pw ∨ label = .Pu := by
@@ -330,6 +347,7 @@ private theorem maskHas_cvNoUMask_cases {label : Label}
       revert hlabel
       decide
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskHas_cwNoUMask_cases {label : Label}
     (hlabel : maskHas cwNoUMask label = true) :
     label = .v ∨ label = .Q1 ∨ label = .Q2 := by
@@ -342,6 +360,7 @@ private theorem maskHas_cwNoUMask_cases {label : Label}
       revert hlabel
       decide
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem capInteriorByIndex_card_eq_three_of_cap_card_eq_five
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     (hcard : (S.capByIndex i).card = 5) :
@@ -372,6 +391,7 @@ private theorem capInteriorByIndex_card_eq_three_of_cap_card_eq_five
     rw [Finset.card_erase_of_mem hv2,
       Finset.card_erase_of_mem S.partition.v1_mem_C3, hcard]
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem surplusInterior_eq_triple_of_surplus_card_five
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {s1 s2 s3 : ℝ²}
@@ -395,6 +415,7 @@ private theorem surplusInterior_eq_triple_of_surplus_card_five
     simp [hs12, hs13, hs23]
   exact (Finset.eq_of_subset_of_card_le hsSub (by omega)).symm
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem rightPinnedLabelPoint_covers_of_surplus_card_five
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
@@ -437,6 +458,7 @@ private theorem rightPinnedLabelPoint_covers_of_surplus_card_five
         ⟨label, _hlabel, hpoint⟩
       exact ⟨label, hpoint⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem leftPinnedLabelPoint_covers_of_surplus_card_five
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
@@ -479,6 +501,7 @@ private theorem leftPinnedLabelPoint_covers_of_surplus_card_five
       · exact ⟨.Pw, rfl⟩
       · exact ⟨.Pu, rfl⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem exists_labelCompleteSupportClasses_of_globalK4
     {A : Finset ℝ²} (hK4 : HasNEquidistantProperty 4 A)
     {pointOf : Label → ℝ²} (hinj : Function.Injective pointOf)
@@ -521,6 +544,7 @@ private theorem exists_labelCompleteSupportClasses_of_globalK4
     apply pointMask_maskHas_false_of_not_mem
     exact (classAt center).center_not_mem
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem rightPinned_u_maskInter_bounds
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A)
@@ -617,6 +641,7 @@ private theorem rightPinned_u_maskInter_bounds
         S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
           hconv S.surplusIdx (radiusOf .u)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem leftPinned_u_maskInter_bounds
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A)
@@ -716,6 +741,7 @@ private theorem leftPinned_u_maskInter_bounds
         S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
           hconv S.surplusIdx (radiusOf .u)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskInterCard_uPwPuMask_eq_zero_of_bits_false
     {mask : Nat}
     (hu : maskHas mask .u = false)
@@ -739,6 +765,7 @@ private theorem maskInterCard_uPwPuMask_eq_zero_of_bits_false
     Label.bit, Label.index, hu, hPw, hPu, h9, h8, h7, h6, h5, h4,
     h3, h2, h1, h0]
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskInterCard_uPwPuMask_le_one_of_pair_bits_false
     {mask : Nat}
     (huPw : (maskHas mask .u && maskHas mask .Pw) = false)
@@ -763,6 +790,7 @@ private theorem maskInterCard_uPwPuMask_le_one_of_pair_bits_false
       Label.bit, Label.index, hu, hPw, hPu, h9, h8, h7, h6, h5, h4,
       h3, h2, h1, h0] at huPw huPu hPwPu ⊢
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem common_pair_bits_false_of_crossSeparation
     {c cp x y : Label} {cmask cpmask : Nat}
     (hcross : crossSeparationOKForMasks c cmask cp cpmask = true)
@@ -782,30 +810,35 @@ private theorem common_pair_bits_false_of_crossSeparation
     simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hbits.1,
       hbits.2, hcpx, hcpy, hnotSeparated] at hcheck
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskHas_pinnedMaskOf_u_true {sstar : Label}
     (hsstar : isSurplusStar sstar = true) :
     maskHas (pinnedMaskOf sstar) .u = true := by
   cases sstar <;> simp [isSurplusStar] at hsstar
   all_goals decide
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskHas_pinnedMaskOf_sstar_true {sstar : Label}
     (hsstar : isSurplusStar sstar = true) :
     maskHas (pinnedMaskOf sstar) sstar = true := by
   cases sstar <;> simp [isSurplusStar] at hsstar
   all_goals decide
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskHas_pinnedMaskOf_Pw_true {sstar : Label}
     (hsstar : isSurplusStar sstar = true) :
     maskHas (pinnedMaskOf sstar) .Pw = true := by
   cases sstar <;> simp [isSurplusStar] at hsstar
   all_goals decide
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem maskHas_pinnedMaskOf_Pu_true {sstar : Label}
     (hsstar : isSurplusStar sstar = true) :
     maskHas (pinnedMaskOf sstar) .Pu = true := by
   cases sstar <;> simp [isSurplusStar] at hsstar
   all_goals decide
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem triggerCenter_u_pair_data
     {sstar center : Label}
     (hsstar : isSurplusStar sstar = true)
@@ -820,6 +853,7 @@ private theorem triggerCenter_u_pair_data
     simp [isSurplusStar, previousSstarCenters, labelPairs, separated,
       between, hullPos, labelCount] at hsstar htriggerCenter hcenterU ⊢
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem triggerCenter_Pw_pair_data
     {sstar center : Label}
     (hsstar : isSurplusStar sstar = true)
@@ -833,6 +867,7 @@ private theorem triggerCenter_Pw_pair_data
     simp [isSurplusStar, previousSstarCenters, labelPairs, separated,
       between, hullPos, labelCount] at hsstar htriggerCenter ⊢
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem triggerCenter_Pu_pair_data
     {sstar center : Label}
     (hsstar : isSurplusStar sstar = true)
@@ -846,6 +881,7 @@ private theorem triggerCenter_Pu_pair_data
     simp [isSurplusStar, previousSstarCenters, labelPairs, separated,
       between, hullPos, labelCount] at hsstar htriggerCenter ⊢
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pinnedMask_crossSeparation_trigger_pair_bits_false
     {sstar center : Label} {mask : Nat}
     (hsstar : isSurplusStar sstar = true)
@@ -880,6 +916,7 @@ private theorem pinnedMask_crossSeparation_trigger_pair_bits_false
         hsc hsv hPuc hPuv (maskHas_pinnedMaskOf_sstar_true hsstar)
         (maskHas_pinnedMaskOf_Pu_true hsstar) hsep
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pinnedMask_crossSeparation_trigger_condition
     {sstar center : Label} {mask : Nat}
     (hsstar : isSurplusStar sstar = true)
@@ -906,6 +943,7 @@ private theorem pinnedMask_crossSeparation_trigger_condition
       cases h : maskHas mask sstar <;> simp_all
     simp [hsbitFalse]
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pinnedMask_crossSeparation_final_bound
     {sstar : Label} {mask : Nat}
     (hsstar : isSurplusStar sstar = true)
@@ -954,6 +992,7 @@ private theorem pinnedMask_crossSeparation_final_bound
   exact maskInterCard_uPwPuMask_le_one_of_pair_bits_false
     hpairs.1 hpairs.2.1 hpairs.2.2
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
     {centerClass : Label → Finset α} {sstar center : Label}
@@ -1000,6 +1039,7 @@ private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
         htriggerQ2, hfinal] <;>
       exact hprevious _ (by simp [previousSstarCenters])
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pinned_mem_convexHull_three_of_same_side
     {O a b c : ℝ²}
     (harea : signedArea2 a b c ≠ 0)
@@ -1077,6 +1117,7 @@ private theorem pinned_mem_convexHull_three_of_same_side
     fin_cases i <;> simp
   · simpa [Fin.sum_univ_three] using hcombo
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem pinned_mem_convexHull_three_of_equidistant_nonobtuse
     {O a b c : ℝ²}
     (harea : signedArea2 a b c ≠ 0)
@@ -1098,6 +1139,7 @@ private theorem pinned_mem_convexHull_three_of_equidistant_nonobtuse
     (center_same_side_as_apex_of_nonobtuse hcO haO hbO hinnerB)
     (center_same_side_as_apex_of_nonobtuse haO hbO hcO hinnerC)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem rightPinnedLabelPoint_moser_nonobtuse
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) :
@@ -1127,6 +1169,7 @@ private theorem rightPinnedLabelPoint_moser_nonobtuse
     · exact S.triangleNonObtuse.inner_at_v1
     · exact S.triangleNonObtuse.inner_at_v2
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem leftPinnedLabelPoint_moser_nonobtuse
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) :
@@ -1144,6 +1187,7 @@ private theorem leftPinnedLabelPoint_moser_nonobtuse
     simpa [leftPinnedLabelPoint, leftPinnedToRightLabel, real_inner_comm]
       using hv⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem no_nonMoser_triple_of_convexIndep_nonobtuse
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     {pointOf : Label → ℝ²} (hinj : Function.Injective pointOf)
@@ -1220,6 +1264,7 @@ private theorem no_nonMoser_triple_of_convexIndep_nonobtuse
     exact hconv (pointOf center) (by exact_mod_cast hpointA center)
       (convexHull_mono hsub hcenterHull)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem selectedClass_eq_pair_left_right_singletons
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
     {q₁ q₂ leftHit rightHit : ℝ²}
@@ -1289,6 +1334,7 @@ private theorem selectedClass_eq_pair_left_right_singletons
         simp
       exact by simpa [T] using (Finset.mem_inter.mp hmem).1
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem sameRadiusPointClasses_of_exact_vw_and_nonfixed
     {A : Finset ℝ²} {pointOf : Label → ℝ²}
     {centerClass : Label → Finset ℝ²} {vRadius wRadius : ℝ}
@@ -1325,6 +1371,7 @@ private theorem sameRadiusPointClasses_of_exact_vw_and_nonfixed
 set_option maxHeartbeats 2000000 in
 -- The generated ordered-pair table has ninety entries; reducing all label
 -- cases once avoids repeatedly expanding it in the support assembler.
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem mem_orderedLabelPairs_of_ne {c cp : Label} (h : c ≠ cp) :
     (c, cp) ∈ orderedLabelPairs := by
   cases c <;> cases cp <;> simp [orderedLabelPairs] at h ⊢
@@ -1332,6 +1379,7 @@ private theorem mem_orderedLabelPairs_of_ne {c cp : Label} (h : c ≠ cp) :
 set_option maxHeartbeats 2000000 in
 -- Candidate assembly performs finite case splits over the generated labels
 -- and trigger table after all geometric obligations have been discharged.
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem exists_pinnedSurplusSupportClasses_of_labelComplete
     {A : Finset ℝ²} (hK4 : HasNEquidistantProperty 4 A)
     (hconv : ConvexIndep A)

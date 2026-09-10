@@ -32,15 +32,25 @@ abbrev Label := Fin 10
 on project-local notation. -/
 abbrev Plane := EuclideanSpace ℝ (Fin 2)
 
+/-- P97 U1Depth5AnchorProduct def. -/
 def p : Label := 0
+/-- P97 U1Depth5AnchorProduct def. -/
 def q : Label := 1
+/-- P97 U1Depth5AnchorProduct def. -/
 def t1 : Label := 2
+/-- P97 U1Depth5AnchorProduct def. -/
 def t2 : Label := 3
+/-- P97 U1Depth5AnchorProduct def. -/
 def t3 : Label := 4
+/-- P97 U1Depth5AnchorProduct def. -/
 def f1 : Label := 5
+/-- P97 U1Depth5AnchorProduct def. -/
 def f2 : Label := 6
+/-- P97 U1Depth5AnchorProduct def. -/
 def f3 : Label := 7
+/-- P97 U1Depth5AnchorProduct def. -/
 def f4 : Label := 8
+/-- P97 U1Depth5AnchorProduct def. -/
 def f5 : Label := 9
 
 /-- Ordered AnchorPairs basis currently used by the U1.2 residual scan. -/
@@ -66,6 +76,7 @@ noncomputable def anchorProduct (x : Label → Plane) : ℝ :=
 def AnchorPairsDistinct (x : Label → Plane) : Prop :=
   ∀ ab ∈ anchorPairs, x ab.1 ≠ x ab.2
 
+/-- P97 U1Depth5AnchorProduct theorem. -/
 private theorem anchorPair_labels_ne {ab : Label × Label} (hab : ab ∈ anchorPairs) :
     ab.1 ≠ ab.2 := by
   have hmem :
@@ -87,6 +98,7 @@ theorem anchorPairsDistinct_of_injective
   intro ab hab hxy
   exact anchorPair_labels_ne hab (hinj hxy)
 
+/-- P97 U1Depth5AnchorProduct theorem. -/
 private theorem pairDistanceProduct_pos_aux (x : Label → Plane) :
     ∀ pairs : List (Label × Label),
       (∀ ab ∈ pairs, x ab.1 ≠ x ab.2) →

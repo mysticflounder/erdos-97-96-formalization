@@ -5,6 +5,7 @@ import Erdos9796Proof.P97.ErasedCertificate.CardTenP4SeedP4S3B
 
 namespace Problem97.SurplusCOMPGBank
 
+/-- P97 ErasedCertificate theorem. -/
 theorem false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_p4s3
     {seed : OneSidedSeed} {shadow : Shadow}
     (hseed : seed ∈ erasedPinCardTenP4S3GridSeeds)

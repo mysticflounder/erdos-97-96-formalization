@@ -169,6 +169,7 @@ theorem SurplusCapPacket.exists_surplusApexK4Class_point_not_mem_pinnedLeft
   exact
     ⟨rho, y, hrho, hcard, hyInterior, hyClass, hyx, hyNotPinned⟩
 
+/-- P97 RemovableVertexAxiom def. -/
 private noncomputable def selectedFourClassOfSubpacket
     {A : Finset ℝ²} {center : ℝ²} {radius : ℝ} {T : Finset ℝ²}
     (hradius : 0 < radius)
@@ -239,6 +240,7 @@ theorem SurplusCapPacket.exists_surplusApexSelectedFourClass_point_not_mem_pinne
     selectedFourClassOfSubpacket hrho hTsub hTcard
   exact ⟨y, K, hyInterior, hyT, hyx, hyNotPinned⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 private theorem hasFourAfterErasePointAndCenter
     {A : Finset ℝ²} {y center : ℝ²} {radius : ℝ}
     (hradius : 0 < radius)
@@ -348,6 +350,7 @@ theorem U3LocalizedNoQFreePacket.exists_criticalSelectedFourClass
       l3_ne_l4 := F.t2_ne_t3
       support_eq_labels := rfl }⟩
 
+/-- P97 RemovableVertexAxiom def. -/
 private noncomputable def U3FixedTriplePacket.toSelectedFourClass
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (F : U3FixedTriplePacket D q p t1 t2 t3) :

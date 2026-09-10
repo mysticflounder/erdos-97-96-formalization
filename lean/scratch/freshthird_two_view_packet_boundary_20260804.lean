@@ -11,6 +11,7 @@ claim a double-deletion consumer for the FreshThird residual.
 
 namespace Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal
 
+/-- Indexed scratch Lean structure. -/
 structure TwoSourceDeletionViewBoundary (α : Type*) where
   support_left : Finset α
   support_right : Finset α
@@ -23,6 +24,7 @@ structure TwoSourceDeletionViewBoundary (α : Type*) where
   second : endpoint_c ∉ support_left ∨ endpoint_d ∉ support_left
   second2 : endpoint_c ∉ support_right ∨ endpoint_d ∉ support_right
 
+/-- Indexed scratch Lean theorem. -/
 theorem TwoSourceDeletionViewBoundary.finite_split
     {α : Type*} (V : TwoSourceDeletionViewBoundary α) :
     ((V.endpoint_a ∉ V.support_left ∧ V.endpoint_a ∉ V.support_right) ∨

@@ -41,6 +41,7 @@ open ATailRetainedMatchingCommonDeletionCycle
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RetainedMatchingEndpointContinuation theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -50,6 +51,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail RetainedMatchingEndpointContinuation theorem. -/
 private theorem exists_support_point_ne_three
     {A : Finset ℝ²} {center a b c : ℝ²}
     (row : SelectedFourClass A center) :

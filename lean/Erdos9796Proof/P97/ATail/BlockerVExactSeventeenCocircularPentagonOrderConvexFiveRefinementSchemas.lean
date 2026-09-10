@@ -27,20 +27,24 @@ open ATailBlockerVExactSeventeenConvexFiveSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open Census554.EqualityCore
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
 def cocircularOrderConvexFiveHits : List Hit :=
   [(3, 14), (3, 2), (0, 14), (0, 2),
     (1, 2), (1, 3), (1, 0)]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
 def cocircularOrderConvexFiveForwardChoices : List (RowChoice Label) :=
   [{ center := 3, support := {2, 14} },
     { center := 0, support := {2, 14} },
     { center := 1, support := {0, 2, 3} }]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
 def cocircularOrderConvexFiveReverseChoices : List (RowChoice Label) :=
   [{ center := 13, support := {2, 14} },
     { center := 16, support := {2, 14} },
     { center := 15, support := {13, 14, 16} }]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
 def cocircularOrderConvexFiveForwardData : ConvexFivePointData Label :=
   { a := 14
     x := 3
@@ -52,6 +56,7 @@ def cocircularOrderConvexFiveForwardData : ConvexFivePointData Label :=
     cb_cx := ⟨(1, 2), [.row 1 2 3], (1, 3)⟩
     cb_cy := ⟨(1, 2), [.row 1 2 0], (1, 0)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
 def cocircularOrderConvexFiveReverseData : ConvexFivePointData Label :=
   { a := 2
     x := 13
@@ -63,6 +68,7 @@ def cocircularOrderConvexFiveReverseData : ConvexFivePointData Label :=
     cb_cx := ⟨(15, 14), [.row 15 14 13], (15, 13)⟩
     cb_cy := ⟨(15, 14), [.row 15 14 16], (15, 16)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
 def cocircularOrderConvexFiveOccurrence : ConvexFiveSourceOccurrence :=
   { hits := cocircularOrderConvexFiveHits
     forwardChoices := cocircularOrderConvexFiveForwardChoices
@@ -94,20 +100,24 @@ def cocircularOrderConvexFiveOccurrence : ConvexFiveSourceOccurrence :=
           (i := (14 : Label)) (j := (15 : Label)) (k := (16 : Label))
           (by decide) (by decide) }
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas theorem. -/
 theorem cocircularOrderConvexFiveOccurrence_check :
     cocircularOrderConvexFiveOccurrence.check = true := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
 def cocircularOrderConvexFiveRefinementClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction =>
       convexFiveOccurrenceClause order direction
         cocircularOrderConvexFiveOccurrence
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas theorem. -/
 theorem cocircularOrderConvexFiveRefinementClauses_length :
     cocircularOrderConvexFiveRefinementClauses.length = 4 := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas theorem. -/
 theorem sourceAssign_cocircularOrderConvexFiveRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ cocircularOrderConvexFiveRefinementClauses,
@@ -120,24 +130,28 @@ theorem sourceAssign_cocircularOrderConvexFiveRefinementClauses
     cocircularOrderConvexFiveOccurrence
     cocircularOrderConvexFiveOccurrence_check order direction
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas theorem. -/
 theorem cocircularOrderConvexFive_orderZero_forward_dimacs :
     (convexFiveOccurrenceClause 0 .forward
       cocircularOrderConvexFiveOccurrence).map litToDimacs =
       [-307, -189, -196, -2, -9, -111, -114, -103] := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas theorem. -/
 theorem cocircularOrderConvexFive_orderZero_reverse_dimacs :
     (convexFiveOccurrenceClause 0 .reverse
       cocircularOrderConvexFiveOccurrence).map litToDimacs =
       [-307, -94, -87, -247, -240, -223, -227, -236] := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas theorem. -/
 theorem cocircularOrderConvexFive_orderOne_forward_dimacs :
     (convexFiveOccurrenceClause 1 .forward
       cocircularOrderConvexFiveOccurrence).map litToDimacs =
       [-308, -189, -196, -2, -9, -111, -114, -103] := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas theorem. -/
 theorem cocircularOrderConvexFive_orderOne_reverse_dimacs :
     (convexFiveOccurrenceClause 1 .reverse
       cocircularOrderConvexFiveOccurrence).map litToDimacs =

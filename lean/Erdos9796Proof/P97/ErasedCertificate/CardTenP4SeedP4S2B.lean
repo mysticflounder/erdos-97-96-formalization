@@ -4,14 +4,17 @@ import Erdos9796Proof.P97.ErasedCertificate.CardTenP4SeedDefs
 
 namespace Problem97.SurplusCOMPGBank
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S2BEntries : List (OneSidedSeed × List Nat) :=
   erasedPinCardTenP4S2GridSeedsB.flatMap
     oneSidedSeedRelaxedShapeSearchEntriesFor
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4S2BEntries_eq_nil :
     erasedPinCardTenP4S2BEntries = [] := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_p4s2b
     {seed : OneSidedSeed} {shadow : Shadow}
     (hseed : seed ∈ erasedPinCardTenP4S2GridSeedsB)

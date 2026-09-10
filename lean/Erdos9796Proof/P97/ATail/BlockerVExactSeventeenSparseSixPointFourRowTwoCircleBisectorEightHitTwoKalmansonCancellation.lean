@@ -93,24 +93,29 @@ def reverseData : TwoKalmansonCancellationData Label := {
   path2 := ⟨(0, 7), [.row 0 7 15], (0, 15)⟩
   path3 := ⟨(8, 13), [.row 8 13 0, .flip 8 0], (0, 8)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 theorem forwardData_check : forwardData.check forwardChoices = true := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 theorem reverseData_check : reverseData.check reverseChoices = true := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 private theorem forwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ forwardChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (choice.center, point) ∈ forwardHits := by
   decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 private theorem reflectedForwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ reverseChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (Fin.rev choice.center, Fin.rev point) ∈ forwardHits := by
   decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -119,6 +124,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -127,6 +133,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 private theorem positiveRowsMatch_forward {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -151,6 +158,7 @@ private theorem positiveRowsMatch_forward {A : Finset ℝ²}
       exact ⟨(choice.center, point),
         forwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -175,6 +183,7 @@ private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         reflectedForwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 private theorem false_of_eightHitTwoKalmansonHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -199,6 +208,7 @@ def eightHitTwoKalmansonClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom :=
   nogoodClause order (eightHitTwoKalmansonHits order direction)
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 theorem sourceAssign_eightHitTwoKalmansonClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) :
@@ -213,10 +223,12 @@ def eightHitTwoKalmansonClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => eightHitTwoKalmansonClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 theorem eightHitTwoKalmansonClauses_length :
     eightHitTwoKalmansonClauses.length = 4 := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 theorem sourceAssign_eightHitTwoKalmansonClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ eightHitTwoKalmansonClauses,
@@ -232,6 +244,7 @@ def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonCnf 
   extendedCocircularOrderSparseSixPointFourRowBisectorCnf ++
     eightHitTwoKalmansonClauses
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonCnf_length :
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonCnf.length =
       7409261 := by
@@ -280,6 +293,7 @@ compare them with the exact parent CNF bytes and fail if the suffix adds no new
 clause.
 -/
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation theorem. -/
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :

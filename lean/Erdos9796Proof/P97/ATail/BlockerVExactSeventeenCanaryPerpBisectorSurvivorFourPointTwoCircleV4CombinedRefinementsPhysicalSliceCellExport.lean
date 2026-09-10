@@ -18,6 +18,7 @@ open ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCoverage
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport def. -/
 private def cnfDimacsString (cnf : Std.Sat.CNF Atom) : String :=
   let dimacs := cnf.map fun clause => clause.map litToDimacs
   let lines :=
@@ -25,15 +26,18 @@ private def cnfDimacsString (cnf : Std.Sat.CNF Atom) : String :=
       dimacs.map fun clause => String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport def. -/
 def rootDimacsString : String :=
   cnfDimacsString canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport def. -/
 def physicalSliceCellDimacsString
     (center : Label) (category : PhysicalSliceCategory) : String :=
   cnfDimacsString
     (canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementPhysicalSliceCellCnf
       center category)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport def. -/
 def parseCategory (center : Label) (text : String) : Option PhysicalSliceCategory :=
   if text = "none" then
     some .none
@@ -47,6 +51,7 @@ def parseCategory (center : Label) (text : String) : Option PhysicalSliceCategor
         else
           none
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | ["root", outputPath] =>
@@ -86,6 +91,7 @@ end Problem97
 
 open Problem97
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport def. -/
 def main (args : List String) : IO UInt32 :=
   ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementsPhysicalSliceCellExport.run
     args

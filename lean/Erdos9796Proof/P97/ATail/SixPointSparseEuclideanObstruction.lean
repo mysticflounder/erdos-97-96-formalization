@@ -28,6 +28,7 @@ namespace SixPointSparseEuclideanObstruction
 
 open Census554.EqualityCore
 
+/-- P97 ATail SixPointSparseEuclideanObstruction lemma. -/
 private lemma normSim_dist_sq_eq_one
     {a b x y : ℝ²} (hab : a ≠ b) (h : dist a b = dist x y) :
     (normSim a b x 0 - normSim a b y 0) ^ 2 +
@@ -44,6 +45,7 @@ private lemma normSim_dist_sq_eq_one
     zero_sub, one_pow, neg_sq] at hSq
   simpa using hSq.symm
 
+/-- P97 ATail SixPointSparseEuclideanObstruction lemma. -/
 private lemma normSim_signedArea_pos
     {a b x y z : ℝ²} (hab : a ≠ b) (h : 0 < signedArea2 x y z) :
     0 < signedArea2 (normSim a b x) (normSim a b y) (normSim a b z) := by
@@ -465,11 +467,13 @@ theorem false_of_six_ccw_two_selected_rows
       (P2Row.support_eq_radius _ h1_mem_P2Row).trans
         (P2Row.support_eq_radius _ h4_mem_P2Row).symm
 
+/-- P97 ATail SixPointSparseEuclideanObstruction theorem. -/
 private theorem signedArea2_swap13 (a b c : ℝ²) :
     signedArea2 c b a = -signedArea2 a b c := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail SixPointSparseEuclideanObstruction theorem. -/
 private theorem false_of_six_ccw_row_equalities_of_decreasing
     {n : ℕ}
     {boundary : Fin n → ℝ²}

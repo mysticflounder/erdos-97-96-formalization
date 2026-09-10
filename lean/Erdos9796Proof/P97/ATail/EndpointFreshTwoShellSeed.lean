@@ -71,6 +71,7 @@ structure ReverseHitFreshEndpointContext
 /- The two selected supports exposed at an endpoint collision.  One is the
 critical exact shell through the first collision source; the other is the
 fresh first-apex selected row. -/
+/-- P97 ATail EndpointFreshTwoShellSeed def. -/
 noncomputable def endpointFreshTwoShellSeed
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

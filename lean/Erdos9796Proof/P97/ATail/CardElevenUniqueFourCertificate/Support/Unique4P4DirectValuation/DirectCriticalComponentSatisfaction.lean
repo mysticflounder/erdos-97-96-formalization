@@ -31,6 +31,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_criticalBridge_sat
     (Q : DirectSource R profile distribution) :
     ∀ entry ∈ bridgeEntries,
@@ -39,18 +40,21 @@ theorem directTotalVal_criticalBridge_sat
   bridgeEntries_sat Q.packet.core directIndex rfl
     Function.injective_id Function.surjective_id (directValAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_strictUnitClauses_sat
     (Q : DirectSource R profile distribution) :
     ∀ clause ∈ strictUnitClauses,
       P5OccurrenceBridgeScratch.clauseSat (directTotalVal Q) clause :=
   strictUnitClauses_sat Q.packet (directValAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_rightCapOccurrences_sat
     (Q : DirectSource R profile distribution) :
     ∀ entry ∈ rightCapOccurrences,
       P5OccurrenceBridgeScratch.clauseSat (directTotalVal Q) entry.clause :=
   rightCapOccurrences_sat_of_valAgreement Q.packet (directValAgreement Q)
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_cegarEntries_sat
     (Q : DirectSource R profile distribution) :
     ∀ entry ∈ cegarEntries,

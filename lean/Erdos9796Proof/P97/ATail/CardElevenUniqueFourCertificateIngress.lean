@@ -27,6 +27,7 @@ open FirstApexUniqueRadiusResidual
 variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
 
+/-- P97 ATail CardElevenUniqueFourCertificateIngress def. -/
 private def toOriginalUniqueFourResidual
     (R : FirstApexUniqueRadiusExactFourResidual F) :
     ATailUniqueArmRouteAuditScratch.OriginalUniqueFourResidual F where

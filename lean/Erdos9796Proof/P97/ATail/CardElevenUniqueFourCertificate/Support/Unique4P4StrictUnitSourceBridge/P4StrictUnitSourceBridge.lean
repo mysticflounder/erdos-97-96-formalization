@@ -25,6 +25,7 @@ open ATailUniqueArmRouteAuditScratch
 open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 
+/-- P97 ATail support P4StrictUnitSourceBridge theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -33,6 +34,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail support P4StrictUnitSourceBridge theorem. -/
 private theorem capO2_label_mem (j : Fin 2) :
     (⟨9 + j, by omega⟩ : Fin 11) ∈ Card11Labeling.capO2InteriorLabels := by
   fin_cases j <;> simp [Card11Labeling.capO2InteriorLabels]

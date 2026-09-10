@@ -178,6 +178,7 @@ noncomputable def survivalColor
   if HasNEquidistantPointsAt 4 (D.A.erase P.q)
       (H.centerAt source.1 source.2) then 0 else 1
 
+/-- P97 ATail SurvivalCover theorem. -/
 theorem survivalColor_eq_zero_iff
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}
@@ -188,6 +189,7 @@ theorem survivalColor_eq_zero_iff
         (H.centerAt source.1 source.2) := by
   simp [survivalColor]
 
+/-- P97 ATail SurvivalCover theorem. -/
 theorem survivalColor_eq_one_iff
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}
@@ -198,6 +200,7 @@ theorem survivalColor_eq_one_iff
         (H.centerAt source.1 source.2) := by
   simp [survivalColor]
 
+/-- P97 ATail SurvivalCover theorem. -/
 private theorem finTwo_eq_one_of_ne_zero (color : Fin 2)
     (hcolor : color ≠ 0) : color = 1 := by
   fin_cases color <;> simp_all
@@ -221,6 +224,7 @@ theorem deletionSurvival_cover_of_mem_outside_qBlockerFiber
     (mem_outside_qBlockerFiber_iff_frontierDeletion_survival
       P hnotFour hwSupport source).1 hsourceOutside
 
+/-- P97 ATail SurvivalCover theorem. -/
 private theorem actualBlocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (source : CriticalShellSystem.CarrierVertex A) :
@@ -228,6 +232,7 @@ private theorem actualBlocker_mem_A
   (Finset.mem_erase.mp
     (H.selectedAt source.1 source.2).toCriticalFourShell.center_mem).2
 
+/-- P97 ATail SurvivalCover theorem. -/
 private theorem oppApex2_mem_A
     {D : CounterexampleData} (S : SurplusCapPacket D.A) :
     S.oppApex2 ∈ D.A := by

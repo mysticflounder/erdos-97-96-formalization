@@ -56,9 +56,11 @@ def p4Frame {A : Finset ℝ²} (S : SurplusCapPacket A) :
   rest_ne_surplus := S.surplusIdx_ne_oppIndex1.symm
   rest_ne_second := S.oppIndex1_ne_oppIndex2
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem p4Frame_rest {A : Finset ℝ²} (S : SurplusCapPacket A) :
     (p4Frame S).rest = S.oppIndex1 := rfl
 
+/-- P97 ATail support theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -66,6 +68,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- P97 ATail support theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -74,6 +77,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -82,6 +86,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem oppApex1_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -91,6 +96,7 @@ private theorem oppApex1_eq_indexedVertex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem image_directBoundary
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     {L : Card11CapLabeling S.partition (p4Frame S)}
@@ -108,6 +114,7 @@ private theorem image_directBoundary
     exact Finset.mem_image.mpr
       ⟨card11IndexEquiv B.order label, Finset.mem_univ _, B.point_eq label⟩
 
+/-- P97 ATail support theorem. -/
 private theorem image_mirrorBoundary
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     {L : Card11CapLabeling S.partition (p4Frame S)}
@@ -135,21 +142,25 @@ structure DirectP4Boundary
 
 namespace DirectP4Boundary
 
+/-- P97 ATail support def. -/
 def boundary {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectP4Boundary S) : Fin 11 → ℝ² :=
   fun i => B.direct.boundary (i + 7)
 
+/-- P97 ATail support theorem. -/
 theorem boundary_injective {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectP4Boundary S) :
     Function.Injective B.boundary :=
   injective_cyclicShift B.direct.boundary_injective 7
 
+/-- P97 ATail support theorem. -/
 theorem boundary_ccw {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectP4Boundary S) :
     EuclideanGeometry.IsCcwConvexPolygon B.boundary :=
   isCcwConvexPolygon_cyclicShift B.direct.boundary_injective
     B.direct.boundary_ccw 7
 
+/-- P97 ATail support theorem. -/
 theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectP4Boundary S) :
     Finset.univ.image B.boundary = A := by
@@ -158,6 +169,7 @@ theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
   rw [image_univ_cyclicShift]
   exact image_directBoundary B.direct
 
+/-- P97 ATail support theorem. -/
 theorem boundary_zero {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : DirectP4Boundary S) :
     B.boundary 0 = S.oppApex1 := by
@@ -182,21 +194,25 @@ structure MirrorP4Boundary
 
 namespace MirrorP4Boundary
 
+/-- P97 ATail support def. -/
 def boundary {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorP4Boundary S) : Fin 11 → ℝ² :=
   fun i => B.mirror.boundary (i + 4)
 
+/-- P97 ATail support theorem. -/
 theorem boundary_injective {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorP4Boundary S) :
     Function.Injective B.boundary :=
   injective_cyclicShift B.mirror.boundary_injective 4
 
+/-- P97 ATail support theorem. -/
 theorem boundary_ccw {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorP4Boundary S) :
     EuclideanGeometry.IsCcwConvexPolygon B.boundary :=
   isCcwConvexPolygon_cyclicShift B.mirror.boundary_injective
     B.mirror.boundary_ccw 4
 
+/-- P97 ATail support theorem. -/
 theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorP4Boundary S) :
     Finset.univ.image B.boundary = A := by
@@ -205,6 +221,7 @@ theorem boundary_image {A : Finset ℝ²} {S : SurplusCapPacket A}
   rw [image_univ_cyclicShift]
   exact image_mirrorBoundary B.mirror
 
+/-- P97 ATail support theorem. -/
 theorem boundary_zero {A : Finset ℝ²} {S : SurplusCapPacket A}
     (B : MirrorP4Boundary S) :
     B.boundary 0 = S.oppApex1 := by
@@ -355,6 +372,7 @@ theorem strictHitIndices_card_eq_two
 
 end ExactTwoBoundaryCore
 
+/-- P97 ATail support theorem. -/
 private theorem firstApex_mem_of_boundary
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {boundary : Fin 11 → ℝ²}
@@ -366,6 +384,7 @@ private theorem firstApex_mem_of_boundary
   rw [himage] at hmem
   simpa only [hzero] using hmem
 
+/-- P97 ATail support theorem. -/
 private theorem exists_core
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

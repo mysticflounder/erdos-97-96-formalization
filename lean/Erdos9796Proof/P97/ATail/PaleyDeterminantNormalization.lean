@@ -16,6 +16,7 @@ needed by the terminal Paley determinant obstruction.
 
 namespace Problem97.PaleyDeterminantNormalization
 
+/-- P97 ATail PaleyDeterminantNormalization abbrev. -/
 abbrev Vec4 := Fin 4 → ℝ
 
 /-- The matrix whose displayed arguments are its four columns. -/
@@ -26,17 +27,20 @@ def columns (x₀ x₁ x₂ x₃ : Vec4) : Matrix (Fin 4) (Fin 4) ℝ :=
 noncomputable def normalize (A : Matrix (Fin 4) (Fin 4) ℝ) (x : Vec4) : Vec4 :=
   Matrix.mulVec A⁻¹ x
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 theorem normalize_col (A : Matrix (Fin 4) (Fin 4) ℝ) (hA : A.det ≠ 0) (j : Fin 4) :
     normalize A (A.col j) = Pi.single j 1 := by
   rw [normalize, ← Matrix.mulVec_single_one, Matrix.mulVec_mulVec,
     Matrix.nonsing_inv_mul A (isUnit_iff_ne_zero.mpr hA), Matrix.one_mulVec]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 theorem columns_normalize (A : Matrix (Fin 4) (Fin 4) ℝ) (x₀ x₁ x₂ x₃ : Vec4) :
     columns (normalize A x₀) (normalize A x₁) (normalize A x₂) (normalize A x₃) =
       A⁻¹ * columns x₀ x₁ x₂ x₃ := by
   ext i j
   fin_cases j <;> simp [columns, normalize, Matrix.mul_apply, Matrix.mulVec, dotProduct]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 theorem det_columns_normalize_eq_zero
     (A : Matrix (Fin 4) (Fin 4) ℝ) (x₀ x₁ x₂ x₃ : Vec4)
     (h : (columns x₀ x₁ x₂ x₃).det = 0) :
@@ -44,12 +48,14 @@ theorem det_columns_normalize_eq_zero
       0 := by
   rw [columns_normalize, Matrix.det_mul, h, mul_zero]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 theorem det_mul_normalized_coord_eq_replacement_minor
     (A : Matrix (Fin 4) (Fin 4) ℝ) (hA : A.det ≠ 0) (x : Vec4) (i : Fin 4) :
     A.det * normalize A x i = (A.updateCol i x).det := by
   have h := congrFun (A.det_smul_inv_mulVec_eq_cramer x (isUnit_iff_ne_zero.mpr hA)) i
   simpa [normalize, Matrix.cramer_apply] using h
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 theorem normalized_coord_ne_zero_of_replacement_minor_ne_zero
     (A : Matrix (Fin 4) (Fin 4) ℝ) (hA : A.det ≠ 0) (x : Vec4) (i : Fin 4)
     (hminor : (A.updateCol i x).det ≠ 0) :
@@ -58,30 +64,35 @@ theorem normalized_coord_ne_zero_of_replacement_minor_ne_zero
   apply hminor
   rw [← det_mul_normalized_coord_eq_replacement_minor A hA x i, hi, mul_zero]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 private theorem columns_basis₀₁₂ (x : Vec4) :
     columns (Pi.single 0 1) (Pi.single 1 1) (Pi.single 2 1) x =
       !![1, 0, 0, x 0; 0, 1, 0, x 1; 0, 0, 1, x 2; 0, 0, 0, x 3] := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 private theorem columns_basis₁₂₃ (x : Vec4) :
     columns (Pi.single 1 1) (Pi.single 2 1) (Pi.single 3 1) x =
       !![0, 0, 0, x 0; 1, 0, 0, x 1; 0, 1, 0, x 2; 0, 0, 1, x 3] := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 private theorem columns_basis₂₃ (x y : Vec4) :
     columns (Pi.single 2 1) (Pi.single 3 1) x y =
       !![0, 0, x 0, y 0; 0, 0, x 1, y 1; 1, 0, x 2, y 2; 0, 1, x 3, y 3] := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 private theorem columns_basis₃_x_y_basis₀ (x y : Vec4) :
     columns (Pi.single 3 1) x y (Pi.single 0 1) =
       !![0, x 0, y 0, 1; 0, x 1, y 1, 0; 0, x 2, y 2, 0; 1, x 3, y 3, 0] := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 private theorem columns_x_y_z_basis₁ (x y z : Vec4) :
     columns x y z (Pi.single 1 1) =
       !![x 0, y 0, z 0, 0; x 1, y 1, z 1, 1; x 2, y 2, z 2, 0;
@@ -89,12 +100,14 @@ private theorem columns_x_y_z_basis₁ (x y z : Vec4) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 private theorem columns_x_y_basis₀_basis₂ (x y : Vec4) :
     columns x y (Pi.single 0 1) (Pi.single 2 1) =
       !![x 0, y 0, 1, 0; x 1, y 1, 0, 0; x 2, y 2, 0, 1; x 3, y 3, 0, 0] := by
   ext i j
   fin_cases i <;> fin_cases j <;> simp [columns]
 
+/-- P97 ATail PaleyDeterminantNormalization theorem. -/
 private theorem columns_basis₀₁_basis₃ (x : Vec4) :
     columns x (Pi.single 0 1) (Pi.single 1 1) (Pi.single 3 1) =
       !![x 0, 1, 0, 0; x 1, 0, 1, 0; x 2, 0, 0, 0; x 3, 0, 0, 1] := by

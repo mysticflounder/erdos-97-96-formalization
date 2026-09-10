@@ -31,6 +31,7 @@ open ATailLargeCapUniqueFiveCrossIncidence
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail LargeCapUniqueFiveLowHit theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -123,6 +124,7 @@ structure LargeCapUniqueFiveTwoCommonDeletionSources
   secondPacket : CommonDeletionTwoCenterPacket D H second
     (H.centerAt unusedRow.unused.point unusedRow.source_mem_A) S.oppApex2
 
+/-- P97 ATail LargeCapUniqueFiveLowHit theorem. -/
 private theorem physicalApex_survives_erase
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {profile : LargeCapUniqueFiveSecondApexRadius D S}

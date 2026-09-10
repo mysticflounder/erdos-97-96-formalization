@@ -27,56 +27,68 @@ open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open Census554.EqualityCore
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements abbrev. -/
 private abbrev occurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem signedArea2_swap13 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 c b a := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem signedArea2_cycle (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 c a b := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateAHits : List Hit :=
   [(6, 8), (6, 13), (8, 6), (8, 13),
     (11, 8), (11, 9), (13, 6), (13, 9)]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateAForwardChoices : List (RowChoice Label) :=
   [{ center := 6, support := {8, 13} },
     { center := 8, support := {6, 13} },
     { center := 11, support := {8, 9} },
     { center := 13, support := {6, 9} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateAReflectedChoices : List (RowChoice Label) :=
   [{ center := 3, support := {7, 10} },
     { center := 5, support := {7, 8} },
     { center := 8, support := {3, 10} },
     { center := 10, support := {3, 8} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem candidateAForwardCover :
     ∀ choice ∈ candidateAForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ candidateAHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem candidateAReflectedCover :
     ∀ choice ∈ candidateAReflectedChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ candidateAHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 private def candidateAForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P candidateAForwardChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -91,6 +103,7 @@ private def candidateAForwardCore {P : RowPattern Label}
   uv_yv := edgeClosure_of_checkPath_positive hrows
     ⟨(8, 11), [.flip 8 11, .row 11 8 9, .flip 11 9], (9, 11)⟩ (by decide) }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 private def candidateAReflectedCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P candidateAReflectedChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -105,32 +118,38 @@ private def candidateAReflectedCore {P : RowPattern Label}
   uv_yv := edgeClosure_of_checkPath_positive hrows
     ⟨(8, 5), [.flip 8 5, .row 5 8 7, .flip 5 7], (7, 5)⟩ (by decide) }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateBHits : List Hit :=
   [(6, 8), (6, 13), (8, 6), (8, 13),
     (13, 0), (13, 6), (15, 0), (15, 8)]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateBForwardChoices : List (RowChoice Label) :=
   [{ center := 6, support := {8, 13} },
     { center := 8, support := {6, 13} },
     { center := 13, support := {0, 6} },
     { center := 15, support := {0, 8} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateBReflectedChoices : List (RowChoice Label) :=
   [{ center := 1, support := {8, 16} },
     { center := 3, support := {10, 16} },
     { center := 8, support := {3, 10} },
     { center := 10, support := {3, 8} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem candidateBForwardCover :
     ∀ choice ∈ candidateBForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ candidateBHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem candidateBReflectedCover :
     ∀ choice ∈ candidateBReflectedChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ candidateBHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 private def candidateBForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P candidateBForwardChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -145,6 +164,7 @@ private def candidateBForwardCore {P : RowPattern Label}
   uv_yv := edgeClosure_of_checkPath_positive hrows
     ⟨(8, 15), [.flip 8 15, .row 15 8 0, .flip 15 0], (0, 15)⟩ (by decide) }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 private def candidateBReflectedCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P candidateBReflectedChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -159,6 +179,7 @@ private def candidateBReflectedCore {P : RowPattern Label}
   uv_yv := edgeClosure_of_checkPath_positive hrows
     ⟨(8, 1), [.flip 8 1, .row 1 8 16, .flip 1 16], (16, 1)⟩ (by decide) }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem false_of_candidateAForwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -179,6 +200,7 @@ private theorem false_of_candidateAForwardRows
       (by decide) (by decide)
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem false_of_candidateAReflectedRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -197,6 +219,7 @@ private theorem false_of_candidateAReflectedRows
       (i := (3 : Label)) (j := (5 : Label)) (k := (7 : Label))
       (by decide) (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem false_of_candidateBForwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -211,6 +234,7 @@ private theorem false_of_candidateBForwardRows
       (i := (0 : Label)) (j := (13 : Label)) (k := (15 : Label))
       (by decide) (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem false_of_candidateBReflectedRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -231,6 +255,7 @@ private theorem false_of_candidateBReflectedRows
       (by decide) (by decide)
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem false_of_candidateAHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -248,6 +273,7 @@ private theorem false_of_candidateAHits {A : Finset ℝ²}
         source source.model.order direction rfl hsame candidateAHits
         candidateAReflectedChoices candidateAReflectedCover hall)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem false_of_candidateBHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -265,16 +291,21 @@ private theorem false_of_candidateBHits {A : Finset ℝ²}
         source source.model.order direction rfl hsame candidateBHits
         candidateBReflectedChoices candidateBReflectedCover hall)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateAClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause candidateAHits order direction
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateBClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause candidateBHits order direction
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateAClauses : Std.Sat.CNF Atom := occurrenceClauses candidateAHits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def candidateBClauses : Std.Sat.CNF Atom := occurrenceClauses candidateBHits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem sourceAssign_candidateAClause {A : Finset ℝ²} (source : SourceRealization A)
     (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -283,6 +314,7 @@ theorem sourceAssign_candidateAClause {A : Finset ℝ²} (source : SourceRealiza
   intro horder hall
   exact false_of_candidateAHits source order direction horder.symm hall
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem sourceAssign_candidateBClause {A : Finset ℝ²} (source : SourceRealization A)
     (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -291,6 +323,7 @@ theorem sourceAssign_candidateBClause {A : Finset ℝ²} (source : SourceRealiza
   intro horder hall
   exact false_of_candidateBHits source order direction horder.symm hall
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 private theorem sourceAssign_occurrenceClauses {A : Finset ℝ²}
     (source : SourceRealization A) (hits : List Hit)
     (hvalid : ∀ order direction,
@@ -305,17 +338,21 @@ private theorem sourceAssign_occurrenceClauses {A : Finset ℝ²}
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact hvalid order direction
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def v6ModelCoreRefinementClauses : Std.Sat.CNF Atom :=
   candidateAClauses ++ candidateBClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem v6ModelCoreRefinementClauses_length :
     v6ModelCoreRefinementClauses.length = 8 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem v6ModelCoreRefinementClauses_nodup :
     v6ModelCoreRefinementClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem sourceAssign_v6ModelCoreRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ v6ModelCoreRefinementClauses,
@@ -327,11 +364,13 @@ theorem sourceAssign_v6ModelCoreRefinementClauses {A : Finset ℝ²}
   · exact sourceAssign_occurrenceClauses source candidateBHits
       (sourceAssign_candidateBClause source) clause hcandidateB
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf :
     Std.Sat.CNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf ++
     v6ModelCoreRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf_length :
     canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf.length =
       7409788 := by
@@ -339,6 +378,7 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf_len
     canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf_length,
     v6ModelCoreRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :

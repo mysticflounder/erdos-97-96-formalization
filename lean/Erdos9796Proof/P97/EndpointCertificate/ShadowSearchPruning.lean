@@ -42,6 +42,7 @@ namespace Search
 
 /-! ### Pair counts only increase -/
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem pairCountsOK_of_incrementPairCountsAux
     {center : Label} {mask : Nat} :
     ∀ (counts : List Nat) (pairs : List (Label × Label)),
@@ -77,6 +78,7 @@ private theorem pairCountsOK_incrementPairCounts_eq_false
 
 /-! ### A state that already violates the pair-count bound has no leaves -/
 
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointSearchAux_eq_nil_of_pairCountsOK_false {escapee : Label} :
     ∀ (plan : List (Label × List Nat)) (assigned : List Label)
       (masks counts : List Nat),
@@ -91,6 +93,7 @@ theorem endpointSearchAux_eq_nil_of_pairCountsOK_false {escapee : Label} :
 
 /-! ### The depth-3 rest plan never reassigns `.v`, `.w`, or `.u` -/
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem getD_setNth_of_ne :
     ∀ (i j value : Nat) (l : List Nat), i ≠ j →
       (SurplusCOMPGBank.setNth i value l).getD j 0 = l.getD j 0
@@ -102,6 +105,7 @@ private theorem getD_setNth_of_ne :
       simpa [SurplusCOMPGBank.setNth] using
         getD_setNth_of_ne i j value l (by omega)
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem centerMaskOf_setCenterMask_of_ne
     {masks : List Nat} {center other : Label} {mask : Nat}
     (h : center ≠ other) :
@@ -140,6 +144,7 @@ private theorem centerMaskOf_of_mem_endpointSearchAux
           (hplan (center, candidates) List.mem_cons_self)
       · simp at hbranch
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointDepth3RestPlan_fst_ne_v {escapee : Label} :
     ∀ entry ∈ endpointDepth3RestPlan escapee, entry.fst ≠ (.v : Label) := by
   intro entry hentry
@@ -147,6 +152,7 @@ private theorem endpointDepth3RestPlan_fst_ne_v {escapee : Label} :
     or_false] at hentry
   rcases hentry with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> simp
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointDepth3RestPlan_fst_ne_w {escapee : Label} :
     ∀ entry ∈ endpointDepth3RestPlan escapee, entry.fst ≠ (.w : Label) := by
   intro entry hentry
@@ -154,6 +160,7 @@ private theorem endpointDepth3RestPlan_fst_ne_w {escapee : Label} :
     or_false] at hentry
   rcases hentry with rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> simp
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointDepth3RestPlan_fst_ne_u {escapee : Label} :
     ∀ entry ∈ endpointDepth3RestPlan escapee, entry.fst ≠ (.u : Label) := by
   intro entry hentry

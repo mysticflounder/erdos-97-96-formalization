@@ -48,6 +48,7 @@ def interleavedHits (order : NamedOrder) (direction : Orientation)
         (p f, p 0), (p f, p c)]
   | _ => []
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleaved theorem. -/
 private theorem false_of_interleaved_at {A : Finset ℝ²}
     (r : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut b c d e f : Label)

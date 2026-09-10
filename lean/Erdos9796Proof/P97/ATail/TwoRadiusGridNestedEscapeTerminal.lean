@@ -23,6 +23,7 @@ open ATailTwoRadiusGridCoordinateGeometry
 open ATailTwoRadiusGridEscapeSynchronization
 open ATailTwoRadiusGridZeroCutAssembly
 
+/-- P97 ATail TwoRadiusGridNestedEscapeTerminal theorem. -/
 private theorem polynomial_nested_escape_core
     {x y X Y u v : ℝ}
     (hx : 0 < x) (hy : 0 < y) (hyY : y < Y)
@@ -147,6 +148,7 @@ private theorem polynomial_nested_escape_core
     mul_lt_mul_of_pos_left (by linarith : u < -x) hy
   nlinarith
 
+/-- P97 ATail TwoRadiusGridNestedEscapeTerminal theorem. -/
 private theorem polynomial_nested_escape_core_of_negative
     {x y X Y u v : ℝ}
     (hx : 0 < x) (hy : y < 0) (hYy : Y < y)
@@ -162,6 +164,7 @@ private theorem polynomial_nested_escape_core_of_negative
     (by nlinarith [hNorm]) (by nlinarith) (by nlinarith)
   nlinarith
 
+/-- P97 ATail TwoRadiusGridNestedEscapeTerminal theorem. -/
 private theorem false_of_scaledNestedEscape_positive
     {o a s sMinus L t : ℝ²}
     (hoa : o ≠ a)
@@ -221,6 +224,7 @@ private theorem false_of_scaledNestedEscape_positive
     · exact hTriple
   linarith
 
+/-- P97 ATail TwoRadiusGridNestedEscapeTerminal theorem. -/
 private theorem false_of_scaledNestedEscape_negative
     {o a s sMinus L t : ℝ²}
     (hoa : o ≠ a)

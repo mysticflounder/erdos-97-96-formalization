@@ -36,9 +36,11 @@ open SevenSourceTournament
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail GoodMutualOmissionTwoDeletionNetwork abbrev. -/
 abbrev CarrierVertex (A : Finset ℝ²) :=
   CriticalShellSystem.CarrierVertex A
 
+/-- P97 ATail GoodMutualOmissionTwoDeletionNetwork theorem. -/
 private theorem good_source_survives_retained
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -59,6 +61,7 @@ private theorem good_source_survives_retained
     by_contra hw
     exact hnotBad (Finset.mem_filter.mpr ⟨houtside, hq, hw⟩)
 
+/-- P97 ATail GoodMutualOmissionTwoDeletionNetwork structure. -/
 structure GoodMutualOmissionTwoDeletionNetwork
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -99,6 +102,7 @@ structure GoodMutualOmissionTwoDeletionNetwork
   second_apex_survives_delete_t :
     HasNEquidistantPointsAt 4 (D.A.erase t.1) S.oppApex2
 
+/-- P97 ATail GoodMutualOmissionTwoDeletionNetwork theorem. -/
 theorem nonempty_goodMutualOmissionTwoDeletionNetwork_of_card_gt_twelve
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

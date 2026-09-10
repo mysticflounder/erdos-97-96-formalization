@@ -59,6 +59,7 @@ def leftPinnedToRightLabel : Label → Label
   | .Q1 => .Pw
   | .Q2 => .Pu
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 theorem leftPinnedToRightLabel_injective :
     Function.Injective leftPinnedToRightLabel := by
   intro a b h
@@ -78,11 +79,13 @@ def reflectedHullLabel : Label → Label
   | .Q1 => .Pu
   | .Q2 => .Pw
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 theorem reflectedHullLabel_injective :
     Function.Injective reflectedHullLabel := by
   intro a b h
   cases a <;> cases b <;> simp [reflectedHullLabel] at h ⊢
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 theorem reflectedHullLabel_involutive (a : Label) :
     reflectedHullLabel (reflectedHullLabel a) = a := by
   cases a <;> rfl
@@ -452,6 +455,7 @@ theorem pointMask_foldl_le_add_maskOfLabels
         simp [h]
         omega
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem pointMask_foldl_preserve_bit_of_forall_lt
     {α : Type _} [DecidableEq α] (pointOf : Label → α)
     (T : Finset α) (labels : List Label) {k acc : Nat}
@@ -475,6 +479,7 @@ private theorem pointMask_foldl_preserve_bit_of_forall_lt
       · rw [ih hrest]
         simp [hmem]
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem pointMask_maskHas_false_of_not_mem_of_prefix_suffix
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α}
@@ -575,6 +580,7 @@ theorem maskNormalized_pointMask
   have hlt : pointMask pointOf T < maskBound := Nat.lt_of_le_of_lt hle hbound
   simp [maskNormalized, hlt]
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem finset_eq_insert_insert_of_erase_erase_eq_pair
     {α : Type _} [DecidableEq α] {T : Finset α} {a b p q : α}
     (ha : a ∈ T) (hb : b ∈ T)
@@ -654,12 +660,14 @@ def shadowOfPointClasses {α : Type _} [DecidableEq α]
     Shadow :=
   { masks := allLabels.map (fun center => pointMask pointOf (centerClass center)) }
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 theorem shadowOfPointClasses_hasTenMasks
     {α : Type _} [DecidableEq α] (pointOf : Label → α)
     (centerClass : Label → Finset α) :
     (shadowOfPointClasses pointOf centerClass).hasTenMasks = true := by
   simp [shadowOfPointClasses, Shadow.hasTenMasks, allLabels, labelCount]
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 theorem shadowOfPointClasses_centerMask
     {α : Type _} [DecidableEq α] (pointOf : Label → α)
     (centerClass : Label → Finset α) (center : Label) :
@@ -722,46 +730,57 @@ theorem maskHas_pinnedMaskOf_v_eq_false_of_isSurplusStar
   cases sstar <;> simp [isSurplusStar] at hs
   all_goals decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem firstOppExactCapMask_card :
     maskCard firstOppExactCapMask = 4 := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem firstOppExactCapMask_not_v :
     maskHas firstOppExactCapMask .v = false := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_card :
     maskCard secondOppExactCapMask = 4 := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_not_w :
     maskHas secondOppExactCapMask .w = false := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_has_Q1 :
     maskHas secondOppExactCapMask .Q1 = true := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_has_Q2 :
     maskHas secondOppExactCapMask .Q2 = true := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_cuNoW :
     maskInterCard secondOppExactCapMask cuNoWMask = 1 := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_cvNoW :
     maskInterCard secondOppExactCapMask cvNoWMask = 1 := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_cuNoW_le_one :
     maskInterCard secondOppExactCapMask cuNoWMask <= 1 := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem secondOppExactCapMask_cvNoW_le_one :
     maskInterCard secondOppExactCapMask cvNoWMask <= 1 := by
   decide
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem oneSidedSeed_privateMask_card_of_mem {seed : OneSidedSeed}
     (hseed : seed ∈ oneSidedSeeds) :
     maskCard seed.privateMask = 4 := by
@@ -771,6 +790,7 @@ private theorem oneSidedSeed_privateMask_card_of_mem {seed : OneSidedSeed}
     decide
   exact of_decide_eq_true (List.all_eq_true.mp hall seed hseed)
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem oneSidedSeed_privateMask_self_false_of_mem
     {seed : OneSidedSeed} (hseed : seed ∈ oneSidedSeeds) :
     maskHas seed.privateMask seed.privateCenter = false := by
@@ -781,6 +801,7 @@ private theorem oneSidedSeed_privateMask_self_false_of_mem
     decide
   exact of_decide_eq_true (List.all_eq_true.mp hall seed hseed)
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem oneSidedSeed_privateMask_no_moser_triple_of_mem
     {seed : OneSidedSeed} (hseed : seed ∈ oneSidedSeeds) :
     (maskHas seed.privateMask .u &&
@@ -794,16 +815,19 @@ private theorem oneSidedSeed_privateMask_no_moser_triple_of_mem
     decide
   exact of_decide_eq_true (List.all_eq_true.mp hall seed hseed)
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem erasedPinFixedSeed_privateMask_card_of_mem
     {seed : OneSidedSeed} (hseed : seed ∈ erasedPinFixedSeeds) :
     maskCard seed.privateMask = 4 := by
   exact erasedPinFixedSeeds_privateMask_card seed hseed
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem erasedPinFixedSeed_privateMask_self_false_of_mem
     {seed : OneSidedSeed} (hseed : seed ∈ erasedPinFixedSeeds) :
     maskHas seed.privateMask seed.privateCenter = false := by
   exact erasedPinFixedSeeds_privateMask_self_false seed hseed
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem erasedPinFixedSeed_privateMask_no_moser_triple_of_mem
     {seed : OneSidedSeed} (hseed : seed ∈ erasedPinFixedSeeds) :
     (maskHas seed.privateMask .u &&
@@ -985,6 +1009,7 @@ theorem noThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two
     noThreeOK (shadowOfPointClasses pointOf centerClass) = true := by
   simp [noThreeOK, labelPairs, hcount]
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem foldl_countP_add {α : Type _} (p : α → Bool) :
     ∀ (items : List α) (acc : Nat),
       items.foldl (fun acc item => if p item then acc + 1 else acc) acc =
@@ -998,6 +1023,7 @@ private theorem foldl_countP_add {α : Type _} (p : α → Bool) :
       · simp [h, ih, Nat.add_comm, Nat.add_left_comm]
       · simp [h, ih]
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem pointPairClassCount_eq_countP
     (shadow : Shadow) (x y : Label) :
     pointPairClassCount shadow x y =
@@ -1030,6 +1056,7 @@ private theorem pointPairClassCount_eq_countP
   rw [foldl_countP_add]
   simp
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem pointPairHit_classHas_left
     {shadow : Shadow} {center x y : Label}
     (hhit : pointPairHitByCenterMask center
@@ -1046,6 +1073,7 @@ private theorem pointPairHit_classHas_left
     Bool.false_eq_true, if_false, Bool.and_eq_true] at hhit
   simpa [Shadow.classHas] using hhit.1
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem pointPairHit_classHas_right
     {shadow : Shadow} {center x y : Label}
     (hhit : pointPairHitByCenterMask center
@@ -1194,6 +1222,7 @@ theorem prefixPairCountsOK_shadowOfPointClasses_of_selectedClasses
       exact (mem_selectedClass.mp ha).2.trans
         (mem_selectedClass.mp hb).2.symm)
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem sameRadius_of_centerClass_eq_selectedClass
     {A : Finset ℝ²} {pointOf : Label → ℝ²}
     {centerClass : Label → Finset ℝ²} {center : Label} {radius : ℝ}
@@ -2905,6 +2934,7 @@ theorem mem_seed_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed
   rw [hmask]
   exact oneSidedSeed_privateMask_mem_seed_candidateMasks_privateCenter hseed
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem localTriggerOKAt_of_candidateMaskOK
     {sstar center : Label} {mask : Nat}
     (h : candidateMaskOK sstar center mask = true) :
@@ -2915,6 +2945,7 @@ private theorem localTriggerOKAt_of_candidateMaskOK
       cases hcase : localTriggerOKAt sstar center mask <;> simp_all
     simp [candidateMaskOK, hlocalFalse] at h
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem localTriggerOKAt_of_oneSidedSeedCandidateMaskOK
     {sstar center : Label} {mask : Nat}
     (h : oneSidedSeedCandidateMaskOK sstar center mask = true) :
@@ -2925,6 +2956,7 @@ private theorem localTriggerOKAt_of_oneSidedSeedCandidateMaskOK
       cases hcase : localTriggerOKAt sstar center mask <;> simp_all
     simp [oneSidedSeedCandidateMaskOK, hlocalFalse] at h
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem trigger_condition_of_localTriggerOKAt
     {sstar center : Label} {mask : Nat}
     (hfirst : center = .u ∨ center = .Q1 ∨ center = .Q2 ∨
@@ -2939,6 +2971,7 @@ private theorem trigger_condition_of_localTriggerOKAt
     · cases sstar <;> cases center <;>
         simp [previousSstarCenters, localTriggerOKAt, hhas, hle] at hfirst h
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem final_trigger_bound_of_localTriggerOKAt
     {sstar : Label} {mask : Nat}
     (hs : isSurplusStar sstar = true)
@@ -2948,6 +2981,7 @@ private theorem final_trigger_bound_of_localTriggerOKAt
   all_goals
     simpa [previousSstarCenters, localTriggerOKAt] using h
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem fragmentTriggersOK_shadowOfPointClasses_of_candidateMaskOK
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
     {centerClass : Label → Finset α} {sstar : Label}
@@ -3782,6 +3816,7 @@ theorem mem_seed_candidateMasks_of_oneSidedSeedCandidateMaskOK_nonfixed
   rw [hfixed]
   exact mem_oneSidedSeedCandidateMasksByFilter_of_candidate hOK
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
     {centerClass : Label → Finset α} {sstar center : Label}
@@ -3829,6 +3864,7 @@ private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
       (Bool.and_eq_false_iff.mp
         (htriggerPrevious _ (by simp [previousSstarCenters])))
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem oneSidedSeedCandidateMaskOK_pointMask_of_interfaces
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
     {centerClass : Label → Finset α} {seed : OneSidedSeed}
@@ -11310,6 +11346,7 @@ theorem leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
     pointMask_eq_secondOppExactCapMask
       (pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) hinj
 
+/-- P97 SurplusCOMPGBankGeometry theorem. -/
 private theorem triangle_pair_eq_opposite_left_or_opposite_right_of_mem
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {m₁ m₂ : ℝ²}
     (hm₁ : m₁ ∈ S.triangle.verts)

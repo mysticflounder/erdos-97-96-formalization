@@ -13,6 +13,7 @@ namespace ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport def. -/
 def extendedFortyNinthWaveV6FiveSize8PromotionDimacsString : String :=
   let dimacs := extendedFortyNinthWaveV6FiveSize8PromotionCnf.map fun clause =>
     clause.map litToDimacs
@@ -24,6 +25,7 @@ def extendedFortyNinthWaveV6FiveSize8PromotionDimacsString : String :=
 " lines ++ "
 "
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -36,5 +38,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport.run args

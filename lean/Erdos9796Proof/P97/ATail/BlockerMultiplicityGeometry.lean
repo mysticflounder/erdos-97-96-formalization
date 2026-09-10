@@ -233,6 +233,7 @@ def FreshOutsideSecondBlockerFiber.toSwappedFirst
     Q.otherOutsidePoint_not_mem_firstCap
   outside_eq_pair := Q.outside_eq_pair
 
+/-- P97 ATail BlockerMultiplicityGeometry theorem. -/
 private theorem source_mem_other_shell_of_blockers_eq
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (source target : CriticalShellSystem.CarrierVertex A)
@@ -248,6 +249,7 @@ private theorem source_mem_other_shell_of_blockers_eq
     (H.selectedAt source.1
       source.2).toCriticalFourShell.q_mem_support
 
+/-- P97 ATail BlockerMultiplicityGeometry theorem. -/
 theorem collisionShell_sdiff_firstCap_card_eq_two
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}
@@ -267,6 +269,7 @@ theorem collisionShell_sdiff_firstCap_card_eq_two
       P.source₁_mem_A).toCriticalFourShell.support_card] at hsplit
   simpa [P.sources_ne] using hsplit
 
+/-- P97 ATail BlockerMultiplicityGeometry theorem. -/
 private theorem exists_other_outsidePoint
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}
@@ -296,6 +299,7 @@ private theorem exists_other_outsidePoint
     exact huv (hux.trans hvx.symm)
   · exact ⟨u, huShell, huOutside, hux⟩
 
+/-- P97 ATail BlockerMultiplicityGeometry theorem. -/
 private theorem outside_eq_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}

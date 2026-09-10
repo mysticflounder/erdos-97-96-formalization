@@ -38,6 +38,7 @@ structure LargeCapUniqueFiveSecondApexRadius
       4 ≤ (SelectedClass D.A S.oppApex2 otherRadius).card →
       otherRadius = radius
 
+/-- P97 ATail LargeCapUniqueFive theorem. -/
 private theorem oppApex2_eq_oppositeVertex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -47,6 +48,7 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
       SurplusCapPacket.oppositeVertexByIndex, hi,
       Fin.val_zero, Fin.val_one, Fin.val_two]
 
+/-- P97 ATail LargeCapUniqueFive theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by

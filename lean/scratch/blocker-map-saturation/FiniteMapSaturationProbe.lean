@@ -24,6 +24,7 @@ either exact fibers or an exact three-element image complement. -/
 def nonsaturatedBlockerMap : Fin 8 → Fin 8 :=
   ![3, 3, 3, 4, 5, 4, 5, 6]
 
+/-- Indexed scratch Lean theorem. -/
 theorem nonsaturatedBlockerMap_certificate :
     (∀ x, nonsaturatedBlockerMap x ≠ 0) ∧
     (∀ x, nonsaturatedBlockerMap x ≠ 1) ∧
@@ -44,6 +45,7 @@ fixed-point-free self-map omitting exactly three values. -/
 def saturatedBlockerMap : Fin 7 → Fin 7 :=
   ![3, 3, 3, 4, 6, 4, 5]
 
+/-- Indexed scratch Lean theorem. -/
 theorem saturatedBlockerMap_certificate :
     (∀ x, saturatedBlockerMap x ≠ x) ∧
     (∀ y, (∃ x, saturatedBlockerMap x = y) ↔

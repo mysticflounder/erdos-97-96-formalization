@@ -19,9 +19,11 @@ open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 [
   { hits := [(5, 7), (5, 11), (7, 10), (7, 16), (10, 7), (10, 15), (11, 15), (11, 16), (13, 10), (13, 11)]
@@ -1127,21 +1129,27 @@ def cancellationOccurrences : List CancellationOccurrence :=
       path3 := ⟨(3, 12), [.flip 3 12, .row 12 3 2, .flip 12 2, .row 2 12 6], (2, 6)⟩ } }]
 
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 35 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
 theorem cancellationOccurrences_all_check : cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 def. -/
 def twoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
 theorem twoKalmansonRefinementClauses_length : twoKalmansonRefinementClauses.length = 140 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
 theorem twoKalmansonRefinementClauses_nodup : twoKalmansonRefinementClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
 theorem sourceAssign_twoKalmansonRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ twoKalmansonRefinementClauses,
@@ -1156,15 +1164,18 @@ theorem sourceAssign_twoKalmansonRefinementClauses
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 def. -/
 def canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf : Std.Sat.CNF Atom :=
   canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf ++ twoKalmansonRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
 theorem canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf_length :
     canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf.length = 7409512 := by
   simp [canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf,
     canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf_length,
     twoKalmansonRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :

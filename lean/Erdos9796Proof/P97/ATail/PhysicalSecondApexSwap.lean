@@ -24,6 +24,7 @@ open ATailOrientedPhysicalApexIngress
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail PhysicalSecondApexSwap def. -/
 private noncomputable def withPacket
     (D : CounterexampleData) (S : SurplusCapPacket D.A) :
     CounterexampleData := {
@@ -33,26 +34,32 @@ private noncomputable def withPacket
   K4 := D.K4
   packet := S }
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem transported_oppApex1
     {A B : Finset ℝ²} (h : A = B) (S : SurplusCapPacket A) :
     (h ▸ S).oppApex1 = S.oppApex1 := by subst B; rfl
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem transported_oppApex2
     {A B : Finset ℝ²} (h : A = B) (S : SurplusCapPacket A) :
     (h ▸ S).oppApex2 = S.oppApex2 := by subst B; rfl
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem transported_oppCap1
     {A B : Finset ℝ²} (h : A = B) (S : SurplusCapPacket A) :
     (h ▸ S).oppCap1 = S.oppCap1 := by subst B; rfl
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem transported_oppCap2
     {A B : Finset ℝ²} (h : A = B) (S : SurplusCapPacket A) :
     (h ▸ S).oppCap2 = S.oppCap2 := by subst B; rfl
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem transported_surplusCap
     {A B : Finset ℝ²} (h : A = B) (S : SurplusCapPacket A) :
     (h ▸ S).surplusCap = S.surplusCap := by subst B; rfl
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem oppApex1_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ S.surplusCap := by
@@ -65,6 +72,7 @@ private theorem oppApex1_mem_surplusCap
   · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.oppApex1, hi]
       using S.partition.v1_mem_C3
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem oppApex1_mem_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ S.oppCap2 := by
@@ -77,6 +85,7 @@ private theorem oppApex1_mem_oppCap2
   · simpa [SurplusCapPacket.oppCap2, SurplusCapPacket.oppApex1, hi]
       using S.partition.v1_mem_C2
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem nonSurplusSwap_oppApex2_eq
     {D Dsw : CounterexampleData}
     (hswap : U2NonSurplusSqueeze.NonSurplusSwap D Dsw) :
@@ -133,6 +142,7 @@ structure SwappedFirstApexUniqueFourFrontier
   firstApexDouble_blocked : ¬ HasNEquidistantPointsAt 4
     ((D.A.erase frontier.pair.q).erase frontier.pair.w) packet.oppApex1
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem pair_q_mem_firstClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}
@@ -142,6 +152,7 @@ private theorem pair_q_mem_firstClass
   rcases Finset.mem_filter.mp hq with ⟨hqA, hqRadius⟩
   exact mem_selectedClass.mpr ⟨hqA, by simpa only [dist_comm] using hqRadius⟩
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem pair_w_mem_firstClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}
@@ -151,6 +162,7 @@ private theorem pair_w_mem_firstClass
   rcases Finset.mem_filter.mp hw with ⟨hwA, hwRadius⟩
   exact mem_selectedClass.mpr ⟨hwA, by simpa only [dist_comm] using hwRadius⟩
 
+/-- P97 ATail PhysicalSecondApexSwap theorem. -/
 private theorem firstApexDouble_blocked_of_unique_card_four
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}

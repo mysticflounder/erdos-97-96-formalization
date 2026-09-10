@@ -601,6 +601,7 @@ theorem CriticalPairFrontier.radius_pos
       (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
   simpa only [dist_comm, hqRadius] using hpos
 
+/-- P97 ATail CriticalPairFrontier theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -610,6 +611,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail CriticalPairFrontier theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -619,6 +621,7 @@ private theorem oppApex2_mem_A
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail CriticalPairFrontier theorem. -/
 private theorem blocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {q : ℝ²} (hq : q ∈ A) :
@@ -643,6 +646,7 @@ theorem cross_deletion_survives_or_cross_membership
       (source_mem_critical_support_of_no_qfree
         (H.selectedAt P.q P.q_mem_A) hsurvives)
 
+/-- P97 ATail CriticalPairFrontier theorem. -/
 private theorem equidistant_mono
     {n : ℕ} {S T : Finset ℝ²} {p : ℝ²}
     (hsub : S ⊆ T)
@@ -679,6 +683,7 @@ theorem firstApex_marginal_inter_secondClass_card_le_one
   exact U2NonSurplusSqueeze.oppCap2_escape_gen
     D S hqA hwA hqOff hwOff hqw hqFirst hwFirst hqSecond hwSecond
 
+/-- P97 ATail CriticalPairFrontier theorem. -/
 private theorem exists_pair_in_marginal_subset_double_deletion_survives_secondApex
     (D : CounterexampleData) (S : SurplusCapPacket D.A) (r : ℝ)
     (U : Finset ℝ²)
@@ -1015,6 +1020,7 @@ theorem signedArea_product_neg_of_cross_membership
   rw [hflip]
   nlinarith [sq_pos_of_ne_zero harea_ne]
 
+/-- P97 ATail CriticalPairFrontier theorem. -/
 private theorem blocker_ne_oppApex1_of_card_five
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}

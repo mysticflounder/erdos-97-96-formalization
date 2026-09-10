@@ -5,6 +5,7 @@ open EuclideanGeometry
 
 namespace Problem97
 
+/-- Indexed scratch Lean theorem. -/
 theorem scratch_mutual_distinct_exact_intersection
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (source source' : CriticalShellSystem.CarrierVertex A)
@@ -55,6 +56,7 @@ open ATailCriticalPairFrontier
 open ATailCommonDeletionTwoCenter
 open ATailOrientedPhysicalApexIngress
 
+/-- Indexed scratch Lean theorem. -/
 theorem scratch_same_firstApex_radius_closes_distinct_blockers
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {frontierRadius commonRadius : ℝ}

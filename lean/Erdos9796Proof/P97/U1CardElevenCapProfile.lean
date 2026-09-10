@@ -21,6 +21,7 @@ open scoped EuclideanGeometry
 namespace Problem97
 namespace U1LargeCapRouteBTailMetricResidualTarget
 
+/-- P97 U1CardElevenCapProfile lemma. -/
 private lemma nat_eq_554_of_sum_eq_fourteen
     {a b c : Nat} (ha : 5 ≤ a) (hb : 5 ≤ b) (hc : 4 ≤ c)
     (hsum : a + b + c = 14) :

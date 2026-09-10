@@ -16,16 +16,19 @@ namespace Problem97
 
 open Census554.GeneralCarrierBridge
 
+/-- P97 ATail TwoRadiusGridCapBoundarySigns theorem. -/
 private theorem area_cyclic {x y z : ℝ²} :
     signedArea2 x y z = signedArea2 y z x := by
   unfold signedArea2
   ring
 
+/-- P97 ATail TwoRadiusGridCapBoundarySigns theorem. -/
 private theorem area_swap12 {x y z : ℝ²} :
     signedArea2 x y z = -signedArea2 y x z := by
   unfold signedArea2
   ring
 
+/-- P97 ATail TwoRadiusGridCapBoundarySigns theorem. -/
 private theorem area_swap23 {x y z : ℝ²} :
     signedArea2 x y z = -signedArea2 x z y := by
   unfold signedArea2

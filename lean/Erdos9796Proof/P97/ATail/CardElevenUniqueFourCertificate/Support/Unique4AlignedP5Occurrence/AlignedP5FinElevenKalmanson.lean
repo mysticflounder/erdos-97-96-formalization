@@ -75,6 +75,7 @@ private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     (i : Fin 11) : Fin A.card :=
   Fin.cast hcard.symm i
 
+/-- P97 ATail support AlignedP5FinElevenKalmanson theorem. -/
 @[simp] private theorem cardBoundary_toCardIndex
     {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Fin 11 → ℝ²) (i : Fin 11) :

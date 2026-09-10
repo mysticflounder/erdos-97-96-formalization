@@ -3,6 +3,7 @@ import Mathlib.Order.Fin.Basic
 
 namespace Problem97.ATailFrontierLiveClosure
 
+/-- Indexed scratch Lean theorem. -/
 private theorem not_mem_of_inter_card_le_two_of_three_cap_points
     {α : Type} [DecidableEq α]
     {support cap : Finset α} {extra first second : α}
@@ -26,6 +27,7 @@ private theorem not_mem_of_inter_card_le_two_of_three_cap_points
   have := (Finset.card_le_card hsubset).trans hcard
   omega
 
+/-- Indexed scratch Lean theorem. -/
 private theorem support_subset_image_skip
     {n : ℕ} {α : Type} [DecidableEq α]
     {boundary : Fin (n + 1) → α} {carrier support : Finset α}
@@ -45,6 +47,7 @@ private theorem support_subset_image_skip
   rcases Fin.exists_succAbove_eq_iff.mpr hne with ⟨index', hindex'⟩
   exact Finset.mem_image.mpr ⟨index', Finset.mem_univ _, by simpa [hindex'] using hindex⟩
 
+/-- Indexed scratch Lean theorem. -/
 private theorem seven_strict_interior_indices_ten
     (a b c d e f g : Fin 10)
     (ha : 0 < a) (hab : a < b) (hbc : b < c) (hcd : c < d)
@@ -122,6 +125,7 @@ private theorem seven_strict_interior_indices_ten
     hsucc e 5 (by simpa using hposE), hsucc f 6 (by simpa using hposF),
     hsucc g 7 (by simpa using hposG)⟩
 
+/-- Indexed scratch Lean def. -/
 private def SevenSkipOrder
     (a b c d e f g : Fin 10) : Prop :=
   ∃ gap : Fin 10,
@@ -134,6 +138,7 @@ private def SevenSkipOrder
     f = gap.succAbove (6 : Fin 9) ∧
     g = gap.succAbove (7 : Fin 9)
 
+/-- Indexed scratch Lean theorem. -/
 private theorem seven_index_order_classification_ten
     (iu iv ic id ixv ie ixu : Fin 10)
     (hu0 : 0 < iu) (hu8 : iu < 9)
@@ -201,6 +206,7 @@ private theorem seven_index_order_classification_ten
       exact seven_strict_interior_indices_ten ixu ixv ie id ic iv iu
         hxu0 hXv.1 hgt hE'.2 hC'.1 hC'.2 hV'.2 hu8
 
+/-- Indexed scratch Lean theorem. -/
 private theorem skip_position_embedding_forward
     (gap : Fin 16) (order : Fin 2) :
     BlockerVExactFifteenFourRowCoverage.PositionEmbedding
@@ -210,6 +216,7 @@ private theorem skip_position_embedding_forward
   intro point₁ point₂ hlt
   exact Fin.succAbove_lt_succAbove_iff.mpr hlt
 
+/-- Indexed scratch Lean theorem. -/
 private theorem skip_position_embedding_reverse
     (gap : Fin 16) (order : Fin 2) :
     BlockerVExactFifteenFourRowCoverage.PositionEmbedding
@@ -231,9 +238,11 @@ private theorem skip_position_embedding_reverse
     (Fin.succAbove_lt_succAbove_iff (p := gap)).mpr hlt
   omega
 
+/-- Indexed scratch Lean def. -/
 private def reverseGapTen (gap : Fin 10) : Fin 10 :=
   ⟨9 - gap.val, by omega⟩
 
+/-- Indexed scratch Lean theorem. -/
 private theorem reverse_gap_succAbove_sum
     (gap : Fin 10) (j p : Fin 9) (hsum : p.val + j.val = 8) :
     ((reverseGapTen gap).succAbove p).val + (gap.succAbove j).val = 9 := by
@@ -256,6 +265,7 @@ private theorem reverse_gap_succAbove_sum
     simp only [Fin.val_succ, Fin.val_castSucc]
     omega
 
+/-- Indexed scratch Lean theorem. -/
 private theorem gapTen_castLE_succAbove_val
     (gap : Fin 10) (p : Fin 15) (j : Fin 9) (hp : p.val = j.val) :
     ((Fin.castLE (by omega) gap : Fin 16).succAbove p).val =
@@ -280,6 +290,7 @@ private theorem gapTen_castLE_succAbove_val
     simp only [Fin.val_succ]
     omega
 
+/-- Indexed scratch Lean theorem. -/
 private theorem reverseGapTen_castLE_succAbove_sum
     (gap : Fin 10) (p : Fin 15) (j : Fin 9) (hsum : p.val + j.val = 8) :
     ((Fin.castLE (by omega) (reverseGapTen gap) : Fin 16).succAbove p).val +

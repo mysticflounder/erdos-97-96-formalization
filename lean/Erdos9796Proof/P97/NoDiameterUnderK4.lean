@@ -331,6 +331,7 @@ This is the core of the same-sign argument: assuming `|y_a| < |y_b|`,
 construct the convex combination expressing `q_a` as `α • a + β • q_b + γ • b`
 with all weights positive, then apply `ConvexIndep A`. -/
 set_option maxHeartbeats 600000 in
+/-- P97 NoDiameterUnderK4 lemma. -/
 private lemma same_sign_ordered_pair_contradiction
     {A : Finset ℝ²} (hConv : Problem97.ConvexIndep A)
     {a b qa qb : ℝ²} {r d : ℝ}
@@ -574,6 +575,7 @@ line `ab` (positive product of cross products), we derive a contradiction
 with `ConvexIndep A`: by Lagrange and `key_trig_inequality`, the point
 with smaller `|cross|` lies in `convexHull {a, b, q (other)}`. -/
 set_option maxHeartbeats 400000 in
+/-- P97 NoDiameterUnderK4 lemma. -/
 private lemma same_sign_pair_contradiction
     {A : Finset ℝ²} (hConv : Problem97.ConvexIndep A)
     {a b q1 q2 : ℝ²} {r d : ℝ}

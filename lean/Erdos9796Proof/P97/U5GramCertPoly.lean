@@ -87,18 +87,22 @@ def isZero (p : SparsePoly) : Bool :=
 
 /-! ## Evaluation lemmas -/
 
+/-- P97 U5GramCertPoly theorem. -/
 @[simp] theorem eval_nil (ν : ℕ → ℝ) : eval ν [] = 0 := rfl
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_cons (ν : ℕ → ℝ) (t : Mono × ℚ) (p : SparsePoly) :
     eval ν (t :: p) = (t.2 : ℝ) * evalMono ν t.1 + eval ν p := by
   simp [eval]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_append (ν : ℕ → ℝ) (p q : SparsePoly) :
     eval ν (p ++ q) = eval ν p + eval ν q := by
   induction p with
   | nil => simp
   | cons t p ih => rw [List.cons_append, eval_cons, eval_cons, ih]; ring
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_neg (ν : ℕ → ℝ) (p : SparsePoly) :
     eval ν (neg p) = -eval ν p := by
   induction p with
@@ -109,6 +113,7 @@ theorem eval_neg (ν : ℕ → ℝ) (p : SparsePoly) :
       push_cast
       ring
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem evalMono_monoMul (ν : ℕ → ℝ) (a b : Mono) :
     evalMono ν (monoMul a b) = evalMono ν a * evalMono ν b := by
   induction a generalizing b ν with
@@ -120,6 +125,7 @@ theorem evalMono_monoMul (ν : ℕ → ℝ) (a b : Mono) :
           simp only [monoMul, evalMono, ih, pow_add]
           ring
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_map_mulTerm (ν : ℕ → ℝ) (t : Mono × ℚ) (q : SparsePoly) :
     eval ν (q.map fun t₂ => (monoMul t.1 t₂.1, t.2 * t₂.2)) =
       (t.2 : ℝ) * evalMono ν t.1 * eval ν q := by
@@ -131,6 +137,7 @@ theorem eval_map_mulTerm (ν : ℕ → ℝ) (t : Mono × ℚ) (q : SparsePoly) :
       push_cast
       ring
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_mul (ν : ℕ → ℝ) (p q : SparsePoly) :
     eval ν (mul p q) = eval ν p * eval ν q := by
   induction p with
@@ -150,18 +157,22 @@ theorem eval_mul_ne_zero (ν : ℕ → ℝ) {p q : SparsePoly}
 
 /-! ## Filter bookkeeping for the zero test -/
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem sameOf_cons_pos {t : Mono × ℚ} {m : Mono} (h : t.1 = m)
     (p : SparsePoly) : sameOf (t :: p) m = t :: sameOf p m := by
   simp [sameOf, h]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem sameOf_cons_neg {t : Mono × ℚ} {m : Mono} (h : ¬t.1 = m)
     (p : SparsePoly) : sameOf (t :: p) m = sameOf p m := by
   simp [sameOf, h]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem restOf_cons_pos {t : Mono × ℚ} {m : Mono} (h : t.1 = m)
     (p : SparsePoly) : restOf (t :: p) m = restOf p m := by
   simp [restOf, h]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem restOf_cons_neg {t : Mono × ℚ} {m : Mono} (h : ¬t.1 = m)
     (p : SparsePoly) : restOf (t :: p) m = t :: restOf p m := by
   simp [restOf, h]
@@ -208,6 +219,7 @@ theorem coeffOf_restOf (p : SparsePoly) {m m' : Mono} (h : m' ≠ m) :
         rw [restOf_cons_pos ht, ih, coeffOf, if_neg ht', zero_add]
       · rw [restOf_cons_neg ht, coeffOf, coeffOf, ih]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem length_restOf_le (p : SparsePoly) (m : Mono) :
     (restOf p m).length ≤ p.length :=
   p.length_filter_le _
@@ -254,6 +266,7 @@ def insertCoeff (m : Mono) (c : ℚ) : SparsePoly → SparsePoly
       else
         t :: insertCoeff m c rest
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_insertCoeff (ν : ℕ → ℝ) (m : Mono) (c : ℚ) :
     ∀ p : SparsePoly,
       eval ν (insertCoeff m c p) = (c : ℝ) * evalMono ν m + eval ν p
@@ -290,6 +303,7 @@ def normalizeAux : SparsePoly → SparsePoly → SparsePoly
 /-- Normalize a sparse polynomial by collecting equal monomials. -/
 def normalize (p : SparsePoly) : SparsePoly := normalizeAux [] p
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_normalizeAux (ν : ℕ → ℝ) :
     ∀ (acc p : SparsePoly),
       eval ν (normalizeAux acc p) = eval ν p + eval ν acc
@@ -299,6 +313,7 @@ theorem eval_normalizeAux (ν : ℕ → ℝ) :
         eval_insertCoeff, eval_cons]
       ring
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_normalize (ν : ℕ → ℝ) (p : SparsePoly) :
     eval ν (normalize p) = eval ν p := by
   rw [normalize, eval_normalizeAux]
@@ -326,6 +341,7 @@ def varMono (n : ℕ) : Mono := List.replicate n 0 ++ [1]
 /-- The polynomial `Xₙ`. -/
 def varPoly (n : ℕ) : SparsePoly := [(varMono n, 1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem evalMono_varMono (n : ℕ) :
     ∀ ν : ℕ → ℝ, evalMono ν (varMono n) = ν n := by
   induction n with
@@ -340,10 +356,12 @@ theorem evalMono_varMono (n : ℕ) :
       simp only [evalMono, pow_zero, one_mul]
       exact ih fun i => ν (i + 1)
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_single (ν : ℕ → ℝ) (m : Mono) (c : ℚ) :
     eval ν [(m, c)] = (c : ℝ) * evalMono ν m := by
   simp [eval]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_varPoly (ν : ℕ → ℝ) (n : ℕ) : eval ν (varPoly n) = ν n := by
   rw [varPoly, eval_single, evalMono_varMono]
   norm_num
@@ -361,10 +379,12 @@ def varMulMono (i j : ℕ) : Mono := monoMul (varMono i) (varMono j)
 /-- The polynomial `X_i * X_j`. -/
 def varMulPoly (i j : ℕ) : SparsePoly := [(varMulMono i j, 1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_varMulMono (ν : ℕ → ℝ) (i j : ℕ) :
     evalMono ν (varMulMono i j) = ν i * ν j := by
   simp [varMulMono, evalMono_monoMul, evalMono_varMono]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_varMulPoly (ν : ℕ → ℝ) (i j : ℕ) :
     eval ν (varMulPoly i j) = ν i * ν j := by
   simp [varMulPoly, eval_single, eval_varMulMono]
@@ -375,6 +395,7 @@ def coordSqDistPoly (x1 y1 x2 y2 : ℕ) : SparsePoly :=
     (varMulMono y1 y1, 1), (varMulMono y1 y2, -2),
     (varMulMono x2 x2, 1), (varMulMono y2 y2, 1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_coordSqDistPoly (ν : ℕ → ℝ) (x1 y1 x2 y2 : ℕ) :
     eval ν (coordSqDistPoly x1 y1 x2 y2) =
       (ν x1 - ν x2) ^ 2 + (ν y1 - ν y2) ^ 2 := by
@@ -386,6 +407,7 @@ def coordSqDistUnitXPoly (x y : ℕ) : SparsePoly :=
   [(varMulMono x x, 1), (varMono x, -2),
     (varMulMono y y, 1), ([], 1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_coordSqDistUnitXPoly (ν : ℕ → ℝ) (x y : ℕ) :
     eval ν (coordSqDistUnitXPoly x y) = (ν x - 1) ^ 2 + ν y ^ 2 := by
   simp [coordSqDistUnitXPoly, eval_cons, eval_nil, eval_varMulMono,
@@ -405,6 +427,7 @@ theorem eval_coordSqDistUnitXPoly_ne_zero
 def coordSqNormPoly (x y : ℕ) : SparsePoly :=
   [(varMulMono x x, 1), (varMulMono y y, 1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_coordSqNormPoly (ν : ℕ → ℝ) (x y : ℕ) :
     eval ν (coordSqNormPoly x y) = ν x ^ 2 + ν y ^ 2 := by
   simp [coordSqNormPoly, eval_cons, eval_nil, eval_varMulMono]
@@ -415,6 +438,7 @@ theorem eval_coordSqNormPoly (ν : ℕ → ℝ) (x y : ℕ) :
 def coordSqDistMinusVar (x1 y1 x2 y2 rho : ℕ) : SparsePoly :=
   coordSqDistPoly x1 y1 x2 y2 ++ [(varMono rho, -1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_coordSqDistMinusVar (ν : ℕ → ℝ) (x1 y1 x2 y2 rho : ℕ) :
     eval ν (coordSqDistMinusVar x1 y1 x2 y2 rho) =
       (ν x1 - ν x2) ^ 2 + (ν y1 - ν y2) ^ 2 - ν rho := by
@@ -436,6 +460,7 @@ theorem eval_coordSqDistMinusVar_eq_zero_of_eq
 def coordSqNormMinusOne (x y : ℕ) : SparsePoly :=
   [(varMulMono x x, 1), (varMulMono y y, 1), ([], -1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_coordSqNormMinusOne (ν : ℕ → ℝ) (x y : ℕ) :
     eval ν (coordSqNormMinusOne x y) = ν x ^ 2 + ν y ^ 2 - 1 := by
   simp [coordSqNormMinusOne, eval_cons, eval_nil, eval_varMulMono, evalMono]
@@ -453,6 +478,7 @@ theorem eval_coordSqNormMinusOne_eq_zero_of_eq
 def coordSqNormMinusVar (x y rho : ℕ) : SparsePoly :=
   [(varMulMono x x, 1), (varMulMono y y, 1), (varMono rho, -1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_coordSqNormMinusVar (ν : ℕ → ℝ) (x y rho : ℕ) :
     eval ν (coordSqNormMinusVar x y rho) = ν x ^ 2 + ν y ^ 2 - ν rho := by
   simp [coordSqNormMinusVar, eval_cons, eval_nil, eval_varMulMono,
@@ -473,6 +499,7 @@ def coordSqDistUnitXMinusVar (x y rho : ℕ) : SparsePoly :=
   [(varMulMono x x, 1), (varMono x, -2),
     (varMulMono y y, 1), (varMono rho, -1), ([], 1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_coordSqDistUnitXMinusVar (ν : ℕ → ℝ) (x y rho : ℕ) :
     eval ν (coordSqDistUnitXMinusVar x y rho) =
       (ν x - 1) ^ 2 + ν y ^ 2 - ν rho := by
@@ -492,6 +519,7 @@ theorem eval_coordSqDistUnitXMinusVar_eq_zero_of_eq
 /-- The coordinate polynomial `1 - X_rho`. -/
 def oneMinusVar (rho : ℕ) : SparsePoly := [(varMono rho, -1), ([], 1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_oneMinusVar (ν : ℕ → ℝ) (rho : ℕ) :
     eval ν (oneMinusVar rho) = 1 - ν rho := by
   simp [oneMinusVar, eval_cons, eval_nil, evalMono_varMono, evalMono]
@@ -510,6 +538,7 @@ theorem eval_oneMinusVar_eq_zero_of_eq
 def rabinowitschSlackFact (s : ℕ) (target : SparsePoly) : SparsePoly :=
   mul (varPoly s) target ++ [([], -1)]
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_rabinowitschSlackFact (ν : ℕ → ℝ) (s : ℕ)
     (target : SparsePoly) :
     eval ν (rabinowitschSlackFact s target) = ν s * eval ν target - 1 := by
@@ -619,6 +648,7 @@ def monoSupportedOn (S : ℕ → Bool) : Mono → ℕ → Bool
   | [], _ => true
   | e :: rest, i => (decide (e = 0) || S i) && monoSupportedOn S rest (i + 1)
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem evalMono_nonneg_of_supported {S : ℕ → Bool} (m : Mono) :
     ∀ (ν : ℕ → ℝ) (i : ℕ), (∀ j, S (i + j) = true → 0 ≤ ν j) →
       monoSupportedOn S m i = true → 0 ≤ evalMono ν m := by
@@ -644,6 +674,7 @@ theorem evalMono_nonneg_of_supported {S : ℕ → Bool} (m : Mono) :
       simp only [evalMono]
       exact mul_nonneg h1 h2
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem evalMono_pos_of_supported {S : ℕ → Bool} (m : Mono) :
     ∀ (ν : ℕ → ℝ) (i : ℕ), (∀ j, S (i + j) = true → 0 < ν j) →
       monoSupportedOn S m i = true → 0 < evalMono ν m := by
@@ -766,6 +797,7 @@ def unitIdealCertCheckerNormalized (facts : List SparsePoly)
   isZeroNormalized ((cert.flatMap fun ic => mul ic.2 (facts.getD ic.1 []))
     ++ neg onePoly)
 
+/-- P97 U5GramCertPoly theorem. -/
 theorem eval_onePoly (ν : ℕ → ℝ) : eval ν onePoly = 1 := by
   simp [onePoly, eval_single, evalMono]
 

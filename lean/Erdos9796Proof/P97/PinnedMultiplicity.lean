@@ -165,6 +165,7 @@ realized from `p`, and is `0` when there are none. -/
 noncomputable def pinnedMultiplicity (A : Finset ℝ²) (p : ℝ²) : ℕ :=
   (pinnedRadii A p).sup (fun r => (A.filter (fun q => dist p q = r)).card)
 
+/-- P97 PinnedMultiplicity theorem. -/
 theorem mem_pinnedRadii_iff {A : Finset ℝ²} {p : ℝ²} {r : ℝ} :
     r ∈ pinnedRadii A p ↔ (∃ q ∈ A, dist p q = r) ∧ 0 < r := by
   simp [pinnedRadii, Finset.mem_filter, Finset.mem_image]

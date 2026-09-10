@@ -189,6 +189,7 @@ inductive RetainedSourceReturnRadiusOutcome
   | jointDeletion (data : RetainedSourceReturnJointDeletion W)
   | exactFourPartition (data : RetainedSourceReturnExactFourPartition W)
 
+/-- P97 ATail RetainedMatchingSourceReturnRadiusSplit theorem. -/
 private theorem source_ne_of_not_mem_ownShell
     {D : CounterexampleData} {H : CriticalShellSystem D.A}
     {source z : ℝ²} {hsource : source ∈ D.A}
@@ -200,6 +201,7 @@ private theorem source_ne_of_not_mem_ownShell
   exact hz
     (H.selectedAt source hsource).toCriticalFourShell.q_mem_support
 
+/-- P97 ATail RetainedMatchingSourceReturnRadiusSplit theorem. -/
 private theorem exists_partner_of_card_two
     {A : Finset ℝ²} {source : ℝ²}
     (hcard : A.card = 2) (hsource : source ∈ A) :
@@ -214,6 +216,7 @@ private theorem exists_partner_of_card_two
     A = insert source (A.erase source) := (Finset.insert_erase hsource).symm
     _ = {source, partner} := by rw [hpartner]
 
+/-- P97 ATail RetainedMatchingSourceReturnRadiusSplit theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -223,6 +226,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- P97 ATail RetainedMatchingSourceReturnRadiusSplit def. -/
 private def criticalShellToQAllowedK4Class
     {D : CounterexampleData} {source center : ℝ²}
     (K : CriticalFourShell D.A source center) :
@@ -236,6 +240,7 @@ private def criticalShellToQAllowedK4Class
   radius_pos := K.radius_pos
   same_radius := K.support_eq_radius
 
+/-- P97 ATail RetainedMatchingSourceReturnRadiusSplit theorem. -/
 private theorem dangerousTriple_of_exactFourClass
     {D : CounterexampleData} {p q : ℝ²} {radius : ℝ}
     (hpA : p ∈ D.A) (hradiusPos : 0 < radius)

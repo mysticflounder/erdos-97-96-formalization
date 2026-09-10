@@ -13,6 +13,7 @@ namespace ATailBlockerVExactSeventeenFortyNinthModelRefinementsExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortyNinthModelRefinements
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthModelRefinementsExport def. -/
 def extendedFortyNinthModelRefinementsDimacsString : String :=
   let dimacs := extendedFortyNinthModelRefinementsCnf.map fun clause =>
     clause.map litToDimacs
@@ -22,6 +23,7 @@ def extendedFortyNinthModelRefinementsDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthModelRefinementsExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -34,6 +36,7 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenFortyNinthModelRefinementsExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthModelRefinementsExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenFortyNinthModelRefinementsExport.run args
 

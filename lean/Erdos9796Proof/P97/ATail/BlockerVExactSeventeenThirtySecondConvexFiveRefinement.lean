@@ -53,18 +53,21 @@ def canonicalConvexFiveHits (order : NamedOrder) (direction : Orientation) :
     (orientedLabelAtPosition order direction hit.1,
       orientedLabelAtPosition order direction hit.2)
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem canonicalHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ canonicalForwardChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (choice.center, point) ∈ canonicalHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem canonicalReflectedHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ canonicalReverseChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (Fin.rev choice.center, Fin.rev point) ∈ canonicalHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -73,6 +76,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -81,6 +85,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem canonicalPositiveRowsMatch_forward {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -105,6 +110,7 @@ private theorem canonicalPositiveRowsMatch_forward {A : Finset ℝ²}
       exact ⟨(choice.center, point),
         canonicalHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem canonicalPositiveRowsMatch_reverse {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -129,6 +135,7 @@ private theorem canonicalPositiveRowsMatch_reverse {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         canonicalReflectedHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement def. -/
 private def canonicalForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P canonicalForwardChoices) :
     Census554.ConvexFivePointCore.Core P :=
@@ -160,6 +167,7 @@ private def canonicalForwardCore {P : RowPattern Label}
       (hrows ({ center := 13, support := {3, 4, 12} } : RowChoice Label)
         (by native_decide) (by native_decide)) }
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement def. -/
 private def canonicalReverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P canonicalReverseChoices) :
     Census554.ConvexFivePointCore.Core P :=
@@ -191,11 +199,13 @@ private def canonicalReverseCore {P : RowPattern Label}
       (hrows ({ center := 3, support := {4, 12, 13} } : RowChoice Label)
         (by native_decide) (by native_decide)) }
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem signedArea2_cycle (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
@@ -204,6 +214,7 @@ private theorem signedArea2_swap23 (a b c : ℝ²) :
 /- The source rows do not meet the signed-area antecedents of either
 `ConvexFivePointCore` theorem.  Keep this explicit blocker at the adapter
 boundary instead of introducing an unproved SourceRealization bridge. -/
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 theorem canonicalForwardCore_orientation_gap
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -221,6 +232,7 @@ theorem canonicalForwardCore_orientation_gap
       (by decide) (by decide)
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondConvexFiveRefinement theorem. -/
 theorem canonicalReverseCore_orientation_gap
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)

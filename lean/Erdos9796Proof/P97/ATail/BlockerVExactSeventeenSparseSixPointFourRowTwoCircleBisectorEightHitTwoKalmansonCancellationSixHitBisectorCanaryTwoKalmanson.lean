@@ -31,9 +31,11 @@ open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open
   ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson abbrev. -/
 private abbrev occurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
@@ -284,6 +286,7 @@ def canaryCancellationOccurrences : List CancellationOccurrence :=
       path3 := ⟨(2, 14), [.row 2 14 6, .flip 2 6, .row 6 2 9, .flip 6 9, .row 9 6 13], (9, 13)⟩ } }
 ]
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem canaryCancellationOccurrences_length :
     canaryCancellationOccurrences.length = 8 := by
   native_decide
@@ -297,6 +300,7 @@ theorem canaryCancellationOccurrences_all_check :
 def canaryTwoKalmansonClauses : Std.Sat.CNF Atom :=
   canaryCancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem canaryTwoKalmansonClauses_length :
     canaryTwoKalmansonClauses.length = 32 := by
   native_decide
@@ -310,15 +314,18 @@ def canaryNovelTwoKalmansonClauses : Std.Sat.CNF Atom :=
   canaryTwoKalmansonClauses.zipIdx.filterMap fun (clause, index) =>
     if index ∈ canaryNovelTwoKalmansonClauseIndices then some clause else none
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem canaryNovelTwoKalmansonClauses_length :
     canaryNovelTwoKalmansonClauses.length = 21 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem canaryNovelTwoKalmansonClauses_subset :
     ∀ clause ∈ canaryNovelTwoKalmansonClauses,
       clause ∈ canaryTwoKalmansonClauses := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem sourceAssign_canaryTwoKalmansonClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ canaryTwoKalmansonClauses,
@@ -334,6 +341,7 @@ theorem sourceAssign_canaryTwoKalmansonClauses
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem sourceAssign_canaryNovelTwoKalmansonClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ canaryNovelTwoKalmansonClauses,
@@ -366,6 +374,7 @@ def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixH
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf ++
     canaryNovelTwoKalmansonClauses
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf_length :
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf.length =
       7409286 := by
@@ -375,6 +384,7 @@ theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmanson
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf_length,
     canaryNovelTwoKalmansonClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :

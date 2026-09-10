@@ -96,6 +96,7 @@ set_option maxHeartbeats 1000000 in
 -- Native reduction establishes the fixed first short-cap row mask.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- P97 ErasedCertificate theorem. -/
 theorem maskOfFinset_capO1 :
     maskOfFinset capO1 = firstOppExactCapRow.support := by
   native_decide
@@ -104,6 +105,7 @@ set_option maxHeartbeats 1000000 in
 -- Native reduction establishes the fixed second short-cap row mask.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- P97 ErasedCertificate theorem. -/
 theorem maskOfFinset_capO2 :
     maskOfFinset capO2 = secondOppExactCapRow.support := by
   native_decide

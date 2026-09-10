@@ -119,10 +119,12 @@ def labelAtPosition (order : NamedOrder) (index : Label) : Label :=
     | 6 => 9 | 7 => 7 | 8 => 2 | 9 => 15 | 10 => 16 | 11 => 3
     | 12 => 4 | 13 => 5 | 14 => 1 | 15 => 13 | _ => 14
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 @[simp] theorem position_labelAtPosition (order : NamedOrder) (index : Label) :
     position order (labelAtPosition order index) = index := by
   fin_cases order <;> fin_cases index <;> decide
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 @[simp] theorem labelAtPosition_position (order : NamedOrder) (point : Label) :
     labelAtPosition order (position order point) = point := by
   fin_cases order <;> fin_cases point <;> decide
@@ -306,26 +308,31 @@ def toCardIndex {A : Finset ℝ²} (r : SourceRealization A)
     (i : Fin 17) : Fin A.card :=
   Fin.cast r.card_eq.symm i
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 @[simp] theorem cardBoundary_toCardIndex {A : Finset ℝ²}
     (r : SourceRealization A) (i : Fin 17) :
     r.cardBoundary (r.toCardIndex i) = r.boundary i := rfl
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 theorem toCardIndex_lt {A : Finset ℝ²} (r : SourceRealization A)
     {i j : Fin 17} (h : i < j) : r.toCardIndex i < r.toCardIndex j := by
   simpa only [toCardIndex, Fin.lt_def, Fin.val_cast] using h
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 @[simp] theorem toCardIndex_add {A : Finset ℝ²} (r : SourceRealization A)
     (i j : Fin 17) :
     r.toCardIndex (i + j) = r.toCardIndex i + r.toCardIndex j := by
   apply Fin.ext
   simp [toCardIndex, Fin.add_def, r.card_eq]
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 theorem cardBoundary_injective {A : Finset ℝ²} (r : SourceRealization A) :
     Function.Injective r.cardBoundary := by
   intro i j hij
   apply Fin.cast_injective r.card_eq
   exact r.boundary_injective hij
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 theorem cardBoundary_image {A : Finset ℝ²} (r : SourceRealization A) :
     Finset.univ.image r.cardBoundary = A := by
   calc
@@ -342,6 +349,7 @@ theorem cardBoundary_image {A : Finset ℝ²} (r : SourceRealization A) :
             simp [cardBoundary]⟩
     _ = A := r.boundary_image
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 theorem cardBoundary_ccw {A : Finset ℝ²} (r : SourceRealization A) :
     EuclideanGeometry.IsCcwConvexPolygon r.cardBoundary := by
   intro i j k hij hjk
@@ -367,6 +375,7 @@ theorem mem_selectedRow_of_mem_model {A : Finset ℝ²}
 
 end SourceRealization
 
+/-- P97 ATail BlockerVExactSeventeenSourceNormalForm theorem. -/
 @[simp] theorem mem_pullback {α : Type*} [DecidableEq α]
     (point : Label → α) (support : Finset α) (label : Label) :
     label ∈ pullback point support ↔ point label ∈ support := by

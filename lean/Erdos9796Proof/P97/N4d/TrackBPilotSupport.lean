@@ -109,6 +109,7 @@ theorem qEqE_b2_familyB_sharedV1_signedArea_reflection
     (q := a₂) (v2 := b₂) (y := v₁) (u := a₁)
     (qEqE_b2_familyB_sharedV1_midpoint_collinear hv₁a₂ ha₁a₂ hv₁b₂ ha₁b₂ ha₁v₁)
 
+/-- P97 N4d theorem. -/
 private theorem trackB_lt_of_sq_lt_sq_of_nonneg
     {a b : ℝ} (hsq : a ^ 2 < b ^ 2) (hb : 0 < b) (ha : 0 ≤ a) :
     a < b := by
@@ -117,6 +118,7 @@ private theorem trackB_lt_of_sq_lt_sq_of_nonneg
 set_option maxHeartbeats 400000 in
 -- The scalar sign reduction expands two explicit polynomial identities before the
 -- final sign argument; 400000 heartbeats is enough to keep that local elaboration stable.
+/-- P97 N4d theorem. -/
 private theorem trackB_sharedTriple_circumcenter_below_axis_scalar
     (X Y A B v s : ℝ)
     (hs0 : 0 < s) (hs1 : s < 1)

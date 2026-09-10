@@ -27,6 +27,7 @@ open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements abbrev. -/
 private abbrev occurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
@@ -125,9 +126,11 @@ def cancellationOccurrences : List CancellationOccurrence := [
       path3 := ⟨(14, 16), [], (14, 16)⟩ } }
 ]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 3 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
@@ -136,9 +139,11 @@ theorem cancellationOccurrences_all_check :
 def survivorRefinementClauses : Std.Sat.CNF Atom :=
   cancellationOccurrences.map fun occ => occurrenceClause occ.hits 0 .forward
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
 theorem survivorRefinementClauses_length : survivorRefinementClauses.length = 3 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
 theorem survivorRefinementClauses_dimacs :
     survivorRefinementClauses.map (List.map litToDimacs) =
       [[-307, -287, -281, -255, -239, -230, -222, -153, -151],
@@ -146,6 +151,7 @@ theorem survivorRefinementClauses_dimacs :
        [-307, -233, -228, -150, -143, -116, -115, -13, -12]] := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
 theorem sourceAssign_survivorRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ survivorRefinementClauses,
@@ -160,12 +166,14 @@ theorem sourceAssign_survivorRefinementClauses
 def canaryPerpBisectorSurvivorRefinementCnf : Std.Sat.CNF Atom :=
   canaryPerpBisectorModelRefinementCnf ++ survivorRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorRefinementCnf_length :
     canaryPerpBisectorSurvivorRefinementCnf.length = 7409304 := by
   simp [canaryPerpBisectorSurvivorRefinementCnf,
     canaryPerpBisectorModelRefinementCnf_length,
     survivorRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :

@@ -33,6 +33,7 @@ open ATailPhysicalSecondApexCommonDeletion
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail BiApexRobustCapBounds theorem. -/
 private theorem oppApex1_eq_oppositeVertex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -41,6 +42,7 @@ private theorem oppApex1_eq_oppositeVertex_oppIndex1
     simp only [SurplusCapPacket.oppApex1, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppositeVertexByIndex, hi] <;> rfl
 
+/-- P97 ATail BiApexRobustCapBounds theorem. -/
 private theorem oppApex2_eq_oppositeVertex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -49,6 +51,7 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
     simp only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppositeVertexByIndex, hi] <;> rfl
 
+/-- P97 ATail BiApexRobustCapBounds theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -57,6 +60,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail BiApexRobustCapBounds theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -65,6 +69,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- P97 ATail BiApexRobustCapBounds theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -74,6 +79,7 @@ private theorem oppApex2_mem_A
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail BiApexRobustCapBounds theorem. -/
 private theorem frontier_pair_q_mem_firstClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}
@@ -83,6 +89,7 @@ private theorem frontier_pair_q_mem_firstClass
   rcases Finset.mem_filter.mp hqFilter with ⟨hqA, hqRadius⟩
   exact mem_selectedClass.mpr ⟨hqA, by simpa only [dist_comm] using hqRadius⟩
 
+/-- P97 ATail BiApexRobustCapBounds theorem. -/
 private theorem frontier_pair_w_mem_firstClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius : ℝ} {H : CriticalShellSystem D.A}

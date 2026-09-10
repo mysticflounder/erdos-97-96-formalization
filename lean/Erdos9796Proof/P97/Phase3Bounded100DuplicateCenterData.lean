@@ -32,11 +32,17 @@ namespace Phase3Bounded100DuplicateCenterData
 open Census554.EqualityCore
 open Phase3DuplicateCenterCertificate
 
+/-- P97 Phase3Bounded100DuplicateCenterData def. -/
 def frozenManifestSha256 : String := "3faef7c54c313d003aa90dbb63ab783d4fa8a8df4f50892790d96670f7486c9c"
+/-- P97 Phase3Bounded100DuplicateCenterData def. -/
 def frozenResultsSha256 : String := "e79e150701a2e59ea64b7a8a4609cddbcf9cbab9f11a3a6f28a8d71456af888b"
+/-- P97 Phase3Bounded100DuplicateCenterData def. -/
 def frozenSummarySha256 : String := "7abde3c065dffdf284bedb1f26baf94b7a5abd55e93b52baa924c503265f7fd4"
+/-- P97 Phase3Bounded100DuplicateCenterData def. -/
 def sourceManifestSha256 : String := "a0ab7b496412e8470a5dbd35e8f12e9ed0834f01674be013fed2a1d544dff41e"
+/-- P97 Phase3Bounded100DuplicateCenterData def. -/
 def sourceSummaryPayloadSha256 : String := "418309d1649dfff4e0a48d656d81168c44aca71a5de98ebf81c9a7ab71c8d1a0"
+/-- P97 Phase3Bounded100DuplicateCenterData def. -/
 def resultChainTail : String := "589d333c541c15c65b8a648495f3e34a97ca27c2a5c3f2947f1cb3caf85b23f2"
 
 /-- The 23 distinct full ten-row patterns, in canonical row order. -/

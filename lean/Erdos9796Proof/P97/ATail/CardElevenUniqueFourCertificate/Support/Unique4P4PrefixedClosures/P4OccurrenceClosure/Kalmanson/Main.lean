@@ -20,7 +20,9 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- P97 ATail support def. -/
 def bridgeClauses : List (List Int) := bridgeEntries.map BridgeEntry.clause
+/-- P97 ATail support theorem. -/
 theorem bridgeClauses_length : bridgeClauses.length = 1907 := by simp [bridgeClauses, bridgeEntries_length]
 
 /-- Source satisfaction of the authenticated compact Kalmanson window on the direct branch. -/

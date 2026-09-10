@@ -21,6 +21,7 @@ claim and therefore does not resolve an orientation branch or a production
 namespace Problem97
 namespace P4ExactTwoCertificateClosureScratch
 
+/-- P97 ATail support theorem. -/
 theorem false_of_p4CompactLedger_sat (v : Nat → Prop)
     (h : ∀ clause ∈ p4CompactLedger, clauseSat v clause) : False := by
   apply false_of_checkpoint0_signedClauses_sat v

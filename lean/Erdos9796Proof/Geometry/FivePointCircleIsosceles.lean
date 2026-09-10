@@ -30,6 +30,7 @@ open scoped InnerProductSpace
 namespace Erdos9796Proof
 namespace Geometry
 
+/-- Geometry Geometry abbrev. -/
 abbrev Plane := EuclideanSpace ℝ (Fin 2)
 
 /-- The oriented twice-area of the triangle `(v, vj, vk)`. -/

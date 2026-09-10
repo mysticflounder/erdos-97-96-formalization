@@ -57,10 +57,12 @@ private lemma filter_dist_comm (A : Finset ℝ²) (p : ℝ²) (r : ℝ) :
 
 namespace U2NonSurplusSqueeze
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma mem_moserVerts_cases {A : Finset ℝ²} {M : MoserTriangle A} {x : ℝ²}
     (hx : x ∈ M.verts) : x = M.v1 ∨ x = M.v2 ∨ x = M.v3 := by
   simpa [MoserTriangle.verts] using hx
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma nonmoser_not_mem_C1_C2 {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) {x : ℝ²} (hxA : x ∈ A) (hxnot : x ∉ M.verts)
     (hxC1 : x ∈ CP.C1) (hxC2 : x ∈ CP.C2) : False := by
@@ -69,6 +71,7 @@ private lemma nonmoser_not_mem_C1_C2 {A : Finset ℝ²} {M : MoserTriangle A}
   · simp [hxC1, hxC2, hxC3] at hone
   · simp [hxC1, hxC2, hxC3] at hone
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma nonmoser_not_mem_C1_C3 {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) {x : ℝ²} (hxA : x ∈ A) (hxnot : x ∉ M.verts)
     (hxC1 : x ∈ CP.C1) (hxC3 : x ∈ CP.C3) : False := by
@@ -77,6 +80,7 @@ private lemma nonmoser_not_mem_C1_C3 {A : Finset ℝ²} {M : MoserTriangle A}
   · simp [hxC1, hxC2, hxC3] at hone
   · simp [hxC1, hxC2, hxC3] at hone
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma nonmoser_not_mem_C2_C3 {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) {x : ℝ²} (hxA : x ∈ A) (hxnot : x ∉ M.verts)
     (hxC2 : x ∈ CP.C2) (hxC3 : x ∈ CP.C3) : False := by
@@ -85,6 +89,7 @@ private lemma nonmoser_not_mem_C2_C3 {A : Finset ℝ²} {M : MoserTriangle A}
   · simp [hxC1, hxC2, hxC3] at hone
   · simp [hxC1, hxC2, hxC3] at hone
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C1_inter_C2_union_C3_eq_pair {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) :
     CP.C1 ∩ (CP.C2 ∪ CP.C3) = ({M.v2, M.v3} : Finset ℝ²) := by
@@ -108,6 +113,7 @@ private lemma C1_inter_C2_union_C3_eq_pair {A : Finset ℝ²} {M : MoserTriangle
     · exact Finset.mem_inter.mpr ⟨CP.v2_mem_C1, Finset.mem_union.mpr (Or.inr CP.v2_mem_C3)⟩
     · exact Finset.mem_inter.mpr ⟨CP.v3_mem_C1, Finset.mem_union.mpr (Or.inl CP.v3_mem_C2)⟩
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C2_inter_C1_union_C3_eq_pair {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) :
     CP.C2 ∩ (CP.C1 ∪ CP.C3) = ({M.v1, M.v3} : Finset ℝ²) := by
@@ -131,6 +137,7 @@ private lemma C2_inter_C1_union_C3_eq_pair {A : Finset ℝ²} {M : MoserTriangle
     · exact Finset.mem_inter.mpr ⟨CP.v1_mem_C2, Finset.mem_union.mpr (Or.inr CP.v1_mem_C3)⟩
     · exact Finset.mem_inter.mpr ⟨CP.v3_mem_C2, Finset.mem_union.mpr (Or.inl CP.v3_mem_C1)⟩
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C3_inter_C1_union_C2_eq_pair {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) :
     CP.C3 ∩ (CP.C1 ∪ CP.C2) = ({M.v1, M.v2} : Finset ℝ²) := by
@@ -154,6 +161,7 @@ private lemma C3_inter_C1_union_C2_eq_pair {A : Finset ℝ²} {M : MoserTriangle
     · exact Finset.mem_inter.mpr ⟨CP.v1_mem_C3, Finset.mem_union.mpr (Or.inr CP.v1_mem_C2)⟩
     · exact Finset.mem_inter.mpr ⟨CP.v2_mem_C3, Finset.mem_union.mpr (Or.inl CP.v2_mem_C1)⟩
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C1_sdiff_C2_union_C3_card_eq_two {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) (hC1 : CP.C1.card = 4) :
     (CP.C1 \ (CP.C2 ∪ CP.C3)).card = 2 := by
@@ -163,6 +171,7 @@ private lemma C1_sdiff_C2_union_C3_card_eq_two {A : Finset ℝ²} {M : MoserTria
   have hsum := Finset.card_inter_add_card_sdiff CP.C1 (CP.C2 ∪ CP.C3)
   omega
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C2_sdiff_C1_union_C3_card_eq_two {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) (hC2 : CP.C2.card = 4) :
     (CP.C2 \ (CP.C1 ∪ CP.C3)).card = 2 := by
@@ -172,6 +181,7 @@ private lemma C2_sdiff_C1_union_C3_card_eq_two {A : Finset ℝ²} {M : MoserTria
   have hsum := Finset.card_inter_add_card_sdiff CP.C2 (CP.C1 ∪ CP.C3)
   omega
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C3_sdiff_C1_union_C2_card_eq_two {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) (hC3 : CP.C3.card = 4) :
     (CP.C3 \ (CP.C1 ∪ CP.C2)).card = 2 := by
@@ -181,6 +191,7 @@ private lemma C3_sdiff_C1_union_C2_card_eq_two {A : Finset ℝ²} {M : MoserTria
   have hsum := Finset.card_inter_add_card_sdiff CP.C3 (CP.C1 ∪ CP.C2)
   omega
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C1_cover_by_C2_C3_interior {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) :
     A ⊆ CP.C2 ∪ CP.C3 ∪ (CP.C1 \ (CP.C2 ∪ CP.C3)) := by
@@ -202,6 +213,7 @@ private lemma C1_cover_by_C2_C3_interior {A : Finset ℝ²} {M : MoserTriangle A
       · simp [hxC1, hxC2, hxC3] at hone
   exact Or.inr ⟨hxC1, by simp [hxC2, hxC3]⟩
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C2_cover_by_C1_C3_interior {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) :
     A ⊆ CP.C1 ∪ CP.C3 ∪ (CP.C2 \ (CP.C1 ∪ CP.C3)) := by
@@ -223,6 +235,7 @@ private lemma C2_cover_by_C1_C3_interior {A : Finset ℝ²} {M : MoserTriangle A
       · simp [hxC1, hxC2, hxC3] at hone
   exact Or.inr ⟨hxC2, by simp [hxC1, hxC3]⟩
 
+/-- P97 U2SqueezePort lemma. -/
 private lemma C3_cover_by_C1_C2_interior {A : Finset ℝ²} {M : MoserTriangle A}
     (CP : CapTriple A M) :
     A ⊆ CP.C1 ∪ CP.C2 ∪ (CP.C3 \ (CP.C1 ∪ CP.C2)) := by

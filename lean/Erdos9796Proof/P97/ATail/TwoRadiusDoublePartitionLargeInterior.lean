@@ -26,6 +26,7 @@ open ATailCapInteriorEquidistant
 
 open scoped EuclideanGeometry
 
+/-- P97 ATail TwoRadiusDoublePartitionLargeInterior theorem. -/
 private theorem false_of_shell_sameClass_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {source center : ℝ²}
@@ -61,6 +62,7 @@ private theorem false_of_shell_sameClass_pair
     hcenterI hxI hyI hzI hxy hxz hyz hcenterX hcenterY hcenterZne
     hcenterEq hcenterZ
 
+/-- P97 ATail TwoRadiusDoublePartitionLargeInterior theorem. -/
 private theorem false_of_shell_threeInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {source center : ℝ²}

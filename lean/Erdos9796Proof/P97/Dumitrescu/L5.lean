@@ -114,12 +114,14 @@ noncomputable def capWitnessPairs (A C : Finset ℝ²) : Finset (Finset ℝ²) :
   (C.powersetCard 2).filter
     (fun xy => ∃ a ∈ A, a ∉ C ∧ ∃ r : ℝ, ∀ q ∈ xy, dist a q = r)
 
+/-- P97 Dumitrescu lemma. -/
 lemma mem_capWitnessPairs_iff {A C : Finset ℝ²} {xy : Finset ℝ²} :
     xy ∈ capWitnessPairs A C ↔ IsCapWitnessPair A C xy := by
   unfold capWitnessPairs IsCapWitnessPair
   rw [Finset.mem_filter, Finset.mem_powersetCard]
   tauto
 
+/-- P97 Dumitrescu lemma. -/
 lemma capWitnessPairs_subset_powersetCard (A C : Finset ℝ²) :
     capWitnessPairs A C ⊆ C.powersetCard 2 := by
   unfold capWitnessPairs

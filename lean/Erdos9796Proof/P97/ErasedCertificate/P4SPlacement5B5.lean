@@ -12,6 +12,7 @@ and support-mask bin 5. -/
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
+/-- P97 ErasedCertificate theorem. -/
 theorem p4sPlacementsAt_five_b_chunk_5_eq_true :
     p4sPlacementsAtDeletedPairChunk 5 5 6 5 = true := by
   simp [p4sPlacementsAtDeletedPairChunk,

@@ -54,6 +54,7 @@ def perpBisectorChainHits (order : NamedOrder) (direction : Orientation)
         (z r, z a), (z r, z b)]
   | _ => []
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChain theorem. -/
 private theorem placedLabel_injective (order : NamedOrder)
     (direction : Orientation) (cut : Label) :
     Function.Injective (placedLabel order direction cut) := by
@@ -64,6 +65,7 @@ private theorem placedLabel_injective (order : NamedOrder)
   | forward => exact add_left_cancel hpos
   | reverse => exact sub_right_inj.mp hpos
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChain theorem. -/
 private theorem false_of_perpBisectorChain_at {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut p b q y a r : Label)

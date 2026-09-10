@@ -35,6 +35,7 @@ set_option maxHeartbeats 0 in
 -- Native evaluation traverses the complete 47-support placement domain.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- P97 ErasedCertificate theorem. -/
 theorem p4uPlacementsAll_eq_true : p4uPlacementsAll = true := by
   native_decide
 

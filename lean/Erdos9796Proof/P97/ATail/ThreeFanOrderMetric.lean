@@ -22,6 +22,7 @@ open scoped Convex EuclideanGeometry
 namespace Problem97
 namespace ColoredPaleyThreeFanOrderMetric
 
+/-- P97 ATail ThreeFanOrderMetric abbrev. -/
 abbrev ThreeFanPos := Fin 7
 
 attribute [local instance] Fintype.decidableForallFintype
@@ -51,9 +52,11 @@ abbrev threeFanOrder₁ (x b c y d z : ThreeFanPos) : Prop :=
 abbrev threeFanOrder₂ (x b c y d z : ThreeFanPos) : Prop :=
   0 < x ∧ x < b ∧ b < c ∧ c < z ∧ z < d ∧ d < y
 
+/-- P97 ATail ThreeFanOrderMetric abbrev. -/
 abbrev threeFanReverseOrder₁ (x b c y d z : ThreeFanPos) : Prop :=
   0 < z ∧ z < d ∧ d < y ∧ y < c ∧ c < b ∧ b < x
 
+/-- P97 ATail ThreeFanOrderMetric abbrev. -/
 abbrev threeFanReverseOrder₂ (x b c y d z : ThreeFanPos) : Prop :=
   0 < y ∧ y < d ∧ d < z ∧ z < c ∧ c < b ∧ b < x
 
@@ -118,9 +121,11 @@ theorem threeFan_separation_order_classifier :
       threeFanOrbit x b c y d z := by
   decide
 
+/-- P97 ATail ThreeFanOrderMetric abbrev. -/
 abbrev threeFanOneCrossOrder₁ (x b c y z : ThreeFanPos) : Prop :=
   0 < y ∧ y < b ∧ b < x ∧ x < c ∧ c < z
 
+/-- P97 ATail ThreeFanOrderMetric abbrev. -/
 abbrev threeFanOneCrossOrder₂ (x b c y z : ThreeFanPos) : Prop :=
   0 < z ∧ z < c ∧ c < x ∧ x < b ∧ b < y
 

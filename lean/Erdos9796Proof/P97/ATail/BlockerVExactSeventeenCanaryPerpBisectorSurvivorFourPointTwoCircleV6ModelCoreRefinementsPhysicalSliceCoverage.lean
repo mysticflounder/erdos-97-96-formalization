@@ -28,12 +28,14 @@ open ATailBlockerVExactSeventeenSparseSixPointNextCenterCoverage
 open ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementsPhysicalSliceCoverage def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysicalSliceCellCnf
     (center : Label) (category : PhysicalSliceCategory) : Std.Sat.CNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf ++
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementsPhysicalSliceCoverage theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysicalSliceCellCnf_length
     (center : Label) (category : PhysicalSliceCategory) :
     (canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysicalSliceCellCnf
@@ -43,6 +45,7 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysica
       canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf_length,
       sparseSixPointNextCenterUnitCnf, physicalSliceUnitCnf, physicalList]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementsPhysicalSliceCoverage theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysicalSliceCell
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (horder : source.model.order = 0)

@@ -378,6 +378,7 @@ theorem exists_localizedNoQFreePacket_of_not_removable_mem
             no_qfree := hnoQFree }⟩)
   exact hnotProp hprop
 
+/-- P97 U3ToU5DangerousTriple theorem. -/
 theorem exists_localizedNoQFreePacket_of_not_removable
     {D : CounterexampleData} {q : ℝ²}
     (hq : q ∈ D.packet.surplusCap)
@@ -397,6 +398,7 @@ theorem exists_fixedTriplePacket_of_not_removable_mem
   rcases P.exists_fixedTriplePacket with ⟨t1, t2, t3, hP⟩
   exact ⟨p, t1, t2, t3, hP⟩
 
+/-- P97 U3ToU5DangerousTriple theorem. -/
 theorem exists_fixedTriplePacket_of_not_removable
     {D : CounterexampleData} {q : ℝ²}
     (hq : q ∈ D.packet.surplusCap)

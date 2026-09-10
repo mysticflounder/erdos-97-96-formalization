@@ -14,6 +14,7 @@ namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- P97 ErasedCertificate theorem. -/
 theorem p4sPlacementsAt_six_b_native_second_part_one_eq_true :
     p4sPlacementsAtDeletedPairChunkSet
       6 5 6 [0, 5] = true := by

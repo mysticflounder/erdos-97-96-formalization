@@ -21,9 +21,11 @@ open scoped EuclideanGeometry
 namespace Problem97
 namespace U3EscapingAuditCycle
 
+/-- P97 U3EscapingAuditCycle abbrev. -/
 abbrev Frame {D : CounterexampleData} {q p t1 t2 t3 : ℝ²} :=
   U3FixedTripleAuditFrame D q p t1 t2 t3
 
+/-- P97 U3EscapingAuditCycle def. -/
 noncomputable def frameKey
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (F : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)) :
@@ -45,6 +47,7 @@ noncomputable def frameKey
     exact (Finset.mem_erase.mp hq).2
   (⟨F.u, hu⟩, (⟨F.a0, ha0⟩, ⟨F.a1, ha1⟩))
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem frameKey_injective
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²} :
     Function.Injective (@frameKey D q p t1 t2 t3) := by
@@ -56,23 +59,27 @@ theorem frameKey_injective
   cases G
   simp_all
 
+/-- P97 U3EscapingAuditCycle instance. -/
 instance frame_finite
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²} :
     Finite (Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)) :=
   Finite.of_injective (@frameKey D q p t1 t2 t3) frameKey_injective
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem step_a0_eq
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)}
     (h : U3EscapingAuditStep F G) : G.a0 = F.u := by
   cases h <;> rfl
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem step_a1_eq
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)}
     (h : U3EscapingAuditStep F G) : G.a1 = F.a0 := by
   cases h <;> rfl
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem step_u_fresh
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)}
@@ -106,6 +113,7 @@ inductive EscapeSourceRow
 
 namespace EscapeSourceRow
 
+/-- P97 U3EscapingAuditCycle def. -/
 def mode
     {D : CounterexampleData} {q center : ℝ²}
     (R : EscapeSourceRow D q center) : EscapeSourceMode :=
@@ -113,6 +121,7 @@ def mode
   | .qDeleted _ _ _ => .qDeleted
   | .criticalFourShell _ => .criticalFourShell
 
+/-- P97 U3EscapingAuditCycle def. -/
 def support
     {D : CounterexampleData} {q center : ℝ²}
     (R : EscapeSourceRow D q center) : Finset ℝ² :=
@@ -120,6 +129,7 @@ def support
   | .qDeleted B _ _ => B
   | .criticalFourShell K => K.support
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem support_card
     {D : CounterexampleData} {q center : ℝ²}
     (R : EscapeSourceRow D q center) : R.support.card = 4 := by
@@ -127,6 +137,7 @@ theorem support_card
   | qDeleted B K hcard => exact hcard
   | criticalFourShell K => exact K.support_card
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem q_mem_support_iff
     {D : CounterexampleData} {q center : ℝ²}
     (R : EscapeSourceRow D q center) :
@@ -145,16 +156,19 @@ structure EscapeSourceData
 
 namespace EscapeSourceData
 
+/-- P97 U3EscapingAuditCycle def. -/
 def mode
     {D : CounterexampleData} {q : ℝ²}
     (S : EscapeSourceData D q) : EscapeSourceMode :=
   S.row.mode
 
+/-- P97 U3EscapingAuditCycle def. -/
 def support
     {D : CounterexampleData} {q : ℝ²}
     (S : EscapeSourceData D q) : Finset ℝ² :=
   S.row.support
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem support_card
     {D : CounterexampleData} {q : ℝ²}
     (S : EscapeSourceData D q) : S.support.card = 4 :=
@@ -207,6 +221,7 @@ theorem step_exists_escapeSourceData
       · simpa [EscapeSourceData.support, EscapeSourceRow.support] using
           (F.criticalFourShell_dangerousCircle_distribution hcenter K).2
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem step_u_ne_u
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G : Frame (D := D) (q := q) (p := p)
@@ -217,6 +232,7 @@ theorem step_u_ne_u
   rw [heq]
   simp [U5BoundedSupport]
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem step_u_ne_a0
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G : Frame (D := D) (q := q) (p := p)
@@ -227,6 +243,7 @@ theorem step_u_ne_a0
   rw [heq]
   simp [U5BoundedSupport]
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem step_u_ne_a1
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G : Frame (D := D) (q := q) (p := p)
@@ -237,6 +254,7 @@ theorem step_u_ne_a1
   rw [heq]
   simp [U5BoundedSupport]
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem step_not_eq
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)}
@@ -258,6 +276,7 @@ theorem step_not_eq
   rw [hgu]
   exact hmem
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem no_two_cycle
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G H : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)}
@@ -276,6 +295,7 @@ theorem no_two_cycle
   rw [hgu]
   exact hmem
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem no_three_cycle
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {F G H K : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)}
@@ -296,6 +316,7 @@ theorem no_three_cycle
   rw [hgu]
   exact hmem
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem no_short_collision
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {s : ℕ → Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)}
@@ -533,6 +554,7 @@ theorem periodFour_u_vertices_card
       Finset ℝ²).card = 4 :=
   (fourCyclePacket_of_return hreturn hstep).u_vertices_card_four
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem exists_step_cycle
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (s : ℕ → Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3))
@@ -557,6 +579,7 @@ theorem exists_step_cycle
 
 /- The stable finite-orbit residual consumed by boundary adapters. -/
 
+/-- P97 U3EscapingAuditCycle abbrev. -/
 abbrev MixedOrStepCycle
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (F0 : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3)) :
@@ -570,6 +593,7 @@ abbrev MixedOrStepCycle
         ∀ k, k < period →
           U3EscapingAuditStep (s (i + k)) (s (i + k + 1))
 
+/-- P97 U3EscapingAuditCycle theorem. -/
 theorem exists_mixed_or_step_cycle
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     (F0 : Frame (D := D) (q := q) (p := p) (t1 := t1) (t2 := t2) (t3 := t3))

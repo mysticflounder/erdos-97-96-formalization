@@ -69,6 +69,7 @@ def reflectSide : OuterSide → OuterSide
   | .left => .right
   | .right => .left
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem reflectSide_reflectSide (side : OuterSide) :
     reflectSide (reflectSide side) = side := by
   cases side <;> rfl

@@ -70,6 +70,7 @@ lemma mem_boundary_iff {A : Finset ℝ²} (hA : A.Nonempty) {p : ℝ²} :
   classical
   simp [boundary]
 
+/-- P97 MEC lemma. -/
 private lemma boundary_subset (A : Finset ℝ²) (hA : A.Nonempty) :
     boundary A hA ⊆ A := by
   classical
@@ -148,6 +149,7 @@ lemma mec_radius_pos
 
 /- ### Boundary card lower bound: ≥ 1 -/
 
+/-- P97 MEC lemma. -/
 private lemma boundary_card_pos
     (A : Finset ℝ²) (hA : A.Nonempty) :
     1 ≤ (boundary A hA).card :=

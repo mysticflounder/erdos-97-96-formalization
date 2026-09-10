@@ -14,6 +14,7 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport def. -/
 def physicalSliceCellDimacsString
     (center : Label) (category : PhysicalSliceCategory) : String :=
   let dimacs :=
@@ -25,6 +26,7 @@ def physicalSliceCellDimacsString
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport def. -/
 def parseCategory (center : Label) (text : String) : Option PhysicalSliceCategory :=
   if text = "none" then
     some .none
@@ -38,6 +40,7 @@ def parseCategory (center : Label) (text : String) : Option PhysicalSliceCategor
         else
           none
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [centerText, categoryText, outputPath] =>
@@ -71,6 +74,7 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCellExport.run
     args

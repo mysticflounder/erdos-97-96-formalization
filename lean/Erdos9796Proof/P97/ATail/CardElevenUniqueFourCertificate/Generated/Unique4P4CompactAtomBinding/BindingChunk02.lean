@@ -4,6 +4,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 
 namespace Problem97.P4CompactAtomBindingScratch
 
+/-- P97 ATail generated def. -/
 def bindingChunk02 : Array AtomBinding := #[
   { dense := 257, sourceId := 268, sourceName := "eq_3_1_5", family := .radiusEquality, parameters := .radiusEquality 3 1 5 },
   { dense := 258, sourceId := 269, sourceName := "eq_3_1_6", family := .radiusEquality, parameters := .radiusEquality 3 1 6 },

@@ -31,6 +31,7 @@ noncomputable def system {A : Finset ℝ²} (F : FaithfulCarrierPattern A) :
   row := rowPattern F
 
 @[simp]
+/-- P97 GeneralCarrierAbstractRowSystem theorem. -/
 theorem system_row {A : Finset ℝ²} (F : FaithfulCarrierPattern A)
     (center : CarrierLabel A) :
     (system F).row center = rowPattern F center :=

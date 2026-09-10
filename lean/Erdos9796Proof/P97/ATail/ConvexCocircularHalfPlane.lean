@@ -26,6 +26,7 @@ vertex. The common-radius hypotheses are retained in the interface because they
 are the data consumed by the circumfan order layer; separation itself uses only
 convex independence and the deletion inclusion. -/
 
+/-- P97 ATail ConvexCocircularHalfPlane theorem. -/
 theorem exists_strict_separating_vector_of_convexIndep_cocircular
     {A C : Finset ℝ²} {P : ℝ²}
     (hA : ConvexIndep A) (hP : P ∈ A) (hC : C ⊆ A.erase P)
@@ -74,6 +75,7 @@ theorem exists_strict_separating_vector_of_convexIndep_cocircular
   rw [hinner, hinnerP] at hdiff
   simpa only [inner_sub_right] using hdiff
 
+/-- P97 ATail ConvexCocircularHalfPlane theorem. -/
 theorem strict_separating_vector_no_antipodal_pair
     {C : Finset ℝ²} {P w : ℝ²}
     (hpos : ∀ q ∈ C, 0 < (⟪w, q - P⟫_ℝ)) :
@@ -86,6 +88,7 @@ theorem strict_separating_vector_no_antipodal_pair
     ring
   linarith
 
+/-- P97 ATail ConvexCocircularHalfPlane theorem. -/
 theorem strict_separating_vector_mem_open_halfplane
     {C : Finset ℝ²} {P w : ℝ²}
     (hpos : ∀ q ∈ C, 0 < (⟪w, q - P⟫_ℝ)) :

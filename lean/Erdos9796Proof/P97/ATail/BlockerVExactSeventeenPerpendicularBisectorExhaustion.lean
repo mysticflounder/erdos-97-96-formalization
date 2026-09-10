@@ -26,6 +26,7 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ConvexPerpendicularBisectorSides
 
+/-- P97 ATail BlockerVExactSeventeenPerpendicularBisectorExhaustion abbrev. -/
 private abbrev Hit := Label × Label
 
 /-- The six positive incidences asserting that three centers contain both
@@ -33,10 +34,12 @@ endpoints of one candidate pair. -/
 def perpBisectorExhaustionHits (p z c₀ c₁ c₂ : Label) : List Hit :=
   [(c₀, p), (c₀, z), (c₁, p), (c₁, z), (c₂, p), (c₂, z)]
 
+/-- P97 ATail BlockerVExactSeventeenPerpendicularBisectorExhaustion theorem. -/
 private theorem source_point_mem {A : Finset ℝ²} (source : SourceRealization A)
     (label : Label) : source.boundary (source.labelIndex label) ∈ A :=
   boundaryLabel_mem source.boundary source.boundary_image source.labelIndex label
 
+/-- P97 ATail BlockerVExactSeventeenPerpendicularBisectorExhaustion theorem. -/
 private theorem source_center_eq_of_two_hits {A : Finset ℝ²}
     (source : SourceRealization A) (center p z : Label)
     (hp : p ∈ source.model.selected center)

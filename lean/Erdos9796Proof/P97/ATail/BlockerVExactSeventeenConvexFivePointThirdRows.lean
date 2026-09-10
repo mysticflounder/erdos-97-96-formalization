@@ -56,18 +56,21 @@ def convexFivePointHits (order : NamedOrder) (direction : Orientation) :
     (orientedLabelAtPosition order direction hit.1,
       orientedLabelAtPosition order direction hit.2)
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem forwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ forwardChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (choice.center, point) ∈ forwardHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem reflectedForwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ reverseChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (Fin.rev choice.center, Fin.rev point) ∈ forwardHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -76,6 +79,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -84,6 +88,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem positiveRowsMatch_forward {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -108,6 +113,7 @@ private theorem positiveRowsMatch_forward {A : Finset ℝ²}
       exact ⟨(choice.center, point),
         forwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -132,6 +138,7 @@ private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         reflectedForwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows def. -/
 private def forwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P forwardChoices) :
     Census554.ConvexFivePointCore.Core P :=
@@ -163,6 +170,7 @@ private def forwardCore {P : RowPattern Label}
       (hrows ({ center := 4, support := {2, 5, 10} } : RowChoice Label)
         (by native_decide) (by native_decide)) }
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows def. -/
 private def reverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P reverseChoices) :
     Census554.ConvexFivePointCore.Core P :=
@@ -194,11 +202,13 @@ private def reverseCore {P : RowPattern Label}
       (hrows ({ center := 12, support := {6, 11, 14} } : RowChoice Label)
         (by native_decide) (by native_decide)) }
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem signedArea2_swap13 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 c b a := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem false_of_forwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -218,6 +228,7 @@ private theorem false_of_forwardRows
       (by decide) (by decide)
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem false_of_reverseRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -234,6 +245,7 @@ private theorem false_of_reverseRows
       (i := (11 : Label)) (j := (12 : Label)) (k := (14 : Label))
       (by decide) (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 private theorem false_of_convexFivePointHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -253,6 +265,7 @@ def convexFivePointClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom :=
   nogoodClause order (convexFivePointHits order direction)
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 theorem sourceAssign_convexFivePointClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) :
@@ -267,10 +280,12 @@ def convexFivePointClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => convexFivePointClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 theorem convexFivePointClauses_length :
     convexFivePointClauses.length = 4 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 theorem sourceAssign_convexFivePointClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ convexFivePointClauses,
@@ -284,6 +299,7 @@ theorem sourceAssign_convexFivePointClauses {A : Finset ℝ²}
 def extendedConvexFivePointCnf : Std.Sat.CNF Atom :=
   extendedSecondCancellationCnf ++ convexFivePointClauses
 
+/-- P97 ATail BlockerVExactSeventeenConvexFivePointThirdRows theorem. -/
 theorem extendedConvexFivePointCnf_clause_count :
     extendedConvexFivePointCnf.length = 5846088 := by
   simp [extendedConvexFivePointCnf,

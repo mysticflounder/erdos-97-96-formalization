@@ -17,8 +17,10 @@ open ATailBlockerVExactSeventeenTwoTripleRowRefinements
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailBlockerVExactSeventeenCurrentRootTwoKalmansonRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements abbrev. -/
 private abbrev occurrenceClauses := ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements def. -/
 def currentRootTwoKalmansonSuccessorOccurrences : List CancellationOccurrence :=
 [
   { hits := [(1, 4), (1, 11), (2, 1), (2, 11), (11, 1), (11, 4)]
@@ -2724,20 +2726,25 @@ def currentRootTwoKalmansonSuccessorOccurrences : List CancellationOccurrence :=
       path3 := ⟨(5, 14), [.flip 5 14, .row 14 5 4, .flip 14 4], (4, 14)⟩ } }
 ]
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem currentRootTwoKalmansonSuccessorOccurrences_length : currentRootTwoKalmansonSuccessorOccurrences.length = 81 := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem currentRootTwoKalmansonSuccessorOccurrences_all_check : currentRootTwoKalmansonSuccessorOccurrences.all CancellationOccurrence.check = true := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements def. -/
 def currentRootTwoKalmansonSuccessorClauses : Std.Sat.CNF Atom :=
   currentRootTwoKalmansonSuccessorOccurrences.flatMap fun occurrence => occurrenceClauses occurrence.hits
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem currentRootTwoKalmansonSuccessorClauses_length : currentRootTwoKalmansonSuccessorClauses.length = 324 := by
   simp [currentRootTwoKalmansonSuccessorClauses, occurrenceClauses,
     ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses,
     namedOrders, directions, currentRootTwoKalmansonSuccessorOccurrences_length]
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem sourceAssign_currentRootTwoKalmansonSuccessorClauses {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) : ∀ clause ∈ currentRootTwoKalmansonSuccessorClauses, Std.Sat.CNF.Clause.eval (sourceAssign source.model) clause = true := by
   intro clause hclause
   simp only [currentRootTwoKalmansonSuccessorClauses, List.mem_flatMap] at hclause
@@ -2747,11 +2754,14 @@ theorem sourceAssign_currentRootTwoKalmansonSuccessorClauses {A : Finset (Euclid
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occurrence hcheck order direction
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements def. -/
 def extendedCurrentRootTwoKalmansonSuccessorCnf : Std.Sat.CNF Atom := extendedCurrentRootTwoKalmansonCnf ++ currentRootTwoKalmansonSuccessorClauses
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem extendedCurrentRootTwoKalmansonSuccessorCnf_length : extendedCurrentRootTwoKalmansonSuccessorCnf.length = 7037500 := by
   simp only [extendedCurrentRootTwoKalmansonSuccessorCnf, List.length_append, extendedCurrentRootTwoKalmansonCnf_length, currentRootTwoKalmansonSuccessorClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem sourceAssign_extendedCurrentRootTwoKalmansonSuccessorCnf {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) : Std.Sat.CNF.eval (sourceAssign source.model) extendedCurrentRootTwoKalmansonSuccessorCnf = true := by
   rw [Std.Sat.CNF.eval, List.all_eq_true]
   intro clause hclause
@@ -2762,6 +2772,7 @@ theorem sourceAssign_extendedCurrentRootTwoKalmansonSuccessorCnf {A : Finset (Eu
     exact h clause hparent
   · exact sourceAssign_currentRootTwoKalmansonSuccessorClauses source clause hsuffix
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem false_of_sourceRealization_of_extendedCurrentRootTwoKalmansonSuccessorCnf_unsat {A : Finset (EuclideanSpace ℝ (Fin 2))} (hsource : Nonempty (SourceRealization A)) (hunsat : ¬ ∃ assignment, Std.Sat.CNF.eval assignment extendedCurrentRootTwoKalmansonSuccessorCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model, sourceAssign_extendedCurrentRootTwoKalmansonSuccessorCnf source⟩

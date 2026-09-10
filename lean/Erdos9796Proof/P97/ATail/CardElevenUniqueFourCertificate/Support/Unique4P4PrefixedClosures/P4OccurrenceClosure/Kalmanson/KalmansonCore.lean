@@ -74,10 +74,12 @@ def bankEntry : BankSlot → Nat × List Membership
   | .schema9Forward => (6, schema9)
   | .schema9Reflected => (6, reflectSchema 6 schema9)
 
+/-- P97 ATail support theorem. -/
 theorem bankEntry_mem {slot : BankSlot} (hslot : slot ≠ .schema5Forward) :
     bankEntry slot ∈ retainedBankSchemas := by
   cases slot <;> simp_all [bankEntry, retainedBankSchemas]
 
+/-- P97 ATail support theorem. -/
 private theorem orderedFive_of_sorted {targets : List Label}
     (hlen : targets.length = 5) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFive, T.values = targets := by
@@ -113,6 +115,7 @@ theorem schema5ForwardCutSat_direct (Q : ExactTwoBoundaryCore R distribution)
 /- The mirror branch needs an actual role/boundary reflection: it is not an
 orientation rewrite on the original targets.  These local lemmas are the
 schema-5 specialization of the source bridge's transport. -/
+/-- P97 ATail support theorem. -/
 private theorem rolePoint_reflected {targets : List Label} {n : Nat}
     (hlen : targets.length = n) {j : Nat} (hj : j < n) :
     rolePoint ((targets.map reflFin).reverse) (n - 1 - j) =
@@ -133,6 +136,7 @@ private theorem rolePoint_reflected {targets : List Label} {n : Nat}
     omega
   simp only [hidx]
 
+/-- P97 ATail support theorem. -/
 private theorem schemaAt_reflected_of_mirror
     (Q : ExactTwoBoundaryCore R distribution)
     {n : Nat} {targets : List Label} (hlen : targets.length = n)
@@ -157,6 +161,7 @@ private theorem schemaAt_reflected_of_mirror
     patternCode_shifted_reflFin]
   exact h
 
+/-- P97 ATail support theorem. -/
 private theorem reflectedOrderedFive_of_sorted {targets : List Label}
     (hlen : targets.length = 5) (hchain : targets.IsChain (· < ·)) :
     ∃ T : RetainedKalmansonDecoderScratch.OrderedFive,
@@ -206,6 +211,7 @@ structure BridgeEntry where
     rolePoint targets membership.1 ≠ rolePoint targets membership.2
   literalsIncluded : litsSubset (instantiatedLits slot targets) clause = true
 
+/-- P97 ATail support theorem. -/
 theorem entry_sat_retained (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label)
     (hfamily : VerifiedKalmansonOrderSchemaCutSat Q σ)
@@ -226,6 +232,7 @@ theorem entry_sat_retained (Q : ExactTwoBoundaryCore R distribution)
     exact fun hrow => hnotrow
       ((hv.row _ _ (entry.rolesDistinct membership hmembership)).mp hrow)
 
+/-- P97 ATail support theorem. -/
 theorem entry_sat_schema5Forward_direct (Q : ExactTwoBoundaryCore R distribution)
     {v : Nat → Prop} (hv : CoreValAgreement Q directIndex v) (entry : BridgeEntry)
     (hslot : entry.slot = .schema5Forward) : clauseSat v entry.clause := by
@@ -246,6 +253,7 @@ theorem entry_sat_schema5Forward_direct (Q : ExactTwoBoundaryCore R distribution
     exact fun hrow => hnotrow
       ((hv.row _ _ (entry.rolesDistinct membership hmember)).mp hrow)
 
+/-- P97 ATail support theorem. -/
 theorem entry_sat_schema5Forward_mirror (Q : ExactTwoBoundaryCore R distribution)
     {v : Nat → Prop} (hv : CoreValAgreement Q mirrorIndex v) (entry : BridgeEntry)
     (hslot : entry.slot = .schema5Forward) : clauseSat v entry.clause := by

@@ -25,6 +25,7 @@ namespace Geometry
 
 open Problem97.ATailTwoRadiusGridCoordinateGeometry
 
+/-- P97 ATail TwoRadiusGridConvexNesting lemma. -/
 private lemma ofDistinct_coord_eq_scaled
     {o a p : Plane} (hoa : o ≠ a) :
     ofDistinct hoa p =
@@ -53,11 +54,13 @@ private lemma ofDistinct_coord_eq_scaled
     field_simp [hden]
     ring_nf
 
+/-- P97 ATail TwoRadiusGridConvexNesting lemma. -/
 private lemma frame_dist_sq_coord (F : SimilarityFrame q₁ q₂) (p r : Plane) :
     dist (F p) (F r) ^ 2 = (F p 0 - F r 0) ^ 2 + (F p 1 - F r 1) ^ 2 := by
   rw [EuclideanSpace.dist_sq_eq]
   simp [Fin.sum_univ_two, Real.dist_eq, sq_abs]
 
+/-- P97 ATail TwoRadiusGridConvexNesting lemma. -/
 private lemma frame_triangle_mem
     (F : SimilarityFrame q₁ q₂) {p r t z : Plane}
     {α β γ : ℝ}
@@ -91,6 +94,7 @@ private lemma frame_triangle_mem
 
 set_option maxHeartbeats 800000 in
 -- The explicit three-point barycentric witnesses elaborate through affine hull transport.
+/-- P97 ATail TwoRadiusGridConvexNesting theorem. -/
 theorem twoRadiusGrid_convex_nesting
     {A : Set Plane} {o a s sMinus L LMinus : Plane} {x y X Y : ℝ}
     (hA : EuclideanGeometry.ConvexIndep A)
@@ -313,6 +317,7 @@ theorem twoRadiusGrid_convex_nesting
 
 set_option maxHeartbeats 800000 in
 -- The adapter expands four affine coordinate conversions before reusing the kernel above.
+/-- P97 ATail TwoRadiusGridConvexNesting theorem. -/
 theorem twoRadiusGrid_scaled_convex_nesting
     {A : Set Plane} {o a s sMinus L LMinus : Plane}
     (hA : EuclideanGeometry.ConvexIndep A)

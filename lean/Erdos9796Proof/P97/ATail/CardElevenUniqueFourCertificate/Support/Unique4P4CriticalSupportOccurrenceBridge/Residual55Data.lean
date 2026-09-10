@@ -6,10 +6,14 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 namespace Problem97
 namespace P4CriticalSupportOccurrenceBridgeScratch
 
+/-- P97 ATail support def. -/
 def residual55MapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- P97 ATail support def. -/
 def residual55ManifestSha256 : String := "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305"
+/-- P97 ATail support def. -/
 def residual55OccurrencesSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
 
+/-- P97 ATail support def. -/
 def residual55Entries : List NonKalmansonEntry := [
   { clause := [-627], shape := .apexNotOwnClass }, -- output 6312, core 7343
   { clause := [629, 628, 630, 631, 627], shape := .leftAdjacent }, -- output 6316, core 7384
@@ -68,7 +72,9 @@ def residual55Entries : List NonKalmansonEntry := [
   { clause := [-10, -9], shape := .endpointOwnCap 2 0 10 9 }, -- output 8428, core 29652
 ]
 
+/-- P97 ATail support theorem. -/
 theorem residual55Entries_wf : residual55Entries.all residualEntryWF = true := by native_decide
+/-- P97 ATail support theorem. -/
 theorem residual55Entries_length : residual55Entries.length = 55 := by native_decide
 
 end P4CriticalSupportOccurrenceBridgeScratch

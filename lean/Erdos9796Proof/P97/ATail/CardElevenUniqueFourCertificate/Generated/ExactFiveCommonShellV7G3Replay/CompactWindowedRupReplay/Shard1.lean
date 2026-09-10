@@ -94,504 +94,588 @@ namespace ExactFiveCommonShellV7G3Replay.Shard1
 
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0001 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0001.text) :=
   W0001.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0002 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0002.text) :=
   composeRebaseCompact throughW0001 W0002.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0003 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0003.text) :=
   composeRebaseCompact throughW0002 W0003.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0004 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0004.text) :=
   composeRebaseCompact throughW0003 W0004.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0005 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0005.text) :=
   composeRebaseCompact throughW0004 W0005.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0006 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0006.text) :=
   composeRebaseCompact throughW0005 W0006.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0007 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0007.text) :=
   composeRebaseCompact throughW0006 W0007.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0008 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0008.text) :=
   composeRebaseCompact throughW0007 W0008.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0009 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0009.text) :=
   composeRebaseCompact throughW0008 W0009.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0010 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0010.text) :=
   composeRebaseCompact throughW0009 W0010.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0011 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0011.text) :=
   composeRebaseCompact throughW0010 W0011.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0012 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0012.text) :=
   composeRebaseCompact throughW0011 W0012.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0013 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0013.text) :=
   composeRebaseCompact throughW0012 W0013.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0014 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0014.text) :=
   composeRebaseCompact throughW0013 W0014.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0015 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0015.text) :=
   composeRebaseCompact throughW0014 W0015.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0016 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0016.text) :=
   composeRebaseCompact throughW0015 W0016.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0017 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0017.text) :=
   composeRebaseCompact throughW0016 W0017.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0018 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0018.text) :=
   composeRebaseCompact throughW0017 W0018.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0019 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0019.text) :=
   composeRebaseCompact throughW0018 W0019.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0020 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0020.text) :=
   composeRebaseCompact throughW0019 W0020.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0021 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0021.text) :=
   composeRebaseCompact throughW0020 W0021.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0022 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0022.text) :=
   composeRebaseCompact throughW0021 W0022.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0023 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0023.text) :=
   composeRebaseCompact throughW0022 W0023.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0024 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0024.text) :=
   composeRebaseCompact throughW0023 W0024.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0025 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0025.text) :=
   composeRebaseCompact throughW0024 W0025.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0026 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0026.text) :=
   composeRebaseCompact throughW0025 W0026.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0027 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0027.text) :=
   composeRebaseCompact throughW0026 W0027.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0028 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0028.text) :=
   composeRebaseCompact throughW0027 W0028.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0029 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0029.text) :=
   composeRebaseCompact throughW0028 W0029.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0030 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0030.text) :=
   composeRebaseCompact throughW0029 W0030.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0031 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0031.text) :=
   composeRebaseCompact throughW0030 W0031.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0032 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0032.text) :=
   composeRebaseCompact throughW0031 W0032.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0033 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0033.text) :=
   composeRebaseCompact throughW0032 W0033.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0034 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0034.text) :=
   composeRebaseCompact throughW0033 W0034.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0035 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0035.text) :=
   composeRebaseCompact throughW0034 W0035.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0036 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0036.text) :=
   composeRebaseCompact throughW0035 W0036.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0037 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0037.text) :=
   composeRebaseCompact throughW0036 W0037.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0038 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0038.text) :=
   composeRebaseCompact throughW0037 W0038.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0039 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0039.text) :=
   composeRebaseCompact throughW0038 W0039.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0040 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0040.text) :=
   composeRebaseCompact throughW0039 W0040.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0041 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0041.text) :=
   composeRebaseCompact throughW0040 W0041.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0042 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0042.text) :=
   composeRebaseCompact throughW0041 W0042.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0043 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0043.text) :=
   composeRebaseCompact throughW0042 W0043.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0044 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0044.text) :=
   composeRebaseCompact throughW0043 W0044.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0045 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0045.text) :=
   composeRebaseCompact throughW0044 W0045.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0046 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0046.text) :=
   composeRebaseCompact throughW0045 W0046.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0047 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0047.text) :=
   composeRebaseCompact throughW0046 W0047.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0048 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0048.text) :=
   composeRebaseCompact throughW0047 W0048.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0049 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0049.text) :=
   composeRebaseCompact throughW0048 W0049.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0050 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0050.text) :=
   composeRebaseCompact throughW0049 W0050.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0051 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0051.text) :=
   composeRebaseCompact throughW0050 W0051.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0052 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0052.text) :=
   composeRebaseCompact throughW0051 W0052.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0053 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0053.text) :=
   composeRebaseCompact throughW0052 W0053.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0054 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0054.text) :=
   composeRebaseCompact throughW0053 W0054.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0055 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0055.text) :=
   composeRebaseCompact throughW0054 W0055.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0056 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0056.text) :=
   composeRebaseCompact throughW0055 W0056.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0057 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0057.text) :=
   composeRebaseCompact throughW0056 W0057.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0058 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0058.text) :=
   composeRebaseCompact throughW0057 W0058.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0059 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0059.text) :=
   composeRebaseCompact throughW0058 W0059.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0060 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0060.text) :=
   composeRebaseCompact throughW0059 W0060.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0061 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0061.text) :=
   composeRebaseCompact throughW0060 W0061.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0062 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0062.text) :=
   composeRebaseCompact throughW0061 W0062.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0063 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0063.text) :=
   composeRebaseCompact throughW0062 W0063.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0064 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0064.text) :=
   composeRebaseCompact throughW0063 W0064.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0065 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0065.text) :=
   composeRebaseCompact throughW0064 W0065.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0066 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0066.text) :=
   composeRebaseCompact throughW0065 W0066.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0067 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0067.text) :=
   composeRebaseCompact throughW0066 W0067.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0068 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0068.text) :=
   composeRebaseCompact throughW0067 W0068.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0069 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0069.text) :=
   composeRebaseCompact throughW0068 W0069.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0070 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0070.text) :=
   composeRebaseCompact throughW0069 W0070.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0071 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0071.text) :=
   composeRebaseCompact throughW0070 W0071.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0072 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0072.text) :=
   composeRebaseCompact throughW0071 W0072.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0073 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0073.text) :=
   composeRebaseCompact throughW0072 W0073.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0074 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0074.text) :=
   composeRebaseCompact throughW0073 W0074.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0075 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0075.text) :=
   composeRebaseCompact throughW0074 W0075.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0076 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0076.text) :=
   composeRebaseCompact throughW0075 W0076.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0077 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0077.text) :=
   composeRebaseCompact throughW0076 W0077.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0078 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0078.text) :=
   composeRebaseCompact throughW0077 W0078.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0079 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0079.text) :=
   composeRebaseCompact throughW0078 W0079.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0080 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0080.text) :=
   composeRebaseCompact throughW0079 W0080.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0081 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0081.text) :=
   composeRebaseCompact throughW0080 W0081.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0082 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0082.text) :=
   composeRebaseCompact throughW0081 W0082.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem throughW0083 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)
       (formulaOfCompact (n := n) Checkpoint.C0083.text) :=
   composeRebaseCompact throughW0082 W0083.sound
 
+/-- P97 ATail generated Shard1 theorem. -/
 theorem sound :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text)

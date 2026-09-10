@@ -236,6 +236,7 @@ private def toCardIndex {A : Finset ℝ²} (hcard : A.card = 11)
     (i : Label) : Fin A.card :=
   Fin.cast hcard.symm i
 
+/-- P97 ATail support MirrorSchema58 theorem. -/
 @[simp] private theorem cardBoundary_toCardIndex
     {A : Finset ℝ²} (hcard : A.card = 11)
     (boundary : Label → ℝ²) (i : Label) :

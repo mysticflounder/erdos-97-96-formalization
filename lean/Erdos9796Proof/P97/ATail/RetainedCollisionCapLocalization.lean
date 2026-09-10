@@ -34,6 +34,7 @@ open ATailCriticalFiberRetainedRadiusSelector
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RetainedCollisionCapLocalization theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -43,6 +44,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail RetainedCollisionCapLocalization theorem. -/
 private theorem oppApex1_eq_oppositeVertex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -52,6 +54,7 @@ private theorem oppApex1_eq_oppositeVertex_oppIndex1
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- P97 ATail RetainedCollisionCapLocalization theorem. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
     (hij : i ≠ j) :
@@ -73,6 +76,7 @@ private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
       SurplusCapPacket.capByIndex] using S.partition.v3_mem_C2
   · exact False.elim (hij rfl)
 
+/-- P97 ATail RetainedCollisionCapLocalization theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -81,6 +85,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail RetainedCollisionCapLocalization theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -130,6 +135,7 @@ def FirstApexCapSeparation
 source-clean adapter from the retained-radius collision packet to the
 source-faithful terminal: the producer has already supplied the cap
 placement, so no blocker-map choice is hidden in this constructor. -/
+/-- P97 ATail RetainedCollisionCapLocalization def. -/
 noncomputable def criticalFiberClosingCore_of_firstApexCapSeparation
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

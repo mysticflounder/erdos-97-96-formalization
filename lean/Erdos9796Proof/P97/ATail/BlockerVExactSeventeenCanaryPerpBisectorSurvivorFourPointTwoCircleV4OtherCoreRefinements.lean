@@ -28,15 +28,19 @@ open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open Census554.EqualityCore
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements abbrev. -/
 private abbrev occurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem sourceAssign_occurrenceClauses {A : Finset ℝ²}
     (source : SourceRealization A) (hits : List Hit)
     (hvalid : ∀ order direction,
@@ -53,32 +57,38 @@ private theorem sourceAssign_occurrenceClauses {A : Finset ℝ²}
 
 /- ## Duplicate-center obstruction -/
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def duplicateCenterHits : List Hit :=
   [(0, 3), (0, 15), (3, 2), (3, 4), (3, 15),
     (14, 0), (14, 2), (14, 4), (15, 0), (15, 3)]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def duplicateCenterForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {3, 15} },
     { center := 3, support := {2, 4, 15} },
     { center := 14, support := {0, 2, 4} },
     { center := 15, support := {0, 3} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def duplicateCenterReflectedChoices : List (RowChoice Label) :=
   [{ center := 1, support := {13, 16} },
     { center := 2, support := {12, 14, 16} },
     { center := 13, support := {1, 12, 14} },
     { center := 16, support := {1, 13} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem duplicateCenterForwardCover :
     ∀ choice ∈ duplicateCenterForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ duplicateCenterHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem duplicateCenterReflectedCover :
     ∀ choice ∈ duplicateCenterReflectedChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ duplicateCenterHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def duplicateCenterForwardData : DuplicateCenterData Label := {
   p := 0
   q := 2
@@ -96,6 +106,7 @@ def duplicateCenterForwardData : DuplicateCenterData Label := {
       .flip 15 3, .row 3 15 4],
     (3, 4)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def duplicateCenterReflectedData : DuplicateCenterData Label := {
   p := 16
   q := 14
@@ -113,14 +124,17 @@ def duplicateCenterReflectedData : DuplicateCenterData Label := {
       .flip 1 13, .row 13 1 12],
     (13, 12)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem duplicateCenterForwardData_check :
     duplicateCenterForwardData.check duplicateCenterForwardChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem duplicateCenterReflectedData_check :
     duplicateCenterReflectedData.check duplicateCenterReflectedChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem false_of_duplicateCenterHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -146,11 +160,14 @@ private theorem false_of_duplicateCenterHits {A : Finset ℝ²}
     exact Census554.EqualityCore.not_realizes_of_duplicateCenterCore core
       ⟨source.boundary, hreal⟩
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def duplicateCenterClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause duplicateCenterHits order direction
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def duplicateCenterClauses : Std.Sat.CNF Atom := occurrenceClauses duplicateCenterHits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem sourceAssign_duplicateCenterClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -161,10 +178,12 @@ theorem sourceAssign_duplicateCenterClause {A : Finset ℝ²}
 
 /- ## Schema-M five-row obstruction -/
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def schemaMHits : List Hit :=
   [(0, 1), (0, 3), (0, 15), (12, 0), (12, 1), (3, 2),
     (3, 15), (4, 2), (4, 9), (1, 0), (1, 9)]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def schemaMForwardChoices : List (RowChoice Label) :=
   [{ center := 0, support := {1, 3, 15} },
     { center := 12, support := {0, 1} },
@@ -172,6 +191,7 @@ def schemaMForwardChoices : List (RowChoice Label) :=
     { center := 4, support := {2, 9} },
     { center := 1, support := {0, 9} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def schemaMReflectedChoices : List (RowChoice Label) :=
   [{ center := 16, support := {1, 13, 15} },
     { center := 4, support := {15, 16} },
@@ -179,16 +199,19 @@ def schemaMReflectedChoices : List (RowChoice Label) :=
     { center := 12, support := {7, 14} },
     { center := 15, support := {7, 16} }]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem schemaMForwardCover :
     ∀ choice ∈ schemaMForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ schemaMHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem schemaMReflectedCover :
     ∀ choice ∈ schemaMReflectedChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ schemaMHits := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem labelIndex_sourceIndexEquiv_symm {A : Finset ℝ²}
     (source : SourceRealization A) (index : Label) :
     source.labelIndex
@@ -196,12 +219,14 @@ private theorem labelIndex_sourceIndexEquiv_symm {A : Finset ℝ²}
   rw [source.labelIndex_eq]
   exact (sourceIndexEquiv source.model.order source.orientation).apply_symm_apply index
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem selectedFourClass_support_cast {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (hcenter : center₁ = center₂) (row : SelectedFourClass A center₁) :
     (hcenter ▸ row).support = row.support := by
   subst center₂
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 private noncomputable def selectedRowAtPosition {A : Finset ℝ²}
     (source : SourceRealization A) (index : Label) :
     SelectedFourClass A (source.cardBoundary (source.toCardIndex index)) :=
@@ -216,6 +241,7 @@ private noncomputable def selectedRowAtPosition {A : Finset ℝ²}
       labelIndex_sourceIndexEquiv_symm]
   hcenter ▸ row
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 @[simp] private theorem selectedRowAtPosition_support {A : Finset ℝ²}
     (source : SourceRealization A) (index : Label) :
     (selectedRowAtPosition source index).support =
@@ -224,6 +250,7 @@ private noncomputable def selectedRowAtPosition {A : Finset ℝ²}
   unfold selectedRowAtPosition
   apply selectedFourClass_support_cast
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem mem_selectedRowAtPosition_of_positiveRows {A : Finset ℝ²}
     (source : SourceRealization A) (choices : List (RowChoice Label))
     (hrows : PositiveRowsMatch
@@ -240,6 +267,7 @@ private theorem mem_selectedRowAtPosition_of_positiveRows {A : Finset ℝ²}
   rw [selectedRowAtPosition_support, SourceRealization.cardBoundary_toCardIndex]
   simpa only [labelIndex_sourceIndexEquiv_symm] using hsource
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem false_of_schemaMForwardRows {A : Finset ℝ²}
     (source : SourceRealization A)
     (hrows : PositiveRowsMatch
@@ -282,6 +310,7 @@ private theorem false_of_schemaMForwardRows {A : Finset ℝ²}
   · exact mem_selectedRowAtPosition_of_positiveRows source schemaMForwardChoices hrows
       { center := 1, support := {0, 9} } (by decide) 9 (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem false_of_schemaMReflectedRows {A : Finset ℝ²}
     (source : SourceRealization A)
     (hrows : PositiveRowsMatch
@@ -325,6 +354,7 @@ private theorem false_of_schemaMReflectedRows {A : Finset ℝ²}
   · exact mem_selectedRowAtPosition_of_positiveRows source schemaMReflectedChoices hrows
       { center := 15, support := {7, 16} } (by decide) 7 (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 private theorem false_of_schemaMHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -341,11 +371,14 @@ private theorem false_of_schemaMHits {A : Finset ℝ²}
         source source.model.order direction rfl hsame schemaMHits
         schemaMReflectedChoices schemaMReflectedCover hall)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def schemaMClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause schemaMHits order direction
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def schemaMClauses : Std.Sat.CNF Atom := occurrenceClauses schemaMHits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem sourceAssign_schemaMClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -356,17 +389,21 @@ theorem sourceAssign_schemaMClause {A : Finset ℝ²}
 
 /- ## Complete two-family suffix and successor CNF -/
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def fourPointTwoCircleV4OtherCoreRefinementClauses : Std.Sat.CNF Atom :=
   duplicateCenterClauses ++ schemaMClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem fourPointTwoCircleV4OtherCoreRefinementClauses_length :
     fourPointTwoCircleV4OtherCoreRefinementClauses.length = 8 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem fourPointTwoCircleV4OtherCoreRefinementClauses_nodup :
     fourPointTwoCircleV4OtherCoreRefinementClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem sourceAssign_fourPointTwoCircleV4OtherCoreRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ fourPointTwoCircleV4OtherCoreRefinementClauses,
@@ -378,11 +415,13 @@ theorem sourceAssign_fourPointTwoCircleV4OtherCoreRefinementClauses {A : Finset 
   · exact sourceAssign_occurrenceClauses source schemaMHits
       (sourceAssign_schemaMClause source) clause hschemaM
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf :
     Std.Sat.CNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf ++
     fourPointTwoCircleV4OtherCoreRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf_length :
     canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf.length =
       7409524 := by
@@ -390,6 +429,7 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf_len
     canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf_length,
     fourPointTwoCircleV4OtherCoreRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :

@@ -41,6 +41,7 @@ open CapCrossingKalmansonBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RetainedCollisionDifferentPairConsumer theorem. -/
 private theorem exists_support_point_ne_pair
     {A : Finset ℝ²} {center a b : ℝ²}
     (row : SelectedFourClass A center) (hab : a ≠ b) :

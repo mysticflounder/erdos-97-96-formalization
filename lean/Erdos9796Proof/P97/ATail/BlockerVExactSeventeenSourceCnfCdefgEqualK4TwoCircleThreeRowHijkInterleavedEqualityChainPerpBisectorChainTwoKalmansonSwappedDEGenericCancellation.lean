@@ -53,11 +53,13 @@ def sourceIndexEquiv (order : NamedOrder) (orientation : Orientation) :
     cases orientation <;>
       simp [expectedLabelIndex, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 @[simp] theorem sourceIndexEquiv_apply (order : NamedOrder)
     (orientation : Orientation) (point : Label) :
     sourceIndexEquiv order orientation point =
       expectedLabelIndex orientation order point := rfl
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 @[simp] theorem sourceIndexEquiv_symm_apply (order : NamedOrder)
     (orientation : Orientation) (index : Label) :
     (sourceIndexEquiv order orientation).symm index =
@@ -132,24 +134,29 @@ def reverseData : TwoKalmansonCancellationData Label := {
       .flip 6 3, .row 3 6 1, .flip 3 1, .row 1 3 14],
     (1, 14)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 theorem forwardData_check : forwardData.check forwardChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 theorem reverseData_check : reverseData.check reverseChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 private theorem forwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ forwardChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (choice.center, point) ∈ forwardHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 private theorem reflectedForwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ reverseChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (Fin.rev choice.center, Fin.rev point) ∈ forwardHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -158,6 +165,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -194,6 +202,7 @@ theorem sourceRealizesBoundaryPattern {A : Finset ℝ²}
   have htransport := realizes_reindexRowPattern e hlabels
   simpa only [hindex, Equiv.apply_symm_apply] using htransport
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 private theorem positiveRowsMatch_forward {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -218,6 +227,7 @@ private theorem positiveRowsMatch_forward {A : Finset ℝ²}
       exact ⟨(choice.center, point),
         forwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -242,6 +252,7 @@ private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         reflectedForwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 private theorem false_of_genericCancellationHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -283,6 +294,7 @@ def genericCancellationClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => genericCancellationClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 theorem genericCancellationClauses_length :
     genericCancellationClauses.length = 4 := by
   native_decide
@@ -302,6 +314,7 @@ theorem sourceAssign_genericCancellationClauses {A : Finset ℝ²}
 def extendedGenericCancellationCnf : Std.Sat.CNF Atom :=
   extendedTwoKalmansonSwappedDECnf ++ genericCancellationClauses
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
 theorem extendedGenericCancellationCnf_clause_count :
     extendedGenericCancellationCnf.length = 5846080 := by
   simp [extendedGenericCancellationCnf,

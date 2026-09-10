@@ -25,6 +25,7 @@ open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
@@ -578,10 +579,12 @@ def cancellationOccurrences : List CancellationOccurrence :=
       path3 := ⟨(11, 14), [.flip 11 14, .row 14 11 5, .flip 14 5, .row 5 14 10], (5, 10)⟩ } }]
 
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem cancellationOccurrences_length :
     cancellationOccurrences.length = 17 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
@@ -590,10 +593,12 @@ theorem cancellationOccurrences_all_check :
 def twoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem twoKalmansonRefinementClauses_length :
     twoKalmansonRefinementClauses.length = 68 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem sourceAssign_twoKalmansonRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ twoKalmansonRefinementClauses,
@@ -612,12 +617,14 @@ theorem sourceAssign_twoKalmansonRefinementClauses
 def canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf : Std.Sat.CNF Atom :=
   canaryPerpBisectorSurvivorRefinementCnf ++ twoKalmansonRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf_length :
     canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf.length = 7409372 := by
   simp [canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf,
     canaryPerpBisectorSurvivorRefinementCnf_length,
     twoKalmansonRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
@@ -634,6 +641,7 @@ theorem sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf
     exact hparentEval clause hparent
   · exact sourceAssign_twoKalmansonRefinementClauses source clause hsuffix
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem false_of_sourceRealization_of_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0)

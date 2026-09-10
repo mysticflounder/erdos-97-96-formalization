@@ -41,6 +41,7 @@ open ATailRetainedMatchingLargeCapConsumer
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RetainedMatchingCommonDeletionNormalization theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -50,6 +51,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail RetainedMatchingCommonDeletionNormalization theorem. -/
 private theorem capInteriorByIndex_card_add_two
     {A : Finset ℝ²} (S : SurplusCapPacket A) (k : Fin 3) :
     (S.capInteriorByIndex k).card + 2 = (S.capByIndex k).card := by

@@ -2,6 +2,7 @@
 import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4DirectOuterOccurrenceBridge.row_arc_base
 /-! Bounded terminal-ordered direct row/arc occurrence fragment. -/
 namespace Problem97.P4DirectRowArcOccurrenceBridgeScratch
+/-- P97 ATail support def. -/
 def rowArcOccurrencesChunk13 : List RowArcOccurrence := [
   { outputClauseIndex := 11345, coreClauseIndex := 38367, terminalClauseIndex := 2610054, sourceCoreLiterals := [12013, -12015], sourceTerminalLiterals := [-12015, 12013], compactLedgerLiterals := [1946, -1948], compactTerminalLiterals := [-1948, 1946], row := (1948, ⟨8, {0, 1, 3, 6}⟩), arc := (1946, ⟨8, .left, {3, 4, 5, 6}⟩) },
   { outputClauseIndex := 11346, coreClauseIndex := 38368, terminalClauseIndex := 2610055, sourceCoreLiterals := [-12015, 12003], sourceTerminalLiterals := [-12015, 12003], compactLedgerLiterals := [-1948, 1936], compactTerminalLiterals := [-1948, 1936], row := (1948, ⟨8, {0, 1, 3, 6}⟩), arc := (1936, ⟨8, .right, {0, 1, 10}⟩) },

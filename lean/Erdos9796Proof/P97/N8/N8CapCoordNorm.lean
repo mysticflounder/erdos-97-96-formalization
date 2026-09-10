@@ -399,9 +399,11 @@ noncomputable def twoPointChain (w₁ w₂ : ℝ²) (hne : w₁ ≠ w₂) :
   points := ![w₁, w₂]
   injective := by intro i j hij; fin_cases i <;> fin_cases j <;> simp_all
 
+/-- P97 N8 theorem. -/
 @[simp] theorem twoPointChain_points_zero (w₁ w₂ : ℝ²) (hne : w₁ ≠ w₂) :
     (twoPointChain w₁ w₂ hne).points 0 = w₁ := rfl
 
+/-- P97 N8 theorem. -/
 @[simp] theorem twoPointChain_points_one (w₁ w₂ : ℝ²) (hne : w₁ ≠ w₂) :
     (twoPointChain w₁ w₂ hne).points 1 = w₂ := rfl
 

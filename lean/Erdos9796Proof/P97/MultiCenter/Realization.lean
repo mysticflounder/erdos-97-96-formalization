@@ -30,6 +30,7 @@ noncomputable def inventoryOf (realized : CodeRealizationPredicate)
   classical
   exact (Finset.univ : Finset LocalJointClassCode).filter (realized n)
 
+/-- P97 MultiCenter theorem. -/
 theorem mem_inventoryOf {realized : CodeRealizationPredicate}
     {n : Nat} {code : LocalJointClassCode} :
     code ∈ inventoryOf realized n ↔ realized n code := by

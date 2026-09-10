@@ -18,8 +18,10 @@ enumeration of seven-row systems is used.
 namespace Problem97
 namespace SevenSourcePaleyRelabel
 
+/-- P97 ATail SevenSourcePaleyRelabel abbrev. -/
 abbrev Vertex := Fin 7
 
+/-- P97 ATail SevenSourcePaleyRelabel theorem. -/
 private theorem rows_injective
     (rows : Vertex → Finset Vertex)
     (hself : ∀ i, i ∈ rows i)
@@ -31,6 +33,7 @@ private theorem rows_injective
   have hnot : i ∉ rows j := (hone i j hne).mp hji
   exact hnot (by simpa [hij] using hself i)
 
+/-- P97 ATail SevenSourcePaleyRelabel theorem. -/
 private theorem row_membership_count
     (rows : Vertex → Finset Vertex)
     (hcard : ∀ i, (rows i).card = 4)
@@ -54,6 +57,7 @@ private theorem row_membership_count
     simp [hcard]
   · simp [hself]
 
+/-- P97 ATail SevenSourcePaleyRelabel theorem. -/
 private theorem complement_eq_three_with_two
     (rows : Vertex → Finset Vertex)
     (i x : Vertex)
@@ -95,6 +99,7 @@ private theorem complement_eq_three_with_two
   refine ⟨d, hdzero, hdx, ?_⟩
   simpa [M] using hM
 
+/-- P97 ATail SevenSourcePaleyRelabel theorem. -/
 private theorem complement_eq_three_of_mem
     (rows : Vertex → Finset Vertex)
     (i x y z : Vertex)
@@ -117,6 +122,7 @@ private theorem complement_eq_three_of_mem
   exact (Finset.eq_of_subset_of_card_le hsub (by
     simp [hMcard, hxy, hxz, hyz])).symm
 
+/-- P97 ATail SevenSourcePaleyRelabel theorem. -/
 private theorem pairwise_inter_eq_two
     (rows : Vertex → Finset Vertex)
     (hcard : ∀ i, (rows i).card = 4)
@@ -230,6 +236,7 @@ private theorem pairwise_inter_eq_two
     exact hij (hinj heq.symm)
   exact hterm_eq (rows j) hrowsjmem
 
+/-- P97 ATail SevenSourcePaleyRelabel theorem. -/
 private theorem exactly_one_other_in_row
     (rows : Vertex → Finset Vertex)
     (x y z : Vertex)
@@ -279,6 +286,7 @@ private theorem exactly_one_other_in_row
       simp at hle
     exact Or.inr ⟨hy, hz⟩
 
+/-- P97 ATail SevenSourcePaleyRelabel theorem. -/
 private theorem normalized_rows
     (rows : Vertex → Finset Vertex)
     (hcard : ∀ i, (rows i).card = 4)

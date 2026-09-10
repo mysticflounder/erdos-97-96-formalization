@@ -49,14 +49,17 @@ open CapSelectedFiniteCode CapSelectedGeometry EqualityCore SeparationCore
 
 /- ### Signed-area algebra -/
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem signedArea2_swap12 (a b c : ℝ²) :
     signedArea2 a b c = - signedArea2 b a c := by
   simp only [signedArea2]; ring
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = - signedArea2 a c b := by
   simp only [signedArea2]; ring
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem signedArea2_rotate (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]; ring
@@ -101,6 +104,7 @@ private theorem signedArea2_pos_of_cyclic {n : ℕ} {φ : Fin n → ℝ²}
 
 /- ### Boundary reflection reverses cyclic order -/
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem revIndex_val (i : Fin 11) :
     (card11BoundaryReflection i).val = (11 - i.val) % 11 := by
   fin_cases i <;> rfl

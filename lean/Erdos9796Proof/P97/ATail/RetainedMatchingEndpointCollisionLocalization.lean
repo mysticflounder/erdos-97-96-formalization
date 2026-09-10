@@ -34,6 +34,7 @@ attribute [local instance] Classical.propDecidable
 
 namespace EndpointFreshFirstApexRowSource
 
+/-- P97 ATail RetainedMatchingEndpointCollisionLocalization theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -77,6 +78,7 @@ def retainedRadiusCollisionOfSharedBlocker
   exact RetainedRadiusCollision.ofSources
     E.fiber.source₁ Jsource hsource₁Mem Q.J_mem_radius hsources hblockers
 
+/-- P97 ATail RetainedMatchingEndpointCollisionLocalization theorem. -/
 @[simp] theorem retainedRadiusCollisionOfSharedBlocker_source₁
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -92,6 +94,7 @@ def retainedRadiusCollisionOfSharedBlocker
       E.fiber.source₁ := by
   simp [retainedRadiusCollisionOfSharedBlocker]
 
+/-- P97 ATail RetainedMatchingEndpointCollisionLocalization theorem. -/
 @[simp] theorem retainedRadiusCollisionOfSharedBlocker_source₂
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

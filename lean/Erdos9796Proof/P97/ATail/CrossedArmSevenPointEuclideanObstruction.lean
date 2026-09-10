@@ -26,14 +26,18 @@ private theorem crossedArm_dist_sq_coord (x y : ℝ²) :
     dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
   Problem97.dist_sq_coord x y
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def zCoord (X : ℝ²) : ℂ := (X 0 : ℂ) + Complex.I * (X 1 : ℂ)
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def bCoord (X : ℝ²) : ℂ := (X 0 : ℂ) - Complex.I * (X 1 : ℂ)
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem zCoord_eq_conj_bCoord (X : ℝ²) :
     zCoord X = starRingEnd ℂ (bCoord X) := by
   simp [zCoord, bCoord]
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem diagonalized_sq (X Y : ℝ²) :
     (zCoord X - zCoord Y) * (bCoord X - bCoord Y) =
       (((X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 : ℝ) : ℂ) := by
@@ -52,6 +56,7 @@ private theorem diagonalized_eq_of_dist_eq {X Y Z Q : ℝ²}
   rw [← crossedArm_dist_sq_coord, ← crossedArm_dist_sq_coord]
   exact congrArg (fun r : ℝ => r ^ 2) h
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem eq_pt_zero_of_bCoord_eq_zero {X : ℝ²} (h : bCoord X = 0) :
     X = pt 0 0 := by
   ext i
@@ -62,6 +67,7 @@ private theorem eq_pt_zero_of_bCoord_eq_zero {X : ℝ²} (h : bCoord X = 0) :
     simp [bCoord] at hi
     simp [pt, hi]
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem eq_pt_one_of_bCoord_eq_one {X : ℝ²} (h : bCoord X = 1) :
     X = pt 1 0 := by
   ext i
@@ -73,6 +79,7 @@ private theorem eq_pt_one_of_bCoord_eq_one {X : ℝ²} (h : bCoord X = 1) :
     simp [pt, hi]
 
 set_option maxHeartbeats 2000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem determinant_relation_one
     {zr zs zu zw br bs bu bw : ℂ}
     (f1 : (br - bw) * zr + (-bs + bw) * zs + (-br + bs) * zw = 0)
@@ -86,6 +93,7 @@ private theorem determinant_relation_one
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 2000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem determinant_relation_two
     {zr zs zu zv zw br bs bu bv bw : ℂ}
     (f2 : (br - bw) * zr + (-bu + bw) * zu + (-br + bu) * zw = 0)
@@ -103,6 +111,7 @@ private theorem determinant_relation_two
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 2000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem determinant_relation_five
     {zr zs zu zv zw br bs bu bv bw : ℂ}
     (f3 : -bs * zs + 1 = 0)
@@ -119,6 +128,7 @@ private theorem determinant_relation_five
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 2000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem determinant_relation_seven
     {zr zs zu zv zw br bs bu bv bw : ℂ}
     (f3 : -bs * zs + 1 = 0)
@@ -134,6 +144,7 @@ private theorem determinant_relation_seven
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 2000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem determinant_relation_eight
     {zr zs zu zv zw br bs bu bv bw : ℂ}
     (f3 : -bs * zs + 1 = 0)
@@ -149,6 +160,7 @@ private theorem determinant_relation_eight
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 2000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem determinant_relation_nine
     {zr zs zu zv zw br bs bu bv bw : ℂ}
     (f3 : -bs * zs + 1 = 0)
@@ -162,10 +174,12 @@ private theorem determinant_relation_nine
         br * bs * bv - br * bv ^ 2 - br * bv + bv ^ 3) = 0 := by
   grobner (ringSteps := 100000)
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def q1Polynomial (bs bu bw : ℂ) : ℂ :=
   bs ^ 3 - 2 * bs ^ 2 * bu - bs ^ 2 * bw + bs * bu ^ 2 + bs * bu * bw +
     bs * bw ^ 2 - bu ^ 2 * bw
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def e2Polynomial (br bs bu bv bw : ℂ) : ℂ :=
   br ^ 2 * bs ^ 3 - br ^ 2 * bs ^ 2 * bu - br ^ 2 * bs ^ 2 * bv +
     br ^ 2 * bs * bu * bv - br * bs ^ 3 * bu + br * bs ^ 2 * bu ^ 2 +
@@ -174,6 +188,7 @@ private def e2Polynomial (br bs bu bv bw : ℂ) : ℂ :=
     br * bu * bv ^ 2 * bw - br * bu * bv * bw ^ 2 - bs * bv ^ 2 * bw ^ 2 +
     bu * bv ^ 2 * bw ^ 2
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def e5Polynomial (br bs bu bv : ℂ) : ℂ :=
   br ^ 2 * bs ^ 3 - br ^ 2 * bs ^ 2 * bu - br ^ 2 * bs ^ 2 * bv +
     br ^ 2 * bs * bu * bv + br ^ 2 * bs * bu - br ^ 2 * bu * bv -
@@ -181,21 +196,25 @@ private def e5Polynomial (br bs bu bv : ℂ) : ℂ :=
     br * bs * bu * bv + br * bu ^ 2 * bv + bs * bu * bv ^ 2 - bs * bv ^ 2 -
     bu ^ 2 * bv ^ 2 + bu * bv ^ 2
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def e7Polynomial (bs bu bv : ℂ) : ℂ :=
   bs ^ 3 * bu - bs ^ 3 - bs ^ 2 * bu ^ 2 - bs ^ 2 * bu * bv + bs ^ 2 * bu +
     bs ^ 2 * bv + bs * bu ^ 2 * bv + bs * bu * bv - bs * bu - bs * bv ^ 2 -
     bu ^ 2 * bv + bu * bv
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def e8Polynomial (bs bv bw : ℂ) : ℂ :=
   bs ^ 2 * bv * bw - bs ^ 2 * bw ^ 2 + bs ^ 2 * bw - bs ^ 2 -
     bs * bv ^ 2 * bw + bs * bv * bw ^ 2 - bs * bv * bw + bs * bv +
     bv ^ 2 * bw - bv * bw
 
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction def. -/
 private def e9Polynomial (br bs bv : ℂ) : ℂ :=
   br ^ 2 * bv + br * bs ^ 2 * bv - br * bs ^ 2 - br * bs * bv ^ 2 +
     br * bs * bv - br * bv ^ 2 - br * bv + bv ^ 3
 
 set_option maxHeartbeats 4000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem brEqBwB3
     {bs bu bv bw : ℂ}
     (p2 : e2Polynomial bw bs bu bv bw = 0)
@@ -209,6 +228,7 @@ private theorem brEqBwB3
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 4000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem brEqBwB17
     {bs bu bv bw : ℂ}
     (p2 : e2Polynomial bw bs bu bv bw = 0)
@@ -222,6 +242,7 @@ private theorem brEqBwB17
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 4000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem brEqBwBuEqBvB24
     {bs bv bw : ℂ}
     (p2 : e2Polynomial bw bs bv bv bw = 0)
@@ -235,6 +256,7 @@ private theorem brEqBwBuEqBvB24
   grobner (ringSteps := 100000)
 
 set_option maxHeartbeats 4000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem q1EqZeroG7
     {br bs bu bv bw : ℂ}
     (hq : q1Polynomial bs bu bw = 0)
@@ -252,6 +274,7 @@ private theorem q1EqZeroG7
    wrapper records the exact import boundary for the small equal-anchor
    producer without exposing those private definitions. -/
 set_option maxHeartbeats 1000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem false_of_q1_br_eq_bv
     {br bs bu bv bw : ℂ}
     (hq : q1Polynomial bs bu bw = 0)
@@ -265,6 +288,7 @@ private theorem false_of_q1_br_eq_bv
       hq p7 p8 p9 hbrv hbr hbs hbw hbv1
 
 set_option maxHeartbeats 1000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem false_of_q1_br_ne_bv_of_G3
     {br bs bu bv bw : ℂ}
     (hq : q1Polynomial bs bu bw = 0)
@@ -309,6 +333,7 @@ private theorem false_of_q1_br_ne_bv_of_G3
 
 set_option maxRecDepth 10000 in
 set_option maxHeartbeats 4000000 in
+/-- P97 ATail CrossedArmSevenPointEuclideanObstruction theorem. -/
 private theorem determinant_relations_incompatible
     {br bs bu bv bw : ℂ}
     (p1 : bv * (br - bw) *

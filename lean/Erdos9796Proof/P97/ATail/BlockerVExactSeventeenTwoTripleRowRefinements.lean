@@ -126,6 +126,7 @@ def twoTripleRowClauses : Std.Sat.CNF Atom :=
         fiveOffsetChoices.map fun offsets =>
           nogoodClause order (twoTripleRowHits order direction cut offsets)
 
+/-- P97 ATail BlockerVExactSeventeenTwoTripleRowRefinements theorem. -/
 theorem twoTripleRowClauses_length : twoTripleRowClauses.length = 297024 := by
   simp [twoTripleRowClauses, namedOrders, directions, labels,
     fiveOffsetChoices_length]
@@ -144,6 +145,7 @@ theorem sourceAssign_twoTripleRowClauses {A : Finset ℝ²}
 def extendedTwoTripleRowCnf : Std.Sat.CNF Atom :=
   extendedThreeRowCycleCnf ++ twoTripleRowClauses
 
+/-- P97 ATail BlockerVExactSeventeenTwoTripleRowRefinements theorem. -/
 theorem extendedTwoTripleRowCnf_length : extendedTwoTripleRowCnf.length = 7036960 := by
   simp [extendedTwoTripleRowCnf, extendedThreeRowCycleCnf_length,
     twoTripleRowClauses_length]

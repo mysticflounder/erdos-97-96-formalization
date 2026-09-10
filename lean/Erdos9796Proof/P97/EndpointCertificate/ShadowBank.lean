@@ -18,7 +18,9 @@ namespace EndpointCertificate
 
 namespace ShadowBank
 
+/-- P97 EndpointCertificate abbrev. -/
 abbrev Label := SurplusCOMPGBank.Label
+/-- P97 EndpointCertificate abbrev. -/
 abbrev Shadow := SurplusCOMPGBank.Shadow
 /-- One endpoint finite-shadow row, indexed by the corresponding certificate id. -/
 structure EndpointRow where
@@ -1602,12 +1604,15 @@ def endpointRowEntries : List (Label × List Nat) :=
 def endpointShadowInBank (escapee : Label) (shadow : Shadow) : Bool :=
   shadow.hasTenMasks && containsEntry (escapee, shadow.masks) endpointRowEntries
 
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointRowsQ1_length : endpointRowsQ1.length = 33 := by
   rfl
 
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointRowsQ2_length : endpointRowsQ2.length = 84 := by
   rfl
 
+/-- P97 EndpointCertificate theorem. -/
 theorem allEndpointRows_length : allEndpointRows.length = 117 := by
   rfl
 

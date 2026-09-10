@@ -43,6 +43,7 @@ def map (L : OrderedCap m) (T : ℝ² → ℝ²) (hT : Function.Injective T) :
     apply L.injective
     exact hT hij
 
+/-- P97 CGN theorem. -/
 @[simp] theorem map_points (L : OrderedCap m) (T : ℝ² → ℝ²)
     (hT : Function.Injective T) (i : Fin m) :
     (L.map T hT).points i = T (L.points i) := rfl
@@ -87,6 +88,7 @@ def lastIndex {m : ℕ} (hm : 2 ≤ m) : Fin m :=
     exact Nat.sub_lt hm1 (by decide : 0 < (1 : ℕ))
   ⟩
 
+/-- P97 CGN theorem. -/
 @[simp] theorem firstIndex_val {m : ℕ} (hm : 2 ≤ m) : (firstIndex hm).val = 0 := rfl
 
 /-- The final endpoint index has underlying natural-number value `m - 1`. -/

@@ -22,6 +22,7 @@ open scoped EuclideanGeometry InnerProductSpace
 
 namespace Problem97
 
+/-- P97 U2 theorem. -/
 private theorem coord_line_ratio_identity
     (ax ay e1x e1y e2x e2y px py C : ℝ)
     (he1 : e1x * ax + e1y * ay = C)
@@ -34,6 +35,7 @@ private theorem coord_line_ratio_identity
   linear_combination (norm := ring_nf)
     (-(ax * e1y - ax * py - ay * e1x + ay * px + e1x * py - e1y * px)) * he2
 
+/-- P97 U2 theorem. -/
 private theorem sameDist_disk_onArcOpposite_coord_centered
     (ax ay e1x e1y e2x e2y px py R d : ℝ)
     (hdpos : 0 < d)

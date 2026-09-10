@@ -28,8 +28,10 @@ namespace MultiCenter
 namespace Certificate
 namespace TypedClassBank
 
+/-- P97 MultiCenter abbrev. -/
 abbrev terminalN : Nat := 32
 
+/-- P97 MultiCenter def. -/
 def loadedNs : List Nat :=
   [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
 
@@ -27120,6 +27122,7 @@ def rows : List RawClassRow :=
     rowsChunk012 ++
     rowsChunk013
 
+/-- P97 MultiCenter theorem. -/
 private theorem list_all_eq_true_of_mem
     {α : Type _} {p : α → Bool} {a : α} :
     ∀ {items : List α}, items.all p = true → a ∈ items → p a = true
@@ -27136,15 +27139,19 @@ private theorem list_all_eq_true_of_mem
 def jointClasses : List JointClass :=
   rows.map RawClassRow.toJointClass
 
+/-- P97 MultiCenter def. -/
 def allRowsStructuralOK : Bool :=
   rows.all (RawClassRow.structuralOKAt terminalN)
 
+/-- P97 MultiCenter def. -/
 def terminalRowCount : Nat :=
   (rows.filter (fun row => row.lastN == terminalN)).length
 
+/-- P97 MultiCenter def. -/
 def firstSeenCount (n : Nat) : Nat :=
   (rows.filter (fun row => row.firstN == n)).length
 
+/-- P97 MultiCenter def. -/
 def firstSeenCounts : List (Nat × Nat) :=
   loadedNs.map (fun n => (n, firstSeenCount n))
 

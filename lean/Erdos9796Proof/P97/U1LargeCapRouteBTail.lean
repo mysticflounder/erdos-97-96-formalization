@@ -49,6 +49,7 @@ open scoped EuclideanGeometry
 
 namespace Problem97
 
+/-- P97 U1LargeCapRouteBTail lemma. -/
 private lemma pair_eq_or_swap_of_pair_finset_eq
     {α : Type*} [DecidableEq α] {a b c d : α}
     (hab : a ≠ b)
@@ -69,6 +70,7 @@ private lemma pair_eq_or_swap_of_pair_finset_eq
     · exact Or.inr ⟨had, hbc⟩
     · exact False.elim (hab (had.trans hbd.symm))
 
+/-- P97 U1LargeCapRouteBTail lemma. -/
 private lemma complement_pair_finset_eq_of_four_labels_eq
     {α : Type*} [DecidableEq α] {a b c d q t1 t2 t3 : α}
     (hlabels : ({a, b, c, d} : Finset α) = ({q, t1, t2, t3} : Finset α))
@@ -111,6 +113,7 @@ private lemma complement_pair_finset_eq_of_four_labels_eq
       simp [ht2t3]
     omega
 
+/-- P97 U1LargeCapRouteBTail lemma. -/
 private lemma complement_pair_finset_eq_of_four_labels_mem
     {α : Type*} [DecidableEq α]
     {a b c d q t1 t2 t3 qa tb x y : α}
@@ -152,6 +155,7 @@ private lemma complement_pair_finset_eq_of_four_labels_mem
       simp [ht2t3]
     omega
 
+/-- P97 U1LargeCapRouteBTail lemma. -/
 private lemma pair_order_or_swap_of_four_labels_mem
     {α : Type*} [DecidableEq α]
     {a b c d q t1 t2 t3 qa tb x y : α}
@@ -171,6 +175,7 @@ private lemma pair_order_or_swap_of_four_labels_mem
     (complement_pair_finset_eq_of_four_labels_mem hlabels hqa htb
       hxmem hymem hqa_x hqa_y htb_x htb_y hxy ht2t3)
 
+/-- P97 U1LargeCapRouteBTail lemma. -/
 private lemma pair_order_or_swap_of_four_labels_mem_excluding_t2
     {α : Type*} [DecidableEq α]
     {a b c d q t1 t2 t3 qa tb x y : α}
@@ -215,6 +220,7 @@ private lemma pair_order_or_swap_of_four_labels_mem_excluding_t2
       omega
   exact pair_eq_or_swap_of_pair_finset_eq hxy hpair
 
+/-- P97 U1LargeCapRouteBTail lemma. -/
 private lemma pair_order_or_swap_of_four_labels_mem_excluding_t3
     {α : Type*} [DecidableEq α]
     {a b c d q t1 t2 t3 qa tb x y : α}
@@ -2230,6 +2236,7 @@ def leafSurplusPacket
 
 namespace U2NonSurplusSqueeze
 
+/-- P97 U1LargeCapRouteBTail theorem. -/
 theorem mem_surplusCap_iff_onArc_gen (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {x : ℝ²} (hxA : x ∈ D.A) :
     x ∈ S.surplusCap ↔ OnArcOpposite S.surplusApex S.oppApex1 S.oppApex2 x := by
@@ -2246,6 +2253,7 @@ theorem mem_surplusCap_iff_onArc_gen (D : CounterexampleData) (S : SurplusCapPac
       SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, CP, hi]
       using (CP.arc_membership x hxA).2.2
 
+/-- P97 U1LargeCapRouteBTail theorem. -/
 theorem signedArea2_mul_pos_of_not_mem_surplusCap_gen (D : CounterexampleData)
     (S : SurplusCapPacket D.A) {x : ℝ²} (hxA : x ∈ D.A) (hx : x ∉ S.surplusCap) :
     0 < signedArea2 x S.oppApex1 S.oppApex2 *
@@ -2254,6 +2262,7 @@ theorem signedArea2_mul_pos_of_not_mem_surplusCap_gen (D : CounterexampleData)
   unfold OnArcOpposite at hx
   exact not_le.mp hx
 
+/-- P97 U1LargeCapRouteBTail theorem. -/
 theorem oppCap2_escape_gen (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {r ρ : ℝ} {x w' : ℝ²}
     (hxA : x ∈ D.A) (hw'A : w' ∈ D.A)
@@ -3549,6 +3558,7 @@ open Problem97
 namespace Erdos9796Proof.P97.U1LargeCapRouteBTail
 
 
+/-- P97 U1LargeCapRouteBTail theorem. -/
 theorem oppCap2_escape_gen (D : Problem97.CounterexampleData)
     (S : SurplusCapPacket D.A) {r ρ : ℝ} {x w' : ℝ²}
     (hxA : x ∈ D.A) (hw'A : w' ∈ D.A)

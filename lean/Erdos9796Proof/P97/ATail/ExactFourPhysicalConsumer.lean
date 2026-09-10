@@ -43,9 +43,11 @@ open ATailUniqueFourLateChoiceTerminalScratch
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail ExactFourPhysicalConsumer abbrev. -/
 abbrev CarrierVertex (A : Finset ℝ²) :=
   CriticalShellSystem.CarrierVertex A
 
+/-- P97 ATail ExactFourPhysicalConsumer theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -55,6 +57,7 @@ private theorem oppApex2_mem_A
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail ExactFourPhysicalConsumer theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -64,6 +67,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail ExactFourPhysicalConsumer theorem. -/
 private theorem equidistant_mono
     {n : ℕ} {A B : Finset ℝ²} {center : ℝ²}
     (hAB : A ⊆ B)
@@ -108,6 +112,7 @@ noncomputable def goodOutsideSources
     Finset (CarrierVertex D.A) :=
   outsideFirstApexFiber R \ badOutsideSources R
 
+/-- P97 ATail ExactFourPhysicalConsumer theorem. -/
 private theorem source_not_mem_firstClass_of_mem_outside
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -127,6 +132,7 @@ private theorem source_not_mem_firstClass_of_mem_outside
   exact (Finset.mem_sdiff.mp hsource).2
     (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hcenters⟩)
 
+/-- P97 ATail ExactFourPhysicalConsumer theorem. -/
 private theorem bad_source_pair_mem_support
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -451,6 +457,7 @@ theorem seven_le_goodOutsideSources_card_of_card_gt_twelve
   have hbound := carrier_card_le_goodOutsideSources_card_add_six R
   omega
 
+/-- P97 ATail ExactFourPhysicalConsumer theorem. -/
 private theorem good_source_survives_one
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

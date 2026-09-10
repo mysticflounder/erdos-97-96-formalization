@@ -33,37 +33,45 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- P97 ATail support abbrev. -/
 abbrev clauseSat := P5OccurrenceBridgeScratch.clauseSat
 
+/-- P97 ATail support theorem. -/
 theorem litSat_pos {v : Nat → Prop} {n : Nat} (h : v n) :
     P5OccurrenceBridgeScratch.litSat v (n : Int) := by
   unfold P5OccurrenceBridgeScratch.litSat
   rw [if_pos (Int.natCast_nonneg n)]
   simpa using h
 
+/-- P97 ATail support theorem. -/
 theorem litSat_neg {v : Nat → Prop} {n : Nat} (hn : 1 ≤ n) (h : ¬ v n) :
     P5OccurrenceBridgeScratch.litSat v (-(n : Int)) := by
   unfold P5OccurrenceBridgeScratch.litSat
   rw [if_neg (by omega)]
   simpa using h
 
+/-- P97 ATail support theorem. -/
 theorem rowVariable_pos (center point : Label) : 1 ≤ rowVariable center point := by
   simp only [rowVariable]
   split <;> omega
 
+/-- P97 ATail support theorem. -/
 theorem radiusVariable_pos (center left right : Label) :
     1 ≤ radiusVariable center left right := by
   unfold radiusVariable
   omega
 
+/-- P97 ATail support theorem. -/
 theorem classVariable_pos (point : Label) : 1 ≤ classVariable point := by
   unfold classVariable
   omega
 
+/-- P97 ATail support theorem. -/
 theorem blockerVariable_pos (source center : Label) :
     1 ≤ blockerVariable source center := by
   fin_cases source <;> fin_cases center <;> native_decide
 
+/-- P97 ATail support theorem. -/
 theorem supportVariable_pos (source point : Label) :
     1 ≤ supportVariable source point := by
   fin_cases source <;> fin_cases point <;> native_decide
@@ -84,19 +92,24 @@ structure ValAgreement (Q : ExactTwoBoundaryCore R distribution)
   support : ∀ source point : Label,
     (v (supportVariable source point) ↔ criticalSupportVal Q σ source point)
 
+/-- P97 ATail support theorem. -/
 theorem radiusEq_swap (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (center left right : Label) :
     radiusEq Q σ center left right ↔ radiusEq Q σ center right left := by
   unfold radiusEq
   constructor <;> intro h <;> exact h.symm
 
+/-- P97 ATail support def. -/
 def ordinaryShape (shape : ClauseShape) : Bool := !isAtLeast shape
 
+/-- P97 ATail support def. -/
 def ordinaryEntries : List BridgeEntry :=
   bridgeEntries.filter fun entry => ordinaryShape entry.shape
 
+/-- P97 ATail support theorem. -/
 theorem ordinaryEntries_length : ordinaryEntries.length = 130 := by native_decide
 
+/-- P97 ATail support theorem. -/
 theorem ordinaryShapeSat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hσzero : σ 0 = 0) {v : Nat → Prop}
     (hv : ValAgreement Q σ v) (shape : ClauseShape)
@@ -267,6 +280,7 @@ theorem ordinaryShapeSat (Q : ExactTwoBoundaryCore R distribution)
   | atLeastFour _ _ =>
       simp [ordinaryShape, isAtLeast] at hordinary
 
+/-- P97 ATail support theorem. -/
 theorem noSupport_of_not_atLeastFour (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : ValAgreement Q σ v)
     (source : Label) (points : List Label)
@@ -280,6 +294,7 @@ theorem noSupport_of_not_atLeastFour (Q : ExactTwoBoundaryCore R distribution)
   · apply litSat_pos
     exact (hv.support source point).mpr hsupport
 
+/-- P97 ATail support theorem. -/
 theorem atLeastFour_4_litsSat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hσinj : Function.Injective σ)
     (hσsurj : Function.Surjective σ) {v : Nat → Prop}
@@ -321,6 +336,7 @@ theorem atLeastFour_4_litsSat (Q : ExactTwoBoundaryCore R distribution)
   exact false_of_criticalSupport_cover_card_lt_four Q σ hσinj hσsurj 4
     ({4, 5, 6} : Finset Label) hTcard hcover
 
+/-- P97 ATail support theorem. -/
 theorem atLeastFour_8_litsSat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hσinj : Function.Injective σ)
     (hσsurj : Function.Surjective σ) {v : Nat → Prop}
@@ -362,6 +378,7 @@ theorem atLeastFour_8_litsSat (Q : ExactTwoBoundaryCore R distribution)
   exact false_of_criticalSupport_cover_card_lt_four Q σ hσinj hσsurj 8
     ({5, 6, 8} : Finset Label) hTcard hcover
 
+/-- P97 ATail support theorem. -/
 theorem atLeastEntries_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hσinj : Function.Injective σ)
     (hσsurj : Function.Surjective σ) {v : Nat → Prop}
@@ -373,6 +390,7 @@ theorem atLeastEntries_sat (Q : ExactTwoBoundaryCore R distribution)
   · simpa [shapeLits, supportVariable] using atLeastFour_4_litsSat Q σ hσinj hσsurj hv
   · simpa [shapeLits, supportVariable] using atLeastFour_8_litsSat Q σ hσinj hσsurj hv
 
+/-- P97 ATail support theorem. -/
 theorem bridgeEntrySat_of_wf (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hσzero : σ 0 = 0) {v : Nat → Prop}
     (hv : ValAgreement Q σ v) (entry : BridgeEntry)
@@ -384,6 +402,7 @@ theorem bridgeEntrySat_of_wf (Q : ExactTwoBoundaryCore R distribution)
   apply P5OccurrenceBridgeScratch.clauseSat_of_subset hboth.2
   exact ordinaryShapeSat Q σ hσzero hv entry.shape hboth.1 hordinary
 
+/-- P97 ATail support theorem. -/
 theorem ordinaryEntries_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hσzero : σ 0 = 0) {v : Nat → Prop}
     (hv : ValAgreement Q σ v) :
@@ -394,6 +413,7 @@ theorem ordinaryEntries_sat (Q : ExactTwoBoundaryCore R distribution)
       List.all_eq_true.mp bridgeEntries_wf entry hbridge
   exact bridgeEntrySat_of_wf Q σ hσzero hv entry hwf hordinary
 
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (hσzero : σ 0 = 0) (hσinj : Function.Injective σ)
     (hσsurj : Function.Surjective σ) {v : Nat → Prop}

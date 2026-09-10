@@ -14,6 +14,7 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSparseSixPointNextCenterCoverage
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterCellExport def. -/
 def sparseSixPointNextCenterCellDimacsString (center : Label) : String :=
   let dimacs := (sparseSixPointNextCenterCellCnf center).map fun clause =>
     clause.map litToDimacs
@@ -23,6 +24,7 @@ def sparseSixPointNextCenterCellDimacsString (center : Label) : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterCellExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [centerText, outputPath] =>
@@ -50,5 +52,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenSparseSixPointNextCenterCellExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointNextCenterCellExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenSparseSixPointNextCenterCellExport.run args

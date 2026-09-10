@@ -13,6 +13,7 @@ namespace ATailBlockerVExactSeventeenSmallRoleCycleRefinementsExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSmallRoleCycleRefinements
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinementsExport def. -/
 def extendedSmallRoleCycleDimacsString : String :=
   let dimacs := extendedSmallRoleCycleCnf.map fun clause => clause.map litToDimacs
   let lines :=
@@ -21,6 +22,7 @@ def extendedSmallRoleCycleDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinementsExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -33,5 +35,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenSmallRoleCycleRefinementsExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinementsExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenSmallRoleCycleRefinementsExport.run args

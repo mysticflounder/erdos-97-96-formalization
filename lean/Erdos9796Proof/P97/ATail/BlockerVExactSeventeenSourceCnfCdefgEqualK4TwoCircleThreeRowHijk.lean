@@ -89,6 +89,7 @@ def sixSchemaHits (schema : SixSchema) (order : NamedOrder)
             (p b, p 0), (p b, p f)]
   | _ => []
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk theorem. -/
 private theorem false_of_H_at {A : Finset ℝ²}
     (r : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut b c d e f : Label)
@@ -147,6 +148,7 @@ private theorem false_of_H_at {A : Finset ℝ²}
       (placedRow r order direction cut f horder)
       hbA' hdA' heC' hfC' hdE' hfE' hbF' heF'
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk theorem. -/
 private theorem false_of_I_at {A : Finset ℝ²}
     (r : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut b c d e f : Label)
@@ -197,6 +199,7 @@ private theorem false_of_I_at {A : Finset ℝ²}
       (placedRow r order direction cut e horder)
       hbA' heA' hbD' heD' hcB' hfB' hcE' hfE'
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk theorem. -/
 private theorem false_of_J_at {A : Finset ℝ²}
     (r : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut b c d e f : Label)
@@ -247,6 +250,7 @@ private theorem false_of_J_at {A : Finset ℝ²}
       (placedRow r order direction cut f horder)
       hbA' hdA' haB' hcB' haE' hbE' hcF' hdF'
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk theorem. -/
 private theorem false_of_K_at {A : Finset ℝ²}
     (r : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut b c d e f : Label)

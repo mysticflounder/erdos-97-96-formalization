@@ -30,6 +30,7 @@ def canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementPh
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementsPhysicalSliceCoverage theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementPhysicalSliceCellCnf_length
     (center : Label) (category : PhysicalSliceCategory) :
     (canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementPhysicalSliceCellCnf

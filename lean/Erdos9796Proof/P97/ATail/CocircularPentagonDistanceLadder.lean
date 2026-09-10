@@ -20,6 +20,7 @@ open scoped EuclideanGeometry InnerProductSpace RealInnerProductSpace
 namespace Problem97
 namespace CocircularPentagonDistanceLadder
 
+/-- P97 ATail CocircularPentagonDistanceLadder theorem. -/
 private theorem inner_pos_of_positive_sum_direction
     {a b x : ℝ²} {radius t : ℝ}
     (hradius : 0 < radius)
@@ -48,6 +49,7 @@ private theorem inner_pos_of_positive_sum_direction
     ring
   nlinarith [mul_pos ht habinner]
 
+/-- P97 ATail CocircularPentagonDistanceLadder theorem. -/
 private theorem coefficient_lt_one_of_positive_sum_direction
     {a b x : ℝ²} {radius t : ℝ}
     (ha : ‖a‖ = radius) (hb : ‖b‖ = radius) (hxnorm : ‖x‖ = radius)

@@ -28,6 +28,7 @@ def erasedPinCardTenP4SeedsAt (center : Label) : List OneSidedSeed :=
       { sstar := sstar, privateCenter := center, kind := .own,
         privateMask := privateMask }
 
+/-- P97 ErasedCertificate theorem. -/
 theorem mem_erasedPinCardTenP4PrivateMasks
     {sstar center : Label} {privateMask : Nat}
     (hnorm : maskNormalized privateMask = true)
@@ -39,6 +40,7 @@ theorem mem_erasedPinCardTenP4PrivateMasks
   refine ⟨mem_allNormalizedMasks_of_maskNormalized hnorm, ?_⟩
   simp [hcard, hself, hstar]
 
+/-- P97 ErasedCertificate theorem. -/
 theorem mem_erasedPinCardTenP4SeedsAt
     {sstar center : Label} {privateMask : Nat}
     (hs : isSurplusStar sstar = true)
@@ -72,6 +74,7 @@ def erasedPinCardTenP4Seeds : List OneSidedSeed :=
   erasedPinCardTenP4USeeds ++ erasedPinCardTenP4S1Seeds ++
     erasedPinCardTenP4S2Seeds ++ erasedPinCardTenP4S3Seeds
 
+/-- P97 ErasedCertificate theorem. -/
 theorem mem_erasedPinCardTenP4Seeds_of_privateCenter
     {sstar center : Label} {privateMask : Nat}
     (hs : isSurplusStar sstar = true)
@@ -98,60 +101,76 @@ def erasedPinCardTenP4SeedCrossCompatible (seed : OneSidedSeed) : Bool :=
     crossSeparationOKForMasks seed.privateCenter seed.privateMask .w
       secondOppExactCapMask
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4UGridSeeds : List OneSidedSeed :=
   erasedPinCardTenP4USeeds.filter erasedPinCardTenP4SeedCrossCompatible
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S1GridSeeds : List OneSidedSeed :=
   erasedPinCardTenP4S1Seeds.filter erasedPinCardTenP4SeedCrossCompatible
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S2GridSeeds : List OneSidedSeed :=
   erasedPinCardTenP4S2Seeds.filter erasedPinCardTenP4SeedCrossCompatible
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S3GridSeeds : List OneSidedSeed :=
   erasedPinCardTenP4S3Seeds.filter erasedPinCardTenP4SeedCrossCompatible
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S1GridSeedsA : List OneSidedSeed :=
   erasedPinCardTenP4S1GridSeeds.take 9
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S1GridSeedsB : List OneSidedSeed :=
   erasedPinCardTenP4S1GridSeeds.drop 9
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4S1GridSeeds_eq_chunks :
     erasedPinCardTenP4S1GridSeeds =
       erasedPinCardTenP4S1GridSeedsA ++ erasedPinCardTenP4S1GridSeedsB := by
   native_decide
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S2GridSeedsA : List OneSidedSeed :=
   erasedPinCardTenP4S2GridSeeds.take 9
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S2GridSeedsB : List OneSidedSeed :=
   erasedPinCardTenP4S2GridSeeds.drop 9
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4S2GridSeeds_eq_chunks :
     erasedPinCardTenP4S2GridSeeds =
       erasedPinCardTenP4S2GridSeedsA ++ erasedPinCardTenP4S2GridSeedsB := by
   native_decide
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S3GridSeedsA : List OneSidedSeed :=
   erasedPinCardTenP4S3GridSeeds.take 9
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4S3GridSeedsB : List OneSidedSeed :=
   erasedPinCardTenP4S3GridSeeds.drop 9
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4S3GridSeeds_eq_chunks :
     erasedPinCardTenP4S3GridSeeds =
       erasedPinCardTenP4S3GridSeedsA ++ erasedPinCardTenP4S3GridSeedsB := by
   native_decide
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4GridSeeds : List OneSidedSeed :=
   erasedPinCardTenP4Seeds.filter erasedPinCardTenP4SeedCrossCompatible
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4GridSeeds_eq_families :
     erasedPinCardTenP4GridSeeds =
       erasedPinCardTenP4UGridSeeds ++ erasedPinCardTenP4S1GridSeeds ++
         erasedPinCardTenP4S2GridSeeds ++ erasedPinCardTenP4S3GridSeeds := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4GridSeeds_family_lengths :
     erasedPinCardTenP4UGridSeeds.length = 72 ∧
       erasedPinCardTenP4S1GridSeeds.length = 18 ∧
@@ -159,6 +178,7 @@ theorem erasedPinCardTenP4GridSeeds_family_lengths :
       erasedPinCardTenP4S3GridSeeds.length = 18 := by
   native_decide
 
+/-- P97 ErasedCertificate def. -/
 def erasedPinCardTenP4SeedRouted (seed : OneSidedSeed) : Bool :=
   erasedPinCardTenP4SeedCrossCompatible seed ||
     decide (crossSeparationOKForMasks seed.privateCenter seed.privateMask .v
@@ -166,10 +186,12 @@ def erasedPinCardTenP4SeedRouted (seed : OneSidedSeed) : Bool :=
     decide (crossSeparationOKForMasks seed.privateCenter seed.privateMask .w
       secondOppExactCapMask = false)
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4Seeds_all_routed :
     erasedPinCardTenP4Seeds.all erasedPinCardTenP4SeedRouted = true := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4Seeds_mem_grid_or_cross_false
     {seed : OneSidedSeed} (hseed : seed ∈ erasedPinCardTenP4Seeds) :
     seed ∈ erasedPinCardTenP4GridSeeds ∨
@@ -190,6 +212,7 @@ theorem erasedPinCardTenP4Seeds_mem_grid_or_cross_false
           hcrossW] at hrouted
   · exact Or.inl (List.mem_filter.mpr ⟨hseed, hcompatible⟩)
 
+/-- P97 ErasedCertificate theorem. -/
 theorem privateMask_eq_of_isValidOneSidedSeedRelaxedShapeShadow
     {seed : OneSidedSeed} {shadow : Shadow}
     (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
@@ -198,6 +221,7 @@ theorem privateMask_eq_of_isValidOneSidedSeedRelaxedShapeShadow
     simp [isValidOneSidedSeedRelaxedShapeShadow] at hvalid ⊢ <;>
     simp_all
 
+/-- P97 ErasedCertificate theorem. -/
 theorem firstOppExactCapMask_eq_of_isValidOneSidedSeedRelaxedShapeShadow
     {seed : OneSidedSeed} {shadow : Shadow}
     (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
@@ -206,6 +230,7 @@ theorem firstOppExactCapMask_eq_of_isValidOneSidedSeedRelaxedShapeShadow
     simp [isValidOneSidedSeedRelaxedShapeShadow] at hvalid ⊢ <;>
     simp_all
 
+/-- P97 ErasedCertificate theorem. -/
 theorem secondOppExactCapMask_eq_of_isValidOneSidedSeedRelaxedShapeShadow
     {seed : OneSidedSeed} {shadow : Shadow}
     (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
@@ -214,19 +239,23 @@ theorem secondOppExactCapMask_eq_of_isValidOneSidedSeedRelaxedShapeShadow
     simp [isValidOneSidedSeedRelaxedShapeShadow] at hvalid ⊢ <;>
     simp_all
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4Seeds_length :
     erasedPinCardTenP4Seeds.length = 504 := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4Seeds_privateMask_card :
     ∀ seed ∈ erasedPinCardTenP4Seeds, maskCard seed.privateMask = 4 := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4Seeds_privateMask_self_false :
     ∀ seed ∈ erasedPinCardTenP4Seeds,
       maskHas seed.privateMask seed.privateCenter = false := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem erasedPinCardTenP4Seeds_privateMask_has_sstar :
     ∀ seed ∈ erasedPinCardTenP4Seeds,
       maskHas seed.privateMask seed.sstar = true := by

@@ -29,12 +29,15 @@ open ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterl
 open ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement abbrev. -/
 private abbrev priorOccurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -43,6 +46,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -51,6 +55,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -78,6 +83,7 @@ private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
         List.mem_map]
       exact ⟨(choice.center, point), hcover choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -106,30 +112,36 @@ private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         hcover choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
 def child33PerpBisectorHits : List Hit :=
   [(2, 3), (2, 13), (3, 4), (3, 12), (3, 13),
     (13, 3), (13, 4), (13, 12)]
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
 def child33PerpBisectorForwardChoices : List (RowChoice Label) :=
   [{ center := 2, support := {3, 13} },
     { center := 3, support := {4, 12, 13} },
     { center := 13, support := {3, 4, 12} }]
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
 def child33PerpBisectorReverseChoices : List (RowChoice Label) :=
   [{ center := 14, support := {3, 13} },
     { center := 13, support := {3, 4, 12} },
     { center := 3, support := {4, 12, 13} }]
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 theorem child33PerpBisectorForwardCover :
     ∀ choice ∈ child33PerpBisectorForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ child33PerpBisectorHits := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 theorem child33PerpBisectorReverseCover :
     ∀ choice ∈ child33PerpBisectorReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ child33PerpBisectorHits := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
 def child33PerpBisectorForwardData : PerpBisectorData Label := {
   a := 3
   b := 13
@@ -142,6 +154,7 @@ def child33PerpBisectorForwardData : PerpBisectorData Label := {
   ra_rb := ⟨(12, 3), [.flip 12 3, .row 3 12 13, .flip 3 13,
     .row 13 3 12, .flip 13 12], (12, 13)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
 def child33PerpBisectorReverseData : PerpBisectorData Label := {
   a := 13
   b := 3
@@ -154,14 +167,17 @@ def child33PerpBisectorReverseData : PerpBisectorData Label := {
   ra_rb := ⟨(4, 13), [.flip 4 13, .row 13 4 3, .flip 13 3,
     .row 3 13 4, .flip 3 4], (4, 3)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 theorem child33PerpBisectorForwardData_check :
     child33PerpBisectorForwardData.check child33PerpBisectorForwardChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 theorem child33PerpBisectorReverseData_check :
     child33PerpBisectorReverseData.check child33PerpBisectorReverseChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 private theorem false_of_child33PerpBisectorHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -188,9 +204,11 @@ private theorem false_of_child33PerpBisectorHits {A : Finset ℝ²}
         hreal source.carrier_convexIndep
         (fun label => boundaryLabel_mem source.boundary source.boundary_image id label) core)
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
 def child33PerpBisectorClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := priorOccurrenceClause child33PerpBisectorHits order direction
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 theorem sourceAssign_child33PerpBisectorClause {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -199,10 +217,12 @@ theorem sourceAssign_child33PerpBisectorClause {A : Finset (EuclideanSpace ℝ (
   intro horder hall
   exact false_of_child33PerpBisectorHits source order direction horder.symm hall
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
 def child33PerpBisectorClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => child33PerpBisectorClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 theorem sourceAssign_child33PerpBisectorClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ child33PerpBisectorClauses,
@@ -212,6 +232,7 @@ theorem sourceAssign_child33PerpBisectorClauses
   rcases hclause with ⟨order, _, direction, _, rfl⟩
   exact sourceAssign_child33PerpBisectorClause source order direction
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement theorem. -/
 theorem child33PerpBisectorClauses_length : child33PerpBisectorClauses.length = 4 := by
   native_decide
 

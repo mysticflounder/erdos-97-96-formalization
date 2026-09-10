@@ -123,6 +123,7 @@ theorem endpointNoThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two
   intro pair hpair
   exact decide_eq_true (hcount pair.1 pair.2 hpair)
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpoint_foldl_countP_add {α : Type _} (p : α → Bool) :
     ∀ (items : List α) (acc : Nat),
       items.foldl (fun acc item => if p item then acc + 1 else acc) acc =
@@ -136,6 +137,7 @@ private theorem endpoint_foldl_countP_add {α : Type _} (p : α → Bool) :
       · simp [h, ih, Nat.add_comm, Nat.add_left_comm]
       · simp [h, ih]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpoint_pointPairClassCount_eq_countP
     (shadow : ShadowBank.Shadow) (x y : ShadowBank.Label) :
     SurplusCOMPGBank.pointPairClassCount shadow x y =
@@ -169,6 +171,7 @@ private theorem endpoint_pointPairClassCount_eq_countP
   rw [hfun, endpoint_foldl_countP_add]
   simp
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpoint_pointPairHit_classHas_left
     {shadow : ShadowBank.Shadow} {center x y : ShadowBank.Label}
     (hhit : SurplusCOMPGBank.pointPairHitByCenterMask center
@@ -185,6 +188,7 @@ private theorem endpoint_pointPairHit_classHas_left
     Bool.false_or, Bool.false_eq_true, if_false, Bool.and_eq_true] at hhit
   simpa [SurplusCOMPGBank.Shadow.classHas] using hhit.1
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpoint_pointPairHit_classHas_right
     {shadow : ShadowBank.Shadow} {center x y : ShadowBank.Label}
     (hhit : SurplusCOMPGBank.pointPairHitByCenterMask center

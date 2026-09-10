@@ -18,26 +18,32 @@ namespace Problem97
 
 /- ### Chart coordinate helpers -/
 
+/-- P97 N4d theorem. -/
 private theorem dist_sq_coords (x y : ℝ²) :
     dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
   Problem97.dist_sq_coord x y
 
+/-- P97 N4d theorem. -/
 private theorem vec2_c0 (a b : ℝ) : (Problem97.CGN.vec2 a b) 0 = a := by
   simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]
 
+/-- P97 N4d theorem. -/
 private theorem vec2_c1 (a b : ℝ) : (Problem97.CGN.vec2 a b) 1 = b := by
   simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]
 
+/-- P97 N4d theorem. -/
 private theorem sa2_chart_base_local (p : ℝ²) :
     signedArea2 p (Problem97.CGN.vec2 0 0) (Problem97.CGN.vec2 1 0) = p 1 := by
   simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
   ring
 
+/-- P97 N4d theorem. -/
 private theorem signedArea2_baseChord_vec2 (p : ℝ²) :
     signedArea2 p (Problem97.CGN.vec2 (-1) 0) (Problem97.CGN.vec2 1 0) = 2 * p 1 := by
   simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
   ring
 
+/-- P97 N4d theorem. -/
 private theorem nonobtuse_v₃_numerator_nonneg_local (v₁ v₂ v₃ : ℝ²)
     (h1x : v₁ 0 = 0) (h1y : v₁ 1 = 0) (h2x : v₂ 0 = 1) (h2y : v₂ 1 = 0)
     (hno : 0 ≤ (inner ℝ (v₁ - v₃) (v₂ - v₃) : ℝ)) :
@@ -49,6 +55,7 @@ private theorem nonobtuse_v₃_numerator_nonneg_local (v₁ v₂ v₃ : ℝ²)
 
 /- ### Transport helpers copied locally from the FormC producer -/
 
+/-- P97 N4d def. -/
 private noncomputable def similarityTransportComp
     {T1 T2 : ℝ² → ℝ²}
     (tau1 : Problem97.CGN.SimilarityTransportData T1)
@@ -96,9 +103,11 @@ private noncomputable def similarityTransportComp
     rw [tau2.halfplane_sign, tau1.halfplane_sign]
     ring
 
+/-- P97 N4d def. -/
 private noncomputable def halfShift (p : ℝ²) : ℝ² :=
   Problem97.CGN.vec2 ((p 0 + 1) / 2) (p 1 / 2)
 
+/-- P97 N4d theorem. -/
 private theorem halfShift_injective : Function.Injective halfShift := by
   intro p q hpq
   ext i <;> fin_cases i
@@ -107,6 +116,7 @@ private theorem halfShift_injective : Function.Injective halfShift := by
   · have h := congrArg (fun z : ℝ² => z 1) hpq
     simpa [halfShift, Problem97.CGN.vec2, EuclideanSpace.single_apply] using h
 
+/-- P97 N4d def. -/
 private noncomputable def halfShiftSimilarityTransportData :
     Problem97.CGN.SimilarityTransportData halfShift := by
   classical
@@ -163,9 +173,11 @@ private noncomputable def halfShiftSimilarityTransportData :
     simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
     ring
 
+/-- P97 N4d def. -/
 private noncomputable def flipY (p : ℝ²) : ℝ² :=
   Problem97.CGN.vec2 (p 0) (-p 1)
 
+/-- P97 N4d theorem. -/
 private theorem flipY_injective : Function.Injective flipY := by
   intro p q hpq
   ext i <;> fin_cases i
@@ -174,6 +186,7 @@ private theorem flipY_injective : Function.Injective flipY := by
   · have h := congrArg (fun z : ℝ² => z 1) hpq
     simpa [flipY, Problem97.CGN.vec2, EuclideanSpace.single_apply] using h
 
+/-- P97 N4d def. -/
 private noncomputable def flipYSimilarityTransportData :
     Problem97.CGN.SimilarityTransportData flipY := by
   classical
@@ -235,6 +248,7 @@ private noncomputable def flipYSimilarityTransportData :
     simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
     ring
 
+/-- P97 N4d theorem. -/
 private theorem exists_base_transportData
     (q1 q2 : ℝ²) (hqne : q1 ≠ q2) :
     ∃ T0, ∃ tau0 : Problem97.CGN.SimilarityTransportData T0,
@@ -630,6 +644,7 @@ private theorem v1_lt_v1v2_of_mem_I3
 
 /- ### The faithful-frame facts for the `v₁v₃` base -/
 
+/-- P97 N4d theorem. -/
 private theorem exists_v3_normalized_transport
     {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     ∃ T : ℝ² → ℝ², ∃ tau : Problem97.CGN.SimilarityTransportData T,

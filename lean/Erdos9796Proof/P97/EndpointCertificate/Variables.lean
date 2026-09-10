@@ -98,6 +98,7 @@ def assignment
   | 16 => tau
   | _ => 0
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem assignment_index
     (u s1 s2 s3 pw pu q1 q2 : ℝ²) (tau : ℝ) (v : EndpointVar) :
     assignment u s1 s2 s3 pw pu q1 q2 tau v.index =

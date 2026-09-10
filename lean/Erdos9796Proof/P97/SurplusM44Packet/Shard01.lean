@@ -976,33 +976,39 @@ theorem capByIndex_sameRadius_at_v3_card_le_one_of_convexIndep
   | 1 => S.capByIndex 0
   | _ => S.capByIndex 1
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftAdjacentInteriorByIndex_eq_capInteriorByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.leftAdjacentInteriorByIndex i =
       S.capInteriorByIndex (leftAdjacentIndex i) := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightAdjacentInteriorByIndex_eq_capInteriorByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.rightAdjacentInteriorByIndex i =
       S.capInteriorByIndex (rightAdjacentIndex i) := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftAdjacentCapByIndex_eq_capByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.leftAdjacentCapByIndex i = S.capByIndex (leftAdjacentIndex i) := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightAdjacentCapByIndex_eq_capByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.rightAdjacentCapByIndex i = S.capByIndex (rightAdjacentIndex i) := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftAdjacentCapByIndex_rightAdjacentIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.leftAdjacentCapByIndex (rightAdjacentIndex i) = S.capByIndex i := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightAdjacentCapByIndex_leftAdjacentIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.rightAdjacentCapByIndex (leftAdjacentIndex i) = S.capByIndex i := by
@@ -1143,24 +1149,28 @@ Moser vertex for the selected cap. -/
   | 1 => S.triangle.v3
   | _ => S.triangle.v1
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem oppositeVertexByIndex_leftAdjacentIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.oppositeVertexByIndex (leftAdjacentIndex i) =
       S.rightOuterVertexByIndex i := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem oppositeVertexByIndex_rightAdjacentIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.oppositeVertexByIndex (rightAdjacentIndex i) =
       S.leftOuterVertexByIndex i := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightOuterVertexByIndex_leftAdjacentIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.rightOuterVertexByIndex (leftAdjacentIndex i) =
       S.leftOuterVertexByIndex i := by
   fin_cases i <;> rfl
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftOuterVertexByIndex_rightAdjacentIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
     S.leftOuterVertexByIndex (rightAdjacentIndex i) =
@@ -1421,6 +1431,7 @@ theorem mem_capInteriorByIndex_of_mem_capByIndex_of_ne_outer
     exact Finset.mem_erase.mpr
       ⟨hxne_left, Finset.mem_erase.mpr ⟨hxne_right, hxcap⟩⟩
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem mem_triangle_verts_cases
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²}
     (hx : x ∈ S.triangle.verts) :

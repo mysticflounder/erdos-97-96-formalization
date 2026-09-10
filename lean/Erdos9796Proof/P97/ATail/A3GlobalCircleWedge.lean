@@ -21,15 +21,18 @@ open scoped EuclideanGeometry InnerProductSpace
 namespace Problem97
 namespace A3GlobalCircleWedge
 
+/-- P97 ATail A3GlobalCircleWedge def. -/
 private def det2 (a b : ℝ²) : ℝ :=
   a 0 * b 1 - a 1 * b 0
 
+/-- P97 ATail A3GlobalCircleWedge theorem. -/
 private theorem signedArea2_eq_det2_sub (a b c : ℝ²) :
     signedArea2 a b c = det2 (b - a) (c - a) := by
   unfold signedArea2 det2
   simp only [PiLp.sub_apply]
   ring
 
+/-- P97 ATail A3GlobalCircleWedge theorem. -/
 private theorem det2_cdx_of_fan
     {V X D C : ℝ²} {td T : ℝ}
     (hD : D = td • (V + X))

@@ -49,6 +49,7 @@ open ATailUniqueFourExactTwoCurvatureScratch
 open ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource
 open Census554.GeneralCarrierBridge
 
+/-- P97 ATail support abbrev. -/
 abbrev Label := Fin 11
 
 variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
@@ -242,14 +243,19 @@ theorem nonempty_directSource_or_mirrorPacket
 
 /- ## Authenticated compact-ledger coverage constants -/
 
+/-- P97 ATail support def. -/
 def membershipsImplyRowPatternClauseCount : ℕ := 1265
+/-- P97 ATail support def. -/
 def rowPatternImpliesOuterArcClauseCount : ℕ := 3179
+/-- P97 ATail support def. -/
 def noFourDisjointOuterArcsClauseCount : ℕ := 6170
+/-- P97 ATail support def. -/
 def coveredDirectClauseCount : ℕ :=
   membershipsImplyRowPatternClauseCount +
     rowPatternImpliesOuterArcClauseCount +
     noFourDisjointOuterArcsClauseCount
 
+/-- P97 ATail support theorem. -/
 theorem coveredDirectClauseCount_eq : coveredDirectClauseCount = 10614 := by
   norm_num [coveredDirectClauseCount, membershipsImplyRowPatternClauseCount,
     rowPatternImpliesOuterArcClauseCount,

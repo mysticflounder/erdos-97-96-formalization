@@ -4,6 +4,7 @@ open scoped BigOperators
 
 namespace Scratch
 
+/-- Indexed scratch Lean theorem. -/
 private theorem exists_repeated_mem_of_card_lt_sum
     {α β : Type*} [DecidableEq α] [DecidableEq β]
     (W : Finset α) (Q : Finset β) (O : α → Finset β)
@@ -36,6 +37,7 @@ private theorem exists_repeated_mem_of_card_lt_sum
   exact ⟨x.2, hsub x.1 hx.1 hx.2, x.1, hx.1, y.1, hy.1,
     hfirst, hx.2, hproj ▸ hy.2⟩
 
+/-- Indexed scratch Lean theorem. -/
 theorem exists_two_repeated_mem_of_four_two
     {α β : Type*} [DecidableEq α] [DecidableEq β]
     (W : Finset α) (Q : Finset β) (O : α → Finset β)

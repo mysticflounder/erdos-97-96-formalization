@@ -75,6 +75,7 @@ theorem selectedClass_capInteriorByIndex_card_ge_three_of_card_five
   change 3 ≤ (T ∩ S.capInteriorByIndex i).card
   omega
 
+/-- P97 ATail support card_five_interior_survivor_pair theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -111,6 +112,7 @@ structure CardFiveInteriorSurvivorPair
   q_survives : HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2
   w_survives : HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2
 
+/-- P97 ATail support card_five_interior_survivor_pair theorem. -/
 private theorem interior_oppIndex1_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :

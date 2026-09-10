@@ -16,11 +16,13 @@ is deliberately only a later-adapter seam: no instance is constructed here.
 
 namespace Problem97.P4CompactAtomBindingScratch
 
+/-- P97 ATail support inductive. -/
 inductive CompactFamily where
   | membership | radiusEquality | firstApexClass | blockerChoice
   | criticalSupport | rowSupport | outerArc
   deriving Repr, DecidableEq
 
+/-- P97 ATail support inductive. -/
 inductive OuterSide where
   | left | right
   deriving Repr, DecidableEq
@@ -36,6 +38,7 @@ inductive AtomParameters where
   | outerArc (center : Nat) (side : OuterSide) (turnMask : Nat)
   deriving Repr, DecidableEq
 
+/-- P97 ATail support structure. -/
 structure AtomBinding where
   dense : Nat
   sourceId : Nat
@@ -55,6 +58,7 @@ structure DirectSourceAdapter (Direct : Type) where
   rowSupport : Direct → Nat → Nat → Nat → Nat → Nat → Prop
   outerArc : Direct → Nat → OuterSide → Nat → Prop
 
+/-- P97 ATail support def. -/
 def AtomParameters.interpret {Direct : Type} (adapter : DirectSourceAdapter Direct)
     (source : Direct) : AtomParameters → Prop
   | .membership center point => adapter.membership source center point
@@ -65,6 +69,7 @@ def AtomParameters.interpret {Direct : Type} (adapter : DirectSourceAdapter Dire
   | .rowSupport center p0 p1 p2 p3 => adapter.rowSupport source center p0 p1 p2 p3
   | .outerArc center side mask => adapter.outerArc source center side mask
 
+/-- P97 ATail support def. -/
 def AtomBinding.familyMatches : AtomBinding → Bool
   | ⟨_, _, _, .membership, .membership _ _⟩ => true
   | ⟨_, _, _, .radiusEquality, .radiusEquality _ _ _⟩ => true

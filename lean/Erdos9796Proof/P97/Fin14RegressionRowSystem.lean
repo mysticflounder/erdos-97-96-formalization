@@ -88,10 +88,12 @@ theorem system_pairCodegreeLE_two : system.PairCodegreeLE 2 := by
     (Finset.univ.filter fun c ↦ a ∈ row c ∧ b ∈ row c).card ≤ 2
   decide
 
+/-- P97 Fin14RegressionRowSystem theorem. -/
 private theorem supportStep (c z : Vertex) (hz : z ∈ row c) :
     Relation.ReflTransGen system.SupportEdge c z :=
   Relation.ReflTransGen.single hz
 
+/-- P97 Fin14RegressionRowSystem theorem. -/
 private theorem supportPathToZero (c : Vertex) :
     Relation.ReflTransGen system.SupportEdge c 0 := by
   fin_cases c
@@ -114,6 +116,7 @@ private theorem supportPathToZero (c : Vertex) :
   · exact supportStep 12 0 (by decide)
   · exact supportStep 13 0 (by decide)
 
+/-- P97 Fin14RegressionRowSystem theorem. -/
 private theorem supportPathFromZero (z : Vertex) :
     Relation.ReflTransGen system.SupportEdge 0 z := by
   fin_cases z

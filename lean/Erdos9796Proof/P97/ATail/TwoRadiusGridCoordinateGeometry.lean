@@ -37,20 +37,24 @@ scaled by the length of the base. -/
 noncomputable def scaledTransverseCoord (o a p : ℝ²) : ℝ :=
   signedArea2 o a p
 
+/-- P97 ATail TwoRadiusGridCoordinateGeometry lemma. -/
 private lemma inner_eq_coords (u v : ℝ²) :
     ⟪u, v⟫_ℝ = u 0 * v 0 + u 1 * v 1 := by
   rw [PiLp.inner_apply]
   simp [Fin.sum_univ_two, mul_comm (u _) (v _)]
 
+/-- P97 ATail TwoRadiusGridCoordinateGeometry lemma. -/
 private lemma norm_sq_eq_coords (u : ℝ²) :
     ‖u‖ ^ 2 = u 0 ^ 2 + u 1 ^ 2 := by
   rw [EuclideanSpace.norm_sq_eq]
   simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs]
 
+/-- P97 ATail TwoRadiusGridCoordinateGeometry lemma. -/
 private lemma norm_sub_sq_pos {o a : ℝ²} (hoa : o ≠ a) :
     0 < ‖a - o‖ ^ 2 :=
   sq_pos_of_pos (norm_pos_iff.mpr (sub_ne_zero.mpr hoa.symm))
 
+/-- P97 ATail TwoRadiusGridCoordinateGeometry lemma. -/
 private lemma positive_right_factor_iff {c x : ℝ} (hc : 0 < c) :
     0 < c * x ↔ 0 < x := by
   constructor

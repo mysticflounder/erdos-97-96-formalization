@@ -155,6 +155,7 @@ theorem endpointCandidateMasks_q2_u :
     endpointCandidateMasks .Q2 .u = endpointUMasks := by
   native_decide
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem list_all_eq_true_of_containsEntry
     {p : (Label × List Nat) → Bool} {entry : Label × List Nat} :
     {entries : List (Label × List Nat)} →
@@ -169,6 +170,7 @@ private theorem list_all_eq_true_of_containsEntry
       · simp [containsEntry, hhead] at hcontains
         exact list_all_eq_true_of_containsEntry hall.2 hcontains
 
+/-- P97 EndpointCertificate theorem. -/
 theorem containsEntry_eq_true_of_mem {entry : Label × List Nat} :
     {entries : List (Label × List Nat)} →
       entry ∈ entries → containsEntry entry entries = true
@@ -181,6 +183,7 @@ theorem containsEntry_eq_true_of_mem {entry : Label × List Nat} :
           · simp [containsEntry, hhead]
           · simp [containsEntry, hhead, containsEntry_eq_true_of_mem htail]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem hasTenMasks_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :
@@ -189,6 +192,7 @@ theorem hasTenMasks_of_endpointShadowOK
     simp [endpointShadowOK, endpointVShapeOK, escapeeOK] at h ⊢ <;>
     simp_all
 
+/-- P97 EndpointCertificate theorem. -/
 theorem searchSeparationOK_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :
@@ -197,6 +201,7 @@ theorem searchSeparationOK_of_endpointShadowOK
     simp [endpointShadowOK, endpointVShapeOK, escapeeOK] at h ⊢ <;>
     simp_all
 
+/-- P97 EndpointCertificate theorem. -/
 theorem searchPairCountsOK_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :
@@ -205,6 +210,7 @@ theorem searchPairCountsOK_of_endpointShadowOK
     simp [endpointShadowOK, endpointVShapeOK, escapeeOK] at h ⊢ <;>
     simp_all
 
+/-- P97 EndpointCertificate theorem. -/
 theorem escapeeOK_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :
@@ -213,6 +219,7 @@ theorem escapeeOK_of_endpointShadowOK
     simp [endpointShadowOK, endpointVShapeOK, escapeeOK] at h ⊢ <;>
     simp_all
 
+/-- P97 EndpointCertificate theorem. -/
 theorem maskNormalized_of_endpointCandidateMaskOK
     {escapee center : Label} {mask : Nat}
     (h : endpointCandidateMaskOK escapee center mask = true) :
@@ -221,6 +228,7 @@ theorem maskNormalized_of_endpointCandidateMaskOK
     simp [endpointCandidateMaskOK, escapeeOK] at h ⊢ <;>
     simp_all
 
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointCandidateMaskOK_of_endpointShadowOK
     {escapee center : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :
@@ -234,6 +242,7 @@ theorem endpointCandidateMaskOK_of_endpointShadowOK
       SurplusCOMPGBank.allLabels, SurplusCOMPGBank.isMoserLabel] at h ⊢ <;>
     simp_all
 
+/-- P97 EndpointCertificate theorem. -/
 theorem mem_endpointCandidateMasks_of_endpointShadowOK
     {escapee center : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :
@@ -245,6 +254,7 @@ theorem mem_endpointCandidateMasks_of_endpointShadowOK
     ⟨SurplusCOMPGBank.mem_allNormalizedMasks_of_maskNormalized
       (maskNormalized_of_endpointCandidateMaskOK hOK), hOK⟩
 
+/-- P97 EndpointCertificate theorem. -/
 theorem pairCountsOK_shadowPairCountsForAssigned_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow} {assigned : List Label}
     (h : endpointShadowOK escapee shadow = true)
@@ -254,6 +264,7 @@ theorem pairCountsOK_shadowPairCountsForAssigned_of_endpointShadowOK
   exact SurplusCOMPGBank.pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     (searchPairCountsOK_of_endpointShadowOK h) hprefix
 
+/-- P97 EndpointCertificate theorem. -/
 theorem mem_endpointSearchAux_nil_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow} {assigned : List Label}
     {masks pairCounts : List Nat}
@@ -268,6 +279,7 @@ theorem mem_endpointSearchAux_nil_of_endpointShadowOK
   unfold endpointSearchAux
   simp [hlen, hcounts]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem mem_endpointSearchAux_cons
     {target masks pairCounts : List Nat} {escapee center : Label}
     {assigned : List Label} {candidates : List Nat}
@@ -285,6 +297,7 @@ theorem mem_endpointSearchAux_cons
   unfold endpointSearchAux
   exact List.mem_flatMap.mpr ⟨mask, hmem, by simpa [hsep, hcounts] using htail⟩
 
+/-- P97 EndpointCertificate theorem. -/
 theorem mem_endpointSearchAux_shadow_step_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow} {center : Label}
     {assigned : List Label} {rest : List (Label × List Nat)}
@@ -316,6 +329,7 @@ theorem mem_endpointSearchAux_shadow_step_of_endpointShadowOK
   · simpa [SurplusCOMPGBank.shadowMasksForAssigned,
       SurplusCOMPGBank.shadowPairCountsForAssigned] using htail
 
+/-- P97 EndpointCertificate theorem. -/
 theorem shadow_mem_endpointSearchAux_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow}
     (hvalid : endpointShadowOK escapee shadow = true) :
@@ -448,6 +462,7 @@ theorem shadow_mem_endpointSearchAux_of_endpointShadowOK
     SurplusCOMPGBank.shadowPairCountsForAssigned,
     SurplusCOMPGBank.emptyShadowMasks] using h0
 
+/-- P97 EndpointCertificate theorem. -/
 theorem mem_endpointSearchEscapees_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :
@@ -455,6 +470,7 @@ theorem mem_endpointSearchEscapees_of_endpointShadowOK
   have hesc := escapeeOK_of_endpointShadowOK h
   cases escapee <;> simp [escapeeOK, endpointSearchEscapees] at hesc ⊢
 
+/-- P97 EndpointCertificate theorem. -/
 theorem computedEndpointShadowAcceptedBySearch_of_endpointShadowOK
     {escapee : Label} {shadow : Shadow}
     (h : endpointShadowOK escapee shadow = true) :

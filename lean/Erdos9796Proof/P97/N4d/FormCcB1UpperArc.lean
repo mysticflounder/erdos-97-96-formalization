@@ -16,6 +16,7 @@ open Finset
 namespace Problem97
 namespace FiniteEndpointShell
 
+/-- P97 N4d theorem. -/
 private theorem hneg_of_cyclicShift_local
     {n : ℕ} {phi : Fin n → ℝ²}
     (hneg : ∀ {i j k : Fin n}, i < j → j < k →
@@ -97,6 +98,7 @@ private theorem hneg_of_cyclicShift_local
           omega
         exact hneg hij' hjk'
 
+/-- P97 N4d theorem. -/
 private theorem supportCap_interval_of_oppositeFirst_local
     {A C : Finset ℝ²} {n : ℕ} {phi : Fin n → ℝ²}
     {u v w : ℝ²}
@@ -468,6 +470,7 @@ private theorem c1_vertex_same_open_side_as_v2
     exact mul_pos hp_side hv2_side
 
 
+/-- P97 N4d theorem. -/
 private theorem c3_sameSide_core (p q s t c : ℝ)
     (hCT : 0 ≤ c * t)
     (hARC : t * (2 * p * t - 2 * q * s - q + t) < 0)
@@ -809,10 +812,12 @@ private theorem c3_vertex_same_open_side_as_v2
   rw [this]
   exact mul_pos hcore (mul_pos hu_sq_pos hu_sq_pos)
 
+/-- P97 N4d theorem. -/
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
     dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
   Problem97.dist_sq_coord x y
 
+/-- P97 N4d def. -/
 private noncomputable def similarityTransportComp
     {T1 T2 : ℝ² → ℝ²}
     (tau1 : Problem97.CGN.SimilarityTransportData T1)
@@ -860,9 +865,11 @@ private noncomputable def similarityTransportComp
     rw [tau2.halfplane_sign, tau1.halfplane_sign]
     ring
 
+/-- P97 N4d def. -/
 private noncomputable def halfShift (p : ℝ²) : ℝ² :=
   Problem97.CGN.vec2 ((p 0 + 1) / 2) (p 1 / 2)
 
+/-- P97 N4d theorem. -/
 private theorem halfShift_injective : Function.Injective halfShift := by
   intro p q hpq
   ext i <;> fin_cases i
@@ -871,6 +878,7 @@ private theorem halfShift_injective : Function.Injective halfShift := by
   · have h := congrArg (fun z : ℝ² => z 1) hpq
     simpa [halfShift, Problem97.CGN.vec2, EuclideanSpace.single_apply] using h
 
+/-- P97 N4d def. -/
 private noncomputable def halfShiftSimilarityTransportData :
     Problem97.CGN.SimilarityTransportData halfShift := by
   classical
@@ -927,9 +935,11 @@ private noncomputable def halfShiftSimilarityTransportData :
     simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
     ring
 
+/-- P97 N4d def. -/
 private noncomputable def flipY (p : ℝ²) : ℝ² :=
   Problem97.CGN.vec2 (p 0) (-p 1)
 
+/-- P97 N4d theorem. -/
 private theorem flipY_injective : Function.Injective flipY := by
   intro p q hpq
   ext i <;> fin_cases i
@@ -938,6 +948,7 @@ private theorem flipY_injective : Function.Injective flipY := by
   · have h := congrArg (fun z : ℝ² => z 1) hpq
     simpa [flipY, Problem97.CGN.vec2, EuclideanSpace.single_apply] using h
 
+/-- P97 N4d def. -/
 private noncomputable def flipYSimilarityTransportData :
     Problem97.CGN.SimilarityTransportData flipY := by
   classical
@@ -999,6 +1010,7 @@ private noncomputable def flipYSimilarityTransportData :
     simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
     ring
 
+/-- P97 N4d theorem. -/
 private theorem exists_base_transportData
     (q1 q2 : ℝ²) (hqne : q1 ≠ q2) :
     ∃ T0, ∃ tau0 : Problem97.CGN.SimilarityTransportData T0,
@@ -1135,12 +1147,15 @@ private theorem exists_base_transportData
 
 /- ### Chart coordinate helpers -/
 
+/-- P97 N4d theorem. -/
 private theorem vec2_coord0 (x y : ℝ) : (Problem97.CGN.vec2 x y) 0 = x := by
   simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]
 
+/-- P97 N4d theorem. -/
 private theorem vec2_coord1 (x y : ℝ) : (Problem97.CGN.vec2 x y) 1 = y := by
   simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]
 
+/-- P97 N4d theorem. -/
 private theorem dist_vec2_00_10 :
     dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) = 1 := by
   have hsq : dist (Problem97.CGN.vec2 (0 : ℝ) 0) (Problem97.CGN.vec2 (1 : ℝ) 0) ^ 2 = 1 := by
@@ -1154,6 +1169,7 @@ private theorem dist_vec2_00_10 :
     _ = Real.sqrt 1 := by rw [hsq]
     _ = 1 := Real.sqrt_one
 
+/-- P97 N4d theorem. -/
 private theorem signedArea2_chart_base (p : ℝ²) :
     signedArea2 p (Problem97.CGN.vec2 0 0) (Problem97.CGN.vec2 1 0) = p 1 := by
   simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
@@ -2451,6 +2467,7 @@ theorem bisectorKill_args_v3b1 (F : CB1V1AnchorFrame S Z) {x : ℝ²}
 
 end CB1V1AnchorFrame
 
+/-- P97 N4d theorem. -/
 private theorem classify_I1 {A : Finset ℝ²} (S : FiniteEndpointShell A)
     {p : ℝ²} (hp : p ∈ S.I1) :
     p ∈ A ∧ p ∈ S.CP.C1 ∧ p ∉ S.CP.C3 ∧ p ∉ S.CP.C2 := by

@@ -12,10 +12,12 @@ import Erdos9796Proof.P97.ErasedCertificate.P4SPlacement3ANative
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
 set_option maxRecDepth 100000 in
+/-- P97 ErasedCertificate theorem. -/
 theorem p4sPlacementsAt_three_a_chunks_eq_true :
     p4sPlacementsAtDeletedPairChunks 3 3 4 = true :=
   p4sPlacementsAt_three_a_native_chunks_eq_true
 
+/-- P97 ErasedCertificate theorem. -/
 theorem p4sPlacementsAt_three_a_eq_true :
     p4sPlacementsAtDeletedPair 3 3 4 = true := by
   exact p4sPlacementsAtDeletedPair_eq_true_of_chunks

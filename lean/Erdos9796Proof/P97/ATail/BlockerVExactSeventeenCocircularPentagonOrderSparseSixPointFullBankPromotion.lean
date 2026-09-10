@@ -16,10 +16,12 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenCocircularPentagonOrderCyclicConvexFiveFullBankPromotion
 open ATailBlockerVExactSeventeenSparseSixPointFullBank
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion def. -/
 def extendedCocircularOrderSparseSixPointFullBankCnf : Std.Sat.CNF Atom :=
   extendedCocircularOrderCyclicConvexFiveFullBankCnf ++
     sparseSixPointFullBankClauses
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion theorem. -/
 theorem extendedCocircularOrderSparseSixPointFullBankCnf_length :
     extendedCocircularOrderSparseSixPointFullBankCnf.length = 7409253 := by
   simp only [extendedCocircularOrderSparseSixPointFullBankCnf,
@@ -27,6 +29,7 @@ theorem extendedCocircularOrderSparseSixPointFullBankCnf_length :
     extendedCocircularOrderCyclicConvexFiveFullBankCnf_length,
     sparseSixPointFullBankClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion theorem. -/
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFullBankCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (horder : source.model.order = 0) :
@@ -44,6 +47,7 @@ theorem sourceAssign_extendedCocircularOrderSparseSixPointFullBankCnf
     exact hparentEval clause hparent
   · exact sourceAssign_sparseSixPointFullBankClauses source clause hsuffix
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion theorem. -/
 theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFullBankCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)

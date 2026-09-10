@@ -8,10 +8,12 @@ namespace ExactTwelveRigid221Ingress
 open ExactTwelveCarrierIngress
 open GenericRowNogoodCertificate
 
+/-- Indexed scratch Lean def. -/
 def reindexBlocker (relabeling : Label ≃ Label)
     (blocker : Fin 5 → Label) : Fin 5 → Label :=
   fun i => relabeling (blocker i)
 
+/-- Indexed scratch Lean theorem. -/
 theorem FrozenNamedDeletionSixArm.reindex
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (relabeling : Label ≃ Label)
@@ -25,6 +27,7 @@ theorem FrozenNamedDeletionSixArm.reindex
   simpa [FrozenNamedDeletionSixArm, reindexBlocker, htwo, hten, heleven]
     using harm
 
+/-- Indexed scratch Lean theorem. -/
 theorem FrozenDistinguishedDCommonMissing.reindex
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (relabeling : Label ≃ Label)
@@ -45,6 +48,7 @@ theorem FrozenDistinguishedDCommonMissing.reindex
   · exact relabeling.injective.ne hblocker
   · simpa [hone, hsix, hseven] using hmissing
 
+/-- Indexed scratch Lean theorem. -/
 theorem FrozenDistinguishedDCommonMissingAwayFromEight.reindex
     {row : RowPattern Label} {blocker : Fin 5 → Label}
     (relabeling : Label ≃ Label)

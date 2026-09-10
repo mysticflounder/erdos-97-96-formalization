@@ -205,6 +205,7 @@ private theorem v1_lt_v1v2_of_mem_I3_local
     simpa [Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCapRev_points,
       hi, hLastFirst.1, hLastFirst.2, hlast_rev_first] using hlt
 
+/-- P97 N4d theorem. -/
 private theorem v2_lt_v2v1_of_mem_I3_local
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {q : ℝ²}
     (hqI3 : q ∈ S.I3) :

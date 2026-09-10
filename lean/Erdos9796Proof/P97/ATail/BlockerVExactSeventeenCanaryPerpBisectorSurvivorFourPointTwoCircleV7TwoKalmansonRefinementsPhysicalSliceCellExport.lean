@@ -18,6 +18,7 @@ open ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCoverage
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport def. -/
 private def cnfDimacsString (cnf : Std.Sat.CNF Atom) : String :=
   let dimacs := cnf.map fun clause => clause.map litToDimacs
   let lines :=
@@ -25,16 +26,19 @@ private def cnfDimacsString (cnf : Std.Sat.CNF Atom) : String :=
       dimacs.map fun clause => String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport def. -/
 def rootDimacsString : String :=
   cnfDimacsString
     canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport def. -/
 def physicalSliceCellDimacsString
     (center : Label) (category : PhysicalSliceCategory) : String :=
   cnfDimacsString
     (canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementPhysicalSliceCellCnf
       center category)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport def. -/
 def parseCategory (center : Label) (text : String) : Option PhysicalSliceCategory :=
   if text = "none" then
     some .none
@@ -48,6 +52,7 @@ def parseCategory (center : Label) (text : String) : Option PhysicalSliceCategor
         else
           none
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | ["root", outputPath] =>
@@ -87,6 +92,7 @@ end Problem97
 
 open Problem97
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport def. -/
 def main (args : List String) : IO UInt32 :=
   ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementsPhysicalSliceCellExport.run
     args

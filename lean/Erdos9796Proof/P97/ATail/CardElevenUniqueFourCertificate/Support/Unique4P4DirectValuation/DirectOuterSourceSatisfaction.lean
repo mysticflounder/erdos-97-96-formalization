@@ -36,6 +36,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- P97 ATail support DirectOuterSourceSatisfaction theorem. -/
 private theorem asLabel_eq_label (n : Nat) : asLabel n = label n := by
   apply Fin.ext
   rfl

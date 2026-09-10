@@ -48,6 +48,7 @@ def equalityChainHits (order : NamedOrder) (direction : Orientation)
         (p w, p u), (p w, p t)]
   | _ => []
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChain theorem. -/
 private theorem false_of_equalityChain_at {A : Finset ℝ²}
     (r : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut u w y t v : Label)

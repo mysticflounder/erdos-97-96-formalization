@@ -35,9 +35,12 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Generated.Unique
 namespace Problem97
 namespace P4DirectOuterArcAdapterScratch
 
+/-- P97 ATail generated def. -/
 def directRowArcFiniteDataSha256 : String := "845398403dd0b206c01e1fb57b3f846b902bb541c85d591a1275ffb3aaaccfde"
+/-- P97 ATail generated def. -/
 def directRowArcFiniteDataCount : Nat := 3179
 
+/-- P97 ATail generated def. -/
 def directRowArcFiniteOccurrences : List DirectRowArcFiniteOccurrence :=
   directRowArcFiniteOccurrencesChunk000 ++
     directRowArcFiniteOccurrencesChunk001 ++
@@ -65,9 +68,11 @@ def directRowArcFiniteOccurrences : List DirectRowArcFiniteOccurrence :=
     directRowArcFiniteOccurrencesChunk023 ++
     directRowArcFiniteOccurrencesChunk024
 
+/-- P97 ATail generated def. -/
 def directRowArcFiniteData : List DirectRowArcFiniteDatum :=
   directRowArcFiniteOccurrences.map (·.datum)
 
+/-- P97 ATail generated theorem. -/
 theorem directRowArcFiniteOccurrences_batch_valid :
     directRowArcFiniteOccurrences.length = directRowArcFiniteDataCount ∧
       ∀ occurrence ∈ directRowArcFiniteOccurrences, occurrence.datum.Valid := by
@@ -127,6 +132,7 @@ theorem directRowArcFiniteOccurrences_batch_valid :
       ⟨h023, directRowArcFiniteOccurrencesChunk024_batch_valid.2⟩
     exact h024
 
+/-- P97 ATail generated theorem. -/
 theorem directRowArcFiniteData_batch_valid :
     directRowArcFiniteData.length = directRowArcFiniteDataCount ∧
       ∀ datum ∈ directRowArcFiniteData, datum.Valid := by

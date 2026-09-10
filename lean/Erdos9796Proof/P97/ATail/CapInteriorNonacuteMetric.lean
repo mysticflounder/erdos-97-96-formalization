@@ -23,6 +23,7 @@ namespace ATailCapInteriorNonacuteMetric
 
 open CGN
 
+/-- P97 ATail CapInteriorNonacuteMetric theorem. -/
 private theorem inner_polarization_distances (x y z : ℝ²) :
     2 * inner ℝ (x - z) (y - z) =
       dist x z ^ 2 + dist y z ^ 2 - dist x y ^ 2 := by
@@ -34,6 +35,7 @@ private theorem inner_polarization_distances (x y z : ℝ²) :
 
 /- Equal-radius pairs with a strictly acute outer apex and a nonacute inner
    carrier have strictly smaller inner radius. -/
+/-- P97 ATail CapInteriorNonacuteMetric theorem. -/
 theorem paired_equal_radius_drop_of_inner_signs
     {a c q w : ℝ²} {r s : ℝ}
     (hr : 0 ≤ r) (hs : 0 ≤ s)
@@ -60,6 +62,7 @@ theorem paired_equal_radius_drop_of_inner_signs
    genuine interior carrier points.  The only extra input is convex
    independence: a zero cone coefficient would put one of the test points on
    a boundary ray, hence make three carrier points collinear. -/
+/-- P97 ATail CapInteriorNonacuteMetric theorem. -/
 theorem inner_pos_of_cap_region_pair_of_convex
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     {O c a b x y : ℝ²} {r : ℝ}

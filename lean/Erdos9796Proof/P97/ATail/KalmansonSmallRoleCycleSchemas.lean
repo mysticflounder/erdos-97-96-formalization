@@ -22,6 +22,7 @@ open scoped Convex EuclideanGeometry
 namespace Problem97
 namespace CapCrossingKalmansonBridge
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem adjacentSides_lt_diagonal_sum_of_ccw_of_decreasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -37,6 +38,7 @@ private theorem adjacentSides_lt_diagonal_sum_of_ccw_of_decreasing
       (ia := id) (ib := ic) (ic := ib) (id := ia)
       hA hphi_inj hphi_image hccw hidc hicb hiba)
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem innerOuter_lt_diagonal_sum_of_ccw_of_decreasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -52,6 +54,7 @@ private theorem innerOuter_lt_diagonal_sum_of_ccw_of_decreasing
       (ia := id) (ib := ic) (ic := ib) (id := ia)
       hA hphi_inj hphi_image hccw hidc hicb hiba)
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem false_of_five_ccw_three_distance_equalities_of_increasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -70,6 +73,7 @@ private theorem false_of_five_ccw_three_distance_equalities_of_increasing
   simp only [dist_comm] at habc hbce hdbe
   linarith
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem false_of_five_ccw_three_distance_equalities_of_decreasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -88,6 +92,7 @@ private theorem false_of_five_ccw_three_distance_equalities_of_decreasing
   simp only [dist_comm] at habc hbce hdbe
   linarith
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem false_of_four_role_cycle_with_first_gap_of_increasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -106,6 +111,7 @@ private theorem false_of_four_role_cycle_with_first_gap_of_increasing
   simp only [dist_comm] at habc hbac hdab
   linarith
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem false_of_four_role_cycle_with_first_gap_of_decreasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -124,6 +130,7 @@ private theorem false_of_four_role_cycle_with_first_gap_of_decreasing
   simp only [dist_comm] at habc hbac hdab
   linarith
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem false_of_four_role_cycle_with_last_gap_of_increasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -142,6 +149,7 @@ private theorem false_of_four_role_cycle_with_last_gap_of_increasing
   simp only [dist_comm] at habc hbac hdab
   linarith
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem false_of_four_role_cycle_with_last_gap_of_decreasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -160,6 +168,7 @@ private theorem false_of_four_role_cycle_with_last_gap_of_decreasing
   simp only [dist_comm] at habc hbac hdab
   linarith
 
+/-- P97 ATail KalmansonSmallRoleCycleSchemas theorem. -/
 private theorem shifted_boundary_data
     {carrier : Finset ℝ²}
     {boundary : Fin carrier.card → ℝ²}

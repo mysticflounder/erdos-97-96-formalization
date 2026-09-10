@@ -28,20 +28,25 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement def. -/
 def pairedKalmansonHits : List Hit :=
   [(0, 2), (0, 8), (10, 2), (10, 3), (9, 3), (9, 8),
     (16, 15), (16, 14), (14, 11), (14, 9), (9, 14),
     (5, 16), (5, 9), (3, 16), (3, 15), (15, 11), (15, 3)]
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement theorem. -/
 theorem pairedKalmansonHits_length : pairedKalmansonHits.length = 17 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement theorem. -/
 theorem pairedKalmansonHits_nodup : pairedKalmansonHits.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement def. -/
 def pairedKalmansonOccurrence : CancellationOccurrence :=
   { hits := pairedKalmansonHits
     forwardChoices := [{ center := 0, support := {2, 8} },
@@ -75,16 +80,20 @@ def pairedKalmansonOccurrence : CancellationOccurrence :=
       path3 := ⟨(0, 13), [.flip 0 13, .row 13 0 1, .flip 13 1,
         .row 1 13 5], (1, 5)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement theorem. -/
 theorem pairedKalmansonOccurrence_check :
     pairedKalmansonOccurrence.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement def. -/
 def pairedKalmansonClauses : Std.Sat.CNF Atom :=
   occurrenceClauses pairedKalmansonHits
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement theorem. -/
 theorem pairedKalmansonClauses_length : pairedKalmansonClauses.length = 4 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtyThirdKalmansonRefinement theorem. -/
 theorem sourceAssign_pairedKalmansonClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ pairedKalmansonClauses,

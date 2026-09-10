@@ -36,6 +36,7 @@ open FirstApexInteriorPairGeometry
 open FirstApexInteriorPairCirclePower
 open FirstApexUniqueRadiusResidual
 
+/-- P97 ATail ExactFiveDistinctPhysicalFreshRowRadiusDrop theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by

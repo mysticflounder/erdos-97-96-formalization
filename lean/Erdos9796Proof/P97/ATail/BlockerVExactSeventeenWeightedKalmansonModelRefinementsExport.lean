@@ -14,6 +14,7 @@ namespace ATailBlockerVExactSeventeenWeightedKalmansonModelRefinementsExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenWeightedKalmansonModelRefinements
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonModelRefinementsExport def. -/
 def extendedWeightedKalmansonModelRefinementsDimacsString : String :=
   let dimacs := extendedWeightedKalmansonModelRefinementsCnf.map fun clause =>
     clause.map litToDimacs
@@ -23,6 +24,7 @@ def extendedWeightedKalmansonModelRefinementsDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonModelRefinementsExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -35,5 +37,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenWeightedKalmansonModelRefinementsExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenWeightedKalmansonModelRefinementsExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenWeightedKalmansonModelRefinementsExport.run args

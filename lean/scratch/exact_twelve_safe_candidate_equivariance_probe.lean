@@ -11,6 +11,7 @@ attribute [local instance] Classical.propDecidable
 
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 0 in
+/-- Indexed scratch Lean theorem. -/
 theorem normalizingRelabeling_candidateClasses_equivariant :
     ∀ placement ∈ frozenPlacementDomain, ∀ center,
       (frozenSafeCandidateClasses center).map

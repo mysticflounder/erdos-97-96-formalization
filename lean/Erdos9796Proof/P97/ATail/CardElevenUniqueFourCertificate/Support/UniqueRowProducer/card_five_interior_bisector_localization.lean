@@ -47,6 +47,7 @@ open ATailCriticalPairFrontier
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail support card_five_interior_bisector_localization theorem. -/
 private theorem interior_oppIndex1_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -281,6 +282,7 @@ theorem cross_survival_of_distinct_blockers
           P hr hfive hwq (by simpa [P'] using hqw))
         hcenters
 
+/-- P97 ATail support card_five_interior_bisector_localization theorem. -/
 private theorem oppApex1_mem_A'
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -290,6 +292,7 @@ private theorem oppApex1_mem_A'
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail support card_five_interior_bisector_localization theorem. -/
 private theorem packet_blocker_ne_oppApex1_of_card_five
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}

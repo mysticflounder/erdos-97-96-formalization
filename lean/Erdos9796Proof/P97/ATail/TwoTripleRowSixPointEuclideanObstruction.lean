@@ -28,6 +28,7 @@ namespace TwoTripleRowSixPointEuclideanObstruction
 
 open Census554.EqualityCore
 
+/-- P97 ATail TwoTripleRowSixPointEuclideanObstruction lemma. -/
 private lemma normSim_dist_sq_eq_one
     {a b x y : ℝ²} (hab : a ≠ b) (h : dist a b = dist x y) :
     (normSim a b x 0 - normSim a b y 0) ^ 2 +
@@ -44,6 +45,7 @@ private lemma normSim_dist_sq_eq_one
     zero_sub, one_pow, neg_sq] at hSq
   simpa using hSq.symm
 
+/-- P97 ATail TwoTripleRowSixPointEuclideanObstruction lemma. -/
 private lemma normSim_signedArea_neg
     {a b x y z : ℝ²} (hab : a ≠ b) (h : signedArea2 x y z < 0) :
     signedArea2 (normSim a b x) (normSim a b y) (normSim a b z) < 0 := by
@@ -53,6 +55,7 @@ private lemma normSim_signedArea_neg
   rw [← SurplusCOMPGBank.dist_sq_coord b a]
   exact sq_pos_of_pos (dist_pos.mpr hab.symm)
 
+/-- P97 ATail TwoTripleRowSixPointEuclideanObstruction lemma. -/
 private lemma sq_dist_eq_coord
     {X Y : ℝ²} :
     dist X Y ^ 2 = (X 0 - Y 0) ^ 2 + (X 1 - Y 1) ^ 2 := by
@@ -60,6 +63,7 @@ private lemma sq_dist_eq_coord
 
 set_option maxHeartbeats 1200000 in
 -- The coordinate normalization and nonlinear sign elimination need this budget.
+/-- P97 ATail TwoTripleRowSixPointEuclideanObstruction theorem. -/
 theorem metric_orientation_incompatibility
     {A B C D E F : ℝ²}
     (hAD : A ≠ D)
@@ -325,11 +329,13 @@ theorem false_of_six_ccw_two_triple_row_equalities
       (hiab.trans (hibc.trans hicd)).ne)
     hBA_BC hBA_BD hFA_FD hFA_FE hABC hABD hACD hADE hADF hEFA hCDE
 
+/-- P97 ATail TwoTripleRowSixPointEuclideanObstruction theorem. -/
 private theorem signedArea2_swap12 (a b c : ℝ²) :
     signedArea2 b a c = -signedArea2 a b c := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail TwoTripleRowSixPointEuclideanObstruction theorem. -/
 private theorem signedArea2_swap13 (a b c : ℝ²) :
     signedArea2 c b a = -signedArea2 a b c := by
   simp only [signedArea2]

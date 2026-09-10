@@ -129,10 +129,12 @@ def sparseSixPointFullBankClauses : Std.Sat.CNF Atom :=
       fiveOffsetChoices.map fun offsets =>
         sparseSixPointClause direction cut offsets
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFullBank theorem. -/
 theorem sparseSixPointFullBankClauses_length :
     sparseSixPointFullBankClauses.length = 148512 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenSparseSixPointFullBank theorem. -/
 theorem sourceAssign_sparseSixPointFullBankClauses {A : Finset ℝ²}
     (r : SourceRealization A) :
     ∀ clause ∈ sparseSixPointFullBankClauses,

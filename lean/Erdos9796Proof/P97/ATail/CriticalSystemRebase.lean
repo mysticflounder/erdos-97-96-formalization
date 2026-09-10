@@ -52,6 +52,7 @@ def rebaseSurvivorPairCriticalSystem
   w_blocker_ne_oppApex2 :=
     actual_blocker_ne_of_deletion_survives H' P.w_mem_A P.w_survives
 
+/-- P97 ATail CriticalSystemRebase theorem. -/
 @[simp] theorem rebaseSurvivorPairCriticalSystem_q
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}
@@ -59,6 +60,7 @@ def rebaseSurvivorPairCriticalSystem
     (H' : CriticalShellSystem D.A) :
     (rebaseSurvivorPairCriticalSystem P H').q = P.q := rfl
 
+/-- P97 ATail CriticalSystemRebase theorem. -/
 @[simp] theorem rebaseSurvivorPairCriticalSystem_w
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}
@@ -84,6 +86,7 @@ def rebaseCriticalPairFrontierSystem
     simpa [SecondApexSplit, rebaseSurvivorPairCriticalSystem] using
       F.secondApexSplit
 
+/-- P97 ATail CriticalSystemRebase theorem. -/
 @[simp] theorem rebaseCriticalPairFrontierSystem_pair_q
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}
@@ -91,6 +94,7 @@ def rebaseCriticalPairFrontierSystem
     (H' : CriticalShellSystem D.A) :
     (rebaseCriticalPairFrontierSystem F H').pair.q = F.pair.q := rfl
 
+/-- P97 ATail CriticalSystemRebase theorem. -/
 @[simp] theorem rebaseCriticalPairFrontierSystem_pair_w
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}

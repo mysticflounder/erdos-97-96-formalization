@@ -31,11 +31,13 @@ noncomputable def endpointNormalAxisCoord
     (pointOf : ShadowBank.Label → ℝ²) (label : ShadowBank.Label) : ℝ² :=
   normalAxis (pointOf .v) (pointOf .w) (pointOf label)
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem endpointNormalAxisCoord_v
     (pointOf : ShadowBank.Label → ℝ²) :
     endpointNormalAxisCoord pointOf .v = 0 := by
   exact Problem97.normalAxis_self
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem endpointNormalAxisCoord_w
     {pointOf : ShadowBank.Label → ℝ²} (hvw : pointOf .v ≠ pointOf .w) :
     endpointNormalAxisCoord pointOf .w = !₂[(1 : ℝ), 0] := by
@@ -56,6 +58,7 @@ noncomputable def endpointNormalAxisAssignment
     (endpointNormalAxisCoord pointOf .Q2)
     tau
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem endpointNormalAxisAssignment_index
     (pointOf : ShadowBank.Label → ℝ²) (tau : ℝ) (v : EndpointVar) :
     endpointNormalAxisAssignment pointOf tau v.index =

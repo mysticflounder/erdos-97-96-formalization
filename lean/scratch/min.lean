@@ -1,4 +1,5 @@
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure
+/-- Indexed scratch Lean structure. -/
 structure Foo (α : Type*) where
   K : Finset α
   K2 : Finset α

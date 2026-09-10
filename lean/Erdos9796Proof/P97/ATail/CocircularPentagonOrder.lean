@@ -36,6 +36,7 @@ theorem positive_parameter_of_strict_halfplane
   have hsum : 0 < ⟪w, p - P⟫_ℝ + ⟪w, q - P⟫_ℝ := add_pos hp hq
   nlinarith [mul_pos hz hsum]
 
+/-- P97 ATail CocircularPentagonOrder theorem. -/
 private theorem areaForm_sub_self (P x : ℝ²) :
     stdOrientation.areaForm (x - P) (x - P) = 0 := by
   have hfirst (z : ℝ²) :
@@ -47,6 +48,7 @@ private theorem areaForm_sub_self (P x : ℝ²) :
   rw [stdOrientation.areaForm_swap x P]
   simp
 
+/-- P97 ATail CocircularPentagonOrder theorem. -/
 private theorem inner_pos_of_positive_sum_direction
     {a b x : ℝ²} {radius t : ℝ}
     (hradius : 0 < radius)
@@ -74,6 +76,7 @@ private theorem inner_pos_of_positive_sum_direction
     ring
   nlinarith [mul_pos ht habinner]
 
+/-- P97 ATail CocircularPentagonOrder theorem. -/
 private theorem coefficient_lt_one_of_positive_sum_direction
     {a b x : ℝ²} {radius t : ℝ}
     (ha : ‖a‖ = radius) (hb : ‖b‖ = radius) (hxnorm : ‖x‖ = radius)
@@ -107,6 +110,7 @@ private theorem coefficient_lt_one_of_positive_sum_direction
   rw [← hscale, hxx] at hmul
   exact (not_lt_of_ge hmul) hsum_gt
 
+/-- P97 ATail CocircularPentagonOrder theorem. -/
 private theorem inner_pos_of_nested_positive_sum_direction
     {a b x : ℝ²} {radius t : ℝ}
     (hradius : 0 < radius)

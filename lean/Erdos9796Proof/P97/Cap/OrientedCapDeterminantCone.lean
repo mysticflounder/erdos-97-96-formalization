@@ -26,6 +26,7 @@ open scoped EuclideanGeometry InnerProductSpace
 
 namespace Problem97
 
+/-- P97 Cap theorem. -/
 private theorem inner_eq_coords (u w : ℝ²) :
     ⟪u, w⟫_ℝ = u 0 * w 0 + u 1 * w 1 := by
   rw [PiLp.inner_apply]

@@ -19,6 +19,7 @@ open ATAILStageOneMinimalDeletionCore
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 theorem fullyDeletionRobustAt_of_minimalDeletionCore_card_ge_two
     {D : CounterexampleData} {U : Finset ℝ²} {center : ℝ²}
     (K : MinimalDeletionCore D.A U center)
@@ -39,6 +40,7 @@ theorem fullyDeletionRobustAt_of_minimalDeletionCore_card_ge_two
         CriticalFourShell.toSelectedFourClass] using
         K.supports_pairwise_disjoint sU tU hstU)
 
+/-- Indexed scratch Lean theorem. -/
 theorem not_isUniqueFourCenter_of_minimalDeletionCore_card_ge_two
     {D : CounterexampleData} {U : Finset ℝ²} {center : ℝ²}
     (K : MinimalDeletionCore D.A U center)

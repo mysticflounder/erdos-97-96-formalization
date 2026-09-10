@@ -74,6 +74,7 @@ def commonMaskMemberMatchesMask (commonMask : CommonMask) (member : String) :
 def commonMaskMembersMatchMask (commonMask : CommonMask) : Bool :=
   commonMask.members.all (commonMaskMemberMatchesMask commonMask)
 
+/-- P97 SurplusCertificate theorem. -/
 private theorem mem_of_containsKey_eq_true {key : List Nat} :
     ∀ {keys : List (List Nat)},
       SurplusCOMPGBank.containsKey key keys = true → key ∈ keys
@@ -88,6 +89,7 @@ private theorem mem_of_containsKey_eq_true {key : List Nat} :
         exact List.mem_cons_of_mem head
           (mem_of_containsKey_eq_true htail)
 
+/-- P97 SurplusCertificate theorem. -/
 private theorem list_all_eq_true_of_mem
     {α : Type _} {p : α → Bool} {a : α} :
     ∀ {items : List α}, items.all p = true → a ∈ items → p a = true
@@ -100,6 +102,7 @@ private theorem list_all_eq_true_of_mem
       · exact hall.1
       · exact list_all_eq_true_of_mem hall.2 htail
 
+/-- P97 SurplusCertificate theorem. -/
 private theorem exists_row_of_shadow_key_mem {key : List Nat}
     (hkey : key ∈ SurplusCOMPGBank.rowShadowKeys) :
     ∃ row : SurplusCOMPGBank.Row,
@@ -109,6 +112,7 @@ private theorem exists_row_of_shadow_key_mem {key : List Nat}
   exact ⟨row, hrow, by
     simpa [SurplusCOMPGBank.Row.shadowKey] using hmask⟩
 
+/-- P97 SurplusCertificate theorem. -/
 private theorem exists_mem_of_containsCertifiedExactPid {pid : String} :
     ∀ {rows : List (Row × Certificate)},
       containsCertifiedExactPid pid rows = true →

@@ -68,6 +68,7 @@ noncomputable def selectedFourSupportIndices
   K.support.attach.image fun z ↦
     B.indexOf ⟨z.1, K.support_subset_A z.2⟩
 
+/-- P97 ATail SelectedFourGeometry theorem. -/
 theorem selectedFourSupportIndices_card
     {A : Finset ℝ²} (B : BoundaryIndexing A)
     {center : ℝ²} (K : SelectedFourClass A center) :

@@ -79,24 +79,29 @@ def reverseData : TwoKalmansonCancellationData Label := {
   path2 := ⟨(8, 14), [], (8, 14)⟩
   path3 := ⟨(5, 16), [.row 5 16 14], (5, 14)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 theorem forwardData_check : forwardData.check forwardChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 theorem reverseData_check : reverseData.check reverseChoices = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 private theorem forwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ forwardChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (choice.center, point) ∈ forwardHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 private theorem reflectedForwardHit_of_choice (choice : RowChoice Label)
     (hchoice : choice ∈ reverseChoices) (point : Label)
     (hpoint : point ∈ choice.support) :
     (Fin.rev choice.center, Fin.rev point) ∈ forwardHits := by
   native_decide +revert
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -105,6 +110,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -113,6 +119,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 private theorem positiveRowsMatch_forward {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -137,6 +144,7 @@ private theorem positiveRowsMatch_forward {A : Finset ℝ²}
       exact ⟨(choice.center, point),
         forwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -161,6 +169,7 @@ private theorem positiveRowsMatch_reverse {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         reflectedForwardHit_of_choice choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 private theorem false_of_secondCancellationHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -186,6 +195,7 @@ def secondCancellationClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom :=
   nogoodClause order (secondCancellationHits order direction)
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 theorem sourceAssign_secondCancellationClause {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) :
@@ -200,10 +210,12 @@ def secondCancellationClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => secondCancellationClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 theorem secondCancellationClauses_length :
     secondCancellationClauses.length = 4 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 theorem sourceAssign_secondCancellationClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ secondCancellationClauses,
@@ -217,6 +229,7 @@ theorem sourceAssign_secondCancellationClauses {A : Finset ℝ²}
 def extendedSecondCancellationCnf : Std.Sat.CNF Atom :=
   extendedGenericCancellationCnf ++ secondCancellationClauses
 
+/-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
 theorem extendedSecondCancellationCnf_clause_count :
     extendedSecondCancellationCnf.length = 5846084 := by
   simp [extendedSecondCancellationCnf,

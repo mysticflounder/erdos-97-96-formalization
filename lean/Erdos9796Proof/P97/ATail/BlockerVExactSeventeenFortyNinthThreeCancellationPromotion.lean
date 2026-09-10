@@ -17,14 +17,17 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenFortyNinthNextZeroAtomPromotion
 open ATailBlockerVExactSeventeenFortyNinthThreeCancellationSchemas
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion def. -/
 def fortyNinthThreeCancellationPromotionClauses : Std.Sat.CNF Atom :=
   fortyNinthThreeCancellationSchemaClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
 theorem fortyNinthThreeCancellationPromotionClauses_length :
     fortyNinthThreeCancellationPromotionClauses.length = 8 := by
   simpa [fortyNinthThreeCancellationPromotionClauses] using
     fortyNinthThreeCancellationSchemaClauses_length
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
 theorem sourceAssign_fortyNinthThreeCancellationPromotionClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthThreeCancellationPromotionClauses,
@@ -32,15 +35,18 @@ theorem sourceAssign_fortyNinthThreeCancellationPromotionClauses
   simpa [fortyNinthThreeCancellationPromotionClauses] using
     sourceAssign_fortyNinthThreeCancellationSchemaClauses source
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion def. -/
 def extendedFortyNinthThreeCancellationPromotionCnf : Std.Sat.CNF Atom :=
   extendedFortyNinthNextZeroAtomPromotionCnf ++ fortyNinthThreeCancellationPromotionClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
 theorem extendedFortyNinthThreeCancellationPromotionCnf_length :
     extendedFortyNinthThreeCancellationPromotionCnf.length = 7198700 := by
   simp only [extendedFortyNinthThreeCancellationPromotionCnf, List.length_append,
     extendedFortyNinthNextZeroAtomPromotionCnf_length,
     fortyNinthThreeCancellationPromotionClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
 theorem sourceAssign_extendedFortyNinthThreeCancellationPromotionCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -54,6 +60,7 @@ theorem sourceAssign_extendedFortyNinthThreeCancellationPromotionCnf
     exact h clause hparent
   · exact sourceAssign_fortyNinthThreeCancellationPromotionClauses source clause hnext
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyNinthThreeCancellationPromotionCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

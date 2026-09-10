@@ -27,11 +27,14 @@ open ATailUniqueFourClassCapDistributionScratch
 open ATailUniqueFourExactTwoBoundaryScratch
 open ATailUniqueFourExactTwoSchemaDecoderScratch
 
+/-- P97 ATail support abbrev. -/
 abbrev Label := P4DirectOuterArcAdapterScratch.Label
 
+/-- P97 ATail support def. -/
 def asLabel (n : Nat) : Label :=
   ⟨n % 11, Nat.mod_lt _ (by omega)⟩
 
+/-- P97 ATail support def. -/
 def fourPointFinset (point0 point1 point2 point3 : Nat) : Finset Label :=
   {asLabel point0, asLabel point1, asLabel point2, asLabel point3}
 
@@ -39,6 +42,7 @@ def fourPointFinset (point0 point1 point2 point3 : Nat) : Finset Label :=
 def bitMaskFinset (mask : Nat) : Finset Label :=
   Finset.univ.filter fun i : Label => mask.testBit i.val
 
+/-- P97 ATail support def. -/
 def toSourceSide : P4CompactAtomBindingScratch.OuterSide →
     ATailUniqueFourExactTwoCurvatureScratch.P5CurvatureSource.OuterSide
   | .left => .left

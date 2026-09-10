@@ -29,6 +29,7 @@ open EuclideanGeometry
 
 namespace Problem97
 
+/-- P97 N4d def. -/
 private noncomputable def vec2 (x y : ℝ) : ℝ² :=
   EuclideanSpace.single 0 x + EuclideanSpace.single 1 y
 
@@ -1021,24 +1022,29 @@ The public theorem below is the reusable geometric heart of the closer.  It
 does not yet prove that an arbitrary `(hRs, hb2_disk)` witness is *at* the
 `root₊` coordinates; that bridge is the next slice. -/
 
+/-- P97 N4d def. -/
 private noncomputable def familyBRadiusSA2Point (s : ℝ) : ℝ² :=
   vec2 (1 - s ^ 2 / 2) (s * Real.sqrt (4 - s ^ 2) / 2)
 
+/-- P97 N4d def. -/
 private noncomputable def familyBRadiusSRootPlusB2Point (s : ℝ) : ℝ² :=
   vec2
     (1 - s ^ 2 / 4 - Real.sqrt 3 * s * Real.sqrt (4 - s ^ 2) / 4)
     (s * Real.sqrt (4 - s ^ 2) / 4 - Real.sqrt 3 * s ^ 2 / 4)
 
+/-- P97 N4d def. -/
 private noncomputable def familyBRadiusSRootMinusB2Point (s : ℝ) : ℝ² :=
   vec2
     (1 - s ^ 2 / 4 + Real.sqrt 3 * s * Real.sqrt (4 - s ^ 2) / 4)
     (s * Real.sqrt (4 - s ^ 2) / 4 + Real.sqrt 3 * s ^ 2 / 4)
 
+/-- P97 N4d def. -/
 private noncomputable def familyBRadiusSRootPlusOtherApex (s : ℝ) : ℝ² :=
   vec2
     (1 + s ^ 2 / 4 - Real.sqrt 3 * s * Real.sqrt (4 - s ^ 2) / 4)
     (-s * (Real.sqrt (4 - s ^ 2) + Real.sqrt 3 * s) / 4)
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_a2_above_axis
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     0 < (familyBRadiusSA2Point s) 1 := by
@@ -1047,6 +1053,7 @@ private theorem familyBRadiusS_a2_above_axis
   simp [familyBRadiusSA2Point, vec2, EuclideanSpace.single_apply]
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_rootPlus_otherApex_below_axis
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     (familyBRadiusSRootPlusOtherApex s) 1 < 0 := by
@@ -1056,6 +1063,7 @@ private theorem familyBRadiusS_rootPlus_otherApex_below_axis
   have hsqrt3 : 0 < Real.sqrt 3 := Real.sqrt_pos.mpr (by norm_num)
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_rootPlus_b2_left_of_v2
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     (familyBRadiusSRootPlusB2Point s) 0 < 1 := by
@@ -1067,6 +1075,7 @@ private theorem familyBRadiusS_rootPlus_b2_left_of_v2
   simp [familyBRadiusSRootPlusB2Point, vec2, EuclideanSpace.single_apply]
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_selector_y_formula
     (s ay : ℝ)
     (hs0 : 0 < s) (hs1 : s < 1)
@@ -1082,6 +1091,7 @@ private theorem familyBRadiusS_selector_y_formula
   have hnonneg : 0 ≤ s * Real.sqrt (4 - s ^ 2) / 2 := by positivity
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_a2_on_v2_circle
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     dist (familyBRadiusSA2Point s) (vec2 1 0) = s := by
@@ -1098,6 +1108,7 @@ private theorem familyBRadiusS_a2_on_v2_circle
   have hnonneg : 0 ≤ dist (familyBRadiusSA2Point s) (vec2 1 0) := dist_nonneg
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_rootPlus_on_v2_circle
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     dist (familyBRadiusSRootPlusB2Point s) (vec2 1 0) = s := by
@@ -1114,6 +1125,7 @@ private theorem familyBRadiusS_rootPlus_on_v2_circle
   have hnonneg : 0 ≤ dist (familyBRadiusSRootPlusB2Point s) (vec2 1 0) := dist_nonneg
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_a2_on_rootPlus_b2_circle
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     dist (familyBRadiusSA2Point s) (familyBRadiusSRootPlusB2Point s) = s := by
@@ -1132,6 +1144,7 @@ private theorem familyBRadiusS_a2_on_rootPlus_b2_circle
     dist_nonneg
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_rootMinus_on_v2_circle
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     dist (familyBRadiusSRootMinusB2Point s) (vec2 1 0) = s := by
@@ -1148,6 +1161,7 @@ private theorem familyBRadiusS_rootMinus_on_v2_circle
   have hnonneg : 0 ≤ dist (familyBRadiusSRootMinusB2Point s) (vec2 1 0) := dist_nonneg
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_a2_on_rootMinus_b2_circle
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     dist (familyBRadiusSA2Point s) (familyBRadiusSRootMinusB2Point s) = s := by
@@ -1166,6 +1180,7 @@ private theorem familyBRadiusS_a2_on_rootMinus_b2_circle
     dist_nonneg
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_rootMinus_above_axis
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     0 < (familyBRadiusSRootMinusB2Point s) 1 := by
@@ -1175,6 +1190,7 @@ private theorem familyBRadiusS_rootMinus_above_axis
   simp [familyBRadiusSRootMinusB2Point, vec2, EuclideanSpace.single_apply]
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_otherApex_on_v2_circle
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     dist (familyBRadiusSRootPlusOtherApex s) (vec2 1 0) = s := by
@@ -1192,6 +1208,7 @@ private theorem familyBRadiusS_otherApex_on_v2_circle
     dist_nonneg
   nlinarith
 
+/-- P97 N4d theorem. -/
 private theorem familyBRadiusS_otherApex_on_rootPlus_b2_circle
     (s : ℝ) (hs0 : 0 < s) (hs1 : s < 1) :
     dist (familyBRadiusSRootPlusOtherApex s) (familyBRadiusSRootPlusB2Point s) = s := by
@@ -1529,16 +1546,19 @@ route.  This pass only banks the stable coordinate facts needed by the final
 closer: both points lie on `circle(v₂,s)`, both stay above the axis on the open
 lens, their mutual chord has length `s`, and they are equidistant from `a₂`. -/
 
+/-- P97 N4d def. -/
 noncomputable def familyBChordEqLowerAnglePoint (s : ℝ) : ℝ² :=
   vec2
     (1 + s * Real.sqrt (4 - s ^ 2) / 4 - Real.sqrt 3 * s ^ 2 / 4)
     (s * (s + Real.sqrt 3 * Real.sqrt (4 - s ^ 2)) / 4)
 
+/-- P97 N4d def. -/
 noncomputable def familyBChordEqHigherAnglePoint (s : ℝ) : ℝ² :=
   vec2
     (1 - s * Real.sqrt (4 - s ^ 2) / 4 - Real.sqrt 3 * s ^ 2 / 4)
     (s * (Real.sqrt 3 * Real.sqrt (4 - s ^ 2) - s) / 4)
 
+/-- P97 N4d theorem. -/
 private theorem familyBChordEq_sqrt3_sq : (Real.sqrt 3 : ℝ) ^ 2 = 3 := by
   rw [Real.sq_sqrt]
   norm_num
@@ -1720,6 +1740,7 @@ theorem familyBChordEq_coeff_order
 set_option maxHeartbeats 4000000 in
 -- The one-variable open-lens positivity for the lower chord-equality point is
 -- algebraically heavier than the surrounding support lemmas.
+/-- P97 N4d theorem. -/
 private theorem familyBChordEq_core_inner_pos
     (s : ℝ) (hsHalf : (1 : ℝ) / 2 < s) (hs1 : s < 1) :
     0 < ((4 - Real.sqrt 3) * s - s ^ 2) + Real.sqrt (4 - s ^ 2) * (1 - Real.sqrt 3 * s) := by
@@ -1835,6 +1856,7 @@ private theorem familyBChordEq_core_inner_pos
 
 set_option maxHeartbeats 4000000 in
 -- The lower `α - π / 6` point sits strictly outside the open-lens MEC disk.
+/-- P97 N4d theorem. -/
 theorem qEqE_b2_familyB_chordEq_lower_halfplane_pos
     (s vx vy : ℝ)
     (hsHalf : (1 : ℝ) / 2 < s) (hs1 : s < 1)
@@ -1962,6 +1984,7 @@ mutual chord has length `s`, then they are exactly the explicit
 set_option maxHeartbeats 4000000 in
 -- The algebraic branch reconstruction here expands several explicit coordinate
 -- identities; the default heartbeat budget is not enough for this one theorem.
+/-- P97 N4d theorem. -/
 theorem qEqE_b2_familyB_chordEq_classify
     (s ax ay bx yb qx qy : ℝ)
     (hsHalf : (1 : ℝ) / 2 < s) (hs1 : s < 1)

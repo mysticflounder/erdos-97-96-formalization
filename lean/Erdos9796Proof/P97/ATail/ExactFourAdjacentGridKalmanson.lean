@@ -433,6 +433,7 @@ structure SharedBoundaryRadialOrder
             rhoRightIndex < rhoLeftIndex ∧
             rhoLeftIndex < radiusLeftIndex)))
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 private theorem cyclicOrder_of_indices {A : Finset ℝ²}
     (B : BoundaryIndexing A) {ia ib ic id : Fin B.n}
     (hiab : ia < ib) (hibc : ib < ic) (hicd : ic < id) :
@@ -497,6 +498,7 @@ theorem SharedBoundaryRadialOrder.radialCyclicOrder
     (O : SharedBoundaryRadialOrder H B) : RadialCyclicOrder H :=
   ⟨O.cyclicOrder⟩
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 private theorem strictKalmanson_of_cyclicOrder {A : Finset ℝ²}
     (hconv : ConvexIndep A) {a b c d : ℝ²}
     (hcyclic : ConvexCyclicOrder A a b c d) :
@@ -534,6 +536,7 @@ open Census554.ZeroCutBoundaryIndexing
 open Census554.CapSelectedGeometry
 open SurplusCapPacket
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 private theorem rightAdjacentIndex_oppIndex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     rightAdjacentIndex S.oppIndex1 = S.surplusIdx := by
@@ -542,6 +545,7 @@ private theorem rightAdjacentIndex_oppIndex1
     simp only [rightAdjacentIndex, SurplusCapPacket.oppIndex1, hi,
       Fin.val_zero, Fin.val_one, Fin.val_two] <;> rfl
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 private theorem radialCyclicOrder_of_direct
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {radius ρ : ℝ}
@@ -785,6 +789,7 @@ private theorem radialCyclicOrder_of_direct
           lt_trans hleft_lt_iv hiv_lt_right, hiρRirR⟩⟩ }
     exact P.radialCyclicOrder
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 private theorem radialCyclicOrder_of_mirror
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {radius ρ : ℝ}
@@ -1119,6 +1124,7 @@ theorem exists_fourHits_strict_cross_distance_oppIndex1
 
 /-! ## Source-clean producer at the second non-surplus cap -/
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 private theorem radialCyclicOrder_of_oppIndex2_direct
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {radius ρ : ℝ}
@@ -1428,6 +1434,7 @@ private theorem radialCyclicOrder_of_oppIndex2_direct
           lt_trans hleft_lt_jw hjw_lt_right, hiρRirR⟩⟩ }
     exact P.radialCyclicOrder
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 private theorem radialCyclicOrder_of_oppIndex2_mirror
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {radius ρ : ℝ}
@@ -1678,6 +1685,7 @@ private theorem radialCyclicOrder_of_oppIndex2_mirror
 /-! The public second-opposite-cap producer is intentionally separate from the
 first-cap producer above: its direct branch recuts at the first opposite apex,
 while its mirror branch consumes the native zero-cut intervals. -/
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 theorem exists_fourHits_radialCyclicOrder_oppIndex2
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {radius ρ : ℝ}
@@ -1693,6 +1701,7 @@ theorem exists_fourHits_radialCyclicOrder_oppIndex2
   · exact ⟨H, radialCyclicOrder_of_oppIndex2_mirror D S G H
       hradius_pos hρ_pos hne B hn iv iw hu hv hw hmirror⟩
 
+/-- P97 ATail ExactFourAdjacentGridKalmanson theorem. -/
 theorem exists_fourHits_strict_cross_distance_oppIndex2
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     {radius ρ : ℝ}

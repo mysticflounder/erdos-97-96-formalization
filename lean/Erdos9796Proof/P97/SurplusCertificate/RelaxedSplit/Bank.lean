@@ -24,6 +24,7 @@ namespace RelaxedSplit
 
 namespace Bank
 
+/-- P97 SurplusCertificate abbrev. -/
 abbrev Certificate := VerifiedCertificate
 
 /-- One split decision on the path to a singleton relaxed split leaf. -/
@@ -210,6 +211,7 @@ def containsString (needle : String) : List String → Bool
 def relaxedSplitRowIdInBank (id : String) : Bool :=
   containsString id relaxedSplitRowIds
 
+/-- P97 SurplusCertificate theorem. -/
 private theorem mem_of_containsString_eq_true {needle : String} :
     ∀ {items : List String}, containsString needle items = true → needle ∈ items
   | [], hcontains => by
@@ -222,6 +224,7 @@ private theorem mem_of_containsString_eq_true {needle : String} :
         exact List.mem_cons_of_mem head
           (mem_of_containsString_eq_true htail)
 
+/-- P97 SurplusCertificate theorem. -/
 private theorem list_all_eq_true_of_mem
     {α : Type _} {p : α → Bool} {a : α} :
     ∀ {items : List α}, items.all p = true → a ∈ items → p a = true
@@ -234,6 +237,7 @@ private theorem list_all_eq_true_of_mem
       · exact hall.1
       · exact list_all_eq_true_of_mem hall.2 htail
 
+/-- P97 SurplusCertificate theorem. -/
 private theorem allPairCertificatesChecked :
     ∀ rows : List (Row × Certificate),
       rows.all (fun rowCert => rowCert.2.check) = true

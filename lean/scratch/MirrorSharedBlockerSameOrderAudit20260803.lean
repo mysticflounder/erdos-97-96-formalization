@@ -15,6 +15,7 @@ open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 private theorem audit_oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -24,6 +25,7 @@ private theorem audit_oppApex1_mem_A
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- Indexed scratch Lean theorem. -/
 private theorem audit_oppApex1_eq_oppositeVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by

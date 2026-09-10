@@ -151,6 +151,7 @@ inductive ExactFiveDistinctStrictThreeCenterAlternative
         CommonDeletionTwoCenterPacket D H N.retained
           S.oppApex1 S.oppApex2)
 
+/-- P97 ATail ExactFiveDistinctThreeCenterContinuation theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -160,6 +161,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail ExactFiveDistinctThreeCenterContinuation theorem. -/
 private theorem oppApex1_ne_oppApex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ≠ S.oppApex2 := by
@@ -172,6 +174,7 @@ private theorem oppApex1_ne_oppApex2
   · simpa [SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, hi] using
       S.triangle.v12_ne
 
+/-- P97 ATail ExactFiveDistinctThreeCenterContinuation theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -348,6 +351,7 @@ theorem nonempty_strictThreeCenterAlternative
         hfreshK₀ hfreshK₁ hfreshK₂).some
     exact ⟨.distinctFresh fresh hfreshNeDeleted packet⟩
 
+/-- P97 ATail ExactFiveDistinctThreeCenterContinuation theorem. -/
 private theorem nonempty_normalForm_of_orientedSources
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

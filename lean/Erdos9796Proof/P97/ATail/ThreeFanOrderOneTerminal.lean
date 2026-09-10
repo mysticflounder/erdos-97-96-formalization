@@ -48,6 +48,7 @@ abbrev threeFanOrderOneOrbit (x b c y d z : ThreeFanPos) : Prop :=
     (threeFanOrder₁ z c d x b y ∨ threeFanReverseOrder₁ z c d x b y) ∨
     (threeFanOrder₁ z d c y b x ∨ threeFanReverseOrder₁ z d c y b x))
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem reflection_coordinates_at_origin
     {ax ay yx yy bx byc : ℝ}
     (hr_pos : 0 < yx ^ 2 + yy ^ 2)
@@ -130,6 +131,7 @@ private theorem reflection_coordinates_at_origin
         _ = 2 * (ax * yx + ay * yy) * yy -
             (yx ^ 2 + yy ^ 2) * ay := by ring
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem false_of_normalized_threeFan_order_one
     {A B C Y D : ℝ²}
     (hXA_XB : dist (pt 0 0) A = dist (pt 0 0) B)
@@ -479,6 +481,7 @@ private theorem false_of_normalized_threeFan_order_one
   exact Census554.EqualityCore.false_of_threeFan_canonical_exceptional_order_scalar
     ha_pos ha_lt_one hu_pos hu_lt_one ha_lt_u hAXY hAYZ hE₀ hE₁ hh_pos hv_pos
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem false_of_threeFan_order_one_oriented
     {A X B C Y D Z : ℝ²}
     (hXZ_ne : X ≠ Z)
@@ -574,6 +577,7 @@ theorem false_of_threeFan_order_one
     (hneg_of_ccw hinj hccw hbc hcy)
     (hneg_of_ccw hinj hccw hcy hyd)
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem signedArea2_pos_of_ccw_swap_last
     {n : ℕ} {φ : Fin n → ℝ²}
     (hinj : Function.Injective φ)
@@ -589,6 +593,7 @@ private theorem signedArea2_pos_of_ccw_swap_last
   rw [hswap]
   linarith
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem signedArea2_pos_of_ccw_descending
     {n : ℕ} {φ : Fin n → ℝ²}
     (hinj : Function.Injective φ)
@@ -656,6 +661,7 @@ theorem false_of_threeFan_reverse_order_one
   · exact reflect_area_neg (signedArea2_pos_of_ccw_descending hinj hccw hyc hcb)
   · exact reflect_area_neg (signedArea2_pos_of_ccw_descending hinj hccw hdy hyc)
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem threeFanEqualities_perm₂
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : threeFanEqualities φ 0 x b c y d z) :
@@ -663,6 +669,7 @@ private theorem threeFanEqualities_perm₂
   rcases h with ⟨h₁, h₂, h₃, h₄, h₅, h₆⟩
   exact ⟨h₁.trans h₂, h₂.symm, h₅, h₆, h₃, h₄⟩
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem threeFanEqualities_perm₃
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : threeFanEqualities φ 0 x b c y d z) :
@@ -670,6 +677,7 @@ private theorem threeFanEqualities_perm₃
   rcases h with ⟨h₁, h₂, h₃, h₄, h₅, h₆⟩
   exact ⟨h₃, h₄, h₁, h₂, h₅.trans h₆, h₆.symm⟩
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem threeFanEqualities_perm₄
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : threeFanEqualities φ 0 x b c y d z) :
@@ -677,6 +685,7 @@ private theorem threeFanEqualities_perm₄
   rcases h with ⟨h₁, h₂, h₃, h₄, h₅, h₆⟩
   exact ⟨h₃.trans h₄, h₄.symm, h₅.trans h₆, h₆.symm, h₁, h₂⟩
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem threeFanEqualities_perm₅
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : threeFanEqualities φ 0 x b c y d z) :
@@ -684,6 +693,7 @@ private theorem threeFanEqualities_perm₅
   rcases h with ⟨h₁, h₂, h₃, h₄, h₅, h₆⟩
   exact ⟨h₅, h₆, h₁.trans h₂, h₂.symm, h₃.trans h₄, h₄.symm⟩
 
+/-- P97 ATail ThreeFanOrderOneTerminal theorem. -/
 private theorem threeFanEqualities_perm₆
     {φ : ThreeFanPos → ℝ²} {x b c y d z : ThreeFanPos}
     (h : threeFanEqualities φ 0 x b c y d z) :

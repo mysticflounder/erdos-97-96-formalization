@@ -36,6 +36,7 @@ open ATailCriticalPairFrontier
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail FirstApexInteriorPairGeometry theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex_oppIndex1'
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -112,6 +113,7 @@ private theorem false_of_two_cap_centers_equidistant_outside_pair
       (by simpa [hia] using hapexEq)
       (by simpa [hic] using hcEq)
 
+/-- P97 ATail FirstApexInteriorPairGeometry theorem. -/
 private theorem interior_oppIndex1_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -214,6 +216,7 @@ theorem bisectorCenter_mem_firstApexInterior
 /- The strict form of the cap inscribed-angle inequality at the first
    opposite apex.  This is the positive antecedent required by the exact-five
    radius-drop consumer. -/
+/-- P97 ATail FirstApexInteriorPairGeometry theorem. -/
 theorem inner_pos_of_oppApex1_capInterior_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {q w : ℝ²}
@@ -310,6 +313,7 @@ theorem inner_pos_of_oppApex1_capInterior_pair
 /- The ordered-cap nonacute inequality is exported at the same frontier
    interface as the interior localization above, so the later radius-drop
    consumer need not reconstruct the cap order. -/
+/-- P97 ATail FirstApexInteriorPairGeometry theorem. -/
 theorem bisectorCenter_inner_nonpos_firstApexInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {q w c : ℝ²}
@@ -491,6 +495,7 @@ theorem crossDeletion_survives_of_obstructionCenters_ne
           P hr hfive hwq (by simpa [P'] using hqw))
         hcenters
 
+/-- P97 ATail FirstApexInteriorPairGeometry theorem. -/
 private theorem oppApex1_mem_A'
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -500,6 +505,7 @@ private theorem oppApex1_mem_A'
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail FirstApexInteriorPairGeometry theorem. -/
 private theorem obstructionCenter_ne_oppApex1_of_exactFive
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
     {H : CriticalShellSystem D.A}

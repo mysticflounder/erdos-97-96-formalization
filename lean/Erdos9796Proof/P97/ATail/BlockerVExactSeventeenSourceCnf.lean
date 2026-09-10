@@ -28,9 +28,12 @@ inductive Atom where
   | namedOrder (order : NamedOrder)
 deriving DecidableEq, Fintype, Repr
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnf abbrev. -/
 abbrev Lit := Atom × Bool
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnf def. -/
 def pos (atom : Atom) : Lit := (atom, true)
+/-- P97 ATail BlockerVExactSeventeenSourceCnf def. -/
 def neg (atom : Atom) : Lit := (atom, false)
 
 /-- All labels, in the canonical `Fin` order. -/

@@ -80,6 +80,7 @@ include hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq T
 
 omit hρne hfrontierFour hρfour hfrontierInteriorEq hρInteriorEq
   hpairsDisjoint LPρ hLPρ MPρ LP hLP MP in
+/-- Indexed scratch Lean theorem. -/
 theorem audit_freshThird_fourOmissionBlockerMultiplicityIngress
     (Q : FreshThirdBlockerFiber P Pρ)
     {center : ℝ²}

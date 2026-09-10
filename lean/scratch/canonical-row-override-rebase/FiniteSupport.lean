@@ -4,6 +4,7 @@ open scoped Classical
 
 namespace CanonicalRowOverrideRebase
 
+/-- Indexed scratch Lean theorem. -/
 theorem exists_second_outside_two_pairs
     {α : Type*} [DecidableEq α]
     (K : Finset α) (q a b c d : α)

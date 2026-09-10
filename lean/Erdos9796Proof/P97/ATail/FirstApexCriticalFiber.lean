@@ -30,12 +30,14 @@ open ATailOrientedPhysicalApexIngress
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail FirstApexCriticalFiber def. -/
 private def transportSelectedFourClass
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
     SelectedFourClass A center₂ :=
   Eq.mp (congrArg (SelectedFourClass A) hcenter) K
 
+/-- P97 ATail FirstApexCriticalFiber theorem. -/
 @[simp] private theorem transportSelectedFourClass_support
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
@@ -43,6 +45,7 @@ private def transportSelectedFourClass
   cases hcenter
   rfl
 
+/-- P97 ATail FirstApexCriticalFiber theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by

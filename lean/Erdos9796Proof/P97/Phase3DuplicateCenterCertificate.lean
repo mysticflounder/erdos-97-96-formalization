@@ -37,11 +37,13 @@ inductive PrimitiveEqualityStep where
   | flip (first second : Label)
 deriving DecidableEq, Repr
 
+/-- P97 Phase3DuplicateCenterCertificate def. -/
 def PrimitiveEqualityStep.source :
     PrimitiveEqualityStep → Edge Label
   | .row center first _ => (center, first)
   | .flip first second => (first, second)
 
+/-- P97 Phase3DuplicateCenterCertificate def. -/
 def PrimitiveEqualityStep.target :
     PrimitiveEqualityStep → Edge Label
   | .row center _ second => (center, second)

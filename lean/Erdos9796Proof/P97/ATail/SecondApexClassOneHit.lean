@@ -63,6 +63,7 @@ theorem selectedClass_oppApex2_inter_oppCap1_card_le_one
   simpa [withPacket, SelectedClass, dist_comm] using
     U2NonSurplusSqueeze.oppApex2_otherCap_one_hit (withPacket D S) radius
 
+/-- P97 ATail SecondApexClassOneHit theorem. -/
 private theorem false_of_pair_subset_card_le_one
     {T : Finset ℝ²} {x y : ℝ²} (hne : x ≠ y)
     (hx : x ∈ T) (hy : y ∈ T) (hcard : T.card ≤ 1) : False := by

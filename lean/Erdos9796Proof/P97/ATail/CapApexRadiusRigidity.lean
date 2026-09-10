@@ -43,6 +43,7 @@ theorem capInteriorByIndex_card_add_two
       U1OppositeCapLowerBounds.interior3] using
       U1OppositeCapLowerBounds.interior3_card_add_two S.partition
 
+/-- P97 ATail CapApexRadiusRigidity theorem. -/
 private theorem selectedClass_card_le_of_small_cap
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3) {r : ℝ} (hr : 0 < r)

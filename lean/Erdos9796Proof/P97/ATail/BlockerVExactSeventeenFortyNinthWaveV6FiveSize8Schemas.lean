@@ -17,23 +17,28 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas abbrev. -/
 private abbrev Hit := Label × Label
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence00ForwardChoices : List (RowChoice Label) :=
   [{ center := 1, support := {2, 9} },
    { center := 2, support := {1, 9} },
    { center := 13, support := {2, 3} },
    { center := 16, support := {1, 3} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence00ReverseChoices : List (RowChoice Label) :=
   [{ center := 0, support := {13, 15} },
    { center := 3, support := {13, 14} },
    { center := 14, support := {7, 15} },
    { center := 15, support := {7, 14} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence00Hits : List Hit :=
   [(1, 2), (1, 9), (2, 1), (2, 9), (13, 2), (13, 3), (16, 1), (16, 3)]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence00ForwardData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨1, 2, 9, 13⟩, form := .innerOuter, weight := 1 },
@@ -43,6 +48,7 @@ def fortyNinthWaveV6Size8Occurrence00ForwardData :
        { left := (3, 13), right := (2, 13), path := ⟨(3, 13), [.flip 3 13, .row 13 3 2, .flip 13 2], (2, 13)⟩ },
        { left := (1, 16), right := (3, 16), path := ⟨(1, 16), [.flip 1 16, .row 16 1 3, .flip 16 3], (3, 16)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence00ReverseData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 3, 13, 14⟩, form := .innerOuter, weight := 1 },
@@ -52,6 +58,7 @@ def fortyNinthWaveV6Size8Occurrence00ReverseData :
        { left := (7, 14), right := (7, 15), path := ⟨(7, 14), [.flip 7 14, .row 14 7 15, .flip 14 15, .row 15 14 7, .flip 15 7], (7, 15)⟩ },
        { left := (0, 15), right := (0, 13), path := ⟨(0, 15), [.row 0 15 13], (0, 13)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence00 : WeightedSourceOccurrence :=
   { hits := fortyNinthWaveV6Size8Occurrence00Hits
     forwardChoices := fortyNinthWaveV6Size8Occurrence00ForwardChoices
@@ -59,21 +66,25 @@ def fortyNinthWaveV6Size8Occurrence00 : WeightedSourceOccurrence :=
     forwardData := fortyNinthWaveV6Size8Occurrence00ForwardData
     reverseData := fortyNinthWaveV6Size8Occurrence00ReverseData }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence01ForwardChoices : List (RowChoice Label) :=
   [{ center := 3, support := {4, 10} },
    { center := 4, support := {11, 14} },
    { center := 11, support := {4, 14} },
    { center := 14, support := {10, 11} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence01ReverseChoices : List (RowChoice Label) :=
   [{ center := 2, support := {5, 6} },
    { center := 5, support := {2, 12} },
    { center := 12, support := {2, 5} },
    { center := 13, support := {6, 12} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence01Hits : List Hit :=
   [(3, 4), (3, 10), (4, 11), (4, 14), (11, 4), (11, 14), (14, 10), (14, 11)]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence01ForwardData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨3, 4, 10, 15⟩, form := .adjacentSides, weight := 1 },
@@ -83,6 +94,7 @@ def fortyNinthWaveV6Size8Occurrence01ForwardData :
        { left := (10, 14), right := (4, 14), path := ⟨(10, 14), [.flip 10 14, .row 14 10 11, .flip 14 11, .row 11 14 4, .flip 11 4, .row 4 11 14], (4, 14)⟩ },
        { left := (4, 15), right := (4, 15), path := ⟨(4, 15), [], (4, 15)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence01ReverseData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨2, 10, 12, 13⟩, form := .adjacentSides, weight := 1 },
@@ -92,6 +104,7 @@ def fortyNinthWaveV6Size8Occurrence01ReverseData :
        { left := (2, 6), right := (2, 12), path := ⟨(2, 6), [.row 2 6 5, .flip 2 5, .row 5 2 12, .flip 5 12, .row 12 5 2, .flip 12 2], (2, 12)⟩ },
        { left := (10, 13), right := (10, 13), path := ⟨(10, 13), [], (10, 13)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence01 : WeightedSourceOccurrence :=
   { hits := fortyNinthWaveV6Size8Occurrence01Hits
     forwardChoices := fortyNinthWaveV6Size8Occurrence01ForwardChoices
@@ -99,21 +112,25 @@ def fortyNinthWaveV6Size8Occurrence01 : WeightedSourceOccurrence :=
     forwardData := fortyNinthWaveV6Size8Occurrence01ForwardData
     reverseData := fortyNinthWaveV6Size8Occurrence01ReverseData }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence02ForwardChoices : List (RowChoice Label) :=
   [{ center := 3, support := {10, 15} },
    { center := 6, support := {7, 15} },
    { center := 7, support := {6, 10} },
    { center := 10, support := {6, 7} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence02ReverseChoices : List (RowChoice Label) :=
   [{ center := 6, support := {9, 10} },
    { center := 9, support := {6, 10} },
    { center := 10, support := {1, 9} },
    { center := 13, support := {1, 6} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence02Hits : List Hit :=
   [(3, 10), (3, 15), (6, 7), (6, 15), (7, 6), (7, 10), (10, 6), (10, 7)]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence02ForwardData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨3, 6, 11, 15⟩, form := .innerOuter, weight := 1 },
@@ -123,6 +140,7 @@ def fortyNinthWaveV6Size8Occurrence02ForwardData :
        { left := (6, 10), right := (6, 15), path := ⟨(6, 10), [.flip 6 10, .row 10 6 7, .flip 10 7, .row 7 10 6, .flip 7 6, .row 6 7 15], (6, 15)⟩ },
        { left := (3, 11), right := (3, 11), path := ⟨(3, 11), [], (3, 11)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence02ReverseData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨1, 2, 10, 13⟩, form := .innerOuter, weight := 1 },
@@ -132,6 +150,7 @@ def fortyNinthWaveV6Size8Occurrence02ReverseData :
        { left := (6, 10), right := (1, 10), path := ⟨(6, 10), [.row 6 10 9, .flip 6 9, .row 9 6 10, .flip 9 10, .row 10 9 1, .flip 10 1], (1, 10)⟩ },
        { left := (2, 13), right := (2, 13), path := ⟨(2, 13), [], (2, 13)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence02 : WeightedSourceOccurrence :=
   { hits := fortyNinthWaveV6Size8Occurrence02Hits
     forwardChoices := fortyNinthWaveV6Size8Occurrence02ForwardChoices
@@ -139,21 +158,25 @@ def fortyNinthWaveV6Size8Occurrence02 : WeightedSourceOccurrence :=
     forwardData := fortyNinthWaveV6Size8Occurrence02ForwardData
     reverseData := fortyNinthWaveV6Size8Occurrence02ReverseData }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence03ForwardChoices : List (RowChoice Label) :=
   [{ center := 7, support := {6, 10} },
    { center := 10, support := {6, 7} },
    { center := 12, support := {7, 11} },
    { center := 14, support := {10, 11} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence03ReverseChoices : List (RowChoice Label) :=
   [{ center := 2, support := {5, 6} },
    { center := 4, support := {5, 9} },
    { center := 6, support := {9, 10} },
    { center := 9, support := {6, 10} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence03Hits : List Hit :=
   [(7, 6), (7, 10), (10, 6), (10, 7), (12, 7), (12, 11), (14, 10), (14, 11)]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence03ForwardData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨6, 7, 10, 12⟩, form := .adjacentSides, weight := 1 },
@@ -163,6 +186,7 @@ def fortyNinthWaveV6Size8Occurrence03ForwardData :
        { left := (11, 12), right := (7, 12), path := ⟨(11, 12), [.flip 11 12, .row 12 11 7, .flip 12 7], (7, 12)⟩ },
        { left := (10, 14), right := (11, 14), path := ⟨(10, 14), [.flip 10 14, .row 14 10 11, .flip 14 11], (11, 14)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence03ReverseData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨4, 6, 9, 10⟩, form := .adjacentSides, weight := 1 },
@@ -172,6 +196,7 @@ def fortyNinthWaveV6Size8Occurrence03ReverseData :
        { left := (4, 5), right := (4, 9), path := ⟨(4, 5), [.row 4 5 9], (4, 9)⟩ },
        { left := (2, 6), right := (2, 5), path := ⟨(2, 6), [.row 2 6 5], (2, 5)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence03 : WeightedSourceOccurrence :=
   { hits := fortyNinthWaveV6Size8Occurrence03Hits
     forwardChoices := fortyNinthWaveV6Size8Occurrence03ForwardChoices
@@ -179,21 +204,25 @@ def fortyNinthWaveV6Size8Occurrence03 : WeightedSourceOccurrence :=
     forwardData := fortyNinthWaveV6Size8Occurrence03ForwardData
     reverseData := fortyNinthWaveV6Size8Occurrence03ReverseData }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence04ForwardChoices : List (RowChoice Label) :=
   [{ center := 7, support := {6, 10} },
    { center := 10, support := {6, 7} },
    { center := 14, support := {3, 10} },
    { center := 16, support := {3, 7} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence04ReverseChoices : List (RowChoice Label) :=
   [{ center := 0, support := {9, 13} },
    { center := 2, support := {6, 13} },
    { center := 6, support := {9, 10} },
    { center := 9, support := {6, 10} }]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence04Hits : List Hit :=
   [(7, 6), (7, 10), (10, 6), (10, 7), (14, 3), (14, 10), (16, 3), (16, 7)]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence04ForwardData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨6, 7, 10, 16⟩, form := .adjacentSides, weight := 1 },
@@ -203,6 +232,7 @@ def fortyNinthWaveV6Size8Occurrence04ForwardData :
        { left := (10, 14), right := (3, 14), path := ⟨(10, 14), [.flip 10 14, .row 14 10 3, .flip 14 3], (3, 14)⟩ },
        { left := (3, 16), right := (7, 16), path := ⟨(3, 16), [.flip 3 16, .row 16 3 7, .flip 16 7], (7, 16)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence04ReverseData :
     WeightedKalmansonCancellationData Label :=
   { terms := [{ quad := ⟨0, 6, 9, 10⟩, form := .adjacentSides, weight := 1 },
@@ -212,6 +242,7 @@ def fortyNinthWaveV6Size8Occurrence04ReverseData :
        { left := (2, 6), right := (2, 13), path := ⟨(2, 6), [.row 2 6 13], (2, 13)⟩ },
        { left := (0, 13), right := (0, 9), path := ⟨(0, 13), [.row 0 13 9], (0, 9)⟩ }] }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6Size8Occurrence04 : WeightedSourceOccurrence :=
   { hits := fortyNinthWaveV6Size8Occurrence04Hits
     forwardChoices := fortyNinthWaveV6Size8Occurrence04ForwardChoices
@@ -220,28 +251,36 @@ def fortyNinthWaveV6Size8Occurrence04 : WeightedSourceOccurrence :=
     reverseData := fortyNinthWaveV6Size8Occurrence04ReverseData }
 
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6Size8Occurrence00_check : fortyNinthWaveV6Size8Occurrence00.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6Size8Occurrence01_check : fortyNinthWaveV6Size8Occurrence01.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6Size8Occurrence02_check : fortyNinthWaveV6Size8Occurrence02.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6Size8Occurrence03_check : fortyNinthWaveV6Size8Occurrence03.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6Size8Occurrence04_check : fortyNinthWaveV6Size8Occurrence04.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6FiveSize8Occurrences : List WeightedSourceOccurrence :=
   [fortyNinthWaveV6Size8Occurrence00, fortyNinthWaveV6Size8Occurrence01, fortyNinthWaveV6Size8Occurrence02, fortyNinthWaveV6Size8Occurrence03, fortyNinthWaveV6Size8Occurrence04]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6FiveSize8Occurrences_length :
     fortyNinthWaveV6FiveSize8Occurrences.length = 5 := by
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6FiveSize8Occurrences_check :
     ∀ occurrence ∈ fortyNinthWaveV6FiveSize8Occurrences,
       occurrence.check = true := by
@@ -255,16 +294,19 @@ theorem fortyNinthWaveV6FiveSize8Occurrences_check :
   · exact fortyNinthWaveV6Size8Occurrence03_check
   · exact fortyNinthWaveV6Size8Occurrence04_check
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas def. -/
 def fortyNinthWaveV6FiveSize8SchemaClauses : Std.Sat.CNF Atom :=
   fortyNinthWaveV6FiveSize8Occurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order => directions.map fun direction =>
       weightedOccurrenceClause order direction occurrence
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem fortyNinthWaveV6FiveSize8SchemaClauses_length :
     fortyNinthWaveV6FiveSize8SchemaClauses.length = 20 := by
   simp [fortyNinthWaveV6FiveSize8SchemaClauses,
     fortyNinthWaveV6FiveSize8Occurrences, namedOrders, directions]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas theorem. -/
 theorem sourceAssign_fortyNinthWaveV6FiveSize8SchemaClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV6FiveSize8SchemaClauses,

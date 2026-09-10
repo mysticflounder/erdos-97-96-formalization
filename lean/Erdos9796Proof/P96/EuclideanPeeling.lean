@@ -81,8 +81,10 @@ section UnitDistNumBridge
 variable {X : Type*} [MetricSpace X]
 
 omit [MetricSpace X] in
+/-- P96 EuclideanPeeling lemma. -/
 private lemma sym2_mk_out (z : Sym2 X) : s(z.out.1, z.out.2) = z := z.out_eq
 
+/-- P96 EuclideanPeeling lemma. -/
 private lemma dist_out_mk (a b : X) :
     dist (s(a, b) : Sym2 X).out.1 (s(a, b) : Sym2 X).out.2 = dist a b := by
   rcases Sym2.eq_iff.mp (sym2_mk_out (s(a, b) : Sym2 X)) with ⟨h1, h2⟩ | ⟨h1, h2⟩
@@ -164,6 +166,7 @@ The unit-distance neighbours of `p` in `A` and in `A.erase p` are the
 same finset, because `dist p p = 0 ≠ 1` already excludes `p` itself
 from the filter. -/
 
+/-- P96 EuclideanPeeling lemma. -/
 lemma card_filter_unit_erase (A : Finset ℝ²) (p : ℝ²) :
     ((A.erase p).filter (fun q => dist p q = 1)).card =
       (A.filter (fun q => dist p q = 1)).card := by
@@ -182,6 +185,7 @@ ordered unit-distance pairs from `A.offDiag`. The proof decomposes
 `A.offDiag` along `Finset.offDiag_insert` into three pairwise-disjoint
 pieces, then carries the filter through each. -/
 
+/-- P96 EuclideanPeeling lemma. -/
 lemma doubledUnitCount_erase (A : Finset ℝ²) (p : ℝ²) (hp : p ∈ A) :
     doubledUnitCount A =
       doubledUnitCount (A.erase p) +

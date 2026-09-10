@@ -45,6 +45,7 @@ open Census554.CapSelectedFiniteCode
 
 set_option maxHeartbeats 0 in
 -- Case-splits every left seed placement onto its native placement closure.
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointLeftPlacementCheck_of_seed
     {escapee fourth deleted : Label}
     (he : escapee ∈ intO2) (hf : fourth ∈ insert 2 intS)
@@ -87,6 +88,7 @@ theorem endpointLeftPlacementCheck_of_seed
 
 set_option maxHeartbeats 0 in
 -- Case-splits every right seed placement onto its native placement closure.
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointRightPlacementCheck_of_seed
     {escapee fourth deleted : Label}
     (he : escapee ∈ intO1) (hf : fourth ∈ insert 1 intS)

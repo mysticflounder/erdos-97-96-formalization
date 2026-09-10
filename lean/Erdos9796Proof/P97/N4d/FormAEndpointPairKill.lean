@@ -21,6 +21,7 @@ namespace Problem97
 
 namespace FiniteEndpointShell
 
+/-- P97 N4d theorem. -/
 private theorem hneg_of_cyclicShift_local'
     {n : ℕ} {phi : Fin n → ℝ²}
     (hneg : ∀ {i j k : Fin n}, i < j → j < k →
@@ -102,6 +103,7 @@ private theorem hneg_of_cyclicShift_local'
           omega
         exact hneg hij' hjk'
 
+/-- P97 N4d theorem. -/
 private theorem supportCap_interval_of_oppositeFirst_local'
     {A C : Finset ℝ²} {n : ℕ} {phi : Fin n → ℝ²}
     {u v w : ℝ²}
@@ -472,6 +474,7 @@ private theorem c1_vertex_same_open_side_as_v2'
       simpa [hcyc] using hv2_side'
     exact mul_pos hp_side hv2_side
 
+/-- P97 N4d theorem. -/
 private theorem c3_sameSide_core' (p q s t c : ℝ)
     (hCT : 0 ≤ c * t)
     (hARC : t * (2 * p * t - 2 * q * s - q + t) < 0)

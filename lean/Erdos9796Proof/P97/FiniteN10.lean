@@ -74,6 +74,7 @@ theorem false_of_card_eq_ten_and_u2Statement
 
 /-! ### Exact-ten U2 assembly -/
 
+/-- P97 FiniteN10 theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -82,6 +83,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi]
 
+/-- P97 FiniteN10 theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -90,6 +92,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2
     simp [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi]
 
+/-- P97 FiniteN10 theorem. -/
 private theorem oppositeVertexByIndex_oppIndex1_eq_oppApex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppositeVertexByIndex S.oppIndex1 = S.oppApex1 := by
@@ -98,6 +101,7 @@ private theorem oppositeVertexByIndex_oppIndex1_eq_oppApex1
     simp [SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1, hi]
 
+/-- P97 FiniteN10 theorem. -/
 private theorem oppositeVertexByIndex_oppIndex2_eq_oppApex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppositeVertexByIndex S.oppIndex2 = S.oppApex2 := by

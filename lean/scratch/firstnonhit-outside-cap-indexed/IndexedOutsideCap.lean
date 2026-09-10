@@ -7,6 +7,7 @@ open scoped EuclideanGeometry
 
 namespace IndexedSourceFaithfulSelectedFourFan
 
+/-- Indexed scratch Lean theorem. -/
 theorem scratch_exists_distinct_outsideCap_escape_or_crossDeletion
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}

@@ -33,6 +33,7 @@ open FirstApexUniqueRadiusResidual
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail ExactFiveCommonAdaptiveReselection theorem. -/
 private theorem exists_third_mem_of_three_le_card
     {α : Type*}
     {s : Finset α} {q w : α}
@@ -51,6 +52,7 @@ private theorem exists_third_mem_of_three_le_card
   rcases Finset.mem_erase.mp htqErase with ⟨htq, hts⟩
   exact ⟨t, hts, htq, htw⟩
 
+/-- P97 ATail ExactFiveCommonAdaptiveReselection theorem. -/
 private theorem oppApex2_mem
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -60,6 +62,7 @@ private theorem oppApex2_mem
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail ExactFiveCommonAdaptiveReselection theorem. -/
 private theorem nonempty_distinct_of_reselected_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

@@ -106,6 +106,7 @@ noncomputable def zeroDefectCapLayout
     (S : FiniteEndpointShell A) (r : ℝ) : Finset ℝ² :=
   A.filter (fun x => dist S.triangle.v3 x = r)
 
+/-- P97 N9Endpoint theorem. -/
 private theorem witnessClassAt_v1_sideBounds
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {r : ℝ} :
     ((S.witnessClassAt_v1 r) ∩ S.CP.C2).card ≤ 1
@@ -131,6 +132,7 @@ private theorem witnessClassAt_v1_sideBounds
     · intro x hx
       exact (Finset.mem_filter.mp (Finset.mem_of_mem_inter_left hx)).2
 
+/-- P97 N9Endpoint theorem. -/
 private theorem witnessClassAt_v2_sideBounds
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {r : ℝ} :
     ((S.witnessClassAt_v2 r) ∩ S.CP.C1).card ≤ 1
@@ -156,6 +158,7 @@ private theorem witnessClassAt_v2_sideBounds
     · intro x hx
       exact (Finset.mem_filter.mp (Finset.mem_of_mem_inter_left hx)).2
 
+/-- P97 N9Endpoint theorem. -/
 private theorem witnessClassAt_v3_sideBounds
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {r : ℝ} :
     ((S.witnessClassAt_v3 r) ∩ S.CP.C1).card ≤ 1
@@ -1452,6 +1455,7 @@ abbrev I3V3A2DeltaNormalization
     Real.pi / 4 ≤ δ ∧ δ < Real.pi / 3 ∧
     ∀ x ∈ S.I3, (T x) 1 < 0
 
+/-- P97 N9Endpoint theorem. -/
 private theorem dist_sq_eq_coord_sq_add_coord_sq (x y : ℝ²) :
     dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
   Problem97.dist_sq_coord x y
@@ -1688,11 +1692,13 @@ No polynomial certificate is used — the `√` witness is exactly what the
 degree-bounded Positivstellensatz search (`dead-ends.md`) could not express. -/
 namespace QEqEOneCosine
 
+/-- P97 N9Endpoint lemma. -/
 private lemma cs_bound (ct st nx ny : ℝ) (hpt : ct ^ 2 + st ^ 2 = 1)
     (hn1 : nx ^ 2 + ny ^ 2 = 1) : ct * nx + st * ny ≤ 1 := by
   have h : 0 ≤ (ct - nx) ^ 2 + (st - ny) ^ 2 := by positivity
   nlinarith [h, hpt, hn1]
 
+/-- P97 N9Endpoint lemma. -/
 private lemma cd_nonneg (r cd sd ce se : ℝ) (hr : 0 < r)
     (hpd : cd ^ 2 + sd ^ 2 = 1) (hpe : ce ^ 2 + se ^ 2 = 1)
     (hsd : 0 < sd) (hse : 0 < se) (hce : ce < -(r / 2)) (hcd : -(r / 2) < cd)
@@ -1701,6 +1707,7 @@ private lemma cd_nonneg (r cd sd ce se : ℝ) (hr : 0 < r)
   nlinarith [hpd, hpe, hsd, hse, hce, hcd, hs2de', hc2de', mul_pos hsd hse, sq_nonneg sd,
     mul_pos hr hse, hr, mul_pos hsd hsd]
 
+/-- P97 N9Endpoint lemma. -/
 private lemma sz_eq (S Z cd sd ce se : ℝ) (hS : 0 < S) (hZ : 0 ≤ Z)
     (hZsq : Z ^ 2 = 1 - S ^ 2 / 4) (hS2 : S ^ 2 = 2 - 2 * (cd * ce + sd * se))
     (hpd : cd ^ 2 + sd ^ 2 = 1) (hpe : ce ^ 2 + se ^ 2 = 1)
@@ -1713,6 +1720,7 @@ private lemma sz_eq (S Z cd sd ce se : ℝ) (hS : 0 < S) (hZ : 0 ≤ Z)
   have hSZnn : 0 ≤ S * Z := mul_nonneg (le_of_lt hS) hZ
   nlinarith [hSZsq, hSZnn, hsed, sq_nonneg (S * Z - (se * cd - ce * sd))]
 
+/-- P97 N9Endpoint lemma. -/
 private lemma E_nonneg (S Z cd sd ce se st : ℝ)
     (hsd : 0 < sd) (hse : 0 < se) (hcd0 : 0 ≤ cd) (hZ : 0 ≤ Z) (hS : 0 < S)
     (hst_le : S * st + sd ≤ 0) (hSZ : S * Z = se * cd - ce * sd)
@@ -1738,6 +1746,7 @@ private lemma E_nonneg (S Z cd sd ce se st : ℝ)
       = EsmaxS2 + (S * st + sd) * (S * st - sd - 2 * S * Z * cd) := by rw [hEs]; ring
   nlinarith [hES2, hEsmax, hprod, hS2pos]
 
+/-- P97 N9Endpoint lemma. -/
 private lemma one_cosine (S Z cd ct st : ℝ)
     (hS : 0 < S) (hZ : 0 ≤ Z) (hZsq : Z ^ 2 = 1 - S ^ 2 / 4)
     (hpt : ct ^ 2 + st ^ 2 = 1) (hcd0 : 0 ≤ cd) (hstneg : st < 0)
@@ -2074,6 +2083,7 @@ theorem qEqE_lowerArc_sameSign_flipped_of_c2Side (r δ ε t S : ℝ)
   exact qEqE_lowerArc_sameSign_flipped_of_noWrap r δ ε t S hr hS hS2eq hsd hse
     hδ0 hεπ h2δε hs2de hlower
 
+/-- P97 N9Endpoint theorem. -/
 private theorem secondCoord_pos_of_dist_lt_centerHeight
     {c p : ℝ²}
     (hr : dist c p < c 1)
@@ -3181,11 +3191,13 @@ theorem c2_vertex_same_open_side_as_v3
   rw [this]
   exact mul_pos hcore (mul_pos hu_sq_pos hu_sq_pos)
 
+/-- P97 N9Endpoint theorem. -/
 private theorem signedArea2_baseChord_vec2 (p : ℝ²) :
     signedArea2 p (Problem97.CGN.vec2 (-1) 0) (Problem97.CGN.vec2 1 0) = 2 * p 1 := by
   simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
   ring
 
+/-- P97 N9Endpoint def. -/
 private noncomputable def similarityTransportComp
     {T1 T2 : ℝ² → ℝ²}
     (tau1 : Problem97.CGN.SimilarityTransportData T1)
@@ -3233,9 +3245,11 @@ private noncomputable def similarityTransportComp
     rw [tau2.halfplane_sign, tau1.halfplane_sign]
     ring
 
+/-- P97 N9Endpoint def. -/
 private noncomputable def halfShift (p : ℝ²) : ℝ² :=
   Problem97.CGN.vec2 ((p 0 + 1) / 2) (p 1 / 2)
 
+/-- P97 N9Endpoint theorem. -/
 private theorem halfShift_injective : Function.Injective halfShift := by
   intro p q hpq
   ext i <;> fin_cases i
@@ -3244,6 +3258,7 @@ private theorem halfShift_injective : Function.Injective halfShift := by
   · have h := congrArg (fun z : ℝ² => z 1) hpq
     simpa [halfShift, Problem97.CGN.vec2, EuclideanSpace.single_apply] using h
 
+/-- P97 N9Endpoint def. -/
 private noncomputable def halfShiftSimilarityTransportData :
     Problem97.CGN.SimilarityTransportData halfShift := by
   classical
@@ -3300,9 +3315,11 @@ private noncomputable def halfShiftSimilarityTransportData :
     simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
     ring
 
+/-- P97 N9Endpoint def. -/
 private noncomputable def flipY (p : ℝ²) : ℝ² :=
   Problem97.CGN.vec2 (p 0) (-p 1)
 
+/-- P97 N9Endpoint theorem. -/
 private theorem flipY_injective : Function.Injective flipY := by
   intro p q hpq
   ext i <;> fin_cases i
@@ -3311,6 +3328,7 @@ private theorem flipY_injective : Function.Injective flipY := by
   · have h := congrArg (fun z : ℝ² => z 1) hpq
     simpa [flipY, Problem97.CGN.vec2, EuclideanSpace.single_apply] using h
 
+/-- P97 N9Endpoint def. -/
 private noncomputable def flipYSimilarityTransportData :
     Problem97.CGN.SimilarityTransportData flipY := by
   classical
@@ -3372,6 +3390,7 @@ private noncomputable def flipYSimilarityTransportData :
     simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]
     ring
 
+/-- P97 N9Endpoint theorem. -/
 private theorem exists_base_transportData
     (q1 q2 : ℝ²) (hqne : q1 ≠ q2) :
     ∃ T0, ∃ tau0 : Problem97.CGN.SimilarityTransportData T0,
@@ -3841,6 +3860,7 @@ private theorem v1b2_lt_v1v3_of_formB_v1_b2
     simpa [Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap_points,
       hi, hLastFirst.1, hLastFirst.2] using hlt
 
+/-- P97 N9Endpoint theorem. -/
 private theorem base_transport_a2_eq_upper
     {q1 q2 a : ℝ²} {T0 : ℝ² → ℝ²}
     (tau0 : Problem97.CGN.SimilarityTransportData T0)
@@ -3927,6 +3947,7 @@ private theorem base_transport_a2_eq_upper
       _ = (Problem97.CGN.vec2 0 (Real.sqrt 3)) 1 := by
         simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]
 
+/-- P97 N9Endpoint theorem. -/
 private theorem delta_parameterization_of_normalized_apex
     (p : ℝ²)
     (hunit : dist p (Problem97.CGN.vec2 1 0) = 1)
@@ -5722,6 +5743,7 @@ cosine-monotonicity argument:
 `\cos δ > -r/2 = \cos θ` with `δ, θ ∈ (0,π)` forces `δ < θ`; then
 `w := 2δ - θ ∈ (-π, π)` and `\sin w < 0` give `w < 0`, so `-w = θ - 2δ ∈ (0,θ)`
 and `\cos w = \cos(-w) > \cos θ = -r/2`, contradicting `\cos w < -r/2`. -/
+/-- P97 N9Endpoint theorem. -/
 private theorem qEqC_reflection_below_contradiction
     (r θ δ : ℝ) (hr : 0 < r)
     (hcosθ : Real.cos θ = -(r / 2)) (hsinθ : 0 < Real.sin θ)
@@ -6555,6 +6577,7 @@ records: `docs/n-lane/97-n4d-qeqe-hAElt-refutation.md` and
 * `hlong : |AB| < |AD|`,      (`v₃` is the far apex),
 * `hEside : E` above `AB` (same open side as `v₃`),
 * `hqE : q ≠ E`. -/
+/-- P97 N9Endpoint theorem. -/
 theorem qEqE_reflection_config_of_shell
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
     {q E : ℝ²}
@@ -6752,6 +6775,7 @@ private lemma chord_sq_formula (r : ℝ) (hr : 0 < r) (δ ε : ℝ) :
 
 set_option maxHeartbeats 400000 in
 -- Reduces hδpyth/hεpyth/hηpyth Pythagorean identities to single-application in keystone.
+/-- P97 N9Endpoint lemma. -/
 private lemma circle_pyth (p q2 : ℝ²) (r : ℝ) (hrne : r ≠ 0)
     (hq20 : q2 0 = 1) (hq21 : q2 1 = 0)
     (hdist : dist q2 p = r) :
@@ -6763,6 +6787,7 @@ private lemma circle_pyth (p q2 : ℝ²) (r : ℝ) (hrne : r ≠ 0)
 
 set_option maxHeartbeats 400000 in
 -- Reduces hADsq/hAEsq/hAqsq from inline nlinarith to single-application in keystone.
+/-- P97 N9Endpoint lemma. -/
 private lemma normsq_lt_of_origin_dist_lt (p q1 : ℝ²)
     (hq10 : q1 0 = 0) (hq11 : q1 1 = 0)
     (h : dist q1 p < 1) :
@@ -6773,6 +6798,7 @@ private lemma normsq_lt_of_origin_dist_lt (p q1 : ℝ²)
 
 set_option maxHeartbeats 400000 in
 -- Reduces hADsq from inline nlinarith to single-application in keystone.
+/-- P97 N9Endpoint lemma. -/
 private lemma normsq_gt_of_origin_dist_gt (p q1 : ℝ²)
     (hq10 : q1 0 = 0) (hq11 : q1 1 = 0)
     (h : 1 < dist q1 p) :
@@ -6783,6 +6809,7 @@ private lemma normsq_gt_of_origin_dist_gt (p q1 : ℝ²)
 
 set_option maxHeartbeats 400000 in
 -- Reduces hDq_T_eq from inline nlinarith chain to single application in keystone.
+/-- P97 N9Endpoint lemma. -/
 private lemma dist_eq_r_sqrt_of_sq (distDq r : ℝ) (hr : 0 < r) (δ ε : ℝ)
     (hgeq : 0 ≤ distDq)
     (heqsq : distDq ^ 2 = r ^ 2 * (2 - 2 * Real.cos (δ - ε))) :
@@ -9116,11 +9143,13 @@ theorem n4eCapContainment_of_n4c_n4d
 
 /-! ### q'=E producer scratch — E-construction + hBE/hDE/hqE (in verification) -/
 
+/-- P97 N9Endpoint def. -/
 noncomputable def reflPt (B D q : ℝ²) : ℝ² :=
   let n2 := (D 0 - B 0)^2 + (D 1 - B 1)^2
   let k := ((q 0 - B 0)*(D 0 - B 0) + (q 1 - B 1)*(D 1 - B 1))/n2
   Problem97.CGN.vec2 (2*(B 0 + k*(D 0 - B 0)) - q 0) (2*(B 1 + k*(D 1 - B 1)) - q 1)
 
+/-- P97 N9Endpoint theorem. -/
 theorem reflPt_facts (B D q : ℝ²) (hBD : B ≠ D) :
     dist B (reflPt B D q) = dist B q ∧ dist D (reflPt B D q) = dist D q := by
   have hn : (D 0 - B 0)^2 + (D 1 - B 1)^2 ≠ 0 := by
@@ -9145,6 +9174,7 @@ theorem reflPt_facts (B D q : ℝ²) (hBD : B ≠ D) :
   · nlinarith [key.1, dist_nonneg (x := B) (y := reflPt B D q), dist_nonneg (x := B) (y := q)]
   · nlinarith [key.2, dist_nonneg (x := D) (y := reflPt B D q), dist_nonneg (x := D) (y := q)]
 
+/-- P97 N9Endpoint theorem. -/
 theorem reflPt_ne_of_not_collinear (B D q : ℝ²) (hBD : B ≠ D)
     (hnc : signedArea2 q B D ≠ 0) : q ≠ reflPt B D q := by
   have hn : (D 0 - B 0)^2 + (D 1 - B 1)^2 ≠ 0 := by
@@ -9183,6 +9213,7 @@ theorem reflPt_ne_of_not_collinear (B D q : ℝ²) (hBD : B ≠ D)
   have hb0 : D 1 - B 1 = 0 := (mul_eq_zero.mp hbP).resolve_right hP0
   rw [ha0, hb0]; ring
 
+/-- P97 N9Endpoint theorem. -/
 theorem signedArea2_q_v2_v3_ne {A : Finset ℝ²} (S : FiniteEndpointShell A) {q : ℝ²}
     (hqI3 : q ∈ S.I3) : signedArea2 q S.triangle.v2 S.triangle.v3 ≠ 0 := by
   classical

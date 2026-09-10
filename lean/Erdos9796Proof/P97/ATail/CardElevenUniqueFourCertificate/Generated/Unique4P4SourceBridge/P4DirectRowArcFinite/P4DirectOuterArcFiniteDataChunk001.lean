@@ -11,6 +11,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 namespace Problem97
 namespace P4DirectOuterArcAdapterScratch
 
+/-- P97 ATail generated def. -/
 def directRowArcFiniteOccurrencesChunk001 : List DirectRowArcFiniteOccurrence := [
   -- compact 8582; core 30438; terminal 2600191
   { outputClauseIndex := 8582, coreClauseIndex := 30438, terminalClauseIndex := 2600191, datum := { row := ⟨1, {0, 5, 7, 10}⟩, arc := ⟨1, .left, {10}⟩ } },
@@ -270,14 +271,17 @@ def directRowArcFiniteOccurrencesChunk001 : List DirectRowArcFiniteOccurrence :=
   { outputClauseIndex := 8739, coreClauseIndex := 30879, terminalClauseIndex := 2600744, datum := { row := ⟨1, {3, 4, 7, 8}⟩, arc := ⟨1, .left, {0, 1, 2, 10}⟩ } },
 ]
 
+/-- P97 ATail generated theorem. -/
 theorem directRowArcFiniteOccurrencesChunk001_batch_valid :
     directRowArcFiniteOccurrencesChunk001.length = 128 ∧
       ∀ occurrence ∈ directRowArcFiniteOccurrencesChunk001, occurrence.datum.Valid := by
   native_decide
 
+/-- P97 ATail generated def. -/
 def directRowArcFiniteDataChunk001 : List DirectRowArcFiniteDatum :=
   directRowArcFiniteOccurrencesChunk001.map (·.datum)
 
+/-- P97 ATail generated theorem. -/
 theorem directRowArcFiniteDataChunk001_batch_valid :
     directRowArcFiniteDataChunk001.length = 128 ∧
       ∀ datum ∈ directRowArcFiniteDataChunk001, datum.Valid := by

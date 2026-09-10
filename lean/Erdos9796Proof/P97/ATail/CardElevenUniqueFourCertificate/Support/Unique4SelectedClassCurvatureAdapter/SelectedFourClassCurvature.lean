@@ -39,6 +39,7 @@ noncomputable def selectedCenteredSupportIndices {A : Finset ℝ²}
     B.chartIndexAt (selectedClassCenterLabel K hcenter)
       ⟨z.1, K.support_subset_A z.2⟩
 
+/-- P97 ATail support theorem. -/
 theorem selectedCenteredSupportIndices_card {A : Finset ℝ²}
     (B : ShellBoundaryIndexing A) {center : ℝ²} (K : SelectedFourClass A center)
     (hcenter : center ∈ A) :
@@ -62,6 +63,7 @@ noncomputable def selectedCenteredSupportOrder {A : Finset ℝ²}
   (B.selectedCenteredSupportIndices K hcenter).orderEmbOfFin
     (B.selectedCenteredSupportIndices_card K hcenter)
 
+/-- P97 ATail support theorem. -/
 theorem selectedCenteredChart_point_supportOrder_mem {A : Finset ℝ²}
     (B : ShellBoundaryIndexing A) {center : ℝ²} (K : SelectedFourClass A center)
     (hcenter : center ∈ A) (i : Fin 4) :

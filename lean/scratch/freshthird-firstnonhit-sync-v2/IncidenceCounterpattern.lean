@@ -19,21 +19,27 @@ namespace Problem97
 namespace FreshThirdFirstNonHitSyncV2
 namespace IncidenceCounterpattern
 
+/-- Indexed scratch Lean abbrev. -/
 abbrev Vertex := Fin 15
 
+/-- Indexed scratch Lean def. -/
 def blocker : Vertex → Vertex :=
   ![1, 0, 0, 2, 3, 3, 4, 6, 6, 10, 11, 9, 5, 7, 8]
 
+/-- Indexed scratch Lean def. -/
 def row : Vertex → Finset Vertex :=
   ![{1, 2, 4, 7}, {0, 3, 5, 8}, {3, 6, 9, 12}, {4, 5, 10, 13},
     {6, 0, 11, 7}, {12, 1, 10, 8}, {7, 8, 12, 13}, {13, 2, 9, 8},
     {14, 3, 11, 7}, {11, 4, 12, 8}, {9, 0, 3, 11}, {10, 7, 8, 14},
     ∅, ∅, ∅]
 
+/-- Indexed scratch Lean def. -/
 def blockerImage : Finset Vertex := Finset.univ.image blocker
 
+/-- Indexed scratch Lean def. -/
 def fiber (center : Vertex) : Finset Vertex := Finset.univ.filter fun s ↦ blocker s = center
 
+/-- Indexed scratch Lean def. -/
 def qRow : Finset Vertex := row 6
 
 /-- Exact verification of the finite incidence claims used by the audit note. -/
@@ -61,14 +67,17 @@ consumer. -/
 def blockerFourOmissions : Vertex → Vertex :=
   ![1, 0, 0, 2, 3, 3, 4, 6, 6, 10, 11, 9, 5, 7, 7]
 
+/-- Indexed scratch Lean def. -/
 def rowFourOmissions : Vertex → Finset Vertex :=
   ![{1, 2, 4, 7}, {0, 3, 5, 8}, {3, 6, 9, 12}, {4, 5, 10, 13},
     {6, 0, 11, 7}, {12, 1, 10, 8}, {7, 8, 12, 13}, {13, 14, 2, 9},
     {14, 3, 11, 7}, {11, 4, 12, 8}, {9, 0, 3, 11}, {10, 7, 8, 14},
     ∅, ∅, ∅]
 
+/-- Indexed scratch Lean def. -/
 def blockerImageFourOmissions : Finset Vertex := Finset.univ.image blockerFourOmissions
 
+/-- Indexed scratch Lean def. -/
 def fiberFourOmissions (center : Vertex) : Finset Vertex :=
   Finset.univ.filter fun s ↦ blockerFourOmissions s = center
 

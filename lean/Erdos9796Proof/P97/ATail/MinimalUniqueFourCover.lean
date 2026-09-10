@@ -66,6 +66,7 @@ noncomputable def uniqueFourClass (A : Finset ℝ²) (p : ℝ²) : Finset ℝ² 
     SelectedClass A p h.choose
   else ∅
 
+/-- P97 ATail MinimalUniqueFourCover theorem. -/
 theorem uniqueFourClass_card_le (A : Finset ℝ²) (p : ℝ²) :
     (uniqueFourClass A p).card ≤ 4 := by
   classical

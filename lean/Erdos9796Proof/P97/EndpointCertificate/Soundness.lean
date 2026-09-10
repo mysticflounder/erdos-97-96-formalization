@@ -31,23 +31,28 @@ def evalTerm (ν : Nat → ℝ) (t : Term) : ℝ :=
 def evalPoly (ν : Nat → ℝ) (p : Poly) : ℝ :=
   (p.map (evalTerm ν)).sum
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem evalMonom_nil (ν : Nat → ℝ) :
     evalMonom ν [] = 1 := by
   simp [evalMonom]
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem evalMonom_cons
     (ν : Nat → ℝ) (p : Nat × Nat) (m : List (Nat × Nat)) :
     evalMonom ν (p :: m) = ν p.1 ^ p.2 * evalMonom ν m := by
   simp [evalMonom]
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem evalPoly_nil (ν : Nat → ℝ) :
     evalPoly ν [] = 0 := by
   simp [evalPoly]
 
+/-- P97 EndpointCertificate theorem. -/
 @[simp] theorem evalPoly_cons (ν : Nat → ℝ) (t : Term) (p : Poly) :
     evalPoly ν (t :: p) = evalTerm ν t + evalPoly ν p := by
   simp [evalPoly]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalMonom_addExponent (ν : Nat → ℝ) (i e : Nat) :
     ∀ m : List (Nat × Nat),
       evalMonom ν (addExponent i e m) = ν i ^ e * evalMonom ν m
@@ -74,6 +79,7 @@ theorem evalMonom_addExponent (ν : Nat → ℝ) (i e : Nat) :
         simp [hcmp, evalMonom_addExponent ν i e rest]
         ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalMonom_normalizeMonom (ν : Nat → ℝ) :
     ∀ m : List (Nat × Nat), evalMonom ν (normalizeMonom m) = evalMonom ν m
   | [] => by simp [normalizeMonom]
@@ -81,10 +87,12 @@ theorem evalMonom_normalizeMonom (ν : Nat → ℝ) :
       rw [normalizeMonom, evalMonom_addExponent, evalMonom_normalizeMonom ν rest]
       simp
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalTerm_normalizeTerm (ν : Nat → ℝ) (t : Term) :
     evalTerm ν (normalizeTerm t) = evalTerm ν t := by
   simp [normalizeTerm, evalTerm, evalMonom_normalizeMonom]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalMonom_foldl_addExponent
     (ν : Nat → ℝ) (items acc : List (Nat × Nat)) :
     evalMonom ν
@@ -98,6 +106,7 @@ theorem evalMonom_foldl_addExponent
       simp
       ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalMonom_mulMonom
     (ν : Nat → ℝ) (a b : List (Nat × Nat)) :
     evalMonom ν (mulMonom a b) = evalMonom ν a * evalMonom ν b := by
@@ -105,6 +114,7 @@ theorem evalMonom_mulMonom
   ring
 
 set_option linter.flexible false in
+/-- P97 EndpointCertificate theorem. -/
 theorem eq_of_cmpPair_eq {a b : Nat × Nat} (h : cmpPair a b = .eq) :
     a = b := by
   rcases a with ⟨ai, ae⟩
@@ -115,6 +125,7 @@ theorem eq_of_cmpPair_eq {a b : Nat × Nat} (h : cmpPair a b = .eq) :
   simp [hi, he]
 
 set_option linter.flexible false in
+/-- P97 EndpointCertificate theorem. -/
 theorem eq_of_cmpMonom_eq :
     ∀ {a b : List (Nat × Nat)}, cmpMonom a b = .eq → a = b
   | [], [], _ => rfl
@@ -127,6 +138,7 @@ theorem eq_of_cmpMonom_eq :
       simp [hab, htail]
 
 set_option linter.flexible false in
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_insertTerm (ν : Nat → ℝ) (t : Term) :
     ∀ p : Poly, evalPoly ν (insertTerm t p) = evalTerm ν t + evalPoly ν p
   | [] => by
@@ -160,6 +172,7 @@ theorem evalPoly_insertTerm (ν : Nat → ℝ) (t : Term) :
           simp [ht0, hcmp, evalPoly_insertTerm ν t us]
           ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_foldl_insertNormalize (ν : Nat → ℝ) :
     ∀ p acc : Poly,
       evalPoly ν
@@ -173,6 +186,7 @@ theorem evalPoly_foldl_insertNormalize (ν : Nat → ℝ) :
       simp
       ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_normalizePoly (ν : Nat → ℝ) (p : Poly) :
     evalPoly ν (normalizePoly p) = evalPoly ν p := by
   rw [normalizePoly, evalPoly_foldl_insertNormalize]
@@ -188,6 +202,7 @@ theorem evalPoly_eq_zero_of_normalizePoly_eq
   rw [← evalPoly_normalizePoly ν p, h, evalPoly_normalizePoly ν q, hq]
 
 set_option linter.flexible false in
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_addCanon (ν : Nat → ℝ) :
     ∀ p q : Poly, evalPoly ν (addCanon p q) = evalPoly ν p + evalPoly ν q
   | [], q => by simp [addCanon]
@@ -221,16 +236,19 @@ decreasing_by
   all_goals simp_wf
   all_goals omega
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_addPoly (ν : Nat → ℝ) (p q : Poly) :
     evalPoly ν (addPoly p q) = evalPoly ν p + evalPoly ν q := by
   rw [addPoly, evalPoly_addCanon, evalPoly_normalizePoly,
     evalPoly_normalizePoly]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalTerm_mulTerm (ν : Nat → ℝ) (a b : Term) :
     evalTerm ν (mulTerm a b) = evalTerm ν a * evalTerm ν b := by
   simp [mulTerm, evalTerm, evalMonom_mulMonom]
   ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_map_mulTerm (ν : Nat → ℝ) (a : Term) :
     ∀ q : Poly,
       evalPoly ν (q.map (fun b => mulTerm a b)) =
@@ -240,10 +258,12 @@ theorem evalPoly_map_mulTerm (ν : Nat → ℝ) (a : Term) :
       simp [evalTerm_mulTerm, evalPoly_map_mulTerm ν a q]
       ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_mulTermPoly (ν : Nat → ℝ) (a : Term) (q : Poly) :
     evalPoly ν (mulTermPoly a q) = evalTerm ν a * evalPoly ν q := by
   rw [mulTermPoly, evalPoly_normalizePoly, evalPoly_map_mulTerm]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_foldl_mulCanon
     (ν : Nat → ℝ) (q p acc : Poly) :
     evalPoly ν (p.foldl (fun acc a => addCanon acc (mulTermPoly a q)) acc) =
@@ -256,16 +276,19 @@ theorem evalPoly_foldl_mulCanon
       simp
       ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_mulCanon (ν : Nat → ℝ) (p q : Poly) :
     evalPoly ν (mulCanon p q) = evalPoly ν p * evalPoly ν q := by
   rw [mulCanon, evalPoly_foldl_mulCanon]
   simp
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_mulPoly (ν : Nat → ℝ) (p q : Poly) :
     evalPoly ν (mulPoly p q) = evalPoly ν p * evalPoly ν q := by
   rw [mulPoly, evalPoly_mulCanon, evalPoly_normalizePoly,
     evalPoly_normalizePoly]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_eq_zero_of_mulPoly_eq_left_zero
     (ν : Nat → ℝ) {left right product : Poly}
     (hproduct : mulPoly left right = product)
@@ -274,6 +297,7 @@ theorem evalPoly_eq_zero_of_mulPoly_eq_left_zero
   rw [← hproduct, evalPoly_mulPoly, hleft]
   ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_eq_zero_of_mulPoly_eq_right_zero
     (ν : Nat → ℝ) {left right product : Poly}
     (hproduct : mulPoly left right = product)
@@ -282,6 +306,7 @@ theorem evalPoly_eq_zero_of_mulPoly_eq_right_zero
   rw [← hproduct, evalPoly_mulPoly, hright]
   ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_foldl_addCanon (ν : Nat → ℝ) :
     ∀ products : List Poly, ∀ acc : Poly,
       evalPoly ν (products.foldl addCanon acc) =
@@ -293,12 +318,14 @@ theorem evalPoly_foldl_addCanon (ν : Nat → ℝ) :
       simp
       ring
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_sumCanonProducts (ν : Nat → ℝ) (products : List Poly) :
     evalPoly ν (sumCanonProducts products) =
       (products.map (evalPoly ν)).sum := by
   rw [sumCanonProducts, evalPoly_foldl_addCanon]
   simp
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_sumCanonProducts_eq_zero
     (ν : Nat → ℝ) (products : List Poly)
     (hproducts : ∀ p ∈ products, evalPoly ν p = 0) :
@@ -311,11 +338,13 @@ theorem evalPoly_sumCanonProducts_eq_zero
       simp [hproducts p (by simp),
         ih (fun q hq => hproducts q (by simp [hq]))]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_onePoly (ν : Nat → ℝ) :
     evalPoly ν onePoly = 1 := by
   simp [onePoly, term, evalTerm]
 
 set_option linter.flexible false in
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_sumProductsCanon_eq_zero (ν : Nat → ℝ) :
     ∀ {generators coefficients : List Poly} {p : Poly},
       sumProductsCanon generators coefficients = some p →
@@ -345,6 +374,7 @@ theorem evalPoly_sumProductsCanon_eq_zero (ν : Nat → ℝ) :
           ring
 
 set_option linter.flexible false in
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_sumProductsCanon_eq_zero_of_weighted_zeros (ν : Nat → ℝ) :
     ∀ {generators coefficients : List Poly} {p : Poly},
       sumProductsCanon generators coefficients = some p →
@@ -423,6 +453,7 @@ theorem false_of_checkCertificate_of_weighted_zeros
         norm_num at hp_zero
   · simp [checkCertificate, hnorm] at hcheck
 
+/-- P97 EndpointCertificate theorem. -/
 theorem eq_sumCanonProducts_of_checkProductSumEq
     {products : List Poly} {target : Poly}
     (hcheck : checkProductSumEq products target = true) :
@@ -432,12 +463,14 @@ theorem eq_sumCanonProducts_of_checkProductSumEq
       simpa [checkProductSumEq, hnorm] using hcheck)
   · simp [checkProductSumEq, hnorm] at hcheck
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_eq_of_checkProductSumEq
     (ν : Nat → ℝ) {products : List Poly} {target : Poly}
     (hcheck : checkProductSumEq products target = true) :
     evalPoly ν (sumCanonProducts products) = evalPoly ν target := by
   rw [eq_sumCanonProducts_of_checkProductSumEq hcheck]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem evalPoly_target_eq_zero_of_checkProductSumEq
     (ν : Nat → ℝ) {products : List Poly} {target : Poly}
     (hcheck : checkProductSumEq products target = true)

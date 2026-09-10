@@ -70,6 +70,7 @@ def allKilledAt (c₀ : Nat) : Nat → List Row → List Domain → Bool
 /-! Search after the fixed row has passed `localCandidateOK`.  The public
 placement check keeps that guard, while chunked certificates can call this
 kernel directly after testing the same guard once. -/
+/-- P97 ErasedCertificate def. -/
 def erasedPlacementSearchAtWithBaseDomains
     (c₀ support deleted : Nat) (baseDomains : List Domain) : Bool :=
   let fixed : Row := { center := c₀, support := support }

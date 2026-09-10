@@ -39,6 +39,7 @@ theorem frontier_radius_pos
     0 < radius :=
   F.radius_pos
 
+/-- P97 ATail support UniqueArmDeletionNormalForm theorem. -/
 private theorem q_mem_firstApex_class
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -48,6 +49,7 @@ private theorem q_mem_firstApex_class
   rcases Finset.mem_filter.mp hqFilter with ⟨hqA, hqRadius⟩
   exact mem_selectedClass.mpr ⟨hqA, by simpa only [dist_comm] using hqRadius⟩
 
+/-- P97 ATail support UniqueArmDeletionNormalForm theorem. -/
 private theorem w_mem_firstApex_class
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

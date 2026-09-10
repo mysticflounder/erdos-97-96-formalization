@@ -165,6 +165,7 @@ end CGN
 
 namespace CapSelectedRowCounting
 
+/-- P97 CapSelectedRowCounting theorem. -/
 private theorem sameRadiusIndices_card_le_two
     {m : ℕ} (L : CGN.OrderedCap m)
     (hinj :
@@ -242,6 +243,7 @@ private theorem sameRadiusIndices_card_le_two
     _ ≤ 1 + 1 := Nat.add_le_add hleft hright
     _ = 2 := by norm_num
 
+/-- P97 CapSelectedRowCounting theorem. -/
 private theorem sameRadiusIndices_card_le_one
     {m : ℕ} (L : CGN.OrderedCap m) (j : Fin m)
     (hpair : ∀ {r s : Fin m}, r ≠ s → r ≠ j → s ≠ j →

@@ -620,6 +620,7 @@ theorem mem_rightAdjacentInteriorByIndex_of_mem_rightAdjacentCapByIndex_of_ne_ou
       (by simpa [rightOuterVertexByIndex, oppositeVertexByIndex] using hxne_opp)
       (by simpa [leftOuterVertexByIndex, rightOuterVertexByIndex] using hxne_outer)
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem mem_leftAdjacentInteriorByIndex_of_left_strict_escape
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {x : ℝ²}
     {radius : ℝ} (hradius : 0 < radius)
@@ -638,6 +639,7 @@ theorem mem_leftAdjacentInteriorByIndex_of_left_strict_escape
   exact S.mem_leftAdjacentInteriorByIndex_of_mem_leftAdjacentCapByIndex_of_ne_outer
     i hradius hxT hxLeft hxne_outer
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem mem_rightAdjacentInteriorByIndex_of_right_strict_escape
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {x : ℝ²}
     {radius : ℝ} (hradius : 0 < radius)
@@ -856,6 +858,7 @@ theorem moserCapCoreSelectorAt
     by simpa [T] using hleft_one,
     by simpa [T] using hright_one⟩
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftStrictEscape_mem_secondSelectedClass
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3)
@@ -883,6 +886,7 @@ theorem leftStrictEscape_mem_secondSelectedClass
   exact by
     simpa [S.oppositeVertexByIndex_leftAdjacentIndex i] using hcore.2.1 hxI'
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightStrictEscape_mem_secondSelectedClass
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3)
@@ -1033,6 +1037,7 @@ theorem moserSelectorShapeAt_of_convexIndep
     by simpa [T] using hpeq,
     by simpa [T] using hqeq⟩
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightSecondSelectedClass_selectedCap_singleton
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3) {rho : ℝ}
@@ -1059,6 +1064,7 @@ theorem rightSecondSelectedClass_selectedCap_singleton
       simpa [S.oppositeVertexByIndex_rightAdjacentIndex i,
         S.leftAdjacentCapByIndex_rightAdjacentIndex i] using hySing⟩
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftSecondSelectedClass_selectedCap_singleton
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3) {rho : ℝ}
@@ -1386,6 +1392,7 @@ def EndpointEscapeLeftAt
   dist (S.leftOuterVertexByIndex i) (S.rightOuterVertexByIndex i) = rho ∧
   dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) ≠ radius
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem rightEndpointOnFirstRadius_false
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     {radius rho : ℝ} {x : ℝ²}
@@ -1458,6 +1465,7 @@ theorem rightEndpointOnFirstRadius_false
       (by simpa [rightOuterVertexByIndex, oppositeVertexByIndex, triangleByIndex] using
         hsharedFirst)
 
+/-- P97 SurplusM44Packet theorem. -/
 theorem leftEndpointOnFirstRadius_false
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     {radius rho : ℝ} {x : ℝ²}

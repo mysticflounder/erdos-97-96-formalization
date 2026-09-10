@@ -32,6 +32,7 @@ namespace EndpointCertificate
 
 open SurplusCOMPGBank
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem pointMask_foldl_preserve_bit_of_forall_lt
     {α : Type _} [DecidableEq α] (pointOf : Label → α)
     (T : Finset α) (labels : List Label) {k acc : Nat}
@@ -55,6 +56,7 @@ private theorem pointMask_foldl_preserve_bit_of_forall_lt
       · rw [ih hrest]
         simp [hmem]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem pointMask_maskHas_true_of_mem_of_prefix_suffix
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α}
@@ -91,6 +93,7 @@ private theorem pointMask_maskHas_true_of_mem_of_prefix_suffix
   rw [Nat.testBit_two_pow_add_eq]
   simpa [Label.bit] using congrArg Bool.not hprefixFalse
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem pointMask_maskHas_true_of_mem
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α} {label : Label}
@@ -137,12 +140,14 @@ private theorem pointMask_maskHas_true_of_mem
       (pref := [.u, .v, .w, .s1, .s2, .s3, .Pw, .Pu, .Q1])
       (suff := []) rfl (by decide) (by decide) hmem
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem pointMask_maskHas_iff_mem
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α} {label : Label} :
     maskHas (pointMask pointOf T) label = true ↔ pointOf label ∈ T :=
   ⟨pointMask_maskHas_mem, pointMask_maskHas_true_of_mem⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem foldl_count_true
     {α : Type _} (predicate : α → Bool) (items : List α) (acc : Nat) :
     items.foldl (fun count item => if predicate item then count + 1 else count)
@@ -158,6 +163,7 @@ private theorem foldl_count_true
           cases h : predicate item <;> simp_all
         simp [hfalse, ih]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem maskCard_pointMask_eq_card_of_subset_range
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} (hinj : Function.Injective pointOf)
@@ -263,6 +269,7 @@ theorem exists_labelCompleteSupportClasses
     exact (classAt center).center_not_mem
 
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem maskInterCard_pointMask_le_inter_card
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} (hinj : Function.Injective pointOf)
@@ -294,6 +301,7 @@ private theorem maskInterCard_pointMask_le_inter_card
       (Finset.card_image_of_injective _ hinj).symm
     _ ≤ (T ∩ C).card := Finset.card_le_card himageSub
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem maskHas_cvNoUMask_cases {label : Label}
     (hlabel : maskHas cvNoUMask label = true) :
     label = .w ∨ label = .Pw ∨ label = .Pu := by
@@ -306,6 +314,7 @@ private theorem maskHas_cvNoUMask_cases {label : Label}
       revert hlabel
       decide
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem maskHas_cwNoUMask_cases {label : Label}
     (hlabel : maskHas cwNoUMask label = true) :
     label = .v ∨ label = .Q1 ∨ label = .Q2 := by
@@ -318,6 +327,7 @@ private theorem maskHas_cwNoUMask_cases {label : Label}
       revert hlabel
       decide
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem rightPinned_u_maskInter_bounds
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A)
@@ -415,6 +425,7 @@ private theorem rightPinned_u_maskInter_bounds
           hconv S.surplusIdx (radiusOf .u)
 
 
+/-- P97 EndpointCertificate abbrev. -/
 private abbrev SameRadiusPointClasses
     (pointOf : Label → ℝ²) (centerClass : Label → Finset ℝ²) : Prop :=
   ∀ center a b : Label,
@@ -424,6 +435,7 @@ private abbrev SameRadiusPointClasses
           dist (pointOf center) (pointOf b)
 
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem mem_convexHull_three_of_same_side
     {O a b c : ℝ²}
     (harea : signedArea2 a b c ≠ 0)
@@ -501,6 +513,7 @@ private theorem mem_convexHull_three_of_same_side
     fin_cases i <;> simp
   · simpa [Fin.sum_univ_three] using hcombo
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem mem_convexHull_three_of_equidistant_nonobtuse
     {O a b c : ℝ²}
     (harea : signedArea2 a b c ≠ 0)
@@ -522,6 +535,7 @@ private theorem mem_convexHull_three_of_equidistant_nonobtuse
     (center_same_side_as_apex_of_nonobtuse hcO haO hbO hinnerB)
     (center_same_side_as_apex_of_nonobtuse haO hbO hcO hinnerC)
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem rightPinnedLabelPoint_moser_nonobtuse
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) :
@@ -572,6 +586,7 @@ private theorem rightPinnedLabelPoint_moser_nonobtuse
         Fin.val_zero, Fin.val_one]
       exact S.triangleNonObtuse.inner_at_v2
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem no_nonMoser_triple_of_convexIndep_nonobtuse
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     {pointOf : Label → ℝ²} (hinj : Function.Injective pointOf)
@@ -649,6 +664,7 @@ private theorem no_nonMoser_triple_of_convexIndep_nonobtuse
       (convexHull_mono hsub hcenterHull)
 
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem capInteriorByIndex_card_eq_three_of_cap_card_eq_five
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     (hcard : (S.capByIndex i).card = 5) :
@@ -679,6 +695,7 @@ private theorem capInteriorByIndex_card_eq_three_of_cap_card_eq_five
     rw [Finset.card_erase_of_mem hv2,
       Finset.card_erase_of_mem S.partition.v1_mem_C3, hcard]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem surplusInterior_eq_triple_of_surplus_card_five
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {s1 s2 s3 : ℝ²}
@@ -702,6 +719,7 @@ private theorem surplusInterior_eq_triple_of_surplus_card_five
     simp [hs12, hs13, hs23]
   exact (Finset.eq_of_subset_of_card_le hsSub (by omega)).symm
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_escapeeLabel_eq_of_mem_pair
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²)
@@ -714,6 +732,7 @@ private theorem exists_escapeeLabel_eq_of_mem_pair
   · exact ⟨.Q1, Or.inl rfl, rfl⟩
   · exact ⟨.Q2, Or.inr rfl, rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_vSurplusHitLabel_eq_of_mem_triple_or_w
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 a : ℝ²)
@@ -730,6 +749,7 @@ private theorem exists_vSurplusHitLabel_eq_of_mem_triple_or_w
     · exact ⟨.s2, Or.inr (Or.inr (Or.inl rfl)), rfl⟩
     · exact ⟨.s3, Or.inr (Or.inr (Or.inr rfl)), rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_wSurplusHitLabel_eq_of_mem_triple_or_v
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 b : ℝ²)
@@ -1249,6 +1269,7 @@ theorem endpointLeft_residual_false_of_card_five
   · exact endpointLeft_residual_false_of_card_five_leftApex hM44 hconv hK4 hcard5
       hend hn hφinj hφimage hccwBoundary hu hv hw h0w hwv
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem leftPinned_u_maskInter_bounds
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A)
@@ -1348,6 +1369,7 @@ private theorem leftPinned_u_maskInter_bounds
         S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
           hconv S.surplusIdx (radiusOf .u)
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem leftPinnedLabelPoint_moser_nonobtuse
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) :
@@ -1365,6 +1387,7 @@ private theorem leftPinnedLabelPoint_moser_nonobtuse
     simpa [leftPinnedLabelPoint, leftPinnedToRightLabel, real_inner_comm]
       using hv⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_mirrorEscapeeLabel_eq_of_mem_pair
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²)
@@ -1377,6 +1400,7 @@ private theorem exists_mirrorEscapeeLabel_eq_of_mem_pair
   · exact ⟨.Q1, Or.inl rfl, rfl⟩
   · exact ⟨.Q2, Or.inr rfl, rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_mirrorVSurplusHitLabel_eq_of_mem_triple_or_w
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 a : ℝ²)
@@ -1393,6 +1417,7 @@ private theorem exists_mirrorVSurplusHitLabel_eq_of_mem_triple_or_w
     · exact ⟨.s2, Or.inr (Or.inr (Or.inl rfl)), rfl⟩
     · exact ⟨.s3, Or.inr (Or.inr (Or.inr rfl)), rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_mirrorWSurplusHitLabel_eq_of_mem_triple_or_v
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 b : ℝ²)

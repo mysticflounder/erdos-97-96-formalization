@@ -233,6 +233,7 @@ theorem checkTwo_sound {n : Nat} {start : Array (Option (DefaultClause n))}
 
 namespace TextIngress
 
+/-- P97 Certificate def. -/
 private def digitValue : Char → Option Nat
   | '0' => some 0
   | '1' => some 1
@@ -246,12 +247,14 @@ private def digitValue : Char → Option Nat
   | '9' => some 9
   | _ => none
 
+/-- P97 Certificate def. -/
 private def parseNatDigits : List Char → Nat → Option Nat
   | [], value => some value
   | char :: rest, value => do
       let digit ← digitValue char
       parseNatDigits rest (10 * value + digit)
 
+/-- P97 Certificate def. -/
 private def parseNatChars : List Char → Option Nat
   | [] => none
   | ['0'] => some 0
@@ -262,6 +265,7 @@ private def parseNatChars : List Char → Option Nat
 def parseNatCanonical (text : String) : Option Nat :=
   parseNatChars text.toList
 
+/-- P97 Certificate def. -/
 private def parseIntChars : List Char → Option Int
   | '-' :: digits => do
       let value ← parseNatChars digits
@@ -272,10 +276,12 @@ private def parseIntChars : List Char → Option Int
 def parseIntCanonical (text : String) : Option Int :=
   parseIntChars text.toList
 
+/-- P97 Certificate def. -/
 private def parsePositiveNat (chars : List Char) : Option Nat := do
   let value ← parseNatChars chars
   if value = 0 then none else some value
 
+/-- P97 Certificate def. -/
 private def parseLiteral {n : Nat} (chars : List Char) :
     Option (Literal (PosFin n)) := do
   let (variableIndex, polarity) ←
@@ -294,6 +300,7 @@ private def parseLiteral {n : Nat} (chars : List Char) :
   else
     none
 
+/-- P97 Certificate def. -/
 private def parseLinesAux :
     List Char → List Char → List (List Char) → Option (List (List Char))
   | [], [], reversed => some reversed.reverse
@@ -305,11 +312,13 @@ private def parseLinesAux :
   | char :: rest, reversedLine, reversed =>
       parseLinesAux rest (char :: reversedLine) reversed
 
+/-- P97 Certificate def. -/
 private def parseLines (text : String) : Option (List (List Char)) :=
   match text.toList with
   | [] => none
   | chars => parseLinesAux chars [] []
 
+/-- P97 Certificate def. -/
 private def parseFieldsAux :
     List Char → List Char → List (List Char) → Option (List (List Char))
   | [], [], _ => none
@@ -321,9 +330,11 @@ private def parseFieldsAux :
   | char :: rest, reversedField, reversed =>
       parseFieldsAux rest (char :: reversedField) reversed
 
+/-- P97 Certificate def. -/
 private def parseFields (line : List Char) : Option (List (List Char)) :=
   parseFieldsAux line [] []
 
+/-- P97 Certificate def. -/
 private def splitAtZero :
     List (List Char) → Option (List (List Char) × List (List Char))
   | [] => none
@@ -332,6 +343,7 @@ private def splitAtZero :
       let (before, after) ← splitAtZero rest
       pure (field :: before, after)
 
+/-- P97 Certificate theorem. -/
 private theorem pairwiseVariable_nodupkey {n : Nat}
     {literals : List (Literal (PosFin n))}
     (h : List.Pairwise (fun a b => a.1 ≠ b.1) literals) :
@@ -370,6 +382,7 @@ private theorem pairwiseVariable_nodupkey {n : Nat}
             exact hv (congrArg Prod.fst heq).symm
           simp [hhead, hneg]
 
+/-- P97 Certificate theorem. -/
 private theorem pairwiseVariable_nodup {n : Nat}
     {literals : List (Literal (PosFin n))}
     (h : List.Pairwise (fun a b => a.1 ≠ b.1) literals) :
@@ -377,6 +390,7 @@ private theorem pairwiseVariable_nodup {n : Nat}
   rw [List.nodup_iff_pairwise_ne]
   exact h.imp (fun hab heq => hab (congrArg Prod.fst heq))
 
+/-- P97 Certificate def. -/
 private def parseClauseLiterals {n : Nat} (fields : List (List Char)) :
     Option (DefaultClause n) := do
   let literals ← fields.mapM parseLiteral
@@ -388,6 +402,7 @@ private def parseClauseLiterals {n : Nat} (fields : List (List Char)) :
   else
     none
 
+/-- P97 Certificate def. -/
 private def parseClauseLine {n : Nat} (line : List Char) :
     Option (DefaultClause n) := do
   let fields ← parseFields line
@@ -419,6 +434,7 @@ def parseDimacs {n : Nat} (text : String) :
             pure (#[none] ++ (clauses.map some).toArray)
       | _ => none
 
+/-- P97 Certificate def. -/
 private def parseActionLine {n : Nat} (expectedId : Nat) (line : List Char) :
     Option (Action n × Nat) := do
   let fields ← parseFields line
@@ -445,6 +461,7 @@ private def parseActionLine {n : Nat} (expectedId : Nat) (line : List Char) :
           pure (.add clause hints.toArray, expectedId + 1)
   | _ => none
 
+/-- P97 Certificate def. -/
 private def parseActionLines {n : Nat} :
     Nat → List (List Char) → Option (List (Action n))
   | _, [] => some []
@@ -688,16 +705,21 @@ end TextIngress
 
 namespace SelfTest
 
+/-- P97 Certificate def. -/
 private def x : PosFin 3 := ⟨1, by omega⟩
+/-- P97 Certificate def. -/
 private def y : PosFin 3 := ⟨2, by omega⟩
 
+/-- P97 Certificate theorem. -/
 private theorem x_ne_y : x ≠ y := by
   intro h
   have hv := congrArg Subtype.val h
   simp [x, y] at hv
 
+/-- P97 Certificate def. -/
 private def xClause : DefaultClause 3 := DefaultClause.unit (x, true)
 
+/-- P97 Certificate def. -/
 private def notXOrY : DefaultClause 3 where
   clause := [(x, false), (y, true)]
   nodupkey := by
@@ -709,18 +731,24 @@ private def notXOrY : DefaultClause 3 where
       simp [h]
   nodup := by simp [x_ne_y]
 
+/-- P97 Certificate def. -/
 private def notYClause : DefaultClause 3 := DefaultClause.unit (y, false)
+/-- P97 Certificate def. -/
 private def yClause : DefaultClause 3 := DefaultClause.unit (y, true)
 
+/-- P97 Certificate def. -/
 private def start : Array (Option (DefaultClause 3)) :=
   #[none, some xClause, some notXOrY, some notYClause]
 
+/-- P97 Certificate def. -/
 private def first : List (Action 3) :=
   [.add yClause #[1, 2], .del #[1, 2]]
 
+/-- P97 Certificate def. -/
 private def checkpoint : Array (Option (DefaultClause 3)) :=
   #[none, some notYClause, some yClause]
 
+/-- P97 Certificate def. -/
 private def second : List (Action 3) :=
   [.add DefaultClause.empty #[1, 2]]
 
@@ -735,9 +763,13 @@ theorem selfTest_unsat : Unsatisfiable (PosFin 3) (DefaultFormula.ofArray start)
   checkTwo_sound (start := start) (first := first) (checkpoint := checkpoint)
     (second := second) (by decide)
 
+/-- P97 Certificate def. -/
 private def startText := "p cnf 2 3\n1 2 0\n-1 0\n-2 0\n"
+/-- P97 Certificate def. -/
 private def firstText := "4 2 0 1 2 0\n1 d 1 2 0\n"
+/-- P97 Certificate def. -/
 private def checkpointText := "p cnf 2 2\n-2 0\n2 0\n"
+/-- P97 Certificate def. -/
 private def secondText := "3 0 1 2 0\n"
 
 /-- Canonical decimal parsing is kernel-reducible. -/

@@ -18,12 +18,16 @@ namespace Problem97.CheckpointedRup.CompactSelfTest
 
 open Problem97.CheckpointedRup.CompactIngress
 
+/-- P97 Certificate def. -/
 private def startText : String := "6Vp6,!WrK*\"9AN(!r"
 
+/-- P97 Certificate def. -/
 private def firstText : String := "6Vp''!WW6(!W`?'!W`?"
 
+/-- P97 Certificate def. -/
 private def checkpointText : String := "6Vp6,!WiB)!<`"
 
+/-- P97 Certificate def. -/
 private def secondText : String := "6Vp''!<<*$!<N"
 
 #guard decodeAscii85 "!!!!!" == some (ByteArray.mk #[0, 0, 0, 0])

@@ -87,6 +87,7 @@ common backbone of the existence proof. -/
 private noncomputable def radF (A : Finset ℝ²) (hA : A.Nonempty) (c : ℝ²) : ℝ :=
   A.sup' hA (fun p => dist p c)
 
+/-- P97 MEC lemma. -/
 private lemma radF_continuous (A : Finset ℝ²) (hA : A.Nonempty) :
     Continuous (radF A hA) := by
   -- `Continuous.finset_sup'` over a `Finset ℝ²`, sup of finitely many continuous
@@ -101,16 +102,19 @@ private lemma radF_continuous (A : Finset ℝ²) (hA : A.Nonempty) :
     exact (Finset.sup'_apply hA (fun p (c : ℝ²) => dist p c) c).symm
   rw [e]; exact h
 
+/-- P97 MEC lemma. -/
 private lemma radF_upper (A : Finset ℝ²) (hA : A.Nonempty)
     (c : ℝ²) {p : ℝ²} (hp : p ∈ A) : dist p c ≤ radF A hA c :=
   Finset.le_sup' (f := fun p => dist p c) hp
 
+/-- P97 MEC lemma. -/
 private lemma radF_nn (A : Finset ℝ²) (hA : A.Nonempty) (c : ℝ²) :
     0 ≤ radF A hA c := by
   have hA' := hA
   obtain ⟨p, hp⟩ := hA'
   exact (dist_nonneg).trans (radF_upper A hA c hp)
 
+/-- P97 MEC lemma. -/
 private lemma radF_le_iff (A : Finset ℝ²) (hA : A.Nonempty)
     {c : ℝ²} {r : ℝ} :
     radF A hA c ≤ r ↔ ∀ p ∈ A, dist p c ≤ r := by
@@ -283,9 +287,11 @@ noncomputable def mecSphere (A : Finset ℝ²) (hA : A.Nonempty) :
   { center := (mec A hA).center
     radius := (mec A hA).radius }
 
+/-- P97 MEC lemma. -/
 @[simp] lemma mecSphere_center (A : Finset ℝ²) (hA : A.Nonempty) :
     (mecSphere A hA).center = (mec A hA).center := rfl
 
+/-- P97 MEC lemma. -/
 @[simp] lemma mecSphere_radius (A : Finset ℝ²) (hA : A.Nonempty) :
     (mecSphere A hA).radius = (mec A hA).radius := rfl
 

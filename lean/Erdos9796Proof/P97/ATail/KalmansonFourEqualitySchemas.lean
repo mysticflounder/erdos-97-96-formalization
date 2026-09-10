@@ -48,6 +48,7 @@ open scoped Convex EuclideanGeometry
 namespace Problem97
 namespace CapCrossingKalmansonBridge
 
+/-- P97 ATail KalmansonFourEqualitySchemas theorem. -/
 private theorem dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}
@@ -63,6 +64,7 @@ private theorem dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
       (ia := id) (ib := ic) (ic := ib) (id := ia)
       hA hphi_inj hphi_image hccw hidc hicb hiba)
 
+/-- P97 ATail KalmansonFourEqualitySchemas theorem. -/
 private theorem complementary_dist_add_dist_lt_diagonal_sum_of_ccw_of_decreasing
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {n : ℕ} {phi : Fin n → ℝ²}

@@ -8882,6 +8882,7 @@ abbrev LeftNonSurplusRoutedRowsExcluded {A : Finset ℝ²}
   LeftNonSurplusSameSideHeavyRowsExcluded S x p ∧
   LeftNonSurplusOneSidedTerminalPayloadExcluded S x p
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem rightNonSurplusLeftAdjacentThreeRowExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
     {x p : ℝ²} {m s r : ℕ} :
@@ -8899,6 +8900,7 @@ theorem rightNonSurplusLeftAdjacentThreeRowExcluded
       _ = 2 := hM44.oppInterior2_card_eq_two
   omega
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem leftNonSurplusRightAdjacentThreeRowExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
     {x p : ℝ²} {m s l : ℕ} :
@@ -8916,6 +8918,7 @@ theorem leftNonSurplusRightAdjacentThreeRowExcluded
       _ = 2 := hM44.oppInterior1_card_eq_two
   omega
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem rightNonSurplusTerminalRowExcluded_of_payloadExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
@@ -8939,6 +8942,7 @@ theorem rightNonSurplusTerminalRowExcluded_of_payloadExcluded
   exact hterminal
     (S.rightOneSidedErasedPayload_of_oppIndex1_surplus_mem hx hpayload)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem leftNonSurplusTerminalRowExcluded_of_payloadExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
@@ -8962,6 +8966,7 @@ theorem leftNonSurplusTerminalRowExcluded_of_payloadExcluded
   exact hterminal
     (S.leftOneSidedErasedPayload_of_oppIndex2_surplus_mem hx hpayload)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem rightNonSurplusExactCountRowsExcluded_of_routedRowsExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
@@ -8978,6 +8983,7 @@ theorem rightNonSurplusExactCountRowsExcluded_of_routedRowsExcluded
       rightNonSurplusTerminalRowExcluded_of_payloadExcluded
         hx hp hterminalPayload⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem leftNonSurplusExactCountRowsExcluded_of_routedRowsExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
@@ -8994,6 +9000,7 @@ theorem leftNonSurplusExactCountRowsExcluded_of_routedRowsExcluded
       leftNonSurplusTerminalRowExcluded_of_payloadExcluded
         hx hp hterminalPayload⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem rightNonSurplusExactCountFamilyExcluded_of_rowsExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
     (hrows : RightNonSurplusExactCountRowsExcluded S x p) :
@@ -9024,6 +9031,7 @@ theorem rightNonSurplusExactCountFamilyExcluded_of_rowsExcluded
     | exact h2002 hmEq hsEq hlEq hrEq
     | exact h2101 hmEq hsEq hlEq hrEq
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem leftNonSurplusExactCountFamilyExcluded_of_rowsExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
     (hrows : LeftNonSurplusExactCountRowsExcluded S x p) :
@@ -9192,6 +9200,7 @@ abbrev
               p ∈ A.erase x →
                 LeftNonSurplusRemainderRowsExcluded S x p)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem routedRowsFactsStatement_of_finiteResidualRowsFactsStatement
     (hfiniteResidual :
       IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement) :
@@ -9242,6 +9251,7 @@ theorem routedRowsFactsStatement_of_finiteResidualRowsFactsStatement
         ⟨h0040, h0130, h1030, h1120, h2020⟩,
         hterminal⟩
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem countFamilyFactsStatement_of_countRowsFactsStatement
     (hrows :
       IsM44NonSurplusContainmentErasedPinTripleCountRowsFactsStatement) :
@@ -9260,6 +9270,7 @@ theorem countFamilyFactsStatement_of_countRowsFactsStatement
     exact leftNonSurplusExactCountFamilyExcluded_of_rowsExcluded
       (hoppInterior2Rows p hpI hpErase)
 
+/-- P97 RemovableVertexAxiom theorem. -/
 theorem countRowsFactsStatement_of_routedRowsFactsStatement
     (hrouted :
       IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement) :

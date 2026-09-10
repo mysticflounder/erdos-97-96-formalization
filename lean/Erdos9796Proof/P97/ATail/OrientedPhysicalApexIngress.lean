@@ -35,6 +35,7 @@ attribute [local instance] Classical.propDecidable
 
 noncomputable section
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -44,6 +45,7 @@ private theorem oppApex2_mem_A
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -53,6 +55,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem oppApex1_ne_oppApex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ≠ S.oppApex2 := by
@@ -65,6 +68,7 @@ private theorem oppApex1_ne_oppApex2
   · simpa [SurplusCapPacket.oppApex1,
       SurplusCapPacket.oppApex2, hi] using S.triangle.v12_ne
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem equidistant_mono
     {n : ℕ} {A B : Finset ℝ²} {center : ℝ²}
     (hAB : A ⊆ B)
@@ -76,6 +80,7 @@ private theorem equidistant_mono
     rcases Finset.mem_filter.mp hz with ⟨hzA, hzdist⟩
     exact Finset.mem_filter.mpr ⟨hAB hzA, hzdist⟩))⟩
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -84,6 +89,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -259,6 +265,7 @@ structure FrontierCommonDeletionParentResidual
     4 ≤ (SelectedClass D.A S.oppApex1 radius).card
   common : FrontierCommonDeletionResidual F
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem pair_q_mem_frontierClass_of_commonDeletionParent
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -271,6 +278,7 @@ private theorem pair_q_mem_frontierClass_of_commonDeletionParent
   exact mem_selectedClass.mpr
     ⟨hqA, by simpa only [dist_comm] using hqRadius⟩
 
+/-- P97 ATail OrientedPhysicalApexIngress theorem. -/
 private theorem pair_w_mem_frontierClass_of_commonDeletionParent
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

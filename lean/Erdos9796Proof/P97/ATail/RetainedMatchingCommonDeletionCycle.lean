@@ -139,12 +139,14 @@ theorem nextBlocker_ne_secondBlocker
 
 end RetainedMatchingTwoStepCommonDeletionWalk
 
+/-- P97 ATail RetainedMatchingCommonDeletionCycle def. -/
 private def transportSelectedFourClass
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
     SelectedFourClass A center₂ :=
   Eq.mp (congrArg (SelectedFourClass A) hcenter) K
 
+/-- P97 ATail RetainedMatchingCommonDeletionCycle theorem. -/
 @[simp] private theorem transportSelectedFourClass_support
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
@@ -334,6 +336,7 @@ theorem nonempty_twoStepEndpointOutcome
         secondBlocker_ne_nextBlocker :=
           (W.nextBlocker_ne_secondBlocker).symm }⟩
 
+/-- P97 ATail RetainedMatchingCommonDeletionCycle theorem. -/
 private theorem secondCap_point_ne_firstCap_point
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {x y : ℝ²}

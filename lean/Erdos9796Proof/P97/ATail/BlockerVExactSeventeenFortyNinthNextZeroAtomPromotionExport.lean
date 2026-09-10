@@ -14,6 +14,7 @@ namespace ATailBlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortyNinthNextZeroAtomPromotion
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport def. -/
 def extendedFortyNinthNextZeroAtomPromotionDimacsString : String :=
   let dimacs := extendedFortyNinthNextZeroAtomPromotionCnf.map fun clause =>
     clause.map litToDimacs
@@ -23,6 +24,7 @@ def extendedFortyNinthNextZeroAtomPromotionDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -35,5 +37,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenFortyNinthNextZeroAtomPromotionExport.run args

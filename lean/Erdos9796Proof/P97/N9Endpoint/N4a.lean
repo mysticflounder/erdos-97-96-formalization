@@ -51,6 +51,7 @@ chain's indexed points. -/
   unfold support
   simp
 
+/-- P97 N9Endpoint theorem. -/
 @[simp] theorem card_support (L : OrderedSideChain m) :
     L.support.card = m := by
   classical
@@ -129,6 +130,7 @@ noncomputable def OrderedSideChain.ofOrderedCap {m : ℕ}
   points := L.points
   injective := L.injective
 
+/-- P97 N9Endpoint theorem. -/
 @[simp] theorem OrderedSideChain.ofOrderedCap_points {m : ℕ}
     (L : Problem97.CGN.OrderedCap m) (i : Fin m) :
     (OrderedSideChain.ofOrderedCap L).points i = L.points i := rfl
@@ -144,6 +146,7 @@ noncomputable def OrderedSideChain.ofOrderedCapRev {m : ℕ}
     apply Fin.rev_injective
     exact L.injective hij
 
+/-- P97 N9Endpoint theorem. -/
 @[simp] theorem OrderedSideChain.ofOrderedCapRev_points {m : ℕ}
     (L : Problem97.CGN.OrderedCap m) (i : Fin m) :
     (OrderedSideChain.ofOrderedCapRev L).points i = L.points i.rev := rfl

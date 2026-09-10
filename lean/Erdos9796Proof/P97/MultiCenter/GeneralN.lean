@@ -389,6 +389,7 @@ def ofLocallyAdmissible {P : JointProfile} {C : JointClass}
   ofJointClassWithBounds P C
     (JointClass.capCounts_le_interiorCapacity_of_locallyAdmissible hlocal)
 
+/-- P97 MultiCenter theorem. -/
 theorem toJointClass_ofJointClassWithBounds
     (P : JointProfile) (C : JointClass)
     (hbound : ∀ cap mask, C.capCounts cap mask ≤ P.interiorCapacity cap) :
@@ -396,6 +397,7 @@ theorem toJointClass_ofJointClassWithBounds
   cases C
   rfl
 
+/-- P97 MultiCenter theorem. -/
 theorem toJointClass_ofLocallyAdmissible
     {P : JointProfile} {C : JointClass}
     (hlocal : C.LocallyAdmissible P) :
@@ -445,6 +447,7 @@ noncomputable instance (P : JointProfile) : Fintype (LocalClassCode P) := by
 def toJointClass {P : JointProfile} (B : LocalClassCode P) : JointClass :=
   B.1.toJointClass
 
+/-- P97 MultiCenter theorem. -/
 theorem locallyAdmissible {P : JointProfile} (B : LocalClassCode P) :
     B.toJointClass.LocallyAdmissible P :=
   B.2
@@ -456,6 +459,7 @@ def ofLocallyAdmissible {P : JointProfile} {C : JointClass}
     rw [BoundedJointClass.toJointClass_ofLocallyAdmissible hlocal]
     exact hlocal⟩
 
+/-- P97 MultiCenter theorem. -/
 theorem toJointClass_ofLocallyAdmissible
     {P : JointProfile} {C : JointClass}
     (hlocal : C.LocallyAdmissible P) :
@@ -499,6 +503,7 @@ def ofLocallyAdmissible {P : JointProfile} {C : JointClass}
   ofJointClassWithFour C
     (JointClass.capCounts_le_four_of_locallyAdmissible hlocal)
 
+/-- P97 MultiCenter theorem. -/
 theorem toJointClass_ofJointClassWithFour
     (C : JointClass)
     (hbound : ∀ cap mask, C.capCounts cap mask ≤ 4) :
@@ -506,6 +511,7 @@ theorem toJointClass_ofJointClassWithFour
   cases C
   rfl
 
+/-- P97 MultiCenter theorem. -/
 theorem toJointClass_ofLocallyAdmissible
     {P : JointProfile} {C : JointClass}
     (hlocal : C.LocallyAdmissible P) :
@@ -576,6 +582,7 @@ noncomputable instance : Fintype LocalJointClassCode := by
 def toJointClass (K : LocalJointClassCode) : JointClass :=
   K.1.toJointClass
 
+/-- P97 MultiCenter theorem. -/
 theorem locallyAdmissible_for_some_profile (K : LocalJointClassCode) :
     ∃ P : JointProfile, K.toJointClass.LocallyAdmissible P :=
   K.2
@@ -588,6 +595,7 @@ def ofLocallyAdmissible {P : JointProfile} {C : JointClass}
     rw [FourBoundedJointClass.toJointClass_ofLocallyAdmissible hlocal]
     exact hlocal⟩
 
+/-- P97 MultiCenter theorem. -/
 theorem toJointClass_ofLocallyAdmissible
     {P : JointProfile} {C : JointClass}
     (hlocal : C.LocallyAdmissible P) :
@@ -609,6 +617,7 @@ def toJointClassEmbedding : LocalJointClassCode ↪ JointClass where
 def CodedBy (C : JointClass) : Prop :=
   ∃ K : LocalJointClassCode, K.toJointClass = C
 
+/-- P97 MultiCenter theorem. -/
 theorem codedBy_of_locallyAdmissible
     {P : JointProfile} {C : JointClass}
     (hlocal : C.LocallyAdmissible P) :

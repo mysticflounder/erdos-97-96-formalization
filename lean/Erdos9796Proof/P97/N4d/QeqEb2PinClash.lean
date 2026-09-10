@@ -36,16 +36,20 @@ namespace Problem97
 
 /- ### Chart coordinate helpers (local copies of the `N4dFaithfulFrame` privates) -/
 
+/-- P97 N4d theorem. -/
 private theorem dist_sq_coords (x y : ℝ²) :
     dist x y ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 :=
   Problem97.dist_sq_coord x y
 
+/-- P97 N4d theorem. -/
 private theorem vec2_c0 (a b : ℝ) : (Problem97.CGN.vec2 a b) 0 = a := by
   simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]
 
+/-- P97 N4d theorem. -/
 private theorem vec2_c1 (a b : ℝ) : (Problem97.CGN.vec2 a b) 1 = b := by
   simp [Problem97.CGN.vec2, EuclideanSpace.single_apply]
 
+/-- P97 N4d theorem. -/
 private theorem sa2_chart_base_local (p : ℝ²) :
     signedArea2 p (Problem97.CGN.vec2 0 0) (Problem97.CGN.vec2 1 0) = p 1 := by
   simp [Problem97.signedArea2, Problem97.CGN.vec2, EuclideanSpace.single_apply]

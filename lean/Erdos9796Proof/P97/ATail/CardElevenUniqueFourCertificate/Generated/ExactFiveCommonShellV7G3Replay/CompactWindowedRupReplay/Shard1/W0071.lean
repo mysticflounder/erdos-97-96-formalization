@@ -17,11 +17,13 @@ open Problem97.CheckpointedRup
 open Problem97.CheckpointedRup.CompactIngress
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- P97 ATail generated W0071 def. -/
 private def actionText : String :=
   include_str "../../data/actions/8ce1d54dabe905dc671632239d71cb82128c34183a9728a2e53bd51b7898b276.cpa85"
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 2000000 in
+/-- P97 ATail generated W0071 theorem. -/
 theorem accepted :
     checkRebaseCompact (n := n)
       Checkpoint.C0070.text actionText
@@ -29,6 +31,7 @@ theorem accepted :
   unfold n Checkpoint.C0070.text actionText Checkpoint.C0071.text
   native_decide
 
+/-- P97 ATail generated W0071 theorem. -/
 theorem sound :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0070.text)

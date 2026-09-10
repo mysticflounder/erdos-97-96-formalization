@@ -28,25 +28,30 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4Tw
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CoreRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements def. -/
 def fourPointTwoCircleV4CombinedRefinementClauses : Std.Sat.CNF Atom :=
   v4TwoKalmansonRefinementClauses ++
     fourPointTwoCircleV4OtherCoreRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem fourPointTwoCircleV4CombinedRefinementClauses_length :
     fourPointTwoCircleV4CombinedRefinementClauses.length = 244 := by
   simp [fourPointTwoCircleV4CombinedRefinementClauses,
     v4TwoKalmansonRefinementClauses_length,
     fourPointTwoCircleV4OtherCoreRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem fourPointTwoCircleV4CombinedRefinementClauses_nodup :
     fourPointTwoCircleV4CombinedRefinementClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem fourPointTwoCircleV4CoreRefinementClauses_subset_combined :
     ∀ clause ∈ fourPointTwoCircleV4CoreRefinementClauses,
       clause ∈ fourPointTwoCircleV4CombinedRefinementClauses := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem sourceAssign_fourPointTwoCircleV4CombinedRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fourPointTwoCircleV4CombinedRefinementClauses,
@@ -57,11 +62,13 @@ theorem sourceAssign_fourPointTwoCircleV4CombinedRefinementClauses
   · exact sourceAssign_fourPointTwoCircleV4OtherCoreRefinementClauses
       source clause hother
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf :
     Std.Sat.CNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf ++
     fourPointTwoCircleV4CombinedRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf_length :
     canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf.length =
       7409760 := by
@@ -69,6 +76,7 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf_leng
     canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf_length,
     fourPointTwoCircleV4CombinedRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :

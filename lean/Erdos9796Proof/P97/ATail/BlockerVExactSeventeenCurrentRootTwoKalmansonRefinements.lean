@@ -31,6 +31,7 @@ open ATailBlockerVExactSeventeenTwoTripleRowRefinements
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinements abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
@@ -2631,10 +2632,12 @@ def currentRootTwoKalmansonOccurrences : List CancellationOccurrence :=
       path3 := ⟨(2, 10), [.row 2 10 8], (2, 8)⟩ } }
 ]
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinements theorem. -/
 theorem currentRootTwoKalmansonOccurrences_length :
     currentRootTwoKalmansonOccurrences.length = 54 := by
   decide
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinements theorem. -/
 theorem currentRootTwoKalmansonOccurrences_all_check :
     currentRootTwoKalmansonOccurrences.all CancellationOccurrence.check = true := by
   decide
@@ -2644,6 +2647,7 @@ def currentRootTwoKalmansonClauses : Std.Sat.CNF Atom :=
   currentRootTwoKalmansonOccurrences.flatMap fun occurrence =>
     occurrenceClauses occurrence.hits
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinements theorem. -/
 theorem currentRootTwoKalmansonClauses_length :
     currentRootTwoKalmansonClauses.length = 216 := by
   simp [currentRootTwoKalmansonClauses, occurrenceClauses,
@@ -2670,6 +2674,7 @@ theorem sourceAssign_currentRootTwoKalmansonClauses
 def extendedCurrentRootTwoKalmansonCnf : Std.Sat.CNF Atom :=
   extendedTwoTripleRowCnf ++ currentRootTwoKalmansonClauses
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinements theorem. -/
 theorem extendedCurrentRootTwoKalmansonCnf_length :
     extendedCurrentRootTwoKalmansonCnf.length = 7037176 := by
   simp only [extendedCurrentRootTwoKalmansonCnf, List.length_append,

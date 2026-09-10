@@ -28,6 +28,7 @@ namespace MultiCenter
 namespace Certificate
 namespace ProfileClassIncidence
 
+/-- P97 MultiCenter abbrev. -/
 abbrev threshold : Nat := 12
 
 /-- A contiguous range of generated typed-class IDs. -/
@@ -45002,19 +45003,24 @@ def rows : List ProfileIncidenceRow :=
     rowsChunk018 ++
     rowsChunk019
 
+/-- P97 MultiCenter def. -/
 def allRowsMetadataOK : Bool :=
   rows.all ProfileIncidenceRow.metadataOK
 
+/-- P97 MultiCenter def. -/
 def totalIncidencePairs : Nat :=
   rows.foldl (fun total row => total + row.classCount) 0
 
+/-- P97 MultiCenter def. -/
 def totalCompressedRanges : Nat :=
   rows.foldl (fun total row => total + row.rangeCount) 0
 
+/-- P97 MultiCenter def. -/
 def profileMetadata : List (Nat × Nat × Nat × Nat × Nat × Nat) :=
   rows.map (fun row =>
     (row.id, row.n, row.capS, row.capO1, row.capO2, row.classCount))
 
+/-- P97 MultiCenter def. -/
 def inventoryProfileMetadata : List (Nat × Nat × Nat × Nat × Nat × Nat) :=
   ProfileInventory.rows.map (fun row =>
     (row.id, row.n, row.capS, row.capO1, row.capO2, row.localClasses))
@@ -45086,12 +45092,14 @@ theorem layer_eq_l2_of_certifies
   have hLayer := congrArg JointClass.layer hcls
   simpa [RawClassRow.toJointClass] using hLayer.symm
 
+/-- P97 MultiCenter def. -/
 private def emptyL1Class : JointClass where
   layer := .L1
   participants := ∅
   moserMask := fun _ => ∅
   capCounts := fun _ _ => 0
 
+/-- P97 MultiCenter theorem. -/
 private theorem emptyL1Class_locallyAdmissible (profile : JointProfile) :
     emptyL1Class.LocallyAdmissible profile := by
   unfold JointClass.LocallyAdmissible JointClass.Supported JointClass.jointKillsOK
@@ -45099,6 +45107,7 @@ private theorem emptyL1Class_locallyAdmissible (profile : JointProfile) :
     JointClass.capUseCount, JointClass.capTotalCount, JointClass.h1UseInCap,
     JointClass.pairSharedCount, JointClass.pairSharedInCap]
 
+/-- P97 MultiCenter theorem. -/
 private theorem not_certifies_emptyL1Class (profile : JointProfile) :
     ¬ certifies profile emptyL1Class := by
   intro hcert
@@ -45108,12 +45117,14 @@ private theorem not_certifies_emptyL1Class (profile : JointProfile) :
   have hLayer := congrArg JointClass.layer hcls
   simp [RawClassRow.toJointClass, emptyL1Class] at hLayer
 
+/-- P97 MultiCenter def. -/
 private def counterexampleProfile : JointProfile where
   capSize
     | .S => 4
     | .O1 => 5
     | .O2 => 6
 
+/-- P97 MultiCenter theorem. -/
 private theorem counterexampleProfile_occurs :
     Completion.profileOccursAtN 12 counterexampleProfile := by
   unfold Completion.profileOccursAtN Completion.profileMatchesRow

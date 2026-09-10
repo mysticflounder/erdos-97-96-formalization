@@ -61,15 +61,18 @@ def directResidualShapeWF : NonKalmansonShape → Bool
         p₃ ∈ directResidualCapPositions k ∧ p₁ ≠ center ∧
         p₂ ≠ center ∧ p₃ ≠ center ∧ p₁ ≠ p₂ ∧ p₁ ≠ p₃ ∧ p₂ ≠ p₃)
 
+/-- P97 ATail support def. -/
 def directResidualEntryWF (entry : NonKalmansonEntry) : Bool :=
   directResidualShapeWF entry.shape &&
     P5OccurrenceBridgeScratch.litsSubset
       (residualShapeLits entry.shape) entry.clause
 
+/-- P97 ATail support theorem. -/
 theorem residual55Entries_direct_wf :
     residual55Entries.all directResidualEntryWF = true := by
   native_decide
 
+/-- P97 ATail support theorem. -/
 private theorem endpointSat_direct
     (P : P4DirectBoundaryPacket R profile distribution) (k : Fin 3) :
     ∀ c ∈ directResidualCapEndpoints k,
@@ -83,6 +86,7 @@ private theorem endpointSat_direct
   · exact shortCapEndpointOwnCapAtMostOneSat_direct P
   · exact rightCapEndpointOwnCapAtMostOneSat_direct P
 
+/-- P97 ATail support theorem. -/
 private theorem ownCapSat_direct
     (P : P4DirectBoundaryPacket R profile distribution) (k : Fin 3) :
     ∀ c ∈ directResidualCapPositions k,
@@ -98,6 +102,7 @@ private theorem ownCapSat_direct
   · exact shortCapOwnCapAtMostTwoSat_direct P
   · exact rightCapOwnCapAtMostTwoSat_direct P
 
+/-- P97 ATail support theorem. -/
 private theorem directResidualShapeSat
     (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : ValAgreement P.core directIndex v)
@@ -197,6 +202,7 @@ private theorem directResidualShapeSat
         apply litSat_neg (rowVariable_pos center p₁)
         exact fun h => h₁ ((hv.row center p₁ hcenter₁).mp h)
 
+/-- P97 ATail support theorem. -/
 private theorem directResidualEntrySat
     (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : ValAgreement P.core directIndex v)
@@ -209,6 +215,7 @@ private theorem directResidualEntrySat
   exact P5OccurrenceBridgeScratch.clauseSat_of_subset hboth.2
     (directResidualShapeSat P hv entry.shape hboth.1)
 
+/-- P97 ATail support theorem. -/
 theorem residual55Entries_sat_direct
     (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : ValAgreement P.core directIndex v) :
@@ -219,6 +226,7 @@ theorem residual55Entries_sat_direct
     List.all_eq_true.mp residual55Entries_direct_wf entry hentry
   exact directResidualEntrySat P hv entry hwf
 
+/-- P97 ATail support theorem. -/
 theorem directTotalVal_residual55Entries_sat
     (Q : DirectSource R profile distribution) :
     ∀ entry ∈ residual55Entries,

@@ -234,6 +234,7 @@ arc-angle parametrization + cap-arc-thales gap noted in
 immediately via this lemma. The lemma is `O(70)` lines of pure
 case-analysis with no axiom dependencies beyond the trivial input
 hypothesis. -/
+/-- P97 U2EquilateralMECFromM44 theorem. -/
 theorem u2EquilateralMECTriangle_of_u2FullDistanceClasses
     (D : CounterexampleData) (hFD : U2FullDistanceClasses D) :
     U2EquilateralMECTriangle D := by

@@ -362,6 +362,7 @@ against `.own`. -/
 def erasedPinCanonicalSeed (seed : OneSidedSeed) : OneSidedSeed :=
   { seed with kind := .own }
 
+/-- P97 ErasedPinFixedSeedDFS theorem. -/
 theorem erasedPinCanonicalSeed_candidateMasks
     (seed : OneSidedSeed) (center : Label) :
     (erasedPinCanonicalSeed seed).candidateMasks center =
@@ -369,6 +370,7 @@ theorem erasedPinCanonicalSeed_candidateMasks
   cases seed
   rfl
 
+/-- P97 ErasedPinFixedSeedDFS theorem. -/
 theorem isValidOneSidedSeedShadow_erasedPinCanonicalSeed
     {seed : OneSidedSeed} {shadow : Shadow}
     (hvalid : isValidOneSidedSeedShadow seed shadow = true) :
@@ -376,6 +378,7 @@ theorem isValidOneSidedSeedShadow_erasedPinCanonicalSeed
   cases seed
   simpa [erasedPinCanonicalSeed, isValidOneSidedSeedShadow] using hvalid
 
+/-- P97 ErasedPinFixedSeedDFS theorem. -/
 theorem isValidOneSidedSeedRelaxedShapeShadow_erasedPinCanonicalSeed
     {seed : OneSidedSeed} {shadow : Shadow}
     (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
@@ -2904,6 +2907,7 @@ def erasedPinFixedSeedRelaxedShapeSearchEntries :
     List (OneSidedSeed × List Nat) :=
   erasedPinFixedSeeds.flatMap oneSidedSeedRelaxedShapeSearchEntriesFor
 
+/-- P97 ErasedPinFixedSeedDFS theorem. -/
 theorem erasedPinFixedSeeds_length :
     erasedPinFixedSeeds.length = 330 := by
   native_decide

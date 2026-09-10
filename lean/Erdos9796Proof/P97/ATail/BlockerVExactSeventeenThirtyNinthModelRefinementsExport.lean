@@ -13,6 +13,7 @@ import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyNinthModelRefinement
 open Problem97.ATailBlockerVExactSeventeenSourceCnf
 open Problem97.ATailBlockerVExactSeventeenThirtyNinthModelRefinements
 
+/-- P97 ATail BlockerVExactSeventeenThirtyNinthModelRefinementsExport def. -/
 def extendedThirtyNinthModelRefinementsDimacsString : String :=
   let dimacs := extendedThirtyNinthModelRefinementsCnf.map fun clause =>
     clause.map litToDimacs
@@ -22,6 +23,7 @@ def extendedThirtyNinthModelRefinementsDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenThirtyNinthModelRefinementsExport def. -/
 def main (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>

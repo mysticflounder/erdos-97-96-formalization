@@ -30,15 +30,19 @@ open ATailBlockerVExactSeventeenThirtyFirstModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open Census554.EqualityCore
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement abbrev. -/
 private abbrev priorOccurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement abbrev. -/
 private abbrev priorOccurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation) (hsame : actual = direction)
     (index : Label) :
@@ -47,6 +51,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation) (hne : actual ≠ direction)
     (index : Label) :
@@ -55,6 +60,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation)
     (horder : order = source.model.order) (hsame : source.orientation = direction)
@@ -81,6 +87,7 @@ private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
         List.mem_map]
       exact ⟨(choice.center, point), hcover choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation)
     (horder : order = source.model.order) (hne : source.orientation ≠ direction)
@@ -108,11 +115,13 @@ private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         hcover choice hchoice point hpoint, rfl⟩)
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem signedArea2_cycle (a b c : ℝ²) :
     signedArea2 a b c = signedArea2 b c a := by
   simp only [signedArea2]
   ring
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem signedArea2_swap23 (a b c : ℝ²) :
     signedArea2 a b c = -signedArea2 a c b := by
   simp only [signedArea2]
@@ -120,29 +129,35 @@ private theorem signedArea2_swap23 (a b c : ℝ²) :
 
 /- The canonical normalized support and the two orientation-specific row banks. -/
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
 def child32TwoCircleHits : List Hit :=
   [(15, 1), (15, 2), (1, 2), (1, 15), (9, 1), (9, 15)]
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
 def child32TwoCircleForwardChoices : List (RowChoice Label) :=
   [{ center := 15, support := {1, 2} },
     { center := 1, support := {2, 15} },
     { center := 9, support := {1, 15} }]
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
 def child32TwoCircleReverseChoices : List (RowChoice Label) :=
   [{ center := 1, support := {14, 15} },
     { center := 15, support := {1, 14} },
     { center := 7, support := {1, 15} }]
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 theorem child32TwoCircleForwardCover :
     ∀ choice ∈ child32TwoCircleForwardChoices, ∀ point ∈ choice.support,
       (choice.center, point) ∈ child32TwoCircleHits := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 theorem child32TwoCircleReverseCover :
     ∀ choice ∈ child32TwoCircleReverseChoices, ∀ point ∈ choice.support,
       (Fin.rev choice.center, Fin.rev point) ∈ child32TwoCircleHits := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
 private def child32TwoCircleForwardCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P child32TwoCircleForwardChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -157,6 +172,7 @@ private def child32TwoCircleForwardCore {P : RowPattern Label}
   uv_yv := edgeClosure_of_checkPath_positive hrows
     ⟨(15, 9), [.flip 15 9, .row 9 15 1, .flip 9 1], (1, 9)⟩ (by native_decide) }
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
 private def child32TwoCircleReverseCore {P : RowPattern Label}
     (hrows : PositiveRowsMatch P child32TwoCircleReverseChoices) :
     Census554.FourPointTwoCircleBisectorOrderCore.Core P := {
@@ -171,6 +187,7 @@ private def child32TwoCircleReverseCore {P : RowPattern Label}
   uv_yv := edgeClosure_of_checkPath_positive hrows
     ⟨(1, 7), [.flip 1 7, .row 7 1 15, .flip 7 15], (15, 7)⟩ (by native_decide) }
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem false_of_child32TwoCircleForwardRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -186,6 +203,7 @@ private theorem false_of_child32TwoCircleForwardRows
     exact hneg_of_ccw hreal.injective hccw (i := (1 : Label)) (j := (2 : Label))
       (k := (9 : Label)) (by decide) (by decide)
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem false_of_child32TwoCircleReverseRows
     {P : RowPattern Label} {pointOf : Label → ℝ²}
     (hreal : Realizes P pointOf)
@@ -204,6 +222,7 @@ private theorem false_of_child32TwoCircleReverseRows
       (k := (15 : Label)) (by decide) (by decide)
     linarith
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 private theorem false_of_child32TwoCircleHits {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation)
     (horder : order = source.model.order)
@@ -219,9 +238,11 @@ private theorem false_of_child32TwoCircleHits {A : Finset ℝ²}
       (positiveRowsMatch_of_ne source source.model.order direction rfl hsame
         child32TwoCircleHits child32TwoCircleReverseChoices child32TwoCircleReverseCover hall)
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
 def child32TwoCircleClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := priorOccurrenceClause child32TwoCircleHits order direction
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 theorem sourceAssign_child32TwoCircleClause {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause.eval (sourceAssign source.model)
@@ -230,10 +251,12 @@ theorem sourceAssign_child32TwoCircleClause {A : Finset (EuclideanSpace ℝ (Fin
   intro horder hall
   exact false_of_child32TwoCircleHits source order direction horder.symm hall
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
 def child32TwoCircleClauses : Std.Sat.CNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => child32TwoCircleClause order direction
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 theorem sourceAssign_child32TwoCircleClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ child32TwoCircleClauses,
@@ -243,6 +266,7 @@ theorem sourceAssign_child32TwoCircleClauses
   rcases hclause with ⟨order, _, direction, _, rfl⟩
   exact sourceAssign_child32TwoCircleClause source order direction
 
+/-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement theorem. -/
 theorem child32TwoCircleClauses_length : child32TwoCircleClauses.length = 4 := by
   native_decide
 

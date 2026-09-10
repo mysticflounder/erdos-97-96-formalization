@@ -45,6 +45,7 @@ def retainedRadiusCollisionOfInterior
   · apply Subtype.ext
     exact P.blockers_eq
 
+/-- Indexed scratch Lean theorem. -/
 theorem retainedInteriorCollision_commonBlocker_mem_firstCapInterior
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -58,6 +59,7 @@ theorem retainedInteriorCollision_commonBlocker_mem_firstCapInterior
     Q P.source₁_mem_capInterior P.source₂_mem_capInterior
   simpa [Q, retainedRadiusCollisionOfInterior] using h
 
+/-- Indexed scratch Lean theorem. -/
 theorem retainedInteriorCollision_commonBlocker_not_mem_sources
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -91,6 +93,7 @@ theorem retainedInteriorCollision_commonBlocker_not_mem_sources
         P.source₁_mem_A).toCriticalFourShell.center_not_mem_support
         (by simpa [hcenter] using hsource₂)
 
+/-- Indexed scratch Lean theorem. -/
 theorem retainedInteriorCollision_commonBlocker_equidistant
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -211,6 +214,7 @@ theorem mem_retainedPairs_of_cap_card_eq_eight_of_mem_interior_of_canonical_mem
     · exact False.elim (hcenterK hfirstK)
     · exact False.elim (hcenterK hsecondK)
 
+/-- Indexed scratch Lean theorem. -/
 theorem retained_commonBlockers_mem_otherPairs_of_cap_card_eq_eight
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}
@@ -313,6 +317,7 @@ theorem freshThird_commonRadius_sameBlocker_freshCenter_mem_retainedPairs_of_cap
     mem_retainedPairs_of_cap_card_eq_eight_of_mem_interior_of_canonical_mem
       P Pρ hpairsDisjoint C.surface hcap hcenterInterior hfirstK hsecondK hcenterK
 
+/-- Indexed scratch Lean theorem. -/
 theorem freshThird_commonRadius_sameBlocker_freshCenter_equidistant_canonicalSources
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}
@@ -514,6 +519,7 @@ theorem freshThird_commonRadius_sameBlocker_alias_cycle_split_of_cap_card_eq_eig
       P Pρ T hpairsDisjoint hblockersNe C Q hfirstSupport hsecondSupport hcap
   exact alias_memberships_two_cycle_or_three_cycle h.1 h.2.1 h.2.2.1
 
+/-- Indexed scratch Lean theorem. -/
 theorem freshThird_commonRadius_sameBlocker_exact_trace_packet
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}

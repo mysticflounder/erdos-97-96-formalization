@@ -63,11 +63,13 @@ inductive RightCapShape where
   | ownCap (center first second third : Label)
 deriving DecidableEq
 
+/-- P97 ATail support def. -/
 def RightCapShape.family : RightCapShape → RightCapFamily
   | .shortEndpoint .. => .selectedRowEndpointOwnCapAtMostOne1
   | .endpoint .. => .selectedRowEndpointOwnCapAtMostOne2
   | .ownCap .. => .selectedRowOwnCapAtMostTwo2
 
+/-- P97 ATail support def. -/
 def RightCapShape.literals : RightCapShape → List Int
   | .shortEndpoint center left right =>
       [-(rowVariable center left : Int), -(rowVariable center right : Int)]
@@ -89,6 +91,7 @@ structure RightCapOccurrence where
   clause : List Int
 deriving DecidableEq
 
+/-- P97 ATail support def. -/
 def rightCapShapeWF : RightCapShape → Bool
   | .shortEndpoint center left right =>
       decide (center ∈ shortCapEndpoints ∧ left ∈ shortCapPositions ∧
@@ -101,9 +104,11 @@ def rightCapShapeWF : RightCapShape → Bool
         second ∈ rightCapPositions ∧ third ∈ rightCapPositions ∧ first ≠ center ∧
         second ≠ center ∧ third ≠ center ∧ first ≠ second ∧ first ≠ third ∧ second ≠ third)
 
+/-- P97 ATail support def. -/
 def rightCapOccurrenceWF (entry : RightCapOccurrence) : Bool :=
   decide (entry.clause = entry.shape.literals) && rightCapShapeWF entry.shape
 
+/-- P97 ATail support def. -/
 def rightCapOccurrenceProvenanceWF (entry : RightCapOccurrence) : Bool :=
   decide (entry.sourceFamily = entry.shape.family) &&
     decide (entry.sourceCoreLiterals.length = entry.clause.length) &&
@@ -219,6 +224,7 @@ theorem rightCapOccurrences_authenticated :
     (sourceCoreMapSha256 = "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b") := by
   exact ⟨rfl, rfl, rfl⟩
 
+/-- P97 ATail support theorem. -/
 private theorem shortEndpointSat
     (P : P4DirectBoundaryPacket R profile distribution) {v : Nat → Prop}
     (hv : RowValAgreement P.core directIndex v) (center left right : Label)
@@ -240,6 +246,7 @@ private theorem shortEndpointSat
     apply litSat_neg (rowVariable_pos center left)
     exact fun hleftVal => hleftMem ((hv.row center left hcenterLeft).mp hleftVal)
 
+/-- P97 ATail support theorem. -/
 private theorem endpointSat
     (P : P4DirectBoundaryPacket R profile distribution) {v : Nat → Prop}
     (hv : RowValAgreement P.core directIndex v) (center left right : Label)
@@ -260,6 +267,7 @@ private theorem endpointSat
     apply litSat_neg (rowVariable_pos center left)
     exact fun hleftVal => hleftMem ((hv.row center left hcenterLeft).mp hleftVal)
 
+/-- P97 ATail support theorem. -/
 private theorem ownCapSat
     (P : P4DirectBoundaryPacket R profile distribution) {v : Nat → Prop}
     (hv : RowValAgreement P.core directIndex v) (center first second third : Label)

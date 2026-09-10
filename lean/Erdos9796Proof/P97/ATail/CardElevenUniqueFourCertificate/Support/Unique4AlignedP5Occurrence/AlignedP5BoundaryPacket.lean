@@ -57,6 +57,7 @@ def alignedFrame {A : Finset ℝ²} (S : SurplusCapPacket A) :
   rest_ne_surplus := S.surplusIdx_ne_oppIndex2.symm
   rest_ne_second := S.oppIndex1_ne_oppIndex2.symm
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem alignedFrame_rest {A : Finset ℝ²} (S : SurplusCapPacket A) :
     (alignedFrame S).rest = S.oppIndex2 := rfl
 
@@ -114,6 +115,7 @@ private def reverseFin2 (i : Fin 2) : Fin 2 := ⟨1 - i, by omega⟩
 /-- Supports the aligned P5 occurrence analysis. -/
 private def reverseFin3 (i : Fin 3) : Fin 3 := ⟨2 - i, by omega⟩
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem image_firstOppositeInteriorIndex :
     Finset.univ.image firstOppositeInteriorIndex =
       firstOppositeInteriorIndices := by

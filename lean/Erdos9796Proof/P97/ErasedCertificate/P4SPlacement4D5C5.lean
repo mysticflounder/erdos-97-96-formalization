@@ -11,6 +11,7 @@ and support-mask bin 5 from the pair-wide native certificate. -/
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
+/-- P97 ErasedCertificate theorem. -/
 theorem p4sPlacementsAt_4_deleted_5_chunk_5_eq_true :
     p4sPlacementsAtDeletedChunk 4 5 5 = true := by
   exact

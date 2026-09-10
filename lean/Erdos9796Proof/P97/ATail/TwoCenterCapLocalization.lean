@@ -25,6 +25,7 @@ namespace ATailTwoCenterCapLocalization
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail TwoCenterCapLocalization theorem. -/
 private theorem oppApex2_eq_oppositeVertex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by

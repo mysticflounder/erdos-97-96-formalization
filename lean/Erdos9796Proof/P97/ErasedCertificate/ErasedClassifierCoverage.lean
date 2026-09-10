@@ -335,14 +335,17 @@ theorem exists_semanticPrefixCore_of_erasedPlacementCheckAt
   simp [hcheck] at hfalse
 
 set_option linter.style.nativeDecide false in
+/-- P97 ErasedCertificate theorem. -/
 theorem p4uVariableCenters_nodup : p4uVariableCenters.Nodup := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem p4uVariableCenter_lt_eleven {center : Nat}
     (hcenter : center ∈ p4uVariableCenters) : center < 11 := by
   simp [p4uVariableCenters] at hcenter
   omega
 
+/-- P97 ErasedCertificate theorem. -/
 theorem p4uVariableCenter_not_mem_fixed {center : Nat}
     (hcenter : center ∈ p4uVariableCenters) :
     (Fin.ofNat 11 center) ∉ ([2, 1, 0] : List Label) := by

@@ -21,13 +21,16 @@ namespace EndpointCertificate
 
 namespace Bank
 
+/-- P97 EndpointCertificate abbrev. -/
 abbrev Row := ShadowBank.EndpointRow
+/-- P97 EndpointCertificate abbrev. -/
 abbrev Certificate := Patterns.VerifiedCertificate
 
 /-- Endpoint shadow rows paired with their generated algebraic certificates. -/
 def certifiedEndpointRows : List (Row × Certificate) :=
   ShadowBank.allEndpointRows.zip Patterns.allEndpointCertificates
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem list_all_eq_true_of_mem
     {α : Type _} {p : α → Bool} {a : α} :
     ∀ {items : List α}, items.all p = true → a ∈ items → p a = true
@@ -40,6 +43,7 @@ private theorem list_all_eq_true_of_mem
       · exact hall.1
       · exact list_all_eq_true_of_mem hall.2 htail
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem mem_of_containsEntry_eq_true
     {entry : ShadowBank.Label × List Nat} :
     ∀ {entries : List (ShadowBank.Label × List Nat)},
@@ -55,6 +59,7 @@ private theorem mem_of_containsEntry_eq_true
         exact List.mem_cons_of_mem head
           (mem_of_containsEntry_eq_true htail)
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem allPairCertificatesChecked :
     ∀ rows : List (Row × Certificate),
       rows.all (fun rowCert => rowCert.2.check) = true

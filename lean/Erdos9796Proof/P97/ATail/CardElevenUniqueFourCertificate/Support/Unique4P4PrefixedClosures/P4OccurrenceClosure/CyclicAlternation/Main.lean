@@ -14,11 +14,15 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F} {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- P97 ATail support def. -/
 def bridgeClauses : List (List Int) := bridgeEntries.map BridgeEntry.clause
+/-- P97 ATail support theorem. -/
 theorem bridgeClauses_length : bridgeClauses.length = 1279 := by simp [bridgeClauses, bridgeEntries_length]
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) : ∀ e ∈ bridgeEntries, clauseSat v e.clause :=
   entryList_sat P hv bridgeEntries bridgeEntries_wf
+/-- P97 ATail support theorem. -/
 theorem bridgeClauses_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) : ∀ clause ∈ bridgeClauses, clauseSat v clause := by
   intro clause hclause

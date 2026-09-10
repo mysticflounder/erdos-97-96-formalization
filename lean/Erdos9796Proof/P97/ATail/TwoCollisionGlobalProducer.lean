@@ -39,6 +39,7 @@ open ATailRetainedStrictInteriorPairSelector
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail TwoCollisionGlobalProducer theorem. -/
 private theorem interior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -50,6 +51,7 @@ private theorem interior_not_mem_surplusCap
     simpa only [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
+/-- P97 ATail TwoCollisionGlobalProducer def. -/
 private noncomputable def collisionRelocation
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -128,6 +130,7 @@ abbrev CapSourceThirdBlockerCrossPairDeletionSurvivals
       HasNEquidistantPointsAt 4 (D.A.erase Pρ.source₂)
         (H.centerAt source.1 source.2))
 
+/-- P97 ATail TwoCollisionGlobalProducer theorem. -/
 private theorem two_le_card_capInterior_sdiff_collisionSources
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}
@@ -179,6 +182,7 @@ private theorem two_le_card_capInterior_sdiff_collisionSources
   change 2 ≤ ((S.capInteriorByIndex S.oppIndex1) \ pairSources).card
   omega
 
+/-- P97 ATail TwoCollisionGlobalProducer theorem. -/
 private theorem capSourceThirdBlockerCrossPairDeletionSurvivals_of_mem_sdiff
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius ρ : ℝ}
     {H : CriticalShellSystem D.A}

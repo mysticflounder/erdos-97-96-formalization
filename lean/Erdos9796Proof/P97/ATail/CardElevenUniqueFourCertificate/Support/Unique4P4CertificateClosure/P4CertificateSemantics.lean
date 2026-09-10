@@ -59,6 +59,7 @@ noncomputable def checkerAssignment {n : Nat} (v : Nat → Prop) :
     PosFin n → Bool :=
   fun p => @decide (v p.val) (Classical.propDecidable _)
 
+/-- P97 ATail support theorem. -/
 theorem checkerAssignment_iff {n : Nat} (v : Nat → Prop) (p : PosFin n) :
     checkerAssignment v p = true ↔ v p.val := by
   simp [checkerAssignment]

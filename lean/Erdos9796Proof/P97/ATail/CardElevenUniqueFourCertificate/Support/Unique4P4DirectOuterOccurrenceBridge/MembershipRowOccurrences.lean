@@ -39,12 +39,14 @@ def clauseSat (v : Nat → Prop) (clause : List Int) : Prop :=
 def litsSubset (lits clause : List Int) : Bool :=
   lits.all fun literal => clause.contains literal
 
+/-- P97 ATail support theorem. -/
 theorem literalSat_pos {v : Nat → Prop} {index : Nat}
     (h : v index) : literalSat v (index : Int) := by
   unfold literalSat
   rw [if_pos (Int.natCast_nonneg index)]
   simpa using h
 
+/-- P97 ATail support theorem. -/
 theorem literalSat_neg {v : Nat → Prop} {index : Nat}
     (hpositive : 1 ≤ index) (h : ¬ v index) :
     literalSat v (-(index : Int)) := by
@@ -52,6 +54,7 @@ theorem literalSat_neg {v : Nat → Prop} {index : Nat}
   rw [if_neg (by omega)]
   simpa using h
 
+/-- P97 ATail support theorem. -/
 theorem clauseSat_of_subset {v : Nat → Prop} {lits clause : List Int}
     (hsubset : litsSubset lits clause = true) (h : clauseSat v lits) :
     clauseSat v clause := by
@@ -59,6 +62,7 @@ theorem clauseSat_of_subset {v : Nat → Prop} {lits clause : List Int}
   refine ⟨literal, ?_, hsat⟩
   simpa using List.all_eq_true.mp hsubset literal hliteral
 
+/-- P97 ATail support theorem. -/
 theorem membershipAtom_eq_of_center_eq (a : MembershipAtom) (center : Label)
     (hcenter : a.center = center) : a = ⟨center, a.point⟩ := by
   rcases a with ⟨aCenter, point⟩
@@ -94,6 +98,7 @@ def EntrySides (e : MembershipRowOccurrence) : Prop :=
     point = e.m1.2.point ∨ point = e.m2.2.point ∨
       point = e.m3.2.point ∨ point = e.m4.2.point
 
+/-- P97 ATail support instance. -/
 instance entrySidesDecidable (e : MembershipRowOccurrence) : Decidable (EntrySides e) := by
   unfold EntrySides
   infer_instance
@@ -102,26 +107,33 @@ instance entrySidesDecidable (e : MembershipRowOccurrence) : Decidable (EntrySid
 def entryWF (e : MembershipRowOccurrence) : Bool :=
   decide (EntrySides e) && litsSubset (membershipTerminalLits e) e.compactLedgerLiterals
 
+/-- P97 ATail support def. -/
 def allEntriesWF : Bool := membershipRowOccurrences.all entryWF
 
+/-- P97 ATail support def. -/
 def familyOrdinals : List Nat := membershipRowOccurrences.map (·.familyOrdinal)
 
+/-- P97 ATail support def. -/
 def compactLedgerClauses : List (List Int) :=
   membershipRowOccurrences.map (·.compactLedgerLiterals)
 
 set_option maxRecDepth 100000 in
+/-- P97 ATail support theorem. -/
 theorem allEntriesWF_true : allEntriesWF = true := by
   native_decide
 
 set_option maxRecDepth 100000 in
+/-- P97 ATail support theorem. -/
 theorem familyOrdinals_exact :
     familyOrdinals = (List.range expectedOccurrenceCount).map (· + 1) := by
   native_decide
 
 set_option maxRecDepth 100000 in
+/-- P97 ATail support theorem. -/
 theorem occurrenceCount_exact : membershipRowOccurrences.length = expectedOccurrenceCount := by
   native_decide
 
+/-- P97 ATail support theorem. -/
 theorem entryWF_of_mem (e : MembershipRowOccurrence)
     (he : e ∈ membershipRowOccurrences) : entryWF e = true := by
   exact List.all_eq_true.mp allEntriesWF_true e he
@@ -138,6 +150,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- P97 ATail support structure. -/
 structure DirectOuterValAgreement
     (Q : DirectSource R profile distribution) (v : Nat → Prop) : Prop where
   m1 : ∀ e, e ∈ membershipRowOccurrences →
@@ -151,6 +164,7 @@ structure DirectOuterValAgreement
   row : ∀ e, e ∈ membershipRowOccurrences →
     (v e.row.1 ↔ rowSupportVal Q.curvature e.row.2)
 
+/-- P97 ATail support theorem. -/
 theorem terminalClauseSat_of_membershipFalse
     {v : Nat → Prop} (e : MembershipRowOccurrence) (hentry : entryWF e = true)
     (which : (¬ v e.m1.1) ∨ (¬ v e.m2.1) ∨ (¬ v e.m3.1) ∨ (¬ v e.m4.1)) :
@@ -172,6 +186,7 @@ theorem terminalClauseSat_of_membershipFalse
   · refine ⟨-(e.m4.1 : Int), by simp [membershipTerminalLits], ?_⟩
     exact literalSat_neg hm4Positive h4
 
+/-- P97 ATail support theorem. -/
 theorem membershipRowOccurrence_sat
     (Q : DirectSource R profile distribution) {v : Nat → Prop}
     (agreement : DirectOuterValAgreement Q v)
@@ -222,6 +237,7 @@ theorem membershipRowOccurrence_sat
     · exact terminalClauseSat_of_membershipFalse e hentryOriginal (Or.inr (Or.inl hm2))
   · exact terminalClauseSat_of_membershipFalse e hentryOriginal (Or.inl hm1)
 
+/-- P97 ATail support theorem. -/
 theorem allMembershipRowOccurrences_sat
     (Q : DirectSource R profile distribution) {v : Nat → Prop}
     (agreement : DirectOuterValAgreement Q v) :

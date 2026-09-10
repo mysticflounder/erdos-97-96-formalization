@@ -32,6 +32,7 @@ open ATailUniqueFourLateChoiceTerminalScratch
 attribute [local instance] Classical.propDecidable
 
 /- A purely finite form of the two-color pigeonhole argument. -/
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 theorem exists_distinct_blockers_common_color_of_seven
     {α β : Type*} [DecidableEq α] [DecidableEq β]
     (T : Finset α) (blocker : α → β)
@@ -141,6 +142,7 @@ theorem exists_distinct_blockers_common_color_of_seven
       omega
 
 /- The source-local copy of the private survival helper. -/
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 private theorem good_source_survives_one_local
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -153,6 +155,7 @@ private theorem good_source_survives_one_local
         ((lateFirstApexSystem R).centerAt source.1 source.2) := by
   exact goodOutsideSources_survives_frontier_pair R hsource
 
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 private theorem source_not_mem_firstClass_of_mem_outside_local
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -172,6 +175,7 @@ private theorem source_not_mem_firstClass_of_mem_outside_local
   exact (Finset.mem_sdiff.mp hsource).2
     (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hcenters⟩)
 
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 private theorem good_source_ne_q
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -185,6 +189,7 @@ private theorem good_source_ne_q
   rw [hq]
   exact frontier_pair_q_mem_firstApexClass F
 
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 private theorem good_source_ne_w
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -199,6 +204,7 @@ private theorem good_source_ne_w
   exact frontier_pair_w_mem_firstApexClass F
 
 /- Every named actual blocker fiber has at most four good sources. -/
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 private theorem good_source_fiber_card_le_four
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -227,6 +233,7 @@ private theorem good_source_fiber_card_le_four
 /- If two color classes have distinct common blockers, each class loses the
 frontier point which the other color retains.  The remaining three support
 points inject the class into a four-shell with one named point erased. -/
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 private theorem good_source_color_cap
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -373,6 +380,7 @@ structure GoodSourceDistinctBlockerCommonDeletion
   deleted_not_mem_row₁ : deleted ∉ row₁.support
   deleted_not_mem_row₂ : deleted ∉ row₂.support
 
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion def. -/
 private noncomputable def selected_row_of_source
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -380,6 +388,7 @@ private noncomputable def selected_row_of_source
     SelectedFourClass D.A ((lateFirstApexSystem R).centerAt source.1 source.2) :=
   (lateFirstApexSystem R).selectedAt source.1 source.2 |>.toSelectedFourClass
 
+/-- P97 ATail SevenGoodSourceDistinctBlockerCommonDeletion theorem. -/
 private theorem selected_row_omits_of_survives
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

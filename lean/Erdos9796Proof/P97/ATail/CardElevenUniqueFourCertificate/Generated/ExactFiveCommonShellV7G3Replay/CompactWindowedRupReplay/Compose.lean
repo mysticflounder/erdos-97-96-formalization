@@ -13,6 +13,7 @@ namespace ExactFiveCommonShellV7G3Replay
 
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- P97 ATail generated Compose theorem. -/
 theorem startUnsatisfiable :
     Unsatisfiable (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text) :=

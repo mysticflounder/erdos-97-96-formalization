@@ -7,6 +7,7 @@ import Mathlib
 
 namespace CheckFourSupport
 
+/-- Indexed scratch Lean theorem. -/
 theorem exists_fourth_of_card_eq_four
     {α : Type*} [DecidableEq α]
     (K : Finset α) (a b c : α)

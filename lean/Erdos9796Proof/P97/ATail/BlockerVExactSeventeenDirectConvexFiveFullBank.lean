@@ -25,6 +25,7 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenConvexFiveSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank structure. -/
 structure DirectConvexFiveData where
   a : Label
   x : Label
@@ -33,28 +34,34 @@ structure DirectConvexFiveData where
   y : Label
 deriving DecidableEq, Repr
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.Valid (data : DirectConvexFiveData) : Prop :=
   data.y < data.c ∧ data.c < data.b ∧ data.b < data.x ∧ data.x < data.a
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.check (data : DirectConvexFiveData) : Bool :=
   decide (data.y < data.c ∧ data.c < data.b ∧
     data.b < data.x ∧ data.x < data.a)
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 theorem DirectConvexFiveData.validOfCheck (data : DirectConvexFiveData)
     (hcheck : data.check = true) : data.Valid := by
   simpa [DirectConvexFiveData.check, DirectConvexFiveData.Valid] using hcheck
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.hits (data : DirectConvexFiveData) : List Hit :=
   [(data.x, data.a), (data.x, data.b),
     (data.y, data.a), (data.y, data.b),
     (data.c, data.b), (data.c, data.x), (data.c, data.y)]
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.forwardChoices
     (data : DirectConvexFiveData) : List (RowChoice Label) :=
   [{ center := data.x, support := {data.a, data.b} },
     { center := data.y, support := {data.a, data.b} },
     { center := data.c, support := {data.b, data.x, data.y} }]
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.reverseChoices
     (data : DirectConvexFiveData) : List (RowChoice Label) :=
   [{ center := Fin.rev data.x,
@@ -64,6 +71,7 @@ def DirectConvexFiveData.reverseChoices
     { center := Fin.rev data.c,
       support := {Fin.rev data.b, Fin.rev data.x, Fin.rev data.y} }]
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.forwardPointData
     (data : DirectConvexFiveData) : ConvexFivePointData Label :=
   { a := data.a
@@ -80,6 +88,7 @@ def DirectConvexFiveData.forwardPointData
     cb_cy := ⟨(data.c, data.b), [.row data.c data.b data.y],
       (data.c, data.y)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.reversePointData
     (data : DirectConvexFiveData) : ConvexFivePointData Label :=
   { a := Fin.rev data.a
@@ -100,6 +109,7 @@ def DirectConvexFiveData.reversePointData
       [.row (Fin.rev data.c) (Fin.rev data.b) (Fin.rev data.y)],
       (Fin.rev data.c, Fin.rev data.y)⟩ }
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 private theorem forwardOrientation (data : DirectConvexFiveData)
     (hvalid : data.Valid) {pointOf : Label → ℝ²}
     (hinj : Function.Injective pointOf)
@@ -110,6 +120,7 @@ private theorem forwardOrientation (data : DirectConvexFiveData)
   have hsecond := hneg_of_ccw hinj hccw hvalid.1 hvalid.2.1
   constructor <;> rw [signedArea2_swap13] <;> linarith
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 private theorem reverseOrientation (data : DirectConvexFiveData)
     (hvalid : data.Valid) {pointOf : Label → ℝ²}
     (hinj : Function.Injective pointOf)
@@ -126,6 +137,7 @@ private theorem reverseOrientation (data : DirectConvexFiveData)
       (Fin.rev_lt_rev.mpr hvalid.2.1)
       (Fin.rev_lt_rev.mpr hvalid.1)
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.occurrence (data : DirectConvexFiveData)
     (hvalid : data.Valid) : ConvexFiveSourceOccurrence :=
   { hits := data.hits
@@ -136,6 +148,7 @@ def DirectConvexFiveData.occurrence (data : DirectConvexFiveData)
     forwardOrientation := forwardOrientation data hvalid
     reverseOrientation := reverseOrientation data hvalid }
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 theorem DirectConvexFiveData.occurrence_check
     (data : DirectConvexFiveData) (hvalid : data.Valid) :
     (data.occurrence hvalid).check = true := by
@@ -153,13 +166,16 @@ theorem DirectConvexFiveData.occurrence_check
   exact ⟨ne_of_gt (hvalid.2.2.1.trans hvalid.2.2.2),
     ne_of_gt (hvalid.1.trans (hvalid.2.1.trans hvalid.2.2.1))⟩
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank abbrev. -/
 private abbrev orientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def DirectConvexFiveData.clause (data : DirectConvexFiveData)
     (direction : Orientation) : Std.Sat.CNF.Clause Atom :=
   nogoodClause 0 (orientedHits data.hits 0 direction)
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 theorem sourceAssign_directConvexFiveClause
     {A : Finset ℝ²} (source : SourceRealization A)
     (data : DirectConvexFiveData) (hvalid : data.Valid)
@@ -171,30 +187,37 @@ theorem sourceAssign_directConvexFiveClause
     sourceAssign_convexFiveOccurrenceClause source (data.occurrence hvalid)
       (data.occurrence_check hvalid) 0 direction
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 private def dataOfPoints : List Label → DirectConvexFiveData
   | [y, c, b, x, a] => ⟨a, x, b, c, y⟩
   | _ => ⟨0, 0, 0, 0, 0⟩
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def directConvexFiveData : List DirectConvexFiveData :=
   ((labels.sublistsLen 5).map dataOfPoints).filter
     DirectConvexFiveData.check
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 theorem valid_of_mem_directConvexFiveData {data : DirectConvexFiveData}
     (hdata : data ∈ directConvexFiveData) : data.Valid := by
   have hcheck := (List.mem_filter.mp hdata).2
   exact data.validOfCheck hcheck
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
 def directConvexFiveFullBankClauses : Std.Sat.CNF Atom :=
   directConvexFiveData.flatMap fun data =>
     directions.map data.clause
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 theorem directConvexFiveData_length : directConvexFiveData.length = 6188 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 theorem directConvexFiveFullBankClauses_length :
     directConvexFiveFullBankClauses.length = 12376 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank theorem. -/
 theorem sourceAssign_directConvexFiveFullBankClauses
     {A : Finset ℝ²} (source : SourceRealization A) :
     ∀ clause ∈ directConvexFiveFullBankClauses,

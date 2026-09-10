@@ -38,6 +38,7 @@ inductive CegarSlot where
   | forward48605
   deriving DecidableEq, Repr
 
+/-- P97 ATail support def. -/
 def slotSourceCore : CegarSlot → Nat
   | .reflected48600 => 48600
   | .reflected48601 => 48601
@@ -46,6 +47,7 @@ def slotSourceCore : CegarSlot → Nat
   | .forward48604 => 48604
   | .forward48605 => 48605
 
+/-- P97 ATail support def. -/
 def slotCompactClause : CegarSlot → Nat
   | .reflected48600 => 19043
   | .reflected48601 => 19044
@@ -64,6 +66,7 @@ def slotTerminalClause : CegarSlot → Nat
   | .forward48604 => 2765395
   | .forward48605 => 2765401
 
+/-- P97 ATail support def. -/
 def slotOrientation : CegarSlot → Orientation
   | .reflected48600 | .reflected48601 | .reflected48602 | .reflected48603 => .reflected
   | .forward48604 | .forward48605 => .forward
@@ -92,6 +95,7 @@ def slotOrderedEight : CegarSlot → OrderedEight
   | .forward48605 => ⟨0, 2, 3, 4, 5, 6, 9, 10, by decide, by decide, by decide,
       by decide, by decide, by decide, by decide⟩
 
+/-- P97 ATail support def. -/
 def slotSchema (slot : CegarSlot) : List Membership :=
   match slotOrientation slot with
   | .forward => p4FourEndpointK2Schema
@@ -103,6 +107,7 @@ def schemaLits (slot : CegarSlot) : List Int :=
     -((rowVariable (rolePoint (slotOrderedEight slot).values membership.1)
       (rolePoint (slotOrderedEight slot).values membership.2) : Nat) : Int)
 
+/-- P97 ATail support structure. -/
 structure CegarEntry where
   slot : CegarSlot
   clause : List Int

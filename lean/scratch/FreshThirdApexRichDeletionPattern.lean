@@ -115,6 +115,7 @@ def OppositeCapRichDeletionInteriorPattern
       2 ≤ (SelectedClass (A.erase deleted)
         (S.oppositeVertexByIndex i) r₂ ∩ S.capInteriorByIndex i).card)
 
+/-- Indexed scratch Lean theorem. -/
 theorem oppositeCapRichDeletionInteriorPattern_of_otherCapDeletion
     {A : Finset ℝ²} (S : SurplusCapPacket A) (hconv : ConvexIndep A)
     {i j : Fin 3} {deleted : ℝ²}
@@ -159,6 +160,7 @@ def OppositeCapRichDeletionCoupledPattern
         4 ≤ (SelectedClass (A.erase deleted)
           (S.oppositeVertexByIndex i) r₂).card))
 
+/-- Indexed scratch Lean theorem. -/
 theorem oppositeCapRichDeletionCoupledPattern_of_otherCapDeletion
     {A : Finset ℝ²} (S : SurplusCapPacket A) (hconv : ConvexIndep A)
     {i j : Fin 3} {deleted : ℝ²}
@@ -212,6 +214,7 @@ def ApexRichDeletionPattern
       (4 ≤ (SelectedClass (A.erase deleted) apex r₁).card ∨
         4 ≤ (SelectedClass (A.erase deleted) apex r₂).card))
 
+/-- Indexed scratch Lean theorem. -/
 theorem apexRichDeletionPattern_of_apexRichClassStructure
     {A : Finset ℝ²} {deleted apex : ℝ²}
     (hrich : ApexRichClassStructure A apex) :
@@ -242,6 +245,7 @@ def TriApexRichDeletionPattern
     ApexRichDeletionPattern D.A deleted S.oppApex2 ∧
     ApexRichDeletionPattern D.A deleted S.surplusApex
 
+/-- Indexed scratch Lean theorem. -/
 theorem triApexRichDeletionPattern_of_residual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -266,6 +270,7 @@ def OffFirstCapRichDeletionInteriorPattern
   OppositeCapRichDeletionInteriorPattern D.A S S.oppIndex2 deleted ∧
     OppositeCapRichDeletionInteriorPattern D.A S S.surplusIdx deleted
 
+/-- Indexed scratch Lean theorem. -/
 theorem offFirstCapRichDeletionInteriorPattern_of_residual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -294,6 +299,7 @@ def OffFirstCapRichDeletionCoupledPattern
   OppositeCapRichDeletionCoupledPattern D.A S S.oppIndex2 deleted ∧
     OppositeCapRichDeletionCoupledPattern D.A S S.surplusIdx deleted
 
+/-- Indexed scratch Lean theorem. -/
 theorem offFirstCapRichDeletionCoupledPattern_of_residual
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -386,6 +392,7 @@ abbrev TwoCapSourcesSixCenterCapRichExactRowsBoundary
       TriApexRichDeletionPattern S source.1 ∧
       OffFirstCapRichDeletionCoupledPattern S source.1)
 
+/-- Indexed scratch Lean theorem. -/
 theorem twoCapSourcesSixCenterCapRichExactRowsBoundary_of_boundary
     {B : FrontierBiApexRobustResidual R}
     {L : FrontierLargeOppositeCapsBiApexRobustResidual B}

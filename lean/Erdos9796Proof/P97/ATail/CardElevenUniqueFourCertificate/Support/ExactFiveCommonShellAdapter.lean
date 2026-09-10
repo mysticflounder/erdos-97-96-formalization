@@ -465,10 +465,12 @@ theorem exists_pointed_commonCenter_card11CapLabeling
     Card11CapLabeling.exists_pointed_secondInterior L hI hqw hcq hcw
   exact ⟨frame, L', h6, h7, h8⟩
 
+/-- P97 ATail support ExactFiveCommonShellAdapter def. -/
 private noncomputable def moveSurplusOuterLabel
     (a : Fin 11) : Equiv.Perm (Fin 11) :=
   if a = 2 then Equiv.refl _ else Equiv.swap 3 a
 
+/-- P97 ATail support ExactFiveCommonShellAdapter def. -/
 private noncomputable def moveRestOuterLabel
     (b : Fin 11) : Equiv.Perm (Fin 11) :=
   if b = 0 then Equiv.refl _ else Equiv.swap 9 b
@@ -613,6 +615,7 @@ theorem Card11CapLabeling.exists_canonical_outer_reindex
     change L.pointOf (σO (σS 8)) = L.pointOf 8
     rw [hSfix 8 (by decide), hOfix 8 (by decide)]
 
+/-- P97 ATail support ExactFiveCommonShellAdapter theorem. -/
 private theorem exists_firstApex_exactFive_outer_points
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -763,6 +766,7 @@ private theorem exists_firstApex_exactFive_outer_points
     (Finset.mem_inter.mp hxS).2, (Finset.mem_inter.mp hxR).1,
     (Finset.mem_inter.mp hxR).2⟩
 
+/-- P97 ATail support ExactFiveCommonShellAdapter theorem. -/
 private theorem fin3_eq_of_ne_two {a b c d : Fin 3}
     (hab : a ≠ b) (hca : c ≠ a) (hcb : c ≠ b)
     (hda : d ≠ a) (hdb : d ≠ b) :

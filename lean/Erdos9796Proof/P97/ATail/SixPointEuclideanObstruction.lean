@@ -42,6 +42,7 @@ namespace SixPointEuclideanObstruction
 
 open Census554.EqualityCore
 
+/-- P97 ATail SixPointEuclideanObstruction lemma. -/
 private lemma normSim_dist_sq_eq_one
     {a b x y : ℝ²} (hab : a ≠ b) (h : dist a b = dist x y) :
     (normSim a b x 0 - normSim a b y 0) ^ 2 +
@@ -58,6 +59,7 @@ private lemma normSim_dist_sq_eq_one
     zero_sub, one_pow, neg_sq] at hSq
   simpa using hSq.symm
 
+/-- P97 ATail SixPointEuclideanObstruction lemma. -/
 private lemma normSim_signedArea_pos
     {a b x y z : ℝ²} (hab : a ≠ b) (h : 0 < signedArea2 x y z) :
     0 < signedArea2 (normSim a b x) (normSim a b y) (normSim a b z) := by

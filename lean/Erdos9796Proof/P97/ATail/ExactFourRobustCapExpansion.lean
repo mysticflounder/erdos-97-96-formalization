@@ -207,6 +207,7 @@ theorem fullyDeletionRobustAt_radiusClassification
       radius otherRadius hradius hotherRadius hfour hfourOther hradii hnoFive
       firstRow secondRow hfirstRadius hsecondRadius hdisjoint
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -215,6 +216,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -224,6 +226,7 @@ private theorem oppApex2_mem_A
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -233,6 +236,7 @@ private theorem oppApex1_mem_A
   · simpa only [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem oppApex1_ne_oppApex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ≠ S.oppApex2 := by
@@ -410,6 +414,7 @@ noncomputable def interiorPairBadOutsideSources
       ¬ HasNEquidistantPointsAt 4 (D.A.erase R.interior_w)
         (Hlate.centerAt source.1 source.2)
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem interiorPairBad_source_pair_mem_support
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -428,6 +433,7 @@ private theorem interiorPairBad_source_pair_mem_support
     source_mem_critical_support_of_no_qfree
       ((lateFirstApexSystem R).selectedAt source.1 source.2) hbad.2⟩
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem centerAt_ne_firstApex_of_mem_outsideFirstApexFiber
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -634,6 +640,7 @@ theorem interiorPairBad_secondClassInterior_card_le_one
   exact hc_not_secondCap
     (S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hcSecond)
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 theorem mem_outsideFirstApexFiber_of_not_mem_firstClass
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -658,6 +665,7 @@ theorem mem_outsideFirstApexFiber_of_not_mem_firstClass
       lateFirstApexSystem_centerAt_eq R F.pair.q_mem_A
         (frontier_pair_q_mem_firstApexClass F)
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 theorem firstSecondClass_inter_card_le_two
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius rho : ℝ}
@@ -683,6 +691,7 @@ theorem firstSecondClass_inter_card_le_two
       (frontier_pair_q_mem_firstApexClass F)
   simpa [K, hsupport] using hbound
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 theorem exists_mem_not_mem_pair_of_card_gt
     {α : Type*} (T X Y : Finset α)
     (hcard : X.card + Y.card < T.card) :
@@ -720,6 +729,7 @@ theorem exists_two_mem_not_mem_pair_of_card_gt
   have hw := Finset.mem_erase.mp hwErase
   exact ⟨z, hzT, hzX, hzY, w, hw.2, hwX, hwY, hw.1⟩
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem oppApex2_eq_oppositeVertex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -729,6 +739,7 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem secondInterior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex2) :
@@ -928,6 +939,7 @@ theorem exists_omittedSecondClassInteriorPeer
     by simpa [other] using hzData.2,
     hzNotSourceRow, hblockersNe⟩
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem not_mem_of_card_le_two_of_two_mem
     {α : Type*} {T : Finset α} {x y z : α}
     (hT : T.card ≤ 2) (hx : x ∈ T) (hy : y ∈ T)
@@ -1190,6 +1202,7 @@ theorem interiorPairGood_or_twoDistinctExactFourInteriorRows
       hfirstRadius, hsecondRadius, hdisjoint,
       hinterior, hinteriorOther⟩
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem exists_goodOutsideSource_of_fivePointRadius
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius rho : ℝ}
@@ -1242,6 +1255,7 @@ private theorem exists_goodOutsideSource_of_fivePointRadius
       hrobust.centerAt_ne
         (lateFirstApexSystem R) source.1 source.2
 
+/-- P97 ATail ExactFourRobustCapExpansion theorem. -/
 private theorem exists_goodOutsideSource_of_twoDistinctRadii
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {radius rho otherRadius : ℝ}

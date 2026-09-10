@@ -21,6 +21,7 @@ namespace MultiCenter
 namespace Certificate
 namespace ProfileInventory
 
+/-- P97 MultiCenter def. -/
 def loadedNs : List Nat :=
   [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
 
@@ -5449,6 +5450,7 @@ def rows : List ProfileRow :=
     totalNodes := 162285721 }
 ]
 
+/-- P97 MultiCenter theorem. -/
 private theorem list_all_eq_true_of_mem
     {α : Type _} {p : α → Bool} {a : α} :
     ∀ {items : List α}, items.all p = true → a ∈ items → p a = true
@@ -5461,12 +5463,15 @@ private theorem list_all_eq_true_of_mem
       · exact hall.1
       · exact list_all_eq_true_of_mem hall.2 htail
 
+/-- P97 MultiCenter def. -/
 def allRowsMetadataOK : Bool :=
   rows.all ProfileRow.metadataOK
 
+/-- P97 MultiCenter def. -/
 def profileCountAtN (n : Nat) : Nat :=
   (rows.filter (fun row => row.n == n)).length
 
+/-- P97 MultiCenter def. -/
 def profileCountsByN : List (Nat × Nat) :=
   loadedNs.map (fun n => (n, profileCountAtN n))
 

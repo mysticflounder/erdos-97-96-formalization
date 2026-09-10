@@ -41,12 +41,14 @@ def clauseSat (v : Nat → Prop) (clause : List Int) : Prop :=
 def litsSubset (lits clause : List Int) : Bool :=
   lits.all fun literal => clause.contains literal
 
+/-- P97 ATail support theorem. -/
 theorem literalSat_pos {v : Nat → Prop} {index : Nat}
     (h : v index) : literalSat v (index : Int) := by
   unfold literalSat
   rw [if_pos (Int.natCast_nonneg index)]
   simpa using h
 
+/-- P97 ATail support theorem. -/
 theorem literalSat_neg {v : Nat → Prop} {index : Nat}
     (hpositive : 1 ≤ index) (h : ¬ v index) :
     literalSat v (-(index : Int)) := by
@@ -54,6 +56,7 @@ theorem literalSat_neg {v : Nat → Prop} {index : Nat}
   rw [if_neg (by omega)]
   simpa using h
 
+/-- P97 ATail support theorem. -/
 theorem clauseSat_of_subset {v : Nat → Prop} {lits clause : List Int}
     (hsubset : litsSubset lits clause = true) (h : clauseSat v lits) :
     clauseSat v clause := by
@@ -81,6 +84,7 @@ def EntrySides (e : RowArcOccurrence) : Prop :=
   1 ≤ e.row.1 ∧
   1 ≤ e.arc.1
 
+/-- P97 ATail support instance. -/
 instance entrySidesDecidable (e : RowArcOccurrence) : Decidable (EntrySides e) := by
   unfold EntrySides
   infer_instance
@@ -89,10 +93,14 @@ instance entrySidesDecidable (e : RowArcOccurrence) : Decidable (EntrySides e) :
 def entryWF (e : RowArcOccurrence) : Bool :=
   decide (EntrySides e) && litsSubset (rowArcTerminalLits e) e.compactLedgerLiterals
 
+/-- P97 ATail support def. -/
 def allEntriesWF : Bool := rowArcOccurrences.all entryWF
 
+/-- P97 ATail support def. -/
 def coreClauseIndices : List Nat := rowArcOccurrences.map (·.coreClauseIndex)
+/-- P97 ATail support def. -/
 def terminalClauseIndices : List Nat := rowArcOccurrences.map (·.terminalClauseIndex)
+/-- P97 ATail support def. -/
 def compactLedgerClauses : List (List Int) := rowArcOccurrences.map (·.compactLedgerLiterals)
 
 /-- Generator-authenticated cardinality of the retained direct row/arc family. -/
@@ -112,6 +120,7 @@ theorem input_hashes_exact :
     compactManifestSha256 = "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305" := by
   decide
 
+/-- P97 ATail support theorem. -/
 theorem entryWF_of_mem (e : RowArcOccurrence)
     (he : e ∈ rowArcOccurrences) : entryWF e = true := by
   exact List.all_eq_true.mp allEntriesWF_true e he
@@ -148,6 +157,7 @@ structure RowArcOccurrenceAgreement
   row : v e.row.1 ↔ rowSupportVal Q.curvature e.row.2
   arc : v e.arc.1 ↔ outerArcVal Q.curvature e.arc.2
 
+/-- P97 ATail support theorem. -/
 private theorem terminalClauseSat_of_rowFalse
     {v : Nat → Prop} (e : RowArcOccurrence) (hentry : entryWF e = true)
     (hrow : ¬ v e.row.1) : clauseSat v (rowArcTerminalLits e) := by

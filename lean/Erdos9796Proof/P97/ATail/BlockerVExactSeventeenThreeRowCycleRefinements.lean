@@ -303,6 +303,7 @@ theorem sourceAssign_adjacentInnerOuterRightCycleClause {A : Finset ℝ²}
   · exact hall (placedLabel order direction cut f, placedLabel order direction cut d)
       (by simp [adjacentInnerOuterRightCycleHits])
 
+/-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements def. -/
 private def completeCycleClauseFamily
     (hits : NamedOrder → Orientation → Label → List Label → List Hit) :
     Std.Sat.CNF Atom :=
@@ -324,6 +325,7 @@ def adjacentInnerOuterLeftCycleClauses : Std.Sat.CNF Atom :=
 def adjacentInnerOuterRightCycleClauses : Std.Sat.CNF Atom :=
   completeCycleClauseFamily adjacentInnerOuterRightCycleHits
 
+/-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
 private theorem mem_completeCycleClauseFamily
     {hits : NamedOrder → Orientation → Label → List Label → List Hit}
     {clause : Std.Sat.CNF.Clause Atom}
@@ -368,21 +370,25 @@ def threeRowCycleClauses : Std.Sat.CNF Atom :=
   adjacentAdjacentCycleClauses ++ adjacentInnerOuterLeftCycleClauses ++
     adjacentInnerOuterRightCycleClauses
 
+/-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
 theorem adjacentAdjacentCycleClauses_length :
     adjacentAdjacentCycleClauses.length = 297024 := by
   simp [adjacentAdjacentCycleClauses, completeCycleClauseFamily, namedOrders,
     directions, labels, fiveOffsetChoices_length]
 
+/-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
 theorem adjacentInnerOuterLeftCycleClauses_length :
     adjacentInnerOuterLeftCycleClauses.length = 297024 := by
   simp [adjacentInnerOuterLeftCycleClauses, completeCycleClauseFamily, namedOrders,
     directions, labels, fiveOffsetChoices_length]
 
+/-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
 theorem adjacentInnerOuterRightCycleClauses_length :
     adjacentInnerOuterRightCycleClauses.length = 297024 := by
   simp [adjacentInnerOuterRightCycleClauses, completeCycleClauseFamily, namedOrders,
     directions, labels, fiveOffsetChoices_length]
 
+/-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
 theorem threeRowCycleClauses_length : threeRowCycleClauses.length = 891072 := by
   simp [threeRowCycleClauses, adjacentAdjacentCycleClauses_length,
     adjacentInnerOuterLeftCycleClauses_length,
@@ -404,6 +410,7 @@ theorem sourceAssign_threeRowCycleClauses {A : Finset ℝ²}
 def extendedThreeRowCycleCnf : Std.Sat.CNF Atom :=
   extendedFortySixthModelRefinementsCnf ++ threeRowCycleClauses
 
+/-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
 theorem extendedThreeRowCycleCnf_length : extendedThreeRowCycleCnf.length = 6739936 := by
   simp [extendedThreeRowCycleCnf, extendedFortySixthModelRefinementsCnf_length,
     threeRowCycleClauses_length]

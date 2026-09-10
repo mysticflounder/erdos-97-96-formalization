@@ -93,6 +93,7 @@ def chartIndexOf {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     (label : CarrierLabel A) : Fin (B.n + 1) :=
   -(B.indexOf label)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem chartIndexOf_injective {A : Finset ℝ²} (B : ShellBoundaryIndexing A) :
     Function.Injective B.chartIndexOf := by
   intro a b hab
@@ -115,6 +116,7 @@ noncomputable def supportIndices {A : Finset ℝ²} (B : ShellBoundaryIndexing A
   K.support.attach.image fun z ↦
     B.chartIndexOf ⟨z.1, K.support_subset_A z.2⟩
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem supportIndices_card {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     {q center : ℝ²} (K : CriticalFourShell A q center) :
     (B.supportIndices K).card = 4 := by
@@ -190,10 +192,12 @@ def boundaryAt {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     (center : CarrierLabel A) (i : Fin (B.n + 1)) : ℝ² :=
   B.boundary (i + B.indexOf center)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem boundaryAt_injective {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     (center : CarrierLabel A) : Function.Injective (B.boundaryAt center) :=
   injective_cyclicShift B.boundary_injective (B.indexOf center)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem boundaryAt_ccw {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     (center : CarrierLabel A) : IsCcwConvexPolygon (B.boundaryAt center) :=
   isCcwConvexPolygon_cyclicShift B.boundary_injective B.boundary_ccw
@@ -206,10 +210,12 @@ noncomputable def chartAt {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     B.three_le (B.boundaryAt center) (B.boundaryAt_injective center)
       (B.boundaryAt_ccw center)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 @[simp] theorem chartAt_windowStart {A : Finset ℝ²}
     (B : ShellBoundaryIndexing A) (center : CarrierLabel A) :
     (B.chartAt center).windowStart = 0 := rfl
 
+/-- P97 ConvexCyclicOrder theorem. -/
 @[simp] theorem chartAt_windowEnd {A : Finset ℝ²}
     (B : ShellBoundaryIndexing A) (center : CarrierLabel A) :
     (B.chartAt center).windowEnd = B.n + 1 := rfl
@@ -219,6 +225,7 @@ def chartIndexAt {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     (center label : CarrierLabel A) : Fin (B.n + 1) :=
   B.indexOf center - B.indexOf label
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem chartIndexAt_injective {A : Finset ℝ²} (B : ShellBoundaryIndexing A)
     (center : CarrierLabel A) : Function.Injective (B.chartIndexAt center) := by
   intro a b hab
@@ -262,6 +269,7 @@ noncomputable def centeredSupportIndices {A : Finset ℝ²}
     B.chartIndexAt (shellCenterLabel K)
       ⟨z.1, K.support_subset_A z.2⟩
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem centeredSupportIndices_card {A : Finset ℝ²}
     (B : ShellBoundaryIndexing A) {q center : ℝ²}
     (K : CriticalFourShell A q center) :
@@ -284,6 +292,7 @@ noncomputable def centeredSupportOrder {A : Finset ℝ²}
   (B.centeredSupportIndices K).orderEmbOfFin
     (B.centeredSupportIndices_card K)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem centeredChart_point_supportOrder_mem {A : Finset ℝ²}
     (B : ShellBoundaryIndexing A) {q center : ℝ²}
     (K : CriticalFourShell A q center) (i : Fin 4) :

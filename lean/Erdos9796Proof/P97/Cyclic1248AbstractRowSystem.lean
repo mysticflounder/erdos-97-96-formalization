@@ -32,6 +32,7 @@ def system : AbstractRowSystem (ZMod n) where
 def beta (q : ZMod n) : ZMod n :=
   q - 1
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem mem_row_iff (c x : ZMod n) :
     x ∈ row n c ↔ x = c + 1 ∨ x = c + 2 ∨ x = c + 4 ∨ x = c + 8 := by
   simp [row]
@@ -46,6 +47,7 @@ private theorem natCast_ne_of_lt {a b : ℕ}
   rw [Nat.mod_eq_of_lt ha, Nat.mod_eq_of_lt hb] at hmod
   exact hab hmod
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem row_card_eq_four (hn : 9 ≤ n) (c : ZMod n) :
     (row n c).card = 4 := by
   have h12 : (1 : ZMod n) ≠ 2 :=
@@ -68,11 +70,13 @@ theorem row_card_eq_four (hn : 9 ≤ n) (c : ZMod n) :
       natCast_ne_of_lt n (a := 4) (b := 8) (by omega) (by omega) (by omega)
   simp [row, h12, h14, h18, h24, h28, h48]
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem system_rowCardEq (hn : 9 ≤ n) :
     (system n).RowCardEq 4 := by
   intro c
   exact row_card_eq_four n hn c
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem center_not_mem_row (hn : 9 ≤ n) (c : ZMod n) :
     c ∉ row n c := by
   have h10 : (1 : ZMod n) ≠ 0 :=
@@ -89,11 +93,13 @@ theorem center_not_mem_row (hn : 9 ≤ n) (c : ZMod n) :
       natCast_ne_of_lt n (a := 8) (b := 0) (by omega) (by omega) (by omega)
   simp [row, h10, h20, h40, h80]
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem system_centerExcluded (hn : 9 ≤ n) :
     (system n).CenterExcluded := by
   intro c
   exact center_not_mem_row n hn c
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem beta_ne_self (hn : 9 ≤ n) (q : ZMod n) :
     beta n q ≠ q := by
   have h10 : (1 : ZMod n) ≠ 0 :=
@@ -104,15 +110,18 @@ theorem beta_ne_self (hn : 9 ≤ n) (q : ZMod n) :
   have := congrArg (fun x : ZMod n => q - x) h
   simpa [beta] using this
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem source_mem_beta_row (q : ZMod n) :
     q ∈ row n (beta n q) := by
   simp [row, beta]
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem system_hasBlockerSection (hn : 9 ≤ n) :
     (system n).HasBlockerSection (beta n) := by
   intro q
   exact ⟨beta_ne_self n hn q, source_mem_beta_row n q⟩
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem beta_bijective : Function.Bijective (beta n) := by
   constructor
   · intro a b h
@@ -122,9 +131,11 @@ theorem beta_bijective : Function.Bijective (beta n) := by
     refine ⟨q + 1, ?_⟩
     simp [beta]
 
+/-- P97 Cyclic1248AbstractRowSystem def. -/
 private def IsOffset (a : ℕ) : Prop :=
   a = 1 ∨ a = 2 ∨ a = 4 ∨ a = 8
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 private theorem mem_row_iff_exists_offset (c x : ZMod n) :
     x ∈ row n c ↔
       ∃ a : ℕ, IsOffset a ∧ x = c + (a : ZMod n) := by
@@ -142,10 +153,12 @@ private theorem mem_row_iff_exists_offset (c x : ZMod n) :
     · exact Or.inr (Or.inr (Or.inl (by simp)))
     · exact Or.inr (Or.inr (Or.inr (by simp)))
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 private theorem offset_bounds {a : ℕ} (ha : IsOffset a) :
     (1 : ℤ) ≤ a ∧ (a : ℤ) ≤ 8 := by
   rcases ha with rfl | rfl | rfl | rfl <;> norm_num
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 private theorem offset_gap_injective {a b a' b' : ℕ}
     (ha : IsOffset a) (hb : IsOffset b)
     (ha' : IsOffset a') (hb' : IsOffset b')
@@ -158,6 +171,7 @@ private theorem offset_gap_injective {a b a' b' : ℕ}
     rcases hb' with rfl | rfl | rfl | rfl
   all_goals omega
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 private theorem intCast_eq_of_bounded_gaps (hn : 15 ≤ n)
     {z w : ℤ} (hzLower : -7 ≤ z) (hzUpper : z ≤ 7)
     (hwLower : -7 ≤ w) (hwUpper : w ≤ 7)
@@ -170,6 +184,7 @@ private theorem intCast_eq_of_bounded_gaps (hn : 15 ≤ n)
   have hzero : w - z = 0 := Int.eq_zero_of_abs_lt_dvd hdvd habs
   omega
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 private theorem cast_gap_eq_center_sub {c d x : ZMod n} {a b : ℕ}
     (hxa : x = c + (a : ZMod n))
     (hxb : x = d + (b : ZMod n)) :
@@ -182,6 +197,7 @@ private theorem cast_gap_eq_center_sub {c d x : ZMod n} {a b : ℕ}
     _ = (c + (a : ZMod n)) - (d + (a : ZMod n)) := by rw [← hx]
     _ = c - d := by abel
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 private theorem cast_gap_eq_point_sub {c x y : ZMod n} {a b : ℕ}
     (hxa : x = c + (a : ZMod n))
     (hyb : y = c + (b : ZMod n)) :
@@ -235,6 +251,7 @@ theorem row_inter_card_le_one (hn : 15 ≤ n) {c d : ZMod n} (hcd : c ≠ d) :
     _ = c + (a' : ZMod n) := by rw [haa']
     _ = y := hya.symm
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem system_rowInterCardLE_one (hn : 15 ≤ n) :
     (system n).RowInterCardLE 1 := by
   intro c d hcd
@@ -283,11 +300,13 @@ theorem pairCodegree_le_one [NeZero n] (hn : 15 ≤ n)
     _ = d + (a' : ZMod n) := hxa'
     _ = d + (a : ZMod n) := by rw [haa']
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem system_pairCodegreeLE_one [NeZero n] (hn : 15 ≤ n) :
     (system n).PairCodegreeLE 1 := by
   intro x y hxy
   exact pairCodegree_le_one n hn hxy
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 private theorem three_bounded_congruent_gaps (hn : 9 ≤ n)
     {u v w : ℤ}
     (huLower : -7 ≤ u) (huUpper : u ≤ 7)
@@ -401,6 +420,7 @@ theorem row_inter_card_le_two (hn : 9 ≤ n) {c d : ZMod n} (hcd : c ≠ d) :
       _ = c + (az : ZMod n) := by rw [hOffsets.1]
       _ = z := hzaz.symm
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem system_rowInterCardLE_two (hn : 9 ≤ n) :
     (system n).RowInterCardLE 2 := by
   intro c d hcd
@@ -475,6 +495,7 @@ theorem pairCodegree_le_two [NeZero n] (hn : 9 ≤ n)
       _ = e + (ae : ZMod n) := hxae
       _ = e + (ad : ZMod n) := by rw [hOffsets.1]
 
+/-- P97 Cyclic1248AbstractRowSystem theorem. -/
 theorem system_pairCodegreeLE_two [NeZero n] (hn : 9 ≤ n) :
     (system n).PairCodegreeLE 2 := by
   intro x y hxy

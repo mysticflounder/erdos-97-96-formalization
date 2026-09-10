@@ -20,26 +20,32 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F} {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- P97 ATail support inductive. -/
 inductive ClauseShape where
   | cyclic (l r p q : Label)
 deriving DecidableEq
 
+/-- P97 ATail support def. -/
 def instLits : ClauseShape → List Int
   | .cyclic l r p q =>
       [-((p4VarOfAtom (sortedRadius l p q) : Nat) : Int),
        -((p4VarOfAtom (sortedRadius r p q) : Nat) : Int)]
 
+/-- P97 ATail support def. -/
 def shapeWF : ClauseShape → Bool
   | .cyclic l r p q => decide (l < r ∧ p < q ∧ p ≠ l ∧ p ≠ r ∧ q ≠ l ∧ q ≠ r ∧
       ((l < p ∧ p < r) ↔ (l < q ∧ q < r)))
 
+/-- P97 ATail support structure. -/
 structure BridgeEntry where
   clause : List Int
   shape : ClauseShape
 
+/-- P97 ATail support def. -/
 def entryWF (e : BridgeEntry) : Bool :=
   shapeWF e.shape && litsSubset (instLits e.shape) e.clause
 
+/-- P97 ATail support theorem. -/
 theorem cyclicLitsSat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (l r p q : Label)
     (h : l < r ∧ p < q ∧ p ≠ l ∧ p ≠ r ∧ q ≠ l ∧ q ≠ r ∧
@@ -59,6 +65,7 @@ theorem cyclicLitsSat (P : P4DirectBoundaryPacket R profile distribution)
     exact fun hv' => hl ((CoreValAgreement.sortedRadius P hv l p q h.2.1.ne h.2.2.1
       h.2.2.2.2.1).mp hv')
 
+/-- P97 ATail support theorem. -/
 theorem entry_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (e : BridgeEntry)
     (he : entryWF e = true) : clauseSat v e.clause := by
@@ -70,6 +77,7 @@ theorem entry_sat (P : P4DirectBoundaryPacket R profile distribution)
       apply cyclicLitsSat P hv l r p q
       exact of_decide_eq_true he.1
 
+/-- P97 ATail support theorem. -/
 theorem entryList_sat (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (entries : List BridgeEntry)
     (hentries : entries.all entryWF = true) :

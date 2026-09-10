@@ -26,6 +26,7 @@ theorem erasedPinCardTenP4USeedsRelaxedShapeSearchEntries_eq_nil :
     erasedPinCardTenP4USeedsRelaxedShapeSearchEntries = [] := by
   native_decide
 
+/-- P97 ErasedCertificate theorem. -/
 theorem false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_p4u
     {seed : OneSidedSeed} {shadow : Shadow}
     (hseed : seed ∈ erasedPinCardTenP4UGridSeeds)

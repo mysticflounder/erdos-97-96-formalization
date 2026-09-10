@@ -24,6 +24,7 @@ def extendedCurrentRootTwoKalmansonDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinementsExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -36,5 +37,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenCurrentRootTwoKalmansonRefinementsExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinementsExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenCurrentRootTwoKalmansonRefinementsExport.run args

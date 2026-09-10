@@ -3,23 +3,30 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 
 namespace Problem97.P4CompactAtomBindingScratch
 
+/-- P97 ATail support def. -/
 def expectedDenseCount : Nat := 2557
 
+/-- P97 ATail support def. -/
 def bindingAt (dense : Nat) : Option AtomBinding :=
   if dense = 0 then none else bindings[dense - 1]?
 
+/-- P97 ATail support def. -/
 def denseCoverageOK : Bool :=
   (bindings.map AtomBinding.dense).toList == (List.range expectedDenseCount).map (· + 1)
 
+/-- P97 ATail support def. -/
 def sourceIdsUniqueOK : Bool :=
   (bindings.map AtomBinding.sourceId).toList.dedup.length == expectedDenseCount
 
+/-- P97 ATail support def. -/
 def parametersMatchFamiliesOK : Bool :=
   bindings.all AtomBinding.familyMatches
 
+/-- P97 ATail support def. -/
 def countFamily (family : CompactFamily) : Nat :=
   bindings.foldl (fun n binding => if binding.family = family then n + 1 else n) 0
 
+/-- P97 ATail support def. -/
 def familyCountsOK : Bool :=
   countFamily .membership == 110 &&
   countFamily .radiusEquality == 495 &&
@@ -29,10 +36,12 @@ def familyCountsOK : Bool :=
   countFamily .rowSupport == 1716 &&
   countFamily .outerArc == 136
 
+/-- P97 ATail support def. -/
 def exactBindingDataOK : Bool :=
   bindings.size == expectedDenseCount && denseCoverageOK && sourceIdsUniqueOK &&
   parametersMatchFamiliesOK && familyCountsOK
 
+/-- P97 ATail support theorem. -/
 theorem exact_binding_data : exactBindingDataOK = true := by native_decide
 
 /-- Dense lookup is functional for the full source binding, hence for source
@@ -42,10 +51,12 @@ theorem bindingAt_functional {dense : Nat} {left right : AtomBinding}
   rw [hleft] at hright
   exact Option.some.inj hright
 
+/-- P97 ATail support theorem. -/
 theorem dense_coverage :
     (bindings.map AtomBinding.dense).toList = (List.range expectedDenseCount).map (· + 1) := by
   native_decide
 
+/-- P97 ATail support theorem. -/
 theorem family_counts :
     countFamily .membership = 110 ∧ countFamily .radiusEquality = 495 ∧
     countFamily .firstApexClass = 11 ∧ countFamily .blockerChoice = 21 ∧

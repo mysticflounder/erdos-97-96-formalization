@@ -44,6 +44,7 @@ set_option maxHeartbeats 1000000 in
 -- Exhaustive identity over the left endpoint escaped-row seed placements.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- P97 EndpointCertificate theorem. -/
 theorem maskOfFinset_endpointLeftRow (escapee fourth : Label)
     (he : escapee ∈ intO2) (hf : fourth ∈ insert 2 intS) :
     maskOfFinset ({7, 8, escapee, fourth} : Finset Label) =
@@ -54,6 +55,7 @@ set_option maxHeartbeats 1000000 in
 -- Exhaustive identity over the right endpoint escaped-row seed placements.
 set_option maxRecDepth 10000 in
 set_option linter.style.nativeDecide false in
+/-- P97 EndpointCertificate theorem. -/
 theorem maskOfFinset_endpointRightRow (escapee fourth : Label)
     (he : escapee ∈ intO1) (hf : fourth ∈ insert 1 intS) :
     maskOfFinset ({9, 10, escapee, fourth} : Finset Label) =

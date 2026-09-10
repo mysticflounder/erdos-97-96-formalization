@@ -77,6 +77,7 @@ def SourceFaithfulSelectedFourDeletionPacket
 /- A residual-independent form of the source-faithful cover ingress.  The
    endpoint leaves already carry `TriApexAllLargeContext`; requiring the
    older nested residual chain here only obscures the available source data. -/
+/-- P97 ATail SourceFaithfulSelectedFourFan theorem. -/
 theorem exists_globalK4Row_and_sourceFaithfulCriticalCover_of_triApexAllLargeContext
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A}

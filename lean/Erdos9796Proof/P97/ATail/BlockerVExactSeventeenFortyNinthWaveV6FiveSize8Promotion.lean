@@ -16,14 +16,17 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion
 open ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion def. -/
 def fortyNinthWaveV6FiveSize8PromotionClauses : Std.Sat.CNF Atom :=
   fortyNinthWaveV6FiveSize8SchemaClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion theorem. -/
 theorem fortyNinthWaveV6FiveSize8PromotionClauses_length :
     fortyNinthWaveV6FiveSize8PromotionClauses.length = 20 := by
   simpa [fortyNinthWaveV6FiveSize8PromotionClauses] using
     fortyNinthWaveV6FiveSize8SchemaClauses_length
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion theorem. -/
 theorem sourceAssign_fortyNinthWaveV6FiveSize8PromotionClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV6FiveSize8PromotionClauses,
@@ -31,16 +34,19 @@ theorem sourceAssign_fortyNinthWaveV6FiveSize8PromotionClauses
   simpa [fortyNinthWaveV6FiveSize8PromotionClauses] using
     sourceAssign_fortyNinthWaveV6FiveSize8SchemaClauses source
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion def. -/
 def extendedFortyNinthWaveV6FiveSize8PromotionCnf : Std.Sat.CNF Atom :=
   extendedFortyNinthWaveV5FiveSize8PromotionCnf ++
     fortyNinthWaveV6FiveSize8PromotionClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion theorem. -/
 theorem extendedFortyNinthWaveV6FiveSize8PromotionCnf_length :
     extendedFortyNinthWaveV6FiveSize8PromotionCnf.length = 7198760 := by
   simp only [extendedFortyNinthWaveV6FiveSize8PromotionCnf, List.length_append,
     extendedFortyNinthWaveV5FiveSize8PromotionCnf_length,
     fortyNinthWaveV6FiveSize8PromotionClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion theorem. -/
 theorem sourceAssign_extendedFortyNinthWaveV6FiveSize8PromotionCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     Std.Sat.CNF.eval (sourceAssign source.model)
@@ -54,6 +60,7 @@ theorem sourceAssign_extendedFortyNinthWaveV6FiveSize8PromotionCnf
     exact h clause hparent
   · exact sourceAssign_fortyNinthWaveV6FiveSize8PromotionClauses source clause hsuffix
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyNinthWaveV6FiveSize8PromotionCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))

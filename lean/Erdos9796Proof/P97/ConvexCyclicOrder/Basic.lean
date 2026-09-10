@@ -281,6 +281,7 @@ directly yields `(∡ x y z).sign = 1`. The four such triples are listed
 below.
 -/
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem ConvexCyclicOrder.oangle_sign_pqr
     {A : Finset ℝ²} {p q r s : ℝ²}
     (h : ConvexCyclicOrder A p q r s) :
@@ -290,6 +291,7 @@ theorem ConvexCyclicOrder.oangle_sign_pqr
   rw [← hp, ← hq, ← hr]
   exact hccw.sign_oangle hpq hqr
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem ConvexCyclicOrder.oangle_sign_qrs
     {A : Finset ℝ²} {p q r s : ℝ²}
     (h : ConvexCyclicOrder A p q r s) :
@@ -299,6 +301,7 @@ theorem ConvexCyclicOrder.oangle_sign_qrs
   rw [← hq, ← hr, ← hs]
   exact hccw.sign_oangle hqr hrs
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem ConvexCyclicOrder.oangle_sign_pqs
     {A : Finset ℝ²} {p q r s : ℝ²}
     (h : ConvexCyclicOrder A p q r s) :
@@ -308,6 +311,7 @@ theorem ConvexCyclicOrder.oangle_sign_pqs
   rw [← hp, ← hq, ← hs]
   exact hccw.sign_oangle hpq (hqr.trans hrs)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem ConvexCyclicOrder.oangle_sign_prs
     {A : Finset ℝ²} {p q r s : ℝ²}
     (h : ConvexCyclicOrder A p q r s) :

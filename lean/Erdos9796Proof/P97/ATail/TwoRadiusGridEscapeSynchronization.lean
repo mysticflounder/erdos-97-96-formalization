@@ -53,12 +53,14 @@ def PositiveScaledNesting (o a s L : ℝ²) : Prop :=
     0 < scaledLongitudinalCoord o a L * scaledTransverseCoord o a s -
       scaledTransverseCoord o a L * scaledLongitudinalCoord o a s
 
+/-- P97 ATail TwoRadiusGridEscapeSynchronization theorem. -/
 private theorem boundary_mem {A : Finset ℝ²} (B : BoundaryIndexing A)
     (i : Fin B.n) : B.boundary i ∈ A := by
   have hi : B.boundary i ∈ Finset.univ.image B.boundary :=
     Finset.mem_image.mpr ⟨i, Finset.mem_univ _, rfl⟩
   simpa only [B.boundary_image] using hi
 
+/-- P97 ATail TwoRadiusGridEscapeSynchronization theorem. -/
 private theorem cyclic_indices_of_signedArea2_neg
     {A : Finset ℝ²} (B : BoundaryIndexing A)
     {p q r : ℝ²} {ip iq ir : Fin B.n}

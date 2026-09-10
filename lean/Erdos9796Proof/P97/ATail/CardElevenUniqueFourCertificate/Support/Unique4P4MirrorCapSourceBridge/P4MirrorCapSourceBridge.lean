@@ -36,8 +36,10 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {profile : S.surplusCap.card = 5 ∧
     S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- P97 ATail support abbrev. -/
 abbrev Label := Fin 11
 
+/-- P97 ATail support theorem. -/
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -45,6 +47,7 @@ private theorem capByIndex_surplusIdx_eq_surplusCap
   interval_cases i <;>
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.surplusCap, hi]
 
+/-- P97 ATail support theorem. -/
 private theorem capByIndex_oppIndex1_eq_oppCap1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex1 = S.oppCap1 := by
@@ -53,6 +56,7 @@ private theorem capByIndex_oppIndex1_eq_oppCap1
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
       SurplusCapPacket.oppCap1, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem capByIndex_oppIndex2_eq_oppCap2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.oppIndex2 = S.oppCap2 := by
@@ -61,6 +65,7 @@ private theorem capByIndex_oppIndex2_eq_oppCap2
     simp only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppCap2, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem leftAdjacent_oppIndex1_eq_capByIndex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.leftAdjacentCapByIndex S.oppIndex1 = S.capByIndex S.oppIndex2 := by
@@ -69,6 +74,7 @@ private theorem leftAdjacent_oppIndex1_eq_capByIndex_oppIndex2
     simp only [SurplusCapPacket.leftAdjacentCapByIndex,
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem rightAdjacent_oppIndex1_eq_capByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.rightAdjacentCapByIndex S.oppIndex1 =
@@ -78,6 +84,7 @@ private theorem rightAdjacent_oppIndex1_eq_capByIndex_surplusIdx
     simp only [SurplusCapPacket.rightAdjacentCapByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem oppApex2_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -87,6 +94,7 @@ private theorem oppApex2_eq_indexedVertex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex2, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem oppApex1_eq_indexedVertex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -96,6 +104,7 @@ private theorem oppApex1_eq_indexedVertex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
     {A : Finset ℝ²} (S : SurplusCapPacket A) {i j : Fin 3}
     (hji : j ≠ i) :
@@ -104,6 +113,7 @@ private theorem oppositeVertexByIndex_mem_capByIndex_of_ne
   rw [← Card11SelectedCube.apexAt_eq_oppositeVertexByIndex]
   exact apexAt_mem_capAt_of_ne S.partition hji
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_boundary_four (B : MirrorP4Boundary S) :
     B.boundary 4 = S.oppApex2 := by
   have hidx :
@@ -116,6 +126,7 @@ private theorem mirrorP4_boundary_four (B : MirrorP4Boundary S) :
   change B.mirror.boundary 8 = S.oppApex2
   exact hpoint.trans (hlabel.trans (oppApex2_eq_indexedVertex S).symm)
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_boundary_seven (B : MirrorP4Boundary S) :
     B.boundary 7 = S.oppositeVertexByIndex S.surplusIdx := by
   have hidx :
@@ -128,11 +139,13 @@ private theorem mirrorP4_boundary_seven (B : MirrorP4Boundary S) :
   change B.mirror.boundary 0 = S.oppositeVertexByIndex S.surplusIdx
   exact hpoint.trans hlabel
 
+/-- P97 ATail support theorem. -/
 private theorem capO2_label_mem (j : Fin 2) :
     (⟨9 + j, by omega⟩ : Fin 11) ∈
       Card11Labeling.capO2InteriorLabels := by
   fin_cases j <;> simp [Card11Labeling.capO2InteriorLabels]
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_boundary_firstOppositeInterior_mem
     (B : MirrorP4Boundary S) (i : Fin 2) :
     B.boundary ⟨5 + i, by omega⟩ ∈
@@ -179,6 +192,7 @@ private theorem mirrorP4_boundary_firstOppositeInterior_mem
   rw [B.labeling.restInterior_eq]
   exact capO2_label_mem (D := D) (S := S) (B.mirror.order.1.symm j)
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_boundary_surplusInterior_mem
     (B : MirrorP4Boundary S)
     (hprofile : S.surplusCap.card = 5 ∧
@@ -228,6 +242,7 @@ private theorem mirrorP4_boundary_surplusInterior_mem
   fin_cases i <;>
     simpa [MirrorP4Boundary.boundary] using hboundary.symm ▸ hpoint
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_boundary_secondOppositeInterior_mem
     (B : MirrorP4Boundary S)
     (hprofile : S.surplusCap.card = 5 ∧
@@ -386,6 +401,7 @@ theorem secondOppositeCapPositions_image_oppCap2_mirror
     rw [hprofile.2.2, Finset.card_image_of_injective _ hinj]
     decide
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_rightCap_endpoint_eq
     (B : MirrorP4Boundary S) {c : Label} (hc : c ∈ rightCapEndpoints) :
     B.boundary (mirrorIndex c) =
@@ -403,6 +419,7 @@ private theorem mirrorP4_rightCap_endpoint_eq
       rw [mirrorIndex_zero, B.boundary_zero, oppApex1_eq_indexedVertex,
         S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1])
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_shortCap_endpoint_eq
     (B : MirrorP4Boundary S) {c : Label} (hc : c ∈ shortCapEndpoints) :
     B.boundary (mirrorIndex c) =
@@ -421,6 +438,7 @@ private theorem mirrorP4_shortCap_endpoint_eq
         mirrorP4_boundary_four, oppApex2_eq_indexedVertex,
         S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2])
 
+/-- P97 ATail support theorem. -/
 private theorem mirrorP4_secondOppositeCap_endpoint_eq
     (B : MirrorP4Boundary S) {c : Label}
     (hc : c ∈ secondOppositeCapEndpoints) :
@@ -439,6 +457,7 @@ private theorem mirrorP4_secondOppositeCap_endpoint_eq
         mirrorP4_boundary_seven,
         S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx])
 
+/-- P97 ATail support theorem. -/
 private theorem endpoint_row_inter_cap_card_le_one
     (P : P4MirrorBoundaryPacket R profile distribution)
     (endpoints : Finset Label) (i : Fin 3)
@@ -486,6 +505,7 @@ private theorem endpoint_row_inter_cap_card_le_one
         CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one
           Packet Hside Hord _
 
+/-- P97 ATail support theorem. -/
 private theorem endpointOwnCapAtMostOne_of_image
     (P : P4MirrorBoundaryPacket R profile distribution)
     (positions endpoints : Finset Label) (i : Fin 3)
@@ -563,6 +583,7 @@ theorem rightCapEndpointOwnCapAtMostOneSat_mirror
       P.orientedBoundary profile
   · exact mirrorP4_rightCap_endpoint_eq P.orientedBoundary
 
+/-- P97 ATail support theorem. -/
 private theorem ownCapAtMostTwo_of_image
     (P : P4MirrorBoundaryPacket R profile distribution)
     (positions : Finset Label) (i : Fin 3)

@@ -20,25 +20,34 @@ open ATailUniqueFourLateChoiceTerminalScratch
 open RetainedKalmansonDecoderScratch
 open P5IndexedSourceScratch
 
+/-- P97 ATail support def. -/
 def compactFormulaSha256 : String := "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+/-- P97 ATail support def. -/
 def occurrenceLedgerSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+/-- P97 ATail support def. -/
 def sourceCoreMapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- P97 ATail support def. -/
 def stableManifestSha256 : String := "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305"
 
+/-- P97 ATail support def. -/
 def p4EqPairs (center : Label) : List (Label × Label) :=
   (((List.finRange 11).flatMap fun left =>
     (List.finRange 11).map fun right => (left, right)).filter
       fun pair => decide (pair.1 < pair.2) && decide (pair.1 ≠ center) &&
         decide (pair.2 ≠ center))
 
+/-- P97 ATail support def. -/
 def rowVariable (center point : Label) : Nat :=
   1 + 10 * center.val + (if point.val < center.val then point.val else point.val - 1)
 
+/-- P97 ATail support def. -/
 def radiusVariable (center left right : Label) : Nat :=
   111 + 45 * center.val + (p4EqPairs center).idxOf (left, right)
 
+/-- P97 ATail support def. -/
 def classVariable (point : Label) : Nat := 627 + point.val
 
+/-- P97 ATail support def. -/
 def blockerVariable (source center : Label) : Nat :=
   match source.val, center.val with
   | 0, 4 => 606
@@ -64,6 +73,7 @@ def blockerVariable (source center : Label) : Nat :=
   | 10, 0 => 626
   | source, center => 10000 + 11 * source + center
 
+/-- P97 ATail support def. -/
 def supportVariable (source point : Label) : Nat :=
   match source.val, point.val with
   | 0, 0 => 638
@@ -136,6 +146,7 @@ def supportVariable (source point : Label) : Nat :=
   | 10, 4 => 705
   | source, point => 20000 + 11 * source + point
 
+/-- P97 ATail support inductive. -/
 inductive ClauseShape where
   | pairwise (left right : Label)
   | blockerRow (source center point : Label)
@@ -149,6 +160,7 @@ inductive ClauseShape where
   | atLeastFour (source : Label) (points : List Label)
 deriving DecidableEq
 
+/-- P97 ATail support def. -/
 def shapeLits : ClauseShape → List Int
   | .pairwise left right =>
       [(radiusVariable 0 left right : Int), -(classVariable left : Int),
@@ -176,6 +188,7 @@ def shapeLits : ClauseShape → List Int
       [-(blockerVariable source center : Int), -(supportVariable source center : Int)]
   | .atLeastFour source points => points.map fun point => (supportVariable source point : Int)
 
+/-- P97 ATail support def. -/
 def shapeWF : ClauseShape → Bool
   | .pairwise left right => decide (left < right ∧ left ≠ 0 ∧ right ≠ 0)
   | .blockerRow _ center point => decide (center ≠ point)
@@ -192,13 +205,16 @@ def shapeWF : ClauseShape → Bool
   | .excludes _ _ => true
   | .atLeastFour _ points => decide (points.length = 8 ∧ points.Nodup)
 
+/-- P97 ATail support def. -/
 def isAtLeast : ClauseShape → Bool
   | .atLeastFour _ _ => true
   | _ => false
 
+/-- P97 ATail support def. -/
 def litsSubset (needed actual : List Int) : Bool :=
   needed.all fun lit => actual.contains lit
 
+/-- P97 ATail support structure. -/
 structure BridgeEntry where
   outputClauseIndex : Nat
   sourceCoreClauseIndex : Nat
@@ -206,9 +222,11 @@ structure BridgeEntry where
   shape : ClauseShape
 deriving DecidableEq
 
+/-- P97 ATail support def. -/
 def entryWF (entry : BridgeEntry) : Bool :=
   shapeWF entry.shape && litsSubset (shapeLits entry.shape) entry.clause
 
+/-- P97 ATail support def. -/
 def bridgeEntries : List BridgeEntry := [
   ⟨6313, 7358, [141, -633, -632], .pairwise 5 6⟩,
   ⟨6336, 7493, [41, -606, -638], .blockerRow 0 4 0⟩,
@@ -344,18 +362,25 @@ def bridgeEntries : List BridgeEntry := [
   ⟨6466, 9279, [626, -637], .fiber 10⟩,
 ]
 
+/-- P97 ATail support def. -/
 def bridgeClauses : List (List Int) := bridgeEntries.map BridgeEntry.clause
 
+/-- P97 ATail support def. -/
 def atLeastEntries : List BridgeEntry := [
   ⟨6384, 8684, [671, 670, 668, 666, 669, 663, 664, 665], .atLeastFour 4 [10, 9, 7, 3, 8, 0, 1, 2]⟩,
   ⟨6428, 8988, [692, 690, 689, 691, 695, 693, 688, 696], .atLeastFour 8 [4, 2, 1, 3, 9, 7, 0, 10]⟩,
 ]
 
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by native_decide
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_shape_wf : bridgeEntries.all (fun entry => shapeWF entry.shape) = true := by
   native_decide
+/-- P97 ATail support theorem. -/
 theorem bridgeEntries_length : bridgeEntries.length = 132 := by native_decide
+/-- P97 ATail support theorem. -/
 theorem atLeastEntries_length : atLeastEntries.length = 2 := by native_decide
+/-- P97 ATail support theorem. -/
 theorem atLeastEntries_eq_filter :
     atLeastEntries = bridgeEntries.filter (fun entry => isAtLeast entry.shape) := by
   native_decide

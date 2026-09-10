@@ -23,6 +23,7 @@ namespace ShellCurvatureConstruction
 open EuclideanGeometry
 open Fin.NatCast
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem rev_add_one_eq_neg (n : Nat) (i : Fin (n + 1)) :
     i.rev + 1 = -i := by
   apply Fin.ext
@@ -34,6 +35,7 @@ theorem rev_add_one_eq_neg (n : Nat) (i : Fin (n + 1)) :
 def reverseCyclicIndex (n i : Nat) : Fin (n + 1) :=
   -(i : Fin (n + 1))
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem reverseCyclicIndex_succ (n i : Nat) :
     reverseCyclicIndex n (i + 1) =
       finRotate (n + 1) (reverseCyclicIndex n (i + 2)) := by
@@ -43,12 +45,14 @@ theorem reverseCyclicIndex_succ (n i : Nat) :
   rw [show (2 : Fin (n + 1)) = 1 + 1 by norm_num]
   abel
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem reverseCyclicIndex_rotate_succ (n i : Nat) :
     finRotate (n + 1) (reverseCyclicIndex n (i + 1)) =
       reverseCyclicIndex n i := by
   rw [finRotate_succ_apply]
   simp [reverseCyclicIndex, Nat.cast_add, Nat.cast_one]
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem finRotate_ne_self_of_three_le (n : Nat) (hn : 3 <= n + 1)
     (i : Fin (n + 1)) : finRotate (n + 1) i ≠ i := by
   intro h
@@ -70,6 +74,7 @@ def rotatePoint {n : Nat} (point : Fin (n + 1) -> ℝ²)
     (i : Fin (n + 1)) : ℝ² :=
   point (i + 1)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem rotatePoint_rev_eq_reverseCyclicPoint {n : Nat}
     (point : Fin (n + 1) -> ℝ²) (i : Fin (n + 1)) :
     rotatePoint point i.rev = reverseCyclicPoint point i.val := by
@@ -113,6 +118,7 @@ theorem reverseCyclicPoint_consecutive_sign_neg {n : Nat}
   rw [hforward'] at hswap
   simpa [reverseCyclicPoint] using hswap.symm
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem reverseCyclicPoint_ne_succ {n : Nat} (hn : 3 <= n + 1)
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (i : Nat) :
@@ -133,6 +139,7 @@ noncomputable def exteriorTurn {n : Nat} (point : Fin (n + 1) -> ℝ²)
     (∡ (reverseCyclicPoint point i) (reverseCyclicPoint point (i + 1))
       (reverseCyclicPoint point (i + 2))).toReal
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem exteriorTurn_pos {n : Nat} (hn : 3 <= n + 1)
     {point : Fin (n + 1) -> ℝ²} (hccw : IsCcwConvexPolygon point)
     (i : Nat) : 0 < exteriorTurn point i := by
@@ -143,6 +150,7 @@ theorem exteriorTurn_pos {n : Nat} (hn : 3 <= n + 1)
   simp only [exteriorTurn]
   linarith
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem exteriorTurn_lt_pi {n : Nat} (hn : 3 <= n + 1)
     {point : Fin (n + 1) -> ℝ²} (hccw : IsCcwConvexPolygon point)
     (i : Nat) : exteriorTurn point i < Real.pi := by
@@ -158,12 +166,14 @@ noncomputable def edgeLift {n : Nat} (point : Fin (n + 1) -> ℝ²)
       (reverseCyclicPoint point 1)).toReal +
     ∑ t ∈ Finset.range i, exteriorTurn point t
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem edgeLift_succ {n : Nat} (point : Fin (n + 1) -> ℝ²)
     (i : Nat) :
     edgeLift point (i + 1) = edgeLift point i + exteriorTurn point i := by
   simp [edgeLift, Finset.sum_range_succ]
   ring
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem edgeLift_strictMono {n : Nat} (hn : 3 <= n + 1)
     {point : Fin (n + 1) -> ℝ²} (hccw : IsCcwConvexPolygon point) :
     StrictMono (edgeLift point) := by
@@ -172,6 +182,7 @@ theorem edgeLift_strictMono {n : Nat} (hn : 3 <= n + 1)
   rw [edgeLift_succ]
   exact lt_add_of_pos_right _ (exteriorTurn_pos hn hccw i)
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem edgeLift_lifts_arcAngle {n : Nat} (hn : 3 <= n + 1)
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (i : Nat) :
@@ -196,6 +207,7 @@ theorem edgeLift_lifts_arcAngle {n : Nat} (hn : 3 <= n + 1)
       rw [sub_eq_iff_eq_add] at hturn
       exact (add_comm _ _).trans hturn.symm
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem reverseCyclicPoint_period {n : Nat}
     (point : Fin (n + 1) -> ℝ²) :
     reverseCyclicPoint point (n + 1) = reverseCyclicPoint point 0 := by
@@ -264,6 +276,7 @@ noncomputable def chordStartGap {n : Nat}
   (∡ (reverseCyclicPoint point (i + 1)) (reverseCyclicPoint point i)
     (reverseCyclicPoint point j)).toReal
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem chordStartGap_nonneg {n i j : Nat}
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hccw : IsCcwConvexPolygon point)
@@ -293,6 +306,7 @@ theorem chordStartGap_nonneg {n i j : Nat}
       simpa using hswap.symm
     exact (Real.Angle.toReal_mem_Ioo_iff_sign_pos.mpr hsign).1.le
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem chordStartGap_lt_pi {n i j : Nat}
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hccw : IsCcwConvexPolygon point)
@@ -327,6 +341,7 @@ noncomputable def chordLift {n : Nat} (point : Fin (n + 1) -> ℝ²)
     (i j : Nat) : ℝ :=
   edgeLift point i + chordStartGap point i j
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem chordLift_lifts_arcAngle {n i j : Nat} (hn : 3 <= n + 1)
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hproper : ShellCurvature.IsProperFundamentalWindowChord 0 (n + 1) i j) :
@@ -350,6 +365,7 @@ theorem chordLift_lifts_arcAngle {n i j : Nat} (hn : 3 <= n + 1)
   rw [sub_eq_iff_eq_add] at hsub'
   exact (add_comm _ _).trans hsub'.symm
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem edgeLift_le_chordLift {n i j : Nat}
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hccw : IsCcwConvexPolygon point)
@@ -549,6 +565,7 @@ theorem chordEndDeficit_mem_Ico {n i j : Nat} (hn : 3 <= n + 1)
           hproperPred hproperSucc hrec
         simpa [hsuccEq] using hstep
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem chordLift_le_terminalEdge {n i j : Nat} (hn : 3 <= n + 1)
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hccw : IsCcwConvexPolygon point)
@@ -568,6 +585,7 @@ theorem chordLift_bounds {n i j : Nat} (hn : 3 <= n + 1)
   exact ⟨edgeLift_le_chordLift hinj hccw hproper,
     chordLift_le_terminalEdge hn hinj hccw hproper⟩
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem real_mem_Ioo_of_coe_sign_pos {d : ℝ}
     (hlow : -Real.pi < d) (hhigh : d <= Real.pi)
     (hsign : ((d : ℝ) : Real.Angle).sign = 1) :
@@ -577,6 +595,7 @@ theorem real_mem_Ioo_of_coe_sign_pos {d : ℝ}
   have hrange := Real.Angle.toReal_mem_Ioo_iff_sign_pos.mpr hsign
   rwa [htoReal] at hrange
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem openWindow_apex_sign_pos {n i j k : Nat}
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hccw : IsCcwConvexPolygon point) (hij : i < j) (hjk : j < k)
@@ -597,6 +616,7 @@ theorem openWindow_apex_sign_pos {n i j k : Nat}
   rw [hrotate] at hswap
   simpa using hswap.symm
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem openWindow_terminal_sign_pos {n i j k : Nat}
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hccw : IsCcwConvexPolygon point) (hij : i < j) (hjk : j < k)
@@ -692,6 +712,7 @@ theorem chordLift_sameTerminal_sub_mem_Ioo {n i j k : Nat}
   apply real_mem_Ioo_of_coe_sign_pos hdLower hdUpper
   rwa [hcoe]
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem real_lt_pi_of_pos_of_lt_two_pi_of_coe_sign_pos {d : ℝ}
     (hd0 : 0 < d) (hdTwoPi : d < 2 * Real.pi)
     (hsign : ((d : ℝ) : Real.Angle).sign = 1) : d < Real.pi := by
@@ -830,6 +851,7 @@ theorem chordLift_turn_le_pi {n i j k : Nat} (hn : 3 <= n + 1)
   · exact (chordLift_turn_lt_pi_of_not_full hn hinj hccw
       hij hjk hk hfull).le
 
+/-- P97 ConvexCyclicOrder theorem. -/
 theorem reverseCyclicPoint_injective_before_period {n i j : Nat}
     {point : Fin (n + 1) -> ℝ²} (hinj : Function.Injective point)
     (hi : i < n + 1) (hj : j < n + 1)

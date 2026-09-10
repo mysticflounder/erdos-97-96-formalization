@@ -48,22 +48,26 @@ def frozenPlacementRepresentatives : Finset (Label × Label) :=
   frozenPlacementDomain.image normalizePlacement
 
 set_option maxRecDepth 100000 in
+/-- Indexed scratch Lean theorem. -/
 theorem normalizingRelabeling_admissible :
     ∀ placement, AdmissibleFrozenRelabeling
       (normalizingRelabeling placement) := by
   decide
 
 set_option maxRecDepth 100000 in
+/-- Indexed scratch Lean theorem. -/
 theorem normalizePlacement_mem_domain :
     ∀ placement ∈ frozenPlacementDomain,
       normalizePlacement placement ∈ frozenPlacementDomain := by
   decide
 
 set_option maxRecDepth 100000 in
+/-- Indexed scratch Lean theorem. -/
 theorem frozenPlacementRepresentatives_card :
     frozenPlacementRepresentatives.card = 21 := by
   decide
 
+/-- Indexed scratch Lean theorem. -/
 theorem frozenPlacementRepresentatives_cover
     (placement : Label × Label) (hplacement : placement ∈ frozenPlacementDomain) :
     ∃ representative ∈ frozenPlacementRepresentatives,

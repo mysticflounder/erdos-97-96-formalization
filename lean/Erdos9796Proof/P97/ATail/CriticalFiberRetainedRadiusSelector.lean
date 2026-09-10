@@ -33,12 +33,14 @@ open Census554.GeneralCarrierBridge
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail CriticalFiberRetainedRadiusSelector def. -/
 private def transportSelectedFourClass
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
     SelectedFourClass A center₂ :=
   Eq.mp (congrArg (SelectedFourClass A) hcenter) K
 
+/-- P97 ATail CriticalFiberRetainedRadiusSelector theorem. -/
 @[simp] private theorem transportSelectedFourClass_support
     {A : Finset ℝ²} {center₁ center₂ : ℝ²}
     (K : SelectedFourClass A center₁) (hcenter : center₁ = center₂) :
@@ -46,6 +48,7 @@ private def transportSelectedFourClass
   cases hcenter
   rfl
 
+/-- P97 ATail CriticalFiberRetainedRadiusSelector theorem. -/
 private theorem oppApex1_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ A := by
@@ -190,6 +193,7 @@ def ofSources
     source₁_mem_radius := hsource₁
     source₂_mem_radius := hsource₂ }
 
+/-- P97 ATail CriticalFiberRetainedRadiusSelector theorem. -/
 @[simp] theorem ofSources_fiber_source₁
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -205,6 +209,7 @@ def ofSources
       source₁ := by
   rfl
 
+/-- P97 ATail CriticalFiberRetainedRadiusSelector theorem. -/
 @[simp] theorem ofSources_fiber_source₂
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

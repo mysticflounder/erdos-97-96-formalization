@@ -48,6 +48,7 @@ noncomputable def RowAssignment.slack
   | .s1s3 => endpointS1S3Slack pointOf
   | .pair left right => endpointPairSlack pointOf left right
 
+/-- P97 SurplusCertificate theorem. -/
 theorem RowAssignment.evaluation_eq_normalAxis
     (assignment : RowAssignment)
     (pointOf : SurplusCOMPGBank.Label → ℝ²) :
@@ -141,6 +142,7 @@ def GeneratorRule.Valid
         endpointXVarOfLabel left = some lx ∧
         endpointYVarOfLabel left = some ly
 
+/-- P97 SurplusCertificate instance. -/
 instance GeneratorRule.instDecidableValid
     (rule : GeneratorRule) (row : SurplusCOMPGBank.Row)
     (assignment : RowAssignment) : Decidable (rule.Valid row assignment) := by
@@ -171,6 +173,7 @@ def directRowCheck
   rulesMatchGenerators rules generators &&
     rulesValidForPid pid assignment rules
 
+/-- P97 SurplusCertificate theorem. -/
 theorem GeneratorRule.evalPoly_eq_zero
     {pointOf : SurplusCOMPGBank.Label → ℝ²}
     {centerClass : SurplusCOMPGBank.Label → Finset ℝ²}
@@ -237,6 +240,7 @@ theorem GeneratorRule.evalPoly_eq_zero
       rcases hvalid with ⟨rfl, hne, hlx, hly⟩
       exact eval_rabinowitsch_sqNorm_zero_of_pair_v hmetric hne hlx hly
 
+/-- P97 SurplusCertificate theorem. -/
 theorem generatorRuleValid_of_rulesValidForPid
     {pid : String} {assignment : RowAssignment}
     {rules : List GeneratorRule} {exactRow : SurplusCOMPGBank.Row}

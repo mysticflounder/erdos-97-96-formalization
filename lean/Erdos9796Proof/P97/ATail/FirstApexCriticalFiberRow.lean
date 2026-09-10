@@ -28,6 +28,7 @@ open ATailFirstApexCriticalFiber
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail FirstApexCriticalFiberRow theorem. -/
 private theorem oppApex1_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ S.surplusCap := by
@@ -67,6 +68,7 @@ theorem nonempty_selectedFourClass_preserving_point
   have : radius = 0 := by simpa using hzero.symm
   exact (ne_of_gt hradius) this
 
+/-- P97 ATail FirstApexCriticalFiberRow theorem. -/
 private theorem exists_other_support_point
     {A : Finset ℝ²} {center point : ℝ²}
     (K : SelectedFourClass A center)

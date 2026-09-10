@@ -49,6 +49,7 @@ def ExactFirstClass {A : Finset ℝ²}
       (F.classAt (boundary 0) (hboundaryMem 0)).radius →
     z ∈ (F.classAt (boundary 0) (hboundaryMem 0)).support
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem mem_row_patternCode_iff
     {A : Finset ℝ²} (boundary : Fin 11 → ℝ²)
     (hboundaryMem : ∀ i, boundary i ∈ A)

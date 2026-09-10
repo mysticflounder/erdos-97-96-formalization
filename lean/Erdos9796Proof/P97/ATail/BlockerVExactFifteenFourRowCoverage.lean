@@ -257,6 +257,7 @@ structure PairHit where
   point₂ : Fin 15
 deriving DecidableEq, Repr
 
+/-- P97 ATail BlockerVExactFifteenFourRowCoverage def. -/
 private def pairHit (row point₁ point₂ : Nat)
     (hrow : row < 4 := by omega)
     (hpoint₁ : point₁ < 15 := by omega)

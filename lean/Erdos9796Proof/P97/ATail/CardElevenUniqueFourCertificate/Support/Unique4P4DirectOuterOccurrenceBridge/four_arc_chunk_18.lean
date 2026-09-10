@@ -4,6 +4,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 
 namespace Problem97.P4DirectFourArcOccurrenceBridgeScratch
 
+/-- P97 ATail support def. -/
 def directNoFourOccurrencesChunk18 : List FourArcOccurrence := [
   { outputClauseIndex := 16473, coreClauseIndex := 46030, terminalClauseIndex := 2712110, clause := [-992, -951, -1176, -2183], a1 := (992, ⟨2, .left, {0, 1, 9, 10}⟩), a2 := (951, ⟨2, .right, {7}⟩), a3 := (1176, ⟨3, .right, {4, 5, 6}⟩), a4 := (2183, ⟨9, .left, {2}⟩) },
   { outputClauseIndex := 16474, coreClauseIndex := 46031, terminalClauseIndex := 2712113, clause := [-992, -951, -1178, -2183], a1 := (992, ⟨2, .left, {0, 1, 9, 10}⟩), a2 := (951, ⟨2, .right, {7}⟩), a3 := (1178, ⟨3, .right, {3, 4, 5, 6}⟩), a4 := (2183, ⟨9, .left, {2}⟩) },

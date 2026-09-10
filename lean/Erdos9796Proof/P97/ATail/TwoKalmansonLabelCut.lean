@@ -37,6 +37,7 @@ structure TwoKalmansonLabelCancellationData (α : Type*) where
   permutation : Permutation4Data
 deriving DecidableEq, Repr
 
+/-- P97 ATail TwoKalmansonLabelCut def. -/
 def TwoKalmansonLabelCancellationData.leftEdge {α : Type*}
     (data : TwoKalmansonLabelCancellationData α) : Fin 4 → Edge α :=
   ![data.firstQuad.leftEdge0 data.firstForm,
@@ -44,6 +45,7 @@ def TwoKalmansonLabelCancellationData.leftEdge {α : Type*}
     data.secondQuad.leftEdge0 data.secondForm,
     data.secondQuad.leftEdge1 data.secondForm]
 
+/-- P97 ATail TwoKalmansonLabelCut def. -/
 def TwoKalmansonLabelCancellationData.rightEdge {α : Type*}
     (data : TwoKalmansonLabelCancellationData α) : Fin 4 → Edge α :=
   ![data.firstQuad.rightEdge0, data.firstQuad.rightEdge1,

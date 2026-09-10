@@ -23,15 +23,18 @@ open scoped EuclideanGeometry InnerProductSpace
 namespace Problem97
 namespace A4GlobalCircleWedge
 
+/-- P97 ATail A4GlobalCircleWedge def. -/
 private def det2 (a b : ℝ²) : ℝ :=
   a 0 * b 1 - a 1 * b 0
 
+/-- P97 ATail A4GlobalCircleWedge theorem. -/
 private theorem signedArea2_eq_det2_sub (a b c : ℝ²) :
     signedArea2 a b c = det2 (b - a) (c - a) := by
   unfold signedArea2 det2
   simp only [PiLp.sub_apply]
   ring
 
+/-- P97 ATail A4GlobalCircleWedge theorem. -/
 private theorem sum_ne_zero_of_strict_halfplane
     {P p q w : ℝ²}
     (hp : 0 < ⟪w, p - P⟫_ℝ) (hq : 0 < ⟪w, q - P⟫_ℝ) :

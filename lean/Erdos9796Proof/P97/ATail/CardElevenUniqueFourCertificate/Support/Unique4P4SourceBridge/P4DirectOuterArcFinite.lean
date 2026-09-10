@@ -28,6 +28,7 @@ def centeredSupportIndices (center : Fin 11) (support : Finset (Fin 11)) :
     Finset (Fin 11) :=
   support.image fun point ↦ center - point
 
+/-- P97 ATail support theorem. -/
 theorem centeredSupportIndices_card
     (center : Fin 11) (support : Finset (Fin 11))
     (hcard : support.card = 4) :
@@ -43,6 +44,7 @@ def centeredSupportIndex
   ((centeredSupportIndices center support).orderEmbOfFin
       (centeredSupportIndices_card center support hcard) i).val
 
+/-- P97 ATail support theorem. -/
 theorem selectedCenteredSupportIndices_eq
     {A : Finset ℝ²} (Q : P5CurvatureSource A) (center : Fin 11) :
     (Q.indexing.selectedCenteredSupportIndices
@@ -108,6 +110,7 @@ theorem selectedCenteredSupportIndices_eq
             (Q.selectedRow center).support_subset_A hboundary⟩ = point by
         exact Q.boundaryIndexOf_boundary point]
 
+/-- P97 ATail support theorem. -/
 theorem selectedCenteredSupportIndex_eq
     {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (row : RowSupportAtom) (hcard : row.support.card = 4)
@@ -135,6 +138,7 @@ theorem selectedCenteredSupportIndex_eq
 def globalStart (center : Fin 11) : ℕ :=
   (-center).val
 
+/-- P97 ATail support theorem. -/
 theorem globalChartStartAt_eq
     {A : Finset ℝ²} (Q : P5CurvatureSource A) (center : Fin 11) :
     Q.indexing.globalChartStartAt
@@ -171,6 +175,7 @@ def finiteArcTurnMask
     ⟨(finiteArcStart center support hcard side + k) % 11,
       Nat.mod_lt _ (by omega)⟩
 
+/-- P97 ATail support theorem. -/
 theorem retainedArc_turnMask_eq_finite
     {A : Finset ℝ²} (Q : P5CurvatureSource A)
     (row : RowSupportAtom) (hcard : row.support.card = 4)
@@ -260,6 +265,7 @@ instance (datum : DirectRowArcFiniteDatum) : Decidable datum.Valid := by
   unfold Valid
   infer_instance
 
+/-- P97 ATail support theorem. -/
 theorem support_card_of_valid
     (datum : DirectRowArcFiniteDatum) (hvalid : datum.Valid) :
     datum.row.support.card = 4 := by
@@ -268,6 +274,7 @@ theorem support_card_of_valid
     simpa only [checkedMask, hcard, ↓reduceDIte] using hvalid.2
   cases hbad
 
+/-- P97 ATail support theorem. -/
 theorem mask_eq_of_valid
     (datum : DirectRowArcFiniteDatum) (hvalid : datum.Valid) :
     finiteArcTurnMask datum.row.center datum.row.support
@@ -288,6 +295,7 @@ def toCertificate
   support_card := datum.support_card_of_valid hvalid
   mask_eq := datum.mask_eq_of_valid hvalid
 
+/-- P97 ATail support def. -/
 def toSchema
     (datum : DirectRowArcFiniteDatum) (hvalid : datum.Valid) :
     DirectRowArcSchema :=
@@ -295,10 +303,12 @@ def toSchema
 
 end DirectRowArcFiniteDatum
 
+/-- P97 ATail support def. -/
 private def exampleLeftDatum : DirectRowArcFiniteDatum where
   row := ⟨0, {1, 5, 6, 7}⟩
   arc := ⟨0, .left, {0, 1, 2, 3}⟩
 
+/-- P97 ATail support theorem. -/
 private theorem exampleLeftDatum_valid : exampleLeftDatum.Valid := by
   native_decide
 

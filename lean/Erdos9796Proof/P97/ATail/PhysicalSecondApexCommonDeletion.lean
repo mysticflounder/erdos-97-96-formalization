@@ -107,6 +107,7 @@ theorem secondRow_support_eq_criticalShell_of_center_eq
     H.selectedFourClass_support_eq_shell source hsource
       (secondRowSelectedFourClass C)
 
+/-- P97 ATail PhysicalSecondApexCommonDeletion theorem. -/
 private theorem selectedRows_sameCenter_radius_eq_or_disjoint
     {A : Finset ℝ²} {center : ℝ²}
     (K L : SelectedFourClass A center) :
@@ -129,6 +130,7 @@ theorem selectedRows_sameCenter_radius_eq_or_disjoint_public
     K.radius = L.radius ∨ Disjoint K.support L.support := by
   exact selectedRows_sameCenter_radius_eq_or_disjoint K L
 
+/-- P97 ATail PhysicalSecondApexCommonDeletion theorem. -/
 private theorem five_le_selectedClass_of_row_and_extra
     {A : Finset ℝ²} {center extra : ℝ²}
     (K : SelectedFourClass A center)

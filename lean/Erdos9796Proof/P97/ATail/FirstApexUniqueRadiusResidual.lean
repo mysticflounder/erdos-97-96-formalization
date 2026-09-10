@@ -40,6 +40,7 @@ open FirstApexInteriorPairGeometry
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail FirstApexUniqueRadiusResidual theorem. -/
 private theorem q_mem_firstApex_class
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -49,6 +50,7 @@ private theorem q_mem_firstApex_class
   rcases Finset.mem_filter.mp hqFilter with ⟨hqA, hqRadius⟩
   exact mem_selectedClass.mpr ⟨hqA, by simpa only [dist_comm] using hqRadius⟩
 
+/-- P97 ATail FirstApexUniqueRadiusResidual theorem. -/
 private theorem w_mem_firstApex_class
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -58,6 +60,7 @@ private theorem w_mem_firstApex_class
   rcases Finset.mem_filter.mp hwFilter with ⟨hwA, hwRadius⟩
   exact mem_selectedClass.mpr ⟨hwA, by simpa only [dist_comm] using hwRadius⟩
 
+/-- P97 ATail FirstApexUniqueRadiusResidual theorem. -/
 private theorem everyClassMember_obstructsFirstApex
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     (hcard : (SelectedClass D.A S.oppApex1 radius).card = 4)
@@ -78,6 +81,7 @@ private theorem everyClassMember_obstructsFirstApex
   rw [selectedClass_erase_eq, Finset.card_erase_of_mem hx, hcard] at hfourErase
   omega
 
+/-- P97 ATail FirstApexUniqueRadiusResidual theorem. -/
 private theorem firstApex_fullyDeletionRobust_of_exactFive
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

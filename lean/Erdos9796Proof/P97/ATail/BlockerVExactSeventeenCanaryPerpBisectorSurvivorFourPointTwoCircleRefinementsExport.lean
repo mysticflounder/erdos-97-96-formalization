@@ -14,6 +14,7 @@ namespace ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircl
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsExport def. -/
 def rootDimacsString : String :=
   let dimacs :=
     canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf.map fun clause =>
@@ -23,6 +24,7 @@ def rootDimacsString : String :=
       dimacs.map fun clause => String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -37,5 +39,6 @@ end Problem97
 
 open Problem97
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsExport def. -/
 def main (args : List String) : IO UInt32 :=
   ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsExport.run args

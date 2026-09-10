@@ -11,6 +11,7 @@ import Erdos9796Proof.P97.ErasedCertificate.P4SPlacement5B
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
+/-- P97 ErasedCertificate theorem. -/
 theorem p4sPlacementsAt_five_eq_true : p4sPlacementsAt 5 = true := by
   simp [p4sPlacementsAt, p4sPlacementsAt_five_a_eq_true,
     p4sPlacementsAt_five_b_eq_true]

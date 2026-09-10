@@ -20,6 +20,7 @@ open scoped InnerProductSpace
 namespace Erdos9796Proof
 namespace Geometry
 
+/-- P97 ATail CocircularPerpendicularBisector lemma. -/
 private lemma norm_sq_coord_sub (x y : Plane) :
     ‖x - y‖ ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
   rw [EuclideanSpace.norm_sq_eq]

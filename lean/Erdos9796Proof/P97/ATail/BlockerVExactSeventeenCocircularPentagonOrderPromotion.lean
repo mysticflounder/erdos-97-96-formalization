@@ -25,6 +25,7 @@ open ATailBlockerVExactSeventeenFortyNinthWaveV9FourSize8Promotion
 def cocircularPentagonOrderClauses : Std.Sat.CNF Atom :=
   [[pos (.namedOrder 0)]]
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderPromotion theorem. -/
 theorem cocircularPentagonOrderClauses_length :
     cocircularPentagonOrderClauses.length = 1 := by
   rfl
@@ -47,6 +48,7 @@ def extendedCocircularPentagonOrderCnf : Std.Sat.CNF Atom :=
   extendedFortyNinthWaveV9FourSize8PromotionCnf ++
     cocircularPentagonOrderClauses
 
+/-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderPromotion theorem. -/
 theorem extendedCocircularPentagonOrderCnf_length :
     extendedCocircularPentagonOrderCnf.length = 7198853 := by
   simp only [extendedCocircularPentagonOrderCnf, List.length_append,

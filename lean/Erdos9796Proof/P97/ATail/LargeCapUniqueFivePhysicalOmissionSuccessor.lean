@@ -30,6 +30,7 @@ open ATailTwoCenterCapLocalization
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail LargeCapUniqueFivePhysicalOmissionSuccessor theorem. -/
 private theorem physicalApex_survives_erase
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {profile : LargeCapUniqueFiveSecondApexRadius D S}

@@ -27,6 +27,7 @@ open ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 private theorem interior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -38,6 +39,7 @@ private theorem interior_not_mem_surplusCap
     simpa [SurplusCapPacket.capByIndex,
       SurplusCapPacket.surplusCap, hi] using hnot
 
+/-- Indexed scratch Lean def. -/
 private noncomputable def collisionRelocation
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -85,6 +87,7 @@ private noncomputable def collisionRelocation
       actual_blocker_ne_of_deletion_survives
         H P.source₂_mem_A hwSurvives }
 
+/-- Indexed scratch Lean theorem. -/
 private theorem source_mem_other_shell_of_blockers_eq
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (source target : CriticalShellSystem.CarrierVertex A)
@@ -100,11 +103,13 @@ private theorem source_mem_other_shell_of_blockers_eq
     (H.selectedAt source.1
       source.2).toCriticalFourShell.q_mem_support
 
+/-- Indexed scratch Lean abbrev. -/
 private abbrev canonicalSupport
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (source : CriticalShellSystem.CarrierVertex A) : Finset ℝ² :=
   (H.selectedAt source.1 source.2).toCriticalFourShell.support
 
+/-- Indexed scratch Lean abbrev. -/
 private abbrev commonlyOmittedBy
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     (source₁ source₂ : CriticalShellSystem.CarrierVertex A)

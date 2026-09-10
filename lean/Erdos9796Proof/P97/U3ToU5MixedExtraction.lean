@@ -46,26 +46,31 @@ namespace MixedConfinedRow
 
 variable {D : CounterexampleData} {q center : ℝ²} {S : Finset ℝ²}
 
+/-- P97 U3ToU5MixedExtraction def. -/
 noncomputable def support : MixedConfinedRow D q center S → Finset ℝ²
   | .qDeleted B _ _ _ => B
   | .criticalFourShell K _ => K.support
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def mode : MixedConfinedRow D q center S → MixedRowMode
   | .qDeleted .. => .qDeleted
   | .criticalFourShell .. => .criticalFourShell
 
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem support_card_eq_four (R : MixedConfinedRow D q center S) :
     R.support.card = 4 := by
   cases R with
   | qDeleted B K hcard hconf => exact hcard
   | criticalFourShell K hconf => exact K.support_card
 
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem support_confined (R : MixedConfinedRow D q center S) :
     R.support ⊆ S := by
   cases R with
   | qDeleted B K hcard hconf => exact hconf
   | criticalFourShell K hconf => exact hconf
 
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem center_not_mem_support (R : MixedConfinedRow D q center S) :
     center ∉ R.support := by
   cases R with
@@ -74,18 +79,21 @@ theorem center_not_mem_support (R : MixedConfinedRow D q center S) :
       exact (Finset.mem_erase.mp (K.subset hcenter)).1 rfl
   | criticalFourShell K hconf => exact K.center_not_mem_support
 
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem q_not_mem_support_iff (R : MixedConfinedRow D q center S) :
     q ∉ R.support ↔ R.mode = .qDeleted := by
   cases R with
   | qDeleted B K hcard hconf => simp [support, mode, K.q_not_mem]
   | criticalFourShell K hconf => simp [support, mode, K.q_mem_support]
 
+/-- P97 U3ToU5MixedExtraction def. -/
 noncomputable def toQAllowedK4Class (R : MixedConfinedRow D q center S) :
     U5QAllowedK4Class D center R.support := by
   cases R with
   | qDeleted B K hcard hconf => exact K.toQAllowedK4Class
   | criticalFourShell K hconf => exact K.toU5QAllowedK4Class
 
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem inter_card_le_two
     {center' : ℝ²} {R' : MixedConfinedRow D q center' S}
     (R : MixedConfinedRow D q center S) (hne : center ≠ center') :
@@ -359,6 +367,7 @@ theorem MixedSixRowPattern.exists_two_qDeleted_of_uniform_shell_multiplicity
     (Finset.card_le_card hsubset).trans hlabelIncidenceCard
   omega
 
+/-- P97 U3ToU5MixedExtraction def. -/
 noncomputable def MixedConfinedRow.toMixedChoice
     {D : CounterexampleData} {q center : ℝ²} {S : Finset ℝ²}
     (R : MixedConfinedRow D q center S)
@@ -734,29 +743,36 @@ overlap and dangerous-circle bounds retained.  The resulting `native_decide`
 certificate is only a finite projection; the theorem below transports it back
 to the six actual rows. -/
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def maskSupport (m : Fin 256) : Finset U5AuditLabel :=
   labels.toFinset.filter (fun x => has m.val x)
 
 set_option maxRecDepth 100000 in
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem labelMask_lt_256 (L : Finset U5AuditLabel) : labelMask L < 256 := by
   decide +revert
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def supportMask (L : Finset U5AuditLabel) : Fin 256 :=
   ⟨labelMask L, labelMask_lt_256 L⟩
 
 set_option maxRecDepth 100000 in
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem maskSupport_supportMask (L : Finset U5AuditLabel) :
     maskSupport (supportMask L) = L := by
   decide +revert
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def allMasks : List (Fin 256) := List.finRange 256
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def shellMasks (center : U5AuditLabel) : List (Fin 256) :=
   allMasks.filter fun m =>
     let B := maskSupport m
     decide (B.card = 4) && decide (q ∈ B) && decide (center ∉ B) &&
       decide ((B ∩ dangerousCircleLabels).card ≤ 2)
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def shellPatternOK
     (Bt1 Bt2 Bt3 Bu Ba0 Ba1 : Finset U5AuditLabel) : Bool :=
   decide ((Bt1 ∩ Bt2).card ≤ 2) &&
@@ -795,6 +811,7 @@ def shellPatternOK
   decide ¬ (p ∈ Bt3 ∧ p ∈ Ba0 ∧ p ∈ Ba1) &&
   decide ¬ (p ∈ Bu ∧ p ∈ Ba0 ∧ p ∈ Ba1)
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def shellPatternExists : Bool :=
   (shellMasks t1).any fun mt1 =>
     (shellMasks t2).any fun mt2 =>
@@ -810,17 +827,25 @@ set_option maxHeartbeats 10000000 in
 -- Exhaustively reduces the fixed six-row Boolean certificate.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem shellPatternExists_false : shellPatternExists = false := by
   native_decide
 
+/-- P97 U3ToU5MixedExtraction def. -/
 def ct1 : MixedCenter := ⟨t1, by simp [centers]⟩
+/-- P97 U3ToU5MixedExtraction def. -/
 def ct2 : MixedCenter := ⟨t2, by simp [centers]⟩
+/-- P97 U3ToU5MixedExtraction def. -/
 def ct3 : MixedCenter := ⟨t3, by simp [centers]⟩
+/-- P97 U3ToU5MixedExtraction def. -/
 def cu : MixedCenter := ⟨u, by simp [centers]⟩
+/-- P97 U3ToU5MixedExtraction def. -/
 def ca0 : MixedCenter := ⟨a0, by simp [centers]⟩
+/-- P97 U3ToU5MixedExtraction def. -/
 def ca1 : MixedCenter := ⟨a1, by simp [centers]⟩
 
 set_option maxRecDepth 100000 in
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem exists_qDeleted_mode_of_mixedSixRowPatternWithDangerousCircle
     (P : MixedSixRowPatternWithDangerousCircle) :
     ∃ c : MixedCenter, (P.row c).mode = .qDeleted := by
@@ -1126,6 +1151,7 @@ theorem MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_with_intersect
 q-deleted rows cannot both avoid the other row's center.  This is purely a
 finite-support count, and does not add a geometric hypothesis. -/
 
+/-- P97 U3ToU5MixedExtraction theorem. -/
 theorem MixedConfinedAuditPacket.exists_two_confined_qDeletedRows_with_cross_incidence
     {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
     {H : U3FixedTripleAuditFrame D q p t1 t2 t3}

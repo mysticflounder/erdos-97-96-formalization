@@ -27,12 +27,14 @@ namespace ErasedCertificate
 
 open SurplusCOMPGBank
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem orderedLabelPairs_ne {c cp : Label}
     (hpair : (c, cp) ∈ orderedLabelPairs) : c ≠ cp := by
   intro hEq
   subst cp
   cases c <;> simp [orderedLabelPairs] at hpair
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem p4PointMask_foldl_preserve_bit_of_forall_lt
     {α : Type _} [DecidableEq α] (pointOf : Label → α)
     (T : Finset α) (labels : List Label) {k acc : Nat}
@@ -56,6 +58,7 @@ private theorem p4PointMask_foldl_preserve_bit_of_forall_lt
       · rw [ih hrest]
         simp [hmem]
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem p4PointMask_maskHas_true_of_mem_of_prefix_suffix
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α}
@@ -92,6 +95,7 @@ private theorem p4PointMask_maskHas_true_of_mem_of_prefix_suffix
   rw [Nat.testBit_two_pow_add_eq]
   simpa [Label.bit] using congrArg Bool.not hprefixFalse
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem p4PointMask_maskHas_true_of_mem
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} {T : Finset α} {label : Label}
@@ -138,6 +142,7 @@ private theorem p4PointMask_maskHas_true_of_mem
       (pref := [.u, .v, .w, .s1, .s2, .s3, .Pw, .Pu, .Q1])
       (suff := []) rfl (by decide) (by decide) hmem
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem p4Foldl_count_true
     {α : Type _} (predicate : α → Bool) (items : List α) (acc : Nat) :
     items.foldl (fun count item => if predicate item then count + 1 else count)
@@ -153,6 +158,7 @@ private theorem p4Foldl_count_true
           cases h : predicate item <;> simp_all
         simp [hfalse, ih]
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem p4MaskCard_pointMask_eq_card_of_subset_range
     {α : Type _} [DecidableEq α]
     {pointOf : Label → α} (hinj : Function.Injective pointOf)
@@ -188,6 +194,7 @@ private theorem p4MaskCard_pointMask_eq_card_of_subset_range
       (Finset.card_image_of_injective _ hinj).symm
     _ = T.card := by rw [himage]
 
+/-- P97 ErasedCertificate abbrev. -/
 private abbrev SameRadiusCrossSeparationProducer
     (pointOf : Label → ℝ²) : Prop :=
   ∀ {centerClass : Label → Finset ℝ²} {c cp : Label},
@@ -206,6 +213,7 @@ private abbrev SameRadiusCrossSeparationProducer
           (pointMask pointOf (centerClass c)) cp
           (pointMask pointOf (centerClass cp)) = true
 
+/-- P97 ErasedCertificate def. -/
 private noncomputable def cardTenCenterClass
     {A : Finset ℝ²} (pointOf : Label → ℝ²) (seed : OneSidedSeed)
     (vRadius wRadius privateRadius : ℝ)
@@ -220,6 +228,7 @@ private noncomputable def cardTenCenterClass
     else
       supportClass center
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_erasedPinSeed_of_cardTen_selectedClasses_core
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A) (hcardA : A.card = 10)
@@ -338,6 +347,7 @@ private theorem false_of_erasedPinSeed_of_cardTen_selectedClasses_core
       (by simpa [hcenterPrivate] using hprivate)
       hcard hself hno3 hcounts hsep hsearchSep
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_erasedPinFixedSeed_of_cardTen_selectedClasses_core
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A) (hcardA : A.card = 10)
@@ -430,6 +440,7 @@ theorem false_of_erasedPinFixedSeed_of_cardTen_selectedClasses_reflectedCcwHull
   exact crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull hccw hinj
     hccp hsameC hsameCP
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem capInteriorByIndex_card_eq_three_of_cap_card_eq_five
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
     (hcard : (S.capByIndex i).card = 5) :
@@ -460,6 +471,7 @@ private theorem capInteriorByIndex_card_eq_three_of_cap_card_eq_five
     rw [Finset.card_erase_of_mem hv2,
       Finset.card_erase_of_mem S.partition.v1_mem_C3, hcard]
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem surplusInterior_card_eq_three_of_surplus_card_five
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hcard5 : S.surplusCap.card = 5) :
@@ -524,6 +536,7 @@ theorem false_of_leftNonSurplusRow0040_of_cardFive
     surplusInterior_card_eq_three_of_surplus_card_five S hcard5
   omega
 
+/-- P97 ErasedCertificate structure. -/
 private structure RightCardFiveLabels
     {A : Finset ℝ²} (S : SurplusCapPacket A) (T : Finset ℝ²) where
   p₁ : ℝ²
@@ -547,6 +560,7 @@ private structure RightCardFiveLabels
   hcross : SameRadiusCrossSeparationProducer
     (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem exists_rightCardFiveLabels
     {A : Finset ℝ²} (hne : A.Nonempty) (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A)
@@ -647,6 +661,7 @@ private theorem exists_rightCardFiveLabels
     exact crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull
       hccwReflected hinj hccp hsameC hsameCP
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_erasedPinP4Seed_of_cardTen_selectedClasses_core
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A) (hcardA : A.card = 10)
@@ -706,6 +721,7 @@ private theorem false_of_erasedPinP4Seed_of_cardTen_selectedClasses_core
       simpa [hprivateEq, hwEq] using hsep
     exact Bool.noConfusion (hbadW.symm.trans hsep')
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_rightCardFiveLabels_cardTenP4Seed
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A)
@@ -874,6 +890,7 @@ theorem false_of_surplusInteriorErasedPinTriple_of_cardFive
     hconv hK4 hM44 hcontain hcardA L hxA htriple hs hsstarPoint
       (Or.inr hprivateCenter) hprivateCenterPoint
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_rightCardFiveLabels_fixedSeed
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A)
@@ -925,6 +942,7 @@ private theorem false_of_rightCardFiveLabels_fixedSeed
     (by rcases hprivateCenter with h | h <;> simp [h])
     hvMask hwMask (by simpa [hprivateCenterPoint] using hprivate) L.hcross
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_rightCardFiveRow_of_seedProducer
     {A : Finset ℝ²} (hne : A.Nonempty) (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A)
@@ -959,6 +977,7 @@ private theorem false_of_rightCardFiveRow_of_seedProducer
   exact false_of_rightCardFiveLabels_fixedSeed hconv hK4 hM44 hcontain
     hcardA L hseed hs hprivateCenter hprivateCenterPoint hprivate
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem rightCardFiveLabels_rowFacts
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : RightCardFiveLabels S
@@ -1426,6 +1445,7 @@ theorem false_of_rightNonSurplusRow2002_of_cardFive
     · simp [hprivateCenter, rightPinnedLabelPoint]
     · simpa only using hprivate
 
+/-- P97 ErasedCertificate structure. -/
 private structure LeftCardFiveLabels
     {A : Finset ℝ²} (S : SurplusCapPacket A) (T : Finset ℝ²) where
   p₁ : ℝ²
@@ -1449,6 +1469,7 @@ private structure LeftCardFiveLabels
   hcross : SameRadiusCrossSeparationProducer
     (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem exists_leftCardFiveLabels
     {A : Finset ℝ²} (hne : A.Nonempty) (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A)
@@ -1549,6 +1570,7 @@ private theorem exists_leftCardFiveLabels
     exact crossSeparationOKForMasks_of_sameRadius_ccwHull hccw hinj hccp
       hsameC hsameCP
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_leftCardFiveLabels_fixedSeed
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A)
@@ -1602,6 +1624,7 @@ private theorem false_of_leftCardFiveLabels_fixedSeed
     (by rcases hprivateCenter with h | h <;> simp [h])
     hvMask hwMask (by simpa [hprivateCenterPoint] using hprivate) L.hcross
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_leftCardFiveRow_of_seedProducer
     {A : Finset ℝ²} (hne : A.Nonempty) (hconv : ConvexIndep A)
     (hK4 : HasNEquidistantProperty 4 A)
@@ -1636,6 +1659,7 @@ private theorem false_of_leftCardFiveRow_of_seedProducer
   exact false_of_leftCardFiveLabels_fixedSeed hconv hK4 hM44 hcontain
     hcardA L hseed hs hprivateCenter hprivateCenterPoint hprivate
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem leftCardFiveLabels_rowFacts
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (L : LeftCardFiveLabels S
@@ -2117,6 +2141,7 @@ theorem false_of_leftNonSurplusRow2020_of_cardFive
         rightPinnedLabelPoint]
     · simpa only using hprivate
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_rightOneSidedErasedPayload_of_cardTen_labels_core
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
@@ -2270,6 +2295,7 @@ theorem false_of_rightOneSidedErasedPayload_of_cardTen_reflectedCcwLabels
   exact crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull hccw hinj
     hccp hsameC hsameCP
 
+/-- P97 ErasedCertificate theorem. -/
 private theorem false_of_leftOneSidedErasedPayload_of_cardTen_labels_core
     {A : Finset ℝ²} {S : SurplusCapPacket A}
     (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)

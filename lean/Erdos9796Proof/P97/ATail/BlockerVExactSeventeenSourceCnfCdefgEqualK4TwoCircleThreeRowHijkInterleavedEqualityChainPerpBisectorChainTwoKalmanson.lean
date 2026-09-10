@@ -51,6 +51,7 @@ def twoKalmansonChainHits (order : NamedOrder) (direction : Orientation)
         (p g, p e), (p g, p c)]
   | _ => []
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmanson theorem. -/
 private theorem false_of_twoKalmansonChain_at {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut b c d e f g : Label)

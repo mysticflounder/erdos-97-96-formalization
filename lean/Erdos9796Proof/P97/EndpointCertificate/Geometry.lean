@@ -76,6 +76,7 @@ def endpointPointMask {α : Type _} [DecidableEq α]
   SurplusCOMPGBank.allLabels.foldl
     (fun acc label => if pointOf label ∈ T then label.bit + acc else acc) 0
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointPointMask_foldl_le_add_maskOfLabels
     {α : Type _} [DecidableEq α] (pointOf : ShadowBank.Label → α)
     (T : Finset α) (labels : List ShadowBank.Label) (acc : Nat) :
@@ -95,6 +96,7 @@ private theorem endpointPointMask_foldl_le_add_maskOfLabels
         simp [h]
         omega
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointPointMask_foldl_preserve_bit_of_forall_lt
     {α : Type _} [DecidableEq α] (pointOf : ShadowBank.Label → α)
     (T : Finset α) (labels : List ShadowBank.Label) {k acc : Nat}
@@ -118,6 +120,7 @@ private theorem endpointPointMask_foldl_preserve_bit_of_forall_lt
       · rw [ih hrest]
         simp [hmem]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointPointMask_maskHas_false_of_not_mem_of_prefix_suffix
     {α : Type _} [DecidableEq α]
     {pointOf : ShadowBank.Label → α} {T : Finset α}
@@ -251,6 +254,7 @@ theorem endpointPointMask_maskHas_self_false_of_selectedClass
   rw [dist_self] at hdist
   exact hradius.ne' hdist.symm
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem not_both_mem_of_inter_card_le_one
     {α : Type _} [DecidableEq α] {T C : Finset α} {x y : α}
     (hxy : x ≠ y) (hxC : x ∈ C) (hyC : y ∈ C)
@@ -268,6 +272,7 @@ private theorem not_both_mem_of_inter_card_le_one
   have hle := Finset.card_le_card hsub
   omega
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem maskInterCard_cvNoUMask_le_one_of_no_pair_bits (mask : Nat)
     (hwPw : ¬ (SurplusCOMPGBank.maskHas mask .w = true ∧
       SurplusCOMPGBank.maskHas mask .Pw = true))
@@ -309,6 +314,7 @@ private theorem maskInterCard_cvNoUMask_le_one_of_no_pair_bits (mask : Nat)
         SurplusCOMPGBank.Label.index, h9, h8, h7, h6, h5, h4, h3, h2,
         h1, h0, hw, hPw, hPu]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem maskInterCard_cwNoUMask_le_one_of_no_pair_bits (mask : Nat)
     (hvQ1 : ¬ (SurplusCOMPGBank.maskHas mask .v = true ∧
       SurplusCOMPGBank.maskHas mask .Q1 = true))
@@ -440,6 +446,7 @@ def endpointShadowOfPointClasses {α : Type _} [DecidableEq α]
   { masks := SurplusCOMPGBank.allLabels.map
       (fun center => endpointPointMask pointOf (centerClass center)) }
 
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointShadowOfPointClasses_hasTenMasks
     {α : Type _} [DecidableEq α] (pointOf : ShadowBank.Label → α)
     (centerClass : ShadowBank.Label → Finset α) :
@@ -447,6 +454,7 @@ theorem endpointShadowOfPointClasses_hasTenMasks
   simp [endpointShadowOfPointClasses, SurplusCOMPGBank.Shadow.hasTenMasks,
     SurplusCOMPGBank.allLabels, SurplusCOMPGBank.labelCount]
 
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointShadowOfPointClasses_centerMask
     {α : Type _} [DecidableEq α] (pointOf : ShadowBank.Label → α)
     (centerClass : ShadowBank.Label → Finset α) (center : ShadowBank.Label) :
@@ -456,6 +464,7 @@ theorem endpointShadowOfPointClasses_centerMask
     simp [endpointShadowOfPointClasses, SurplusCOMPGBank.Shadow.centerMask,
       SurplusCOMPGBank.allLabels, SurplusCOMPGBank.Label.index]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem allLabels_map_endpointLabelPoint
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) :
@@ -467,6 +476,7 @@ private theorem allLabels_map_endpointLabelPoint
         s1, s2, s3, p₁, p₂, q₁, q₂] := by
   rfl
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem allLabels_map_endpointMirrorLabelPoint
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) :
@@ -478,6 +488,7 @@ private theorem allLabels_map_endpointMirrorLabelPoint
         s1, s2, s3, q₁, q₂, p₁, p₂] := by
   rfl
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointLabelPoint_pairwise_of_mem
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
@@ -497,6 +508,7 @@ private theorem endpointLabelPoint_pairwise_of_mem
   exact S.pinnedSurplusTenLabels_pairwise_of_mem
     hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointMirrorLabelPoint_pairwise_of_mem
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
@@ -518,6 +530,7 @@ private theorem endpointMirrorLabelPoint_pairwise_of_mem
   simp at hbase ⊢
   aesop
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem injective_of_allLabels_map_pairwise
     {α : Type _} {pointOf : ShadowBank.Label → α}
     (hpair : List.Pairwise (fun x y : α => x ≠ y)
@@ -568,6 +581,7 @@ theorem endpointMirrorLabelPoint_injective_of_mem
     (endpointMirrorLabelPoint_pairwise_of_mem S
       hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23)
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointPointMask_eq_maskOfLabels_v
     {α : Type _} [DecidableEq α] {pointOf : ShadowBank.Label → α}
     (hinj : Function.Injective pointOf) {xLabel aLabel : ShadowBank.Label}
@@ -586,6 +600,7 @@ private theorem endpointPointMask_eq_maskOfLabels_v
         SurplusCOMPGBank.maskOfLabels, hpoint_eq,
         SurplusCOMPGBank.Label.bit, SurplusCOMPGBank.Label.index]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpointPointMask_eq_maskOfLabels_w
     {α : Type _} [DecidableEq α] {pointOf : ShadowBank.Label → α}
     (hinj : Function.Injective pointOf) {bLabel : ShadowBank.Label}
@@ -783,6 +798,7 @@ theorem endpointShadowOK_shadowOfPointClasses_of_components
     endpointShadowOfPointClasses_hasTenMasks, hclasses, hv, hw, hone, hcirc,
     hno3, hcounts, hsep, hsearchSep]
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem selectedClass_eq_pair_left_right_singletons
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
     {p₁ p₂ leftHit rightHit : ℝ²}
@@ -908,6 +924,7 @@ theorem exists_surplusInterior_triple_covering_pair
   exact ⟨s1, s2, s3, hpairT (by simp), hpairT (by simp),
     hs12, hs13, hs23, hTsub⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_escapeeLabel_eq_of_mem_pair
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²)
@@ -920,6 +937,7 @@ private theorem exists_escapeeLabel_eq_of_mem_pair
   · exact ⟨.Q1, Or.inl rfl, rfl⟩
   · exact ⟨.Q2, Or.inr rfl, rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_mirrorEscapeeLabel_eq_of_mem_pair
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²)
@@ -932,6 +950,7 @@ private theorem exists_mirrorEscapeeLabel_eq_of_mem_pair
   · exact ⟨.Q1, Or.inl rfl, rfl⟩
   · exact ⟨.Q2, Or.inr rfl, rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_vSurplusHitLabel_eq_of_mem_triple_or_w
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 a : ℝ²)
@@ -948,6 +967,7 @@ private theorem exists_vSurplusHitLabel_eq_of_mem_triple_or_w
     · exact ⟨.s2, Or.inr (Or.inr (Or.inl rfl)), rfl⟩
     · exact ⟨.s3, Or.inr (Or.inr (Or.inr rfl)), rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_wSurplusHitLabel_eq_of_mem_triple_or_v
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 b : ℝ²)
@@ -964,6 +984,7 @@ private theorem exists_wSurplusHitLabel_eq_of_mem_triple_or_v
     · exact ⟨.s2, Or.inr (Or.inr (Or.inl rfl)), rfl⟩
     · exact ⟨.s3, Or.inr (Or.inr (Or.inr rfl)), rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_mirrorVSurplusHitLabel_eq_of_mem_triple_or_w
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 a : ℝ²)
@@ -980,6 +1001,7 @@ private theorem exists_mirrorVSurplusHitLabel_eq_of_mem_triple_or_w
     · exact ⟨.s2, Or.inr (Or.inr (Or.inl rfl)), rfl⟩
     · exact ⟨.s3, Or.inr (Or.inr (Or.inr rfl)), rfl⟩
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem exists_mirrorWSurplusHitLabel_eq_of_mem_triple_or_v
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (p₁ p₂ q₁ q₂ s1 s2 s3 b : ℝ²)

@@ -34,6 +34,7 @@ open ATailUniqueRowProducerScratch
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail support theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -43,6 +44,7 @@ private theorem oppApex2_mem_A
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail support theorem. -/
 private theorem oppApex1_eq_oppositeVertexByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 := by
@@ -52,6 +54,7 @@ private theorem oppApex1_eq_oppositeVertexByIndex
       SurplusCapPacket.oppositeVertexByIndex,
       SurplusCapPacket.oppIndex1, hi] <;> rfl
 
+/-- P97 ATail support theorem. -/
 private theorem interior_not_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) {x : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.oppIndex1) :
@@ -166,6 +169,7 @@ structure AlignedInteriorFrontier
     3 ≤ (SelectedClass D.A S.oppApex1 radius ∩
       S.capInteriorByIndex S.oppIndex1).card
 
+/-- P97 ATail support def. -/
 def AlignedInteriorFrontier.frontier
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -174,6 +178,7 @@ def AlignedInteriorFrontier.frontier
     CriticalPairFrontier D S radius H :=
   P.interiorPair.toCriticalPairFrontier H
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem AlignedInteriorFrontier.frontier_pair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -182,6 +187,7 @@ def AlignedInteriorFrontier.frontier
     P.frontier.pair =
       P.interiorPair.toSurvivorPairRelocationPacket H := rfl
 
+/-- P97 ATail support theorem. -/
 theorem AlignedInteriorFrontier.pair_q_mem_strict
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
@@ -190,6 +196,7 @@ theorem AlignedInteriorFrontier.pair_q_mem_strict
     P.frontier.pair.q ∈ S.capInteriorByIndex S.oppIndex1 := by
   exact (Finset.mem_inter.mp P.interiorPair.q_mem).2
 
+/-- P97 ATail support theorem. -/
 theorem AlignedInteriorFrontier.pair_w_mem_strict
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}

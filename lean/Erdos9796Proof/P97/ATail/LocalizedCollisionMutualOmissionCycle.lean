@@ -162,6 +162,7 @@ structure LocalizedCollisionMutualOmissionCycle
     CommonDeletionTwoCenterPacket D H collisionSource S.oppApex1
       (H.centerAt L.fresh L.packet.q_mem_A)
 
+/-- P97 ATail LocalizedCollisionMutualOmissionCycle theorem. -/
 private theorem nonempty_cycle_of_collisionSource
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

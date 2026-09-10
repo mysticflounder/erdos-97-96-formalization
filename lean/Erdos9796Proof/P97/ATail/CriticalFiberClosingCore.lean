@@ -41,6 +41,7 @@ def IsFiberOrientation
 
 namespace IsFiberOrientation
 
+/-- P97 ATail CriticalFiberClosingCore theorem. -/
 theorem left_mem_A
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -52,6 +53,7 @@ theorem left_mem_A
   · exact P.source₁.2
   · exact P.source₂.2
 
+/-- P97 ATail CriticalFiberClosingCore theorem. -/
 theorem right_mem_A
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -63,6 +65,7 @@ theorem right_mem_A
   · exact P.source₂.2
   · exact P.source₁.2
 
+/-- P97 ATail CriticalFiberClosingCore theorem. -/
 theorem ne
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -74,6 +77,7 @@ theorem ne
   · exact P.source_points_ne
   · exact P.source_points_ne.symm
 
+/-- P97 ATail CriticalFiberClosingCore theorem. -/
 theorem commonBlocker_equidistant
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -239,6 +243,7 @@ structure SameCapCollisionPairCore
 
 namespace SameCapCollisionPairCore
 
+/-- P97 ATail CriticalFiberClosingCore theorem. -/
 theorem secondCenter_equidistant
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

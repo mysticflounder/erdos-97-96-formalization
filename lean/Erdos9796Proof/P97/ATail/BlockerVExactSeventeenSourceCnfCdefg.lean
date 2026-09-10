@@ -26,6 +26,7 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open CapCrossingKalmansonBridge
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefg abbrev. -/
 abbrev Hit := Label × Label
 
 /-- The two cyclic directions enumerated by the theorem bank. -/
@@ -72,6 +73,7 @@ def localPosition (sourceOrientation direction : Orientation)
     (offset : Label) : Label :=
   if sourceOrientation = direction then offset else Fin.rev offset
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefg theorem. -/
 theorem localPosition_lt_of_same {sourceOrientation direction : Orientation}
     (hsame : sourceOrientation = direction) {left right : Label}
     (hlt : left < right) :
@@ -80,6 +82,7 @@ theorem localPosition_lt_of_same {sourceOrientation direction : Orientation}
   subst sourceOrientation
   simpa [localPosition] using hlt
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefg theorem. -/
 theorem localPosition_lt_of_ne {sourceOrientation direction : Orientation}
     (hne : sourceOrientation ≠ direction) {left right : Label}
     (hlt : left < right) :
@@ -1025,6 +1028,7 @@ theorem schemaEClauses_length : schemaEClauses.length = 297024 := by
   simp [schemaEClauses, namedOrders, directions, labels,
     fiveOffsetChoices_length]
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefg theorem. -/
 theorem schemaGClauses_length : schemaGClauses.length = 297024 := by
   simp [schemaGClauses, namedOrders, directions, labels,
     fiveOffsetChoices_length]
@@ -1034,6 +1038,7 @@ theorem schemaCClauses_length : schemaCClauses.length = 544544 := by
   simp [schemaCClauses, namedOrders, directions, labels,
     sixOffsetChoices_length]
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefg theorem. -/
 theorem schemaFClauses_length : schemaFClauses.length = 544544 := by
   simp [schemaFClauses, namedOrders, directions, labels,
     sixOffsetChoices_length]

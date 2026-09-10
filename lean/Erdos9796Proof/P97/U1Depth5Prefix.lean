@@ -214,26 +214,31 @@ noncomputable def point {D : CounterexampleData}
   pointOf P.baseP P.baseQ P.baseT1 P.baseT2 P.baseT3 P.selectedU
     P.f2Point P.f3Point P.f4Point P.f5Point
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_baseP {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.p = P.baseP := by
   simp [point, pointOf, U1Depth5.p]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_baseQ {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.q = P.baseQ := by
   simp [point, pointOf, U1Depth5.q]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_baseT1 {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.t1 = P.baseT1 := by
   simp [point, pointOf, U1Depth5.t1]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_baseT2 {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.t2 = P.baseT2 := by
   simp [point, pointOf, U1Depth5.t2]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_baseT3 {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.t3 = P.baseT3 := by
@@ -245,21 +250,25 @@ noncomputable def point {D : CounterexampleData}
     P.point U1Depth5.f1 = P.selectedU := by
   simp [point, pointOf, U1Depth5.f1]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f2 {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.f2 = P.f2Point := by
   simp [point, pointOf, U1Depth5.f2]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f3 {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.f3 = P.f3Point := by
   simp [point, pointOf, U1Depth5.f3]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f4 {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.f4 = P.f4Point := by
   simp [point, pointOf, U1Depth5.f4]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f5 {D : CounterexampleData}
     (P : ManifestLabelPacket D) :
     P.point U1Depth5.f5 = P.f5Point := by
@@ -730,21 +739,25 @@ def slotPoint {A : Finset Plane} {center : Plane}
     (R : OrderedSelectedFourClass A center) (slot : CriticalSlot) : Plane :=
   ![R.l1, R.l2, R.l3, R.l4] slot
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_zero {A : Finset Plane} {center : Plane}
     (R : OrderedSelectedFourClass A center) :
     R.slotPoint 0 = R.l1 := by
   simp [slotPoint]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_one {A : Finset Plane} {center : Plane}
     (R : OrderedSelectedFourClass A center) :
     R.slotPoint 1 = R.l2 := by
   simp [slotPoint]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_two {A : Finset Plane} {center : Plane}
     (R : OrderedSelectedFourClass A center) :
     R.slotPoint 2 = R.l3 := by
   simp [slotPoint]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_three {A : Finset Plane} {center : Plane}
     (R : OrderedSelectedFourClass A center) :
     R.slotPoint 3 = R.l4 := by
@@ -1433,21 +1446,25 @@ def slotPoint {D : CounterexampleData} {source : Plane}
     (R : CriticalRowPacket D source) (slot : CriticalSlot) : Plane :=
   ![R.selected.l1, R.selected.l2, R.selected.l3, R.selected.l4] slot
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_zero {D : CounterexampleData} {source : Plane}
     (R : CriticalRowPacket D source) :
     R.slotPoint 0 = R.selected.l1 := by
   simp [slotPoint]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_one {D : CounterexampleData} {source : Plane}
     (R : CriticalRowPacket D source) :
     R.slotPoint 1 = R.selected.l2 := by
   simp [slotPoint]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_two {D : CounterexampleData} {source : Plane}
     (R : CriticalRowPacket D source) :
     R.slotPoint 2 = R.selected.l3 := by
   simp [slotPoint]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem slotPoint_three {D : CounterexampleData} {source : Plane}
     (R : CriticalRowPacket D source) :
     R.slotPoint 3 = R.selected.l4 := by
@@ -2504,42 +2521,49 @@ noncomputable def point {D : CounterexampleData}
   pointOf baseP baseQ baseT1 baseT2 baseT3 selectedU
     P.f2Point P.f3Point P.f4Point P.f5Point
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_p {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point p = baseP := by
   simp [point, pointOf, p]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_q {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point q = baseQ := by
   simp [point, pointOf, q]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_t1 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point t1 = baseT1 := by
   simp [point, pointOf, t1]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_t2 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point t2 = baseT2 := by
   simp [point, pointOf, t2]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_t3 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point t3 = baseT3 := by
   simp [point, pointOf, t3]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f1 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point f1 = selectedU := by
   simp [point, pointOf, f1]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_criticalSource {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU)
@@ -2557,24 +2581,28 @@ theorem sourceCenter_ne {D : CounterexampleData}
   rw [P.point_criticalSource source]
   exact P.rows.rowAt_center_ne_sourcePoint source
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f2 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point f2 = P.rows.pointOfChoice P.f2Choice := by
   simp [point, pointOf, f2, f2Point]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f3 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point f3 = P.rows.pointOfChoice P.f3Choice := by
   simp [point, pointOf, f3, f3Point]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f4 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
     P.point f4 = P.rows.pointOfChoice P.f4Choice := by
   simp [point, pointOf, f4, f4Point]
 
+/-- P97 U1Depth5Prefix theorem. -/
 @[simp] theorem point_f5 {D : CounterexampleData}
     {baseP baseQ baseT1 baseT2 baseT3 selectedU : Plane}
     (P : RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) :
@@ -3578,12 +3606,14 @@ surface. -/
 def canonicalCheckerToSource (j : CheckerLabel) : Label :=
   ⟨j.val, by omega⟩
 
+/-- P97 U1Depth5Prefix theorem. -/
 private theorem canonical_roundTrip :
     ∀ j : CheckerLabel,
       canonicalSourceToChecker (canonicalCheckerToSource j) = some j := by
   intro j
   fin_cases j <;> simp [canonicalSourceToChecker, canonicalCheckerToSource]
 
+/-- P97 U1Depth5Prefix theorem. -/
 private theorem canonical_sourceToChecker_injective :
     ∀ {i j : Label} {k : CheckerLabel},
       canonicalSourceToChecker i = some k →

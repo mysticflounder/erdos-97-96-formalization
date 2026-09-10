@@ -24,6 +24,7 @@ set_option maxHeartbeats 0 in
 -- Native replay traverses the complete finite placement search tree.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointRightPlacementCheck_e7_f1_d3 :
     endpointRightPlacementCheck 7 1 3 = true := by
   native_decide
@@ -32,6 +33,7 @@ set_option maxHeartbeats 0 in
 -- Native replay traverses the complete finite placement search tree.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointRightPlacementCheck_e7_f1_d4 :
     endpointRightPlacementCheck 7 1 4 = true := by
   native_decide
@@ -40,6 +42,7 @@ set_option maxHeartbeats 0 in
 -- Native replay traverses the complete finite placement search tree.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointRightPlacementCheck_e7_f1_d5 :
     endpointRightPlacementCheck 7 1 5 = true := by
   native_decide
@@ -48,6 +51,7 @@ set_option maxHeartbeats 0 in
 -- Native replay traverses the complete finite placement search tree.
 set_option maxRecDepth 100000 in
 set_option linter.style.nativeDecide false in
+/-- P97 EndpointCertificate theorem. -/
 theorem endpointRightPlacementCheck_e7_f1_d6 :
     endpointRightPlacementCheck 7 1 6 = true := by
   native_decide

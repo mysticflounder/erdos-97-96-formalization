@@ -27,6 +27,7 @@ namespace MultiCenter
 namespace Certificate
 namespace TrustedSweep
 
+/-- P97 MultiCenter structure. -/
 structure TrustedReport where
   artifactCount : Nat
   artifactNRows : Nat
@@ -65,9 +66,11 @@ def report : TrustedReport where
   fullInventorySha256 := "888df36a194fd54a1a81adde336c50be295fcfa507b981b4c1f0286d196bcb40"
   terminalInventorySha256 := "888df36a194fd54a1a81adde336c50be295fcfa507b981b4c1f0286d196bcb40"
 
+/-- P97 MultiCenter def. -/
 def loadedNs : List Nat :=
   [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
 
+/-- P97 MultiCenter def. -/
 def firstSeenCounts : List (Nat × Nat) :=
   [
     (12, 619),
@@ -93,17 +96,21 @@ def firstSeenCounts : List (Nat × Nat) :=
     (32, 0)
   ]
 
+/-- P97 MultiCenter def. -/
 def reportErrorFree : Bool :=
   report.errorCount == 0
 
+/-- P97 MultiCenter def. -/
 def classKeySemanticsOK : Bool :=
   report.classKeySemanticErrors == 0
 
+/-- P97 MultiCenter def. -/
 def rawMetadataOK : Bool :=
   report.artifactMetadataErrors == 0 &&
     report.profileMetadataErrors == 0 &&
       report.projectConsistencyErrors == 0
 
+/-- P97 MultiCenter def. -/
 def agreesWithCertificateBanks : Bool :=
   loadedNs.length ==
       Problem97.MultiCenter.Certificate.Sweep.rows.length &&
@@ -114,6 +121,7 @@ def agreesWithCertificateBanks : Bool :=
     report.terminalClassKeys ==
       Problem97.MultiCenter.Certificate.ClassInventory.terminalClassCount
 
+/-- P97 MultiCenter def. -/
 def terminalDigestEqualsFullDigest : Bool :=
   report.terminalInventorySha256 == report.fullInventorySha256
 

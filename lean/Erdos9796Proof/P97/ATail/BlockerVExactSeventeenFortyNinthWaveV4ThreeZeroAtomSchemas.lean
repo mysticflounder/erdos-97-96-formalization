@@ -19,8 +19,10 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas abbrev. -/
 private abbrev Hit := Label × Label
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas def. -/
 def fortyNinthWaveV4ZeroAtom200 : WeightedSourceOccurrence :=
   { hits := [(1, 0), (1, 16), (7, 8), (7, 13), (8, 7), (8, 10),
       (10, 8), (10, 12), (12, 10), (12, 16), (13, 0), (13, 7),
@@ -51,6 +53,7 @@ def fortyNinthWaveV4ZeroAtom200 : WeightedSourceOccurrence :=
            .row 8 6 9, .flip 8 9, .row 9 8 3, .flip 9 3,
            .row 3 9 16], (3, 16)⟩ }] } }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas def. -/
 def fortyNinthWaveV4ZeroAtom1347 : WeightedSourceOccurrence :=
   { hits := [(1, 5), (1, 16), (5, 3), (5, 10), (10, 5), (10, 12),
       (12, 10), (12, 16), (16, 1), (16, 3), (16, 12)]
@@ -74,6 +77,7 @@ def fortyNinthWaveV4ZeroAtom1347 : WeightedSourceOccurrence :=
         { left := (0, 15), right := (11, 15), path := ⟨(0, 15),
           [.flip 0 15, .row 15 0 11, .flip 15 11], (11, 15)⟩ }] } }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas def. -/
 def fortyNinthWaveV4ZeroAtom1480 : WeightedSourceOccurrence :=
   { hits := [(1, 4), (1, 16), (6, 1), (6, 7), (7, 4), (7, 8),
       (8, 7), (8, 10), (10, 8), (10, 12), (12, 10), (12, 16),
@@ -101,20 +105,26 @@ def fortyNinthWaveV4ZeroAtom1480 : WeightedSourceOccurrence :=
            .flip 0 4, .row 4 0 6, .flip 4 6, .row 6 4 8, .flip 6 8,
            .row 8 6 9, .flip 8 9, .row 9 8 12], (9, 12)⟩ }] } }
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas theorem. -/
 theorem fortyNinthWaveV4ZeroAtom200_check : fortyNinthWaveV4ZeroAtom200.check = true := by
   native_decide
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas theorem. -/
 theorem fortyNinthWaveV4ZeroAtom1347_check : fortyNinthWaveV4ZeroAtom1347.check = true := by
   native_decide
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas theorem. -/
 theorem fortyNinthWaveV4ZeroAtom1480_check : fortyNinthWaveV4ZeroAtom1480.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas def. -/
 def fortyNinthWaveV4ThreeZeroAtomOccurrences : List WeightedSourceOccurrence :=
   [fortyNinthWaveV4ZeroAtom200, fortyNinthWaveV4ZeroAtom1347, fortyNinthWaveV4ZeroAtom1480]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas theorem. -/
 theorem fortyNinthWaveV4ThreeZeroAtomOccurrences_length :
     fortyNinthWaveV4ThreeZeroAtomOccurrences.length = 3 := by
   rfl
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas theorem. -/
 theorem fortyNinthWaveV4ThreeZeroAtomOccurrences_check :
     ∀ occurrence ∈ fortyNinthWaveV4ThreeZeroAtomOccurrences, occurrence.check = true := by
   intro occurrence hoccur
@@ -125,16 +135,19 @@ theorem fortyNinthWaveV4ThreeZeroAtomOccurrences_check :
   · exact fortyNinthWaveV4ZeroAtom1347_check
   · exact fortyNinthWaveV4ZeroAtom1480_check
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas def. -/
 def fortyNinthWaveV4ThreeZeroAtomSchemaClauses : Std.Sat.CNF Atom :=
   fortyNinthWaveV4ThreeZeroAtomOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order => directions.map fun direction =>
       weightedOccurrenceClause order direction occurrence
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas theorem. -/
 theorem fortyNinthWaveV4ThreeZeroAtomSchemaClauses_length :
     fortyNinthWaveV4ThreeZeroAtomSchemaClauses.length = 12 := by
   simp [fortyNinthWaveV4ThreeZeroAtomSchemaClauses,
     fortyNinthWaveV4ThreeZeroAtomOccurrences, namedOrders, directions]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas theorem. -/
 theorem sourceAssign_fortyNinthWaveV4ThreeZeroAtomSchemaClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV4ThreeZeroAtomSchemaClauses,

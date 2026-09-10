@@ -27,12 +27,15 @@ open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements abbrev. -/
 private abbrev occurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence0 : CancellationOccurrence :=
   { hits := [(6, 8), (6, 14), (7, 6), (7, 13), (8, 9), (8, 13), (9, 8), (9, 14),
         (13, 6), (13, 9)]
@@ -64,6 +67,7 @@ def v5CanaryCancellationOccurrence0 : CancellationOccurrence :=
         .flip 7 2], (2, 7)⟩
       path3 := ⟨(9, 10), [.row 9 10 3, .flip 9 3], (3, 9)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence1 : CancellationOccurrence :=
   { hits := [(0, 2), (0, 3), (2, 10), (2, 15), (13, 2), (13, 15), (15, 3), (15, 10)]
     forwardChoices := [{ center := 0, support := {2, 3} },
@@ -93,6 +97,7 @@ def v5CanaryCancellationOccurrence1 : CancellationOccurrence :=
       path2 := ⟨(1, 13), [.row 1 13 6], (1, 6)⟩
       path3 := ⟨(14, 16), [.flip 14 16, .row 16 14 13, .flip 16 13], (13, 16)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence2 : CancellationOccurrence :=
   { hits := [(1, 4), (1, 11), (4, 2), (4, 11), (11, 2), (11, 5), (12, 4), (12, 5)]
     forwardChoices := [{ center := 1, support := {4, 11} },
@@ -122,6 +127,7 @@ def v5CanaryCancellationOccurrence2 : CancellationOccurrence :=
       path2 := ⟨(5, 11), [.row 5 11 14], (5, 14)⟩
       path3 := ⟨(4, 12), [.row 4 12 11], (4, 11)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence3 : CancellationOccurrence :=
   { hits := [(0, 1), (0, 13), (1, 0), (1, 6), (5, 1), (5, 9), (8, 9), (8, 13),
         (9, 6), (9, 8), (11, 0), (11, 8)]
@@ -155,6 +161,7 @@ def v5CanaryCancellationOccurrence3 : CancellationOccurrence :=
       path2 := ⟨(7, 10), [.row 7 10 8, .flip 7 8, .row 8 7 3, .flip 8 3], (3, 8)⟩
       path3 := ⟨(11, 15), [.row 11 15 7, .flip 11 7], (7, 11)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence4 : CancellationOccurrence :=
   { hits := [(5, 9), (5, 12), (6, 12), (6, 14), (9, 6), (9, 14), (13, 6), (13, 9)]
     forwardChoices := [{ center := 5, support := {9, 12} },
@@ -184,6 +191,7 @@ def v5CanaryCancellationOccurrence4 : CancellationOccurrence :=
       path2 := ⟨(7, 10), [.row 7 10 2, .flip 7 2], (2, 7)⟩
       path3 := ⟨(4, 11), [.flip 4 11, .row 11 4 7, .flip 11 7], (7, 11)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence5 : CancellationOccurrence :=
   { hits := [(2, 10), (2, 15), (11, 0), (11, 2), (13, 2), (13, 15), (15, 0), (15, 10)]
     forwardChoices := [{ center := 2, support := {10, 15} },
@@ -213,6 +221,7 @@ def v5CanaryCancellationOccurrence5 : CancellationOccurrence :=
       path2 := ⟨(5, 14), [.row 5 14 16], (5, 16)⟩
       path3 := ⟨(1, 16), [.row 1 16 6], (1, 6)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence6 : CancellationOccurrence :=
   { hits := [(0, 2), (0, 13), (1, 0), (1, 11), (8, 11), (8, 13), (11, 0), (11, 2)]
     forwardChoices := [{ center := 0, support := {2, 13} },
@@ -242,6 +251,7 @@ def v5CanaryCancellationOccurrence6 : CancellationOccurrence :=
       path2 := ⟨(5, 14), [.row 5 14 16], (5, 16)⟩
       path3 := ⟨(15, 16), [.row 15 16 5, .flip 15 5], (5, 15)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrence7 : CancellationOccurrence :=
   { hits := [(0, 1), (0, 13), (1, 0), (1, 11), (8, 11), (8, 13), (11, 0), (11, 5),
         (12, 1), (12, 5)]
@@ -273,31 +283,38 @@ def v5CanaryCancellationOccurrence7 : CancellationOccurrence :=
       path2 := ⟨(5, 11), [.row 5 11 16], (5, 16)⟩
       path3 := ⟨(4, 15), [.row 4 15 11], (4, 11)⟩ } }
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryCancellationOccurrences : List CancellationOccurrence :=
   [v5CanaryCancellationOccurrence0, v5CanaryCancellationOccurrence1,
     v5CanaryCancellationOccurrence2, v5CanaryCancellationOccurrence3,
     v5CanaryCancellationOccurrence4, v5CanaryCancellationOccurrence5,
     v5CanaryCancellationOccurrence6, v5CanaryCancellationOccurrence7]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem v5CanaryCancellationOccurrences_length :
     v5CanaryCancellationOccurrences.length = 8 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem v5CanaryCancellationOccurrences_all_check :
     v5CanaryCancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryTwoKalmansonOrbitClauses : Std.Sat.CNF Atom :=
   v5CanaryCancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem v5CanaryTwoKalmansonOrbitClauses_length :
     v5CanaryTwoKalmansonOrbitClauses.length = 32 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem v5CanaryTwoKalmansonOrbitClauses_nodup :
     v5CanaryTwoKalmansonOrbitClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem sourceAssign_v5CanaryTwoKalmansonOrbitClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ v5CanaryTwoKalmansonOrbitClauses,
@@ -312,6 +329,7 @@ theorem sourceAssign_v5CanaryTwoKalmansonOrbitClauses
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def v5CanaryTwoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
   [ occurrenceClause v5CanaryCancellationOccurrence0.hits 0 .forward,
     occurrenceClause v5CanaryCancellationOccurrence1.hits 0 .forward,
@@ -334,19 +352,23 @@ def v5CanaryTwoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
     occurrenceClause v5CanaryCancellationOccurrence7.hits 1 .forward,
     occurrenceClause v5CanaryCancellationOccurrence7.hits 1 .reverse ]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem v5CanaryTwoKalmansonRefinementClauses_length :
     v5CanaryTwoKalmansonRefinementClauses.length = 20 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem v5CanaryTwoKalmansonRefinementClauses_nodup :
     v5CanaryTwoKalmansonRefinementClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem v5CanaryTwoKalmansonRefinementClauses_subset_orbit :
     ∀ clause ∈ v5CanaryTwoKalmansonRefinementClauses,
       clause ∈ v5CanaryTwoKalmansonOrbitClauses := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem sourceAssign_v5CanaryTwoKalmansonRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ v5CanaryTwoKalmansonRefinementClauses,
@@ -355,11 +377,13 @@ theorem sourceAssign_v5CanaryTwoKalmansonRefinementClauses
   exact sourceAssign_v5CanaryTwoKalmansonOrbitClauses source clause
     (v5CanaryTwoKalmansonRefinementClauses_subset_orbit clause hclause)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf :
     Std.Sat.CNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf ++
     v5CanaryTwoKalmansonRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf_length :
     canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf.length =
       7409780 := by
@@ -367,6 +391,7 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefineme
     canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf_length,
     v5CanaryTwoKalmansonRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :

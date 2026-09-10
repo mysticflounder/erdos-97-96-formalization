@@ -3,6 +3,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 /-! Generated types and hash-pinned identities for the direct row/arc ingress. -/
 namespace Problem97.P4DirectRowArcOccurrenceBridgeScratch
 open P4DirectOuterArcAdapterScratch
+/-- P97 ATail support structure. -/
 structure RowArcOccurrence where
   outputClauseIndex : Nat
   coreClauseIndex : Nat
@@ -13,8 +14,12 @@ structure RowArcOccurrence where
   compactTerminalLiterals : List Int
   row : Nat × RowSupportAtom
   arc : Nat × OuterArcAtom
+/-- P97 ATail support def. -/
 def sourceMapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- P97 ATail support def. -/
 def occurrenceLedgerSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+/-- P97 ATail support def. -/
 def compactManifestSha256 : String := "61efb4c99512ef3cff6968f1513ebb8e3c9009ad3fcc7bb013da70a5d3f37305"
+/-- P97 ATail support def. -/
 def expectedOccurrenceCount : Nat := 3179
 end Problem97.P4DirectRowArcOccurrenceBridgeScratch

@@ -32,11 +32,13 @@ theorem signedArea2_swap (a b c : ℝ²) :
   unfold signedArea2
   ring
 
+/-- P97 ATail ExactA2CapMetric theorem. -/
 private theorem norm_sq_coord_sub (x y : ℝ²) :
     ‖x - y‖ ^ 2 = (x 0 - y 0) ^ 2 + (x 1 - y 1) ^ 2 := by
   rw [EuclideanSpace.norm_sq_eq]
   simp [Fin.sum_univ_two, sq_abs, Real.norm_eq_abs, PiLp.sub_apply]
 
+/-- P97 ATail ExactA2CapMetric theorem. -/
 private theorem sum_ne_zero_of_strict_halfplane
     {P p q w : ℝ²}
     (hp : 0 < ⟪w, p - P⟫_ℝ) (hq : 0 < ⟪w, q - P⟫_ℝ) :

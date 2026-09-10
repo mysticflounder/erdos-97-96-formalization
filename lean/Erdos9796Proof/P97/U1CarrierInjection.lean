@@ -31,10 +31,12 @@ It does not choose the final rotation that sends a chosen unit vector to
 noncomputable def normalScale (p : ℝ²) (r : ℝ) (x : ℝ²) : ℝ² :=
   r⁻¹ • (x - p)
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem normalScale_self (p : ℝ²) (r : ℝ) :
     normalScale p r p = 0 := by
   simp [normalScale]
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem normalScale_sub {p : ℝ²} {r : ℝ} (a b : ℝ²) :
     normalScale p r a - normalScale p r b = r⁻¹ • (a - b) := by
   simp [normalScale, sub_eq_add_neg]
@@ -86,10 +88,12 @@ projection onto the perpendicular vector. -/
 noncomputable def axisRotatePerp (u x : ℝ²) : ℝ² :=
   !₂[inner ℝ u x, inner ℝ (!₂[-u 1, u 0] : ℝ²) x]
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem axisRotatePerp_zero (u : ℝ²) : axisRotatePerp u 0 = 0 := by
   ext i
   fin_cases i <;> simp [axisRotatePerp]
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem coord_norm_sq_of_norm_eq_one {u : ℝ²} (hunit : ‖u‖ = 1) :
     (u 0) ^ 2 + (u 1) ^ 2 = 1 := by
   have hnorm : ‖u‖ ^ 2 = (1 : ℝ) := by
@@ -109,6 +113,7 @@ theorem axisRotatePerp_self {u : ℝ²} (hunit : ‖u‖ = 1) :
   · simp [axisRotatePerp, inner, Fin.sum_univ_two]
     ring
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem axisRotatePerp_dist_sq {u : ℝ²} (hunit : ‖u‖ = 1)
     (a b : ℝ²) :
     dist (axisRotatePerp u a) (axisRotatePerp u b) ^ 2 = dist a b ^ 2 := by
@@ -140,6 +145,7 @@ then rotate the scaled `q` direction to the positive x-axis. -/
 noncomputable def normalAxis (p q x : ℝ²) : ℝ² :=
   axisRotatePerp (normalScale p (dist p q) q) (normalScale p (dist p q) x)
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem normalScale_witness_norm {p q : ℝ²} (hpq : p ≠ q) :
     ‖normalScale p (dist p q) q‖ = 1 := by
   have hpos : 0 < dist p q := dist_pos.mpr hpq
@@ -149,10 +155,12 @@ theorem normalScale_witness_norm {p q : ℝ²} (hpq : p ≠ q) :
   rw [normalScale_self] at hdist
   simpa [dist_eq_norm] using hdist
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem normalAxis_self {p q : ℝ²} :
     normalAxis p q p = 0 := by
   simp [normalAxis, normalScale_self, axisRotatePerp_zero]
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem normalAxis_witness {p q : ℝ²} (hpq : p ≠ q) :
     normalAxis p q q = !₂[(1 : ℝ), 0] := by
   exact axisRotatePerp_self (normalScale_witness_norm hpq)
@@ -438,6 +446,7 @@ noncomputable def ofSelectedClass
       have hradiusZero : radius = 0 := by simpa using hdist.symm
       exact (ne_of_gt hradius) hradiusZero }
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem support_nonempty {A : Finset ℝ²} {center : ℝ²}
     (K : SelectedFourClass A center) : K.support.Nonempty := by
   rw [← Finset.card_pos]
@@ -531,6 +540,7 @@ theorem inter_card_le_two {A : Finset ℝ²} {x y : ℝ²}
   · exact hac hca.symm
   · exact hbc hcb.symm
 
+/-- P97 U1CarrierInjection theorem. -/
 private theorem exact_overlap_of_cap_singleton_of_card_bound
     {α : Type*} [DecidableEq α] {K L C : Finset α} {J : α}
     (hinter_le : (K ∩ L).card ≤ 2)
@@ -1514,16 +1524,19 @@ theorem classAt_support_congr {A : Finset ℝ²}
   subst h
   rfl
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem gaugeWitness_mem_A {A : Finset ℝ²} (P : FaithfulCarrierPattern A) :
     P.gaugeWitness ∈ A :=
   (P.classAt P.gaugeCenter P.gaugeCenter_mem).support_subset_A P.gaugeWitness_mem
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem gaugeCenter_ne_witness {A : Finset ℝ²} (P : FaithfulCarrierPattern A) :
     P.gaugeCenter ≠ P.gaugeWitness := by
   intro h
   exact (P.classAt P.gaugeCenter P.gaugeCenter_mem).center_not_mem
     (by simpa [h] using P.gaugeWitness_mem)
 
+/-- P97 U1CarrierInjection theorem. -/
 theorem gaugeWitness_dist {A : Finset ℝ²} (P : FaithfulCarrierPattern A) :
     dist P.gaugeCenter P.gaugeWitness =
       (P.classAt P.gaugeCenter P.gaugeCenter_mem).radius :=

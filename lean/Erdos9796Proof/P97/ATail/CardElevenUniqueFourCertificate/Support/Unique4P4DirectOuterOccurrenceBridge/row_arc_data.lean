@@ -21,6 +21,7 @@ import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P
 import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.Unique4P4DirectOuterOccurrenceBridge.row_arc_chunk_19
 /-! Aggregate of the exact direct row/arc occurrence fragments. -/
 namespace Problem97.P4DirectRowArcOccurrenceBridgeScratch
+/-- P97 ATail support def. -/
 def rowArcOccurrences : List RowArcOccurrence :=
   rowArcOccurrencesChunk00 ++
   rowArcOccurrencesChunk01 ++

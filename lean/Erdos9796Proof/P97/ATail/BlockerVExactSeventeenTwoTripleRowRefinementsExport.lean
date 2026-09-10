@@ -14,6 +14,7 @@ namespace ATailBlockerVExactSeventeenTwoTripleRowRefinementsExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenTwoTripleRowRefinements
 
+/-- P97 ATail BlockerVExactSeventeenTwoTripleRowRefinementsExport def. -/
 def extendedTwoTripleRowDimacsString : String :=
   let dimacs := extendedTwoTripleRowCnf.map fun clause => clause.map litToDimacs
   let lines :=
@@ -22,6 +23,7 @@ def extendedTwoTripleRowDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenTwoTripleRowRefinementsExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -34,5 +36,6 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenTwoTripleRowRefinementsExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenTwoTripleRowRefinementsExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenTwoTripleRowRefinementsExport.run args

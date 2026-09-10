@@ -158,6 +158,7 @@ structure FirstApexMarginalCompanion
     HasNEquidistantPointsAt 4 (D.A.erase point)
       (H.centerAt F.pair.q F.pair.q_mem_A)
 
+/-- P97 ATail FrontierCommonDeletionSurplusEscape theorem. -/
 private theorem surplusOppApex1_mem_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex1 ∈ S.surplusCap := by
@@ -170,6 +171,7 @@ private theorem surplusOppApex1_mem_surplusCap
   · simpa [SurplusCapPacket.surplusCap,
       SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
 
+/-- P97 ATail FrontierCommonDeletionSurplusEscape theorem. -/
 private theorem criticalBlocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {source : ℝ²} (hsource : source ∈ A) :
@@ -177,6 +179,7 @@ private theorem criticalBlocker_mem_A
   (Finset.mem_erase.mp
     (H.selectedAt source hsource).toCriticalFourShell.center_mem).2
 
+/-- P97 ATail FrontierCommonDeletionSurplusEscape theorem. -/
 private theorem marginalCompanion_mem_A
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -188,6 +191,7 @@ private theorem marginalCompanion_mem_A
   (Finset.mem_filter.mp
     (Finset.mem_sdiff.mp hit.point_mem_firstApexMarginal).1).1
 
+/-- P97 ATail FrontierCommonDeletionSurplusEscape theorem. -/
 private theorem marginalCompanion_ne_deleted
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
@@ -199,6 +203,7 @@ private theorem marginalCompanion_ne_deleted
   have hrow := R.common.packet.row₂.subset hit.point_mem_secondRow
   exact (Finset.mem_erase.mp (Finset.mem_erase.mp hrow).2).1
 
+/-- P97 ATail FrontierCommonDeletionSurplusEscape theorem. -/
 private theorem firstApex_survives_deleting_frontierRadiusPoint
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}

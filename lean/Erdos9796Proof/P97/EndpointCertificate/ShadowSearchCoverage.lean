@@ -22,6 +22,7 @@ namespace ShadowBank
 
 namespace Search
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem list_all_eq_true_of_mem
     {α : Type} {p : α → Bool} {a : α} :
     {items : List α} → items.all p = true → a ∈ items → p a = true
@@ -32,6 +33,7 @@ private theorem list_all_eq_true_of_mem
       | head => simpa using h.1
       | tail _ haTail => exact list_all_eq_true_of_mem h.2 haTail
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem mem_endpointSearchAux_cons_cases
     {target masks pairCounts : List Nat} {escapee center : Label}
     {assigned : List Label} {candidates : List Nat}
@@ -56,6 +58,7 @@ private theorem mem_endpointSearchAux_cons_cases
     · simp [hsep, hcounts] at htail
   · simp [hsep] at htail
 
+/-- P97 EndpointCertificate theorem. -/
 private theorem endpoint_row_entry_of_valid_search_path
     {escapee : Label} {shadow : Shadow}
     (hesc : escapee ∈ endpointSearchEscapees)

@@ -29,6 +29,7 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {R : OriginalUniqueFourResidual F}
   {distribution : ExactTwoStrictHitDistribution R}
 
+/-- P97 ATail support theorem. -/
 private theorem schemaRole_ne (slot : CegarSlot) (membership : Membership)
     (hmem : membership ∈ slotSchema slot) :
     rolePoint (slotOrderedEight slot).values membership.1 ≠
@@ -40,6 +41,7 @@ private theorem schemaRole_ne (slot : CegarSlot) (membership : Membership)
     rcases hmem with (rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl) <;>
       decide
 
+/-- P97 ATail support theorem. -/
 private theorem slotCut_direct (Q : ExactTwoBoundaryCore R distribution)
     (slot : CegarSlot) :
     kalmansonCutSat Q directIndex (slotOrderedEight slot).values (slotSchema slot) := by
@@ -63,6 +65,7 @@ private theorem slotCut_direct (Q : ExactTwoBoundaryCore R distribution)
       right
       simpa [slotSchema, horientation, OrderedEight.values] using hschema
 
+/-- P97 ATail support theorem. -/
 theorem schemaLits_sat_direct (Q : ExactTwoBoundaryCore R distribution)
     {v : Nat → Prop}
     (hv : P4CriticalSupportOccurrenceBridgeScratch.ValAgreement Q directIndex v)
@@ -93,6 +96,7 @@ theorem schemaLits_sat_direct (Q : ExactTwoBoundaryCore R distribution)
         (rolePoint (slotOrderedEight slot).values membership.2)) hnotval)
   exact (hv.row _ _ (schemaRole_ne slot membership hmem)).mp hval
 
+/-- P97 ATail support theorem. -/
 theorem entry_sat_direct (Q : ExactTwoBoundaryCore R distribution)
     {v : Nat → Prop}
     (hv : P4CriticalSupportOccurrenceBridgeScratch.ValAgreement Q directIndex v)
@@ -101,6 +105,7 @@ theorem entry_sat_direct (Q : ExactTwoBoundaryCore R distribution)
   apply P5OccurrenceBridgeScratch.clauseSat_of_subset hentry
   exact schemaLits_sat_direct Q hv entry.slot
 
+/-- P97 ATail support theorem. -/
 theorem cegarEntries_sat_direct (Q : ExactTwoBoundaryCore R distribution)
     {v : Nat → Prop}
     (hv : P4CriticalSupportOccurrenceBridgeScratch.ValAgreement Q directIndex v) :

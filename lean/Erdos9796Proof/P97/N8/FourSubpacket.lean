@@ -86,6 +86,7 @@ theorem exists_fourSubpacket_preserving_point_of_selected_card_ge_four
     ⟨T, hpT, hTsub, hTcard⟩
   exact ⟨T, hpT (by simp), hTsub, hTcard⟩
 
+/-- P97 N8 theorem. -/
 theorem N8SelectedApex.exists_fourSubpacket_preserving_point
     {A : Finset ℝ²} {S : FiniteEndpointShell A} {i : Fin 3} {x p : ℝ²}
     (hx : N8SelectedApex S i x)
@@ -121,6 +122,7 @@ noncomputable def packetRightAdjCount
     ℕ :=
   (T ∩ S.rightAdjacentInteriorByIndex i).card
 
+/-- P97 N8 theorem. -/
 private theorem packet_inter_card_le_selected_inter_card
     {T U C : Finset ℝ²} (hTsub : T ⊆ U) :
     (T ∩ C).card ≤ (U ∩ C).card := by
@@ -129,34 +131,40 @@ private theorem packet_inter_card_le_selected_inter_card
     exact Finset.mem_inter.mpr
       ⟨hTsub (Finset.mem_of_mem_inter_left hq), Finset.mem_of_mem_inter_right hq⟩)
 
+/-- P97 N8 theorem. -/
 private theorem inter_card_eq_sum_indicator (T C : Finset ℝ²) :
     (T ∩ C).card = ∑ q ∈ T, (if q ∈ C then 1 else 0) := by
   rw [← Finset.card_filter (fun q => q ∈ C) T]
   rfl
 
+/-- P97 N8 theorem. -/
 private theorem indicator_le_indicator_of_imp {p q : Prop} [Decidable p] [Decidable q]
     (h : p → q) :
     (if p then 1 else 0 : ℕ) ≤ if q then 1 else 0 := by
   by_cases hp : p <;> simp [hp, h]
 
+/-- P97 N8 theorem. -/
 private theorem I1_subset_C1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.I1 ⊆ S.CP.C1 := by
   intro q hq
   rw [FiniteEndpointShell.I1] at hq
   exact Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hq)
 
+/-- P97 N8 theorem. -/
 private theorem I2_subset_C2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.I2 ⊆ S.CP.C2 := by
   intro q hq
   rw [FiniteEndpointShell.I2] at hq
   exact Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hq)
 
+/-- P97 N8 theorem. -/
 private theorem I3_subset_C3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.I3 ⊆ S.CP.C3 := by
   intro q hq
   rw [FiniteEndpointShell.I3] at hq
   exact Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hq)
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v1_not_mem_I1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v1 ∉ S.I1 := by
   intro h
@@ -165,21 +173,25 @@ private theorem triangle_v1_not_mem_I1 {A : Finset ℝ²} (S : FiniteEndpointShe
     exact h.2.2
   exact S.CP.v1_notin_C1 hC
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v1_not_mem_I2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v1 ∉ S.I2 := by
   simp [FiniteEndpointShell.I2, FiniteEndpointShell.triangle,
     MEC.MoserTriangle.toStructural]
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v1_not_mem_I3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v1 ∉ S.I3 := by
   simp [FiniteEndpointShell.I3, FiniteEndpointShell.triangle,
     MEC.MoserTriangle.toStructural]
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v2_not_mem_I1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v2 ∉ S.I1 := by
   simp [FiniteEndpointShell.I1, FiniteEndpointShell.triangle,
     MEC.MoserTriangle.toStructural]
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v2_not_mem_I2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v2 ∉ S.I2 := by
   intro h
@@ -188,21 +200,25 @@ private theorem triangle_v2_not_mem_I2 {A : Finset ℝ²} (S : FiniteEndpointShe
     exact h.2.2
   exact S.CP.v2_notin_C2 hC
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v2_not_mem_I3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v2 ∉ S.I3 := by
   simp [FiniteEndpointShell.I3, FiniteEndpointShell.triangle,
     MEC.MoserTriangle.toStructural]
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v3_not_mem_I1 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v3 ∉ S.I1 := by
   simp [FiniteEndpointShell.I1, FiniteEndpointShell.triangle,
     MEC.MoserTriangle.toStructural]
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v3_not_mem_I2 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v3 ∉ S.I2 := by
   simp [FiniteEndpointShell.I2, FiniteEndpointShell.triangle,
     MEC.MoserTriangle.toStructural]
 
+/-- P97 N8 theorem. -/
 private theorem triangle_v3_not_mem_I3 {A : Finset ℝ²} (S : FiniteEndpointShell A) :
     S.triangle.v3 ∉ S.I3 := by
   intro h

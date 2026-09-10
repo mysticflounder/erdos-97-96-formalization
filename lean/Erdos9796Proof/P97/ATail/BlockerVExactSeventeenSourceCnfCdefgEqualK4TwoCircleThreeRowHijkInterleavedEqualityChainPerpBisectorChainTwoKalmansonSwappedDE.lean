@@ -55,6 +55,7 @@ def twoKalmansonSwappedDEHits (order : NamedOrder) (direction : Orientation)
         (p g, p e), (p g, p c)]
   | _ => []
 
+/-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDE theorem. -/
 private theorem false_of_twoKalmansonSwappedDE_at {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (cut b c e d f g : Label)

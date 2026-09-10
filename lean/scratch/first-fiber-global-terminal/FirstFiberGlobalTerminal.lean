@@ -26,6 +26,7 @@ noncomputable def selectedClass
     (A : Finset ℝ²) (center : ℝ²) (radius : ℝ) : Finset ℝ² :=
   A.filter fun q ↦ dist center q = radius
 
+/-- Indexed scratch Lean theorem. -/
 @[simp] theorem mem_selectedClass
     {A : Finset ℝ²} {center q : ℝ²} {radius : ℝ} :
     q ∈ selectedClass A center radius ↔

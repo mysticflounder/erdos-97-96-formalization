@@ -32,11 +32,13 @@ private theorem q3_dist_sq_coord (x c : ℝ²) :
     dist x c ^ 2 = (x 0 - c 0) ^ 2 + (x 1 - c 1) ^ 2 :=
   Problem97.dist_sq_coord x c
 
+/-- P97 Q3SharedInterior theorem. -/
 private theorem normSim_base_sq_pos {p₁ p₂ : ℝ²} (hp : p₁ ≠ p₂) :
     0 < (p₂ 0 - p₁ 0) ^ 2 + (p₂ 1 - p₁ 1) ^ 2 := by
   rw [← q3_dist_sq_coord p₂ p₁]
   exact sq_pos_of_pos (dist_pos.mpr hp.symm)
 
+/-- P97 Q3SharedInterior theorem. -/
 private theorem signedArea2_normSim_base_eq_snd
     (p₁ p₂ u : ℝ²) (hp : p₁ ≠ p₂) :
     signedArea2 (normSim p₁ p₂ p₁) (normSim p₁ p₂ p₂)
@@ -346,6 +348,7 @@ theorem SurplusCapPacket.normSim_capInterior_snd_neg
   rw [hcyclic]
   exact S.signedArea2_neg_of_mem_capInteriorByIndex_of_oriented hconv i hxI hori
 
+/-- P97 Q3SharedInterior theorem. -/
 private theorem signedArea2_normSim_mul_neg
     (p₁ p₂ a b c d e f : ℝ²) (hp : p₁ ≠ p₂)
     (hprod : signedArea2 a b c * signedArea2 d e f < 0) :

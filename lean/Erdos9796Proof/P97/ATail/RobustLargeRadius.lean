@@ -38,6 +38,7 @@ open ATailLargeCapUniqueFive
 
 attribute [local instance] Classical.propDecidable
 
+/-- P97 ATail RobustLargeRadius theorem. -/
 private theorem oppApex2_mem_A
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 ∈ A := by
@@ -47,6 +48,7 @@ private theorem oppApex2_mem_A
   · simpa only [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
   · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
+/-- P97 ATail RobustLargeRadius theorem. -/
 private theorem oppApex2_eq_oppositeVertex_oppIndex2
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppApex2 = S.oppositeVertexByIndex S.oppIndex2 := by
@@ -55,6 +57,7 @@ private theorem oppApex2_eq_oppositeVertex_oppIndex2
     simp only [SurplusCapPacket.oppApex2, SurplusCapPacket.oppIndex2,
       SurplusCapPacket.oppositeVertexByIndex, hi, Fin.val_zero, Fin.val_one]
 
+/-- P97 ATail RobustLargeRadius theorem. -/
 private theorem overrideAt_selectedAt_support
     {A : Finset ℝ²} (H : CriticalShellSystem A)
     {source center : ℝ²}
@@ -141,6 +144,7 @@ inductive RobustLargeRadiusMinimalDeletionOutcome
   | sharedCriticalPair
       (packet : SharedCriticalPairAtLargeSecondApex D S radius)
 
+/-- P97 ATail RobustLargeRadius theorem. -/
 private theorem physicalApex_survives_erase_of_five_le_selectedClass
     {D : CounterexampleData} {center : ℝ²} {radius : ℝ}
     (hradius : 0 < radius)
@@ -155,6 +159,7 @@ private theorem physicalApex_survives_erase_of_five_le_selectedClass
       (n := 4) hfive
   simpa [SelectedClass] using hfour
 
+/-- P97 ATail RobustLargeRadius theorem. -/
 private theorem singleton_core_transition
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {H : CriticalShellSystem D.A} {radius : ℝ}

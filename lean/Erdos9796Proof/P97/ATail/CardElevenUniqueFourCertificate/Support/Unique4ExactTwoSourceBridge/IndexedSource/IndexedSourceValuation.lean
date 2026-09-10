@@ -68,14 +68,17 @@ def directIndex : Label → Label := id
 and reverses the boundary cycle. -/
 def mirrorIndex : Label → Label := fun i => -i
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem directIndex_apply (i : Label) : directIndex i = i := rfl
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem mirrorIndex_zero : mirrorIndex 0 = 0 := by decide
 
 /-- Supports the indexed exact-two-source valuation bridge. -/
 theorem mirrorIndex_injective : Function.Injective mirrorIndex :=
   fun _ _ h => neg_injective h
 
+/-- P97 ATail support theorem. -/
 @[simp] theorem mirrorIndex_mirrorIndex (i : Label) :
     mirrorIndex (mirrorIndex i) = i := neg_neg i
 

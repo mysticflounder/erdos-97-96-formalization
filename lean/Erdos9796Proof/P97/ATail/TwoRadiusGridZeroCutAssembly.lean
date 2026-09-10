@@ -26,6 +26,7 @@ open Census554.ZeroCutBoundaryIndexing
 open ATailTwoRadiusGridCoordinateGeometry
 open ATailTwoRadiusGridEscapeSynchronization
 
+/-- P97 ATail TwoRadiusGridZeroCutAssembly theorem. -/
 private theorem oppositeVertexByIndex_oppIndex1_eq_oppApex1
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.oppositeVertexByIndex S.oppIndex1 = S.oppApex1 := by
@@ -35,6 +36,7 @@ private theorem oppositeVertexByIndex_oppIndex1_eq_oppApex1
       SurplusCapPacket.oppIndex1, SurplusCapPacket.oppApex1, hi] <;>
     rfl
 
+/-- P97 ATail TwoRadiusGridZeroCutAssembly theorem. -/
 private theorem rightAdjacentCapByIndex_oppIndex1_eq_capByIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.rightAdjacentCapByIndex S.oppIndex1 =

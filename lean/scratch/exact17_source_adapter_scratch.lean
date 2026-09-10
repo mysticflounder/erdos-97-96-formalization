@@ -43,6 +43,7 @@ open Census554.GeneralCarrierBridge
 
 set_option maxHeartbeats 0
 
+/-- Indexed scratch Lean theorem. -/
 private theorem scratch_injective_finCast_domain
     {n m : ℕ} (h : n = m) {α : Type} {f : Fin n → α}
     (hf : Function.Injective f) :
@@ -50,6 +51,7 @@ private theorem scratch_injective_finCast_domain
   subst m
   simpa using hf
 
+/-- Indexed scratch Lean theorem. -/
 private theorem scratch_image_univ_finCast_domain
     {n m : ℕ} (h : n = m) {α : Type} [DecidableEq α]
     (f : Fin n → α) :
@@ -58,6 +60,7 @@ private theorem scratch_image_univ_finCast_domain
   subst m
   rfl
 
+/-- Indexed scratch Lean theorem. -/
 private theorem scratch_ccw_finCast_domain
     {n m : ℕ} (h : n = m) {f : Fin n → ℝ²}
     (hf : EuclideanGeometry.IsCcwConvexPolygon f) :

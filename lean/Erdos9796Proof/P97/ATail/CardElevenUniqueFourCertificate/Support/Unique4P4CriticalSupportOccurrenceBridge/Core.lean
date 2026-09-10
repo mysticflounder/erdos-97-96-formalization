@@ -84,14 +84,17 @@ structure SignedBinding where
   positive : Bool
 deriving DecidableEq
 
+/-- P97 ATail support def. -/
 def SignedBinding.literal (occurrence : SignedBinding) : Int :=
   if occurrence.positive then occurrence.binding.var else -occurrence.binding.var
 
+/-- P97 ATail support theorem. -/
 theorem blockerVal_zero_iff (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (source : Label) :
     blockerVal Q σ source 0 ↔ classHit Q σ source := by
   simp [blockerVal]
 
+/-- P97 ATail support theorem. -/
 theorem blockerVal_false_of_center_ne_zero
     (Q : ExactTwoBoundaryCore R distribution) (σ : Label → Label)
     {source center : Label} (hcenter : center ≠ 0) :

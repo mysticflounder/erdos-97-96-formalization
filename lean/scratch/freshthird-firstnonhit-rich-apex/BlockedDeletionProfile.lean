@@ -18,6 +18,7 @@ open ATailMinimalUniqueFourCover
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 private theorem selectedClass_sdiff_card_le_three_of_blocked
     {D : CounterexampleData} {p : ℝ²} {V : Finset ℝ²} {r : ℝ}
     (hr : 0 < r)

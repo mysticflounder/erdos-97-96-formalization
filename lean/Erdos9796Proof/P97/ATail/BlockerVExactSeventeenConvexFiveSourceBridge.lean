@@ -67,6 +67,7 @@ def ConvexFivePointData.Valid {α : Type*} [DecidableEq α]
     checkPath choices data.cb_cx (data.c, data.b) (data.c, data.x) = true) ∧
     checkPath choices data.cb_cy (data.c, data.b) (data.c, data.y) = true
 
+/-- P97 ATail BlockerVExactSeventeenConvexFiveSourceBridge theorem. -/
 theorem ConvexFivePointData.validOfCheck
     {α : Type*} [DecidableEq α] (choices : List (RowChoice α))
     (data : ConvexFivePointData α) (hcheck : data.check choices = true) :
@@ -133,6 +134,7 @@ def ConvexFiveSourceOccurrence.check
   decide (∀ choice ∈ occurrence.reverseChoices, ∀ point ∈ choice.support,
     (Fin.rev choice.center, Fin.rev point) ∈ occurrence.hits)
 
+/-- P97 ATail BlockerVExactSeventeenConvexFiveSourceBridge abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
@@ -179,6 +181,7 @@ theorem convexFiveOccurrenceClause_eval_false_of_all_hits
       simp [sourceAssign, hselected] at heval
   exact Bool.eq_false_of_not_eq_true hne
 
+/-- P97 ATail BlockerVExactSeventeenConvexFiveSourceBridge theorem. -/
 private theorem false_of_convexFiveSourceOccurrenceHits
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (occurrence : ConvexFiveSourceOccurrence)

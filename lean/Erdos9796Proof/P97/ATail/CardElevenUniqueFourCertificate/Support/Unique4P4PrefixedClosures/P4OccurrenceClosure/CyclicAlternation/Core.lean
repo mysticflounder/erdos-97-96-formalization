@@ -76,17 +76,21 @@ def p4AtomOfVar (n : Nat) : DenseAtom :=
   else
     .row 0 1
 
+/-- P97 ATail support def. -/
 def validAtom : DenseAtom → Bool
   | .row c p => decide (c ≠ p)
   | .radius c l r => decide (l < r) && decide (l ≠ c) && decide (r ≠ c)
 
+/-- P97 ATail support theorem. -/
 theorem p4AtomOfVar_p4VarOfAtom_row : ∀ c p : Label, c ≠ p →
     p4AtomOfVar (p4VarOfAtom (.row c p)) = .row c p := by decide
 
+/-- P97 ATail support theorem. -/
 theorem p4AtomOfVar_p4VarOfAtom_radius : ∀ c l r : Label,
     l < r → l ≠ c → r ≠ c →
     p4AtomOfVar (p4VarOfAtom (.radius c l r)) = .radius c l r := by decide
 
+/-- P97 ATail support theorem. -/
 theorem p4AtomOfVar_p4VarOfAtom (a : DenseAtom) (ha : validAtom a = true) :
     p4AtomOfVar (p4VarOfAtom a) = a := by
   cases a with
@@ -96,6 +100,7 @@ theorem p4AtomOfVar_p4VarOfAtom (a : DenseAtom) (ha : validAtom a = true) :
       simp only [validAtom, Bool.and_eq_true, decide_eq_true_eq] at ha
       exact p4AtomOfVar_p4VarOfAtom_radius c l r ha.1.1 ha.1.2 ha.2
 
+/-- P97 ATail support theorem. -/
 theorem p4VarOfAtom_pos (a : DenseAtom) : 1 ≤ p4VarOfAtom a := by
   cases a with
   | row c p => simp only [p4VarOfAtom]; split <;> omega
@@ -105,6 +110,7 @@ theorem p4VarOfAtom_pos (a : DenseAtom) : 1 ≤ p4VarOfAtom a := by
 def sortedRadius (c a b : Label) : DenseAtom :=
   if a < b then .radius c a b else .radius c b a
 
+/-- P97 ATail support theorem. -/
 theorem validAtom_sortedRadius : ∀ c a b : Label, a ≠ b → a ≠ c → b ≠ c →
     validAtom (sortedRadius c a b) = true := by decide
 
@@ -113,6 +119,7 @@ def interpAtom (P : P4DirectBoundaryPacket R profile distribution) : DenseAtom �
   | .row c p => rowMem P.core directIndex c p
   | .radius c l r => radiusEq P.core directIndex c l r
 
+/-- P97 ATail support theorem. -/
 theorem interpAtom_sortedRadius (P : P4DirectBoundaryPacket R profile distribution)
     (c a b : Label) :
     interpAtom P (sortedRadius c a b) ↔ radiusEq P.core directIndex c a b := by
@@ -135,6 +142,7 @@ structure CoreValAgreement (P : P4DirectBoundaryPacket R profile distribution)
   radius : ∀ c l r : Label, l < r → l ≠ c → r ≠ c →
     (v (p4VarOfAtom (.radius c l r)) ↔ radiusEq P.core directIndex c l r)
 
+/-- P97 ATail support theorem. -/
 theorem coreValAgreement (P : P4DirectBoundaryPacket R profile distribution) :
     CoreValAgreement P (coreVal P) := by
   refine ⟨?_, ?_⟩
@@ -145,6 +153,7 @@ theorem coreValAgreement (P : P4DirectBoundaryPacket R profile distribution) :
     unfold coreVal interpAtom
     rw [p4AtomOfVar_p4VarOfAtom_radius c l r hlr hlc hrc]
 
+/-- P97 ATail support theorem. -/
 theorem CoreValAgreement.sortedRadius (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P v) (c a b : Label)
     (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
@@ -159,14 +168,17 @@ theorem CoreValAgreement.sortedRadius (P : P4DirectBoundaryPacket R profile dist
 
 /-- Re-export only the generic occurrence machinery needed by this P4 bridge. -/
 abbrev clauseSat := P5OccurrenceBridgeScratch.clauseSat
+/-- P97 ATail support abbrev. -/
 abbrev litsSubset := P5OccurrenceBridgeScratch.litsSubset
 
+/-- P97 ATail support theorem. -/
 theorem litSat_pos {v : Nat → Prop} {n : Nat} (h : v n) :
     P5OccurrenceBridgeScratch.litSat v (n : Int) := by
   unfold P5OccurrenceBridgeScratch.litSat
   rw [if_pos (Int.natCast_nonneg n)]
   simpa using h
 
+/-- P97 ATail support theorem. -/
 theorem litSat_neg {v : Nat → Prop} {n : Nat} (hn : 1 ≤ n) (h : ¬ v n) :
     P5OccurrenceBridgeScratch.litSat v (-(n : Int)) := by
   unfold P5OccurrenceBridgeScratch.litSat

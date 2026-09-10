@@ -54,6 +54,7 @@ structure CcwFivePointPlacement
   boundary_p3 : boundary i3 = p3
   boundary_p4 : boundary i4 = p4
 
+/-- P97 ATail EndpointFreshFiveRoleKalmanson theorem. -/
 private theorem false_of_012_124_314
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {p0 p1 p2 p3 p4 : ℝ²}
@@ -69,6 +70,7 @@ private theorem false_of_012_124_314
     (by simpa only [P.boundary_p1, P.boundary_p2, P.boundary_p4] using h124)
     (by simpa only [P.boundary_p1, P.boundary_p3, P.boundary_p4] using h314)
 
+/-- P97 ATail EndpointFreshFiveRoleKalmanson theorem. -/
 private theorem false_of_OAYEC
     {A : Finset ℝ²} (hA : ConvexIndep A)
     {pO pA pY pE pC : ℝ²}

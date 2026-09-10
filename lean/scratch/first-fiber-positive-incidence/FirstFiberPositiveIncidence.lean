@@ -22,6 +22,7 @@ open ATailTwoCollisionGlobalProducer
 
 attribute [local instance] Classical.propDecidable
 
+/-- Indexed scratch Lean theorem. -/
 private theorem card_le_three_of_firstPair_omission
     (K : Finset ℝ²) {a b c d : ℝ²}
     (hac : a ≠ c) (had : a ≠ d)
@@ -34,6 +35,7 @@ private theorem card_le_three_of_firstPair_omission
     by_cases hd : d ∈ K <;>
     simp_all
 
+/-- Indexed scratch Lean theorem. -/
 private theorem three_le_iff_bothOutside_and_firstPairHit
     (K : Finset ℝ²) {a b c d : ℝ²}
     (hac : a ≠ c) (had : a ≠ d)
