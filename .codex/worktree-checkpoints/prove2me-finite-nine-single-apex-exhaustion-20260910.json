@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-single-apex-exhaustion-20260910",
+  "base_head": "10a09ed24bbd6eea57d26c3ab56bb4c726b14529",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-single-apex-exhaustion-20260910.json",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/README.md",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/explanation.md",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/generate.py",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/plan.toml",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/platform/Solutions/Sol_Erdos9796FiniteNine_single_apex_exhaustion.lean",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/provenance.md",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/receipt.json",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/skeptic-audit-2026-09-10.md",
+    "prove2me/submissions/finite-nine-child-single-apex-exhaustion/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-single-apex-exhaustion",
+  "created_utc": "2026-09-10T07:11:00Z",
+  "manifest_sha256": "53d22568f8616b38ea106b5172482bedb3b98b298c7fdcc3613e7a85eda77302"
+}
