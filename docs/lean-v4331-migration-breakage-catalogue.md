@@ -728,3 +728,28 @@ Each of the nine carries `EXPECTED_PARENT_BANK_SHA256` and no own pin, so the
 walk sets each one's parent pin in memory to the sha its predecessor actually
 produced, collects the observed value, and a second pass writes the literals.
 Do NOT blank the pins: they are fail-closed direct comparisons.
+
+## Gate E — the repeatable check
+
+`scripts/check_migration_gates.sh` runs the five acceptance checks the plan asks
+for, and is the thing to run after any toolchain or lakefile change:
+
+    ./scripts/check_migration_gates.sh          # everything
+    ./scripts/check_migration_gates.sh --fast   # skips the two full builds
+
+    OK   [toolchain]    leanprover/lean4:v4.33.1
+    OK   [dependencies] lakefile revs match lake-manifest.json
+    OK   [roots]        lake-build Erdos9796 Erdos9796Proof Erdos9796BankSupport
+    OK   [comparator]   check-conformance.sh
+    OK   [spine]        open: 0/1 node(s)
+    GATE-E OK
+
+The `roots` check reads the declared `lean_lib` names out of `lakefile.toml`
+rather than `defaultTargets`, because class AQ is exactly the failure of building
+less than the declared surface: a library with neither `roots` nor `globs`
+compiles only its own import closure, so a declared-but-unbuilt root hides
+regressions for as long as nobody looks.
+
+No `.github` workflow is added here.  The audited snapshot tracks none, so a CI
+job would be new surface rather than an updated check; the script is callable
+from one when that decision is made.
