@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-milestone-readback-retry-20260910",
+  "base_head": "736e68596cab7f190a260d6c4fd6675dce11c7f3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-milestone-readback-retry-20260910.json",
+    "prove2me/tests/test_prove2me_submit.py",
+    "prove2me/tools/prove2me_submit.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-milestone-readback-retry",
+  "created_utc": "2026-09-10T17:30:00Z",
+  "manifest_sha256": "ab4a2a21123c52047c97aa689091b602695978cedb4508dbbb67f480c3fe31e9"
+}
