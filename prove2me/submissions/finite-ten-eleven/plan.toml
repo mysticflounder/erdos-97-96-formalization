@@ -4,7 +4,7 @@
 
 schema = "prove2me-submit-plan/v1"
 host = "https://prove2.me/api/v1"
-platform_version = "0.9.8"
+platform_version = "0.9.9"
 credentials = "~/prove2me_workspace/credentials.json"
 artifact_root = "../.."
 receipt = "submissions/finite-ten-eleven/receipt.json"

@@ -1,0 +1,53 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "milestone-create:Transfer the existing exact-eleven exclusion proof": {
+      "milestone_id": "b39a02b2-d3c5-4bfb-91ee-1362b4c65f49",
+      "payload_sha256": "207bf2567e840d3c6797d8e9c21628a647e79c430429551f22443589215423c2",
+      "state": "RECORDED"
+    },
+    "milestone-create:Transfer the existing exact-ten exclusion proof": {
+      "milestone_id": "cea298d2-663b-475e-9f63-bf66672bfea6",
+      "payload_sha256": "5ae0bb7b1f7e7a905ef511a0605fb50eae25214eb310d2a770b5619bca18d8e5",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.finite_eleven_exclusion": {
+      "job_id": "8fbef5b8-588b-4614-9dae-146233e6d855",
+      "payload_sha256": "4ad6b5854df00162bd8c02318cefd299253c0f115b696458cb4668e8f7245327",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.finite_ten_exclusion": {
+      "job_id": "afca8ed9-25f7-4257-b201-7f9ee45cf33d",
+      "payload_sha256": "a58208c9cd7081b7f9f233d060ddb5080d81e2815be84a644174dbe4b5ca45d9",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {
+    "Transfer the existing exact-eleven exclusion proof": {
+      "id": "b39a02b2-d3c5-4bfb-91ee-1362b4c65f49",
+      "status": "ENSURED"
+    },
+    "Transfer the existing exact-ten exclusion proof": {
+      "id": "cea298d2-663b-475e-9f63-bf66672bfea6",
+      "status": "ENSURED"
+    }
+  },
+  "mission_description": {},
+  "plan_digest": "aa7f58204798d1c3561f9e3a316549476e6c29c61940727222c3f90dfdb7563f",
+  "proof_attempts": {},
+  "proofs": {},
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.finite_eleven_exclusion": {
+      "job_id": "8fbef5b8-588b-4614-9dae-146233e6d855",
+      "status": "PUBLISHED",
+      "theorem_id": "0c2105c8-40c2-4b5a-af9a-61f6237bd4b6"
+    },
+    "Erdos9796Mission.finite_ten_exclusion": {
+      "job_id": "afca8ed9-25f7-4257-b201-7f9ee45cf33d",
+      "status": "PUBLISHED",
+      "theorem_id": "bbaf935e-32e1-4064-afaa-418647568fa9"
+    }
+  }
+}

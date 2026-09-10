@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-ten-eleven-goals-20260910",
+  "base_head": "736e68596cab7f190a260d6c4fd6675dce11c7f3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-ten-eleven-goals-20260910.json",
+    "prove2me/submissions/finite-ten-eleven/README.md",
+    "prove2me/submissions/finite-ten-eleven/plan.toml",
+    "prove2me/submissions/finite-ten-eleven/receipt.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-finite-ten-eleven-goals",
+  "created_utc": "2026-09-10T17:25:00Z",
+  "manifest_sha256": "34ddb24c151ecf6cf3756adaccc86662602fdab13e5f8e09373d373dadd405f8"
+}

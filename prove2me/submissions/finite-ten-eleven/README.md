@@ -25,13 +25,25 @@ uv run python prove2me/tools/prove2me_submit.py validate \
   prove2me/submissions/finite-ten-eleven/plan.toml
 ```
 
-Do not run `apply` until the milestone ordering has been reconciled with other
-pending mission edits. This packet reserves sort orders 10 and 11, after the
-pending order-9 alternative Problem 96 route.
+The live milestone ordering was reconciled and both public goals were created on
+2026-09-10. The milestones occupy sort orders 10 and 11 after the two order-9
+routes.
+
+| Goal | Theorem ID | Milestone ID | Status |
+| --- | --- | --- | --- |
+| exact ten | `bbaf935e-32e1-4064-afaa-418647568fa9` | `cea298d2-663b-475e-9f63-bf66672bfea6` | Open transfer goal |
+| exact eleven | `0c2105c8-40c2-4b5a-af9a-61f6237bd4b6` | `b39a02b2-d3c5-4bfb-91ee-1362b4c65f49` | Open transfer goal |
+
+The first apply exposed a pagination bug after the twenty-first milestone was
+created: the server listed 20 of 21 rows by default, so immediate readback could
+not see exact eleven. Commit `74418fc23` teaches the reusable submission tool to
+read every milestone page. The stored receipt was reconciled against page two,
+and a second idempotent apply verified both theorem and milestone records without
+creating duplicates.
 
 Before adding real proof entries:
 
-1. publish or reuse the exact-nine dependency;
+1. reuse the published exact-nine dependency;
 2. port and verify exact ten;
 3. port and verify exact eleven against the public exact-ten node;
 4. test whether Prove2Me accepts the inherited native/compiler trust boundary;
