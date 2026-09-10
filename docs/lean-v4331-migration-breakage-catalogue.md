@@ -676,3 +676,55 @@ Recognising it is worth doing early.  Of the thirteen failures in the entire
 bank-support set, twelve were this single shape, in twelve different generated
 modules; the census cost one `lake env lean` sweep and the repair cost one
 `perl -pi -e` over the matched line.
+
+## AW — a one-line proof repair moves a bank pin, and the refreeze script does not reach far enough
+
+`scripts/mine_bank_lean_dependencies.py` needs `--probe-run-root` pointing at a
+REGISTERED `scratch/runs/<lane>/<run>/` directory, or it stops with
+
+    governed Lean probe failed while mining the dependency set; the tree must be built first.
+    probe_run_root is required and must be a registered run directory
+
+The second line is the real one; the first is misleading, and the tree may be
+perfectly built.  Register a lane checkpoint and a run manifest first (see
+`.codex/worktree-checkpoints/lean-v4331-bank-refreeze-20260909.json`).
+
+Mining then works and reports, for the first bank,
+
+    # 783 root declarations reached 2834 declarations
+    ADDED   []
+    REMOVED [8 modules]
+
+Nothing was added; the v4.33.1 kernel simply reaches eight fewer repo-local
+modules than the v4.27 pin recorded.
+
+`scratch/rigid221-sourceheavy-anchor/refreeze_narrowed_chain.py` then fails
+before its walk even starts:
+
+    census.card_head.exact12_surplus_apex_pair_membership_family_bank
+      .Exact12SurplusApexPairMembershipFamilyBankError:
+      instance is not the frozen post-ThreeTriad cell-1 parent
+
+CAUSE — the script unsets the pin only for banks in its own `CHAIN`.  Nine
+installers sit ABOVE that chain, and the chain-head bank is pinned by
+`EXPECTED_PARENT_BANK_SHA256`.  Exactly one Lean file explains the move:
+
+    lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/
+      ExactTwelveRigid221BlockSpanningMembershipFamilyCnf.lean
+
+one of the class AV one-line repairs.  Its bytes are pinned in the chain-head
+bank's `source_manifest`, so the head sha moved
+
+    d226ef40fa277516a245c7f9f03ccf3d9f52df715bc8082c16cd6871c4aa249f
+ -> 724f3e18bc27b536d81d51c0b68e71747dbe27969290e1df788aa640a0099f30
+
+while `schema`, `cut_id`, `n_variables = 44902` and `n_clauses = 635440` are all
+unchanged.  The bank's mathematics did not move; only the source bytes it
+authenticates did.  That is the refreeze trigger the repository policy names, not
+a proof regression.
+
+FIX — the refreeze has to walk the nine head installers as well as the `CHAIN`.
+Each of the nine carries `EXPECTED_PARENT_BANK_SHA256` and no own pin, so the
+walk sets each one's parent pin in memory to the sha its predecessor actually
+produced, collects the observed value, and a second pass writes the literals.
+Do NOT blank the pins: they are fail-closed direct comparisons.
