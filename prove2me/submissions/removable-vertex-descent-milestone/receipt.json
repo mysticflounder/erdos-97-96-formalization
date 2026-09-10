@@ -1,0 +1,27 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "milestone-update:Descent: a minimal counterexample with more than nine vertices has a removable vertex": {
+      "milestone_id": "e0085905-edbd-4e77-801f-cc348f53b3a8",
+      "payload_sha256": "333f22291c6aa6749f335575f4551937a604388410de713f7fb6114da12de579",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {
+    "Descent: a minimal counterexample with more than nine vertices has a removable vertex": {
+      "id": "e0085905-edbd-4e77-801f-cc348f53b3a8",
+      "status": "ENSURED"
+    }
+  },
+  "mission_description": {},
+  "plan_digest": "8bc5be386e480c980c31f3f9497ea7662780115ba8b0f631644c69ec356f641d",
+  "proofs": {},
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.minimal_counterexample_removable": {
+      "status": "Open",
+      "theorem_id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f"
+    }
+  }
+}

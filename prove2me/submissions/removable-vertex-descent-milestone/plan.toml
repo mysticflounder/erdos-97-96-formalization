@@ -1,0 +1,26 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/removable-vertex-descent-milestone/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Erdos9796Mission.minimal_counterexample_removable"
+title = "Descent: a minimal counterexample with more than nine vertices has a removable vertex"
+file = "Theorems/Thm_Erdos9796Mission_minimal_counterexample_removable.lean"
+natural_language_statement = "Let A be a nonempty finite set of points in convex position. Assume every vertex has four other vertices at a common positive distance, A has more than nine points, and every smaller nonempty convex-independent set with the same four-equidistant property is contradictory. Then there is a vertex x in A such that erasing x preserves the four-equidistant property. This is the platform rendering of Problem97.RemovableVertexOfLargeStatement: the repository conclusion IsRemovableVertex A x unfolds to x in A together with HasNEquidistantProperty 4 (A.erase x)."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0707e2c26e2e570e2b56ce656242cf5dec4d2584/lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L53; https://github.com/mysticflounder/erdos-97-96-formalization/blob/0707e2c26e2e570e2b56ce656242cf5dec4d2584/lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50"
+tags = ["discrete-geometry", "erdos-97", "convex-position", "descent"]
+
+[[milestone]]
+title = "Descent: a minimal counterexample with more than nine vertices has a removable vertex"
+description = "The formal contract is the platform rendering of the repository theorem Problem97.RemovableVertexOfLarge, stated by Problem97.RemovableVertexOfLargeStatement. For a nonempty A with ConvexIndep A, HasNEquidistantProperty 4 A, 9 < A.card, and the strong-induction hypothesis that every smaller nonempty convex-independent four-equidistant set is contradictory, produce x with IsRemovableVertex A x: x belongs to A and HasNEquidistantProperty 4 (A.erase x). This is the large-n descent engine because erasure lowers cardinality while preserving nonemptiness, convex independence, and the four-equidistant property, contradicting minimality. Combined with the counting lower bound and the n = 9 closure, it closes the positive Problem 97 induction once proved. Status: Open. The source theorem has no local sorry or named axiom, but the non-IsM44 branch transitively reaches ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap with sorryAx, while the pinned-surplus branch uses native/compiler trust through finite certificate banks. This reduction is this project's formalization; Dumitrescu attribution applies to the separate counting route, not wholesale to this theorem."
+theorem = "Erdos9796Mission.minimal_counterexample_removable"
+reason = "Identify the existing open mission milestone with the exact repository removable-vertex theorem and explain its role and current trust boundary without submitting an incomplete proof."
+

@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-removable-vertex-descent-20260909",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-removable-vertex-descent-20260909.json",
+    "prove2me/submissions/removable-vertex-descent-milestone/README.md",
+    "prove2me/submissions/removable-vertex-descent-milestone/plan.toml",
+    "prove2me/submissions/removable-vertex-descent-milestone/provenance.md",
+    "prove2me/submissions/removable-vertex-descent-milestone/receipt.json",
+    "prove2me/submissions/removable-vertex-descent-milestone/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-rvol-descent",
+  "base_head": "0707e2c26e2e570e2b56ce656242cf5dec4d2584",
+  "created_utc": "2026-09-10T00:15:54Z",
+  "manifest_sha256": "332062369bc1a9965689054d92132ef2856d453736da1bdba74f02f581fd9e3c"
+}

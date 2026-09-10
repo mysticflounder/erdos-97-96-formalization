@@ -1,0 +1,49 @@
+{
+  "schema": "prove2me-removable-vertex-descent-validation/v1",
+  "date": "2026-09-09",
+  "source_revision": "0707e2c26e2e570e2b56ce656242cf5dec4d2584",
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "theorem": {
+    "id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+    "name": "Erdos9796Mission.minimal_counterexample_removable",
+    "live_status": "Open",
+    "proof_in_plan": false
+  },
+  "milestone": {
+    "id": "e0085905-edbd-4e77-801f-cc348f53b3a8",
+    "title": "Descent: a minimal counterexample with more than nine vertices has a removable vertex",
+    "live_status": "Open",
+    "operation": "ENSURED; updated existing exact-title milestone in place"
+  },
+  "statement_audit": {
+    "source_declaration": "Problem97.RemovableVertexOfLarge",
+    "source_statement": "Problem97.RemovableVertexOfLargeStatement",
+    "source_has_local_sorry": false,
+    "source_has_named_axiom": false,
+    "platform_conclusion_unfolds_IsRemovableVertex": true
+  },
+  "trust_audit": {
+    "core_clean": false,
+    "sorry_reachability": "The non-IsM44 branch transitively reaches ATailFrontierLiveClosure.false_of_twoLargeCaps_commonCriticalMap with sorryAx.",
+    "computation_trust": "The pinned-surplus branch uses native/compiler trust through finite certificate banks.",
+    "promotion_status": "Open statement node only; no proof submitted or promoted."
+  },
+  "reuse_preflight": {
+    "result": "No separate reusable candidate discharged the remaining transitive obligation.",
+    "audited_candidate": "the exact local Problem97.RemovableVertexOfLarge source theorem"
+  },
+  "local_plan_validation": {
+    "command": "uv run python tools/prove2me_submit.py validate submissions/removable-vertex-descent-milestone/plan.toml",
+    "status": "VALIDATED",
+    "plan_digest": "8bc5be386e480c980c31f3f9497ea7662780115ba8b0f631644c69ec356f641d"
+  },
+  "server_application": {
+    "status": "APPLIED",
+    "receipt_plan_digest": "8bc5be386e480c980c31f3f9497ea7662780115ba8b0f631644c69ec356f641d",
+    "theorem_id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+    "theorem_status": "Open",
+    "milestone_id": "e0085905-edbd-4e77-801f-cc348f53b3a8",
+    "milestone_status": "ENSURED",
+    "proof_submitted": false
+  }
+}
