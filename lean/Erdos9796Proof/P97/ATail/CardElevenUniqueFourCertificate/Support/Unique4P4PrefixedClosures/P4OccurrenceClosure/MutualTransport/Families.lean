@@ -31,10 +31,12 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Authenticated mutual-transport bridge declaration. -/
 inductive ClauseShape where
   | mutualTriangle (a mid bc : Label)
 deriving DecidableEq
 
+/-- Authenticated mutual-transport bridge declaration. -/
 def instLits : ClauseShape → List Int
   | .mutualTriangle a mid bc =>
       [-((p4VarOfAtom (.row a mid) : Nat) : Int),
@@ -43,16 +45,20 @@ def instLits : ClauseShape → List Int
        -((p4VarOfAtom (.row mid bc) : Nat) : Int),
        ((p4VarOfAtom (sortedRadius bc a mid) : Nat) : Int)]
 
+/-- Authenticated mutual-transport bridge declaration. -/
 def shapeWF : ClauseShape → Bool
   | .mutualTriangle a mid bc => decide (a ≠ mid ∧ a ≠ bc ∧ mid ≠ bc)
 
+/-- Authenticated mutual-transport bridge declaration. -/
 structure BridgeEntry where
   clause : List Int
   shape : ClauseShape
 
+/-- Authenticated mutual-transport bridge declaration. -/
 def entryWF (e : BridgeEntry) : Bool :=
   shapeWF e.shape && litsSubset (instLits e.shape) e.clause
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem mutualTriangleLitsSat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v)
     (a mid bc : Label)
@@ -86,6 +92,7 @@ theorem mutualTriangleLitsSat (Q : ExactTwoBoundaryCore R distribution)
     apply litSat_neg (p4VarOfAtom_pos _)
     exact fun h => ham ((hv.row a mid hdist.1).mp h)
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem entry_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) (e : BridgeEntry)
     (he : entryWF e = true) : clauseSat v e.clause := by
@@ -97,6 +104,7 @@ theorem entry_sat (Q : ExactTwoBoundaryCore R distribution)
       apply mutualTriangleLitsSat Q σ hv a mid bc
       simpa [shapeWF] using he.1
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem entryList_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v)
     (entries : List BridgeEntry)

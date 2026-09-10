@@ -17,11 +17,13 @@ open Problem97.CheckpointedRup
 open Problem97.CheckpointedRup.CompactIngress
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- Embedded replay action text for this window. -/
 private def actionText : String :=
   include_str "../../data/actions/9a87e8d83a0e9f3c706ba0bd3c0d0933f9c36302278517423504fdb0cf41d4a6.cpa85"
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 2000000 in
+/-- The replay checker accepts this window action trace. -/
 theorem accepted :
     checkRebaseCompact (n := n)
       Checkpoint.C0316.text actionText
@@ -29,6 +31,7 @@ theorem accepted :
   unfold n Checkpoint.C0316.text actionText Checkpoint.C0317.text
   native_decide
 
+/-- This replay composition establishes the corresponding satisfiability implication. -/
 theorem sound :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0316.text)

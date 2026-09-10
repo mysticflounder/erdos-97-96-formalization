@@ -17,21 +17,27 @@ separate obligations.
 namespace Problem97
 namespace SurplusCOMPGBank
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 inductive Label where
   | u | v | w | s1 | s2 | s3 | Pw | Pu | Q1 | Q2
   deriving DecidableEq, BEq, Repr
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def labelCount : Nat := 10
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def allLabels : List Label :=
   [.u, .v, .w, .s1, .s2, .s3, .Pw, .Pu, .Q1, .Q2]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def labelPairs : List (Label × Label) :=
   [(.u, .v), (.u, .w), (.u, .s1), (.u, .s2), (.u, .s3), (.u, .Pw), (.u, .Pu), (.u, .Q1), (.u, .Q2), (.v, .w), (.v, .s1), (.v, .s2), (.v, .s3), (.v, .Pw), (.v, .Pu), (.v, .Q1), (.v, .Q2), (.w, .s1), (.w, .s2), (.w, .s3), (.w, .Pw), (.w, .Pu), (.w, .Q1), (.w, .Q2), (.s1, .s2), (.s1, .s3), (.s1, .Pw), (.s1, .Pu), (.s1, .Q1), (.s1, .Q2), (.s2, .s3), (.s2, .Pw), (.s2, .Pu), (.s2, .Q1), (.s2, .Q2), (.s3, .Pw), (.s3, .Pu), (.s3, .Q1), (.s3, .Q2), (.Pw, .Pu), (.Pw, .Q1), (.Pw, .Q2), (.Pu, .Q1), (.Pu, .Q2), (.Q1, .Q2)]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def orderedLabelPairs : List (Label × Label) :=
   [(.u, .v), (.u, .w), (.u, .s1), (.u, .s2), (.u, .s3), (.u, .Pw), (.u, .Pu), (.u, .Q1), (.u, .Q2), (.v, .u), (.v, .w), (.v, .s1), (.v, .s2), (.v, .s3), (.v, .Pw), (.v, .Pu), (.v, .Q1), (.v, .Q2), (.w, .u), (.w, .v), (.w, .s1), (.w, .s2), (.w, .s3), (.w, .Pw), (.w, .Pu), (.w, .Q1), (.w, .Q2), (.s1, .u), (.s1, .v), (.s1, .w), (.s1, .s2), (.s1, .s3), (.s1, .Pw), (.s1, .Pu), (.s1, .Q1), (.s1, .Q2), (.s2, .u), (.s2, .v), (.s2, .w), (.s2, .s1), (.s2, .s3), (.s2, .Pw), (.s2, .Pu), (.s2, .Q1), (.s2, .Q2), (.s3, .u), (.s3, .v), (.s3, .w), (.s3, .s1), (.s3, .s2), (.s3, .Pw), (.s3, .Pu), (.s3, .Q1), (.s3, .Q2), (.Pw, .u), (.Pw, .v), (.Pw, .w), (.Pw, .s1), (.Pw, .s2), (.Pw, .s3), (.Pw, .Pu), (.Pw, .Q1), (.Pw, .Q2), (.Pu, .u), (.Pu, .v), (.Pu, .w), (.Pu, .s1), (.Pu, .s2), (.Pu, .s3), (.Pu, .Pw), (.Pu, .Q1), (.Pu, .Q2), (.Q1, .u), (.Q1, .v), (.Q1, .w), (.Q1, .s1), (.Q1, .s2), (.Q1, .s3), (.Q1, .Pw), (.Q1, .Pu), (.Q1, .Q2), (.Q2, .u), (.Q2, .v), (.Q2, .w), (.Q2, .s1), (.Q2, .s2), (.Q2, .s3), (.Q2, .Pw), (.Q2, .Pu), (.Q2, .Q1)]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Label.index : Label -> Nat
   | .u => 0
   | .v => 1
@@ -44,6 +50,7 @@ def Label.index : Label -> Nat
   | .Q1 => 8
   | .Q2 => 9
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Label.bit (label : Label) : Nat :=
   2 ^ label.index
 
@@ -51,28 +58,35 @@ def Label.bit (label : Label) : Nat :=
     (left == right) = decide (left = right) := by
   cases left <;> cases right <;> native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskOfLabels : List Label -> Nat
   | [] => 0
   | label :: rest => label.bit + maskOfLabels rest
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskHas (mask : Nat) (label : Label) : Bool :=
   mask.testBit label.index
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskBound : Nat :=
   2 ^ labelCount
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskNormalized (mask : Nat) : Bool :=
   decide (mask < maskBound)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskCard (mask : Nat) : Nat :=
   allLabels.foldl
     (fun acc label => if maskHas mask label then acc + 1 else acc) 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskInterCard (left right : Nat) : Nat :=
   allLabels.foldl
     (fun acc label =>
       if maskHas left label && maskHas right label then acc + 1 else acc) 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskTripleInterCard (left middle right : Nat) : Nat :=
   allLabels.foldl
     (fun acc label =>
@@ -81,6 +95,7 @@ def maskTripleInterCard (left middle right : Nat) : Nat :=
       else
         acc) 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def hullPos : Label -> Nat
   | .u => 0
   | .Q1 => 1
@@ -93,24 +108,29 @@ def hullPos : Label -> Nat
   | .Pw => 8
   | .Pu => 9
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def between (a b x : Label) : Bool :=
   let da := (hullPos x + labelCount - hullPos a) % labelCount
   let db := (hullPos b + labelCount - hullPos a) % labelCount
   decide (0 < da) && decide (da < db)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def separated (a b x y : Label) : Bool :=
   between a b x != between a b y
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 inductive Verdict where
   | cEmpty | noValidReal
   deriving DecidableEq, BEq, Repr
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def expectedPinnedMask : Label -> Nat
   | .s1 => 201
   | .s2 => 209
   | .s3 => 225
   | _ => 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 structure Row where
   pid : String
   sstar : Label
@@ -119,74 +139,93 @@ structure Row where
   forcedPairCode : Nat
   deriving Repr
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Row.pinnedMask (row : Row) : Nat :=
   row.masks.getD 1 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Row.hasTenMasks (row : Row) : Bool :=
   row.masks.length == labelCount
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Row.isPinned (row : Row) : Bool :=
   row.pinnedMask == expectedPinnedMask row.sstar
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Row.shadowKey (row : Row) : List Nat :=
   row.masks
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def containsKey (key : List Nat) : List (List Nat) -> Bool
   | [] => false
   | head :: tail => if head == key then true else containsKey key tail
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def keysUniqueAux : List (List Nat) -> List (List Nat) -> Bool
   | [], _ => true
   | key :: rest, seen => !containsKey key seen && keysUniqueAux rest (key :: seen)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def countVerdict (verdict : Verdict) : List Row -> Nat
   | [] => 0
   | row :: rest =>
       (if row.finalVerdict == verdict then 1 else 0) + countVerdict verdict rest
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def countForcedPairCode (code : Nat) : List Row -> Nat
   | [] => 0
   | row :: rest =>
       (if row.forcedPairCode == code then 1 else 0) + countForcedPairCode code rest
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def countSstar (sstar : Label) : List Row -> Nat
   | [] => 0
   | row :: rest =>
       (if row.sstar == sstar then 1 else 0) + countSstar sstar rest
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 structure Shadow where
   masks : List Nat
   deriving Repr
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Shadow.hasTenMasks (shadow : Shadow) : Bool :=
   shadow.masks.length == labelCount
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Shadow.centerMask (shadow : Shadow) (center : Label) : Nat :=
   shadow.masks.getD center.index 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Shadow.classHas (shadow : Shadow) (center member : Label) : Bool :=
   maskHas (shadow.centerMask center) member
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Shadow.classShapeOKAt (shadow : Shadow) (center : Label) : Bool :=
   maskNormalized (shadow.centerMask center) &&
     maskCard (shadow.centerMask center) == 4 &&
     !shadow.classHas center center
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Shadow.classesShapeOK (shadow : Shadow) : Bool :=
   allLabels.all (shadow.classShapeOKAt ·)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def isSurplusStar : Label -> Bool
   | .s1 => true
   | .s2 => true
   | .s3 => true
   | _ => false
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def pinnedClassOK (sstar : Label) (shadow : Shadow) : Bool :=
   shadow.centerMask .v == expectedPinnedMask sstar
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def pinnedMaskOf (sstar : Label) : Nat :=
   maskOfLabels [.u, sstar, .Pw, .Pu]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar
     {sstar : Label} (hs : isSurplusStar sstar = true) :
     pinnedMaskOf sstar = expectedPinnedMask sstar := by
@@ -195,6 +234,7 @@ theorem pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar
     simp [pinnedMaskOf, expectedPinnedMask, maskOfLabels, Label.bit,
       Label.index]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem pinnedClassOK_of_centerMask_eq_pinnedMaskOf
     {sstar : Label} {shadow : Shadow}
     (hs : isSurplusStar sstar = true)
@@ -203,38 +243,49 @@ theorem pinnedClassOK_of_centerMask_eq_pinnedMaskOf
   simp [pinnedClassOK, hmask,
     pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar hs]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def cvNoUMask : Nat := maskOfLabels [.w, .Pw, .Pu]
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def cwNoUMask : Nat := maskOfLabels [.v, .Q1, .Q2]
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def cvNoWMask : Nat := maskOfLabels [.u, .Pw, .Pu]
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def cuNoWMask : Nat := maskOfLabels [.v, .s1, .s2, .s3]
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def uPwPuMask : Nat := maskOfLabels [.u, .Pw, .Pu]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def wSqueezeOK (shadow : Shadow) : Bool :=
   shadow.classHas .w .Q1 &&
     shadow.classHas .w .Q2 &&
     (maskInterCard (shadow.centerMask .w) cuNoWMask == 1) &&
     (maskInterCard (shadow.centerMask .w) cvNoWMask == 1)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def oneHitOK (shadow : Shadow) : Bool :=
   decide (maskInterCard (shadow.centerMask .u) cvNoUMask <= 1) &&
     decide (maskInterCard (shadow.centerMask .u) cwNoUMask <= 1) &&
     decide (maskInterCard (shadow.centerMask .w) cvNoWMask <= 1) &&
     decide (maskInterCard (shadow.centerMask .w) cuNoWMask <= 1)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def isMoserLabel : Label -> Bool
   | .u => true
   | .v => true
   | .w => true
   | _ => false
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def circumcenterOKAt (shadow : Shadow) (center : Label) : Bool :=
   isMoserLabel center ||
     !(shadow.classHas center .u && shadow.classHas center .v &&
       shadow.classHas center .w)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def circumcenterOK (shadow : Shadow) : Bool :=
   allLabels.all (circumcenterOKAt shadow)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def sepOKFor (shadow : Shadow) (c cp x y : Label) : Bool :=
   if x == c || x == cp || y == c || y == cp then
     true
@@ -244,6 +295,7 @@ def sepOKFor (shadow : Shadow) (c cp x y : Label) : Bool :=
   else
     true
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def crossSeparationOKForMasks
     (c : Label) (cmask : Nat) (cp : Label) (cpmask : Nat) : Bool :=
   labelPairs.all
@@ -260,6 +312,7 @@ def crossSeparationOKForMasks
 
 /-- Pointwise separation over the finite label-pair list gives the cross-mask
 separation checker for one ordered center pair. -/
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem crossSeparationOKForMasks_of_sepOKFor
     {shadow : Shadow} {c cp : Label}
     (hsep : ∀ x y : Label,
@@ -271,6 +324,7 @@ theorem crossSeparationOKForMasks_of_sepOKFor
   intro pair hpair
   simpa [sepOKFor, Shadow.classHas] using hsep pair.1 pair.2 hpair
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def separationOK (shadow : Shadow) : Bool :=
   labelPairs.all
     (fun centerPair =>
@@ -279,6 +333,7 @@ def separationOK (shadow : Shadow) : Bool :=
           sepOKFor shadow centerPair.fst centerPair.snd
             pointPair.fst pointPair.snd))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def searchSeparationOK (shadow : Shadow) : Bool :=
   orderedLabelPairs.all
     (fun centerPair =>
@@ -287,6 +342,7 @@ def searchSeparationOK (shadow : Shadow) : Bool :=
         centerPair.snd
         (shadow.centerMask centerPair.snd))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def pointPairClassCount (shadow : Shadow) (x y : Label) : Nat :=
   allLabels.foldl
     (fun acc center =>
@@ -297,11 +353,13 @@ def pointPairClassCount (shadow : Shadow) (x y : Label) : Nat :=
       else
         acc) 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def noThreeOK (shadow : Shadow) : Bool :=
   labelPairs.all
     (fun pointPair =>
       decide (pointPairClassCount shadow pointPair.fst pointPair.snd <= 2))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def pointPairHitByCenterMask
     (center : Label) (mask : Nat) (pointPair : Label × Label) : Bool :=
   let x := pointPair.fst
@@ -311,6 +369,7 @@ def pointPairHitByCenterMask
   else
     maskHas mask x && maskHas mask y
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def incrementPairCountsAux
     (center : Label) (mask : Nat) :
     List Nat -> List (Label × Label) -> List Nat
@@ -320,44 +379,54 @@ def incrementPairCountsAux
       (count + if pointPairHitByCenterMask center mask pointPair then 1 else 0) ::
         incrementPairCountsAux center mask restCounts restPairs
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def incrementPairCounts
     (center : Label) (mask : Nat) (counts : List Nat) : List Nat :=
   incrementPairCountsAux center mask counts labelPairs
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def pairCountsOK (counts : List Nat) : Bool :=
   counts.all (fun count => decide (count <= 2))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def emptyPairCounts : List Nat :=
   labelPairs.map (fun _ => 0)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentSearchAssignedPrefixes : List (List Label) :=
   [[], [.v], [.w, .v], [.u, .w, .v], [.Pw, .u, .w, .v], [.Pu, .Pw, .u, .w, .v], [.Q1, .Pu, .Pw, .u, .w, .v], [.Q2, .Q1, .Pu, .Pw, .u, .w, .v], [.s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v], [.s2, .s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v], [.s3, .s2, .s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v]]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def shadowPairCountsForAssigned (shadow : Shadow) : List Label -> List Nat
   | [] => emptyPairCounts
   | center :: assigned =>
       incrementPairCounts center (shadow.centerMask center)
         (shadowPairCountsForAssigned shadow assigned)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 abbrev PrefixPairCountsOK (shadow : Shadow) : Prop :=
   ∀ assigned : List Label,
     assigned ∈ fragmentSearchAssignedPrefixes →
       pairCountsOK (shadowPairCountsForAssigned shadow assigned) = true
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def searchPairCountsOK (shadow : Shadow) : Bool :=
   fragmentSearchAssignedPrefixes.all
     (fun assigned => pairCountsOK (shadowPairCountsForAssigned shadow assigned))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def previousSstarCenters : Label -> List Label
   | .s1 => []
   | .s2 => [.s1]
   | .s3 => [.s1, .s2]
   | _ => []
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def triggerPrivateOKAt (shadow : Shadow) (center sstar : Label) : Bool :=
   !(shadow.classHas center sstar &&
     decide (1 <= maskInterCard (shadow.centerMask center) uPwPuMask))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentTriggersOK (sstar : Label) (shadow : Shadow) : Bool :=
   triggerPrivateOKAt shadow .u sstar &&
     triggerPrivateOKAt shadow .Q1 sstar &&
@@ -366,6 +435,7 @@ def fragmentTriggersOK (sstar : Label) (shadow : Shadow) : Bool :=
       (fun center => triggerPrivateOKAt shadow center sstar) &&
     decide (maskInterCard (shadow.centerMask sstar) uPwPuMask <= 1)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def isValidPinnedFragment (sstar : Label) (shadow : Shadow) : Bool :=
   isSurplusStar sstar &&
     shadow.hasTenMasks &&
@@ -380,20 +450,25 @@ def isValidPinnedFragment (sstar : Label) (shadow : Shadow) : Bool :=
     searchSeparationOK shadow &&
     fragmentTriggersOK sstar shadow
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def centerMaskOf (masks : List Nat) (center : Label) : Nat :=
   masks.getD center.index 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def setNth : Nat -> Nat -> List Nat -> List Nat
   | _, _, [] => []
   | 0, value, _ :: rest => value :: rest
   | index + 1, value, head :: rest => head :: setNth index value rest
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def setCenterMask (masks : List Nat) (center : Label) (mask : Nat) : List Nat :=
   setNth center.index mask masks
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def allNormalizedMasks : List Nat :=
   List.range maskBound
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def localTriggerOKAt (sstar center : Label) (mask : Nat) : Bool :=
   if center == .u || center == .Q1 || center == .Q2 ||
       (previousSstarCenters sstar).any (fun prior => prior == center) then
@@ -403,6 +478,7 @@ def localTriggerOKAt (sstar center : Label) (mask : Nat) : Bool :=
   else
     true
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def candidateMaskOK (sstar center : Label) (mask : Nat) : Bool :=
   maskNormalized mask &&
     maskCard mask == 4 &&
@@ -430,9 +506,11 @@ def candidateMaskOK (sstar center : Label) (mask : Nat) : Bool :=
       !(maskHas mask .u && maskHas mask .v && maskHas mask .w)) &&
     localTriggerOKAt sstar center mask
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def candidateMasksByFilter (sstar center : Label) : List Nat :=
   allNormalizedMasks.filter (candidateMaskOK sstar center ·)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def candidateMasks : Label -> Label -> List Nat
   | .s1, .u => [30, 46, 54, 58, 60, 114, 178, 284, 300, 308, 312, 368, 432, 540, 556, 564, 568, 624, 688]
   | .s1, .v => [201]
@@ -466,6 +544,7 @@ def candidateMasks : Label -> Label -> List Nat
   | .s3, .Q2 => [27, 29, 30, 46, 54, 58, 60, 75, 77, 78, 83, 85, 86, 89, 90, 92, 139, 141, 142, 147, 149, 150, 153, 154, 156, 195, 197, 198, 201, 202, 204, 209, 210, 212, 216, 267, 269, 270, 275, 277, 278, 281, 282, 284, 294, 298, 300, 306, 308, 312, 323, 325, 326, 329, 330, 332, 337, 338, 340, 344, 387, 389, 390, 393, 394, 396, 401, 402, 404, 408, 449, 450, 452, 456, 464]
   | _, _ => []
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def candidateMaskFamilyPairs : List (Label × Label) :=
   [(.s1, .u), (.s1, .v), (.s1, .w), (.s1, .s1), (.s1, .s2),
     (.s1, .s3), (.s1, .Pw), (.s1, .Pu), (.s1, .Q1), (.s1, .Q2),
@@ -474,11 +553,13 @@ def candidateMaskFamilyPairs : List (Label × Label) :=
     (.s3, .u), (.s3, .v), (.s3, .w), (.s3, .s1), (.s3, .s2),
     (.s3, .s3), (.s3, .Pw), (.s3, .Pu), (.s3, .Q1), (.s3, .Q2)]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def candidateMasksMatchFilter : Bool :=
   candidateMaskFamilyPairs.all
     (fun pair => candidateMasks pair.fst pair.snd ==
       candidateMasksByFilter pair.fst pair.snd)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def assignedSeparationOK
     (center : Label) (mask : Nat) (assigned : List Label)
     (masks : List Nat) : Bool :=
@@ -486,6 +567,7 @@ def assignedSeparationOK
     (fun other =>
       crossSeparationOKForMasks center mask other (centerMaskOf masks other))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def partialPointPairClassCount
     (masks : List Nat) (assigned : List Label) (x y : Label) : Nat :=
   assigned.foldl
@@ -498,49 +580,61 @@ def partialPointPairClassCount
       else
         acc) 0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def partialNoThreeOK (masks : List Nat) (assigned : List Label) : Bool :=
   labelPairs.all
     (fun pointPair =>
       decide (partialPointPairClassCount masks assigned
         pointPair.fst pointPair.snd <= 2))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentSearchSstars : List Label :=
   [.s1, .s2, .s3]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentSearchOrder : List Label :=
   [.v, .w, .u, .Pw, .Pu, .Q1, .Q2, .s1, .s2, .s3]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentSearchPlan (sstar : Label) : List (Label × List Nat) :=
   fragmentSearchOrder.map (fun center => (center, candidateMasks sstar center))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def depth2Wmasks : List Nat :=
   [771, 777, 785, 801, 834, 840, 848, 864, 898, 904, 912, 928]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def depth2RestPlan (sstar : Label) : List (Label × List Nat) :=
   [(.u, candidateMasks sstar .u), (.Pw, candidateMasks sstar .Pw),
     (.Pu, candidateMasks sstar .Pu), (.Q1, candidateMasks sstar .Q1),
     (.Q2, candidateMasks sstar .Q2), (.s1, candidateMasks sstar .s1),
     (.s2, candidateMasks sstar .s2), (.s3, candidateMasks sstar .s3)]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def emptyShadowMasks : List Nat :=
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def depth2StateMasks (sstar : Label) (wmask : Nat) : List Nat :=
   setCenterMask (setCenterMask emptyShadowMasks .v (pinnedMaskOf sstar)) .w wmask
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def depth2StateCounts (sstar : Label) (wmask : Nat) : List Nat :=
   incrementPairCounts .w wmask
     (incrementPairCounts .v (pinnedMaskOf sstar) emptyPairCounts)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fullFragmentSearchAssigned : List Label :=
   [.s3, .s2, .s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def shadowMasksForAssigned (shadow : Shadow) : List Label -> List Nat
   | [] => emptyShadowMasks
   | center :: assigned =>
       setCenterMask (shadowMasksForAssigned shadow assigned) center
         (shadow.centerMask center)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentSearchAux
     (sstar : Label) (assigned : List Label) (masks pairCounts : List Nat)
     (plan : List (Label × List Nat)) : List (List Nat) :=
@@ -564,23 +658,29 @@ termination_by plan.length
 decreasing_by
   simp_wf
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def depth2SubtreeResult (sstar : Label) (wmask : Nat) : List (List Nat) :=
   fragmentSearchAux sstar [.w, .v] (depth2StateMasks sstar wmask)
     (depth2StateCounts sstar wmask) (depth2RestPlan sstar)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def rawFragmentSearchEntriesFor (sstar : Label) : List (Label × List Nat) :=
   (fragmentSearchAux sstar [] emptyShadowMasks emptyPairCounts
     (fragmentSearchPlan sstar)).map (fun masks => (sstar, masks))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def computedRawFragmentSearchEntries : List (Label × List Nat) :=
   fragmentSearchSstars.flatMap rawFragmentSearchEntriesFor
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def computedFragmentSearchShadowKeys : List (List Nat) :=
   computedRawFragmentSearchEntries.map Prod.snd
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def computedFragmentShadowAcceptedBySearch (shadow : Shadow) : Bool :=
   shadow.hasTenMasks && containsKey shadow.masks computedFragmentSearchShadowKeys
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def rawFragmentSearchEntries : List (Label × List Nat) := [
   (.s1, [432, 201, 777, 534, 354, 92, 170, 83, 549, 390]),
   (.s1, [312, 201, 834, 277, 553, 660, 142, 83, 612, 418]),
@@ -719,15 +819,19 @@ def rawFragmentSearchEntries : List (Label × List Nat) := [
   (.s3, [408, 225, 928, 338, 46, 596, 51, 585, 646, 269])
 ]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def rawFragmentSearchShadowKeys : List (List Nat) :=
   rawFragmentSearchEntries.map Prod.snd
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Row.toShadow (row : Row) : Shadow :=
   { masks := row.masks }
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def Row.validPinnedFragment (row : Row) : Bool :=
   isValidPinnedFragment row.sstar row.toShadow
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def rows : List Row := [
   { pid := "s1_000"
     sstar := .s1
@@ -1406,6 +1510,7 @@ def rows : List Row := [
     forcedPairCode := 1 }
 ]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def validFragmentEntries : List (Label × List Nat) := [
   (.s1, [312, 201, 834, 277, 553, 660, 142, 83, 612, 418]),
   (.s1, [432, 201, 834, 277, 553, 660, 396, 83, 612, 298]),
@@ -1544,74 +1649,95 @@ def validFragmentEntries : List (Label × List Nat) := [
   (.s3, [408, 225, 928, 338, 588, 150, 45, 579, 533, 267])
 ]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def validFragmentShadowKeys : List (List Nat) :=
   validFragmentEntries.map Prod.snd
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def validFragmentEntryOK (entry : Label × List Nat) : Bool :=
   isValidPinnedFragment entry.fst { masks := entry.snd }
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def sameFragmentEntry (left right : Label × List Nat) : Bool :=
   left.fst == right.fst && left.snd == right.snd
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def containsFragmentEntry
     (entry : Label × List Nat) : List (Label × List Nat) -> Bool
   | [] => false
   | head :: tail =>
       if sameFragmentEntry entry head then true else containsFragmentEntry entry tail
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentSearchEntries : List (Label × List Nat) :=
   validFragmentEntries.filter
     (fun entry => containsFragmentEntry entry rawFragmentSearchEntries)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentSearchShadowKeys : List (List Nat) :=
   fragmentSearchEntries.map Prod.snd
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def depth2SubtreeAllAccepted (sstar : Label) (wmask : Nat) : Bool :=
   (depth2SubtreeResult sstar wmask).all
     (fun masks => containsKey masks fragmentSearchShadowKeys)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def rowShadowKeys : List (List Nat) :=
   rows.map Row.shadowKey
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def rowsShadowKeysUnique : Bool :=
   keysUniqueAux rowShadowKeys []
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def shadowInBank (shadow : Shadow) : Bool :=
   shadow.hasTenMasks && containsKey shadow.masks rowShadowKeys
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentShadowInEnumeration (shadow : Shadow) : Bool :=
   shadow.hasTenMasks && containsKey shadow.masks validFragmentShadowKeys
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def fragmentShadowAcceptedBySearch (shadow : Shadow) : Bool :=
   shadow.hasTenMasks && containsKey shadow.masks fragmentSearchShadowKeys
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_length : rows.length = 135 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_all_have_ten_masks : rows.all Row.hasTenMasks = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_all_pinned : rows.all Row.isPinned = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_shadow_keys_unique : rowsShadowKeysUnique = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_all_valid_pinned_fragment :
     rows.all Row.validPinnedFragment = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem valid_fragment_entries_length : validFragmentEntries.length = 135 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem valid_fragment_entries_all_valid :
     validFragmentEntries.all validFragmentEntryOK = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem candidate_masks_match_filter :
     candidateMasksMatchFilter = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private theorem list_all_eq_true_of_mem
     {α : Type} {p : α -> Bool} {a : α} :
     {items : List α} -> items.all p = true -> a ∈ items -> p a = true
@@ -1622,6 +1748,7 @@ private theorem list_all_eq_true_of_mem
       | head => simpa using h.1
       | tail _ haTail => exact list_all_eq_true_of_mem h.2 haTail
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem containsKey_eq_true_of_mem {key : List Nat} :
     {keys : List (List Nat)} -> key ∈ keys -> containsKey key keys = true
   | [], h => by cases h
@@ -1633,6 +1760,7 @@ theorem containsKey_eq_true_of_mem {key : List Nat} :
           · simp [containsKey, heq]
           · simp [containsKey, heq, containsKey_eq_true_of_mem htail]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem searchSeparationOK_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow}
     (h : isValidPinnedFragment sstar shadow = true) :
@@ -1640,6 +1768,7 @@ theorem searchSeparationOK_of_isValidPinnedFragment
   cases sstar <;> simp [isValidPinnedFragment, isSurplusStar] at h ⊢ <;>
     simp_all
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem searchPairCountsOK_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow}
     (h : isValidPinnedFragment sstar shadow = true) :
@@ -1647,6 +1776,7 @@ theorem searchPairCountsOK_of_isValidPinnedFragment
   cases sstar <;> simp [isValidPinnedFragment, isSurplusStar] at h ⊢ <;>
     simp_all
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem hasTenMasks_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow}
     (h : isValidPinnedFragment sstar shadow = true) :
@@ -1654,6 +1784,7 @@ theorem hasTenMasks_of_isValidPinnedFragment
   cases sstar <;> simp [isValidPinnedFragment, isSurplusStar] at h ⊢ <;>
     simp_all
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem crossSeparationOKForMasks_of_searchSeparationOK
     {shadow : Shadow} {center other : Label}
     (hsep : searchSeparationOK shadow = true)
@@ -1671,6 +1802,7 @@ theorem crossSeparationOKForMasks_of_searchSeparationOK
     (a := (center, other)) hsep (by
       cases center <;> cases other <;> simp [orderedLabelPairs] at hne ⊢)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem assignedSeparationOK_of_searchSeparationOK
     {shadow : Shadow} {center : Label} {assigned : List Label} {masks : List Nat}
     (hsep : searchSeparationOK shadow = true)
@@ -1689,6 +1821,7 @@ theorem assignedSeparationOK_of_searchSeparationOK
           (fun o ho => hmask o (by simp [ho]))
           (fun o ho => hne o (by simp [ho]))
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem assignedSeparationOK_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow} {center : Label}
     {assigned : List Label} {masks : List Nat}
@@ -1699,12 +1832,14 @@ theorem assignedSeparationOK_of_isValidPinnedFragment
   exact assignedSeparationOK_of_searchSeparationOK
     (searchSeparationOK_of_isValidPinnedFragment hvalid) hmask hne
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private def pointPairAssignedCount (shadow : Shadow)
     (assigned : List Label) (pointPair : Label × Label) : Nat :=
   List.countP
     (fun center => pointPairHitByCenterMask center (shadow.centerMask center) pointPair)
     assigned
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private theorem incrementPairCountsAux_map_pointPairAssignedCount
     (shadow : Shadow) (center : Label) (assigned : List Label) :
     ∀ pairs : List (Label × Label),
@@ -1721,6 +1856,7 @@ private theorem incrementPairCountsAux_map_pointPairAssignedCount
           Nat.add_comm]
       · simp [incrementPairCountsAux, pointPairAssignedCount, ih, hhit]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private theorem shadowPairCountsForAssigned_eq_map_pointPairAssignedCount
     (shadow : Shadow) :
     ∀ assigned : List Label,
@@ -1734,6 +1870,7 @@ private theorem shadowPairCountsForAssigned_eq_map_pointPairAssignedCount
       simp [shadowPairCountsForAssigned, ih, incrementPairCounts,
         incrementPairCountsAux_map_pointPairAssignedCount]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private theorem foldl_countP_add {α : Type _} (p : α → Bool) :
     ∀ (items : List α) (acc : Nat),
       items.foldl (fun acc item => if p item then acc + 1 else acc) acc =
@@ -1747,6 +1884,7 @@ private theorem foldl_countP_add {α : Type _} (p : α → Bool) :
       · simp [h, ih, Nat.add_comm, Nat.add_left_comm]
       · simp [h, ih]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private theorem pointPairClassCount_eq_countP (shadow : Shadow) (x y : Label) :
     pointPairClassCount shadow x y =
       List.countP
@@ -1776,6 +1914,7 @@ private theorem pointPairClassCount_eq_countP (shadow : Shadow) (x y : Label) :
   rw [hfun, foldl_countP_add]
   simp
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private theorem countP_le_allLabels_of_perm_sublist
     {p : Label → Bool} {assigned sorted : List Label}
     (hperm : assigned.Perm sorted) (hsub : sorted.Sublist allLabels) :
@@ -1783,6 +1922,7 @@ private theorem countP_le_allLabels_of_perm_sublist
   rw [hperm.countP_eq]
   exact hsub.countP_le
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 private theorem countP_le_allLabels_of_fragment_prefix
     {p : Label → Bool} {assigned : List Label}
     (hprefix : assigned ∈ fragmentSearchAssignedPrefixes) :
@@ -1821,6 +1961,7 @@ private theorem countP_le_allLabels_of_fragment_prefix
 
 /-- Full point-pair no-three bounds imply the prefix pair-count checker used
 by the generated fragment search. -/
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
     {shadow : Shadow} {assigned : List Label}
     (hcount : ∀ x y : Label,
@@ -1843,6 +1984,7 @@ theorem pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
 
 /-- The all-label pair-count check contains the same point-pair bounds as
 `noThreeOK`. -/
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
     {shadow : Shadow}
     (hcounts :
@@ -1865,6 +2007,7 @@ theorem noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
 
 /-- The full generated DFS prefix is a permutation of `allLabels`, so the
 prefix pair-count interface already contains the all-label no-three check. -/
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem noThreeOK_of_PrefixPairCountsOK
     {shadow : Shadow}
     (hcounts : PrefixPairCountsOK shadow) :
@@ -1898,6 +2041,7 @@ theorem noThreeOK_of_PrefixPairCountsOK
           pointPairHitByCenterMask center (shadow.centerMask center) (x, y))⟩
   exact of_decide_eq_true (hcountsFull _ hmem)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     {shadow : Shadow} {assigned : List Label}
     (hcounts : searchPairCountsOK shadow = true)
@@ -1909,6 +2053,7 @@ theorem pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     (p := fun assigned => pairCountsOK (shadowPairCountsForAssigned shadow assigned))
     (a := assigned) hcounts hprefix
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem pairCountsOK_shadowPairCountsForAssigned_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow} {assigned : List Label}
     (hvalid : isValidPinnedFragment sstar shadow = true)
@@ -1917,6 +2062,7 @@ theorem pairCountsOK_shadowPairCountsForAssigned_of_isValidPinnedFragment
   exact pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     (searchPairCountsOK_of_isValidPinnedFragment hvalid) hprefix
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem incrementPairCounts_eq_shadowPairCountsForAssigned_cons
     {shadow : Shadow} {center : Label} {assigned : List Label}
     {mask : Nat} {counts : List Nat}
@@ -1928,6 +2074,7 @@ theorem incrementPairCounts_eq_shadowPairCountsForAssigned_cons
   subst counts
   rfl
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem setCenterMask_eq_shadowMasksForAssigned_cons
     {shadow : Shadow} {center : Label} {assigned : List Label}
     {mask : Nat} {masks : List Nat}
@@ -1939,6 +2086,7 @@ theorem setCenterMask_eq_shadowMasksForAssigned_cons
   subst masks
   rfl
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem shadowMasksForFullFragmentSearchAssigned_eq_of_hasTenMasks
     {shadow : Shadow} (h : shadow.hasTenMasks = true) :
     shadowMasksForAssigned shadow fullFragmentSearchAssigned = shadow.masks := by
@@ -1980,6 +2128,7 @@ theorem shadowMasksForFullFragmentSearchAssigned_eq_of_hasTenMasks
           emptyShadowMasks, setCenterMask, setNth, Shadow.centerMask, Label.index]
       | cons m10 masks => simp at h
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem centerMaskOf_shadowMasksForAssigned_of_mem
     {shadow : Shadow} {assigned : List Label} {other : Label}
     (hprefix : assigned ∈ fragmentSearchAssignedPrefixes)
@@ -1993,6 +2142,7 @@ theorem centerMaskOf_shadowMasksForAssigned_of_mem
       simp [shadowMasksForAssigned, emptyShadowMasks, centerMaskOf, setCenterMask,
         setNth, Shadow.centerMask, Label.index] at hmem ⊢
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem mem_fragmentSearchAux_nil_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow} {assigned : List Label}
     {masks pairCounts : List Nat}
@@ -2003,6 +2153,7 @@ theorem mem_fragmentSearchAux_nil_of_isValidPinnedFragment
   unfold fragmentSearchAux
   simpa using hvalid
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem mem_fragmentSearchAux_cons
     {target masks pairCounts : List Nat} {sstar center : Label}
     {assigned : List Label} {candidates : List Nat}
@@ -2018,6 +2169,7 @@ theorem mem_fragmentSearchAux_cons
   unfold fragmentSearchAux
   exact List.mem_flatMap.mpr ⟨mask, hmem, by simpa [hsep, hcounts] using htail⟩
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem maskNormalized_of_candidateMaskOK
     {sstar center : Label} {mask : Nat}
     (h : candidateMaskOK sstar center mask = true) :
@@ -2025,6 +2177,7 @@ theorem maskNormalized_of_candidateMaskOK
   simp only [candidateMaskOK, Bool.and_eq_true] at h
   exact h.1.1.1.1.1.1.1.1
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem mem_allNormalizedMasks_of_maskNormalized {mask : Nat}
     (h : maskNormalized mask = true) :
     mask ∈ allNormalizedMasks := by
@@ -2033,12 +2186,14 @@ theorem mem_allNormalizedMasks_of_maskNormalized {mask : Nat}
   rw [allNormalizedMasks]
   exact List.mem_range.mpr (of_decide_eq_true hdec)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem candidateMasks_eq_filter_of_isSurplusStar
     {sstar center : Label} (hs : isSurplusStar sstar = true) :
     candidateMasks sstar center = candidateMasksByFilter sstar center := by
   cases sstar <;> simp [isSurplusStar] at hs
   all_goals cases center <;> native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem mem_candidateMasks_of_candidateMaskOK
     {sstar center : Label} {mask : Nat}
     (hs : isSurplusStar sstar = true)
@@ -2050,6 +2205,7 @@ theorem mem_candidateMasks_of_candidateMaskOK
     ⟨mem_allNormalizedMasks_of_maskNormalized
       (maskNormalized_of_candidateMaskOK h), h⟩
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem candidateMaskOK_of_isValidPinnedFragment
     {sstar center : Label} {shadow : Shadow}
     (h : isValidPinnedFragment sstar shadow = true) :
@@ -2063,12 +2219,14 @@ theorem candidateMaskOK_of_isValidPinnedFragment
     simp_all <;>
     native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem isSurplusStar_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow}
     (h : isValidPinnedFragment sstar shadow = true) :
     isSurplusStar sstar = true := by
   cases sstar <;> simp [isValidPinnedFragment, isSurplusStar] at h ⊢
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem mem_candidateMasks_of_isValidPinnedFragment
     {sstar center : Label} {shadow : Shadow}
     (h : isValidPinnedFragment sstar shadow = true) :
@@ -2077,6 +2235,7 @@ theorem mem_candidateMasks_of_isValidPinnedFragment
     (isSurplusStar_of_isValidPinnedFragment h)
     (candidateMaskOK_of_isValidPinnedFragment h)
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow} {center : Label}
     {assigned : List Label} {rest : List (Label × List Nat)}
@@ -2100,6 +2259,7 @@ theorem mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
       pairCountsOK_shadowPairCountsForAssigned_of_isValidPinnedFragment hvalid hnext
   · simpa [shadowMasksForAssigned, shadowPairCountsForAssigned] using htail
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem shadow_mem_fragmentSearchAux_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow}
     (hvalid : isValidPinnedFragment sstar shadow = true) :
@@ -2184,11 +2344,13 @@ theorem shadow_mem_fragmentSearchAux_of_isValidPinnedFragment
   simpa [fragmentSearchPlan, fragmentSearchOrder, shadowMasksForAssigned,
     shadowPairCountsForAssigned, emptyShadowMasks] using h0
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem mem_fragmentSearchSstars_of_isSurplusStar {sstar : Label}
     (h : isSurplusStar sstar = true) :
     sstar ∈ fragmentSearchSstars := by
   cases sstar <;> simp [isSurplusStar, fragmentSearchSstars] at h ⊢
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem computedFragmentShadowAcceptedBySearch_of_isValidPinnedFragment
     {sstar : Label} {shadow : Shadow}
     (hvalid : isValidPinnedFragment sstar shadow = true) :
@@ -2211,78 +2373,97 @@ theorem computedFragmentShadowAcceptedBySearch_of_isValidPinnedFragment
     hasTenMasks_of_isValidPinnedFragment hvalid,
     containsKey_eq_true_of_mem hkey]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem raw_fragment_search_entries_length :
     rawFragmentSearchEntries.length = 135 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem raw_fragment_search_entries_all_valid :
     rawFragmentSearchEntries.all validFragmentEntryOK = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem valid_fragment_shadow_keys_unique :
     keysUniqueAux validFragmentShadowKeys [] = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem raw_fragment_search_shadow_keys_unique :
     keysUniqueAux rawFragmentSearchShadowKeys [] = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem fragment_search_entries_eq_validFragmentEntries :
     fragmentSearchEntries = validFragmentEntries := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem fragment_search_shadow_keys_eq_validFragmentShadowKeys :
     fragmentSearchShadowKeys = validFragmentShadowKeys := by
   unfold fragmentSearchShadowKeys validFragmentShadowKeys
   rw [fragment_search_entries_eq_validFragmentEntries]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem valid_fragment_shadow_keys_eq_rowShadowKeys :
     validFragmentShadowKeys = rowShadowKeys := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem fragment_search_shadow_keys_eq_rowShadowKeys :
     fragmentSearchShadowKeys = rowShadowKeys := by
   rw [fragment_search_shadow_keys_eq_validFragmentShadowKeys,
     valid_fragment_shadow_keys_eq_rowShadowKeys]
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem valid_fragment_shadow_keys_all_in_bank :
     validFragmentShadowKeys.all (fun masks => shadowInBank { masks := masks }) = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem fragment_search_shadow_keys_all_in_bank :
     fragmentSearchShadowKeys.all (fun masks => shadowInBank { masks := masks }) = true := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem shadowInBank_of_fragmentShadowInEnumeration {shadow : Shadow}
     (h : fragmentShadowInEnumeration shadow = true) :
     shadowInBank shadow = true := by
   simpa [shadowInBank, fragmentShadowInEnumeration,
     valid_fragment_shadow_keys_eq_rowShadowKeys] using h
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem shadowInBank_of_fragmentShadowAcceptedBySearch {shadow : Shadow}
     (h : fragmentShadowAcceptedBySearch shadow = true) :
     shadowInBank shadow = true := by
   simpa [shadowInBank, fragmentShadowAcceptedBySearch,
     fragment_search_shadow_keys_eq_rowShadowKeys] using h
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_c_empty_count : countVerdict .cEmpty rows = 2 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_no_valid_real_count : countVerdict .noValidReal rows = 133 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_forced_uv_count : countForcedPairCode 1 rows = 127 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_forced_us1_count : countForcedPairCode 2 rows = 6 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_s1_count : countSstar .s1 rows = 41 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_s2_count : countSstar .s2 rows = 71 := by
   native_decide
 
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 theorem rows_s3_count : countSstar .s3 rows = 23 := by
   native_decide
 

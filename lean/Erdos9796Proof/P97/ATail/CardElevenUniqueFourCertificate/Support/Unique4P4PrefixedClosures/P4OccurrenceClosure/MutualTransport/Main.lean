@@ -19,13 +19,16 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Authenticated mutual-transport bridge declaration. -/
 def bridgeClauses : List (List Int) := bridgeEntries.map BridgeEntry.clause
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeClauses_length : bridgeClauses.length = 392 := by
   simp [bridgeClauses, bridgeEntries_length]
 
 /-- Every entry in the authenticated P4 window is semantically satisfied by
 an exact-two core under any source-faithful index transport. -/
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeEntries_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) :
     ∀ e ∈ bridgeEntries, clauseSat v e.clause :=
@@ -34,6 +37,7 @@ theorem bridgeEntries_sat (Q : ExactTwoBoundaryCore R distribution)
 /-- The exact 392 compact clauses in the ledger slice are semantically
 satisfied.  This is a source-semantics bridge only; it does not prove an
 equality with the external DIMACS file or any global UNSAT conclusion. -/
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeClauses_sat (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) :
     ∀ clause ∈ bridgeClauses, clauseSat v clause := by

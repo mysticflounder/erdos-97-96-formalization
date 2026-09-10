@@ -32,12 +32,14 @@ variable {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
   {distribution : ExactTwoStrictHitDistribution R}
   {profile : S.surplusCap.card = 5 ∧ S.oppCap1.card = 4 ∧ S.oppCap2.card = 5}
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeClauses_sat_direct
     (P : P4DirectBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P.core directIndex v) :
     ∀ clause ∈ bridgeClauses, clauseSat v clause :=
   bridgeClauses_sat P.core directIndex hv
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeClauses_sat_mirror
     (P : P4MirrorBoundaryPacket R profile distribution)
     {v : Nat → Prop} (hv : CoreValAgreement P.core mirrorIndex v) :

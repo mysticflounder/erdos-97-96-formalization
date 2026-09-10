@@ -243,1392 +243,1624 @@ namespace CompactWindowedRupReplay.Shard2
 
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- Composes the replay steps through window W0001. -/
 theorem throughW0001 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0228.text) :=
   W0001.sound
 
+/-- Composes the replay steps through window W0002. -/
 theorem throughW0002 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0229.text) :=
   composeRebaseCompact throughW0001 W0002.sound
 
+/-- Composes the replay steps through window W0003. -/
 theorem throughW0003 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0230.text) :=
   composeRebaseCompact throughW0002 W0003.sound
 
+/-- Composes the replay steps through window W0004. -/
 theorem throughW0004 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0231.text) :=
   composeRebaseCompact throughW0003 W0004.sound
 
+/-- Composes the replay steps through window W0005. -/
 theorem throughW0005 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0232.text) :=
   composeRebaseCompact throughW0004 W0005.sound
 
+/-- Composes the replay steps through window W0006. -/
 theorem throughW0006 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0233.text) :=
   composeRebaseCompact throughW0005 W0006.sound
 
+/-- Composes the replay steps through window W0007. -/
 theorem throughW0007 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0234.text) :=
   composeRebaseCompact throughW0006 W0007.sound
 
+/-- Composes the replay steps through window W0008. -/
 theorem throughW0008 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0235.text) :=
   composeRebaseCompact throughW0007 W0008.sound
 
+/-- Composes the replay steps through window W0009. -/
 theorem throughW0009 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0236.text) :=
   composeRebaseCompact throughW0008 W0009.sound
 
+/-- Composes the replay steps through window W0010. -/
 theorem throughW0010 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0237.text) :=
   composeRebaseCompact throughW0009 W0010.sound
 
+/-- Composes the replay steps through window W0011. -/
 theorem throughW0011 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0238.text) :=
   composeRebaseCompact throughW0010 W0011.sound
 
+/-- Composes the replay steps through window W0012. -/
 theorem throughW0012 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0239.text) :=
   composeRebaseCompact throughW0011 W0012.sound
 
+/-- Composes the replay steps through window W0013. -/
 theorem throughW0013 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0240.text) :=
   composeRebaseCompact throughW0012 W0013.sound
 
+/-- Composes the replay steps through window W0014. -/
 theorem throughW0014 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0241.text) :=
   composeRebaseCompact throughW0013 W0014.sound
 
+/-- Composes the replay steps through window W0015. -/
 theorem throughW0015 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0242.text) :=
   composeRebaseCompact throughW0014 W0015.sound
 
+/-- Composes the replay steps through window W0016. -/
 theorem throughW0016 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0243.text) :=
   composeRebaseCompact throughW0015 W0016.sound
 
+/-- Composes the replay steps through window W0017. -/
 theorem throughW0017 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0244.text) :=
   composeRebaseCompact throughW0016 W0017.sound
 
+/-- Composes the replay steps through window W0018. -/
 theorem throughW0018 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0245.text) :=
   composeRebaseCompact throughW0017 W0018.sound
 
+/-- Composes the replay steps through window W0019. -/
 theorem throughW0019 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0246.text) :=
   composeRebaseCompact throughW0018 W0019.sound
 
+/-- Composes the replay steps through window W0020. -/
 theorem throughW0020 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0247.text) :=
   composeRebaseCompact throughW0019 W0020.sound
 
+/-- Composes the replay steps through window W0021. -/
 theorem throughW0021 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0248.text) :=
   composeRebaseCompact throughW0020 W0021.sound
 
+/-- Composes the replay steps through window W0022. -/
 theorem throughW0022 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0249.text) :=
   composeRebaseCompact throughW0021 W0022.sound
 
+/-- Composes the replay steps through window W0023. -/
 theorem throughW0023 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0250.text) :=
   composeRebaseCompact throughW0022 W0023.sound
 
+/-- Composes the replay steps through window W0024. -/
 theorem throughW0024 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0251.text) :=
   composeRebaseCompact throughW0023 W0024.sound
 
+/-- Composes the replay steps through window W0025. -/
 theorem throughW0025 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0252.text) :=
   composeRebaseCompact throughW0024 W0025.sound
 
+/-- Composes the replay steps through window W0026. -/
 theorem throughW0026 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0253.text) :=
   composeRebaseCompact throughW0025 W0026.sound
 
+/-- Composes the replay steps through window W0027. -/
 theorem throughW0027 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0254.text) :=
   composeRebaseCompact throughW0026 W0027.sound
 
+/-- Composes the replay steps through window W0028. -/
 theorem throughW0028 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0255.text) :=
   composeRebaseCompact throughW0027 W0028.sound
 
+/-- Composes the replay steps through window W0029. -/
 theorem throughW0029 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0256.text) :=
   composeRebaseCompact throughW0028 W0029.sound
 
+/-- Composes the replay steps through window W0030. -/
 theorem throughW0030 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0257.text) :=
   composeRebaseCompact throughW0029 W0030.sound
 
+/-- Composes the replay steps through window W0031. -/
 theorem throughW0031 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0258.text) :=
   composeRebaseCompact throughW0030 W0031.sound
 
+/-- Composes the replay steps through window W0032. -/
 theorem throughW0032 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0259.text) :=
   composeRebaseCompact throughW0031 W0032.sound
 
+/-- Composes the replay steps through window W0033. -/
 theorem throughW0033 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0260.text) :=
   composeRebaseCompact throughW0032 W0033.sound
 
+/-- Composes the replay steps through window W0034. -/
 theorem throughW0034 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0261.text) :=
   composeRebaseCompact throughW0033 W0034.sound
 
+/-- Composes the replay steps through window W0035. -/
 theorem throughW0035 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0262.text) :=
   composeRebaseCompact throughW0034 W0035.sound
 
+/-- Composes the replay steps through window W0036. -/
 theorem throughW0036 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0263.text) :=
   composeRebaseCompact throughW0035 W0036.sound
 
+/-- Composes the replay steps through window W0037. -/
 theorem throughW0037 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0264.text) :=
   composeRebaseCompact throughW0036 W0037.sound
 
+/-- Composes the replay steps through window W0038. -/
 theorem throughW0038 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0265.text) :=
   composeRebaseCompact throughW0037 W0038.sound
 
+/-- Composes the replay steps through window W0039. -/
 theorem throughW0039 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0266.text) :=
   composeRebaseCompact throughW0038 W0039.sound
 
+/-- Composes the replay steps through window W0040. -/
 theorem throughW0040 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0267.text) :=
   composeRebaseCompact throughW0039 W0040.sound
 
+/-- Composes the replay steps through window W0041. -/
 theorem throughW0041 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0268.text) :=
   composeRebaseCompact throughW0040 W0041.sound
 
+/-- Composes the replay steps through window W0042. -/
 theorem throughW0042 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0269.text) :=
   composeRebaseCompact throughW0041 W0042.sound
 
+/-- Composes the replay steps through window W0043. -/
 theorem throughW0043 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0270.text) :=
   composeRebaseCompact throughW0042 W0043.sound
 
+/-- Composes the replay steps through window W0044. -/
 theorem throughW0044 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0271.text) :=
   composeRebaseCompact throughW0043 W0044.sound
 
+/-- Composes the replay steps through window W0045. -/
 theorem throughW0045 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0272.text) :=
   composeRebaseCompact throughW0044 W0045.sound
 
+/-- Composes the replay steps through window W0046. -/
 theorem throughW0046 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0273.text) :=
   composeRebaseCompact throughW0045 W0046.sound
 
+/-- Composes the replay steps through window W0047. -/
 theorem throughW0047 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0274.text) :=
   composeRebaseCompact throughW0046 W0047.sound
 
+/-- Composes the replay steps through window W0048. -/
 theorem throughW0048 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0275.text) :=
   composeRebaseCompact throughW0047 W0048.sound
 
+/-- Composes the replay steps through window W0049. -/
 theorem throughW0049 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0276.text) :=
   composeRebaseCompact throughW0048 W0049.sound
 
+/-- Composes the replay steps through window W0050. -/
 theorem throughW0050 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0277.text) :=
   composeRebaseCompact throughW0049 W0050.sound
 
+/-- Composes the replay steps through window W0051. -/
 theorem throughW0051 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0278.text) :=
   composeRebaseCompact throughW0050 W0051.sound
 
+/-- Composes the replay steps through window W0052. -/
 theorem throughW0052 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0279.text) :=
   composeRebaseCompact throughW0051 W0052.sound
 
+/-- Composes the replay steps through window W0053. -/
 theorem throughW0053 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0280.text) :=
   composeRebaseCompact throughW0052 W0053.sound
 
+/-- Composes the replay steps through window W0054. -/
 theorem throughW0054 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0281.text) :=
   composeRebaseCompact throughW0053 W0054.sound
 
+/-- Composes the replay steps through window W0055. -/
 theorem throughW0055 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0282.text) :=
   composeRebaseCompact throughW0054 W0055.sound
 
+/-- Composes the replay steps through window W0056. -/
 theorem throughW0056 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0283.text) :=
   composeRebaseCompact throughW0055 W0056.sound
 
+/-- Composes the replay steps through window W0057. -/
 theorem throughW0057 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0284.text) :=
   composeRebaseCompact throughW0056 W0057.sound
 
+/-- Composes the replay steps through window W0058. -/
 theorem throughW0058 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0285.text) :=
   composeRebaseCompact throughW0057 W0058.sound
 
+/-- Composes the replay steps through window W0059. -/
 theorem throughW0059 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0286.text) :=
   composeRebaseCompact throughW0058 W0059.sound
 
+/-- Composes the replay steps through window W0060. -/
 theorem throughW0060 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0287.text) :=
   composeRebaseCompact throughW0059 W0060.sound
 
+/-- Composes the replay steps through window W0061. -/
 theorem throughW0061 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0288.text) :=
   composeRebaseCompact throughW0060 W0061.sound
 
+/-- Composes the replay steps through window W0062. -/
 theorem throughW0062 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0289.text) :=
   composeRebaseCompact throughW0061 W0062.sound
 
+/-- Composes the replay steps through window W0063. -/
 theorem throughW0063 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0290.text) :=
   composeRebaseCompact throughW0062 W0063.sound
 
+/-- Composes the replay steps through window W0064. -/
 theorem throughW0064 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0291.text) :=
   composeRebaseCompact throughW0063 W0064.sound
 
+/-- Composes the replay steps through window W0065. -/
 theorem throughW0065 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0292.text) :=
   composeRebaseCompact throughW0064 W0065.sound
 
+/-- Composes the replay steps through window W0066. -/
 theorem throughW0066 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0293.text) :=
   composeRebaseCompact throughW0065 W0066.sound
 
+/-- Composes the replay steps through window W0067. -/
 theorem throughW0067 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0294.text) :=
   composeRebaseCompact throughW0066 W0067.sound
 
+/-- Composes the replay steps through window W0068. -/
 theorem throughW0068 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0295.text) :=
   composeRebaseCompact throughW0067 W0068.sound
 
+/-- Composes the replay steps through window W0069. -/
 theorem throughW0069 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0296.text) :=
   composeRebaseCompact throughW0068 W0069.sound
 
+/-- Composes the replay steps through window W0070. -/
 theorem throughW0070 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0297.text) :=
   composeRebaseCompact throughW0069 W0070.sound
 
+/-- Composes the replay steps through window W0071. -/
 theorem throughW0071 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0298.text) :=
   composeRebaseCompact throughW0070 W0071.sound
 
+/-- Composes the replay steps through window W0072. -/
 theorem throughW0072 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0299.text) :=
   composeRebaseCompact throughW0071 W0072.sound
 
+/-- Composes the replay steps through window W0073. -/
 theorem throughW0073 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0300.text) :=
   composeRebaseCompact throughW0072 W0073.sound
 
+/-- Composes the replay steps through window W0074. -/
 theorem throughW0074 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0301.text) :=
   composeRebaseCompact throughW0073 W0074.sound
 
+/-- Composes the replay steps through window W0075. -/
 theorem throughW0075 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0302.text) :=
   composeRebaseCompact throughW0074 W0075.sound
 
+/-- Composes the replay steps through window W0076. -/
 theorem throughW0076 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0303.text) :=
   composeRebaseCompact throughW0075 W0076.sound
 
+/-- Composes the replay steps through window W0077. -/
 theorem throughW0077 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0304.text) :=
   composeRebaseCompact throughW0076 W0077.sound
 
+/-- Composes the replay steps through window W0078. -/
 theorem throughW0078 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0305.text) :=
   composeRebaseCompact throughW0077 W0078.sound
 
+/-- Composes the replay steps through window W0079. -/
 theorem throughW0079 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0306.text) :=
   composeRebaseCompact throughW0078 W0079.sound
 
+/-- Composes the replay steps through window W0080. -/
 theorem throughW0080 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0307.text) :=
   composeRebaseCompact throughW0079 W0080.sound
 
+/-- Composes the replay steps through window W0081. -/
 theorem throughW0081 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0308.text) :=
   composeRebaseCompact throughW0080 W0081.sound
 
+/-- Composes the replay steps through window W0082. -/
 theorem throughW0082 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0309.text) :=
   composeRebaseCompact throughW0081 W0082.sound
 
+/-- Composes the replay steps through window W0083. -/
 theorem throughW0083 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0310.text) :=
   composeRebaseCompact throughW0082 W0083.sound
 
+/-- Composes the replay steps through window W0084. -/
 theorem throughW0084 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0311.text) :=
   composeRebaseCompact throughW0083 W0084.sound
 
+/-- Composes the replay steps through window W0085. -/
 theorem throughW0085 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0312.text) :=
   composeRebaseCompact throughW0084 W0085.sound
 
+/-- Composes the replay steps through window W0086. -/
 theorem throughW0086 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0313.text) :=
   composeRebaseCompact throughW0085 W0086.sound
 
+/-- Composes the replay steps through window W0087. -/
 theorem throughW0087 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0314.text) :=
   composeRebaseCompact throughW0086 W0087.sound
 
+/-- Composes the replay steps through window W0088. -/
 theorem throughW0088 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0315.text) :=
   composeRebaseCompact throughW0087 W0088.sound
 
+/-- Composes the replay steps through window W0089. -/
 theorem throughW0089 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0316.text) :=
   composeRebaseCompact throughW0088 W0089.sound
 
+/-- Composes the replay steps through window W0090. -/
 theorem throughW0090 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0317.text) :=
   composeRebaseCompact throughW0089 W0090.sound
 
+/-- Composes the replay steps through window W0091. -/
 theorem throughW0091 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0318.text) :=
   composeRebaseCompact throughW0090 W0091.sound
 
+/-- Composes the replay steps through window W0092. -/
 theorem throughW0092 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0319.text) :=
   composeRebaseCompact throughW0091 W0092.sound
 
+/-- Composes the replay steps through window W0093. -/
 theorem throughW0093 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0320.text) :=
   composeRebaseCompact throughW0092 W0093.sound
 
+/-- Composes the replay steps through window W0094. -/
 theorem throughW0094 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0321.text) :=
   composeRebaseCompact throughW0093 W0094.sound
 
+/-- Composes the replay steps through window W0095. -/
 theorem throughW0095 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0322.text) :=
   composeRebaseCompact throughW0094 W0095.sound
 
+/-- Composes the replay steps through window W0096. -/
 theorem throughW0096 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0323.text) :=
   composeRebaseCompact throughW0095 W0096.sound
 
+/-- Composes the replay steps through window W0097. -/
 theorem throughW0097 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0324.text) :=
   composeRebaseCompact throughW0096 W0097.sound
 
+/-- Composes the replay steps through window W0098. -/
 theorem throughW0098 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0325.text) :=
   composeRebaseCompact throughW0097 W0098.sound
 
+/-- Composes the replay steps through window W0099. -/
 theorem throughW0099 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0326.text) :=
   composeRebaseCompact throughW0098 W0099.sound
 
+/-- Composes the replay steps through window W0100. -/
 theorem throughW0100 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0327.text) :=
   composeRebaseCompact throughW0099 W0100.sound
 
+/-- Composes the replay steps through window W0101. -/
 theorem throughW0101 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0328.text) :=
   composeRebaseCompact throughW0100 W0101.sound
 
+/-- Composes the replay steps through window W0102. -/
 theorem throughW0102 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0329.text) :=
   composeRebaseCompact throughW0101 W0102.sound
 
+/-- Composes the replay steps through window W0103. -/
 theorem throughW0103 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0330.text) :=
   composeRebaseCompact throughW0102 W0103.sound
 
+/-- Composes the replay steps through window W0104. -/
 theorem throughW0104 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0331.text) :=
   composeRebaseCompact throughW0103 W0104.sound
 
+/-- Composes the replay steps through window W0105. -/
 theorem throughW0105 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0332.text) :=
   composeRebaseCompact throughW0104 W0105.sound
 
+/-- Composes the replay steps through window W0106. -/
 theorem throughW0106 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0333.text) :=
   composeRebaseCompact throughW0105 W0106.sound
 
+/-- Composes the replay steps through window W0107. -/
 theorem throughW0107 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0334.text) :=
   composeRebaseCompact throughW0106 W0107.sound
 
+/-- Composes the replay steps through window W0108. -/
 theorem throughW0108 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0335.text) :=
   composeRebaseCompact throughW0107 W0108.sound
 
+/-- Composes the replay steps through window W0109. -/
 theorem throughW0109 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0336.text) :=
   composeRebaseCompact throughW0108 W0109.sound
 
+/-- Composes the replay steps through window W0110. -/
 theorem throughW0110 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0337.text) :=
   composeRebaseCompact throughW0109 W0110.sound
 
+/-- Composes the replay steps through window W0111. -/
 theorem throughW0111 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0338.text) :=
   composeRebaseCompact throughW0110 W0111.sound
 
+/-- Composes the replay steps through window W0112. -/
 theorem throughW0112 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0339.text) :=
   composeRebaseCompact throughW0111 W0112.sound
 
+/-- Composes the replay steps through window W0113. -/
 theorem throughW0113 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0340.text) :=
   composeRebaseCompact throughW0112 W0113.sound
 
+/-- Composes the replay steps through window W0114. -/
 theorem throughW0114 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0341.text) :=
   composeRebaseCompact throughW0113 W0114.sound
 
+/-- Composes the replay steps through window W0115. -/
 theorem throughW0115 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0342.text) :=
   composeRebaseCompact throughW0114 W0115.sound
 
+/-- Composes the replay steps through window W0116. -/
 theorem throughW0116 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0343.text) :=
   composeRebaseCompact throughW0115 W0116.sound
 
+/-- Composes the replay steps through window W0117. -/
 theorem throughW0117 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0344.text) :=
   composeRebaseCompact throughW0116 W0117.sound
 
+/-- Composes the replay steps through window W0118. -/
 theorem throughW0118 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0345.text) :=
   composeRebaseCompact throughW0117 W0118.sound
 
+/-- Composes the replay steps through window W0119. -/
 theorem throughW0119 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0346.text) :=
   composeRebaseCompact throughW0118 W0119.sound
 
+/-- Composes the replay steps through window W0120. -/
 theorem throughW0120 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0347.text) :=
   composeRebaseCompact throughW0119 W0120.sound
 
+/-- Composes the replay steps through window W0121. -/
 theorem throughW0121 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0348.text) :=
   composeRebaseCompact throughW0120 W0121.sound
 
+/-- Composes the replay steps through window W0122. -/
 theorem throughW0122 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0349.text) :=
   composeRebaseCompact throughW0121 W0122.sound
 
+/-- Composes the replay steps through window W0123. -/
 theorem throughW0123 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0350.text) :=
   composeRebaseCompact throughW0122 W0123.sound
 
+/-- Composes the replay steps through window W0124. -/
 theorem throughW0124 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0351.text) :=
   composeRebaseCompact throughW0123 W0124.sound
 
+/-- Composes the replay steps through window W0125. -/
 theorem throughW0125 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0352.text) :=
   composeRebaseCompact throughW0124 W0125.sound
 
+/-- Composes the replay steps through window W0126. -/
 theorem throughW0126 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0353.text) :=
   composeRebaseCompact throughW0125 W0126.sound
 
+/-- Composes the replay steps through window W0127. -/
 theorem throughW0127 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0354.text) :=
   composeRebaseCompact throughW0126 W0127.sound
 
+/-- Composes the replay steps through window W0128. -/
 theorem throughW0128 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0355.text) :=
   composeRebaseCompact throughW0127 W0128.sound
 
+/-- Composes the replay steps through window W0129. -/
 theorem throughW0129 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0356.text) :=
   composeRebaseCompact throughW0128 W0129.sound
 
+/-- Composes the replay steps through window W0130. -/
 theorem throughW0130 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0357.text) :=
   composeRebaseCompact throughW0129 W0130.sound
 
+/-- Composes the replay steps through window W0131. -/
 theorem throughW0131 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0358.text) :=
   composeRebaseCompact throughW0130 W0131.sound
 
+/-- Composes the replay steps through window W0132. -/
 theorem throughW0132 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0359.text) :=
   composeRebaseCompact throughW0131 W0132.sound
 
+/-- Composes the replay steps through window W0133. -/
 theorem throughW0133 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0360.text) :=
   composeRebaseCompact throughW0132 W0133.sound
 
+/-- Composes the replay steps through window W0134. -/
 theorem throughW0134 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0361.text) :=
   composeRebaseCompact throughW0133 W0134.sound
 
+/-- Composes the replay steps through window W0135. -/
 theorem throughW0135 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0362.text) :=
   composeRebaseCompact throughW0134 W0135.sound
 
+/-- Composes the replay steps through window W0136. -/
 theorem throughW0136 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0363.text) :=
   composeRebaseCompact throughW0135 W0136.sound
 
+/-- Composes the replay steps through window W0137. -/
 theorem throughW0137 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0364.text) :=
   composeRebaseCompact throughW0136 W0137.sound
 
+/-- Composes the replay steps through window W0138. -/
 theorem throughW0138 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0365.text) :=
   composeRebaseCompact throughW0137 W0138.sound
 
+/-- Composes the replay steps through window W0139. -/
 theorem throughW0139 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0366.text) :=
   composeRebaseCompact throughW0138 W0139.sound
 
+/-- Composes the replay steps through window W0140. -/
 theorem throughW0140 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0367.text) :=
   composeRebaseCompact throughW0139 W0140.sound
 
+/-- Composes the replay steps through window W0141. -/
 theorem throughW0141 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0368.text) :=
   composeRebaseCompact throughW0140 W0141.sound
 
+/-- Composes the replay steps through window W0142. -/
 theorem throughW0142 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0369.text) :=
   composeRebaseCompact throughW0141 W0142.sound
 
+/-- Composes the replay steps through window W0143. -/
 theorem throughW0143 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0370.text) :=
   composeRebaseCompact throughW0142 W0143.sound
 
+/-- Composes the replay steps through window W0144. -/
 theorem throughW0144 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0371.text) :=
   composeRebaseCompact throughW0143 W0144.sound
 
+/-- Composes the replay steps through window W0145. -/
 theorem throughW0145 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0372.text) :=
   composeRebaseCompact throughW0144 W0145.sound
 
+/-- Composes the replay steps through window W0146. -/
 theorem throughW0146 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0373.text) :=
   composeRebaseCompact throughW0145 W0146.sound
 
+/-- Composes the replay steps through window W0147. -/
 theorem throughW0147 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0374.text) :=
   composeRebaseCompact throughW0146 W0147.sound
 
+/-- Composes the replay steps through window W0148. -/
 theorem throughW0148 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0375.text) :=
   composeRebaseCompact throughW0147 W0148.sound
 
+/-- Composes the replay steps through window W0149. -/
 theorem throughW0149 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0376.text) :=
   composeRebaseCompact throughW0148 W0149.sound
 
+/-- Composes the replay steps through window W0150. -/
 theorem throughW0150 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0377.text) :=
   composeRebaseCompact throughW0149 W0150.sound
 
+/-- Composes the replay steps through window W0151. -/
 theorem throughW0151 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0378.text) :=
   composeRebaseCompact throughW0150 W0151.sound
 
+/-- Composes the replay steps through window W0152. -/
 theorem throughW0152 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0379.text) :=
   composeRebaseCompact throughW0151 W0152.sound
 
+/-- Composes the replay steps through window W0153. -/
 theorem throughW0153 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0380.text) :=
   composeRebaseCompact throughW0152 W0153.sound
 
+/-- Composes the replay steps through window W0154. -/
 theorem throughW0154 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0381.text) :=
   composeRebaseCompact throughW0153 W0154.sound
 
+/-- Composes the replay steps through window W0155. -/
 theorem throughW0155 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0382.text) :=
   composeRebaseCompact throughW0154 W0155.sound
 
+/-- Composes the replay steps through window W0156. -/
 theorem throughW0156 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0383.text) :=
   composeRebaseCompact throughW0155 W0156.sound
 
+/-- Composes the replay steps through window W0157. -/
 theorem throughW0157 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0384.text) :=
   composeRebaseCompact throughW0156 W0157.sound
 
+/-- Composes the replay steps through window W0158. -/
 theorem throughW0158 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0385.text) :=
   composeRebaseCompact throughW0157 W0158.sound
 
+/-- Composes the replay steps through window W0159. -/
 theorem throughW0159 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0386.text) :=
   composeRebaseCompact throughW0158 W0159.sound
 
+/-- Composes the replay steps through window W0160. -/
 theorem throughW0160 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0387.text) :=
   composeRebaseCompact throughW0159 W0160.sound
 
+/-- Composes the replay steps through window W0161. -/
 theorem throughW0161 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0388.text) :=
   composeRebaseCompact throughW0160 W0161.sound
 
+/-- Composes the replay steps through window W0162. -/
 theorem throughW0162 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0389.text) :=
   composeRebaseCompact throughW0161 W0162.sound
 
+/-- Composes the replay steps through window W0163. -/
 theorem throughW0163 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0390.text) :=
   composeRebaseCompact throughW0162 W0163.sound
 
+/-- Composes the replay steps through window W0164. -/
 theorem throughW0164 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0391.text) :=
   composeRebaseCompact throughW0163 W0164.sound
 
+/-- Composes the replay steps through window W0165. -/
 theorem throughW0165 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0392.text) :=
   composeRebaseCompact throughW0164 W0165.sound
 
+/-- Composes the replay steps through window W0166. -/
 theorem throughW0166 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0393.text) :=
   composeRebaseCompact throughW0165 W0166.sound
 
+/-- Composes the replay steps through window W0167. -/
 theorem throughW0167 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0394.text) :=
   composeRebaseCompact throughW0166 W0167.sound
 
+/-- Composes the replay steps through window W0168. -/
 theorem throughW0168 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0395.text) :=
   composeRebaseCompact throughW0167 W0168.sound
 
+/-- Composes the replay steps through window W0169. -/
 theorem throughW0169 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0396.text) :=
   composeRebaseCompact throughW0168 W0169.sound
 
+/-- Composes the replay steps through window W0170. -/
 theorem throughW0170 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0397.text) :=
   composeRebaseCompact throughW0169 W0170.sound
 
+/-- Composes the replay steps through window W0171. -/
 theorem throughW0171 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0398.text) :=
   composeRebaseCompact throughW0170 W0171.sound
 
+/-- Composes the replay steps through window W0172. -/
 theorem throughW0172 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0399.text) :=
   composeRebaseCompact throughW0171 W0172.sound
 
+/-- Composes the replay steps through window W0173. -/
 theorem throughW0173 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0400.text) :=
   composeRebaseCompact throughW0172 W0173.sound
 
+/-- Composes the replay steps through window W0174. -/
 theorem throughW0174 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0401.text) :=
   composeRebaseCompact throughW0173 W0174.sound
 
+/-- Composes the replay steps through window W0175. -/
 theorem throughW0175 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0402.text) :=
   composeRebaseCompact throughW0174 W0175.sound
 
+/-- Composes the replay steps through window W0176. -/
 theorem throughW0176 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0403.text) :=
   composeRebaseCompact throughW0175 W0176.sound
 
+/-- Composes the replay steps through window W0177. -/
 theorem throughW0177 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0404.text) :=
   composeRebaseCompact throughW0176 W0177.sound
 
+/-- Composes the replay steps through window W0178. -/
 theorem throughW0178 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0405.text) :=
   composeRebaseCompact throughW0177 W0178.sound
 
+/-- Composes the replay steps through window W0179. -/
 theorem throughW0179 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0406.text) :=
   composeRebaseCompact throughW0178 W0179.sound
 
+/-- Composes the replay steps through window W0180. -/
 theorem throughW0180 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0407.text) :=
   composeRebaseCompact throughW0179 W0180.sound
 
+/-- Composes the replay steps through window W0181. -/
 theorem throughW0181 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0408.text) :=
   composeRebaseCompact throughW0180 W0181.sound
 
+/-- Composes the replay steps through window W0182. -/
 theorem throughW0182 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0409.text) :=
   composeRebaseCompact throughW0181 W0182.sound
 
+/-- Composes the replay steps through window W0183. -/
 theorem throughW0183 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0410.text) :=
   composeRebaseCompact throughW0182 W0183.sound
 
+/-- Composes the replay steps through window W0184. -/
 theorem throughW0184 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0411.text) :=
   composeRebaseCompact throughW0183 W0184.sound
 
+/-- Composes the replay steps through window W0185. -/
 theorem throughW0185 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0412.text) :=
   composeRebaseCompact throughW0184 W0185.sound
 
+/-- Composes the replay steps through window W0186. -/
 theorem throughW0186 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0413.text) :=
   composeRebaseCompact throughW0185 W0186.sound
 
+/-- Composes the replay steps through window W0187. -/
 theorem throughW0187 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0414.text) :=
   composeRebaseCompact throughW0186 W0187.sound
 
+/-- Composes the replay steps through window W0188. -/
 theorem throughW0188 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0415.text) :=
   composeRebaseCompact throughW0187 W0188.sound
 
+/-- Composes the replay steps through window W0189. -/
 theorem throughW0189 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0416.text) :=
   composeRebaseCompact throughW0188 W0189.sound
 
+/-- Composes the replay steps through window W0190. -/
 theorem throughW0190 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0417.text) :=
   composeRebaseCompact throughW0189 W0190.sound
 
+/-- Composes the replay steps through window W0191. -/
 theorem throughW0191 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0418.text) :=
   composeRebaseCompact throughW0190 W0191.sound
 
+/-- Composes the replay steps through window W0192. -/
 theorem throughW0192 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0419.text) :=
   composeRebaseCompact throughW0191 W0192.sound
 
+/-- Composes the replay steps through window W0193. -/
 theorem throughW0193 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0420.text) :=
   composeRebaseCompact throughW0192 W0193.sound
 
+/-- Composes the replay steps through window W0194. -/
 theorem throughW0194 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0421.text) :=
   composeRebaseCompact throughW0193 W0194.sound
 
+/-- Composes the replay steps through window W0195. -/
 theorem throughW0195 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0422.text) :=
   composeRebaseCompact throughW0194 W0195.sound
 
+/-- Composes the replay steps through window W0196. -/
 theorem throughW0196 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0423.text) :=
   composeRebaseCompact throughW0195 W0196.sound
 
+/-- Composes the replay steps through window W0197. -/
 theorem throughW0197 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0424.text) :=
   composeRebaseCompact throughW0196 W0197.sound
 
+/-- Composes the replay steps through window W0198. -/
 theorem throughW0198 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0425.text) :=
   composeRebaseCompact throughW0197 W0198.sound
 
+/-- Composes the replay steps through window W0199. -/
 theorem throughW0199 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0426.text) :=
   composeRebaseCompact throughW0198 W0199.sound
 
+/-- Composes the replay steps through window W0200. -/
 theorem throughW0200 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0427.text) :=
   composeRebaseCompact throughW0199 W0200.sound
 
+/-- Composes the replay steps through window W0201. -/
 theorem throughW0201 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0428.text) :=
   composeRebaseCompact throughW0200 W0201.sound
 
+/-- Composes the replay steps through window W0202. -/
 theorem throughW0202 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0429.text) :=
   composeRebaseCompact throughW0201 W0202.sound
 
+/-- Composes the replay steps through window W0203. -/
 theorem throughW0203 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0430.text) :=
   composeRebaseCompact throughW0202 W0203.sound
 
+/-- Composes the replay steps through window W0204. -/
 theorem throughW0204 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0431.text) :=
   composeRebaseCompact throughW0203 W0204.sound
 
+/-- Composes the replay steps through window W0205. -/
 theorem throughW0205 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0432.text) :=
   composeRebaseCompact throughW0204 W0205.sound
 
+/-- Composes the replay steps through window W0206. -/
 theorem throughW0206 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0433.text) :=
   composeRebaseCompact throughW0205 W0206.sound
 
+/-- Composes the replay steps through window W0207. -/
 theorem throughW0207 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0434.text) :=
   composeRebaseCompact throughW0206 W0207.sound
 
+/-- Composes the replay steps through window W0208. -/
 theorem throughW0208 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0435.text) :=
   composeRebaseCompact throughW0207 W0208.sound
 
+/-- Composes the replay steps through window W0209. -/
 theorem throughW0209 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0436.text) :=
   composeRebaseCompact throughW0208 W0209.sound
 
+/-- Composes the replay steps through window W0210. -/
 theorem throughW0210 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0437.text) :=
   composeRebaseCompact throughW0209 W0210.sound
 
+/-- Composes the replay steps through window W0211. -/
 theorem throughW0211 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0438.text) :=
   composeRebaseCompact throughW0210 W0211.sound
 
+/-- Composes the replay steps through window W0212. -/
 theorem throughW0212 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0439.text) :=
   composeRebaseCompact throughW0211 W0212.sound
 
+/-- Composes the replay steps through window W0213. -/
 theorem throughW0213 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0440.text) :=
   composeRebaseCompact throughW0212 W0213.sound
 
+/-- Composes the replay steps through window W0214. -/
 theorem throughW0214 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0441.text) :=
   composeRebaseCompact throughW0213 W0214.sound
 
+/-- Composes the replay steps through window W0215. -/
 theorem throughW0215 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0442.text) :=
   composeRebaseCompact throughW0214 W0215.sound
 
+/-- Composes the replay steps through window W0216. -/
 theorem throughW0216 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0443.text) :=
   composeRebaseCompact throughW0215 W0216.sound
 
+/-- Composes the replay steps through window W0217. -/
 theorem throughW0217 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0444.text) :=
   composeRebaseCompact throughW0216 W0217.sound
 
+/-- Composes the replay steps through window W0218. -/
 theorem throughW0218 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0445.text) :=
   composeRebaseCompact throughW0217 W0218.sound
 
+/-- Composes the replay steps through window W0219. -/
 theorem throughW0219 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0446.text) :=
   composeRebaseCompact throughW0218 W0219.sound
 
+/-- Composes the replay steps through window W0220. -/
 theorem throughW0220 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0447.text) :=
   composeRebaseCompact throughW0219 W0220.sound
 
+/-- Composes the replay steps through window W0221. -/
 theorem throughW0221 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0448.text) :=
   composeRebaseCompact throughW0220 W0221.sound
 
+/-- Composes the replay steps through window W0222. -/
 theorem throughW0222 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0449.text) :=
   composeRebaseCompact throughW0221 W0222.sound
 
+/-- Composes the replay steps through window W0223. -/
 theorem throughW0223 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0450.text) :=
   composeRebaseCompact throughW0222 W0223.sound
 
+/-- Composes the replay steps through window W0224. -/
 theorem throughW0224 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0451.text) :=
   composeRebaseCompact throughW0223 W0224.sound
 
+/-- Composes the replay steps through window W0225. -/
 theorem throughW0225 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0452.text) :=
   composeRebaseCompact throughW0224 W0225.sound
 
+/-- Composes the replay steps through window W0226. -/
 theorem throughW0226 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0453.text) :=
   composeRebaseCompact throughW0225 W0226.sound
 
+/-- Composes the replay steps through window W0227. -/
 theorem throughW0227 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0454.text) :=
   composeRebaseCompact throughW0226 W0227.sound
 
+/-- Composes the replay steps through window W0228. -/
 theorem throughW0228 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0455.text) :=
   composeRebaseCompact throughW0227 W0228.sound
 
+/-- Composes the replay steps through window W0229. -/
 theorem throughW0229 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0456.text) :=
   composeRebaseCompact throughW0228 W0229.sound
 
+/-- Composes the replay steps through window W0230. -/
 theorem throughW0230 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0457.text) :=
   composeRebaseCompact throughW0229 W0230.sound
 
+/-- Composes the replay steps through window W0231. -/
 theorem throughW0231 :
     Limplies (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text)
       (formulaOfCompact (n := n) Checkpoint.C0458.text) :=
   composeRebaseCompact throughW0230 W0231.sound
 
+/-- This replay composition establishes the corresponding satisfiability implication. -/
 theorem sound :
     Unsatisfiable (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0227.text) :=

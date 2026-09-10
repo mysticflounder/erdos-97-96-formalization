@@ -15,17 +15,20 @@ namespace WindowedRupReplay.Shard2.W0186
 open Problem97.CheckpointedRup
 open Problem97.CheckpointedRup.TextBoundary
 
+/-- Embedded replay action text for this window. -/
 private def actionText : String :=
   include_str "../../data/shard-2/window-0186/actions.lrat"
 
 set_option maxHeartbeats 0 in
 set_option maxRecDepth 2000000 in
+/-- The replay checker accepts this window action trace. -/
 theorem accepted :
     TextIngress.checkTerminalText (n := n)
       Checkpoint.C0368.text actionText = true := by
   unfold n Checkpoint.C0368.text actionText
   native_decide
 
+/-- This replay composition establishes the corresponding satisfiability implication. -/
 theorem sound :
     Unsatisfiable (PosFin n)
       (formulaOfText (n := n) Checkpoint.C0368.text) :=

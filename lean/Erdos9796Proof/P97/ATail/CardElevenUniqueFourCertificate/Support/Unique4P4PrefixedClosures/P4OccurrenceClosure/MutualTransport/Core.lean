@@ -54,6 +54,7 @@ def p4EqPairs (c : Label) : List (Label × Label) :=
 The compact map verifies this prefix directly.  The definition is intentionally
 P4-local: it makes no claim about P5's class numbering or P4 variables after
 the row/equality prefix. -/
+/-- Authenticated mutual-transport bridge declaration. -/
 def p4VarOfAtom : DenseAtom → Nat
   | .row c p => 1 + 10 * c.val + (if p.val < c.val then p.val else p.val - 1)
   | .radius c l r => 111 + 45 * c.val + (p4EqPairs c).idxOf (l, r)
@@ -63,6 +64,7 @@ def toLabel (n : Nat) : Label := ⟨n % 11, Nat.mod_lt n (by decide)⟩
 
 /-- Decode the P4 row/equality prefix.  Values outside it are an arbitrary
 total extension; the selected clauses use only valid prefix atoms. -/
+/-- Authenticated mutual-transport bridge declaration. -/
 def p4AtomOfVar (n : Nat) : DenseAtom :=
   if n ≤ 110 then
     let k := n - 1
@@ -76,17 +78,21 @@ def p4AtomOfVar (n : Nat) : DenseAtom :=
   else
     .row 0 1
 
+/-- Authenticated mutual-transport bridge declaration. -/
 def validAtom : DenseAtom → Bool
   | .row c p => decide (c ≠ p)
   | .radius c l r => decide (l < r) && decide (l ≠ c) && decide (r ≠ c)
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem p4AtomOfVar_p4VarOfAtom_row : ∀ c p : Label, c ≠ p →
     p4AtomOfVar (p4VarOfAtom (.row c p)) = .row c p := by decide
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem p4AtomOfVar_p4VarOfAtom_radius : ∀ c l r : Label,
     l < r → l ≠ c → r ≠ c →
     p4AtomOfVar (p4VarOfAtom (.radius c l r)) = .radius c l r := by decide
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem p4AtomOfVar_p4VarOfAtom (a : DenseAtom) (ha : validAtom a = true) :
     p4AtomOfVar (p4VarOfAtom a) = a := by
   cases a with
@@ -96,6 +102,7 @@ theorem p4AtomOfVar_p4VarOfAtom (a : DenseAtom) (ha : validAtom a = true) :
       simp only [validAtom, Bool.and_eq_true, decide_eq_true_eq] at ha
       exact p4AtomOfVar_p4VarOfAtom_radius c l r ha.1.1 ha.1.2 ha.2
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem p4VarOfAtom_pos (a : DenseAtom) : 1 ≤ p4VarOfAtom a := by
   cases a with
   | row c p => simp only [p4VarOfAtom]; split <;> omega
@@ -105,6 +112,7 @@ theorem p4VarOfAtom_pos (a : DenseAtom) : 1 ≤ p4VarOfAtom a := by
 def sortedRadius (c a b : Label) : DenseAtom :=
   if a < b then .radius c a b else .radius c b a
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem validAtom_sortedRadius : ∀ c a b : Label, a ≠ b → a ≠ c → b ≠ c →
     validAtom (sortedRadius c a b) = true := by decide
 
@@ -114,6 +122,7 @@ def interpAtom (Q : ExactTwoBoundaryCore R distribution)
   | .row c p => rowMem Q σ c p
   | .radius c l r => radiusEq Q σ c l r
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem interpAtom_sortedRadius (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (c a b : Label) :
     interpAtom Q σ (sortedRadius c a b) ↔ radiusEq Q σ c a b := by
@@ -124,12 +133,14 @@ theorem interpAtom_sortedRadius (Q : ExactTwoBoundaryCore R distribution)
 
 /-- A total P4 semantic valuation.  The selected atom prefix has its documented
 meaning; values outside it are intentionally arbitrary via `p4AtomOfVar`. -/
+/-- Authenticated mutual-transport bridge declaration. -/
 def coreVal (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) : Nat → Prop :=
   fun n => interpAtom Q σ (p4AtomOfVar n)
 
 /-- Agreement needed from a total valuation to transport source semantics to
 the compact row/equality literals. -/
+/-- Authenticated mutual-transport bridge declaration. -/
 structure CoreValAgreement (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) (v : Nat → Prop) : Prop where
   row : ∀ c p : Label, c ≠ p →
@@ -137,6 +148,7 @@ structure CoreValAgreement (Q : ExactTwoBoundaryCore R distribution)
   radius : ∀ c l r : Label, l < r → l ≠ c → r ≠ c →
     (v (p4VarOfAtom (.radius c l r)) ↔ radiusEq Q σ c l r)
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem coreValAgreement (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) :
     CoreValAgreement Q σ (coreVal Q σ) := by
@@ -148,6 +160,7 @@ theorem coreValAgreement (Q : ExactTwoBoundaryCore R distribution)
     unfold coreVal interpAtom
     rw [p4AtomOfVar_p4VarOfAtom_radius c l r hlr hlc hrc]
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem CoreValAgreement.sortedRadius (Q : ExactTwoBoundaryCore R distribution)
     (σ : Label → Label) {v : Nat → Prop} (hv : CoreValAgreement Q σ v) (c a b : Label)
     (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
@@ -162,14 +175,17 @@ theorem CoreValAgreement.sortedRadius (Q : ExactTwoBoundaryCore R distribution)
 
 /-- Re-export only the generic occurrence machinery needed by this P4 bridge. -/
 abbrev clauseSat := P5OccurrenceBridgeScratch.clauseSat
+/-- Authenticated mutual-transport bridge declaration. -/
 abbrev litsSubset := P5OccurrenceBridgeScratch.litsSubset
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem litSat_pos {v : Nat → Prop} {n : Nat} (h : v n) :
     P5OccurrenceBridgeScratch.litSat v (n : Int) := by
   unfold P5OccurrenceBridgeScratch.litSat
   rw [if_pos (Int.natCast_nonneg n)]
   simpa using h
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem litSat_neg {v : Nat → Prop} {n : Nat} (hn : 1 ≤ n) (h : ¬ v n) :
     P5OccurrenceBridgeScratch.litSat v (-(n : Int)) := by
   unfold P5OccurrenceBridgeScratch.litSat

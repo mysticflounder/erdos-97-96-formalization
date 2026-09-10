@@ -10,22 +10,33 @@ namespace Problem97.P4MutualTransportOccurrenceBridgeScratch
 
 /-- Authenticated external package binding for this bounded ledger slice. -/
 def compactFormulaSha256 : String := "449cea2217bf144caafdd2dadb2ae7083d7ca34816bd226c2ab776f52ea58dae"
+/-- Authenticated mutual-transport bridge declaration. -/
 def occurrenceLedgerSha256 : String := "b1c159058e659cbd06c4540e72e2ca94eef0ef27602733db0bc44122dcdb4aac"
+/-- Authenticated mutual-transport bridge declaration. -/
 def stableManifestSha256 : String := "8d5b8f5adf40cda367e7e7f72f6afc58e75201011e140ff198ace1c836521dd1"
+/-- Authenticated mutual-transport bridge declaration. -/
 def sourceCoreSha256 : String := "739a55ce7a818cbcdfb8c9fa0731b19b564933e546c303b17c2366871078241b"
+/-- Authenticated mutual-transport bridge declaration. -/
 def sourceOccurrenceMapSha256 : String := "af829a7c99e0f969f410d398d7c32c2ba5dd945f3a7ebb2ef3f8d7679633d64b"
+/-- Authenticated mutual-transport bridge declaration. -/
 def outputClauseStart : Nat := 4641
+/-- Authenticated mutual-transport bridge declaration. -/
 def outputClauseEnd : Nat := 5032
+/-- Authenticated mutual-transport bridge declaration. -/
 def sourceCoreClauseStart : Nat := 5613
+/-- Authenticated mutual-transport bridge declaration. -/
 def sourceCoreClauseEnd : Nat := 6004
 
+/-- Authenticated mutual-transport bridge declaration. -/
 def bridgeEntries : List BridgeEntry :=
   bridgeChunk01 ++ bridgeChunk02 ++ bridgeChunk03 ++ bridgeChunk04
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeEntries_length : bridgeEntries.length = 392 := by
   simp [bridgeEntries, bridgeChunk01_length, bridgeChunk02_length,
     bridgeChunk03_length, bridgeChunk04_length]
 
+/-- Authenticated mutual-transport bridge declaration. -/
 theorem bridgeEntries_wf : bridgeEntries.all entryWF = true := by
   simp [bridgeEntries, bridgeChunk01_wf, bridgeChunk02_wf,
     bridgeChunk03_wf, bridgeChunk04_wf]

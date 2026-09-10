@@ -13,6 +13,7 @@ namespace WindowedRupReplay
 
 open Problem97.CheckpointedRup.TextBoundary
 
+/-- The complete replay proves unsatisfiability of the initial formula. -/
 theorem startUnsatisfiable :
     Unsatisfiable (PosFin n)
       (formulaOfText (n := n) Checkpoint.C0000.text) :=

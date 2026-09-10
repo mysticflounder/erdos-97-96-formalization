@@ -13,6 +13,7 @@ namespace CompactWindowedRupReplay
 
 open Problem97.CheckpointedRup.CompactBoundary
 
+/-- The complete replay proves unsatisfiability of the initial formula. -/
 theorem startUnsatisfiable :
     Unsatisfiable (PosFin n)
       (formulaOfCompact (n := n) Checkpoint.C0000.text) :=
