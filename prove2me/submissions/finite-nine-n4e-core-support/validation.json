@@ -1,0 +1,44 @@
+{
+  "schema": "prove2me-finite-nine-n4e-core-validation/v1",
+  "created_utc": "2026-09-09T23:59:00Z",
+  "result": "ACCEPTED",
+  "live": {
+    "definition_id": "20e77876-f67d-4a4a-bb0e-7613b5d63ace",
+    "definition_status": "PUBLISHED",
+    "theorem_id": "8092e252-3da6-454a-813c-702397a844f8",
+    "submission_id": "1a2e8096-87cf-4595-b748-0c0ada857b8a",
+    "submission_status": "ACCEPTED"
+  },
+  "artifacts": {
+    "definition": {
+      "bytes": 18894,
+      "sha256": "3d5c0164edcfb3261e367173618099b177e4b8c7deef36a73d32b0ed4a9257e6"
+    },
+    "solution": {
+      "bytes": 259042,
+      "sha256": "2fa73911edb3b0831a784ca508b8aadde2f861c87d826930ade736f0b4c1d8c1"
+    },
+    "theorem": {
+      "bytes": 546,
+      "sha256": "11fdf0748ed5a533bfeaec639f62219007858ead29474a546bb4bc27fe73cfc1"
+    }
+  },
+  "checks": {
+    "definition_elaboration": "PASS; lake-build exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/13230-1789004073975761000.log",
+    "solution_elaboration": "PASS; lake-build exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/21646-1789004190134864000.log",
+    "theorem_elaboration": "PASS; lake-build exited 0; /Users/adam/prove2me_workspace/.lake/lake-build-logs/47467-1789004567520697000.log",
+    "final_consumer_axiom_audit": "PASS with platform-stub caveat; lake-build exited 0; #print axioms solution reported [propext, sorryAx, Classical.choice, Quot.sound]; /Users/adam/prove2me_workspace/.lake/lake-build-logs/42348-1789004494768788000.log",
+    "generator_check": "PASS",
+    "generator_ruff": "PASS",
+    "uploader_plan": "PASS; plan digest 125ce8bbec651df2b5681f387bf1d31862233a8831f685fb6805a26a1e4d7bd4",
+    "forbidden_token_scan": "PASS in generated definition and solution",
+    "server_verification": "PASS; submission 1a2e8096-87cf-4595-b748-0c0ada857b8a accepted"
+  },
+  "trust": {
+    "generated_solution_contains_sorry": false,
+    "local_dependency_mirrors_contain_sorry": true,
+    "local_observed_axiom_closure": ["propext", "sorryAx", "Classical.choice", "Quot.sound"],
+    "required_server_axiom_closure": ["propext", "Classical.choice", "Quot.sound"],
+    "server_core_clean_status": "PLATFORM_VERIFIED; a local transitive core-only axiom closure was not separately observed"
+  }
+}

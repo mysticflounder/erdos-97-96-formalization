@@ -1,0 +1,33 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.9.8"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-n4e-core-support/receipt.json"
+
+[[definition]]
+name = "Erdos9796FiniteNine_N4dPackets"
+file = "submissions/finite-nine-n4e-core-support/platform/Definitions/Def_Erdos9796FiniteNine_N4dPackets.lean"
+title = "Finite-nine N4d packet and core-support interface"
+natural_language_statement = "Public packet types for the finite-nine N4d branches, together with an explicit record of the geometric and selector facts established by the first N4e proof slice."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0707e2c26e2e570e2b56ce656242cf5dec4d2584/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "support"]
+private = false
+
+[[theorem]]
+name = "Erdos9796FiniteNine.n4e_core"
+title = "Finite-nine N4e core support"
+file = "submissions/finite-nine-n4e-core-support/platform/Theorems/Thm_Erdos9796FiniteNine_n4e_core.lean"
+natural_language_statement = "Every finite nine-point endpoint shell has the explicit N4e core-support packet used by the later escaped-form branch proofs."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0707e2c26e2e570e2b56ce656242cf5dec4d2584/lean/Erdos9796Proof/P97/N9Endpoint/N4e.lean"
+tags = ["discrete-geometry", "erdos-97", "finite-nine", "proof-transfer"]
+
+[[proof]]
+theorem = "Erdos9796FiniteNine.n4e_core"
+file = "submissions/finite-nine-n4e-core-support/platform/Solutions/Sol_Erdos9796FiniteNine_n4e_core.lean"
+explanation = "submissions/finite-nine-n4e-core-support/explanation.md"
+proof_type = "prove"

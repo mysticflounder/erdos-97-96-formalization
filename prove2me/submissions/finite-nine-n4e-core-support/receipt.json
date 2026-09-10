@@ -1,0 +1,52 @@
+{
+  "definitions": {
+    "Erdos9796FiniteNine_N4dPackets": {
+      "definition_id": "20e77876-f67d-4a4a-bb0e-7613b5d63ace",
+      "job_id": "02d649d6-be7a-47d7-b8de-5130796d9bf8",
+      "status": "PUBLISHED"
+    }
+  },
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "definition:Erdos9796FiniteNine_N4dPackets": {
+      "job_id": "02d649d6-be7a-47d7-b8de-5130796d9bf8",
+      "payload_sha256": "e4a477631e875825cb7bd9fecac0f821d860125e7c66f07602b594789ea08557",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796FiniteNine.n4e_core": {
+      "payload_sha256": "2165fb17e96fd9c940e5c7fbf9b2024866366e4bcdf8bafc7ad20697576112f9",
+      "state": "RECORDED",
+      "submission_id": "1a2e8096-87cf-4595-b748-0c0ada857b8a"
+    },
+    "theorem:Erdos9796FiniteNine.n4e_core": {
+      "job_id": "73da0801-17d2-43f2-b2f4-b0f962ca8994",
+      "payload_sha256": "0a782fef98bd824fa7dcbfee4a797720cee506baeaa54b2288d8b61d72bacbf6",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "125ce8bbec651df2b5681f387bf1d31862233a8831f685fb6805a26a1e4d7bd4",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796FiniteNine.n4e_core": {
+      "created_at": "2026-09-10T01:51:48.751714+00:00",
+      "error_message": "",
+      "file_path": "8092e252-3da6-454a-813c-702397a844f8/6ac78adb-dda3-4892-bb46-d4c86f102d16/1a2e8096-87cf-4595-b748-0c0ada857b8a.lean",
+      "id": "1a2e8096-87cf-4595-b748-0c0ada857b8a",
+      "status": "ACCEPTED",
+      "submission_id": "1a2e8096-87cf-4595-b748-0c0ada857b8a",
+      "theorem_id": "8092e252-3da6-454a-813c-702397a844f8",
+      "updated_at": "2026-09-10T01:55:56.879535+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796FiniteNine.n4e_core": {
+      "job_id": "73da0801-17d2-43f2-b2f4-b0f962ca8994",
+      "status": "PUBLISHED",
+      "theorem_id": "8092e252-3da6-454a-813c-702397a844f8"
+    }
+  }
+}

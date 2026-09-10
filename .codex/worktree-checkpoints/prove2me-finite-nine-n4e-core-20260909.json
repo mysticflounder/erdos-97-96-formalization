@@ -1,0 +1,25 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite-nine-n4e-core-20260909",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite-nine-n4e-core-20260909.json",
+    "prove2me/submissions/finite-nine-n4e-core-support/README.md",
+    "prove2me/submissions/finite-nine-n4e-core-support/explanation.md",
+    "prove2me/submissions/finite-nine-n4e-core-support/generate.py",
+    "prove2me/submissions/finite-nine-n4e-core-support/plan.toml",
+    "prove2me/submissions/finite-nine-n4e-core-support/platform/Audit.lean",
+    "prove2me/submissions/finite-nine-n4e-core-support/platform/Definitions/Def_Erdos9796FiniteNine_N4dPackets.lean",
+    "prove2me/submissions/finite-nine-n4e-core-support/platform/Solutions/Sol_Erdos9796FiniteNine_n4e_core.lean",
+    "prove2me/submissions/finite-nine-n4e-core-support/platform/Theorems/Thm_Erdos9796FiniteNine_n4e_core.lean",
+    "prove2me/submissions/finite-nine-n4e-core-support/provenance.md",
+    "prove2me/submissions/finite-nine-n4e-core-support/receipt.json",
+    "prove2me/submissions/finite-nine-n4e-core-support/skeptic-audit-2026-09-09.md",
+    "prove2me/submissions/finite-nine-n4e-core-support/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-n4e-core",
+  "base_head": "8c88b8e101a905d5e564ba197ffe917c31a6b261",
+  "created_utc": "2026-09-10T01:18:59Z",
+  "manifest_sha256": "b17a46e5afb437841bf9f203343b082dc7cd19e8b7aedd076f70cc497c4b13e9"
+}
