@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-public-language-plan-sync-20260910",
+  "base_head": "0c299d91bce69e27bc31a249cfbbf901db431505",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-public-language-plan-sync-20260910.json",
+    "prove2me/submissions/finite-nine-stage3-theorems/plan.toml",
+    "prove2me/submissions/finite-ten-eleven/plan.toml",
+    "prove2me/submissions/removable-vertex-descent-milestone/plan.toml"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-public-language-plan-sync",
+  "created_utc": "2026-09-10T22:55:00Z",
+  "manifest_sha256": "8904d90293c9b3fb80856c35e5f2b18f3ef79a1a22fc2ea41db9c493661258a4"
+}
