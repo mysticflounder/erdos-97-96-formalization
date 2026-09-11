@@ -670,15 +670,13 @@ noncomputable def orderedProjectedBoundaryIndexing
     BoundaryIndexing (roleCarrier P) :=
   (orderedRoleProjection P B).toBoundaryIndexing
 
-set_option maxHeartbeats 3000000 in
+attribute [irreducible] roleCarrier orderedRoleEmbedding in
 /-- Frontier live-closure theorem. -/
 theorem orderedProjectedBoundaryIndexing_boundary
     (P : B1CardSixLocalRolePacket C) (B : BoundaryIndexing D.A)
     (i : Fin (roleCarrier P).card) :
     (orderedProjectedBoundaryIndexing P B).boundary i =
       B.boundary (orderedRoleEmbedding P B i) := by
-  change B.boundary (orderedRoleEmbedding P B i) =
-    B.boundary (orderedRoleEmbedding P B i)
   rfl
 
 /- The exact order-embedding datum needed to restrict an ambient boundary to

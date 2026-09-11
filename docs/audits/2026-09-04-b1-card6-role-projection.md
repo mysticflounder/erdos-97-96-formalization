@@ -53,9 +53,9 @@ provided by the source theorem
 `false_of_b1PhysicalClassFiveSixNormalForm_of_liveSlicesSameBoundaryArc`; no
 separate negation of the `u` or `v` alternative is asserted.
 
-## Validation and handoff
+## Historical validation and handoff (2026-09-04)
 
-The exact source currently retained in this lane has SHA-256
+The exact source retained in that historical lane state had SHA-256
 `0dcf44e69697862f980155bdc55368893872bbd9c660c4de4d07adde7a726144` and 822
 lines.  A focused `lake env lean` check reaches the compatibility declaration
 `orderedProjectedBoundaryIndexing_boundary` and then hits Lean's deterministic
@@ -79,3 +79,34 @@ The owner-scoped hygiene report currently has `issues: 0`; its overall
 `blocking: true` status is caused by the shared worktree's pre-existing foreign
 dirty and durable-untracked paths, not by this lane's declared source or
 manifest scope.
+
+## 2026-09-10 build repair
+
+Lane `b1-role-projection-whnf-repair-20260910` repaired the deterministic
+heartbeat failure without changing the statement of
+`orderedProjectedBoundaryIndexing_boundary`.  The failure came from reducible
+type checking unfolding `roleCarrier` and `orderedRoleEmbedding` while Lean
+reconciled the dependent boundary index type.  The repair makes those two large
+definitions irreducible only while elaborating the compatibility theorem and
+uses the resulting direct reflexivity proof.  The theorem's old
+three-million-heartbeat override is no longer needed; the surrounding
+projection-data definition and all public signatures are unchanged.
+
+The retained source has SHA-256
+`7722b201f0697aca76fe356c9c92307c0ceb6d4170823438a040817d110c0658`
+and 865 lines.  A direct single-file Lean check passes under the default
+heartbeat limit.  The governed target build also passes:
+
+```text
+Built Erdos9796Proof.P97.ATail.FrontierLiveClosure.B1CardSixRoleProjectionIngress (5.8s)
+Build completed successfully (11755 jobs).
+lake-build: lake build exited 0
+```
+
+The build log is
+`lean/.lake/lake-build-logs/12655-1789094438673666000.log`.  It was run with
+`LAKE_BUILD_NO_REFRESH=1` to preserve a pre-existing foreign modification to
+`docs/live-blueprint.md`, so this repair makes no refreshed spine or publication
+claim.  It introduces no `sorry`, `admit`, custom axiom, native computation, or
+external-evidence boundary.  A separate post-build `#print axioms` probe on the
+named theorem reports exactly `propext`, `Classical.choice`, and `Quot.sound`.

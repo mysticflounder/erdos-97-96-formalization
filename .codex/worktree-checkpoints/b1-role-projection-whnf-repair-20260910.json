@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "b1-role-projection-whnf-repair-20260910",
+  "owner": "BoundaryMender",
+  "base_head": "b5ffdaa58734a012086cf83e647b8bb0d3e961e9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/b1-role-projection-whnf-repair-20260910.json",
+    "docs/audits/2026-09-04-b1-card6-role-projection.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/B1CardSixRoleProjectionIngress.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-11T02:10:40Z",
+  "manifest_sha256": "ba92edae82b6e8e9fbe71316c021f0d7706ae1263bd77c754803f0f23bf6f764"
+}
