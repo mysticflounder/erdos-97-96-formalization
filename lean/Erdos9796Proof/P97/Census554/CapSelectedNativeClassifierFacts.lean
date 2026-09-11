@@ -35,14 +35,20 @@ theorem has_maskOfFinset (points : Finset Label) (point : Label) :
     has (maskOfFinset points) point.val = decide (point ∈ points) := by
   native_decide +revert
 
-set_option maxHeartbeats 1000000 in
--- Exhaustive bound check over all eleven-bit finite label sets.
-set_option maxRecDepth 10000 in
-set_option linter.style.nativeDecide false in
-/-- Census-554 certificate-bank theorem. -/
+/-- The binary mask of a set of eleven labels is smaller than `2 ^ 11`.
+
+This is a structural geometric-sum bound rather than an enumeration of all
+2,048 finite label sets. -/
 theorem maskOfFinset_lt_2048 (points : Finset Label) :
     maskOfFinset points < 2048 := by
-  native_decide +revert
+  have h :
+      (∑ i ∈ points.image (fun point : Label ↦ point.val), 2 ^ i) < 2 ^ 11 :=
+    Nat.geomSum_lt (by norm_num) (by
+      intro i hi
+      obtain ⟨point, _, rfl⟩ := Finset.mem_image.mp hi
+      exact point.isLt)
+  rw [Finset.sum_image Fin.val_injective.injOn] at h
+  simpa [maskOfFinset] using h
 
 set_option maxHeartbeats 0 in
 -- Exhaustive identity over all pairs of eleven-label finite sets.

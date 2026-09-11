@@ -23,6 +23,12 @@ four-point-mask table with kernel reduction. This removes `Lean.trustCompiler`
 from `fourPointMasks_eq_reference`; the twelve placement checks and the other
 native classifier identities remain to be replaced.
 
+The next checkpoint proves `maskOfFinset_lt_2048` from `Nat.geomSum_lt`: every
+label index is below eleven, so the sum of its selected powers of two is below
+`2 ^ 11 = 2048`. This replaces exhaustive enumeration with a reusable bitmask
+bound. The row-coverage consumer still reaches `has_maskOfFinset` and
+`localCandidateOK_maskOfFinset_iff` through native proofs.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable
