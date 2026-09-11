@@ -112,16 +112,39 @@ theorem maskOfFinset_lt_2048 (points : Finset Label) :
   rw [Finset.sum_image Fin.val_injective.injOn] at h
   simpa [maskOfFinset] using h
 
-set_option maxHeartbeats 0 in
--- Exhaustive identity over all pairs of eleven-label finite sets.
-set_option maxRecDepth 10000 in
-set_option linter.style.nativeDecide false in
-/-- Census-554 certificate-bank theorem. -/
+/-- Structural identity for intersections of finite eleven-label sets. -/
 theorem countPoints_supportPoints_maskOfFinset
     (left right : Finset Label) :
     countPoints (maskOfFinset left) (supportPoints (maskOfFinset right)) =
       (left ∩ right).card := by
-  native_decide +revert
+  let items : List Label := [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  have hlabels : labels = items.map Fin.val := by
+    change List.range 11 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    decide
+  have hsupport :
+      supportPoints (maskOfFinset right) =
+        (items.filter (fun point ↦ point ∈ right)).map Fin.val := by
+    rw [supportPoints, hlabels]
+    simp only [List.filter_map]
+    induction items with
+    | nil => rfl
+    | cons point items ih =>
+      simp only [List.filter_cons, Function.comp_apply]
+      by_cases hp : point ∈ right <;> simp [has_maskOfFinset, hp, ih]
+  have hitems_nodup : items.Nodup := by
+    simp [items]
+  have hnodup : (items.filter (fun point ↦ point ∈ right)).Nodup :=
+    hitems_nodup.filter _
+  rw [hsupport, countPoints_map_val_eq_inter_card left _ hnodup]
+  have hitems : items.toFinset = Finset.univ := by
+    apply Finset.eq_univ_of_forall
+    intro point
+    fin_cases point <;> simp [items]
+  have hfiltered :
+      (items.filter (fun point ↦ point ∈ right)).toFinset = right := by
+    ext point
+    simp [hitems]
+  simp [hfiltered]
 
 set_option maxHeartbeats 0 in
 -- One exhaustive pass checks all three fixed Q3 interior blocks.

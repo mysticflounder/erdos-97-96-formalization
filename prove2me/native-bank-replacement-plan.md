@@ -39,8 +39,14 @@ The local-candidate checkpoint then proves
 finite-set intersections, and the eleven possible center labels. Its ordinary
 kernel proof replaces the native enumeration over centers, deleted labels, and
 row masks. The immediate candidate-row consumer now has only the standard
-`propext`, `Classical.choice`, and `Quot.sound` axioms. Three other native facts
-remain in the same module and the placement checks remain native.
+`propext`, `Classical.choice`, and `Quot.sound` axioms.
+
+The common-support checkpoint proves
+`countPoints_supportPoints_maskOfFinset` by filtering the canonical list of all
+eleven labels and identifying its filtered finite set with the right-hand row.
+This removes the native overlap-count identity from
+`rowIntersectionBound_of_incidenceOK`. Two native facts remain in the same
+module and the placement checks remain native.
 
 ## Objective and boundaries
 

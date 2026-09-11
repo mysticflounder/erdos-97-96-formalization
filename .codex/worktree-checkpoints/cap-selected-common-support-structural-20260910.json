@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cap-selected-common-support-structural-20260910",
+  "base_head": "22a92b60bc724eb789aea136547c1a3fdcd04046",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-selected-common-support-structural-20260910.json",
+    "docs/audits/2026-09-10-cap-selected-common-support-structural-axioms.json",
+    "docs/audits/2026-09-10-cap-selected-common-support-structural.md",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-cap-selected-common-support-structural",
+  "created_utc": "2026-09-11T06:14:00Z",
+  "manifest_sha256": "2f45c020fd5611d443015c98733af9a19bcb4625ad06e79416b956a72bdd2564"
+}

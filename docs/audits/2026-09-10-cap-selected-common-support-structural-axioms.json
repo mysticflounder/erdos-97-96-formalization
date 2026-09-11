@@ -1,0 +1,35 @@
+{
+  "schema": "lean-axiom-recapture/v1",
+  "date": "2026-09-10",
+  "theorems": [
+    {
+      "name": "Problem97.Census554.CapSelectedNativeClassifierFacts.countPoints_supportPoints_maskOfFinset",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "Problem97.Census554.CapSelectedNativeClassifierSound.rowIntersectionBound_of_incidenceOK",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "focused_builds": [
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierFacts",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/33858-1789108103856747000.log"
+    },
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierSound",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/47419-1789108228690144000.log"
+    }
+  ],
+  "source_scan_warnings": []
+}
