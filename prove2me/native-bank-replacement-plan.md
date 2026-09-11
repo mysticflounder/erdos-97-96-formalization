@@ -51,8 +51,14 @@ The common-block checkpoint proves `allEmptyCommon_capBlocks_iff` through a
 general equivalence between an executable `List.all` test and emptiness of a
 triple finite-set intersection. The Q3 pair-filter consumer is now structural
 apart from its independent cyclic-separation path. Only
-`maskOfFinset_pinnedRow` remains native in this facts module; the placement
-checks and other classifier modules remain native.
+`maskOfFinset_pinnedRow` remained native in this facts module at that checkpoint.
+
+The pinned-row checkpoint closes the module by splitting the
+`pinSource ∈ {3,4,5,6}` hypothesis into its four admissible labels and reducing
+the four literal masks in the kernel. `CapSelectedNativeClassifierFacts.lean`
+now contains no `native_decide` or native-decide linter suppressions. This does
+not make the broader classifier path native-free: cyclic separation, placement
+checks, and other classifier modules still contain independent native proofs.
 
 ## Objective and boundaries
 

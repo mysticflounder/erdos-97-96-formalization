@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cap-selected-pinned-row-kernel-20260910",
+  "base_head": "5d5a0e0c7542e135bed1bfa55cfe5b2ba8873220",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-selected-pinned-row-kernel-20260910.json",
+    "docs/audits/2026-09-10-cap-selected-pinned-row-kernel-axioms.json",
+    "docs/audits/2026-09-10-cap-selected-pinned-row-kernel.md",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-cap-selected-pinned-row-kernel",
+  "created_utc": "2026-09-11T06:48:00Z",
+  "manifest_sha256": "002296ae8b982a8ee10fdbe90c545d8dc828ca56892c096bc862bfaa34f1a3a4"
+}

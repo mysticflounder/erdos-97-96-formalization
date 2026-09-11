@@ -290,16 +290,14 @@ theorem localCandidateOK_maskOfFinset_iff
     h078, h012, h123456, has_maskOfFinset, moser, capS]
   fin_cases center <;> simp_all [moser, capS] <;> aesop
 
-set_option maxHeartbeats 1000000 in
--- Exhaustive identity over the four possible pinned surplus-interior labels.
-set_option maxRecDepth 10000 in
-set_option linter.style.nativeDecide false in
-/-- Census-554 certificate-bank theorem. -/
+/-- The four admissible pinned surplus-interior labels produce the fixed seed
+row used by the executable classifier. -/
 theorem maskOfFinset_pinnedRow (pinSource : Label)
     (hpinSource : pinSource ∈ intS) :
     maskOfFinset ({0, 7, 8, pinSource} : Finset Label) =
       (fixedPinnedRow pinSource.val).support := by
-  native_decide +revert
+  fin_cases pinSource <;>
+    simp [intS, maskOfFinset, fixedPinnedRow] at hpinSource ⊢
 
 end CapSelectedNativeClassifierFacts
 end Census554
