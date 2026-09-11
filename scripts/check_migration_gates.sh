@@ -2,8 +2,9 @@
 # Repeatable acceptance checks for the Lean/mathlib toolchain pin.
 #
 # Implements Gate E of docs/plans/2026-09-05-lean-mathlib-v4331-upgrade-audit.md:
-# toolchain-file equality, exact dependency resolution, the full supported root
-# set, the comparator preflight, and the axiom/obligation regression.
+# toolchain-file equality, exact dependency resolution, doc-comment placement,
+# the full supported root set, the comparator preflight, and the
+# axiom/obligation regression.
 #
 # Usage:
 #   scripts/check_migration_gates.sh            # everything
@@ -59,7 +60,18 @@ else
   ok dependencies "lakefile revs match lake-manifest.json"
 fi
 
-# 3. Full supported roots ---------------------------------------------------
+# 3. Doc-comment placement ------------------------------------------------
+# A doc comment that follows another doc comment, or that sits between an
+# attribute and its declaration, is a parse error. Two bulk docstring passes
+# landed both shapes without a build; the scan is cheap, so it runs before the
+# builds rather than after them.
+if placement=$(uv run python scripts/check_lean_docstring_placement.py lean 2>&1); then
+  ok docstrings "no misplaced doc comments"
+else
+  fail docstrings "$(printf '%s' "$placement" | head -3 | tr '\n' ' ')"
+fi
+
+# 4. Full supported roots ---------------------------------------------------
 # Every lean_lib the lakefile declares, not only defaultTargets. A library
 # without `roots`/`globs` compiles only its own import closure, so a root that
 # is declared but never built hides regressions indefinitely.
@@ -81,7 +93,7 @@ else
   fi
 fi
 
-# 4. Comparator preflight ---------------------------------------------------
+# 5. Comparator preflight ---------------------------------------------------
 if [ "$FAST" = "1" ]; then
   ok comparator "skipped (--fast)"
 elif bash comparator/check-conformance.sh >/tmp/gate-e-conformance.log 2>&1; then
@@ -90,7 +102,7 @@ else
   fail comparator "check-conformance.sh failed; see /tmp/gate-e-conformance.log"
 fi
 
-# 5. Axiom and obligation regression ---------------------------------------
+# 6. Axiom and obligation regression ---------------------------------------
 # `proof-blueprint spine` is the authority on both: it reports the open-node
 # count and whether every branch closes under the approved axiom set.
 if spine=$(proof-blueprint spine 2>&1); then

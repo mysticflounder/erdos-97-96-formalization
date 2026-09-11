@@ -683,7 +683,7 @@ git clone <this-repo>
 cd <this-repo>
 
 # Fetch the prebuilt mathlib cache.  This also materializes the pinned
-# dependencies from lake-manifest.json: mathlib v4.27.0 and formal-conjectures.
+# dependencies from lake-manifest.json: mathlib v4.33.1 and formal-conjectures.
 cd lean && lake exe cache get && cd ..
 
 # Build through the global `lake-build` wrapper (installed on PATH by the
@@ -716,6 +716,31 @@ lines, most of it generated certificate and replay material; the published spine
 source/declaration totals are recorded in the generated
 [`docs/live-blueprint.md`](docs/live-blueprint.md) snapshot. A cold build is
 correspondingly long, and `lake exe cache get` is not optional in practice.
+
+### Continuous integration
+
+The repository tracks one GitHub Actions workflow,
+[`.github/workflows/lean-docstring-placement.yml`](.github/workflows/lean-docstring-placement.yml).
+It runs `scripts/check_lean_docstring_placement.py` on every push and pull
+request, rejecting the two doc-comment placements the Lean parser cannot accept:
+a doc comment that follows another doc comment, and a doc comment between an
+attribute and its declaration. Two bulk docstring passes landed both shapes
+without a build and broke `lake build`; the scan finds every site in the tree in
+about a second, where the build finds them one module at a time.
+
+```bash
+uv run python scripts/check_lean_docstring_placement.py lean
+uv run python scripts/check_lean_docstring_placement.py --json
+```
+
+The job deliberately needs no Lean toolchain and no mathlib cache. Building this
+repository in hosted CI is a separate question that nothing here settles; the
+full acceptance gate stays local:
+
+```bash
+./scripts/check_migration_gates.sh          # toolchain, deps, docstrings,
+./scripts/check_migration_gates.sh --fast   # roots, comparator, spine
+```
 
 ### Python and repository hygiene
 

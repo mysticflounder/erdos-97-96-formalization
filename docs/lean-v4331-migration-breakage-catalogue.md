@@ -731,7 +731,7 @@ Do NOT blank the pins: they are fail-closed direct comparisons.
 
 ## Gate E — the repeatable check
 
-`scripts/check_migration_gates.sh` runs the five acceptance checks the plan asks
+`scripts/check_migration_gates.sh` runs the six acceptance checks the plan asks
 for, and is the thing to run after any toolchain or lakefile change:
 
     ./scripts/check_migration_gates.sh          # everything
@@ -739,6 +739,7 @@ for, and is the thing to run after any toolchain or lakefile change:
 
     OK   [toolchain]    leanprover/lean4:v4.33.1
     OK   [dependencies] lakefile revs match lake-manifest.json
+    OK   [docstrings]   no misplaced doc comments
     OK   [roots]        lake-build Erdos9796 Erdos9796Proof Erdos9796BankSupport
     OK   [comparator]   check-conformance.sh
     OK   [spine]        open: 0/1 node(s)
@@ -750,9 +751,15 @@ less than the declared surface: a library with neither `roots` nor `globs`
 compiles only its own import closure, so a declared-but-unbuilt root hides
 regressions for as long as nobody looks.
 
-No `.github` workflow is added here.  The audited snapshot tracks none, so a CI
-job would be new surface rather than an updated check; the script is callable
-from one when that decision is made.
+The `docstrings` check is class AY below.  It runs before the builds because it
+is a source scan that costs a second, and the defect it catches is a parse error
+that stops the build outright.
+
+`.github/workflows/lean-docstring-placement.yml` runs that one check on every
+push and pull request.  It is the repository's first tracked workflow.  It needs
+no Lean toolchain and no mathlib cache, which is what makes it viable: building
+this repository in hosted CI is a separate and much larger question, and nothing
+here decides it.
 
 ## AX — one bank pin is fail-open, and `CHAIN VERIFY COMPLETE` does not cover it
 
@@ -784,3 +791,34 @@ recorded here rather than fixed because changing which pins a proof-carrying
 chain enforces is a separate, reviewable decision, not a toolchain repair.  The
 next agent should NOT read `CHAIN VERIFY COMPLETE` as covering the
 center-exchange to core-pair edge until this is resolved.
+
+## AY — a bulk docstring pass writes doc comments the parser rejects
+
+Two passes (`10a09ed24`, `0c299d91b`, together 1387 files) added doc comments
+without building, and broke the build with
+
+    error: <Module>.lean:<line>:<col>: unexpected token '/--'; expected ...
+
+Two shapes, neither of which has any legitimate form:
+
+1. ADJACENT DOC COMMENTS.  The pass added a generic one-liner above a
+   declaration that already carried a hand-written docstring.  Lean takes
+   exactly one doc comment per declaration.  FIX — delete the generic one and
+   keep the hand-written one.  Ten sites in `SurplusCOMPGBank`, and in
+   `P4OccurrenceClosure/MutualTransport/{Core,Main}`.
+2. DOC COMMENT AFTER AN ATTRIBUTE.  The pass inserted the doc comment between
+   `@[simp]` and its declaration.  FIX — move it above the attribute.  Two
+   sites, in `GeneralCarrierAbstractRowSystem` and
+   `ExactFiveCommonShellV7/PrefixSeparationSemantics`.
+
+The build finds these one module at a time, in dependency order, so fixing them
+from build logs alone costs one full build per site.  `scripts/check_lean_docstring_placement.py`
+finds every site in the tree in one second:
+
+    uv run python scripts/check_lean_docstring_placement.py lean
+    uv run python scripts/check_lean_docstring_placement.py --json
+
+It tokenizes block comments and string literals rather than matching lines, so
+a doc comment quoted inside an ordinary `/- ... -/` comment is not a finding.
+Exit status is 1 when any site is found, so it is usable directly as a gate.
+

@@ -52,7 +52,9 @@ Counted from Git in the range `15cb02b27..HEAD`:
   The other 48 belong to a parallel Prove2Me stream that ran at the same time.
 - 265 different `.lean` files changed. 304 file-touches in total.
 - Lean line count: +2612 insertions, -2299 deletions.
-- The breakage catalogue holds classes A to AX. It has 786 lines.
+- The breakage catalogue held classes A to AX at the close of the migration.
+  Class AY was added later, for the docstring-placement build break of
+  2026-09-10.
 - Library size: 6535 modules under `lean/Erdos9796*`.
 
 The audit of 2026-09-08 counted 351 changed files at that time.
@@ -510,7 +512,7 @@ Scripts:
 
 Documentation and audits:
 
-- `docs/lean-v4331-migration-breakage-catalogue.md` (786 lines, classes A to AX)
+- `docs/lean-v4331-migration-breakage-catalogue.md` (classes A to AX)
 - `docs/plans/2026-09-05-lean-mathlib-v4331-upgrade-audit.md`
 - `docs/audits/2026-09-07-local-v4331-migration-review.{md,json}`
 - `docs/audits/2026-09-07-mathlib-v4331-comparator-toolchain.md`

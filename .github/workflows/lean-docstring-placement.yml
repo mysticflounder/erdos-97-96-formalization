@@ -1,0 +1,44 @@
+name: Lean doc-comment placement
+
+# Rejects the two doc-comment placements the Lean parser cannot accept: a doc
+# comment following another doc comment, and a doc comment between an attribute
+# and its declaration. Both shapes reached `main` in bulk docstring passes that
+# were never built, and both break `lake build` with `unexpected token '/--'`.
+#
+# The job runs the same check as `scripts/check_migration_gates.sh`. It needs no
+# Lean toolchain and no mathlib cache, so it finishes in well under a minute --
+# building this repository in CI is a separate and much larger question.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docstring-placement-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  placement:
+    name: Check doc-comment placement
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.13"
+
+      - name: Scan the Lean tree
+        run: uv run --no-project python scripts/check_lean_docstring_placement.py lean
+
+      - name: Test the checker
+        run: >-
+          uv run --no-project --with pytest
+          pytest scripts/test_check_lean_docstring_placement.py -q
