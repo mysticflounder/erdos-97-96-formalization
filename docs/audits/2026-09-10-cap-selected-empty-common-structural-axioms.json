@@ -1,0 +1,35 @@
+{
+  "schema": "lean-axiom-recapture/v1",
+  "date": "2026-09-10",
+  "theorems": [
+    {
+      "name": "Problem97.Census554.CapSelectedNativeClassifierFacts.allEmptyCommon_capBlocks_iff",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "Problem97.Census554.CapSelectedNativeClassifierSound.q3PairOK_rowOfPattern",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "focused_builds": [
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierFacts",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/58244-1789108988295228000.log"
+    },
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierSound",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/62126-1789109024193879000.log"
+    }
+  ],
+  "source_scan_warnings": []
+}

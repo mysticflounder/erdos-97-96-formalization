@@ -147,7 +147,7 @@ theorem countPoints_supportPoints_maskOfFinset
   simp [hfiltered]
 
 private theorem allEmptyCommon_map_val_iff_empty
-    (left right : Finset Label) (items : List Label) (_hi : items.Nodup) :
+    (left right : Finset Label) (items : List Label) :
     allEmptyCommon (maskOfFinset left) (maskOfFinset right)
         (items.map Fin.val) = true ↔
       left ∩ right ∩ items.toFinset = ∅ := by
@@ -176,10 +176,8 @@ private theorem allEmptyCommon_map_val_iff_empty
       · simp [has_maskOfFinset, hright]
     · simp [has_maskOfFinset, hleft]
 
-set_option maxHeartbeats 0 in
--- One exhaustive pass checks all three fixed Q3 interior blocks.
-set_option maxRecDepth 10000 in
-/-- Census-554 certificate-bank theorem. -/
+/-- The executable empty-common tests exactly express the three semantic
+triple-intersection conditions. -/
 theorem allEmptyCommon_capBlocks_iff (left right : Finset Label) :
     (allEmptyCommon (maskOfFinset left) (maskOfFinset right) [7, 8] = true ↔
       left ∩ right ∩ intO1 = ∅) ∧
@@ -188,11 +186,11 @@ theorem allEmptyCommon_capBlocks_iff (left right : Finset Label) :
     (allEmptyCommon (maskOfFinset left) (maskOfFinset right)
         [3, 4, 5, 6] = true ↔ left ∩ right ∩ intS = ∅) := by
   have ho1 := allEmptyCommon_map_val_iff_empty left right
-    ([7, 8] : List Label) (by decide)
+    ([7, 8] : List Label)
   have ho2 := allEmptyCommon_map_val_iff_empty left right
-    ([9, 10] : List Label) (by decide)
+    ([9, 10] : List Label)
   have hs := allEmptyCommon_map_val_iff_empty left right
-    ([3, 4, 5, 6] : List Label) (by decide)
+    ([3, 4, 5, 6] : List Label)
   simpa [intO1, intO2, intS] using And.intro ho1 (And.intro ho2 hs)
 
 /-- Census-554 certificate-bank theorem. -/

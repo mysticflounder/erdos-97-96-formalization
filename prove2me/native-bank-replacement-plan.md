@@ -45,8 +45,14 @@ The common-support checkpoint proves
 `countPoints_supportPoints_maskOfFinset` by filtering the canonical list of all
 eleven labels and identifying its filtered finite set with the right-hand row.
 This removes the native overlap-count identity from
-`rowIntersectionBound_of_incidenceOK`. Two native facts remain in the same
-module and the placement checks remain native.
+`rowIntersectionBound_of_incidenceOK`.
+
+The common-block checkpoint proves `allEmptyCommon_capBlocks_iff` through a
+general equivalence between an executable `List.all` test and emptiness of a
+triple finite-set intersection. The Q3 pair-filter consumer is now structural
+apart from its independent cyclic-separation path. Only
+`maskOfFinset_pinnedRow` remains native in this facts module; the placement
+checks and other classifier modules remain native.
 
 ## Objective and boundaries
 
