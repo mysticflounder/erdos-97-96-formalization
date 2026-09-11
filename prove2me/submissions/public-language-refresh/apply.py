@@ -23,7 +23,7 @@ from prove2me.tools.prove2me_submit import (
 HERE = Path(__file__).resolve().parent
 PATCHES_PATH = HERE / "patches.json"
 RECEIPT_PATH = HERE / "receipt.json"
-REASON = "Replace internal formalization labels with mathematical descriptions."
+REASON = "Refresh public mathematical descriptions and recorded completion status."
 
 
 def _load() -> tuple[dict[str, Any], str, str]:

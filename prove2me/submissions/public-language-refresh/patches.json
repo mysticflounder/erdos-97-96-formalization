@@ -1,6 +1,6 @@
 {
   "schema": "prove2me-public-language-refresh/v1",
-  "api_version": "0.9.9",
+  "api_version": "0.10.1",
   "host": "https://prove2.me/api/v1",
   "credentials": "~/prove2me_workspace/credentials.json",
   "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
@@ -89,6 +89,18 @@
       "theorem_name": "Erdos9796Mission.finite_eleven_exclusion",
       "title": "Transfer the existing exact-eleven exclusion proof",
       "milestone_description": "After the exact ten-point transfer, transfer the repository's existing proof that an eleven-point set in strictly convex position cannot have four equidistant witnesses at every vertex. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy."
+    },
+    {
+      "id": "284e8d32-982e-4f1c-aa56-f5dd76e6902e",
+      "theorem_name": "Erdos9796Mission.counterexample_card_ge_nine",
+      "title": "Counting obstruction: a counterexample has at least nine vertices",
+      "milestone_description": "For every finite nonempty set A of points in strictly convex position, if every vertex has four other points at one positive distance, with the distance allowed to depend on the vertex, then |A| ≥ 9. This proved counting obstruction is the lower-bound step in the strong-induction argument: any counterexample must have at least nine vertices. The source formalization follows Dumitrescu's isosceles-count method."
+    },
+    {
+      "id": "13b51403-6abb-4268-9d39-5fe4c5f5eb37",
+      "theorem_name": "Erdos9796Mission.finite_nine_exclusion",
+      "title": "Base case: exclude a nine-vertex counterexample",
+      "milestone_description": "No nine-point set in strictly convex position has the property that every vertex has four other points at one positive distance, with the distance allowed to depend on the vertex. This proved theorem excludes the smallest cardinality allowed by the counting obstruction and supplies the finite base case for the strong-induction argument."
     }
   ],
   "theorems": [

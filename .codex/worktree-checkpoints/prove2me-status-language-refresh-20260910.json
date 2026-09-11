@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-status-language-refresh-20260910",
+  "base_head": "8c016823a763a1f869c0ca3b164a2706d8870f14",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-status-language-refresh-20260910.json",
+    "prove2me/submissions/public-language-refresh/README.md",
+    "prove2me/submissions/public-language-refresh/apply.py",
+    "prove2me/submissions/public-language-refresh/patches.json",
+    "prove2me/submissions/public-language-refresh/receipt.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-status-language-refresh",
+  "created_utc": "2026-09-11T04:35:00Z",
+  "manifest_sha256": "68366d22141a1a8785651d953d44060397e0e69f3d2f58c3f93c1a6de094cf10"
+}

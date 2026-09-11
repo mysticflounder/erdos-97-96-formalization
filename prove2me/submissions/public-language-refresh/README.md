@@ -1,7 +1,7 @@
 # Public-language refresh
 
 This packet replaces internal formalization labels in the live mission with
-mathematical descriptions. It updates the mission introduction, fourteen
+mathematical descriptions. It updates the mission introduction, sixteen
 milestones, and seventeen theorem or definition descriptions. Lean declaration
 names, formal statements, proof records, dependencies, statuses, source links,
 and attribution are unchanged.
@@ -16,12 +16,16 @@ The script is idempotent and checks every remote UUID against its expected Lean
 declaration before sending a patch. It writes an exact verification receipt after
 each successful readback.
 
+The updater also keeps completion language synchronized with the live graph. In
+particular, the counting obstruction and exact-nine exclusion milestones describe
+proved results rather than saying that their source proofs are awaiting transfer.
+
 ```bash
 uv run python prove2me/submissions/public-language-refresh/apply.py validate
 uv run python prove2me/submissions/public-language-refresh/apply.py apply
 ```
 
-Prove2Me API version 0.9.9 permits edits to mission descriptions, milestone
+Prove2Me API version 0.10.1 permits edits to mission descriptions, milestone
 titles and descriptions, and theorem or definition natural-language descriptions.
 It does not permit edits to a published theorem's `theorem_title`. Consequently,
 old display titles such as “Finite-nine N4e core support” cannot be renamed in

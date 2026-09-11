@@ -1,5 +1,5 @@
 {
-  "digest": "400ab412438077c6430d70fed62807e59a6ed12aacce352d0f2359815c460fe0",
+  "digest": "71053c36bfa01bd277d84255b6b8bdd8a0c4924e8615283acbbe36d34206ad61",
   "milestones": {
     "00776b3e-ffc7-40be-a2c5-63c385c0fe9c": {
       "changed": false,
@@ -11,10 +11,20 @@
       "status": "VERIFIED",
       "title": "Transfer the existing nine-point endpoint configuration proof"
     },
+    "13b51403-6abb-4268-9d39-5fe4c5f5eb37": {
+      "changed": true,
+      "status": "VERIFIED",
+      "title": "Base case: exclude a nine-vertex counterexample"
+    },
     "17fa2f22-a231-4cf2-a51f-fcfbeabfbe2f": {
       "changed": false,
       "status": "VERIFIED",
       "title": "Exclude the interior-point/opposite-vertex pattern at the second triangle vertex"
+    },
+    "284e8d32-982e-4f1c-aa56-f5dd76e6902e": {
+      "changed": true,
+      "status": "VERIFIED",
+      "title": "Counting obstruction: a counterexample has at least nine vertices"
     },
     "36209758-7e1a-4a37-8aa2-bba0651825ab": {
       "changed": false,
@@ -62,7 +72,7 @@
       "title": "Transfer the existing exact-ten exclusion proof"
     },
     "e0085905-edbd-4e77-801f-cc348f53b3a8": {
-      "changed": true,
+      "changed": false,
       "status": "VERIFIED",
       "title": "Descent: a minimal counterexample with more than nine vertices has a removable vertex"
     },
@@ -96,7 +106,7 @@
       "theorem_name": "Erdos9796FiniteNine.cyclic_forms"
     },
     "20e77876-f67d-4a4a-bb0e-7613b5d63ace": {
-      "changed": true,
+      "changed": false,
       "status": "VERIFIED",
       "theorem_name": "Erdos9796FiniteNine_N4dPackets"
     },
@@ -131,7 +141,7 @@
       "theorem_name": "Erdos9796FiniteNine.form_b_v2"
     },
     "8092e252-3da6-454a-813c-702397a844f8": {
-      "changed": true,
+      "changed": false,
       "status": "VERIFIED",
       "theorem_name": "Erdos9796FiniteNine.n4e_core"
     },
