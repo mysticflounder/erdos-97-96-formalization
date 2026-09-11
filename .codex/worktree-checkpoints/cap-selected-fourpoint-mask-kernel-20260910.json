@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cap-selected-fourpoint-mask-kernel-20260910",
+  "base_head": "b2c42436448ce4eb91732c8b91cfdfd4de200ac5",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-selected-fourpoint-mask-kernel-20260910.json",
+    "docs/audits/2026-09-10-cap-selected-fourpoint-mask-kernel-axioms.json",
+    "docs/audits/2026-09-10-cap-selected-fourpoint-mask-kernel.md",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifier.lean",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-cap-selected-fourpoint-mask-kernel",
+  "created_utc": "2026-09-11T04:58:00Z",
+  "manifest_sha256": "233f085914b83a5f23d44e03a23811162cce4a54d66b227091ccf4d122fd7366"
+}

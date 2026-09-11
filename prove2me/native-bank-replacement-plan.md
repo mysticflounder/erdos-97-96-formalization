@@ -18,6 +18,11 @@ for distinct `p,d ∈ {3,4,5,6}`. Eleven checks are in separate placement module
 the `p = 6, d = 4` check is in the classifier. This route takes priority within
 package 2 because it is on the current `RemovableVertexOfLarge` dependency path.
 
+The first general-`m` trust checkpoint now authenticates the explicit 330-entry
+four-point-mask table with kernel reduction. This removes `Lean.trustCompiler`
+from `fourPointMasks_eq_reference`; the twelve placement checks and the other
+native classifier identities remain to be replaced.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable
@@ -161,8 +166,9 @@ nonnative theorem currently supplies this coverage. A direct kernel `decide`
 attempt is a bounded diagnostic only: the existing native instance took about
 54 minutes, and replacing the evaluator without exposing reusable structure does
 not satisfy this package. The semantic adapter also reaches
-`fourPointMasks_eq_reference`, a separate 330-mask native authentication; both
-boundaries must be removed before this consumer is core-only.
+`fourPointMasks_eq_reference`; that separate 330-mask authentication is now
+kernel-checked. Other native classifier identities still keep the consumer from
+being core-only.
 
 1. Select one native classifier or finite case family and its immediate consumer.
    Search the existing indexed Lean corpus once for that concrete hypothesis set.

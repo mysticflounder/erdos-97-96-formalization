@@ -1,0 +1,33 @@
+{
+  "schema": "lean-axiom-recapture/v1",
+  "date": "2026-09-10",
+  "theorem": {
+    "name": "Problem97.Census554.CapSelectedNativeClassifier.fourPointMasks_eq_reference",
+    "axioms": [
+      "propext"
+    ]
+  },
+  "immediate_consumer": {
+    "name": "Problem97.Census554.CapSelectedNativeClassifierSound.rowOfPattern_mem_candidateRows_of_localCandidateSpec",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound",
+      "Problem97.Census554.CapSelectedNativeClassifierFacts.localCandidateOK_maskOfFinset_iff._native.native_decide.ax_1_1",
+      "Problem97.Census554.CapSelectedNativeClassifierFacts.maskOfFinset_lt_2048._native.native_decide.ax_1_1"
+    ]
+  },
+  "focused_builds": [
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifier",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/6296-1789102748192107000.log"
+    },
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierSound",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/42732-1789102981426152000.log"
+    }
+  ],
+  "source_scan_warnings": []
+}

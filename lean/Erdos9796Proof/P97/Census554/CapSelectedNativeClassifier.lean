@@ -89,13 +89,12 @@ def fourPointMasksReference : List RowMask :=
 set_option maxHeartbeats 0 in
 -- The generated 330-entry table is checked against the executable reference.
 set_option linter.style.maxHeartbeats false in
-set_option linter.style.nativeDecide false in
 set_option maxRecDepth 100000 in
-/-- Native-decision regression for the generated table, trusting
-    `Lean.ofReduceBool` and `Lean.trustCompiler`. -/
+/-- Kernel-checked regression equating the explicit four-point-mask table with
+the executable cardinality specification. -/
 theorem fourPointMasks_eq_reference :
     fourPointMasks = fourPointMasksReference := by
-  native_decide
+  decide
 
 /-- Census-554 certificate-bank theorem. -/
 theorem countPoints_eq_four_of_mem_fourPointMasks
