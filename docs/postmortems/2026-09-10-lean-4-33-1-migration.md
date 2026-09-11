@@ -383,24 +383,49 @@ Their templates also carry the docstrings and import placement on `main`,
 plus three hand edits that were already in base.
 Every hash pin now names `main`'s files.
 `main` has 64 output files from these generators.
-63 of them render byte-identical from the generator inputs.
+All 64 render byte-identical from the generator inputs.
+The 28th generator needed one more fix.
+Commit `f434aa6ea` changed its record selection from the identity order to
+`ORDERS[0]`, but the published records were chosen under the identity
+order.
+Under `ORDERS[0]`, some minimal supports have no certificate, so the
+generator stopped with `no exact-support cancellation`.
+It now uses the identity order again, which is the same rule as the 29th
+and 30th generators.
+The 81 unbuilt modules that import the chain also build now, with no source
+change.
+A class W sweep of those 81 modules found no `sorryAx`.
 The 5 generators that have `--check` all pass it.
 Five generators that could overwrite an output now refuse different bytes:
 28th, 29th, 30th, 46th, and 49th v6.
 
-These items are still open:
+These items were checked and left as they are, on purpose:
 
-- **28th:** its own algorithm stops with
-  `no exact-support cancellation`, in base too.
-  Its templates, fed the published ledger entries, reproduce `main`'s file.
-- **v9:** it has no output file, and its production pins were never set.
-- **Stale ledgers and configs:** the 31st published ledger identities, the
-  child45 ledger that the 46th generator reads, and the v8
-  preparation-config generator pin all record hashes from before the
-  migration.
-  So a 46th run now stops before it writes.
-  The old code would have overwritten that ledger without a warning.
-- **v8 test:** one v8 test needs a parent CNF that is not on this machine.
+- **v9:** it is a wave that was never run.
+  It has no output file, and its production pins were never set.
+- **Three historical records:** these hold hashes from before the migration,
+  and they were not rewritten:
+  - the child45 ledger, `scratch/exact17-child45-wave-mine/`;
+  - the 31st published ledger,
+    `piqd-thirty-first-root-all-cancellation-family.json`;
+  - the v8 preparation config.
+
+  Each one records a completed run, and committed files pin each one by hash.
+  The child45 ledger has 10 pins, the 31st ledger has 10, and the v8 config
+  has the identity-freeze run manifest.
+  To republish one in place, you must break those pins.
+  For the two ledgers, a republish also makes the provenance false.
+  So a default 46th run now stops before it writes, because it will not
+  replace the historical ledger.
+  Its export validator still reports `PASS` against that ledger.
+  To run v8 again, supersede the config with a `-v2` file, as V7 did.
+  The V7 preparer pins must be updated first.
+- **v8 test:** `test_immediate_parent_novelty_and_current_model_cut_are_fail_closed`
+  needs a 346 MB parent CNF.
+  The 2026-08-29 cleanup moved it to
+  `/opt/nfs/erdos-97-96-formalization-visible-cleanup-20260829/source-quarantine/`.
+  Its sha256 matches the pin.
+  With that copy linked in, all 11 v8 tests pass.
 
 The 4 non-exact17 CNF orphans (`FrontierLiveClosure`) are out of scope.
 

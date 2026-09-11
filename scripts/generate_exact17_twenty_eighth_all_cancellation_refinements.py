@@ -690,10 +690,15 @@ def main() -> int:
 
     entries = []
     lean_entries = []
+    # The published child-28 records were selected under the legacy identity
+    # order (``order=None``), not the authenticated named order: commit
+    # ae170f1db banked them that way.  Passing ``ORDERS[0]`` here makes some
+    # minimal supports have no exact-support certificate, so keep the legacy
+    # selection to reproduce the banked Lean data byte for byte.
     for hits in minimal:
-        forward = choose_exact_support_record(hits, ORDERS[0])
+        forward = choose_exact_support_record(hits)
         reverse_hits = reflected(hits)
-        reverse = choose_exact_support_record(reverse_hits, ORDERS[0])
+        reverse = choose_exact_support_record(reverse_hits)
         if path_hits(forward) != hits or path_hits(reverse) != reverse_hits:
             raise AssertionError("chosen certificate does not consume the exact support")
         entries.append(

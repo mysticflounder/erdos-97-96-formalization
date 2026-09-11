@@ -1,0 +1,16 @@
+{
+  "base_head": "2661826b21d849de71d7ae4183c090a5bfd3ca1b",
+  "created_utc": "2026-09-11T19:34:56Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "exact17-migration-open-items-20260911",
+  "manifest_sha256": "a9dfac9f2c38c3c0ed638efc699b3644c2ce59ed7f1febf9b97968006e816f73",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exact17-migration-open-items-20260911.json",
+    "docs/lean-v4331-migration-breakage-catalogue.md",
+    "docs/postmortems/2026-09-10-lean-4-33-1-migration.md",
+    "scripts/generate_exact17_twenty_eighth_all_cancellation_refinements.py"
+  ],
+  "owner": "exact17-migration-open-items",
+  "schema": "worktree-lane-checkpoint/v1"
+}
