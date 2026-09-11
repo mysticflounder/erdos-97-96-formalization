@@ -1,0 +1,59 @@
+{
+  "combined_kernel_validation": {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS",
+    "theorem": "PinnedMultiplicityKernelValidation.problem97_iff_exists_pinnedMultiplicity_le_three"
+  },
+  "definition_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "files": {
+    "README.md": "0ce5321cf5b73b2cd0541b33fe853bf718f0421fe977983619399b73ba066767",
+    "explanation.md": "e8cb70298de6f87dee608bf814262e5723a6f27b82fc73eac84e9dcdff9b39b6",
+    "plan.toml": "ef85a849f4a0744244307c9e7b0839d56b6502df7b49c37d37ac2ce5b6f0acf2",
+    "platform/Definitions/Def_Erdos9796Mission_PinnedMultiplicity.lean": "ab90155f09a294c5cb28790f8073d547a03e51113611491ce5b139e389ce76d6",
+    "platform/Solutions/Sol_Erdos9796Mission_hasNEquidistantPointsAt_iff_le_pinnedMultiplicity.lean": "d67a9ba4b7c6265b09df84fb2bccb4fc5c2cf458132aa274e7f20def3c163e80",
+    "platform/Solutions/Sol_Erdos9796Mission_hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity.lean": "e14fd8fc4b2232fa11bb5bde43027ab5eef53172c21e362e0920ae31406b797c",
+    "platform/Solutions/Sol_Erdos9796Mission_mem_pinnedRadii_iff.lean": "4e63da60eee53b5d67b85af1d1ddd9e1726dbcf7337feea966c32187f11da3a1",
+    "platform/Solutions/Sol_Erdos9796Mission_not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three.lean": "e809b2f1013fbe2fd1ce4e21d377ed25ccb89be48ea39c786a0b348f8b20a63a",
+    "platform/Solutions/Sol_Erdos9796Mission_problem97_iff_exists_pinnedMultiplicity_le_three.lean": "fc967051d9bdd971df45f5123ff245394d45487a66db74c7a97dd7ea594ad561",
+    "platform/Theorems/Thm_Erdos9796Mission_hasNEquidistantPointsAt_iff_le_pinnedMultiplicity.lean": "18ac17348c31d7ca2855642240996b86dd938e1c8506d9e435d2fa82f7f3e754",
+    "platform/Theorems/Thm_Erdos9796Mission_hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity.lean": "12ce9f992eee6c7c33c9ac139d8e4c6ab22aad64e9aa42a4db94c4ce2ea1eb6b",
+    "platform/Theorems/Thm_Erdos9796Mission_mem_pinnedRadii_iff.lean": "ce5235bd85eb0f437900b2a22a9164f5c08c1311b22a5ddd40de3e8b16fd1b10",
+    "platform/Theorems/Thm_Erdos9796Mission_not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three.lean": "91fabb129b50b1993e817b1982e1b798eee251320543869493c9229a5b080938",
+    "platform/Theorems/Thm_Erdos9796Mission_problem97_iff_exists_pinnedMultiplicity_le_three.lean": "431f886bdbb2d0081c4a62c447f02a9cb1c0b9c1c5fd10f94ca784e1ec79e45f",
+    "platform/Validation/PinnedMultiplicityKernel.lean": "b7f392e9b1afacba2e5d5c5b018b5a9cc6b30f722546502bf6bb304608c71996"
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Definitions",
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "status": "PASS",
+    "tokens": [
+      "sorry",
+      "native_decide",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by"
+    ]
+  },
+  "lean_version": "4.33.1",
+  "plan_digest": "3ad5ad06172ee16e2cc735e9311b63dd6e28fde2c788dbc627b694cf3388fcc1",
+  "schema": "prove2me-pinned-multiplicity-validation/v1",
+  "solution_compile": {
+    "count": 5,
+    "status": "PASS"
+  },
+  "theorem_stub_compile": {
+    "count": 5,
+    "status": "PASS"
+  }
+}

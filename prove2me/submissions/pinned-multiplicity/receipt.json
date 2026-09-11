@@ -1,0 +1,166 @@
+{
+  "definitions": {
+    "Erdos9796Mission_PinnedMultiplicity": {
+      "definition_id": "4cf28fd0-0836-435b-8d01-9958a5133875",
+      "job_id": "826af678-f164-4739-9183-459e7cbab12d",
+      "status": "PUBLISHED"
+    }
+  },
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "definition:Erdos9796Mission_PinnedMultiplicity": {
+      "job_id": "826af678-f164-4739-9183-459e7cbab12d",
+      "payload_sha256": "51343ac42b76486928d9d6b977725a131218328b2b81f2bbc5b74c6a26c46b42",
+      "state": "RECORDED"
+    },
+    "milestone-create:Express Problem 97 as a bound on repeated distances from one vertex": {
+      "milestone_id": "035be7b1-6174-490b-b871-a8663ce6d8af",
+      "payload_sha256": "1dd1b2944606fec279c308398d0abdcb971df24033e7a6b0f20f0ede56a305c4",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796Mission.hasNEquidistantPointsAt_iff_le_pinnedMultiplicity": {
+      "payload_sha256": "e4cb6f539966c74d07d1cd0ba5010e0ec51dd76dd5232db76a40b1a0ce158a74",
+      "state": "RECORDED",
+      "submission_id": "49a8be80-821d-4431-94c4-c7f1ae14b6ba"
+    },
+    "proof:Erdos9796Mission.hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity": {
+      "payload_sha256": "4c5d3beab71b973a51ec05436e73666c9153656b0ecafd78026e2faedeca7305",
+      "state": "RECORDED",
+      "submission_id": "f4cadbfd-c763-4193-b1e9-235a6378914a"
+    },
+    "proof:Erdos9796Mission.mem_pinnedRadii_iff": {
+      "payload_sha256": "6b49fbfcab07c5ae64d3b79405266a650c7d41200df1df8c5fed0119ea5938a5",
+      "state": "RECORDED",
+      "submission_id": "5eb0cd4b-661b-44c7-9370-12c7ba0b75a1"
+    },
+    "proof:Erdos9796Mission.not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three": {
+      "payload_sha256": "29cc01f75b9f8c2c209d515650670c1655e44fb32ae1d15bd786154ac6396a86",
+      "state": "RECORDED",
+      "submission_id": "b2a574dc-ad46-41fc-b1ef-c6e98e98c864"
+    },
+    "proof:Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three": {
+      "payload_sha256": "30b68c89c586485f88137b51397f99cccb943c65c799ecf95405fc0fb826c6bd",
+      "state": "RECORDED",
+      "submission_id": "03e16b61-7aa0-4561-8fb8-147366704544"
+    },
+    "theorem:Erdos9796Mission.hasNEquidistantPointsAt_iff_le_pinnedMultiplicity": {
+      "job_id": "04aea1ce-6d8e-4d6b-8d95-936c1c024b8f",
+      "payload_sha256": "a35571acb3553cde85afb8fd7a9401a95d1a1c069c772ccabf80bb1e0009a411",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity": {
+      "job_id": "10bdb726-97e3-46e6-97c5-c9fc38645454",
+      "payload_sha256": "60158d1fa6b07383ba678d005ed3b038b67c883dd35846bc26e53237d8400536",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.mem_pinnedRadii_iff": {
+      "job_id": "12010ac8-f7d4-4920-86e0-f78caa1eba60",
+      "payload_sha256": "503697c21755bbea3ea35b57b8da839957844c3d97e8af9a58694f77ea685da0",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three": {
+      "job_id": "47ae740b-01c3-4dba-a41f-7e85773cf0a0",
+      "payload_sha256": "34cafce8e6cec0364cc3bf357fb6606fa35511bc8dbaac0e4a08743e7f01e921",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three": {
+      "job_id": "815c211a-8b74-4e29-bfe0-27120d7bf632",
+      "payload_sha256": "4152132cb4defdebcac2ae50801914d9ad7ac52bb8f614ad60b68d316260be0b",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {
+    "Express Problem 97 as a bound on repeated distances from one vertex": {
+      "id": "035be7b1-6174-490b-b871-a8663ce6d8af",
+      "status": "ENSURED"
+    }
+  },
+  "mission_description": {},
+  "plan_digest": "3ad5ad06172ee16e2cc735e9311b63dd6e28fde2c788dbc627b694cf3388fcc1",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.hasNEquidistantPointsAt_iff_le_pinnedMultiplicity": {
+      "created_at": "2026-09-11T16:43:45.239577+00:00",
+      "error_message": "",
+      "file_path": "50911e98-2b92-48f9-82e1-ebbe15ee4ef8/6ac78adb-dda3-4892-bb46-d4c86f102d16/49a8be80-821d-4431-94c4-c7f1ae14b6ba.lean",
+      "id": "49a8be80-821d-4431-94c4-c7f1ae14b6ba",
+      "status": "ACCEPTED",
+      "submission_id": "49a8be80-821d-4431-94c4-c7f1ae14b6ba",
+      "theorem_id": "50911e98-2b92-48f9-82e1-ebbe15ee4ef8",
+      "updated_at": "2026-09-11T16:47:05.558738+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Erdos9796Mission.hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity": {
+      "created_at": "2026-09-11T16:47:06.813987+00:00",
+      "error_message": "",
+      "file_path": "8a90d80b-991b-45a6-a34f-7be569080670/6ac78adb-dda3-4892-bb46-d4c86f102d16/f4cadbfd-c763-4193-b1e9-235a6378914a.lean",
+      "id": "f4cadbfd-c763-4193-b1e9-235a6378914a",
+      "status": "ACCEPTED",
+      "submission_id": "f4cadbfd-c763-4193-b1e9-235a6378914a",
+      "theorem_id": "8a90d80b-991b-45a6-a34f-7be569080670",
+      "updated_at": "2026-09-11T16:48:45.402905+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Erdos9796Mission.mem_pinnedRadii_iff": {
+      "created_at": "2026-09-11T16:41:35.082706+00:00",
+      "error_message": "",
+      "file_path": "10eda7dc-19b1-4215-8645-ff67ee885f1f/6ac78adb-dda3-4892-bb46-d4c86f102d16/5eb0cd4b-661b-44c7-9370-12c7ba0b75a1.lean",
+      "id": "5eb0cd4b-661b-44c7-9370-12c7ba0b75a1",
+      "status": "ACCEPTED",
+      "submission_id": "5eb0cd4b-661b-44c7-9370-12c7ba0b75a1",
+      "theorem_id": "10eda7dc-19b1-4215-8645-ff67ee885f1f",
+      "updated_at": "2026-09-11T16:43:44.743859+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Erdos9796Mission.not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three": {
+      "created_at": "2026-09-11T16:48:47.165926+00:00",
+      "error_message": "",
+      "file_path": "19cb2660-eec5-44fe-87af-d7b2de8ab3f5/6ac78adb-dda3-4892-bb46-d4c86f102d16/b2a574dc-ad46-41fc-b1ef-c6e98e98c864.lean",
+      "id": "b2a574dc-ad46-41fc-b1ef-c6e98e98c864",
+      "status": "ACCEPTED",
+      "submission_id": "b2a574dc-ad46-41fc-b1ef-c6e98e98c864",
+      "theorem_id": "19cb2660-eec5-44fe-87af-d7b2de8ab3f5",
+      "updated_at": "2026-09-11T16:50:39.641185+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three": {
+      "created_at": "2026-09-11T16:50:40.229172+00:00",
+      "error_message": "",
+      "file_path": "b7e1bd91-c3a4-4b5d-b8b0-62475ed73659/6ac78adb-dda3-4892-bb46-d4c86f102d16/03e16b61-7aa0-4561-8fb8-147366704544.lean",
+      "id": "03e16b61-7aa0-4561-8fb8-147366704544",
+      "status": "ACCEPTED",
+      "submission_id": "03e16b61-7aa0-4561-8fb8-147366704544",
+      "theorem_id": "b7e1bd91-c3a4-4b5d-b8b0-62475ed73659",
+      "updated_at": "2026-09-11T16:52:53.723231+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.hasNEquidistantPointsAt_iff_le_pinnedMultiplicity": {
+      "job_id": "04aea1ce-6d8e-4d6b-8d95-936c1c024b8f",
+      "status": "PUBLISHED",
+      "theorem_id": "50911e98-2b92-48f9-82e1-ebbe15ee4ef8"
+    },
+    "Erdos9796Mission.hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity": {
+      "job_id": "10bdb726-97e3-46e6-97c5-c9fc38645454",
+      "status": "PUBLISHED",
+      "theorem_id": "8a90d80b-991b-45a6-a34f-7be569080670"
+    },
+    "Erdos9796Mission.mem_pinnedRadii_iff": {
+      "job_id": "12010ac8-f7d4-4920-86e0-f78caa1eba60",
+      "status": "PUBLISHED",
+      "theorem_id": "10eda7dc-19b1-4215-8645-ff67ee885f1f"
+    },
+    "Erdos9796Mission.not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three": {
+      "job_id": "47ae740b-01c3-4dba-a41f-7e85773cf0a0",
+      "status": "PUBLISHED",
+      "theorem_id": "19cb2660-eec5-44fe-87af-d7b2de8ab3f5"
+    },
+    "Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three": {
+      "job_id": "815c211a-8b74-4e29-bfe0-27120d7bf632",
+      "status": "PUBLISHED",
+      "theorem_id": "b7e1bd91-c3a4-4b5d-b8b0-62475ed73659"
+    }
+  }
+}

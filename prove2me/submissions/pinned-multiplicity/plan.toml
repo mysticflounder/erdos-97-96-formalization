@@ -1,0 +1,96 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.1"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/pinned-multiplicity/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[definition]]
+name = "Erdos9796Mission_PinnedMultiplicity"
+file = "submissions/pinned-multiplicity/platform/Definitions/Def_Erdos9796Mission_PinnedMultiplicity.lean"
+title = "Pinned distance multiplicity"
+natural_language_statement = "For a finite planar point set A and a center p, define the realized positive radii from p and the maximum number of points of A lying at one such radius. This maximum is the pinned distance multiplicity at p."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/3d0e9306396f0aa6639f4453174693990fe9c242/lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L154-L166"
+tags = ["discrete-geometry", "erdos-97", "pinned-distances", "definitions"]
+private = false
+
+[[theorem]]
+name = "Erdos9796Mission.mem_pinnedRadii_iff"
+title = "Characterize the realized positive radii"
+file = "submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_mem_pinnedRadii_iff.lean"
+natural_language_statement = "A real number r is among the positive radii realized from p in A exactly when r is positive and some point q of A has distance r from p."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/3d0e9306396f0aa6639f4453174693990fe9c242/lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L168-L171"
+tags = ["discrete-geometry", "erdos-97", "pinned-distances"]
+
+[[theorem]]
+name = "Erdos9796Mission.hasNEquidistantPointsAt_iff_le_pinnedMultiplicity"
+title = "Equidistant witnesses are a pinned-multiplicity lower bound"
+file = "submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_hasNEquidistantPointsAt_iff_le_pinnedMultiplicity.lean"
+natural_language_statement = "For n > 0, a positive radius containing at least n points gives pinned distance multiplicity at least n; conversely, that multiplicity bound supplies a positive radius containing at least n points."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/3d0e9306396f0aa6639f4453174693990fe9c242/lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L173-L199"
+tags = ["discrete-geometry", "erdos-97", "pinned-distances"]
+
+[[theorem]]
+name = "Erdos9796Mission.hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity"
+title = "The repeated-distance property is a pointwise multiplicity bound"
+file = "submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity.lean"
+natural_language_statement = "For n > 0, the repeated-distance property gives pinned multiplicity at least n at every point of A, and those pointwise bounds give the repeated-distance property."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/3d0e9306396f0aa6639f4453174693990fe9c242/lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L219-L228"
+tags = ["discrete-geometry", "erdos-97", "pinned-distances"]
+
+[[theorem]]
+name = "Erdos9796Mission.not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three"
+title = "Failure of four witnesses means multiplicity at most three"
+file = "submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three.lean"
+natural_language_statement = "If a finite point set fails the four-equidistant-witness property, it has a point whose pinned distance multiplicity is at most three. Conversely, such a point makes the four-witness property fail."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/3d0e9306396f0aa6639f4453174693990fe9c242/lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L230-L239"
+tags = ["discrete-geometry", "erdos-97", "pinned-distances"]
+
+[[theorem]]
+name = "Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three"
+title = "Problem 97 and its pinned multiplicity formulation"
+file = "submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_problem97_iff_exists_pinnedMultiplicity_le_three.lean"
+natural_language_statement = "Problem 97 implies that every nonempty finite planar point set in strictly convex position contains a point whose pinned distance multiplicity is at most three. The converse implication also holds. These two implications restate the open problem without proving it."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/3d0e9306396f0aa6639f4453174693990fe9c242/lean/Erdos9796Proof/P97/PinnedMultiplicity.lean#L241-L262"
+tags = ["discrete-geometry", "erdos-97", "pinned-distances", "reformulation"]
+
+[[proof]]
+theorem = "Erdos9796Mission.mem_pinnedRadii_iff"
+file = "submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_mem_pinnedRadii_iff.lean"
+explanation = "submissions/pinned-multiplicity/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Erdos9796Mission.hasNEquidistantPointsAt_iff_le_pinnedMultiplicity"
+file = "submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_hasNEquidistantPointsAt_iff_le_pinnedMultiplicity.lean"
+explanation = "submissions/pinned-multiplicity/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Erdos9796Mission.hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity"
+file = "submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity.lean"
+explanation = "submissions/pinned-multiplicity/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Erdos9796Mission.not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three"
+file = "submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three.lean"
+explanation = "submissions/pinned-multiplicity/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three"
+file = "submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_problem97_iff_exists_pinnedMultiplicity_le_three.lean"
+explanation = "submissions/pinned-multiplicity/explanation.md"
+proof_type = "prove"
+
+[[milestone]]
+title = "Express Problem 97 as a bound on repeated distances from one vertex"
+description = "Define the pinned distance multiplicity at a point as the greatest number of vertices lying on one positive-radius circle centered there. Prove both directions between the original four-equidistant-witness formulation of Problem 97 and the assertion that every nonempty finite set in strictly convex position has a vertex of pinned multiplicity at most three. This milestone establishes the repeated-distance language used by the large-cardinality argument; it does not resolve Problem 97."
+theorem = "Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three"
+reason = "Add the proved pinned-multiplicity interface and record both implications connecting it to the mission statement."

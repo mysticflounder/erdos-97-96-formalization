@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-pinned-multiplicity-20260911",
+  "base_head": "3d0e9306396f0aa6639f4453174693990fe9c242",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-pinned-multiplicity-20260911.json",
+    "prove2me/submissions/pinned-multiplicity/README.md",
+    "prove2me/submissions/pinned-multiplicity/explanation.md",
+    "prove2me/submissions/pinned-multiplicity/plan.toml",
+    "prove2me/submissions/pinned-multiplicity/platform/Definitions/Def_Erdos9796Mission_PinnedMultiplicity.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_hasNEquidistantPointsAt_iff_le_pinnedMultiplicity.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_mem_pinnedRadii_iff.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Solutions/Sol_Erdos9796Mission_problem97_iff_exists_pinnedMultiplicity_le_three.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_hasNEquidistantPointsAt_iff_le_pinnedMultiplicity.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_hasNEquidistantProperty_iff_forall_le_pinnedMultiplicity.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_mem_pinnedRadii_iff.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_not_hasNEquidistantProperty_four_iff_exists_pinnedMultiplicity_le_three.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Theorems/Thm_Erdos9796Mission_problem97_iff_exists_pinnedMultiplicity_le_three.lean",
+    "prove2me/submissions/pinned-multiplicity/platform/Validation/PinnedMultiplicityKernel.lean",
+    "prove2me/submissions/pinned-multiplicity/receipt.json",
+    "prove2me/submissions/pinned-multiplicity/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-pinned-multiplicity",
+  "created_utc": "2026-09-11T15:58:00Z",
+  "manifest_sha256": "476605874fbe2a95b689c5739682a5923572c2a3d16fd47a00efa85e2580f987"
+}
