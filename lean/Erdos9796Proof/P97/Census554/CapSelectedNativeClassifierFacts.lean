@@ -48,6 +48,55 @@ theorem has_maskOfFinset (points : Finset Label) (point : Label) :
   · intro hp
     exact ⟨point, hp, rfl⟩
 
+private theorem countPoints_eq_filter_length (mask : RowMask) (xs : List Nat) :
+    countPoints mask xs = (xs.filter (has mask)).length := by
+  unfold countPoints
+  have aux (ys : List Nat) (acc : Nat) :
+      List.foldl (fun n i ↦ bif has mask i then n + 1 else n) acc ys =
+        acc + (ys.filter (has mask)).length := by
+    induction ys generalizing acc with
+    | nil => simp
+    | cons a ys ih =>
+      by_cases ha : has mask a = true <;>
+        simp [ha, ih, Nat.add_assoc, Nat.add_comm]
+  simpa using aux xs 0
+
+private theorem countPoints_map_val (points : Finset Label) (items : List Label) :
+    countPoints (maskOfFinset points) (items.map Fin.val) =
+      (items.filter fun p ↦ p ∈ points).length := by
+  rw [countPoints_eq_filter_length]
+  induction items with
+  | nil => simp
+  | cons p items ih =>
+    simp only [List.map_cons, List.filter_cons]
+    rw [has_maskOfFinset points p]
+    by_cases hp : p ∈ points <;> simp [hp, ih]
+
+private theorem countPoints_map_val_eq_inter_card
+    (points : Finset Label) (items : List Label) (hi : items.Nodup) :
+    countPoints (maskOfFinset points) (items.map Fin.val) =
+      (points ∩ items.toFinset).card := by
+  rw [countPoints_map_val]
+  calc
+    (items.filter fun p ↦ p ∈ points).length =
+        (items.filter fun p ↦ p ∈ points).toFinset.card := by
+      symm
+      exact List.toFinset_card_of_nodup (hi.filter _)
+    _ = (items.toFinset.filter fun p ↦ p ∈ points).card := by
+      rw [← List.filter_toFinset]
+    _ = (points ∩ items.toFinset).card := by
+      rw [Finset.filter_mem_eq_inter, Finset.inter_comm]
+
+private theorem countPoints_labels_maskOfFinset (points : Finset Label) :
+    countPoints (maskOfFinset points) labels = points.card := by
+  have hr : List.range 11 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] := by decide
+  rw [labels, hr]
+  have hu : ({0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10} : Finset Label) = Finset.univ := by
+    ext p
+    fin_cases p <;> simp
+  simpa [hu] using countPoints_map_val_eq_inter_card points
+    ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] : List Label) (by decide)
+
 /-- The binary mask of a set of eleven labels is smaller than `2 ^ 11`.
 
 This is a structural geometric-sum bound rather than an enumeration of all
@@ -131,15 +180,59 @@ instance (center deleted : Label) (points : Finset Label) :
   infer_instance
 
 set_option maxHeartbeats 1000000 in
--- Exhaustive equivalence check over centers, deleted labels, and row masks.
+-- Structural reduction from bitmask counts to finite-set cardinalities.
 set_option maxRecDepth 10000 in
-set_option linter.style.nativeDecide false in
-/-- Census-554 certificate-bank theorem. -/
+/-- The executable local-candidate test exactly expresses its finite-set
+cardinality and incidence conditions. -/
 theorem localCandidateOK_maskOfFinset_iff
     (center deleted : Label) (points : Finset Label) :
     localCandidateOK center.val deleted.val (maskOfFinset points) = true ↔
       LocalCandidateSpec center deleted points := by
-  native_decide +revert
+  have h278 :
+      countPoints (maskOfFinset points) [2, 7, 8] =
+        (points ∩ ({2, 7, 8} : Finset Label)).card := by
+    simpa using countPoints_map_val_eq_inter_card points
+      ([2, 7, 8] : List Label) (by decide)
+  have h1910 :
+      countPoints (maskOfFinset points) [1, 9, 10] =
+        (points ∩ ({1, 9, 10} : Finset Label)).card := by
+    simpa using countPoints_map_val_eq_inter_card points
+      ([1, 9, 10] : List Label) (by decide)
+  have h23456 :
+      countPoints (maskOfFinset points) [2, 3, 4, 5, 6] =
+        (points ∩ ({2, 3, 4, 5, 6} : Finset Label)).card := by
+    simpa using countPoints_map_val_eq_inter_card points
+      ([2, 3, 4, 5, 6] : List Label) (by decide)
+  have h0910 :
+      countPoints (maskOfFinset points) [0, 9, 10] =
+        (points ∩ ({0, 9, 10} : Finset Label)).card := by
+    simpa using countPoints_map_val_eq_inter_card points
+      ([0, 9, 10] : List Label) (by decide)
+  have h13456 :
+      countPoints (maskOfFinset points) [1, 3, 4, 5, 6] =
+        (points ∩ ({1, 3, 4, 5, 6} : Finset Label)).card := by
+    simpa using countPoints_map_val_eq_inter_card points
+      ([1, 3, 4, 5, 6] : List Label) (by decide)
+  have h078 :
+      countPoints (maskOfFinset points) [0, 7, 8] =
+        (points ∩ ({0, 7, 8} : Finset Label)).card := by
+    simpa using countPoints_map_val_eq_inter_card points
+      ([0, 7, 8] : List Label) (by decide)
+  have h012 :
+      countPoints (maskOfFinset points) [0, 1, 2] =
+        (points ∩ moser).card := by
+    simpa [moser] using countPoints_map_val_eq_inter_card points
+      ([0, 1, 2] : List Label) (by decide)
+  have h123456 :
+      countPoints (maskOfFinset points) [1, 2, 3, 4, 5, 6] =
+        (points ∩ capS).card := by
+    simpa [capS] using countPoints_map_val_eq_inter_card points
+      ([1, 2, 3, 4, 5, 6] : List Label) (by decide)
+  simp [localCandidateOK, localCandidateOKFourPoint, LocalCandidateSpec,
+    moserOneHitOK, capSelectedCountOK,
+    countPoints_labels_maskOfFinset, h278, h1910, h23456, h0910, h13456,
+    h078, h012, h123456, has_maskOfFinset, moser, capS]
+  fin_cases center <;> simp_all [moser, capS] <;> aesop
 
 set_option maxHeartbeats 1000000 in
 -- Exhaustive identity over the four possible pinned surplus-interior labels.

@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cap-selected-local-candidate-structural-20260910",
+  "base_head": "0167dd8efce9914dd2edb22a3ec5a016c88b3f8f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-selected-local-candidate-structural-20260910.json",
+    "docs/audits/2026-09-10-cap-selected-local-candidate-structural-axioms.json",
+    "docs/audits/2026-09-10-cap-selected-local-candidate-structural.md",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-cap-selected-local-candidate-structural",
+  "created_utc": "2026-09-11T06:05:00Z",
+  "manifest_sha256": "6b134eb2668edbf840b750536757593e7d63459e5352af8ad7765fb5109ab9ba"
+}

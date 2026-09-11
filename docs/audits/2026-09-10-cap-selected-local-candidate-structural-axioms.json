@@ -1,0 +1,37 @@
+{
+  "schema": "lean-axiom-recapture/v1",
+  "date": "2026-09-10",
+  "theorems": [
+    {
+      "name": "Problem97.Census554.CapSelectedNativeClassifierFacts.localCandidateOK_maskOfFinset_iff",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "Problem97.Census554.CapSelectedNativeClassifierSound.rowOfPattern_mem_candidateRows_of_localCandidateSpec",
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "focused_builds": [
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierFacts",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/11848-1789106387006770000.log"
+    },
+    {
+      "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierSound",
+      "exit_code": 0,
+      "log": "lean/.lake/lake-build-logs/52410-1789106646906198000.log"
+    }
+  ],
+  "source_scan_warnings": [
+    "Nonblocking linter.flexible warning on the final simp/fin_cases normalization."
+  ]
+}

@@ -32,8 +32,15 @@ bound. The row-coverage consumer still reaches `has_maskOfFinset` and
 The bit-membership checkpoint proves `has_maskOfFinset` through mathlib's
 binary-expansion theorem: the bit indices of a sum of distinct powers of two
 are exactly the selected indices. This removes exhaustive enumeration from the
-encoding interface. The remaining local-candidate theorem can now be reduced
-to general list-count/intersection lemmas and a finite split on the center label.
+encoding interface.
+
+The local-candidate checkpoint then proves
+`localCandidateOK_maskOfFinset_iff` from general fold/filter counting lemmas,
+finite-set intersections, and the eleven possible center labels. Its ordinary
+kernel proof replaces the native enumeration over centers, deleted labels, and
+row masks. The immediate candidate-row consumer now has only the standard
+`propext`, `Classical.choice`, and `Quot.sound` axioms. Three other native facts
+remain in the same module and the placement checks remain native.
 
 ## Objective and boundaries
 
