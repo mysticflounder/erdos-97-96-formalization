@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenConvexFiveSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Seven-hit convex-five refinement from the second cocircular-order SAT child
@@ -106,7 +107,7 @@ theorem cocircularOrderConvexFiveOccurrence_check :
   decide
 
 /-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderConvexFiveRefinementSchemas def. -/
-def cocircularOrderConvexFiveRefinementClauses : Std.Sat.CNF Atom :=
+def cocircularOrderConvexFiveRefinementClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction =>
       convexFiveOccurrenceClause order direction

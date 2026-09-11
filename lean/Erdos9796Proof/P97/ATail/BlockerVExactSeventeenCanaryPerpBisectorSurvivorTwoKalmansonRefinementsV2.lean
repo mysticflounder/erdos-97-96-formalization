@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! V2 source-valid two-Kalmanson candidate successor. -/
 
@@ -1138,7 +1139,7 @@ theorem cancellationOccurrences_all_check : cancellationOccurrences.all Cancella
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 def. -/
-def twoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
+def twoKalmansonRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
@@ -1165,7 +1166,7 @@ theorem sourceAssign_twoKalmansonRefinementClauses
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 def. -/
-def canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf : Std.Sat.CNF Atom :=
+def canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf : ListCNF Atom :=
   canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf ++ twoKalmansonRefinementClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2 theorem. -/
@@ -1179,14 +1180,14 @@ theorem canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf_length :
 theorem sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval := sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_twoKalmansonRefinementClauses source clause hsuffix
 

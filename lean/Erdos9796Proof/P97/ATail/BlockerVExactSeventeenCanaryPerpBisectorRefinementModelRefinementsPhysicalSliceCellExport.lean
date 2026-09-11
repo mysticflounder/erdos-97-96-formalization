@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-! Direct exporter for the canary perpendicular-bisector model-refinement root and cells. -/
 
@@ -19,7 +20,7 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCoverage
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinementsPhysicalSliceCellExport def. -/
-private def cnfDimacsString (cnf : Std.Sat.CNF Atom) : String :=
+private def cnfDimacsString (cnf : ListCNF Atom) : String :=
   let dimacs := cnf.map fun clause ↦ clause.map litToDimacs
   let lines :=
     s!"p cnf {baseNumVars} {dimacs.length}" ::

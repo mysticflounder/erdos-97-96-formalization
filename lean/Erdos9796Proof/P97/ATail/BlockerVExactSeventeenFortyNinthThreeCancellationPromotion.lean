@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthNextZeroAtomPromotion
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthThreeCancellationSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-! Lean-owned promotion of two distinct eight-hit V49 cancellation supports. -/
 
@@ -18,7 +19,7 @@ open ATailBlockerVExactSeventeenFortyNinthNextZeroAtomPromotion
 open ATailBlockerVExactSeventeenFortyNinthThreeCancellationSchemas
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion def. -/
-def fortyNinthThreeCancellationPromotionClauses : Std.Sat.CNF Atom :=
+def fortyNinthThreeCancellationPromotionClauses : ListCNF Atom :=
   fortyNinthThreeCancellationSchemaClauses
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
@@ -36,7 +37,7 @@ theorem sourceAssign_fortyNinthThreeCancellationPromotionClauses
     sourceAssign_fortyNinthThreeCancellationSchemaClauses source
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion def. -/
-def extendedFortyNinthThreeCancellationPromotionCnf : Std.Sat.CNF Atom :=
+def extendedFortyNinthThreeCancellationPromotionCnf : ListCNF Atom :=
   extendedFortyNinthNextZeroAtomPromotionCnf ++ fortyNinthThreeCancellationPromotionClauses
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
@@ -49,14 +50,14 @@ theorem extendedFortyNinthThreeCancellationPromotionCnf_length :
 /-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationPromotion theorem. -/
 theorem sourceAssign_extendedFortyNinthThreeCancellationPromotionCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortyNinthThreeCancellationPromotionCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortyNinthThreeCancellationPromotionCnf, List.mem_append] at hclause
   rcases hclause with hparent | hnext
   · have h := sourceAssign_extendedFortyNinthNextZeroAtomPromotionCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortyNinthThreeCancellationPromotionClauses source clause hnext
 
@@ -65,7 +66,7 @@ theorem false_of_sourceRealization_of_extendedFortyNinthThreeCancellationPromoti
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortyNinthThreeCancellationPromotionCnf = true) :
+      ListCNF.eval assignment extendedFortyNinthThreeCancellationPromotionCnf = true) :
     False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,

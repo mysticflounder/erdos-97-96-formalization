@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyEighthModelRefinemen
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyEighthModelRefinementsShard1
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyEighthModelRefinementsShard2
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyEighthModelRefinementsShard3
+import Erdos9796Proof.P97.ListCNF
 
 /-! # Child38 authenticated subset-minimal six-hit cancellation bank
 
@@ -24,7 +25,7 @@ open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenThirtySeventhModelRefinements
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def thirtyEighthModelRefinementClauses : Std.Sat.CNF Atom :=
+def thirtyEighthModelRefinementClauses : ListCNF Atom :=
   ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard0.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard1.refinementClauses ++
     ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard2.refinementClauses ++
@@ -59,7 +60,7 @@ theorem sourceAssign_thirtyEighthModelRefinementClauses
   · exact ATailBlockerVExactSeventeenThirtyEighthModelRefinementsShard3.sourceAssign_refinementClauses source clause h3
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedThirtyEighthModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedThirtyEighthModelRefinementsCnf : ListCNF Atom :=
   extendedThirtySeventhModelRefinementsCnf ++ thirtyEighthModelRefinementClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -72,13 +73,13 @@ theorem extendedThirtyEighthModelRefinementsCnf_length :
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtyEighthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model) extendedThirtyEighthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign source.model) extendedThirtyEighthModelRefinementsCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThirtyEighthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedThirtySeventhModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_thirtyEighthModelRefinementClauses source clause hsuffix
 
@@ -86,7 +87,7 @@ theorem sourceAssign_extendedThirtyEighthModelRefinementsCnf
 theorem false_of_sourceRealization_of_extendedThirtyEighthModelRefinementsCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThirtyEighthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedThirtyEighthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model, sourceAssign_extendedThirtyEighthModelRefinementsCnf source⟩
 

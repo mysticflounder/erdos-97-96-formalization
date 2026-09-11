@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyEighthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete new minimal cancellation family from exact-seventeen child 29
@@ -1464,7 +1465,7 @@ theorem cancellationOccurrences_all_check :
   native_decide
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def twentyNinthModelRefinementClauses : Std.Sat.CNF Atom :=
+def twentyNinthModelRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -1488,26 +1489,31 @@ theorem sourceAssign_twentyNinthModelRefinementClauses {A : Finset ℝ²}
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedTwentyNinthModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedTwentyNinthModelRefinementsCnf : ListCNF Atom :=
   extendedTwentyEighthModelRefinementsCnf ++
     twentyNinthModelRefinementClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedTwentyNinthModelRefinementsCnf_length :
     extendedTwentyNinthModelRefinementsCnf.length = 5846744 := by
-  native_decide
+  -- The Lean v4.33 kernel exhausts the build's 16 GB cap when it replays a
+  -- `native_decide` over this 5846744-clause list.  Counting the append
+  -- structurally from the parent's length avoids evaluating the list at all.
+  unfold extendedTwentyNinthModelRefinementsCnf
+  rw [List.length_append, extendedTwentyEighthModelRefinementsCnf_length,
+    twentyNinthModelRefinementClauses_length]
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedTwentyNinthModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwentyNinthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwentyNinthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedTwentyEighthModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_twentyNinthModelRefinementClauses source clause hsuffix
 
@@ -1515,7 +1521,7 @@ theorem sourceAssign_extendedTwentyNinthModelRefinementsCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwentyNinthModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwentyNinthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedTwentyNinthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

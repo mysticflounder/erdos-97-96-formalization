@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! The smallest source-valid V49 wave-v2 subset: direct atom 3108. -/
 
@@ -96,7 +97,7 @@ theorem fortyNinthWaveV2ZeroAtomWeightedOccurrences_check :
   simpa [hoccur] using fortyNinthWaveV2ZeroAtom3108_check
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV2ZeroAtomSchemas def. -/
-def fortyNinthWaveV2ZeroAtomSchemaClauses : Std.Sat.CNF Atom :=
+def fortyNinthWaveV2ZeroAtomSchemaClauses : ListCNF Atom :=
   fortyNinthWaveV2ZeroAtomWeightedOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>

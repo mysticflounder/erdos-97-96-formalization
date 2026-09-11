@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Four source-valid size-eight V49 Kalmanson occurrences from the
 authenticated V8 wave mine. Records preserve artifact order (artifact SHA256
@@ -247,7 +248,7 @@ theorem fortyNinthWaveV9FourSize8Occurrences_check :
   · exact fortyNinthWaveV9Size8Occurrence03_check
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV9FourSize8Schemas def. -/
-def fortyNinthWaveV9FourSize8SchemaClauses : Std.Sat.CNF Atom :=
+def fortyNinthWaveV9FourSize8SchemaClauses : ListCNF Atom :=
   fortyNinthWaveV9FourSize8Occurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order => directions.map fun direction =>
       weightedOccurrenceClause order direction occurrence

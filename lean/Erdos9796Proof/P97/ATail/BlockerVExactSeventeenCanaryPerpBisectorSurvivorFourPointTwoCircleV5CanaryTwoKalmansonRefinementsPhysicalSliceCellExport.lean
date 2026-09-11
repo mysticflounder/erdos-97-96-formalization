@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementsPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-! Deterministic DIMACS exporter for the v5 canary root and its 76 cells. -/
 
@@ -19,7 +20,7 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5Ca
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementsPhysicalSliceCoverage
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementsPhysicalSliceCellExport def. -/
-private def cnfDimacsString (cnf : Std.Sat.CNF Atom) : String :=
+private def cnfDimacsString (cnf : ListCNF Atom) : String :=
   let dimacs := cnf.map fun clause => clause.map litToDimacs
   let lines :=
     s!"p cnf {baseNumVars} {dimacs.length}" ::

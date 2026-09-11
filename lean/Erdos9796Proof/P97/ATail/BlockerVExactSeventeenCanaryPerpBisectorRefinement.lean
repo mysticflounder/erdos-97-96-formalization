@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinements
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericPerpBisectorNogoodCertificate
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Unguarded perpendicular-bisector refinement for the canary root
@@ -135,7 +136,7 @@ theorem sourceAssign_canaryPerpBisectorClause
   · simp [sourceAssign, hnotmem]
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinement def. -/
-def canaryPerpBisectorRefinementCnf : Std.Sat.CNF Atom :=
+def canaryPerpBisectorRefinementCnf : ListCNF Atom :=
   ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinements.extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf ++
     [canaryPerpBisectorClause]
 
@@ -150,9 +151,9 @@ theorem canaryPerpBisectorRefinementCnf_length :
 theorem sourceAssign_canaryPerpBisectorRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorRefinementCnf = true := by
-  rw [canaryPerpBisectorRefinementCnf, Std.Sat.CNF.eval_append]
+  rw [canaryPerpBisectorRefinementCnf, ListCNF.eval_append]
   rw [
     ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonModelRefinements.sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf
       source horder]

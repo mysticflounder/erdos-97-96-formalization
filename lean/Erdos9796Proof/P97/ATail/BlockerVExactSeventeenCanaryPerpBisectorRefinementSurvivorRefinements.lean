@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-valid survivor refinements after the canary perpendicular-bisector root
@@ -136,7 +137,7 @@ theorem cancellationOccurrences_all_check :
   native_decide
 
 /-- The three active order-zero forward nogoods, one from each surviving cell. -/
-def survivorRefinementClauses : Std.Sat.CNF Atom :=
+def survivorRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.map fun occ => occurrenceClause occ.hits 0 .forward
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
@@ -163,7 +164,7 @@ theorem sourceAssign_survivorRefinementClauses
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck 0 .forward
 
 /-- Lean-owned successor of the five-clause canary model-refinement root. -/
-def canaryPerpBisectorSurvivorRefinementCnf : Std.Sat.CNF Atom :=
+def canaryPerpBisectorSurvivorRefinementCnf : ListCNF Atom :=
   canaryPerpBisectorModelRefinementCnf ++ survivorRefinementClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements theorem. -/
@@ -177,14 +178,14 @@ theorem canaryPerpBisectorSurvivorRefinementCnf_length :
 theorem sourceAssign_canaryPerpBisectorSurvivorRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [canaryPerpBisectorSurvivorRefinementCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval := sourceAssign_canaryPerpBisectorModelRefinementCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_survivorRefinementClauses source clause hsuffix
 

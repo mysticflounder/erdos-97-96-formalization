@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmansonCancellationPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-! Direct exporter for one exact-17 two-Kalmanson four-row bisector physical-slice cell. -/
 
@@ -18,7 +19,7 @@ open ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 open ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmansonCancellationPhysicalSliceCoverage
 
 /-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmansonCancellationPhysicalSliceCellExport def. -/
-private def cnfDimacsString (cnf : Std.Sat.CNF Atom) : String :=
+private def cnfDimacsString (cnf : ListCNF Atom) : String :=
   let dimacs := cnf.map fun clause => clause.map litToDimacs
   let lines :=
     s!"p cnf {baseNumVars} {dimacs.length}" ::

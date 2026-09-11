@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChain
 import Erdos9796Proof.P97.ATail.TwoKalmansonEqualityChainSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Two-Kalmanson equality-chain clauses for exact seventeen
@@ -161,7 +162,7 @@ theorem sourceAssign_twoKalmansonChainClause {A : Finset ℝ²}
     (get g c (by simp [twoKalmansonChainHits]))
 
 /-- Complete guarded cyclic orbit of the two-Kalmanson equality chain. -/
-def twoKalmansonChainClauses : Std.Sat.CNF Atom :=
+def twoKalmansonChainClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -182,7 +183,7 @@ theorem sourceAssign_twoKalmansonChainClauses {A : Finset ℝ²}
     hoffsets
 
 /-- Lean-authoritative child root after the two-Kalmanson equality chain. -/
-def extendedTwoKalmansonCnf : Std.Sat.CNF Atom :=
+def extendedTwoKalmansonCnf : ListCNF Atom :=
   extendedPerpBisectorChainCnf ++ twoKalmansonChainClauses
 
 /-- Exact size of the complete two-Kalmanson equality-chain family. -/
@@ -199,14 +200,14 @@ theorem extendedTwoKalmansonCnf_clause_count :
 /-- Gate B for the complete two-Kalmanson child root. -/
 theorem sourceAssign_extendedTwoKalmansonCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwoKalmansonCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwoKalmansonCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedPerpBisectorChainCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_twoKalmansonChainClauses source clause hnew
 
@@ -214,7 +215,7 @@ theorem sourceAssign_extendedTwoKalmansonCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwoKalmansonCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwoKalmansonCnf = true) : False := by
+      ListCNF.eval assignment extendedTwoKalmansonCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedTwoKalmansonCnf source⟩

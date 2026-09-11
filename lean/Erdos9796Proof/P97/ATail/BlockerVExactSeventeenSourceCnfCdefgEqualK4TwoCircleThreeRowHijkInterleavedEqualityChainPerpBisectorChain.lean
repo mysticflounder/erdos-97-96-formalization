@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChain
 import Erdos9796Proof.P97.ATail.PerpBisectorEqualityChainSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Perpendicular-bisector equality-chain clauses for exact seventeen
@@ -175,7 +176,7 @@ theorem sourceAssign_perpBisectorChainClause {A : Finset ℝ²}
 
 /-- Complete guarded cyclic orbit of the perpendicular-bisector equality
 chain. -/
-def perpBisectorChainClauses : Std.Sat.CNF Atom :=
+def perpBisectorChainClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -198,7 +199,7 @@ theorem sourceAssign_perpBisectorChainClauses {A : Finset ℝ²}
 
 /-- Lean-authoritative child root after the perpendicular-bisector chain
 family. -/
-def extendedPerpBisectorChainCnf : Std.Sat.CNF Atom :=
+def extendedPerpBisectorChainCnf : ListCNF Atom :=
   extendedEqualityChainCnf ++ perpBisectorChainClauses
 
 /-- Exact size of the complete perpendicular-bisector chain family. -/
@@ -216,14 +217,14 @@ theorem extendedPerpBisectorChainCnf_clause_count :
 /-- Gate B for the complete perpendicular-bisector chain child root. -/
 theorem sourceAssign_extendedPerpBisectorChainCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedPerpBisectorChainCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedPerpBisectorChainCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedEqualityChainCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_perpBisectorChainClauses source clause hnew
 
@@ -232,7 +233,7 @@ chain child root. -/
 theorem false_of_sourceRealization_of_extendedPerpBisectorChainCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedPerpBisectorChainCnf = true) : False := by
+      ListCNF.eval assignment extendedPerpBisectorChainCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedPerpBisectorChainCnf source⟩

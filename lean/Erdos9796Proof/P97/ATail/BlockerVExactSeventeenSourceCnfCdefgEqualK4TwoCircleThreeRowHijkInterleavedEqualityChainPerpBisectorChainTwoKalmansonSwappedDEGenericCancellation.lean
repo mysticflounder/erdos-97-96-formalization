@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDE
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericRowNogoodCertificate
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Generic two-Kalmanson cancellation clause for exact seventeen
@@ -290,7 +291,7 @@ theorem sourceAssign_genericCancellationClause {A : Finset ℝ²}
   exact false_of_genericCancellationHits source order direction horder.symm hall
 
 /-- Complete finite orbit: two named source orders and both reflections. -/
-def genericCancellationClauses : Std.Sat.CNF Atom :=
+def genericCancellationClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => genericCancellationClause order direction
 
@@ -311,7 +312,7 @@ theorem sourceAssign_genericCancellationClauses {A : Finset ℝ²}
   exact sourceAssign_genericCancellationClause source order direction
 
 /-- Lean-authoritative child root after the generic cancellation orbit. -/
-def extendedGenericCancellationCnf : Std.Sat.CNF Atom :=
+def extendedGenericCancellationCnf : ListCNF Atom :=
   extendedTwoKalmansonSwappedDECnf ++ genericCancellationClauses
 
 /-- P97 ATail BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation theorem. -/
@@ -324,14 +325,14 @@ theorem extendedGenericCancellationCnf_clause_count :
 /-- Gate B for the Lean-authoritative generic-cancellation child root. -/
 theorem sourceAssign_extendedGenericCancellationCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedGenericCancellationCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedGenericCancellationCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedTwoKalmansonSwappedDECnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_genericCancellationClauses source clause hnew
 
@@ -340,7 +341,7 @@ root. -/
 theorem false_of_sourceRealization_of_extendedGenericCancellationCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedGenericCancellationCnf = true) : False := by
+      ListCNF.eval assignment extendedGenericCancellationCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedGenericCancellationCnf source⟩

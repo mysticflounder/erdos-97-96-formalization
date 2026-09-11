@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenGenericCancellationThird
 import Erdos9796Proof.P97.Census554.ConvexFivePointCore
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Fifth three-row convex five-point clause for exact seventeen
@@ -288,7 +289,7 @@ theorem sourceAssign_convexFivePointClause {A : Finset ℝ²}
   exact false_of_convexFivePointHits source order direction horder.symm hall
 
 /-- Complete orbit: two named source orders and both orientations. -/
-def convexFivePointClauses : Std.Sat.CNF Atom :=
+def convexFivePointClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => convexFivePointClause order direction
 
@@ -308,7 +309,7 @@ theorem sourceAssign_convexFivePointClauses {A : Finset ℝ²}
   exact sourceAssign_convexFivePointClause source order direction
 
 /-- Lean-owned successor root after both fifteenth-model theorem-bank hits. -/
-def extendedFifthConvexFivePointCnf : Std.Sat.CNF Atom :=
+def extendedFifthConvexFivePointCnf : ListCNF Atom :=
   extendedThirdCancellationCnf ++ convexFivePointClauses
 
 /-- P97 ATail BlockerVExactSeventeenConvexFivePointFifthRows theorem. -/
@@ -321,14 +322,14 @@ theorem extendedFifthConvexFivePointCnf_clause_count :
 /-- Gate B for the child containing both fifteenth-model refinements. -/
 theorem sourceAssign_extendedFifthConvexFivePointCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFifthConvexFivePointCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFifthConvexFivePointCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedThirdCancellationCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_convexFivePointClauses source clause hnew
 
@@ -336,7 +337,7 @@ theorem sourceAssign_extendedFifthConvexFivePointCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedFifthConvexFivePointCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFifthConvexFivePointCnf = true) : False := by
+      ListCNF.eval assignment extendedFifthConvexFivePointCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

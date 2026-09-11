@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorRefinement
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-valid model refinements after the canary perpendicular-bisector root
@@ -639,7 +640,7 @@ theorem sourceAssign_fourPointReverseClause {A : Finset ℝ²}
 /- ## Cumulative successor -/
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def canaryPerpBisectorModelRefinementClauses : Std.Sat.CNF Atom :=
+def canaryPerpBisectorModelRefinementClauses : ListCNF Atom :=
   [unique06PerpBisectorClause, kalmanson09Clause, fourPointForwardClause,
     fourPointReverseClause, kalmanson10Clause]
 
@@ -659,7 +660,7 @@ theorem canaryPerpBisectorModelRefinementClauses_dimacs :
   decide
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def canaryPerpBisectorModelRefinementCnf : Std.Sat.CNF Atom :=
+def canaryPerpBisectorModelRefinementCnf : ListCNF Atom :=
   ATailBlockerVExactSeventeenCanaryPerpBisectorRefinement.canaryPerpBisectorRefinementCnf ++
     canaryPerpBisectorModelRefinementClauses
 
@@ -674,9 +675,9 @@ theorem canaryPerpBisectorModelRefinementCnf_length :
 theorem sourceAssign_canaryPerpBisectorModelRefinementCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorModelRefinementCnf = true := by
-  rw [canaryPerpBisectorModelRefinementCnf, Std.Sat.CNF.eval_append]
+  rw [canaryPerpBisectorModelRefinementCnf, ListCNF.eval_append]
   rw [
     ATailBlockerVExactSeventeenCanaryPerpBisectorRefinement.sourceAssign_canaryPerpBisectorRefinementCnf
       source horder]

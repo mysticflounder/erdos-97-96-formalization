@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyNinthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete new minimal cancellation family from exact-seventeen child 30
@@ -1169,7 +1170,7 @@ theorem cancellationOccurrences_all_check :
   native_decide
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def thirtiethModelRefinementClauses : Std.Sat.CNF Atom :=
+def thirtiethModelRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -1193,26 +1194,28 @@ theorem sourceAssign_thirtiethModelRefinementClauses {A : Finset ℝ²}
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedThirtiethModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedThirtiethModelRefinementsCnf : ListCNF Atom :=
   extendedTwentyNinthModelRefinementsCnf ++
     thirtiethModelRefinementClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedThirtiethModelRefinementsCnf_length :
     extendedThirtiethModelRefinementsCnf.length = 5846904 := by
-  native_decide
+  unfold extendedThirtiethModelRefinementsCnf
+  rw [List.length_append, extendedTwentyNinthModelRefinementsCnf_length,
+    thirtiethModelRefinementClauses_length]
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtiethModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedThirtiethModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThirtiethModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedTwentyNinthModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_thirtiethModelRefinementClauses source clause hsuffix
 
@@ -1220,7 +1223,7 @@ theorem sourceAssign_extendedThirtiethModelRefinementsCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedThirtiethModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThirtiethModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedThirtiethModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

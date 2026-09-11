@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrderCyclicConvexFiveFullBankPromotion
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFullBank
+import Erdos9796Proof.P97.ListCNF
 
 /-! Lean-owned promotion of the complete sparse six-point exact-17 bank. -/
 
@@ -17,7 +18,7 @@ open ATailBlockerVExactSeventeenCocircularPentagonOrderCyclicConvexFiveFullBankP
 open ATailBlockerVExactSeventeenSparseSixPointFullBank
 
 /-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion def. -/
-def extendedCocircularOrderSparseSixPointFullBankCnf : Std.Sat.CNF Atom :=
+def extendedCocircularOrderSparseSixPointFullBankCnf : ListCNF Atom :=
   extendedCocircularOrderCyclicConvexFiveFullBankCnf ++
     sparseSixPointFullBankClauses
 
@@ -33,9 +34,9 @@ theorem extendedCocircularOrderSparseSixPointFullBankCnf_length :
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFullBankCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularOrderSparseSixPointFullBankCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCocircularOrderSparseSixPointFullBankCnf,
     List.mem_append] at hclause
@@ -43,7 +44,7 @@ theorem sourceAssign_extendedCocircularOrderSparseSixPointFullBankCnf
   · have hparentEval :=
       sourceAssign_extendedCocircularOrderCyclicConvexFiveFullBankCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_sparseSixPointFullBankClauses source clause hsuffix
 
@@ -52,7 +53,7 @@ theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFullB
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         extendedCocircularOrderSparseSixPointFullBankCnf = true) :
     False := by
   rcases hsource with ⟨source, horder⟩

@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrderConvexFiveFullBankPromotion
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCyclicConvexFiveFullBank
+import Erdos9796Proof.P97.ListCNF
 
 /-! Lean-owned promotion of the missing cyclic cuts of the exact-seventeen
 convex-five bank. -/
@@ -18,7 +19,7 @@ open ATailBlockerVExactSeventeenCocircularPentagonOrderConvexFiveFullBankPromoti
 open ATailBlockerVExactSeventeenCyclicConvexFiveFullBank
 
 /-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderCyclicConvexFiveFullBankPromotion def. -/
-def extendedCocircularOrderCyclicConvexFiveFullBankCnf : Std.Sat.CNF Atom :=
+def extendedCocircularOrderCyclicConvexFiveFullBankCnf : ListCNF Atom :=
   extendedCocircularOrderConvexFiveFullBankCnf ++
     cyclicConvexFiveMissingClauses
 
@@ -34,16 +35,16 @@ theorem extendedCocircularOrderCyclicConvexFiveFullBankCnf_length :
 theorem sourceAssign_extendedCocircularOrderCyclicConvexFiveFullBankCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularOrderCyclicConvexFiveFullBankCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCocircularOrderCyclicConvexFiveFullBankCnf,
     List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_extendedCocircularOrderConvexFiveFullBankCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_cyclicConvexFiveMissingClauses source clause hsuffix
 
@@ -52,7 +53,7 @@ theorem false_of_sourceRealization_of_extendedCocircularOrderCyclicConvexFiveFul
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         extendedCocircularOrderCyclicConvexFiveFullBankCnf = true) :
     False := by
   rcases hsource with ⟨source, horder⟩

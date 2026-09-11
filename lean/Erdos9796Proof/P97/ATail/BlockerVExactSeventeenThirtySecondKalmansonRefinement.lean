@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyEighthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Canonical child-32 two-Kalmanson occurrence
@@ -71,7 +72,7 @@ theorem canonicalOccurrence_check :
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement def. -/
-def canonicalClauses : Std.Sat.CNF Atom :=
+def canonicalClauses : ListCNF Atom :=
   occurrenceClauses canonicalHits
 
 /-- P97 ATail BlockerVExactSeventeenThirtySecondKalmansonRefinement theorem. -/

@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnf
 import Erdos9796Proof.P97.ATail.KalmansonFourEqualitySchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Checked C--G theorem-bank clauses for the exact-seventeen source CNF
@@ -384,7 +385,7 @@ theorem sourceAssign_schemaDClause {A : Finset ℝ²} (r : SourceRealization A)
       placedLabel order direction cut c) (by simp [schemaDHits])
 
 /-- Complete guarded schema-D cyclic-placement clause family. -/
-def schemaDClauses : Std.Sat.CNF Atom :=
+def schemaDClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -513,7 +514,7 @@ theorem sourceAssign_schemaEClause {A : Finset ℝ²} (r : SourceRealization A)
       placedLabel order direction cut b) (by simp [schemaEHits])
 
 /-- Complete guarded schema-E cyclic-placement clause family. -/
-def schemaEClauses : Std.Sat.CNF Atom :=
+def schemaEClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -644,7 +645,7 @@ theorem sourceAssign_schemaCClause {A : Finset ℝ²} (r : SourceRealization A)
       placedLabel order direction cut b) (by simp [schemaCHits])
 
 /-- Complete guarded schema-C cyclic-placement clause family. -/
-def schemaCClauses : Std.Sat.CNF Atom :=
+def schemaCClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -780,7 +781,7 @@ theorem sourceAssign_schemaFClause {A : Finset ℝ²} (r : SourceRealization A)
       placedLabel order direction cut g) (by simp [schemaFHits])
 
 /-- Complete guarded schema-F cyclic-placement clause family. -/
-def schemaFClauses : Std.Sat.CNF Atom :=
+def schemaFClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -974,7 +975,7 @@ theorem sourceAssign_schemaGClause {A : Finset ℝ²} (r : SourceRealization A)
       placedLabel order direction cut f) (by simp [schemaGHits])
 
 /-- Complete guarded schema-G cyclic-placement clause family. -/
-def schemaGClauses : Std.Sat.CNF Atom :=
+def schemaGClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -993,7 +994,7 @@ theorem sourceAssign_schemaGClauses {A : Finset ℝ²} (r : SourceRealization A)
   exact sourceAssign_schemaGClause r order direction cut offsets hoffsets
 
 /-- Complete source-checked C--G theorem-bank clause family. -/
-def cdefgClauses : Std.Sat.CNF Atom :=
+def cdefgClauses : ListCNF Atom :=
   schemaCClauses ++ schemaDClauses ++ schemaEClauses ++ schemaFClauses ++
     schemaGClauses
 
@@ -1013,9 +1014,27 @@ theorem sourceAssign_cdefgClauses {A : Finset ℝ²} (r : SourceRealization A) :
     · exact sourceAssign_schemaFClauses r clause hF
   · exact sourceAssign_schemaGClauses r clause hG
 
+/-- The list view of an array-backed formula evaluates like the formula. -/
+theorem listEval_clauses_toList (a : Atom → Bool) (f : Std.Sat.CNF Atom) :
+    ListCNF.eval a f.clauses.toList = Std.Sat.CNF.eval a f := by
+  rcases f with ⟨⟨clauses⟩⟩
+  exact ListCNF.eval_eq_std a clauses
+
+/-- List view of the array-backed checked Boolean base formula `baseCnf`. -/
+def baseListCnf : ListCNF Atom := baseCnf.clauses.toList
+
+/-- The list view evaluates like the array-backed base formula. -/
+theorem baseListCnf_eval (a : Atom → Bool) :
+    ListCNF.eval a baseListCnf = Std.Sat.CNF.eval a baseCnf :=
+  listEval_clauses_toList a baseCnf
+
+/-- The list view keeps every clause of the base formula. -/
+theorem baseListCnf_length : baseListCnf.length = 209692 := by
+  rw [baseListCnf, Array.length_toList, baseCnf_clause_count]
+
 /-- Lean-authoritative exact-seventeen formula: the checked Boolean base plus
 all checked cyclic placements of Kalmanson schemas C through G. -/
-def extendedCnf : Std.Sat.CNF Atom := baseCnf ++ cdefgClauses
+def extendedCnf : ListCNF Atom := baseListCnf ++ cdefgClauses
 
 /-- Exact size of one six-point schema family over both source orders, both
 directions, all seventeen cuts, and all increasing offset choices. -/
@@ -1050,18 +1069,18 @@ theorem cdefgClauses_length : cdefgClauses.length = 1980160 := by
 
 /-- Exact clause count of the complete Lean-authoritative formula. -/
 theorem extendedCnf_clause_count : extendedCnf.length = 2189852 := by
-  simp [extendedCnf, baseCnf_clause_count, cdefgClauses_length]
+  rw [extendedCnf, List.length_append, baseListCnf_length, cdefgClauses_length]
 
 /-- Gate B with the checked theorem bank: every geometric source realization
 induces a satisfying assignment of the complete extended formula. -/
 theorem sourceAssign_extendedCnf {A : Finset ℝ²} (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCnf, List.mem_append] at hclause
   rcases hclause with hbase | hcdefg
   · have hbaseAll := sourceAssign_baseCnf r.model
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hbaseAll
+    rw [← baseListCnf_eval, ListCNF.eval, List.all_eq_true] at hbaseAll
     exact hbaseAll clause hbase
   · exact sourceAssign_cdefgClauses r clause hcdefg
 
@@ -1069,7 +1088,7 @@ theorem sourceAssign_extendedCnf {A : Finset ℝ²} (r : SourceRealization A) :
 assignment for the complete checked exact-seventeen formula. -/
 theorem SourceRealization.extendedCnf_sat {A : Finset ℝ²}
     (r : SourceRealization A) :
-    ∃ assignment, Std.Sat.CNF.eval assignment extendedCnf = true :=
+    ∃ assignment, ListCNF.eval assignment extendedCnf = true :=
   ⟨sourceAssign r.model, sourceAssign_extendedCnf r⟩
 
 /-- Certificate-to-source landing contract.  Any checked proof that the exact
@@ -1079,7 +1098,7 @@ cap-nine production leaf. -/
 theorem false_of_sourceRealization_of_extendedCnf_unsat {A : Finset ℝ²}
     (hsource : Nonempty (SourceRealization A))
     (hunsat :
-      ¬ ∃ assignment, Std.Sat.CNF.eval assignment extendedCnf = true) :
+      ¬ ∃ assignment, ListCNF.eval assignment extendedCnf = true) :
     False := by
   rcases hsource with ⟨r⟩
   exact hunsat ⟨sourceAssign r.model, sourceAssign_extendedCnf r⟩

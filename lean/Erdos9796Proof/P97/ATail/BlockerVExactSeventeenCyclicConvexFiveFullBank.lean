@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenDirectConvexFiveFullBank
 import Erdos9796Proof.P97.ConvexCyclicOrder.Basic
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Missing cyclic cuts of the exact-seventeen convex-five bank
@@ -139,7 +140,8 @@ private theorem reverseOrientation (data : CyclicConvexFiveData)
     (hvalid.2.1.trans (hvalid.2.2.1.trans hvalid.2.2.2))
   have hyId := rev_add_diff (cut := data.cut) hzeroA
   have hyId' : data.a + reverseCut = Fin.rev data.cut := by
-    simpa only [reverseCut, Nat.sub_zero, Fin.zero_add] using hyId
+    simpa only [reverseCut, Fin.val_zero, Nat.sub_zero, Fin.eta,
+      Fin.zero_add] using hyId
   constructor
   · have h := hshift hzeroDx hdxDb
     simpa only [CyclicConvexFiveData.placed, reverseCut, dx, db,
@@ -174,15 +176,17 @@ theorem CyclicConvexFiveData.occurrence_check
     ATailFrontierLiveClosure.GenericRowNogoodCertificate.checkPrimitiveStep,
     ATailFrontierLiveClosure.GenericRowNogoodCertificate.PrimitiveEqualityStep.source,
     ATailFrontierLiveClosure.GenericRowNogoodCertificate.PrimitiveEqualityStep.target]
-  constructor
-  · intro heq
+  have hab : ¬data.placed.a = data.placed.b := by
+    intro heq
     have := congrArg (fun z => z - data.cut) heq
     exact (ne_of_gt (hvalid.2.2.1.trans hvalid.2.2.2))
       (by simpa [CyclicConvexFiveData.placed] using this)
-  · intro heq
+  have hxy : ¬data.placed.x = data.placed.y := by
+    intro heq
     have := congrArg (fun z => z - data.cut) heq
     exact (ne_of_gt (hvalid.1.trans (hvalid.2.1.trans hvalid.2.2.1)))
       (by simpa [CyclicConvexFiveData.placed] using this)
+  exact ⟨decide_eq_true ⟨hab, hxy⟩, hab, hxy⟩
 
 /-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank abbrev. -/
 private abbrev orientedHits :=
@@ -226,7 +230,7 @@ theorem valid_of_mem_cyclicConvexFiveMissingData
   exact data.validOfCheck hcheck.1
 
 /-- P97 ATail BlockerVExactSeventeenCyclicConvexFiveFullBank def. -/
-def cyclicConvexFiveMissingClauses : Std.Sat.CNF Atom :=
+def cyclicConvexFiveMissingClauses : ListCNF Atom :=
   cyclicConvexFiveMissingData.flatMap fun data =>
     directions.map data.clause
 

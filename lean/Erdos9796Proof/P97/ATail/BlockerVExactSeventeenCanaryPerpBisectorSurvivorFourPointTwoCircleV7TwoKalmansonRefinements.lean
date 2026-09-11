@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 Source-valid V7 two-Kalmanson bank over the V6 model-core root.
@@ -345,7 +346,7 @@ theorem v7CancellationOccurrences_all_check :
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/
-def v7TwoKalmansonOrbitClauses : Std.Sat.CNF Atom :=
+def v7TwoKalmansonOrbitClauses : ListCNF Atom :=
   v7CancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
@@ -374,7 +375,7 @@ theorem sourceAssign_v7TwoKalmansonOrbitClauses
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/
-def v7TwoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
+def v7TwoKalmansonRefinementClauses : ListCNF Atom :=
   [ occurrenceClause v7CancellationOccurrence0.hits 0 .forward,
     occurrenceClause v7CancellationOccurrence0.hits 0 .reverse,
     occurrenceClause v7CancellationOccurrence0.hits 1 .reverse,
@@ -425,7 +426,7 @@ theorem sourceAssign_v7TwoKalmansonRefinementClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf ++
     v7TwoKalmansonRefinementClauses
 
@@ -441,15 +442,15 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf_
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_v7TwoKalmansonRefinementClauses source clause hsuffix
 

@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenConvexFivePointThirdRows
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Two further three-row convex five-point clauses for exact seventeen
@@ -469,17 +470,17 @@ theorem sourceAssign_secondClause {A : Finset ℝ²}
   exact false_of_secondHits source order direction horder.symm hall
 
 /-- P97 ATail BlockerVExactSeventeenConvexFivePointFourthRows def. -/
-def firstClauses : Std.Sat.CNF Atom :=
+def firstClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => firstClause order direction
 
 /-- P97 ATail BlockerVExactSeventeenConvexFivePointFourthRows def. -/
-def secondClauses : Std.Sat.CNF Atom :=
+def secondClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => secondClause order direction
 
 /-- P97 ATail BlockerVExactSeventeenConvexFivePointFourthRows def. -/
-def fourthRowClauses : Std.Sat.CNF Atom := firstClauses ++ secondClauses
+def fourthRowClauses : ListCNF Atom := firstClauses ++ secondClauses
 
 /-- P97 ATail BlockerVExactSeventeenConvexFivePointFourthRows theorem. -/
 theorem firstClauses_length : firstClauses.length = 4 := by
@@ -509,7 +510,7 @@ theorem sourceAssign_fourthRowClauses {A : Finset ℝ²}
     exact sourceAssign_secondClause source order direction
 
 /-- Lean-owned successor root after both newly mined three-row orbits. -/
-def extendedFourthRowCnf : Std.Sat.CNF Atom :=
+def extendedFourthRowCnf : ListCNF Atom :=
   extendedConvexFivePointCnf ++ fourthRowClauses
 
 /-- P97 ATail BlockerVExactSeventeenConvexFivePointFourthRows theorem. -/
@@ -537,14 +538,14 @@ theorem second_orderZero_forward_hits :
 /-- Gate B for the successor root containing both twelfth-model refinements. -/
 theorem sourceAssign_extendedFourthRowCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFourthRowCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFourthRowCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedConvexFivePointCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_fourthRowClauses source clause hnew
 
@@ -552,7 +553,7 @@ theorem sourceAssign_extendedFourthRowCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedFourthRowCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFourthRowCnf = true) : False := by
+      ListCNF.eval assignment extendedFourthRowCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedFourthRowCnf source⟩

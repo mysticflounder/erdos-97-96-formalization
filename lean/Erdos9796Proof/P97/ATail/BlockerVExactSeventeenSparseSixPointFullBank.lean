@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefg
 import Erdos9796Proof.P97.ATail.SixPointSparseEuclideanObstruction
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete exact-seventeen sparse six-point bank
@@ -123,7 +124,7 @@ theorem sourceAssign_sparseSixPointClause {A : Finset ℝ²}
       placedLabel 0 direction cut e) (by simp [sparseSixPointHits])
 
 /-- Complete order-zero sparse six-point cyclic family. -/
-def sparseSixPointFullBankClauses : Std.Sat.CNF Atom :=
+def sparseSixPointFullBankClauses : ListCNF Atom :=
   directions.flatMap fun direction =>
     labels.flatMap fun cut =>
       fiveOffsetChoices.map fun offsets =>

@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyEighthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Canary two-Kalmanson bank after the exact-17 six-hit bisector root
@@ -297,7 +298,7 @@ theorem canaryCancellationOccurrences_all_check :
   native_decide
 
 /-- Complete named-order and orientation orbit of the canary occurrences. -/
-def canaryTwoKalmansonClauses : Std.Sat.CNF Atom :=
+def canaryTwoKalmansonClauses : ListCNF Atom :=
   canaryCancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson theorem. -/
@@ -310,7 +311,7 @@ def canaryNovelTwoKalmansonClauseIndices : List Nat :=
   [0, 1, 2, 3, 4, 5, 6, 8, 9, 12, 14, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30]
 
 /-- The genuinely new suffix, in the original orbit order. -/
-def canaryNovelTwoKalmansonClauses : Std.Sat.CNF Atom :=
+def canaryNovelTwoKalmansonClauses : ListCNF Atom :=
   canaryTwoKalmansonClauses.zipIdx.filterMap fun (clause, index) =>
     if index ∈ canaryNovelTwoKalmansonClauseIndices then some clause else none
 
@@ -370,7 +371,7 @@ theorem orderZeroForwardCanaryClauses_dimacs :
 
 /-- Lean-owned successor of the exact-17 six-hit bisector root. -/
 def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf ++
     canaryNovelTwoKalmansonClauses
 
@@ -388,10 +389,10 @@ theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmanson
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf =
         true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf,
@@ -400,7 +401,7 @@ theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHi
   · have hparentEval :=
       sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_canaryNovelTwoKalmansonClauses source clause hsuffix
 
@@ -409,7 +410,7 @@ theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFourR
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf =
           true) :
     False := by

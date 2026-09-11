@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenConvexFiveSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Full positional convex-five bank at exact seventeen
@@ -163,8 +164,9 @@ theorem DirectConvexFiveData.occurrence_check
     ATailFrontierLiveClosure.GenericRowNogoodCertificate.checkPrimitiveStep,
     ATailFrontierLiveClosure.GenericRowNogoodCertificate.PrimitiveEqualityStep.source,
     ATailFrontierLiveClosure.GenericRowNogoodCertificate.PrimitiveEqualityStep.target]
-  exact ⟨ne_of_gt (hvalid.2.2.1.trans hvalid.2.2.2),
-    ne_of_gt (hvalid.1.trans (hvalid.2.1.trans hvalid.2.2.1))⟩
+  refine ⟨decide_eq_true ?_, ?_⟩ <;>
+    exact ⟨ne_of_gt (hvalid.2.2.1.trans hvalid.2.2.2),
+      ne_of_gt (hvalid.1.trans (hvalid.2.1.trans hvalid.2.2.1))⟩
 
 /-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank abbrev. -/
 private abbrev orientedHits :=
@@ -204,7 +206,7 @@ theorem valid_of_mem_directConvexFiveData {data : DirectConvexFiveData}
   exact data.validOfCheck hcheck
 
 /-- P97 ATail BlockerVExactSeventeenDirectConvexFiveFullBank def. -/
-def directConvexFiveFullBankClauses : Std.Sat.CNF Atom :=
+def directConvexFiveFullBankClauses : ListCNF Atom :=
   directConvexFiveData.flatMap fun data =>
     directions.map data.clause
 

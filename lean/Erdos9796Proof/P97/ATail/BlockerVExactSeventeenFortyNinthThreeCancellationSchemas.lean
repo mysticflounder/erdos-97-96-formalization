@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Two distinct eight-hit weighted cancellations from the V49 successor mine. -/
 
@@ -66,7 +67,7 @@ theorem fortyNinthThreeCancellationWeightedOccurrences_check :
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthThreeCancellationSchemas def. -/
-def fortyNinthThreeCancellationSchemaClauses : Std.Sat.CNF Atom :=
+def fortyNinthThreeCancellationSchemaClauses : ListCNF Atom :=
   fortyNinthThreeCancellationWeightedOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>

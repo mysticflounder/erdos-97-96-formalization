@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefg
 import Erdos9796Proof.P97.Census554.EqualityCore
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Checked equal-K4 clauses for the exact-seventeen source CNF
@@ -128,7 +129,7 @@ theorem sourceAssign_equalK4Clause {A : Finset ℝ²}
   · simp [sourceAssign, hnotmem]
 
 /-- Complete checked equal-K4 clause family. -/
-def equalK4Clauses : Std.Sat.CNF Atom :=
+def equalK4Clauses : ListCNF Atom :=
   equalK4Choices.map equalK4Clause
 
 /-- Every geometric source realization satisfies every equal-K4 clause. -/
@@ -142,7 +143,7 @@ theorem sourceAssign_equalK4Clauses {A : Finset ℝ²}
   exact sourceAssign_equalK4Clause r choice
 
 /-- Lean-authoritative child root after adding the equal-K4 theorem bank. -/
-def extendedEqualK4Cnf : Std.Sat.CNF Atom :=
+def extendedEqualK4Cnf : ListCNF Atom :=
   extendedCnf ++ equalK4Clauses
 
 /-- Exact size of the equal-K4 clause family. -/
@@ -157,13 +158,13 @@ theorem extendedEqualK4Cnf_clause_count :
 /-- Gate B for the equal-K4 child root. -/
 theorem sourceAssign_extendedEqualK4Cnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedEqualK4Cnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedEqualK4Cnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedEqualK4Cnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_equalK4Clauses r clause hnew
 
@@ -171,7 +172,7 @@ theorem sourceAssign_extendedEqualK4Cnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedEqualK4Cnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedEqualK4Cnf = true) :
+      ListCNF.eval assignment extendedEqualK4Cnf = true) :
     False := by
   rcases hsource with ⟨r⟩
   exact hunsat ⟨sourceAssign r.model, sourceAssign_extendedEqualK4Cnf r⟩

@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThreeRowCycleRefinements
 import Erdos9796Proof.P97.ATail.TwoTripleRowSixPointEuclideanObstruction
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Two-triple-row clauses for the exact-seventeen source CNF
@@ -119,7 +120,7 @@ theorem sourceAssign_twoTripleRowClause {A : Finset ℝ²} (r : SourceRealizatio
     (get f e (by simp [twoTripleRowHits]))
 
 /-- Complete guarded cyclic orbit of the two-triple-row obstruction. -/
-def twoTripleRowClauses : Std.Sat.CNF Atom :=
+def twoTripleRowClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -142,7 +143,7 @@ theorem sourceAssign_twoTripleRowClauses {A : Finset ℝ²}
   exact sourceAssign_twoTripleRowClause r order direction cut offsets hoffsets
 
 /-- Current exact-seventeen root extended by the complete two-triple-row bank. -/
-def extendedTwoTripleRowCnf : Std.Sat.CNF Atom :=
+def extendedTwoTripleRowCnf : ListCNF Atom :=
   extendedThreeRowCycleCnf ++ twoTripleRowClauses
 
 /-- P97 ATail BlockerVExactSeventeenTwoTripleRowRefinements theorem. -/
@@ -153,13 +154,13 @@ theorem extendedTwoTripleRowCnf_length : extendedTwoTripleRowCnf.length = 703696
 /-- Every source realization satisfies the complete extended formula. -/
 theorem sourceAssign_extendedTwoTripleRowCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedTwoTripleRowCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedTwoTripleRowCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwoTripleRowCnf, List.mem_append] at hclause
   rcases hclause with hparent | hnew
   · have h := sourceAssign_extendedThreeRowCycleCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_twoTripleRowClauses r clause hnew
 
@@ -167,7 +168,7 @@ theorem sourceAssign_extendedTwoTripleRowCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwoTripleRowCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwoTripleRowCnf = true) : False := by
+      ListCNF.eval assignment extendedTwoTripleRowCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
     sourceAssign_extendedTwoTripleRowCnf source⟩

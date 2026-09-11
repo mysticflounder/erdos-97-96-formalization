@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFourRowTwoCircleBisector
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Third generic two-Kalmanson cancellation clause for exact seventeen
@@ -253,7 +254,7 @@ theorem sourceAssign_thirdCancellationClause {A : Finset ℝ²}
   exact false_of_thirdCancellationHits source order direction horder.symm hall
 
 /-- Complete orbit: two named source orders and both reflections. -/
-def thirdCancellationClauses : Std.Sat.CNF Atom :=
+def thirdCancellationClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => thirdCancellationClause order direction
 
@@ -273,7 +274,7 @@ theorem sourceAssign_thirdCancellationClauses {A : Finset ℝ²}
   exact sourceAssign_thirdCancellationClause source order direction
 
 /-- Lean-owned successor root after the third cancellation orbit. -/
-def extendedThirdCancellationCnf : Std.Sat.CNF Atom :=
+def extendedThirdCancellationCnf : ListCNF Atom :=
   extendedFourRowBisectorCnf ++ thirdCancellationClauses
 
 /-- P97 ATail BlockerVExactSeventeenGenericCancellationThird theorem. -/
@@ -286,14 +287,14 @@ theorem extendedThirdCancellationCnf_clause_count :
 /-- Gate B for the third generic-cancellation successor root. -/
 theorem sourceAssign_extendedThirdCancellationCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedThirdCancellationCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThirdCancellationCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedFourRowBisectorCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_thirdCancellationClauses source clause hnew
 
@@ -301,7 +302,7 @@ theorem sourceAssign_extendedThirdCancellationCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedThirdCancellationCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThirdCancellationCnf = true) : False := by
+      ListCNF.eval assignment extendedThirdCancellationCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedThirdCancellationCnf source⟩

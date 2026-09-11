@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Full two-Kalmanson successor from the authenticated exact-seventeen canary
@@ -590,7 +591,7 @@ theorem cancellationOccurrences_all_check :
   native_decide
 
 /-- The complete named-order/orientation orbit of every checked occurrence. -/
-def twoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
+def twoKalmansonRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
@@ -614,7 +615,7 @@ theorem sourceAssign_twoKalmansonRefinementClauses
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
 /-- Lean-owned successor after adjoining all sixty-eight source-valid clauses. -/
-def canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf : Std.Sat.CNF Atom :=
+def canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf : ListCNF Atom :=
   canaryPerpBisectorSurvivorRefinementCnf ++ twoKalmansonRefinementClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
@@ -628,16 +629,16 @@ theorem canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf_length :
 theorem sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf,
     List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorRefinementCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_twoKalmansonRefinementClauses source clause hsuffix
 
@@ -646,7 +647,7 @@ theorem false_of_sourceRealization_of_canaryPerpBisectorSurvivorTwoKalmansonRefi
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf = true) : False := by
   exact hunsat
     ⟨sourceAssign source.model,

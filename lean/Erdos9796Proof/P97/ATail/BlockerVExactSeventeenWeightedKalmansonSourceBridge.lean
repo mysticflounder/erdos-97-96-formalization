@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSixteenthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-realization bridge for weighted Kalmanson occurrences

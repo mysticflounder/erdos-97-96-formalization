@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Exact-17 four-row bisector physical-slice coverage
@@ -25,7 +26,7 @@ open ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 
 /-- The four-row bisector root restricted to one source-valid physical-slice cell. -/
 def sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf
-    (center : Label) (category : PhysicalSliceCategory) : Std.Sat.CNF Atom :=
+    (center : Label) (category : PhysicalSliceCategory) : ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFourRowBisectorCnf ++
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
@@ -47,10 +48,10 @@ theorem sourceAssign_sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCell
     {center : Label} (hcenter : source.model.nextCenter = center)
     {category : PhysicalSliceCategory}
     (hmatch : category.Matches source.model center) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       (sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf center category) = true := by
   rw [sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf,
-    Std.Sat.CNF.eval_append, Std.Sat.CNF.eval_append]
+    ListCNF.eval_append, ListCNF.eval_append]
   rw [sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorCnf source horder]
   rw [sourceAssign_sparseSixPointNextCenterUnit source.model hcenter]
   simp [sourceAssign_physicalSliceUnitCnf source.model center category hmatch]
@@ -63,7 +64,7 @@ theorem false_of_all_sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCells
     (hcell : ∀ center, center ∈ legalNextCenterLabels →
       ∀ category, category ∈ physicalSliceCategories center →
         ¬ ∃ assignment,
-          Std.Sat.CNF.eval assignment
+          ListCNF.eval assignment
             (sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf
               center category) = true)
     {A : Finset (EuclideanSpace ℝ (Fin 2))}

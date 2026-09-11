@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyFourthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Child45 next-center coverage adapter
@@ -23,11 +24,11 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortyFourthModelRefinements
 
 /-- The singleton assumption attached to one legal next-center cell. -/
-def nextCenterUnitCnf (center : Label) : Std.Sat.CNF Atom :=
+def nextCenterUnitCnf (center : Label) : ListCNF Atom :=
   [[pos (.nextCenter center)]]
 
 /-- The authenticated Child45 root with one next-center cell assumption. -/
-def nextCenterCellCnf (center : Label) : Std.Sat.CNF Atom :=
+def nextCenterCellCnf (center : Label) : ListCNF Atom :=
   extendedFortyFourthModelRefinementsCnf ++ nextCenterUnitCnf center
 
 /-- The source-level positive literal has the campaign's `290 + center` ID. -/
@@ -40,8 +41,8 @@ theorem litToDimacs_pos_nextCenter (center : Label) :
 theorem sourceAssign_nextCenterUnit
     (model : SourceModel) {center : Label}
     (hcenter : model.nextCenter = center) :
-    Std.Sat.CNF.eval (sourceAssign model) (nextCenterUnitCnf center) = true := by
-  simp [nextCenterUnitCnf, Std.Sat.CNF.eval, Std.Sat.CNF.Clause.eval,
+    ListCNF.eval (sourceAssign model) (nextCenterUnitCnf center) = true := by
+  simp [nextCenterUnitCnf, ListCNF.eval, Std.Sat.CNF.Clause.eval,
     sourceAssign, pos, hcenter]
 
 /-- A source realization satisfies the Child45 root plus its matching unit. -/
@@ -49,8 +50,8 @@ theorem sourceAssign_nextCenterCell
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) {center : Label}
     (hcenter : source.model.nextCenter = center) :
-    Std.Sat.CNF.eval (sourceAssign source.model) (nextCenterCellCnf center) = true := by
-  rw [nextCenterCellCnf, Std.Sat.CNF.eval_append]
+    ListCNF.eval (sourceAssign source.model) (nextCenterCellCnf center) = true := by
+  rw [nextCenterCellCnf, ListCNF.eval_append]
   rw [sourceAssign_extendedFortyFourthModelRefinementsCnf source]
   simp [sourceAssign_nextCenterUnit source.model hcenter]
 
@@ -68,7 +69,7 @@ source-valid refinements.
 theorem false_of_all_nextCenterCells
     (hcell : ∀ center, center ∈ legalNextCenterLabels →
       ¬ ∃ assignment,
-        Std.Sat.CNF.eval assignment (nextCenterCellCnf center) = true)
+        ListCNF.eval assignment (nextCenterCellCnf center) = true)
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A)) :
     False := by

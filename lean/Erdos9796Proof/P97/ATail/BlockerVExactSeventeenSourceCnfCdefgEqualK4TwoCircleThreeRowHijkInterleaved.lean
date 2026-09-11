@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijk
 import Erdos9796Proof.P97.ATail.KalmansonThreeEqualitySchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Interleaved three-row clauses for the exact-seventeen source CNF
@@ -129,7 +130,7 @@ theorem sourceAssign_interleavedClause {A : Finset ℝ²}
     (get f c (by simp [interleavedHits]))
 
 /-- Complete guarded cyclic orbit of the interleaved three-row clause. -/
-def interleavedClauses : Std.Sat.CNF Atom :=
+def interleavedClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -149,7 +150,7 @@ theorem sourceAssign_interleavedClauses {A : Finset ℝ²}
   exact sourceAssign_interleavedClause r order direction cut offsets hoffsets
 
 /-- Lean-authoritative child root after the interleaved three-row family. -/
-def extendedInterleavedCnf : Std.Sat.CNF Atom :=
+def extendedInterleavedCnf : ListCNF Atom :=
   extendedHijkCnf ++ interleavedClauses
 
 /-- Exact size of the complete interleaved three-row family. -/
@@ -165,13 +166,13 @@ theorem extendedInterleavedCnf_clause_count :
 /-- Gate B for the complete interleaved child root. -/
 theorem sourceAssign_extendedInterleavedCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedInterleavedCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedInterleavedCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedInterleavedCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedHijkCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_interleavedClauses r clause hnew
 
@@ -179,7 +180,7 @@ theorem sourceAssign_extendedInterleavedCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedInterleavedCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedInterleavedCnf = true) : False := by
+      ListCNF.eval assignment extendedInterleavedCnf = true) : False := by
   rcases hsource with ⟨r⟩
   exact hunsat ⟨sourceAssign r.model, sourceAssign_extendedInterleavedCnf r⟩
 

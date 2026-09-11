@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCurrentRootTwoKalmansonRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! The 81 source-valid successor occurrences mined from the authenticated exact-17 root model. -/
 
@@ -2735,7 +2736,7 @@ theorem currentRootTwoKalmansonSuccessorOccurrences_all_check : currentRootTwoKa
   decide
 
 /-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements def. -/
-def currentRootTwoKalmansonSuccessorClauses : Std.Sat.CNF Atom :=
+def currentRootTwoKalmansonSuccessorClauses : ListCNF Atom :=
   currentRootTwoKalmansonSuccessorOccurrences.flatMap fun occurrence => occurrenceClauses occurrence.hits
 
 /-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
@@ -2755,25 +2756,25 @@ theorem sourceAssign_currentRootTwoKalmansonSuccessorClauses {A : Finset (Euclid
   exact sourceAssign_cancellationOccurrenceClause source occurrence hcheck order direction
 
 /-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements def. -/
-def extendedCurrentRootTwoKalmansonSuccessorCnf : Std.Sat.CNF Atom := extendedCurrentRootTwoKalmansonCnf ++ currentRootTwoKalmansonSuccessorClauses
+def extendedCurrentRootTwoKalmansonSuccessorCnf : ListCNF Atom := extendedCurrentRootTwoKalmansonCnf ++ currentRootTwoKalmansonSuccessorClauses
 
 /-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
 theorem extendedCurrentRootTwoKalmansonSuccessorCnf_length : extendedCurrentRootTwoKalmansonSuccessorCnf.length = 7037500 := by
   simp only [extendedCurrentRootTwoKalmansonSuccessorCnf, List.length_append, extendedCurrentRootTwoKalmansonCnf_length, currentRootTwoKalmansonSuccessorClauses_length]
 
 /-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
-theorem sourceAssign_extendedCurrentRootTwoKalmansonSuccessorCnf {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) : Std.Sat.CNF.eval (sourceAssign source.model) extendedCurrentRootTwoKalmansonSuccessorCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+theorem sourceAssign_extendedCurrentRootTwoKalmansonSuccessorCnf {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) : ListCNF.eval (sourceAssign source.model) extendedCurrentRootTwoKalmansonSuccessorCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCurrentRootTwoKalmansonSuccessorCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedCurrentRootTwoKalmansonCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_currentRootTwoKalmansonSuccessorClauses source clause hsuffix
 
 /-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements theorem. -/
-theorem false_of_sourceRealization_of_extendedCurrentRootTwoKalmansonSuccessorCnf_unsat {A : Finset (EuclideanSpace ℝ (Fin 2))} (hsource : Nonempty (SourceRealization A)) (hunsat : ¬ ∃ assignment, Std.Sat.CNF.eval assignment extendedCurrentRootTwoKalmansonSuccessorCnf = true) : False := by
+theorem false_of_sourceRealization_of_extendedCurrentRootTwoKalmansonSuccessorCnf_unsat {A : Finset (EuclideanSpace ℝ (Fin 2))} (hsource : Nonempty (SourceRealization A)) (hunsat : ¬ ∃ assignment, ListCNF.eval assignment extendedCurrentRootTwoKalmansonSuccessorCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model, sourceAssign_extendedCurrentRootTwoKalmansonSuccessorCnf source⟩
 

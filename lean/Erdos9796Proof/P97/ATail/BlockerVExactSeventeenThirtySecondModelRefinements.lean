@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtySecondTwoCircleRefinement
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtySecondKalmansonRefinement
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-valid refinements mined from exact-seventeen child 32
@@ -27,7 +28,7 @@ open ATailBlockerVExactSeventeenThirtySecondTwoCircleRefinement
 open ATailBlockerVExactSeventeenThirtySecondKalmansonRefinement
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def thirtySecondModelRefinementClauses : Std.Sat.CNF Atom :=
+def thirtySecondModelRefinementClauses : ListCNF Atom :=
   child32TwoCircleClauses ++ canonicalClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -49,7 +50,7 @@ theorem sourceAssign_thirtySecondModelRefinementClauses
   · exact sourceAssign_canonicalClauses source clause hkalmanson
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedThirtySecondModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedThirtySecondModelRefinementsCnf : ListCNF Atom :=
   extendedThirtyFirstModelRefinementsCnf ++ thirtySecondModelRefinementClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -63,14 +64,14 @@ theorem extendedThirtySecondModelRefinementsCnf_length :
 theorem sourceAssign_extendedThirtySecondModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedThirtySecondModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThirtySecondModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedThirtyFirstModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_thirtySecondModelRefinementClauses source clause hsuffix
 
@@ -79,7 +80,7 @@ theorem false_of_sourceRealization_of_extendedThirtySecondModelRefinementsCnf_un
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThirtySecondModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedThirtySecondModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

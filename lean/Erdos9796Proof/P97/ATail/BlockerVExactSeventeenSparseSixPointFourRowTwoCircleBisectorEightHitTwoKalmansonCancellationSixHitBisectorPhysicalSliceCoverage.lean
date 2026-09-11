@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisector
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Exact-17 six-hit bisector physical-slice coverage
@@ -25,7 +26,7 @@ open ATailBlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 
 /-- The six-hit bisector root restricted to one source-valid physical-slice cell. -/
 def sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorPhysicalSliceCellCnf
-    (center : Label) (category : PhysicalSliceCategory) : Std.Sat.CNF Atom :=
+    (center : Label) (category : PhysicalSliceCategory) : ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf ++
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
@@ -48,12 +49,12 @@ theorem sourceAssign_sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonS
     {center : Label} (hcenter : source.model.nextCenter = center)
     {category : PhysicalSliceCategory}
     (hmatch : category.Matches source.model center) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       (sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorPhysicalSliceCellCnf
         center category) = true := by
   rw [
     sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorPhysicalSliceCellCnf,
-    Std.Sat.CNF.eval_append, Std.Sat.CNF.eval_append]
+    ListCNF.eval_append, ListCNF.eval_append]
   rw [
     sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf
       source horder]
@@ -68,7 +69,7 @@ theorem false_of_all_sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonS
     (hcell : ∀ center, center ∈ legalNextCenterLabels →
       ∀ category, category ∈ physicalSliceCategories center →
         ¬ ∃ assignment,
-          Std.Sat.CNF.eval assignment
+          ListCNF.eval assignment
             (sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorPhysicalSliceCellCnf
               center category) = true)
     {A : Finset (EuclideanSpace ℝ (Fin 2))}

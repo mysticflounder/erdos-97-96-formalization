@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyFirstModelRefinements
 import Erdos9796Proof.P97.Census554.FourPointTwoCircleBisectorOrderCore
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Two-circle occurrence from the exact-seventeen child-32 model
@@ -252,7 +253,7 @@ theorem sourceAssign_child32TwoCircleClause {A : Finset (EuclideanSpace ℝ (Fin
   exact false_of_child32TwoCircleHits source order direction horder.symm hall
 
 /-- P97 ATail BlockerVExactSeventeenThirtySecondTwoCircleRefinement def. -/
-def child32TwoCircleClauses : Std.Sat.CNF Atom :=
+def child32TwoCircleClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => child32TwoCircleClause order direction
 

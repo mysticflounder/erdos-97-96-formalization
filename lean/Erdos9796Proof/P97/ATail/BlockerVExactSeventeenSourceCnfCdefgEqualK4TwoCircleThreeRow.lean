@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircle
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Checked three-row Kalmanson clauses for the exact-seventeen source CNF
@@ -232,7 +233,7 @@ theorem sourceAssign_threeRowClause {A : Finset ℝ²}
       placedLabel order direction cut 0) (by simp [threeRowHits])
 
 /-- Complete guarded three-row Kalmanson clause family. -/
-def threeRowClauses : Std.Sat.CNF Atom :=
+def threeRowClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -251,7 +252,7 @@ theorem sourceAssign_threeRowClauses {A : Finset ℝ²}
   exact sourceAssign_threeRowClause r order direction cut offsets hoffsets
 
 /-- Lean-authoritative child root after the complete three-row family. -/
-def extendedThreeRowCnf : Std.Sat.CNF Atom :=
+def extendedThreeRowCnf : ListCNF Atom :=
   extendedTwoCircleCnf ++ threeRowClauses
 
 /-- Exact size of the complete three-row clause family. -/
@@ -267,13 +268,13 @@ theorem extendedThreeRowCnf_clause_count :
 /-- Gate B for the complete three-row child root. -/
 theorem sourceAssign_extendedThreeRowCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedThreeRowCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedThreeRowCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThreeRowCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedTwoCircleCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_threeRowClauses r clause hnew
 
@@ -281,7 +282,7 @@ theorem sourceAssign_extendedThreeRowCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedThreeRowCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThreeRowCnf = true) :
+      ListCNF.eval assignment extendedThreeRowCnf = true) :
     False := by
   rcases hsource with ⟨r⟩
   exact hunsat ⟨sourceAssign r.model, sourceAssign_extendedThreeRowCnf r⟩

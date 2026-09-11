@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinementsV2
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
 import Erdos9796Proof.P97.Census554.FourPointTwoCircleBisectorOrderCore
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-valid FourPointTwoCircle refinements from the exact-seventeen v3 ledger
@@ -296,10 +297,10 @@ def candidateBClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause candidateBHits order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements def. -/
-def candidateAClauses : Std.Sat.CNF Atom := occurrenceClauses candidateAHits
+def candidateAClauses : ListCNF Atom := occurrenceClauses candidateAHits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements def. -/
-def candidateBClauses : Std.Sat.CNF Atom := occurrenceClauses candidateBHits
+def candidateBClauses : ListCNF Atom := occurrenceClauses candidateBHits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements theorem. -/
 theorem sourceAssign_candidateAClause {A : Finset ℝ²} (source : SourceRealization A)
@@ -335,7 +336,7 @@ private theorem sourceAssign_occurrenceClauses {A : Finset ℝ²}
   exact hvalid order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements def. -/
-def fourPointTwoCircleRefinementClauses : Std.Sat.CNF Atom :=
+def fourPointTwoCircleRefinementClauses : ListCNF Atom :=
   candidateBClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements theorem. -/
@@ -378,7 +379,7 @@ theorem sourceAssign_fourPointTwoCircleRefinementClauses {A : Finset ℝ²}
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf ++
     fourPointTwoCircleRefinementClauses
 
@@ -394,15 +395,15 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf_length :
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementV2Cnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_fourPointTwoCircleRefinementClauses source clause hsuffix
 

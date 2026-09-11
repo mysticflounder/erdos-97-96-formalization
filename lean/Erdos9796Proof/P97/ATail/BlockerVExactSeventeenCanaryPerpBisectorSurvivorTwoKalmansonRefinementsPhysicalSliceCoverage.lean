@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Physical-slice coverage after the survivor two-Kalmanson refinements
@@ -25,7 +26,7 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinement
 
 /-- The survivor two-Kalmanson root restricted to one source-valid physical-slice cell. -/
 def canaryPerpBisectorSurvivorTwoKalmansonRefinementPhysicalSliceCellCnf
-    (center : Label) (category : PhysicalSliceCategory) : Std.Sat.CNF Atom :=
+    (center : Label) (category : PhysicalSliceCategory) : ListCNF Atom :=
   canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf ++
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
@@ -47,11 +48,11 @@ theorem sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementPhysicalSli
     {center : Label} (hcenter : source.model.nextCenter = center)
     {category : PhysicalSliceCategory}
     (hmatch : category.Matches source.model center) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       (canaryPerpBisectorSurvivorTwoKalmansonRefinementPhysicalSliceCellCnf center category) =
         true := by
   rw [canaryPerpBisectorSurvivorTwoKalmansonRefinementPhysicalSliceCellCnf,
-    Std.Sat.CNF.eval_append, Std.Sat.CNF.eval_append]
+    ListCNF.eval_append, ListCNF.eval_append]
   rw [sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf source horder]
   rw [sourceAssign_sparseSixPointNextCenterUnit source.model hcenter]
   simp [sourceAssign_physicalSliceUnitCnf source.model center category hmatch]
@@ -61,7 +62,7 @@ theorem false_of_all_canaryPerpBisectorSurvivorTwoKalmansonRefinementPhysicalSli
     (hcell : ∀ center, center ∈ legalNextCenterLabels →
       ∀ category, category ∈ physicalSliceCategories center →
         ¬ ∃ assignment,
-          Std.Sat.CNF.eval assignment
+          ListCNF.eval assignment
             (canaryPerpBisectorSurvivorTwoKalmansonRefinementPhysicalSliceCellCnf center category) =
               true)
     {A : Finset (EuclideanSpace ℝ (Fin 2))}

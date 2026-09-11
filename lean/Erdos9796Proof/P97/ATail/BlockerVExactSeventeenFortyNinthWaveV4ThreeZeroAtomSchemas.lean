@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Three source-valid direct-zero V49 wave-v4 occurrences. -/
 
@@ -136,7 +137,7 @@ theorem fortyNinthWaveV4ThreeZeroAtomOccurrences_check :
   · exact fortyNinthWaveV4ZeroAtom1480_check
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas def. -/
-def fortyNinthWaveV4ThreeZeroAtomSchemaClauses : Std.Sat.CNF Atom :=
+def fortyNinthWaveV4ThreeZeroAtomSchemaClauses : ListCNF Atom :=
   fortyNinthWaveV4ThreeZeroAtomOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order => directions.map fun direction =>
       weightedOccurrenceClause order direction occurrence

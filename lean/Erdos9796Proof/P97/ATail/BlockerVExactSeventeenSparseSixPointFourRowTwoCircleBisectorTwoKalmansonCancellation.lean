@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Two-Kalmanson cancellation refinement of the sparse-six four-row root
@@ -206,7 +207,7 @@ theorem sourceAssign_twoKalmansonCancellationClause {A : Finset ℝ²}
   exact false_of_twoKalmansonCancellationHits source order direction horder.symm hall
 
 /-- Complete orbit over both named source orders and cyclic orientations. -/
-def twoKalmansonCancellationClauses : Std.Sat.CNF Atom :=
+def twoKalmansonCancellationClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => twoKalmansonCancellationClause order direction
 
@@ -227,7 +228,7 @@ theorem sourceAssign_twoKalmansonCancellationClauses {A : Finset ℝ²}
 
 /-- Lean-owned successor of the cumulative sparse-six four-row root. -/
 def extendedCocircularOrderSparseSixPointFourRowBisectorTwoKalmansonCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFourRowBisectorCnf ++
     twoKalmansonCancellationClauses
 
@@ -273,16 +274,16 @@ theorem orderOne_reverse_clause_dimacs :
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorTwoKalmansonCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularOrderSparseSixPointFourRowBisectorTwoKalmansonCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCocircularOrderSparseSixPointFourRowBisectorTwoKalmansonCnf,
     List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_twoKalmansonCancellationClauses source clause hsuffix
 
@@ -291,7 +292,7 @@ theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFourR
     {A : Finset ℝ²}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         extendedCocircularOrderSparseSixPointFourRowBisectorTwoKalmansonCnf = true) :
     False := by
   rcases hsource with ⟨source, horder⟩

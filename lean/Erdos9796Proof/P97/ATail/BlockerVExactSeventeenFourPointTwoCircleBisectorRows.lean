@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenConvexFivePointFourthRows
 import Erdos9796Proof.P97.Census554.FourPointTwoCircleBisectorOrderCore
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Three-row two-circle bisector clauses for exact seventeen
@@ -286,7 +287,7 @@ theorem sourceAssign_bisectorOrderClause {A : Finset ℝ²}
   exact false_of_bisectorOrderHits source order direction horder.symm hall
 
 /-- Complete orbit: two named source orders and both reflections. -/
-def bisectorOrderClauses : Std.Sat.CNF Atom :=
+def bisectorOrderClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => bisectorOrderClause order direction
 
@@ -305,7 +306,7 @@ theorem sourceAssign_bisectorOrderClauses {A : Finset ℝ²}
   exact sourceAssign_bisectorOrderClause source order direction
 
 /-- Lean-owned successor root after the three-row two-circle orbit. -/
-def extendedBisectorOrderCnf : Std.Sat.CNF Atom :=
+def extendedBisectorOrderCnf : ListCNF Atom :=
   extendedFourthRowCnf ++ bisectorOrderClauses
 
 /-- P97 ATail BlockerVExactSeventeenFourPointTwoCircleBisectorRows theorem. -/
@@ -325,14 +326,14 @@ theorem orderZero_forward_hits :
 refinement. -/
 theorem sourceAssign_extendedBisectorOrderCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedBisectorOrderCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedBisectorOrderCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedFourthRowCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_bisectorOrderClauses source clause hnew
 
@@ -341,7 +342,7 @@ root. -/
 theorem false_of_sourceRealization_of_extendedBisectorOrderCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedBisectorOrderCnf = true) : False := by
+      ListCNF.eval assignment extendedBisectorOrderCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedBisectorOrderCnf source⟩

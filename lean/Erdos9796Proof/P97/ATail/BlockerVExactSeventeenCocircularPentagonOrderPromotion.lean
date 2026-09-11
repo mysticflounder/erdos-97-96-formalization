@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV9FourSize8Promotion
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Exact-seventeen cocircular-pentagon order promotion
@@ -22,7 +23,7 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenFortyNinthWaveV9FourSize8Promotion
 
 /-- The source-proved unit selecting the first named boundary order. -/
-def cocircularPentagonOrderClauses : Std.Sat.CNF Atom :=
+def cocircularPentagonOrderClauses : ListCNF Atom :=
   [[pos (.namedOrder 0)]]
 
 /-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderPromotion theorem. -/
@@ -44,7 +45,7 @@ theorem sourceAssign_cocircularPentagonOrderClauses
   simp [Std.Sat.CNF.Clause.eval, sourceAssign, pos, horder]
 
 /-- Current exact-seventeen root extended by the source-proved order unit. -/
-def extendedCocircularPentagonOrderCnf : Std.Sat.CNF Atom :=
+def extendedCocircularPentagonOrderCnf : ListCNF Atom :=
   extendedFortyNinthWaveV9FourSize8PromotionCnf ++
     cocircularPentagonOrderClauses
 
@@ -59,15 +60,15 @@ theorem extendedCocircularPentagonOrderCnf_length :
 theorem sourceAssign_extendedCocircularPentagonOrderCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularPentagonOrderCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCocircularPentagonOrderCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_extendedFortyNinthWaveV9FourSize8PromotionCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_cocircularPentagonOrderClauses
       source horder clause hsuffix
@@ -78,7 +79,7 @@ theorem false_of_sourceRealization_of_extendedCocircularPentagonOrderCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedCocircularPentagonOrderCnf = true) :
+      ListCNF.eval assignment extendedCocircularPentagonOrderCnf = true) :
     False := by
   rcases hsource with ⟨source, horder⟩
   exact hunsat ⟨sourceAssign source.model,

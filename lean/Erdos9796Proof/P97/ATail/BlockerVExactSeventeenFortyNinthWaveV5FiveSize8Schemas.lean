@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Five inclusion-minimal size-eight source-valid V49 Kalmanson occurrences. -/
 
@@ -300,7 +301,7 @@ theorem fortyNinthWaveV5FiveSize8Occurrences_check :
   · exact fortyNinthWaveV5Size8Occurrence04_check
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Schemas def. -/
-def fortyNinthWaveV5FiveSize8SchemaClauses : Std.Sat.CNF Atom :=
+def fortyNinthWaveV5FiveSize8SchemaClauses : ListCNF Atom :=
   fortyNinthWaveV5FiveSize8Occurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order => directions.map fun direction =>
       weightedOccurrenceClause order direction occurrence

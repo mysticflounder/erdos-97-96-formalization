@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Physical-slice coverage after the V6 model-core successor
@@ -30,7 +31,7 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6Mo
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementsPhysicalSliceCoverage def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysicalSliceCellCnf
-    (center : Label) (category : PhysicalSliceCategory) : Std.Sat.CNF Atom :=
+    (center : Label) (category : PhysicalSliceCategory) : ListCNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf ++
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
@@ -52,11 +53,11 @@ theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefi
     {center : Label} (hcenter : source.model.nextCenter = center)
     {category : PhysicalSliceCategory}
     (hmatch : category.Matches source.model center) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       (canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysicalSliceCellCnf
         center category) = true := by
   rw [canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementPhysicalSliceCellCnf,
-    Std.Sat.CNF.eval_append, Std.Sat.CNF.eval_append]
+    ListCNF.eval_append, ListCNF.eval_append]
   rw [sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf
     source horder]
   rw [sourceAssign_sparseSixPointNextCenterUnit source.model hcenter]

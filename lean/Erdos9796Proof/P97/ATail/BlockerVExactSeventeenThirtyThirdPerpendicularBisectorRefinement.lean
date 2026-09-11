@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtySecondModelRefinements
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericPerpBisectorNogoodCertificate
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Child-33 perpendicular-bisector occurrence
@@ -218,7 +219,7 @@ theorem sourceAssign_child33PerpBisectorClause {A : Finset (EuclideanSpace ℝ (
   exact false_of_child33PerpBisectorHits source order direction horder.symm hall
 
 /-- P97 ATail BlockerVExactSeventeenThirtyThirdPerpendicularBisectorRefinement def. -/
-def child33PerpBisectorClauses : Std.Sat.CNF Atom :=
+def child33PerpBisectorClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => child33PerpBisectorClause order direction
 

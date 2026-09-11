@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV3ZeroAtomPromotion
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-! Lean-owned promotion of the three direct-zero V49 wave-v4 records. -/
 
@@ -18,7 +19,7 @@ open ATailBlockerVExactSeventeenFortyNinthWaveV3ZeroAtomPromotion
 open ATailBlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomSchemas
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion def. -/
-def fortyNinthWaveV4ThreeZeroAtomPromotionClauses : Std.Sat.CNF Atom :=
+def fortyNinthWaveV4ThreeZeroAtomPromotionClauses : ListCNF Atom :=
   fortyNinthWaveV4ThreeZeroAtomSchemaClauses
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion theorem. -/
@@ -36,7 +37,7 @@ theorem sourceAssign_fortyNinthWaveV4ThreeZeroAtomPromotionClauses
     sourceAssign_fortyNinthWaveV4ThreeZeroAtomSchemaClauses source
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion def. -/
-def extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf : Std.Sat.CNF Atom :=
+def extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf : ListCNF Atom :=
   extendedFortyNinthWaveV3ZeroAtomPromotionCnf ++
     fortyNinthWaveV4ThreeZeroAtomPromotionClauses
 
@@ -50,14 +51,14 @@ theorem extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf_length :
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion theorem. -/
 theorem sourceAssign_extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsubset
   · have h := sourceAssign_extendedFortyNinthWaveV3ZeroAtomPromotionCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortyNinthWaveV4ThreeZeroAtomPromotionClauses source clause hsubset
 
@@ -66,7 +67,7 @@ theorem false_of_sourceRealization_of_extendedFortyNinthWaveV4ThreeZeroAtomPromo
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf = true) :
+      ListCNF.eval assignment extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf = true) :
     False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,

@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrderPromotion
 import Std.Sat.CNF.Relabel
+import Erdos9796Proof.P97.ListCNF
 import Std.Tactic.BVDecide
 
 /-!
@@ -29,8 +30,8 @@ def certificateVar (atom : Atom) : Nat := atomVar atom - 1
 
 /-- The exact checked child in the representation consumed by
 `Reflect.verifyCert_correct`. -/
-def certificateCnf : CNF Nat :=
-  CNF.relabel certificateVar extendedCocircularPentagonOrderCnf
+def certificateCnf : ListCNF Nat :=
+  ListCNF.relabel certificateVar extendedCocircularPentagonOrderCnf
 
 /-- The fixed DIMACS numbering is collision-free. -/
 theorem certificateVar_injective : Function.Injective certificateVar := by
@@ -41,9 +42,9 @@ unsatisfiability required by the source-facing landing contract. -/
 theorem extendedCocircularPentagonOrderCnf_unsat_of_certificateCnf_unsat
     (hcertificate : certificateCnf.Unsat) :
     ¬ ∃ assignment,
-      CNF.eval assignment extendedCocircularPentagonOrderCnf = true := by
+      ListCNF.eval assignment extendedCocircularPentagonOrderCnf = true := by
   have htyped : extendedCocircularPentagonOrderCnf.Unsat :=
-    (CNF.unsat_relabel_iff (f := extendedCocircularPentagonOrderCnf)
+    (ListCNF.unsat_relabel_iff (f := extendedCocircularPentagonOrderCnf)
       (r := certificateVar) (fun _ _ heq => certificateVar_injective heq)).mp
       hcertificate
   rintro ⟨assignment, hassignment⟩

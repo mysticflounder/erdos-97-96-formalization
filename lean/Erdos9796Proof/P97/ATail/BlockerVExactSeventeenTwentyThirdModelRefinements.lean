@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentySecondModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-backed refinement from the twenty-third exact-seventeen SAT model
@@ -217,7 +218,7 @@ def twentyThirdOccurrenceHits : List (List Hit) :=
   [cancellationHits]
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def twentyThirdModelRefinementClauses : Std.Sat.CNF Atom :=
+def twentyThirdModelRefinementClauses : ListCNF Atom :=
   twentyThirdOccurrenceHits.flatMap priorOccurrenceClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -243,7 +244,7 @@ theorem sourceAssign_twentyThirdModelRefinementClauses {A : Finset ℝ²}
   exact sourceAssign_cancellationClause source order direction
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedTwentyThirdModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedTwentyThirdModelRefinementsCnf : ListCNF Atom :=
   extendedTwentySecondModelRefinementsCnf ++
     twentyThirdModelRefinementClauses
 
@@ -255,14 +256,14 @@ theorem extendedTwentyThirdModelRefinementsCnf_length :
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedTwentyThirdModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwentyThirdModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwentyThirdModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedTwentySecondModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_twentyThirdModelRefinementClauses source clause hsuffix
 
@@ -270,7 +271,7 @@ theorem sourceAssign_extendedTwentyThirdModelRefinementsCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwentyThirdModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwentyThirdModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedTwentyThirdModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

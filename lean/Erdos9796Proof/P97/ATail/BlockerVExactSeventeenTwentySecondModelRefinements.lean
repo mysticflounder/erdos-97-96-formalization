@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyFirstModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-backed refinements from the twenty-second exact-seventeen SAT model
@@ -797,7 +798,7 @@ def twentySecondOccurrenceHits : List (List Hit) :=
     cancellationHits, duplicateCenterHits]
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def twentySecondModelRefinementClauses : Std.Sat.CNF Atom :=
+def twentySecondModelRefinementClauses : ListCNF Atom :=
   twentySecondOccurrenceHits.flatMap priorOccurrenceClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -827,7 +828,7 @@ theorem sourceAssign_twentySecondModelRefinementClauses {A : Finset ℝ²}
   · exact sourceAssign_duplicateCenterClause source order direction
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedTwentySecondModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedTwentySecondModelRefinementsCnf : ListCNF Atom :=
   ATailBlockerVExactSeventeenTwentyFirstModelRefinements.extendedTwentyFirstModelRefinementsCnf ++
     twentySecondModelRefinementClauses
 
@@ -839,16 +840,16 @@ theorem extendedTwentySecondModelRefinementsCnf_length :
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedTwentySecondModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwentySecondModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwentySecondModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h :=
       ATailBlockerVExactSeventeenTwentyFirstModelRefinements.sourceAssign_extendedTwentyFirstModelRefinementsCnf
         source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_twentySecondModelRefinementClauses source clause hsuffix
 
@@ -856,7 +857,7 @@ theorem sourceAssign_extendedTwentySecondModelRefinementsCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwentySecondModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwentySecondModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedTwentySecondModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

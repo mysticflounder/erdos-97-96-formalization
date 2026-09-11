@@ -512,6 +512,20 @@ theorems consuming them is the pre-existing native evidence, not a regression �
 `git show HEAD:<path> | grep -c native_decide` against the worktree count.  Any `sorryAx` at
 all is a real class-W finding.
 
+For a chain that has just built, an import-based variant is faster.  It also avoids the
+`include_str` problem because it elaborates no copy.  Write one scratchpad file that imports
+the built modules.  Its `#eval` walks `env.constants.map₁`, keeps each constant whose
+`env.getModuleIdxFor?` is a target module, and runs `collectAxioms` on it.  Two points:
+
+- Type the counter explicitly (`let mut checked : Nat := 0`).  Otherwise the `m!` interpolation
+  elaborates it as `MessageData` and fails with `OfNat MessageData 0`.
+- Modules that each declare a top-level `main` (the `*Export` modules) cannot be imported
+  together.  The error is `environment already contains 'main'`.  Sweep them one per file and
+  put the rest into one batch.
+
+On the exact-seventeen chain, 17 batches checked 7,084 constants in 226 modules and found
+`sorryAx` in 0 of them.  The only other axioms were 1,446 per-site `native_decide` axioms.
+
 ## AQ — the green build is not the whole library: stale v4.27 oleans outside the root closure
 
 `lean/lakefile.toml` declares `Erdos9796` and `Erdos9796Proof` with no `roots` and no `globs`,
@@ -622,6 +636,24 @@ and `Std.Sat.CNF.eval_append` → `List.all_append`.  That is the same predicate
 computes, and it leaves every `Nodup`, length, disjointness and `= [[]]` proof untouched.
 On `Rigid221Card18DirectCardinality` route 2 was nine edited lines; route 1 would have been
 most of a 413-line file.
+
+Route 3 — a whole generated family is list-shaped and was never in the build closure.  Use the
+shim `Erdos9796Proof.P97.ListCNF` (`abbrev ListCNF α := List (Std.Sat.CNF.Clause α)`).  It
+carries the v4.27.0 `eval`/`Sat`/`Unsat`/`relabel`/`unsat_relabel_iff` API verbatim, so a
+family that used `Std.Sat.CNF` as a list compiles after it is respelled as `ListCNF`.  The
+bridges to the array form are `ListCNF.eval_eq_std`, `ListCNF.toStd` and
+`ListCNF.unsat_of_toStd_unsat`, which moves an LRAT-checked `CNF.Unsat` onto the list.  The
+226-module exact-seventeen chain (`BlockerVExactSeventeen*`, root `SourceCnfCdefg`) went to
+main this way on 2026-09-11.
+
+A list-shaped child can sit on an array-shaped parent.  `BlockerVExactSeventeenSourceCnf` is in
+the closure and stays route 1 (`baseCnf : Std.Sat.CNF Atom`).  Its child `SourceCnfCdefg` is
+route 3.  Do not convert the parent.  Give the child a list view and one evaluation bridge:
+`def baseListCnf : ListCNF Atom := baseCnf.clauses.toList`, with
+`ListCNF.eval a baseListCnf = Std.Sat.CNF.eval a baseCnf`.  Prove the bridge for an arbitrary
+`f : Std.Sat.CNF Atom` by `rcases f with ⟨⟨clauses⟩⟩; exact ListCNF.eval_eq_std a clauses`,
+then instantiate it at `baseCnf`.  That way no proof unfolds the 209,692-clause constant.  The
+clause count moves with `Array.length_toList` and the parent's `baseCnf_clause_count`.
 
 ## AU — the `simpa` automation, and the third pass it needs
 

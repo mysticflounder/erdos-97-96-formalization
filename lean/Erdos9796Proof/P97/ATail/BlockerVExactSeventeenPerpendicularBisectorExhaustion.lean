@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.ConvexPerpendicularBisectorSides
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefg
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-facing perpendicular-bisector exhaustion

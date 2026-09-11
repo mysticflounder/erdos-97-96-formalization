@@ -5,6 +5,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSmallRoleCycleRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Eight source-validated weighted Kalmanson occurrences for the exact-seventeen successor.
 
@@ -261,7 +262,7 @@ theorem fortySeventhWeightedOccurrences_check :
   native_decide
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def fortySeventhModelRefinementClauses : Std.Sat.CNF Atom :=
+def fortySeventhModelRefinementClauses : ListCNF Atom :=
   fortySeventhWeightedOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>
@@ -284,7 +285,7 @@ theorem sourceAssign_fortySeventhModelRefinementClauses
     (fortySeventhWeightedOccurrences_check occurrence hoccur) order direction
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedFortySeventhModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedFortySeventhModelRefinementsCnf : ListCNF Atom :=
   extendedSmallRoleCycleCnf ++ fortySeventhModelRefinementClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -297,14 +298,14 @@ theorem extendedFortySeventhModelRefinementsCnf_length :
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedFortySeventhModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortySeventhModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortySeventhModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedSmallRoleCycleCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortySeventhModelRefinementClauses source clause hsuffix
 
@@ -313,7 +314,7 @@ theorem false_of_sourceRealization_of_extendedFortySeventhModelRefinementsCnf_un
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortySeventhModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedFortySeventhModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
     sourceAssign_extendedFortySeventhModelRefinementsCnf source⟩

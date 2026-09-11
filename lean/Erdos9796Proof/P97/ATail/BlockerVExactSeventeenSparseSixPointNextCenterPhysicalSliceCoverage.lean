@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Exact-17 next-center physical-slice coverage
@@ -43,14 +44,14 @@ def PhysicalSliceCategory.Matches
 
 /-- Unit clauses selecting one physical-slice category. -/
 def physicalSliceUnitCnf (center : Label) :
-    PhysicalSliceCategory → Std.Sat.CNF Atom
+    PhysicalSliceCategory → ListCNF Atom
   | .none => physicalList.map fun point => [neg (.hit center point)]
   | .unique point => physicalList.map fun other =>
       [if other = point then pos (.hit center other) else neg (.hit center other)]
 
 /-- One next-center cell refined by a source-valid physical-slice category. -/
 def sparseSixPointNextCenterPhysicalSliceCellCnf
-    (center : Label) (category : PhysicalSliceCategory) : Std.Sat.CNF Atom :=
+    (center : Label) (category : PhysicalSliceCategory) : ListCNF Atom :=
   sparseSixPointNextCenterCellCnf center ++ physicalSliceUnitCnf center category
 
 /-- The finite key table for the fallback campaign. -/
@@ -99,7 +100,7 @@ theorem SourceModel.exists_physicalSliceCategory (model : SourceModel) :
 theorem sourceAssign_physicalSliceUnitCnf
     (model : SourceModel) (center : Label) (category : PhysicalSliceCategory)
     (hmatch : category.Matches model center) :
-    Std.Sat.CNF.eval (sourceAssign model)
+    ListCNF.eval (sourceAssign model)
       (physicalSliceUnitCnf center category) = true := by
   cases category with
   | none =>
@@ -116,7 +117,7 @@ theorem sourceAssign_physicalSliceUnitCnf
       have h8 := hnot 8 (by decide)
       have h9 := hnot 9 (by decide)
       have h10 := hnot 10 (by decide)
-      simp [physicalSliceUnitCnf, physicalList, Std.Sat.CNF.eval,
+      simp [physicalSliceUnitCnf, physicalList, ListCNF.eval,
         Std.Sat.CNF.Clause.eval, sourceAssign, neg, h6, h7, h8, h9, h10]
   | unique point =>
       change model.selected center ∩ physicalLabels = {point} at hmatch
@@ -140,7 +141,7 @@ theorem sourceAssign_physicalSliceUnitCnf
       simp only [physicalList, List.mem_cons, List.not_mem_nil, or_false] at hpointList
       rcases hpointList with rfl | rfl | rfl | rfl | rfl
       all_goals
-        simp [physicalSliceUnitCnf, physicalList, Std.Sat.CNF.eval,
+        simp [physicalSliceUnitCnf, physicalList, ListCNF.eval,
           Std.Sat.CNF.Clause.eval, sourceAssign, pos, neg]
         simp [hselectedIff 6 (by decide), hselectedIff 7 (by decide),
           hselectedIff 8 (by decide), hselectedIff 9 (by decide),
@@ -153,9 +154,9 @@ theorem sourceAssign_sparseSixPointNextCenterPhysicalSliceCell
     {center : Label} (hcenter : source.model.nextCenter = center)
     {category : PhysicalSliceCategory}
     (hmatch : category.Matches source.model center) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       (sparseSixPointNextCenterPhysicalSliceCellCnf center category) = true := by
-  rw [sparseSixPointNextCenterPhysicalSliceCellCnf, Std.Sat.CNF.eval_append]
+  rw [sparseSixPointNextCenterPhysicalSliceCellCnf, ListCNF.eval_append]
   rw [sourceAssign_sparseSixPointNextCenterCell source horder hcenter]
   simp [sourceAssign_physicalSliceUnitCnf source.model center category hmatch]
 
@@ -167,7 +168,7 @@ theorem false_of_all_sparseSixPointNextCenterPhysicalSliceCells
     (hcell : ∀ center, center ∈ legalNextCenterLabels →
       ∀ category, category ∈ physicalSliceCategories center →
         ¬ ∃ assignment,
-          Std.Sat.CNF.eval assignment
+          ListCNF.eval assignment
             (sparseSixPointNextCenterPhysicalSliceCellCnf center category) = true)
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0) :

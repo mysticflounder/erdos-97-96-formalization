@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortySixthModelRefinements
 import Erdos9796Proof.P97.ATail.KalmansonThreeRowCycleSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete three-row cycle refinements for the exact-seventeen source CNF
@@ -306,7 +307,7 @@ theorem sourceAssign_adjacentInnerOuterRightCycleClause {A : Finset ℝ²}
 /-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements def. -/
 private def completeCycleClauseFamily
     (hits : NamedOrder → Orientation → Label → List Label → List Hit) :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   namedOrders.flatMap fun order ↦
     directions.flatMap fun direction ↦
       labels.flatMap fun cut ↦
@@ -314,15 +315,15 @@ private def completeCycleClauseFamily
           nogoodClause order (hits order direction cut offsets)
 
 /-- Complete guarded adjacent/adjacent cycle clause family. -/
-def adjacentAdjacentCycleClauses : Std.Sat.CNF Atom :=
+def adjacentAdjacentCycleClauses : ListCNF Atom :=
   completeCycleClauseFamily adjacentAdjacentCycleHits
 
 /-- Complete guarded left adjacent/inner-outer cycle clause family. -/
-def adjacentInnerOuterLeftCycleClauses : Std.Sat.CNF Atom :=
+def adjacentInnerOuterLeftCycleClauses : ListCNF Atom :=
   completeCycleClauseFamily adjacentInnerOuterLeftCycleHits
 
 /-- Complete guarded right adjacent/inner-outer cycle clause family. -/
-def adjacentInnerOuterRightCycleClauses : Std.Sat.CNF Atom :=
+def adjacentInnerOuterRightCycleClauses : ListCNF Atom :=
   completeCycleClauseFamily adjacentInnerOuterRightCycleHits
 
 /-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
@@ -366,7 +367,7 @@ theorem sourceAssign_adjacentInnerOuterRightCycleClauses {A : Finset ℝ²}
   exact sourceAssign_adjacentInnerOuterRightCycleClause r order direction cut offsets hoffsets
 
 /-- Complete source-valid three-row cycle clause bank. -/
-def threeRowCycleClauses : Std.Sat.CNF Atom :=
+def threeRowCycleClauses : ListCNF Atom :=
   adjacentAdjacentCycleClauses ++ adjacentInnerOuterLeftCycleClauses ++
     adjacentInnerOuterRightCycleClauses
 
@@ -407,7 +408,7 @@ theorem sourceAssign_threeRowCycleClauses {A : Finset ℝ²}
   · exact sourceAssign_adjacentInnerOuterRightCycleClauses r clause hright
 
 /-- Child46 extended by the complete source-valid three-row cycle bank. -/
-def extendedThreeRowCycleCnf : Std.Sat.CNF Atom :=
+def extendedThreeRowCycleCnf : ListCNF Atom :=
   extendedFortySixthModelRefinementsCnf ++ threeRowCycleClauses
 
 /-- P97 ATail BlockerVExactSeventeenThreeRowCycleRefinements theorem. -/
@@ -418,13 +419,13 @@ theorem extendedThreeRowCycleCnf_length : extendedThreeRowCycleCnf.length = 6739
 /-- Every source realization satisfies the complete extended formula. -/
 theorem sourceAssign_extendedThreeRowCycleCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedThreeRowCycleCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedThreeRowCycleCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThreeRowCycleCnf, List.mem_append] at hclause
   rcases hclause with hparent | hcycle
   · have h := sourceAssign_extendedFortySixthModelRefinementsCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_threeRowCycleClauses r clause hcycle
 
@@ -432,7 +433,7 @@ theorem sourceAssign_extendedThreeRowCycleCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedThreeRowCycleCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThreeRowCycleCnf = true) : False := by
+      ListCNF.eval assignment extendedThreeRowCycleCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
     sourceAssign_extendedThreeRowCycleCnf source⟩

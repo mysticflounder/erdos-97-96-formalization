@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 Source-valid v5 two-Kalmanson refinement bank over the v4-combined FourPoint root.
@@ -301,7 +302,7 @@ theorem v5CanaryCancellationOccurrences_all_check :
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
-def v5CanaryTwoKalmansonOrbitClauses : Std.Sat.CNF Atom :=
+def v5CanaryTwoKalmansonOrbitClauses : ListCNF Atom :=
   v5CanaryCancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements theorem. -/
@@ -330,7 +331,7 @@ theorem sourceAssign_v5CanaryTwoKalmansonOrbitClauses
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
-def v5CanaryTwoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
+def v5CanaryTwoKalmansonRefinementClauses : ListCNF Atom :=
   [ occurrenceClause v5CanaryCancellationOccurrence0.hits 0 .forward,
     occurrenceClause v5CanaryCancellationOccurrence1.hits 0 .forward,
     occurrenceClause v5CanaryCancellationOccurrence1.hits 1 .forward,
@@ -379,7 +380,7 @@ theorem sourceAssign_v5CanaryTwoKalmansonRefinementClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf ++
     v5CanaryTwoKalmansonRefinementClauses
 
@@ -395,15 +396,15 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefineme
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_v5CanaryTwoKalmansonRefinementClauses source clause hsuffix
 

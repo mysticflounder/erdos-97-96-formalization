@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV7TwoSize8Promotion
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV8SeventeenSize8Schemas
+import Erdos9796Proof.P97.ListCNF
 
 /-! Lean-owned V8 promotion of the seventeen new size-eight records. -/
 
@@ -17,7 +18,7 @@ open ATailBlockerVExactSeventeenFortyNinthWaveV7TwoSize8Promotion
 open ATailBlockerVExactSeventeenFortyNinthWaveV8SeventeenSize8Schemas
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV8SeventeenSize8Promotion def. -/
-def fortyNinthWaveV8SeventeenSize8PromotionClauses : Std.Sat.CNF Atom :=
+def fortyNinthWaveV8SeventeenSize8PromotionClauses : ListCNF Atom :=
   fortyNinthWaveV8SeventeenSize8SchemaClauses
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV8SeventeenSize8Promotion theorem. -/
@@ -35,7 +36,7 @@ theorem sourceAssign_fortyNinthWaveV8SeventeenSize8PromotionClauses
     sourceAssign_fortyNinthWaveV8SeventeenSize8SchemaClauses source
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV8SeventeenSize8Promotion def. -/
-def extendedFortyNinthWaveV8SeventeenSize8PromotionCnf : Std.Sat.CNF Atom :=
+def extendedFortyNinthWaveV8SeventeenSize8PromotionCnf : ListCNF Atom :=
   extendedFortyNinthWaveV7TwoSize8PromotionCnf ++
     fortyNinthWaveV8SeventeenSize8PromotionClauses
 
@@ -50,15 +51,15 @@ theorem extendedFortyNinthWaveV8SeventeenSize8PromotionCnf_length :
 /-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV8SeventeenSize8Promotion theorem. -/
 theorem sourceAssign_extendedFortyNinthWaveV8SeventeenSize8PromotionCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortyNinthWaveV8SeventeenSize8PromotionCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortyNinthWaveV8SeventeenSize8PromotionCnf,
     List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedFortyNinthWaveV7TwoSize8PromotionCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortyNinthWaveV8SeventeenSize8PromotionClauses
       source clause hsuffix
@@ -68,7 +69,7 @@ theorem false_of_sourceRealization_of_extendedFortyNinthWaveV8SeventeenSize8Prom
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         extendedFortyNinthWaveV8SeventeenSize8PromotionCnf = true) :
     False := by
   rcases hsource with ⟨source⟩

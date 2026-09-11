@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyThirdModelRefinements
 import Erdos9796Proof.P97.Census554.FourPointTwoCircleBisectorOrderCore
 import Erdos9796Proof.P97.Census554.ConvexFivePointCore
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-backed refinements from the twenty-fourth exact-seventeen SAT model
@@ -764,7 +765,7 @@ def twentyFourthOccurrenceHits : List (List Hit) :=
     cancellationHits, duplicateCenterHits]
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def twentyFourthModelRefinementClauses : Std.Sat.CNF Atom :=
+def twentyFourthModelRefinementClauses : ListCNF Atom :=
   twentyFourthOccurrenceHits.flatMap priorOccurrenceClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -794,7 +795,7 @@ theorem sourceAssign_twentyFourthModelRefinementClauses {A : Finset ℝ²}
   · exact sourceAssign_duplicateCenterClause source order direction
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedTwentyFourthModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedTwentyFourthModelRefinementsCnf : ListCNF Atom :=
   ATailBlockerVExactSeventeenTwentyThirdModelRefinements.extendedTwentyThirdModelRefinementsCnf ++
     twentyFourthModelRefinementClauses
 
@@ -806,16 +807,16 @@ theorem extendedTwentyFourthModelRefinementsCnf_length :
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedTwentyFourthModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwentyFourthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwentyFourthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h :=
       ATailBlockerVExactSeventeenTwentyThirdModelRefinements.sourceAssign_extendedTwentyThirdModelRefinementsCnf
         source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_twentyFourthModelRefinementClauses source clause hsuffix
 
@@ -823,7 +824,7 @@ theorem sourceAssign_extendedTwentyFourthModelRefinementsCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwentyFourthModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwentyFourthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedTwentyFourthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

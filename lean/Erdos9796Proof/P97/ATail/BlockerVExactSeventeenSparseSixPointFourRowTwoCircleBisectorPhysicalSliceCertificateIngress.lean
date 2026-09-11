@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorPhysicalSliceCoverage
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCertificateIngress
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Certificate ingress for exact-17 four-row bisector physical-slice cells
@@ -30,8 +31,8 @@ def certificateVar (atom : Atom) : Nat := atomVar atom - 1
 
 /-- One exact four-row bisector physical-slice cell in the representation checked by LRAT. -/
 def certificateCnf (center : Label) (category : PhysicalSliceCategory) :
-    CNF Nat :=
-  CNF.relabel certificateVar
+    ListCNF Nat :=
+  ListCNF.relabel certificateVar
     (sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf center category)
 
 /-- The fixed DIMACS numbering remains collision-free after zero-basing. -/
@@ -44,11 +45,11 @@ theorem sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf_unsat_of_cert
     {center : Label} {category : PhysicalSliceCategory}
     (hcertificate : (certificateCnf center category).Unsat) :
     ¬ ∃ assignment,
-      CNF.eval assignment
+      ListCNF.eval assignment
         (sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf center category) = true := by
   have htyped :
       (sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf center category).Unsat :=
-    (CNF.unsat_relabel_iff
+    (ListCNF.unsat_relabel_iff
       (f := sparseSixPointFourRowTwoCircleBisectorPhysicalSliceCellCnf center category)
       (r := certificateVar)
       (fun _ _ heq => certificateVar_injective heq)).mp hcertificate

@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmanson
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Cancellation refinements after the canary two-Kalmanson root
@@ -171,7 +172,7 @@ theorem cancellationOccurrences_all_check :
   native_decide
 
 /-- Complete clause orbits of the four cancellation occurrences. -/
-def fullModelRefinementClauses : Std.Sat.CNF Atom :=
+def fullModelRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -188,7 +189,7 @@ theorem novelModelRefinementClauseIndices_length :
   native_decide
 
 /-- Parent-unsubsumed production suffix in the original orbit order. -/
-def modelRefinementClauses : Std.Sat.CNF Atom :=
+def modelRefinementClauses : ListCNF Atom :=
   fullModelRefinementClauses.zipIdx.filterMap fun (clause, index) =>
     if index ∈ novelModelRefinementClauseIndices then some clause else none
 
@@ -227,7 +228,7 @@ theorem sourceAssign_modelRefinementClauses
 
 /-- Lean-owned successor of the canary two-Kalmanson root. -/
 def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf ++
     modelRefinementClauses
 
@@ -245,10 +246,10 @@ theorem extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmanson
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf =
         true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonModelRefinementCnf,
@@ -257,7 +258,7 @@ theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHi
   · have hparentEval :=
       sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_modelRefinementClauses source clause hsuffix
 

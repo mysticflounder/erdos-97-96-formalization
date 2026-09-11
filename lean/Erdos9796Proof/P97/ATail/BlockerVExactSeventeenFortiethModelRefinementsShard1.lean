@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyNinthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! # Child41 two-Kalmanson cancellation bank, shard 1
 
@@ -234,7 +235,7 @@ theorem cancellationOccurrences_all_check :
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard1 def. -/
-def refinementClauses : Std.Sat.CNF Atom :=
+def refinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard1 theorem. -/

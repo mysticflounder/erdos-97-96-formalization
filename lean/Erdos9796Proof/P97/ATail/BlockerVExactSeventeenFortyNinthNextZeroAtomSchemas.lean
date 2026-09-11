@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Two direct zero-atom weighted source adapters from the V49 replay. -/
 
@@ -59,7 +60,7 @@ theorem fortyNinthNextZeroAtomWeightedOccurrences_check :
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenFortyNinthNextZeroAtomSchemas def. -/
-def fortyNinthNextZeroAtomSchemaClauses : Std.Sat.CNF Atom :=
+def fortyNinthNextZeroAtomSchemaClauses : ListCNF Atom :=
   fortyNinthNextZeroAtomWeightedOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>

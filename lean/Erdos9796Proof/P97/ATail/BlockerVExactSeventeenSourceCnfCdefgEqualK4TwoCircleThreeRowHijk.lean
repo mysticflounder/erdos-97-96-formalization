@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRow
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Checked H--K Kalmanson clauses for the exact-seventeen source CNF
@@ -355,7 +356,7 @@ theorem sourceAssign_sixSchemaClause {A : Finset ℝ²}
         (get b 0 (by simp [sixSchemaHits])) (get b f (by simp [sixSchemaHits]))
 
 /-- Complete guarded H--K clause family. -/
-def hijkClauses : Std.Sat.CNF Atom :=
+def hijkClauses : ListCNF Atom :=
   sixSchemas.flatMap fun schema =>
     namedOrders.flatMap fun order =>
       directions.flatMap fun direction =>
@@ -375,7 +376,7 @@ theorem sourceAssign_hijkClauses {A : Finset ℝ²}
   exact sourceAssign_sixSchemaClause r schema order direction cut offsets hoffsets
 
 /-- Lean-authoritative child root after the complete H--K family. -/
-def extendedHijkCnf : Std.Sat.CNF Atom :=
+def extendedHijkCnf : ListCNF Atom :=
   extendedThreeRowCnf ++ hijkClauses
 
 /-- Exact size of the complete H--K clause family. -/
@@ -389,13 +390,13 @@ theorem extendedHijkCnf_clause_count : extendedHijkCnf.length = 3618396 := by
 /-- Gate B for the complete H--K child root. -/
 theorem sourceAssign_extendedHijkCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedHijkCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedHijkCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedHijkCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedThreeRowCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_hijkClauses r clause hnew
 
@@ -403,7 +404,7 @@ theorem sourceAssign_extendedHijkCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedHijkCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedHijkCnf = true) : False := by
+      ListCNF.eval assignment extendedHijkCnf = true) : False := by
   rcases hsource with ⟨r⟩
   exact hunsat ⟨sourceAssign r.model, sourceAssign_extendedHijkCnf r⟩
 

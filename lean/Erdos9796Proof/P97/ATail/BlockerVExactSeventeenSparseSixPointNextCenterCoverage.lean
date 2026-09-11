@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Exact-17 sparse-six next-center coverage
@@ -22,11 +23,11 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion
 
 /-- The singleton clause fixing one legal next selected-row center. -/
-def sparseSixPointNextCenterUnitCnf (center : Label) : Std.Sat.CNF Atom :=
+def sparseSixPointNextCenterUnitCnf (center : Label) : ListCNF Atom :=
   [[pos (.nextCenter center)]]
 
 /-- The complete sparse-six exact-17 root restricted to one center cell. -/
-def sparseSixPointNextCenterCellCnf (center : Label) : Std.Sat.CNF Atom :=
+def sparseSixPointNextCenterCellCnf (center : Label) : ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFullBankCnf ++
     sparseSixPointNextCenterUnitCnf center
 
@@ -46,9 +47,9 @@ theorem litToDimacs_pos_nextCenter (center : Label) :
 theorem sourceAssign_sparseSixPointNextCenterUnit
     (model : SourceModel) {center : Label}
     (hcenter : model.nextCenter = center) :
-    Std.Sat.CNF.eval (sourceAssign model)
+    ListCNF.eval (sourceAssign model)
       (sparseSixPointNextCenterUnitCnf center) = true := by
-  simp [sparseSixPointNextCenterUnitCnf, Std.Sat.CNF.eval,
+  simp [sparseSixPointNextCenterUnitCnf, ListCNF.eval,
     Std.Sat.CNF.Clause.eval, sourceAssign, pos, hcenter]
 
 /-- An order-zero source realization satisfies its matching sparse-six cell. -/
@@ -56,9 +57,9 @@ theorem sourceAssign_sparseSixPointNextCenterCell
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) (horder : source.model.order = 0)
     {center : Label} (hcenter : source.model.nextCenter = center) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       (sparseSixPointNextCenterCellCnf center) = true := by
-  rw [sparseSixPointNextCenterCellCnf, Std.Sat.CNF.eval_append]
+  rw [sparseSixPointNextCenterCellCnf, ListCNF.eval_append]
   rw [sourceAssign_extendedCocircularOrderSparseSixPointFullBankCnf source horder]
   simp [sourceAssign_sparseSixPointNextCenterUnit source.model hcenter]
 
@@ -69,7 +70,7 @@ realization because its next center belongs to `legalNextCenterLabels`.
 theorem false_of_all_sparseSixPointNextCenterCells
     (hcell : ∀ center, center ∈ legalNextCenterLabels →
       ¬ ∃ assignment,
-        Std.Sat.CNF.eval assignment
+        ListCNF.eval assignment
           (sparseSixPointNextCenterCellCnf center) = true)
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0) :

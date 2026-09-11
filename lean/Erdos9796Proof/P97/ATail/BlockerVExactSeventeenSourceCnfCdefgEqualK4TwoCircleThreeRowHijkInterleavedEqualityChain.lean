@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleaved
 import Erdos9796Proof.P97.ATail.TwoCircleEqualityChainSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Two-circle equality-chain clauses for the exact-seventeen source CNF
@@ -149,7 +150,7 @@ theorem sourceAssign_equalityChainClause {A : Finset ℝ²}
     (get w t (by simp [equalityChainHits]))
 
 /-- Complete guarded cyclic orbit of the two-circle equality-chain clause. -/
-def equalityChainClauses : Std.Sat.CNF Atom :=
+def equalityChainClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -168,7 +169,7 @@ theorem sourceAssign_equalityChainClauses {A : Finset ℝ²}
   exact sourceAssign_equalityChainClause r order direction cut offsets hoffsets
 
 /-- Lean-authoritative child root after the two-circle equality-chain family. -/
-def extendedEqualityChainCnf : Std.Sat.CNF Atom :=
+def extendedEqualityChainCnf : ListCNF Atom :=
   extendedInterleavedCnf ++ equalityChainClauses
 
 /-- Exact size of the complete two-circle equality-chain family. -/
@@ -184,13 +185,13 @@ theorem extendedEqualityChainCnf_clause_count :
 /-- Gate B for the complete equality-chain child root. -/
 theorem sourceAssign_extendedEqualityChainCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedEqualityChainCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedEqualityChainCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedEqualityChainCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedInterleavedCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_equalityChainClauses r clause hnew
 
@@ -198,7 +199,7 @@ theorem sourceAssign_extendedEqualityChainCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedEqualityChainCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedEqualityChainCnf = true) : False := by
+      ListCNF.eval assignment extendedEqualityChainCnf = true) : False := by
   rcases hsource with ⟨r⟩
   exact hunsat ⟨sourceAssign r.model, sourceAssign_extendedEqualityChainCnf r⟩
 

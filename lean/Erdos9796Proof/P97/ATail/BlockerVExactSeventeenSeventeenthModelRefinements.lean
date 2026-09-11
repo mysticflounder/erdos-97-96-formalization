@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSixteenthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-backed refinements from the seventeenth exact-seventeen SAT model
@@ -684,7 +685,7 @@ def occurrenceClause (baseHits : List Hit) (order : NamedOrder)
   nogoodClause order (priorOrientedHits baseHits order direction)
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def occurrenceClauses (baseHits : List Hit) : Std.Sat.CNF Atom :=
+def occurrenceClauses (baseHits : List Hit) : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => occurrenceClause baseHits order direction
 
@@ -742,7 +743,7 @@ theorem sourceAssign_cancellationClause {A : Finset ℝ²}
   exact false_of_cancellationHits source order direction horder.symm hall
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def seventeenthModelRefinementClauses : Std.Sat.CNF Atom :=
+def seventeenthModelRefinementClauses : ListCNF Atom :=
   occurrenceClauses bisectorHits ++
   occurrenceClauses convexOneHits ++
   occurrenceClauses convexTwoHits ++
@@ -777,7 +778,7 @@ theorem sourceAssign_seventeenthModelRefinementClauses {A : Finset ℝ²}
       (sourceAssign_cancellationClause source) clause hcancellation
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def extendedSeventeenthModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedSeventeenthModelRefinementsCnf : ListCNF Atom :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.extendedSixteenthModelRefinementsCnf ++
     seventeenthModelRefinementClauses
 
@@ -789,16 +790,16 @@ theorem extendedSeventeenthModelRefinementsCnf_length :
 /-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedSeventeenthModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedSeventeenthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedSeventeenthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h :=
       ATailBlockerVExactSeventeenSixteenthModelRefinements.sourceAssign_extendedSixteenthModelRefinementsCnf
         source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_seventeenthModelRefinementClauses source clause hsuffix
 
@@ -806,7 +807,7 @@ theorem sourceAssign_extendedSeventeenthModelRefinementsCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedSeventeenthModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedSeventeenthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedSeventeenthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

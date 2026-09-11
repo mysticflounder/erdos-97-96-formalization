@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
 import Erdos9796Proof.P97.Census554.ConvexFivePointCore
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Checked exact-seventeen source bridge for convex-five occurrences

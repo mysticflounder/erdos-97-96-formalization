@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Physical-slice coverage after the canary perpendicular-bisector model refinement
@@ -25,7 +26,7 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementModelRefinements
 
 /-- The model-refinement successor restricted to one source-valid physical-slice cell. -/
 def canaryPerpBisectorModelRefinementPhysicalSliceCellCnf
-    (center : Label) (category : PhysicalSliceCategory) : Std.Sat.CNF Atom :=
+    (center : Label) (category : PhysicalSliceCategory) : ListCNF Atom :=
   canaryPerpBisectorModelRefinementCnf ++
     sparseSixPointNextCenterUnitCnf center ++
     physicalSliceUnitCnf center category
@@ -47,10 +48,10 @@ theorem sourceAssign_canaryPerpBisectorModelRefinementPhysicalSliceCell
     {center : Label} (hcenter : source.model.nextCenter = center)
     {category : PhysicalSliceCategory}
     (hmatch : category.Matches source.model center) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       (canaryPerpBisectorModelRefinementPhysicalSliceCellCnf center category) = true := by
   rw [canaryPerpBisectorModelRefinementPhysicalSliceCellCnf,
-    Std.Sat.CNF.eval_append, Std.Sat.CNF.eval_append]
+    ListCNF.eval_append, ListCNF.eval_append]
   rw [sourceAssign_canaryPerpBisectorModelRefinementCnf source horder]
   rw [sourceAssign_sparseSixPointNextCenterUnit source.model hcenter]
   simp [sourceAssign_physicalSliceUnitCnf source.model center category hmatch]
@@ -60,7 +61,7 @@ theorem false_of_all_canaryPerpBisectorModelRefinementPhysicalSliceCells
     (hcell : ∀ center, center ∈ legalNextCenterLabels →
       ∀ category, category ∈ physicalSliceCategories center →
         ¬ ∃ assignment,
-          Std.Sat.CNF.eval assignment
+          ListCNF.eval assignment
             (canaryPerpBisectorModelRefinementPhysicalSliceCellCnf center category) = true)
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0) :

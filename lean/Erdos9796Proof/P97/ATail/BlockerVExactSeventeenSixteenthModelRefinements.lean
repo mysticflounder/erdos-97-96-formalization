@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenConvexFivePointFifthRows
 import Erdos9796Proof.P97.ATail.KalmansonFourEqualitySchemas
 import Erdos9796Proof.P97.Census554.FourPointTwoCircleBisectorOrderCore
 import Erdos9796Proof.P97.Census554.FivePointCollision
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-backed refinements from the sixteenth exact-seventeen SAT model
@@ -1296,7 +1297,7 @@ def occurrenceClause (baseHits : List Hit) (order : NamedOrder)
   nogoodClause order (orientedHits baseHits order direction)
 
 /-- Finite V-exact-seventeen model-refinement def. -/
-def occurrenceClauses (baseHits : List Hit) : Std.Sat.CNF Atom :=
+def occurrenceClauses (baseHits : List Hit) : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => occurrenceClause baseHits order direction
 
@@ -1399,7 +1400,7 @@ theorem sourceAssign_cancellationClause {A : Finset ℝ²}
   exact false_of_cancellationHits source order direction horder.symm hall
 
 /-- The complete mandatory theorem-bank response to the sixteenth SAT model. -/
-def sixteenthModelRefinementClauses : Std.Sat.CNF Atom :=
+def sixteenthModelRefinementClauses : ListCNF Atom :=
   occurrenceClauses bisectorOneHits ++
   occurrenceClauses bisectorTwoHits ++
   occurrenceClauses kalmansonLHits ++
@@ -1454,7 +1455,7 @@ theorem sourceAssign_sixteenthModelRefinementClauses {A : Finset ℝ²}
       (sourceAssign_perpClause source) clause hperp
 
 /-- Lean-owned successor root after all eight sixteenth-model refinements. -/
-def extendedSixteenthModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedSixteenthModelRefinementsCnf : ListCNF Atom :=
   extendedFifthConvexFivePointCnf ++ sixteenthModelRefinementClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -1467,14 +1468,14 @@ theorem extendedSixteenthModelRefinementsCnf_clause_count :
 /-- Gate B for the successor containing every sixteenth-model refinement. -/
 theorem sourceAssign_extendedSixteenthModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedSixteenthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedSixteenthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedFifthConvexFivePointCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_sixteenthModelRefinementClauses source clause hnew
 
@@ -1482,7 +1483,7 @@ theorem sourceAssign_extendedSixteenthModelRefinementsCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedSixteenthModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedSixteenthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedSixteenthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

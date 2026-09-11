@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCurrentRootTwoKalmansonSuccessorRefinements
 import Erdos9796Proof.P97.ATail.KalmansonSmallRoleCycleSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete small-role cycle refinements for the exact-seventeen source CNF
@@ -297,7 +298,7 @@ theorem sourceAssign_fourRoleCycleClause {A : Finset ℝ²}
 /-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements def. -/
 private def completeSmallRoleClauseFamily (choices : List (List Label))
     (hits : NamedOrder → Orientation → Label → List Label → List Hit) :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   namedOrders.flatMap fun order ↦
     directions.flatMap fun direction ↦
       labels.flatMap fun cut ↦
@@ -305,11 +306,11 @@ private def completeSmallRoleClauseFamily (choices : List (List Label))
           nogoodClause order (hits order direction cut offsets)
 
 /-- Complete guarded five-role cycle clause family. -/
-def fiveRoleCycleClauses : Std.Sat.CNF Atom :=
+def fiveRoleCycleClauses : ListCNF Atom :=
   completeSmallRoleClauseFamily fiveRoleOffsetChoices fiveRoleCycleHits
 
 /-- Complete guarded source-valid four-role cycle clause family. -/
-def fourRoleCycleClauses : Std.Sat.CNF Atom :=
+def fourRoleCycleClauses : ListCNF Atom :=
   completeSmallRoleClauseFamily fourRoleOffsetChoices fourRoleCycleHits
 
 /-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements theorem. -/
@@ -346,7 +347,7 @@ theorem sourceAssign_fourRoleCycleClauses {A : Finset ℝ²}
   exact sourceAssign_fourRoleCycleClause r order direction cut offsets hoffsets
 
 /-- Complete small-role cycle clause bank. -/
-def smallRoleCycleClauses : Std.Sat.CNF Atom :=
+def smallRoleCycleClauses : ListCNF Atom :=
   fiveRoleCycleClauses ++ fourRoleCycleClauses
 
 /-- Every source realization satisfies the complete small-role cycle bank. -/
@@ -375,7 +376,7 @@ theorem smallRoleCycleClauses_length : smallRoleCycleClauses.length = 160888 := 
 
 /-- The current exact-seventeen root extended by the complete source-valid
 small-role cycle bank. -/
-def extendedSmallRoleCycleCnf : Std.Sat.CNF Atom :=
+def extendedSmallRoleCycleCnf : ListCNF Atom :=
   extendedCurrentRootTwoKalmansonSuccessorCnf ++ smallRoleCycleClauses
 
 /-- P97 ATail BlockerVExactSeventeenSmallRoleCycleRefinements theorem. -/
@@ -386,13 +387,13 @@ theorem extendedSmallRoleCycleCnf_length : extendedSmallRoleCycleCnf.length = 71
 /-- Every source realization satisfies the complete extended formula. -/
 theorem sourceAssign_extendedSmallRoleCycleCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedSmallRoleCycleCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedSmallRoleCycleCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedSmallRoleCycleCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsmall
   · have h := sourceAssign_extendedCurrentRootTwoKalmansonSuccessorCnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_smallRoleCycleClauses r clause hsmall
 
@@ -401,7 +402,7 @@ small-role cycle bank. -/
 theorem false_of_sourceRealization_of_extendedSmallRoleCycleCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedSmallRoleCycleCnf = true) : False := by
+      ListCNF.eval assignment extendedSmallRoleCycleCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model, sourceAssign_extendedSmallRoleCycleCnf source⟩
 

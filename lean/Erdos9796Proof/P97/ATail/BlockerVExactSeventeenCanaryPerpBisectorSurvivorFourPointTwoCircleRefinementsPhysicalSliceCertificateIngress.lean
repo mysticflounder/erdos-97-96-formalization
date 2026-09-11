@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinementsPhysicalSliceCoverage
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCertificateIngress
 import Std.Sat.CNF.Relabel
+import Erdos9796Proof.P97.ListCNF
 import Std.Tactic.BVDecide
 
 /-!
@@ -31,8 +32,8 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefi
 def certificateVar (atom : Atom) : Nat := atomVar atom - 1
 
 /-- One relabelled FourPoint physical-slice cell. -/
-def certificateCnf (center : Label) (category : PhysicalSliceCategory) : CNF Nat :=
-  CNF.relabel certificateVar
+def certificateCnf (center : Label) (category : PhysicalSliceCategory) : ListCNF Nat :=
+  ListCNF.relabel certificateVar
     (canaryPerpBisectorSurvivorFourPointTwoCircleRefinementPhysicalSliceCellCnf
       center category)
 
@@ -45,13 +46,13 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleRefinementPhysicalSliceCellC
     {center : Label} {category : PhysicalSliceCategory}
     (hcertificate : (certificateCnf center category).Unsat) :
     ¬ ∃ assignment,
-      CNF.eval assignment
+      ListCNF.eval assignment
         (canaryPerpBisectorSurvivorFourPointTwoCircleRefinementPhysicalSliceCellCnf
           center category) = true := by
   have htyped :
       (canaryPerpBisectorSurvivorFourPointTwoCircleRefinementPhysicalSliceCellCnf
         center category).Unsat :=
-    (CNF.unsat_relabel_iff
+    (ListCNF.unsat_relabel_iff
       (f := canaryPerpBisectorSurvivorFourPointTwoCircleRefinementPhysicalSliceCellCnf
         center category)
       (r := certificateVar)

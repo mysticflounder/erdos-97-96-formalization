@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellation
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Six-incidence two-circle bisector refinement of the true EightHit root
@@ -255,7 +256,7 @@ theorem sourceAssign_sixHitBisectorClause {A : Finset ℝ²}
   exact false_of_sixHitBisectorHits source order direction horder.symm hall
 
 /-- Complete orbit over both named source orders and cyclic orientations. -/
-def sixHitBisectorClauses : Std.Sat.CNF Atom :=
+def sixHitBisectorClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => sixHitBisectorClause order direction
 
@@ -275,7 +276,7 @@ theorem sourceAssign_sixHitBisectorClauses {A : Finset ℝ²}
 
 /-- Lean-owned successor of the true EightHit two-Kalmanson root. -/
 def extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonCnf ++
     sixHitBisectorClauses
 
@@ -303,10 +304,10 @@ theorem orderZero_reverse_clause_dimacs :
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf =
         true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [
     extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf,
@@ -315,7 +316,7 @@ theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHi
   · have hparentEval :=
       sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_sixHitBisectorClauses source clause hsuffix
 
@@ -324,7 +325,7 @@ theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFourR
     {A : Finset ℝ²}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         extendedCocircularOrderSparseSixPointFourRowBisectorEightHitTwoKalmansonSixHitBisectorCnf =
           true) :
     False := by

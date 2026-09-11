@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleRefinements
 import Erdos9796Proof.P97.ATail.KalmansonFourEqualitySchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-valid duplicate-center and schema-M refinements from the exact-seventeen v4 ledger
@@ -165,7 +166,7 @@ def duplicateCenterClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause duplicateCenterHits order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
-def duplicateCenterClauses : Std.Sat.CNF Atom := occurrenceClauses duplicateCenterHits
+def duplicateCenterClauses : ListCNF Atom := occurrenceClauses duplicateCenterHits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem sourceAssign_duplicateCenterClause {A : Finset ℝ²}
@@ -376,7 +377,7 @@ def schemaMClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause schemaMHits order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
-def schemaMClauses : Std.Sat.CNF Atom := occurrenceClauses schemaMHits
+def schemaMClauses : ListCNF Atom := occurrenceClauses schemaMHits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
 theorem sourceAssign_schemaMClause {A : Finset ℝ²}
@@ -390,7 +391,7 @@ theorem sourceAssign_schemaMClause {A : Finset ℝ²}
 /- ## Complete two-family suffix and successor CNF -/
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
-def fourPointTwoCircleV4OtherCoreRefinementClauses : Std.Sat.CNF Atom :=
+def fourPointTwoCircleV4OtherCoreRefinementClauses : ListCNF Atom :=
   duplicateCenterClauses ++ schemaMClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements theorem. -/
@@ -417,7 +418,7 @@ theorem sourceAssign_fourPointTwoCircleV4OtherCoreRefinementClauses {A : Finset 
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf ++
     fourPointTwoCircleV4OtherCoreRefinementClauses
 
@@ -433,14 +434,14 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf_len
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_fourPointTwoCircleV4OtherCoreRefinementClauses source clause hsuffix
 

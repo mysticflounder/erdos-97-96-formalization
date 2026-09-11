@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmansonCancellationPhysicalSliceCoverage
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCertificateIngress
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Certificate ingress for exact-17 two-Kalmanson four-row bisector physical-slice cells
@@ -29,8 +30,8 @@ open ATailBlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorTwoKalmans
 def certificateVar (atom : Atom) : Nat := atomVar atom - 1
 
 /-- One exact physical-slice cell in the representation checked by LRAT. -/
-def certificateCnf (center : Label) (category : PhysicalSliceCategory) : CNF Nat :=
-  CNF.relabel certificateVar
+def certificateCnf (center : Label) (category : PhysicalSliceCategory) : ListCNF Nat :=
+  ListCNF.relabel certificateVar
     (sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf
       center category)
 
@@ -44,13 +45,13 @@ theorem sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf_u
     {center : Label} {category : PhysicalSliceCategory}
     (hcertificate : (certificateCnf center category).Unsat) :
     ¬ ∃ assignment,
-      CNF.eval assignment
+      ListCNF.eval assignment
         (sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf
           center category) = true := by
   have htyped :
       (sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf
         center category).Unsat :=
-    (CNF.unsat_relabel_iff
+    (ListCNF.unsat_relabel_iff
       (f := sparseSixPointFourRowTwoCircleBisectorTwoKalmansonPhysicalSliceCellCnf
         center category)
       (r := certificateVar)

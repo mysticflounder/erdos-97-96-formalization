@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwoTripleRowRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Current-root two-Kalmanson occurrence refinements
@@ -2643,7 +2644,7 @@ theorem currentRootTwoKalmansonOccurrences_all_check :
   decide
 
 /-- Four guarded clauses for each of the fifty-four checked occurrences. -/
-def currentRootTwoKalmansonClauses : Std.Sat.CNF Atom :=
+def currentRootTwoKalmansonClauses : ListCNF Atom :=
   currentRootTwoKalmansonOccurrences.flatMap fun occurrence =>
     occurrenceClauses occurrence.hits
 
@@ -2671,7 +2672,7 @@ theorem sourceAssign_currentRootTwoKalmansonClauses
   exact sourceAssign_cancellationOccurrenceClause source occurrence hcheck order direction
 
 /-- The current cumulative exact-seventeen root with the new occurrence bank. -/
-def extendedCurrentRootTwoKalmansonCnf : Std.Sat.CNF Atom :=
+def extendedCurrentRootTwoKalmansonCnf : ListCNF Atom :=
   extendedTwoTripleRowCnf ++ currentRootTwoKalmansonClauses
 
 /-- P97 ATail BlockerVExactSeventeenCurrentRootTwoKalmansonRefinements theorem. -/
@@ -2683,14 +2684,14 @@ theorem extendedCurrentRootTwoKalmansonCnf_length :
 /-- Every source realization satisfies the complete cumulative formula. -/
 theorem sourceAssign_extendedCurrentRootTwoKalmansonCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCurrentRootTwoKalmansonCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCurrentRootTwoKalmansonCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedTwoTripleRowCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_currentRootTwoKalmansonClauses source clause hsuffix
 
@@ -2699,7 +2700,7 @@ theorem false_of_sourceRealization_of_extendedCurrentRootTwoKalmansonCnf_unsat
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedCurrentRootTwoKalmansonCnf = true) : False := by
+      ListCNF.eval assignment extendedCurrentRootTwoKalmansonCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
     sourceAssign_extendedCurrentRootTwoKalmansonCnf source⟩

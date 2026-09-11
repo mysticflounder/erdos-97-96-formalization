@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonCancellationSixHitBisectorCanaryTwoKalmansonPhysicalSliceCoverage
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCertificateIngress
+import Erdos9796Proof.P97.ListCNF
 
 /-! Certificate ingress for all 76 canary two-Kalmanson physical cells. -/
 
@@ -24,8 +25,8 @@ open
 def certificateVar (atom : Atom) : Nat := atomVar atom - 1
 
 /-- One exact physical-slice cell in the representation checked by LRAT. -/
-def certificateCnf (center : Label) (category : PhysicalSliceCategory) : CNF Nat :=
-  CNF.relabel certificateVar
+def certificateCnf (center : Label) (category : PhysicalSliceCategory) : ListCNF Nat :=
+  ListCNF.relabel certificateVar
     (sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellCnf
       center category)
 
@@ -39,13 +40,13 @@ theorem sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisector
     {center : Label} {category : PhysicalSliceCategory}
     (hcertificate : (certificateCnf center category).Unsat) :
     ¬ ∃ assignment,
-      CNF.eval assignment
+      ListCNF.eval assignment
         (sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellCnf
           center category) = true := by
   have htyped :
       (sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellCnf
         center category).Unsat :=
-    (CNF.unsat_relabel_iff
+    (ListCNF.unsat_relabel_iff
       (f :=
         sparseSixPointFourRowTwoCircleBisectorEightHitTwoKalmansonSixHitBisectorCanaryTwoKalmansonPhysicalSliceCellCnf
           center category)

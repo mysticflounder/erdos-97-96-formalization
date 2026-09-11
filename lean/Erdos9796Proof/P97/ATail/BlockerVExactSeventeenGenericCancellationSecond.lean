@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmansonSwappedDEGenericCancellation
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Second generic two-Kalmanson cancellation clause for exact seventeen
@@ -206,7 +207,7 @@ theorem sourceAssign_secondCancellationClause {A : Finset ℝ²}
   exact false_of_secondCancellationHits source order direction horder.symm hall
 
 /-- Complete orbit: two named source orders and both reflections. -/
-def secondCancellationClauses : Std.Sat.CNF Atom :=
+def secondCancellationClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => secondCancellationClause order direction
 
@@ -226,7 +227,7 @@ theorem sourceAssign_secondCancellationClauses {A : Finset ℝ²}
   exact sourceAssign_secondCancellationClause source order direction
 
 /-- Lean-owned successor root after the second cancellation orbit. -/
-def extendedSecondCancellationCnf : Std.Sat.CNF Atom :=
+def extendedSecondCancellationCnf : ListCNF Atom :=
   extendedGenericCancellationCnf ++ secondCancellationClauses
 
 /-- P97 ATail BlockerVExactSeventeenGenericCancellationSecond theorem. -/
@@ -239,14 +240,14 @@ theorem extendedSecondCancellationCnf_clause_count :
 /-- Gate B for the second generic-cancellation child root. -/
 theorem sourceAssign_extendedSecondCancellationCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedSecondCancellationCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedSecondCancellationCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedGenericCancellationCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_secondCancellationClauses source clause hnew
 
@@ -254,7 +255,7 @@ theorem sourceAssign_extendedSecondCancellationCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedSecondCancellationCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedSecondCancellationCnf = true) : False := by
+      ListCNF.eval assignment extendedSecondCancellationCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedSecondCancellationCnf source⟩

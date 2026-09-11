@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterleavedEqualityChainPerpBisectorChainTwoKalmanson
 import Erdos9796Proof.P97.ATail.TwoKalmansonEqualityChainUnorderedDSchemas
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Swapped-D/E two-Kalmanson clauses for exact seventeen
@@ -165,7 +166,7 @@ theorem sourceAssign_twoKalmansonSwappedDEClause {A : Finset ℝ²}
     (get g c (by simp [twoKalmansonSwappedDEHits]))
 
 /-- Complete guarded cyclic orbit of the swapped-`D/E` placement. -/
-def twoKalmansonSwappedDEClauses : Std.Sat.CNF Atom :=
+def twoKalmansonSwappedDEClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -186,7 +187,7 @@ theorem sourceAssign_twoKalmansonSwappedDEClauses {A : Finset ℝ²}
     hoffsets
 
 /-- Lean-authoritative child root after the swapped-`D/E` placement. -/
-def extendedTwoKalmansonSwappedDECnf : Std.Sat.CNF Atom :=
+def extendedTwoKalmansonSwappedDECnf : ListCNF Atom :=
   extendedTwoKalmansonCnf ++ twoKalmansonSwappedDEClauses
 
 /-- Exact size of the complete swapped-`D/E` family. -/
@@ -203,14 +204,14 @@ theorem extendedTwoKalmansonSwappedDECnf_clause_count :
 /-- Gate B for the complete swapped-`D/E` child root. -/
 theorem sourceAssign_extendedTwoKalmansonSwappedDECnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwoKalmansonSwappedDECnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwoKalmansonSwappedDECnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedTwoKalmansonCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_twoKalmansonSwappedDEClauses source clause hnew
 
@@ -218,7 +219,7 @@ theorem sourceAssign_extendedTwoKalmansonSwappedDECnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwoKalmansonSwappedDECnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwoKalmansonSwappedDECnf = true) : False := by
+      ListCNF.eval assignment extendedTwoKalmansonSwappedDECnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model, sourceAssign_extendedTwoKalmansonSwappedDECnf source⟩

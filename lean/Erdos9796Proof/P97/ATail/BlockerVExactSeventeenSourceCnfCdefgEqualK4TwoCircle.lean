@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSourceCnfCdefgEqualK4
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Checked two-circle shared-pair clauses for the exact-seventeen source CNF
@@ -190,7 +191,7 @@ theorem sourceAssign_endpointSharedPairClause {A : Finset ℝ²}
       placedLabel order direction cut c) (by simp [endpointSharedPairHits])
 
 /-- Complete guarded endpoint-center shared-pair clause family. -/
-def endpointSharedPairClauses : Std.Sat.CNF Atom :=
+def endpointSharedPairClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.flatMap fun direction =>
       labels.flatMap fun cut =>
@@ -210,7 +211,7 @@ theorem sourceAssign_endpointSharedPairClauses {A : Finset ℝ²}
   exact sourceAssign_endpointSharedPairClause r order direction cut offsets hoffsets
 
 /-- Lean-authoritative child root after the complete two-circle family. -/
-def extendedTwoCircleCnf : Std.Sat.CNF Atom :=
+def extendedTwoCircleCnf : ListCNF Atom :=
   extendedEqualK4Cnf ++ endpointSharedPairClauses
 
 /-- Exact size of the complete two-circle clause family. -/
@@ -227,13 +228,13 @@ theorem extendedTwoCircleCnf_clause_count :
 /-- Gate B for the complete two-circle child root. -/
 theorem sourceAssign_extendedTwoCircleCnf {A : Finset ℝ²}
     (r : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign r.model) extendedTwoCircleCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+    ListCNF.eval (sourceAssign r.model) extendedTwoCircleCnf = true := by
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwoCircleCnf, List.mem_append] at hclause
   rcases hclause with hold | hnew
   · have h := sourceAssign_extendedEqualK4Cnf r
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hold
   · exact sourceAssign_endpointSharedPairClauses r clause hnew
 
@@ -241,7 +242,7 @@ theorem sourceAssign_extendedTwoCircleCnf {A : Finset ℝ²}
 theorem false_of_sourceRealization_of_extendedTwoCircleCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwoCircleCnf = true) :
+      ListCNF.eval assignment extendedTwoCircleCnf = true) :
     False := by
   rcases hsource with ⟨r⟩
   exact hunsat ⟨sourceAssign r.model, sourceAssign_extendedTwoCircleCnf r⟩

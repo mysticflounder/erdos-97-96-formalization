@@ -344,6 +344,7 @@ Verified on `main` at `983966af8`.
 | Gate E script | Done, prints `GATE-E OK` |
 | Spine | `open: 0/1`, kernel-complete under `{propext, Quot.sound, Classical.choice}` |
 | Gate D result | Not recorded |
+| exact17 `ListCNF` chain (226 modules) | Migrated and built on `main`, 2026-09-11 |
 | Generator scripts | Not migrated |
 | Fail-open bank pin | Recorded, not repaired |
 
@@ -364,6 +365,22 @@ Regenerating any of the 21 banks would emit code that cannot type-check.
 The `P97/ListCNF.lean` adapter exists only in the unmerged worktree branch
 `mathlib-v4331-migration-20260907` at `3f37de72d`.
 That commit is not an ancestor of `main`.
+
+Update, 2026-09-11: the Lean half of this risk is closed for the
+exact-seventeen chain.
+`P97/ListCNF.lean` and the 226 `BlockerVExactSeventeen*` chain modules are
+now on `main`.
+They came over by a 3-way merge of the worktree migration with the docstring
+edits on `main`.
+`SourceCnfCdefg` needed one more bridge, because its parent
+`BlockerVExactSeventeenSourceCnf` stays array-shaped on `main`
+(catalogue class AT, route 3).
+All 226 modules build.
+A class W sweep of all 7,084 of their constants found no `sorryAx`.
+The generator half of the risk is still open.
+The 21 `generate_exact17_*.py` scripts still emit the old API.
+Their output pins also do not match the files on `main`.
+The 4 non-exact17 CNF orphans (`FrontierLiveClosure`) are out of scope.
 
 ### 8.2 Open risk 2: one bank pin is fail-open
 

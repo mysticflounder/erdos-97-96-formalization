@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenSparseSixPointNextCenterPhysicalSliceCoverage
 import Std.Sat.CNF.Relabel
+import Erdos9796Proof.P97.ListCNF
 import Std.Tactic.BVDecide
 
 /-!
@@ -30,8 +31,8 @@ def certificateVar (atom : Atom) : Nat := atomVar atom - 1
 
 /-- One exact physical-slice cell in the representation checked by LRAT. -/
 def certificateCnf (center : Label) (category : PhysicalSliceCategory) :
-    CNF Nat :=
-  CNF.relabel certificateVar
+    ListCNF Nat :=
+  ListCNF.relabel certificateVar
     (sparseSixPointNextCenterPhysicalSliceCellCnf center category)
 
 /-- The fixed DIMACS numbering remains collision-free after zero-basing. -/
@@ -44,11 +45,11 @@ theorem sparseSixPointNextCenterPhysicalSliceCellCnf_unsat_of_certificateCnf_uns
     {center : Label} {category : PhysicalSliceCategory}
     (hcertificate : (certificateCnf center category).Unsat) :
     ¬ ∃ assignment,
-      CNF.eval assignment
+      ListCNF.eval assignment
         (sparseSixPointNextCenterPhysicalSliceCellCnf center category) = true := by
   have htyped :
       (sparseSixPointNextCenterPhysicalSliceCellCnf center category).Unsat :=
-    (CNF.unsat_relabel_iff
+    (ListCNF.unsat_relabel_iff
       (f := sparseSixPointNextCenterPhysicalSliceCellCnf center category)
       (r := certificateVar)
       (fun _ _ heq => certificateVar_injective heq)).mp hcertificate

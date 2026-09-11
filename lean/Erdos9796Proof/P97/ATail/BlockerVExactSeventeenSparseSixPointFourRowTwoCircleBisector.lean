@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCocircularPentagonOrderSparseSixPointFullBankPromotion
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFourPointTwoCircleBisectorRows
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Four-row two-circle refinement of the exact-seventeen sparse-six bank
@@ -294,7 +295,7 @@ theorem sourceAssign_fourRowTwoCircleClause {A : Finset ℝ²}
   exact false_of_fourRowTwoCircleHits source order direction horder.symm hall
 
 /-- Complete orbit over both named source orders and cyclic orientations. -/
-def fourRowTwoCircleClauses : Std.Sat.CNF Atom :=
+def fourRowTwoCircleClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => fourRowTwoCircleClause order direction
 
@@ -313,7 +314,7 @@ theorem sourceAssign_fourRowTwoCircleClauses {A : Finset ℝ²}
   exact sourceAssign_fourRowTwoCircleClause source order direction
 
 /-- Lean-owned successor of the cumulative sparse-six exact-seventeen root. -/
-def extendedCocircularOrderSparseSixPointFourRowBisectorCnf : Std.Sat.CNF Atom :=
+def extendedCocircularOrderSparseSixPointFourRowBisectorCnf : ListCNF Atom :=
   extendedCocircularOrderSparseSixPointFullBankCnf ++ fourRowTwoCircleClauses
 
 /-- P97 ATail BlockerVExactSeventeenSparseSixPointFourRowTwoCircleBisector theorem. -/
@@ -341,16 +342,16 @@ theorem orderZero_forward_clause_dimacs :
 theorem sourceAssign_extendedCocircularOrderSparseSixPointFourRowBisectorCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedCocircularOrderSparseSixPointFourRowBisectorCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedCocircularOrderSparseSixPointFourRowBisectorCnf,
     List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_extendedCocircularOrderSparseSixPointFullBankCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_fourRowTwoCircleClauses source clause hsuffix
 
@@ -359,7 +360,7 @@ theorem false_of_sourceRealization_of_extendedCocircularOrderSparseSixPointFourR
     {A : Finset ℝ²}
     (hsource : ∃ source : SourceRealization A, source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         extendedCocircularOrderSparseSixPointFourRowBisectorCnf = true) :
     False := by
   rcases hsource with ⟨source, horder⟩

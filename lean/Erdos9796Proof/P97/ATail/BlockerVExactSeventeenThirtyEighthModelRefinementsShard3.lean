@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtySeventhModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! # Child38 subset-minimal six-hit cancellation bank, shard 3
 
@@ -224,7 +225,7 @@ theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by native_decide
 
 /-- P97 ATail BlockerVExactSeventeenThirtyEighthModelRefinementsShard3 def. -/
-def refinementClauses : Std.Sat.CNF Atom :=
+def refinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenThirtyEighthModelRefinementsShard3 theorem. -/

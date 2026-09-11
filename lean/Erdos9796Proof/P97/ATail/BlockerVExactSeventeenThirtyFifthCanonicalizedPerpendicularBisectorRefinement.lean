@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyFourthModelRefinements
 import Erdos9796Proof.P97.ATail.FrontierLiveClosure.GenericPerpBisectorNogoodCertificate
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Canonicalized child-35 perpendicular-bisector occurrence
@@ -229,7 +230,7 @@ theorem sourceAssign_child35CanonicalPerpBisectorClause
     source order direction horder.symm hall
 
 /-- P97 ATail BlockerVExactSeventeenThirtyFifthCanonicalizedPerpendicularBisectorRefinement def. -/
-def child35CanonicalPerpBisectorClauses : Std.Sat.CNF Atom :=
+def child35CanonicalPerpBisectorClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction => child35CanonicalPerpBisectorClause order direction
 

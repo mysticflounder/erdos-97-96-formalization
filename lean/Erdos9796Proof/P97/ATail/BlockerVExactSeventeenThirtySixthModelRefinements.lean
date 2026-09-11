@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyFifthModelRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyEighthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-valid refinement mined from exact-seventeen child 36
@@ -90,7 +91,7 @@ theorem child36CancellationOccurrence_check :
 
 /-- Complete two-order, two-orientation clause orbit of the child-36
 cancellation. -/
-def thirtySixthModelRefinementClauses : Std.Sat.CNF Atom :=
+def thirtySixthModelRefinementClauses : ListCNF Atom :=
   occurrenceClauses child36CancellationHits
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -117,7 +118,7 @@ theorem sourceAssign_thirtySixthModelRefinementClauses
     child36CancellationOccurrence_check order direction
 
 /-- Lean-owned child-37 root. -/
-def extendedThirtySixthModelRefinementsCnf : Std.Sat.CNF Atom :=
+def extendedThirtySixthModelRefinementsCnf : ListCNF Atom :=
   extendedThirtyFifthModelRefinementsCnf ++ thirtySixthModelRefinementClauses
 
 /-- Finite V-exact-seventeen model-refinement theorem. -/
@@ -131,14 +132,14 @@ theorem extendedThirtySixthModelRefinementsCnf_length :
 theorem sourceAssign_extendedThirtySixthModelRefinementsCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedThirtySixthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThirtySixthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedThirtyFifthModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_thirtySixthModelRefinementClauses source clause hsuffix
 
@@ -147,7 +148,7 @@ theorem false_of_sourceRealization_of_extendedThirtySixthModelRefinementsCnf_uns
     {A : Finset (EuclideanSpace ℝ (Fin 2))}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThirtySixthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedThirtySixthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,

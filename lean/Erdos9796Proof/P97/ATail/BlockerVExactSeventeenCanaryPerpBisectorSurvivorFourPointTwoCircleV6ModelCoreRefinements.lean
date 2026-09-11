@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Exact-seventeen V6 survivor model-core refinements
@@ -300,10 +301,10 @@ def candidateBClause (order : NamedOrder) (direction : Orientation) :
     Std.Sat.CNF.Clause Atom := occurrenceClause candidateBHits order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
-def candidateAClauses : Std.Sat.CNF Atom := occurrenceClauses candidateAHits
+def candidateAClauses : ListCNF Atom := occurrenceClauses candidateAHits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
-def candidateBClauses : Std.Sat.CNF Atom := occurrenceClauses candidateBHits
+def candidateBClauses : ListCNF Atom := occurrenceClauses candidateBHits
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
 theorem sourceAssign_candidateAClause {A : Finset ℝ²} (source : SourceRealization A)
@@ -339,7 +340,7 @@ private theorem sourceAssign_occurrenceClauses {A : Finset ℝ²}
   exact hvalid order direction
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
-def v6ModelCoreRefinementClauses : Std.Sat.CNF Atom :=
+def v6ModelCoreRefinementClauses : ListCNF Atom :=
   candidateAClauses ++ candidateBClauses
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements theorem. -/
@@ -366,7 +367,7 @@ theorem sourceAssign_v6ModelCoreRefinementClauses {A : Finset ℝ²}
 
 /-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf ++
     v6ModelCoreRefinementClauses
 
@@ -382,15 +383,15 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf_len
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf
     {A : Finset ℝ²} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV5CanaryTwoKalmansonRefinementCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_v6ModelCoreRefinementClauses source clause hsuffix
 

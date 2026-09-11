@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyFirstModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! Child43 two-Kalmanson cancellation bank, source-checked shard 1. -/
 
@@ -223,7 +224,7 @@ theorem cancellationOccurrences_all_check :
   native_decide
 
 /-- P97 ATail BlockerVExactSeventeenFortySecondModelRefinementsShard1 def. -/
-def refinementClauses : Std.Sat.CNF Atom :=
+def refinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
 /-- P97 ATail BlockerVExactSeventeenFortySecondModelRefinementsShard1 theorem. -/

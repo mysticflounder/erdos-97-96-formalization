@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Source-valid refinement mined from the cocircular-order SAT child
@@ -95,7 +96,7 @@ theorem cocircularOrderSatOccurrence_check :
   decide
 
 /-- P97 ATail BlockerVExactSeventeenCocircularPentagonOrderSatRefinementSchemas def. -/
-def cocircularOrderSatRefinementClauses : Std.Sat.CNF Atom :=
+def cocircularOrderSatRefinementClauses : ListCNF Atom :=
   namedOrders.flatMap fun order =>
     directions.map fun direction =>
       weightedOccurrenceClause order direction cocircularOrderSatOccurrence
