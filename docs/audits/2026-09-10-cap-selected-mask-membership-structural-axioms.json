@@ -1,0 +1,18 @@
+{
+  "schema": "lean-axiom-recapture/v1",
+  "date": "2026-09-10",
+  "theorem": {
+    "name": "Problem97.Census554.CapSelectedNativeClassifierFacts.has_maskOfFinset",
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "focused_build": {
+    "target": "Erdos9796Proof.P97.Census554.CapSelectedNativeClassifierFacts",
+    "exit_code": 0,
+    "log": "lean/.lake/lake-build-logs/91233-1789105113372657000.log"
+  },
+  "source_scan_warnings": []
+}

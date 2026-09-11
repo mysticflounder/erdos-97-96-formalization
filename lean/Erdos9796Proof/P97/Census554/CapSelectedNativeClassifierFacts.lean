@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.Census554.CapSelectedFiniteCode
 import Erdos9796Proof.P97.Census554.CapSelectedNativeClassifier
+import Mathlib.Combinatorics.Colex
 
 /-!
 # Closed finite facts for the native card-eleven classifier
@@ -26,14 +27,26 @@ open CapSelectedNativeClassifier
 def maskOfFinset (points : Finset Label) : RowMask :=
   ∑ point ∈ points, 2 ^ point.val
 
-set_option maxHeartbeats 1000000 in
--- Exhaustive check over the 2,048 finite label sets and eleven labels.
-set_option maxRecDepth 10000 in
-set_option linter.style.nativeDecide false in
-/-- Census-554 certificate-bank theorem. -/
+/-- A label belongs to a finite set exactly when its bit is set in the
+sum-of-powers-of-two encoding. -/
 theorem has_maskOfFinset (points : Finset Label) (point : Label) :
     has (maskOfFinset points) point.val = decide (point ∈ points) := by
-  native_decide +revert
+  have hsum :
+      (∑ point ∈ points, 2 ^ point.val) =
+        ∑ i ∈ points.image (fun point : Label ↦ point.val), 2 ^ i := by
+    rw [Finset.sum_image Fin.val_injective.injOn]
+  apply Bool.eq_iff_iff.mpr
+  simp only [has, decide_eq_true_eq]
+  rw [← Nat.mem_bitIndices]
+  simp only [maskOfFinset]
+  rw [hsum, ← List.mem_toFinset,
+    Finset.toFinset_bitIndices_sum_two_pow, Finset.mem_image]
+  constructor
+  · rintro ⟨a, ha, hval⟩
+    have : a = point := Fin.ext hval
+    simpa [this] using ha
+  · intro hp
+    exact ⟨point, hp, rfl⟩
 
 /-- The binary mask of a set of eleven labels is smaller than `2 ^ 11`.
 

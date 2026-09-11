@@ -1,0 +1,17 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "cap-selected-mask-membership-structural-20260910",
+  "base_head": "a004371854ed77229212ff065f717091d6e0cc44",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/cap-selected-mask-membership-structural-20260910.json",
+    "docs/audits/2026-09-10-cap-selected-mask-membership-structural-axioms.json",
+    "docs/audits/2026-09-10-cap-selected-mask-membership-structural.md",
+    "lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClassifierFacts.lean",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-cap-selected-mask-membership-structural",
+  "created_utc": "2026-09-11T05:37:00Z",
+  "manifest_sha256": "234fb4fc2659c865b386fb42ba587cb843740933de46dbf06e2068a68f9cdce9"
+}

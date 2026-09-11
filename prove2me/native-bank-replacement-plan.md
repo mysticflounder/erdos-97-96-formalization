@@ -27,7 +27,13 @@ The next checkpoint proves `maskOfFinset_lt_2048` from `Nat.geomSum_lt`: every
 label index is below eleven, so the sum of its selected powers of two is below
 `2 ^ 11 = 2048`. This replaces exhaustive enumeration with a reusable bitmask
 bound. The row-coverage consumer still reaches `has_maskOfFinset` and
-`localCandidateOK_maskOfFinset_iff` through native proofs.
+`localCandidateOK_maskOfFinset_iff`; the latter remains native at this checkpoint.
+
+The bit-membership checkpoint proves `has_maskOfFinset` through mathlib's
+binary-expansion theorem: the bit indices of a sum of distinct powers of two
+are exactly the selected indices. This removes exhaustive enumeration from the
+encoding interface. The remaining local-candidate theorem can now be reduced
+to general list-count/intersection lemmas and a finite split on the center label.
 
 ## Objective and boundaries
 
