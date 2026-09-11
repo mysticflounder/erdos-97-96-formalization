@@ -342,6 +342,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Full two-Kalmanson successor from the authenticated exact-seventeen canary
@@ -362,6 +363,7 @@ open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
@@ -372,22 +374,26 @@ def cancellationOccurrences : List CancellationOccurrence :=
 
 LEAN_POSTAMBLE = rf"""
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem cancellationOccurrences_length :
     cancellationOccurrences.length = {EXPECTED_OCCURRENCES} := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
 /-- The complete named-order/orientation orbit of every checked occurrence. -/
-def twoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
+def twoKalmansonRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem twoKalmansonRefinementClauses_length :
     twoKalmansonRefinementClauses.length = {EXPECTED_SUFFIX_CLAUSES} := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem sourceAssign_twoKalmansonRefinementClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ twoKalmansonRefinementClauses,
@@ -403,36 +409,39 @@ theorem sourceAssign_twoKalmansonRefinementClauses
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
 /-- Lean-owned successor after adjoining all sixty-eight source-valid clauses. -/
-def canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf : Std.Sat.CNF Atom :=
+def canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf : ListCNF Atom :=
   canaryPerpBisectorSurvivorRefinementCnf ++ twoKalmansonRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf_length :
     canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf.length = {EXPECTED_ROOT_CLAUSES} := by
   simp [canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf,
     canaryPerpBisectorSurvivorRefinementCnf_length,
     twoKalmansonRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf,
     List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorRefinementCnf source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_twoKalmansonRefinementClauses source clause hsuffix
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorTwoKalmansonRefinements theorem. -/
 theorem false_of_sourceRealization_of_canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf_unsat
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A)
     (horder : source.model.order = 0)
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment
+      ListCNF.eval assignment
         canaryPerpBisectorSurvivorTwoKalmansonRefinementCnf = true) : False := by
   exact hunsat
     ⟨sourceAssign source.model,

@@ -21,6 +21,7 @@ from generate_exact17_twenty_eighth_all_cancellation_refinements import (
     path_hits,
     reflected,
     sha256_file,
+    write_text_once,
 )
 
 from census.atail_force import producer_bank
@@ -35,6 +36,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyEighthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete new minimal cancellation family from exact-seventeen child 29
@@ -55,29 +57,36 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 '''
 
 
 LEAN_POSTAMBLE = r'''
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 50 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
-def twentyNinthModelRefinementClauses : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def twentyNinthModelRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem twentyNinthModelRefinementClauses_length :
     twentyNinthModelRefinementClauses.length = 200 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_twentyNinthModelRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ twentyNinthModelRefinementClauses,
@@ -92,31 +101,40 @@ theorem sourceAssign_twentyNinthModelRefinementClauses {A : Finset ℝ²}
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
-def extendedTwentyNinthModelRefinementsCnf : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def extendedTwentyNinthModelRefinementsCnf : ListCNF Atom :=
   extendedTwentyEighthModelRefinementsCnf ++
     twentyNinthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedTwentyNinthModelRefinementsCnf_length :
     extendedTwentyNinthModelRefinementsCnf.length = 5846744 := by
-  native_decide
+  -- The Lean v4.33 kernel exhausts the build's 16 GB cap when it replays a
+  -- `native_decide` over this 5846744-clause list.  Counting the append
+  -- structurally from the parent's length avoids evaluating the list at all.
+  unfold extendedTwentyNinthModelRefinementsCnf
+  rw [List.length_append, extendedTwentyEighthModelRefinementsCnf_length,
+    twentyNinthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedTwentyNinthModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwentyNinthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwentyNinthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedTwentyEighthModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_twentyNinthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedTwentyNinthModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwentyNinthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedTwentyNinthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,
@@ -193,10 +211,9 @@ def main() -> int:
         )
         lean_entries.append(lean_occurrence(hits, forward, reverse))
 
-    args.lean_output.parent.mkdir(parents=True, exist_ok=True)
-    args.lean_output.write_text(
+    write_text_once(
+        args.lean_output,
         LEAN_PREAMBLE + "[\n" + ",\n".join(lean_entries) + "]\n" + LEAN_POSTAMBLE,
-        encoding="utf-8",
     )
     ledger = {
         "schema": "p97-exact17-child29-all-minimal-two-kalmanson/v1",
@@ -211,9 +228,8 @@ def main() -> int:
         "emitted_clause_count": 4 * len(minimal),
         "entries": entries,
     }
-    args.ledger_output.parent.mkdir(parents=True, exist_ok=True)
-    args.ledger_output.write_text(
-        json.dumps(ledger, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    write_text_once(
+        args.ledger_output, json.dumps(ledger, indent=2, sort_keys=True) + "\n"
     )
     print(
         f"generated {args.lean_output} and {args.ledger_output}: "

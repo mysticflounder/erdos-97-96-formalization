@@ -126,6 +126,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortiethModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! Child42 two-Kalmanson cancellation bank, source-checked shard {index}. -/
 
@@ -137,27 +138,34 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard{index} abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard{index} def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 [
 {joined}
 ]
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard{index} theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = {len(entries)} := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard{index} theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
-def refinementClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard{index} def. -/
+def refinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard{index} theorem. -/
 theorem refinementClauses_length : refinementClauses.length = {4 * len(entries)} := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortyFirstModelRefinementsShard{index} theorem. -/
 theorem sourceAssign_refinementClauses {{A : Finset ℝ²}}
     (source : SourceRealization A) :
     ∀ clause ∈ refinementClauses,
@@ -226,6 +234,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 -/
 
 {imports}
+import Erdos9796Proof.P97.ListCNF
 
 /-! Child42 source-checked two-Kalmanson suffix (133 supports, 532 clauses). -/
 
@@ -236,14 +245,17 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortiethModelRefinements
 
-def fortyFirstModelRefinementClauses : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def fortyFirstModelRefinementClauses : ListCNF Atom :=
   {clauses}
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortyFirstModelRefinementClauses_length :
     fortyFirstModelRefinementClauses.length = {CLAUSES} := by
   simp only [fortyFirstModelRefinementClauses, List.length_append,
     {lengths}]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fortyFirstModelRefinementClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ fortyFirstModelRefinementClauses,
@@ -252,33 +264,37 @@ theorem sourceAssign_fortyFirstModelRefinementClauses
   change clause ∈ {clauses} at hclause
 {source_proof}
 
-def extendedFortyFirstModelRefinementsCnf : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def extendedFortyFirstModelRefinementsCnf : ListCNF Atom :=
   extendedFortiethModelRefinementsCnf ++ fortyFirstModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedFortyFirstModelRefinementsCnf_length :
     extendedFortyFirstModelRefinementsCnf.length = 5848452 := by
   simp only [extendedFortyFirstModelRefinementsCnf, List.length_append,
     extendedFortiethModelRefinementsCnf_length,
     fortyFirstModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedFortyFirstModelRefinementsCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortyFirstModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortyFirstModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedFortiethModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortyFirstModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyFirstModelRefinementsCnf_unsat
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortyFirstModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedFortyFirstModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
     sourceAssign_extendedFortyFirstModelRefinementsCnf source⟩

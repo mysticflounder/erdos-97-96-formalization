@@ -644,7 +644,10 @@ family that used `Std.Sat.CNF` as a list compiles after it is respelled as `List
 bridges to the array form are `ListCNF.eval_eq_std`, `ListCNF.toStd` and
 `ListCNF.unsat_of_toStd_unsat`, which moves an LRAT-checked `CNF.Unsat` onto the list.  The
 226-module exact-seventeen chain (`BlockerVExactSeventeen*`, root `SourceCnfCdefg`) went to
-main this way on 2026-09-11.
+main this way on 2026-09-11.  Its 21 generators were then patched to emit `ListCNF`, and their
+hash pins now name main's files.  A generator is correct only when its render is
+byte-identical to the file on main.  A `ListCNF` patch alone does not give that, because the
+templates must also carry main's docstrings and import placement.
 
 A list-shaped child can sit on an array-shaped parent.  `BlockerVExactSeventeenSourceCnf` is in
 the closure and stays route 1 (`baseCnf : Std.Sat.CNF Atom`).  Its child `SourceCnfCdefg` is

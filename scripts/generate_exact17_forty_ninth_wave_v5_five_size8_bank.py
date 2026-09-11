@@ -135,23 +135,29 @@ def entries() -> list[str]:
         reverse_core = reverse_projected["core"]
         index = len(result)
         result.append(
-            f"""def fortyNinthWaveV5Size8Occurrence{index:02d}ForwardChoices : List (RowChoice Label) :=
+            f"""/-- P97 ATail {SCHEMA} def. -/
+def fortyNinthWaveV5Size8Occurrence{index:02d}ForwardChoices : List (RowChoice Label) :=
   {_lean_choices(forward_core["row_choices"])}
 
+/-- P97 ATail {SCHEMA} def. -/
 def fortyNinthWaveV5Size8Occurrence{index:02d}ReverseChoices : List (RowChoice Label) :=
   {_lean_choices(reverse_core["row_choices"])}
 
+/-- P97 ATail {SCHEMA} def. -/
 def fortyNinthWaveV5Size8Occurrence{index:02d}Hits : List Hit :=
   {_lean_hits([list(hit) for hit in sorted(hits)])}
 
+/-- P97 ATail {SCHEMA} def. -/
 def fortyNinthWaveV5Size8Occurrence{index:02d}ForwardData :
     WeightedKalmansonCancellationData Label :=
   {lean_weighted_data(forward_core)}
 
+/-- P97 ATail {SCHEMA} def. -/
 def fortyNinthWaveV5Size8Occurrence{index:02d}ReverseData :
     WeightedKalmansonCancellationData Label :=
   {lean_weighted_data(reverse_core)}
 
+/-- P97 ATail {SCHEMA} def. -/
 def fortyNinthWaveV5Size8Occurrence{index:02d} : WeightedSourceOccurrence :=
   {{ hits := fortyNinthWaveV5Size8Occurrence{index:02d}Hits
     forwardChoices := fortyNinthWaveV5Size8Occurrence{index:02d}ForwardChoices
@@ -171,6 +177,7 @@ def schema_text(items: list[str]) -> str:
         name = f"fortyNinthWaveV5Size8Occurrence{index:02d}"
         names.append(name)
         checks.append(
+            f"/-- P97 ATail {SCHEMA} theorem. -/\n"
             f"theorem {name}_check : {name}.check = true := by\n  native_decide"
         )
     names_text = ",\n  ".join(names)
@@ -182,6 +189,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Five inclusion-minimal size-eight source-valid V49 Kalmanson occurrences. -/
 
@@ -195,19 +203,23 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail {SCHEMA} abbrev. -/
 private abbrev Hit := Label × Label
 
 {chr(10).join(definitions)}
 
 {checks_text}
 
+/-- P97 ATail {SCHEMA} def. -/
 def fortyNinthWaveV5FiveSize8Occurrences : List WeightedSourceOccurrence :=
   [{names_text}]
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem fortyNinthWaveV5FiveSize8Occurrences_length :
     fortyNinthWaveV5FiveSize8Occurrences.length = 5 := by
   rfl
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem fortyNinthWaveV5FiveSize8Occurrences_check :
     ∀ occurrence ∈ fortyNinthWaveV5FiveSize8Occurrences,
       occurrence.check = true := by
@@ -221,16 +233,19 @@ theorem fortyNinthWaveV5FiveSize8Occurrences_check :
   · exact fortyNinthWaveV5Size8Occurrence03_check
   · exact fortyNinthWaveV5Size8Occurrence04_check
 
-def fortyNinthWaveV5FiveSize8SchemaClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail {SCHEMA} def. -/
+def fortyNinthWaveV5FiveSize8SchemaClauses : ListCNF Atom :=
   fortyNinthWaveV5FiveSize8Occurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order => directions.map fun direction =>
       weightedOccurrenceClause order direction occurrence
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem fortyNinthWaveV5FiveSize8SchemaClauses_length :
     fortyNinthWaveV5FiveSize8SchemaClauses.length = 20 := by
   simp [fortyNinthWaveV5FiveSize8SchemaClauses,
     fortyNinthWaveV5FiveSize8Occurrences, namedOrders, directions]
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem sourceAssign_fortyNinthWaveV5FiveSize8SchemaClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV5FiveSize8SchemaClauses,
@@ -257,6 +272,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Schemas
+import Erdos9796Proof.P97.ListCNF
 
 /-! Lean-owned promotion of the V49 five-support size-eight successor. -/
 
@@ -268,14 +284,17 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenFortyNinthWaveV4ThreeZeroAtomPromotion
 open ATailBlockerVExactSeventeenFortyNinthWaveV5FiveSize8Schemas
 
-def fortyNinthWaveV5FiveSize8PromotionClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion def. -/
+def fortyNinthWaveV5FiveSize8PromotionClauses : ListCNF Atom :=
   fortyNinthWaveV5FiveSize8SchemaClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion theorem. -/
 theorem fortyNinthWaveV5FiveSize8PromotionClauses_length :
     fortyNinthWaveV5FiveSize8PromotionClauses.length = 20 := by
   simpa [fortyNinthWaveV5FiveSize8PromotionClauses] using
     fortyNinthWaveV5FiveSize8SchemaClauses_length
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion theorem. -/
 theorem sourceAssign_fortyNinthWaveV5FiveSize8PromotionClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV5FiveSize8PromotionClauses,
@@ -283,34 +302,38 @@ theorem sourceAssign_fortyNinthWaveV5FiveSize8PromotionClauses
   simpa [fortyNinthWaveV5FiveSize8PromotionClauses] using
     sourceAssign_fortyNinthWaveV5FiveSize8SchemaClauses source
 
-def extendedFortyNinthWaveV5FiveSize8PromotionCnf : Std.Sat.CNF Atom :=
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion def. -/
+def extendedFortyNinthWaveV5FiveSize8PromotionCnf : ListCNF Atom :=
   extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf ++
     fortyNinthWaveV5FiveSize8PromotionClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion theorem. -/
 theorem extendedFortyNinthWaveV5FiveSize8PromotionCnf_length :
     extendedFortyNinthWaveV5FiveSize8PromotionCnf.length = 7198740 := by
   simp only [extendedFortyNinthWaveV5FiveSize8PromotionCnf, List.length_append,
     extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf_length,
     fortyNinthWaveV5FiveSize8PromotionClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion theorem. -/
 theorem sourceAssign_extendedFortyNinthWaveV5FiveSize8PromotionCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortyNinthWaveV5FiveSize8PromotionCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortyNinthWaveV5FiveSize8PromotionCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedFortyNinthWaveV4ThreeZeroAtomPromotionCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortyNinthWaveV5FiveSize8PromotionClauses source clause hsuffix
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyNinthWaveV5FiveSize8PromotionCnf_unsat
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortyNinthWaveV5FiveSize8PromotionCnf = true) :
+      ListCNF.eval assignment extendedFortyNinthWaveV5FiveSize8PromotionCnf = true) :
     False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
@@ -341,6 +364,7 @@ namespace ATailBlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport def. -/
 def extendedFortyNinthWaveV5FiveSize8PromotionDimacsString : String :=
   let dimacs := extendedFortyNinthWaveV5FiveSize8PromotionCnf.map fun clause =>
     clause.map litToDimacs
@@ -350,6 +374,7 @@ def extendedFortyNinthWaveV5FiveSize8PromotionDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\\n" lines ++ "\\n"
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -362,6 +387,7 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenFortyNinthWaveV5FiveSize8PromotionExport.run args
 """

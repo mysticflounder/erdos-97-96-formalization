@@ -85,7 +85,7 @@ def test_checked_in_lean_is_exact_generator_output():
     assert rendered.count("occurrenceClauses candidate") >= 2
     assert "fourPointTwoCircleRefinementClauses.length = 4" in rendered
     assert (
-        "def fourPointTwoCircleRefinementClauses : Std.Sat.CNF Atom :=\n"
+        "def fourPointTwoCircleRefinementClauses : ListCNF Atom :=\n"
         "  candidateBClauses"
     ) in rendered
     assert "candidateAClauses ++ candidateBClauses" not in rendered

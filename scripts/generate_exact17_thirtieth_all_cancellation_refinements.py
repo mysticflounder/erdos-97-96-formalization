@@ -16,6 +16,7 @@ from generate_exact17_twenty_ninth_all_cancellation_refinements import (
     path_hits,
     reflected,
     sha256_file,
+    write_text_once,
 )
 
 from census.atail_force import producer_bank
@@ -30,6 +31,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentyNinthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete new minimal cancellation family from exact-seventeen child 30
@@ -51,29 +53,36 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
 open ATailBlockerVExactSeventeenTwentyNinthModelRefinements
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 '''
 
 
 LEAN_POSTAMBLE = r'''
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 40 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
-def thirtiethModelRefinementClauses : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def thirtiethModelRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem thirtiethModelRefinementClauses_length :
     thirtiethModelRefinementClauses.length = 160 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_thirtiethModelRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ thirtiethModelRefinementClauses,
@@ -88,31 +97,37 @@ theorem sourceAssign_thirtiethModelRefinementClauses {A : Finset ℝ²}
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
-def extendedThirtiethModelRefinementsCnf : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def extendedThirtiethModelRefinementsCnf : ListCNF Atom :=
   extendedTwentyNinthModelRefinementsCnf ++
     thirtiethModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedThirtiethModelRefinementsCnf_length :
     extendedThirtiethModelRefinementsCnf.length = 5846904 := by
-  native_decide
+  unfold extendedThirtiethModelRefinementsCnf
+  rw [List.length_append, extendedTwentyNinthModelRefinementsCnf_length,
+    thirtiethModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedThirtiethModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedThirtiethModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedThirtiethModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedTwentyNinthModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_thirtiethModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedThirtiethModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedThirtiethModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedThirtiethModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,
@@ -186,10 +201,9 @@ def main() -> int:
         )
         lean_entries.append(lean_occurrence(hits, forward, reverse))
 
-    args.lean_output.parent.mkdir(parents=True, exist_ok=True)
-    args.lean_output.write_text(
+    write_text_once(
+        args.lean_output,
         LEAN_PREAMBLE + "[\n" + ",\n".join(lean_entries) + "]\n" + LEAN_POSTAMBLE,
-        encoding="utf-8",
     )
     ledger = {
         "schema": "p97-exact17-child30-all-minimal-two-kalmanson/v1",
@@ -204,9 +218,8 @@ def main() -> int:
         "emitted_clause_count": 4 * len(minimal),
         "entries": entries,
     }
-    args.ledger_output.parent.mkdir(parents=True, exist_ok=True)
-    args.ledger_output.write_text(
-        json.dumps(ledger, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    write_text_once(
+        args.ledger_output, json.dumps(ledger, indent=2, sort_keys=True) + "\n"
     )
     print(
         f"generated {args.lean_output} and {args.ledger_output}: "

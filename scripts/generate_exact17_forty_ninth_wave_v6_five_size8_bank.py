@@ -59,23 +59,29 @@ def _definitions() -> list[str]:
         reverse = _weighted(record["reverse_core"])
         name = f"fortyNinthWaveV6Size8Occurrence{index:02d}"
         definitions.append(
-            f"""def {name}ForwardChoices : List (RowChoice Label) :=
+            f"""/-- P97 ATail {SCHEMA} def. -/
+def {name}ForwardChoices : List (RowChoice Label) :=
   {base._lean_choices(forward["row_choices"])}
 
+/-- P97 ATail {SCHEMA} def. -/
 def {name}ReverseChoices : List (RowChoice Label) :=
   {base._lean_choices(reverse["row_choices"])}
 
+/-- P97 ATail {SCHEMA} def. -/
 def {name}Hits : List Hit :=
   {base._lean_hits(record["support"])}
 
+/-- P97 ATail {SCHEMA} def. -/
 def {name}ForwardData :
     WeightedKalmansonCancellationData Label :=
   {base.lean_weighted_data(forward)}
 
+/-- P97 ATail {SCHEMA} def. -/
 def {name}ReverseData :
     WeightedKalmansonCancellationData Label :=
   {base.lean_weighted_data(reverse)}
 
+/-- P97 ATail {SCHEMA} def. -/
 def {name} : WeightedSourceOccurrence :=
   {{ hits := {name}Hits
     forwardChoices := {name}ForwardChoices
@@ -90,6 +96,7 @@ def {name} : WeightedSourceOccurrence :=
 def schema_text() -> str:
     names = [f"fortyNinthWaveV6Size8Occurrence{i:02d}" for i in range(5)]
     checks = "\n\n".join(
+        f"/-- P97 ATail {SCHEMA} theorem. -/\n"
         f"theorem {name}_check : {name}.check = true := by\n  native_decide"
         for name in names
     )
@@ -100,6 +107,7 @@ Released under Apache 2.0 license as described in the LICENSE file.
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Five source-valid size-eight V49 records mined from the V5 survivor. -/
 
@@ -113,19 +121,23 @@ open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- P97 ATail {SCHEMA} abbrev. -/
 private abbrev Hit := Label × Label
 
 {chr(10).join(_definitions())}
 
 {checks}
 
+/-- P97 ATail {SCHEMA} def. -/
 def fortyNinthWaveV6FiveSize8Occurrences : List WeightedSourceOccurrence :=
   [{", ".join(names)}]
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem fortyNinthWaveV6FiveSize8Occurrences_length :
     fortyNinthWaveV6FiveSize8Occurrences.length = 5 := by
   rfl
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem fortyNinthWaveV6FiveSize8Occurrences_check :
     ∀ occurrence ∈ fortyNinthWaveV6FiveSize8Occurrences,
       occurrence.check = true := by
@@ -135,16 +147,19 @@ theorem fortyNinthWaveV6FiveSize8Occurrences_check :
   rcases hoccur with rfl | rfl | rfl | rfl | rfl
 {cases}
 
-def fortyNinthWaveV6FiveSize8SchemaClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail {SCHEMA} def. -/
+def fortyNinthWaveV6FiveSize8SchemaClauses : ListCNF Atom :=
   fortyNinthWaveV6FiveSize8Occurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order => directions.map fun direction =>
       weightedOccurrenceClause order direction occurrence
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem fortyNinthWaveV6FiveSize8SchemaClauses_length :
     fortyNinthWaveV6FiveSize8SchemaClauses.length = 20 := by
   simp [fortyNinthWaveV6FiveSize8SchemaClauses,
     fortyNinthWaveV6FiveSize8Occurrences, namedOrders, directions]
 
+/-- P97 ATail {SCHEMA} theorem. -/
 theorem sourceAssign_fortyNinthWaveV6FiveSize8SchemaClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV6FiveSize8SchemaClauses,
@@ -152,8 +167,9 @@ theorem sourceAssign_fortyNinthWaveV6FiveSize8SchemaClauses
   intro clause hclause
   simp only [fortyNinthWaveV6FiveSize8SchemaClauses, List.mem_flatMap,
     List.mem_map] at hclause
-  rcases hclause with ⟨occurrence, hoccur, order, direction, rfl⟩
-  exact weightedOccurrenceClause_source source
+  rcases hclause with
+    ⟨occurrence, hoccur, order, horder, direction, hdirection, rfl⟩
+  exact sourceAssign_weightedOccurrenceClause source occurrence
     (fortyNinthWaveV6FiveSize8Occurrences_check occurrence hoccur) order direction
 
 end ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas
@@ -169,6 +185,9 @@ Released under Apache 2.0 license as described in the LICENSE file.
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion
 import Erdos9796Proof.P97.ATail.{SCHEMA}
+import Erdos9796Proof.P97.ListCNF
+
+/-! Cumulative Lean-owned V49 V6 five-support promotion over V5. -/
 
 namespace Problem97
 namespace ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion
@@ -178,14 +197,17 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenFortyNinthWaveV5FiveSize8Promotion
 open ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8Schemas
 
-def fortyNinthWaveV6FiveSize8PromotionClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail {PROMOTION} def. -/
+def fortyNinthWaveV6FiveSize8PromotionClauses : ListCNF Atom :=
   fortyNinthWaveV6FiveSize8SchemaClauses
 
+/-- P97 ATail {PROMOTION} theorem. -/
 theorem fortyNinthWaveV6FiveSize8PromotionClauses_length :
     fortyNinthWaveV6FiveSize8PromotionClauses.length = 20 := by
   simpa [fortyNinthWaveV6FiveSize8PromotionClauses] using
     fortyNinthWaveV6FiveSize8SchemaClauses_length
 
+/-- P97 ATail {PROMOTION} theorem. -/
 theorem sourceAssign_fortyNinthWaveV6FiveSize8PromotionClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ fortyNinthWaveV6FiveSize8PromotionClauses,
@@ -193,32 +215,38 @@ theorem sourceAssign_fortyNinthWaveV6FiveSize8PromotionClauses
   simpa [fortyNinthWaveV6FiveSize8PromotionClauses] using
     sourceAssign_fortyNinthWaveV6FiveSize8SchemaClauses source
 
-def extendedFortyNinthWaveV6FiveSize8PromotionCnf : Std.Sat.CNF Atom :=
+/-- P97 ATail {PROMOTION} def. -/
+def extendedFortyNinthWaveV6FiveSize8PromotionCnf : ListCNF Atom :=
   extendedFortyNinthWaveV5FiveSize8PromotionCnf ++
     fortyNinthWaveV6FiveSize8PromotionClauses
 
+/-- P97 ATail {PROMOTION} theorem. -/
 theorem extendedFortyNinthWaveV6FiveSize8PromotionCnf_length :
     extendedFortyNinthWaveV6FiveSize8PromotionCnf.length = 7198760 := by
   simp only [extendedFortyNinthWaveV6FiveSize8PromotionCnf, List.length_append,
     extendedFortyNinthWaveV5FiveSize8PromotionCnf_length,
     fortyNinthWaveV6FiveSize8PromotionClauses_length]
 
+/-- P97 ATail {PROMOTION} theorem. -/
 theorem sourceAssign_extendedFortyNinthWaveV6FiveSize8PromotionCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortyNinthWaveV6FiveSize8PromotionCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortyNinthWaveV6FiveSize8PromotionCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
-  · exact sourceAssign_extendedFortyNinthWaveV5FiveSize8PromotionCnf source clause hparent
+  · have h := sourceAssign_extendedFortyNinthWaveV5FiveSize8PromotionCnf source
+    rw [ListCNF.eval, List.all_eq_true] at h
+    exact h clause hparent
   · exact sourceAssign_fortyNinthWaveV6FiveSize8PromotionClauses source clause hsuffix
 
+/-- P97 ATail {PROMOTION} theorem. -/
 theorem false_of_sourceRealization_of_extendedFortyNinthWaveV6FiveSize8PromotionCnf_unsat
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortyNinthWaveV6FiveSize8PromotionCnf = true) :
+      ListCNF.eval assignment extendedFortyNinthWaveV6FiveSize8PromotionCnf = true) :
     False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
@@ -248,6 +276,7 @@ namespace ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8Promotion
 
+/-- P97 ATail {EXPORT} def. -/
 def extendedFortyNinthWaveV6FiveSize8PromotionDimacsString : String :=
   let dimacs := extendedFortyNinthWaveV6FiveSize8PromotionCnf.map fun clause =>
     clause.map litToDimacs
@@ -257,6 +286,7 @@ def extendedFortyNinthWaveV6FiveSize8PromotionDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail {EXPORT} def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -269,15 +299,46 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport
 end Problem97
 
+/-- P97 ATail {EXPORT} def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenFortyNinthWaveV6FiveSize8PromotionExport.run args
 """
 
 
+def write_text_once(path: Path, text: str) -> bool:
+    """Write ``text`` to a new ``path``; never overwrite different bytes.
+
+    Returns ``True`` when the file was created and ``False`` when an existing
+    file already holds exactly these bytes.  Raises ``FileExistsError`` when an
+    existing file (or symlink) holds anything else.
+    """
+    data = text.encode("utf-8")
+    if path.exists() or path.is_symlink():
+        if path.is_symlink() or path.read_bytes() != data:
+            raise FileExistsError(
+                f"immutable publication target exists with different bytes: {path}"
+            )
+        return False
+    with path.open("xb") as handle:
+        handle.write(data)
+    return True
+
+
 def main() -> None:
-    (OUT / f"{SCHEMA}.lean").write_text(schema_text(), encoding="utf-8")
-    (OUT / f"{PROMOTION}.lean").write_text(promotion_text(), encoding="utf-8")
-    (OUT / f"{EXPORT}.lean").write_text(export_text(), encoding="utf-8")
+    rendered = {
+        OUT / f"{SCHEMA}.lean": schema_text(),
+        OUT / f"{PROMOTION}.lean": promotion_text(),
+        OUT / f"{EXPORT}.lean": export_text(),
+    }
+    for path, text in rendered.items():
+        if path.is_symlink() or (
+            path.exists() and path.read_bytes() != text.encode("utf-8")
+        ):
+            raise FileExistsError(
+                f"immutable publication target exists with different bytes: {path}"
+            )
+    for path, text in rendered.items():
+        write_text_once(path, text)
     print("generated V6 five-size8 Lean bank")
 
 

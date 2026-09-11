@@ -104,7 +104,7 @@ V8_LEAN = (
     "BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircle"
     "V8TwoKalmansonRefinements.lean"
 )
-V8_LEAN_SHA256 = "d1d83a7fd4890be2ac2af56d51182cb2db3be43664f6601a2fffa7b04ff400b8"
+V8_LEAN_SHA256 = "579d87fb63d5a6ee763e8f0b0c9bb1a36d6d6f376ef6312d6e825139cd343d99"
 
 N = 17
 NUM_VARIABLES = 308
@@ -410,6 +410,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! Authenticated V9 two-Kalmanson promotion over the V8 root. -/
 
@@ -432,7 +433,7 @@ private abbrev occurrenceClauses := ATailBlockerVExactSeventeenSeventeenthModelR
 def v9CancellationOccurrences : List CancellationOccurrence := [{names}]
 theorem v9CancellationOccurrences_length : v9CancellationOccurrences.length = {EXPECTED_OCCURRENCES} := by native_decide
 theorem v9CancellationOccurrences_all_check : v9CancellationOccurrences.all CancellationOccurrence.check = true := by native_decide
-def v9TwoKalmansonOrbitClauses : Std.Sat.CNF Atom := v9CancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
+def v9TwoKalmansonOrbitClauses : ListCNF Atom := v9CancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 theorem v9TwoKalmansonOrbitClauses_length : v9TwoKalmansonOrbitClauses.length = {EXPECTED_ORBIT_CLAUSES} := by native_decide
 theorem v9TwoKalmansonOrbitClauses_nodup : v9TwoKalmansonOrbitClauses.Nodup := by native_decide
 theorem sourceAssign_v9TwoKalmansonOrbitClauses {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) : ∀ clause ∈ v9TwoKalmansonOrbitClauses, Std.Sat.CNF.Clause.eval (sourceAssign source.model) clause = true := by
@@ -443,28 +444,28 @@ theorem sourceAssign_v9TwoKalmansonOrbitClauses {{A : Finset (EuclideanSpace ℝ
   simp only [occurrenceClauses, ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses, List.mem_flatMap, List.mem_map] at hclause
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
-def v9TwoKalmansonRefinementClauses : Std.Sat.CNF Atom := [{expressions}]
+def v9TwoKalmansonRefinementClauses : ListCNF Atom := [{expressions}]
 theorem v9TwoKalmansonRefinementClauses_length : v9TwoKalmansonRefinementClauses.length = {EXPECTED_STRICT_NEW_CLAUSES} := by native_decide
 theorem v9TwoKalmansonRefinementClauses_nodup : v9TwoKalmansonRefinementClauses.Nodup := by native_decide
 theorem v9TwoKalmansonRefinementClauses_subset_orbit : ∀ clause ∈ v9TwoKalmansonRefinementClauses, clause ∈ v9TwoKalmansonOrbitClauses := by native_decide
 theorem sourceAssign_v9TwoKalmansonRefinementClauses {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) : ∀ clause ∈ v9TwoKalmansonRefinementClauses, Std.Sat.CNF.Clause.eval (sourceAssign source.model) clause = true := by
   intro clause hclause
   exact sourceAssign_v9TwoKalmansonOrbitClauses source clause (v9TwoKalmansonRefinementClauses_subset_orbit clause hclause)
-def canaryPerpBisectorSurvivorFourPointTwoCircleV9TwoKalmansonRefinementCnf : Std.Sat.CNF Atom := canaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementCnf ++ v9TwoKalmansonRefinementClauses
+def canaryPerpBisectorSurvivorFourPointTwoCircleV9TwoKalmansonRefinementCnf : ListCNF Atom := canaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementCnf ++ v9TwoKalmansonRefinementClauses
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV9TwoKalmansonRefinementCnf_length : canaryPerpBisectorSurvivorFourPointTwoCircleV9TwoKalmansonRefinementCnf.length = {EXPECTED_V9_ROOT_CLAUSES} := by
   simp [canaryPerpBisectorSurvivorFourPointTwoCircleV9TwoKalmansonRefinementCnf, canaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementCnf_length, v9TwoKalmansonRefinementClauses_length]
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV9TwoKalmansonRefinementCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleV9TwoKalmansonRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV8TwoKalmansonRefinementCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_v9TwoKalmansonRefinementClauses source clause hsuffix
 

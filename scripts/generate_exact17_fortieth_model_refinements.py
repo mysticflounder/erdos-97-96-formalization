@@ -185,6 +185,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenThirtyNinthModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-! # Child41 two-Kalmanson cancellation bank, shard {shard_no}
 
@@ -200,27 +201,34 @@ open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenSourceCnfCdefg
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenTwentyEighthModelRefinements
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard{shard_no} abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard{shard_no} def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 [
 {occurrence_text}
 ]
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard{shard_no} theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 7 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard{shard_no} theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
-def refinementClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard{shard_no} def. -/
+def refinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard{shard_no} theorem. -/
 theorem refinementClauses_length : refinementClauses.length = 28 := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsShard{shard_no} theorem. -/
 theorem sourceAssign_refinementClauses {{A : Finset ℝ²}}
     (source : SourceRealization A) :
     ∀ clause ∈ refinementClauses,
@@ -301,6 +309,7 @@ Authors: Adam McKenna
 -/
 
 {imports}
+import Erdos9796Proof.P97.ListCNF
 
 /-! # Child41 source-checked cancellation refinements
 
@@ -316,14 +325,17 @@ open ATailBlockerVExactSeventeenSourceNormalForm
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenThirtyNinthModelRefinements
 
-def fortiethModelRefinementClauses : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def fortiethModelRefinementClauses : ListCNF Atom :=
   {clause_expr}
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortiethModelRefinementClauses_length :
     fortiethModelRefinementClauses.length = {CLAUSES} := by
   simp only [fortiethModelRefinementClauses, List.length_append,
     {length_lemmas}]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fortiethModelRefinementClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ fortiethModelRefinementClauses,
@@ -332,33 +344,37 @@ theorem sourceAssign_fortiethModelRefinementClauses
   change clause ∈ {clause_expr} at hclause
 {proof}
 
-def extendedFortiethModelRefinementsCnf : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def extendedFortiethModelRefinementsCnf : ListCNF Atom :=
   extendedThirtyNinthModelRefinementsCnf ++ fortiethModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedFortiethModelRefinementsCnf_length :
     extendedFortiethModelRefinementsCnf.length = {CHILD_CLAUSES} := by
   simp only [extendedFortiethModelRefinementsCnf, List.length_append,
     extendedThirtyNinthModelRefinementsCnf_length,
     fortiethModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedFortiethModelRefinementsCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortiethModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortiethModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedThirtyNinthModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortiethModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedFortiethModelRefinementsCnf_unsat
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortiethModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedFortiethModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,
@@ -389,6 +405,7 @@ namespace ATailBlockerVExactSeventeenFortiethModelRefinementsExport
 open ATailBlockerVExactSeventeenSourceCnf
 open ATailBlockerVExactSeventeenFortiethModelRefinements
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsExport def. -/
 def extendedFortiethModelRefinementsDimacsString : String :=
   let dimacs := extendedFortiethModelRefinementsCnf.map fun clause =>
     clause.map litToDimacs
@@ -398,6 +415,7 @@ def extendedFortiethModelRefinementsDimacsString : String :=
         String.intercalate " " (clause.map toString) ++ " 0"
   String.intercalate "\n" lines ++ "\n"
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsExport def. -/
 def run (args : List String) : IO UInt32 := do
   match args with
   | [outputPath] =>
@@ -410,6 +428,7 @@ def run (args : List String) : IO UInt32 := do
 end ATailBlockerVExactSeventeenFortiethModelRefinementsExport
 end Problem97
 
+/-- P97 ATail BlockerVExactSeventeenFortiethModelRefinementsExport def. -/
 def main (args : List String) : IO UInt32 :=
   Problem97.ATailBlockerVExactSeventeenFortiethModelRefinementsExport.run args
 """

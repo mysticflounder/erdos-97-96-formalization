@@ -13,8 +13,10 @@ import argparse
 import base64
 import hashlib
 import json
+import os
 import re
 import sys
+import tempfile
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -58,9 +60,9 @@ RECEIPT_SCHEMA = "p97-cegar-wave-cli/v1"
 TERMINAL_ENVELOPE_SCHEMA = "p97-cegar-assumption-cnf-engine/v1"
 FORTYFIFTH_SOURCE_RELATIVE = "lean/Erdos9796Proof/P97/ATail/BlockerVExactSeventeenFortyFifthModelRefinements.lean"
 FORTYFIFTH_SOURCE_SHA256 = (
-    "302a7fc5751bc9922d859fb0f2e085b0ca224a74ccad798e2a27a89c9b2ef4ea"
+    "8023b435fe1be808f0bf5e8959537eae35133ac33b50e62ad22f70fef12b62ac"
 )
-FORTYFIFTH_SOURCE_BYTES = 6272
+FORTYFIFTH_SOURCE_BYTES = 6849
 FORTYFIFTH_EXPORT_RELATIVE = "scratch/exact17-lean-to-sat/exact17-forty-sixth-root-forty-fifth-model-refinements.cnf"
 FORTYFIFTH_EXPORT_SHA256 = (
     "e74795bf5dcf5748e9872bf37f115c8d6237d0f3b0332d065a711bcbfc8aabe5"
@@ -379,7 +381,7 @@ def _validate_occurrence(cell: dict[str, Any]) -> dict[str, Any]:
 
 
 INHERITED_SUPPORT_CENSUS_SHA256 = (
-    "7cbd5787338c9a0ca8bf549f077067aa682ed2474bb66c29a9626b1f311a31c7"
+    "f5a533f821486ac19eaf449d881d3d23612ce92cef3f91c03903b636b21c7a1c"
 )
 
 
@@ -560,21 +562,27 @@ def render_lean(representatives: list[dict[str, Any]]) -> str:
         names.append(name)
         occurrence = record["occurrence"]
         blocks.append(
-            f"""def {name}ForwardChoices : List (RowChoice Label) :=
+            f"""/-- Finite V-exact-seventeen model-refinement def. -/
+def {name}ForwardChoices : List (RowChoice Label) :=
   {_lean_choices(occurrence["forward_choices"])}
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def {name}ReverseChoices : List (RowChoice Label) :=
   {_lean_choices(occurrence["reverse_choices"])}
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def {name}Hits : List Hit :=
   {_lean_hits(occurrence["hits"])}
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def {name}ForwardData : WeightedKalmansonCancellationData Label :=
   {_lean_data(occurrence["forward_data"])}
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def {name}ReverseData : WeightedKalmansonCancellationData Label :=
   {_lean_data(occurrence["reverse_data"])}
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def {name} : WeightedSourceOccurrence :=
   {{ hits := {name}Hits
     forwardChoices := {name}ForwardChoices
@@ -582,6 +590,7 @@ def {name} : WeightedSourceOccurrence :=
     forwardData := {name}ForwardData
     reverseData := {name}ReverseData }}
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem {name}_check : {name}.check = true := by
   native_decide
 """
@@ -595,6 +604,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenFortyFifthModelRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenWeightedKalmansonSourceBridge
+import Erdos9796Proof.P97.ListCNF
 
 /-! Child45's nine checked wave-only union-support weighted Kalmanson occurrences. -/
 
@@ -610,28 +620,35 @@ open ATailBlockerVExactSeventeenFortyFifthModelRefinements
 open ATailBlockerVExactSeventeenWeightedKalmansonSourceBridge
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev Hit := Label × Label
 
 {"".join(blocks)}
+/-- Finite V-exact-seventeen model-refinement def. -/
 def waveOccurrences : List WeightedSourceOccurrence := [{occurrence_list}]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrences_length : waveOccurrences.length = 9 := by
   rfl
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem waveOccurrences_check :
     ∀ occurrence ∈ waveOccurrences, occurrence.check = true := by
   native_decide
 
-def fortySixthModelRefinementClauses : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def fortySixthModelRefinementClauses : ListCNF Atom :=
   waveOccurrences.flatMap fun occurrence =>
     namedOrders.flatMap fun order =>
       directions.map fun direction =>
         weightedOccurrenceClause order direction occurrence
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem fortySixthModelRefinementClauses_length :
     fortySixthModelRefinementClauses.length = 36 := by
   simp [fortySixthModelRefinementClauses, waveOccurrences, namedOrders, directions]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_fortySixthModelRefinementClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ fortySixthModelRefinementClauses,
@@ -642,33 +659,37 @@ theorem sourceAssign_fortySixthModelRefinementClauses
   exact sourceAssign_weightedOccurrenceClause source occurrence
     (waveOccurrences_check occurrence hoccur) order direction
 
-def extendedFortySixthModelRefinementsCnf : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def extendedFortySixthModelRefinementsCnf : ListCNF Atom :=
   extendedFortyFifthModelRefinementsCnf ++ fortySixthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedFortySixthModelRefinementsCnf_length :
     extendedFortySixthModelRefinementsCnf.length = 5848864 := by
   simp only [extendedFortySixthModelRefinementsCnf, List.length_append,
     extendedFortyFifthModelRefinementsCnf_length,
     fortySixthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedFortySixthModelRefinementsCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedFortySixthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedFortySixthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedFortyFifthModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_fortySixthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedFortySixthModelRefinementsCnf_unsat
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}}
     (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedFortySixthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedFortySixthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat ⟨sourceAssign source.model,
     sourceAssign_extendedFortySixthModelRefinementsCnf source⟩
@@ -789,19 +810,59 @@ def build_ledger(
     }
 
 
+def _refuse_divergent_target(path: Path, raw: bytes) -> bool:
+    """Return True when `path` already holds `raw`; raise if it holds other bytes."""
+    if path.is_symlink():
+        raise FileExistsError(f"immutable publication target is a symlink: {path}")
+    if not path.exists():
+        return False
+    if path.read_bytes() != raw:
+        raise FileExistsError(
+            f"immutable publication target exists with different bytes: {path}"
+        )
+    return True
+
+
+def write_text_once(path: Path, content: str) -> None:
+    """Publish one generated file without overwriting different existing bytes."""
+    raw = content.encode("utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if _refuse_divergent_target(path, raw):
+        return
+    descriptor, staged_name = tempfile.mkstemp(
+        prefix=f".{path.name}.stage-", dir=path.parent
+    )
+    staged = Path(staged_name)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(raw)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.link(staged, path)
+        directory = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
+    finally:
+        staged.unlink(missing_ok=True)
+
+
 def generate(
     input_path: Path = INPUT_PATH,
     output_lean: Path = OUTPUT_LEAN,
     output_ledger: Path = OUTPUT_LEDGER,
 ) -> dict[str, Any]:
     records, representatives, audit = collect_mine(input_path)
-    output_lean.parent.mkdir(parents=True, exist_ok=True)
-    output_lean.write_text(render_lean(representatives), encoding="utf-8")
-    output_ledger.parent.mkdir(parents=True, exist_ok=True)
+    lean_text = render_lean(representatives)
     ledger = build_ledger(records, representatives, audit, input_path)
-    output_ledger.write_text(
-        json.dumps(ledger, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    ledger_text = json.dumps(ledger, indent=2, sort_keys=True) + "\n"
+    # Check both targets before publishing either, so a divergent ledger
+    # cannot leave a freshly written Lean file behind (or the reverse).
+    for path, text in ((output_lean, lean_text), (output_ledger, ledger_text)):
+        _refuse_divergent_target(path, text.encode("utf-8"))
+    write_text_once(output_lean, lean_text)
+    write_text_once(output_ledger, ledger_text)
     return ledger
 
 

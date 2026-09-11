@@ -66,7 +66,7 @@ V6_LEAN = (
     "BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircle"
     "V6ModelCoreRefinements.lean"
 )
-V6_LEAN_SHA256 = "c517298188954bf71575c2fe4dab49a1fe9f278d975bf29c1e5c9bc5e592967c"
+V6_LEAN_SHA256 = "21352e1cc78d18a9141194f4aeceb2e70e1f972276ccad08bdfc30dbf5168ccb"
 PARENT_CNF = (
     REPO
     / "scratch/runs/exact17-v5-canary-twok-successor-preparer-20260823/"
@@ -453,6 +453,7 @@ def render_lean(ledger: Mapping[str, Any]) -> str:
     for index, (hits, forward, reverse) in enumerate(occurrences):
         body = lean_occurrence(hits, forward, reverse).lstrip()
         definitions.append(
+            "/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/\n"
             f"def v7CancellationOccurrence{index} : CancellationOccurrence :=\n  {body}"
         )
     definitions_text = "\n\n".join(definitions)
@@ -467,6 +468,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 Source-valid V7 two-Kalmanson bank over the V6 model-core root.
@@ -488,36 +490,45 @@ open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 open ATailBlockerVExactSeventeenCanaryPerpBisectorRefinementSurvivorRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinements
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements abbrev. -/
 private abbrev occurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements abbrev. -/
 private abbrev occurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
 {definitions_text}
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/
 def v7CancellationOccurrences : List CancellationOccurrence :=
   [{names}]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem v7CancellationOccurrences_length :
     v7CancellationOccurrences.length = {EXPECTED_OCCURRENCES} := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem v7CancellationOccurrences_all_check :
     v7CancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
-def v7TwoKalmansonOrbitClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/
+def v7TwoKalmansonOrbitClauses : ListCNF Atom :=
   v7CancellationOccurrences.flatMap fun occ => occurrenceClauses occ.hits
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem v7TwoKalmansonOrbitClauses_length :
     v7TwoKalmansonOrbitClauses.length = {EXPECTED_ORBIT_CLAUSES} := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem v7TwoKalmansonOrbitClauses_nodup :
     v7TwoKalmansonOrbitClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem sourceAssign_v7TwoKalmansonOrbitClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ v7TwoKalmansonOrbitClauses,
@@ -532,22 +543,27 @@ theorem sourceAssign_v7TwoKalmansonOrbitClauses
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
-def v7TwoKalmansonRefinementClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/
+def v7TwoKalmansonRefinementClauses : ListCNF Atom :=
   [ {expressions} ]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem v7TwoKalmansonRefinementClauses_length :
     v7TwoKalmansonRefinementClauses.length = {V7_SUFFIX_CLAUSES} := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem v7TwoKalmansonRefinementClauses_nodup :
     v7TwoKalmansonRefinementClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem v7TwoKalmansonRefinementClauses_subset_orbit :
     ∀ clause ∈ v7TwoKalmansonRefinementClauses,
       clause ∈ v7TwoKalmansonOrbitClauses := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem sourceAssign_v7TwoKalmansonRefinementClauses
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A) :
     ∀ clause ∈ v7TwoKalmansonRefinementClauses,
@@ -556,11 +572,13 @@ theorem sourceAssign_v7TwoKalmansonRefinementClauses
   exact sourceAssign_v7TwoKalmansonOrbitClauses source clause
     (v7TwoKalmansonRefinementClauses_subset_orbit clause hclause)
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf ++
     v7TwoKalmansonRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf_length :
     canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf.length =
       {V7_ROOT_CLAUSES} := by
@@ -568,18 +586,19 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf_
     canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf_length,
     v7TwoKalmansonRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf
     {{A : Finset (EuclideanSpace ℝ (Fin 2))}} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleV7TwoKalmansonRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV6ModelCoreRefinementCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_v7TwoKalmansonRefinementClauses source clause hsuffix
 

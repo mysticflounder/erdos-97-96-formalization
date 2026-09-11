@@ -71,7 +71,7 @@ EXPECTED_PARENT_NOVELTY_SHA256 = (
     "4c523553875cf0da883c052e4d286eb24a8448cf2da18fc83e3c94ffcb228997"
 )
 EXPECTED_LEAN_SHA256 = (
-    "724ad50664964bce15456e3b202e9f8484b786e5870bc325dad36745d49c074f"
+    "37c3700e004b922add7f581cc8c35f6d99586db90632d9e1a03a509786df3086"
 )
 
 TWO_K_GENERATOR = (
@@ -97,12 +97,12 @@ FOURPOINT_CORE_LEAN = (
 )
 
 EXPECTED_DEPENDENCY_SHA256 = {
-    TWO_K_GENERATOR: "9adcc2750773f40ee1e40364c98c13dad0cf41e928cc0a1f4b68ec99540f67b0",
-    OTHER_CORE_GENERATOR: "b1705848505c437ba13629676f5167b830aa179b413aa2af96ff026544cc139b",
-    FOURPOINT_CORE_GENERATOR: "37d78bfb428d575c69c8cdcde9952699eab1bc157ad25221e6fefafe0a802df9",
-    TWO_K_LEAN: "8cf43aa3aad369d8385948ebd72e6d4ae6ca3283b9d7010dda8e826e41af4785",
-    OTHER_CORE_LEAN: "730b3de4ff25e560a1eca1ee249efe6c010958bf169f50c7591cbf6cc165c3e7",
-    FOURPOINT_CORE_LEAN: "9dead632e9531577677700a5cd6d977ac4705e234a2bfdf9303bb5da22b3b4b0",
+    TWO_K_GENERATOR: "1d59e36ef60200faf63d8a20b3fcd2b75911936fac2b7bd89eeac785ebaf893d",
+    OTHER_CORE_GENERATOR: "0d10de8f5552364b0d12eeb1ef00f79f294af1d7181306b4b51ba4f763b83701",
+    FOURPOINT_CORE_GENERATOR: "7e8b1f39c2c2d31d7c923a5a401e2562511ef434561413682ba9b1cd47bd71eb",
+    TWO_K_LEAN: "65c3e6f5a511182ab03dc14fdcfdf7a9bd0491b1c8082b7688e466f0626703f9",
+    OTHER_CORE_LEAN: "e32d32c730e18d72c3f28327a3978b3afbca3d537221104b163aaa5dcfd89800",
+    FOURPOINT_CORE_LEAN: "c444dc3d27547b74f6a72879fa4a502f05cefc2357d05a7975dedcc21121dc68",
 }
 
 
@@ -387,6 +387,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4TwoKalmansonRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CoreRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Combined source-valid exact-seventeen v4 refinement successor
@@ -408,25 +409,30 @@ open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4Tw
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4OtherCoreRefinements
 open ATailBlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CoreRefinements
 
-def fourPointTwoCircleV4CombinedRefinementClauses : Std.Sat.CNF Atom :=
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements def. -/
+def fourPointTwoCircleV4CombinedRefinementClauses : ListCNF Atom :=
   v4TwoKalmansonRefinementClauses ++
     fourPointTwoCircleV4OtherCoreRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem fourPointTwoCircleV4CombinedRefinementClauses_length :
     fourPointTwoCircleV4CombinedRefinementClauses.length = 244 := by
   simp [fourPointTwoCircleV4CombinedRefinementClauses,
     v4TwoKalmansonRefinementClauses_length,
     fourPointTwoCircleV4OtherCoreRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem fourPointTwoCircleV4CombinedRefinementClauses_nodup :
     fourPointTwoCircleV4CombinedRefinementClauses.Nodup := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem fourPointTwoCircleV4CoreRefinementClauses_subset_combined :
     ∀ clause ∈ fourPointTwoCircleV4CoreRefinementClauses,
       clause ∈ fourPointTwoCircleV4CombinedRefinementClauses := by
   native_decide
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem sourceAssign_fourPointTwoCircleV4CombinedRefinementClauses
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A) :
     ∀ clause ∈ fourPointTwoCircleV4CombinedRefinementClauses,
@@ -437,11 +443,13 @@ theorem sourceAssign_fourPointTwoCircleV4CombinedRefinementClauses
   · exact sourceAssign_fourPointTwoCircleV4OtherCoreRefinementClauses
       source clause hother
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements def. -/
 def canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf :
-    Std.Sat.CNF Atom :=
+    ListCNF Atom :=
   canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf ++
     fourPointTwoCircleV4CombinedRefinementClauses
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf_length :
     canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf.length =
       7409760 := by
@@ -449,18 +457,19 @@ theorem canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf_leng
     canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf_length,
     fourPointTwoCircleV4CombinedRefinementClauses_length]
 
+/-- P97 ATail BlockerVExactSeventeenCanaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinements theorem. -/
 theorem sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf
     {A : Finset (EuclideanSpace ℝ (Fin 2))} (source : SourceRealization A)
     (horder : source.model.order = 0) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       canaryPerpBisectorSurvivorFourPointTwoCircleV4CombinedRefinementCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   rcases List.mem_append.mp hclause with hparent | hsuffix
   · have hparentEval :=
       sourceAssign_canaryPerpBisectorSurvivorFourPointTwoCircleRefinementCnf
         source horder
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at hparentEval
+    rw [ListCNF.eval, List.all_eq_true] at hparentEval
     exact hparentEval clause hparent
   · exact sourceAssign_fourPointTwoCircleV4CombinedRefinementClauses
       source clause hsuffix

@@ -345,7 +345,7 @@ Verified on `main` at `983966af8`.
 | Spine | `open: 0/1`, kernel-complete under `{propext, Quot.sound, Classical.choice}` |
 | Gate D result | Not recorded |
 | exact17 `ListCNF` chain (226 modules) | Migrated and built on `main`, 2026-09-11 |
-| Generator scripts | Not migrated |
+| Generator scripts | Migrated and refrozen, 2026-09-11 (see 8.1) |
 | Fail-open bank pin | Recorded, not repaired |
 
 ### 8.1 Open risk 1: the generators still emit the old CNF API
@@ -377,9 +377,31 @@ edits on `main`.
 (catalogue class AT, route 3).
 All 226 modules build.
 A class W sweep of all 7,084 of their constants found no `sorryAx`.
-The generator half of the risk is still open.
-The 21 `generate_exact17_*.py` scripts still emit the old API.
-Their output pins also do not match the files on `main`.
+The generator half is also closed.
+The 21 Lean-emitting `generate_exact17_*.py` scripts now emit `ListCNF`.
+Their templates also carry the docstrings and import placement on `main`,
+plus three hand edits that were already in base.
+Every hash pin now names `main`'s files.
+`main` has 64 output files from these generators.
+63 of them render byte-identical from the generator inputs.
+The 5 generators that have `--check` all pass it.
+Five generators that could overwrite an output now refuse different bytes:
+28th, 29th, 30th, 46th, and 49th v6.
+
+These items are still open:
+
+- **28th:** its own algorithm stops with
+  `no exact-support cancellation`, in base too.
+  Its templates, fed the published ledger entries, reproduce `main`'s file.
+- **v9:** it has no output file, and its production pins were never set.
+- **Stale ledgers and configs:** the 31st published ledger identities, the
+  child45 ledger that the 46th generator reads, and the v8
+  preparation-config generator pin all record hashes from before the
+  migration.
+  So a 46th run now stops before it writes.
+  The old code would have overwritten that ledger without a warning.
+- **v8 test:** one v8 test needs a parent CNF that is not on this machine.
+
 The 4 non-exact17 CNF orphans (`FrontierLiveClosure`) are out of scope.
 
 ### 8.2 Open risk 2: one bank pin is fail-open

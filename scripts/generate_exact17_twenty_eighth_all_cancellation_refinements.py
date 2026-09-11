@@ -14,7 +14,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import sys
+import tempfile
 from collections.abc import Iterable, Sequence
 from pathlib import Path
 from typing import Any
@@ -39,6 +41,43 @@ def sha256_file(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def write_text_once(path: Path, content: str) -> None:
+    """Publish one generated file without replacing different existing bytes.
+
+    An existing target whose bytes already equal ``content`` is left untouched,
+    so a deterministic rerun is a no-op.  Any other existing target (or a
+    symlink) is refused.  New targets are staged, fsynced, and hard-linked into
+    place so a concurrent writer cannot be overwritten.
+    """
+    raw = content.encode("utf-8")
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if path.is_symlink():
+        raise FileExistsError(f"immutable publication target is a symlink: {path}")
+    if path.exists():
+        if path.read_bytes() == raw:
+            return
+        raise FileExistsError(
+            f"immutable publication target exists with different bytes: {path}"
+        )
+    descriptor, staged_name = tempfile.mkstemp(
+        prefix=f".{path.name}.stage-", dir=path.parent
+    )
+    staged = Path(staged_name)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(raw)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.link(staged, path)
+        directory = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory)
+        finally:
+            os.close(directory)
+    finally:
+        staged.unlink(missing_ok=True)
 
 
 def record_core(record: dict[str, Any]) -> dict[str, Any]:
@@ -363,6 +402,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.BlockerVExactSeventeenTwentySeventhModelRefinements
+import Erdos9796Proof.P97.ListCNF
 
 /-!
 # Complete minimal cancellation family from exact-seventeen child 28
@@ -387,15 +427,19 @@ open ATailBlockerVExactSeventeenSourceCnfCdefgEqualK4TwoCircleThreeRowHijkInterl
 open ATailBlockerVExactSeventeenTwentySeventhModelRefinements
 open ATailFrontierLiveClosure.GenericRowNogoodCertificate
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOrientedHits :=
   ATailBlockerVExactSeventeenSixteenthModelRefinements.orientedHits
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOccurrenceClause :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClause
 
+/-- Finite V-exact-seventeen model-refinement abbrev. -/
 private abbrev priorOccurrenceClauses :=
   ATailBlockerVExactSeventeenSeventeenthModelRefinements.occurrenceClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_of_same
     (order : NamedOrder) (actual direction : Orientation)
     (hsame : actual = direction) (index : Label) :
@@ -404,6 +448,7 @@ private theorem sourceIndexEquiv_symm_eq_of_same
   subst actual
   rfl
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
     (order : NamedOrder) (actual direction : Orientation)
     (hne : actual ≠ direction) (index : Label) :
@@ -412,6 +457,7 @@ private theorem sourceIndexEquiv_symm_eq_reflected_of_ne
   cases actual <;> cases direction <;>
     simp_all [sourceIndexEquiv, orientedLabelAtPosition]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -439,6 +485,7 @@ private theorem positiveRowsMatch_of_same {A : Finset ℝ²}
         List.mem_map]
       exact ⟨(choice.center, point), hcover choice hchoice point hpoint, rfl⟩)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
     (source : SourceRealization A) (order : NamedOrder)
     (direction : Orientation) (horder : order = source.model.order)
@@ -467,6 +514,7 @@ private theorem positiveRowsMatch_of_ne {A : Finset ℝ²}
       exact ⟨(Fin.rev choice.center, Fin.rev point),
         hcover choice hchoice point hpoint, rfl⟩)
 
+/-- Finite V-exact-seventeen model-refinement structure. -/
 structure CancellationOccurrence where
   hits : List Hit
   forwardChoices : List (RowChoice Label)
@@ -475,6 +523,7 @@ structure CancellationOccurrence where
   reverseData : TwoKalmansonCancellationData Label
 deriving DecidableEq
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def CancellationOccurrence.check (occ : CancellationOccurrence) : Bool :=
   occ.forwardData.check occ.forwardChoices &&
   occ.reverseData.check occ.reverseChoices &&
@@ -483,6 +532,7 @@ def CancellationOccurrence.check (occ : CancellationOccurrence) : Bool :=
   decide (∀ choice ∈ occ.reverseChoices, ∀ point ∈ choice.support,
     (Fin.rev choice.center, Fin.rev point) ∈ occ.hits)
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 private theorem false_of_cancellationOccurrenceHits {A : Finset ℝ²}
     (source : SourceRealization A) (occ : CancellationOccurrence)
     (hcheck : occ.check = true) (order : NamedOrder)
@@ -509,6 +559,7 @@ private theorem false_of_cancellationOccurrenceHits {A : Finset ℝ²}
         occ.hits occ.reverseChoices hreverseCover hall)
       occ.reverseData hreverse
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_cancellationOccurrenceClause {A : Finset ℝ²}
     (source : SourceRealization A) (occ : CancellationOccurrence)
     (hcheck : occ.check = true) (order : NamedOrder)
@@ -520,26 +571,32 @@ theorem sourceAssign_cancellationOccurrenceClause {A : Finset ℝ²}
   exact false_of_cancellationOccurrenceHits source occ hcheck order direction
     horder.symm hall
 
+/-- Finite V-exact-seventeen model-refinement def. -/
 def cancellationOccurrences : List CancellationOccurrence :=
 '''
 
 
 LEAN_POSTAMBLE = r'''
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_length : cancellationOccurrences.length = 64 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem cancellationOccurrences_all_check :
     cancellationOccurrences.all CancellationOccurrence.check = true := by
   native_decide
 
-def twentyEighthModelRefinementClauses : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def twentyEighthModelRefinementClauses : ListCNF Atom :=
   cancellationOccurrences.flatMap fun occ => priorOccurrenceClauses occ.hits
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem twentyEighthModelRefinementClauses_length :
     twentyEighthModelRefinementClauses.length = 256 := by
   native_decide
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_twentyEighthModelRefinementClauses {A : Finset ℝ²}
     (source : SourceRealization A) :
     ∀ clause ∈ twentyEighthModelRefinementClauses,
@@ -554,31 +611,40 @@ theorem sourceAssign_twentyEighthModelRefinementClauses {A : Finset ℝ²}
   obtain ⟨order, _horder, direction, _hdirection, rfl⟩ := hclause
   exact sourceAssign_cancellationOccurrenceClause source occ hcheck order direction
 
-def extendedTwentyEighthModelRefinementsCnf : Std.Sat.CNF Atom :=
+/-- Finite V-exact-seventeen model-refinement def. -/
+def extendedTwentyEighthModelRefinementsCnf : ListCNF Atom :=
   extendedTwentySeventhModelRefinementsCnf ++
     twentyEighthModelRefinementClauses
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem extendedTwentyEighthModelRefinementsCnf_length :
     extendedTwentyEighthModelRefinementsCnf.length = 5846544 := by
-  native_decide
+  -- The Lean v4.33 kernel exhausts the build's 16 GB cap when it replays a
+  -- `native_decide` over this 5846544-clause list.  Counting the append
+  -- structurally from the parent's length avoids evaluating the list at all.
+  unfold extendedTwentyEighthModelRefinementsCnf
+  rw [List.length_append, extendedTwentySeventhModelRefinementsCnf_length,
+    twentyEighthModelRefinementClauses_length]
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem sourceAssign_extendedTwentyEighthModelRefinementsCnf {A : Finset ℝ²}
     (source : SourceRealization A) :
-    Std.Sat.CNF.eval (sourceAssign source.model)
+    ListCNF.eval (sourceAssign source.model)
       extendedTwentyEighthModelRefinementsCnf = true := by
-  rw [Std.Sat.CNF.eval, List.all_eq_true]
+  rw [ListCNF.eval, List.all_eq_true]
   intro clause hclause
   simp only [extendedTwentyEighthModelRefinementsCnf, List.mem_append] at hclause
   rcases hclause with hparent | hsuffix
   · have h := sourceAssign_extendedTwentySeventhModelRefinementsCnf source
-    rw [Std.Sat.CNF.eval, List.all_eq_true] at h
+    rw [ListCNF.eval, List.all_eq_true] at h
     exact h clause hparent
   · exact sourceAssign_twentyEighthModelRefinementClauses source clause hsuffix
 
+/-- Finite V-exact-seventeen model-refinement theorem. -/
 theorem false_of_sourceRealization_of_extendedTwentyEighthModelRefinementsCnf_unsat
     {A : Finset ℝ²} (hsource : Nonempty (SourceRealization A))
     (hunsat : ¬ ∃ assignment,
-      Std.Sat.CNF.eval assignment extendedTwentyEighthModelRefinementsCnf = true) : False := by
+      ListCNF.eval assignment extendedTwentyEighthModelRefinementsCnf = true) : False := by
   rcases hsource with ⟨source⟩
   exact hunsat
     ⟨sourceAssign source.model,
@@ -639,10 +705,9 @@ def main() -> int:
         )
         lean_entries.append(lean_occurrence(hits, forward, reverse))
 
-    args.lean_output.parent.mkdir(parents=True, exist_ok=True)
-    args.lean_output.write_text(
+    write_text_once(
+        args.lean_output,
         LEAN_PREAMBLE + "[\n" + ",\n".join(lean_entries) + "]\n" + LEAN_POSTAMBLE,
-        encoding="utf-8",
     )
     ledger = {
         "schema": "p97-exact17-child28-all-minimal-two-kalmanson/v1",
@@ -654,9 +719,8 @@ def main() -> int:
         "emitted_clause_count": 4 * len(minimal),
         "entries": entries,
     }
-    args.ledger_output.parent.mkdir(parents=True, exist_ok=True)
-    args.ledger_output.write_text(
-        json.dumps(ledger, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    write_text_once(
+        args.ledger_output, json.dumps(ledger, indent=2, sort_keys=True) + "\n"
     )
     print(
         f"generated {args.lean_output} and {args.ledger_output}: "
