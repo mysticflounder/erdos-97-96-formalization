@@ -146,10 +146,39 @@ theorem countPoints_supportPoints_maskOfFinset
     simp [hitems]
   simp [hfiltered]
 
+private theorem allEmptyCommon_map_val_iff_empty
+    (left right : Finset Label) (items : List Label) (_hi : items.Nodup) :
+    allEmptyCommon (maskOfFinset left) (maskOfFinset right)
+        (items.map Fin.val) = true ↔
+      left ∩ right ∩ items.toFinset = ∅ := by
+  simp only [allEmptyCommon]
+  rw [List.all_eq_true]
+  constructor
+  · intro hall
+    apply Finset.eq_empty_iff_forall_notMem.mpr
+    intro point hpoint
+    rcases Finset.mem_inter.mp hpoint with ⟨hleftRight, hitems⟩
+    rcases Finset.mem_inter.mp hleftRight with ⟨hleft, hright⟩
+    have hitems' : point ∈ items := List.mem_toFinset.mp hitems
+    have hbad := hall point.val (List.mem_map.mpr ⟨point, hitems', rfl⟩)
+    simp [has_maskOfFinset, hleft, hright] at hbad
+  · intro hempty point hpoint
+    obtain ⟨item, hitem, rfl⟩ := List.mem_map.mp hpoint
+    by_cases hleft : item ∈ left
+    · by_cases hright : item ∈ right
+      · have hmem : item ∈ left ∩ right ∩ items.toFinset := by
+          exact Finset.mem_inter.mpr
+            ⟨Finset.mem_inter.mpr ⟨hleft, hright⟩,
+              List.mem_toFinset.mpr hitem⟩
+        have hfalse : item ∈ (∅ : Finset Label) := by
+          simpa [hempty] using hmem
+        simp at hfalse
+      · simp [has_maskOfFinset, hright]
+    · simp [has_maskOfFinset, hleft]
+
 set_option maxHeartbeats 0 in
 -- One exhaustive pass checks all three fixed Q3 interior blocks.
 set_option maxRecDepth 10000 in
-set_option linter.style.nativeDecide false in
 /-- Census-554 certificate-bank theorem. -/
 theorem allEmptyCommon_capBlocks_iff (left right : Finset Label) :
     (allEmptyCommon (maskOfFinset left) (maskOfFinset right) [7, 8] = true ↔
@@ -158,7 +187,13 @@ theorem allEmptyCommon_capBlocks_iff (left right : Finset Label) :
       left ∩ right ∩ intO2 = ∅) ∧
     (allEmptyCommon (maskOfFinset left) (maskOfFinset right)
         [3, 4, 5, 6] = true ↔ left ∩ right ∩ intS = ∅) := by
-  native_decide +revert
+  have ho1 := allEmptyCommon_map_val_iff_empty left right
+    ([7, 8] : List Label) (by decide)
+  have ho2 := allEmptyCommon_map_val_iff_empty left right
+    ([9, 10] : List Label) (by decide)
+  have hs := allEmptyCommon_map_val_iff_empty left right
+    ([3, 4, 5, 6] : List Label) (by decide)
+  simpa [intO1, intO2, intS] using And.intro ho1 (And.intro ho2 hs)
 
 /-- Census-554 certificate-bank theorem. -/
 @[simp] theorem allEmptyCommon_intO1_iff (left right : Finset Label) :
