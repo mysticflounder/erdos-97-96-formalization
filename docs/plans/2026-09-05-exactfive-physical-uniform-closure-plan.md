@@ -404,12 +404,30 @@ paper-only in this lane.
 The private `false_of_exactFiveDistinct_mutualDoubleHit_highRadius` consumes
 the radius theorem under explicit mutual incidences and ρ ≥ (√3−1)r.
 The initially distinct minimum-custody both-hit dispatch tests this guard
-after the four-interior mutual exclusion. Its complement retains the
-physical terminal; no low-radius mutual, non-mutual, or common-center
-case is asserted closed. See the
+after the four-interior mutual exclusion. That radius guard alone does not
+exclude low-radius mutual, non-mutual, or common-center cases. See the
 [scoped sharp-mutual audit](../skeptic-ExactFiveSharpMutual-2026-09-12.md).
 A new dependent source packet and termination argument are still required
 before calling the radius bound descent.
+
+The second-apex radius supply gives another checked mutual exclusion.
+`InteriorPairSecondApexRobustness.WideRadiusProfile` means a positive-radius
+class of size at least five, or three distinct positive radii with at least
+four points each. Distinct second-apex distances of interior anchors ensure
+that every such pair preserves a four-point class under joint deletion.
+The explicit five-point first-apex class supplies at least three anchors,
+so `MinimalAdmissibleInteriorPair.dist_le_radius_of_secondApex_wideProfile`
+forces a minimum chord of length at most r. Mutual rows force it to be
+strictly longer than r.
+
+The private `false_of_exactFiveDistinct_mutualDoubleHit_wideSecondApex`
+consumes this contradiction under both actual incidences. The initial
+minimum-custody both-hit dispatch tests the profile after the earlier
+guards; this exclusion needs no high fresh-row radius or four-anchor
+hypothesis. Its complement still uses the physical terminal. No profile
+is assumed for every source, and the existing two-four-radius record is
+not interpreted as excluding additional rich classes. See the
+[second-apex profile audit](../skeptic-ExactFiveSecondApexProfile-2026-09-12.md).
 
 When I = {u,q,w}, use the original total H at u. Its actual full row Kd₀,
 centered at d₀ = H(u), differs from the rows at O,V,b,c and has one of the

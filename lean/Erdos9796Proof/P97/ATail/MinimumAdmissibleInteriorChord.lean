@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.MinimalAdmissibleInteriorPair
+import Erdos9796Proof.P97.ATail.InteriorPairSecondApexRobustness
 
 /-!
 # A short minimum admissible interior chord
@@ -18,7 +19,10 @@ mutual-incidence branch of `Rigid221Closure`, toward `Problem97.erdos97_rhs`.
 The proof uses the nonobtuse supporting cone and distinct second-apex distances.
 A fixed second-apex radius class contains at most one interior anchor. Of four
 anchors, three therefore avoid that class, and a short pair among those three
-preserves it under joint deletion. This proves only the guarded chord bound.
+preserves it under joint deletion. A second guarded bound uses only three
+anchors when a five-point second-apex class or three distinct rich classes
+makes every interior pair admissible. These are conditional chord bounds,
+not unconditional closure of the physical branch.
 -/
 
 open scoped EuclideanGeometry InnerProductSpace
@@ -233,5 +237,72 @@ theorem MinimalAdmissibleInteriorPair.dist_le_radius_of_four_le_interior_card
   obtain ⟨q, w, ⟨hq, hw, hne, hsurvives⟩, hshort⟩ :=
     exists_short_admissible_pair M.frontier.frontier.radius_pos hfour hsecondA
   exact (M.minimal hq hw hne hsurvives).trans hshort
+
+private theorem three_le_interior_card_of_class_card_eq_five
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    (hr : 0 < radius)
+    (hfive : (SelectedClass D.A S.oppApex1 radius).card = 5) :
+    3 ≤ (interiorPointSet (D := D) (S := S) radius).card := by
+  have hfirst : S.oppApex1 = S.oppositeVertexByIndex S.oppIndex1 :=
+    (first_apex_eq_triangle_vertex S).trans
+      (S.triangleByIndex_v1_eq_oppositeVertexByIndex S.oppIndex1)
+  have hbound := S.selectedClass_capInteriorByIndex_card_ge_card_sub_two
+    D.convex S.oppIndex1 hr
+  rw [← hfirst, hfive] at hbound
+  exact hbound
+
+private theorem dist_le_radius_of_three_le_of_all_pairs_admissible
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (M : MinimalAdmissibleInteriorPair D S radius H)
+    (hthree : 3 ≤ (interiorPointSet (D := D) (S := S) radius).card)
+    (hall : ∀ {q w : ℝ²},
+      q ∈ interiorPointSet (D := D) (S := S) radius →
+      w ∈ interiorPointSet (D := D) (S := S) radius → q ≠ w →
+      HasNEquidistantPointsAt 4 ((D.A.erase q).erase w) S.oppApex2) :
+    dist M.frontier.frontier.pair.q M.frontier.frontier.pair.w ≤ radius := by
+  classical
+  obtain ⟨x, y, z, hx, hy, hz, hxy, hxz, hyz⟩ :=
+    Finset.two_lt_card_iff.mp (show 2 <
+      (interiorPointSet (D := D) (S := S) radius).card by omega)
+  have hdist (p : ℝ²) (hp : p ∈ interiorPointSet (D := D) (S := S) radius) :
+      dist S.oppApex1 p = radius :=
+    (mem_selectedClass.mp (Finset.mem_inter.mp hp).1).2
+  rcases three_rays_short_pair M.frontier.frontier.radius_pos
+      (hdist x hx) (hdist y hy) (hdist z hz)
+      (interior_inner_nonneg hx hy) (interior_inner_nonneg hx hz)
+      (interior_inner_nonneg hy hz) with hshort | hshort | hshort
+  · exact (M.minimal hx hy hxy (hall hx hy hxy)).trans hshort
+  · exact (M.minimal hx hz hxz (hall hx hz hxz)).trans hshort
+  · exact (M.minimal hy hz hyz (hall hy hz hyz)).trans hshort
+
+/-- If every interior pair preserves a four-point class at the second apex,
+an exact-five first-apex class has a short minimum admissible chord. -/
+theorem MinimalAdmissibleInteriorPair.dist_le_radius_of_secondApex_pairwise_robust
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (M : MinimalAdmissibleInteriorPair D S radius H)
+    (hfive : (SelectedClass D.A S.oppApex1 radius).card = 5)
+    (hall : ∀ {q w : ℝ²},
+      q ∈ interiorPointSet (D := D) (S := S) radius →
+      w ∈ interiorPointSet (D := D) (S := S) radius → q ≠ w →
+      HasNEquidistantPointsAt 4 ((D.A.erase q).erase w) S.oppApex2) :
+    dist M.frontier.frontier.pair.q M.frontier.frontier.pair.w ≤ radius := by
+  exact dist_le_radius_of_three_le_of_all_pairs_admissible M
+    (three_le_interior_card_of_class_card_eq_five M.frontier.frontier.radius_pos hfive) hall
+
+/-- A five-point second-apex radius class or three distinct rich classes
+makes every interior pair admissible and forces a short minimum chord. -/
+theorem MinimalAdmissibleInteriorPair.dist_le_radius_of_secondApex_wideProfile
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    (M : MinimalAdmissibleInteriorPair D S radius H)
+    (hfive : (SelectedClass D.A S.oppApex1 radius).card = 5)
+    (hprofile : InteriorPairSecondApexRobustness.WideRadiusProfile D.A S.oppApex2) :
+    dist M.frontier.frontier.pair.q M.frontier.frontier.pair.w ≤ radius := by
+  apply M.dist_le_radius_of_secondApex_pairwise_robust hfive
+  intro q w hq hw hne
+  exact InteriorPairSecondApexRobustness.survives_double_erase_of_wideRadiusProfile
+    hprofile (interior_second_apex_dist_ne hq hw hne)
 
 end Problem97.FirstApexExactFiveInteriorFrontier

@@ -1795,6 +1795,48 @@ private theorem false_of_exactFiveDistinct_mutualDoubleHit_fourInterior
       K.toSelectedFourClass N.blockerClass hw hq hb heK hc
     exact (not_lt_of_ge hshort) (by simpa only [dist_comm] using hlong)
 
+private theorem false_of_exactFiveDistinct_mutualDoubleHit_wideSecondApex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm Rmin.residual C)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hq : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hw : Rmin.residual.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hb : center ∈ (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hc : H.centerAt fresh hfreshA ∈ N.blockerClass.support)
+    (hprofile : InteriorPairSecondApexRobustness.WideRadiusProfile D.A S.oppApex2) :
+    False := by
+  have hshort := Rmin.minimalPair.dist_le_radius_of_secondApex_wideProfile
+    Rmin.residual.class_card_eq_five hprofile
+  rw [Rmin.source_eq] at hshort
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hcA : H.centerAt fresh hfreshA ∈ D.A := (Finset.mem_erase.mp K.center_mem).2
+  have hcO := Rmin.residual.firstApex_fullyDeletionRobust.centerAt_ne H fresh hfreshA
+  rcases N.orientation with ⟨_, he, _⟩ | ⟨_, he, _⟩
+  · have heK : Rmin.residual.interior.frontier.pair.q ∈ N.blockerClass.support := by
+      rw [← he]
+      exact N.retained_mem_blockerClass
+    have hlong := MutualSelectedRowChord.radius_lt_dist_of_mutual_selectedRows
+      Rmin.residual.interior.q_mem_interior Rmin.residual.interior.w_mem_interior
+      Rmin.residual.interior.frontier.pair.q_ne_w
+      Rmin.residual.interior.frontier.radius_pos.le hcA hcO
+      K.toSelectedFourClass N.blockerClass hq hw hb heK hc
+    exact (not_lt_of_ge hshort) hlong
+  · have heK : Rmin.residual.interior.frontier.pair.w ∈ N.blockerClass.support := by
+      rw [← he]
+      exact N.retained_mem_blockerClass
+    have hlong := MutualSelectedRowChord.radius_lt_dist_of_mutual_selectedRows
+      Rmin.residual.interior.w_mem_interior Rmin.residual.interior.q_mem_interior
+      Rmin.residual.interior.frontier.pair.q_ne_w.symm
+      Rmin.residual.interior.frontier.radius_pos.le hcA hcO
+      K.toSelectedFourClass N.blockerClass hw hq hb heK hc
+    exact (not_lt_of_ge hshort) (by simpa only [dist_comm] using hlong)
+
 -- The sharp mutual-row radius bound excludes high-radius double hits without
 -- any minimum-pair or interior-cardinality hypothesis.
 private theorem false_of_exactFiveDistinct_mutualDoubleHit_highRadius
@@ -1887,8 +1929,8 @@ private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPai
             ⟨R, minimumPair.val, minimumPair.property⟩
           -- Each branch keeps the original physical packet and minimum pair.
           -- The large arm additionally keeps both hits and closed-cap card ≥ 6.
-          -- Mutual incidences have separate four-interior and high-radius
-          -- consumers. Other outcomes retain the original admission.
+          -- Mutual incidences have four-interior, high-radius, and wide
+          -- second-apex consumers. Other outcomes retain the original admission.
           rcases
               exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases_with_hits
                 Rmin C' normalForm' packet.q_mem_A with
@@ -1909,8 +1951,15 @@ private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPai
               · exact false_of_exactFiveDistinct_mutualDoubleHit_highRadius
                   R C' normalForm' packet.q_mem_A hlarge.2.1 hlarge.2.2.1
                   hhigh.1 hhigh.2.1 hhigh.2.2
-              · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
-                  R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
+              · by_cases hwide :
+                    center ∈ (H.selectedAt fresh packet.q_mem_A).toCriticalFourShell.support ∧
+                    H.centerAt fresh packet.q_mem_A ∈ normalForm'.blockerClass.support ∧
+                    InteriorPairSecondApexRobustness.WideRadiusProfile D.A S.oppApex2
+                · exact false_of_exactFiveDistinct_mutualDoubleHit_wideSecondApex
+                    Rmin C' normalForm' packet.q_mem_A hlarge.2.1 hlarge.2.2.1
+                    hwide.1 hwide.2.1 hwide.2.2
+                · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+                    R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
           · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
               R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
           · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical

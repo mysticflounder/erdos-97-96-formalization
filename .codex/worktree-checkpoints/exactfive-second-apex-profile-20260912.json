@@ -1,0 +1,18 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-second-apex-profile-20260912",
+  "owner": "luna-swarm-cosine",
+  "base_head": "04b4513a587040d0d9f5b24ab5500123fc60d48b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-second-apex-profile-20260912.json",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/skeptic-ExactFiveSecondApexProfile-2026-09-12.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
+    "lean/Erdos9796Proof/P97/ATail/InteriorPairSecondApexRobustness.lean",
+    "lean/Erdos9796Proof/P97/ATail/MinimumAdmissibleInteriorChord.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-12T19:41:30Z",
+  "manifest_sha256": "234d4689e0a826268da03dbe2008f9c58140476affb65a666941fda3df54ac73"
+}
