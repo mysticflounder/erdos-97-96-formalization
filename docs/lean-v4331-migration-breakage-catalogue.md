@@ -883,3 +883,44 @@ Two more lessons from that file:
   multiplier too: for `q1EqZeroG7` the goal `bs * bv * K` is in the ideal, but `K`, `bs * K`,
   `bv * K`, `br * K` and `(bv - 1) * K` are not, so the statement is already the cheapest form.
 
+
+## BA — when the external certificate is itself too large
+
+`q1EqZeroG7` in `CrossedArmSevenPointEuclideanObstruction` is the case where the AZ recipe
+above is not sufficient.  The goal is in the hypothesis ideal, but the reduced lift over the
+rationals did not finish, and three runs were stopped after 35 minutes in the syzygy
+reduction.  The same computation modulo a prime finished in about two minutes.  Four steps
+make the certificate both small enough and exact.
+
+1. **Shrink the target first.**  `e9 - bv * K` factors as `br * bs * (bv - 1) * (bs - bv)`, so
+   the goal `bs * bv * K` equals `bs * e9 - T1` for `T1 = br * bs ^ 2 * (bv - 1) * (bs - bv)`.
+   Certify `T1` and close with `linear_combination bs * p9 - hT1`.  `T1` is minimal: dropping
+   any one of `br`, either `bs`, or `(bv - 1)` puts it outside the ideal.
+
+2. **Sweep the variable ordering.**  The `dp` ordering changes the size of the reduced
+   certificate by a third.  All 120 permutations of the five variables ran modulo 32003 and
+   gave totals from 1688 to 2533 monomials.  The sweep is cheap, the spread is large, and the
+   best orderings cluster tightly (1688 to 1707), which also shows where the floor is.
+
+3. **Reconstruct the exact certificate from modular images.**  Rather than wait for the
+   rational reduction, run the same `lift` plus `reduce(…, groebner(syz(I)))` modulo many
+   31-bit primes, check that the monomial support agrees across primes, then apply the
+   Chinese remainder theorem to each coefficient and reconstruct the rational number.  Here
+   16 primes were enough, because the coefficients reach only 17 digits.  Verify the
+   polynomial identity in sympy before use; treat a support that disagrees between primes as
+   a bad reduction and drop that prime.
+
+4. **Measure the elaboration cost before committing to a size.**  Build a probe with the same
+   shape as the real proof: a small goal, large cofactors, and genuine cancellation.  A
+   Koszul syzygy does this, since `(A * g2) * g1 - (A * g1) * g2` is zero for any `A`.
+   Measured on this file: 1239 monomials took 2 m 55 s, 3669 took 20 m 30 s, and 1435
+   monomials carrying 378-digit coefficients took 3 m 0 s.  Term count sets the cost and
+   coefficient width is close to free.  `maxHeartbeats` alone is not sufficient: a
+   `linear_combination` of this size first fails with `maximum recursion depth has been
+   reached`, so raise `maxRecDepth` as well.
+
+Bounded-degree linear algebra over a Macaulay matrix is not a shortcut here.  The smallest
+total degree that admits a certificate is 12, proven with exact rational ranks over three
+primes, where every lower degree shows a rank gap of exactly one.  Sparsification of that
+system bottomed out at 2290 monomials with 124-digit coefficients, which is worse than the
+Groebner route on both counts.
