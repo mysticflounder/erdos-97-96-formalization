@@ -1,0 +1,114 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne": {
+      "payload_sha256": "122a959984c544dec91fec9865a8b6411d7c84cc13b465785cd5e82b3f34b420",
+      "state": "RECORDED",
+      "submission_id": "6ca4456e-acd3-444c-bb80-f9793c03e6a9"
+    },
+    "proof:Erdos9796Mission.equilateral_bisector_collision": {
+      "payload_sha256": "7c7f3c05ed14aba537eac2007e77ac68aebcc74eb93e5932c8306b20f1b7e33a",
+      "state": "RECORDED",
+      "submission_id": "d34038c8-9f59-467c-869b-71c358ce0818"
+    },
+    "proof:Erdos9796Mission.equilateral_bisector_collision:retry:1": {
+      "payload_sha256": "a0d14edc4ba986c82e6790c0a77c090861773283c8c837722e084073a384b4be",
+      "retry_of_submission_id": "d34038c8-9f59-467c-869b-71c358ce0818",
+      "state": "RECORDED",
+      "submission_id": "955b0c78-aca6-457d-9e86-ae375fefcaf0"
+    },
+    "proof:Erdos9796Mission.three_triad_collision": {
+      "payload_sha256": "cbd9a592e4852875b88bca66ee9676b867fe0f127721097daccbe2eb5f9c4eab",
+      "state": "RECORDED",
+      "submission_id": "7b1aec89-0231-4194-93da-cd70962f8cea"
+    },
+    "theorem:Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne": {
+      "job_id": "63a1dba2-6627-490b-ad84-d051bf6d52f2",
+      "payload_sha256": "6d9d5e33c7ac5bae0bf99cc389dcc83bb772c0f800420d2a05ed768fb4525601",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.equilateral_bisector_collision": {
+      "job_id": "7e1932f3-eedd-42ae-8ac0-ffe26190e278",
+      "payload_sha256": "e4645e1d0ff045a2c350622fbeecf8147d5d2d5dcc00d725c1a2334cfb66ac66",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.three_triad_collision": {
+      "job_id": "e087a736-0db1-4abd-8fa1-b541c4ee0264",
+      "payload_sha256": "56f850023d3e6c5cdc1b0b79d0ce422322749a9fbbe245282e9e5a0d9636be98",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "ed29510fe19ca8f7a17d5bdd3ef2aa32c58879e46675eaf23818502b84865d69",
+  "proof_attempts": {
+    "Erdos9796Mission.equilateral_bisector_collision": [
+      {
+        "created_at": "2026-09-12T22:55:15.944216+00:00",
+        "error_message": "Verification timed out after 300s",
+        "file_path": "5f9a8350-6e57-427b-8bfd-cd48a2d1a867/6ac78adb-dda3-4892-bb46-d4c86f102d16/d34038c8-9f59-467c-869b-71c358ce0818.lean",
+        "id": "d34038c8-9f59-467c-869b-71c358ce0818",
+        "status": "ERROR",
+        "submission_id": "d34038c8-9f59-467c-869b-71c358ce0818",
+        "theorem_id": "5f9a8350-6e57-427b-8bfd-cd48a2d1a867",
+        "updated_at": "2026-09-12T23:01:27.949728+00:00",
+        "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+      }
+    ]
+  },
+  "proofs": {
+    "Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne": {
+      "created_at": "2026-09-12T22:52:23.942788+00:00",
+      "error_message": "",
+      "file_path": "af0d62de-fdae-4823-a2f2-8d2d63b03af9/6ac78adb-dda3-4892-bb46-d4c86f102d16/6ca4456e-acd3-444c-bb80-f9793c03e6a9.lean",
+      "id": "6ca4456e-acd3-444c-bb80-f9793c03e6a9",
+      "status": "ACCEPTED",
+      "submission_id": "6ca4456e-acd3-444c-bb80-f9793c03e6a9",
+      "theorem_id": "af0d62de-fdae-4823-a2f2-8d2d63b03af9",
+      "updated_at": "2026-09-12T22:55:15.043983+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Erdos9796Mission.equilateral_bisector_collision": {
+      "created_at": "2026-09-12T23:18:25.20234+00:00",
+      "error_message": "",
+      "file_path": "5f9a8350-6e57-427b-8bfd-cd48a2d1a867/6ac78adb-dda3-4892-bb46-d4c86f102d16/955b0c78-aca6-457d-9e86-ae375fefcaf0.lean",
+      "id": "955b0c78-aca6-457d-9e86-ae375fefcaf0",
+      "intent_key": "proof:Erdos9796Mission.equilateral_bisector_collision:retry:1",
+      "status": "ACCEPTED",
+      "submission_id": "955b0c78-aca6-457d-9e86-ae375fefcaf0",
+      "theorem_id": "5f9a8350-6e57-427b-8bfd-cd48a2d1a867",
+      "updated_at": "2026-09-12T23:20:41.634535+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Erdos9796Mission.three_triad_collision": {
+      "created_at": "2026-09-12T23:20:43.517005+00:00",
+      "error_message": "",
+      "file_path": "5143e3ab-5889-4628-bc00-618465ab3161/6ac78adb-dda3-4892-bb46-d4c86f102d16/7b1aec89-0231-4194-93da-cd70962f8cea.lean",
+      "id": "7b1aec89-0231-4194-93da-cd70962f8cea",
+      "status": "ACCEPTED",
+      "submission_id": "7b1aec89-0231-4194-93da-cd70962f8cea",
+      "theorem_id": "5143e3ab-5889-4628-bc00-618465ab3161",
+      "updated_at": "2026-09-12T23:25:38.30477+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne": {
+      "job_id": "63a1dba2-6627-490b-ad84-d051bf6d52f2",
+      "status": "PUBLISHED",
+      "theorem_id": "af0d62de-fdae-4823-a2f2-8d2d63b03af9"
+    },
+    "Erdos9796Mission.equilateral_bisector_collision": {
+      "job_id": "7e1932f3-eedd-42ae-8ac0-ffe26190e278",
+      "status": "PUBLISHED",
+      "theorem_id": "5f9a8350-6e57-427b-8bfd-cd48a2d1a867"
+    },
+    "Erdos9796Mission.three_triad_collision": {
+      "job_id": "e087a736-0db1-4abd-8fa1-b541c4ee0264",
+      "status": "PUBLISHED",
+      "theorem_id": "5143e3ab-5889-4628-bc00-618465ab3161"
+    }
+  }
+}

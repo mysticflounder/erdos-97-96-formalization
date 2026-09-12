@@ -1,0 +1,53 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under Apache-2.0 as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/metric-collision-support/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne"
+title = "Three distinct reference points determine an equidistant center"
+file = "submissions/metric-collision-support/platform/Theorems/Thm_Erdos9796Mission_eq_of_dist_eq_three_of_pairwise_ne.lean"
+natural_language_statement = "Let P, Q, and R be pairwise-distinct points in the Euclidean plane. If A and B are each equidistant from P, Q, and R, then A = B."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0c299d91bce69e27bc31a249cfbbf901db431505/lean/Erdos9796Proof/P97/N4d/SmallSReductions.lean#L372-L422"
+tags = ["discrete-geometry", "erdos-97", "euclidean-geometry", "distance"]
+
+[[theorem]]
+name = "Erdos9796Mission.equilateral_bisector_collision"
+title = "An equilateral bisector configuration forces a collision"
+file = "submissions/metric-collision-support/platform/Theorems/Thm_Erdos9796Mission_equilateral_bisector_collision.lean"
+natural_language_statement = "Let p be at the same positive distance r from a, b, and c, with a and b also at distance r. If x is at distance r from a and b and its distance from c equals the distance from c to a, then p = x or c = b."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6/lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean#L93-L168"
+tags = ["discrete-geometry", "erdos-97", "euclidean-geometry", "distance"]
+
+[[theorem]]
+name = "Erdos9796Mission.three_triad_collision"
+title = "Three linked equal-distance triads force a collision"
+file = "submissions/metric-collision-support/platform/Theorems/Thm_Erdos9796Mission_three_triad_collision.lean"
+natural_language_statement = "For five planar points A, B, C, D, and E, suppose B has equal distances to C and D, that common distance equals the distance from D to A, C has equal distances to A, D, and E, and E has equal distances to A, B, and D. Then A = B."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6/lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean#L143-L207"
+tags = ["discrete-geometry", "erdos-97", "euclidean-geometry", "distance"]
+
+[[proof]]
+theorem = "Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne"
+file = "submissions/metric-collision-support/platform/Solutions/Sol_Erdos9796Mission_eq_of_dist_eq_three_of_pairwise_ne.lean"
+explanation = "submissions/metric-collision-support/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Erdos9796Mission.equilateral_bisector_collision"
+file = "submissions/metric-collision-support/platform/Solutions/Sol_Erdos9796Mission_equilateral_bisector_collision.lean"
+explanation = "submissions/metric-collision-support/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Erdos9796Mission.three_triad_collision"
+file = "submissions/metric-collision-support/platform/Solutions/Sol_Erdos9796Mission_three_triad_collision.lean"
+explanation = "submissions/metric-collision-support/explanation.md"
+proof_type = "prove"

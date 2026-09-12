@@ -1,0 +1,134 @@
+{
+  "schema": "prove2me-metric-collision-support-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revisions": {
+    "eq_of_dist_eq_three_of_pairwise_ne": "0c299d91bce69e27bc31a249cfbbf901db431505",
+    "equilateral_bisector_collision": "a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6",
+    "three_triad_collision": "a0f73bc1ed1e7e57ec5ccc36fe7ca934ce1adaf6"
+  },
+  "plan_digest": "ed29510fe19ca8f7a17d5bdd3ef2aa32c58879e46675eaf23818502b84865d69",
+  "prepublication_readback": {
+    "status": "PASS",
+    "exact_names_absent": [
+      "Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne",
+      "Erdos9796Mission.equilateral_bisector_collision",
+      "Erdos9796Mission.three_triad_collision"
+    ]
+  },
+  "theorem_stub_compile": {
+    "count": 3,
+    "status": "PASS"
+  },
+  "solution_compile": {
+    "count": 3,
+    "root_solution_check": "PASS",
+    "status": "PASS"
+  },
+  "platform_composition_compile": {
+    "files": [
+      "platform/Validation/CircumcenterKernel.lean",
+      "platform/Validation/EquilateralBisectorKernel.lean",
+      "platform/Validation/ThreeTriadKernel.lean"
+    ],
+    "status": "PASS"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.eq_of_dist_eq_three_of_pairwise_ne",
+      "Problem97.Census554.EqualityCore.equilateral_bisector_collision",
+      "Problem97.Census554.EqualityCore.three_triad_collision"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_axiom_audit": {
+    "declarations": [
+      "CircumcenterKernelValidation.result",
+      "EquilateralBisectorKernelValidation.result",
+      "ThreeTriadKernelValidation.result"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "admit",
+      "native_decide",
+      "ofReduceBool",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by",
+      "extern"
+    ],
+    "status": "PASS"
+  },
+  "verifier_retry": {
+    "theorem": "Erdos9796Mission.equilateral_bisector_collision",
+    "first_submission_id": "d34038c8-9f59-467c-869b-71c358ce0818",
+    "first_status": "ERROR",
+    "first_error": "Verification timed out after 300s",
+    "optimized_local_compile_seconds": 7.021,
+    "retry_submission_id": "955b0c78-aca6-457d-9e86-ae375fefcaf0",
+    "retry_status": "ACCEPTED"
+  },
+  "receipt_sha256": "666e291e198adbf23a3633d0fd0e32258fdb239446a4a0ec2084d01afefbbf04",
+  "live_readback": {
+    "checked_utc": "2026-09-12T23:26:19.088631+00:00",
+    "status": "PASS",
+    "theorems": [
+      {
+        "name": "Erdos9796Mission.eq_of_dist_eq_three_of_pairwise_ne",
+        "id": "af0d62de-fdae-4823-a2f2-8d2d63b03af9",
+        "status": "Proved",
+        "proof_id": "6ca4456e-acd3-444c-bb80-f9793c03e6a9",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Erdos9796Mission.equilateral_bisector_collision",
+        "id": "5f9a8350-6e57-427b-8bfd-cd48a2d1a867",
+        "status": "Proved",
+        "proof_id": "955b0c78-aca6-457d-9e86-ae375fefcaf0",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Erdos9796Mission.three_triad_collision",
+        "id": "5143e3ab-5889-4628-bc00-618465ab3161",
+        "status": "Proved",
+        "proof_id": "7b1aec89-0231-4194-93da-cd70962f8cea",
+        "proof_status": "ACCEPTED"
+      }
+    ],
+    "milestones_created": 0
+  },
+  "files": {
+    "README.md": "c0302cdfa644d6edb91e7c910714c9de806001f4df4441f47abf8603e97b6fe8",
+    "explanation.md": "ca76f288eea60e8a0537fb799db0f1d1e3ea16f61777eec21ef62de8ab572dad",
+    "skeptic-audit.md": "827c5fd6e7a4fa3a5ce0d9ef5092ba6c5ead2fc044f666a51159b1f318088c7f",
+    "plan.toml": "682c4cd0b55540d82108eff720024d1e37afd24350c80a84371b9c325f138baf",
+    "receipt-first-timeout.json": "5b68669ec1626a8cf90542400d9927450faa43e326e93f68dd2f79a490c3846b",
+    "platform/Theorems/Thm_Erdos9796Mission_eq_of_dist_eq_three_of_pairwise_ne.lean": "690bcf8b00736a7f6b5003906fe6b137581e45406c41a7024b11f81893c2b925",
+    "platform/Theorems/Thm_Erdos9796Mission_equilateral_bisector_collision.lean": "ec8e31e1b829128282aef15b899a4cdb2ff3390dc09fd9cd9b3b16a5569bc632",
+    "platform/Theorems/Thm_Erdos9796Mission_three_triad_collision.lean": "45fc3662668a2d160f38ef459d0e2f921c88f8d96247dd398cff916b6bf03fd1",
+    "platform/Solutions/Sol_Erdos9796Mission_eq_of_dist_eq_three_of_pairwise_ne.lean": "7010f5a18730a4ee1c713c260dd94fea6dbbb0382b25880be4712e3415c125cb",
+    "platform/Solutions/Sol_Erdos9796Mission_equilateral_bisector_collision.lean": "8669e1152239470a8367e3e9e83f786e17e25adacc03963f995b2ded0c2ca0e3",
+    "platform/Solutions/Sol_Erdos9796Mission_three_triad_collision.lean": "18734cd0a86c277eeaa5bbda90f9f0a9f93075da0ee3b559d9b4874339e8fbdb",
+    "platform/Validation/CircumcenterKernel.lean": "7792b68924f8c3be7dc64efef333db2bd99a8444b62e01919b1d87e4c4973df6",
+    "platform/Validation/EquilateralBisectorKernel.lean": "b12b98cf7fb57f93c7fdbbcfa4f9fc3d5a63212ca2298a0760dc37a2d888c470",
+    "platform/Validation/ThreeTriadKernel.lean": "c060fc85fbeca4b1a7563b676ec54e88631e84e49521930259f7f5703700dbec"
+  }
+}

@@ -36,6 +36,10 @@ provenance for the project's own Lean formalization.
   complete 75-node proof that a four-equidistant counterexample has at least
   nine points, with validation and attribution records.
 
+- [Accepted metric-collision support](submissions/metric-collision-support/README.md):
+  three reusable Euclidean collision lemmas, each verified by Prove2Me without
+  a finite certificate bank or a separate mission milestone.
+
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
   and bank-replacement work, with consumer and validation gates.
 - `mission-description.md`: the public introduction, including why the problems

@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-metric-collision-support-20260912",
+  "base_head": "8abacfd96229b52fce1d0e589b5461613f6397a9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-metric-collision-support-20260912.json",
+    "prove2me/README.md",
+    "prove2me/submissions/metric-collision-support/README.md",
+    "prove2me/submissions/metric-collision-support/explanation.md",
+    "prove2me/submissions/metric-collision-support/plan.toml",
+    "prove2me/submissions/metric-collision-support/platform/Solutions/Sol_Erdos9796Mission_eq_of_dist_eq_three_of_pairwise_ne.lean",
+    "prove2me/submissions/metric-collision-support/platform/Solutions/Sol_Erdos9796Mission_equilateral_bisector_collision.lean",
+    "prove2me/submissions/metric-collision-support/platform/Solutions/Sol_Erdos9796Mission_three_triad_collision.lean",
+    "prove2me/submissions/metric-collision-support/platform/Theorems/Thm_Erdos9796Mission_eq_of_dist_eq_three_of_pairwise_ne.lean",
+    "prove2me/submissions/metric-collision-support/platform/Theorems/Thm_Erdos9796Mission_equilateral_bisector_collision.lean",
+    "prove2me/submissions/metric-collision-support/platform/Theorems/Thm_Erdos9796Mission_three_triad_collision.lean",
+    "prove2me/submissions/metric-collision-support/platform/Validation/CircumcenterKernel.lean",
+    "prove2me/submissions/metric-collision-support/platform/Validation/EquilateralBisectorKernel.lean",
+    "prove2me/submissions/metric-collision-support/platform/Validation/ThreeTriadKernel.lean",
+    "prove2me/submissions/metric-collision-support/receipt-first-timeout.json",
+    "prove2me/submissions/metric-collision-support/receipt.json",
+    "prove2me/submissions/metric-collision-support/skeptic-audit.md",
+    "prove2me/submissions/metric-collision-support/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-metric-collision-support",
+  "created_utc": "2026-09-12T22:27:06Z",
+  "manifest_sha256": "832b4a322f8703a0b8e6bd0c92c3d4e052b483bc546c205db9457f086a4f2b09"
+}
