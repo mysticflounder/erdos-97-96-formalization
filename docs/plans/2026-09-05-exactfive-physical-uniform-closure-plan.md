@@ -40,7 +40,7 @@ well-founded measure and its constructor fan-out before changing obligations.
 | --- | --- | --- | --- |
 | 1 | Simultaneous-deletion row replacement and strict-fresh reconstruction | Committed in `bce36a53c`; helper and coordinator builds pass; old five-incidence declaration deleted; ten production helpers have core-only axioms | Refresh the kernel mine and aggregate dependency/trust evidence before accepting a proof-spine reduction |
 | 2 | Source geometry for radius drop | Source strict radius drop, circle-power exterior distance drop, and support-triangle exclusion have landed; actual-fresh-row adapter checked | Supply a contradiction for the omission or smaller-radius child, then apply an exhaustive split at the physical consumer |
-| 3 | Admissible-pair selection and actual-blocker reconstruction | Minimum-pair producer called by live root in `777c0ba74`; downstream `.residual` projection still drops its extra payload | Carry minimum-pair evidence to the physical consumer and through reselection; close or strictly narrow a live case |
+| 3 | Admissible-pair selection and actual-blocker reconstruction | The initially distinct route retains the minimum-pair witness through physical dispatch and excludes cap-five double hits; common-center reselection still loses custody | Close the remaining omission/larger-cap geometry and prove minimum-pair transport for the common-center route |
 | 4 | Uniform row-replacement and return-cycle interface | Conditional graph reduction audited; finite regression reproduced | Five source-owned row replacements sharing the other rows, an explicit gauge condition, and a source return cycle |
 | 5 | Uniform geometric barrier | OPEN MATHEMATICAL | A source-derived no-return cut, path invariant, or sound shortening theorem, with a contradiction consumer |
 | 6 | Production validation | Required after each applicable source change | Intended aggregate build, literal axiom audit, independent mathematical audit, fresh source/kernel evidence, and applicable ingress binding |
@@ -225,14 +225,37 @@ now committed the exact-five split with explicit minimum-pair custody in
 cap-five/cardinality-at-least-thirteen/omission adapter (`fa9bba544`). Their
 LSP checks pass. Commit `777c0ba74` calls the minimum-pair producer from the
 live root, with a successful focused coordinator compile reported by its
-owner. Downstream consumers still project `.residual`, discarding the extra
-minimum-pair evidence. Carry that evidence into the physical consumer and
-through adaptive reselection before treating the minimum-aware route as
-complete. This checkpoint is not a fresh kernel reachability audit. The
+owner. The initially distinct dispatch now carries both the minimum pair and
+its source equality into the strict physical case split. The common-center
+route still projects `.residual`, and its adaptive reselection does not prove
+that the new pair is minimum. The
+[dispatch audit](../skeptic-Rigid221Closure-2026-09-12.md) separates this
+custody integration from the unchanged admitted frontier. The
 omission and larger-cap cases remain open even after the conditional cap-five
 double-hit consumer applies.
 
 ### 3a. Test omission transitions before assuming descent
+
+The `exactfive-minimum-dispatch-20260912` lane implements the authorized
+initially distinct-path custody change. Its source is the minimum residual
+producer and the existing cap-five double-hit theorem, not an added physical
+hypothesis. Internal dispatch retains the selected minimum pair and its
+equality with `R.interior`; the public ordinary-residual interfaces and the
+common-center reselection route retain their current statements.
+
+The fresh-row split must retain both positive endpoint hits and closed-cap
+cardinality at least six in its large-cap arm, together with the existing
+carrier bound and triangle witness. The other three arms retain their two
+one-hit reselection records or both omission facts. The closed-cap-five
+double-hit combination is eliminated by the existing minimum-pair theorem.
+All remaining arms still reach the original open physical theorem through
+the compatibility path: this is custody integration and conditional case
+exclusion, not a reduction in the kernel's unresolved theorem frontier.
+The four-way split introduces no new admission; its minimum-aware source
+fan-out is four, and the original physical admission remains reachable.
+No uniform descent, common-center minimum transport, or publication-spine
+closure is claimed. Validate the changed coordinator, audit the split's
+axioms and live dispatch references, and record the unchanged admissions.
 
 The [one-hit transition audit](../audits/2026-09-05-exactfive-onehit-omission-transition.md)
 records a checked prototype that rechooses the retained endpoint's canonical

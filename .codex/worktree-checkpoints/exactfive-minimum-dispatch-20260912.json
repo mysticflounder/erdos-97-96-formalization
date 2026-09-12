@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-minimum-dispatch-20260912",
+  "owner": "luna-swarm-cosine",
+  "base_head": "adaa7f34b2f6e45de2ba9823e3f06727dc733807",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-minimum-dispatch-20260912.json",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/skeptic-Rigid221Closure-2026-09-12.md",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-12T03:41:15Z",
+  "manifest_sha256": "a3c374997cf0c3fcb38f5449055e3ccaba16158f2e7899255740b32fc69c8c26"
+}

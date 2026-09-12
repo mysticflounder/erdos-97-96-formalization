@@ -1576,6 +1576,76 @@ theorem exactFiveDistinct_threeCenter_distinctFresh_minimal_sourceProgress
     · exact Or.inr (Or.inr hw)
   · exact Or.inr (Or.inl hq)
 
+-- Keep the positive hits and the closed-cap bound until the physical consumer.
+-- This split proves no contradiction in any of its four remaining arms.
+private theorem exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases_with_hits
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    {deleted blocker : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted blocker S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm Rmin.residual C)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A) :
+    (6 ≤ (S.capByIndex S.oppIndex1).card ∧
+        Rmin.residual.interior.frontier.pair.q ∈
+          (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+        Rmin.residual.interior.frontier.pair.w ∈
+          (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+        13 ≤ D.A.card ∧
+        ∃ (v : ℝ²) (hvA : v ∈ D.A),
+          v ∈ S.triangle.verts ∧
+          v ∉ normalForm.blockerClass.support ∧
+          v ∉ (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+          H.centerAt v hvA ≠ S.oppApex1 ∧
+          H.centerAt v hvA ≠ S.oppApex2 ∧
+          H.centerAt v hvA ≠ blocker ∧
+          H.centerAt v hvA ≠ H.centerAt fresh hfreshA) ∨
+      Nonempty (QOmittedWHitReselection Rmin fresh hfreshA) ∨
+      Nonempty (WOmittedQHitReselection Rmin fresh hfreshA) ∨
+      (Rmin.residual.interior.frontier.pair.q ∉
+          (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
+        Rmin.residual.interior.frontier.pair.w ∉
+          (H.selectedAt fresh hfreshA).toCriticalFourShell.support) := by
+  by_cases hq : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · have hcapFive : 5 ≤ (S.capByIndex S.oppIndex1).card := by
+        rcases hi : S.surplusIdx with ⟨i, hi3⟩
+        interval_cases i
+        · simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+            SurplusCapPacket.oppCap1, hi, Fin.val_one] using
+            firstOppCap_card_ge_five Rmin.residual
+        · simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+            SurplusCapPacket.oppCap1, hi, Fin.val_two] using
+            firstOppCap_card_ge_five Rmin.residual
+        · simpa only [SurplusCapPacket.capByIndex, SurplusCapPacket.oppIndex1,
+            SurplusCapPacket.oppCap1, hi, Fin.val_zero] using
+            firstOppCap_card_ge_five Rmin.residual
+      have hcapSix : 6 ≤ (S.capByIndex S.oppIndex1).card := by
+        by_contra hnotSix
+        have hcap : (S.capByIndex S.oppIndex1).card = 5 := by omega
+        exact
+          _root_.Problem97.ExactFiveDistinctPhysicalFreshRowRadiusDrop.false_of_actualFreshBlocker_doubleHit_of_minimalPair_capFive
+            Rmin.residual Rmin.minimalPair Rmin.source_eq
+            normalForm.secondApex_robust hcap hfreshA hq hw
+      have hcard :=
+        _root_.Problem97.ExactFiveDistinctPhysicalFreshRowRadiusDrop.FirstApexUniqueRadiusExactFiveMinimalDistinctResidual.carrier_card_ge_thirteen_of_actualFreshBlocker_doubleHit
+          Rmin normalForm.secondApex_robust hfreshA hq hw
+      have hwitness :=
+        exists_supportTriangleSource_freshActualBlocker_of_doubleHit
+          Rmin.residual normalForm.secondApex_robust C.center₁_mem_A
+          normalForm.blockerClass hfreshA hq hw
+      exact Or.inl ⟨hcapSix, hq, hw, hcard, hwitness⟩
+    · exact Or.inr (Or.inr (Or.inl
+        (nonempty_wOmittedQHitReselection Rmin hfreshA hw hq)))
+  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
+        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
+    · exact Or.inr (Or.inl
+        (nonempty_qOmittedWHitReselection Rmin hfreshA hq hw))
+    · exact Or.inr (Or.inr (Or.inr ⟨hq, hw⟩))
+
 /-- Exhaustive minimum-source transition at an actual fresh row: a double hit
 enters the at-least-thirteen fourth-blocker branch, either one-hit orientation
 rebuilds the same minimum pair over an explicitly related shell system, and
@@ -1604,25 +1674,11 @@ theorem exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases
           (H.selectedAt fresh hfreshA).toCriticalFourShell.support ∧
         Rmin.residual.interior.frontier.pair.w ∉
           (H.selectedAt fresh hfreshA).toCriticalFourShell.support) := by
-  by_cases hq : Rmin.residual.interior.frontier.pair.q ∈
-      (H.selectedAt fresh hfreshA).toCriticalFourShell.support
-  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
-        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
-    · have hcard :=
-        _root_.Problem97.ExactFiveDistinctPhysicalFreshRowRadiusDrop.FirstApexUniqueRadiusExactFiveMinimalDistinctResidual.carrier_card_ge_thirteen_of_actualFreshBlocker_doubleHit
-          Rmin normalForm.secondApex_robust hfreshA hq hw
-      have hwitness :=
-        exists_supportTriangleSource_freshActualBlocker_of_doubleHit
-          Rmin.residual normalForm.secondApex_robust C.center₁_mem_A
-          normalForm.blockerClass hfreshA hq hw
-      exact Or.inl ⟨hcard, hwitness⟩
-    · exact Or.inr (Or.inr (Or.inl
-        (nonempty_wOmittedQHitReselection Rmin hfreshA hw hq)))
-  · by_cases hw : Rmin.residual.interior.frontier.pair.w ∈
-        (H.selectedAt fresh hfreshA).toCriticalFourShell.support
-    · exact Or.inr (Or.inl
-        (nonempty_qOmittedWHitReselection Rmin hfreshA hq hw))
-    · exact Or.inr (Or.inr (Or.inr ⟨hq, hw⟩))
+  rcases
+      exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases_with_hits
+        Rmin C normalForm hfreshA with hlarge | hremaining
+  · exact Or.inl hlarge.2.2.2
+  · exact Or.inr hremaining
 
 /-- Open strict-source physical endpoint: a deletion source distinct from the
 original interior deletion preserves all three exact selected rows, while the
@@ -1693,17 +1749,16 @@ theorem false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
     Balanced555FiniteUnsat.false_of_balanced555FiniteConfiguration
       finiteConfiguration
 
-/-- The bi-apex-robust exact-five endpoint splits soundly into a genuinely
-new three-center deletion source or the exact-twelve tight physical cover.
-The common-deletion packet retains its source orientation instead of erasing
-which interior source was deleted and which source supplied the blocker row.
-Before the split, the actual simultaneous-deletion witness reselects the
-second row so the former five-incidence alternative is not needed. -/
-theorem false_of_exactFiveDistinct_threeCenterNormalForm
+-- The optional witness belongs to this exact interior pair. Compatibility
+-- callers without it keep the ordinary physical route; no minimum is inferred.
+private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    (minimumPair : Option
+      { M : FirstApexExactFiveInteriorFrontier.MinimalAdmissibleInteriorPair D S radius H //
+          M.frontier = R.interior })
     {deleted center : ℝ²}
     (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
     (normalForm : ExactFiveDistinctThreeCenterNormalForm R C) :
@@ -1734,14 +1789,50 @@ theorem false_of_exactFiveDistinct_threeCenterNormalForm
   rcases nonempty_strictThreeCenterAlternative R C' normalForm' with ⟨strict⟩
   cases strict with
   | distinctFresh fresh fresh_ne_deleted packet =>
-      exact
-        false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
-          R C' normalForm' fresh fresh_ne_deleted packet
-          hretained' retainedPacket
+      cases minimumPair with
+      | none =>
+          exact
+            false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+              R C' normalForm' fresh fresh_ne_deleted packet
+              hretained' retainedPacket
+      | some minimumPair =>
+          let Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F :=
+            ⟨R, minimumPair.val, minimumPair.property⟩
+          -- Each branch keeps the original physical packet and minimum pair.
+          -- The large arm additionally keeps both hits and closed-cap card ≥ 6.
+          -- The remaining geometry still uses the original admission below.
+          rcases
+              exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases_with_hits
+                Rmin C' normalForm' packet.q_mem_A with
+            hlarge | hqOmitted | hwOmitted | hbothOmitted
+          all_goals
+            exact
+              false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+                R C' normalForm' fresh fresh_ne_deleted packet
+                hretained' retainedPacket
   | exactTwelveTightPhysical hcard hunion herase hmissing packet =>
       exact
         false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
           R C' normalForm' hcard hunion herase hmissing packet
+
+/-- The bi-apex-robust exact-five endpoint splits soundly into a genuinely
+new three-center deletion source or the exact-twelve tight physical cover.
+The common-deletion packet retains its source orientation instead of erasing
+which interior source was deleted and which source supplied the blocker row.
+Before the split, the actual simultaneous-deletion witness reselects the
+second row so the former five-incidence alternative is not needed. -/
+theorem false_of_exactFiveDistinct_threeCenterNormalForm
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (normalForm : ExactFiveDistinctThreeCenterNormalForm R C) :
+    False := by
+  exact
+    false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPair
+      R none C normalForm
 
 /-- The oriented robust endpoint reduces to a support-preserving three-center
 normal form with the retained source's second-row incidence resolved. -/
@@ -1774,6 +1865,9 @@ private theorem false_of_exactFiveDistinct_commonDeletion
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
     (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    (minimumPair : Option
+      { M : FirstApexExactFiveInteriorFrontier.MinimalAdmissibleInteriorPair D S radius H //
+          M.frontier = R.interior })
     {deleted center : ℝ²}
     (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
     (horiented :
@@ -1787,8 +1881,8 @@ private theorem false_of_exactFiveDistinct_commonDeletion
   rcases physicalSecondApex_commonDeletion_robust_or_critical C with
     hrobust | hcritical
   · exact
-      false_of_exactFiveDistinct_biApexRobust_postCardEleven
-        R C horiented hrobust.some
+      false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPair
+        R minimumPair C (nonempty_normalForm R C horiented hrobust.some).some
   · have hswapped :
         Nonempty (SwappedFirstApexUniqueFourFrontier D S H) :=
       physicalSecondCritical_reorients_to_swappedUniqueFour
@@ -1885,14 +1979,16 @@ theorem
       false_of_exactFiveDistinct_commonDeletion_of_card_eq_eleven
         R hcard C
 
-/-- Open exact-five residual with distinct selected obstruction centers.
-This is a load-bearing production obligation for
-`false_of_originalFrontierUniqueRadiusArm`. -/
-theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+-- Share the directed-deletion construction without projecting away the
+-- minimum-pair witness supplied by the live initially distinct branch.
+private theorem false_of_exactFiveDistinctResidual_with_minimumPair
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     {F : CriticalPairFrontier D S radius H}
-    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    (minimumPair : Option
+      { M : FirstApexExactFiveInteriorFrontier.MinimalAdmissibleInteriorPair D S radius H //
+          M.frontier = R.interior }) :
     False := by
   let P := R.interior.frontier.pair
   rcases R.directed_crossDeletion_survival with hdeleteW | hdeleteQ
@@ -1905,7 +2001,7 @@ theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidua
           P.w_mem_A hcenterA (exactFiveDistinct_oppApex2_mem_A S)
           P.q_blocker_ne_oppApex2 hdeleteW P.w_survives with
       ⟨C⟩
-    exact false_of_exactFiveDistinct_commonDeletion R C
+    exact false_of_exactFiveDistinct_commonDeletion R minimumPair C
       (Or.inl ⟨rfl, rfl⟩)
   · have hcenterA : H.centerAt P.w P.w_mem_A ∈ D.A := by
       exact
@@ -1916,8 +2012,19 @@ theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidua
           P.q_mem_A hcenterA (exactFiveDistinct_oppApex2_mem_A S)
           P.w_blocker_ne_oppApex2 hdeleteQ P.q_survives with
       ⟨C⟩
-    exact false_of_exactFiveDistinct_commonDeletion R C
+    exact false_of_exactFiveDistinct_commonDeletion R minimumPair C
       (Or.inr ⟨rfl, rfl⟩)
+
+/-- Open exact-five residual with distinct selected obstruction centers.
+This is a load-bearing production obligation for
+`false_of_originalFrontierUniqueRadiusArm`. -/
+theorem false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F) :
+    False := by
+  exact false_of_exactFiveDistinctResidual_with_minimumPair R none
 
 /-- Reduce the exact-five common-obstruction-center residual by adaptive
 strict-interior reselection.  The resulting exact-four or distinct exact-five
@@ -1980,8 +2087,9 @@ theorem false_of_originalFrontierUniqueRadiusArm
       hfourResidual.some
   · rcases hfiveResidual with hdistinct | hcommon
     · exact
-        false_of_firstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual
+        false_of_exactFiveDistinctResidual_with_minimumPair
           hdistinct.some.residual
+          (some ⟨hdistinct.some.minimalPair, hdistinct.some.source_eq⟩)
     · exact
         false_of_firstApexUniqueRadiusExactFiveCommonObstructionCenterResidual
           hcommon.some.residual
