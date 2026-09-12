@@ -923,4 +923,6 @@ Bounded-degree linear algebra over a Macaulay matrix is not a shortcut here.  Th
 total degree that admits a certificate is 12, proven with exact rational ranks over three
 primes, where every lower degree shows a rank gap of exactly one.  Sparsification of that
 system bottomed out at 2290 monomials with 124-digit coefficients, which is worse than the
-Groebner route on both counts.
+Groebner route on both counts.  That degree bound is still useful, because the certificate
+this file carries reaches total degree 12 in the products `c_j * g_j`.  The Groebner route
+therefore already attains the minimum degree, which neither method shows on its own.
