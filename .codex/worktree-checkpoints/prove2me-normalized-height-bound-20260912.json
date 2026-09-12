@@ -1,0 +1,21 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-normalized-height-bound-20260912",
+  "base_head": "66910c745fe68afcd6d262d76242c84f26bc5502",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-normalized-height-bound-20260912.json",
+    "prove2me/submissions/normalized-height-bound/README.md",
+    "prove2me/submissions/normalized-height-bound/explanation.md",
+    "prove2me/submissions/normalized-height-bound/plan.toml",
+    "prove2me/submissions/normalized-height-bound/platform/Solutions/Sol_Erdos9796Mission_normalized_mutual_return_height_lt.lean",
+    "prove2me/submissions/normalized-height-bound/platform/Theorems/Thm_Erdos9796Mission_normalized_mutual_return_height_lt.lean",
+    "prove2me/submissions/normalized-height-bound/platform/Validation/NormalizedHeightBoundKernel.lean",
+    "prove2me/submissions/normalized-height-bound/receipt.json",
+    "prove2me/submissions/normalized-height-bound/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-normalized-height-bound",
+  "created_utc": "2026-09-12T21:52:02Z",
+  "manifest_sha256": "1c9c61c374800122144d1c1c76902c0b8cc91b3f7d2be769960020440a90e989"
+}

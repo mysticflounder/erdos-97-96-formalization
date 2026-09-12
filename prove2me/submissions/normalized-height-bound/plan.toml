@@ -1,0 +1,25 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under Apache-2.0 as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/normalized-height-bound/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Erdos9796Mission.normalized_mutual_return_height_lt"
+title = "A guarded two-circle return has a sharp height bound"
+file = "submissions/normalized-height-bound/platform/Theorems/Thm_Erdos9796Mission_normalized_mutual_return_height_lt.lean"
+natural_language_statement = "Let five points of a finite planar set in strictly convex position satisfy the listed noncoincidence relations. Suppose an injective affine chart sends two endpoints to (-1,0) and (1,0), points O and c to (0,-σh) and (0,σk), and the return point to (x,σy), where σ is 1 or -1, s is positive with s² = 3, 1 < h, and 0 < k ≤ 1. If the two listed equal-distance equations hold and an affine functional is positive on the left endpoint and c but negative on O and the return point, then k < 2 - s."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/04b4513a587040d0d9f5b24ab5500123fc60d48b/lean/Erdos9796Proof/P97/ATail/ExactFiveMutualReturnChord.lean#L185-L320"
+tags = ["discrete-geometry", "erdos-97", "affine-geometry", "strict-convexity"]
+
+[[proof]]
+theorem = "Erdos9796Mission.normalized_mutual_return_height_lt"
+file = "submissions/normalized-height-bound/platform/Solutions/Sol_Erdos9796Mission_normalized_mutual_return_height_lt.lean"
+explanation = "submissions/normalized-height-bound/explanation.md"
+proof_type = "prove"

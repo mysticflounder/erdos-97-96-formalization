@@ -1,0 +1,41 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Erdos9796Mission.normalized_mutual_return_height_lt": {
+      "payload_sha256": "56fa80e709aa055537b4d2a1d17589aacd0eb3aade1110a7ff14527fd80bfa03",
+      "state": "RECORDED",
+      "submission_id": "d8b39a5f-2e52-4381-bff5-fb633018d1ee"
+    },
+    "theorem:Erdos9796Mission.normalized_mutual_return_height_lt": {
+      "job_id": "97ff1fa9-d935-4cc7-9f14-e214a9d5a85f",
+      "payload_sha256": "8c394bbcc9ef3cb6af13bbcdd45fc2a200a4b71a4adeb4d90d7490149fccdf2c",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "1ad9903f9ff843dc1c6d113663f9ac09d05807254dabbe53064079446ce563fb",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.normalized_mutual_return_height_lt": {
+      "created_at": "2026-09-12T22:08:22.662977+00:00",
+      "error_message": "",
+      "file_path": "09ac9ffb-253c-4cc9-bb39-07c6bd82c39a/6ac78adb-dda3-4892-bb46-d4c86f102d16/d8b39a5f-2e52-4381-bff5-fb633018d1ee.lean",
+      "id": "d8b39a5f-2e52-4381-bff5-fb633018d1ee",
+      "status": "ACCEPTED",
+      "submission_id": "d8b39a5f-2e52-4381-bff5-fb633018d1ee",
+      "theorem_id": "09ac9ffb-253c-4cc9-bb39-07c6bd82c39a",
+      "updated_at": "2026-09-12T22:13:24.341984+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.normalized_mutual_return_height_lt": {
+      "job_id": "97ff1fa9-d935-4cc7-9f14-e214a9d5a85f",
+      "status": "PUBLISHED",
+      "theorem_id": "09ac9ffb-253c-4cc9-bb39-07c6bd82c39a"
+    }
+  }
+}

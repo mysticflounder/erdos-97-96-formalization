@@ -1,0 +1,88 @@
+{
+  "schema": "prove2me-normalized-height-bound-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revision": "04b4513a587040d0d9f5b24ab5500123fc60d48b",
+  "plan_digest": "1ad9903f9ff843dc1c6d113663f9ac09d05807254dabbe53064079446ce563fb",
+  "prepublication_readback": {
+    "status": "PASS",
+    "exact_name_absent": "Erdos9796Mission.normalized_mutual_return_height_lt",
+    "semantic_overlap": "Erdos9796Mission.normalized_mutual_return_false"
+  },
+  "accepted_dependency_readback": {
+    "id": "a40287f1-41d7-4747-9f4f-75857c97b51e",
+    "name": "Erdos9796Mission_NormalizedMutualReturn",
+    "status": "Definition"
+  },
+  "theorem_stub_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "solution_compile": {
+    "count": 1,
+    "root_solution_check": "PASS",
+    "status": "PASS"
+  },
+  "platform_composition_compile": {
+    "file": "platform/Validation/NormalizedHeightBoundKernel.lean",
+    "status": "PASS"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.ExactFiveMutualReturnChord.normalized_mutual_return_height_lt"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_axiom_audit": {
+    "declarations": [
+      "NormalizedHeightBoundKernelValidation.normalized_mutual_return_height_lt"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "native_decide",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by"
+    ],
+    "status": "PASS"
+  },
+  "receipt_sha256": "b9eaef17e13f56d161a3dfe86caacec3a19b3f2c7b8026016917fe30f018b692",
+  "live_readback": {
+    "checked_utc": "2026-09-12T22:14:10Z",
+    "status": "PASS",
+    "theorem": {
+      "id": "09ac9ffb-253c-4cc9-bb39-07c6bd82c39a",
+      "name": "Erdos9796Mission.normalized_mutual_return_height_lt",
+      "status": "Proved",
+      "proof_id": "d8b39a5f-2e52-4381-bff5-fb633018d1ee",
+      "proof_status": "ACCEPTED"
+    },
+    "milestone_created": false
+  },
+  "files": {
+    "README.md": "de9ff45c8f540be03f60eeab9b9b085e853394d5b816c7c258d7d07aadbd94aa",
+    "explanation.md": "6affdcbf044f56848a4a39127a441dd4f2b1581cfb4e8618bb9a7d91c2639bc0",
+    "plan.toml": "3edceb5c42d983d6cd1558e432ff84e9769daca91745a6d297b91d4208e0ba05",
+    "platform/Theorems/Thm_Erdos9796Mission_normalized_mutual_return_height_lt.lean": "f2891b09e0b4376323695120fab21c3a3b6621218938e40c6f0bf164bc3d4fa3",
+    "platform/Solutions/Sol_Erdos9796Mission_normalized_mutual_return_height_lt.lean": "7f819db8d153de7b5f25bf104cf40c58dfd75daf9b3505ddb49d480f0cbc8e55",
+    "platform/Validation/NormalizedHeightBoundKernel.lean": "44a311742e5622868173f74bb0b8dd4d7b4525884cfa8666f509dddf1c6db92e"
+  }
+}
