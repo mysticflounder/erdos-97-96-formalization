@@ -1,0 +1,46 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/small-cardinality/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Erdos9796Mission.counterexample_card_ge_ten"
+title = "Every counterexample has at least ten points"
+file = "submissions/small-cardinality/platform/Theorems/Thm_Erdos9796Mission_counterexample_card_ge_ten.lean"
+natural_language_statement = "Every nonempty finite planar point set in strictly convex position such that, at each vertex, four other points lie at some common positive distance from that vertex has at least ten points. The radius may depend on the vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/10136cbd97ce7adae0b7bdb0fa28a67dfde01906/lean/Erdos9796Proof/P97/SmallCardinality.lean#L31-L38"
+tags = ["discrete-geometry", "erdos-97", "small-cardinality"]
+
+[[theorem]]
+name = "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine"
+title = "Problem 97 holds through nine points"
+file = "submissions/small-cardinality/platform/Theorems/Thm_Erdos9796Mission_not_hasNEquidistantProperty_four_of_card_le_nine.lean"
+natural_language_statement = "Every nonempty finite planar point set of at most nine points in strictly convex position has a vertex for which no positive-radius circle centered there contains four other points of the set."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/10136cbd97ce7adae0b7bdb0fa28a67dfde01906/lean/Erdos9796Proof/P97/SmallCardinality.lean#L43-L49"
+tags = ["discrete-geometry", "erdos-97", "small-cardinality"]
+
+[[proof]]
+theorem = "Erdos9796Mission.counterexample_card_ge_ten"
+file = "submissions/small-cardinality/platform/Solutions/Sol_Erdos9796Mission_counterexample_card_ge_ten.lean"
+explanation = "submissions/small-cardinality/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine"
+file = "submissions/small-cardinality/platform/Solutions/Sol_Erdos9796Mission_not_hasNEquidistantProperty_four_of_card_le_nine.lean"
+explanation = "submissions/small-cardinality/explanation.md"
+proof_type = "prove"
+
+[[milestone]]
+title = "Complete the small-cardinality range through nine points"
+description = "Combine the proved counting lower bound with the proved exclusion of a nine-point counterexample. Show that any nonempty finite planar point set in strictly convex position where each vertex has four other points at some common positive distance has at least ten points; the radius may vary by vertex. Therefore the desired conclusion of Problem 97 holds for every such set of at most nine points."
+theorem = "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine"
+sort_order = 2
+reason = "Connect the two completed small-cardinality branches and record the proved base range used by the descent argument."

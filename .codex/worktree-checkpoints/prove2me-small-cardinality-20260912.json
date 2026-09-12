@@ -1,0 +1,24 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-small-cardinality-20260912",
+  "base_head": "10136cbd97ce7adae0b7bdb0fa28a67dfde01906",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-small-cardinality-20260912.json",
+    "prove2me/submissions/small-cardinality/README.md",
+    "prove2me/submissions/small-cardinality/explanation.md",
+    "prove2me/submissions/small-cardinality/plan.toml",
+    "prove2me/submissions/small-cardinality/platform/Solutions/Sol_Erdos9796Mission_counterexample_card_ge_ten.lean",
+    "prove2me/submissions/small-cardinality/platform/Solutions/Sol_Erdos9796Mission_not_hasNEquidistantProperty_four_of_card_le_nine.lean",
+    "prove2me/submissions/small-cardinality/platform/Theorems/Thm_Erdos9796Mission_counterexample_card_ge_ten.lean",
+    "prove2me/submissions/small-cardinality/platform/Theorems/Thm_Erdos9796Mission_not_hasNEquidistantProperty_four_of_card_le_nine.lean",
+    "prove2me/submissions/small-cardinality/platform/Validation/SmallCardinalityKernel.lean",
+    "prove2me/submissions/small-cardinality/receipt-failed-first-attempt.json",
+    "prove2me/submissions/small-cardinality/receipt.json",
+    "prove2me/submissions/small-cardinality/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-small-cardinality",
+  "created_utc": "2026-09-12T12:40:38Z",
+  "manifest_sha256": "a576455cef1a9843945099f4ff42454cadcb011e9e642ba7857343800ae47930"
+}

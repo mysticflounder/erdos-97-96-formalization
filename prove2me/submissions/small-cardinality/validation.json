@@ -1,0 +1,102 @@
+{
+  "accepted_dependency_readback": {
+    "checked_utc": "2026-09-12T12:46:51Z",
+    "status": "PASS",
+    "theorems": [
+      {
+        "id": "c35e1c76-5531-4585-9ced-8c47a929793e",
+        "name": "Erdos9796Mission.counterexample_card_ge_nine",
+        "status": "Proved"
+      },
+      {
+        "id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+        "name": "Erdos9796Mission.finite_nine_exclusion",
+        "status": "Proved"
+      }
+    ]
+  },
+  "files": {
+    "README.md": "dbaddfa9b9d56c5403290bc53c3455d38e73e022e921c8c46aef2beee51f9c18",
+    "explanation.md": "66ca46d14eb0f3cd2ff967049d0a64ebf4ac983d9ba6577dbe404b68985877b2",
+    "plan.toml": "c0659c7bf71440833772212687670709b81027d3011db816e760d08080bc7046",
+    "platform/Solutions/Sol_Erdos9796Mission_counterexample_card_ge_ten.lean": "cbc9a864998a908aab83549894aedda22850bc531c7102fbb8cb46d488cd9d9b",
+    "platform/Solutions/Sol_Erdos9796Mission_not_hasNEquidistantProperty_four_of_card_le_nine.lean": "278f2563949cfda68cb4ff12865ee16deb1c49c087e345a17749844ef4981f52",
+    "platform/Theorems/Thm_Erdos9796Mission_counterexample_card_ge_ten.lean": "35927ddf6ffb7c733b61b0319d6746adfa5f44036aeae4fa2650802f2e2b0912",
+    "platform/Theorems/Thm_Erdos9796Mission_not_hasNEquidistantProperty_four_of_card_le_nine.lean": "55928fba1ee31a3ba9e79f9c51444c2b6bf43c40e0e7c8e16a67d9a9759a493d",
+    "platform/Validation/SmallCardinalityKernel.lean": "2498820cb83d48971d85596c4285555504efadc0f514bfc730a5da51cd1c3350",
+    "receipt-failed-first-attempt.json": "75550d87ad41a38c811b7182cd291cba73eb354d21c8c9063132386b64b0e80b"
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "status": "PASS",
+    "tokens": [
+      "sorry",
+      "native_decide",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by"
+    ]
+  },
+  "lean_version": "4.33.1",
+  "live_readback": {
+    "checked_utc": "2026-09-12T13:17:25Z",
+    "milestone": {
+      "completed": true,
+      "id": "ff950dff-4d15-4e86-8bd7-7f44f5aca405",
+      "sort_order": 2,
+      "title": "Complete the small-cardinality range through nine points"
+    },
+    "status": "PASS",
+    "theorems": [
+      {
+        "id": "e1b3299f-23b0-45b2-8d9a-4c28b2de049e",
+        "name": "Erdos9796Mission.counterexample_card_ge_ten",
+        "status": "Proved"
+      },
+      {
+        "id": "762cc684-26e4-41c0-8d39-2bf41c78d1a8",
+        "name": "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine",
+        "status": "Proved"
+      }
+    ]
+  },
+  "plan_digest": "87cda512f7801c9b3997512878db19289cb7e5ca51fcfdb84665b6b9e0c55dee",
+  "platform_composition_compile": {
+    "file": "platform/Validation/SmallCardinalityKernel.lean",
+    "status": "PASS"
+  },
+  "platform_version": "0.10.3",
+  "publication_retry": {
+    "correction": "The second theorem statement now imports only previously Proved platform theorems; its solution still imports the newly proved ten-point theorem.",
+    "failed_receipt": "receipt-failed-first-attempt.json",
+    "published_theorem_id": "e1b3299f-23b0-45b2-8d9a-4c28b2de049e",
+    "status": "READY"
+  },
+  "receipt_sha256": "13cc9b3157e609a74c789c22e1430f0d50649ccd70bd2de9cc67d5dae4431093",
+  "schema": "prove2me-small-cardinality-validation/v1",
+  "solution_compile": {
+    "count": 2,
+    "status": "PASS"
+  },
+  "source_axiom_audit": {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "declarations": [
+      "Problem97.counterexample_card_ge_ten",
+      "Problem97.not_hasNEquidistantProperty_four_of_card_le_nine"
+    ],
+    "status": "PASS"
+  },
+  "source_revision": "10136cbd97ce7adae0b7bdb0fa28a67dfde01906",
+  "theorem_stub_compile": {
+    "count": 2,
+    "status": "PASS"
+  }
+}

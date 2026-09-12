@@ -1,0 +1,71 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "milestone-create:Complete the small-cardinality range through nine points": {
+      "milestone_id": "ff950dff-4d15-4e86-8bd7-7f44f5aca405",
+      "payload_sha256": "f489204531fe1752836d3c79a25580cfc28b1f4989a9ee96871bf09071f07c3b",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796Mission.counterexample_card_ge_ten": {
+      "payload_sha256": "eef49644dc7627ddf8b534fe671f5ae0c63ef7cc88acedc2bda9b809050e3475",
+      "state": "RECORDED",
+      "submission_id": "425f247c-8f31-492d-9ccf-d108a43e399d"
+    },
+    "proof:Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine": {
+      "payload_sha256": "1a355844bd37a83da0ebdb0e93d41a103d9f55cdc816918e260aff1ce13c59d8",
+      "state": "RECORDED",
+      "submission_id": "2e2af760-489e-40b7-b5fd-6e3d5b35fe74"
+    },
+    "theorem:Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine": {
+      "job_id": "15de5524-35fd-41a1-9ea1-55bd229516e1",
+      "payload_sha256": "168f49646cf970cd93c4a862bc029dd776f695a2fdfce692b8b19036d4fa4211",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {
+    "Complete the small-cardinality range through nine points": {
+      "id": "ff950dff-4d15-4e86-8bd7-7f44f5aca405",
+      "status": "ENSURED"
+    }
+  },
+  "mission_description": {},
+  "plan_digest": "87cda512f7801c9b3997512878db19289cb7e5ca51fcfdb84665b6b9e0c55dee",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.counterexample_card_ge_ten": {
+      "created_at": "2026-09-12T13:12:36.71999+00:00",
+      "error_message": "",
+      "file_path": "e1b3299f-23b0-45b2-8d9a-4c28b2de049e/6ac78adb-dda3-4892-bb46-d4c86f102d16/425f247c-8f31-492d-9ccf-d108a43e399d.lean",
+      "id": "425f247c-8f31-492d-9ccf-d108a43e399d",
+      "status": "ACCEPTED",
+      "submission_id": "425f247c-8f31-492d-9ccf-d108a43e399d",
+      "theorem_id": "e1b3299f-23b0-45b2-8d9a-4c28b2de049e",
+      "updated_at": "2026-09-12T13:13:40.196986+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine": {
+      "created_at": "2026-09-12T13:13:41.263447+00:00",
+      "error_message": "",
+      "file_path": "762cc684-26e4-41c0-8d39-2bf41c78d1a8/6ac78adb-dda3-4892-bb46-d4c86f102d16/2e2af760-489e-40b7-b5fd-6e3d5b35fe74.lean",
+      "id": "2e2af760-489e-40b7-b5fd-6e3d5b35fe74",
+      "status": "ACCEPTED",
+      "submission_id": "2e2af760-489e-40b7-b5fd-6e3d5b35fe74",
+      "theorem_id": "762cc684-26e4-41c0-8d39-2bf41c78d1a8",
+      "updated_at": "2026-09-12T13:16:56.422057+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.counterexample_card_ge_ten": {
+      "status": "Open",
+      "theorem_id": "e1b3299f-23b0-45b2-8d9a-4c28b2de049e"
+    },
+    "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine": {
+      "job_id": "15de5524-35fd-41a1-9ea1-55bd229516e1",
+      "status": "PUBLISHED",
+      "theorem_id": "762cc684-26e4-41c0-8d39-2bf41c78d1a8"
+    }
+  }
+}

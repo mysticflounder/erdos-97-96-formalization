@@ -1,0 +1,51 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "theorem:Erdos9796Mission.counterexample_card_ge_ten": {
+      "job_id": "6d4758e7-a841-4ee1-96a0-3e148c3e7e9a",
+      "payload_sha256": "1475dd2a5b8bc2e2098ac1121ef606ad8ca045ead97ab5969f76eb5b885fc753",
+      "state": "RECORDED"
+    },
+    "theorem:Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine": {
+      "job_id": "06a04ef8-7d7c-4b3e-b0f1-a26dedd4c29d",
+      "payload_sha256": "5eb82483037782854c256a8d309837416fe235b732cf0c8f0b66cb05bfb7a8c6",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "9b32373653429b8f8288d10277118481f0460e8fdd1c8d15cbf5f5ada0799b5b",
+  "proof_attempts": {},
+  "proofs": {},
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.counterexample_card_ge_ten": {
+      "job_id": "6d4758e7-a841-4ee1-96a0-3e148c3e7e9a",
+      "status": "PUBLISHED",
+      "theorem_id": "e1b3299f-23b0-45b2-8d9a-4c28b2de049e"
+    },
+    "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine": {
+      "created_at": "2026-09-12T13:03:28.155219+00:00",
+      "definitions": "import Theorems.Thm_Erdos9796Mission_counterexample_card_ge_ten\n\nopen Erdos9796Mission",
+      "error_message": "Imported platform theorems must be Proved at submission time, but the following are not: Erdos9796Mission.counterexample_card_ge_ten (status=Open). Prove them via /verify first, or use them as a reduction in a proof_type=prove submission (where Open imports become decomposition children).",
+      "formal_statement": "theorem Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine :\n    ∀ A : Finset Plane, A.Nonempty → ConvexIndep (A : Set Plane) →\n      A.card ≤ 9 → ¬ HasNEquidistantProperty 4 A := by sorry",
+      "id": "06a04ef8-7d7c-4b3e-b0f1-a26dedd4c29d",
+      "job_id": "06a04ef8-7d7c-4b3e-b0f1-a26dedd4c29d",
+      "kind": "problem",
+      "natural_language_statement": "Every nonempty finite planar point set of at most nine points in strictly convex position has a vertex for which no positive-radius circle centered there contains four other points of the set.",
+      "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/10136cbd97ce7adae0b7bdb0fa28a67dfde01906/lean/Erdos9796Proof/P97/SmallCardinality.lean#L43-L49",
+      "status": "FAILED",
+      "tags": [
+        "discrete-geometry",
+        "erdos-97",
+        "small-cardinality"
+      ],
+      "theorem_id": null,
+      "theorem_name": "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine",
+      "theorem_title": "Problem 97 holds through nine points",
+      "updated_at": "2026-09-12T13:06:15.052971+00:00",
+      "visibility": "public"
+    }
+  }
+}
