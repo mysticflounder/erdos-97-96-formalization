@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-submit-root-solution-20260912",
+  "base_head": "b214e640fed1ff785b8686a58017b95c148252c4",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-submit-root-solution-20260912.json",
+    "prove2me/tests/test_prove2me_submit.py",
+    "prove2me/tools/README.md",
+    "prove2me/tools/prove2me_submit.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-submit-root-solution",
+  "created_utc": "2026-09-12T21:42:44Z",
+  "manifest_sha256": "f2d3b195f3619f769661fd46ebb06bd93c1b8cb063166522b4294a58fc874387"
+}

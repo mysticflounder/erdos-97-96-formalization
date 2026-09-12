@@ -70,6 +70,13 @@ Text before the marker becomes `preamble`; text after it becomes
 exact dotted name from the plan. During apply, an existing remote theorem must
 have the same name and byte-for-byte statement text or the run stops.
 
+Each proof file must declare an unqualified theorem or lemma named `solution`
+at the root namespace. A root-level `section` may surround it, and helper
+declarations may use namespaces, but `Namespace.solution` is not visible to
+the platform's proof wrapper. Validation rejects that shape before any network
+request. Proof files also reject `sorry` and `admit` outside comments and
+strings.
+
 The receipt is written atomically before every POST or PATCH. It records the
 hash of the intended request before mutation, then records returned publish-job
 and proof-submission IDs before polling. Reruns resume known jobs and

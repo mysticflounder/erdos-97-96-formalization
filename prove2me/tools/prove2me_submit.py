@@ -211,6 +211,28 @@ def _validate_proof_source(path: Path, source: bytes) -> None:
     placeholder = re.search(r"\b(?:sorry|admit)\b", code)
     if placeholder:
         raise SubmissionError(f"proof source contains {placeholder.group(0)!r}: {path}")
+    scope_stack: list[str] = []
+    root_solution = False
+    command_re = re.compile(
+        r"(?m)^[ \t]*(?P<command>namespace|section|mutual|end|theorem|lemma)\b"
+        r"(?:[ \t]+(?P<name>[^\s({:]+))?"
+    )
+    for match in command_re.finditer(code):
+        command = match.group("command")
+        if command == "namespace":
+            scope_stack.append("namespace")
+        elif command in {"section", "mutual"}:
+            scope_stack.append(command)
+        elif command == "end":
+            if scope_stack:
+                scope_stack.pop()
+        elif match.group("name") == "solution" and "namespace" not in scope_stack:
+            root_solution = True
+    if not root_solution:
+        raise SubmissionError(
+            "proof source must declare an unqualified root-level theorem or lemma "
+            f"named solution: {path}"
+        )
 
 
 def _required_string(table: dict[str, Any], key: str, context: str) -> str:

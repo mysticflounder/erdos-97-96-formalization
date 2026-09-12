@@ -438,6 +438,64 @@ explanation = "explanation.md"
         load_plan(plan_path)
 
 
+def test_proof_source_rejects_namespace_scoped_solution(tmp_path: Path) -> None:
+    plan_path = write_plan(tmp_path)
+    (tmp_path / "solution.lean").write_text(
+        """namespace Hidden
+section Inner
+theorem solution (n : Nat) : n = n := by rfl
+end Inner
+end Hidden
+""",
+        encoding="utf-8",
+    )
+    (tmp_path / "explanation.md").write_text("Reflexivity.", encoding="utf-8")
+    with plan_path.open("a", encoding="utf-8") as stream:
+        stream.write(
+            """
+[[proof]]
+theorem = "Example.target"
+file = "solution.lean"
+explanation = "explanation.md"
+"""
+        )
+
+    with pytest.raises(SubmissionError, match="root-level theorem or lemma"):
+        load_plan(plan_path)
+
+
+def test_proof_source_accepts_root_solution_in_section_after_namespace(
+    tmp_path: Path,
+) -> None:
+    plan_path = write_plan(tmp_path)
+    (tmp_path / "solution.lean").write_text(
+        """-- namespace Commented
+def message := "namespace StringValue"
+namespace Helpers
+theorem helper (n : Nat) : n = n := by rfl
+end Helpers
+section Wrapper
+theorem solution (n : Nat) : n = n := by rfl
+end Wrapper
+""",
+        encoding="utf-8",
+    )
+    (tmp_path / "explanation.md").write_text("Reflexivity.", encoding="utf-8")
+    with plan_path.open("a", encoding="utf-8") as stream:
+        stream.write(
+            """
+[[proof]]
+theorem = "Example.target"
+file = "solution.lean"
+explanation = "explanation.md"
+"""
+        )
+
+    loaded = load_plan(plan_path)
+
+    assert len(loaded.proofs) == 1
+
+
 def test_terminal_proof_failure_is_not_retried_by_default(tmp_path: Path) -> None:
     plan_path = write_plan(tmp_path)
     append_proof(plan_path)
