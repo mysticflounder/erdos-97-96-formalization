@@ -1,0 +1,62 @@
+{
+  "definitions": {
+    "Erdos9796Mission_RemovableVertex": {
+      "definition_id": "a6f9d176-48d7-4025-bde1-e8b9a859b349",
+      "job_id": "cfed14a4-3021-4739-8c9a-3c0aa443098d",
+      "status": "PUBLISHED"
+    }
+  },
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "definition:Erdos9796Mission_RemovableVertex": {
+      "job_id": "cfed14a4-3021-4739-8c9a-3c0aa443098d",
+      "payload_sha256": "933a9a88f7dbd80fcdf1ffc8ea75c162cf94dd1b81c7753e1b3dc8d1e5a6f17b",
+      "state": "RECORDED"
+    },
+    "milestone-create:A removable vertex produces a smaller counterexample": {
+      "milestone_id": "8f564fef-9ddf-48a7-82b1-227bfcd24a31",
+      "payload_sha256": "2d2c1c229a9cd2ab0e44f21e87c29671a754d12401c45edc701e5229caec5ea7",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796Mission.smaller_counterexample_of_removable": {
+      "payload_sha256": "1636544c55718e0d61e8b23f8058d39310adbe7b31cdf96f3a2b903d085c1110",
+      "state": "RECORDED",
+      "submission_id": "7ebc1c30-66c9-40b5-ac95-b5f01adb6e3e"
+    },
+    "theorem:Erdos9796Mission.smaller_counterexample_of_removable": {
+      "job_id": "9d3afad2-580d-4b5d-a3a6-aa4aab60b98f",
+      "payload_sha256": "1a08b2ad3aa0a89ee4a578eda1c9908b7e2672cac2c8762a595706396ae22d54",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {
+    "A removable vertex produces a smaller counterexample": {
+      "id": "8f564fef-9ddf-48a7-82b1-227bfcd24a31",
+      "status": "ENSURED"
+    }
+  },
+  "mission_description": {},
+  "plan_digest": "df5f3b5af2af651969eb0d266b29aa770025f86c3bffdafea8b52e28875e5587",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.smaller_counterexample_of_removable": {
+      "created_at": "2026-09-12T21:05:45.332027+00:00",
+      "error_message": "",
+      "file_path": "723031a3-ceea-4c27-8c5d-8f18a141a272/6ac78adb-dda3-4892-bb46-d4c86f102d16/7ebc1c30-66c9-40b5-ac95-b5f01adb6e3e.lean",
+      "id": "7ebc1c30-66c9-40b5-ac95-b5f01adb6e3e",
+      "status": "ACCEPTED",
+      "submission_id": "7ebc1c30-66c9-40b5-ac95-b5f01adb6e3e",
+      "theorem_id": "723031a3-ceea-4c27-8c5d-8f18a141a272",
+      "updated_at": "2026-09-12T21:07:48.596559+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.smaller_counterexample_of_removable": {
+      "job_id": "9d3afad2-580d-4b5d-a3a6-aa4aab60b98f",
+      "status": "PUBLISHED",
+      "theorem_id": "723031a3-ceea-4c27-8c5d-8f18a141a272"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under GPL-3.0-or-later as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/removable-vertex-glue/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[definition]]
+name = "Erdos9796Mission_RemovableVertex"
+file = "submissions/removable-vertex-glue/platform/Definitions/Def_Erdos9796Mission_RemovableVertex.lean"
+title = "Removable vertex for the repeated-distance property"
+natural_language_statement = "A vertex of a finite planar point set is removable when deleting it preserves the property that every remaining vertex has four other points at some common positive distance; the radius may depend on the remaining vertex."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/743b102037e9c43dd610a4db761433ce35862a99/lean/Erdos9796Proof/P97/SmallerCounterexample.lean#L25-L26"
+tags = ["discrete-geometry", "erdos-97", "descent", "definitions"]
+private = false
+
+[[theorem]]
+name = "Erdos9796Mission.smaller_counterexample_of_removable"
+title = "Deleting a removable vertex gives a smaller counterexample"
+file = "submissions/removable-vertex-glue/platform/Theorems/Thm_Erdos9796Mission_smaller_counterexample_of_removable.lean"
+natural_language_statement = "Let A be a finite planar point set in strictly convex position with at least two points. If A has a vertex whose deletion preserves four equidistant witnesses at every remaining vertex, then there exists a nonempty point set with fewer points than A that remains in strictly convex position and retains the four-witness property."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/743b102037e9c43dd610a4db761433ce35862a99/lean/Erdos9796Proof/P97/SmallerCounterexample.lean#L30-L39"
+tags = ["discrete-geometry", "erdos-97", "descent"]
+
+[[proof]]
+theorem = "Erdos9796Mission.smaller_counterexample_of_removable"
+file = "submissions/removable-vertex-glue/platform/Solutions/Sol_Erdos9796Mission_smaller_counterexample_of_removable.lean"
+explanation = "submissions/removable-vertex-glue/explanation.md"
+proof_type = "prove"
+
+[[milestone]]
+title = "A removable vertex produces a smaller counterexample"
+description = "Define a removable vertex as one whose deletion preserves four equidistant witnesses at every remaining vertex. Prove that deleting such a vertex from a point set in strictly convex position with at least two points yields a nonempty, strictly smaller set in strictly convex position that still has the four-witness property. This establishes the descent step after a removable vertex has been found; existence remains the separate large-cardinality problem."
+theorem = "Erdos9796Mission.smaller_counterexample_of_removable"
+sort_order = 2
+reason = "Expose the proved deletion step between the completed small-cardinality base range and the open theorem that must find a removable vertex in every large minimal counterexample."

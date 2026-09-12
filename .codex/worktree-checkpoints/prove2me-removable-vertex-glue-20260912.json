@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-removable-vertex-glue-20260912",
+  "base_head": "743b102037e9c43dd610a4db761433ce35862a99",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-removable-vertex-glue-20260912.json",
+    "prove2me/submissions/removable-vertex-glue/README.md",
+    "prove2me/submissions/removable-vertex-glue/explanation.md",
+    "prove2me/submissions/removable-vertex-glue/plan.toml",
+    "prove2me/submissions/removable-vertex-glue/platform/Definitions/Def_Erdos9796Mission_RemovableVertex.lean",
+    "prove2me/submissions/removable-vertex-glue/platform/Solutions/Sol_Erdos9796Mission_smaller_counterexample_of_removable.lean",
+    "prove2me/submissions/removable-vertex-glue/platform/Theorems/Thm_Erdos9796Mission_smaller_counterexample_of_removable.lean",
+    "prove2me/submissions/removable-vertex-glue/platform/Validation/RemovableVertexGlueKernel.lean",
+    "prove2me/submissions/removable-vertex-glue/receipt.json",
+    "prove2me/submissions/removable-vertex-glue/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-removable-vertex-glue",
+  "created_utc": "2026-09-12T20:49:44Z",
+  "manifest_sha256": "e55632561f019ce0804074bacceb6d5a5403a6619b85d984bd3c833adc48d2d3"
+}

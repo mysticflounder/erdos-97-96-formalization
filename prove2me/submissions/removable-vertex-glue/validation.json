@@ -1,0 +1,101 @@
+{
+  "schema": "prove2me-removable-vertex-glue-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revision": "743b102037e9c43dd610a4db761433ce35862a99",
+  "plan_digest": "df5f3b5af2af651969eb0d266b29aa770025f86c3bffdafea8b52e28875e5587",
+  "prepublication_readback": {
+    "status": "PASS",
+    "theorem_absent": "Erdos9796Mission.smaller_counterexample_of_removable",
+    "open_consumer": "Erdos9796Mission.minimal_counterexample_removable"
+  },
+  "definition_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "theorem_stub_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "solution_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "platform_composition_compile": {
+    "file": "platform/Validation/RemovableVertexGlueKernel.lean",
+    "status": "PASS"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.smaller_counterexample_of_removable"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_axiom_audit": {
+    "declarations": [
+      "RemovableVertexGlueKernelValidation.smaller_counterexample_of_removable"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "native_decide",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by"
+    ],
+    "status": "PASS"
+  },
+  "receipt_sha256": "3f89f342122da57f41a7bf0a4c0f6d96394c6d3c4594a694e7935b6a5db78ca3",
+  "live_readback": {
+    "checked_utc": "2026-09-12T21:08:09Z",
+    "status": "PASS",
+    "definition": {
+      "id": "a6f9d176-48d7-4025-bde1-e8b9a859b349",
+      "name": "Erdos9796Mission_RemovableVertex",
+      "status": "PUBLISHED"
+    },
+    "theorem": {
+      "id": "723031a3-ceea-4c27-8c5d-8f18a141a272",
+      "name": "Erdos9796Mission.smaller_counterexample_of_removable",
+      "status": "Proved",
+      "proof_id": "7ebc1c30-66c9-40b5-ac95-b5f01adb6e3e",
+      "proof_status": "ACCEPTED"
+    },
+    "milestone": {
+      "id": "8f564fef-9ddf-48a7-82b1-227bfcd24a31",
+      "title": "A removable vertex produces a smaller counterexample",
+      "completed": true,
+      "sort_order": 2
+    },
+    "open_consumer": {
+      "name": "Erdos9796Mission.minimal_counterexample_removable",
+      "status": "Open"
+    }
+  },
+  "files": {
+    "README.md": "c0fa16ffce977680c1e52f14e28471b293fac07b15d6e751b7932a43f54c5f68",
+    "explanation.md": "79224766467b70ebd783b772f97f6964efa653ab6cfbe4469238c08afb653edc",
+    "plan.toml": "fd4d3d86e3896a83a18287607cc1c2e8b4285deb48df4db20008203451ca78e4",
+    "platform/Definitions/Def_Erdos9796Mission_RemovableVertex.lean": "fdec694cc40cd47cf1fb89cfd772d3655f1e11426fbd977f30530549c781c150",
+    "platform/Theorems/Thm_Erdos9796Mission_smaller_counterexample_of_removable.lean": "537c27774144c6fd0397caf8dade8a5f774eb3d2ef197a56457453509ef0bfdd",
+    "platform/Solutions/Sol_Erdos9796Mission_smaller_counterexample_of_removable.lean": "c502411a141765919d5386e0a96f34d701f2bb788e72b5edc168a1d926271d58",
+    "platform/Validation/RemovableVertexGlueKernel.lean": "95c90fe2c710e11049262dc160d86d586fa01ba13f05b3a1c414f8adf8984c8e"
+  }
+}
