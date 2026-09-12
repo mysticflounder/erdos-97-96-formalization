@@ -857,3 +857,29 @@ It tokenizes block comments and string literals rather than matching lines, so
 a doc comment quoted inside an ordinary `/- ... -/` comment is not a finding.
 Exit status is 1 when any site is found, so it is usable directly as a gate.
 
+## AZ — a `private` declaration whose name an imported module already holds
+
+v4.33 rejects it: `a non-private declaration X has already been declared`.  v4.27 accepted the
+shadowing.  `CrossedArmSevenPointEuclideanObstruction` kept `private` copies of
+`q1Polynomial` and `e2Polynomial` to `e9Polynomial`, which `CrossedArmQ1G7Producer` declares
+non-privately in the same namespace.  Seven errors, one cause.  The bodies were identical, so
+the repair is to delete the private copies and use the imported ones.  Check the bodies first:
+if they differ, rename instead, because deleting then changes what every proof in the file
+means.
+
+Two more lessons from that file:
+
+- A folded definition stops `ring_nf`.  After `change f a b = 0 at h`, the hypothesis holds a
+  `def` application, and `ring_nf at h` cannot see through it.  The reported type then still
+  names the definition (`p9 : -e9Polynomial br bs 0 = 0`).  Put `simp only [theDef] at h`
+  first.  The same shape breaks a `linear_combination` whose coefficient is right.
+- `grobner` is a thin wrapper on `grind` in Lean core, with only the Groebner solver enabled,
+  so `ringSteps` is the only lever and full `grind` is no stronger here.  When it fails on a
+  goal that IS in the hypothesis ideal, compute the certificate outside Lean: Singular
+  `lift(I, P)` gives cofactors, and reducing that vector modulo `groebner(syz(I))` shrinks them
+  from 80-digit rationals (800 KB per cofactor) to a few KB.  Verify the identity independently
+  in sympy before use, then emit `linear_combination c1 * h1 + …`.  A 480-monomial certificate
+  elaborates in about 17 s.  Two goals in this file needed that.  Check the smallest working
+  multiplier too: for `q1EqZeroG7` the goal `bs * bv * K` is in the ideal, but `K`, `bs * K`,
+  `bv * K`, `br * K` and `(bv - 1) * K` are not, so the statement is already the cheapest form.
+

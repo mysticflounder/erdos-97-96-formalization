@@ -1,0 +1,15 @@
+{
+  "base_head": "251428aacb7da3954d2f251caa3fb6ddc13acf7f",
+  "created_utc": "2026-09-12T11:51:11Z",
+  "durable_paths": [],
+  "generated_roots": [],
+  "lane_id": "crossedarm-seven-point-grobner-20260912",
+  "manifest_sha256": "972ff318b4ec0cea2faa2fb92d1e45426836c5017934d2d068fda220c262004f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/crossedarm-seven-point-grobner-20260912.json",
+    "docs/lean-v4331-migration-breakage-catalogue.md",
+    "lean/Erdos9796Proof/P97/ATail/CrossedArmSevenPointEuclideanObstruction.lean"
+  ],
+  "owner": "crossedarm-seven-point-grobner",
+  "schema": "worktree-lane-checkpoint/v1"
+}
