@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-exactfive-normalized-20260912",
+  "base_head": "080e49c43e71985c1abd29d0189abaac4fdcab38",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-exactfive-normalized-20260912.json",
+    "prove2me/submissions/exactfive-normalized/README.md",
+    "prove2me/submissions/exactfive-normalized/explanation.md",
+    "prove2me/submissions/exactfive-normalized/plan.toml",
+    "prove2me/submissions/exactfive-normalized/platform/Definitions/Def_Erdos9796Mission_NormalizedMutualReturn.lean",
+    "prove2me/submissions/exactfive-normalized/platform/Solutions/Sol_Erdos9796Mission_normalized_mutual_return_false.lean",
+    "prove2me/submissions/exactfive-normalized/platform/Theorems/Thm_Erdos9796Mission_normalized_mutual_return_false.lean",
+    "prove2me/submissions/exactfive-normalized/platform/Validation/NormalizedMutualReturnKernel.lean",
+    "prove2me/submissions/exactfive-normalized/receipt-failed-first-attempt.json",
+    "prove2me/submissions/exactfive-normalized/receipt.json",
+    "prove2me/submissions/exactfive-normalized/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-exactfive-normalized",
+  "created_utc": "2026-09-12T21:18:51Z",
+  "manifest_sha256": "e6d89ad5521c182e598ddc4fc53ae58bbe5e663319c52e2763122b7a78f7eb45"
+}

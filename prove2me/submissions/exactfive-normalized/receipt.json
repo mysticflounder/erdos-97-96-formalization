@@ -1,0 +1,50 @@
+{
+  "definitions": {
+    "Erdos9796Mission_NormalizedMutualReturn": {
+      "definition_id": "a40287f1-41d7-4747-9f4f-75857c97b51e",
+      "status": "Definition"
+    }
+  },
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "milestone-create:Exclude a guarded two-circle return configuration": {
+      "milestone_id": "7fe6d452-d5f0-459a-a5c8-8380bc1dba9f",
+      "payload_sha256": "530c37f2a4cab9c4fcbfced5008a6a91468d644fd4987d5a67b16a33b0fece11",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796Mission.normalized_mutual_return_false": {
+      "payload_sha256": "bb834162031a3b4c622329e03ea809e50e198c45206086e2a9f8cad391a7a101",
+      "state": "RECORDED",
+      "submission_id": "f75d3753-31d6-42ca-a67c-831c97c3628c"
+    }
+  },
+  "milestones": {
+    "Exclude a guarded two-circle return configuration": {
+      "id": "7fe6d452-d5f0-459a-a5c8-8380bc1dba9f",
+      "status": "ENSURED"
+    }
+  },
+  "mission_description": {},
+  "plan_digest": "8333a7f7ec8095ee145fb41f476531c13aa77be85ebb1b7faef5518837875dbe",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.normalized_mutual_return_false": {
+      "created_at": "2026-09-12T21:38:54.266949+00:00",
+      "error_message": "",
+      "file_path": "a5c2c9d9-a526-4cd0-b9ae-2868a447a3b6/6ac78adb-dda3-4892-bb46-d4c86f102d16/f75d3753-31d6-42ca-a67c-831c97c3628c.lean",
+      "id": "f75d3753-31d6-42ca-a67c-831c97c3628c",
+      "status": "ACCEPTED",
+      "submission_id": "f75d3753-31d6-42ca-a67c-831c97c3628c",
+      "theorem_id": "a5c2c9d9-a526-4cd0-b9ae-2868a447a3b6",
+      "updated_at": "2026-09-12T21:41:03.647185+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.normalized_mutual_return_false": {
+      "status": "Open",
+      "theorem_id": "a5c2c9d9-a526-4cd0-b9ae-2868a447a3b6"
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "schema": "prove2me-exactfive-normalized-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revision": "743b102037e9c43dd610a4db761433ce35862a99",
+  "plan_digest": "8333a7f7ec8095ee145fb41f476531c13aa77be85ebb1b7faef5518837875dbe",
+  "prepublication_readback": {
+    "status": "PASS",
+    "exact_name_absent": "Erdos9796Mission.normalized_mutual_return_false",
+    "semantic_overlap_count": 0
+  },
+  "definition_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "theorem_stub_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "solution_compile": {
+    "count": 1,
+    "status": "PASS"
+  },
+  "platform_composition_compile": {
+    "file": "platform/Validation/NormalizedMutualReturnKernel.lean",
+    "status": "PASS"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.ExactFiveMutualReturnChord.normalized_mutual_return_false"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_axiom_audit": {
+    "declarations": [
+      "NormalizedMutualReturnKernelValidation.normalized_mutual_return_false"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "publication_retry": {
+    "failed_receipt": "receipt-failed-first-attempt.json",
+    "first_submission_id": "3bb7bc24-9b46-4798-b700-8b3a9c3a0c3c",
+    "first_status": "WA",
+    "first_error": "The checker could not find an unqualified declaration named solution.",
+    "correction": "Move the solution theorem from the Erdos9796Mission namespace to the root namespace and validate that #check solution succeeds in the platform environment.",
+    "accepted_submission_id": "f75d3753-31d6-42ca-a67c-831c97c3628c",
+    "status": "ACCEPTED"
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "native_decide",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by"
+    ],
+    "status": "PASS"
+  },
+  "receipt_sha256": "5d3be9edf886f9a43ee0a8535e5102fed6d02c32c11f0739d6e2af49654ad77b",
+  "live_readback": {
+    "checked_utc": "2026-09-12T21:41:29Z",
+    "status": "PASS",
+    "definition": {
+      "id": "a40287f1-41d7-4747-9f4f-75857c97b51e",
+      "name": "Erdos9796Mission_NormalizedMutualReturn",
+      "status": "Definition"
+    },
+    "theorem": {
+      "id": "a5c2c9d9-a526-4cd0-b9ae-2868a447a3b6",
+      "name": "Erdos9796Mission.normalized_mutual_return_false",
+      "status": "Proved",
+      "proof_id": "f75d3753-31d6-42ca-a67c-831c97c3628c",
+      "proof_status": "ACCEPTED"
+    },
+    "milestone": {
+      "id": "7fe6d452-d5f0-459a-a5c8-8380bc1dba9f",
+      "title": "Exclude a guarded two-circle return configuration",
+      "completed": true,
+      "sort_order": 3
+    }
+  },
+  "files": {
+    "README.md": "077d5186a23bb30aa21da13042a42d4861053fca219e28b0d9c588dc73878740",
+    "explanation.md": "d4cd9143e5b05471c55153521a341981cbf436d3b48426d25ba90632bdc396fc",
+    "plan.toml": "ec6f555c2ceaa5aa0730589ea25978a7d7ee89f35d1e153d98558810d3645fc8",
+    "platform/Definitions/Def_Erdos9796Mission_NormalizedMutualReturn.lean": "955a4a8e8f4c5ea6f97f8b8ab9cbbce9ce4b008f3dd4fb10b4cdacbad35f1a63",
+    "platform/Theorems/Thm_Erdos9796Mission_normalized_mutual_return_false.lean": "f28795fdcbeffa039936f0dbfe8ac85f54c0bff9f2131854b303f0b3d25114c5",
+    "platform/Solutions/Sol_Erdos9796Mission_normalized_mutual_return_false.lean": "0badd3637c9040db651087f2483b7c43434edc26dbd917fbf8ea111aff075c9b",
+    "platform/Validation/NormalizedMutualReturnKernel.lean": "bc0e0f4026d85ff51aae489245588f04a08bce8e074df56ed5d940a9f0c036bd",
+    "receipt-failed-first-attempt.json": "1a28c2cd6eebd230a63a773eb1bd376bb5aad8648ccdab9c91e497acfec7cf87"
+  }
+}

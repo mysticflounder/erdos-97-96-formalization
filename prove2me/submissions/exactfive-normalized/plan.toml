@@ -1,0 +1,41 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# Released under Apache-2.0 as described in the file LICENSE.
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/exactfive-normalized/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[definition]]
+name = "Erdos9796Mission_NormalizedMutualReturn"
+file = "submissions/exactfive-normalized/platform/Definitions/Def_Erdos9796Mission_NormalizedMutualReturn.lean"
+title = "Coordinate points in the Euclidean plane"
+natural_language_statement = "Define the planar point with real coordinates x and y. This notation records the normalized affine chart used by the two-circle obstruction."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/743b102037e9c43dd610a4db761433ce35862a99/lean/Erdos9796Proof/Geometry/SimilarityFrame.lean#L23-L24"
+tags = ["discrete-geometry", "erdos-97", "affine-geometry", "definitions"]
+private = false
+
+[[theorem]]
+name = "Erdos9796Mission.normalized_mutual_return_false"
+title = "A separated two-circle return configuration is impossible"
+file = "submissions/exactfive-normalized/platform/Theorems/Thm_Erdos9796Mission_normalized_mutual_return_false.lean"
+natural_language_statement = "Let five points of a finite planar set in strictly convex position have the listed noncoincidence relations. Suppose an injective affine chart sends two endpoints to (-1,0) and (1,0), points O and c to (0,-σh) and (0,σk), and the return point to (x,σy), where σ is 1 or -1, s is positive with s² = 3 and s ≤ h, and 0 < k ≤ 1. If the two listed equal-distance equations hold and an affine functional is positive on the left endpoint and c but negative on O and the return point, then these assumptions are contradictory."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/743b102037e9c43dd610a4db761433ce35862a99/lean/Erdos9796Proof/P97/ATail/ExactFiveMutualReturnChord.lean#L335-L361"
+tags = ["discrete-geometry", "erdos-97", "affine-geometry", "strict-convexity"]
+
+[[proof]]
+theorem = "Erdos9796Mission.normalized_mutual_return_false"
+file = "submissions/exactfive-normalized/platform/Solutions/Sol_Erdos9796Mission_normalized_mutual_return_false.lean"
+explanation = "submissions/exactfive-normalized/explanation.md"
+proof_type = "prove"
+
+[[milestone]]
+title = "Exclude a guarded two-circle return configuration"
+description = "Prove that a normalized five-point configuration with the stated two-circle equations, height bounds, noncoincidence conditions, and affine separation cannot occur in strictly convex position. This is a completed geometric component of the exact-five analysis. The descent argument must still construct all of these hypotheses from a minimal counterexample."
+theorem = "Erdos9796Mission.normalized_mutual_return_false"
+sort_order = 3
+reason = "Publish the kernel-checked normalized contradiction used by the mutual-row chord argument while keeping its physical realization and the full removable-vertex theorem visibly open."
