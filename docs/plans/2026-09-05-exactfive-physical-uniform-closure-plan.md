@@ -333,23 +333,43 @@ two incidences.
 
 For an actual double-hit row Kc, assume it contains an old endpoint blocker
 b and that the old actual row Kb contains c. Mutual incidence forces equal
-radii and an equilateral triangle. The audited paper proof then gives
-dist(q,w) > r by convex independence and cap separation. Thus a proved
+radii and an equilateral triangle. The Lean theorem
+`MutualSelectedRowChord.radius_lt_dist_of_mutual_selectedRows` now gives
+dist(q,w) > r by convex independence and cap separation. Its normalized
+geometric consumer is
+`ExactFiveMutualReturnChord.normalized_mutual_return_false`.
+Both have been checked with only the three standard axioms. Thus a proved
 source chord bound dist(q,w) ≤ r eliminates this mutual-return case.
 
-The same note proves short-pair existence when |I| ≥ 4. Distances from V
-to distinct I points are distinct, so at most one unordered I pair can
-fail joint deletion survival. Four I rays in the at-most-90-degree MEC
-cap cone give two short adjacent pairs; one is admissible. A minimum
-admissible pair then has chord at most r.
+The |I| ≥ 4 short-chord bound is now implemented in
+`MinimumAdmissibleInteriorChord.lean` as
+`MinimalAdmissibleInteriorPair.dist_le_radius_of_four_le_interior_card`.
+Its explicit guards are four strict-interior anchors and full second-apex
+deletion robustness. The Lean proof fixes one rich second-apex radius
+class. Distinct second-apex distances imply that at most one interior
+anchor belongs to it. Three remaining anchors lie in the nonobtuse MEC
+cone; a planar Gram determinant proves that some pair has chord at most r.
+Deleting that pair preserves the fixed class, so minimum admissibility
+supplies the claimed source chord bound. Focused Lean checking succeeds
+with only the three standard axioms; this alone is not a physical closure.
 
 The remaining short-pair case has |I| = 3. If its only short pair is bad,
 V has exactly two rich four-classes, meeting I once each; the third I
 point belongs to neither. Exclude this configuration or give it its own
-consumer, and thread the minimum-pair payload into the physical leaf.
+consumer.
 Mere nearest-pair selection does not establish joint survival.
-The omitted-endpoint and non-mutual cases remain open, and this paper
-exclusion has not been promoted to Lean or a live terminal reduction.
+The minimum-pair payload is now preserved through the initially distinct
+dispatch. In `Rigid221Closure`, the private consumer
+`false_of_exactFiveDistinct_mutualDoubleHit_fourInterior` uses its source
+equality and the three explicit guards: |I| ≥ 4, b ∈ Kc, and c ∈ Kb.
+The both-hit arm calls that consumer when the guards hold. Focused Lean
+compilation of the live file succeeds. The other outcomes still use the
+existing physical admission; the four literal sorries in that file remain.
+This is a proved conditional subcase exclusion, not unconditional physical
+closure or a refutation of the route. The three-anchor, omitted-endpoint,
+non-mutual, and separate common-center cases remain open. The source note's
+2026-09-06 completion matrix is historical; this paragraph records the
+2026-09-12 Lean integration.
 
 The [three-anchor geometric control](../audits/2026-09-06-exactfive-three-anchor-control.md)
 now tests that exception beyond the earlier angular diagnostic. The retained

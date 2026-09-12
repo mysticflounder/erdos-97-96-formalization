@@ -1,0 +1,19 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "exactfive-mutual-short-chord-20260912",
+  "owner": "luna-swarm-cosine",
+  "base_head": "251428aacb7da3954d2f251caa3fb6ddc13acf7f",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/exactfive-mutual-short-chord-20260912.json",
+    "docs/plans/2026-09-05-exactfive-physical-uniform-closure-plan.md",
+    "docs/skeptic-ExactFiveMutualReturnChord-2026-09-12.md",
+    "lean/Erdos9796Proof/P97/ATail/ExactFiveMutualReturnChord.lean",
+    "lean/Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221Closure.lean",
+    "lean/Erdos9796Proof/P97/ATail/MinimumAdmissibleInteriorChord.lean",
+    "lean/Erdos9796Proof/P97/ATail/MutualSelectedRowChord.lean"
+  ],
+  "generated_roots": [],
+  "durable_paths": [],
+  "created_utc": "2026-09-12T11:49:00Z",
+  "manifest_sha256": "e6f1bba557560584c36774970628dabccc529c64ff93124bcfa1ec332e2671d1"
+}

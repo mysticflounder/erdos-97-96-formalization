@@ -11,6 +11,8 @@ import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Balanced555FiniteUnsat
 import Erdos9796Proof.P97.ATail.ExactFiveCommonAdaptiveReselection
 import Erdos9796Proof.P97.ATail.ExactFiveRetainedDoubleDeletion
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctPhysicalFreshRowRadiusDrop
+import Erdos9796Proof.P97.ATail.MinimumAdmissibleInteriorChord
+import Erdos9796Proof.P97.ATail.MutualSelectedRowChord
 import Erdos9796Proof.P97.ATail.ExactFiveOneHitShellReselection
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterContinuation
 import Erdos9796Proof.P97.ATail.ExactFiveDistinctThreeCenterTightCover
@@ -1749,6 +1751,50 @@ theorem false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
     Balanced555FiniteUnsat.false_of_balanced555FiniteConfiguration
       finiteConfiguration
 
+-- A minimum source chord contradicts mutual selected rows only under the
+-- explicit four-anchor guard. Neither mutual incidence is inferred here.
+private theorem false_of_exactFiveDistinct_mutualDoubleHit_fourInterior
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (Rmin : FirstApexUniqueRadiusExactFiveMinimalDistinctResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm Rmin.residual C)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hq : Rmin.residual.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hw : Rmin.residual.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hfour : 4 ≤ (FirstApexExactFiveInteriorFrontier.interiorPointSet
+      (D := D) (S := S) radius).card)
+    (hb : center ∈ (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hc : H.centerAt fresh hfreshA ∈ N.blockerClass.support) : False := by
+  have hshort := Rmin.minimalPair.dist_le_radius_of_four_le_interior_card
+    N.secondApex_robust hfour
+  rw [Rmin.source_eq] at hshort
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hcA : H.centerAt fresh hfreshA ∈ D.A := (Finset.mem_erase.mp K.center_mem).2
+  have hcO := Rmin.residual.firstApex_fullyDeletionRobust.centerAt_ne H fresh hfreshA
+  rcases N.orientation with ⟨_, he, _⟩ | ⟨_, he, _⟩
+  · have heK : Rmin.residual.interior.frontier.pair.q ∈ N.blockerClass.support := by
+      rw [← he]
+      exact N.retained_mem_blockerClass
+    have hlong := MutualSelectedRowChord.radius_lt_dist_of_mutual_selectedRows
+      Rmin.residual.interior.q_mem_interior Rmin.residual.interior.w_mem_interior
+      Rmin.residual.interior.frontier.pair.q_ne_w
+      Rmin.residual.interior.frontier.radius_pos.le hcA hcO
+      K.toSelectedFourClass N.blockerClass hq hw hb heK hc
+    exact (not_lt_of_ge hshort) hlong
+  · have heK : Rmin.residual.interior.frontier.pair.w ∈ N.blockerClass.support := by
+      rw [← he]
+      exact N.retained_mem_blockerClass
+    have hlong := MutualSelectedRowChord.radius_lt_dist_of_mutual_selectedRows
+      Rmin.residual.interior.w_mem_interior Rmin.residual.interior.q_mem_interior
+      Rmin.residual.interior.frontier.pair.q_ne_w.symm
+      Rmin.residual.interior.frontier.radius_pos.le hcA hcO
+      K.toSelectedFourClass N.blockerClass hw hq hb heK hc
+    exact (not_lt_of_ge hshort) (by simpa only [dist_comm] using hlong)
+
 -- The optional witness belongs to this exact interior pair. Compatibility
 -- callers without it keep the ordinary physical route; no minimum is inferred.
 private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPair
@@ -1800,16 +1846,28 @@ private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPai
             ⟨R, minimumPair.val, minimumPair.property⟩
           -- Each branch keeps the original physical packet and minimum pair.
           -- The large arm additionally keeps both hits and closed-cap card ≥ 6.
-          -- The remaining geometry still uses the original admission below.
+          -- Four interior anchors plus both mutual incidences have their own
+          -- proved consumer. Other outcomes retain the original admission.
           rcases
               exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases_with_hits
                 Rmin C' normalForm' packet.q_mem_A with
             hlarge | hqOmitted | hwOmitted | hbothOmitted
-          all_goals
-            exact
-              false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
-                R C' normalForm' fresh fresh_ne_deleted packet
-                hretained' retainedPacket
+          · by_cases hguard :
+                4 ≤ (FirstApexExactFiveInteriorFrontier.interiorPointSet
+                  (D := D) (S := S) radius).card ∧
+                center ∈ (H.selectedAt fresh packet.q_mem_A).toCriticalFourShell.support ∧
+                H.centerAt fresh packet.q_mem_A ∈ normalForm'.blockerClass.support
+            · exact false_of_exactFiveDistinct_mutualDoubleHit_fourInterior
+                Rmin C' normalForm' packet.q_mem_A hlarge.2.1 hlarge.2.2.1
+                hguard.1 hguard.2.1 hguard.2.2
+            · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+                R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
+          · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+              R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
+          · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+              R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
+          · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+              R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
   | exactTwelveTightPhysical hcard hunion herase hmissing packet =>
       exact
         false_of_exactFiveDistinct_threeCenter_exactTwelveTightPhysical
