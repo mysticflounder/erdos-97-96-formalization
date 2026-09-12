@@ -1795,6 +1795,47 @@ private theorem false_of_exactFiveDistinct_mutualDoubleHit_fourInterior
       K.toSelectedFourClass N.blockerClass hw hq hb heK hc
     exact (not_lt_of_ge hshort) (by simpa only [dist_comm] using hlong)
 
+-- The sharp mutual-row radius bound excludes high-radius double hits without
+-- any minimum-pair or interior-cardinality hypothesis.
+private theorem false_of_exactFiveDistinct_mutualDoubleHit_highRadius
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A} {F : CriticalPairFrontier D S radius H}
+    (R : FirstApexUniqueRadiusExactFiveDistinctObstructionCentersResidual F)
+    {deleted center : ℝ²}
+    (C : CommonDeletionTwoCenterPacket D H deleted center S.oppApex2)
+    (N : ExactFiveDistinctThreeCenterNormalForm R C)
+    {fresh : ℝ²} (hfreshA : fresh ∈ D.A)
+    (hq : R.interior.frontier.pair.q ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hw : R.interior.frontier.pair.w ∈
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hb : center ∈ (H.selectedAt fresh hfreshA).toCriticalFourShell.support)
+    (hc : H.centerAt fresh hfreshA ∈ N.blockerClass.support)
+    (hhigh : (Real.sqrt 3 - 1) * radius ≤
+      (H.selectedAt fresh hfreshA).toCriticalFourShell.radius) : False := by
+  let K := (H.selectedAt fresh hfreshA).toCriticalFourShell
+  have hcA : H.centerAt fresh hfreshA ∈ D.A := (Finset.mem_erase.mp K.center_mem).2
+  have hcO := R.firstApex_fullyDeletionRobust.centerAt_ne H fresh hfreshA
+  rcases N.orientation with ⟨_, he, _⟩ | ⟨_, he, _⟩
+  · have heK : R.interior.frontier.pair.q ∈ N.blockerClass.support := by
+      rw [← he]
+      exact N.retained_mem_blockerClass
+    have hbound :=
+      MutualSelectedRowChord.radius_lt_sqrt_three_sub_one_mul_of_mutual_selectedRows
+        R.interior.q_mem_interior R.interior.w_mem_interior
+        R.interior.frontier.pair.q_ne_w R.interior.frontier.radius_pos.le hcA hcO
+        K.toSelectedFourClass N.blockerClass hq hw hb heK hc
+    exact (not_lt_of_ge hhigh) hbound
+  · have heK : R.interior.frontier.pair.w ∈ N.blockerClass.support := by
+      rw [← he]
+      exact N.retained_mem_blockerClass
+    have hbound :=
+      MutualSelectedRowChord.radius_lt_sqrt_three_sub_one_mul_of_mutual_selectedRows
+        R.interior.w_mem_interior R.interior.q_mem_interior
+        R.interior.frontier.pair.q_ne_w.symm R.interior.frontier.radius_pos.le hcA hcO
+        K.toSelectedFourClass N.blockerClass hw hq hb heK hc
+    exact (not_lt_of_ge hhigh) hbound
+
 -- The optional witness belongs to this exact interior pair. Compatibility
 -- callers without it keep the ordinary physical route; no minimum is inferred.
 private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPair
@@ -1846,8 +1887,8 @@ private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPai
             ⟨R, minimumPair.val, minimumPair.property⟩
           -- Each branch keeps the original physical packet and minimum pair.
           -- The large arm additionally keeps both hits and closed-cap card ≥ 6.
-          -- Four interior anchors plus both mutual incidences have their own
-          -- proved consumer. Other outcomes retain the original admission.
+          -- Mutual incidences have separate four-interior and high-radius
+          -- consumers. Other outcomes retain the original admission.
           rcases
               exactFiveDistinct_threeCenter_distinctFresh_minimal_transitionCases_with_hits
                 Rmin C' normalForm' packet.q_mem_A with
@@ -1860,8 +1901,16 @@ private theorem false_of_exactFiveDistinct_threeCenterNormalForm_with_minimumPai
             · exact false_of_exactFiveDistinct_mutualDoubleHit_fourInterior
                 Rmin C' normalForm' packet.q_mem_A hlarge.2.1 hlarge.2.2.1
                 hguard.1 hguard.2.1 hguard.2.2
-            · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
-                R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
+            · by_cases hhigh :
+                  center ∈ (H.selectedAt fresh packet.q_mem_A).toCriticalFourShell.support ∧
+                  H.centerAt fresh packet.q_mem_A ∈ normalForm'.blockerClass.support ∧
+                  (Real.sqrt 3 - 1) * radius ≤
+                    (H.selectedAt fresh packet.q_mem_A).toCriticalFourShell.radius
+              · exact false_of_exactFiveDistinct_mutualDoubleHit_highRadius
+                  R C' normalForm' packet.q_mem_A hlarge.2.1 hlarge.2.2.1
+                  hhigh.1 hhigh.2.1 hhigh.2.2
+              · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
+                  R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
           · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical
               R C' normalForm' fresh fresh_ne_deleted packet hretained' retainedPacket
           · exact false_of_exactFiveDistinct_threeCenter_distinctFresh_physical

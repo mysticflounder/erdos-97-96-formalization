@@ -394,8 +394,22 @@ double-hit consumer, which also requires the actual source and row data.
 The [sharp mutual bounds and third-anchor note](../audits/2026-09-06-exactfive-sharp-mutual-third-anchor.md)
 audits the next Pro response, `01M1VS1YXCHXSJCQBXN5PNC80P`. Under the explicit
 mutual incidences it proves (2+√3)ρ² < dist(q,w)², ρ < (√3−1)r, and
-dist(O,c) < r. These are paper inequalities; a new dependent source packet
-and termination argument are still required before calling them descent.
+dist(O,c) < r. The radius inequality is now Lean-formalized as
+`MutualSelectedRowChord.radius_lt_sqrt_three_sub_one_mul_of_mutual_selectedRows`,
+using `ExactFiveMutualReturnChord.normalized_mutual_return_height_lt` and
+the strict outer-angle source fact. It requires neither a minimum pair
+nor four interior anchors. The other two metric conclusions remain
+paper-only in this lane.
+
+The private `false_of_exactFiveDistinct_mutualDoubleHit_highRadius` consumes
+the radius theorem under explicit mutual incidences and ρ ≥ (√3−1)r.
+The initially distinct minimum-custody both-hit dispatch tests this guard
+after the four-interior mutual exclusion. Its complement retains the
+physical terminal; no low-radius mutual, non-mutual, or common-center
+case is asserted closed. See the
+[scoped sharp-mutual audit](../skeptic-ExactFiveSharpMutual-2026-09-12.md).
+A new dependent source packet and termination argument are still required
+before calling the radius bound descent.
 
 When I = {u,q,w}, use the original total H at u. Its actual full row Kd₀,
 centered at d₀ = H(u), differs from the rows at O,V,b,c and has one of the

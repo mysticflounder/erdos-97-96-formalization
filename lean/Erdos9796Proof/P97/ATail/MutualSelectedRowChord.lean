@@ -2,7 +2,7 @@ import Erdos9796Proof.P97.ATail.FirstApexInteriorPairCirclePower
 import Erdos9796Proof.P97.ATail.ExactFiveMutualReturnChord
 import Erdos9796Proof.Geometry.SimilarityFrame
 /-!
-# Mutual selected blocker rows force a long chord
+# Long-chord and sharp-radius bounds for mutual selected blocker rows
 
 This source adapter retains both mutual incidences and the strict-interior
 pair hypotheses. Its consumer is the guarded initially distinct branch in
@@ -168,6 +168,40 @@ private theorem frame_radius_bounds
   exact ⟨hcx, hox, hcBound, hoBound, by nlinarith⟩
 
 
+private theorem frame_radius_bounds_acute
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {q w c : ℝ²}
+    (hq : q ∈ SelectedClass D.A S.oppApex1 r ∩ S.capInteriorByIndex S.oppIndex1)
+    (hw : w ∈ SelectedClass D.A S.oppApex1 r ∩ S.capInteriorByIndex S.oppIndex1)
+    (hqw : q ≠ w) (_hr : 0 ≤ r) (hcA : c ∈ D.A) (hcO : c ≠ S.oppApex1)
+    (heq : dist c q = dist c w) (F : SimilarityFrame q w) :
+    F c 0 = 0 ∧ F S.oppApex1 0 = 0 ∧
+      (F c 1)^2 ≤ 1 ∧ 1 < (F S.oppApex1 1)^2 ∧
+      (F c 1)^2 < (F S.oppApex1 1)^2 := by
+  have hqr := (mem_selectedClass.mp (Finset.mem_inter.mp hq).1).2
+  have hwr := (mem_selectedClass.mp (Finset.mem_inter.mp hw).1).2
+  have hcx := bisector_frame_fst F heq
+  have hox := bisector_frame_fst F (hqr.trans hwr.symm)
+  have hcSq := bisector_frame_sq F hcx
+  have hoSq := bisector_frame_sq F hox
+  rw [hqr] at hoSq
+  have hpSq := frame_chord_sq F
+  have hinner := FirstApexInteriorPairGeometry.bisectorCenter_inner_nonpos_firstApexInterior
+    hq hw hqw hcA hcO heq
+  have hid := polarization q w c
+  rw [← heq] at hid
+  have hin : 2 * dist c q ^ 2 ≤ dist q w ^ 2 := by linarith
+  have hin' := mul_nonneg (sq_nonneg F.scale) (sub_nonneg.mpr hin)
+  have hcBound : (F c 1)^2 ≤ 1 := by nlinarith [hin']
+  have houter := FirstApexInteriorPairGeometry.inner_pos_of_oppApex1_capInterior_pair
+    (Finset.mem_inter.mp hq).2 (Finset.mem_inter.mp hw).2
+  have hoId := polarization q w S.oppApex1
+  rw [hqr, hwr] at hoId
+  have hoGap : 0 < 2 * r^2 - dist q w^2 := by linarith
+  have hoScaled := mul_pos (sq_pos_of_pos F.scale_pos) hoGap
+  have hoBound : 1 < (F S.oppApex1 1)^2 := by nlinarith [hoScaled]
+  exact ⟨hcx, hox, hcBound, hoBound, by linarith⟩
+
 private theorem frame_mutual_eqs {q w b c : Plane} (F : SimilarityFrame q w)
     (hcx : F c 0 = 0)
     (hbq : dist b q = dist c q) (hbc : dist b c = dist c q) :
@@ -314,6 +348,16 @@ private theorem normalize_heights {u v : ℝ}
     all_goals nlinarith
 
 
+private theorem normalize_acute_heights {u v : ℝ}
+    (hu : u ^ 2 ≤ 1) (hv : 1 < v ^ 2) (huv : u * v < 0) :
+    ∃ σ h k : ℝ, (σ = 1 ∨ σ = -1) ∧
+      1 < h ∧ 0 < k ∧ k ≤ 1 ∧ u = σ * k ∧ v = -σ * h := by
+  rcases mul_neg_iff.mp huv with ⟨hu0, hv0⟩ | ⟨hu0, hv0⟩
+  · refine ⟨1, -v, u, Or.inl rfl, ?_, ?_, ?_, by ring, by ring⟩
+    all_goals nlinarith
+  · refine ⟨-1, v, -u, Or.inr rfl, ?_, ?_, ?_, by ring, by ring⟩
+    all_goals nlinarith
+
 private theorem cap_separator_signs
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {q c b : ℝ²}
     (hq : q ∈ S.capInteriorByIndex S.oppIndex1)
@@ -419,5 +463,103 @@ theorem radius_lt_dist_of_mutual_selectedRows
     D.convex hqA hwA hOA hcA hbA hbone hbqne hbwne hcqne hOq F.map F.injective
     hσ (Real.sq_sqrt (by norm_num : (0 : ℝ) ≤ 3)) (Real.sqrt_pos.mpr (by norm_num))
     hsh hk hk1 F.map_q₁ F.map_q₂ hFO hFc hFb heq1' heq2' L hLq hLc hLO hLb
+
+/-- Mutually incident actual rows satisfy the sharp radius bound, without any
+minimum-pair or interior-cardinality assumption. -/
+theorem radius_lt_sqrt_three_sub_one_mul_of_mutual_selectedRows
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {q w c b : ℝ²}
+    (hq : q ∈ SelectedClass D.A S.oppApex1 r ∩ S.capInteriorByIndex S.oppIndex1)
+    (hw : w ∈ SelectedClass D.A S.oppApex1 r ∩ S.capInteriorByIndex S.oppIndex1)
+    (hqw : q ≠ w) (hr : 0 ≤ r) (hcA : c ∈ D.A) (hcO : c ≠ S.oppApex1)
+    (Kc : SelectedFourClass D.A c) (Kb : SelectedFourClass D.A b)
+    (hqKc : q ∈ Kc.support) (hwKc : w ∈ Kc.support) (hbKc : b ∈ Kc.support)
+    (hqKb : q ∈ Kb.support) (hcKb : c ∈ Kb.support) :
+    Kc.radius < (Real.sqrt 3 - 1) * r := by
+  have hqA := Kc.support_subset_A hqKc
+  have hwA := Kc.support_subset_A hwKc
+  have hbA := Kc.support_subset_A hbKc
+  have hOA : S.oppApex1 ∈ D.A := by
+    rw [first_apex_eq_triangle_vertex S]
+    exact (S.triangleByIndex S.oppIndex1).v1_mem
+  have heq := (Kc.support_eq_radius q hqKc).trans (Kc.support_eq_radius w hwKc).symm
+  have hrpos : 0 < r := lt_of_le_of_lt dist_nonneg
+    (FirstApexInteriorPairGeometry.bisectorCenter_radius_lt_of_selected_pair
+      hq hw hqw hr hcA hcO heq)
+  have hcb := (Kc.support_eq_radius b hbKc).trans (Kc.support_eq_radius q hqKc).symm
+  have hbq := (Kb.support_eq_radius q hqKb).trans (Kb.support_eq_radius c hcKb).symm
+  have hbq' : dist b q = dist c q := by rw [hbq, dist_comm b c, hcb]
+  have hbc : dist b c = dist c q := by rw [dist_comm b c, hcb]
+  obtain ⟨hcI, hboff, hbqne, hbwne, hbone, hcqne, hcwne⟩ :=
+    mutual_selectedRows_geometry hq hw hqw hr hcA hcO Kc Kb hqKc hwKc hbKc hqKb hcKb
+  obtain ⟨L, hLq, hLc, hLO, hLb⟩ :=
+    cap_separator_signs (Finset.mem_inter.mp hq).2 hcI hbA hboff
+  let F := Erdos9796Proof.Geometry.ofDistinct hqw
+  obtain ⟨hcx, hox, hcsq, hosq, hdrop⟩ :=
+    frame_radius_bounds_acute hq hw hqw hr hcA hcO heq F
+  have hheight := bisector_frame_height_mul_neg F D.convex hqA hwA hOA hcA
+    hcqne hcwne hcx hox hdrop
+  obtain ⟨σ, h, k, hσ, hh, hk, hk1, hck, hoh⟩ :=
+    normalize_acute_heights hcsq hosq hheight
+  let y := σ * F b 1
+  have hby : F b 1 = σ * y := by
+    rcases hσ with rfl | rfl <;> dsimp [y] <;> ring
+  have hOq : S.oppApex1 ≠ q := by
+    intro he
+    have hh := (mem_selectedClass.mp (Finset.mem_inter.mp hq).1).2
+    rw [he, dist_self] at hh
+    linarith
+  have hFO : F.map S.oppApex1 = planePoint 0 (-σ * h) := by
+    ext i
+    fin_cases i
+    · simpa [planePoint, PiLp.add_apply] using hox
+    · simpa [planePoint, PiLp.add_apply] using hoh
+  have hFc : F.map c = planePoint 0 (σ * k) := by
+    ext i
+    fin_cases i
+    · simpa [planePoint, PiLp.add_apply] using hcx
+    · simpa [planePoint, PiLp.add_apply] using hck
+  have hFb : F.map b = planePoint (F b 0) (σ * y) := by
+    ext i
+    fin_cases i
+    · simp [planePoint, PiLp.add_apply]
+    · simpa [planePoint, PiLp.add_apply] using hby
+  obtain ⟨heq1, heq2⟩ := frame_mutual_eqs F hcx hbq' hbc
+  have heq1' : (F b 0 + 1) ^ 2 + y ^ 2 = 1 + k ^ 2 := by
+    rw [hby, hck] at heq1
+    rcases hσ with rfl | rfl <;> nlinarith only [heq1]
+  have heq2' : (F b 0) ^ 2 + (y - k) ^ 2 = 1 + k ^ 2 := by
+    rw [hby, hck] at heq2
+    rcases hσ with rfl | rfl <;> nlinarith only [heq2]
+  have hs : (Real.sqrt 3)^2 = 3 := Real.sq_sqrt (by norm_num)
+  have hspos : 0 < Real.sqrt 3 := Real.sqrt_pos.mpr (by norm_num)
+  have hksharp := ExactFiveMutualReturnChord.normalized_mutual_return_height_lt
+    D.convex hqA hwA hOA hcA hbA hbone hbqne hbwne hcqne hOq F.map F.injective
+    hσ hs hspos hh hk hk1 F.map_q₁ F.map_q₂ hFO hFc hFb heq1' heq2'
+    L hLq hLc hLO hLb
+  have hs1 : 1 < Real.sqrt 3 := by nlinarith only [hs, hspos]
+  have hs2 : Real.sqrt 3 < 2 := by nlinarith only [hs, hspos]
+  have hksq : k^2 < (2 - Real.sqrt 3)^2 :=
+    (sq_lt_sq₀ hk.le (by linarith)).2 hksharp
+  have hcScale := bisector_frame_sq F hcx
+  rw [Kc.support_eq_radius q hqKc, hck] at hcScale
+  have hcScale' : (F.scale * Kc.radius)^2 = 1 + k^2 := by
+    rcases hσ with rfl | rfl <;> nlinarith only [hcScale]
+  have hoScale := bisector_frame_sq F hox
+  rw [(mem_selectedClass.mp (Finset.mem_inter.mp hq).1).2] at hoScale
+  have hrScale : 2 < (F.scale * r)^2 := by linarith only [hosq, hoScale]
+  have hcBound : (F.scale * Kc.radius)^2 < (Real.sqrt 3 - 1)^2 * 2 := by
+    nlinarith only [hksq, hs, hcScale']
+  have hmul := mul_lt_mul_of_pos_left hrScale
+    (sq_pos_of_pos (sub_pos.mpr hs1))
+  have hscaledSq : (F.scale * Kc.radius)^2 <
+      (F.scale * ((Real.sqrt 3 - 1) * r))^2 := by
+    nlinarith only [hcBound, hmul]
+  have hcNonneg : 0 ≤ Kc.radius := by
+    rw [← Kc.support_eq_radius q hqKc]
+    exact dist_nonneg
+  have hscaled := (sq_lt_sq₀ (mul_nonneg F.scale_pos.le hcNonneg)
+    (mul_nonneg F.scale_pos.le (mul_nonneg (by linarith) hr))).1 hscaledSq
+  nlinarith only [hscaled, F.scale_pos]
 
 end Problem97.MutualSelectedRowChord
