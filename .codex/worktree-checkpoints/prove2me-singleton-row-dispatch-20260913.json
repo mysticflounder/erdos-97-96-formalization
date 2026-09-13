@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-singleton-row-dispatch-20260913",
+  "base_head": "6757dd7e90232dcd8db4704957bb5c28010c9fe9",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-singleton-row-dispatch-20260913.json",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/SingletonCells.lean",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-singleton-row-dispatch",
+  "created_utc": "2026-09-13T15:20:00Z",
+  "manifest_sha256": "1f531ae9195f5a3a6ce7bbb7e4c87636a8be7fceaa257e97289fff71b3f4c17a"
+}

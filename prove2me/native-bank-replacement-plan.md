@@ -263,6 +263,25 @@ packages the three target rows into one singleton-cell predicate, proves their
 membership in `rowShadowKeys`, and dispatches computed search results in those
 cells through that predicate.
 
+**Singleton row-dispatch checkpoint:** `IsSingletonDepthTwoCell` now packages
+the three structurally classified cells. Their target rows are proved directly
+to occur in `rowShadowKeys`, and one quantified theorem sends every result of a
+packaged depth-two cell to that stored-row list. A Boolean `List.all` corollary
+exposes the same fact in the form needed by the computed-search dispatcher. The
+exported theorems use no native reduction and their axiom probes report only
+`propext`, `Classical.choice`, and `Quot.sound`.
+
+The required theorem-bank reuse preflight found the three target-uniqueness
+theorems in the generated roots and the matching stored rows `s1_002`, `s1_028`,
+and `s3_000`. No existing all-three aggregation theorem was present. The only
+missing antecedent was direct membership of each concrete target in
+`rowShadowKeys`; simplification of `rows.map Row.shadowKey` proves those facts.
+The immediate consumer is the all-cell depth-two coverage theorem. This search
+used the indexed Lean corpus at revision `8e6075c94`, with repository HEAD
+`6757dd7e9`; the source roots were at revisions `f160c0cd` and `6757dd7e9`.
+The next checkpoint should fit the first non-singleton live cell to a shared
+certificate schema before extending the remaining 11 live cells.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable
