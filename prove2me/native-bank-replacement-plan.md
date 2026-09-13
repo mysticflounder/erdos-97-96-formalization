@@ -167,7 +167,7 @@ The bridge is only the first finite-ten trust gate. Downstream
 current source inventory includes 102 direct checks and 35 product checks.
 Closing the computed-to-row inclusion would remove the depth-shard and static
 search-key facts from the bridge. The computed producer now reaches native
-trust only through the 12 remaining branches of
+trust only through the three remaining branches of
 `candidateMasks_eq_filter_of_isSurplusStar`. `FiniteN10Closure` becomes
 transferable only after those branches, the computed-to-row inclusion, the
 downstream certificate families, and the other endpoint inputs also have
@@ -192,10 +192,16 @@ same four-support enumeration. Their local trigger is vacuous, so two more
 closed table-identification checks cover the three 120-mask branches without a
 new search or native axiom.
 
-**Next implementation checkpoint:** classify the shared 75-mask
-trigger-restricted family covering `Q1`, `Q2`, and surplus centers occurring
-before the chosen surplus star. Then handle the three 71-mask diagonal
-surplus-center branches.
+The nine trigger-restricted branches are structural as well. They cover `Q1`,
+`Q2`, and surplus centers occurring before the chosen surplus star. Their
+75-mask support family starts from the same four-element supports and adds one
+rule: a support containing the chosen surplus star contains none of `u`, `Pw`,
+or `Pu`. The proof filters supports before encoding them as masks; it does not
+filter the 0--1023 mask range.
+
+**Next implementation checkpoint:** handle the three 71-mask diagonal
+surplus-center branches, where the center is the chosen surplus star and the
+support contains at most one of `u`, `Pw`, and `Pu`.
 Then prove a non-circular
 `computedFragmentSearchShadowKeys`-to-`rowShadowKeys` inclusion from shared row
 schemas and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct

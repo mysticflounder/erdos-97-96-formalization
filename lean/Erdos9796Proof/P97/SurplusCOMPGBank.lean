@@ -3171,11 +3171,15 @@ private theorem maskCard_supportMask (support : Finset Label) :
       (List.toFinset_card_of_nodup (labelsOfMaskBits_nodup hlt)).symm
     _ = support.card := by rw [hset]
 
-/-- Masks of four-element supports which omit a center and do not contain all
-three Moser labels. -/
+/-- Four-element supports which omit a center and do not contain all three
+Moser labels. -/
+def fourSupportsAvoidingCenter (center : Label) : Finset (Finset Label) :=
+  ((allLabels.toFinset.erase center).powersetCard 4).filter
+    fun support => ¬ ({.u, .v, .w} : Finset Label) ⊆ support
+
+/-- Masks encoded by the admissible four-element supports for a center. -/
 def fourSupportMasksAvoidingCenter (center : Label) : Finset Nat :=
-  ((((allLabels.toFinset.erase center).powersetCard 4).filter
-      fun support => ¬ ({.u, .v, .w} : Finset Label) ⊆ support).image supportMask)
+  (fourSupportsAvoidingCenter center).image supportMask
 
 private theorem maskOfLabels_eq_of_same_support
     {xs ys : List Label} (hxs : xs.Nodup) (hys : ys.Nodup)
@@ -3489,6 +3493,278 @@ private theorem candidateMasks_s2_s3_eq_filter :
     candidateMasks .s2 .s3 = candidateMasksByFilter .s2 .s3 :=
   candidateMasks_laterSurplusCenter_eq_filter (Or.inr (Or.inr ⟨rfl, rfl⟩))
 
+/-- A non-Moser center whose local trigger compares its support with the
+chosen surplus star. -/
+def IsTriggerRestrictedCenter (sstar center : Label) : Prop :=
+  center = .Q1 ∨ center = .Q2 ∨
+    (sstar = .s2 ∧ center = .s1) ∨
+    (sstar = .s3 ∧ center = .s1) ∨
+    (sstar = .s3 ∧ center = .s2)
+
+private theorem one_le_maskInterCard_uPwPuMask_iff (mask : Nat) :
+    1 ≤ maskInterCard mask uPwPuMask ↔
+      maskHas mask .u = true ∨ maskHas mask .Pw = true ∨
+        maskHas mask .Pu = true := by
+  have hbits : ∀ label : Label,
+      maskHas uPwPuMask label = true ↔
+        label = .u ∨ label = .Pw ∨ label = .Pu := by
+    intro label
+    cases label <;> decide
+  cases hu : maskHas mask .u <;>
+    cases hpw : maskHas mask .Pw <;>
+    cases hpu : maskHas mask .Pu <;>
+    simp [maskInterCard, allLabels, hbits, hu, hpw, hpu]
+
+private theorem bool_eq_false_or_iff_eq_true_imp (b : Bool) (p : Prop) :
+    (b = false ∨ p) ↔ (b = true → p) := by
+  cases b <;> simp
+
+/-- At a trigger-restricted center, the local trigger says that a support
+containing the surplus star avoids u and both private labels. -/
+theorem localTriggerOKAt_triggerRestrictedCenter_iff
+    {sstar center : Label} {mask : Nat}
+    (hsstar : isSurplusStar sstar = true)
+  (hcenter : IsTriggerRestrictedCenter sstar center) :
+    localTriggerOKAt sstar center mask = true ↔
+      (maskHas mask sstar = true →
+        maskHas mask .u = false ∧ maskHas mask .Pw = false ∧
+          maskHas mask .Pu = false) := by
+  rcases hcenter with rfl | rfl | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  all_goals try cases sstar <;> simp [isSurplusStar] at hsstar
+  all_goals
+    simp [localTriggerOKAt, previousSstarCenters,
+      one_le_maskInterCard_uPwPuMask_iff]
+  all_goals exact bool_eq_false_or_iff_eq_true_imp _ _
+
+/-- At a trigger-restricted center, the candidate predicate consists of the
+four-support conditions together with the support restriction imposed by the
+surplus-star trigger. -/
+theorem candidateMaskOK_triggerRestrictedCenter_iff
+    {sstar center : Label} {mask : Nat}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : IsTriggerRestrictedCenter sstar center) :
+    candidateMaskOK sstar center mask = true ↔
+      maskNormalized mask = true ∧
+      maskCard mask = 4 ∧
+      maskHas mask center = false ∧
+      ¬ (maskHas mask .u = true ∧ maskHas mask .v = true ∧
+        maskHas mask .w = true) ∧
+      (maskHas mask sstar = true →
+        maskHas mask .u = false ∧ maskHas mask .Pw = false ∧
+          maskHas mask .Pu = false) := by
+  rw [← localTriggerOKAt_triggerRestrictedCenter_iff hsstar hcenter]
+  rcases hcenter with rfl | rfl | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  all_goals try cases sstar <;> simp [isSurplusStar] at hsstar
+  all_goals simp [candidateMaskOK, isMoserLabel]
+  all_goals
+    cases hu : maskHas mask .u <;>
+      cases hv : maskHas mask .v <;>
+      cases hw : maskHas mask .w <;>
+      simp_all
+  all_goals aesop
+
+/-- Whether a four-element support satisfies the surplus-star trigger
+restriction. -/
+def supportRespectsStarTrigger (sstar : Label) (support : Finset Label) : Bool :=
+  !decide (sstar ∈ support) ||
+    decide (Disjoint support ({.u, .Pw, .Pu} : Finset Label))
+
+private theorem supportRespectsStarTrigger_iff
+    (sstar : Label) (support : Finset Label) :
+    supportRespectsStarTrigger sstar support = true ↔
+      (sstar ∈ support →
+        Disjoint support ({.u, .Pw, .Pu} : Finset Label)) := by
+  by_cases hstar : sstar ∈ support <;>
+    simp [supportRespectsStarTrigger, hstar]
+
+/-- Structurally admissible masks for a trigger-restricted center. -/
+def triggerRestrictedFourSupportMasks (sstar center : Label) : Finset Nat :=
+  ((fourSupportsAvoidingCenter center).filter
+      (fun support => supportRespectsStarTrigger sstar support = true)).image supportMask
+
+private theorem candidateMaskOK_triggerRestrictedCenter_iff_mem_supportMasks
+    {sstar center : Label} {mask : Nat}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : IsTriggerRestrictedCenter sstar center) :
+    candidateMaskOK sstar center mask = true ↔
+      mask ∈ triggerRestrictedFourSupportMasks sstar center := by
+  rw [candidateMaskOK_triggerRestrictedCenter_iff hsstar hcenter]
+  unfold triggerRestrictedFourSupportMasks
+  constructor
+  · rintro ⟨hnormalized, hcard, hcenterAbsent, htriple, htrigger⟩
+    have hbase : mask ∈ fourSupportMasksAvoidingCenter center :=
+      maskProperties_iff_mem_fourSupportMasks.mp
+        ⟨hnormalized, hcard, hcenterAbsent, htriple⟩
+    obtain ⟨support, hsupport, hmask⟩ := Finset.mem_image.mp hbase
+    apply Finset.mem_image.mpr
+    refine ⟨support, Finset.mem_filter.mpr ⟨hsupport, ?_⟩, hmask⟩
+    rw [supportRespectsStarTrigger_iff]
+    intro hstar
+    apply Finset.disjoint_left.mpr
+    intro label hlabel hspecial
+    have hstarBit : maskHas mask sstar = true := by
+      rw [← hmask, maskHas_supportMask]
+      simp [hstar]
+    obtain ⟨hu, hpw, hpu⟩ := htrigger hstarBit
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hspecial
+    rcases hspecial with rfl | rfl | rfl
+    · have : maskHas mask .u = true := by
+        rw [← hmask, maskHas_supportMask]
+        simp [hlabel]
+      simp [hu] at this
+    · have : maskHas mask .Pw = true := by
+        rw [← hmask, maskHas_supportMask]
+        simp [hlabel]
+      simp [hpw] at this
+    · have : maskHas mask .Pu = true := by
+        rw [← hmask, maskHas_supportMask]
+        simp [hlabel]
+      simp [hpu] at this
+  · intro hmask
+    obtain ⟨support, hsupport, rfl⟩ := Finset.mem_image.mp hmask
+    obtain ⟨hbase, htriggerBool⟩ := Finset.mem_filter.mp hsupport
+    have htrigger :=
+      (supportRespectsStarTrigger_iff sstar support).mp htriggerBool
+    have hproperties := maskProperties_iff_mem_fourSupportMasks.mpr
+      (Finset.mem_image.mpr ⟨support, hbase, rfl⟩)
+    refine ⟨hproperties.1, hproperties.2.1, hproperties.2.2.1,
+      hproperties.2.2.2, ?_⟩
+    intro hstarBit
+    have hstar : sstar ∈ support := by
+      simpa [maskHas_supportMask] using hstarBit
+    have hdisjoint := Finset.disjoint_left.mp (htrigger hstar)
+    refine ⟨?_, ?_, ?_⟩
+    · rw [maskHas_supportMask]
+      apply decide_eq_false_iff_not.mpr
+      intro hu
+      exact hdisjoint hu (by simp)
+    · rw [maskHas_supportMask]
+      apply decide_eq_false_iff_not.mpr
+      intro hpw
+      exact hdisjoint hpw (by simp)
+    · rw [maskHas_supportMask]
+      apply decide_eq_false_iff_not.mpr
+      intro hpu
+      exact hdisjoint hpu (by simp)
+
+/-- The ascending structural mask list for a trigger-restricted center. -/
+def triggerRestrictedFourSupportMaskList (sstar center : Label) : List Nat :=
+  (triggerRestrictedFourSupportMasks sstar center).sort
+    (fun left right => left ≤ right)
+
+private theorem triggerRestrictedFourSupportMaskList_sorted
+    (sstar center : Label) :
+    (triggerRestrictedFourSupportMaskList sstar center).Pairwise (· < ·) := by
+  apply List.sortedLT_iff_pairwise.mp
+  rw [List.sortedLT_iff_nodup_and_sortedLE]
+  exact ⟨Finset.sort_nodup _ _, (Finset.pairwise_sort _ _).sortedLE⟩
+
+set_option maxRecDepth 100000 in
+private theorem triggerRestrictedFourSupportMasks_eq_tableFinset
+    {sstar center : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : IsTriggerRestrictedCenter sstar center) :
+    triggerRestrictedFourSupportMasks sstar center =
+      (candidateMasks sstar center).toFinset := by
+  rcases hcenter with rfl | rfl | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  · cases sstar <;> simp [isSurplusStar] at hsstar
+    all_goals decide
+  · cases sstar <;> simp [isSurplusStar] at hsstar
+    all_goals decide
+  all_goals decide
+
+private theorem candidateMasks_triggerRestrictedCenter_sorted
+    {sstar center : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : IsTriggerRestrictedCenter sstar center) :
+    (candidateMasks sstar center).Pairwise (· < ·) := by
+  rcases hcenter with rfl | rfl | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  · cases sstar <;> simp [isSurplusStar] at hsstar
+    all_goals decide
+  · cases sstar <;> simp [isSurplusStar] at hsstar
+    all_goals decide
+  all_goals decide
+
+/-- For every trigger-restricted center, the explicit candidate table is the
+ascending structural enumeration of four-element supports satisfying the
+surplus-star restriction. -/
+theorem candidateMasks_triggerRestrictedCenter_eq_fourSupportMasks
+    {sstar center : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : IsTriggerRestrictedCenter sstar center) :
+    candidateMasks sstar center =
+      triggerRestrictedFourSupportMaskList sstar center := by
+  symm
+  exact sort_eq_of_eq_toFinset
+    (triggerRestrictedFourSupportMasks_eq_tableFinset hsstar hcenter)
+    (candidateMasks_triggerRestrictedCenter_sorted hsstar hcenter)
+
+/-- Every trigger-restricted-center table is the ordered filter of its
+candidate predicate. -/
+theorem candidateMasks_triggerRestrictedCenter_eq_filter
+    {sstar center : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : IsTriggerRestrictedCenter sstar center) :
+    candidateMasks sstar center = candidateMasksByFilter sstar center := by
+  rw [candidateMasks_triggerRestrictedCenter_eq_fourSupportMasks hsstar hcenter]
+  have hbound :
+      ∀ mask ∈ triggerRestrictedFourSupportMaskList sstar center, mask < maskBound := by
+    intro mask hmask
+    rw [triggerRestrictedFourSupportMaskList, Finset.mem_sort,
+      triggerRestrictedFourSupportMasks] at hmask
+    obtain ⟨support, _, rfl⟩ := Finset.mem_image.mp hmask
+    exact supportMask_lt_maskBound support
+  have hmatch : ∀ mask, mask < maskBound →
+      (candidateMaskOK sstar center mask = true ↔
+        mask ∈ triggerRestrictedFourSupportMaskList sstar center) := by
+    intro mask _
+    rw [candidateMaskOK_triggerRestrictedCenter_iff_mem_supportMasks hsstar hcenter,
+      triggerRestrictedFourSupportMaskList, Finset.mem_sort]
+  have hfilter := filter_range_eq_of_strictSorted_bounded
+    (candidateMaskOK sstar center) maskBound
+    (triggerRestrictedFourSupportMaskList sstar center)
+    (triggerRestrictedFourSupportMaskList_sorted sstar center) hbound hmatch
+  simpa [candidateMasksByFilter, allNormalizedMasks] using hfilter.symm
+
+private theorem candidateMasks_s1_Q1_eq_filter :
+    candidateMasks .s1 .Q1 = candidateMasksByFilter .s1 .Q1 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide) (Or.inl rfl)
+
+private theorem candidateMasks_s2_Q1_eq_filter :
+    candidateMasks .s2 .Q1 = candidateMasksByFilter .s2 .Q1 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide) (Or.inl rfl)
+
+private theorem candidateMasks_s3_Q1_eq_filter :
+    candidateMasks .s3 .Q1 = candidateMasksByFilter .s3 .Q1 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide) (Or.inl rfl)
+
+private theorem candidateMasks_s1_Q2_eq_filter :
+    candidateMasks .s1 .Q2 = candidateMasksByFilter .s1 .Q2 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide) (Or.inr (Or.inl rfl))
+
+private theorem candidateMasks_s2_Q2_eq_filter :
+    candidateMasks .s2 .Q2 = candidateMasksByFilter .s2 .Q2 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide) (Or.inr (Or.inl rfl))
+
+private theorem candidateMasks_s3_Q2_eq_filter :
+    candidateMasks .s3 .Q2 = candidateMasksByFilter .s3 .Q2 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide) (Or.inr (Or.inl rfl))
+
+private theorem candidateMasks_s2_s1_eq_filter :
+    candidateMasks .s2 .s1 = candidateMasksByFilter .s2 .s1 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide)
+    (Or.inr (Or.inr (Or.inl ⟨rfl, rfl⟩)))
+
+private theorem candidateMasks_s3_s1_eq_filter :
+    candidateMasks .s3 .s1 = candidateMasksByFilter .s3 .s1 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide)
+    (Or.inr (Or.inr (Or.inr (Or.inl ⟨rfl, rfl⟩))))
+
+private theorem candidateMasks_s3_s2_eq_filter :
+    candidateMasks .s3 .s2 = candidateMasksByFilter .s3 .s2 :=
+  candidateMasks_triggerRestrictedCenter_eq_filter (by decide)
+    (Or.inr (Or.inr (Or.inr (Or.inr ⟨rfl, rfl⟩))))
+
 end PrivateCenterSupport
 
 private theorem filter_range_eq_singleton_of_sorted
@@ -3640,6 +3916,15 @@ theorem candidateMasks_eq_filter_of_isSurplusStar
     | exact candidateMasks_s1_s2_eq_filter
     | exact candidateMasks_s1_s3_eq_filter
     | exact candidateMasks_s2_s3_eq_filter
+    | exact candidateMasks_s1_Q1_eq_filter
+    | exact candidateMasks_s2_Q1_eq_filter
+    | exact candidateMasks_s3_Q1_eq_filter
+    | exact candidateMasks_s1_Q2_eq_filter
+    | exact candidateMasks_s2_Q2_eq_filter
+    | exact candidateMasks_s3_Q2_eq_filter
+    | exact candidateMasks_s2_s1_eq_filter
+    | exact candidateMasks_s3_s1_eq_filter
+    | exact candidateMasks_s3_s2_eq_filter
     | exact CenterWSupport.candidateMasks_eq_filter (by decide)
     | exact candidateMasks_privateCenter_eq_filter (by decide) (by decide)
     | native_decide
