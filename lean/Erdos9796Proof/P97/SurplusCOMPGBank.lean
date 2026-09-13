@@ -4,6 +4,10 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Mathlib.Data.Nat.BitIndices
+import Batteries.Data.List.Perm
+import Mathlib.Tactic.IntervalCases
+
 /-!
 # Generated pinned surplus COMP-G shadow bank
 
@@ -80,6 +84,123 @@ def maskNormalized (mask : Nat) : Bool :=
 def maskCard (mask : Nat) : Nat :=
   allLabels.foldl
     (fun acc label => if maskHas mask label then acc + 1 else acc) 0
+
+/-- The bank label represented by a bit position below `labelCount`. -/
+def labelAt : Nat → Label
+  | 0 => .u
+  | 1 => .v
+  | 2 => .w
+  | 3 => .s1
+  | 4 => .s2
+  | 5 => .s3
+  | 6 => .Pw
+  | 7 => .Pu
+  | 8 => .Q1
+  | 9 => .Q2
+  | _ => .u
+
+/-- The distinct bank labels whose bit positions occur in a mask. -/
+def labelsOfMaskBits (mask : Nat) : List Label :=
+  mask.bitIndices.map labelAt
+
+/-- `labelAt` preserves every bit position below the bank's label bound. -/
+theorem labelAt_index_of_lt {i : Nat} (hi : i < labelCount) :
+    (labelAt i).index = i := by
+  change i < 10 at hi
+  interval_cases i <;> rfl
+
+/-- Reading a label back from its bit position returns that label. -/
+theorem labelAt_index (label : Label) : labelAt label.index = label := by
+  cases label <;> rfl
+
+/-- Every set bit of a normalized mask lies below the bank's label bound. -/
+theorem bitIndex_lt_labelCount_of_mem {mask i : Nat}
+    (hm : mask < 2 ^ labelCount) (hi : i ∈ mask.bitIndices) :
+    i < labelCount := by
+  by_contra h
+  have hle : labelCount ≤ i := Nat.le_of_not_gt h
+  have hp : 2 ^ labelCount ≤ 2 ^ i := Nat.pow_le_pow_right (by decide) hle
+  exact (Nat.not_lt_of_ge hp)
+    (lt_of_le_of_lt (Nat.two_pow_le_of_mem_bitIndices hi) hm)
+
+/-- The labels extracted from a normalized mask have no duplicates. -/
+theorem labelsOfMaskBits_nodup {mask : Nat} (hm : mask < 2 ^ labelCount) :
+    (labelsOfMaskBits mask).Nodup := by
+  unfold labelsOfMaskBits
+  apply List.Nodup.map_on
+  · intro i hi j hj hij
+    calc
+      i = (labelAt i).index := (labelAt_index_of_lt
+        (bitIndex_lt_labelCount_of_mem hm hi)).symm
+      _ = (labelAt j).index := by rw [hij]
+      _ = j := labelAt_index_of_lt (bitIndex_lt_labelCount_of_mem hm hj)
+  · exact Nat.bitIndices_nodup
+
+/-- A label occurs in the extracted support exactly when its bit is set. -/
+theorem mem_labelsOfMaskBits_iff {mask : Nat} (hm : mask < 2 ^ labelCount)
+    (label : Label) :
+    label ∈ labelsOfMaskBits mask ↔ maskHas mask label = true := by
+  constructor
+  · intro h
+    rcases List.mem_map.mp h with ⟨i, hi, hat⟩
+    have hil := bitIndex_lt_labelCount_of_mem hm hi
+    rw [← hat]
+    simp [maskHas, labelAt_index_of_lt hil]
+    exact Nat.mem_bitIndices.mp hi
+  · intro h
+    apply List.mem_map.mpr
+    refine ⟨label.index, ?_, labelAt_index label⟩
+    rw [Nat.mem_bitIndices]
+    simpa [maskHas] using h
+
+/-- Encoding a label list is the sum of its bit values. -/
+theorem maskOfLabels_eq_sum (labels : List Label) :
+    maskOfLabels labels = (labels.map Label.bit).sum := by
+  induction labels with
+  | nil => rfl
+  | cons label labels ih => simp [maskOfLabels, ih]
+
+/-- Extracting and re-encoding the support reconstructs a normalized mask. -/
+theorem maskOfLabels_labelsOfMaskBits {mask : Nat} (hm : mask < 2 ^ labelCount) :
+    maskOfLabels (labelsOfMaskBits mask) = mask := by
+  rw [maskOfLabels_eq_sum, labelsOfMaskBits, List.map_map]
+  rw [List.map_congr_left (fun i hi => by
+    simp only [Function.comp_apply, Label.bit]
+    rw [labelAt_index_of_lt (bitIndex_lt_labelCount_of_mem hm hi)])]
+  exact Nat.sum_map_two_pow_bitIndices mask
+
+/-- `maskCard` is the length of the distinct support of a normalized mask. -/
+theorem maskCard_eq_length_labelsOfMaskBits {mask : Nat}
+    (hm : mask < 2 ^ labelCount) :
+    maskCard mask = (labelsOfMaskBits mask).length := by
+  have fold_filter_length : ∀ (xs : List Label) (acc : Nat),
+      xs.foldl (fun acc label => if maskHas mask label then acc + 1 else acc) acc =
+        acc + (xs.filter (maskHas mask)).length := by
+    intro xs
+    induction xs with
+    | nil => intro acc; simp
+    | cons x xs ih =>
+      intro acc
+      simp only [List.foldl_cons, List.filter_cons]
+      split <;> simp [ih, Nat.add_assoc, Nat.add_comm]
+  have hfilter : maskCard mask =
+      (allLabels.filter (maskHas mask)).length := by
+    simpa [maskCard] using fold_filter_length allLabels 0
+  have hall : allLabels.Nodup := by decide
+  have hsupport : (allLabels.filter (maskHas mask)).Nodup :=
+    List.Sublist.nodup List.filter_sublist hall
+  have hperm : (allLabels.filter (maskHas mask)).Perm (labelsOfMaskBits mask) :=
+    List.Subperm.antisymm
+      (List.subperm_of_subset hsupport (by
+        intro label hlabel
+        exact (mem_labelsOfMaskBits_iff hm label).mpr
+          (List.mem_filter.mp hlabel).2))
+      (List.subperm_of_subset (labelsOfMaskBits_nodup hm) (by
+        intro label hlabel
+        exact List.mem_filter.mpr ⟨by cases label <;> simp [allLabels],
+          (mem_labelsOfMaskBits_iff hm label).mp hlabel⟩))
+  rw [hfilter]
+  exact hperm.length_eq
 
 /-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
 def maskInterCard (left right : Nat) : Nat :=
@@ -1864,8 +1985,9 @@ private theorem shadowPairCountsForAssigned_eq_map_pointPairAssignedCount
         labelPairs.map (pointPairAssignedCount shadow assigned) := by
   intro assigned
   induction assigned with
-  | nil => simp [shadowPairCountsForAssigned, emptyPairCounts,
-      pointPairAssignedCount]
+  | nil =>
+      change List.replicate labelPairs.length 0 = List.map (fun _ => 0) labelPairs
+      simp
   | cons center assigned ih =>
       simp [shadowPairCountsForAssigned, ih, incrementPairCounts,
         incrementPairCountsAux_map_pointPairAssignedCount]

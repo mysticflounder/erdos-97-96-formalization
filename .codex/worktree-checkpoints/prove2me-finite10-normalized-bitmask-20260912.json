@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite10-normalized-bitmask-20260912",
+  "base_head": "c78ca5f500513bb658c3b26e7a9bcfed3dc2f330",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite10-normalized-bitmask-20260912.json",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean",
+    "prove2me/native-bank-replacement-plan.md",
+    "scripts/surplus-compg-shadow.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-finite10-normalized-bitmask",
+  "created_utc": "2026-09-13T05:35:00Z",
+  "manifest_sha256": "828ea176d718d07c3938942240e7d1837dd847bdbfd3aa48e0f6f20fe40ad328"
+}

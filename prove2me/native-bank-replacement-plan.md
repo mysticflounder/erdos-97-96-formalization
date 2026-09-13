@@ -119,12 +119,33 @@ branch axioms for the remaining centers, so the computed-search producer is
 still compiler-trusted. The source module now has 36 textual `native_decide`
 calls, and the three depth shards still contribute one each.
 
-The next useful extraction is a normalized-bitmask decomposition for the
-19-entry center-`u` tables: turn a mask below `2 ^ labelCount` into a duplicate-
-free list of labels, prove exact membership and reconstruction, and identify
-`maskCard` with the support length. That supplies the reusable representation
-needed to classify four-label supports; it does not by itself prove membership
-in the three explicit candidate tables.
+The normalized-bitmask decomposition is now structural. `labelsOfMaskBits`
+maps `Nat.bitIndices` back to bank labels. For every mask below
+`2 ^ labelCount`, the new lemmas prove that this support has no duplicates,
+that label membership is exactly the corresponding `maskHas` test, that
+re-encoding the support reconstructs the original mask, and that `maskCard` is
+the support length. These proofs use the general `Nat.bitIndices` API; the only
+finite split is the ten-case proof that `labelAt` preserves an in-range index.
+Their axiom closures contain only `propext`, `Classical.choice`, and
+`Quot.sound` as applicable. The only dedicated `interval_cases` split is the
+ten-case proof that `labelAt` preserves an in-range index; the cardinality
+proof also performs a structural case split on the ten label constructors.
+
+This representation does not by itself prove membership in the three explicit
+19-entry center-`u` tables. The next classification should partition every
+admissible four-label support into four reusable families: nine supports with
+`w`, one of `{v,Q1,Q2}`, and two surplus labels; six supports with one of
+`{Pw,Pu}`, one of `{v,Q1,Q2}`, and the two surplus labels other than `sstar`;
+three supports containing `{s1,s2,s3}` and one of `{v,Q1,Q2}`; and the single
+support `{w,s1,s2,s3}`. Re-encoding those `9 + 6 + 3 + 1` supports yields the
+19 masks for each surplus star.
+
+The generator emits this normalized-bitmask block, but it is not yet a complete
+reproducer of `SurplusCOMPGBank.lean`: a pre-existing source-only pair-count
+bridge, including `PrefixPairCountsOK` and its supporting lemmas, is absent
+from the template and is used by `SurplusCOMPGBankGeometry.lean`. Do not
+overwrite the tracked module with a full regeneration until that generator
+drift is repaired.
 
 After that prerequisite, the bridge should route through the computed list and
 target the one-way coverage actually needed by the consumer:
