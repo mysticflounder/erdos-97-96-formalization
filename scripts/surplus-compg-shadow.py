@@ -947,6 +947,7 @@ Authors: Adam McKenna
 -/
 
 import Mathlib.Data.Nat.BitIndices
+import Mathlib.Data.Finset.Card
 import Batteries.Data.List.Perm
 import Mathlib.Tactic.IntervalCases
 
@@ -1312,6 +1313,17 @@ def crossSeparationOKForMasks
       else
         true)
 
+theorem crossSeparationOKForMasks_of_sepOKFor
+    {{shadow : Shadow}} {{c cp : Label}}
+    (hsep : ∀ x y : Label,
+      (x, y) ∈ labelPairs → sepOKFor shadow c cp x y = true) :
+    crossSeparationOKForMasks c (shadow.centerMask c) cp
+      (shadow.centerMask cp) = true := by
+  unfold crossSeparationOKForMasks
+  rw [List.all_eq_true]
+  intro pair hpair
+  simpa [sepOKFor, Shadow.classHas] using hsep pair.1 pair.2 hpair
+
 def separationOK (shadow : Shadow) : Bool :=
   labelPairs.all
     (fun centerPair =>
@@ -1379,6 +1391,11 @@ def shadowPairCountsForAssigned (shadow : Shadow) : List Label -> List Nat
   | center :: assigned =>
       incrementPairCounts center (shadow.centerMask center)
         (shadowPairCountsForAssigned shadow assigned)
+
+abbrev PrefixPairCountsOK (shadow : Shadow) : Prop :=
+  ∀ assigned : List Label,
+    assigned ∈ fragmentSearchAssignedPrefixes →
+      pairCountsOK (shadowPairCountsForAssigned shadow assigned) = true
 
 def searchPairCountsOK (shadow : Shadow) : Bool :=
   fragmentSearchAssignedPrefixes.all
@@ -1763,6 +1780,200 @@ theorem assignedSeparationOK_of_isValidPinnedFragment
   exact assignedSeparationOK_of_searchSeparationOK
     (searchSeparationOK_of_isValidPinnedFragment hvalid) hmask hne
 
+private def pointPairAssignedCount (shadow : Shadow)
+    (assigned : List Label) (pointPair : Label × Label) : Nat :=
+  List.countP
+    (fun center => pointPairHitByCenterMask center (shadow.centerMask center) pointPair)
+    assigned
+
+private theorem incrementPairCountsAux_map_pointPairAssignedCount
+    (shadow : Shadow) (center : Label) (assigned : List Label) :
+    ∀ pairs : List (Label × Label),
+      incrementPairCountsAux center (shadow.centerMask center)
+        (pairs.map (pointPairAssignedCount shadow assigned)) pairs =
+      pairs.map (pointPairAssignedCount shadow (center :: assigned)) := by
+  intro pairs
+  induction pairs with
+  | nil => simp [incrementPairCountsAux]
+  | cons pair rest ih =>
+      by_cases hhit :
+        pointPairHitByCenterMask center (shadow.centerMask center) pair = true
+      · simp [incrementPairCountsAux, pointPairAssignedCount, ih, hhit,
+          Nat.add_comm]
+      · simp [incrementPairCountsAux, pointPairAssignedCount, ih, hhit]
+
+private theorem shadowPairCountsForAssigned_eq_map_pointPairAssignedCount
+    (shadow : Shadow) :
+    ∀ assigned : List Label,
+      shadowPairCountsForAssigned shadow assigned =
+        labelPairs.map (pointPairAssignedCount shadow assigned) := by
+  intro assigned
+  induction assigned with
+  | nil =>
+      change List.replicate labelPairs.length 0 = List.map (fun _ => 0) labelPairs
+      simp
+  | cons center assigned ih =>
+      simp [shadowPairCountsForAssigned, ih, incrementPairCounts,
+        incrementPairCountsAux_map_pointPairAssignedCount]
+
+private theorem foldl_countP_add {{α : Type _}} (p : α → Bool) :
+    ∀ (items : List α) (acc : Nat),
+      items.foldl (fun acc item => if p item then acc + 1 else acc) acc =
+        acc + List.countP p items := by
+  intro items
+  induction items with
+  | nil => intro acc; simp
+  | cons item rest ih =>
+      intro acc
+      by_cases h : p item = true
+      · simp [h, ih, Nat.add_comm, Nat.add_left_comm]
+      · simp [h, ih]
+
+private theorem pointPairClassCount_eq_countP (shadow : Shadow) (x y : Label) :
+    pointPairClassCount shadow x y =
+      List.countP
+        (fun center =>
+          pointPairHitByCenterMask center (shadow.centerMask center) (x, y))
+        allLabels := by
+  unfold pointPairClassCount
+  have hfun :
+      (fun acc center =>
+        if center == x || center == y then
+          acc
+        else if shadow.classHas center x && shadow.classHas center y then
+          acc + 1
+        else
+          acc) =
+        (fun acc center =>
+          if pointPairHitByCenterMask center (shadow.centerMask center) (x, y) then
+            acc + 1
+          else
+            acc) := by
+    funext acc center
+    by_cases hx : center = x
+    · simp [pointPairHitByCenterMask, hx]
+    · by_cases hy : center = y
+      · simp [pointPairHitByCenterMask, hy]
+      · simp [pointPairHitByCenterMask, Shadow.classHas, hx, hy]
+  rw [hfun, foldl_countP_add]
+  simp
+
+private theorem countP_le_allLabels_of_perm_sublist
+    {{p : Label → Bool}} {{assigned sorted : List Label}}
+    (hperm : assigned.Perm sorted) (hsub : sorted.Sublist allLabels) :
+    List.countP p assigned <= List.countP p allLabels := by
+  rw [hperm.countP_eq]
+  exact hsub.countP_le
+
+private theorem countP_le_allLabels_of_fragment_prefix
+    {{p : Label → Bool}} {{assigned : List Label}}
+    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes) :
+    List.countP p assigned <= List.countP p allLabels := by
+  simp only [fragmentSearchAssignedPrefixes, List.mem_cons, List.not_mem_nil,
+    or_false] at hprefix
+  rcases hprefix with
+    rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := []) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.v]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.v, .w]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw, .Pu])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw, .Pu, .Q1])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw, .Pu, .Q1, .Q2])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .s1, .Pw, .Pu, .Q1, .Q2])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .s1, .s2, .Pw, .Pu, .Q1, .Q2])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := allLabels) (by native_decide) (by native_decide)
+
+theorem pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
+    {{shadow : Shadow}} {{assigned : List Label}}
+    (hcount : ∀ x y : Label,
+      (x, y) ∈ labelPairs → pointPairClassCount shadow x y <= 2)
+    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes) :
+    pairCountsOK (shadowPairCountsForAssigned shadow assigned) = true := by
+  rw [shadowPairCountsForAssigned_eq_map_pointPairAssignedCount]
+  unfold pairCountsOK
+  rw [List.all_eq_true]
+  intro count hmem
+  rcases List.mem_map.mp hmem with ⟨pointPair, hpair, rfl⟩
+  apply decide_eq_true
+  have hleAll :
+      pointPairAssignedCount shadow assigned pointPair <=
+        pointPairClassCount shadow pointPair.fst pointPair.snd := by
+    unfold pointPairAssignedCount
+    rw [pointPairClassCount_eq_countP]
+    exact countP_le_allLabels_of_fragment_prefix hprefix
+  exact Nat.le_trans hleAll (hcount pointPair.fst pointPair.snd hpair)
+
+theorem noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
+    {{shadow : Shadow}}
+    (hcounts :
+      pairCountsOK (shadowPairCountsForAssigned shadow allLabels) = true) :
+    noThreeOK shadow = true := by
+  unfold noThreeOK
+  rw [List.all_eq_true]
+  intro pointPair hpair
+  unfold pairCountsOK at hcounts
+  rw [List.all_eq_true] at hcounts
+  apply decide_eq_true
+  have hmem :
+      pointPairClassCount shadow pointPair.fst pointPair.snd ∈
+        shadowPairCountsForAssigned shadow allLabels := by
+    rw [shadowPairCountsForAssigned_eq_map_pointPairAssignedCount]
+    exact List.mem_map.mpr ⟨pointPair, hpair, by
+      rcases pointPair with ⟨x, y⟩
+      simp [pointPairAssignedCount, pointPairClassCount_eq_countP]⟩
+  exact of_decide_eq_true (hcounts _ hmem)
+
+theorem noThreeOK_of_PrefixPairCountsOK
+    {{shadow : Shadow}}
+    (hcounts : PrefixPairCountsOK shadow) :
+    noThreeOK shadow = true := by
+  have hfullPrefix :
+      fullFragmentSearchAssigned ∈ fragmentSearchAssignedPrefixes := by
+    simp [fragmentSearchAssignedPrefixes, fullFragmentSearchAssigned]
+  have hcountsFull :
+      pairCountsOK
+        (shadowPairCountsForAssigned shadow fullFragmentSearchAssigned) =
+          true :=
+    hcounts fullFragmentSearchAssigned hfullPrefix
+  unfold noThreeOK
+  rw [List.all_eq_true]
+  intro pointPair hpair
+  unfold pairCountsOK at hcountsFull
+  rw [List.all_eq_true] at hcountsFull
+  apply decide_eq_true
+  have hmem :
+      pointPairClassCount shadow pointPair.fst pointPair.snd ∈
+        shadowPairCountsForAssigned shadow fullFragmentSearchAssigned := by
+    rw [shadowPairCountsForAssigned_eq_map_pointPairAssignedCount]
+    exact List.mem_map.mpr ⟨pointPair, hpair, by
+      rcases pointPair with ⟨x, y⟩
+      unfold pointPairAssignedCount
+      rw [pointPairClassCount_eq_countP]
+      have hperm : fullFragmentSearchAssigned.Perm allLabels := by
+        native_decide
+      simpa using hperm.countP_eq
+        (fun center =>
+          pointPairHitByCenterMask center (shadow.centerMask center) (x, y))⟩
+  exact of_decide_eq_true (hcountsFull _ hmem)
+
 theorem pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     {{shadow : Shadow}} {{assigned : List Label}}
     (hcounts : searchPairCountsOK shadow = true)
@@ -1897,6 +2108,613 @@ theorem mem_allNormalizedMasks_of_maskNormalized {{mask : Nat}}
     simpa [maskNormalized] using h
   rw [allNormalizedMasks]
   exact List.mem_range.mpr (of_decide_eq_true hdec)
+
+section CenterUSupport
+
+open Label
+
+private def centerUSupportW : Finset Label := {{.w, .Pw, .Pu}}
+private def centerUSupportV : Finset Label := {{.v, .Q1, .Q2}}
+private def centerUSupportR : Finset Label := {{.s1, .s2, .s3}}
+private def centerUSupportP : Finset Label := {{.Pw, .Pu}}
+
+def CenterUSupportShape (sstar : Label) (xs : List Label) : Prop :=
+  (∃ x ∈ centerUSupportV, ∃ a b, a ∈ centerUSupportR ∧ b ∈ centerUSupportR ∧ a ≠ b ∧ xs.toFinset = {{w, x, a, b}}) ∨
+  (∃ p ∈ centerUSupportP, ∃ x ∈ centerUSupportV, ∃ a b, a ∈ centerUSupportR ∧ b ∈ centerUSupportR ∧ a ≠ b ∧
+    a ≠ sstar ∧ b ≠ sstar ∧ xs.toFinset = {{p, x, a, b}}) ∨
+  (∃ x ∈ centerUSupportV, xs.toFinset = {{x, s1, s2, s3}}) ∨ xs.toFinset = {{w, s1, s2, s3}}
+
+private lemma part_subset {{T : Finset Label}} (hu : u ∉ T) : T ⊆ centerUSupportW ∪ centerUSupportV ∪ centerUSupportR := by
+  intro x hx
+  cases x <;> simp_all [centerUSupportW, centerUSupportV, centerUSupportR]
+
+private lemma groups_disjoint : Disjoint centerUSupportW centerUSupportV ∧ Disjoint centerUSupportW centerUSupportR ∧ Disjoint centerUSupportV centerUSupportR := by
+  have hWV : Disjoint centerUSupportW centerUSupportV := by
+    refine Finset.disjoint_left.mpr ?_
+    intro x hxW hxV
+    cases x <;> simp [centerUSupportW, centerUSupportV] at hxW hxV
+  have hWR : Disjoint centerUSupportW centerUSupportR := by
+    refine Finset.disjoint_left.mpr ?_
+    intro x hxW hxR
+    cases x <;> simp [centerUSupportW, centerUSupportR] at hxW hxR
+  have hVR : Disjoint centerUSupportV centerUSupportR := by
+    refine Finset.disjoint_left.mpr ?_
+    intro x hxV hxR
+    cases x <;> simp [centerUSupportV, centerUSupportR] at hxV hxR
+  exact ⟨hWV, hWR, hVR⟩
+
+theorem centerUSupportShape_of_card_four
+    {{sstar : Label}} {{xs : List Label}}
+    (hnd : xs.Nodup) (hlen : xs.length = 4) (hu : u ∉ xs)
+    (hW : (xs.toFinset ∩ centerUSupportW).card ≤ 1) (hV : (xs.toFinset ∩ centerUSupportV).card ≤ 1)
+    (hstar : sstar = s1 ∨ sstar = s2 ∨ sstar = s3)
+    (htrigger : sstar ∈ xs → Pw ∉ xs ∧ Pu ∉ xs) : CenterUSupportShape sstar xs := by
+  let T : Finset Label := xs.toFinset
+  have hTcard : T.card = 4 := by
+    dsimp [T]
+    rw [List.toFinset_card_of_nodup hnd, hlen]
+  have hW' : (T ∩ centerUSupportW).card ≤ 1 := by simpa [T] using hW
+  have hV' : (T ∩ centerUSupportV).card ≤ 1 := by simpa [T] using hV
+  have hpart : T = (T ∩ centerUSupportW) ∪ (T ∩ centerUSupportV) ∪ (T ∩ centerUSupportR) := by
+    ext x
+    constructor
+    · intro hx
+      rcases Finset.mem_union.mp (part_subset (by simpa [T] using hu) hx) with hxWV | hxR
+      · rcases Finset.mem_union.mp hxWV with hxW | hxV
+        · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr
+            (Or.inl (Finset.mem_inter.mpr ⟨hx, hxW⟩))))
+        · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr
+            (Or.inr (Finset.mem_inter.mpr ⟨hx, hxV⟩))))
+      · exact Finset.mem_union.mpr (Or.inr (Finset.mem_inter.mpr ⟨hx, hxR⟩))
+    · intro hx
+      rcases Finset.mem_union.mp hx with hxWV | hxR
+      · rcases Finset.mem_union.mp hxWV with hxW | hxV
+        · exact (Finset.mem_inter.mp hxW).1
+        · exact (Finset.mem_inter.mp hxV).1
+      · exact (Finset.mem_inter.mp hxR).1
+  obtain ⟨hWV, hWR, hVR⟩ := groups_disjoint
+  have hTWV : Disjoint (T ∩ centerUSupportW) (T ∩ centerUSupportV) := by
+    refine Finset.disjoint_left.mpr ?_
+    intro x hxW hxV
+    exact (Finset.disjoint_left.mp hWV) (Finset.mem_inter.mp hxW).2
+      (Finset.mem_inter.mp hxV).2
+  have hTWR : Disjoint (T ∩ centerUSupportW) (T ∩ centerUSupportR) := by
+    refine Finset.disjoint_left.mpr ?_
+    intro x hxW hxR
+    exact (Finset.disjoint_left.mp hWR) (Finset.mem_inter.mp hxW).2
+      (Finset.mem_inter.mp hxR).2
+  have hTVR : Disjoint (T ∩ centerUSupportV) (T ∩ centerUSupportR) := by
+    refine Finset.disjoint_left.mpr ?_
+    intro x hxV hxR
+    exact (Finset.disjoint_left.mp hVR) (Finset.mem_inter.mp hxV).2
+      (Finset.mem_inter.mp hxR).2
+  have hTWVR : Disjoint ((T ∩ centerUSupportW) ∪ (T ∩ centerUSupportV)) (T ∩ centerUSupportR) := by
+    refine Finset.disjoint_left.mpr ?_
+    intro x hxWV hxR
+    rcases Finset.mem_union.mp hxWV with hxW | hxV
+    · exact (Finset.disjoint_left.mp hTWR) hxW hxR
+    · exact (Finset.disjoint_left.mp hTVR) hxV hxR
+  have hcards : 4 = (T ∩ centerUSupportW).card + (T ∩ centerUSupportV).card + (T ∩ centerUSupportR).card := by
+    have h := hTcard
+    rw [hpart, Finset.card_union_of_disjoint hTWVR,
+      Finset.card_union_of_disjoint hTWV] at h
+    omega
+  have hWcases : (T ∩ centerUSupportW).card = 0 ∨ (T ∩ centerUSupportW).card = 1 := by omega
+  have hVcases : (T ∩ centerUSupportV).card = 0 ∨ (T ∩ centerUSupportV).card = 1 := by omega
+  have hRle : (T ∩ centerUSupportR).card ≤ 3 := by
+    have h := Finset.card_le_card (Finset.inter_subset_right : T ∩ centerUSupportR ⊆ centerUSupportR)
+    simpa [centerUSupportR] using h
+  rcases hWcases with hW0 | hW1 <;> rcases hVcases with hV0 | hV1
+  · exfalso; omega
+  · have hR3 : (T ∩ centerUSupportR).card = 3 := by omega
+    obtain ⟨x, hx⟩ := Finset.card_eq_one.mp hV1
+    have hxV : x ∈ centerUSupportV := (Finset.mem_inter.mp (by rw [hx]; simp)).2
+    have hR_eq : T ∩ centerUSupportR = centerUSupportR :=
+      Finset.eq_of_subset_of_card_le Finset.inter_subset_right (by
+        simpa [centerUSupportR] using (show 3 ≤ (T ∩ centerUSupportR).card by omega))
+    have hTeq : T = {{x, s1, s2, s3}} := by
+      calc
+        T = (T ∩ centerUSupportW) ∪ (T ∩ centerUSupportV) ∪ (T ∩ centerUSupportR) := hpart
+        _ = (∅ : Finset Label) ∪ {{x}} ∪ centerUSupportR := by
+          rw [Finset.card_eq_zero.mp hW0, hx, hR_eq]
+        _ = {{x, s1, s2, s3}} := by ext z; simp [centerUSupportR, or_left_comm, or_assoc, or_comm]
+    exact Or.inr (Or.inr (Or.inl ⟨x, hxV, by simpa [T] using hTeq⟩))
+  · have hR3 : (T ∩ centerUSupportR).card = 3 := by omega
+    obtain ⟨p, hp⟩ := Finset.card_eq_one.mp hW1
+    have hpW : p ∈ centerUSupportW := (Finset.mem_inter.mp (by rw [hp]; simp)).2
+    have hp_cases : p = w ∨ p = Pw ∨ p = Pu := by simpa [centerUSupportW] using hpW
+    have hR_eq : T ∩ centerUSupportR = centerUSupportR :=
+      Finset.eq_of_subset_of_card_le Finset.inter_subset_right (by
+        simpa [centerUSupportR] using (show 3 ≤ (T ∩ centerUSupportR).card by omega))
+    rcases hp_cases with rfl | rfl | rfl
+    · have hTeq : T = {{w, s1, s2, s3}} := by
+        calc
+          T = (T ∩ centerUSupportW) ∪ (T ∩ centerUSupportV) ∪ (T ∩ centerUSupportR) := hpart
+          _ = {{w}} ∪ (∅ : Finset Label) ∪ centerUSupportR := by
+            rw [hp, Finset.card_eq_zero.mp hV0, hR_eq]
+          _ = {{w, s1, s2, s3}} := by ext z; simp [centerUSupportR, or_left_comm, or_assoc, or_comm]
+      exact Or.inr (Or.inr (Or.inr (by simpa [T] using hTeq)))
+    · exfalso
+      have hsR : sstar ∈ centerUSupportR := by rcases hstar with rfl | rfl | rfl <;> simp [centerUSupportR]
+      have hsTR : sstar ∈ T ∩ centerUSupportR := by rw [hR_eq]; exact hsR
+      have hsT : sstar ∈ T := (Finset.mem_inter.mp hsTR).1
+      have hsxs : sstar ∈ xs := List.mem_toFinset.mp (by simpa [T] using hsT)
+      have hpTW : Pw ∈ T ∩ centerUSupportW := by rw [hp]; simp
+      have hpT : Pw ∈ T := (Finset.mem_inter.mp hpTW).1
+      exact (htrigger hsxs).1 (List.mem_toFinset.mp (by simpa [T] using hpT))
+    · exfalso
+      have hsR : sstar ∈ centerUSupportR := by rcases hstar with rfl | rfl | rfl <;> simp [centerUSupportR]
+      have hsTR : sstar ∈ T ∩ centerUSupportR := by rw [hR_eq]; exact hsR
+      have hsT : sstar ∈ T := (Finset.mem_inter.mp hsTR).1
+      have hsxs : sstar ∈ xs := List.mem_toFinset.mp (by simpa [T] using hsT)
+      have hpTW : Pu ∈ T ∩ centerUSupportW := by rw [hp]; simp
+      have hpT : Pu ∈ T := (Finset.mem_inter.mp hpTW).1
+      exact (htrigger hsxs).2 (List.mem_toFinset.mp (by simpa [T] using hpT))
+  · have hR2 : (T ∩ centerUSupportR).card = 2 := by omega
+    obtain ⟨p, hp⟩ := Finset.card_eq_one.mp hW1
+    obtain ⟨x, hx⟩ := Finset.card_eq_one.mp hV1
+    have hpW : p ∈ centerUSupportW := (Finset.mem_inter.mp (by rw [hp]; simp)).2
+    have hxV : x ∈ centerUSupportV := (Finset.mem_inter.mp (by rw [hx]; simp)).2
+    obtain ⟨a, b, hab, hR⟩ := Finset.card_eq_two.mp hR2
+    have haTR : a ∈ T ∩ centerUSupportR := by rw [hR]; simp
+    have hbTR : b ∈ T ∩ centerUSupportR := by rw [hR]; simp
+    have haR : a ∈ centerUSupportR := (Finset.mem_inter.mp haTR).2
+    have hbR : b ∈ centerUSupportR := (Finset.mem_inter.mp hbTR).2
+    have hTeq : T = {{p, x, a, b}} := by
+      calc
+        T = (T ∩ centerUSupportW) ∪ (T ∩ centerUSupportV) ∪ (T ∩ centerUSupportR) := hpart
+        _ = {{p}} ∪ {{x}} ∪ {{a, b}} := by rw [hp, hx, hR]
+        _ = {{p, x, a, b}} := by ext z; simp [or_left_comm, or_assoc, or_comm]
+    have hp_cases : p = w ∨ p = Pw ∨ p = Pu := by simpa [centerUSupportW] using hpW
+    rcases hp_cases with rfl | rfl | rfl
+    · exact Or.inl ⟨x, hxV, a, b, haR, hbR, hab, by simpa [T] using hTeq⟩
+    · have hsT : sstar ∉ T := by
+        intro hsT
+        have hsxs : sstar ∈ xs := List.mem_toFinset.mp (by simpa [T] using hsT)
+        have hpTW : Pw ∈ T ∩ centerUSupportW := by rw [hp]; simp
+        have hpT : Pw ∈ T := (Finset.mem_inter.mp hpTW).1
+        exact (htrigger hsxs).1 (List.mem_toFinset.mp (by simpa [T] using hpT))
+      have ha_ne : a ≠ sstar := by
+        intro h; apply hsT; simpa [h] using (Finset.mem_inter.mp haTR).1
+      have hb_ne : b ≠ sstar := by
+        intro h; apply hsT; simpa [h] using (Finset.mem_inter.mp hbTR).1
+      refine Or.inr (Or.inl ⟨Pw, ?_, ?_⟩)
+      · simp [centerUSupportP]
+      · refine ⟨x, ?_, ?_⟩
+        · exact hxV
+        · refine ⟨a, b, ?_⟩
+          exact ⟨haR, hbR, hab, ha_ne, hb_ne, by simpa [T] using hTeq⟩
+    · have hsT : sstar ∉ T := by
+        intro hsT
+        have hsxs : sstar ∈ xs := List.mem_toFinset.mp (by simpa [T] using hsT)
+        have hpTW : Pu ∈ T ∩ centerUSupportW := by rw [hp]; simp
+        have hpT : Pu ∈ T := (Finset.mem_inter.mp hpTW).1
+        exact (htrigger hsxs).2 (List.mem_toFinset.mp (by simpa [T] using hpT))
+      have ha_ne : a ≠ sstar := by
+        intro h; apply hsT; simpa [h] using (Finset.mem_inter.mp haTR).1
+      have hb_ne : b ≠ sstar := by
+        intro h; apply hsT; simpa [h] using (Finset.mem_inter.mp hbTR).1
+      refine Or.inr (Or.inl ⟨Pu, ?_, ?_⟩)
+      · simp [centerUSupportP]
+      · refine ⟨x, ?_, ?_⟩
+        · exact hxV
+        · refine ⟨a, b, ?_⟩
+          exact ⟨haR, hbR, hab, ha_ne, hb_ne, by simpa [T] using hTeq⟩
+
+private theorem surplus_u_support_data {{sstar : Label}} (mask : Nat)
+    (h : candidateMaskOK sstar .u mask = true) :
+    mask < 2 ^ labelCount ∧ maskCard mask = 4 ∧
+      maskHas mask .u = false ∧
+      maskInterCard mask cvNoUMask ≤ 1 ∧
+      maskInterCard mask cwNoUMask ≤ 1 ∧
+      (labelsOfMaskBits mask).length = 4 := by
+  simp only [candidateMaskOK, Bool.and_eq_true] at h
+  have hnormcard := h.1.1.1.1.1.1.1
+  have hnorm : maskNormalized mask = true := hnormcard.1
+  have hcard : maskCard mask = 4 := by simpa using hnormcard.2
+  have hnotu : maskHas mask .u = false := by simpa using h.1.1.1.1.1.1.2
+  have hcondition := h.1.1.1.2
+  simp at hcondition
+  have hcv : maskInterCard mask cvNoUMask ≤ 1 := hcondition.1
+  have hcw : maskInterCard mask cwNoUMask ≤ 1 := hcondition.2
+  have hlt : mask < 2 ^ labelCount := by
+    simpa [maskNormalized, maskBound] using (of_decide_eq_true hnorm)
+  have hsupp : (labelsOfMaskBits mask).length = 4 := by
+    rw [← maskCard_eq_length_labelsOfMaskBits]
+    · exact hcard
+    · exact hlt
+  exact ⟨hlt, hcard, hnotu, hcv, hcw, hsupp⟩
+
+theorem centerUSupportShape_of_candidateMaskOK_surplus_u {{sstar : Label}} {{mask : Nat}}
+    (h : candidateMaskOK sstar .u mask = true)
+    (hsstar : isSurplusStar sstar = true) :
+    CenterUSupportShape sstar (labelsOfMaskBits mask) := by
+  obtain ⟨hlt, hcard, hnotu, hcv, hcw, hsupp⟩ := surplus_u_support_data mask h
+  have hmem : ∀ label : Label,
+      label ∈ labelsOfMaskBits mask ↔ maskHas mask label = true :=
+    fun label => mem_labelsOfMaskBits_iff hlt label
+  have hW : ((labelsOfMaskBits mask).toFinset ∩ centerUSupportW).card ≤ 1 := by
+    refine Finset.card_le_one.mpr ?_
+    intro a ha b hb
+    have haW := (Finset.mem_inter.mp ha).2
+    have hbW := (Finset.mem_inter.mp hb).2
+    have haM := (hmem a).mp (List.mem_toFinset.mp (Finset.mem_inter.mp ha).1)
+    have hbM := (hmem b).mp (List.mem_toFinset.mp (Finset.mem_inter.mp hb).1)
+    have ha_cases : a = .w ∨ a = .Pw ∨ a = .Pu := by simpa [centerUSupportW] using haW
+    have hb_cases : b = .w ∨ b = .Pw ∨ b = .Pu := by simpa [centerUSupportW] using hbW
+    have hcvbits : ∀ label : Label,
+        maskHas cvNoUMask label = true ↔ label = .w ∨ label = .Pw ∨ label = .Pu := by
+      intro label
+      cases label <;> decide
+    rcases ha_cases with rfl | rfl | rfl <;>
+      rcases hb_cases with rfl | rfl | rfl <;>
+      try rfl
+    all_goals unfold maskInterCard at hcv
+    all_goals simp only [allLabels, List.foldl] at hcv
+    all_goals rw [haM, hbM] at hcv
+    all_goals simp [hcvbits] at hcv
+    all_goals split at hcv <;> omega
+  have hV : ((labelsOfMaskBits mask).toFinset ∩ centerUSupportV).card ≤ 1 := by
+    refine Finset.card_le_one.mpr ?_
+    intro a ha b hb
+    have haV := (Finset.mem_inter.mp ha).2
+    have hbV := (Finset.mem_inter.mp hb).2
+    have haM := (hmem a).mp (List.mem_toFinset.mp (Finset.mem_inter.mp ha).1)
+    have hbM := (hmem b).mp (List.mem_toFinset.mp (Finset.mem_inter.mp hb).1)
+    have ha_cases : a = .v ∨ a = .Q1 ∨ a = .Q2 := by simpa [centerUSupportV] using haV
+    have hb_cases : b = .v ∨ b = .Q1 ∨ b = .Q2 := by simpa [centerUSupportV] using hbV
+    have hcwb : ∀ label : Label,
+        maskHas cwNoUMask label = true ↔ label = .v ∨ label = .Q1 ∨ label = .Q2 := by
+      intro label
+      cases label <;> decide
+    rcases ha_cases with rfl | rfl | rfl <;>
+      rcases hb_cases with rfl | rfl | rfl <;>
+      try rfl
+    all_goals unfold maskInterCard at hcw
+    all_goals simp only [allLabels, List.foldl] at hcw
+    all_goals rw [haM, hbM] at hcw
+    all_goals simp [hcwb] at hcw
+    all_goals split at hcw <;> omega
+  have htrigger : sstar ∈ labelsOfMaskBits mask →
+      .Pw ∉ labelsOfMaskBits mask ∧ .Pu ∉ labelsOfMaskBits mask := by
+    intro hs
+    constructor
+    · intro hp
+      have hsM : maskHas mask sstar = true :=
+        (hmem sstar).mp hs
+      have hpM : maskHas mask .Pw = true :=
+        (hmem .Pw).mp hp
+      have hcount : 1 ≤ maskInterCard mask uPwPuMask := by
+        have hbits : ∀ label : Label,
+            maskHas uPwPuMask label = true ↔ label = .u ∨ label = .Pw ∨ label = .Pu := by
+          intro label
+          cases label <;> decide
+        unfold maskInterCard
+        simp only [allLabels, List.foldl]
+        rw [hpM]
+        simp [hbits]
+        split <;> omega
+      have hcountB : decide (1 ≤ maskInterCard mask uPwPuMask) = true :=
+        decide_eq_true_eq.mpr hcount
+      have hh := h
+      simp [candidateMaskOK, localTriggerOKAt, hsM, hpM, hcountB] at hh
+    · intro hp
+      have hsM : maskHas mask sstar = true :=
+        (hmem sstar).mp hs
+      have hpM : maskHas mask .Pu = true :=
+        (hmem .Pu).mp hp
+      have hcount : 1 ≤ maskInterCard mask uPwPuMask := by
+        have hbits : ∀ label : Label,
+            maskHas uPwPuMask label = true ↔ label = .u ∨ label = .Pw ∨ label = .Pu := by
+          intro label
+          cases label <;> decide
+        unfold maskInterCard
+        simp only [allLabels, List.foldl]
+        rw [hpM]
+        simp [hbits]
+      have hcountB : decide (1 ≤ maskInterCard mask uPwPuMask) = true :=
+        decide_eq_true_eq.mpr hcount
+      have hh := h
+      simp [candidateMaskOK, localTriggerOKAt, hsM, hpM, hcountB] at hh
+  have hnotu' : .u ∉ labelsOfMaskBits mask := by
+    intro hu'
+    have huM := (hmem .u).mp hu'
+    simp [hnotu] at huM
+  have hstar : sstar = .s1 ∨ sstar = .s2 ∨ sstar = .s3 := by
+    cases sstar <;> simp [isSurplusStar] at hsstar ⊢
+  exact centerUSupportShape_of_card_four (labelsOfMaskBits_nodup hlt) hsupp hnotu' hW hV
+    hstar htrigger
+
+private theorem maskOfLabels_eq_of_toFinset_eq
+    {{xs ys : List Label}} (hxs : xs.Nodup) (hys : ys.Nodup)
+    (hset : xs.toFinset = ys.toFinset) :
+    maskOfLabels xs = maskOfLabels ys := by
+  have hp : List.Perm xs ys :=
+    (List.perm_ext_iff_of_nodup hxs hys).mpr (by
+      intro x
+      simpa only [List.mem_toFinset] using (Finset.ext_iff.mp hset x))
+  rw [maskOfLabels_eq_sum, maskOfLabels_eq_sum]
+  exact (hp.map (fun label => label.bit)).sum_eq
+
+private lemma nodup_w_v_r {{x a b : Label}}
+    (hx : x ∈ centerUSupportV) (ha : a ∈ centerUSupportR) (hb : b ∈ centerUSupportR) (hab : a ≠ b) :
+    [.w, x, a, b].Nodup := by
+  obtain ⟨hWV, hWR, hVR⟩ := groups_disjoint
+  have hwx : w ≠ x := by
+    intro h
+    subst x
+    exact (Finset.disjoint_left.mp hWV) (by simp [centerUSupportW]) hx
+  have hwa : w ≠ a := by
+    intro h
+    subst a
+    exact (Finset.disjoint_left.mp hWR) (by simp [centerUSupportW]) ha
+  have hwb : w ≠ b := by
+    intro h
+    subst b
+    exact (Finset.disjoint_left.mp hWR) (by simp [centerUSupportW]) hb
+  have hxa : x ≠ a := by
+    intro h
+    subst a
+    exact (Finset.disjoint_left.mp hVR) hx ha
+  have hxb : x ≠ b := by
+    intro h
+    subst b
+    exact (Finset.disjoint_left.mp hVR) hx hb
+  simp [hwx, hwa, hwb, hxa, hxb, hab]
+
+private lemma nodup_p_v_r {{p x a b : Label}}
+    (hp : p ∈ centerUSupportP) (hx : x ∈ centerUSupportV) (ha : a ∈ centerUSupportR) (hb : b ∈ centerUSupportR) (hab : a ≠ b) :
+    [p, x, a, b].Nodup := by
+  obtain ⟨hWV, hWR, hVR⟩ := groups_disjoint
+  have hp' : p = .Pw ∨ p = .Pu := by simpa [centerUSupportP] using hp
+  have hpW : p ∈ centerUSupportW := by
+    rcases hp' with rfl | rfl <;> simp [centerUSupportW]
+  have hpx : p ≠ x := by
+    intro h
+    subst x
+    exact (Finset.disjoint_left.mp hWV) hpW hx
+  have hpa : p ≠ a := by
+    intro h
+    subst a
+    exact (Finset.disjoint_left.mp hWR) hpW ha
+  have hpb : p ≠ b := by
+    intro h
+    subst b
+    exact (Finset.disjoint_left.mp hWR) hpW hb
+  have hxa : x ≠ a := by
+    intro h
+    subst a
+    exact (Finset.disjoint_left.mp hVR) hx ha
+  have hxb : x ≠ b := by
+    intro h
+    subst b
+    exact (Finset.disjoint_left.mp hVR) hx hb
+  simp [hpx, hpa, hpb, hxa, hxb, hab]
+
+private lemma nodup_v_s123 {{x : Label}} (hx : x ∈ centerUSupportV) :
+    [x, .s1, .s2, .s3].Nodup := by
+  obtain ⟨_, _, hVR⟩ := groups_disjoint
+  have h1 : x ≠ .s1 := by
+    intro h
+    subst x
+    exact (Finset.disjoint_left.mp hVR) hx (by simp [centerUSupportR])
+  have h2 : x ≠ .s2 := by
+    intro h
+    subst x
+    exact (Finset.disjoint_left.mp hVR) hx (by simp [centerUSupportR])
+  have h3 : x ≠ .s3 := by
+    intro h
+    subst x
+    exact (Finset.disjoint_left.mp hVR) hx (by simp [centerUSupportR])
+  simp [h1, h2, h3]
+
+theorem filter_range_eq_of_strictSorted_bounded
+    (p : Nat → Bool) (n : Nat) (xs : List Nat)
+    (hsorted : xs.Pairwise (· < ·))
+    (hbound : ∀ x ∈ xs, x < n)
+    (hmatch : ∀ x, x < n → (p x = true ↔ x ∈ xs)) :
+    (List.range n).filter p = xs := by
+  have hrange : ∀ m : Nat, (List.range m).Pairwise (· < ·) := by
+    intro m
+    induction m with
+    | zero => simp
+    | succ n ih =>
+        rw [List.range_succ]
+        apply List.pairwise_append.mpr
+        refine ⟨ih, by simp, ?_⟩
+        intro x hx y hy
+        simp at hy
+        subst y
+        exact List.mem_range.mp hx
+  have hfilter : ((List.range n).filter p).Pairwise (· < ·) :=
+    List.Pairwise.filter p (hrange n)
+  have hnodup_filter : ((List.range n).filter p).Nodup := hfilter.nodup
+  have hnodup_xs : xs.Nodup := hsorted.nodup
+  have hmem : ∀ x, x ∈ (List.range n).filter p ↔ x ∈ xs := by
+    intro x
+    rw [List.mem_filter]
+    constructor
+    · intro hx
+      exact (hmatch x (List.mem_range.mp hx.1)).mp hx.2
+    · intro hx
+      have hxn : x < n := hbound x hx
+      exact ⟨List.mem_range.mpr hxn, (hmatch x hxn).mpr hx⟩
+  have hperm : List.Perm ((List.range n).filter p) xs :=
+    (List.perm_ext_iff_of_nodup hnodup_filter hnodup_xs).mpr hmem
+  exact List.Perm.eq_of_pairwise' hfilter hsorted hperm
+
+def centerUSurplusTable : Label → List Nat
+  | .s1 => [30, 46, 54, 58, 60, 114, 178, 284, 300, 308, 312, 368,
+      432, 540, 556, 564, 568, 624, 688]
+  | .s2 => [30, 46, 54, 58, 60, 106, 170, 284, 300, 308, 312, 360,
+      424, 540, 556, 564, 568, 616, 680]
+  | .s3 => [30, 46, 54, 58, 60, 90, 154, 284, 300, 308, 312, 344,
+      408, 540, 556, 564, 568, 600, 664]
+  | _ => []
+
+theorem candidateMasks_surplusStar_u_eq_centerUSurplusTable {{sstar : Label}}
+    (hsstar : isSurplusStar sstar = true) :
+    candidateMasks sstar .u = centerUSurplusTable sstar := by
+  cases sstar <;> simp [isSurplusStar, centerUSurplusTable, candidateMasks] at hsstar ⊢
+
+theorem candidateMasks_s1_u_eq_centerUSurplusTable :
+    candidateMasks .s1 .u = centerUSurplusTable .s1 := by rfl
+
+theorem candidateMasks_s2_u_eq_centerUSurplusTable :
+    candidateMasks .s2 .u = centerUSurplusTable .s2 := by rfl
+
+theorem candidateMasks_s3_u_eq_centerUSurplusTable :
+    candidateMasks .s3 .u = centerUSurplusTable .s3 := by rfl
+
+theorem candidateMask_mem_centerUSurplusTable_of_supportShape {{sstar : Label}} {{mask : Nat}}
+    (hsstar : isSurplusStar sstar = true)
+    (hlt : mask < 2 ^ labelCount)
+    (hfamily : CenterUSupportShape sstar (labelsOfMaskBits mask)) :
+    mask ∈ centerUSurplusTable sstar := by
+  have hrec : maskOfLabels (labelsOfMaskBits mask) = mask :=
+    maskOfLabels_labelsOfMaskBits hlt
+  rcases hfamily with h | h | h | h
+  · rcases h with ⟨x, hx, a, b, ha, hb, hab, hset⟩
+    have hx' : x = .v ∨ x = .Q1 ∨ x = .Q2 := by simpa [centerUSupportV] using hx
+    have ha' : a = .s1 ∨ a = .s2 ∨ a = .s3 := by simpa [centerUSupportR] using ha
+    have hb' : b = .s1 ∨ b = .s2 ∨ b = .s3 := by simpa [centerUSupportR] using hb
+    have hmask : mask = maskOfLabels [.w, x, a, b] := by
+      calc
+        mask = maskOfLabels (labelsOfMaskBits mask) := hrec.symm
+        _ = maskOfLabels [.w, x, a, b] :=
+          maskOfLabels_eq_of_toFinset_eq (labelsOfMaskBits_nodup hlt)
+            (nodup_w_v_r hx ha hb hab) (by simpa using hset)
+    rcases hx' with rfl | rfl | rfl <;>
+      rcases ha' with rfl | rfl | rfl <;>
+      rcases hb' with rfl | rfl | rfl <;>
+      cases sstar <;>
+      simp [isSurplusStar, centerUSurplusTable] at hsstar hab ⊢
+    all_goals rw [hmask]
+    all_goals decide
+  · rcases h with ⟨p, hp, x, hx, a, b, ha, hb, hab, haS, hbS, hset⟩
+    have hp' : p = .Pw ∨ p = .Pu := by simpa [centerUSupportP] using hp
+    have hx' : x = .v ∨ x = .Q1 ∨ x = .Q2 := by simpa [centerUSupportV] using hx
+    have ha' : a = .s1 ∨ a = .s2 ∨ a = .s3 := by simpa [centerUSupportR] using ha
+    have hb' : b = .s1 ∨ b = .s2 ∨ b = .s3 := by simpa [centerUSupportR] using hb
+    have hmask : mask = maskOfLabels [p, x, a, b] := by
+      calc
+        mask = maskOfLabels (labelsOfMaskBits mask) := hrec.symm
+        _ = maskOfLabels [p, x, a, b] :=
+          maskOfLabels_eq_of_toFinset_eq (labelsOfMaskBits_nodup hlt)
+            (nodup_p_v_r hp hx ha hb hab) (by simpa using hset)
+    rcases hp' with rfl | rfl <;>
+      rcases hx' with rfl | rfl | rfl <;>
+      rcases ha' with rfl | rfl | rfl <;>
+      rcases hb' with rfl | rfl | rfl <;>
+      cases sstar <;>
+      simp [isSurplusStar, centerUSurplusTable] at hsstar hab haS hbS ⊢
+    all_goals rw [hmask]
+    all_goals decide
+  · rcases h with ⟨x, hx, hset⟩
+    have hx' : x = .v ∨ x = .Q1 ∨ x = .Q2 := by simpa [centerUSupportV] using hx
+    have hmask : mask = maskOfLabels [x, .s1, .s2, .s3] := by
+      calc
+        mask = maskOfLabels (labelsOfMaskBits mask) := hrec.symm
+        _ = maskOfLabels [x, .s1, .s2, .s3] :=
+          maskOfLabels_eq_of_toFinset_eq (labelsOfMaskBits_nodup hlt)
+            (nodup_v_s123 hx) (by simpa using hset)
+    rcases hx' with rfl | rfl | rfl <;>
+      cases sstar <;>
+      simp [isSurplusStar, centerUSurplusTable] at hsstar ⊢
+    all_goals rw [hmask]
+    all_goals decide
+  · have hmask : mask = maskOfLabels [.w, .s1, .s2, .s3] := by
+      calc
+        mask = maskOfLabels (labelsOfMaskBits mask) := hrec.symm
+        _ = maskOfLabels [.w, .s1, .s2, .s3] :=
+          maskOfLabels_eq_of_toFinset_eq (labelsOfMaskBits_nodup hlt)
+            (by decide) (by simpa using h)
+    cases sstar <;>
+    simp [isSurplusStar, centerUSurplusTable] at hsstar ⊢
+    all_goals rw [hmask]
+    all_goals decide
+
+theorem candidateMaskOK_of_mem_centerUSurplusTable {{sstar : Label}} {{mask : Nat}}
+    (hsstar : isSurplusStar sstar = true)
+    (hm : mask ∈ centerUSurplusTable sstar) :
+    candidateMaskOK sstar .u mask = true := by
+  cases sstar <;> simp [isSurplusStar, centerUSurplusTable] at hsstar hm ⊢
+  all_goals
+    rcases hm with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl |
+      rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      decide
+
+theorem mem_candidateMasks_of_candidateMaskOK_surplus_u {{sstar : Label}} {{mask : Nat}}
+    (hsstar : isSurplusStar sstar = true)
+    (h : candidateMaskOK sstar .u mask = true) :
+    mask ∈ candidateMasks sstar .u := by
+  have hlt : mask < 2 ^ labelCount := (surplus_u_support_data mask h).1
+  have hfamily := centerUSupportShape_of_candidateMaskOK_surplus_u h hsstar
+  rw [candidateMasks_surplusStar_u_eq_centerUSurplusTable hsstar]
+  exact candidateMask_mem_centerUSurplusTable_of_supportShape hsstar hlt hfamily
+
+theorem candidateMaskOK_of_mem_candidateMasks_surplus_u {{sstar : Label}} {{mask : Nat}}
+    (hsstar : isSurplusStar sstar = true)
+    (h : mask ∈ candidateMasks sstar .u) :
+    candidateMaskOK sstar .u mask = true := by
+  rw [candidateMasks_surplusStar_u_eq_centerUSurplusTable hsstar] at h
+  exact candidateMaskOK_of_mem_centerUSurplusTable hsstar h
+
+theorem candidateMaskOK_surplus_u_iff_mem_candidateMasks {{sstar : Label}} {{mask : Nat}}
+    (hsstar : isSurplusStar sstar = true) :
+    candidateMaskOK sstar .u mask = true ↔ mask ∈ candidateMasks sstar .u := by
+  constructor
+  · exact mem_candidateMasks_of_candidateMaskOK_surplus_u hsstar
+  · exact candidateMaskOK_of_mem_candidateMasks_surplus_u hsstar
+
+theorem candidateMasks_surplusStar_u_eq_filter {{sstar : Label}}
+    (hsstar : isSurplusStar sstar = true) :
+    candidateMasks sstar .u = candidateMasksByFilter sstar .u := by
+  rw [candidateMasks_surplusStar_u_eq_centerUSurplusTable hsstar]
+  have hsorted : (centerUSurplusTable sstar).Pairwise (· < ·) := by
+    cases sstar <;> decide
+  have hbound : ∀ x ∈ centerUSurplusTable sstar, x < maskBound := by
+    intro x hx
+    cases sstar <;>
+      simp only [centerUSurplusTable, List.mem_cons, List.not_mem_nil] at hx
+    all_goals simp only [or_false] at hx
+    all_goals
+      rcases hx with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl |
+        rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+        norm_num [maskBound, labelCount]
+  have hmatch : ∀ x, x < maskBound →
+      (candidateMaskOK sstar .u x = true ↔ x ∈ centerUSurplusTable sstar) := by
+    intro x hx
+    have htable : x ∈ candidateMasks sstar .u ↔
+        x ∈ centerUSurplusTable sstar := by
+      rw [candidateMasks_surplusStar_u_eq_centerUSurplusTable hsstar]
+    exact (candidateMaskOK_surplus_u_iff_mem_candidateMasks hsstar).trans htable
+  have hfilter :
+      (List.range maskBound).filter (candidateMaskOK sstar .u ·) =
+        centerUSurplusTable sstar :=
+    filter_range_eq_of_strictSorted_bounded
+      (candidateMaskOK sstar .u) maskBound (centerUSurplusTable sstar)
+      hsorted hbound hmatch
+  simpa [candidateMasksByFilter, allNormalizedMasks] using hfilter.symm
+
+private theorem candidateMasks_s1_u_eq_filter :
+    candidateMasks .s1 .u = candidateMasksByFilter .s1 .u := by
+  exact candidateMasks_surplusStar_u_eq_filter (by decide)
+
+private theorem candidateMasks_s2_u_eq_filter :
+    candidateMasks .s2 .u = candidateMasksByFilter .s2 .u := by
+  exact candidateMasks_surplusStar_u_eq_filter (by decide)
+
+private theorem candidateMasks_s3_u_eq_filter :
+    candidateMasks .s3 .u = candidateMasksByFilter .s3 .u := by
+  exact candidateMasks_surplusStar_u_eq_filter (by decide)
+
+theorem candidateMasks_eq_filter_of_isSurplusStar_center_u {{sstar : Label}}
+    (hsstar : isSurplusStar sstar = true) :
+    candidateMasks sstar .u = candidateMasksByFilter sstar .u :=
+  candidateMasks_surplusStar_u_eq_filter hsstar
+
+end CenterUSupport
 
 private theorem filter_range_eq_singleton_of_sorted
     (p : Nat → Bool) :
@@ -2037,6 +2855,9 @@ theorem candidateMasks_eq_filter_of_isSurplusStar
   cases sstar <;> simp [isSurplusStar] at hs
   all_goals cases center
   all_goals first
+    | exact candidateMasks_s1_u_eq_filter
+    | exact candidateMasks_s2_u_eq_filter
+    | exact candidateMasks_s3_u_eq_filter
     | exact candidateMasks_s1_v_eq_filter
     | exact candidateMasks_s2_v_eq_filter
     | exact candidateMasks_s3_v_eq_filter

@@ -114,38 +114,38 @@ surplus-star cases now prove that the filter contains exactly the singleton
 masks 201, 209, and 225. A general recursive lemma isolates the unique true
 entry of a filtered natural-number range; each branch identifies its mask from
 the pinned-mask conjunct and proves the remaining Boolean check directly. This
-removes three of the 30 native branch axioms. The theorem still has 27 native
-branch axioms for the remaining centers, so the computed-search producer is
-still compiler-trusted. The source module now has 36 textual `native_decide`
-calls, and the three depth shards still contribute one each.
+removes three of the 30 native branch axioms. At that checkpoint the theorem
+had 27 native branch axioms for the remaining centers. The source module has
+36 textual `native_decide` calls, and the three depth shards still contribute
+one each.
 
 The normalized-bitmask decomposition is now structural. `labelsOfMaskBits`
 maps `Nat.bitIndices` back to bank labels. For every mask below
 `2 ^ labelCount`, the new lemmas prove that this support has no duplicates,
 that label membership is exactly the corresponding `maskHas` test, that
 re-encoding the support reconstructs the original mask, and that `maskCard` is
-the support length. These proofs use the general `Nat.bitIndices` API; the only
-finite split is the ten-case proof that `labelAt` preserves an in-range index.
-Their axiom closures contain only `propext`, `Classical.choice`, and
-`Quot.sound` as applicable. The only dedicated `interval_cases` split is the
-ten-case proof that `labelAt` preserves an in-range index; the cardinality
-proof also performs a structural case split on the ten label constructors.
+the support length. These proofs use the general `Nat.bitIndices` API. Their
+axiom closures contain only `propext`, `Classical.choice`, and `Quot.sound` as
+applicable. The only dedicated `interval_cases` split is the ten-case proof
+that `labelAt` preserves an in-range index; the cardinality proof also performs
+a structural case split on the ten label constructors.
 
-This representation does not by itself prove membership in the three explicit
-19-entry center-`u` tables. The next classification should partition every
-admissible four-label support into four reusable families: nine supports with
+The center-`u` classification now partitions every admissible four-label
+support into four reusable families: nine supports with
 `w`, one of `{v,Q1,Q2}`, and two surplus labels; six supports with one of
 `{Pw,Pu}`, one of `{v,Q1,Q2}`, and the two surplus labels other than `sstar`;
 three supports containing `{s1,s2,s3}` and one of `{v,Q1,Q2}`; and the single
 support `{w,s1,s2,s3}`. Re-encoding those `9 + 6 + 3 + 1` supports yields the
-19 masks for each surplus star.
+19 masks for each surplus star. A separate sorted-filter theorem promotes the
+membership classification to ordered list equality. This removes the host
+`u` branch for all three surplus stars from the native fallback, leaving 24
+native branch axioms in `candidateMasks_eq_filter_of_isSurplusStar`.
 
-The generator emits this normalized-bitmask block, but it is not yet a complete
-reproducer of `SurplusCOMPGBank.lean`: a pre-existing source-only pair-count
-bridge, including `PrefixPairCountsOK` and its supporting lemmas, is absent
-from the template and is used by `SurplusCOMPGBankGeometry.lean`. Do not
-overwrite the tracked module with a full regeneration until that generator
-drift is repaired.
+The generator template now contains the previously omitted separation and
+pair-count bridges as well as the normalized-support and center-`u` blocks. A
+fresh semantic comparison finds the same 228 declarations and imports in the
+tracked module and generated output; declaration docstrings remain a separate
+source-formatting layer.
 
 After that prerequisite, the bridge should route through the computed list and
 target the one-way coverage actually needed by the consumer:
@@ -166,16 +166,19 @@ The bridge is only the first finite-ten trust gate. Downstream
 `false_of_shadowInBank_of_metricShadow` still reaches the row-zero banks, whose
 current source inventory includes 102 direct checks and 35 product checks.
 Closing the computed-to-row inclusion would remove the depth-shard and static
-search-key facts from the bridge. The bank handoff would still depend on the
-three computed-search families named above. `FiniteN10Closure` becomes
-transferable only after all four parts of this bridge gate, the downstream
-certificate families, and the other endpoint inputs also have core-only axiom
-closures.
+search-key facts from the bridge. The computed producer now reaches native
+trust only through the 24 remaining branches of
+`candidateMasks_eq_filter_of_isSurplusStar`. `FiniteN10Closure` becomes
+transferable only after those branches, the computed-to-row inclusion, the
+downstream certificate families, and the other endpoint inputs also have
+core-only axiom closures.
 
-**Next implementation checkpoint:** first replace
-`Label.beq_eq_decide_eq`, `candidateMasks_eq_filter_of_isSurplusStar`, and
-`candidateMaskOK_of_isValidPinnedFragment`, checking the computed-search
-producer after each replacement. Then prove a non-circular
+**Next implementation checkpoint:** replace the three center-`w` branches.
+Their predicate is independent of the surplus-star choice and has a shared
+12-mask table: every support contains `Q1` and `Q2`, one label from
+`{v,s1,s2,s3}`, and one from `{u,Pw,Pu}`. Reuse the normalized-support and
+sorted-filter theorems rather than splitting all normalized masks. Then
+continue the remaining candidate centers and prove a non-circular
 `computedFragmentSearchShadowKeys`-to-`rowShadowKeys` inclusion from shared row
 schemas and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct
 `#print axioms` probe of the bridge to report only `propext`,
