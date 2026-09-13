@@ -1,0 +1,67 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/counting-assembly-support/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Problem97.six_mul_card_le_iCount_of_K4"
+title = "Four equidistant witnesses give six isosceles pairs per vertex"
+file = "submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_six_mul_card_le_iCount_of_K4.lean"
+natural_language_statement = "If every point of a finite planar set has four points of the set at one common positive distance, then six times the number of points is at most the total isosceles count of the set."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L153-L162"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting"]
+
+[[theorem]]
+name = "Problem97.not_collinear_of_K4"
+title = "Four equidistant witnesses and strict convexity rule out collinearity"
+file = "submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_not_collinear_of_K4.lean"
+natural_language_statement = "A nonempty finite planar set in strictly convex position, with four equidistant witnesses at every point, is not collinear."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0c0bcc832c5070809e6010993f7c4e518523fc31/lean/Erdos9796Proof/P97/Counting.lean#L47-L52"
+tags = ["discrete-geometry", "erdos-97", "strict-convexity", "collinearity"]
+
+[[theorem]]
+name = "Problem97.boundary_card_ge_three_of_K4"
+title = "The minimum enclosing circle has at least three boundary points"
+file = "submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_boundary_card_ge_three_of_K4.lean"
+natural_language_statement = "For a nonempty finite planar set in strictly convex position with four equidistant witnesses at every point, at least three points of the set lie on the boundary of its minimum enclosing circle."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0c0bcc832c5070809e6010993f7c4e518523fc31/lean/Erdos9796Proof/P97/Counting.lean#L57-L63"
+tags = ["discrete-geometry", "erdos-97", "minimum-enclosing-circle", "counting"]
+
+[[theorem]]
+name = "Problem97.counterexample_card_ge_nine_of_iCount_upper_bound"
+title = "The isosceles-count upper bound forces at least nine points"
+file = "submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_counterexample_card_ge_nine_of_iCount_upper_bound.lean"
+natural_language_statement = "Let A be a nonempty finite planar set in strictly convex position with four equidistant witnesses at every point. If its total isosceles count is at most (11|A|² - 18|A|)/12, then A has at least nine points."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0c0bcc832c5070809e6010993f7c4e518523fc31/lean/Erdos9796Proof/P97/Counting.lean#L73-L86"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting"]
+
+[[proof]]
+theorem = "Problem97.six_mul_card_le_iCount_of_K4"
+file = "submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_six_mul_card_le_iCount_of_K4.lean"
+explanation = "submissions/counting-assembly-support/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.not_collinear_of_K4"
+file = "submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_not_collinear_of_K4.lean"
+explanation = "submissions/counting-assembly-support/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.boundary_card_ge_three_of_K4"
+file = "submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_boundary_card_ge_three_of_K4.lean"
+explanation = "submissions/counting-assembly-support/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.counterexample_card_ge_nine_of_iCount_upper_bound"
+file = "submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_counterexample_card_ge_nine_of_iCount_upper_bound.lean"
+explanation = "submissions/counting-assembly-support/explanation.md"
+proof_type = "prove"

@@ -1,0 +1,128 @@
+{
+  "schema": "prove2me-counting-assembly-support-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revisions": {
+    "six_mul_card_le_iCount_of_K4": "bd8528ea10a12da2c84a10cc5897e36681c2e75d",
+    "remaining_three": "0c0bcc832c5070809e6010993f7c4e518523fc31"
+  },
+  "plan_digest": "0aae834397e531348cb328e52a2b3ca3c0066473699193890a6663a319abd145",
+  "statement_identity": {
+    "count": 4,
+    "status": "PASS"
+  },
+  "isolated_lean_compile": {
+    "solutions": 4,
+    "validation_wrappers": 4,
+    "status": "PASS",
+    "note": "Lean 4.33.1 lake-build in an isolated staging project"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.six_mul_card_le_iCount_of_K4",
+      "Problem97.not_collinear_of_K4",
+      "Problem97.boundary_card_ge_three_of_K4",
+      "Problem97.counterexample_card_ge_nine_of_iCount_upper_bound"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_harness_axiom_audit": {
+    "axioms": [
+      "propext",
+      "sorryAx",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS_EXPECTED_STATEMENT_STUBS",
+    "note": "sorryAx comes only from imported theorem presentation stubs; submitted solutions and validators contain no proof holes."
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "admit",
+      "native_decide",
+      "ofReduceBool",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by",
+      "extern"
+    ],
+    "status": "PASS"
+  },
+  "initial_packaging_failure": {
+    "receipt": "receipt-initial-failed.json",
+    "cause": "A theorem statement preamble imported a newly published theorem that was still Open.",
+    "resolution": "Removed proof-only dependencies from theorem statement preambles; retained them in solution files.",
+    "status": "RESOLVED"
+  },
+  "receipt_sha256": "4a8e73322066e8411c5460054f4e8a21e9d0704856976a4aa4e33457f7cd093f",
+  "live_readback": {
+    "checked_utc": "2026-09-13T01:56:42.704544+00:00",
+    "status": "PASS",
+    "theorems": [
+      {
+        "name": "Problem97.six_mul_card_le_iCount_of_K4",
+        "id": "28b441f6-e78c-4f83-89d6-cdaa9c0c5065",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "aaec9d6b-90fc-40d1-9ba4-8d08f0b6940a",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.not_collinear_of_K4",
+        "id": "88c2841e-ba46-4e4f-940b-f911321baba5",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "a9050e78-4419-406e-9ad3-bd1444b1b177",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.boundary_card_ge_three_of_K4",
+        "id": "e269deb3-9a3d-4148-a398-bb2efec62766",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "c3b6e1a5-aa50-4a37-bd93-bb13b24c0810",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.counterexample_card_ge_nine_of_iCount_upper_bound",
+        "id": "f1142dad-239d-4015-b1cb-78fdd145b1ae",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "019dc6d2-055f-44ad-998d-07ed5bc7baa2",
+        "proof_status": "ACCEPTED"
+      }
+    ],
+    "milestones_created": 0
+  },
+  "files": {
+    "README.md": "38b68d78ce681703763285a1f7b704176dbf5e87e2429d1312913d0a3e23c825",
+    "explanation.md": "31259062fb48a3f99ef8f5b9ae1799222ed3a8ec14d07b653a2ec38fd37ef0c1",
+    "plan.toml": "76de9e16917da771f1a10b86669854c71578e1708dfa56a63f2537b97c745558",
+    "platform/Solutions/Sol_Problem97_boundary_card_ge_three_of_K4.lean": "b2a85faaac03331e2a4566e13183719539d2d2842f83cb9778a05e47df12d243",
+    "platform/Solutions/Sol_Problem97_counterexample_card_ge_nine_of_iCount_upper_bound.lean": "5c85b2568456d954dfbbc554e835ee59a2a54cf8b948e1c393ea7f0dafb6459f",
+    "platform/Solutions/Sol_Problem97_not_collinear_of_K4.lean": "0f4bc0b6285764811944d7c66e0dfaa2a7f6980bc829e3b931a7a2b3a1725b0e",
+    "platform/Solutions/Sol_Problem97_six_mul_card_le_iCount_of_K4.lean": "e2eb9a36bae86efcb4269e411771fc9da7f024d6ccacb1b2d6c7e6fc4622e04c",
+    "platform/Theorems/Thm_Problem97_boundary_card_ge_three_of_K4.lean": "bf875d1c92c5b8e7485be3dedb0384cb802bab64566aed370feb90c85ffb545d",
+    "platform/Theorems/Thm_Problem97_counterexample_card_ge_nine_of_iCount_upper_bound.lean": "7488037f04988e26a31bcae2a477505b51ecf0280eb6fc163dbb1b2a0a20a233",
+    "platform/Theorems/Thm_Problem97_not_collinear_of_K4.lean": "936466f7a7f41cc57a2b313268d97879b23bec5f39d155090592fa4f71acfc38",
+    "platform/Theorems/Thm_Problem97_six_mul_card_le_iCount_of_K4.lean": "4865957f225974cef616ebb46bb3ab4585055555f9de2b7f4f28f1f388e05b4d",
+    "platform/Validation/BoundaryCardKernel.lean": "a93481402d08a8ce351b3ef5f24e66ca7eaec728423aa37a958031f900994955",
+    "platform/Validation/CountingUpperBoundKernel.lean": "0eecdffacdf9c651ffa4756864f318e4694576287930bd44e6596006b6d1df3d",
+    "platform/Validation/NotCollinearKernel.lean": "1d509f6d1569824426882f6303313a6cb6ef73acdb4b49519ae8d533a4857cb8",
+    "platform/Validation/SixMulCardKernel.lean": "855db4040eb65e1752e6412184447aad0efc4c4dc2ff0c33d6a0395d73b39a75",
+    "receipt-initial-failed.json": "7b6bfce75d406702972f1d301b7869185691c479c0e8782473a9494af666feaa",
+    "receipt.json": "4a8e73322066e8411c5460054f4e8a21e9d0704856976a4aa4e33457f7cd093f",
+    "skeptic-audit.md": "2a433dd5f9747a6e16e5f84420eaed4023fffcb21f1f235bac4ec46970da6f9a"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Problem97.boundary_card_ge_three_of_K4": {
+      "payload_sha256": "eeaf4b7323576a9c17a10c3e7920e751f2d09485d9008107dd6d7c922b9aa8b8",
+      "state": "RECORDED",
+      "submission_id": "c3b6e1a5-aa50-4a37-bd93-bb13b24c0810"
+    },
+    "proof:Problem97.counterexample_card_ge_nine_of_iCount_upper_bound": {
+      "payload_sha256": "6553c8602d894766126a80e6048ea6c68b2c6bdd05cf195038e2b5d0f15ed1f6",
+      "state": "RECORDED",
+      "submission_id": "019dc6d2-055f-44ad-998d-07ed5bc7baa2"
+    },
+    "proof:Problem97.not_collinear_of_K4": {
+      "payload_sha256": "41682368e8a859a5f8cf2729adce6852e7126983237b8d7ba983aa72fc6d39d5",
+      "state": "RECORDED",
+      "submission_id": "a9050e78-4419-406e-9ad3-bd1444b1b177"
+    },
+    "proof:Problem97.six_mul_card_le_iCount_of_K4": {
+      "payload_sha256": "29f52b783ad0dddf537fadc0a96ea316e70eb766d3ad59b3d92b0dfae9d1e364",
+      "state": "RECORDED",
+      "submission_id": "aaec9d6b-90fc-40d1-9ba4-8d08f0b6940a"
+    },
+    "theorem:Problem97.boundary_card_ge_three_of_K4": {
+      "job_id": "e013c73b-96a1-46ea-bdf0-ce010593622d",
+      "payload_sha256": "292f4b1e5b8f310e43dd6e53de7a809f3bb42724e402ec08a2be35add73b3a0b",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.counterexample_card_ge_nine_of_iCount_upper_bound": {
+      "job_id": "bdfb80de-86d7-49e9-8cbc-931595e35858",
+      "payload_sha256": "909937cea98f8f858f11c07109a42ca15cc292664cff58387efd0f65ba59dd27",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "0aae834397e531348cb328e52a2b3ca3c0066473699193890a6663a319abd145",
+  "proof_attempts": {},
+  "proofs": {
+    "Problem97.boundary_card_ge_three_of_K4": {
+      "created_at": "2026-09-13T01:27:12.963771+00:00",
+      "error_message": "",
+      "file_path": "e269deb3-9a3d-4148-a398-bb2efec62766/6ac78adb-dda3-4892-bb46-d4c86f102d16/c3b6e1a5-aa50-4a37-bd93-bb13b24c0810.lean",
+      "id": "c3b6e1a5-aa50-4a37-bd93-bb13b24c0810",
+      "status": "ACCEPTED",
+      "submission_id": "c3b6e1a5-aa50-4a37-bd93-bb13b24c0810",
+      "theorem_id": "e269deb3-9a3d-4148-a398-bb2efec62766",
+      "updated_at": "2026-09-13T01:44:27.783951+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.counterexample_card_ge_nine_of_iCount_upper_bound": {
+      "created_at": "2026-09-13T01:44:30.346475+00:00",
+      "error_message": "",
+      "file_path": "f1142dad-239d-4015-b1cb-78fdd145b1ae/6ac78adb-dda3-4892-bb46-d4c86f102d16/019dc6d2-055f-44ad-998d-07ed5bc7baa2.lean",
+      "id": "019dc6d2-055f-44ad-998d-07ed5bc7baa2",
+      "status": "ACCEPTED",
+      "submission_id": "019dc6d2-055f-44ad-998d-07ed5bc7baa2",
+      "theorem_id": "f1142dad-239d-4015-b1cb-78fdd145b1ae",
+      "updated_at": "2026-09-13T01:54:49.638205+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.not_collinear_of_K4": {
+      "created_at": "2026-09-13T01:14:53.244245+00:00",
+      "error_message": "",
+      "file_path": "88c2841e-ba46-4e4f-940b-f911321baba5/6ac78adb-dda3-4892-bb46-d4c86f102d16/a9050e78-4419-406e-9ad3-bd1444b1b177.lean",
+      "id": "a9050e78-4419-406e-9ad3-bd1444b1b177",
+      "status": "ACCEPTED",
+      "submission_id": "a9050e78-4419-406e-9ad3-bd1444b1b177",
+      "theorem_id": "88c2841e-ba46-4e4f-940b-f911321baba5",
+      "updated_at": "2026-09-13T01:27:03.818393+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.six_mul_card_le_iCount_of_K4": {
+      "created_at": "2026-09-13T01:02:52.53723+00:00",
+      "error_message": "",
+      "file_path": "28b441f6-e78c-4f83-89d6-cdaa9c0c5065/6ac78adb-dda3-4892-bb46-d4c86f102d16/aaec9d6b-90fc-40d1-9ba4-8d08f0b6940a.lean",
+      "id": "aaec9d6b-90fc-40d1-9ba4-8d08f0b6940a",
+      "status": "ACCEPTED",
+      "submission_id": "aaec9d6b-90fc-40d1-9ba4-8d08f0b6940a",
+      "theorem_id": "28b441f6-e78c-4f83-89d6-cdaa9c0c5065",
+      "updated_at": "2026-09-13T01:14:47.787609+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Problem97.boundary_card_ge_three_of_K4": {
+      "job_id": "e013c73b-96a1-46ea-bdf0-ce010593622d",
+      "status": "PUBLISHED",
+      "theorem_id": "e269deb3-9a3d-4148-a398-bb2efec62766"
+    },
+    "Problem97.counterexample_card_ge_nine_of_iCount_upper_bound": {
+      "job_id": "bdfb80de-86d7-49e9-8cbc-931595e35858",
+      "status": "PUBLISHED",
+      "theorem_id": "f1142dad-239d-4015-b1cb-78fdd145b1ae"
+    },
+    "Problem97.not_collinear_of_K4": {
+      "status": "Proved",
+      "theorem_id": "88c2841e-ba46-4e4f-940b-f911321baba5"
+    },
+    "Problem97.six_mul_card_le_iCount_of_K4": {
+      "status": "Proved",
+      "theorem_id": "28b441f6-e78c-4f83-89d6-cdaa9c0c5065"
+    }
+  }
+}

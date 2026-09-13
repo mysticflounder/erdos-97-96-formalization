@@ -1,0 +1,33 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-counting-assembly-support-20260912",
+  "base_head": "23658c6849f63708f8c99fa472aa536ce479bfba",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-counting-assembly-support-20260912.json",
+    "prove2me/README.md",
+    "prove2me/submissions/counting-assembly-support/README.md",
+    "prove2me/submissions/counting-assembly-support/explanation.md",
+    "prove2me/submissions/counting-assembly-support/plan.toml",
+    "prove2me/submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_boundary_card_ge_three_of_K4.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_counterexample_card_ge_nine_of_iCount_upper_bound.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_not_collinear_of_K4.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Solutions/Sol_Problem97_six_mul_card_le_iCount_of_K4.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_boundary_card_ge_three_of_K4.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_counterexample_card_ge_nine_of_iCount_upper_bound.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_not_collinear_of_K4.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Theorems/Thm_Problem97_six_mul_card_le_iCount_of_K4.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Validation/BoundaryCardKernel.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Validation/CountingUpperBoundKernel.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Validation/NotCollinearKernel.lean",
+    "prove2me/submissions/counting-assembly-support/platform/Validation/SixMulCardKernel.lean",
+    "prove2me/submissions/counting-assembly-support/receipt-initial-failed.json",
+    "prove2me/submissions/counting-assembly-support/receipt.json",
+    "prove2me/submissions/counting-assembly-support/skeptic-audit.md",
+    "prove2me/submissions/counting-assembly-support/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-counting-assembly-support",
+  "created_utc": "2026-09-12T23:36:41Z",
+  "manifest_sha256": "0c08463434630b344b868af7e3bf20bbf2f527adf05c34d190f809588c54412c"
+}

@@ -1,0 +1,62 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "theorem:Problem97.boundary_card_ge_three_of_K4": {
+      "job_id": "a47486dc-e823-463e-8539-c4526802c499",
+      "payload_sha256": "80c3cba2e19f45a9cd368486c23a44d23882390de85d719f9fb20d69712a7f7f",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.not_collinear_of_K4": {
+      "job_id": "303d385d-9051-4155-ba8e-c4844a06e90c",
+      "payload_sha256": "792913a5a518272f101ffcb536b002a342443341243ece495ca59fff22ffa1d4",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.six_mul_card_le_iCount_of_K4": {
+      "job_id": "eb2c1e7f-63df-462a-b506-6cf354b7231a",
+      "payload_sha256": "b37748b3b71c88fb93ef4cac42422d7174b5fd3f3960a0aab817e191eae73e20",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "7188d854d9189b1117da05e3eaf7a16fb070fb0856ea88cef9fe3937db0ae8ad",
+  "proof_attempts": {},
+  "proofs": {},
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Problem97.boundary_card_ge_three_of_K4": {
+      "created_at": "2026-09-13T00:21:46.814788+00:00",
+      "definitions": "/- Generated theorem stub from Erdos9796Proof.P97.Counting; source commit 0c0bcc832c5070809e6010993f7c4e518523fc31. -/\nimport Definitions.Def_Erdos9796Counting_Adapter\nimport Definitions.Def_Erdos9796Counting_Foundation\nimport Definitions.Def_Erdos9796Counting_MEC_Basic\nimport Theorems.Thm_Problem97_not_collinear_of_K4\nimport Theorems.Thm_Problem97_MEC_no_diameter_under_k4\n\nopen Problem97\n\n/-!\n# The minimum enclosing circle has at least three boundary points\n\n`Problem97.boundary_card_ge_three_of_K4` combines non-collinearity with the\nminimum-enclosing-circle diameter obstruction. Thus a nonempty strictly convex\nfinite planar set with four equidistant witnesses at every point has at least\nthree points on its minimum-enclosing-circle boundary.\n\nSource: `Erdos9796Proof.P97.Counting`, lines 57–63, commit\n`0c0bcc832c5070809e6010993f7c4e518523fc31`.\n-/\n\nopen scoped EuclideanGeometry",
+      "error_message": "Imported platform theorems must be Proved at submission time, but the following are not: Problem97.not_collinear_of_K4 (status=Open). Prove them via /verify first, or use them as a reduction in a proof_type=prove submission (where Open imports become decomposition children).",
+      "formal_statement": "theorem Problem97.boundary_card_ge_three_of_K4 {A : Finset ℝ²} (hne : A.Nonempty)\n    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A) :\n    3 ≤ (A.filter (fun p =>\n      dist p (Problem97.MEC.mec A hne).center = (Problem97.MEC.mec A hne).radius)).card := by sorry",
+      "id": "a47486dc-e823-463e-8539-c4526802c499",
+      "job_id": "a47486dc-e823-463e-8539-c4526802c499",
+      "kind": "problem",
+      "natural_language_statement": "For a nonempty finite planar set in strictly convex position with four equidistant witnesses at every point, at least three points of the set lie on the boundary of its minimum enclosing circle.",
+      "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/0c0bcc832c5070809e6010993f7c4e518523fc31/lean/Erdos9796Proof/P97/Counting.lean#L57-L63",
+      "status": "FAILED",
+      "tags": [
+        "discrete-geometry",
+        "erdos-97",
+        "minimum-enclosing-circle",
+        "counting"
+      ],
+      "theorem_id": null,
+      "theorem_name": "Problem97.boundary_card_ge_three_of_K4",
+      "theorem_title": "The minimum enclosing circle has at least three boundary points",
+      "updated_at": "2026-09-13T00:37:20.336491+00:00",
+      "visibility": "public"
+    },
+    "Problem97.not_collinear_of_K4": {
+      "job_id": "303d385d-9051-4155-ba8e-c4844a06e90c",
+      "status": "PUBLISHED",
+      "theorem_id": "88c2841e-ba46-4e4f-940b-f911321baba5"
+    },
+    "Problem97.six_mul_card_le_iCount_of_K4": {
+      "job_id": "eb2c1e7f-63df-462a-b506-6cf354b7231a",
+      "status": "PUBLISHED",
+      "theorem_id": "28b441f6-e78c-4f83-89d6-cdaa9c0c5065"
+    }
+  }
+}

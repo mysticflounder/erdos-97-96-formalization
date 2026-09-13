@@ -40,6 +40,12 @@ provenance for the project's own Lean formalization.
   three reusable Euclidean collision lemmas, each verified by Prove2Me without
   a finite certificate bank or a separate mission milestone.
 
+- [Accepted counting assembly support](submissions/counting-assembly-support/README.md):
+  four reusable lemmas exposing the six-per-vertex lower bound,
+  non-collinearity, the minimum-enclosing-circle boundary input, and the
+  conditional arithmetic step that forces nine points. All four proofs were
+  verified by Prove2Me; no separate milestone was created.
+
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
   and bank-replacement work, with consumer and validation gates.
 - `mission-description.md`: the public introduction, including why the problems
