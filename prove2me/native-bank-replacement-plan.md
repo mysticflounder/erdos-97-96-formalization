@@ -166,12 +166,11 @@ The bridge is only the first finite-ten trust gate. Downstream
 `false_of_shadowInBank_of_metricShadow` still reaches the row-zero banks, whose
 current source inventory includes 102 direct checks and 35 product checks.
 Closing the computed-to-row inclusion would remove the depth-shard and static
-search-key facts from the bridge. The computed producer now reaches native
-trust only through the three remaining branches of
-`candidateMasks_eq_filter_of_isSurplusStar`. `FiniteN10Closure` becomes
-transferable only after those branches, the computed-to-row inclusion, the
-downstream certificate families, and the other endpoint inputs also have
-core-only axiom closures.
+search-key facts from the bridge. The candidate-table classifier and the nearby
+computed fragment-search producer now have core-only axiom closures.
+`FiniteN10Closure` becomes transferable only after the computed-to-row
+inclusion, the downstream certificate families, and the other endpoint inputs
+also have core-only axiom closures.
 
 The three center-`w` branches are now structural. Their predicate is
 independent of the surplus-star choice and has one shared 12-mask table: every
@@ -199,10 +198,14 @@ rule: a support containing the chosen surplus star contains none of `u`, `Pw`,
 or `Pu`. The proof filters supports before encoding them as masks; it does not
 filter the 0--1023 mask range.
 
-**Next implementation checkpoint:** handle the three 71-mask diagonal
-surplus-center branches, where the center is the chosen surplus star and the
-support contains at most one of `u`, `Pw`, and `Pu`.
-Then prove a non-circular
+The final three diagonal branches are structural. Here the center is the chosen
+surplus star, and the support contains at most one of `u`, `Pw`, and `Pu`. This
+71-mask support family removes the last native fallback from
+`candidateMasks_eq_filter_of_isSurplusStar`. The global
+`candidate_masks_match_filter` certificate now folds that theorem over its 30
+listed center pairs instead of running a separate native check.
+
+**Next implementation checkpoint:** prove a non-circular
 `computedFragmentSearchShadowKeys`-to-`rowShadowKeys` inclusion from shared row
 schemas and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct
 `#print axioms` probe of the bridge to report only `propext`,

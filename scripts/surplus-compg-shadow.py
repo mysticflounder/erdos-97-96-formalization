@@ -1554,6 +1554,176 @@ private theorem candidateMasks_s3_s2_eq_filter :
   candidateMasks_triggerRestrictedCenter_eq_filter (by decide)
     (Or.inr (Or.inr (Or.inr (Or.inr ⟨rfl, rfl⟩))))
 
+/-- A center is diagonal when it is the chosen surplus star. -/
+def IsDiagonalSurplusCenter (sstar center : Label) : Prop :=
+  isSurplusStar sstar = true ∧ center = sstar
+
+/-- The diagonal local trigger permits at most one of `u`, `Pw`, and `Pu` in
+the mask. -/
+theorem localTriggerOKAt_diagonalSurplusCenter_iff
+    {sstar center : Label} {mask : Nat}
+    (hcenter : IsDiagonalSurplusCenter sstar center) :
+    localTriggerOKAt sstar center mask = true ↔
+      maskInterCard mask uPwPuMask ≤ 1 := by
+  rcases hcenter with ⟨hsstar, rfl⟩
+  cases center <;>
+    simp [isSurplusStar, localTriggerOKAt, previousSstarCenters] at hsstar ⊢
+
+/-- At a diagonal surplus center, the candidate predicate is the usual
+four-support condition together with the diagonal trigger bound. -/
+theorem candidateMaskOK_diagonalSurplusCenter_iff
+    {sstar center : Label} {mask : Nat}
+    (hcenter : IsDiagonalSurplusCenter sstar center) :
+    candidateMaskOK sstar center mask = true ↔
+      maskNormalized mask = true ∧
+      maskCard mask = 4 ∧
+      maskHas mask center = false ∧
+      ¬ (maskHas mask .u = true ∧ maskHas mask .v = true ∧
+        maskHas mask .w = true) ∧
+      maskInterCard mask uPwPuMask ≤ 1 := by
+  rw [← localTriggerOKAt_diagonalSurplusCenter_iff hcenter]
+  rcases hcenter with ⟨hsstar, rfl⟩
+  cases center <;> simp [isSurplusStar] at hsstar
+  all_goals simp [candidateMaskOK, isMoserLabel]
+  all_goals
+    cases hu : maskHas mask .u <;>
+      cases hv : maskHas mask .v <;>
+      cases hw : maskHas mask .w <;>
+      simp_all
+  all_goals aesop
+
+private theorem maskInterCard_supportMask_uPwPuMask (support : Finset Label) :
+    maskInterCard (supportMask support) uPwPuMask =
+      (support ∩ ({.u, .Pw, .Pu} : Finset Label)).card := by
+  have hbits : ∀ label,
+      maskHas uPwPuMask label = true ↔
+        label = .u ∨ label = .Pw ∨ label = .Pu := by
+    intro label
+    cases label <;> decide
+  by_cases hu : .u ∈ support <;>
+    by_cases hpw : .Pw ∈ support <;>
+      by_cases hpu : .Pu ∈ support <;>
+        simp [maskInterCard, allLabels, maskHas_supportMask, hbits,
+          hu, hpw, hpu]
+
+/-- Whether a support contains at most one of `u`, `Pw`, and `Pu`. -/
+def supportHasAtMostOneTriggerLabel (support : Finset Label) : Bool :=
+  decide ((support ∩ ({.u, .Pw, .Pu} : Finset Label)).card ≤ 1)
+
+private theorem supportHasAtMostOneTriggerLabel_iff (support : Finset Label) :
+    supportHasAtMostOneTriggerLabel support = true ↔
+      (support ∩ ({.u, .Pw, .Pu} : Finset Label)).card ≤ 1 := by
+  simp [supportHasAtMostOneTriggerLabel]
+
+/-- Structurally admissible masks for a diagonal surplus center. -/
+def diagonalFourSupportMasks (center : Label) : Finset Nat :=
+  ((fourSupportsAvoidingCenter center).filter
+      (fun support => supportHasAtMostOneTriggerLabel support = true)).image
+    supportMask
+
+private theorem candidateMaskOK_diagonalSurplusCenter_iff_mem_supportMasks
+    {sstar center : Label} {mask : Nat}
+    (hcenter : IsDiagonalSurplusCenter sstar center) :
+    candidateMaskOK sstar center mask = true ↔
+      mask ∈ diagonalFourSupportMasks center := by
+  rw [candidateMaskOK_diagonalSurplusCenter_iff hcenter]
+  unfold diagonalFourSupportMasks
+  constructor
+  · rintro ⟨hnormalized, hcard, hcenterAbsent, htriple, htrigger⟩
+    have hbase : mask ∈ fourSupportMasksAvoidingCenter center :=
+      maskProperties_iff_mem_fourSupportMasks.mp
+        ⟨hnormalized, hcard, hcenterAbsent, htriple⟩
+    obtain ⟨support, hsupport, hmask⟩ := Finset.mem_image.mp hbase
+    apply Finset.mem_image.mpr
+    refine ⟨support, Finset.mem_filter.mpr ⟨hsupport, ?_⟩, hmask⟩
+    rw [supportHasAtMostOneTriggerLabel_iff,
+      ← maskInterCard_supportMask_uPwPuMask, hmask]
+    exact htrigger
+  · intro hmask
+    obtain ⟨support, hsupport, rfl⟩ := Finset.mem_image.mp hmask
+    obtain ⟨hbase, htrigger⟩ := Finset.mem_filter.mp hsupport
+    have hproperties := maskProperties_iff_mem_fourSupportMasks.mpr
+      (Finset.mem_image.mpr ⟨support, hbase, rfl⟩)
+    refine ⟨hproperties.1, hproperties.2.1, hproperties.2.2.1,
+      hproperties.2.2.2, ?_⟩
+    rw [maskInterCard_supportMask_uPwPuMask]
+    exact (supportHasAtMostOneTriggerLabel_iff support).mp htrigger
+
+/-- The ascending structural mask list for a diagonal surplus center. -/
+def diagonalFourSupportMaskList (center : Label) : List Nat :=
+  (diagonalFourSupportMasks center).sort (fun left right => left ≤ right)
+
+private theorem diagonalFourSupportMaskList_sorted (center : Label) :
+    (diagonalFourSupportMaskList center).Pairwise (· < ·) := by
+  apply List.sortedLT_iff_pairwise.mp
+  rw [List.sortedLT_iff_nodup_and_sortedLE]
+  exact ⟨Finset.sort_nodup _ _, (Finset.pairwise_sort _ _).sortedLE⟩
+
+set_option maxRecDepth 100000 in
+private theorem diagonalFourSupportMasks_eq_tableFinset
+    {sstar center : Label}
+    (hcenter : IsDiagonalSurplusCenter sstar center) :
+    diagonalFourSupportMasks center = (candidateMasks sstar center).toFinset := by
+  rcases hcenter with ⟨hsstar, rfl⟩
+  cases center <;> simp [isSurplusStar] at hsstar
+  all_goals decide
+
+private theorem candidateMasks_diagonalSurplusCenter_sorted
+    {sstar center : Label}
+    (hcenter : IsDiagonalSurplusCenter sstar center) :
+    (candidateMasks sstar center).Pairwise (· < ·) := by
+  rcases hcenter with ⟨hsstar, rfl⟩
+  cases center <;> simp [isSurplusStar] at hsstar
+  all_goals decide
+
+/-- Every diagonal surplus-center table is the ascending enumeration of
+four-element supports meeting its trigger intersection bound. -/
+theorem candidateMasks_diagonalSurplusCenter_eq_fourSupportMasks
+    {sstar center : Label}
+    (hcenter : IsDiagonalSurplusCenter sstar center) :
+    candidateMasks sstar center = diagonalFourSupportMaskList center := by
+  symm
+  exact sort_eq_of_eq_toFinset
+    (diagonalFourSupportMasks_eq_tableFinset hcenter)
+    (candidateMasks_diagonalSurplusCenter_sorted hcenter)
+
+/-- Every diagonal surplus-center table is the ordered filter of its
+candidate predicate. -/
+theorem candidateMasks_diagonalSurplusCenter_eq_filter
+    {sstar center : Label}
+    (hcenter : IsDiagonalSurplusCenter sstar center) :
+    candidateMasks sstar center = candidateMasksByFilter sstar center := by
+  rw [candidateMasks_diagonalSurplusCenter_eq_fourSupportMasks hcenter]
+  have hbound : ∀ mask ∈ diagonalFourSupportMaskList center, mask < maskBound := by
+    intro mask hmask
+    rw [diagonalFourSupportMaskList, Finset.mem_sort,
+      diagonalFourSupportMasks] at hmask
+    obtain ⟨support, _, rfl⟩ := Finset.mem_image.mp hmask
+    exact supportMask_lt_maskBound support
+  have hmatch : ∀ mask, mask < maskBound →
+      (candidateMaskOK sstar center mask = true ↔
+        mask ∈ diagonalFourSupportMaskList center) := by
+    intro mask _
+    rw [candidateMaskOK_diagonalSurplusCenter_iff_mem_supportMasks hcenter,
+      diagonalFourSupportMaskList, Finset.mem_sort]
+  have hfilter := filter_range_eq_of_strictSorted_bounded
+    (candidateMaskOK sstar center) maskBound
+    (diagonalFourSupportMaskList center)
+    (diagonalFourSupportMaskList_sorted center) hbound hmatch
+  simpa [candidateMasksByFilter, allNormalizedMasks] using hfilter.symm
+
+private theorem candidateMasks_s1_s1_eq_filter :
+    candidateMasks .s1 .s1 = candidateMasksByFilter .s1 .s1 :=
+  candidateMasks_diagonalSurplusCenter_eq_filter ⟨by decide, rfl⟩
+
+private theorem candidateMasks_s2_s2_eq_filter :
+    candidateMasks .s2 .s2 = candidateMasksByFilter .s2 .s2 :=
+  candidateMasks_diagonalSurplusCenter_eq_filter ⟨by decide, rfl⟩
+
+private theorem candidateMasks_s3_s3_eq_filter :
+    candidateMasks .s3 .s3 = candidateMasksByFilter .s3 .s3 :=
+  candidateMasks_diagonalSurplusCenter_eq_filter ⟨by decide, rfl⟩
+
 end PrivateCenterSupport
 """
 
@@ -2356,10 +2526,6 @@ theorem valid_fragment_entries_length : validFragmentEntries.length = 135 := by
 
 theorem valid_fragment_entries_all_valid :
     validFragmentEntries.all validFragmentEntryOK = true := by
-  native_decide
-
-theorem candidate_masks_match_filter :
-    candidateMasksMatchFilter = true := by
   native_decide
 
 private theorem list_all_eq_true_of_mem
@@ -3706,9 +3872,25 @@ theorem candidateMasks_eq_filter_of_isSurplusStar
     | exact candidateMasks_s2_s1_eq_filter
     | exact candidateMasks_s3_s1_eq_filter
     | exact candidateMasks_s3_s2_eq_filter
+    | exact candidateMasks_s1_s1_eq_filter
+    | exact candidateMasks_s2_s2_eq_filter
+    | exact candidateMasks_s3_s3_eq_filter
     | exact CenterWSupport.candidateMasks_eq_filter (by decide)
     | exact candidateMasks_privateCenter_eq_filter (by decide) (by decide)
-    | native_decide
+
+/-- Every listed candidate-mask family agrees with its predicate filter. -/
+theorem candidate_masks_match_filter :
+    candidateMasksMatchFilter = true := by
+  have hs1 : ∀ center,
+      candidateMasks .s1 center = candidateMasksByFilter .s1 center :=
+    fun center => candidateMasks_eq_filter_of_isSurplusStar (center := center) (by decide)
+  have hs2 : ∀ center,
+      candidateMasks .s2 center = candidateMasksByFilter .s2 center :=
+    fun center => candidateMasks_eq_filter_of_isSurplusStar (center := center) (by decide)
+  have hs3 : ∀ center,
+      candidateMasks .s3 center = candidateMasksByFilter .s3 center :=
+    fun center => candidateMasks_eq_filter_of_isSurplusStar (center := center) (by decide)
+  simp [candidateMasksMatchFilter, candidateMaskFamilyPairs, hs1, hs2, hs3]
 
 theorem mem_candidateMasks_of_candidateMaskOK
     {{sstar center : Label}} {{mask : Nat}}
