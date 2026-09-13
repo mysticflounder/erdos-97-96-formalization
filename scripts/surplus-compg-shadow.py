@@ -2716,6 +2716,168 @@ theorem candidateMasks_eq_filter_of_isSurplusStar_center_u {{sstar : Label}}
 
 end CenterUSupport
 
+namespace CenterWSupport
+
+def vOrSurplus : Finset Label := {{.v, .s1, .s2, .s3}}
+
+def uOrPrivate : Finset Label := {{.u, .Pw, .Pu}}
+
+def Shape (xs : List Label) : Prop :=
+  ∃ x ∈ vOrSurplus, ∃ y ∈ uOrPrivate, xs.toFinset = {{x, y, .Q1, .Q2}}
+
+private theorem toFinset_eq_four_of_mem
+    {{xs : List Label}} {{a b c d : Label}}
+    (hxs : xs.Nodup) (hlen : xs.length = 4) (habcd : [a, b, c, d].Nodup)
+    (ha : a ∈ xs) (hb : b ∈ xs) (hc : c ∈ xs) (hd : d ∈ xs) :
+    xs.toFinset = {{a, b, c, d}} := by
+  symm
+  apply Finset.eq_of_subset_of_card_le
+  · intro z hz
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hz
+    rcases hz with rfl | rfl | rfl | rfl <;> simpa
+  · calc
+      xs.toFinset.card = xs.length := List.toFinset_card_of_nodup hxs
+      _ = 4 := hlen
+      _ = [a, b, c, d].length := rfl
+      _ = [a, b, c, d].toFinset.card := (List.toFinset_card_of_nodup habcd).symm
+      _ = ({{a, b, c, d}} : Finset Label).card := by simp
+      _ ≤ ({{a, b, c, d}} : Finset Label).card := le_rfl
+
+private theorem support_data {{sstar : Label}} {{mask : Nat}}
+    (h : candidateMaskOK sstar .w mask = true) :
+    mask < 2 ^ labelCount ∧ (labelsOfMaskBits mask).length = 4 ∧
+      maskHas mask .Q1 = true ∧ maskHas mask .Q2 = true ∧
+      maskInterCard mask cuNoWMask = 1 ∧ maskInterCard mask cvNoWMask = 1 := by
+  simp only [candidateMaskOK, Bool.and_eq_true] at h
+  have hnormcard := h.1.1.1.1.1.1.1
+  have hnorm : maskNormalized mask = true := hnormcard.1
+  have hcard : maskCard mask = 4 := by simpa using hnormcard.2
+  have hw := h.1.1.1.1.2
+  simp at hw
+  have hlt : mask < 2 ^ labelCount := by
+    simpa [maskNormalized, maskBound] using (of_decide_eq_true hnorm)
+  have hlen : (labelsOfMaskBits mask).length = 4 := by
+    rw [← maskCard_eq_length_labelsOfMaskBits hlt]
+    exact hcard
+  exact ⟨hlt, hlen, hw.1.1.1, hw.1.1.2, hw.1.2, hw.2⟩
+
+theorem shape_of_candidateMaskOK {{sstar : Label}} {{mask : Nat}}
+    (h : candidateMaskOK sstar .w mask = true) :
+    Shape (labelsOfMaskBits mask) := by
+  obtain ⟨hlt, hlen, hQ1, hQ2, hfirstCard, hsecondCard⟩ := support_data h
+  have hmem : ∀ label : Label,
+      label ∈ labelsOfMaskBits mask ↔ maskHas mask label = true :=
+    fun label => mem_labelsOfMaskBits_iff hlt label
+  have hfirst : ∃ x ∈ vOrSurplus, maskHas mask x = true := by
+    have hbits : ∀ label : Label,
+        maskHas cuNoWMask label = true ↔
+          label = .v ∨ label = .s1 ∨ label = .s2 ∨ label = .s3 := by
+      intro label
+      cases label <;> decide
+    by_cases hv : maskHas mask .v = true
+    · exact ⟨.v, by simp [vOrSurplus], hv⟩
+    by_cases hs1 : maskHas mask .s1 = true
+    · exact ⟨.s1, by simp [vOrSurplus], hs1⟩
+    by_cases hs2 : maskHas mask .s2 = true
+    · exact ⟨.s2, by simp [vOrSurplus], hs2⟩
+    by_cases hs3 : maskHas mask .s3 = true
+    · exact ⟨.s3, by simp [vOrSurplus], hs3⟩
+    unfold maskInterCard at hfirstCard
+    simp only [allLabels, List.foldl] at hfirstCard
+    simp [hbits, hv, hs1, hs2, hs3] at hfirstCard
+  have hsecond : ∃ y ∈ uOrPrivate, maskHas mask y = true := by
+    have hbits : ∀ label : Label,
+        maskHas cvNoWMask label = true ↔ label = .u ∨ label = .Pw ∨ label = .Pu := by
+      intro label
+      cases label <;> decide
+    by_cases hu : maskHas mask .u = true
+    · exact ⟨.u, by simp [uOrPrivate], hu⟩
+    by_cases hPw : maskHas mask .Pw = true
+    · exact ⟨.Pw, by simp [uOrPrivate], hPw⟩
+    by_cases hPu : maskHas mask .Pu = true
+    · exact ⟨.Pu, by simp [uOrPrivate], hPu⟩
+    unfold maskInterCard at hsecondCard
+    simp only [allLabels, List.foldl] at hsecondCard
+    simp [hbits, hu, hPw, hPu] at hsecondCard
+  rcases hfirst with ⟨x, hx, hxmask⟩
+  rcases hsecond with ⟨y, hy, hymask⟩
+  refine ⟨x, hx, y, hy, ?_⟩
+  have hxmem := (hmem x).mpr hxmask
+  have hymem := (hmem y).mpr hymask
+  have hQ1mem := (hmem .Q1).mpr hQ1
+  have hQ2mem := (hmem .Q2).mpr hQ2
+  rcases (by simpa [vOrSurplus] using hx : x = .v ∨ x = .s1 ∨ x = .s2 ∨ x = .s3) with
+    rfl | rfl | rfl | rfl <;>
+    rcases (by simpa [uOrPrivate] using hy : y = .u ∨ y = .Pw ∨ y = .Pu) with
+      rfl | rfl | rfl <;>
+    exact toFinset_eq_four_of_mem (labelsOfMaskBits_nodup hlt) hlen (by decide)
+      hxmem hymem hQ1mem hQ2mem
+
+def table : List Nat :=
+  [771, 777, 785, 801, 834, 840, 848, 864, 898, 904, 912, 928]
+
+theorem mem_table_of_shape {{mask : Nat}} (hlt : mask < 2 ^ labelCount)
+    (hshape : Shape (labelsOfMaskBits mask)) : mask ∈ table := by
+  obtain ⟨x, hx, y, hy, hset⟩ := hshape
+  have hrec := maskOfLabels_labelsOfMaskBits hlt
+  have hmask : mask = maskOfLabels [x, y, .Q1, .Q2] := by
+    calc
+      mask = maskOfLabels (labelsOfMaskBits mask) := hrec.symm
+      _ = maskOfLabels [x, y, .Q1, .Q2] :=
+        maskOfLabels_eq_of_toFinset_eq (labelsOfMaskBits_nodup hlt)
+          (by
+            rcases (by simpa [vOrSurplus] using hx :
+              x = .v ∨ x = .s1 ∨ x = .s2 ∨ x = .s3) with rfl | rfl | rfl | rfl <;>
+              rcases (by simpa [uOrPrivate] using hy : y = .u ∨ y = .Pw ∨ y = .Pu) with
+                rfl | rfl | rfl <;> decide)
+          (by
+            simpa only [List.toFinset_cons, List.toFinset_nil, Finset.insert_empty]
+              using hset)
+  rcases (by simpa [vOrSurplus] using hx : x = .v ∨ x = .s1 ∨ x = .s2 ∨ x = .s3) with
+    rfl | rfl | rfl | rfl <;>
+    rcases (by simpa [uOrPrivate] using hy : y = .u ∨ y = .Pw ∨ y = .Pu) with
+      rfl | rfl | rfl <;>
+    rw [hmask] <;> decide
+
+theorem candidateMaskOK_of_mem_table {{sstar : Label}} {{mask : Nat}}
+    (hsstar : isSurplusStar sstar = true) (hm : mask ∈ table) :
+    candidateMaskOK sstar .w mask = true := by
+  cases sstar <;> simp [isSurplusStar] at hsstar
+  all_goals
+    simp only [table, List.mem_cons, List.not_mem_nil] at hm
+    simp only [or_false] at hm
+    rcases hm with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      decide
+
+theorem candidateMaskOK_iff_mem_table {{sstar : Label}} {{mask : Nat}}
+    (hsstar : isSurplusStar sstar = true) :
+    candidateMaskOK sstar .w mask = true ↔ mask ∈ table := by
+  constructor
+  · intro h
+    exact mem_table_of_shape (support_data h).1 (shape_of_candidateMaskOK h)
+  · exact candidateMaskOK_of_mem_table hsstar
+
+theorem candidateMasks_eq_table {{sstar : Label}} (hsstar : isSurplusStar sstar = true) :
+    candidateMasks sstar .w = table := by
+  cases sstar <;> simp [isSurplusStar, candidateMasks, table] at hsstar ⊢
+
+theorem candidateMasks_eq_filter {{sstar : Label}} (hsstar : isSurplusStar sstar = true) :
+    candidateMasks sstar .w = candidateMasksByFilter sstar .w := by
+  rw [candidateMasks_eq_table hsstar]
+  have hsorted : table.Pairwise (· < ·) := by decide
+  have hbound : ∀ x ∈ table, x < maskBound := by
+    intro x hx
+    simp only [table, List.mem_cons, List.not_mem_nil] at hx
+    simp only [or_false] at hx
+    rcases hx with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;>
+      decide
+  have hfilter := filter_range_eq_of_strictSorted_bounded
+    (candidateMaskOK sstar .w) maskBound table hsorted hbound
+    (fun x _ ↦ candidateMaskOK_iff_mem_table hsstar)
+  simpa [candidateMasksByFilter, allNormalizedMasks] using hfilter.symm
+
+end CenterWSupport
+
 private theorem filter_range_eq_singleton_of_sorted
     (p : Nat → Bool) :
     ∀ n k, k < n →
@@ -2861,6 +3023,7 @@ theorem candidateMasks_eq_filter_of_isSurplusStar
     | exact candidateMasks_s1_v_eq_filter
     | exact candidateMasks_s2_v_eq_filter
     | exact candidateMasks_s3_v_eq_filter
+    | exact CenterWSupport.candidateMasks_eq_filter (by decide)
     | native_decide
 
 theorem mem_candidateMasks_of_candidateMaskOK

@@ -167,18 +167,22 @@ The bridge is only the first finite-ten trust gate. Downstream
 current source inventory includes 102 direct checks and 35 product checks.
 Closing the computed-to-row inclusion would remove the depth-shard and static
 search-key facts from the bridge. The computed producer now reaches native
-trust only through the 24 remaining branches of
+trust only through the 21 remaining branches of
 `candidateMasks_eq_filter_of_isSurplusStar`. `FiniteN10Closure` becomes
 transferable only after those branches, the computed-to-row inclusion, the
 downstream certificate families, and the other endpoint inputs also have
 core-only axiom closures.
 
-**Next implementation checkpoint:** replace the three center-`w` branches.
-Their predicate is independent of the surplus-star choice and has a shared
-12-mask table: every support contains `Q1` and `Q2`, one label from
-`{v,s1,s2,s3}`, and one from `{u,Pw,Pu}`. Reuse the normalized-support and
-sorted-filter theorems rather than splitting all normalized masks. Then
-continue the remaining candidate centers and prove a non-circular
+The three center-`w` branches are now structural. Their predicate is
+independent of the surplus-star choice and has one shared 12-mask table: every
+support contains `Q1` and `Q2`, one label from `{v,s1,s2,s3}`, and one from
+`{u,Pw,Pu}`. The proof reconstructs those supports and reuses the sorted-filter
+theorem, removing three more native branch axioms.
+
+**Next implementation checkpoint:** group the 21 remaining non-Moser-center
+branches by their shared predicate shapes, starting with the `Q1`/`Q2` pair or
+the `Pw`/`Pu` pair according to which yields the smaller structural split.
+Then prove a non-circular
 `computedFragmentSearchShadowKeys`-to-`rowShadowKeys` inclusion from shared row
 schemas and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct
 `#print axioms` probe of the bridge to report only `propext`,
