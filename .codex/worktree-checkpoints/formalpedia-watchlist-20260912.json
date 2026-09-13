@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "formalpedia-watchlist-20260912",
+  "owner": "codex-formalpedia",
+  "base_head": "5f5b11b917aab15cd0c2f05358ae75b84eb00c1c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/formalpedia-watchlist-20260912.json",
+    "prove2me/formalpedia-watchlist.json",
+    "prove2me/formalpedia-watchlist.md",
+    "scripts/check_formalpedia_watchlist.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-13T03:45:31Z",
+  "manifest_sha256": "34253926d435bb8c053641aa80d0183ed60edb409acfbab37a0ac7b9c73e914b"
+}
