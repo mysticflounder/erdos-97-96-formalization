@@ -282,11 +282,14 @@ used the indexed Lean corpus at revision `8e6075c94`, with repository HEAD
 The next checkpoint should fit the first non-singleton live cell to a shared
 certificate schema before extending the remaining 11 live cells.
 
-For the 21 remaining cells, use a separate emptiness certificate that models
-pair-count and terminal-validity rejections. The pilot zero-target wrapper is not
-general: separation-compatible complete choices remain for `(s1, 771)` (53),
-`(s1, 785)` (217), `(s1, 801)` (597), `(s1, 898)` (231), `(s2, 771)` (450), and
-`(s2, 777)` (35). These cells remain outside the populated-cell promotion work.
+For the 21 remaining cells, reuse `CompatibilityCertificate` with an impossible zero
+target through a thin wrapper. Independent filtered-domain and raw `depth2RestPlan`
+enumerators find zero separation-compatible completions for every empty cell when `v`
+is pinned to `201`, `209`, or `225` as appropriate and `w` is pinned to the cell mask.
+Because those fixed masks are nonzero, a `.done` node cannot match the zero target; no
+pair-count or terminal-validity certificate state is needed for this bank revision. An
+earlier audit's nonzero counts came from a temporary `CellSpec` whose target set `v = 0`,
+causing `CellSpec.fixed` to pin `v = 0`.
 
 **First multiple-row pilot:** the 12 remaining live cells contain between two
 and 36 rows. The smallest is `(s1, 834)`, with exactly the stored rows `s1_000`
@@ -422,6 +425,22 @@ The generated source contains none of `sorry`, `admit`, `axiom`, `unsafe`,
 `Lean.ofReduceNat`, or `Lean.trustCompiler`. Dispatcher integration extends structural
 coverage to twelve populated cells; empty cells remain outside this certificate family.
 Targeted `lake-build` completed all 1,751 jobs, and the governed Lean-ingress binding
+passed semantic validation with only `propext`, `Classical.choice`, and `Quot.sound`
+in the exported declarations' axiom closures.
+
+The `(s2, 785)` prototype covers the sixteen certified target rows `s2_000` through
+`s2_015` from pinned bank
+`a7c93a9c69a26271a8e75447d3b66c8f116fdde86c70c219380c5407d0f2457a`.
+With center order `u, Q1, Q2, Pu, Pw, s1, s3, s2`, its generated target-set tree has
+1,310 partial states, 1,294 splits, 40,604 separation prunes, and sixteen terminals.
+Two independent generations and a canonical-generator regeneration emitted 54
+matching Lean modules, totaling 1,561,631 bytes, with aggregate digest
+`15ea29b0be9c436aa30ec36ab084f1bfcd41b9ba87c8467faad782ae72e2c365`.
+The generated source contains none of `sorry`, `admit`, `axiom`, `unsafe`,
+`native_decide`, `partial`, `extern`, `implemented_by`, `Lean.ofReduceBool`,
+`Lean.ofReduceNat`, or `Lean.trustCompiler`. Dispatcher integration extends structural
+coverage to thirteen populated cells; empty cells remain outside this certificate family.
+Targeted `lake-build` completed all 1,805 jobs, and the governed Lean-ingress binding
 passed semantic validation with only `propext`, `Classical.choice`, and `Quot.sound`
 in the exported declarations' axiom closures.
 

@@ -867,6 +867,96 @@ def s3928TargetE : Label → Nat
 def s3928Targets : List (Label → Nat) :=
   [s3928TargetA, s3928TargetB, s3928TargetC, s3928TargetD, s3928TargetE]
 
+/-- Fixed masks for the `(s2, 785)` depth-two cell with sixteen target rows. -/
+def s2785Fixed : List (Label × Nat) := [(.v, 209), (.w, 785)]
+
+/-- First target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetA : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 306 | .s2 => 556
+  | .s3 => 86 | .Pw => 156 | .Pu => 75 | .Q1 => 547 | .Q2 => 390
+
+/-- Second target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetB : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 306 | .s2 => 616
+  | .s3 => 86 | .Pw => 156 | .Pu => 75 | .Q1 => 547 | .Q2 => 390
+
+/-- Third target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetC : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 306 | .s2 => 616
+  | .s3 => 86 | .Pw => 156 | .Pu => 75 | .Q1 => 549 | .Q2 => 390
+
+/-- Fourth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetD : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 306 | .s2 => 45
+  | .s3 => 86 | .Pw => 156 | .Pu => 99 | .Q1 => 523 | .Q2 => 390
+
+/-- Fifth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetE : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 534 | .s2 => 354
+  | .s3 => 92 | .Pw => 178 | .Pu => 75 | .Q1 => 525 | .Q2 => 390
+
+/-- Sixth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetF : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 534 | .s2 => 354
+  | .s3 => 92 | .Pw => 178 | .Pu => 75 | .Q1 => 549 | .Q2 => 390
+
+/-- Seventh target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetG : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 534 | .s2 => 616
+  | .s3 => 156 | .Pw => 390 | .Pu => 75 | .Q1 => 549 | .Q2 => 306
+
+/-- Eighth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetH : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 534 | .s2 => 106
+  | .s3 => 156 | .Pw => 390 | .Pu => 77 | .Q1 => 549 | .Q2 => 306
+
+/-- Ninth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetI : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 534 | .s2 => 616
+  | .s3 => 156 | .Pw => 390 | .Pu => 77 | .Q1 => 549 | .Q2 => 306
+
+/-- Tenth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetJ : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 534 | .s2 => 43
+  | .s3 => 156 | .Pw => 390 | .Pu => 101 | .Q1 => 525 | .Q2 => 306
+
+/-- Eleventh target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetK : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 562 | .s2 => 652
+  | .s3 => 86 | .Pw => 390 | .Pu => 75 | .Q1 => 549 | .Q2 => 284
+
+/-- Twelfth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetL : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 562 | .s2 => 652
+  | .s3 => 86 | .Pw => 390 | .Pu => 99 | .Q1 => 549 | .Q2 => 284
+
+/-- Thirteenth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetM : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 562 | .s2 => 652
+  | .s3 => 90 | .Pw => 390 | .Pu => 77 | .Q1 => 549 | .Q2 => 354
+
+/-- Fourteenth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetN : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 562 | .s2 => 652
+  | .s3 => 90 | .Pw => 390 | .Pu => 99 | .Q1 => 549 | .Q2 => 332
+
+/-- Fifteenth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetO : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 564 | .s2 => 354
+  | .s3 => 92 | .Pw => 674 | .Pu => 75 | .Q1 => 525 | .Q2 => 390
+
+/-- Sixteenth target tuple for the `(s2, 785)` depth-two cell. -/
+def s2785TargetP : Label → Nat
+  | .u => 424 | .v => 209 | .w => 785 | .s1 => 564 | .s2 => 354
+  | .s3 => 92 | .Pw => 652 | .Pu => 75 | .Q1 => 547 | .Q2 => 390
+
+/-- The sixteen target tuples admitted by the `(s2, 785)` compatibility certificate. -/
+def s2785Targets : List (Label → Nat) :=
+  [s2785TargetA, s2785TargetB, s2785TargetC, s2785TargetD,
+    s2785TargetE, s2785TargetF, s2785TargetG, s2785TargetH,
+    s2785TargetI, s2785TargetJ, s2785TargetK, s2785TargetL,
+    s2785TargetM, s2785TargetN, s2785TargetO, s2785TargetP]
+
 /-- Fixed masks for the `(s2, 864)` depth-two cell with six target rows. -/
 def s2864Fixed : List (Label × Nat) := [(.v, 209), (.w, 864)]
 
