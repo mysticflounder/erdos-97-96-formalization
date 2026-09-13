@@ -309,11 +309,17 @@ standard axioms `propext`, `Classical.choice`, and `Quot.sound`. The next
 structural checkpoint should add the four-row `(s1, 848)` cell, the
 next-smallest live target set.
 
-The `(s1, 848)` preflight finds exactly rows `s1_024` through `s1_027`. With
-center order `u, Q1, Q2, Pw, Pu, s3, s2, s1`, the generic target-set tree has
-949 partial states, 945 splits, 36,842 separation prunes, and four terminals.
-The projected proof is 30 Lean modules and 1,424,365 bytes; it needs no change
-to the checker interface.
+The `(s1, 848)` prototype covers four certified target rows, `s1_024` through
+`s1_027`. With center order `u, Q1, Q2, Pw, Pu, s3, s2, s1`, its generated
+target-set tree has 949 partial states, 945 splits, 36,842 separation prunes,
+and four terminals. Two independent generations emitted the same 30 Lean
+modules, totaling 1,424,940 bytes, with aggregate digest
+`ed809ca7a100d8dc9bc3c7c84306196e43dc7a59f4a9d6fd5dba3f5985db685d`.
+The generated source contains no `sorry`, `admit`, `unsafe`, or `native_decide`
+occurrences and requires no checker-interface change. Targeted `lake-build`
+completed all 1,189 jobs, and the governed Lean-ingress binding passed semantic
+validation with only `propext`, `Classical.choice`, and `Quot.sound` in the
+exported declarations' axiom closures.
 
 ## Objective and boundaries
 
