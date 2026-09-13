@@ -1,0 +1,67 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven": {
+      "payload_sha256": "e426035a6c0d4d6e508b8f693aec0d7d287a721f9bcb08b35a3e41ec47f0eea9",
+      "state": "RECORDED",
+      "submission_id": "25a2d7eb-a0bd-4cbf-a1f9-885160289265"
+    },
+    "proof:Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven": {
+      "payload_sha256": "642022fc983f9e24383f826854b25f4c7a4656e1960f698929fd5ba1a42d535a",
+      "state": "RECORDED",
+      "submission_id": "d049b439-f7fa-454a-98c7-1b604aca3192"
+    },
+    "theorem:Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven": {
+      "job_id": "50f0cd3e-f765-461a-a4c6-f5af4ee0c084",
+      "payload_sha256": "e2100191bb53d41f5889b6abf4dd86e6049ec79368cb347199c6745cc5857d8a",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven": {
+      "job_id": "fc0498f7-6734-49b9-b52b-5187ea47be21",
+      "payload_sha256": "b1a351502403e631283387eb0a12488f3bb94f329b6c724e091f2c1d795b34a8",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "70f1f8f364f326863097df493f9583d5a4cc59bdc70cfb1290a1646aad32499d",
+  "proof_attempts": {},
+  "proofs": {
+    "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven": {
+      "created_at": "2026-09-13T02:38:46.789655+00:00",
+      "error_message": "",
+      "file_path": "bef2a1ce-7386-421f-b27f-7c0944082b83/6ac78adb-dda3-4892-bb46-d4c86f102d16/25a2d7eb-a0bd-4cbf-a1f9-885160289265.lean",
+      "id": "25a2d7eb-a0bd-4cbf-a1f9-885160289265",
+      "status": "ACCEPTED",
+      "submission_id": "25a2d7eb-a0bd-4cbf-a1f9-885160289265",
+      "theorem_id": "bef2a1ce-7386-421f-b27f-7c0944082b83",
+      "updated_at": "2026-09-13T02:40:10.815571+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven": {
+      "created_at": "2026-09-13T02:37:23.88181+00:00",
+      "error_message": "",
+      "file_path": "f78ca3e6-9ade-4143-be6e-963a5788ef5b/6ac78adb-dda3-4892-bb46-d4c86f102d16/d049b439-f7fa-454a-98c7-1b604aca3192.lean",
+      "id": "d049b439-f7fa-454a-98c7-1b604aca3192",
+      "status": "ACCEPTED",
+      "submission_id": "d049b439-f7fa-454a-98c7-1b604aca3192",
+      "theorem_id": "f78ca3e6-9ade-4143-be6e-963a5788ef5b",
+      "updated_at": "2026-09-13T02:38:37.690262+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven": {
+      "job_id": "50f0cd3e-f765-461a-a4c6-f5af4ee0c084",
+      "status": "PUBLISHED",
+      "theorem_id": "bef2a1ce-7386-421f-b27f-7c0944082b83"
+    },
+    "Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven": {
+      "job_id": "fc0498f7-6734-49b9-b52b-5187ea47be21",
+      "status": "PUBLISHED",
+      "theorem_id": "f78ca3e6-9ade-4143-be6e-963a5788ef5b"
+    }
+  }
+}

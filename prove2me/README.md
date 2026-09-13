@@ -51,6 +51,11 @@ provenance for the project's own Lean formalization.
   incidence consequence. Both proofs were verified by Prove2Me; the packet
   supplies a descent interface without claiming the open existence step.
 
+- [Accepted extra isosceles-count support](submissions/extra-isosceles-count-support/README.md):
+  two reusable counting consequences, including the strict `6 * |A| + 1` bound
+  and the nine-point `55` bound. Both proofs were verified by Prove2Me; no
+  separate mission milestone was created.
+
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
   and bank-replacement work, with consumer and validation gates.
 - `mission-description.md`: the public introduction, including why the problems

@@ -1,0 +1,26 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-extra-isosceles-count-support-20260912",
+  "base_head": "b771c998bd813617c7e2735ece6b039f26e7c083",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-extra-isosceles-count-support-20260912.json",
+    "prove2me/README.md",
+    "prove2me/submissions/extra-isosceles-count-support/README.md",
+    "prove2me/submissions/extra-isosceles-count-support/explanation.md",
+    "prove2me/submissions/extra-isosceles-count-support/plan.toml",
+    "prove2me/submissions/extra-isosceles-count-support/platform/Solutions/Sol_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven.lean",
+    "prove2me/submissions/extra-isosceles-count-support/platform/Solutions/Sol_Problem97_six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven.lean",
+    "prove2me/submissions/extra-isosceles-count-support/platform/Theorems/Thm_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven.lean",
+    "prove2me/submissions/extra-isosceles-count-support/platform/Theorems/Thm_Problem97_six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven.lean",
+    "prove2me/submissions/extra-isosceles-count-support/platform/Validation/ExtraApexCountKernel.lean",
+    "prove2me/submissions/extra-isosceles-count-support/platform/Validation/NinePointFiftyFiveKernel.lean",
+    "prove2me/submissions/extra-isosceles-count-support/receipt.json",
+    "prove2me/submissions/extra-isosceles-count-support/skeptic-audit.md",
+    "prove2me/submissions/extra-isosceles-count-support/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-extra-isosceles-count-support",
+  "created_utc": "2026-09-13T02:28:00Z",
+  "manifest_sha256": "abac99574ee2b1e240f25f4713acb46ca516e4507c439cb81a87d7c6a1190f08"
+}

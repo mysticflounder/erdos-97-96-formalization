@@ -1,0 +1,105 @@
+{
+  "schema": "prove2me-extra-isosceles-count-support-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revision": "bd8528ea10a12da2c84a10cc5897e36681c2e75d",
+  "plan_digest": "70f1f8f364f326863097df493f9583d5a4cc59bdc70cfb1290a1646aad32499d",
+  "prepublication_readback": {
+    "status": "PASS",
+    "exact_theorems_absent": [
+      "Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven",
+      "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven"
+    ]
+  },
+  "statement_identity": {
+    "count": 2,
+    "status": "PASS"
+  },
+  "isolated_lean_compile": {
+    "theorem_stubs": 2,
+    "solutions": 2,
+    "validation_wrappers": 2,
+    "status": "PASS",
+    "note": "Lean 4.33.1 lake-build in an isolated staging project"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven",
+      "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_harness_axiom_audit": {
+    "declarations": [
+      "ExtraApexCountKernelValidation.result",
+      "NinePointFiftyFiveKernelValidation.result"
+    ],
+    "axioms": [
+      "propext",
+      "sorryAx",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS_EXPECTED_STATEMENT_STUBS",
+    "note": "sorryAx comes only from imported theorem presentation stubs; submitted solutions and validators contain no proof holes."
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "admit",
+      "native_decide",
+      "ofReduceBool",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by",
+      "extern"
+    ],
+    "status": "PASS"
+  },
+  "receipt_sha256": "949bad147d5a52fc45b3bb1e246d10c0866a4c968ea240720dbf3d791d06b276",
+  "live_readback": {
+    "checked_utc": "2026-09-13T02:43:54Z",
+    "theorems": [
+      {
+        "name": "Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven",
+        "id": "f78ca3e6-9ade-4143-be6e-963a5788ef5b",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "d049b439-f7fa-454a-98c7-1b604aca3192",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven",
+        "id": "bef2a1ce-7386-421f-b27f-7c0944082b83",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "25a2d7eb-a0bd-4cbf-a1f9-885160289265",
+        "proof_status": "ACCEPTED"
+      }
+    ],
+    "milestones_created": 0
+  },
+  "files": {
+    "README.md": "54f08e7907271b0ea862750708d54fd269a368225739b763710ad9d782f1675b",
+    "explanation.md": "6af99367ccbe3f57a779b12b61317b9a4f4785f8dbcdb2c42efe2a497c2e00d7",
+    "plan.toml": "a0ff77ec606f91bd20d8ad73248b62cfbf63c82c4b4baf1e90f95af257ef854f",
+    "platform/Solutions/Sol_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven.lean": "4d63fee2bdd03e2339a6d6f5127e2cd4b0a253043015ac60722144443ef8739e",
+    "platform/Solutions/Sol_Problem97_six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven.lean": "d2344c06a4bbac9241980c9baa11ce5f3e7658492d9cbdc0da9acee35c66fa0d",
+    "platform/Theorems/Thm_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven.lean": "01618a9ff1b676e06c4eb3cf2df335bc2e7685eb7740795b3615b92a1f1aa231",
+    "platform/Theorems/Thm_Problem97_six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven.lean": "627a1b838a00c76ed14e3d0dc00bcc3aecbe48e3cb38e4fd1ac6c91f182765e5",
+    "platform/Validation/ExtraApexCountKernel.lean": "625948a86f88b5baf76d4f69bba1ea7e095c533af776c8894478a7f6c4d83e49",
+    "platform/Validation/NinePointFiftyFiveKernel.lean": "00e3947070df77536ac3c59c227ab81b2d9e7e1bb646276aa4cdd5f4aa113a35",
+    "receipt.json": "949bad147d5a52fc45b3bb1e246d10c0866a4c968ea240720dbf3d791d06b276",
+    "skeptic-audit.md": "385b01593b6c004cee7803827e7c435e1209b6b4daf53dc1ac6d4bb2900210e0"
+  }
+}

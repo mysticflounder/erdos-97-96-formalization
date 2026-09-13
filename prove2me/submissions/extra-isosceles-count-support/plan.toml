@@ -1,0 +1,39 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/extra-isosceles-count-support/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven"
+title = "One vertex with an extra local pair raises the total count"
+file = "submissions/extra-isosceles-count-support/platform/Theorems/Thm_Problem97_six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven.lean"
+natural_language_statement = "If every point of a finite planar set has four equidistant neighbours, and one point has at least seven local isosceles pairs, then six times the number of points plus one is at most the total isosceles count."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L166-L189"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting", "finite-nine"]
+
+[[theorem]]
+name = "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven"
+title = "An extra local pair gives at least fifty-five at nine points"
+file = "submissions/extra-isosceles-count-support/platform/Theorems/Thm_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven.lean"
+natural_language_statement = "If a finite planar set has exactly nine points, every point has four equidistant neighbours, and one point has at least seven local isosceles pairs, then its total isosceles count is at least fifty-five."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L192-L200"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting", "finite-nine"]
+
+[[proof]]
+theorem = "Problem97.six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven"
+file = "submissions/extra-isosceles-count-support/platform/Solutions/Sol_Problem97_six_mul_card_add_one_le_iCount_of_K4_of_iCountAt_ge_seven.lean"
+explanation = "submissions/extra-isosceles-count-support/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven"
+file = "submissions/extra-isosceles-count-support/platform/Solutions/Sol_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_iCountAt_ge_seven.lean"
+explanation = "submissions/extra-isosceles-count-support/explanation.md"
+proof_type = "prove"
