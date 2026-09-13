@@ -1,0 +1,105 @@
+{
+  "aggregate": {
+    "byte_count": 8481,
+    "module": "Erdos9796Proof.P97.SurplusCOMPGBankCoverage.SingletonCells",
+    "path": "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/SingletonCells.lean",
+    "sha256": "04bb2945bf8bf30cc4e11daf8c75faf329dac75889745606f2e0ee79daa7ddb2"
+  },
+  "build_evidence": {
+    "aggregate_built_line": "\u2714 [1214/1214] Built Erdos9796Proof.P97.SurplusCOMPGBankCoverage.SingletonCells (2.0s)",
+    "build_exit_line": "BUILD-EXIT=0",
+    "log_path": "scratch/runs/prove2me-s1928-row-set-20260913/prototype/artifacts/s1928-build.log",
+    "log_sha256": "1aa18641ed098ef7c4c8ea0f5551dd92e443144166b6e301ba7c91fa53d642d8"
+  },
+  "closure": {
+    "external_imports": [
+      "Batteries.Data.List.Perm",
+      "Mathlib.Combinatorics.Colex",
+      "Mathlib.Data.Finset.Card",
+      "Mathlib.Data.Finset.Powerset",
+      "Mathlib.Data.Finset.Sort",
+      "Mathlib.Data.Nat.BitIndices",
+      "Mathlib.Tactic.IntervalCases",
+      "Std.Sat.CNF",
+      "Std.Sat.CNF.Relabel"
+    ],
+    "module_count": 28,
+    "modules_digest": "5cf48cfa29691836310121db482e1e7021c3fe10f02978c9301e859511caf832",
+    "per_module_digest": "4747b252c2be24744ea68fe031ee8a7e71f543cb6d470892492c12aba055daa4"
+  },
+  "declarations": [
+    "Problem97.S1928TreeProof.memDepth2SubtreeResult_memTargets",
+    "Problem97.SurplusCOMPGBankCoverage.mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell",
+    "Problem97.SurplusCOMPGBankCoverage.depth2SubtreeResult_all_containsKey_rowShadowKeys_of_structurallyCoveredCell"
+  ],
+  "import_edge": {
+    "line": "import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1928TreeProof.Root",
+    "present": true
+  },
+  "ingress": {
+    "byte_count": 5987,
+    "module": "Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1928TreeProof.Root",
+    "path": "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Root.lean",
+    "sha256": "3b64236f4899407d447419aee1904cf17ccca09db8eee1ce6462fa015a57eefd"
+  },
+  "parent": {
+    "byte_count": 6284115,
+    "link_digest": "f751a277a50a2213b2c24e039f1d15a240e2ddc12270d65a81c77381c73dbf5b",
+    "path": "scratch/runs/prove2me-s1928-row-set-20260913/prototype/artifacts/s1928-tree.json",
+    "record_kind": "surplus-compg-compatibility-certificate/v1",
+    "schema": "surplus-compg-compatibility-certificate/v1",
+    "sha256": "33fa41c039dc2789f3f077408e78bbcc7876fbf479d5c4e1c182a80c2237956b"
+  },
+  "recapture": {
+    "aggregate_sha256_recaptured": "04bb2945bf8bf30cc4e11daf8c75faf329dac75889745606f2e0ee79daa7ddb2",
+    "closure_digest_recaptured": "4747b252c2be24744ea68fe031ee8a7e71f543cb6d470892492c12aba055daa4",
+    "ingress_sha256_recaptured": "3b64236f4899407d447419aee1904cf17ccca09db8eee1ce6462fa015a57eefd",
+    "stable": true
+  },
+  "repo_head": "c464f037f5dfc968fda59ce7536d82fb17ab5d3a",
+  "roots": {
+    "lake_root": "lean",
+    "source_root": "lean"
+  },
+  "schema": "p97-lean-ingress-binding/v1",
+  "self_hash": {
+    "domain": "p97-lean-ingress-binding/v1",
+    "sha256": "a70c01421e5a6bb25738d38c8585f7500d1d01326797ca25fa3fe77039a9dd08"
+  },
+  "semantic": {
+    "declarations": [
+      {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "check_output": "@Problem97.S1928TreeProof.memDepth2SubtreeResult_memTargets : \u2200 {result : List \u2115},\n  result \u2208 Problem97.SurplusCOMPGBank.depth2SubtreeResult Problem97.SurplusCOMPGBank.Label.s1 928 \u2192\n    result \u2208\n      [[178, 201, 928, 338, 616, 142, 281, 579, 533, 300], [284, 201, 928, 178, 556, 326, 43, 593, 646, 275],\n        [284, 201, 928, 178, 616, 326, 43, 593, 646, 275], [284, 201, 928, 178, 616, 86, 43, 593, 646, 293]]",
+        "declaration": "Problem97.S1928TreeProof.memDepth2SubtreeResult_memTargets"
+      },
+      {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "check_output": "@Problem97.SurplusCOMPGBankCoverage.mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell : \u2200\n  {sstar : Problem97.SurplusCOMPGBank.Label} {wmask : \u2115} {result : List \u2115},\n  Problem97.SurplusCOMPGBankCoverage.IsStructurallyCoveredDepthTwoCell sstar wmask \u2192\n    result \u2208 Problem97.SurplusCOMPGBank.depth2SubtreeResult sstar wmask \u2192\n      result \u2208 Problem97.SurplusCOMPGBank.rowShadowKeys",
+        "declaration": "Problem97.SurplusCOMPGBankCoverage.mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell"
+      },
+      {
+        "axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "check_output": "@Problem97.SurplusCOMPGBankCoverage.depth2SubtreeResult_all_containsKey_rowShadowKeys_of_structurallyCoveredCell : \u2200\n  {sstar : Problem97.SurplusCOMPGBank.Label} {wmask : \u2115},\n  Problem97.SurplusCOMPGBankCoverage.IsStructurallyCoveredDepthTwoCell sstar wmask \u2192\n    ((Problem97.SurplusCOMPGBank.depth2SubtreeResult sstar wmask).all fun result =>\n        Problem97.SurplusCOMPGBank.containsKey result Problem97.SurplusCOMPGBank.rowShadowKeys) =\n      true",
+        "declaration": "Problem97.SurplusCOMPGBankCoverage.depth2SubtreeResult_all_containsKey_rowShadowKeys_of_structurallyCoveredCell"
+      }
+    ],
+    "lean_version": "4.33.1",
+    "probe_sha256": "887a4c90d45295887e77c13df13abd9d69d2495cff9ef886c3eeedea79b9dd20",
+    "timeout_seconds": 900,
+    "toolchain": "leanprover/lean4:v4.33.1"
+  },
+  "written_utc": "2026-09-13T18:23:08Z"
+}

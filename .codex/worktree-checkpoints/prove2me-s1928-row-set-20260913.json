@@ -1,0 +1,48 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-s1928-row-set-20260913",
+  "base_head": "c464f037f5dfc968fda59ce7536d82fb17ab5d3a",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-s1928-row-set-20260913.json",
+    "docs/audits/2026-09-13-s1928-row-set-lean-ingress-binding.json",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Root.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard00.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard01.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard02.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard03.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard04.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard05.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard06.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard06Child15.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard06Child17.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard06Child20.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard06Child21.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard06Child23.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child02.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child08.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child09.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child12.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child13.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child16.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child21.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child22.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child24.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard07Child25.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1928TreeProof/Shard08.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/SingletonCells.lean",
+    "prove2me/native-bank-replacement-plan.md",
+    "scripts/surplus-compg-singleton-cnf.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/prove2me-s1928-row-set-20260913/prototype/REPORT.md",
+    "scratch/runs/prove2me-s1928-row-set-20260913/prototype/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/prove2me-s1928-row-set-20260913/prototype"
+  ],
+  "owner": "codex-prove2me-s1928-row-set-promotion",
+  "created_utc": "2026-09-13T18:12:11Z",
+  "manifest_sha256": "b3f7600b3a16ffeaff9fd34b997882c8fb14f7870b8662b162672894eacec8a2"
+}
