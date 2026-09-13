@@ -6,27 +6,35 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Plan index
 
-Current proof state comes from the machine registry and live spine, not from a
-fixed count embedded in a plan. The repository-wide authored ledger is the
-[computational closure plan](../computational-closure-plan-2026-07-28.md).
+**Closure status — 13 September 2026.** Problems 97 and 96 are solved
+negatively by the external Kruer–Kohlmeyer–Price construction, with separate
+exact-statement disproofs accepted by Prove2Me after transfer audit. There are
+no active affirmative proof plans in this repository. The plans below are
+historical research and implementation records retained for provenance. See
+the [resolution record](../RESOLUTION.md#references), the [citation pointer](../references/kruer-kohlmeyer-price-2026.md),
+and the [accepted closure packet](../../prove2me/submissions/negative-resolution-20260913/README.md).
 
-## Current or partially current plans
+The machine registry, live spine, and repository-wide computational ledger
+preserve the pre-closure affirmative source state. They are historical records,
+not active dispatch authorities.
+
+## Historical affirmative proof plans
 
 - [TriApex paired common-deletion leaf](2026-09-01-d1-triapex-paired-common-deletion-closure-plan.md)
-  — covering plan for the sole open TriApex obligation
+  — historical covering plan for the former open TriApex obligation
   `false_of_pairedCommonDeletion_fiveSurviveOneFail_triApexAllLarge_core`.
 - [B1 equal-blocker continuation](2026-08-29-b1-global-continuation.md) —
-  current B1 residual and validation boundary.
-- [B-family closure plan](2026-08-18-b-family-closure-plan.md) — current as
-  background for B2/B3; its B1 target and fixed frontier count are superseded
+  historical B1 residual and validation boundary.
+- [B-family closure plan](2026-08-18-b-family-closure-plan.md) — historical
+  background for B2/B3; its B1 target and fixed frontier count were superseded
   by the 2026-08-29 continuation plan.
 - [FirstFiber witness search](2026-08-18-firstfiber-full-witness-search-plan.md)
-  — executable search plan, not a closure claim.
+  — historical executable search plan, not a closure claim.
 - [Cap-configuration PIQD census](2026-08-23-cap-configuration-piqd-census-plan.md)
-  — standalone plan; operation is governed by the
+  — historical standalone plan; its operation was governed by the
   [fail-closed runbook](../runbooks/p97-cap-configuration-ce-search.md).
 - [Positive semantic contract](p97-positive-semantic-contract-implementation-plan-2026-08-30.md)
-  — current implementation plan for the positive semantic boundary.
+  — historical implementation plan for the positive semantic boundary.
 
 ## Historical implementation records
 

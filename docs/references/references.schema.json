@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reference registry",
+  "description": "docs/references/references.json — one entry per cited work, keyed by the docs/references file stem (lastname-year, lastname1-lastname2-year, lastname1-etal-year). Maintained by the math-toolchain paper-review skill.",
+  "type": "object",
+  "required": ["references"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "project": { "type": "string", "description": "Project or paper this registry serves." },
+    "updated": { "type": "string", "format": "date", "description": "Date of the last edit, YYYY-MM-DD." },
+    "references": {
+      "type": "object",
+      "description": "Entries keyed by file stem.",
+      "propertyNames": { "pattern": "^[a-z0-9]+(-[a-z0-9]+)*-[0-9]{4}[a-z]?$" },
+      "additionalProperties": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": ["type", "authors", "title", "year", "verification"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["article", "preprint", "book", "chapter", "proceedings", "thesis", "web", "software", "other"] },
+        "authors": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/person" } },
+        "title": { "type": "string", "minLength": 1 },
+        "year": { "type": "integer", "minimum": 1000, "maximum": 2999 },
+        "venue": { "$ref": "#/$defs/venue" },
+        "arxiv": { "type": "string", "description": "arXiv identifier without the 'arXiv:' prefix, e.g. 1909.03562 or math/0512155." },
+        "doi": { "type": "string" },
+        "url": { "type": "string" },
+        "local": { "$ref": "#/$defs/local" },
+        "text_policy": { "enum": ["public", "local-only"], "description": "local-only: full-text extract is copyrighted and must not be published; notes (.md) may be." },
+        "cited_in": { "type": "array", "items": { "type": "string" }, "uniqueItems": true, "description": "Paper source files (relative to repo root) that cite this entry." },
+        "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } },
+        "verification": { "$ref": "#/$defs/verification" },
+        "notes": { "type": "string" }
+      }
+    },
+    "person": {
+      "type": "object",
+      "required": ["family"],
+      "additionalProperties": false,
+      "properties": {
+        "given": { "type": "string", "description": "Given names or initials as they appear on the work, e.g. \"Terence\" or \"J. C.\"." },
+        "family": { "type": "string", "minLength": 1, "description": "Surname with diacritics and particles intact, e.g. \"Wüstholz\", \"de Weger\"." }
+      }
+    },
+    "venue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "journal": { "type": "string" },
+        "volume": { "type": "string", "description": "String: some journals use roman numerals (Acta Arith. XLV)." },
+        "issue": { "type": "string" },
+        "pages": { "type": "string", "description": "e.g. \"19–62\"." },
+        "article": { "type": "string", "description": "Article number where the journal uses them instead of pages." },
+        "publisher": { "type": "string" },
+        "series": { "type": "string", "description": "e.g. \"Lecture Notes in Mathematics 1681\"." },
+        "booktitle": { "type": "string", "description": "For chapters and proceedings." }
+      }
+    },
+    "local": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Files in docs/references/, by filename.",
+      "properties": {
+        "notes": { "type": "string" },
+        "text": { "type": "string" },
+        "pdf": { "type": "string" }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["claim", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "claim": { "type": "string", "description": "What the paper says about this work, quoted." },
+        "where": { "type": "string", "description": "Location in the paper (line, section, footnote)." },
+        "status": { "enum": ["confirmed", "contradicted", "imprecise", "unverified"] },
+        "source_says": { "type": "string", "description": "What the source actually says, when it differs or when the confirmation is worth quoting." }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": ["status"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["verified", "partial", "error", "unverified"] },
+        "date": { "type": "string", "format": "date" },
+        "method": { "enum": ["pdf", "text", "arxiv-abstract", "journal-index", "cross-reference", "none"] },
+        "authors": { "type": "boolean" },
+        "title": { "type": "boolean" },
+        "venue": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

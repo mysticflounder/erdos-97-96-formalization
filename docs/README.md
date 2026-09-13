@@ -6,35 +6,48 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Documentation map
 
-This directory contains living plans, generated proof-state snapshots, dated
+**Project result — 13 September 2026.** Erdős Problems 97 and 96 are solved
+negatively by the external Kruer–Kohlmeyer–Price construction. The separate
+exact-statement disproofs were accepted by Prove2Me after transfer audit; this
+repository's affirmative Lean development remains historical partial work.
+See the [resolution record](RESOLUTION.md#references), the [citation pointer](references/kruer-kohlmeyer-price-2026.md),
+and the [closure packet](../prove2me/submissions/negative-resolution-20260913/README.md).
+
+This directory contains the resolution record, retired plans, generated proof-state snapshots, dated
 research records, and historical archives. A date in a filename scopes the
 record; it does not make that file a current status authority.
 
-## Current authorities
+## Current result
 
-- [Current proof pointer](proof/CURRENT.md) — short human-readable pointer to
-  the latest accepted frontier change.
+- [Resolution of Problems 96 and 97](RESOLUTION.md) — the negative results,
+  verified citation, and exact-statement verification receipts.
+- [Reference verification](references/kruer-kohlmeyer-price-2026.md) — checked
+  bibliographic metadata and theorem/corollary locators.
+
+## Historical affirmative-proof evidence
+
+- [Resolution and historical checkpoint pointer](proof/CURRENT.md) — closure pointer for the retired
+  affirmative proof frontier.
 - [Obligation registry](../proof-status/README.md) — machine-readable roster and
-  trust-gate documentation. The 2026-08-30 registry has 25 publish-reachable
-  declarations and 6 off-spine declarations.
+  trust-gate documentation for the pre-closure source state. The 2026-08-30
+  registry recorded 25 publish-reachable declarations and 6 off-spine
+  declarations.
 - [Live blueprint](live-blueprint.md) — generated snapshot. Do not edit it by
-  hand, and do not assume the committed copy is fresh; run
-  `proof-blueprint spine` for live state.
+  hand. Its open obligations describe the retired affirmative source tree.
 - [Computational closure plan](computational-closure-plan-2026-07-28.md) —
-  authored closure-program ledger. Its embedded dated checkpoints remain
-  historical; the current summary at the top points back to the registry.
-- [Plans index](plans/README.md) — active lane plans and explicitly historical
+  retired authored closure-program ledger. Its embedded dated checkpoints and
+  source-state summary remain historical.
+- [Plans index](plans/README.md) — historical affirmative lane plans and
   implementation records.
 
-The theorem roots remain open because their dependency closures
-still reach `sorryAx`. Only `Problem97.erdos97_rhs` is configured as the
-Proof Blueprint publish target; Problem 96 is checked separately.
+The registry and blueprint preserve the pre-closure affirmative source state;
+their open declarations and `sorryAx` measurements are historical bookkeeping.
+They do not change the negative result or reopen positive-proof work.
 
 ## Research narrative and operations
 
-- [Descent manuscript](erdos-97-descent-prose-proof-atomic.md) — authoritative
-  merged research manuscript as of its stated 2026-08-23 snapshot, not a live
-  obligation count.
+- [Descent manuscript](erdos-97-descent-prose-proof-atomic.md) — historical
+  unfinished affirmative manuscript, not a current result or obligation count.
 - [Evidence-status ledger](closure-evidence-status-ledger-2026-08-05.md) —
   controlled status vocabulary plus dated corrections.
 - [Prose integration ledger](p97-prose-material-integration-ledger-2026-08-22.md)
@@ -61,9 +74,9 @@ Proof Blueprint publish target; Problem 96 is checked separately.
 - [`references/`](references/) contains local literature audit material subject
   to the repository's provenance and licensing policy.
 
-When the proof frontier changes, update the current pointer, living plan, and
-reader-facing summary in the same checkpoint. Keep generated status blocks and
-`live-blueprint.md` generator-owned.
+The affirmative proof program is retired. Preserve generated status blocks and
+`live-blueprint.md` as historical source-state artifacts; do not treat them as
+active dispatch authorities.
 
 Relocated documents may leave short compatibility pointers at their former
 paths so existing citations keep working; those pointers are never status

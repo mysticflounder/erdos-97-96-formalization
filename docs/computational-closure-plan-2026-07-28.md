@@ -1,5 +1,13 @@
 # Computational closure plan — remaining frontier (updated 2026-08-30)
 
+> **Retired plan — 13 September 2026.** Problems 97 and 96 are solved
+> negatively by the external Kruer–Kohlmeyer–Price construction, with separate
+> exact-statement disproofs accepted by Prove2Me after transfer audit. This
+> dated ledger preserves the unfinished affirmative computational route and
+> its source-state measurements; it contains no active proof instructions.
+> See the [resolution record](RESOLUTION.md#references), the [citation pointer](references/kruer-kohlmeyer-price-2026.md),
+> and the [accepted closure packet](../prove2me/submissions/negative-resolution-20260913/README.md).
+
 Evidence-status terms in this plan follow the
 [closure evidence status ledger](closure-evidence-status-ledger-2026-08-05.md).
 

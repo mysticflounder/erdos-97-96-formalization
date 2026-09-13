@@ -1,6 +1,6 @@
 ---
 title: "The Erdős 97 Descent Argument"
-subtitle: "Authoritative current atomic prose proof"
+subtitle: "Historical unfinished affirmative attempt"
 author: "Working proof manuscript"
 date: "4 September 2026"
 ---
@@ -20,14 +20,18 @@ by `Problem97.erdos97_rhs` is:
 The local statement uses the upstream predicates through
 `P97/Foundation.lean`; `Problem97.upstream_iff` identifies the statement
 types by `Iff.rfl`. The formal target has not been strengthened or weakened.
-**The overall result is CONJECTURED / OPEN:** the general non-`IsM44`
-contradiction remains unresolved, so neither Problem 97 nor Problem 96 is
-proved by this development.
+**Historical status: UNFINISHED AFFIRMATIVE ATTEMPT.** The general non-`IsM44`
+contradiction remained unresolved in this manuscript, so this development did
+not prove either problem. On 13 September 2026, an external
+Kruer–Kohlmeyer–Price construction solved Problems 97 and 96 negatively, and
+Prove2Me accepted separate exact-statement disproofs after transfer audit. See
+the [resolution record](RESOLUTION.md#references), the [citation pointer](references/kruer-kohlmeyer-price-2026.md),
+and the [accepted closure packet](../prove2me/submissions/negative-resolution-20260913/README.md).
 
 ## 0. Authority, evidence, and navigation
 
-This file is the **authoritative current mathematical narrative and obligation
-summary** for the descent argument. Its current branch contracts are in §11,
+This file is the **historical mathematical narrative and obligation summary**
+for the unfinished affirmative descent argument. Its branch contracts are in §11,
 its conditional conclusion in §12, its completion matrix in §13, and its
 source crosswalk in §14. The elementary atomic argument in §§1–10 is retained
 where it continues to apply.

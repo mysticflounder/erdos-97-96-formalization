@@ -1,0 +1,65 @@
+{
+  "$schema": "./references.schema.json",
+  "project": "Erdős Problems 96 and 97 negative resolution citation",
+  "updated": "2026-09-13",
+  "references": {
+    "kruer-kohlmeyer-price-2026": {
+      "type": "preprint",
+      "authors": [
+        { "given": "Liam", "family": "Kruer" },
+        { "given": "Jensen", "family": "Kohlmeyer" },
+        { "given": "Liam", "family": "Price" }
+      ],
+      "title": "Unit distances in convex polygons",
+      "year": 2026,
+      "url": "https://github.com/Leeham06972452/erdos-96-97/tree/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2",
+      "local": {
+        "notes": "Supplied local PDF copied from prove2me/submissions/negative-resolution-20260913/upstream/96-97.pdf; SHA-256 0aa734bee7dd050157f6423b5869e78ea469406c81a91f64e1f97c5b38d5c818.",
+        "pdf": "kruer-kohlmeyer-price-2026.pdf"
+      },
+      "text_policy": "local-only",
+      "cited_in": [
+        "README.md",
+        "CLOSED.md",
+        "docs/RESOLUTION.md",
+        "prove2me/README.md",
+        "docs/README.md",
+        "docs/proof/CURRENT.md",
+        "proof-status/README.md",
+        "docs/erdos-97-descent-prose-proof-atomic.md",
+        "docs/plans/README.md",
+        "docs/computational-closure-plan-2026-07-28.md"
+      ],
+      "claims": [
+        {
+          "claim": "The manuscript gives U_c(n) = Ω(n log log n) for strictly convex n-point sets.",
+          "where": "Theorem 1.1 and Corollary 1.2, PDF p. 1",
+          "status": "confirmed",
+          "source_says": "Theorem 1.1 gives min{δ₁(P), u(P)/n} ≥ 1/4 log log n − C log log log n for every sufficiently large n; Corollary 1.2 states U_c(n) = Ω(n log log n)."
+        },
+        {
+          "claim": "The manuscript gives arbitrarily large fixed minimum unit-distance degree at every sufficiently large cardinality.",
+          "where": "Corollary 1.2, Proposition 4.3, PDF pp. 1 and 6",
+          "status": "confirmed",
+          "source_says": "Corollary 1.2 states that for every integer k ≥ 1 and every sufficiently large n there is a strictly convex n-point set in which every point has at least k unit-distance neighbours; Proposition 4.3 supplies the construction for n ≥ M_k²."
+        },
+        {
+          "claim": "The manuscript supplies a Problem 97 counterexample with k = 4 and at most 3432·2^36036 vertices.",
+          "where": "Corollary 4.4, proof, PDF p. 7",
+          "status": "confirmed",
+          "source_says": "Corollary 4.4 states the bound; its proof sets k = 4, d = 7, q = 8 and computes N₇,₈ = 3432·2^36036."
+        }
+      ],
+      "verification": {
+        "status": "verified",
+        "date": "2026-09-13",
+        "method": "pdf",
+        "authors": true,
+        "title": true,
+        "venue": true,
+        "notes": "Authors and title were checked against the PDF title page and 96-97.tex, not only the upstream README. The local upstream README supplies year 2026 and describes the work as a manuscript with a Lean 4 formalization. No journal, DOI, or arXiv identifier is asserted because none appears in the supplied source."
+      },
+      "notes": "Source revision pinned at 0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2. This record verifies the citation and the stated result locators; it is not an independent prose proof audit."
+    }
+  }
+}

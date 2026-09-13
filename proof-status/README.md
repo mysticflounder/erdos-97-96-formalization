@@ -1,19 +1,31 @@
-# proof-status — generated obligation registry (consolidation refactor)
+# proof-status — historical positive-proof obligation registry
+
+**Closure notice — 13 September 2026.** Problems 97 and 96 were solved
+negatively by the external Kruer–Kohlmeyer–Price construction, with separate
+exact-statement disproofs accepted by Prove2Me after transfer audit. This
+directory preserves the generated positive-proof registry as historical source
+state: its open declarations, `sorryAx` references, counts, and gates describe
+the unfinished affirmative Lean route and do not assert that either problem is
+currently open. See the [resolution record](../docs/RESOLUTION.md#references),
+the [citation pointer](../docs/references/kruer-kohlmeyer-price-2026.md), and
+the [accepted closure packet](../prove2me/submissions/negative-resolution-20260913/README.md).
 
 Program: docs/audits/2026-08-23-consolidation-refactor-audit.md, lane
 `consolidation-refactor-20260823`. The registry, ID ledger, frontier table, and
 receipts are generated; `obligations-meta.json` and
 `private-edge-reachability.json` are hand-reviewed inputs, and this README
 documents their gates. Do not hand-edit files identified below as generated.
-The [current proof checkpoint](../docs/proof/CURRENT.md) is the short pointer to
-the latest accepted refactor delta and its explicit predecessor; this directory
-remains the machine-readable evidence authority.
+The [resolution and historical checkpoint pointer](../docs/proof/CURRENT.md)
+records the final problem status and the earlier refactor provenance. This
+directory preserves machine-readable evidence for the retired affirmative
+source tree.
 
 ## Files
 
 - `obligations.json` — the obligation registry (`p97-obligation-registry/v1`),
   generated from the built spine: one stable-ID entry per registered open
-  declaration. The current reachable/off-spine counts, per-module table,
+  declaration in the retained affirmative source state. The recorded
+  reachable/off-spine counts, per-module table,
   reviewed-status tally, and off-spine FQNs live in the marker-delimited
   [generated authority block](../README.md#the-open-frontier). Each entry also
   carries the reviewed fields joined from `obligations-meta.json`:

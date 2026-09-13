@@ -1,8 +1,24 @@
-# Closed — 2026-09-13
+# Erdős Problems 96 and 97 — solved negatively on Prove2Me
 
-This mission is closed following the Kruer–Kohlmeyer–Price negative construction. No new affirmative P96/P97 proof work or solver runs should be started. See the [counterexample submission and receipts](submissions/negative-resolution-20260913/README.md) and [project closure record](../CLOSED.md). The material below is historical.
+**Both original statements and the combined mission goal are Disproved. The
+mission is closed as of 13 September 2026.**
 
----
+The counterexample is due to Liam Kruer, Jensen Kohlmeyer, and Liam Price,
+*Unit distances in convex polygons* (2026), Theorem 1.1 and Corollary 1.2:
+[verified reference KKP2026](../docs/references/kruer-kohlmeyer-price-2026.md).
+It supplies superlinear unit-distance counts and a strictly convex polygon
+with at least four unit-distance neighbours at every vertex.
+
+See the [resolution summary](../docs/RESOLUTION.md),
+[accepted source and submission packet](submissions/negative-resolution-20260913/README.md),
+and [final closure receipt](submissions/negative-resolution-20260913/closure-receipt.json).
+Eight historical open tasks were retired. No new affirmative proof work or
+solver runs are authorized without Adam explicitly reopening the project.
+
+## Historical mission packet
+
+The material below records the former affirmative proposal and its partial
+supporting results. Its open statements and next-step instructions are historical.
 
 # Prove2Me mission: Erdős Problems 97 and 96
 

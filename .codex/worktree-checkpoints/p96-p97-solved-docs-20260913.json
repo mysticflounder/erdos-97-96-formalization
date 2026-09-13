@@ -1,0 +1,30 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "p96-p97-solved-docs-20260913",
+  "owner": "codex-solved-docs",
+  "base_head": "15b71143ab54b977ca3f430388215ec6f3dd73c3",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/p96-p97-solved-docs-20260913.json",
+    "CLOSED.md",
+    "README.md",
+    "docs/README.md",
+    "docs/RESOLUTION.md",
+    "docs/computational-closure-plan-2026-07-28.md",
+    "docs/erdos-97-descent-prose-proof-atomic.md",
+    "docs/plans/README.md",
+    "docs/proof/CURRENT.md",
+    "docs/references/checklist.md",
+    "docs/references/kruer-kohlmeyer-price-2026.bib",
+    "docs/references/kruer-kohlmeyer-price-2026.md",
+    "docs/references/kruer-kohlmeyer-price-2026.pdf",
+    "docs/references/references.json",
+    "docs/references/references.schema.json",
+    "docs/references/verification-report-20260913-resolution.md",
+    "proof-status/README.md",
+    "prove2me/README.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "created_utc": "2026-09-13T23:43:42Z",
+  "manifest_sha256": "0ee005c6f5ddc84e26afa5184586f5efe124886ae6a47fce66b0673073c23665"
+}
