@@ -48,7 +48,7 @@ This removes the native overlap-count identity from
 `rowIntersectionBound_of_incidenceOK`.
 
 The common-block checkpoint proves `allEmptyCommon_capBlocks_iff` through a
-general equivalence between an executable `List.all` test and emptiness of a
+general theorem connecting an executable `List.all` test with emptiness of a
 triple finite-set intersection. The Q3 pair-filter consumer is now structural
 apart from its independent cyclic-separation path. Only
 `maskOfFinset_pinnedRow` remained native in this facts module at that checkpoint.
@@ -370,6 +370,22 @@ requires no checker-interface change. Dispatcher integration extends structural
 coverage to nine cells. Targeted `lake-build` completed all 1,365 jobs, and the
 governed Lean-ingress binding passed semantic validation with only `propext`,
 `Classical.choice`, and `Quot.sound` in the exported declarations' axiom closures.
+
+The `(s1, 904)` prototype covers the ten certified target rows `s1_014` through
+`s1_023` from pinned bank
+`a7c93a9c69a26271a8e75447d3b66c8f116fdde86c70c219380c5407d0f2457a`.
+With center order `u, Q1, Q2, Pw, Pu, s3, s2, s1`, its generated target-set tree has
+1,796 partial states, 1,786 splits, 66,628 separation prunes, and ten terminals. Two
+independent generations and a canonical-generator regeneration emitted the same 70
+Lean modules, totaling 2,477,014 bytes, with aggregate digest
+`1247a80d946883b121cf66998cc879e72d36017ca6886f5091f5ff60c7996d2e`.
+The generated source contains none of `sorry`, `admit`, `axiom`, `unsafe`,
+`native_decide`, `partial`, `extern`, `implemented_by`, `Lean.ofReduceBool`,
+`Lean.ofReduceNat`, or `Lean.trustCompiler`. Dispatcher integration extends structural
+coverage to ten populated cells; empty cells remain outside this certificate family.
+Targeted `lake-build` completed all 1,435 jobs, and the governed Lean-ingress binding
+passed semantic validation with only `propext`, `Classical.choice`, and `Quot.sound`
+in the exported declarations' axiom closures.
 
 ## Objective and boundaries
 
