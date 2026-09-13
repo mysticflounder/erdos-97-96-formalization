@@ -1,3 +1,10 @@
+> **PROJECT CLOSED — 2026-09-13**
+>
+> The owner closed this Erdős 96/97 project on 2026-09-13. Do not start new
+> P96/P97 positive-proof work, solver waves, or swarm dispatch unless Adam
+> explicitly reopens the project. The material below is preserved as
+> historical partial work. See [CLOSED.md](CLOSED.md) for the closure record.
+
 # Erdős Problems 97 & 96 — Lean 4 formalization
 
 <picture>

@@ -1,0 +1,46 @@
+{
+  "schema": "prove2me-negative-resolution-transfer-audit/v1",
+  "reviewer": "/root/closure_docs",
+  "result": "PASS_LOCAL_TRANSFER",
+  "upstream_commit": "0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2",
+  "checks": [
+    "Seven upstream byte counts and SHA-256 digests matched provenance.json",
+    "Only attribution/import header, omission of unsupported audit elaborator, and exact root adapter differ from upstream",
+    "No proof declaration changed",
+    "P97 mission predicates reduce to the upstream predicates",
+    "Combined disproof consumes the P97 negation",
+    "Fresh final-copy compilation and exact solution axiom closure inspected",
+    "No imported platform theorem, sorryAx, or native trust boundary",
+    "P96 unit-distance pair predicates agree: dist=1 supplies the mission positivity conjunct, with unordered-pair symmetry checked",
+    "P96 convex count sets and maximum count suprema agree exactly",
+    "Fresh complete Solution96.lean compile has only the three standard axioms",
+    "Closure API reviewed independently by /root/check_status; eight retirement IDs match live Open task names; post-PATCH milestone readback added"
+  ],
+  "scope": "Transfer audit and kernel checks; not independent prose re-proof of the construction",
+  "files": {
+    "Solution.lean": "35ad66d83faa9a93b26607f209e7d92bc0aa9824fab70e27495a3e6efb98ff48",
+    "SolutionCombined.lean": "1ce1badb6f886b0ef4c47ba7cc765447d713d8735c11cb08bdce18e69f1045bc",
+    "Solution96.lean": "2f0b7fd78cbf508f5a5bbc91e128bb78a608aa8cf953090017e1193ff6cba4a3",
+    "Bridge.lean": "35c8b9dd0bf66e33b8b23391e1d6d114598b73bf9f15fdd4c2af0d0a315edaab"
+  },
+  "remote_verification": {
+    "combined": {
+      "status": "Disproved",
+      "theorem_id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad"
+    },
+    "problem96": {
+      "status": "Disproved",
+      "theorem_id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637"
+    },
+    "problem97": {
+      "status": "Disproved",
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335"
+    }
+  },
+  "closure_status": "CLOSED_NEGATIVE_RESOLUTION",
+  "retired_tasks": 8,
+  "closure_reviewer": "/root/check_status",
+  "closure_review_result": "PASS",
+  "closure_receipt_sha256": "01955f4ac34d0f30d1b49ae4976c7e4f4d0ef3aa4528c50f37cab6146b6f1edb",
+  "closure_script_sha256": "446984c57fa0e3d49113fcc609ddfee09ddb841cb80c7a7eea37439e1ab7751c"
+}

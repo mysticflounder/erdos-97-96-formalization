@@ -1,3 +1,15 @@
+# Closed — negative resolution of Erdős Problems 96 and 97
+
+Adam McKenna closed this mission on 13 September 2026 following **Unit distances in convex polygons**, by **Liam Kruer, Jensen Kohlmeyer, and Liam Price**. Their construction gives strictly convex point sets with Ω(n log log n) unit-distance pairs and arbitrarily large minimum unit-distance degree, answering both questions and the general fixed-k version of Problem 97 negatively.
+
+[Paper and complete Lean source](https://github.com/Leeham06972452/erdos-96-97/tree/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2). All credit for the counterexample and its formalization belongs to those authors. Adam McKenna prepared the Prove2Me adapters.
+
+**Do not start further proof attempts or solver runs for the affirmative conjectures.** Existing statements, conditional lemmas, partial proofs, and milestones remain as historical work. The owner has authorized closure assuming the external result is correct; individual theorem pages report Prove2Me verification status.
+
+---
+
+## Historical mission description
+
 # Motivation
 
 The mission is to prove the combined open goal

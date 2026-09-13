@@ -1,0 +1,43 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "mission-description:1061a384-cdea-43b4-adb5-273627ea45a0": {
+      "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+      "payload_sha256": "d8428e3cef55f313dcf67ea5e5800567621f75f63195c93b31da7691fe56b4dc",
+      "state": "RECORDED"
+    },
+    "proof:Erdos9796Mission.problem97": {
+      "payload_sha256": "1947141ea79239edcdda310bff38a0d9b1962453d9f175c47dd99fb7d4b637a2",
+      "state": "RECORDED",
+      "submission_id": "efea2a37-8532-4e61-b3d1-eb63b71ee7ae"
+    }
+  },
+  "milestones": {},
+  "mission_description": {
+    "sha256": "4974e79680ee8d7e92690ef97e64c51160d504ad2c7bb600bd97fe13d5912051",
+    "status": "ENSURED"
+  },
+  "plan_digest": "445e5c230ec4cd928076276ebd84cea145e633f776b37b3b82a0277ff37e9838",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.problem97": {
+      "created_at": "2026-09-13T22:49:51.903904+00:00",
+      "error_message": "",
+      "file_path": "4ec1c9bf-88ad-4632-aa55-375d24e19335/6ac78adb-dda3-4892-bb46-d4c86f102d16/efea2a37-8532-4e61-b3d1-eb63b71ee7ae.lean",
+      "id": "efea2a37-8532-4e61-b3d1-eb63b71ee7ae",
+      "status": "ACCEPTED",
+      "submission_id": "efea2a37-8532-4e61-b3d1-eb63b71ee7ae",
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+      "updated_at": "2026-09-13T22:53:46.322811+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.problem97": {
+      "status": "Open",
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335"
+    }
+  }
+}

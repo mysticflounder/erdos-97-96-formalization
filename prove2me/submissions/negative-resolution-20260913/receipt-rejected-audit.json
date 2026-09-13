@@ -1,0 +1,35 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Erdos9796Mission.problem97": {
+      "payload_sha256": "9914f4efa46e0f1e877f6074cdbfeffc2782102f372d67ca123b9711d8fe54b2",
+      "state": "RECORDED",
+      "submission_id": "099bdf08-373c-4b3e-a98a-1b8ece9d5e45"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "c302fb81ac155bac4dbf4ba6a0aeb8db480610320df409d03f552448edd46159",
+  "proof_attempts": {},
+  "proofs": {
+    "Erdos9796Mission.problem97": {
+      "created_at": "2026-09-13T22:46:58.400079+00:00",
+      "error_message": "Submission rejected by the soundness guard:\nline 4709: `elab` — custom syntax/elaborator registration — metaprogramming is not supported in submissions\nline 4715: interpolated string literal (`…!\"…\"`) — interpolations embed executable terms the guard cannot scan; use plain string literals",
+      "file_path": "4ec1c9bf-88ad-4632-aa55-375d24e19335/6ac78adb-dda3-4892-bb46-d4c86f102d16/099bdf08-373c-4b3e-a98a-1b8ece9d5e45.lean",
+      "id": "099bdf08-373c-4b3e-a98a-1b8ece9d5e45",
+      "status": "FAILED",
+      "submission_id": "099bdf08-373c-4b3e-a98a-1b8ece9d5e45",
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+      "updated_at": "2026-09-13T22:47:04.546921+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Erdos9796Mission.problem97": {
+      "status": "Open",
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335"
+    }
+  }
+}

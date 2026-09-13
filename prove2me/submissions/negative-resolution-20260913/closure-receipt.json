@@ -1,0 +1,1245 @@
+{
+  "closure_comment": {
+    "author": {
+      "id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+      "username": "mysticflounder"
+    },
+    "body_md": "**Mission closed — negative resolution, 13 September 2026.**\n\nThe counterexample and Lean formalization are by **Liam Kruer, Jensen Kohlmeyer, and Liam Price**, [Unit distances in convex polygons](https://github.com/Leeham06972452/erdos-96-97/blob/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/96-97.pdf). They construct strictly convex point sets with superlinear unit-distance counts and arbitrarily large minimum unit-distance degree. Adam McKenna prepared the adapters; all credit for the construction belongs to the authors.\n\n[problem97](p2m:theorem/4ec1c9bf-88ad-4632-aa55-375d24e19335) · [problem96](p2m:theorem/8ade9b04-8ed3-4b0a-a948-9a5df9f1c637) · [combined](p2m:theorem/a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad) are now **Disproved** by server-accepted exact-statement submissions.\n\nPlease stop attempts to prove the affirmative conjectures and new solver/swarm work for this mission. Open historical project tasks have been retired; existing proved lemmas remain available. Reopening requires the owner's explicit direction.",
+    "created_at": "2026-09-13T23:06:17.514587+00:00",
+    "deleted": false,
+    "id": "9a9ba135-59e6-4607-b849-ce16389e7565",
+    "parent_comment_id": null,
+    "references": [
+      {
+        "id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+        "name": "Erdos9796Mission.problem97",
+        "status": "Disproved",
+        "type": "theorem"
+      },
+      {
+        "id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+        "name": "Erdos9796Mission.problem96",
+        "status": "Disproved",
+        "type": "theorem"
+      },
+      {
+        "id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad",
+        "name": "Erdos9796Mission.combined",
+        "status": "Disproved",
+        "type": "theorem"
+      }
+    ],
+    "tags": [
+      "reference"
+    ],
+    "updated_at": null
+  },
+  "milestones_readback": {
+    "milestones": [
+      {
+        "completed": true,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "a088d872-2694-46c6-a129-61796764edbb",
+        "milestone_description": "Formalize Danzer's convex nonagon with three equidistant neighbours at every vertex. The radius is allowed to vary with the vertex; this rules out the earlier three-neighbour conjecture.",
+        "sort_order": 0,
+        "theorem": {
+          "id": "026148f7-dce3-4658-991b-75fa7cccf734",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.danzer_nine"
+        },
+        "title": "Danzer's nine-point counterexample to the three-neighbour claim"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:41.009369+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "111a680c-140e-4e85-8e19-f9d54f8093f0",
+        "milestone_description": "Transfer the authenticated Lean construction of the boundary triangle, its three cap regions, and its distinguished vertices for any nine-point counterexample. This is an existing source proof, not a request to reconstruct the geometry. It is the first supporting result in the nine-point argument.",
+        "sort_order": 1,
+        "theorem": {
+          "id": "a8773adc-86d1-4bff-b1e3-5380e4ae8974",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.shell"
+        },
+        "title": "Transfer the existing nine-point endpoint configuration proof"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "284e8d32-982e-4f1c-aa56-f5dd76e6902e",
+        "milestone_description": "For every finite nonempty set A of points in strictly convex position, if every vertex has four other points at one positive distance, with the distance allowed to depend on the vertex, then |A| ≥ 9. This proved counting obstruction is the lower-bound step in the strong-induction argument: any counterexample must have at least nine vertices. The source formalization follows Dumitrescu's isosceles-count method.",
+        "sort_order": 1,
+        "theorem": {
+          "id": "c35e1c76-5531-4585-9ced-8c47a929793e",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.counterexample_card_ge_nine"
+        },
+        "title": "Counting obstruction: a counterexample has at least nine vertices"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "13b51403-6abb-4268-9d39-5fe4c5f5eb37",
+        "milestone_description": "No nine-point set in strictly convex position has the property that every vertex has four other points at one positive distance, with the distance allowed to depend on the vertex. This proved theorem excludes the smallest cardinality allowed by the counting obstruction and supplies the finite base case for the strong-induction argument.",
+        "sort_order": 2,
+        "theorem": {
+          "id": "e655c70a-0709-4c62-8e4a-e4645fad237b",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.finite_nine_exclusion"
+        },
+        "title": "Base case: exclude a nine-vertex counterexample"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:42.082398+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "6a21e43b-3377-4fd9-b23b-775befaf9167",
+        "milestone_description": "For the first distinguished triangle vertex, rule out an escaping four-point distance class containing one point in the second cap interior and the second triangle vertex in the third cap. The repository already contains the source proof, and this milestone records its verified transfer.",
+        "sort_order": 2,
+        "theorem": {
+          "id": "b6bb5e30-c060-4622-9cea-acaa92a6be0d",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.form_b_v1"
+        },
+        "title": "Exclude the interior-point/opposite-vertex pattern at the first triangle vertex"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-12T21:07:51.057539+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "8f564fef-9ddf-48a7-82b1-227bfcd24a31",
+        "milestone_description": "Define a removable vertex as one whose deletion preserves four equidistant witnesses at every remaining vertex. Prove that deleting such a vertex from a point set in strictly convex position with at least two points yields a nonempty, strictly smaller set in strictly convex position that still has the four-witness property. This establishes the descent step after a removable vertex has been found; existence remains the separate large-cardinality problem.",
+        "sort_order": 2,
+        "theorem": {
+          "id": "723031a3-ceea-4c27-8c5d-8f18a141a272",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.smaller_counterexample_of_removable"
+        },
+        "title": "A removable vertex produces a smaller counterexample"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-12T13:16:57.932109+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "ff950dff-4d15-4e86-8bd7-7f44f5aca405",
+        "milestone_description": "Combine the proved counting lower bound with the proved exclusion of a nine-point counterexample. Show that any nonempty finite planar point set in strictly convex position where each vertex has four other points at some common positive distance has at least ten points; the radius may vary by vertex. Therefore the desired conclusion of Problem 97 holds for every such set of at most nine points.",
+        "sort_order": 2,
+        "theorem": {
+          "id": "762cc684-26e4-41c0-8d39-2bf41c78d1a8",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.not_hasNEquidistantProperty_four_of_card_le_nine"
+        },
+        "title": "Complete the small-cardinality range through nine points"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:42.949101+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "17fa2f22-a231-4cf2-a51f-fcfbeabfbe2f",
+        "milestone_description": "At the second distinguished triangle vertex, rule out the cyclic relabelling of the interior-point/opposite-vertex witness pattern excluded at the first vertex. The proof transports the already verified first-vertex result around the boundary triangle.",
+        "sort_order": 3,
+        "theorem": {
+          "id": "706aaedc-4e9a-4aad-8ee6-3b57c6a19423",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.form_b_v2"
+        },
+        "title": "Exclude the interior-point/opposite-vertex pattern at the second triangle vertex"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-12T21:41:06.147126+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "7fe6d452-d5f0-459a-a5c8-8380bc1dba9f",
+        "milestone_description": "Prove that a normalized five-point configuration with the stated two-circle equations, height bounds, noncoincidence conditions, and affine separation cannot occur in strictly convex position. This is a completed geometric component of the exact-five analysis. The descent argument must still construct all of these hypotheses from a minimal counterexample.",
+        "sort_order": 3,
+        "theorem": {
+          "id": "a5c2c9d9-a526-4cd0-b9ae-2868a447a3b6",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.normalized_mutual_return_false"
+        },
+        "title": "Exclude a guarded two-circle return configuration"
+      },
+      {
+        "completed": false,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "e0085905-edbd-4e77-801f-cc348f53b3a8",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nLet A be a nonempty finite set in strictly convex position with more than nine vertices and with four equidistant witnesses at every vertex. Assume every smaller nonempty set with the same two properties is contradictory. Prove that some vertex can be deleted while preserving the four-witness property; convex independence and the strict decrease in cardinality then contradict minimality. This is the remaining large-cardinality step. The source formalization still has one unresolved geometric case and another case relying on compiled finite certificates, so it is not yet ready for platform verification. Dumitrescu attribution applies to the separate counting route.",
+        "sort_order": 3,
+        "theorem": {
+          "id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.minimal_counterexample_removable"
+        },
+        "title": "Descent: a minimal counterexample with more than nine vertices has a removable vertex"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:43.761654+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "00776b3e-ffc7-40be-a2c5-63c385c0fe9c",
+        "milestone_description": "For the first distinguished triangle vertex, rule out an escaping four-point distance class containing one point in each of the other two cap interiors. The proof uses the verified second-vertex interior-point/opposite-vertex exclusion.",
+        "sort_order": 4,
+        "theorem": {
+          "id": "34a0a695-2a9d-47f4-b9c6-c3b38c82705d",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.form_a_v1"
+        },
+        "title": "Exclude the two-interior-point pattern at the first triangle vertex"
+      },
+      {
+        "completed": false,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "223632d2-b90a-4952-9975-3f0247d214c2",
+        "milestone_description": "Resolve the affirmative Problem 97 statement for every finite nonempty convex-independent point set, without a cardinality cutoff or a preselected common radius.",
+        "sort_order": 4,
+        "theorem": {
+          "id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+          "status": "Disproved",
+          "theorem_name": "Erdos9796Mission.problem97"
+        },
+        "title": "Erdős Problem 97: a vertex without four equidistant neighbours"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:44.726747+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "36209758-7e1a-4a37-8aa2-bba0651825ab",
+        "milestone_description": "For the first distinguished triangle vertex, rule out an escaping four-point distance class containing the third triangle vertex in the second cap and one point in the third cap interior. The repository already contains the source proof, and this milestone records its verified transfer.",
+        "sort_order": 5,
+        "theorem": {
+          "id": "0a9dd51c-149f-46d7-950a-fb2454f0c58f",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.form_c_v1"
+        },
+        "title": "Exclude the opposite-vertex/interior-point pattern at the first triangle vertex"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "58649d0e-08e4-4e04-9c15-aa04fe2d9aa3",
+        "milestone_description": "**Server-verified conditional bridge.** Assuming Problem 97, every finite convex-independent planar set A has at most 3|A| unordered unit-distance pairs. Taking the supremum over n-point sets gives Problem 96 with explicit constant three.\n\nThe proof deletes a vertex of unit degree at most three and counts unordered pairs directly in the symmetric square. Problem 97 remains an explicit hypothesis; this milestone does not settle either original problem unconditionally.\n\n[Verified proof](https://prove2.me/theorems/d76e105d-be12-48ae-8965-782674afd985)",
+        "sort_order": 5,
+        "theorem": {
+          "id": "d76e105d-be12-48ae-8965-782674afd985",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.linear_bound_of_problem97"
+        },
+        "title": "The bridge: Problem 97 implies the 3n bound and Problem 96"
+      },
+      {
+        "completed": false,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "5187d03b-2c7d-41cb-bfb8-076ffcba2c7b",
+        "milestone_description": "Resolve the canonical asymptotic Problem 96 statement. A proof may follow the conditional 3n bridge from Problem 97, or may establish the O(n) bound independently by a direct argument. In either case, prove the bound for maxConvexUnitDistances. The planned route lifts the conditional per-set bound of 3n to the supremum defining the maximum unit-distance count.",
+        "sort_order": 6,
+        "theorem": {
+          "id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+          "status": "Disproved",
+          "theorem_name": "Erdos9796Mission.problem96"
+        },
+        "title": "Erdős Problem 96: linearly many unit distances in convex position"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:45.589897+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "7002b558-63eb-4c51-9931-ec96f8b93bf2",
+        "milestone_description": "Use cyclic relabelling of the boundary triangle to exclude the five remaining versions of the two-interior-point, interior-point/opposite-vertex, and opposite-vertex/interior-point patterns at the second and third distinguished vertices.",
+        "sort_order": 6,
+        "theorem": {
+          "id": "0ecda05b-fa42-4a3f-9e58-f77d7226bc26",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.cyclic_forms"
+        },
+        "title": "Exclude the remaining cyclic witness-location patterns"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:46.568124+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "627fe1e6-b078-4521-9d16-47946d93759e",
+        "milestone_description": "After all nine escaped witness-location patterns have been excluded, prove that every positive-radius distance class with at least four points centered at a distinguished triangle vertex lies entirely in the corresponding cap region.",
+        "sort_order": 7,
+        "theorem": {
+          "id": "2636c407-2850-4f3e-ac20-18e12aa740fa",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.cap_containment"
+        },
+        "title": "Prove cap containment for four-point distance classes"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-07T21:36:26.933428+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "bc3ac2d3-e0ba-4259-b305-c1facbb9b953",
+        "milestone_description": "Let U be a finite set with at most seven elements, and let A, B, C, D be two-element subsets of U. Suppose A and B are disjoint, A and C are disjoint, and C and D are disjoint. Then at least one of A ∩ D, B ∩ C, or B ∩ D is nonempty. This counting lemma replaces enumeration inside a sixteen-case support analysis; the geometric exclusions and the removable-vertex conclusion remain separate obligations.",
+        "sort_order": 7,
+        "theorem": {
+          "id": "9bd194e6-8fc5-4637-8f3c-71645a468443",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission_four_pair_overlap_on_seven"
+        },
+        "title": "Problem 97 supporting lemma: overlap among four two-point supports"
+      },
+      {
+        "completed": false,
+        "created_at": "2026-09-09T01:33:46.764443+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "4361cbe8-9e80-464b-9962-4fcb0401fe5a",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nConstruct a nonempty finite set in strictly convex position in the Euclidean plane for which every vertex has at least four other points at one positive distance, possibly a different distance at each vertex. This is the counterexample branch for Problem 97. A proof refutes Problem 97 and should also be submitted as a disproof of the mission's combined affirmative theorem.",
+        "sort_order": 8,
+        "theorem": {
+          "id": "4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.problem97_counterexample_exists"
+        },
+        "title": "Alternative resolution — construct a Problem 97 counterexample"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:47.477644+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "f4589b5d-2049-4d10-ae2c-be069055f35c",
+        "milestone_description": "After cap containment is established, prove that one positive radius places every point of each endpoint cap on the circle centered at its corresponding distinguished triangle vertex. The repository already contains the source proof, and this milestone records its verified transfer.",
+        "sort_order": 8,
+        "theorem": {
+          "id": "0e9040fa-76aa-44d0-9f4a-f78e0f838e21",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.circle_placement"
+        },
+        "title": "Place all three cap regions on equal-radius circles"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-09T07:13:48.392475+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "9afe2715-caf8-4ae3-a84c-8be5bfe422c5",
+        "milestone_description": "Assuming cap containment and the four-equidistant-points property, prove that no point of the nine-point configuration lies in the interior of any endpoint cap. This exhausts the final geometric case and completes the exact nine-point exclusion.",
+        "sort_order": 9,
+        "theorem": {
+          "id": "b5c8965d-f45d-4911-a606-655ddfa6899d",
+          "status": "Proved",
+          "theorem_name": "Erdos9796FiniteNine.single_apex_exhaustion"
+        },
+        "title": "Exclude a four-witness point from every cap interior"
+      },
+      {
+        "completed": false,
+        "created_at": "2026-09-09T03:36:41.09734+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "db298593-f756-4069-8f6c-cef7a74da32e",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nDisprove Problem 96 by constructing convex-independent point sets whose maximum unit-distance counts exceed every proposed linear bound at arbitrarily large cardinalities. A single finite configuration is insufficient because Problem 96 is asymptotic. The linked reduction converts this superlinear family into the exact negation of Problem 96.",
+        "sort_order": 9,
+        "theorem": {
+          "id": "6d8a5361-7510-4d18-afa3-8885f93a9bbd",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.problem96_counterexample"
+        },
+        "title": "Alternative resolution — construct a superlinear convex unit-distance family"
+      },
+      {
+        "completed": false,
+        "created_at": "2026-09-10T10:24:00.175983+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "cea298d2-663b-475e-9f63-bf66672bfea6",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nTransfer the repository's existing proof that a ten-point set in strictly convex position cannot have four equidistant witnesses at every vertex. Reuse the published exact nine-point result as a dependency. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy.",
+        "sort_order": 10,
+        "theorem": {
+          "id": "bbaf935e-32e1-4064-afaa-418647568fa9",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.finite_ten_exclusion"
+        },
+        "title": "Transfer the existing exact-ten exclusion proof"
+      },
+      {
+        "completed": false,
+        "created_at": "2026-09-10T10:24:01.063898+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "b39a02b2-d3c5-4bfb-91ee-1362b4c65f49",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nAfter the exact ten-point transfer, transfer the repository's existing proof that an eleven-point set in strictly convex position cannot have four equidistant witnesses at every vertex. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy.",
+        "sort_order": 11,
+        "theorem": {
+          "id": "0c2105c8-40c2-4b5a-af9a-61f6237bd4b6",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.finite_eleven_exclusion"
+        },
+        "title": "Transfer the existing exact-eleven exclusion proof"
+      },
+      {
+        "completed": true,
+        "created_at": "2026-09-11T16:52:56.160176+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "035be7b1-6174-490b-b871-a8663ce6d8af",
+        "milestone_description": "Define the pinned distance multiplicity at a point as the greatest number of vertices lying on one positive-radius circle centered there. Prove both directions between the original four-equidistant-witness formulation of Problem 97 and the assertion that every nonempty finite set in strictly convex position has a vertex of pinned multiplicity at most three. This milestone establishes the repeated-distance language used by the large-cardinality argument; it does not resolve Problem 97.",
+        "sort_order": 12,
+        "theorem": {
+          "id": "b7e1bd91-c3a4-4b5d-b8b0-62475ed73659",
+          "status": "Proved",
+          "theorem_name": "Erdos9796Mission.problem97_iff_exists_pinnedMultiplicity_le_three"
+        },
+        "title": "Express Problem 97 as a bound on repeated distances from one vertex"
+      }
+    ],
+    "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+    "pagination": {
+      "limit": 100,
+      "offset": 0,
+      "total": 25
+    }
+  },
+  "mission_id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+  "operations": {
+    "closure-comment": {
+      "method": "POST",
+      "path": "/missions/1061a384-cdea-43b4-adb5-273627ea45a0/comments",
+      "payload": {
+        "body_md": "**Mission closed — negative resolution, 13 September 2026.**\n\nThe counterexample and Lean formalization are by **Liam Kruer, Jensen Kohlmeyer, and Liam Price**, [Unit distances in convex polygons](https://github.com/Leeham06972452/erdos-96-97/blob/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/96-97.pdf). They construct strictly convex point sets with superlinear unit-distance counts and arbitrarily large minimum unit-distance degree. Adam McKenna prepared the adapters; all credit for the construction belongs to the authors.\n\n[problem97](p2m:theorem/4ec1c9bf-88ad-4632-aa55-375d24e19335) · [problem96](p2m:theorem/8ade9b04-8ed3-4b0a-a948-9a5df9f1c637) · [combined](p2m:theorem/a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad) are now **Disproved** by server-accepted exact-statement submissions.\n\nPlease stop attempts to prove the affirmative conjectures and new solver/swarm work for this mission. Open historical project tasks have been retired; existing proved lemmas remain available. Reopening requires the owner's explicit direction.",
+        "tags": [
+          "reference"
+        ]
+      },
+      "response": {
+        "author": {
+          "id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+          "username": "mysticflounder"
+        },
+        "body_md": "**Mission closed — negative resolution, 13 September 2026.**\n\nThe counterexample and Lean formalization are by **Liam Kruer, Jensen Kohlmeyer, and Liam Price**, [Unit distances in convex polygons](https://github.com/Leeham06972452/erdos-96-97/blob/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/96-97.pdf). They construct strictly convex point sets with superlinear unit-distance counts and arbitrarily large minimum unit-distance degree. Adam McKenna prepared the adapters; all credit for the construction belongs to the authors.\n\n[problem97](p2m:theorem/4ec1c9bf-88ad-4632-aa55-375d24e19335) · [problem96](p2m:theorem/8ade9b04-8ed3-4b0a-a948-9a5df9f1c637) · [combined](p2m:theorem/a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad) are now **Disproved** by server-accepted exact-statement submissions.\n\nPlease stop attempts to prove the affirmative conjectures and new solver/swarm work for this mission. Open historical project tasks have been retired; existing proved lemmas remain available. Reopening requires the owner's explicit direction.",
+        "created_at": "2026-09-13T23:06:17.514587+00:00",
+        "deleted": false,
+        "id": "9a9ba135-59e6-4607-b849-ce16389e7565",
+        "parent_comment_id": null,
+        "references": [
+          {
+            "id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+            "name": "Erdos9796Mission.problem97",
+            "status": "Disproved",
+            "type": "theorem"
+          },
+          {
+            "id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+            "name": "Erdos9796Mission.problem96",
+            "status": "Disproved",
+            "type": "theorem"
+          },
+          {
+            "id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad",
+            "name": "Erdos9796Mission.combined",
+            "status": "Disproved",
+            "type": "theorem"
+          }
+        ],
+        "tags": [
+          "reference"
+        ],
+        "updated_at": null
+      },
+      "sha256": "910770eb57c0708876d0c06ca3836a523bb4fba1068e31895009a7d3de0cfb1c",
+      "state": "RECORDED"
+    },
+    "milestone:4361cbe8-9e80-464b-9962-4fcb0401fe5a": {
+      "method": "PATCH",
+      "path": "/milestones/4361cbe8-9e80-464b-9962-4fcb0401fe5a",
+      "payload": {
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nConstruct a nonempty finite set in strictly convex position in the Euclidean plane for which every vertex has at least four other points at one positive distance, possibly a different distance at each vertex. This is the counterexample branch for Problem 97. A proof refutes Problem 97 and should also be submitted as a disproof of the mission's combined affirmative theorem.",
+        "reason": "Owner-authorized closure after negative resolution"
+      },
+      "response": {
+        "completed": false,
+        "created_at": "2026-09-09T01:33:46.764443+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "4361cbe8-9e80-464b-9962-4fcb0401fe5a",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nConstruct a nonempty finite set in strictly convex position in the Euclidean plane for which every vertex has at least four other points at one positive distance, possibly a different distance at each vertex. This is the counterexample branch for Problem 97. A proof refutes Problem 97 and should also be submitted as a disproof of the mission's combined affirmative theorem.",
+        "sort_order": 8,
+        "theorem": {
+          "id": "4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.problem97_counterexample_exists"
+        },
+        "title": "Alternative resolution — construct a Problem 97 counterexample"
+      },
+      "sha256": "23c59915ad2296157a5411857f12cc0664edc82a52c045eb019e0e32f732172f",
+      "state": "RECORDED"
+    },
+    "milestone:b39a02b2-d3c5-4bfb-91ee-1362b4c65f49": {
+      "method": "PATCH",
+      "path": "/milestones/b39a02b2-d3c5-4bfb-91ee-1362b4c65f49",
+      "payload": {
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nAfter the exact ten-point transfer, transfer the repository's existing proof that an eleven-point set in strictly convex position cannot have four equidistant witnesses at every vertex. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy.",
+        "reason": "Owner-authorized closure after negative resolution"
+      },
+      "response": {
+        "completed": false,
+        "created_at": "2026-09-10T10:24:01.063898+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "b39a02b2-d3c5-4bfb-91ee-1362b4c65f49",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nAfter the exact ten-point transfer, transfer the repository's existing proof that an eleven-point set in strictly convex position cannot have four equidistant witnesses at every vertex. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy.",
+        "sort_order": 11,
+        "theorem": {
+          "id": "0c2105c8-40c2-4b5a-af9a-61f6237bd4b6",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.finite_eleven_exclusion"
+        },
+        "title": "Transfer the existing exact-eleven exclusion proof"
+      },
+      "sha256": "5fd02e983b48711465408f3a6b9b15991ff15db0c950c2a8b5d9f05ac1a8ab21",
+      "state": "RECORDED"
+    },
+    "milestone:cea298d2-663b-475e-9f63-bf66672bfea6": {
+      "method": "PATCH",
+      "path": "/milestones/cea298d2-663b-475e-9f63-bf66672bfea6",
+      "payload": {
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nTransfer the repository's existing proof that a ten-point set in strictly convex position cannot have four equidistant witnesses at every vertex. Reuse the published exact nine-point result as a dependency. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy.",
+        "reason": "Owner-authorized closure after negative resolution"
+      },
+      "response": {
+        "completed": false,
+        "created_at": "2026-09-10T10:24:00.175983+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "cea298d2-663b-475e-9f63-bf66672bfea6",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nTransfer the repository's existing proof that a ten-point set in strictly convex position cannot have four equidistant witnesses at every vertex. Reuse the published exact nine-point result as a dependency. The source proof currently uses compiled finite-certificate verification, so the transfer must satisfy and clearly report the platform's trust policy.",
+        "sort_order": 10,
+        "theorem": {
+          "id": "bbaf935e-32e1-4064-afaa-418647568fa9",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.finite_ten_exclusion"
+        },
+        "title": "Transfer the existing exact-ten exclusion proof"
+      },
+      "sha256": "933065e1faedc95474d48dd285a71e789c185f89a881674148b7a353b2e4e674",
+      "state": "RECORDED"
+    },
+    "milestone:db298593-f756-4069-8f6c-cef7a74da32e": {
+      "method": "PATCH",
+      "path": "/milestones/db298593-f756-4069-8f6c-cef7a74da32e",
+      "payload": {
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nDisprove Problem 96 by constructing convex-independent point sets whose maximum unit-distance counts exceed every proposed linear bound at arbitrarily large cardinalities. A single finite configuration is insufficient because Problem 96 is asymptotic. The linked reduction converts this superlinear family into the exact negation of Problem 96.",
+        "reason": "Owner-authorized closure after negative resolution"
+      },
+      "response": {
+        "completed": false,
+        "created_at": "2026-09-09T03:36:41.09734+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "db298593-f756-4069-8f6c-cef7a74da32e",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nDisprove Problem 96 by constructing convex-independent point sets whose maximum unit-distance counts exceed every proposed linear bound at arbitrarily large cardinalities. A single finite configuration is insufficient because Problem 96 is asymptotic. The linked reduction converts this superlinear family into the exact negation of Problem 96.",
+        "sort_order": 9,
+        "theorem": {
+          "id": "6d8a5361-7510-4d18-afa3-8885f93a9bbd",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.problem96_counterexample"
+        },
+        "title": "Alternative resolution — construct a superlinear convex unit-distance family"
+      },
+      "sha256": "a59a4865f128c4e8e00b6e29a606aba56e73940a6654ef71fb6433e6dd641036",
+      "state": "RECORDED"
+    },
+    "milestone:e0085905-edbd-4e77-801f-cc348f53b3a8": {
+      "method": "PATCH",
+      "path": "/milestones/e0085905-edbd-4e77-801f-cc348f53b3a8",
+      "payload": {
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nLet A be a nonempty finite set in strictly convex position with more than nine vertices and with four equidistant witnesses at every vertex. Assume every smaller nonempty set with the same two properties is contradictory. Prove that some vertex can be deleted while preserving the four-witness property; convex independence and the strict decrease in cardinality then contradict minimality. This is the remaining large-cardinality step. The source formalization still has one unresolved geometric case and another case relying on compiled finite certificates, so it is not yet ready for platform verification. Dumitrescu attribution applies to the separate counting route.",
+        "reason": "Owner-authorized closure after negative resolution"
+      },
+      "response": {
+        "completed": false,
+        "created_at": "2026-09-05T22:53:01.273346+00:00",
+        "created_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "id": "e0085905-edbd-4e77-801f-cc348f53b3a8",
+        "milestone_description": "Closed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.\n\nHistorical task:\n\nLet A be a nonempty finite set in strictly convex position with more than nine vertices and with four equidistant witnesses at every vertex. Assume every smaller nonempty set with the same two properties is contradictory. Prove that some vertex can be deleted while preserving the four-witness property; convex independence and the strict decrease in cardinality then contradict minimality. This is the remaining large-cardinality step. The source formalization still has one unresolved geometric case and another case relying on compiled finite certificates, so it is not yet ready for platform verification. Dumitrescu attribution applies to the separate counting route.",
+        "sort_order": 3,
+        "theorem": {
+          "id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+          "status": "Open",
+          "theorem_name": "Erdos9796Mission.minimal_counterexample_removable"
+        },
+        "title": "Descent: a minimal counterexample with more than nine vertices has a removable vertex"
+      },
+      "sha256": "5733c7ea893ff7e7a87d84fcbbd94a76e9b72f46fa51f0937f5ea97db74f381a",
+      "state": "RECORDED"
+    },
+    "mission-description": {
+      "method": "PATCH",
+      "path": "/missions/1061a384-cdea-43b4-adb5-273627ea45a0",
+      "payload": {
+        "description": "# Closed — negative resolution of Erdős Problems 96 and 97\n\nAdam McKenna closed this mission on 13 September 2026 following **Unit distances in convex polygons**, by **Liam Kruer, Jensen Kohlmeyer, and Liam Price**. Their construction gives strictly convex point sets with Ω(n log log n) unit-distance pairs and arbitrarily large minimum unit-distance degree, answering both questions and the general fixed-k version of Problem 97 negatively.\n\n[Paper and complete Lean source](https://github.com/Leeham06972452/erdos-96-97/tree/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2). All credit for the counterexample and its formalization belongs to those authors. Adam McKenna prepared the Prove2Me adapters.\n\n**Do not start further proof attempts or solver runs for the affirmative conjectures.** Existing statements, conditional lemmas, partial proofs, and milestones remain as historical work. The owner has authorized closure assuming the external result is correct; individual theorem pages report Prove2Me verification status.\n\n---\n\n## Historical mission description\n\n# Motivation\n\nThe mission is to prove the combined open goal\n\n$$\n\\text{Problem 97} \\;\\land\\; \\text{Problem 96}\n$$\n\nfor finite point sets in strictly convex position in the Euclidean plane.\n\n## Why Problems 97 and 96 belong together\n\nProblem 97 gives the local step needed for Problem 96. Assume Problem 97. Every\nnonempty convex-independent finite set then has a vertex with at most three\nneighbors at each positive radius, in particular at radius $1$. Delete that\nvertex and preserve convex independence. Apply the same step to every subset\ncreated by deletion until no points remain.\nCharge each unordered unit-distance pair to the first endpoint deleted. Each\ndeleted vertex receives at most three charges, so an $n$-point set determines\nat most $3n$ unordered unit-distance pairs. This gives the Problem 96 bound\nand therefore $O(n)$. The package uses this one-way dependency; it does not\nseek a reverse implication.\n\n# Setting\n\nLet $A\\subset\\mathbb R^2$ be finite. Strict convex position means that every\npoint of $A$ is an extreme point of the convex hull of $A$. For $p\\in A$, the pinned\nmultiplicity at radius $r>0$ counts points $q\\in A$ with\n$\\lVert p-q\\rVert=r$. Problem 97 asks for a point where no radius has four\nsuch other points. Problem 96 counts unordered pairs at distance $1$, then\ntakes the supremum over convex-independent $n$-point sets.\n\nThe historical progression is part of the setting. Erdős’s 1946 paper posed an\nearlier three-neighbor version. His 1987 account reports Danzer’s convex\nnonagon in which every vertex has three equidistant witnesses, and asks about\nfour witnesses. Fishburn and Reeds’s 1992 work gives a 20-vertex convex\nconfiguration with the same unit distance at every vertex, placing the local\nquestion beside the unit-distance problem.\n\n# Target\n\nThe Problem 97 target is the canonical statement that every nonempty finite\nconvex-independent $A$ has no four-equidistant-point property:\n\n$$\n\\forall A,\\quad A\\ne\\varnothing\\;\\to\\;\\operatorname{ConvexIndep}(A)\n\\;\\to\\;\\neg\\operatorname{HasNEquidistantProperty}(4,A).\n$$\n\nThe Problem 96 target is the canonical asymptotic statement\n\n$$\nU_c(n)=O(n),\n$$\n\nwhere $U_c(n)$ is the supremum of the unordered unit-distance counts\ndetermined by convex-independent $n$-point sets. The bound is asymptotic;\nthe Problem 97 route would give the stronger explicit bound $U_c(n)\\le3n$\nfor every natural number $n$.\n\n# Significance\n\nThe package records a formal proof route joining a pinned geometric obstruction\nto a global extremal bound. A successful Problem 97 proof would immediately\nsettle Problem 96 with the explicit constant $3$, while preserving the\ncombinatorial meaning of the count. It also separates the historical\nthree-neighbor constructions from the still-open four-neighbor assertion.\n\n# Difficulty\n\nThe source proof reduces Problem 97 to strong induction on $|A|$. Its counting\nengine follows Dumitrescu's 2006 isosceles-count method, with the cap-witness\nrefinements used in the source attributed to Nivasch--Pach--Pinchasi--Zerbib\n(2013). This engine forces every counterexample to have at least nine points; a\nfinite geometric analysis excludes exactly nine points; and the remaining step must\nproduce a removable vertex for every larger minimal counterexample. The\nremovable-vertex statement carries the induction hypothesis that every\nstrictly smaller nonempty convex 4-equidistant set is contradictory. That\nlarge-cardinality geometric step remains open, so both headline targets remain\nopen. Finite computational certificates can support local cases but do not\nreplace the universal geometric statement.\n\n# Counterexample routes\n\nProblem 97 is open, so the mission also records the parallel negative route.\nThe source formalization calls a nonempty convex-independent\nfinite set with the four-equidistant property a\n[`Problem97.IsCounterexample`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/UniversalProblem97.lean#L24-L29).\nConstructing one such set would refute Problem 97 and therefore refute the\nmission's affirmative conjunction, regardless of whether Problem 96 remains\ntrue. The counterexample milestone keeps this resolution path visible beside\nthe nonexistence proof. A successful witness must use exact coordinates or\nexact algebraic data from which Lean verifies both strict convex position and\nthe four-equidistant property; a numerical approximation or a realizable\nincidence pattern alone is insufficient.\n\nProblem 96 has its own negative route. Because its claim is asymptotic, one\nfinite convex configuration cannot refute it. A counterexample must instead\ngive convex-independent point sets at arbitrarily large cardinalities whose\nunit-distance counts exceed every proposed linear constant. The mission tracks\nthis superlinear-family statement separately, together with a reduction from\nit to the exact negation of Problem 96. This keeps both possible outcomes\nvisible: a direct or Problem-97-derived linear upper bound, and an explicit\nfamily proving that no such bound exists.\n\n# Formalization scope\n\nThe canonical source is pinned at commit\n`757d852766f377f7c1a0ffeeef6d3526bc0cb7a4`. It contains the formal source\nstatements for [Problem 97](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30)\nand [Problem 96](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96).\nThe source repository reports closed proofs of the conditional bridge to the $3n$ bound\n([conditional three-times bound](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L273)),\nthe $|A|\\ge9$ counting milestone\n([nine-point counting bound](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/Counting.lean#L95)),\nand the exact nine-point exclusion\n([exact nine-point exclusion theorem](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56)).\nThe remaining large-cardinality milestone is the\n[removable-vertex step](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50),\nwith its minimality hypothesis retained. The current platform mission contains\naccepted transfers of the counting argument, the conditional bridge, and the\nexact nine-point exclusion, while the removable-vertex step remains open. Its definitions make\nconvex independence and the positive-radius condition explicit; no theorem is\nassumed inside a definition. Singletons and two-point sets are included in\nProblem 97, while Problem 96's counting definitions also include the empty set.\nThe source repository uses Lean `v4.27.0`; these mission statements target the\nplatform's `v4.33.1`. Source-proof transfer and revalidation remain separate work.\nThe Lean declarations and proofs are this project's own formalization. The\nDumitrescu and Nivasch--Pach--Pinchasi--Zerbib citations record mathematical\nprovenance; they do not indicate that a paper proof was imported or\nmachine-checked directly.\n\nThese source results establish the intended dependency graph: the P97 universal\nroot feeds low-unit-degree extraction, strong induction, and then the P96\nsupremum bound. The platform mission records those contracts and milestones;\nit does not claim to have transplanted their proof bodies.\nThe milestones include the two canonical roots, their conditional bridge, the\n`|A| ≥ 9` count, the `n = 9` exclusion, the `|A| > 9` removable-vertex step,\nthe documented Danzer nine-point three-neighbor example, the parallel goal of\nconstructing a Problem 97 counterexample, and the superlinear-family route to\na counterexample to Problem 96.\n\n# References\n\n- Erdős, *On Sets of Distances of n Points* (1946), [DOI](https://doi.org/10.1080/00029890.1946.11991674).\n- Erdős, *Some Combinatorial and Metric Problems in Geometry* (1987), [scan](https://www.renyi.hu/~p_erdos/1987-27.pdf).\n- Fishburn–Reeds, *Unit Distances Between Vertices of a Convex Polygon* (1992), [publisher record](https://www.sciencedirect.com/science/article/pii/092577219290026O).\n- Dumitrescu, *On Distinct Distances from a Vertex of a Convex Polygon* (2006), [Springer record](https://link.springer.com/article/10.1007/s00454-006-1262-y); provenance for the source counting method.\n- Nivasch–Pach–Pinchasi–Zerbib, *The Number of Distinct Distances from a Vertex of a Convex Polygon* (2013), [arXiv:1207.1266](https://arxiv.org/abs/1207.1266); provenance for the cap-witness refinements used by the source formalization."
+      },
+      "response": {
+        "created_at": "2026-09-05T22:53:01.187856+00:00",
+        "creator": {
+          "id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+          "username": "mysticflounder"
+        },
+        "description": "# Closed — negative resolution of Erdős Problems 96 and 97\n\nAdam McKenna closed this mission on 13 September 2026 following **Unit distances in convex polygons**, by **Liam Kruer, Jensen Kohlmeyer, and Liam Price**. Their construction gives strictly convex point sets with Ω(n log log n) unit-distance pairs and arbitrarily large minimum unit-distance degree, answering both questions and the general fixed-k version of Problem 97 negatively.\n\n[Paper and complete Lean source](https://github.com/Leeham06972452/erdos-96-97/tree/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2). All credit for the counterexample and its formalization belongs to those authors. Adam McKenna prepared the Prove2Me adapters.\n\n**Do not start further proof attempts or solver runs for the affirmative conjectures.** Existing statements, conditional lemmas, partial proofs, and milestones remain as historical work. The owner has authorized closure assuming the external result is correct; individual theorem pages report Prove2Me verification status.\n\n---\n\n## Historical mission description\n\n# Motivation\n\nThe mission is to prove the combined open goal\n\n$$\n\\text{Problem 97} \\;\\land\\; \\text{Problem 96}\n$$\n\nfor finite point sets in strictly convex position in the Euclidean plane.\n\n## Why Problems 97 and 96 belong together\n\nProblem 97 gives the local step needed for Problem 96. Assume Problem 97. Every\nnonempty convex-independent finite set then has a vertex with at most three\nneighbors at each positive radius, in particular at radius $1$. Delete that\nvertex and preserve convex independence. Apply the same step to every subset\ncreated by deletion until no points remain.\nCharge each unordered unit-distance pair to the first endpoint deleted. Each\ndeleted vertex receives at most three charges, so an $n$-point set determines\nat most $3n$ unordered unit-distance pairs. This gives the Problem 96 bound\nand therefore $O(n)$. The package uses this one-way dependency; it does not\nseek a reverse implication.\n\n# Setting\n\nLet $A\\subset\\mathbb R^2$ be finite. Strict convex position means that every\npoint of $A$ is an extreme point of the convex hull of $A$. For $p\\in A$, the pinned\nmultiplicity at radius $r>0$ counts points $q\\in A$ with\n$\\lVert p-q\\rVert=r$. Problem 97 asks for a point where no radius has four\nsuch other points. Problem 96 counts unordered pairs at distance $1$, then\ntakes the supremum over convex-independent $n$-point sets.\n\nThe historical progression is part of the setting. Erdős’s 1946 paper posed an\nearlier three-neighbor version. His 1987 account reports Danzer’s convex\nnonagon in which every vertex has three equidistant witnesses, and asks about\nfour witnesses. Fishburn and Reeds’s 1992 work gives a 20-vertex convex\nconfiguration with the same unit distance at every vertex, placing the local\nquestion beside the unit-distance problem.\n\n# Target\n\nThe Problem 97 target is the canonical statement that every nonempty finite\nconvex-independent $A$ has no four-equidistant-point property:\n\n$$\n\\forall A,\\quad A\\ne\\varnothing\\;\\to\\;\\operatorname{ConvexIndep}(A)\n\\;\\to\\;\\neg\\operatorname{HasNEquidistantProperty}(4,A).\n$$\n\nThe Problem 96 target is the canonical asymptotic statement\n\n$$\nU_c(n)=O(n),\n$$\n\nwhere $U_c(n)$ is the supremum of the unordered unit-distance counts\ndetermined by convex-independent $n$-point sets. The bound is asymptotic;\nthe Problem 97 route would give the stronger explicit bound $U_c(n)\\le3n$\nfor every natural number $n$.\n\n# Significance\n\nThe package records a formal proof route joining a pinned geometric obstruction\nto a global extremal bound. A successful Problem 97 proof would immediately\nsettle Problem 96 with the explicit constant $3$, while preserving the\ncombinatorial meaning of the count. It also separates the historical\nthree-neighbor constructions from the still-open four-neighbor assertion.\n\n# Difficulty\n\nThe source proof reduces Problem 97 to strong induction on $|A|$. Its counting\nengine follows Dumitrescu's 2006 isosceles-count method, with the cap-witness\nrefinements used in the source attributed to Nivasch--Pach--Pinchasi--Zerbib\n(2013). This engine forces every counterexample to have at least nine points; a\nfinite geometric analysis excludes exactly nine points; and the remaining step must\nproduce a removable vertex for every larger minimal counterexample. The\nremovable-vertex statement carries the induction hypothesis that every\nstrictly smaller nonempty convex 4-equidistant set is contradictory. That\nlarge-cardinality geometric step remains open, so both headline targets remain\nopen. Finite computational certificates can support local cases but do not\nreplace the universal geometric statement.\n\n# Counterexample routes\n\nProblem 97 is open, so the mission also records the parallel negative route.\nThe source formalization calls a nonempty convex-independent\nfinite set with the four-equidistant property a\n[`Problem97.IsCounterexample`](https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/UniversalProblem97.lean#L24-L29).\nConstructing one such set would refute Problem 97 and therefore refute the\nmission's affirmative conjunction, regardless of whether Problem 96 remains\ntrue. The counterexample milestone keeps this resolution path visible beside\nthe nonexistence proof. A successful witness must use exact coordinates or\nexact algebraic data from which Lean verifies both strict convex position and\nthe four-equidistant property; a numerical approximation or a realizable\nincidence pattern alone is insufficient.\n\nProblem 96 has its own negative route. Because its claim is asymptotic, one\nfinite convex configuration cannot refute it. A counterexample must instead\ngive convex-independent point sets at arbitrarily large cardinalities whose\nunit-distance counts exceed every proposed linear constant. The mission tracks\nthis superlinear-family statement separately, together with a reduction from\nit to the exact negation of Problem 96. This keeps both possible outcomes\nvisible: a direct or Problem-97-derived linear upper bound, and an explicit\nfamily proving that no such bound exists.\n\n# Formalization scope\n\nThe canonical source is pinned at commit\n`757d852766f377f7c1a0ffeeef6d3526bc0cb7a4`. It contains the formal source\nstatements for [Problem 97](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30)\nand [Problem 96](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96).\nThe source repository reports closed proofs of the conditional bridge to the $3n$ bound\n([conditional three-times bound](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/EuclideanPeeling.lean#L273)),\nthe $|A|\\ge9$ counting milestone\n([nine-point counting bound](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/Counting.lean#L95)),\nand the exact nine-point exclusion\n([exact nine-point exclusion theorem](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L56)).\nThe remaining large-cardinality milestone is the\n[removable-vertex step](https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50),\nwith its minimality hypothesis retained. The current platform mission contains\naccepted transfers of the counting argument, the conditional bridge, and the\nexact nine-point exclusion, while the removable-vertex step remains open. Its definitions make\nconvex independence and the positive-radius condition explicit; no theorem is\nassumed inside a definition. Singletons and two-point sets are included in\nProblem 97, while Problem 96's counting definitions also include the empty set.\nThe source repository uses Lean `v4.27.0`; these mission statements target the\nplatform's `v4.33.1`. Source-proof transfer and revalidation remain separate work.\nThe Lean declarations and proofs are this project's own formalization. The\nDumitrescu and Nivasch--Pach--Pinchasi--Zerbib citations record mathematical\nprovenance; they do not indicate that a paper proof was imported or\nmachine-checked directly.\n\nThese source results establish the intended dependency graph: the P97 universal\nroot feeds low-unit-degree extraction, strong induction, and then the P96\nsupremum bound. The platform mission records those contracts and milestones;\nit does not claim to have transplanted their proof bodies.\nThe milestones include the two canonical roots, their conditional bridge, the\n`|A| ≥ 9` count, the `n = 9` exclusion, the `|A| > 9` removable-vertex step,\nthe documented Danzer nine-point three-neighbor example, the parallel goal of\nconstructing a Problem 97 counterexample, and the superlinear-family route to\na counterexample to Problem 96.\n\n# References\n\n- Erdős, *On Sets of Distances of n Points* (1946), [DOI](https://doi.org/10.1080/00029890.1946.11991674).\n- Erdős, *Some Combinatorial and Metric Problems in Geometry* (1987), [scan](https://www.renyi.hu/~p_erdos/1987-27.pdf).\n- Fishburn–Reeds, *Unit Distances Between Vertices of a Convex Polygon* (1992), [publisher record](https://www.sciencedirect.com/science/article/pii/092577219290026O).\n- Dumitrescu, *On Distinct Distances from a Vertex of a Convex Polygon* (2006), [Springer record](https://link.springer.com/article/10.1007/s00454-006-1262-y); provenance for the source counting method.\n- Nivasch–Pach–Pinchasi–Zerbib, *The Number of Distinct Distances from a Vertex of a Convex Polygon* (2013), [arXiv:1207.1266](https://arxiv.org/abs/1207.1266); provenance for the cap-witness refinements used by the source formalization.",
+        "fields": [
+          {
+            "id": "55eec41b-ff24-45ad-96b6-49d7a6869286",
+            "name": "Combinatorics",
+            "slug": "combinatorics"
+          },
+          {
+            "id": "eacb2bf6-9021-46c9-87ac-f30638efffb3",
+            "name": "Discrete Geometry",
+            "slug": "discrete-geometry"
+          }
+        ],
+        "id": "1061a384-cdea-43b4-adb5-273627ea45a0",
+        "main_theorem": {
+          "formal_statement": "theorem Erdos9796Mission.combined :\n    Erdos9796Mission.Problem97 ∧ Erdos9796Mission.Problem96 := by sorry",
+          "natural_language_statement": "Establish both affirmative statements in one package: every nonempty finite convex-independent planar point set has a vertex with no four other vertices at a common positive distance, and the maximum number of unordered unit-distance pairs among convex-independent $n$-point sets is $O(n)$.\n\n$$\\text{Problem 97}\\;\\land\\;\\text{Problem 96}.$$\n\nThe two targets are linked by deletion: Problem 97 supplies a vertex of unit degree at most three in every nonempty remaining subset, so counting each edge when its first endpoint is removed gives at most $3n$ unordered unit-distance pairs. No implication from Problem 96 back to Problem 97 is asserted. Both statements are open targets, not assumptions hidden in the definitions.",
+          "status": "Disproved",
+          "theorem_id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad",
+          "theorem_name": "Erdos9796Mission.combined",
+          "theorem_title": "Erdős Problems 97 and 96: the combined convex-distance mission"
+        },
+        "mission_type": "OpenProblem",
+        "name": "Erdős Problems 97 and 96: Convex Point Sets and Unit Distances",
+        "release_requested_at": "2026-09-07T21:18:47.882388+00:00",
+        "visibility": "public"
+      },
+      "sha256": "6babae46ad867e9a6117fa738970bdd03c5606dceb7b820816f4572d9e7fd455",
+      "state": "RECORDED"
+    },
+    "retire-flag:c58343d6-7975-4a8c-8859-6a1043d5a09c": {
+      "method": "PATCH",
+      "path": "/theorems/c58343d6-7975-4a8c-8859-6a1043d5a09c",
+      "payload": {
+        "deprecated": true
+      },
+      "response": {
+        "created_at": "2026-09-12T04:57:46.638182+00:00",
+        "deprecated_at": "2026-09-13T23:06:09.401+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.critical_radius_cover_card_le_nine\n    (A : Finset Plane) (hconv : ConvexIndep (A : Set Plane))\n    (hrich : HasNEquidistantProperty 4 A)\n    (hcover : ∀ x ∈ A, ∃ p ∈ A.erase x, ∃ r : ℝ,\n      0 < r ∧ dist p x = r ∧\n      (A.filter (fun q => dist p q = r)).card = 4 ∧\n      ∀ s : ℝ, 0 < s →\n        4 ≤ (A.filter (fun q => dist p q = s)).card → s = r) :\n    A.card ≤ 9 := by sorry",
+        "natural_language_statement": "This is an open geometric subproblem proposed for the removable-vertex reduction; no proof of this bound is claimed.\n\nLet A be a finite convexly independent set in the Euclidean plane, and write C_A(p,r) for its points at distance r from p. Assume every point of A has at least four other points at some common positive distance. Assume also that every x in A belongs to a critical circle centered at a different point p of A: its radius r is positive, its complete distance class has exactly four points, and it is the only positive radius at p with at least four points. Under these hypotheses the proposed conclusion is\n\n$$|A|\\le 9.$$\n\nThe all-centers-rich condition is separate and essential to the proposed statement: coverage by selected circles alone is not asserted to imply this bound. The conclusion bounds the whole set, not just one distance class. This child is stronger than the original global-minimality descent formulation, and its geometric conclusion remains unproved. It contains no numerical search certificate or hidden finite-cardinality restriction.",
+        "preamble": "import Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission\nopen Classical",
+        "source": "Original critical-radius reduction of Erdos9796Mission.minimal_counterexample_removable, developed for this submission. Original open descent statement: https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L53. The cited source states the open descent problem; it is not claimed to prove the new geometric bound.",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97-96"
+        ],
+        "theorem_id": "c58343d6-7975-4a8c-8859-6a1043d5a09c",
+        "theorem_name": "Erdos9796Mission.critical_radius_cover_card_le_nine",
+        "theorem_title": "Open geometric core: critical-radius cover has at most nine vertices",
+        "vote_count": 0
+      },
+      "sha256": "97f0886f7558695a2488be9678cc8fee4fe0b785593e7a1f290f7be170f36891",
+      "state": "RECORDED"
+    },
+    "retire:0c2105c8-40c2-4b5a-af9a-61f6237bd4b6": {
+      "method": "PATCH",
+      "path": "/theorems/0c2105c8-40c2-4b5a-af9a-61f6237bd4b6",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "No convex-independent set of exactly eleven points in the Euclidean plane has four equidistant points at every vertex.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "response": {
+        "created_at": "2026-09-10T10:23:58.262503+00:00",
+        "deprecated_at": "2026-09-13T23:06:11.78+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.finite_eleven_exclusion :\n    ∀ A : Finset Plane, A.card = 11 → ConvexIndep (A : Set Plane) →\n      ¬ HasNEquidistantProperty 4 A := by sorry",
+        "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions",
+        "natural_language_statement": "No convex-independent set of exactly eleven points in the Euclidean plane has four equidistant points at every vertex.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "/-\nCopyright (c) 2026 Adam McKenna. All rights reserved.\nReleased under GPL-3.0-or-later as described in the file LICENSE.\nAuthors: Adam McKenna\n-/\n\n/- Statement-only Prove2Me transfer target: SKETCH — NOT PROMOTABLE.\nThe source proof and its trust boundary are recorded in the sibling provenance document. -/\nimport Definitions.Def_Erdos9796Mission\n\nopen Erdos9796Mission",
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/ff13d98d92694d0e460549031049f08357ff6150/lean/Erdos9796Proof/P97/FiniteN11.lean#L42-L78",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97",
+          "exact-cardinality"
+        ],
+        "theorem_id": "0c2105c8-40c2-4b5a-af9a-61f6237bd4b6",
+        "theorem_name": "Erdos9796Mission.finite_eleven_exclusion",
+        "theorem_title": "Exact-eleven endpoint: exclude an eleven-vertex counterexample",
+        "vote_count": 0
+      },
+      "sha256": "5a37582a1e0df5afc698966dce6b43e3a7a08e7cb23eb0af38c6e0f7ff79fb67",
+      "state": "RECORDED"
+    },
+    "retire:16aca7e9-8752-4631-9f2f-d2958d38a571": {
+      "method": "PATCH",
+      "path": "/theorems/16aca7e9-8752-4631-9f2f-d2958d38a571",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "Let $A$ be a finite set of points in strictly convex position in the Euclidean plane. Assume every vertex of $A$ has at least four other points of $A$ at some common positive distance, and that every point of $A$ is covered by a critical circle centered at another point of $A$ (an exact four-point distance class that is unique at its center). Assume moreover a distinguished tight pair: a center $p_0 \\in A$ and a radius $r_0 > 0$ with\n\n$$|\\{q \\in A : \\mathrm{dist}(p_0, q) = r_0\\}| = 4,$$\n\nand such that no other positive radius at $p_0$ carries four or more points of $A$. Then\n\n$$|A| \\le 9.$$\n\nThis is the geometric core of the critical-radius cover bound, with the covering witness made explicit. Its proof needs the convex-position geometry of exact four-point circles and is left open.\n\n**Formalization Note** Strict convex position is `ConvexIndep`, and the four-witness property is `HasNEquidistantProperty 4`.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "response": {
+        "created_at": "2026-09-12T20:43:06.246693+00:00",
+        "deprecated_at": "2026-09-13T23:02:11.383+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.critical_cover_card_le_nine_of_tight_center\n    (A : Finset Plane) (hconv : ConvexIndep (A : Set Plane))\n    (hrich : HasNEquidistantProperty 4 A)\n    (hcover : ∀ x ∈ A, ∃ p ∈ A.erase x, ∃ r : ℝ,\n      0 < r ∧ dist p x = r ∧\n      (A.filter (fun q => dist p q = r)).card = 4 ∧\n      ∀ s : ℝ, 0 < s →\n        4 ≤ (A.filter (fun q => dist p q = s)).card → s = r)\n    (p₀ : Plane) (hp₀ : p₀ ∈ A) (r₀ : ℝ) (h0 : 0 < r₀)\n    (hexact : (A.filter (fun q => dist p₀ q = r₀)).card = 4)\n    (huniq : ∀ s : ℝ, 0 < s →\n      4 ≤ (A.filter (fun q => dist p₀ q = s)).card → s = r₀) :\n    A.card ≤ 9 := by sorry",
+        "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions",
+        "natural_language_statement": "Let $A$ be a finite set of points in strictly convex position in the Euclidean plane. Assume every vertex of $A$ has at least four other points of $A$ at some common positive distance, and that every point of $A$ is covered by a critical circle centered at another point of $A$ (an exact four-point distance class that is unique at its center). Assume moreover a distinguished tight pair: a center $p_0 \\in A$ and a radius $r_0 > 0$ with\n\n$$|\\{q \\in A : \\mathrm{dist}(p_0, q) = r_0\\}| = 4,$$\n\nand such that no other positive radius at $p_0$ carries four or more points of $A$. Then\n\n$$|A| \\le 9.$$\n\nThis is the geometric core of the critical-radius cover bound, with the covering witness made explicit. Its proof needs the convex-position geometry of exact four-point circles and is left open.\n\n**Formalization Note** Strict convex position is `ConvexIndep`, and the four-witness property is `HasNEquidistantProperty 4`.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission\nopen Classical",
+        "source": "Decomposition of Erdos9796Mission.critical_radius_cover_card_le_nine (open frontier leaf of Prove2Me mission Erdős Problems 97 and 96), developed for this submission. Original open descent statement: https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L53",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97-96"
+        ],
+        "theorem_id": "16aca7e9-8752-4631-9f2f-d2958d38a571",
+        "theorem_name": "Erdos9796Mission.critical_cover_card_le_nine_of_tight_center",
+        "theorem_title": "Critical-radius cover bound from a tight center",
+        "vote_count": 0
+      },
+      "sha256": "28406a79414f741054b25de7bdb0197f02f003d7be597b0b0039e0e68b0f3fb7",
+      "state": "RECORDED"
+    },
+    "retire:4d865c62-6c29-449b-b5b3-ee7bae2e60a6": {
+      "method": "PATCH",
+      "path": "/theorems/4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "There is a nonempty finite set of points in strictly convex position in the Euclidean plane such that every point has at least four points of the set at one positive distance from it; the distance may depend on the point.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "response": {
+        "created_at": "2026-09-09T01:33:43.674554+00:00",
+        "deprecated_at": "2026-09-13T23:06:12.572+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.problem97_counterexample_exists :\n    ∃ A : Finset Erdos9796Mission.Plane,\n      A.Nonempty ∧\n        Erdos9796Mission.ConvexIndep (A : Set Erdos9796Mission.Plane) ∧\n        Erdos9796Mission.HasNEquidistantProperty 4 A := by sorry",
+        "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions",
+        "natural_language_statement": "There is a nonempty finite set of points in strictly convex position in the Euclidean plane such that every point has at least four points of the set at one positive distance from it; the distance may depend on the point.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission",
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/UniversalProblem97.lean#L24-L29",
+        "status": "Open",
+        "tags": [
+          "combinatorics",
+          "geometry"
+        ],
+        "theorem_id": "4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+        "theorem_name": "Erdos9796Mission.problem97_counterexample_exists",
+        "theorem_title": "Counterexample to Erdős Problem 97",
+        "vote_count": 0
+      },
+      "sha256": "1b6a9a36945eb3a797ec069257ac8fd7974e74311f665eb4fd1b25b58a3175cb",
+      "state": "RECORDED"
+    },
+    "retire:6d8a5361-7510-4d18-afa3-8885f93a9bbd": {
+      "method": "PATCH",
+      "path": "/theorems/6d8a5361-7510-4d18-afa3-8885f93a9bbd",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "The convex unit-distance extremal function is not O(n).\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "response": {
+        "created_at": "2026-09-09T03:35:00.142283+00:00",
+        "deprecated_at": "2026-09-13T23:06:13.36+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.problem96_counterexample :\n    ¬ Erdos9796Mission.Problem96 := by sorry",
+        "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions",
+        "natural_language_statement": "The convex unit-distance extremal function is not O(n).\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission",
+        "source": "https://www.erdosproblems.com/96",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-96",
+          "unit-distances"
+        ],
+        "theorem_id": "6d8a5361-7510-4d18-afa3-8885f93a9bbd",
+        "theorem_name": "Erdos9796Mission.problem96_counterexample",
+        "theorem_title": "Counterexample to Erdős Problem 96",
+        "vote_count": 0
+      },
+      "sha256": "c429b04274d3b404ff4c884b5d213e65ebb516688cc11aba2721b6eb45f94cf4",
+      "state": "RECORDED"
+    },
+    "retire:ae7c5b69-b078-4138-80cc-2d7cd5e8df61": {
+      "method": "PATCH",
+      "path": "/theorems/ae7c5b69-b078-4138-80cc-2d7cd5e8df61",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "For every nonnegative proposed linear constant and every cutoff, some larger cardinality has maximum convex unit-distance count exceeding that constant times the cardinality.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "response": {
+        "created_at": "2026-09-09T03:34:36.086574+00:00",
+        "deprecated_at": "2026-09-13T23:06:14.141+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.problem96_superlinear_family :\n    ∀ C : ℝ, 0 ≤ C → ∀ N : ℕ, ∃ n : ℕ,\n      N ≤ n ∧\n        C * (n : ℝ) <\n          (Erdos9796Mission.maxConvexUnitDistances n : ℝ) := by sorry",
+        "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions",
+        "natural_language_statement": "For every nonnegative proposed linear constant and every cutoff, some larger cardinality has maximum convex unit-distance count exceeding that constant times the cardinality.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission",
+        "source": "https://www.erdosproblems.com/96",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-96",
+          "unit-distances"
+        ],
+        "theorem_id": "ae7c5b69-b078-4138-80cc-2d7cd5e8df61",
+        "theorem_name": "Erdos9796Mission.problem96_superlinear_family",
+        "theorem_title": "Superlinear convex unit-distance family",
+        "vote_count": 0
+      },
+      "sha256": "6459711517305a5f9a7bacbc01ce14c44792cd870620b1452d206285031f3e1a",
+      "state": "RECORDED"
+    },
+    "retire:bbaf935e-32e1-4064-afaa-418647568fa9": {
+      "method": "PATCH",
+      "path": "/theorems/bbaf935e-32e1-4064-afaa-418647568fa9",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "No convex-independent set of exactly ten points in the Euclidean plane has four equidistant points at every vertex.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "response": {
+        "created_at": "2026-09-10T10:23:33.917139+00:00",
+        "deprecated_at": "2026-09-13T23:06:10.951+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.finite_ten_exclusion :\n    ∀ A : Finset Plane, A.card = 10 → ConvexIndep (A : Set Plane) →\n      ¬ HasNEquidistantProperty 4 A := by sorry",
+        "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions",
+        "natural_language_statement": "No convex-independent set of exactly ten points in the Euclidean plane has four equidistant points at every vertex.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "/-\nCopyright (c) 2026 Adam McKenna. All rights reserved.\nReleased under GPL-3.0-or-later as described in the file LICENSE.\nAuthors: Adam McKenna\n-/\n\n/- Statement-only Prove2Me transfer target: SKETCH — NOT PROMOTABLE.\nThe source proof and its trust boundary are recorded in the sibling provenance document. -/\nimport Definitions.Def_Erdos9796Mission\n\nopen Erdos9796Mission",
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/ff13d98d92694d0e460549031049f08357ff6150/lean/Erdos9796Proof/P97/FiniteN10.lean#L179-L193",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97",
+          "exact-cardinality"
+        ],
+        "theorem_id": "bbaf935e-32e1-4064-afaa-418647568fa9",
+        "theorem_name": "Erdos9796Mission.finite_ten_exclusion",
+        "theorem_title": "Exact-ten endpoint: exclude a ten-vertex counterexample",
+        "vote_count": 0
+      },
+      "sha256": "7eddcfd4ec074e2db8f3f0788f6168427eb9ab4d8bbf17c888088f5214a26703",
+      "state": "RECORDED"
+    },
+    "retire:c58343d6-7975-4a8c-8859-6a1043d5a09c": {
+      "error": "Prove2Me request failed with HTTP 403",
+      "method": "PATCH",
+      "path": "/theorems/c58343d6-7975-4a8c-8859-6a1043d5a09c",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "This is an open geometric subproblem proposed for the removable-vertex reduction; no proof of this bound is claimed.\n\nLet A be a finite convexly independent set in the Euclidean plane, and write C_A(p,r) for its points at distance r from p. Assume every point of A has at least four other points at some common positive distance. Assume also that every x in A belongs to a critical circle centered at a different point p of A: its radius r is positive, its complete distance class has exactly four points, and it is the only positive radius at p with at least four points. Under these hypotheses the proposed conclusion is\n\n$$|A|\\le 9.$$\n\nThe all-centers-rich condition is separate and essential to the proposed statement: coverage by selected circles alone is not asserted to imply this bound. The conclusion bounds the whole set, not just one distance class. This child is stronger than the original global-minimality descent formulation, and its geometric conclusion remains unproved. It contains no numerical search certificate or hidden finite-cardinality restriction.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "sha256": "f4c393a6484232d55a58ee22a373641353037521ddc81e4d8afcaba6f817a887",
+      "state": "REJECTED"
+    },
+    "retire:f03cf49e-3e3e-4cea-80fe-666a52629f3f": {
+      "method": "PATCH",
+      "path": "/theorems/f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+      "payload": {
+        "deprecated": true,
+        "natural_language_statement": "Let $A$ be a nonempty finite strictly convex point set with more than nine vertices, and assume every vertex has four other vertices at a common positive distance. Assume in addition that no smaller nonempty strictly convex point set anywhere in the plane has this four-neighbour property. Then some vertex $x\\in A$ can be removed while preserving that property:\n\n$$\\exists x\\in A:\\;\\forall p\\in A\\setminus\\{x\\}\\;\\exists r_p>0:\\;|\\{q\\in A\\setminus\\{x\\}:\\|p-q\\|=r_p\\}|\\ge4.$$\n\nThe smaller-set assumption quantifies over all point sets, not only subsets of $A$. This is the repository's open minimal-counterexample descent obligation. Convex independence survives deletion and the remaining set is nonempty, so such a deletion contradicts minimality.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined."
+      },
+      "response": {
+        "created_at": "2026-09-05T22:51:04.037701+00:00",
+        "deprecated_at": "2026-09-13T23:06:10.138+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.minimal_counterexample_removable :\n    ∀ A : Finset Plane, A.Nonempty → ConvexIndep (A : Set Plane) → HasNEquidistantProperty 4 A → 9 < A.card → (∀ B : Finset Plane, B.card < A.card → B.Nonempty → ConvexIndep (B : Set Plane) → HasNEquidistantProperty 4 B → False) → ∃ x ∈ A, HasNEquidistantProperty 4 (A.erase x) := by sorry",
+        "guidelines": "Reminder: write the natural_language_statement like an academic paper, not a Lean dump. Use standard mathematical notation in KaTeX (backslashes doubled in JSON) instead of raw Lean expressions, give context for every variable and symbol, put the main formula in a display-math block, follow it with a short paragraph on the result's mathematical role, keep Lean-specific details in an optional final Formalization Note paragraph, and do not include proof details. Full principles: references/contribute.md#important-principles-of-submit-problemsdefinitions",
+        "natural_language_statement": "Let $A$ be a nonempty finite strictly convex point set with more than nine vertices, and assume every vertex has four other vertices at a common positive distance. Assume in addition that no smaller nonempty strictly convex point set anywhere in the plane has this four-neighbour property. Then some vertex $x\\in A$ can be removed while preserving that property:\n\n$$\\exists x\\in A:\\;\\forall p\\in A\\setminus\\{x\\}\\;\\exists r_p>0:\\;|\\{q\\in A\\setminus\\{x\\}:\\|p-q\\|=r_p\\}|\\ge4.$$\n\nThe smaller-set assumption quantifies over all point sets, not only subsets of $A$. This is the repository's open minimal-counterexample descent obligation. Convex independence survives deletion and the remaining set is nonempty, so such a deletion contradicts minimality.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "/- Statement-only mission draft: SKETCH — NOT PROMOTABLE.\nSource and precise status are recorded in items.json. -/\nimport Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission",
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L53; https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97-96",
+          "unit-distances"
+        ],
+        "theorem_id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+        "theorem_name": "Erdos9796Mission.minimal_counterexample_removable",
+        "theorem_title": "Descent: a minimal counterexample with more than nine vertices has a removable vertex",
+        "vote_count": 0
+      },
+      "sha256": "23c8937639de5eda37bcca7745c7fc233aeaf04f55c223081bb60ded69122ccb",
+      "state": "RECORDED"
+    }
+  },
+  "retirements": {
+    "0c2105c8-40c2-4b5a-af9a-61f6237bd4b6": {
+      "action": "deprecated",
+      "note_location": "theorem and mission",
+      "readback": {
+        "audits": [],
+        "created_at": "2026-09-10T10:23:58.262503+00:00",
+        "deprecated_at": "2026-09-13T23:06:11.78+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.finite_eleven_exclusion :\n    ∀ A : Finset Plane, A.card = 11 → ConvexIndep (A : Set Plane) →\n      ¬ HasNEquidistantProperty 4 A := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "No convex-independent set of exactly eleven points in the Euclidean plane has four equidistant points at every vertex.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "/-\nCopyright (c) 2026 Adam McKenna. All rights reserved.\nReleased under GPL-3.0-or-later as described in the file LICENSE.\nAuthors: Adam McKenna\n-/\n\n/- Statement-only Prove2Me transfer target: SKETCH — NOT PROMOTABLE.\nThe source proof and its trust boundary are recorded in the sibling provenance document. -/\nimport Definitions.Def_Erdos9796Mission\n\nopen Erdos9796Mission",
+        "readback": null,
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/ff13d98d92694d0e460549031049f08357ff6150/lean/Erdos9796Proof/P97/FiniteN11.lean#L42-L78",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97",
+          "exact-cardinality"
+        ],
+        "theorem_id": "0c2105c8-40c2-4b5a-af9a-61f6237bd4b6",
+        "theorem_name": "Erdos9796Mission.finite_eleven_exclusion",
+        "theorem_title": "Exact-eleven endpoint: exclude an eleven-vertex counterexample",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    },
+    "16aca7e9-8752-4631-9f2f-d2958d38a571": {
+      "action": "deprecated",
+      "note_location": "theorem and mission",
+      "readback": {
+        "audits": [],
+        "created_at": "2026-09-12T20:43:06.246693+00:00",
+        "deprecated_at": "2026-09-13T23:02:11.383+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.critical_cover_card_le_nine_of_tight_center\n    (A : Finset Plane) (hconv : ConvexIndep (A : Set Plane))\n    (hrich : HasNEquidistantProperty 4 A)\n    (hcover : ∀ x ∈ A, ∃ p ∈ A.erase x, ∃ r : ℝ,\n      0 < r ∧ dist p x = r ∧\n      (A.filter (fun q => dist p q = r)).card = 4 ∧\n      ∀ s : ℝ, 0 < s →\n        4 ≤ (A.filter (fun q => dist p q = s)).card → s = r)\n    (p₀ : Plane) (hp₀ : p₀ ∈ A) (r₀ : ℝ) (h0 : 0 < r₀)\n    (hexact : (A.filter (fun q => dist p₀ q = r₀)).card = 4)\n    (huniq : ∀ s : ℝ, 0 < s →\n      4 ≤ (A.filter (fun q => dist p₀ q = s)).card → s = r₀) :\n    A.card ≤ 9 := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "Let $A$ be a finite set of points in strictly convex position in the Euclidean plane. Assume every vertex of $A$ has at least four other points of $A$ at some common positive distance, and that every point of $A$ is covered by a critical circle centered at another point of $A$ (an exact four-point distance class that is unique at its center). Assume moreover a distinguished tight pair: a center $p_0 \\in A$ and a radius $r_0 > 0$ with\n\n$$|\\{q \\in A : \\mathrm{dist}(p_0, q) = r_0\\}| = 4,$$\n\nand such that no other positive radius at $p_0$ carries four or more points of $A$. Then\n\n$$|A| \\le 9.$$\n\nThis is the geometric core of the critical-radius cover bound, with the covering witness made explicit. Its proof needs the convex-position geometry of exact four-point circles and is left open.\n\n**Formalization Note** Strict convex position is `ConvexIndep`, and the four-witness property is `HasNEquidistantProperty 4`.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission\nopen Classical",
+        "readback": null,
+        "source": "Decomposition of Erdos9796Mission.critical_radius_cover_card_le_nine (open frontier leaf of Prove2Me mission Erdős Problems 97 and 96), developed for this submission. Original open descent statement: https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L53",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97-96"
+        ],
+        "theorem_id": "16aca7e9-8752-4631-9f2f-d2958d38a571",
+        "theorem_name": "Erdos9796Mission.critical_cover_card_le_nine_of_tight_center",
+        "theorem_title": "Critical-radius cover bound from a tight center",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    },
+    "4d865c62-6c29-449b-b5b3-ee7bae2e60a6": {
+      "action": "deprecated",
+      "note_location": "theorem and mission",
+      "readback": {
+        "audits": [],
+        "created_at": "2026-09-09T01:33:43.674554+00:00",
+        "deprecated_at": "2026-09-13T23:06:12.572+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.problem97_counterexample_exists :\n    ∃ A : Finset Erdos9796Mission.Plane,\n      A.Nonempty ∧\n        Erdos9796Mission.ConvexIndep (A : Set Erdos9796Mission.Plane) ∧\n        Erdos9796Mission.HasNEquidistantProperty 4 A := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "There is a nonempty finite set of points in strictly convex position in the Euclidean plane such that every point has at least four points of the set at one positive distance from it; the distance may depend on the point.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission",
+        "readback": null,
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/a46894f6078319d3001d06310531df50af0f6bbd/lean/Erdos9796Proof/P97/UniversalProblem97.lean#L24-L29",
+        "status": "Open",
+        "tags": [
+          "combinatorics",
+          "geometry"
+        ],
+        "theorem_id": "4d865c62-6c29-449b-b5b3-ee7bae2e60a6",
+        "theorem_name": "Erdos9796Mission.problem97_counterexample_exists",
+        "theorem_title": "Counterexample to Erdős Problem 97",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    },
+    "6d8a5361-7510-4d18-afa3-8885f93a9bbd": {
+      "action": "deprecated",
+      "note_location": "theorem and mission",
+      "readback": {
+        "audits": [],
+        "created_at": "2026-09-09T03:35:00.142283+00:00",
+        "deprecated_at": "2026-09-13T23:06:13.36+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.problem96_counterexample :\n    ¬ Erdos9796Mission.Problem96 := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "The convex unit-distance extremal function is not O(n).\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission",
+        "readback": null,
+        "source": "https://www.erdosproblems.com/96",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-96",
+          "unit-distances"
+        ],
+        "theorem_id": "6d8a5361-7510-4d18-afa3-8885f93a9bbd",
+        "theorem_name": "Erdos9796Mission.problem96_counterexample",
+        "theorem_title": "Counterexample to Erdős Problem 96",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    },
+    "ae7c5b69-b078-4138-80cc-2d7cd5e8df61": {
+      "action": "deprecated",
+      "note_location": "theorem and mission",
+      "readback": {
+        "audits": [],
+        "created_at": "2026-09-09T03:34:36.086574+00:00",
+        "deprecated_at": "2026-09-13T23:06:14.141+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.problem96_superlinear_family :\n    ∀ C : ℝ, 0 ≤ C → ∀ N : ℕ, ∃ n : ℕ,\n      N ≤ n ∧\n        C * (n : ℝ) <\n          (Erdos9796Mission.maxConvexUnitDistances n : ℝ) := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "For every nonnegative proposed linear constant and every cutoff, some larger cardinality has maximum convex unit-distance count exceeding that constant times the cardinality.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "import Definitions.Def_Erdos9796Mission",
+        "readback": null,
+        "source": "https://www.erdosproblems.com/96",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-96",
+          "unit-distances"
+        ],
+        "theorem_id": "ae7c5b69-b078-4138-80cc-2d7cd5e8df61",
+        "theorem_name": "Erdos9796Mission.problem96_superlinear_family",
+        "theorem_title": "Superlinear convex unit-distance family",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    },
+    "bbaf935e-32e1-4064-afaa-418647568fa9": {
+      "action": "deprecated",
+      "note_location": "theorem and mission",
+      "readback": {
+        "audits": [],
+        "created_at": "2026-09-10T10:23:33.917139+00:00",
+        "deprecated_at": "2026-09-13T23:06:10.951+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.finite_ten_exclusion :\n    ∀ A : Finset Plane, A.card = 10 → ConvexIndep (A : Set Plane) →\n      ¬ HasNEquidistantProperty 4 A := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "No convex-independent set of exactly ten points in the Euclidean plane has four equidistant points at every vertex.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "/-\nCopyright (c) 2026 Adam McKenna. All rights reserved.\nReleased under GPL-3.0-or-later as described in the file LICENSE.\nAuthors: Adam McKenna\n-/\n\n/- Statement-only Prove2Me transfer target: SKETCH — NOT PROMOTABLE.\nThe source proof and its trust boundary are recorded in the sibling provenance document. -/\nimport Definitions.Def_Erdos9796Mission\n\nopen Erdos9796Mission",
+        "readback": null,
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/ff13d98d92694d0e460549031049f08357ff6150/lean/Erdos9796Proof/P97/FiniteN10.lean#L179-L193",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97",
+          "exact-cardinality"
+        ],
+        "theorem_id": "bbaf935e-32e1-4064-afaa-418647568fa9",
+        "theorem_name": "Erdos9796Mission.finite_ten_exclusion",
+        "theorem_title": "Exact-ten endpoint: exclude a ten-vertex counterexample",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    },
+    "c58343d6-7975-4a8c-8859-6a1043d5a09c": {
+      "action": "deprecated",
+      "note_location": "mission notice and discussion",
+      "readback": {
+        "audits": [],
+        "created_at": "2026-09-12T04:57:46.638182+00:00",
+        "deprecated_at": "2026-09-13T23:06:09.401+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.critical_radius_cover_card_le_nine\n    (A : Finset Plane) (hconv : ConvexIndep (A : Set Plane))\n    (hrich : HasNEquidistantProperty 4 A)\n    (hcover : ∀ x ∈ A, ∃ p ∈ A.erase x, ∃ r : ℝ,\n      0 < r ∧ dist p x = r ∧\n      (A.filter (fun q => dist p q = r)).card = 4 ∧\n      ∀ s : ℝ, 0 < s →\n        4 ≤ (A.filter (fun q => dist p q = s)).card → s = r) :\n    A.card ≤ 9 := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "This is an open geometric subproblem proposed for the removable-vertex reduction; no proof of this bound is claimed.\n\nLet A be a finite convexly independent set in the Euclidean plane, and write C_A(p,r) for its points at distance r from p. Assume every point of A has at least four other points at some common positive distance. Assume also that every x in A belongs to a critical circle centered at a different point p of A: its radius r is positive, its complete distance class has exactly four points, and it is the only positive radius at p with at least four points. Under these hypotheses the proposed conclusion is\n\n$$|A|\\le 9.$$\n\nThe all-centers-rich condition is separate and essential to the proposed statement: coverage by selected circles alone is not asserted to imply this bound. The conclusion bounds the whole set, not just one distance class. This child is stronger than the original global-minimality descent formulation, and its geometric conclusion remains unproved. It contains no numerical search certificate or hidden finite-cardinality restriction.",
+        "preamble": "import Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission\nopen Classical",
+        "readback": null,
+        "source": "Original critical-radius reduction of Erdos9796Mission.minimal_counterexample_removable, developed for this submission. Original open descent statement: https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L53. The cited source states the open descent problem; it is not claimed to prove the new geometric bound.",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97-96"
+        ],
+        "theorem_id": "c58343d6-7975-4a8c-8859-6a1043d5a09c",
+        "theorem_name": "Erdos9796Mission.critical_radius_cover_card_le_nine",
+        "theorem_title": "Open geometric core: critical-radius cover has at most nine vertices",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    },
+    "f03cf49e-3e3e-4cea-80fe-666a52629f3f": {
+      "action": "deprecated",
+      "note_location": "theorem and mission",
+      "readback": {
+        "audits": [
+          {
+            "audit_id": "64fe8129-8889-48ba-8795-1049d9ef4912",
+            "comment": null,
+            "created_at": "2026-09-08T04:06:03.322342+00:00",
+            "decision": "confirm",
+            "reviewer_id": "136472b2-7660-4cad-97ab-bc0d424d2ccd",
+            "reviewer_username": "Shuze Chen"
+          },
+          {
+            "audit_id": "fbe2b5d5-49a2-4a13-8726-4c7351e72182",
+            "comment": "Confirmed by the mission captain (proposal self-audit).",
+            "created_at": "2026-09-08T04:06:12.411718+00:00",
+            "decision": "confirm",
+            "reviewer_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+            "reviewer_username": "mysticflounder"
+          }
+        ],
+        "created_at": "2026-09-05T22:51:04.037701+00:00",
+        "deprecated_at": "2026-09-13T23:06:10.138+00:00",
+        "deprecated_by": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+        "formal_statement": "theorem Erdos9796Mission.minimal_counterexample_removable :\n    ∀ A : Finset Plane, A.Nonempty → ConvexIndep (A : Set Plane) → HasNEquidistantProperty 4 A → 9 < A.card → (∀ B : Finset Plane, B.card < A.card → B.Nonempty → ConvexIndep (B : Set Plane) → HasNEquidistantProperty 4 B → False) → ∃ x ∈ A, HasNEquidistantProperty 4 (A.erase x) := by sorry",
+        "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+        "natural_language_statement": "Let $A$ be a nonempty finite strictly convex point set with more than nine vertices, and assume every vertex has four other vertices at a common positive distance. Assume in addition that no smaller nonempty strictly convex point set anywhere in the plane has this four-neighbour property. Then some vertex $x\\in A$ can be removed while preserving that property:\n\n$$\\exists x\\in A:\\;\\forall p\\in A\\setminus\\{x\\}\\;\\exists r_p>0:\\;|\\{q\\in A\\setminus\\{x\\}:\\|p-q\\|=r_p\\}|\\ge4.$$\n\nThe smaller-set assumption quantifies over all point sets, not only subsets of $A$. This is the repository's open minimal-counterexample descent obligation. Convex independence survives deletion and the remaining set is nonempty, so such a deletion contradicts minimality.\n\nClosed by the mission owner on 2026-09-13 after the Kruer–Kohlmeyer–Price negative resolution of Erdős 96 and 97. No further work is requested on this historical project task. This retirement is administrative and does not assert that this individual lemma is false. The resolution is recorded on Erdos9796Mission.problem97, Erdos9796Mission.problem96, and Erdos9796Mission.combined.",
+        "preamble": "/- Statement-only mission draft: SKETCH — NOT PROMOTABLE.\nSource and precise status are recorded in items.json. -/\nimport Definitions.Def_Erdos9796Mission\nopen Erdos9796Mission",
+        "readback": {
+          "created_at": "2026-09-05T22:51:08.965091+00:00",
+          "model": "gpt-5.6-luna",
+          "readback": "For every finite set $A$ of points in the real Euclidean plane, suppose that $A$ is nonempty, every point $a\\in A$ is outside the real convex hull of $A\\setminus\\{a\\}$, every point $p\\in A$ has some positive real radius $r>0$ for which $\\{q\\in A : \\operatorname{dist}(p,q)=r\\}$ has cardinality at least $4$, and $9<|A|$. Suppose also that for every finite set $B$ of points in the plane, whenever $|B|<|A|$, $B$ is nonempty, every point of $B$ is outside the real convex hull of the other points of $B$, and every point of $B$ has a positive radius giving at least $4$ points of $B$ at that distance, the proposition $\\mathrm{False}$ holds; this minimality clause quantifies over all such smaller finite sets $B$ and imposes no subset relation between $B$ and $A$. Then there exists a point $x\\in A$ such that, after removing $x$ from $A$, every point $p\\in A\\setminus\\{x\\}$ has some positive real radius $r>0$ (possibly depending on $p$) with at least $4$ points $q\\in A\\setminus\\{x\\}$ at distance $\\operatorname{dist}(p,q)=r$."
+        },
+        "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean#L53; https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/RemovableVertexAxiom/RemovableVertexOfLarge.lean#L50",
+        "status": "Open",
+        "tags": [
+          "convex-position",
+          "discrete-geometry",
+          "erdos-97-96",
+          "unit-distances"
+        ],
+        "theorem_id": "f03cf49e-3e3e-4cea-80fe-666a52629f3f",
+        "theorem_name": "Erdos9796Mission.minimal_counterexample_removable",
+        "theorem_title": "Descent: a minimal counterexample with more than nine vertices has a removable vertex",
+        "visibility": "public",
+        "vote_count": 0
+      }
+    }
+  },
+  "schema": "prove2me-negative-closure/v1",
+  "status": "CLOSED_NEGATIVE_RESOLUTION",
+  "targets": {
+    "combined": {
+      "audits": [
+        {
+          "audit_id": "0f279866-556d-4806-8a0a-d564fa6030c2",
+          "comment": null,
+          "created_at": "2026-09-08T04:06:11.348368+00:00",
+          "decision": "confirm",
+          "reviewer_id": "136472b2-7660-4cad-97ab-bc0d424d2ccd",
+          "reviewer_username": "Shuze Chen"
+        },
+        {
+          "audit_id": "9175faa5-0d86-474b-ad5e-8d7b098f9934",
+          "comment": "Confirmed by the mission captain (proposal self-audit).",
+          "created_at": "2026-09-08T04:06:12.411718+00:00",
+          "decision": "confirm",
+          "reviewer_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+          "reviewer_username": "mysticflounder"
+        }
+      ],
+      "created_at": "2026-09-05T22:52:54.751647+00:00",
+      "deprecated_at": null,
+      "deprecated_by": null,
+      "formal_statement": "theorem Erdos9796Mission.combined :\n    Erdos9796Mission.Problem97 ∧ Erdos9796Mission.Problem96 := by sorry",
+      "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+      "natural_language_statement": "Establish both affirmative statements in one package: every nonempty finite convex-independent planar point set has a vertex with no four other vertices at a common positive distance, and the maximum number of unordered unit-distance pairs among convex-independent $n$-point sets is $O(n)$.\n\n$$\\text{Problem 97}\\;\\land\\;\\text{Problem 96}.$$\n\nThe two targets are linked by deletion: Problem 97 supplies a vertex of unit degree at most three in every nonempty remaining subset, so counting each edge when its first endpoint is removed gives at most $3n$ unordered unit-distance pairs. No implication from Problem 96 back to Problem 97 is asserted. Both statements are open targets, not assumptions hidden in the definitions.",
+      "preamble": "import Definitions.Def_Erdos9796Mission\n\n/-!\nThe combined open Erdős Problems 97 and 96 mission statement.\n-/",
+      "readback": {
+        "created_at": "2026-09-05T22:53:00.874544+00:00",
+        "model": "gpt-5.6-luna",
+        "readback": "The declaration asserts the conjunction of the two preceding targets. First, for every nonempty finite point set $A$ in the Euclidean plane whose points are all absent from the convex hull over $\\mathbb{R}$ of the other points, at least one $p\\in A$ has fewer than four points of $A$ at every positive exact distance from $p$. Second, there are $C\\ge0$ and $N$ such that for every natural $n\\ge N$, the supremum of the numbers of unordered unit-distance pairs among convexly independent $n$-point sets, cast to $\\mathbb{R}$, is at most $Cn$; the supremum is the natural-number supremum of the set of counts and uses its empty-set convention. The theorem body is `sorry`, so this conjunction is an asserted target rather than an established result."
+      },
+      "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/README.md; https://www.erdosproblems.com/97; https://www.erdosproblems.com/96",
+      "status": "Disproved",
+      "tags": [
+        "convex-position",
+        "discrete-geometry",
+        "erdos-97-96",
+        "unit-distances"
+      ],
+      "theorem_id": "a6bf5110-b91e-4a2c-9d03-8b51a8a9e6ad",
+      "theorem_name": "Erdos9796Mission.combined",
+      "theorem_title": "Erdős Problems 97 and 96: the combined convex-distance mission",
+      "visibility": "public",
+      "vote_count": 0
+    },
+    "problem96": {
+      "audits": [
+        {
+          "audit_id": "2285184c-8212-4db2-a264-37843f3dfbd3",
+          "comment": null,
+          "created_at": "2026-09-08T04:06:09.978464+00:00",
+          "decision": "confirm",
+          "reviewer_id": "136472b2-7660-4cad-97ab-bc0d424d2ccd",
+          "reviewer_username": "Shuze Chen"
+        },
+        {
+          "audit_id": "adc5f324-9f57-4333-97a5-53560da3bb9b",
+          "comment": "Confirmed by the mission captain (proposal self-audit).",
+          "created_at": "2026-09-08T04:06:12.411718+00:00",
+          "decision": "confirm",
+          "reviewer_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+          "reviewer_username": "mysticflounder"
+        }
+      ],
+      "created_at": "2026-09-05T22:52:28.349821+00:00",
+      "deprecated_at": null,
+      "deprecated_by": null,
+      "formal_statement": "theorem Erdos9796Mission.problem96 : Erdos9796Mission.Problem96 := by sorry",
+      "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+      "natural_language_statement": "For each natural number $n$, let $U_c(n)$ be the supremum of the numbers of unordered unit-distance pairs determined by convex-independent sets of $n$ points in the Euclidean plane. Then\n\n$$U_c(n)=O(n)\\qquad(n\\to\\infty).$$\n\nThus there are a constant $C$ and a threshold after which $U_c(n)\\le Cn$. Pairs are unordered and counted once. The set of counts is bounded by the number of two-element subsets. The formal target uses the natural-number supremum, real casts, and Big-O at the filter of natural numbers tending to infinity. It does not require the stronger explicit constant three. The mission's Problem 97 route would supply that constant; the unconditional Problem 96 target is still open in the repository.",
+      "preamble": "import Definitions.Def_Erdos9796Mission\n\n/-!\nThe open Erdős Problem 96 statement in the self-contained mission vocabulary.\n-/",
+      "readback": {
+        "created_at": "2026-09-05T22:52:33.872092+00:00",
+        "model": "gpt-5.6-luna",
+        "readback": "The declaration asserts an asymptotic bound for natural numbers $n$: after casting the supremum of the unit-distance-pair counts over all convexly independent $n$-point sets in the Euclidean plane to $\\mathbb{R}$, the function $n\\mapsto\\maxConvexUnitDistances(n)$ is $O$ of the function $n\\mapsto n$ along the filter of sufficiently large natural numbers. Thus there are a constant $C\\ge 0$ and a threshold $N$ such that for every natural $n\\ge N$, $\\maxConvexUnitDistances(n)\\le Cn$ (with the supremum defined from the preceding count set, including its natural-number empty-set convention); no bound is required at the finitely many $n<N$, and in particular no separate assertion is made at $n=0$. The theorem body is `sorry`, so this is an asserted target rather than an established result."
+      },
+      "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P96/UpstreamBridge.lean#L96; https://www.erdosproblems.com/96",
+      "status": "Disproved",
+      "tags": [
+        "convex-position",
+        "discrete-geometry",
+        "erdos-97-96",
+        "unit-distances"
+      ],
+      "theorem_id": "8ade9b04-8ed3-4b0a-a948-9a5df9f1c637",
+      "theorem_name": "Erdos9796Mission.problem96",
+      "theorem_title": "Erdős Problem 96: linearly many unit distances in convex position",
+      "visibility": "public",
+      "vote_count": 0
+    },
+    "problem97": {
+      "audits": [
+        {
+          "audit_id": "91d7595c-1cc0-4f9d-b0c6-52e179c19277",
+          "comment": null,
+          "created_at": "2026-09-08T04:06:05.941399+00:00",
+          "decision": "confirm",
+          "reviewer_id": "136472b2-7660-4cad-97ab-bc0d424d2ccd",
+          "reviewer_username": "Shuze Chen"
+        },
+        {
+          "audit_id": "22359603-4c4e-4d5f-94e8-35c7beaed4e0",
+          "comment": "Confirmed by the mission captain (proposal self-audit).",
+          "created_at": "2026-09-08T04:06:12.411718+00:00",
+          "decision": "confirm",
+          "reviewer_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16",
+          "reviewer_username": "mysticflounder"
+        }
+      ],
+      "created_at": "2026-09-05T22:51:38.528931+00:00",
+      "deprecated_at": null,
+      "deprecated_by": null,
+      "formal_statement": "theorem Erdos9796Mission.problem97 : Erdos9796Mission.Problem97 := by sorry",
+      "mathlib_rev": "0df444a360eaa60ab8c11dca51a86af692955474",
+      "natural_language_statement": "For every nonempty finite set $A$ of points in strictly convex position in the Euclidean plane, there is a vertex $p\\in A$ such that every circle of positive radius centred at $p$ contains at most three points of $A$.\n\n$$\\forall A\\ne\\varnothing\\;\\exists p\\in A\\;\\forall r>0:\\;|\\{q\\in A:\\|p-q\\|=r\\}|\\le3.$$\n\nThe set is finite and convex-independent: each vertex lies outside the convex hull of all the others. No lower bound of three on the cardinality is imposed; singletons and two-point sets are included. This is the affirmative target of Problem 97, which remains open in the repository.",
+      "preamble": "import Definitions.Def_Erdos9796Mission\n\n/-!\nThe open Erdős Problem 97 statement in the self-contained mission vocabulary.\n-/",
+      "readback": {
+        "created_at": "2026-09-05T22:51:41.926983+00:00",
+        "model": "gpt-5.6-luna",
+        "readback": "The declaration asserts that for every finite point set $A$ in the Euclidean plane, if $A$ is nonempty and every point of $A$ is absent from the convex hull over $\\mathbb{R}$ of the remaining points $A\\setminus\\{a\\}$, then there is at least one point $p\\in A$ for which no positive real radius $r$ has at least four points $q\\in A$ at distance exactly $r$ from $p$. In expanded form, for that point $p$, every $r>0$ satisfies $\\#\\{q\\in A: \\operatorname{dist}(p,q)=r\\}<4$. The theorem body is `sorry`, so this is an asserted target rather than an established result."
+      },
+      "source": "https://github.com/mysticflounder/erdos-97-96-formalization/blob/757d852766f377f7c1a0ffeeef6d3526bc0cb7a4/lean/Erdos9796Proof/P97/UpstreamBridge.lean#L30; https://www.erdosproblems.com/97",
+      "status": "Disproved",
+      "tags": [
+        "convex-position",
+        "discrete-geometry",
+        "erdos-97-96",
+        "unit-distances"
+      ],
+      "theorem_id": "4ec1c9bf-88ad-4632-aa55-375d24e19335",
+      "theorem_name": "Erdos9796Mission.problem97",
+      "theorem_title": "Erdős Problem 97: a vertex without four equidistant neighbours",
+      "visibility": "public",
+      "vote_count": 0
+    }
+  },
+  "upstream_commit": "0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2"
+}

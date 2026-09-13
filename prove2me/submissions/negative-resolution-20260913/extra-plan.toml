@@ -1,0 +1,22 @@
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/negative-resolution-20260913/extra-receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+mission_description = "mission-description.md"
+
+[[theorem]]
+name = "Erdos9796Mission.combined"
+title = "Erdős Problems 97 and 96: the combined convex-distance mission"
+file = "Theorems/Thm_Erdos9796Mission_combined.lean"
+natural_language_statement = "Both affirmative Erdős Problem 97 and Problem 96 statements hold."
+source = "https://www.erdosproblems.com/97"
+tags = ["erdos-97", "convex-position"]
+
+[[proof]]
+theorem = "Erdos9796Mission.combined"
+file = "submissions/negative-resolution-20260913/SolutionCombined.lean"
+explanation = "submissions/negative-resolution-20260913/explanation.md"
+proof_type = "disprove"

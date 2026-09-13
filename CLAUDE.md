@@ -1,3 +1,10 @@
+> **PROJECT CLOSED — 2026-09-13**
+>
+> The owner closed this project on 2026-09-13. Do not start new P96/P97
+> positive-proof work, solver waves, or swarm dispatch unless Adam explicitly
+> reopens the project. Preserve the existing research as historical partial
+> work. See [CLOSED.md](CLOSED.md) for the closure record.
+
 # Agent Instructions
 
 ## Existing P97 Theorem Banks

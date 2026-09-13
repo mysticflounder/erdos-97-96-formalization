@@ -1,0 +1,64 @@
+{
+  "schema": "external-negative-resolution-source/v1",
+  "repository": "https://github.com/Leeham06972452/erdos-96-97",
+  "commit": "0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2",
+  "retrieved_utc": "2026-09-13T22:42:04.633920+00:00",
+  "authors": [
+    "Liam Kruer",
+    "Jensen Kohlmeyer",
+    "Liam Price"
+  ],
+  "files": [
+    {
+      "path": "upstream/Erdos9697Complete.lean",
+      "bytes": 211841,
+      "sha256": "3bacaaddf81a6f07e07cc790af8c9faa25f3aae67ece8b4178d72d974d61977e",
+      "url": "https://raw.githubusercontent.com/Leeham06972452/erdos-96-97/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/Erdos9697Complete.lean"
+    },
+    {
+      "path": "upstream/96-97.pdf",
+      "bytes": 125897,
+      "sha256": "0aa734bee7dd050157f6423b5869e78ea469406c81a91f64e1f97c5b38d5c818",
+      "url": "https://raw.githubusercontent.com/Leeham06972452/erdos-96-97/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/96-97.pdf"
+    },
+    {
+      "path": "upstream/96-97.tex",
+      "bytes": 29410,
+      "sha256": "c41a43955299f8db64a36cdb30bd6ba23769eeaf5d52f1bdb607fca28c09dad1",
+      "url": "https://raw.githubusercontent.com/Leeham06972452/erdos-96-97/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/96-97.tex"
+    },
+    {
+      "path": "upstream/README.md",
+      "bytes": 6558,
+      "sha256": "928bf54e8a0c0e96653ee8bb517d1d9ab9d4099c746ea6db4841e0f9f8406d7a",
+      "url": "https://raw.githubusercontent.com/Leeham06972452/erdos-96-97/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/README.md"
+    },
+    {
+      "path": "upstream/lean-toolchain",
+      "bytes": 25,
+      "sha256": "3aac669c7a910ec2389f4e4f921b605adf6ebf2d1e0c9b9cd0be4d33f3f5db71",
+      "url": "https://raw.githubusercontent.com/Leeham06972452/erdos-96-97/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/lean-toolchain"
+    },
+    {
+      "path": "upstream/lakefile.toml",
+      "bytes": 239,
+      "sha256": "4c1e605ccf68e0e101b650a70f0dded78e01030691b23cd26bb7bf0897ed3de3",
+      "url": "https://raw.githubusercontent.com/Leeham06972452/erdos-96-97/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/lakefile.toml"
+    },
+    {
+      "path": "upstream/lake-manifest.json",
+      "bytes": 3160,
+      "sha256": "0d112182c080c740afcec429fca142dc174dcaf370b74b12c8288a6a6a9613bc",
+      "url": "https://raw.githubusercontent.com/Leeham06972452/erdos-96-97/0e98f5f9bdaf36007e3eb405cbefe2eda778a9b2/lake-manifest.json"
+    }
+  ],
+  "validation_status": "LOCAL_KERNEL_CHECKED_SOURCE_AND_EXACT_TARGET_ADAPTERS",
+  "administrative_closure": "Owner instructed closure assuming correctness",
+  "platform_api_version": "0.10.3",
+  "upload_transformations": [
+    "Add mission definition import and attribution header",
+    "Omit final custom AxiomAudit elaborator unsupported by server soundness guard",
+    "Append exact root solution and standard #print axioms",
+    "For P96 append verified unordered-pair count and supremum bridge"
+  ]
+}

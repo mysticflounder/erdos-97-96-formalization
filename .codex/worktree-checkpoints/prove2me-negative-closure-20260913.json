@@ -1,0 +1,47 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-negative-closure-20260913",
+  "owner": "codex-prove2me-closure",
+  "base_head": "cc963514be1cff0bcce2b9ad56a2bd674bd18fd8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-negative-closure-20260913.json",
+    "CLAUDE.md",
+    "CLOSED.md",
+    "README.md",
+    "prove2me/README.md",
+    "prove2me/mission-description.md",
+    "prove2me/submissions/negative-resolution-20260913/Bridge.lean",
+    "prove2me/submissions/negative-resolution-20260913/README.md",
+    "prove2me/submissions/negative-resolution-20260913/Solution.lean",
+    "prove2me/submissions/negative-resolution-20260913/Solution96.lean",
+    "prove2me/submissions/negative-resolution-20260913/SolutionCombined.lean",
+    "prove2me/submissions/negative-resolution-20260913/audit.json",
+    "prove2me/submissions/negative-resolution-20260913/closure-receipt.json",
+    "prove2me/submissions/negative-resolution-20260913/explanation.md",
+    "prove2me/submissions/negative-resolution-20260913/extra-plan.toml",
+    "prove2me/submissions/negative-resolution-20260913/extra-receipt.json",
+    "prove2me/submissions/negative-resolution-20260913/p96-plan.toml",
+    "prove2me/submissions/negative-resolution-20260913/p96-receipt.json",
+    "prove2me/submissions/negative-resolution-20260913/plan.toml",
+    "prove2me/submissions/negative-resolution-20260913/provenance.json",
+    "prove2me/submissions/negative-resolution-20260913/receipt-rejected-audit.json",
+    "prove2me/submissions/negative-resolution-20260913/receipt.json",
+    "prove2me/submissions/negative-resolution-20260913/upload.py",
+    "prove2me/submissions/negative-resolution-20260913/upstream/96-97.pdf",
+    "prove2me/submissions/negative-resolution-20260913/upstream/96-97.tex",
+    "prove2me/submissions/negative-resolution-20260913/upstream/Erdos9697Complete.lean",
+    "prove2me/submissions/negative-resolution-20260913/upstream/README.md",
+    "prove2me/submissions/negative-resolution-20260913/upstream/lake-manifest.json",
+    "prove2me/submissions/negative-resolution-20260913/upstream/lakefile.toml",
+    "prove2me/submissions/negative-resolution-20260913/upstream/lean-toolchain",
+    "prove2me/submissions/negative-resolution-20260913/verification.json"
+  ],
+  "durable_paths": [
+    "scratch/runs/prove2me-negative-closure-20260913/run-0001/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/prove2me-negative-closure-20260913/run-0001"
+  ],
+  "created_utc": "2026-09-13T22:41:29Z",
+  "manifest_sha256": "0f83987d5748429d9aa3a13ff3317422fa8fc83d74a31b89baaf539e2d0ad90b"
+}

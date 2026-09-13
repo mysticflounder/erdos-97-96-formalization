@@ -1,0 +1,46 @@
+{
+  "schema": "prove2me-negative-resolution-local-check/v1",
+  "toolchain": "leanprover/lean4:v4.33.1",
+  "mathlib_revision": "0df444a360eaa60ab8c11dca51a86af692955474",
+  "checks": [
+    {
+      "file": "Solution.lean",
+      "sha256": "35ad66d83faa9a93b26607f209e7d92bc0aa9824fab70e27495a3e6efb98ff48",
+      "command": "lake env lean /Users/adam/projects/math-projects/erdos-97-96-formalization/prove2me/submissions/negative-resolution-20260913/Solution.lean",
+      "working_directory": "/Users/adam/prove2me_workspace",
+      "exit_code": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "log_sha256": "fefde16c162a1a0df89c7e57dc0a94ac67b2d8d03ad91fa2b9a9a6af9052ab8a"
+    },
+    {
+      "file": "SolutionCombined.lean",
+      "sha256": "1ce1badb6f886b0ef4c47ba7cc765447d713d8735c11cb08bdce18e69f1045bc",
+      "command": "lake env lean /Users/adam/projects/math-projects/erdos-97-96-formalization/prove2me/submissions/negative-resolution-20260913/SolutionCombined.lean",
+      "working_directory": "/Users/adam/prove2me_workspace",
+      "exit_code": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "log_sha256": "4a450e611e7a39b1a22b45fa80a5fe13d6e61118982778afee00fe1286eb4ad5"
+    },
+    {
+      "file": "Solution96.lean",
+      "sha256": "2f0b7fd78cbf508f5a5bbc91e128bb78a608aa8cf953090017e1193ff6cba4a3",
+      "command": "lake env lean /Users/adam/projects/math-projects/erdos-97-96-formalization/prove2me/submissions/negative-resolution-20260913/Solution96.lean",
+      "working_directory": "/Users/adam/prove2me_workspace",
+      "exit_code": 0,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "log_sha256": "9f2eddf9f86431f134ea383e0aa0bb8ef6dc7512e918678da5a7f1496a17ebe7"
+    }
+  ]
+}
