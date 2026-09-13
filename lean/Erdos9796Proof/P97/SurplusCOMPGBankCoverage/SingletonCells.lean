@@ -7,6 +7,7 @@ Authors: Adam McKenna
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1777TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1834TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1848TreeProof.Root
+import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1864TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1912TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1928TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S2864TreeProof.Root
@@ -16,7 +17,7 @@ import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S3928TreeProof.Root
 /-!
 # Coverage of singleton depth-two search cells
 
-This module collects eight depth-two search cells whose valid results are structurally
+This module collects nine depth-two search cells whose valid results are structurally
 determined and shows that every result from one of those cells occurs among the stored row masks.
 -/
 
@@ -38,6 +39,7 @@ inductive IsStructurallyCoveredDepthTwoCell : Label → Nat → Prop where
       IsSingletonDepthTwoCell sstar wmask → IsStructurallyCoveredDepthTwoCell sstar wmask
   | s1At834 : IsStructurallyCoveredDepthTwoCell .s1 834
   | s1At848 : IsStructurallyCoveredDepthTwoCell .s1 848
+  | s1At864 : IsStructurallyCoveredDepthTwoCell .s1 864
   | s1At928 : IsStructurallyCoveredDepthTwoCell .s1 928
   | s2At864 : IsStructurallyCoveredDepthTwoCell .s2 864
   | s3At928 : IsStructurallyCoveredDepthTwoCell .s3 928
@@ -75,6 +77,46 @@ theorem s1848TargetC_mem_rowShadowKeys :
 /-- The fourth certified target row for the `(.s1, 848)` cell is stored. -/
 theorem s1848TargetD_mem_rowShadowKeys :
     [300, 201, 848, 688, 291, 525, 154, 85, 610, 390] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_029` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetA_mem_rowShadowKeys :
+    [114, 201, 864, 531, 680, 78, 390, 281, 660, 300] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_030` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetB_mem_rowShadowKeys :
+    [178, 201, 864, 531, 106, 652, 390, 281, 596, 300] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_031` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetC_mem_rowShadowKeys :
+    [284, 201, 864, 688, 291, 525, 170, 101, 531, 390] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_032` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetD_mem_rowShadowKeys :
+    [284, 201, 864, 688, 102, 525, 170, 323, 531, 390] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_033` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetE_mem_rowShadowKeys :
+    [284, 201, 864, 294, 553, 660, 170, 113, 582, 275] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_034` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetF_mem_rowShadowKeys :
+    [284, 201, 864, 294, 553, 660, 170, 113, 582, 402] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_035` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetG_mem_rowShadowKeys :
+    [284, 201, 864, 402, 680, 86, 43, 593, 646, 293] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s1_036` for the `(.s1, 864)` cell is stored. -/
+theorem s1864TargetH_mem_rowShadowKeys :
+    [284, 201, 864, 688, 291, 525, 170, 101, 594, 390] ∈ rowShadowKeys := by
   simp [rowShadowKeys, rows, Row.shadowKey]
 
 /-- The first certified target row for the `(.s1, 928)` cell is stored. -/
@@ -190,7 +232,7 @@ theorem depth2SubtreeResult_all_containsKey_rowShadowKeys_of_singletonCell
   exact containsKey_eq_true_of_mem
     (mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_singletonCell hcell hresult)
 
-/-- Every result in one of the eight structurally covered depth-two cells occurs among the
+/-- Every result in one of the nine structurally covered depth-two cells occurs among the
 stored rows. -/
 theorem mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell
     {sstar : Label} {wmask : Nat} {result : List Nat}
@@ -214,6 +256,18 @@ theorem mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell
       · exact s1848TargetB_mem_rowShadowKeys
       · exact s1848TargetC_mem_rowShadowKeys
       · exact s1848TargetD_mem_rowShadowKeys
+  | s1At864 =>
+      have htargets := S1864TreeProof.memDepth2SubtreeResult_memTargets hresult
+      simp only [List.mem_cons, List.not_mem_nil, or_false] at htargets
+      rcases htargets with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+      · exact s1864TargetA_mem_rowShadowKeys
+      · exact s1864TargetB_mem_rowShadowKeys
+      · exact s1864TargetD_mem_rowShadowKeys
+      · exact s1864TargetC_mem_rowShadowKeys
+      · exact s1864TargetE_mem_rowShadowKeys
+      · exact s1864TargetF_mem_rowShadowKeys
+      · exact s1864TargetH_mem_rowShadowKeys
+      · exact s1864TargetG_mem_rowShadowKeys
   | s1At928 =>
       have htargets := S1928TreeProof.memDepth2SubtreeResult_memTargets hresult
       simp only [List.mem_cons, List.not_mem_nil, or_false] at htargets

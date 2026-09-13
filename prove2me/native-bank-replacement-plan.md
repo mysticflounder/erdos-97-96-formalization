@@ -358,6 +358,19 @@ structural coverage to eight cells. Targeted `lake-build` completed all 1,326 jo
 and the governed Lean-ingress binding passed semantic validation with only `propext`,
 `Classical.choice`, and `Quot.sound` in the exported declarations' axiom closures.
 
+The `(s1, 864)` prototype covers the eight certified target rows `s1_029` through
+`s1_036`. With center order `u, Q1, Q2, Pw, Pu, s3, s2, s1`, its generated target-set
+tree has 1,094 partial states, 1,086 splits, 47,581 separation prunes, and eight
+terminals. Two independent generations emitted the same 39 Lean modules, totaling
+1,858,080 bytes, with aggregate digest
+`43f67a31611e0caf0dece7be95bdd0c1fc2b5414027f3328d73232525e53f047`.
+The generated source contains none of `sorry`, `admit`, `axiom`, `unsafe`,
+`native_decide`, `partial`, `extern`, `implemented_by`, or `Lean.ofReduceBool`, and
+requires no checker-interface change. Dispatcher integration extends structural
+coverage to nine cells. Targeted `lake-build` completed all 1,365 jobs, and the
+governed Lean-ingress binding passed semantic validation with only `propext`,
+`Classical.choice`, and `Quot.sound` in the exported declarations' axiom closures.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable
