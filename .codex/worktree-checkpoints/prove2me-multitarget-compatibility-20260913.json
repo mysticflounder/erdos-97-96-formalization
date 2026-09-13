@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-multitarget-compatibility-20260913",
+  "base_head": "ffcbe38078a07e820f8173bed489eb92e573db38",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-multitarget-compatibility-20260913.json",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage.lean",
+    "prove2me/native-bank-replacement-plan.md",
+    "scripts/surplus-compg-singleton-cnf.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-multitarget-compatibility",
+  "created_utc": "2026-09-13T15:50:00Z",
+  "manifest_sha256": "584b7c7e8a7c58fbf2185bc95ac933c4b68b95538ce1d3b4c02906cf9435acff"
+}

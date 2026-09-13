@@ -282,6 +282,28 @@ used the indexed Lean corpus at revision `8e6075c94`, with repository HEAD
 The next checkpoint should fit the first non-singleton live cell to a shared
 certificate schema before extending the remaining 11 live cells.
 
+**First multiple-row pilot:** the 12 remaining live cells contain between two
+and 36 rows. The smallest is `(s1, 834)`, with exactly the stored rows `s1_000`
+and `s1_001`. The existing 17 relaxed-split groups partition already identified
+rows for later algebraic certificates; their soundness interfaces require row
+membership and therefore cannot establish depth-two coverage without circularity.
+The coverage proof instead extends the structural compatibility checker so a
+terminal assignment may agree with any member of a finite target list. Its
+soundness theorem returns the selected target and pointwise agreement, and the
+valid-fragment adapter supplies the same conclusion from the search invariants.
+The reuse preflight found the existing single-target soundness theorem but no
+multi-target consequence. Its first missing antecedent for `(s1, 834)` was the
+concrete checked tree. The search used the Lean corpus indexed from revision
+`8e6075c94` against repository HEAD `ffcbe380`.
+
+The generator now supports the two `(s1, 834)` targets while preserving the
+three singleton outputs byte-for-byte. A greedy center order produces 1,382
+partial states, 1,380 splits, 47,963 explicit separation prunes, and two
+terminals. The projected proof has 62 Lean modules totaling 1,867,988 bytes.
+The next checkpoint promotes and compiles those modules, proves that every
+result in `depth2SubtreeResult .s1 834` is one of the two targets, and adds this
+cell to stored-row dispatch.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable

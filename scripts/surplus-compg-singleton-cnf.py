@@ -29,10 +29,33 @@ class CellSpec:
     target_masks: tuple[int, ...]
     tree_order: tuple[str, ...]
     lean_stem: str
+    additional_target_masks: tuple[tuple[int, ...], ...] = ()
+    lean_target_defs: tuple[str, ...] = ()
 
     @property
     def target(self) -> dict[str, int]:
         return dict(zip(LABELS, self.target_masks, strict=True))
+
+    @property
+    def targets(self) -> tuple[dict[str, int], ...]:
+        return tuple(
+            dict(zip(LABELS, masks, strict=True))
+            for masks in (self.target_masks,) + self.additional_target_masks
+        )
+
+    @property
+    def all_target_masks(self) -> tuple[tuple[int, ...], ...]:
+        return (self.target_masks,) + self.additional_target_masks
+
+    @property
+    def target_defs(self) -> tuple[str, ...]:
+        if self.lean_target_defs:
+            if len(self.lean_target_defs) != len(self.targets):
+                raise SystemExit("Lean target definitions do not cover the target set")
+            return self.lean_target_defs
+        if len(self.targets) == 1:
+            return (f"{self.lean_stem}Target",)
+        raise SystemExit("multi-target cells must name every Lean target definition")
 
     @property
     def fixed(self) -> dict[str, int]:
@@ -81,6 +104,15 @@ CELL_SPECS = {
             (408, 225, 801, 562, 652, 86, 390, 75, 533, 300),
             ("u", "Q1", "Pu", "Q2", "Pw", "s3", "s2", "s1"),
             "s3801",
+        ),
+        CellSpec(
+            "s1834",
+            "s1",
+            (312, 201, 834, 277, 553, 660, 142, 83, 612, 418),
+            ("u", "Q1", "s1", "Q2", "Pw", "s2", "Pu", "s3"),
+            "s1834",
+            ((432, 201, 834, 277, 553, 660, 396, 83, 612, 298),),
+            ("s1834TargetA", "s1834TargetB"),
         ),
     )
 }
@@ -219,9 +251,10 @@ def build_encoding(spec: CellSpec) -> Encoding:
     finish_family("cross_separation", start)
 
     start = len(clauses)
-    clauses.append(
-        tuple(-variables[(center, spec.target[center])] for center in spec.free_centers)
-    )
+    for target in spec.targets:
+        clauses.append(
+            tuple(-variables[(center, target[center])] for center in spec.free_centers)
+        )
     finish_family("block_target", start)
     return Encoding(variables, domains, clauses, counts)
 
@@ -276,8 +309,13 @@ def build_compatibility_certificate(
     def visit(depth: int, assigned: tuple[tuple[str, int], ...]) -> dict[str, object]:
         stats["partial_states"] += 1
         if depth == len(order):
-            if any(mask != spec.target[center] for center, mask in assigned):
-                raise SystemExit("compatibility certificate reached a non-target completion")
+            if not any(
+                all(mask == target[center] for center, mask in assigned)
+                for target in spec.targets
+            ):
+                raise SystemExit(
+                    "compatibility certificate reached a completion outside the target set"
+                )
             stats["done_nodes"] += 1
             return {"kind": "done"}
 
@@ -350,32 +388,41 @@ def write_tree_proof(
     """Emit JSON and root-mask Lean shards for the structural certificate."""
     module_dir.mkdir(parents=True, exist_ok=True)
     certificate, stats, order = build_compatibility_certificate(spec, domains)
-    if stats["done_nodes"] != 1:
-        raise SystemExit(f"certificate has {stats['done_nodes']} completions, expected one")
+    if stats["done_nodes"] != len(spec.targets):
+        raise SystemExit(
+            f"certificate has {stats['done_nodes']} completions, "
+            f"expected {len(spec.targets)}"
+        )
     if certificate_json is not None:
         certificate_json.parent.mkdir(parents=True, exist_ok=True)
-        certificate_json.write_text(
-            json.dumps(
-                {
-                    "schema": TREE_SCHEMA,
-                    "cell": spec.key,
-                    "sstar": spec.sstar,
-                    "fixed": spec.fixed,
-                    "target": spec.target,
-                    "order": order,
-                    "stats": stats,
-                    "certificate": certificate,
-                },
-                indent=2,
-            )
-            + "\n"
-        )
+        certificate_metadata = {
+            "schema": TREE_SCHEMA,
+            "cell": spec.key,
+            "sstar": spec.sstar,
+            "fixed": spec.fixed,
+            "target": spec.target,
+            "order": order,
+            "stats": stats,
+            "certificate": certificate,
+        }
+        if len(spec.targets) > 1:
+            certificate_metadata.pop("target")
+            certificate_metadata["targets"] = spec.targets
+        certificate_json.write_text(json.dumps(certificate_metadata, indent=2) + "\n")
 
     root_branches = certificate["branches"]
     assert isinstance(root_branches, list)
     namespace = spec.lean_namespace
     fixed_def = f"{spec.lean_stem}Fixed"
     target_def = f"{spec.lean_stem}Target"
+    targets_def = f"{spec.lean_stem}Targets"
+    multiple_targets = len(spec.targets) > 1
+    checker = (
+        "checkCompatibilityCertificateForTargets"
+        if multiple_targets
+        else "checkCompatibilityCertificate"
+    )
+    checker_target = targets_def if multiple_targets else target_def
     sstar_literal = lean_label(spec.sstar)
     target_list = ", ".join(map(str, spec.target_masks))
     emitted_modules: list[str] = []
@@ -420,7 +467,7 @@ def write_tree_proof(
             imports += "".join(child_imports)
             rendered = ".split [\n" + ",\n".join(entries) + "\n  ]"
             proof = (
-                "  simp only [certificate, checkCompatibilityCertificate, List.map_cons,\n"
+                f"  simp only [certificate, {checker}, List.map_cons,\n"
                 "    List.map_nil, Bool.and_eq_true, List.all_cons, List.all_nil]\n"
                 "  refine ⟨by decide, ?_⟩\n"
                 "  exact ⟨" + ", ".join(checks + ["True.intro"]) + "⟩"
@@ -441,7 +488,7 @@ def write_tree_proof(
             + rendered
             + "\n\nset_option maxRecDepth 100000 in\n"
             "theorem checked :\n"
-            f"    checkCompatibilityCertificate {sstar_literal} {fixed_def} {target_def}\n"
+            f"    {checker} {sstar_literal} {fixed_def} {checker_target}\n"
             f"      [{remaining}] [{assigned_lean}] certificate = true := by\n"
             + proof
             + f"\n\nend Problem97.{namespace}."
@@ -473,6 +520,133 @@ def write_tree_proof(
     root_checks = ", ".join(
         [f"{module}.checked" for _, module in shard_names] + ["True.intro"]
     )
+    if multiple_targets:
+        target_lists = tuple(", ".join(map(str, masks)) for masks in spec.all_target_masks)
+        target_rows = "[" + ", ".join(f"[{row}]" for row in target_lists) + "]"
+        target_patterns = " | ".join("rfl" for _ in spec.targets)
+        membership_cases: list[str] = []
+        for index, target_name in enumerate(spec.target_defs):
+            proof = f"by simpa [allLabels, {target_name}] using hmasks"
+            if index < len(spec.targets) - 1:
+                result = f"Or.inl ({proof})"
+            else:
+                result = proof
+            for _ in range(index):
+                result = f"Or.inr ({result})"
+            membership_cases.append(f"  · exact {result}")
+        rendered_membership_cases = "\n".join(membership_cases)
+        root_consequences = (
+            "theorem targetExists (choice : Label → Nat)\n"
+            f"    (hchoice : ∀ center ∈ order, choice center ∈ candidateDomain {sstar_literal} {fixed_def} center)\n"
+            "    (hseparation : ∀ center ∈ order, ∀ other ∈ order, center ≠ other →\n"
+            "      crossSeparationOKForMasks center (choice center) other (choice other) = true) :\n"
+            f"    ∃ target ∈ {targets_def}, ∀ center ∈ order, choice center = target center := by\n"
+            "  rcases target_of_checkCompatibilityCertificateForTargets checked hchoice (by simp)\n"
+            "      (by simp) hseparation with ⟨target, htarget, hfree, _⟩\n"
+            "  exact ⟨target, htarget, hfree⟩\n\n"
+            "theorem validFragmentTargetExists {shadow : Shadow}\n"
+            f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
+            f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
+            f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
+            f"    ∃ target ∈ {targets_def},\n"
+            "      ∀ center ∈ order, shadow.centerMask center = target center := by\n"
+            "  apply validFragment_target_of_checkCompatibilityCertificateForTargets checked hvalid\n"
+            "  · intro center hcenter entry hentry\n"
+            f"    simp [order, {fixed_def}] at hcenter hentry ⊢\n"
+            "    rcases hentry with hentry | hentry <;> subst entry <;>\n"
+            "      rcases hcenter with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> decide\n"
+            "  · intro entry hentry\n"
+            f"    simp [{fixed_def}] at hentry\n"
+            "    rcases hentry with hentry | hentry <;> subst entry\n"
+            "    · exact hv\n"
+            "    · exact hw\n\n"
+            "private theorem validFragmentMasksEqTarget {shadow : Shadow}\n"
+            f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
+            f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
+            f"    (hw : shadow.centerMask .w = {spec.target['w']})\n"
+            "    {target : Label → Nat}\n"
+            "    (hfree : ∀ center ∈ order, shadow.centerMask center = target center) :\n"
+            "    shadow.masks = allLabels.map target := by\n"
+            "  have hcenter : ∀ center, shadow.centerMask center = target center := by\n"
+            "    intro center\n"
+            "    cases center with\n"
+            "    | v => exact hv\n"
+            "    | w => exact hw\n"
+            "    | u | s1 | s2 | s3 | Pw | Pu | Q1 | Q2 =>\n"
+            "        exact hfree _ (by simp [order])\n"
+            "  exact shadow_masks_eq_map_of_hasTenMasks\n"
+            "    (hasTenMasks_of_isValidPinnedFragment hvalid) hcenter\n\n"
+            "theorem validFragmentMasksMemTargets {shadow : Shadow}\n"
+            f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
+            f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
+            f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
+            f"    shadow.masks ∈ {target_rows} := by\n"
+            "  rcases validFragmentTargetExists hvalid hv hw with ⟨target, htarget, hfree⟩\n"
+            "  have hmasks := validFragmentMasksEqTarget hvalid hv hw hfree\n"
+            f"  simp only [{targets_def}, List.mem_cons, List.mem_singleton] at htarget\n"
+            f"  rcases htarget with {target_patterns}\n"
+            + rendered_membership_cases
+            + "\n\n"
+            "theorem memDepth2SubtreeResult_memTargets {result : List Nat}\n"
+            f"    (hresult : result ∈ depth2SubtreeResult {sstar_literal} {spec.target['w']}) :\n"
+            f"    result ∈ {target_rows} := by\n"
+            "  have hdata := mem_depth2SubtreeResult_iff.mp hresult\n"
+            "  apply validFragmentMasksMemTargets (shadow := { masks := result })\n"
+            "  · exact hdata.1\n"
+            "  · simpa [Shadow.centerMask, centerMaskOf, pinnedMaskOf, maskOfLabels,\n"
+            "      Label.bit, Label.index] using hdata.2.1\n"
+            "  · simpa [Shadow.centerMask, centerMaskOf] using hdata.2.2\n\n"
+        )
+    else:
+        root_consequences = (
+            "theorem forcesTarget (choice : Label → Nat)\n"
+            f"    (hchoice : ∀ center ∈ order, choice center ∈ candidateDomain {sstar_literal} {fixed_def} center)\n"
+            "    (hseparation : ∀ center ∈ order, ∀ other ∈ order, center ≠ other →\n"
+            "      crossSeparationOKForMasks center (choice center) other (choice other) = true) :\n"
+            f"    ∀ center ∈ order, choice center = {target_def} center := by\n"
+            "  exact (target_of_checkCompatibilityCertificate checked hchoice (by simp)\n"
+            "    (by simp) hseparation).1\n\n"
+            "theorem validFragmentForcesTarget {shadow : Shadow}\n"
+            f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
+            f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
+            f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
+            f"    ∀ center ∈ order, shadow.centerMask center = {target_def} center := by\n"
+            "  apply validFragment_target_of_checkCompatibilityCertificate checked hvalid\n"
+            "  · intro center hcenter entry hentry\n"
+            f"    simp [order, {fixed_def}] at hcenter hentry ⊢\n"
+            "    rcases hentry with hentry | hentry <;> subst entry <;>\n"
+            "      rcases hcenter with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> decide\n"
+            "  · intro entry hentry\n"
+            f"    simp [{fixed_def}] at hentry\n"
+            "    rcases hentry with hentry | hentry <;> subst entry\n"
+            "    · exact hv\n"
+            "    · exact hw\n\n"
+            "theorem validFragmentMasksEqTarget {shadow : Shadow}\n"
+            f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
+            f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
+            f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
+            f"    shadow.masks = [{target_list}] := by\n"
+            "  have hfree := validFragmentForcesTarget hvalid hv hw\n"
+            f"  have hcenter : ∀ center, shadow.centerMask center = {target_def} center := by\n"
+            "    intro center\n"
+            "    cases center with\n"
+            "    | v => exact hv\n"
+            "    | w => exact hw\n"
+            "    | u | s1 | s2 | s3 | Pw | Pu | Q1 | Q2 =>\n"
+            "        exact hfree _ (by simp [order])\n"
+            f"  simpa [allLabels, {target_def}] using\n"
+            "    shadow_masks_eq_map_of_hasTenMasks\n"
+            "      (hasTenMasks_of_isValidPinnedFragment hvalid) hcenter\n\n"
+            "theorem memDepth2SubtreeResult_eqTarget {result : List Nat}\n"
+            f"    (hresult : result ∈ depth2SubtreeResult {sstar_literal} {spec.target['w']}) :\n"
+            f"    result = [{target_list}] := by\n"
+            "  have hdata := mem_depth2SubtreeResult_iff.mp hresult\n"
+            "  apply validFragmentMasksEqTarget (shadow := { masks := result })\n"
+            "  · exact hdata.1\n"
+            "  · simpa [Shadow.centerMask, centerMaskOf, pinnedMaskOf, maskOfLabels,\n"
+            "      Label.bit, Label.index] using hdata.2.1\n"
+            "  · simpa [Shadow.centerMask, centerMaskOf] using hdata.2.2\n\n"
+        )
     root_path = module_dir / "Root.lean"
     root_path.write_text(
         imports
@@ -484,61 +658,15 @@ def write_tree_proof(
         + "\n  ]\n\n"
         "set_option maxRecDepth 100000 in\n"
         "theorem checked :\n"
-        f"    checkCompatibilityCertificate {sstar_literal} {fixed_def} {target_def} order [] certificate = true := by\n"
-        "  simp only [order, certificate, checkCompatibilityCertificate, List.map_cons,\n"
+        f"    {checker} {sstar_literal} {fixed_def} {checker_target} order [] certificate = true := by\n"
+        f"  simp only [order, certificate, {checker}, List.map_cons,\n"
         "    List.map_nil, Bool.and_eq_true, List.all_cons, List.all_nil]\n"
         "  refine ⟨by decide, ?_⟩\n"
         "  exact ⟨"
         + root_checks
         + "⟩\n\n"
-        "theorem forcesTarget (choice : Label → Nat)\n"
-        f"    (hchoice : ∀ center ∈ order, choice center ∈ candidateDomain {sstar_literal} {fixed_def} center)\n"
-        "    (hseparation : ∀ center ∈ order, ∀ other ∈ order, center ≠ other →\n"
-        "      crossSeparationOKForMasks center (choice center) other (choice other) = true) :\n"
-        f"    ∀ center ∈ order, choice center = {target_def} center := by\n"
-        "  exact (target_of_checkCompatibilityCertificate checked hchoice (by simp)\n"
-        "    (by simp) hseparation).1\n\n"
-        "theorem validFragmentForcesTarget {shadow : Shadow}\n"
-        f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
-        f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
-        f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
-        f"    ∀ center ∈ order, shadow.centerMask center = {target_def} center := by\n"
-        "  apply validFragment_target_of_checkCompatibilityCertificate checked hvalid\n"
-        "  · intro center hcenter entry hentry\n"
-        f"    simp [order, {fixed_def}] at hcenter hentry ⊢\n"
-        "    rcases hentry with hentry | hentry <;> subst entry <;>\n"
-        "      rcases hcenter with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> decide\n"
-        "  · intro entry hentry\n"
-        f"    simp [{fixed_def}] at hentry\n"
-        "    rcases hentry with hentry | hentry <;> subst entry\n"
-        "    · exact hv\n"
-        "    · exact hw\n\n"
-        "theorem validFragmentMasksEqTarget {shadow : Shadow}\n"
-        f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
-        f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
-        f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
-        f"    shadow.masks = [{target_list}] := by\n"
-        "  have hfree := validFragmentForcesTarget hvalid hv hw\n"
-        f"  have hcenter : ∀ center, shadow.centerMask center = {target_def} center := by\n"
-        "    intro center\n"
-        "    cases center with\n"
-        "    | v => exact hv\n"
-        "    | w => exact hw\n"
-        "    | u | s1 | s2 | s3 | Pw | Pu | Q1 | Q2 =>\n"
-        "        exact hfree _ (by simp [order])\n"
-        f"  simpa [allLabels, {target_def}] using\n"
-        "    shadow_masks_eq_map_of_hasTenMasks\n"
-        "      (hasTenMasks_of_isValidPinnedFragment hvalid) hcenter\n\n"
-        "theorem memDepth2SubtreeResult_eqTarget {result : List Nat}\n"
-        f"    (hresult : result ∈ depth2SubtreeResult {sstar_literal} {spec.target['w']}) :\n"
-        f"    result = [{target_list}] := by\n"
-        "  have hdata := mem_depth2SubtreeResult_iff.mp hresult\n"
-        "  apply validFragmentMasksEqTarget (shadow := { masks := result })\n"
-        "  · exact hdata.1\n"
-        "  · simpa [Shadow.centerMask, centerMaskOf, pinnedMaskOf, maskOfLabels,\n"
-        "      Label.bit, Label.index] using hdata.2.1\n"
-        "  · simpa [Shadow.centerMask, centerMaskOf] using hdata.2.2\n\n"
-        f"end Problem97.{namespace}\n"
+        + root_consequences
+        + f"end Problem97.{namespace}\n"
     )
     return root_path, stats
 
@@ -552,15 +680,23 @@ def write_outputs(
 ) -> tuple[Path, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
     models = enumerate_separation_models(spec, encoding.domains)
-    target_model = spec.target
-    if models != [target_model]:
-        raise SystemExit(f"separation oracle found {len(models)} models; expected the one target")
+    target_models = list(spec.targets)
+    if models != target_models:
+        raise SystemExit(
+            f"separation oracle found {len(models)} models; "
+            f"expected {len(target_models)} targets"
+        )
 
     cnf_path = output_dir / f"{spec.file_stem}-block-target.cnf"
+    target_description = (
+        "target tuple blocked"
+        if len(spec.targets) == 1
+        else f"{len(spec.targets)} target tuples blocked"
+    )
     dimacs = [
         (
             f"c surplus COMP-G singleton sstar={spec.sstar} "
-            f"wmask={spec.target['w']}; target tuple blocked"
+            f"wmask={spec.target['w']}; {target_description}"
         ),
         f"p cnf {len(encoding.variables)} {len(encoding.clauses)}",
     ]
@@ -599,7 +735,11 @@ def write_outputs(
                 "fixed": spec.fixed,
                 "free_centers": spec.free_centers,
                 "label_order": LABELS,
-                "target_masks": spec.target_masks,
+                "target_masks": (
+                    spec.target_masks
+                    if len(spec.targets) == 1
+                    else spec.all_target_masks
+                ),
                 "pair_count_constraints_used": False,
                 "variable_count": len(encoding.variables),
                 "clause_count": len(encoding.clauses),

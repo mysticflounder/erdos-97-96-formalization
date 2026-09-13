@@ -240,6 +240,41 @@ def s1777Target : Label → Nat
   | .Q1 => 549
   | .Q2 => 390
 
+/-- Fixed masks for the `(s1, 834)` depth-two cell with two target rows. -/
+def s1834Fixed : List (Label × Nat) := [(.v, 201), (.w, 834)]
+
+/-- Free centers for the `(s1, 834)` depth-two cell. -/
+def s1834Free : List Label := [.u, .s1, .s2, .s3, .Pw, .Pu, .Q1, .Q2]
+
+/-- First target tuple for the `(s1, 834)` depth-two cell. -/
+def s1834TargetA : Label → Nat
+  | .u => 312
+  | .v => 201
+  | .w => 834
+  | .s1 => 277
+  | .s2 => 553
+  | .s3 => 660
+  | .Pw => 142
+  | .Pu => 83
+  | .Q1 => 612
+  | .Q2 => 418
+
+/-- Second target tuple for the `(s1, 834)` depth-two cell. -/
+def s1834TargetB : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 834
+  | .s1 => 277
+  | .s2 => 553
+  | .s3 => 660
+  | .Pw => 396
+  | .Pu => 83
+  | .Q1 => 612
+  | .Q2 => 298
+
+/-- The two target tuples admitted by the `(s1, 834)` compatibility certificate. -/
+def s1834Targets : List (Label → Nat) := [s1834TargetA, s1834TargetB]
+
 /-- Fixed masks for the `(s1, 912)` depth-two singleton cell. -/
 def s1912Fixed : List (Label × Nat) := [(.v, 201), (.w, 912)]
 
@@ -469,6 +504,33 @@ def checkCompatibilityCertificate (sstar : Label) (fixed : List (Label × Nat))
                 ((center, branch.1) :: assigned) child
   | _, _, _ => false
 
+/-- Check one compatibility decision tree against a finite list of possible targets.
+
+The split and prune checks are identical to `checkCompatibilityCertificate`; only a
+terminal assignment changes, accepting when at least one target agrees with every
+assigned center. -/
+def checkCompatibilityCertificateForTargets (sstar : Label)
+    (fixed : List (Label × Nat)) (targets : List (Label → Nat)) :
+    List Label → List (Label × Nat) → CompatibilityCertificate → Bool
+  | [], assigned, .done =>
+      targets.any fun target =>
+        assigned.all fun entry => entry.2 == target entry.1
+  | center :: remaining, assigned, .split branches =>
+      decide (branches.map Prod.fst = candidateDomain sstar fixed center) &&
+        branches.all fun branch =>
+          match branch.2 with
+          | .prune againstCenter againstMask =>
+              assigned.any (fun entry =>
+                decide (entry.1 = againstCenter) &&
+                  decide (entry.2 = againstMask)) &&
+                decide (center ≠ againstCenter) &&
+                  !crossSeparationOKForMasks center branch.1
+                    againstCenter againstMask
+          | child =>
+              checkCompatibilityCertificateForTargets sstar fixed targets remaining
+                ((center, branch.1) :: assigned) child
+  | _, _, _ => false
+
 /-- A checked compatibility tree forces every compatible candidate selection
 to equal its target on the remaining centers. -/
 theorem target_of_checkCompatibilityCertificate
@@ -590,6 +652,131 @@ theorem target_of_checkCompatibilityCertificate
               · intro entry hentry
                 exact hresult.2 entry (by simp [hentry])
 
+/-- A checked multi-target tree selects a listed target agreeing with every
+compatible choice on both the remaining and already assigned centers. -/
+theorem target_of_checkCompatibilityCertificateForTargets
+    {sstar : Label} {fixed : List (Label × Nat)}
+    {targets : List (Label → Nat)} {choice : Label → Nat}
+    {remaining : List Label} {assigned : List (Label × Nat)}
+    {certificate : CompatibilityCertificate}
+    (hcheck : checkCompatibilityCertificateForTargets sstar fixed targets
+      remaining assigned certificate = true)
+    (hchoice : ∀ center ∈ remaining,
+      choice center ∈ candidateDomain sstar fixed center)
+    (hassigned : ∀ entry ∈ assigned, choice entry.1 = entry.2)
+    (hseparationAssigned : ∀ center ∈ remaining, ∀ entry ∈ assigned,
+      center ≠ entry.1 →
+        crossSeparationOKForMasks center (choice center)
+          entry.1 (choice entry.1) = true)
+    (hseparationRemaining : ∀ center ∈ remaining, ∀ other ∈ remaining,
+      center ≠ other →
+        crossSeparationOKForMasks center (choice center)
+          other (choice other) = true) :
+    ∃ target ∈ targets,
+      (∀ center ∈ remaining, choice center = target center) ∧
+        (∀ entry ∈ assigned, entry.2 = target entry.1) := by
+  induction remaining generalizing assigned certificate with
+  | nil =>
+      cases certificate with
+      | done =>
+          unfold checkCompatibilityCertificateForTargets at hcheck
+          rcases List.any_eq_true.mp hcheck with ⟨target, htarget, hagree⟩
+          refine ⟨target, htarget, by simp, ?_⟩
+          intro entry hentry
+          rw [List.all_eq_true] at hagree
+          simpa only [beq_iff_eq] using hagree entry hentry
+      | split branches => simp [checkCompatibilityCertificateForTargets] at hcheck
+      | prune center mask => simp [checkCompatibilityCertificateForTargets] at hcheck
+  | cons head remaining ih =>
+      cases certificate with
+      | done => simp [checkCompatibilityCertificateForTargets] at hcheck
+      | prune againstCenter againstMask =>
+          simp [checkCompatibilityCertificateForTargets] at hcheck
+      | split branches =>
+          simp only [checkCompatibilityCertificateForTargets, Bool.and_eq_true] at hcheck
+          have hdomain : branches.map Prod.fst = candidateDomain sstar fixed head :=
+            of_decide_eq_true hcheck.1
+          have hselected : choice head ∈ branches.map Prod.fst := by
+            rw [hdomain]
+            exact hchoice head (by simp)
+          rcases List.mem_map.mp hselected with ⟨branch, hbranch, hmask⟩
+          have hbranchCheck := List.all_eq_true.mp hcheck.2 branch hbranch
+          rcases branch with ⟨mask, child⟩
+          simp only at hmask
+          subst mask
+          let current := head
+          cases child with
+          | prune againstCenter againstMask =>
+              change ((assigned.any fun entry =>
+                decide (entry.1 = againstCenter) &&
+                  decide (entry.2 = againstMask)) &&
+                decide (current ≠ againstCenter) &&
+                !crossSeparationOKForMasks current (choice current)
+                  againstCenter againstMask) = true at hbranchCheck
+              rw [Bool.and_eq_true] at hbranchCheck
+              have hleft := hbranchCheck.1
+              rw [Bool.and_eq_true] at hleft
+              have hany := hleft.1
+              rw [List.any_eq_true] at hany
+              rcases hany with ⟨entry, hentry, hentryCheck⟩
+              rw [Bool.and_eq_true] at hentryCheck
+              have hcenterEq := of_decide_eq_true hentryCheck.1
+              have hmaskEq := of_decide_eq_true hentryCheck.2
+              have hne : current ≠ entry.1 := by
+                intro heq
+                exact (of_decide_eq_true hleft.2) (heq.trans hcenterEq)
+              have hgood := hseparationAssigned current (by simp [current])
+                entry hentry hne
+              have hassignedEntry := hassigned entry hentry
+              rw [hcenterEq, hmaskEq] at hassignedEntry
+              rw [hcenterEq, hassignedEntry] at hgood
+              rw [hgood] at hbranchCheck
+              simp at hbranchCheck
+          | done =>
+              rcases ih hbranchCheck
+                  (fun c hc => hchoice c (by simp [hc]))
+                  (fun entry hentry => by
+                    rcases List.mem_cons.mp hentry with rfl | hentry
+                    · rfl
+                    · exact hassigned entry hentry)
+                  (fun c hc entry hentry hne => by
+                    rcases List.mem_cons.mp hentry with rfl | hentry
+                    · exact hseparationRemaining c (by simp [hc]) current
+                        (by simp [current]) hne
+                    · exact hseparationAssigned c (by simp [hc]) entry hentry hne)
+                  (fun c hc other hother hne =>
+                    hseparationRemaining c (by simp [hc]) other (by simp [hother]) hne) with
+                ⟨target, htarget, hremaining, hassignedTarget⟩
+              refine ⟨target, htarget, ?_, ?_⟩
+              · intro c hc
+                rcases List.mem_cons.mp hc with rfl | hc
+                · exact hassignedTarget (current, choice current) (by simp [current])
+                · exact hremaining c hc
+              · intro entry hentry
+                exact hassignedTarget entry (by simp [hentry])
+          | split childBranches =>
+              rcases ih hbranchCheck
+                  (fun c hc => hchoice c (by simp [hc]))
+                  (fun entry hentry => by
+                    rcases List.mem_cons.mp hentry with rfl | hentry
+                    · rfl
+                    · exact hassigned entry hentry)
+                  (fun c hc entry hentry hne => by
+                    rcases List.mem_cons.mp hentry with rfl | hentry
+                    · exact hseparationRemaining c (by simp [hc]) current
+                        (by simp [current]) hne
+                    · exact hseparationAssigned c (by simp [hc]) entry hentry hne)
+                  (fun c hc other hother hne =>
+                    hseparationRemaining c (by simp [hc]) other (by simp [hother]) hne) with
+                ⟨target, htarget, hremaining, hassignedTarget⟩
+              refine ⟨target, htarget, ?_, ?_⟩
+              · intro c hc
+                rcases List.mem_cons.mp hc with rfl | hc
+                · exact hassignedTarget (current, choice current) (by simp [current])
+                · exact hremaining c hc
+              · intro entry hentry
+                exact hassignedTarget entry (by simp [hentry])
+
 /-- A checked compatibility tree transfers directly to valid pinned fragments,
 using only candidate-mask admissibility and search separation. -/
 theorem validFragment_target_of_checkCompatibilityCertificate
@@ -610,6 +797,30 @@ theorem validFragment_target_of_checkCompatibilityCertificate
     (fun center hcenter other hother hne =>
       crossSeparationOKForMasks_of_searchSeparationOK
         (searchSeparationOK_of_isValidPinnedFragment hvalid) hne)).1
+
+/-- A valid pinned fragment accepted by a multi-target tree agrees on every free
+center with one target from the supplied list. -/
+theorem validFragment_target_of_checkCompatibilityCertificateForTargets
+    {sstar : Label} {fixed : List (Label × Nat)} {free : List Label}
+    {targets : List (Label → Nat)} {certificate : CompatibilityCertificate}
+    {shadow : Shadow}
+    (hcheck : checkCompatibilityCertificateForTargets sstar fixed targets
+      free [] certificate = true)
+    (hvalid : isValidPinnedFragment sstar shadow = true)
+    (hdisjoint : ∀ center ∈ free, ∀ entry ∈ fixed, center ≠ entry.1)
+    (hfixed : ∀ entry ∈ fixed, shadow.centerMask entry.1 = entry.2) :
+    ∃ target ∈ targets,
+      ∀ center ∈ free, shadow.centerMask center = target center := by
+  rcases target_of_checkCompatibilityCertificateForTargets hcheck
+      (fun center hcenter =>
+        shadow_mask_mem_candidateDomain hvalid hcenter hdisjoint hfixed)
+      (by simp)
+      (by simp)
+      (fun center hcenter other hother hne =>
+        crossSeparationOKForMasks_of_searchSeparationOK
+          (searchSeparationOK_of_isValidPinnedFragment hvalid) hne) with
+    ⟨target, htarget, hfree, _⟩
+  exact ⟨target, htarget, hfree⟩
 
 /-- Semantic adapter for the blocked `(s1, 777)` candidate-choice instance. -/
 theorem validFragment_satisfies_s1777CNF
