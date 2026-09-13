@@ -56,6 +56,10 @@ provenance for the project's own Lean formalization.
   and the nine-point `55` bound. Both proofs were verified by Prove2Me; no
   separate mission milestone was created.
 
+- [Accepted finite-nine counting-shapes support](submissions/finite-nine-counting-shapes/README.md):
+  five reusable local and nine-point counting lemmas, with validation and
+  attribution records; no separate mission milestone was created.
+
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
   and bank-replacement work, with consumer and validation gates.
 - `mission-description.md`: the public introduction, including why the problems

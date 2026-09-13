@@ -1,0 +1,145 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "proof:Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant": {
+      "payload_sha256": "fa584b103545eb057bf2cc0ce9eb682466a94d986c6e199f021423a3f829f62a",
+      "state": "RECORDED",
+      "submission_id": "debea035-283c-45b5-bd3e-b1f87a8aa146"
+    },
+    "proof:Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair": {
+      "payload_sha256": "8f84e2f9a2658bd800ce55e4b40b79fc169ef2f974293fbc151c38e7e57f47c5",
+      "state": "RECORDED",
+      "submission_id": "45dc1c51-cf6d-4a43-99e1-407bec71fef4"
+    },
+    "proof:Problem97.iCountAt_ge_choose_two_of_equidistant_subset": {
+      "payload_sha256": "d9a6ac6186ec765dee157d6645cd1bcdc3b5573ab1ce9d5018c1756faeb07e64",
+      "state": "RECORDED",
+      "submission_id": "f243d22f-78fc-486f-9b86-a12259bf7fee"
+    },
+    "proof:Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair": {
+      "payload_sha256": "27c8b27b106e5d8de716cf0ce955b2cad90346444fb95013ea73b22ba9261137",
+      "state": "RECORDED",
+      "submission_id": "866b6ad4-788a-4bb1-b7be-e9f36abdd7f6"
+    },
+    "proof:Problem97.iCountAt_ge_ten_of_five_equidistant": {
+      "payload_sha256": "3ac2238b440e9dcd49748bd0f55e1ea383cfcad0b7531eeb791aafb797e20007",
+      "state": "RECORDED",
+      "submission_id": "9ee505fe-2552-4f96-a9ad-9ba2dcb289fc"
+    },
+    "theorem:Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant": {
+      "job_id": "efac2656-1c82-4c9c-bf33-b638a02a1aeb",
+      "payload_sha256": "46cc5884ba96d21e8bb7e4a5baac7ce0b125c1724147185bc202a97df2eadb13",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair": {
+      "job_id": "30cd68f9-5853-4333-9f69-6d038e647870",
+      "payload_sha256": "9928b4f19174d1f2797809b5ca8db00c79ab8069669a2250ba5ed259683f7d67",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.iCountAt_ge_choose_two_of_equidistant_subset": {
+      "job_id": "e20c18a3-2f8f-4fa2-bf14-017a562ee3c0",
+      "payload_sha256": "7ccb1a8adf6d057c5a0f1d8fe8f13bc4b3712739a6d41d2072591dae03831610",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair": {
+      "job_id": "802e605b-1801-4bff-b406-61e653313cba",
+      "payload_sha256": "442534b674cbbdc129cc0df8fadebee6ce3abf199b48aa6812504dcd06159eae",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.iCountAt_ge_ten_of_five_equidistant": {
+      "job_id": "fb68e47b-6df9-47d9-9c6e-67e28222689c",
+      "payload_sha256": "777a1e4c36596aa4bbef3c3770b5383e39e16b3ca88333e53a6a34b84df379fd",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "d004f9ee0372b3487e055f7d811b5b1dcbc62537a4ca376498e01d8e2bf81246",
+  "proof_attempts": {},
+  "proofs": {
+    "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant": {
+      "created_at": "2026-09-13T03:23:23.270809+00:00",
+      "error_message": "",
+      "file_path": "27ae9d05-173b-4e57-90f9-fa3df15c17d2/6ac78adb-dda3-4892-bb46-d4c86f102d16/debea035-283c-45b5-bd3e-b1f87a8aa146.lean",
+      "id": "debea035-283c-45b5-bd3e-b1f87a8aa146",
+      "status": "ACCEPTED",
+      "submission_id": "debea035-283c-45b5-bd3e-b1f87a8aa146",
+      "theorem_id": "27ae9d05-173b-4e57-90f9-fa3df15c17d2",
+      "updated_at": "2026-09-13T03:24:54.218849+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair": {
+      "created_at": "2026-09-13T03:24:56.800143+00:00",
+      "error_message": "",
+      "file_path": "c253f96d-013f-4517-9b37-d5cabef6b940/6ac78adb-dda3-4892-bb46-d4c86f102d16/45dc1c51-cf6d-4a43-99e1-407bec71fef4.lean",
+      "id": "45dc1c51-cf6d-4a43-99e1-407bec71fef4",
+      "status": "ACCEPTED",
+      "submission_id": "45dc1c51-cf6d-4a43-99e1-407bec71fef4",
+      "theorem_id": "c253f96d-013f-4517-9b37-d5cabef6b940",
+      "updated_at": "2026-09-13T03:27:32.17907+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.iCountAt_ge_choose_two_of_equidistant_subset": {
+      "created_at": "2026-09-13T03:18:33.246132+00:00",
+      "error_message": "",
+      "file_path": "1c1637cf-e77a-4d15-932b-86452c22ccb6/6ac78adb-dda3-4892-bb46-d4c86f102d16/f243d22f-78fc-486f-9b86-a12259bf7fee.lean",
+      "id": "f243d22f-78fc-486f-9b86-a12259bf7fee",
+      "status": "ACCEPTED",
+      "submission_id": "f243d22f-78fc-486f-9b86-a12259bf7fee",
+      "theorem_id": "1c1637cf-e77a-4d15-932b-86452c22ccb6",
+      "updated_at": "2026-09-13T03:19:50.698151+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair": {
+      "created_at": "2026-09-13T03:21:49.835566+00:00",
+      "error_message": "",
+      "file_path": "83338974-c234-4621-af10-fec002d1d6d9/6ac78adb-dda3-4892-bb46-d4c86f102d16/866b6ad4-788a-4bb1-b7be-e9f36abdd7f6.lean",
+      "id": "866b6ad4-788a-4bb1-b7be-e9f36abdd7f6",
+      "status": "ACCEPTED",
+      "submission_id": "866b6ad4-788a-4bb1-b7be-e9f36abdd7f6",
+      "theorem_id": "83338974-c234-4621-af10-fec002d1d6d9",
+      "updated_at": "2026-09-13T03:23:13.665986+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.iCountAt_ge_ten_of_five_equidistant": {
+      "created_at": "2026-09-13T03:19:55.994714+00:00",
+      "error_message": "",
+      "file_path": "19834bf2-6bef-454f-b0be-173a27ed6bbd/6ac78adb-dda3-4892-bb46-d4c86f102d16/9ee505fe-2552-4f96-a9ad-9ba2dcb289fc.lean",
+      "id": "9ee505fe-2552-4f96-a9ad-9ba2dcb289fc",
+      "status": "ACCEPTED",
+      "submission_id": "9ee505fe-2552-4f96-a9ad-9ba2dcb289fc",
+      "theorem_id": "19834bf2-6bef-454f-b0be-173a27ed6bbd",
+      "updated_at": "2026-09-13T03:21:41.393189+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant": {
+      "job_id": "efac2656-1c82-4c9c-bf33-b638a02a1aeb",
+      "status": "PUBLISHED",
+      "theorem_id": "27ae9d05-173b-4e57-90f9-fa3df15c17d2"
+    },
+    "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair": {
+      "job_id": "30cd68f9-5853-4333-9f69-6d038e647870",
+      "status": "PUBLISHED",
+      "theorem_id": "c253f96d-013f-4517-9b37-d5cabef6b940"
+    },
+    "Problem97.iCountAt_ge_choose_two_of_equidistant_subset": {
+      "job_id": "e20c18a3-2f8f-4fa2-bf14-017a562ee3c0",
+      "status": "PUBLISHED",
+      "theorem_id": "1c1637cf-e77a-4d15-932b-86452c22ccb6"
+    },
+    "Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair": {
+      "job_id": "802e605b-1801-4bff-b406-61e653313cba",
+      "status": "PUBLISHED",
+      "theorem_id": "83338974-c234-4621-af10-fec002d1d6d9"
+    },
+    "Problem97.iCountAt_ge_ten_of_five_equidistant": {
+      "job_id": "fb68e47b-6df9-47d9-9c6e-67e28222689c",
+      "status": "PUBLISHED",
+      "theorem_id": "19834bf2-6bef-454f-b0be-173a27ed6bbd"
+    }
+  }
+}

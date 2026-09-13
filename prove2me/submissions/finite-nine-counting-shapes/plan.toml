@@ -1,0 +1,81 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/finite-nine-counting-shapes/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[theorem]]
+name = "Problem97.iCountAt_ge_choose_two_of_equidistant_subset"
+title = "Equidistant neighbours give one local pair per unordered pair"
+file = "submissions/finite-nine-counting-shapes/platform/Theorems/Thm_Problem97_iCountAt_ge_choose_two_of_equidistant_subset.lean"
+natural_language_statement = "If S is a finite set of points in A.erase p at one common distance from p, then the number of two-element subsets of S is at most the isosceles count at p."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L58-L68"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting", "finite-nine"]
+
+[[theorem]]
+name = "Problem97.iCountAt_ge_ten_of_five_equidistant"
+title = "Five equidistant neighbours give ten local pairs"
+file = "submissions/finite-nine-counting-shapes/platform/Theorems/Thm_Problem97_iCountAt_ge_ten_of_five_equidistant.lean"
+natural_language_statement = "If S has at least five points in A.erase p at one common distance from p, then the isosceles count at p is at least ten."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L72-L85"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting", "finite-nine"]
+
+[[theorem]]
+name = "Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair"
+title = "A four-point class and an extra pair outside it give seven local pairs"
+file = "submissions/finite-nine-counting-shapes/platform/Theorems/Thm_Problem97_iCountAt_ge_seven_of_four_class_and_extra_pair.lean"
+natural_language_statement = "If T has at least four equidistant neighbours of p and a two-point equal-distance pair has its first point outside T, with both configurations in A.erase p, then the isosceles count at p is at least seven."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L87-L123"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting", "finite-nine"]
+
+[[theorem]]
+name = "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant"
+title = "Five equidistant neighbours give the fifty-five total-count bound at nine points"
+file = "submissions/finite-nine-counting-shapes/platform/Theorems/Thm_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant.lean"
+natural_language_statement = "If A has nine points, every point has four equidistant witnesses, and one apex has at least five equidistant neighbours at one radius, then the total isosceles count of A is at least fifty-five."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L205-L218"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting", "finite-nine"]
+
+[[theorem]]
+name = "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair"
+title = "A four-point class and extra pair outside it give the fifty-five total-count bound at nine points"
+file = "submissions/finite-nine-counting-shapes/platform/Theorems/Thm_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair.lean"
+natural_language_statement = "If A has nine points, every point has four equidistant witnesses, and one apex has a four-point equidistant class plus an equal-distance pair with a designated endpoint outside that class, then the total isosceles count of A is at least fifty-five."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/bd8528ea10a12da2c84a10cc5897e36681c2e75d/lean/Erdos9796Proof/P97/IsoscelesCount.lean#L220-L235"
+tags = ["discrete-geometry", "erdos-97", "isosceles-triangles", "counting", "finite-nine"]
+
+[[proof]]
+theorem = "Problem97.iCountAt_ge_choose_two_of_equidistant_subset"
+file = "submissions/finite-nine-counting-shapes/platform/Solutions/Sol_Problem97_iCountAt_ge_choose_two_of_equidistant_subset.lean"
+explanation = "submissions/finite-nine-counting-shapes/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.iCountAt_ge_ten_of_five_equidistant"
+file = "submissions/finite-nine-counting-shapes/platform/Solutions/Sol_Problem97_iCountAt_ge_ten_of_five_equidistant.lean"
+explanation = "submissions/finite-nine-counting-shapes/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair"
+file = "submissions/finite-nine-counting-shapes/platform/Solutions/Sol_Problem97_iCountAt_ge_seven_of_four_class_and_extra_pair.lean"
+explanation = "submissions/finite-nine-counting-shapes/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant"
+file = "submissions/finite-nine-counting-shapes/platform/Solutions/Sol_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant.lean"
+explanation = "submissions/finite-nine-counting-shapes/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair"
+file = "submissions/finite-nine-counting-shapes/platform/Solutions/Sol_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair.lean"
+explanation = "submissions/finite-nine-counting-shapes/explanation.md"
+proof_type = "prove"

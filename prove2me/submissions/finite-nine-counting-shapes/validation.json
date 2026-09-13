@@ -1,0 +1,147 @@
+{
+  "schema": "prove2me-finite-nine-counting-shapes-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revision": "bd8528ea10a12da2c84a10cc5897e36681c2e75d",
+  "plan_digest": "d004f9ee0372b3487e055f7d811b5b1dcbc62537a4ca376498e01d8e2bf81246",
+  "prepublication_readback": {
+    "status": "PASS",
+    "exact_theorems_absent": [
+      "Problem97.iCountAt_ge_choose_two_of_equidistant_subset",
+      "Problem97.iCountAt_ge_ten_of_five_equidistant",
+      "Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair",
+      "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant",
+      "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair"
+    ]
+  },
+  "statement_identity": {
+    "count": 5,
+    "status": "PASS"
+  },
+  "isolated_lean_compile": {
+    "theorem_stubs": 5,
+    "solutions": 5,
+    "validation_wrappers": 5,
+    "status": "PASS",
+    "note": "Lean 4.33.1 lake-build in an isolated staging project"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.iCountAt_ge_choose_two_of_equidistant_subset",
+      "Problem97.iCountAt_ge_ten_of_five_equidistant",
+      "Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair",
+      "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant",
+      "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_harness_axiom_audit": {
+    "declarations": [
+      "ChooseTwoEquidistantKernelValidation.result",
+      "FiveEquidistantLocalCountKernelValidation.result",
+      "FourClassExtraPairLocalCountKernelValidation.result",
+      "NinePointFiveEquidistantKernelValidation.result",
+      "NinePointFourClassExtraPairKernelValidation.result"
+    ],
+    "axioms": [
+      "propext",
+      "sorryAx",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS_EXPECTED_STATEMENT_STUBS",
+    "note": "sorryAx occurs only in wrappers that import theorem presentation stubs; submitted solutions and validators contain no proof holes."
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "admit",
+      "native_decide",
+      "ofReduceBool",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by",
+      "extern"
+    ],
+    "status": "PASS"
+  },
+  "receipt_sha256": "e5b57052f7ed6f3304a751a0c5c0b3eb74b4b8b0a77c3aa4847fe65ce4236aa0",
+  "live_readback": {
+    "checked_utc": "2026-09-13T03:31:25Z",
+    "theorems": [
+      {
+        "name": "Problem97.iCountAt_ge_choose_two_of_equidistant_subset",
+        "id": "1c1637cf-e77a-4d15-932b-86452c22ccb6",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "f243d22f-78fc-486f-9b86-a12259bf7fee",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.iCountAt_ge_ten_of_five_equidistant",
+        "id": "19834bf2-6bef-454f-b0be-173a27ed6bbd",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "9ee505fe-2552-4f96-a9ad-9ba2dcb289fc",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.iCountAt_ge_seven_of_four_class_and_extra_pair",
+        "id": "83338974-c234-4621-af10-fec002d1d6d9",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "866b6ad4-788a-4bb1-b7be-e9f36abdd7f6",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant",
+        "id": "27ae9d05-173b-4e57-90f9-fa3df15c17d2",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "debea035-283c-45b5-bd3e-b1f87a8aa146",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair",
+        "id": "c253f96d-013f-4517-9b37-d5cabef6b940",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "45dc1c51-cf6d-4a43-99e1-407bec71fef4",
+        "proof_status": "ACCEPTED"
+      }
+    ],
+    "milestones_created": 0
+  },
+  "files": {
+    "README.md": "8983ea90f89673f4ea33b84ab87ea67017495b6d73bb93bb84a84ab953593078",
+    "explanation.md": "854db020e35fc841e013f95eaa5c74efdda085eaa795b1d173ce0f7a7acccff4",
+    "plan.toml": "bc3819cc3d6851c221330010df9d41e5eb5403d9b7e6989a212c5cd5ba01a55b",
+    "platform/Solutions/Sol_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant.lean": "00936fda43d1011a37cd0d0d13c3c6e7f2c49dc7dd58dcd01adf6d11fd17ce21",
+    "platform/Solutions/Sol_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair.lean": "316a3159f288eb01f69b5807a2b5798072e2238c8598466af29a748456d3231c",
+    "platform/Solutions/Sol_Problem97_iCountAt_ge_choose_two_of_equidistant_subset.lean": "79fe85838a0b19be85873b432c92a04a2fc0957595a0fc80d88341b5748b7c13",
+    "platform/Solutions/Sol_Problem97_iCountAt_ge_seven_of_four_class_and_extra_pair.lean": "3cc27e07528d9856e5de59a47a3825f768b6700e9b2126c8723c4ee0fbbd31cd",
+    "platform/Solutions/Sol_Problem97_iCountAt_ge_ten_of_five_equidistant.lean": "b4831a32d8576717b568c8d6157d75862010224e11851ca5298573f9389cfe61",
+    "platform/Theorems/Thm_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_five_equidistant.lean": "5cba541920776e7189034e5dd9c74d612c89126f24001971b0a1e8c2a52b5bf4",
+    "platform/Theorems/Thm_Problem97_fifty_five_le_iCount_of_card_nine_K4_of_four_class_and_extra_pair.lean": "df9c330d9d5549f4572ad829953f3cb526cf4faedfc83e3fb89e518563d239f2",
+    "platform/Theorems/Thm_Problem97_iCountAt_ge_choose_two_of_equidistant_subset.lean": "5c9fd3ac19e5fb9aa1ceceaf0bccd305b18f0627a32acaf1160f9d87387bafe4",
+    "platform/Theorems/Thm_Problem97_iCountAt_ge_seven_of_four_class_and_extra_pair.lean": "9987db955dbd66ccdb72b954dd05322253a5607ad4e7c2d861e8efbf465272e3",
+    "platform/Theorems/Thm_Problem97_iCountAt_ge_ten_of_five_equidistant.lean": "2ae457e9622ec5a356adc82b5fa0051ba820468e348e18449861e164ad247144",
+    "platform/Validation/ChooseTwoEquidistantKernel.lean": "aee7a0f22bde53581cff78ae744cd977a380d8f37cf8f9e4232504f7de2044a8",
+    "platform/Validation/FiveEquidistantLocalCountKernel.lean": "4aa4db3aa759070f3e67821f3ea7e2db03753ae0fa1fe25e09392d44172069c7",
+    "platform/Validation/FourClassExtraPairLocalCountKernel.lean": "f0d19b17f5426d390a46ffcf44b46e457774b30496d802209c4d11862bef459b",
+    "platform/Validation/NinePointFiveEquidistantKernel.lean": "e7e53bfdda09ac452060e8bd5d4e1022e90d10a3058175b50b1182f736a8d268",
+    "platform/Validation/NinePointFourClassExtraPairKernel.lean": "920f565b1ba04c501dde6d6c1110da3babb4198c16df121a12d5b9cd466634f4",
+    "receipt.json": "e5b57052f7ed6f3304a751a0c5c0b3eb74b4b8b0a77c3aa4847fe65ce4236aa0",
+    "skeptic-audit.md": "33a36cdcb4a9149e0ea9f864367be4ddba503669de3e25abf83dc955645666d8"
+  }
+}
