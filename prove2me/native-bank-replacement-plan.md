@@ -232,6 +232,32 @@ through it. Require a direct `#print axioms` probe of the bridge to report only
 whose certificate data does not fit a shared schema rather than replacing its
 native check with another evaluator.
 
+**Singleton classifier pilot:** the first cell, `(s1, 777)`, is encoded as a
+candidate-choice CNF over the eight centers other than the fixed `v` and `w`.
+Each center chooses one structurally classified candidate mask; binary clauses
+exclude pairs that violate cross-separation; one clause blocks the known target
+row. Pair-count clauses are unnecessary for this pilot: the weaker
+separation-only formula already has that row as its sole model. The instance has
+248 variables and 18,819 clauses. A generic Lean theorem maps every valid
+pinned fragment with a different free-center mask to a satisfying assignment,
+and a length-aware extensionality theorem turns exclusion of such an assignment
+into equality with the ten-mask row. This is the required semantic boundary;
+it assumes neither bank membership nor a static-search equality.
+
+CaDiCaL and `drat-trim` produced a 1.88 MB pure-RUP LRAT certificate for the
+blocked formula. Its compact replay remained diagnostic: seven window checks
+used `native_decide`, kernel `decide` timed out even at one action per window,
+and the direct proof-term form expanded to about 26 MB. The promoted proof uses
+the same separation classifier as a smaller structural decision certificate.
+A generic soundness theorem checks exact candidate-domain coverage at every
+split, permits a prune only when a concrete earlier mask is separation-
+incompatible, and requires every terminal assignment to equal the target. The
+`(s1, 777)` certificate has 1,115 split states, 37,862 explicit prunes, and one
+terminal. Its 31 generated Lean modules total 1.41 MB and give a core-only
+theorem that every member of `depth2SubtreeResult .s1 777` is the stored target
+row. The next checkpoint generalizes this certificate generator to `(s1, 912)`
+and `(s3, 801)`, then proves row-key membership for all three singleton cells.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable

@@ -1,0 +1,633 @@
+"""Emit and independently validate candidate-choice CNF for singleton COMP-G cells."""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import shutil
+import subprocess
+from dataclasses import dataclass
+from pathlib import Path
+
+LABELS = ("u", "v", "w", "s1", "s2", "s3", "Pw", "Pu", "Q1", "Q2")
+LABEL_INDEX = {label: index for index, label in enumerate(LABELS)}
+HULL_ORDER = ("u", "Q1", "Q2", "v", "s1", "s2", "s3", "w", "Pw", "Pu")
+LABEL_PAIRS = tuple(
+    (left, right)
+    for index, left in enumerate(LABELS)
+    for right in LABELS[index + 1 :]
+)
+SSTAR = "s1"
+FIXED = {"v": 201, "w": 777}
+FREE_CENTERS = tuple(center for center in LABELS if center not in FIXED)
+TARGET = dict(zip(LABELS, (432, 201, 777, 534, 354, 92, 170, 83, 549, 390), strict=True))
+TREE_ORDER = ("u", "Pw", "Pu", "Q1", "Q2", "s1", "s2", "s3")
+SCHEMA = "surplus-compg-singleton-candidate-cnf/v1"
+TREE_SCHEMA = "surplus-compg-compatibility-certificate/v1"
+TREE_MODULE_PREFIX = (
+    "Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1777TreeProof"
+)
+
+
+def mask_has(mask: int, label: str) -> bool:
+    return bool(mask & (1 << LABEL_INDEX[label]))
+
+
+def mask_card(mask: int) -> int:
+    return sum(mask_has(mask, label) for label in LABELS)
+
+
+def mask_inter_card(left: int, right: int) -> int:
+    return sum(mask_has(left, label) and mask_has(right, label) for label in LABELS)
+
+
+def mask_of(labels: tuple[str, ...]) -> int:
+    return sum(1 << LABEL_INDEX[label] for label in labels)
+
+
+def between(a: str, b: str, x: str) -> bool:
+    da = (HULL_ORDER.index(x) - HULL_ORDER.index(a)) % len(LABELS)
+    db = (HULL_ORDER.index(b) - HULL_ORDER.index(a)) % len(LABELS)
+    return 0 < da < db
+
+
+def separated(a: str, b: str, x: str, y: str) -> bool:
+    return between(a, b, x) != between(a, b, y)
+
+
+def cross_separation_ok(c: str, cmask: int, cp: str, cpmask: int) -> bool:
+    for x, y in LABEL_PAIRS:
+        if x in {c, cp} or y in {c, cp}:
+            continue
+        if (
+            mask_has(cmask, x)
+            and mask_has(cmask, y)
+            and mask_has(cpmask, x)
+            and mask_has(cpmask, y)
+            and not separated(c, cp, x, y)
+        ):
+            return False
+    return True
+
+
+def candidate_mask_ok(sstar: str, center: str, mask: int) -> bool:
+    cv_no_u = mask_of(("w", "Pw", "Pu"))
+    cw_no_u = mask_of(("v", "Q1", "Q2"))
+    cv_no_w = mask_of(("u", "Pw", "Pu"))
+    cu_no_w = mask_of(("v", "s1", "s2", "s3"))
+    u_pw_pu = mask_of(("u", "Pw", "Pu"))
+    if mask >= 1 << len(LABELS) or mask_card(mask) != 4 or mask_has(mask, center):
+        return False
+    if center == "v" and mask != mask_of(("Pu", "Pw", "u", sstar)):
+        return False
+    if center == "w" and not (
+        mask_has(mask, "Q1")
+        and mask_has(mask, "Q2")
+        and mask_inter_card(mask, cu_no_w) == 1
+        and mask_inter_card(mask, cv_no_w) == 1
+    ):
+        return False
+    if center == "u" and (
+        mask_inter_card(mask, cv_no_u) > 1 or mask_inter_card(mask, cw_no_u) > 1
+    ):
+        return False
+    if center == "w" and (
+        mask_inter_card(mask, cv_no_w) > 1 or mask_inter_card(mask, cu_no_w) > 1
+    ):
+        return False
+    if center not in {"u", "v", "w"} and all(mask_has(mask, x) for x in ("u", "v", "w")):
+        return False
+    if center in {"u", "Q1", "Q2"}:
+        return not (mask_has(mask, sstar) and mask_inter_card(mask, u_pw_pu) >= 1)
+    if center == sstar:
+        return mask_inter_card(mask, u_pw_pu) <= 1
+    return True
+
+
+def candidate_domain(center: str) -> tuple[int, ...]:
+    return tuple(
+        mask
+        for mask in range(1 << len(LABELS))
+        if candidate_mask_ok(SSTAR, center, mask)
+        and all(
+            cross_separation_ok(center, mask, fixed, fixed_mask)
+            for fixed, fixed_mask in FIXED.items()
+        )
+    )
+
+
+@dataclass(frozen=True)
+class Encoding:
+    variables: dict[tuple[str, int], int]
+    domains: dict[str, tuple[int, ...]]
+    clauses: list[tuple[int, ...]]
+    clause_counts: dict[str, int]
+
+
+def build_encoding() -> Encoding:
+    domains = {center: candidate_domain(center) for center in FREE_CENTERS}
+    variables: dict[tuple[str, int], int] = {}
+    for center in FREE_CENTERS:
+        for mask in domains[center]:
+            variables[(center, mask)] = len(variables) + 1
+
+    clauses: list[tuple[int, ...]] = []
+    counts: dict[str, int] = {}
+
+    def finish_family(name: str, start: int) -> None:
+        counts[name] = len(clauses) - start
+
+    start = len(clauses)
+    for center in FREE_CENTERS:
+        clauses.append(tuple(variables[(center, mask)] for mask in domains[center]))
+    finish_family("at_least_one", start)
+
+    start = len(clauses)
+    for center in FREE_CENTERS:
+        domain = domains[center]
+        for index, left in enumerate(domain):
+            for right in domain[index + 1 :]:
+                clauses.append((-variables[(center, left)], -variables[(center, right)]))
+    finish_family("at_most_one", start)
+
+    start = len(clauses)
+    for cindex, center in enumerate(FREE_CENTERS):
+        for other in FREE_CENTERS[cindex + 1 :]:
+            for mask in domains[center]:
+                for other_mask in domains[other]:
+                    if not cross_separation_ok(center, mask, other, other_mask):
+                        clauses.append((-variables[(center, mask)], -variables[(other, other_mask)]))
+    finish_family("cross_separation", start)
+
+    start = len(clauses)
+    clauses.append(tuple(-variables[(center, TARGET[center])] for center in FREE_CENTERS))
+    finish_family("block_target", start)
+    return Encoding(variables, domains, clauses, counts)
+
+
+def enumerate_separation_models(domains: dict[str, tuple[int, ...]]) -> list[dict[str, int]]:
+    """Exhaustively enumerate separation-compatible tuples without reading the CNF."""
+    order = tuple(sorted(FREE_CENTERS, key=lambda center: (len(domains[center]), LABEL_INDEX[center])))
+    models: list[dict[str, int]] = []
+    chosen: dict[str, int] = dict(FIXED)
+
+    def visit(depth: int) -> None:
+        if depth == len(order):
+            models.append({center: chosen[center] for center in LABELS})
+            return
+        center = order[depth]
+        for mask in domains[center]:
+            if all(
+                cross_separation_ok(center, mask, other, other_mask)
+                for other, other_mask in chosen.items()
+            ):
+                chosen[center] = mask
+                visit(depth + 1)
+                del chosen[center]
+
+    visit(0)
+    return models
+
+
+def tree_order(domains: dict[str, tuple[int, ...]]) -> tuple[str, ...]:
+    """Return the measured 1,115-state static decision-tree order."""
+    if set(domains) != set(TREE_ORDER):
+        raise SystemExit("tree order does not cover the candidate-domain centers exactly")
+    return TREE_ORDER
+
+
+def build_compatibility_certificate(
+    domains: dict[str, tuple[int, ...]],
+) -> tuple[dict[str, object], dict[str, int], tuple[str, ...]]:
+    """Build a complete separation tree with concrete earlier-choice prunes."""
+    order = tree_order(domains)
+    stats = {"partial_states": 0, "split_nodes": 0, "prune_nodes": 0, "done_nodes": 0}
+
+    def visit(depth: int, assigned: tuple[tuple[str, int], ...]) -> dict[str, object]:
+        stats["partial_states"] += 1
+        if depth == len(order):
+            if any(mask != TARGET[center] for center, mask in assigned):
+                raise SystemExit("compatibility certificate reached a non-target completion")
+            stats["done_nodes"] += 1
+            return {"kind": "done"}
+
+        center = order[depth]
+        branches: list[dict[str, object]] = []
+        stats["split_nodes"] += 1
+        for mask in domains[center]:
+            witness = next(
+                (
+                    (other, other_mask)
+                    for other, other_mask in assigned
+                    if not cross_separation_ok(center, mask, other, other_mask)
+                ),
+                None,
+            )
+            if witness is not None:
+                stats["prune_nodes"] += 1
+                branches.append(
+                    {
+                        "mask": mask,
+                        "child": {
+                            "kind": "prune",
+                            "against_center": witness[0],
+                            "against_mask": witness[1],
+                        },
+                    }
+                )
+            else:
+                branches.append(
+                    {
+                        "mask": mask,
+                        "child": visit(depth + 1, ((center, mask),) + assigned),
+                    }
+                )
+        return {"kind": "split", "center": center, "branches": branches}
+
+    certificate = visit(0, ())
+    return certificate, stats, order
+
+
+def lean_label(label: str) -> str:
+    return f".{label}"
+
+
+def render_lean_certificate(node: dict[str, object], indent: int = 0) -> str:
+    kind = node["kind"]
+    if kind == "done":
+        return ".done"
+    if kind == "prune":
+        return f".prune {lean_label(str(node['against_center']))} {node['against_mask']}"
+    branches = node["branches"]
+    assert isinstance(branches, list)
+    padding = " " * indent
+    child_padding = " " * (indent + 2)
+    rendered = [
+        f"{child_padding}({branch['mask']}, "
+        f"{render_lean_certificate(branch['child'], indent + 4)})"
+        for branch in branches
+    ]
+    return ".split [\n" + ",\n".join(rendered) + f"\n{padding}]"
+
+
+def write_tree_proof(
+    module_dir: Path,
+    domains: dict[str, tuple[int, ...]],
+    module_prefix: str,
+    certificate_json: Path | None,
+) -> tuple[Path, dict[str, int]]:
+    """Emit JSON and root-mask Lean shards for the structural certificate."""
+    module_dir.mkdir(parents=True, exist_ok=True)
+    certificate, stats, order = build_compatibility_certificate(domains)
+    if stats["done_nodes"] != 1:
+        raise SystemExit(f"certificate has {stats['done_nodes']} completions, expected one")
+    if certificate_json is not None:
+        certificate_json.parent.mkdir(parents=True, exist_ok=True)
+        certificate_json.write_text(
+            json.dumps(
+                {
+                    "schema": TREE_SCHEMA,
+                    "sstar": SSTAR,
+                    "fixed": FIXED,
+                    "target": TARGET,
+                    "order": order,
+                    "stats": stats,
+                    "certificate": certificate,
+                },
+                indent=2,
+            )
+            + "\n"
+        )
+
+    root_branches = certificate["branches"]
+    assert isinstance(root_branches, list)
+    emitted_modules: list[str] = []
+
+    def emit_shard(
+        module: str,
+        node: dict[str, object],
+        remaining_order: tuple[str, ...],
+        assigned: tuple[tuple[str, int], ...],
+    ) -> None:
+        assert node["kind"] == "split"
+        rendered = render_lean_certificate(node, 2)
+        imports = "import Erdos9796Proof.P97.SurplusCOMPGBankCoverage\n"
+        proof = "  decide"
+        if len(rendered) > 180_000:
+            branches = node["branches"]
+            assert isinstance(branches, list) and remaining_order
+            current = remaining_order[0]
+            entries: list[str] = []
+            checks: list[str] = []
+            child_imports: list[str] = []
+            for index, branch in enumerate(branches):
+                mask = int(branch["mask"])
+                child = branch["child"]
+                assert isinstance(child, dict)
+                if child["kind"] == "split":
+                    child_module = f"{module}Child{index:02d}"
+                    emit_shard(
+                        child_module,
+                        child,
+                        remaining_order[1:],
+                        ((current, mask),) + assigned,
+                    )
+                    child_imports.append(f"import {module_prefix}.{child_module}\n")
+                    entries.append(f"    ({mask}, {child_module}.certificate)")
+                    checks.append(f"{child_module}.checked")
+                else:
+                    entries.append(
+                        f"    ({mask}, {render_lean_certificate(child, 4)})"
+                    )
+                    checks.append("by decide")
+            imports += "".join(child_imports)
+            rendered = ".split [\n" + ",\n".join(entries) + "\n  ]"
+            proof = (
+                "  simp only [certificate, checkCompatibilityCertificate, List.map_cons,\n"
+                "    List.map_nil, Bool.and_eq_true, List.all_cons, List.all_nil]\n"
+                "  refine ⟨by decide, ?_⟩\n"
+                "  exact ⟨" + ", ".join(checks + ["True.intro"]) + "⟩"
+            )
+
+        remaining = ", ".join(lean_label(center) for center in remaining_order)
+        assigned_lean = ", ".join(
+            f"({lean_label(center)}, {mask})" for center, mask in assigned
+        )
+        shard_path = module_dir / f"{module}.lean"
+        shard_path.write_text(
+            imports
+            + "\nnamespace Problem97.S1777TreeProof."
+            + module
+            + "\n\n"
+            "open SurplusCOMPGBank SurplusCOMPGBankCoverage\n\n"
+            "def certificate : CompatibilityCertificate :=\n  "
+            + rendered
+            + "\n\nset_option maxRecDepth 100000 in\n"
+            "theorem checked :\n"
+            "    checkCompatibilityCertificate .s1 s1777Fixed s1777Target\n"
+            f"      [{remaining}] [{assigned_lean}] certificate = true := by\n"
+            + proof
+            + "\n\nend Problem97.S1777TreeProof."
+            + module
+            + "\n"
+        )
+        emitted_modules.append(module)
+
+    shard_names: list[tuple[int, str]] = []
+    for index, branch in enumerate(root_branches):
+        mask = int(branch["mask"])
+        child = branch["child"]
+        assert isinstance(child, dict) and child["kind"] == "split"
+        module = f"Shard{index:02d}"
+        shard_names.append((mask, module))
+        emit_shard(
+            module,
+            child,
+            order[1:],
+            ((order[0], mask),),
+        )
+
+    imports = "".join(
+        f"import {module_prefix}.{module}\n" for _, module in shard_names
+    )
+    root_entries = ",\n".join(
+        f"    ({mask}, {module}.certificate)" for mask, module in shard_names
+    )
+    root_checks = ", ".join(
+        [f"{module}.checked" for _, module in shard_names] + ["True.intro"]
+    )
+    root_path = module_dir / "Root.lean"
+    root_path.write_text(
+        imports
+        + "\nnamespace Problem97.S1777TreeProof\n\n"
+        "open SurplusCOMPGBank SurplusCOMPGBankCoverage\n\n"
+        f"def order : List Label := [{', '.join(lean_label(center) for center in order)}]\n\n"
+        "def certificate : CompatibilityCertificate :=\n  .split [\n"
+        + root_entries
+        + "\n  ]\n\n"
+        "set_option maxRecDepth 100000 in\n"
+        "theorem checked :\n"
+        "    checkCompatibilityCertificate .s1 s1777Fixed s1777Target order [] certificate = true := by\n"
+        "  simp only [order, certificate, checkCompatibilityCertificate, List.map_cons,\n"
+        "    List.map_nil, Bool.and_eq_true, List.all_cons, List.all_nil]\n"
+        "  refine ⟨by decide, ?_⟩\n"
+        "  exact ⟨"
+        + root_checks
+        + "⟩\n\n"
+        "theorem forcesTarget (choice : Label → Nat)\n"
+        "    (hchoice : ∀ center ∈ order, choice center ∈ candidateDomain .s1 s1777Fixed center)\n"
+        "    (hseparation : ∀ center ∈ order, ∀ other ∈ order, center ≠ other →\n"
+        "      crossSeparationOKForMasks center (choice center) other (choice other) = true) :\n"
+        "    ∀ center ∈ order, choice center = s1777Target center := by\n"
+        "  exact (target_of_checkCompatibilityCertificate checked hchoice (by simp)\n"
+        "    (by simp) hseparation).1\n\n"
+        "theorem validFragmentForcesTarget {shadow : Shadow}\n"
+        "    (hvalid : isValidPinnedFragment .s1 shadow = true)\n"
+        "    (hv : shadow.centerMask .v = 201)\n"
+        "    (hw : shadow.centerMask .w = 777) :\n"
+        "    ∀ center ∈ order, shadow.centerMask center = s1777Target center := by\n"
+        "  apply validFragment_target_of_checkCompatibilityCertificate checked hvalid\n"
+        "  · intro center hcenter entry hentry\n"
+        "    simp [order, s1777Fixed] at hcenter hentry ⊢\n"
+        "    rcases hentry with hentry | hentry <;> subst entry <;>\n"
+        "      rcases hcenter with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> decide\n"
+        "  · intro entry hentry\n"
+        "    simp [s1777Fixed] at hentry\n"
+        "    rcases hentry with hentry | hentry <;> subst entry\n"
+        "    · exact hv\n"
+        "    · exact hw\n\n"
+        "theorem validFragmentMasksEqTarget {shadow : Shadow}\n"
+        "    (hvalid : isValidPinnedFragment .s1 shadow = true)\n"
+        "    (hv : shadow.centerMask .v = 201)\n"
+        "    (hw : shadow.centerMask .w = 777) :\n"
+        "    shadow.masks = [432, 201, 777, 534, 354, 92, 170, 83, 549, 390] := by\n"
+        "  have hfree := validFragmentForcesTarget hvalid hv hw\n"
+        "  have hcenter : ∀ center, shadow.centerMask center = s1777Target center := by\n"
+        "    intro center\n"
+        "    cases center with\n"
+        "    | v => exact hv\n"
+        "    | w => exact hw\n"
+        "    | u | s1 | s2 | s3 | Pw | Pu | Q1 | Q2 =>\n"
+        "        exact hfree _ (by simp [order])\n"
+        "  simpa [allLabels, s1777Target] using\n"
+        "    shadow_masks_eq_map_of_hasTenMasks\n"
+        "      (hasTenMasks_of_isValidPinnedFragment hvalid) hcenter\n\n"
+        "theorem memDepth2SubtreeResult_eqTarget {result : List Nat}\n"
+        "    (hresult : result ∈ depth2SubtreeResult .s1 777) :\n"
+        "    result = [432, 201, 777, 534, 354, 92, 170, 83, 549, 390] := by\n"
+        "  have hdata := mem_depth2SubtreeResult_iff.mp hresult\n"
+        "  apply validFragmentMasksEqTarget (shadow := { masks := result })\n"
+        "  · exact hdata.1\n"
+        "  · simpa [Shadow.centerMask, centerMaskOf, pinnedMaskOf, maskOfLabels,\n"
+        "      Label.bit, Label.index] using hdata.2.1\n"
+        "  · simpa [Shadow.centerMask, centerMaskOf] using hdata.2.2\n\n"
+        "end Problem97.S1777TreeProof\n"
+    )
+    return root_path, stats
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def write_outputs(output_dir: Path, encoding: Encoding) -> tuple[Path, Path]:
+    output_dir.mkdir(parents=True, exist_ok=True)
+    models = enumerate_separation_models(encoding.domains)
+    target_model = {center: TARGET[center] for center in LABELS}
+    if models != [target_model]:
+        raise SystemExit(f"separation oracle found {len(models)} models; expected the one target")
+
+    cnf_path = output_dir / "s1-w777-block-target.cnf"
+    dimacs = [
+        "c surplus COMP-G singleton sstar=s1 wmask=777; target tuple blocked",
+        f"p cnf {len(encoding.variables)} {len(encoding.clauses)}",
+    ]
+    dimacs.extend(" ".join(map(str, clause)) + " 0" for clause in encoding.clauses)
+    cnf_path.write_text("\n".join(dimacs) + "\n")
+
+    variable_map = [
+        {"variable": variable, "center": center, "mask": mask}
+        for (center, mask), variable in sorted(encoding.variables.items(), key=lambda item: item[1])
+    ]
+    variable_path = output_dir / "s1-w777-variable-map.json"
+    variable_path.write_text(json.dumps({"schema": SCHEMA, "variables": variable_map}, indent=2) + "\n")
+
+    oracle_path = output_dir / "s1-w777-uniqueness.json"
+    oracle_path.write_text(
+        json.dumps(
+            {
+                "schema": SCHEMA,
+                "method": "independent depth-first enumeration of candidate domains and pairwise separation",
+                "pair_count_constraints_used": False,
+                "model_count": len(models),
+                "models": [[model[center] for center in LABELS] for model in models],
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+
+    manifest_path = output_dir / "s1-w777-cnf-manifest.json"
+    manifest_path.write_text(
+        json.dumps(
+            {
+                "schema": SCHEMA,
+                "sstar": SSTAR,
+                "fixed": FIXED,
+                "free_centers": FREE_CENTERS,
+                "label_order": LABELS,
+                "target_masks": [TARGET[center] for center in LABELS],
+                "pair_count_constraints_used": False,
+                "variable_count": len(encoding.variables),
+                "clause_count": len(encoding.clauses),
+                "clause_counts": encoding.clause_counts,
+                "domain_sizes": {center: len(domain) for center, domain in encoding.domains.items()},
+                "domains": encoding.domains,
+                "files": {
+                    cnf_path.name: sha256(cnf_path),
+                    variable_path.name: sha256(variable_path),
+                    oracle_path.name: sha256(oracle_path),
+                },
+            },
+            indent=2,
+        )
+        + "\n"
+    )
+    return cnf_path, manifest_path
+
+
+def run_solver(output_dir: Path, cnf_path: Path) -> dict[str, object]:
+    cadical = shutil.which("cadical")
+    drat_trim = shutil.which("drat-trim")
+    if cadical is None or drat_trim is None:
+        raise SystemExit("--solve requires cadical and drat-trim on PATH")
+    drat_path = output_dir / "s1-w777-unsat.drat"
+    lrat_path = output_dir / "s1-w777-unsat.lrat"
+    cadical_run = subprocess.run(
+        [cadical, "--plain", "--no-binary", str(cnf_path), str(drat_path)],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if cadical_run.returncode != 20:
+        raise SystemExit(f"CaDiCaL returned {cadical_run.returncode}, expected UNSAT (20)")
+    trim_run = subprocess.run(
+        [drat_trim, str(cnf_path), str(drat_path), "-L", str(lrat_path)],
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    if trim_run.returncode != 0:
+        raise SystemExit(f"drat-trim returned {trim_run.returncode}: {trim_run.stderr[-500:]}")
+    result = {
+        "schema": SCHEMA,
+        "cadical_exit": cadical_run.returncode,
+        "cadical_result": "UNSAT",
+        "drat_trim_exit": trim_run.returncode,
+        "cnf_bytes": cnf_path.stat().st_size,
+        "drat_bytes": drat_path.stat().st_size,
+        "lrat_bytes": lrat_path.stat().st_size,
+        "drat_sha256": sha256(drat_path),
+        "lrat_sha256": sha256(lrat_path),
+    }
+    (output_dir / "s1-w777-solver-result.json").write_text(json.dumps(result, indent=2) + "\n")
+    return result
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument(
+        "--tree-proof-dir",
+        type=Path,
+        help="emit structural-certificate Lean modules directly into this directory",
+    )
+    parser.add_argument(
+        "--tree-module-prefix",
+        default=TREE_MODULE_PREFIX,
+        help="fully qualified repository module prefix for generated shard imports",
+    )
+    parser.add_argument(
+        "--tree-certificate-json",
+        type=Path,
+        help="optionally emit the machine-readable structural certificate here",
+    )
+    parser.add_argument("--solve", action="store_true")
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    encoding = build_encoding()
+    cnf_path, manifest_path = write_outputs(args.output_dir, encoding)
+    tree_result = None
+    if args.tree_proof_dir is not None:
+        root_path, tree_stats = write_tree_proof(
+            args.tree_proof_dir,
+            encoding.domains,
+            args.tree_module_prefix,
+            args.tree_certificate_json,
+        )
+        tree_result = {"root": str(root_path), "stats": tree_stats}
+    result = run_solver(args.output_dir, cnf_path) if args.solve else None
+    print(
+        json.dumps(
+            {
+                "cnf": str(cnf_path),
+                "manifest": str(manifest_path),
+                "variables": len(encoding.variables),
+                "clauses": len(encoding.clauses),
+                "domain_sizes": {
+                    center: len(domain) for center, domain in encoding.domains.items()
+                },
+                "solver": result,
+                "tree_certificate": tree_result,
+            },
+            sort_keys=True,
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()

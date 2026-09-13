@@ -1,0 +1,52 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-singleton-s1777-lrat-20260913",
+  "base_head": "2ec9613ae2c0eb4c4da25a6d73393649569a92d4",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-singleton-s1777-lrat-20260913.json",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Root.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard00.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard01.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard02.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard03.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard04.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard05.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard06.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard07.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard08.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child00.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child01.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child07.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child08.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child09.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child10.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child11.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child12.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child13.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child21.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child27.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child28.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child31.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child32.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child33.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child34.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard09Child35.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard10.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard11.lean",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage/S1777TreeProof/Shard12.lean",
+    "prove2me/native-bank-replacement-plan.md",
+    "scripts/surplus-compg-singleton-cnf.py"
+  ],
+  "durable_paths": [
+    "scratch/runs/prove2me-singleton-s1777-lrat-20260913/prototype/REPORT.md",
+    "scratch/runs/prove2me-singleton-s1777-lrat-20260913/prototype/run_manifest.json"
+  ],
+  "generated_roots": [
+    "scratch/runs/prove2me-singleton-s1777-lrat-20260913/prototype"
+  ],
+  "owner": "codex-prove2me-singleton-s1777-lrat",
+  "created_utc": "2026-09-13T11:48:00Z",
+  "manifest_sha256": "35b080732ced0071544f37d258aacd8c0028073b12eaed10569531dfd3efb7a5"
+}
