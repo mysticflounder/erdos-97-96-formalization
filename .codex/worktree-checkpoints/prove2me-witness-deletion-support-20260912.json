@@ -1,0 +1,28 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-witness-deletion-support-20260912",
+  "base_head": "cb096e2792cc7d8f916cee5690b120732358536e",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-witness-deletion-support-20260912.json",
+    "prove2me/README.md",
+    "prove2me/submissions/witness-deletion-support/README.md",
+    "prove2me/submissions/witness-deletion-support/explanation.md",
+    "prove2me/submissions/witness-deletion-support/plan.toml",
+    "prove2me/submissions/witness-deletion-support/platform/Definitions/Def_Problem97_IsWitnessSystem.lean",
+    "prove2me/submissions/witness-deletion-support/platform/Solutions/Sol_Problem97_K4_delete_of_indeg_zero.lean",
+    "prove2me/submissions/witness-deletion-support/platform/Solutions/Sol_Problem97_exists_witness_mem_of_card_eq_nine.lean",
+    "prove2me/submissions/witness-deletion-support/platform/Theorems/Thm_Problem97_K4_delete_of_indeg_zero.lean",
+    "prove2me/submissions/witness-deletion-support/platform/Theorems/Thm_Problem97_exists_witness_mem_of_card_eq_nine.lean",
+    "prove2me/submissions/witness-deletion-support/platform/Validation/NinePointWitnessIncidenceKernel.lean",
+    "prove2me/submissions/witness-deletion-support/platform/Validation/WitnessDeletionKernel.lean",
+    "prove2me/submissions/witness-deletion-support/receipt-initial-http400.json",
+    "prove2me/submissions/witness-deletion-support/receipt.json",
+    "prove2me/submissions/witness-deletion-support/skeptic-audit.md",
+    "prove2me/submissions/witness-deletion-support/validation.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-witness-deletion-support",
+  "created_utc": "2026-09-13T01:58:00Z",
+  "manifest_sha256": "fa082b3b36dbbc75d47ce680f37b41c0d5729d4261aae6c547f6c658a1b294ea"
+}

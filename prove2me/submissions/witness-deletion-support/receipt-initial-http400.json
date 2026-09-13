@@ -1,0 +1,17 @@
+{
+  "definitions": {},
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "definition:Problem97.IsWitnessSystem": {
+      "payload_sha256": "9254f0920847a548a0651c2f99f43a64fb334fc749d418000ff57dc61efbe093",
+      "state": "INTENT"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "acb5bce3813aea3b8a7b15b5003422d189256c35137ab72e0cedfc7630b947c3",
+  "proof_attempts": {},
+  "proofs": {},
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {}
+}

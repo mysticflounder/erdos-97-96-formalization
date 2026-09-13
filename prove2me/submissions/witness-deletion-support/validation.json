@@ -1,0 +1,119 @@
+{
+  "schema": "prove2me-witness-deletion-support-validation/v1",
+  "lean_version": "4.33.1",
+  "platform_version": "0.10.3",
+  "source_revision": "387e5b44ae26906725a4898b0a01c2d7345ddb38",
+  "plan_digest": "d481edc6332bb57ed760ef7a0b3833b9f05d67a9b68f90203e0ef6e7a6ff112f",
+  "prepublication_readback": {
+    "status": "PASS",
+    "exact_definition_absent": "Problem97_IsWitnessSystem",
+    "exact_theorems_absent": [
+      "Problem97.K4_delete_of_indeg_zero",
+      "Problem97.exists_witness_mem_of_card_eq_nine"
+    ]
+  },
+  "statement_identity": {
+    "definition_count": 1,
+    "theorem_count": 2,
+    "status": "PASS"
+  },
+  "isolated_lean_compile": {
+    "definition": 1,
+    "theorem_stubs": 2,
+    "solutions": 2,
+    "validation_wrappers": 2,
+    "status": "PASS",
+    "note": "Lean 4.33.1 lake-build in an isolated staging project"
+  },
+  "source_axiom_audit": {
+    "declarations": [
+      "Problem97.K4_delete_of_indeg_zero",
+      "Problem97.exists_witness_mem_of_card_eq_nine"
+    ],
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS"
+  },
+  "platform_harness_axiom_audit": {
+    "axioms": [
+      "propext",
+      "sorryAx",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "status": "PASS_EXPECTED_STATEMENT_STUBS",
+    "note": "sorryAx comes only from imported theorem presentation stubs; submitted solutions and validators contain no proof holes."
+  },
+  "forbidden_token_scan": {
+    "scope": [
+      "platform/Solutions",
+      "platform/Validation"
+    ],
+    "tokens": [
+      "sorry",
+      "admit",
+      "native_decide",
+      "ofReduceBool",
+      "axiom",
+      "unsafe",
+      "partial",
+      "implemented_by",
+      "extern"
+    ],
+    "status": "PASS"
+  },
+  "initial_packaging_failure": {
+    "receipt": "receipt-initial-http400.json",
+    "cause": "The first request used the dotted Lean declaration name as the Prove2Me definition package name.",
+    "resolution": "Used module-style package name Problem97_IsWitnessSystem; the Lean declaration remains Problem97.IsWitnessSystem.",
+    "status": "RESOLVED"
+  },
+  "receipt_sha256": "b9ce80f455724e6505abb29155716e3d6f3fdafab3cd1b3693c292aaf8adc738",
+  "live_readback": {
+    "checked_utc": "2026-09-13T02:25:58.857444+00:00",
+    "status": "PASS",
+    "definition": {
+      "name": "Problem97_IsWitnessSystem",
+      "id": "b7f0555c-d8db-4d5e-a0f0-bc07e43126ce",
+      "status": "Definition",
+      "content_matches": true
+    },
+    "theorems": [
+      {
+        "name": "Problem97.K4_delete_of_indeg_zero",
+        "id": "96b559b8-b5db-46e4-8dff-3e9a0c79941a",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "ccd3e607-fb46-47de-a493-c7a12670e50b",
+        "proof_status": "ACCEPTED"
+      },
+      {
+        "name": "Problem97.exists_witness_mem_of_card_eq_nine",
+        "id": "78a28453-88df-4284-8e8f-1cbf946716dc",
+        "status": "Proved",
+        "formal_statement_matches": true,
+        "proof_id": "7cc7bf69-574e-4df5-bdec-b449f5e04a4c",
+        "proof_status": "ACCEPTED"
+      }
+    ],
+    "milestones_created": 0
+  },
+  "files": {
+    "README.md": "741b24e405c9bcba69b4b21e96193a973dfdfc335314af5f2da712195d49094c",
+    "explanation.md": "5b557871f9632770486b436865147bb9999be05b4391e3d8d0e9d0d742f9a1f2",
+    "plan.toml": "717543e4eb68a9013dcc63df63a27f01e825c204e749375907f268ca1ecbc804",
+    "platform/Definitions/Def_Problem97_IsWitnessSystem.lean": "64db78fc27d313f428dcaae37483b6cb15f8dc22ffd2cdd706d320c81bf855e4",
+    "platform/Solutions/Sol_Problem97_K4_delete_of_indeg_zero.lean": "c83fb6b16fde7a4833381b55cb7c7523fa966fe53660e80e5843592c652cab69",
+    "platform/Solutions/Sol_Problem97_exists_witness_mem_of_card_eq_nine.lean": "9f84b6ec12b1f275bdc8f809a6bef2d0ef287a1080fc2242c060e9f0504fc82b",
+    "platform/Theorems/Thm_Problem97_K4_delete_of_indeg_zero.lean": "92b4d6fef4adcf2d979c3dfaffcc045eb66574bfc29ccdef56ebc706c37fae41",
+    "platform/Theorems/Thm_Problem97_exists_witness_mem_of_card_eq_nine.lean": "28a1f6b0697d36a0ee247317ea9b359a0f48ffe48c7d16cf0d87d5b80ad5e44d",
+    "platform/Validation/NinePointWitnessIncidenceKernel.lean": "737cb3a61e288faf1b235e1889eeb066611fe5c5f124fea272d351917201b15d",
+    "platform/Validation/WitnessDeletionKernel.lean": "4b8ab536604ccd2c5e9b84d925dadd22ac31f58ca6a629633a2245d33c256ef7",
+    "receipt-initial-http400.json": "3a0c84af12ed07bd69d84fe430267929f90bf1fdfcfdf42df564ffe3da96bd9f",
+    "receipt.json": "b9ce80f455724e6505abb29155716e3d6f3fdafab3cd1b3693c292aaf8adc738",
+    "skeptic-audit.md": "934715af406690178ce80e5655749a565118f52bdb2e052978b3113efbbe96d0"
+  }
+}

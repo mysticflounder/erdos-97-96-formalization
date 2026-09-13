@@ -46,6 +46,11 @@ provenance for the project's own Lean formalization.
   conditional arithmetic step that forces nine points. All four proofs were
   verified by Prove2Me; no separate milestone was created.
 
+- [Accepted witness-system deletion support](submissions/witness-deletion-support/README.md):
+  a reusable witness-system definition, deletion theorem, and nine-point
+  incidence consequence. Both proofs were verified by Prove2Me; the packet
+  supplies a descent interface without claiming the open existence step.
+
 - [Native-bank replacement plan](native-bank-replacement-plan.md): ordered theorem-reuse
   and bank-replacement work, with consumer and validation gates.
 - `mission-description.md`: the public introduction, including why the problems

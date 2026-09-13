@@ -1,0 +1,48 @@
+# Copyright (c) 2026 Adam McKenna. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+# Author: Adam McKenna <adam@mysticflounder.ai>
+
+schema = "prove2me-submit-plan/v1"
+host = "https://prove2.me/api/v1"
+platform_version = "0.10.3"
+credentials = "~/prove2me_workspace/credentials.json"
+artifact_root = "../.."
+receipt = "submissions/witness-deletion-support/receipt.json"
+mission_id = "1061a384-cdea-43b4-adb5-273627ea45a0"
+
+[[definition]]
+name = "Problem97_IsWitnessSystem"
+title = "Witness systems for four equidistant neighbours"
+file = "submissions/witness-deletion-support/platform/Definitions/Def_Problem97_IsWitnessSystem.lean"
+natural_language_statement = "A witness system for a finite planar set assigns to each point a subset of the other points containing at least four points all at one common positive distance from it."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/387e5b44ae26906725a4898b0a01c2d7345ddb38/lean/Erdos9796Proof/P97/K4WitnessDeletion.lean#L35-L41"
+tags = ["discrete-geometry", "erdos-97", "descent", "witness-systems", "definitions"]
+private = false
+
+[[theorem]]
+name = "Problem97.K4_delete_of_indeg_zero"
+title = "Deleting an unused witness point preserves four equidistant neighbours"
+file = "submissions/witness-deletion-support/platform/Theorems/Thm_Problem97_K4_delete_of_indeg_zero.lean"
+natural_language_statement = "Let A be a nonempty finite planar set in strictly convex position with four equidistant neighbours at every point, and let S be a witness system. If x belongs to A and to none of the selected witness classes, then deleting x leaves a nonempty strictly convex set in which every point still has four equidistant neighbours."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/387e5b44ae26906725a4898b0a01c2d7345ddb38/lean/Erdos9796Proof/P97/K4WitnessDeletion.lean#L43-L67"
+tags = ["discrete-geometry", "erdos-97", "descent", "deletion", "witness-systems"]
+
+[[theorem]]
+name = "Problem97.exists_witness_mem_of_card_eq_nine"
+title = "Every point in a nine-point configuration is used by a witness class"
+file = "submissions/witness-deletion-support/platform/Theorems/Thm_Problem97_exists_witness_mem_of_card_eq_nine.lean"
+natural_language_statement = "If a nonempty finite planar set in strictly convex position has four equidistant neighbours at every point, has exactly nine points, and carries a witness system, then every point belongs to at least one selected witness class."
+source = "https://github.com/mysticflounder/erdos-97-96-formalization/blob/387e5b44ae26906725a4898b0a01c2d7345ddb38/lean/Erdos9796Proof/P97/K4WitnessDeletion.lean#L74-L87"
+tags = ["discrete-geometry", "erdos-97", "descent", "nine-points", "witness-systems"]
+
+[[proof]]
+theorem = "Problem97.K4_delete_of_indeg_zero"
+file = "submissions/witness-deletion-support/platform/Solutions/Sol_Problem97_K4_delete_of_indeg_zero.lean"
+explanation = "submissions/witness-deletion-support/explanation.md"
+proof_type = "prove"
+
+[[proof]]
+theorem = "Problem97.exists_witness_mem_of_card_eq_nine"
+file = "submissions/witness-deletion-support/platform/Solutions/Sol_Problem97_exists_witness_mem_of_card_eq_nine.lean"
+explanation = "submissions/witness-deletion-support/explanation.md"
+proof_type = "prove"

@@ -1,0 +1,78 @@
+{
+  "definitions": {
+    "Problem97_IsWitnessSystem": {
+      "definition_id": "b7f0555c-d8db-4d5e-a0f0-bc07e43126ce",
+      "job_id": "c86dafd8-5e74-4eb6-9071-fbca633e07ed",
+      "status": "PUBLISHED"
+    }
+  },
+  "host": "https://prove2.me/api/v1",
+  "intents": {
+    "definition:Problem97_IsWitnessSystem": {
+      "job_id": "c86dafd8-5e74-4eb6-9071-fbca633e07ed",
+      "payload_sha256": "1fc65f42500a4649f4eecb9d73716b0953505175fc1fb0d708536c2fbee50554",
+      "state": "RECORDED"
+    },
+    "proof:Problem97.K4_delete_of_indeg_zero": {
+      "payload_sha256": "0ba0e2754bd0c98f6facbad4884600e89b0ca7e4033988e9cbea0b4c496d0e25",
+      "state": "RECORDED",
+      "submission_id": "ccd3e607-fb46-47de-a493-c7a12670e50b"
+    },
+    "proof:Problem97.exists_witness_mem_of_card_eq_nine": {
+      "payload_sha256": "5b9e71c330639f0039c899459a52e616e078941361e1d7454631d90c47e7a335",
+      "state": "RECORDED",
+      "submission_id": "7cc7bf69-574e-4df5-bdec-b449f5e04a4c"
+    },
+    "theorem:Problem97.K4_delete_of_indeg_zero": {
+      "job_id": "aea5abe8-6922-4c7c-9cfe-511e0a54e788",
+      "payload_sha256": "f6a57939c52e4d9c0cc8cd42c243e8abcdf76a91f33562db22a612b21151ac69",
+      "state": "RECORDED"
+    },
+    "theorem:Problem97.exists_witness_mem_of_card_eq_nine": {
+      "job_id": "d7849bb7-209d-4754-8d3a-bc348317f3b3",
+      "payload_sha256": "593eaf76892a656d7ae84de67c1174a989536b0e25fee395f4fdaf83f73a4957",
+      "state": "RECORDED"
+    }
+  },
+  "milestones": {},
+  "mission_description": {},
+  "plan_digest": "d481edc6332bb57ed760ef7a0b3833b9f05d67a9b68f90203e0ef6e7a6ff112f",
+  "proof_attempts": {},
+  "proofs": {
+    "Problem97.K4_delete_of_indeg_zero": {
+      "created_at": "2026-09-13T02:21:43.401334+00:00",
+      "error_message": "",
+      "file_path": "96b559b8-b5db-46e4-8dff-3e9a0c79941a/6ac78adb-dda3-4892-bb46-d4c86f102d16/ccd3e607-fb46-47de-a493-c7a12670e50b.lean",
+      "id": "ccd3e607-fb46-47de-a493-c7a12670e50b",
+      "status": "ACCEPTED",
+      "submission_id": "ccd3e607-fb46-47de-a493-c7a12670e50b",
+      "theorem_id": "96b559b8-b5db-46e4-8dff-3e9a0c79941a",
+      "updated_at": "2026-09-13T02:23:08.964784+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    },
+    "Problem97.exists_witness_mem_of_card_eq_nine": {
+      "created_at": "2026-09-13T02:23:16.609242+00:00",
+      "error_message": "",
+      "file_path": "78a28453-88df-4284-8e8f-1cbf946716dc/6ac78adb-dda3-4892-bb46-d4c86f102d16/7cc7bf69-574e-4df5-bdec-b449f5e04a4c.lean",
+      "id": "7cc7bf69-574e-4df5-bdec-b449f5e04a4c",
+      "status": "ACCEPTED",
+      "submission_id": "7cc7bf69-574e-4df5-bdec-b449f5e04a4c",
+      "theorem_id": "78a28453-88df-4284-8e8f-1cbf946716dc",
+      "updated_at": "2026-09-13T02:25:11.760949+00:00",
+      "user_id": "6ac78adb-dda3-4892-bb46-d4c86f102d16"
+    }
+  },
+  "schema": "prove2me-submit-receipt/v1",
+  "theorems": {
+    "Problem97.K4_delete_of_indeg_zero": {
+      "job_id": "aea5abe8-6922-4c7c-9cfe-511e0a54e788",
+      "status": "PUBLISHED",
+      "theorem_id": "96b559b8-b5db-46e4-8dff-3e9a0c79941a"
+    },
+    "Problem97.exists_witness_mem_of_card_eq_nine": {
+      "job_id": "d7849bb7-209d-4754-8d3a-bc348317f3b3",
+      "status": "PUBLISHED",
+      "theorem_id": "78a28453-88df-4284-8e8f-1cbf946716dc"
+    }
+  }
+}
