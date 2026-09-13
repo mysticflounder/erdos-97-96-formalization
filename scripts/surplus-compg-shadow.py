@@ -2929,6 +2929,32 @@ theorem mem_fragmentSearchAux_cons
   unfold fragmentSearchAux
   exact List.mem_flatMap.mpr ⟨mask, hmem, by simpa [hsep, hcounts] using htail⟩
 
+/-- Every result returned by the recursive search passes its terminal validity
+check.  The pruning tests only discard branches; the empty-plan branch is the
+sole place where a result is emitted. -/
+theorem isValidPinnedFragment_of_mem_fragmentSearchAux
+    {{sstar : Label}} {{assigned : List Label}} {{masks pairCounts result : List Nat}}
+    {{plan : List (Label × List Nat)}}
+    (hresult : result ∈ fragmentSearchAux sstar assigned masks pairCounts plan) :
+    isValidPinnedFragment sstar {{ masks := result }} = true := by
+  induction plan generalizing assigned masks pairCounts with
+  | nil =>
+      rw [fragmentSearchAux] at hresult
+      split at hresult
+      · rename_i hvalid
+        simp only [List.mem_singleton] at hresult
+        subst result
+        exact hvalid
+      · simp at hresult
+  | cons step rest ih =>
+      obtain ⟨center, candidates⟩ := step
+      rw [fragmentSearchAux] at hresult
+      obtain ⟨mask, _, hbranch⟩ := List.mem_flatMap.mp hresult
+      dsimp only at hbranch
+      split at hbranch
+      · exact ih hbranch
+      · simp at hbranch
+
 theorem maskNormalized_of_candidateMaskOK
     {{sstar center : Label}} {{mask : Nat}}
     (h : candidateMaskOK sstar center mask = true) :
@@ -3963,6 +3989,44 @@ theorem computedFragmentShadowAcceptedBySearch_of_isValidPinnedFragment
   simp [computedFragmentShadowAcceptedBySearch,
     hasTenMasks_of_isValidPinnedFragment hvalid,
     containsKey_eq_true_of_mem hkey]
+
+/-- A mask list is produced by the computed DFS exactly when it is a valid
+pinned fragment for one of the three surplus stars.  The forward direction is
+the terminal-validity invariant above.  The reverse direction reconstructs a
+search path from validity; classifying these semantic outputs against the row
+bank is the remaining finite row-identification obligation. -/
+theorem mem_computedFragmentSearchShadowKeys_iff
+    {{masks : List Nat}} :
+    masks ∈ computedFragmentSearchShadowKeys ↔
+      ∃ sstar, isSurplusStar sstar = true ∧
+        isValidPinnedFragment sstar {{ masks := masks }} = true := by
+  constructor
+  · intro hkey
+    unfold computedFragmentSearchShadowKeys at hkey
+    obtain ⟨⟨entryStar, result⟩, hentry, hresult⟩ := List.mem_map.mp hkey
+    change result = masks at hresult
+    subst result
+    unfold computedRawFragmentSearchEntries at hentry
+    obtain ⟨sstar, hsstar, hentryFor⟩ := List.mem_flatMap.mp hentry
+    unfold rawFragmentSearchEntriesFor at hentryFor
+    obtain ⟨result, hsearch, hpair⟩ := List.mem_map.mp hentryFor
+    simp only [Prod.mk.injEq] at hpair
+    obtain ⟨rfl, rfl⟩ := hpair
+    refine ⟨sstar, ?_, isValidPinnedFragment_of_mem_fragmentSearchAux hsearch⟩
+    cases sstar <;> simp [fragmentSearchSstars, isSurplusStar] at hsstar ⊢
+  · rintro ⟨sstar, hsstar, hvalid⟩
+    have hsearch :
+        masks ∈ fragmentSearchAux sstar [] emptyShadowMasks emptyPairCounts
+          (fragmentSearchPlan sstar) :=
+      shadow_mem_fragmentSearchAux_of_isValidPinnedFragment hvalid
+    unfold computedFragmentSearchShadowKeys
+    apply List.mem_map.mpr
+    refine ⟨(sstar, masks), ?_, rfl⟩
+    unfold computedRawFragmentSearchEntries
+    apply List.mem_flatMap.mpr
+    refine ⟨sstar, mem_fragmentSearchSstars_of_isSurplusStar hsstar, ?_⟩
+    unfold rawFragmentSearchEntriesFor
+    exact List.mem_map.mpr ⟨masks, hsearch, rfl⟩
 
 theorem raw_fragment_search_entries_length :
     rawFragmentSearchEntries.length = 135 := by

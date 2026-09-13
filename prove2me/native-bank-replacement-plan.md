@@ -205,9 +205,17 @@ surplus star, and the support contains at most one of `u`, `Pw`, and `Pu`. This
 `candidate_masks_match_filter` certificate now folds that theorem over its 30
 listed center pairs instead of running a separate native check.
 
-**Next implementation checkpoint:** prove a non-circular
-`computedFragmentSearchShadowKeys`-to-`rowShadowKeys` inclusion from shared row
-schemas and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct
+The recursive search now has a core proof that every emitted terminal passes
+`isValidPinnedFragment`. Together with the existing construction of a search
+path from any valid fragment, this characterizes
+`computedFragmentSearchShadowKeys` as exactly the masks valid for at least one
+surplus star. This separates DFS correctness from the remaining row-bank
+classification.
+
+**Next implementation checkpoint:** prove that every valid pinned fragment is
+covered by `rowShadowKeys`, organized by the 15 `(sstar, w-mask)` branches and
+the 17 relaxed-split certificate groups. Then derive the computed-key
+inclusion and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct
 `#print axioms` probe of the bridge to report only `propext`,
 `Classical.choice`, and `Quot.sound`. Stop and record the first row whose
 certificate data does not fit a shared schema rather than replacing its native
