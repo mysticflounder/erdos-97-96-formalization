@@ -1,0 +1,22 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "prove2me-singleton-remaining-cells-20260913",
+  "run_id": "prototype",
+  "root": "scratch/runs/prove2me-singleton-remaining-cells-20260913/prototype",
+  "owner": "codex-prove2me-singleton-remaining-cells",
+  "base_head": "f160c0cdcb3a9ad968044e46ebb0ed11713939dd",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage.lean": "a2886b33443f86e337e8198dc53619d4eaa8cf112588aba73d9a8165e2f069c6",
+    "scripts/surplus-compg-singleton-cnf.py": "7866cef15c11ceaad111beb41a19706e9f75a2e9f41f42d5134c9a9b4aa01699"
+  },
+  "input_digests": {
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean": "197631f1e75ef334fb98a46149b805aafd0d43e7b74b810701947abf8eb4e74e"
+  },
+  "created_utc": "2026-09-13T14:38:00Z",
+  "manifest_sha256": "bcf1e5444783817cd1e82b9ed226dda31b0c00e8b077675e1a1af66957d25f59"
+}

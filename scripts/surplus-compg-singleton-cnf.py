@@ -18,16 +18,72 @@ LABEL_PAIRS = tuple(
     for index, left in enumerate(LABELS)
     for right in LABELS[index + 1 :]
 )
-SSTAR = "s1"
-FIXED = {"v": 201, "w": 777}
-FREE_CENTERS = tuple(center for center in LABELS if center not in FIXED)
-TARGET = dict(zip(LABELS, (432, 201, 777, 534, 354, 92, 170, 83, 549, 390), strict=True))
-TREE_ORDER = ("u", "Pw", "Pu", "Q1", "Q2", "s1", "s2", "s3")
 SCHEMA = "surplus-compg-singleton-candidate-cnf/v1"
 TREE_SCHEMA = "surplus-compg-compatibility-certificate/v1"
-TREE_MODULE_PREFIX = (
-    "Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1777TreeProof"
-)
+
+
+@dataclass(frozen=True)
+class CellSpec:
+    key: str
+    sstar: str
+    target_masks: tuple[int, ...]
+    tree_order: tuple[str, ...]
+    lean_stem: str
+
+    @property
+    def target(self) -> dict[str, int]:
+        return dict(zip(LABELS, self.target_masks, strict=True))
+
+    @property
+    def fixed(self) -> dict[str, int]:
+        return {"v": self.target["v"], "w": self.target["w"]}
+
+    @property
+    def free_centers(self) -> tuple[str, ...]:
+        return tuple(center for center in LABELS if center not in self.fixed)
+
+    @property
+    def file_stem(self) -> str:
+        return f"{self.sstar}-w{self.target['w']}"
+
+    @property
+    def lean_namespace(self) -> str:
+        return f"{self.lean_stem.upper()}TreeProof"
+
+    @property
+    def module_prefix(self) -> str:
+        return (
+            "Erdos9796Proof.P97.SurplusCOMPGBankCoverage."
+            f"{self.lean_namespace}"
+        )
+
+
+CELL_SPECS = {
+    spec.key: spec
+    for spec in (
+        CellSpec(
+            "s1777",
+            "s1",
+            (432, 201, 777, 534, 354, 92, 170, 83, 549, 390),
+            ("u", "Pw", "Pu", "Q1", "Q2", "s1", "s2", "s3"),
+            "s1777",
+        ),
+        CellSpec(
+            "s1912",
+            "s1",
+            (178, 201, 912, 531, 616, 142, 297, 326, 549, 284),
+            ("u", "Q1", "Pw", "Pu", "Q2", "s3", "s2", "s1"),
+            "s1912",
+        ),
+        CellSpec(
+            "s3801",
+            "s3",
+            (408, 225, 801, 562, 652, 86, 390, 75, 533, 300),
+            ("u", "Q1", "Pu", "Q2", "Pw", "s3", "s2", "s1"),
+            "s3801",
+        ),
+    )
+}
 
 
 def mask_has(mask: int, label: str) -> bool:
@@ -105,14 +161,14 @@ def candidate_mask_ok(sstar: str, center: str, mask: int) -> bool:
     return True
 
 
-def candidate_domain(center: str) -> tuple[int, ...]:
+def candidate_domain(spec: CellSpec, center: str) -> tuple[int, ...]:
     return tuple(
         mask
         for mask in range(1 << len(LABELS))
-        if candidate_mask_ok(SSTAR, center, mask)
+        if candidate_mask_ok(spec.sstar, center, mask)
         and all(
             cross_separation_ok(center, mask, fixed, fixed_mask)
-            for fixed, fixed_mask in FIXED.items()
+            for fixed, fixed_mask in spec.fixed.items()
         )
     )
 
@@ -125,10 +181,12 @@ class Encoding:
     clause_counts: dict[str, int]
 
 
-def build_encoding() -> Encoding:
-    domains = {center: candidate_domain(center) for center in FREE_CENTERS}
+def build_encoding(spec: CellSpec) -> Encoding:
+    domains = {
+        center: candidate_domain(spec, center) for center in spec.free_centers
+    }
     variables: dict[tuple[str, int], int] = {}
-    for center in FREE_CENTERS:
+    for center in spec.free_centers:
         for mask in domains[center]:
             variables[(center, mask)] = len(variables) + 1
 
@@ -139,12 +197,12 @@ def build_encoding() -> Encoding:
         counts[name] = len(clauses) - start
 
     start = len(clauses)
-    for center in FREE_CENTERS:
+    for center in spec.free_centers:
         clauses.append(tuple(variables[(center, mask)] for mask in domains[center]))
     finish_family("at_least_one", start)
 
     start = len(clauses)
-    for center in FREE_CENTERS:
+    for center in spec.free_centers:
         domain = domains[center]
         for index, left in enumerate(domain):
             for right in domain[index + 1 :]:
@@ -152,8 +210,8 @@ def build_encoding() -> Encoding:
     finish_family("at_most_one", start)
 
     start = len(clauses)
-    for cindex, center in enumerate(FREE_CENTERS):
-        for other in FREE_CENTERS[cindex + 1 :]:
+    for cindex, center in enumerate(spec.free_centers):
+        for other in spec.free_centers[cindex + 1 :]:
             for mask in domains[center]:
                 for other_mask in domains[other]:
                     if not cross_separation_ok(center, mask, other, other_mask):
@@ -161,16 +219,25 @@ def build_encoding() -> Encoding:
     finish_family("cross_separation", start)
 
     start = len(clauses)
-    clauses.append(tuple(-variables[(center, TARGET[center])] for center in FREE_CENTERS))
+    clauses.append(
+        tuple(-variables[(center, spec.target[center])] for center in spec.free_centers)
+    )
     finish_family("block_target", start)
     return Encoding(variables, domains, clauses, counts)
 
 
-def enumerate_separation_models(domains: dict[str, tuple[int, ...]]) -> list[dict[str, int]]:
+def enumerate_separation_models(
+    spec: CellSpec, domains: dict[str, tuple[int, ...]]
+) -> list[dict[str, int]]:
     """Exhaustively enumerate separation-compatible tuples without reading the CNF."""
-    order = tuple(sorted(FREE_CENTERS, key=lambda center: (len(domains[center]), LABEL_INDEX[center])))
+    order = tuple(
+        sorted(
+            spec.free_centers,
+            key=lambda center: (len(domains[center]), LABEL_INDEX[center]),
+        )
+    )
     models: list[dict[str, int]] = []
-    chosen: dict[str, int] = dict(FIXED)
+    chosen: dict[str, int] = dict(spec.fixed)
 
     def visit(depth: int) -> None:
         if depth == len(order):
@@ -190,24 +257,26 @@ def enumerate_separation_models(domains: dict[str, tuple[int, ...]]) -> list[dic
     return models
 
 
-def tree_order(domains: dict[str, tuple[int, ...]]) -> tuple[str, ...]:
-    """Return the measured 1,115-state static decision-tree order."""
-    if set(domains) != set(TREE_ORDER):
+def tree_order(
+    spec: CellSpec, domains: dict[str, tuple[int, ...]]
+) -> tuple[str, ...]:
+    """Return the cell's measured static decision-tree order."""
+    if set(domains) != set(spec.tree_order):
         raise SystemExit("tree order does not cover the candidate-domain centers exactly")
-    return TREE_ORDER
+    return spec.tree_order
 
 
 def build_compatibility_certificate(
-    domains: dict[str, tuple[int, ...]],
+    spec: CellSpec, domains: dict[str, tuple[int, ...]],
 ) -> tuple[dict[str, object], dict[str, int], tuple[str, ...]]:
     """Build a complete separation tree with concrete earlier-choice prunes."""
-    order = tree_order(domains)
+    order = tree_order(spec, domains)
     stats = {"partial_states": 0, "split_nodes": 0, "prune_nodes": 0, "done_nodes": 0}
 
     def visit(depth: int, assigned: tuple[tuple[str, int], ...]) -> dict[str, object]:
         stats["partial_states"] += 1
         if depth == len(order):
-            if any(mask != TARGET[center] for center, mask in assigned):
+            if any(mask != spec.target[center] for center, mask in assigned):
                 raise SystemExit("compatibility certificate reached a non-target completion")
             stats["done_nodes"] += 1
             return {"kind": "done"}
@@ -272,6 +341,7 @@ def render_lean_certificate(node: dict[str, object], indent: int = 0) -> str:
 
 
 def write_tree_proof(
+    spec: CellSpec,
     module_dir: Path,
     domains: dict[str, tuple[int, ...]],
     module_prefix: str,
@@ -279,7 +349,7 @@ def write_tree_proof(
 ) -> tuple[Path, dict[str, int]]:
     """Emit JSON and root-mask Lean shards for the structural certificate."""
     module_dir.mkdir(parents=True, exist_ok=True)
-    certificate, stats, order = build_compatibility_certificate(domains)
+    certificate, stats, order = build_compatibility_certificate(spec, domains)
     if stats["done_nodes"] != 1:
         raise SystemExit(f"certificate has {stats['done_nodes']} completions, expected one")
     if certificate_json is not None:
@@ -288,9 +358,10 @@ def write_tree_proof(
             json.dumps(
                 {
                     "schema": TREE_SCHEMA,
-                    "sstar": SSTAR,
-                    "fixed": FIXED,
-                    "target": TARGET,
+                    "cell": spec.key,
+                    "sstar": spec.sstar,
+                    "fixed": spec.fixed,
+                    "target": spec.target,
                     "order": order,
                     "stats": stats,
                     "certificate": certificate,
@@ -302,6 +373,11 @@ def write_tree_proof(
 
     root_branches = certificate["branches"]
     assert isinstance(root_branches, list)
+    namespace = spec.lean_namespace
+    fixed_def = f"{spec.lean_stem}Fixed"
+    target_def = f"{spec.lean_stem}Target"
+    sstar_literal = lean_label(spec.sstar)
+    target_list = ", ".join(map(str, spec.target_masks))
     emitted_modules: list[str] = []
 
     def emit_shard(
@@ -357,7 +433,7 @@ def write_tree_proof(
         shard_path = module_dir / f"{module}.lean"
         shard_path.write_text(
             imports
-            + "\nnamespace Problem97.S1777TreeProof."
+            + f"\nnamespace Problem97.{namespace}."
             + module
             + "\n\n"
             "open SurplusCOMPGBank SurplusCOMPGBankCoverage\n\n"
@@ -365,10 +441,10 @@ def write_tree_proof(
             + rendered
             + "\n\nset_option maxRecDepth 100000 in\n"
             "theorem checked :\n"
-            "    checkCompatibilityCertificate .s1 s1777Fixed s1777Target\n"
+            f"    checkCompatibilityCertificate {sstar_literal} {fixed_def} {target_def}\n"
             f"      [{remaining}] [{assigned_lean}] certificate = true := by\n"
             + proof
-            + "\n\nend Problem97.S1777TreeProof."
+            + f"\n\nend Problem97.{namespace}."
             + module
             + "\n"
         )
@@ -400,7 +476,7 @@ def write_tree_proof(
     root_path = module_dir / "Root.lean"
     root_path.write_text(
         imports
-        + "\nnamespace Problem97.S1777TreeProof\n\n"
+        + f"\nnamespace Problem97.{namespace}\n\n"
         "open SurplusCOMPGBank SurplusCOMPGBankCoverage\n\n"
         f"def order : List Label := [{', '.join(lean_label(center) for center in order)}]\n\n"
         "def certificate : CompatibilityCertificate :=\n  .split [\n"
@@ -408,7 +484,7 @@ def write_tree_proof(
         + "\n  ]\n\n"
         "set_option maxRecDepth 100000 in\n"
         "theorem checked :\n"
-        "    checkCompatibilityCertificate .s1 s1777Fixed s1777Target order [] certificate = true := by\n"
+        f"    checkCompatibilityCertificate {sstar_literal} {fixed_def} {target_def} order [] certificate = true := by\n"
         "  simp only [order, certificate, checkCompatibilityCertificate, List.map_cons,\n"
         "    List.map_nil, Bool.and_eq_true, List.all_cons, List.all_nil]\n"
         "  refine ⟨by decide, ?_⟩\n"
@@ -416,53 +492,53 @@ def write_tree_proof(
         + root_checks
         + "⟩\n\n"
         "theorem forcesTarget (choice : Label → Nat)\n"
-        "    (hchoice : ∀ center ∈ order, choice center ∈ candidateDomain .s1 s1777Fixed center)\n"
+        f"    (hchoice : ∀ center ∈ order, choice center ∈ candidateDomain {sstar_literal} {fixed_def} center)\n"
         "    (hseparation : ∀ center ∈ order, ∀ other ∈ order, center ≠ other →\n"
         "      crossSeparationOKForMasks center (choice center) other (choice other) = true) :\n"
-        "    ∀ center ∈ order, choice center = s1777Target center := by\n"
+        f"    ∀ center ∈ order, choice center = {target_def} center := by\n"
         "  exact (target_of_checkCompatibilityCertificate checked hchoice (by simp)\n"
         "    (by simp) hseparation).1\n\n"
         "theorem validFragmentForcesTarget {shadow : Shadow}\n"
-        "    (hvalid : isValidPinnedFragment .s1 shadow = true)\n"
-        "    (hv : shadow.centerMask .v = 201)\n"
-        "    (hw : shadow.centerMask .w = 777) :\n"
-        "    ∀ center ∈ order, shadow.centerMask center = s1777Target center := by\n"
+        f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
+        f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
+        f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
+        f"    ∀ center ∈ order, shadow.centerMask center = {target_def} center := by\n"
         "  apply validFragment_target_of_checkCompatibilityCertificate checked hvalid\n"
         "  · intro center hcenter entry hentry\n"
-        "    simp [order, s1777Fixed] at hcenter hentry ⊢\n"
+        f"    simp [order, {fixed_def}] at hcenter hentry ⊢\n"
         "    rcases hentry with hentry | hentry <;> subst entry <;>\n"
         "      rcases hcenter with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> decide\n"
         "  · intro entry hentry\n"
-        "    simp [s1777Fixed] at hentry\n"
+        f"    simp [{fixed_def}] at hentry\n"
         "    rcases hentry with hentry | hentry <;> subst entry\n"
         "    · exact hv\n"
         "    · exact hw\n\n"
         "theorem validFragmentMasksEqTarget {shadow : Shadow}\n"
-        "    (hvalid : isValidPinnedFragment .s1 shadow = true)\n"
-        "    (hv : shadow.centerMask .v = 201)\n"
-        "    (hw : shadow.centerMask .w = 777) :\n"
-        "    shadow.masks = [432, 201, 777, 534, 354, 92, 170, 83, 549, 390] := by\n"
+        f"    (hvalid : isValidPinnedFragment {sstar_literal} shadow = true)\n"
+        f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
+        f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
+        f"    shadow.masks = [{target_list}] := by\n"
         "  have hfree := validFragmentForcesTarget hvalid hv hw\n"
-        "  have hcenter : ∀ center, shadow.centerMask center = s1777Target center := by\n"
+        f"  have hcenter : ∀ center, shadow.centerMask center = {target_def} center := by\n"
         "    intro center\n"
         "    cases center with\n"
         "    | v => exact hv\n"
         "    | w => exact hw\n"
         "    | u | s1 | s2 | s3 | Pw | Pu | Q1 | Q2 =>\n"
         "        exact hfree _ (by simp [order])\n"
-        "  simpa [allLabels, s1777Target] using\n"
+        f"  simpa [allLabels, {target_def}] using\n"
         "    shadow_masks_eq_map_of_hasTenMasks\n"
         "      (hasTenMasks_of_isValidPinnedFragment hvalid) hcenter\n\n"
         "theorem memDepth2SubtreeResult_eqTarget {result : List Nat}\n"
-        "    (hresult : result ∈ depth2SubtreeResult .s1 777) :\n"
-        "    result = [432, 201, 777, 534, 354, 92, 170, 83, 549, 390] := by\n"
+        f"    (hresult : result ∈ depth2SubtreeResult {sstar_literal} {spec.target['w']}) :\n"
+        f"    result = [{target_list}] := by\n"
         "  have hdata := mem_depth2SubtreeResult_iff.mp hresult\n"
         "  apply validFragmentMasksEqTarget (shadow := { masks := result })\n"
         "  · exact hdata.1\n"
         "  · simpa [Shadow.centerMask, centerMaskOf, pinnedMaskOf, maskOfLabels,\n"
         "      Label.bit, Label.index] using hdata.2.1\n"
         "  · simpa [Shadow.centerMask, centerMaskOf] using hdata.2.2\n\n"
-        "end Problem97.S1777TreeProof\n"
+        f"end Problem97.{namespace}\n"
     )
     return root_path, stats
 
@@ -471,16 +547,21 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def write_outputs(output_dir: Path, encoding: Encoding) -> tuple[Path, Path]:
+def write_outputs(
+    spec: CellSpec, output_dir: Path, encoding: Encoding
+) -> tuple[Path, Path]:
     output_dir.mkdir(parents=True, exist_ok=True)
-    models = enumerate_separation_models(encoding.domains)
-    target_model = {center: TARGET[center] for center in LABELS}
+    models = enumerate_separation_models(spec, encoding.domains)
+    target_model = spec.target
     if models != [target_model]:
         raise SystemExit(f"separation oracle found {len(models)} models; expected the one target")
 
-    cnf_path = output_dir / "s1-w777-block-target.cnf"
+    cnf_path = output_dir / f"{spec.file_stem}-block-target.cnf"
     dimacs = [
-        "c surplus COMP-G singleton sstar=s1 wmask=777; target tuple blocked",
+        (
+            f"c surplus COMP-G singleton sstar={spec.sstar} "
+            f"wmask={spec.target['w']}; target tuple blocked"
+        ),
         f"p cnf {len(encoding.variables)} {len(encoding.clauses)}",
     ]
     dimacs.extend(" ".join(map(str, clause)) + " 0" for clause in encoding.clauses)
@@ -490,10 +571,10 @@ def write_outputs(output_dir: Path, encoding: Encoding) -> tuple[Path, Path]:
         {"variable": variable, "center": center, "mask": mask}
         for (center, mask), variable in sorted(encoding.variables.items(), key=lambda item: item[1])
     ]
-    variable_path = output_dir / "s1-w777-variable-map.json"
+    variable_path = output_dir / f"{spec.file_stem}-variable-map.json"
     variable_path.write_text(json.dumps({"schema": SCHEMA, "variables": variable_map}, indent=2) + "\n")
 
-    oracle_path = output_dir / "s1-w777-uniqueness.json"
+    oracle_path = output_dir / f"{spec.file_stem}-uniqueness.json"
     oracle_path.write_text(
         json.dumps(
             {
@@ -508,16 +589,17 @@ def write_outputs(output_dir: Path, encoding: Encoding) -> tuple[Path, Path]:
         + "\n"
     )
 
-    manifest_path = output_dir / "s1-w777-cnf-manifest.json"
+    manifest_path = output_dir / f"{spec.file_stem}-cnf-manifest.json"
     manifest_path.write_text(
         json.dumps(
             {
                 "schema": SCHEMA,
-                "sstar": SSTAR,
-                "fixed": FIXED,
-                "free_centers": FREE_CENTERS,
+                "cell": spec.key,
+                "sstar": spec.sstar,
+                "fixed": spec.fixed,
+                "free_centers": spec.free_centers,
                 "label_order": LABELS,
-                "target_masks": [TARGET[center] for center in LABELS],
+                "target_masks": spec.target_masks,
                 "pair_count_constraints_used": False,
                 "variable_count": len(encoding.variables),
                 "clause_count": len(encoding.clauses),
@@ -537,13 +619,15 @@ def write_outputs(output_dir: Path, encoding: Encoding) -> tuple[Path, Path]:
     return cnf_path, manifest_path
 
 
-def run_solver(output_dir: Path, cnf_path: Path) -> dict[str, object]:
+def run_solver(
+    spec: CellSpec, output_dir: Path, cnf_path: Path
+) -> dict[str, object]:
     cadical = shutil.which("cadical")
     drat_trim = shutil.which("drat-trim")
     if cadical is None or drat_trim is None:
         raise SystemExit("--solve requires cadical and drat-trim on PATH")
-    drat_path = output_dir / "s1-w777-unsat.drat"
-    lrat_path = output_dir / "s1-w777-unsat.lrat"
+    drat_path = output_dir / f"{spec.file_stem}-unsat.drat"
+    lrat_path = output_dir / f"{spec.file_stem}-unsat.lrat"
     cadical_run = subprocess.run(
         [cadical, "--plain", "--no-binary", str(cnf_path), str(drat_path)],
         text=True,
@@ -571,12 +655,15 @@ def run_solver(output_dir: Path, cnf_path: Path) -> dict[str, object]:
         "drat_sha256": sha256(drat_path),
         "lrat_sha256": sha256(lrat_path),
     }
-    (output_dir / "s1-w777-solver-result.json").write_text(json.dumps(result, indent=2) + "\n")
+    (output_dir / f"{spec.file_stem}-solver-result.json").write_text(
+        json.dumps(result, indent=2) + "\n"
+    )
     return result
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--cell", choices=tuple(CELL_SPECS), default="s1777")
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument(
         "--tree-proof-dir",
@@ -585,7 +672,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--tree-module-prefix",
-        default=TREE_MODULE_PREFIX,
+        default=None,
         help="fully qualified repository module prefix for generated shard imports",
     )
     parser.add_argument(
@@ -599,18 +686,20 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> None:
     args = parse_args()
-    encoding = build_encoding()
-    cnf_path, manifest_path = write_outputs(args.output_dir, encoding)
+    spec = CELL_SPECS[args.cell]
+    encoding = build_encoding(spec)
+    cnf_path, manifest_path = write_outputs(spec, args.output_dir, encoding)
     tree_result = None
     if args.tree_proof_dir is not None:
         root_path, tree_stats = write_tree_proof(
+            spec,
             args.tree_proof_dir,
             encoding.domains,
-            args.tree_module_prefix,
+            args.tree_module_prefix or spec.module_prefix,
             args.tree_certificate_json,
         )
         tree_result = {"root": str(root_path), "stats": tree_stats}
-    result = run_solver(args.output_dir, cnf_path) if args.solve else None
+    result = run_solver(spec, args.output_dir, cnf_path) if args.solve else None
     print(
         json.dumps(
             {

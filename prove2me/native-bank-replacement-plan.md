@@ -255,8 +255,13 @@ incompatible, and requires every terminal assignment to equal the target. The
 `(s1, 777)` certificate has 1,115 split states, 37,862 explicit prunes, and one
 terminal. Its 31 generated Lean modules total 1.41 MB and give a core-only
 theorem that every member of `depth2SubtreeResult .s1 777` is the stored target
-row. The next checkpoint generalizes this certificate generator to `(s1, 912)`
-and `(s3, 801)`, then proves row-key membership for all three singleton cells.
+row. The same parameterized generator now covers `(s1, 912)` with 283 partial
+states and 10 Lean modules, and `(s3, 801)` with 855 partial states and 30 Lean
+modules. Both roots prove that every result in their depth-two cell is the
+corresponding stored target row with core-only axiom closure. The next checkpoint
+packages the three target rows into one singleton-cell predicate, proves their
+membership in `rowShadowKeys`, and dispatches computed search results in those
+cells through that predicate.
 
 ## Objective and boundaries
 

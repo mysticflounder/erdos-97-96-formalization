@@ -240,6 +240,38 @@ def s1777Target : Label → Nat
   | .Q1 => 549
   | .Q2 => 390
 
+/-- Fixed masks for the `(s1, 912)` depth-two singleton cell. -/
+def s1912Fixed : List (Label × Nat) := [(.v, 201), (.w, 912)]
+
+/-- The unique target tuple for the `(s1, 912)` depth-two cell. -/
+def s1912Target : Label → Nat
+  | .u => 178
+  | .v => 201
+  | .w => 912
+  | .s1 => 531
+  | .s2 => 616
+  | .s3 => 142
+  | .Pw => 297
+  | .Pu => 326
+  | .Q1 => 549
+  | .Q2 => 284
+
+/-- Fixed masks for the `(s3, 801)` depth-two singleton cell. -/
+def s3801Fixed : List (Label × Nat) := [(.v, 225), (.w, 801)]
+
+/-- The unique target tuple for the `(s3, 801)` depth-two cell. -/
+def s3801Target : Label → Nat
+  | .u => 408
+  | .v => 225
+  | .w => 801
+  | .s1 => 562
+  | .s2 => 652
+  | .s3 => 86
+  | .Pw => 390
+  | .Pu => 75
+  | .Q1 => 533
+  | .Q2 => 300
+
 /-- Typed clause construction corresponding to `s1-w777-block-target.cnf`. -/
 def s1777CNF : CNF :=
   singletonCandidateCNF .s1 s1777Fixed s1777Free s1777Target
