@@ -1,0 +1,15 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-s1834-durable-repair-20260913",
+  "base_head": "5cab37b888a28d5c43452dbf77b3d2e595301f10",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-s1834-durable-repair-20260913.json",
+    "scratch/runs/prove2me-s1834-row-set-20260913/prototype/REPORT.md",
+    "scratch/runs/prove2me-s1834-row-set-20260913/prototype/run_manifest.json"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-s1834-durable-repair",
+  "created_utc": "2026-09-13T18:10:00Z",
+  "manifest_sha256": "034364dbc840e81881cd06754074e012ab2bd6bcf6c6dba0723af3a62b71a037"
+}
