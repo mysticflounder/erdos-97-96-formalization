@@ -334,6 +334,158 @@ def s1848TargetD : Label → Nat
 def s1848Targets : List (Label → Nat) :=
   [s1848TargetA, s1848TargetB, s1848TargetC, s1848TargetD]
 
+/-- Fixed masks for the `(s1, 840)` depth-two cell with eleven target rows. -/
+def s1840Fixed : List (Label × Nat) := [(.v, 201), (.w, 840)]
+
+/-- First target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetA : Label → Nat
+  | .u => 368
+  | .v => 201
+  | .w => 840
+  | .s1 => 275
+  | .s2 => 170
+  | .s3 => 86
+  | .Pw => 660
+  | .Pu => 45
+  | .Q1 => 547
+  | .Q2 => 390
+
+/-- Second target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetB : Label → Nat
+  | .u => 368
+  | .v => 201
+  | .w => 840
+  | .s1 => 660
+  | .s2 => 294
+  | .s3 => 29
+  | .Pw => 142
+  | .Pu => 581
+  | .Q1 => 674
+  | .Q2 => 275
+
+/-- Third target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetC : Label → Nat
+  | .u => 368
+  | .v => 201
+  | .w => 840
+  | .s1 => 278
+  | .s2 => 676
+  | .s3 => 29
+  | .Pw => 142
+  | .Pu => 581
+  | .Q1 => 658
+  | .Q2 => 291
+
+/-- Fourth target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetD : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 840
+  | .s1 => 86
+  | .s2 => 43
+  | .s3 => 156
+  | .Pw => 390
+  | .Pu => 609
+  | .Q1 => 531
+  | .Q2 => 300
+
+/-- Fifth target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetE : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 840
+  | .s1 => 275
+  | .s2 => 45
+  | .s3 => 86
+  | .Pw => 156
+  | .Pu => 593
+  | .Q1 => 646
+  | .Q2 => 298
+
+/-- Sixth target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetF : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 840
+  | .s1 => 275
+  | .s2 => 45
+  | .s3 => 86
+  | .Pw => 156
+  | .Pu => 609
+  | .Q1 => 646
+  | .Q2 => 298
+
+/-- Seventh target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetG : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 840
+  | .s1 => 86
+  | .s2 => 291
+  | .s3 => 29
+  | .Pw => 170
+  | .Pu => 549
+  | .Q1 => 531
+  | .Q2 => 390
+
+/-- Eighth target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetH : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 840
+  | .s1 => 86
+  | .s2 => 291
+  | .s3 => 29
+  | .Pw => 170
+  | .Pu => 609
+  | .Q1 => 531
+  | .Q2 => 390
+
+/-- Ninth target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetI : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 840
+  | .s1 => 86
+  | .s2 => 291
+  | .s3 => 29
+  | .Pw => 172
+  | .Pu => 609
+  | .Q1 => 531
+  | .Q2 => 390
+
+/-- Tenth target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetJ : Label → Nat
+  | .u => 432
+  | .v => 201
+  | .w => 840
+  | .s1 => 86
+  | .s2 => 291
+  | .s3 => 533
+  | .Pw => 154
+  | .Pu => 45
+  | .Q1 => 610
+  | .Q2 => 390
+
+/-- Eleventh target tuple for the `(s1, 840)` depth-two cell. -/
+def s1840TargetK : Label → Nat
+  | .u => 688
+  | .v => 201
+  | .w => 840
+  | .s1 => 533
+  | .s2 => 43
+  | .s3 => 156
+  | .Pw => 418
+  | .Pu => 337
+  | .Q1 => 582
+  | .Q2 => 300
+
+/-- The eleven target tuples admitted by the `(s1, 840)` compatibility certificate. -/
+def s1840Targets : List (Label → Nat) :=
+  [s1840TargetA, s1840TargetB, s1840TargetC, s1840TargetD, s1840TargetE,
+    s1840TargetF, s1840TargetG, s1840TargetH, s1840TargetI, s1840TargetJ,
+    s1840TargetK]
+
 /-- Fixed masks for the `(s1, 928)` depth-two cell with four target rows. -/
 def s1928Fixed : List (Label × Nat) := [(.v, 201), (.w, 928)]
 
