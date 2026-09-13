@@ -523,7 +523,9 @@ def write_tree_proof(
     if multiple_targets:
         target_lists = tuple(", ".join(map(str, masks)) for masks in spec.all_target_masks)
         target_rows = "[" + ", ".join(f"[{row}]" for row in target_lists) + "]"
-        target_patterns = " | ".join("rfl" for _ in spec.targets)
+        target_patterns = " | ".join(
+            f"htarget{index}" for index, _ in enumerate(spec.targets)
+        )
         membership_cases: list[str] = []
         for index, target_name in enumerate(spec.target_defs):
             proof = f"by simpa [allLabels, {target_name}] using hmasks"
@@ -533,7 +535,12 @@ def write_tree_proof(
                 result = proof
             for _ in range(index):
                 result = f"Or.inr ({result})"
-            membership_cases.append(f"  · exact {result}")
+            membership_cases.append(
+                "  · subst target\n"
+                "    have hmasks := validFragmentMasksEqTarget hvalid hv hw\n"
+                "      (by decide) (by decide) hfree\n"
+                f"    exact {result}"
+            )
         rendered_membership_cases = "\n".join(membership_cases)
         root_consequences = (
             "theorem targetExists (choice : Label → Nat)\n"
@@ -565,13 +572,15 @@ def write_tree_proof(
             f"    (hv : shadow.centerMask .v = {spec.target['v']})\n"
             f"    (hw : shadow.centerMask .w = {spec.target['w']})\n"
             "    {target : Label → Nat}\n"
+            f"    (htargetV : target .v = {spec.target['v']})\n"
+            f"    (htargetW : target .w = {spec.target['w']})\n"
             "    (hfree : ∀ center ∈ order, shadow.centerMask center = target center) :\n"
             "    shadow.masks = allLabels.map target := by\n"
             "  have hcenter : ∀ center, shadow.centerMask center = target center := by\n"
             "    intro center\n"
             "    cases center with\n"
-            "    | v => exact hv\n"
-            "    | w => exact hw\n"
+            "    | v => exact hv.trans htargetV.symm\n"
+            "    | w => exact hw.trans htargetW.symm\n"
             "    | u | s1 | s2 | s3 | Pw | Pu | Q1 | Q2 =>\n"
             "        exact hfree _ (by simp [order])\n"
             "  exact shadow_masks_eq_map_of_hasTenMasks\n"
@@ -582,8 +591,8 @@ def write_tree_proof(
             f"    (hw : shadow.centerMask .w = {spec.target['w']}) :\n"
             f"    shadow.masks ∈ {target_rows} := by\n"
             "  rcases validFragmentTargetExists hvalid hv hw with ⟨target, htarget, hfree⟩\n"
-            "  have hmasks := validFragmentMasksEqTarget hvalid hv hw hfree\n"
-            f"  simp only [{targets_def}, List.mem_cons, List.mem_singleton] at htarget\n"
+            f"  simp only [{targets_def}, List.mem_cons, List.not_mem_nil, or_false] at htarget\n"
+            "  simp only [List.mem_cons, List.not_mem_nil, or_false]\n"
             f"  rcases htarget with {target_patterns}\n"
             + rendered_membership_cases
             + "\n\n"

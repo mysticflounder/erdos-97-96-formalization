@@ -299,10 +299,21 @@ concrete checked tree. The search used the Lean corpus indexed from revision
 The generator now supports the two `(s1, 834)` targets while preserving the
 three singleton outputs byte-for-byte. A greedy center order produces 1,382
 partial states, 1,380 splits, 47,963 explicit separation prunes, and two
-terminals. The projected proof has 62 Lean modules totaling 1,867,988 bytes.
-The next checkpoint promotes and compiles those modules, proves that every
-result in `depth2SubtreeResult .s1 834` is one of the two targets, and adds this
-cell to stored-row dispatch.
+terminals. The promoted proof has 62 Lean modules totaling 1,868,329 bytes.
+It proves that every result in `depth2SubtreeResult .s1 834` is one of the two
+targets, and the broader stored-row dispatcher now covers this cell together
+with the three singleton cells. Lean LSP validates the generated root and the
+dispatcher. A targeted `lake-build` compilation completed all 1,159 jobs, and
+the governed Lean-ingress binding check passed its semantic probe with only the
+standard axioms `propext`, `Classical.choice`, and `Quot.sound`. The next
+structural checkpoint should add the four-row `(s1, 848)` cell, the
+next-smallest live target set.
+
+The `(s1, 848)` preflight finds exactly rows `s1_024` through `s1_027`. With
+center order `u, Q1, Q2, Pw, Pu, s3, s2, s1`, the generic target-set tree has
+949 partial states, 945 splits, 36,842 separation prunes, and four terminals.
+The projected proof is 30 Lean modules and 1,424,365 bytes; it needs no change
+to the checker interface.
 
 ## Objective and boundaries
 

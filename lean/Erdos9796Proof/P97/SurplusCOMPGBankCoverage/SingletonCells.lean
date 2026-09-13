@@ -5,14 +5,15 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1777TreeProof.Root
+import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1834TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1912TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S3801TreeProof.Root
 
 /-!
 # Coverage of singleton depth-two search cells
 
-This module collects the three depth-two search cells whose valid result is unique and
-shows that every result from one of those cells occurs among the stored row masks.
+This module collects four depth-two search cells whose valid results are structurally
+determined and shows that every result from one of those cells occurs among the stored row masks.
 -/
 
 namespace Problem97
@@ -26,9 +27,26 @@ inductive IsSingletonDepthTwoCell : Label → Nat → Prop where
   | s1At912 : IsSingletonDepthTwoCell .s1 912
   | s3At801 : IsSingletonDepthTwoCell .s3 801
 
+/-- A depth-two search cell covered by the singleton certificates or the two-result
+`(.s1, 834)` certificate. -/
+inductive IsStructurallyCoveredDepthTwoCell : Label → Nat → Prop where
+  | singleton {sstar : Label} {wmask : Nat} :
+      IsSingletonDepthTwoCell sstar wmask → IsStructurallyCoveredDepthTwoCell sstar wmask
+  | s1At834 : IsStructurallyCoveredDepthTwoCell .s1 834
+
 /-- The unique result of the `(.s1, 777)` cell occurs among the stored row masks. -/
 theorem s1777Target_mem_rowShadowKeys :
     [432, 201, 777, 534, 354, 92, 170, 83, 549, 390] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The first possible result of the `(.s1, 834)` cell occurs among the stored row masks. -/
+theorem s1834TargetA_mem_rowShadowKeys :
+    [312, 201, 834, 277, 553, 660, 142, 83, 612, 418] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The second possible result of the `(.s1, 834)` cell occurs among the stored row masks. -/
+theorem s1834TargetB_mem_rowShadowKeys :
+    [432, 201, 834, 277, 553, 660, 396, 83, 612, 298] ∈ rowShadowKeys := by
   simp [rowShadowKeys, rows, Row.shadowKey]
 
 /-- The unique result of the `(.s1, 912)` cell occurs among the stored row masks. -/
@@ -68,6 +86,35 @@ theorem depth2SubtreeResult_all_containsKey_rowShadowKeys_of_singletonCell
   intro result hresult
   exact containsKey_eq_true_of_mem
     (mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_singletonCell hcell hresult)
+
+/-- Every result in one of the four structurally covered depth-two cells occurs among the
+stored rows. -/
+theorem mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell
+    {sstar : Label} {wmask : Nat} {result : List Nat}
+    (hcell : IsStructurallyCoveredDepthTwoCell sstar wmask)
+    (hresult : result ∈ depth2SubtreeResult sstar wmask) :
+    result ∈ rowShadowKeys := by
+  cases hcell with
+  | singleton hsingleton =>
+      exact mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_singletonCell hsingleton hresult
+  | s1At834 =>
+      have htargets := S1834TreeProof.memDepth2SubtreeResult_memTargets hresult
+      simp only [List.mem_cons, List.not_mem_nil, or_false] at htargets
+      rcases htargets with rfl | rfl
+      · exact s1834TargetA_mem_rowShadowKeys
+      · exact s1834TargetB_mem_rowShadowKeys
+
+/-- Every result in a structurally covered depth-two cell passes the Boolean stored-row
+membership test. -/
+theorem depth2SubtreeResult_all_containsKey_rowShadowKeys_of_structurallyCoveredCell
+    {sstar : Label} {wmask : Nat}
+    (hcell : IsStructurallyCoveredDepthTwoCell sstar wmask) :
+    (depth2SubtreeResult sstar wmask).all
+      (fun result ↦ containsKey result rowShadowKeys) = true := by
+  rw [List.all_eq_true]
+  intro result hresult
+  exact containsKey_eq_true_of_mem
+    (mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell hcell hresult)
 
 end SurplusCOMPGBankCoverage
 end Problem97
