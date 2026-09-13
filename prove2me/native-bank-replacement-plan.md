@@ -60,6 +60,85 @@ now contains no `native_decide` or native-decide linter suppressions. This does
 not make the broader classifier path native-free: cyclic separation, placement
 checks, and other classifier modules still contain independent native proofs.
 
+## Finite-ten Prove2Me checkpoint, 2026-09-12
+
+The mission's finite-ten theorem is still a statement without an accepted
+proof. The local endpoint `Problem97.FiniteN10Closure` remains compiler-trusted,
+so it cannot yet be transferred as a core-only proof. Its pinned-surplus branch
+contains the following exact spine:
+
+```text
+pinnedSurplusCOMPGBankBridge
+  -> isM44PinnedSurplusResidualsExcluded_of_card_five
+  -> finiteN10_nonSurplusMoserCapContainment
+  -> finiteN10_u2FullDistanceClasses
+  -> FiniteN10Closure
+```
+
+`pinnedSurplusCOMPGBankBridge` itself only composes two implications:
+
+```text
+isValidPinnedFragment
+  -> fragmentShadowAcceptedBySearch
+  -> shadowInBank
+```
+
+There is no core-only replacement for either the bridge or its bank-coverage
+premises in the current indexed project corpus or the canonical general-n bank
+registry. The four source files in its immediate generated subtree contain 41
+`native_decide` calls: 38 in `SurplusCOMPGBank.lean` and one in each of
+`SurplusCOMPGBankDFS/Depth2S1.lean`, `Depth2S2.lean`, and `Depth2S3.lean`.
+The bridge's transitive axiom closure reaches the three depth-shard coverage
+facts, candidate-mask computations, Boolean equality branches, and the static
+search-key/bank-key identities. Replacing a single call at the bridge would
+therefore hide the same trust boundary rather than remove it.
+
+The useful structural seam is already present:
+`computedFragmentShadowAcceptedBySearch_of_isValidPinnedFragment` proves,
+without the depth-shard enumeration, that every valid pinned fragment occurs in
+`computedFragmentSearchShadowKeys`. It is not yet core-only: its proof reaches
+`Label.beq_eq_decide_eq` across 100 constructor pairs,
+`candidateMasks_eq_filter_of_isSurplusStar` across 30 admissible
+star/center pairs, and `candidateMaskOK_of_isValidPinnedFragment` across the
+three surplus-star cases. Those three families must first receive ordinary
+kernel proofs, or the computed-search producer must be reproved without them.
+
+After that prerequisite, the bridge should route through the computed list and
+target the one-way coverage actually needed by the consumer:
+
+```lean
+∀ masks, masks ∈ computedFragmentSearchShadowKeys → masks ∈ rowShadowKeys
+```
+
+Full list equality, uniqueness, and census counts are stronger than this
+consumer requires. The proof must derive the inclusion from reusable row-family
+or certificate invariants. Assuming bank membership, using the static table to
+prove DFS coverage, or merely parameterizing the inclusion would be circular or
+would leave the native evidence unchanged. The existing 135 rows split into two
+empty-common-core verdicts and 133 no-valid-real verdicts; that split is a lead
+for extracting shared certificate schemas, not yet a proof of coverage.
+
+The bridge is only the first finite-ten trust gate. Downstream
+`false_of_shadowInBank_of_metricShadow` still reaches the row-zero banks, whose
+current source inventory includes 102 direct checks and 35 product checks.
+Closing the computed-to-row inclusion would remove the depth-shard and static
+search-key facts from the bridge. The bank handoff would still depend on the
+three computed-search families named above. `FiniteN10Closure` becomes
+transferable only after all four parts of this bridge gate, the downstream
+certificate families, and the other endpoint inputs also have core-only axiom
+closures.
+
+**Next implementation checkpoint:** first replace
+`Label.beq_eq_decide_eq`, `candidateMasks_eq_filter_of_isSurplusStar`, and
+`candidateMaskOK_of_isValidPinnedFragment`, checking the computed-search
+producer after each replacement. Then prove a non-circular
+`computedFragmentSearchShadowKeys`-to-`rowShadowKeys` inclusion from shared row
+schemas and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct
+`#print axioms` probe of the bridge to report only `propext`,
+`Classical.choice`, and `Quot.sound`. Stop and record the first row whose
+certificate data does not fit a shared schema rather than replacing its native
+check with another evaluator.
+
 ## Objective and boundaries
 
 Replace computational proof steps on the P97/P96 dependency paths with reusable

@@ -1,0 +1,14 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite10-bridge-audit-20260912",
+  "base_head": "5f5b11b917aab15cd0c2f05358ae75b84eb00c1c",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite10-bridge-audit-20260912.json",
+    "prove2me/native-bank-replacement-plan.md"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-finite10-bridge-audit",
+  "created_utc": "2026-09-13T03:42:00Z",
+  "manifest_sha256": "da4220aa4301048543342f464a65b4eb09e614268ca58f5a483ddbbc7e65b110"
+}
