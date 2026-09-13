@@ -451,79 +451,264 @@ def lean_plan_suffix(order: list[str], start: int) -> str:
     )
 
 
-def lean_shadow_path_theorem(
-    order: list[str], assigned_prefixes: list[list[str]]
-) -> str:
-    lines = [
-        "theorem mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment",
-        "    {sstar : Label} {shadow : Shadow} {center : Label}",
-        "    {assigned : List Label} {rest : List (Label × List Nat)}",
-        "    (hvalid : isValidPinnedFragment sstar shadow = true)",
-        "    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes)",
-        "    (hnext : center :: assigned ∈ fragmentSearchAssignedPrefixes)",
-        "    (hne : ∀ other, other ∈ assigned -> center ≠ other)",
-        "    (htail : shadow.masks ∈ fragmentSearchAux sstar (center :: assigned)",
-        "      (shadowMasksForAssigned shadow (center :: assigned))",
-        "      (shadowPairCountsForAssigned shadow (center :: assigned)) rest) :",
-        "    shadow.masks ∈ fragmentSearchAux sstar assigned",
-        "      (shadowMasksForAssigned shadow assigned)",
-        "      (shadowPairCountsForAssigned shadow assigned)",
-        "      ((center, candidateMasks sstar center) :: rest) := by",
-        "  apply mem_fragmentSearchAux_cons",
-        "  · exact mem_candidateMasks_of_isValidPinnedFragment (center := center) hvalid",
-        "  · exact assignedSeparationOK_of_isValidPinnedFragment hvalid",
-        "      (fun other hmem => centerMaskOf_shadowMasksForAssigned_of_mem hprefix hmem)",
-        "      hne",
-        "  · simpa [shadowPairCountsForAssigned] using",
-        "      pairCountsOK_shadowPairCountsForAssigned_of_isValidPinnedFragment hvalid hnext",
-        "  · simpa [shadowMasksForAssigned, shadowPairCountsForAssigned] using htail",
-        "",
-        "theorem shadow_mem_fragmentSearchAux_of_isValidPinnedFragment",
-        "    {sstar : Label} {shadow : Shadow}",
-        "    (hvalid : isValidPinnedFragment sstar shadow = true) :",
-        "    shadow.masks ∈ fragmentSearchAux sstar [] emptyShadowMasks emptyPairCounts",
-        "      (fragmentSearchPlan sstar) := by",
-        "  have h10 : shadow.masks ∈ fragmentSearchAux sstar fullFragmentSearchAssigned",
-        "      (shadowMasksForAssigned shadow fullFragmentSearchAssigned)",
-        "      (shadowPairCountsForAssigned shadow fullFragmentSearchAssigned) [] := by",
-        "    exact mem_fragmentSearchAux_nil_of_isValidPinnedFragment hvalid",
-        "      (shadowMasksForFullFragmentSearchAssigned_eq_of_hasTenMasks",
-        "        (hasTenMasks_of_isValidPinnedFragment hvalid))",
-    ]
-    for index in range(len(order) - 1, -1, -1):
-        center = order[index]
-        assigned = lean_label_list(assigned_prefixes[index])
-        rest = lean_plan_suffix(order, index + 1)
-        lines.extend(
-            [
-                f"  have h{index} := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment",
-                f"    (sstar := sstar) (shadow := shadow) (center := {lean_label(center)})",
-                f"    (assigned := {assigned})",
-                f"    (rest := {rest}) hvalid",
-                "    (by simp [fragmentSearchAssignedPrefixes])",
-                "    (by simp [fragmentSearchAssignedPrefixes])",
-                "    (by intro other hmem; cases other <;> simp at hmem ⊢)"
-                f" h{index + 1}",
-            ]
-        )
-    lines.extend(
-        [
-            "  simpa [fragmentSearchPlan, fragmentSearchOrder, shadowMasksForAssigned,",
-            "    shadowPairCountsForAssigned, emptyShadowMasks] using h0",
-        ]
-    )
-    return "\n".join(lines)
+def lean_search_state_lemmas() -> str:
+    return r"""/-- Updating one list index preserves lookup at every different index. -/
+theorem getD_setNth_of_ne
+    {values : List Nat} {updated preserved value : Nat}
+    (hne : updated ≠ preserved) :
+    (setNth updated value values).getD preserved 0 = values.getD preserved 0 := by
+  induction values generalizing updated preserved with
+  | nil => simp [setNth]
+  | cons head tail ih =>
+      cases updated with
+      | zero =>
+          cases preserved with
+          | zero => exact (hne rfl).elim
+          | succ preserved => simp [setNth]
+      | succ updated =>
+          cases preserved with
+          | zero => simp [setNth]
+          | succ preserved =>
+              simp only [setNth, List.getD_cons_succ]
+              exact ih (by omega)
+
+/-- Assigning one center preserves every different center's mask. -/
+theorem centerMaskOf_setCenterMask_of_ne
+    {masks : List Nat} {updated preserved : Label} {mask : Nat}
+    (hne : updated ≠ preserved) :
+    centerMaskOf (setCenterMask masks updated mask) preserved =
+      centerMaskOf masks preserved := by
+  apply getD_setNth_of_ne
+  intro hindex
+  apply hne
+  cases updated <;> cases preserved <;>
+    simp [Label.index] at hindex ⊢
+
+/-- A recursive search never changes a center absent from the remaining plan. -/
+theorem centerMaskOf_eq_of_mem_fragmentSearchAux_of_not_mem_plan
+    {sstar target : Label} {assigned : List Label}
+    {masks pairCounts result : List Nat} {plan : List (Label × List Nat)}
+    (htarget : target ∉ plan.map Prod.fst)
+    (hresult : result ∈ fragmentSearchAux sstar assigned masks pairCounts plan) :
+    centerMaskOf result target = centerMaskOf masks target := by
+  induction plan generalizing assigned masks pairCounts with
+  | nil =>
+      rw [fragmentSearchAux] at hresult
+      split at hresult
+      · simp only [List.mem_singleton] at hresult
+        subst result
+        rfl
+      · simp at hresult
+  | cons step rest ih =>
+      obtain ⟨center, candidates⟩ := step
+      simp only [List.map_cons, List.mem_cons, not_or] at htarget
+      rw [fragmentSearchAux] at hresult
+      obtain ⟨mask, _, hbranch⟩ := List.mem_flatMap.mp hresult
+      dsimp only at hbranch
+      split at hbranch
+      · calc
+          centerMaskOf result target =
+              centerMaskOf (setCenterMask masks center mask) target :=
+            ih htarget.2 hbranch
+          _ = centerMaskOf masks target :=
+            centerMaskOf_setCenterMask_of_ne (Ne.symm htarget.1)
+      · simp at hbranch
+
+"""
+
+
+def lean_shadow_path_theorem() -> str:
+    return r"""theorem mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    {sstar : Label} {shadow : Shadow} {center : Label}
+    {assigned : List Label} {rest : List (Label × List Nat)}
+    (hvalid : isValidPinnedFragment sstar shadow = true)
+    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes)
+    (hnext : center :: assigned ∈ fragmentSearchAssignedPrefixes)
+    (hne : ∀ other, other ∈ assigned -> center ≠ other)
+    (htail : shadow.masks ∈ fragmentSearchAux sstar (center :: assigned)
+      (shadowMasksForAssigned shadow (center :: assigned))
+      (shadowPairCountsForAssigned shadow (center :: assigned)) rest) :
+    shadow.masks ∈ fragmentSearchAux sstar assigned
+      (shadowMasksForAssigned shadow assigned)
+      (shadowPairCountsForAssigned shadow assigned)
+      ((center, candidateMasks sstar center) :: rest) := by
+  apply mem_fragmentSearchAux_cons
+  · exact mem_candidateMasks_of_isValidPinnedFragment (center := center) hvalid
+  · exact assignedSeparationOK_of_isValidPinnedFragment hvalid
+      (fun other hmem => centerMaskOf_shadowMasksForAssigned_of_mem hprefix hmem)
+      hne
+  · simpa [shadowPairCountsForAssigned] using
+      pairCountsOK_shadowPairCountsForAssigned_of_isValidPinnedFragment hvalid hnext
+  · simpa [shadowMasksForAssigned, shadowPairCountsForAssigned] using htail
+
+/-- A valid shadow is accepted by the suffix of the search beginning after
+the fixed `v` and `w` assignments. -/
+theorem shadow_mem_depth2RestPlan_of_isValidPinnedFragment
+    {sstar : Label} {shadow : Shadow}
+    (hvalid : isValidPinnedFragment sstar shadow = true) :
+    shadow.masks ∈ fragmentSearchAux sstar [.w, .v]
+      (shadowMasksForAssigned shadow [.w, .v])
+      (shadowPairCountsForAssigned shadow [.w, .v]) (depth2RestPlan sstar) := by
+  have h10 : shadow.masks ∈ fragmentSearchAux sstar fullFragmentSearchAssigned
+      (shadowMasksForAssigned shadow fullFragmentSearchAssigned)
+      (shadowPairCountsForAssigned shadow fullFragmentSearchAssigned) [] := by
+    exact mem_fragmentSearchAux_nil_of_isValidPinnedFragment hvalid
+      (shadowMasksForFullFragmentSearchAssigned_eq_of_hasTenMasks
+        (hasTenMasks_of_isValidPinnedFragment hvalid))
+  have h9 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .s3)
+    (assigned := [.s2, .s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := []) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h10
+  have h8 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .s2)
+    (assigned := [.s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := [(.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h9
+  have h7 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .s1)
+    (assigned := [.Q2, .Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := [(.s2, candidateMasks sstar .s2),
+      (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h8
+  have h6 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .Q2)
+    (assigned := [.Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := [(.s1, candidateMasks sstar .s1),
+      (.s2, candidateMasks sstar .s2), (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h7
+  have h5 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .Q1)
+    (assigned := [.Pu, .Pw, .u, .w, .v])
+    (rest := [(.Q2, candidateMasks sstar .Q2),
+      (.s1, candidateMasks sstar .s1), (.s2, candidateMasks sstar .s2),
+      (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h6
+  have h4 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .Pu)
+    (assigned := [.Pw, .u, .w, .v])
+    (rest := [(.Q1, candidateMasks sstar .Q1),
+      (.Q2, candidateMasks sstar .Q2), (.s1, candidateMasks sstar .s1),
+      (.s2, candidateMasks sstar .s2), (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h5
+  have h3 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .Pw)
+    (assigned := [.u, .w, .v])
+    (rest := [(.Pu, candidateMasks sstar .Pu),
+      (.Q1, candidateMasks sstar .Q1), (.Q2, candidateMasks sstar .Q2),
+      (.s1, candidateMasks sstar .s1), (.s2, candidateMasks sstar .s2),
+      (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h4
+  have h2 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .u)
+    (assigned := [.w, .v])
+    (rest := [(.Pw, candidateMasks sstar .Pw),
+      (.Pu, candidateMasks sstar .Pu), (.Q1, candidateMasks sstar .Q1),
+      (.Q2, candidateMasks sstar .Q2), (.s1, candidateMasks sstar .s1),
+      (.s2, candidateMasks sstar .s2), (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h3
+  simpa [depth2RestPlan] using h2
+
+/-- A depth-two subtree contains exactly the valid terminal masks which retain
+its fixed `v` and `w` assignments.  Later search steps cannot overwrite those
+centers because neither occurs in `depth2RestPlan`. -/
+theorem mem_depth2SubtreeResult_iff
+    {sstar : Label} {wmask : Nat} {result : List Nat} :
+    result ∈ depth2SubtreeResult sstar wmask ↔
+      isValidPinnedFragment sstar { masks := result } = true ∧
+      centerMaskOf result .v = pinnedMaskOf sstar ∧
+      centerMaskOf result .w = wmask := by
+  constructor
+  · intro hresult
+    unfold depth2SubtreeResult at hresult
+    refine ⟨isValidPinnedFragment_of_mem_fragmentSearchAux hresult, ?_, ?_⟩
+    · calc
+        centerMaskOf result .v =
+            centerMaskOf (depth2StateMasks sstar wmask) .v :=
+          centerMaskOf_eq_of_mem_fragmentSearchAux_of_not_mem_plan
+            (by simp [depth2RestPlan]) hresult
+        _ = pinnedMaskOf sstar := by
+          simp [depth2StateMasks, emptyShadowMasks, centerMaskOf,
+            setCenterMask, setNth, Label.index]
+    · calc
+        centerMaskOf result .w =
+            centerMaskOf (depth2StateMasks sstar wmask) .w :=
+          centerMaskOf_eq_of_mem_fragmentSearchAux_of_not_mem_plan
+            (by simp [depth2RestPlan]) hresult
+        _ = wmask := by
+          simp [depth2StateMasks, emptyShadowMasks, centerMaskOf,
+            setCenterMask, setNth, Label.index]
+  · rintro ⟨hvalid, hv, hw⟩
+    let shadow : Shadow := { masks := result }
+    have hpath := shadow_mem_depth2RestPlan_of_isValidPinnedFragment
+      (sstar := sstar) (shadow := shadow) hvalid
+    have hv' : shadow.centerMask .v = pinnedMaskOf sstar := by
+      simpa [shadow, Shadow.centerMask, centerMaskOf] using hv
+    have hw' : shadow.centerMask .w = wmask := by
+      simpa [shadow, Shadow.centerMask, centerMaskOf] using hw
+    have hmasks : shadowMasksForAssigned shadow [.w, .v] =
+        depth2StateMasks sstar wmask := by
+      simp [shadowMasksForAssigned, depth2StateMasks, hv', hw']
+    have hcounts : shadowPairCountsForAssigned shadow [.w, .v] =
+        depth2StateCounts sstar wmask := by
+      simp [shadowPairCountsForAssigned, depth2StateCounts, hv', hw']
+    unfold depth2SubtreeResult
+    simpa [hmasks, hcounts] using hpath
+
+/-- Finite declaration in the authenticated surplus COMP-G shadow bank. -/
+theorem shadow_mem_fragmentSearchAux_of_isValidPinnedFragment
+    {sstar : Label} {shadow : Shadow}
+    (hvalid : isValidPinnedFragment sstar shadow = true) :
+    shadow.masks ∈ fragmentSearchAux sstar [] emptyShadowMasks emptyPairCounts
+      (fragmentSearchPlan sstar) := by
+  have h2 := shadow_mem_depth2RestPlan_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) hvalid
+  have h1 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .w)
+    (assigned := [.v])
+    (rest := [(.u, candidateMasks sstar .u), (.Pw, candidateMasks sstar .Pw), (.Pu, candidateMasks sstar .Pu), (.Q1, candidateMasks sstar .Q1), (.Q2, candidateMasks sstar .Q2), (.s1, candidateMasks sstar .s1), (.s2, candidateMasks sstar .s2), (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h2
+  have h0 := mem_fragmentSearchAux_shadow_step_of_isValidPinnedFragment
+    (sstar := sstar) (shadow := shadow) (center := .v)
+    (assigned := [])
+    (rest := [(.w, candidateMasks sstar .w), (.u, candidateMasks sstar .u), (.Pw, candidateMasks sstar .Pw), (.Pu, candidateMasks sstar .Pu), (.Q1, candidateMasks sstar .Q1), (.Q2, candidateMasks sstar .Q2), (.s1, candidateMasks sstar .s1), (.s2, candidateMasks sstar .s2), (.s3, candidateMasks sstar .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h1
+  simpa [fragmentSearchPlan, fragmentSearchOrder, shadowMasksForAssigned,
+    shadowPairCountsForAssigned, emptyShadowMasks] using h0
+
+"""
 
 
 def lean_depth2_structural_theorem(sstar: str) -> str:
     theorem_name = f"mem_depth2Subtree_of_mem_fragmentSearchAux_top_{sstar}"
     s = lean_label(sstar)
+    pinned_mask = {"s1": 201, "s2": 209, "s3": 225}[sstar]
     branches: list[str] = []
     for wmask in candidate_masks_for(sstar, "w"):
         branches.extend(
             [
                 f"  · exact ⟨{wmask}, by simp [candidateMasks],",
-                "      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts]",
+                "      by simpa [depth2SubtreeResult, depth2StateMasks, depth2StateCounts, hpin]",
                 f"        using h{wmask}.2⟩",
             ]
         )
@@ -543,6 +728,7 @@ def lean_depth2_structural_theorem(sstar: str) -> str:
             "  unfold fragmentSearchAux at hmem",
             "  simp at hmem",
             "  rcases hmem with ⟨_hv, hmem⟩",
+            f"  have hpin : pinnedMaskOf {s} = {pinned_mask} := by rfl",
             f"  rcases hmem with {branch_names}",
             *branches,
         ]
@@ -1773,9 +1959,8 @@ def emit_lean_shadow(bank: dict[str, Any], path: Path) -> None:
         "[" + ", ".join(lean_label_list(prefix) for prefix in assigned_prefixes) + "]"
     )
     lean_full_fragment_search_assigned = lean_label_list(assigned_prefixes[-1])
-    lean_shadow_path_proof = lean_shadow_path_theorem(
-        fragment_search_order, assigned_prefixes
-    )
+    search_state_lemmas = lean_search_state_lemmas()
+    lean_shadow_path_proof = lean_shadow_path_theorem()
     text = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -2954,6 +3139,8 @@ theorem isValidPinnedFragment_of_mem_fragmentSearchAux
       split at hbranch
       · exact ih hbranch
       · simp at hbranch
+
+{search_state_lemmas}
 
 theorem maskNormalized_of_candidateMaskOK
     {{sstar center : Label}} {{mask : Nat}}

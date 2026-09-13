@@ -212,14 +212,25 @@ path from any valid fragment, this characterizes
 surplus star. This separates DFS correctness from the remaining row-bank
 classification.
 
+The depth-two search boundary is also semantic. A result belongs to
+`depth2SubtreeResult sstar wmask` exactly when it is a valid pinned fragment
+whose `v` mask is `pinnedMaskOf sstar` and whose `w` mask is `wmask`. The proof
+uses general preservation lemmas for centers absent from the remaining search
+plan and a reusable reconstruction of the suffix beginning at `u`; it does not
+evaluate a subtree. An independent prefix census reproduces all 135 terminal
+keys and the 15 nonempty `(sstar, w-mask)` cells. Three cells have one terminal
+key each: `(s1, 777)`, `(s1, 912)`, and `(s3, 801)`.
+
 **Next implementation checkpoint:** prove that every valid pinned fragment is
-covered by `rowShadowKeys`, organized by the 15 `(sstar, w-mask)` branches and
-the 17 relaxed-split certificate groups. Then derive the computed-key
-inclusion and wire `pinnedSurplusCOMPGBankBridge` through it. Require a direct
-`#print axioms` probe of the bridge to report only `propext`,
-`Classical.choice`, and `Quot.sound`. Stop and record the first row whose
-certificate data does not fit a shared schema rather than replacing its native
-check with another evaluator.
+covered by `rowShadowKeys`. Start with a shared structural classifier for the
+three singleton depth-two cells, then extend it across the other 12 live cells
+using the 17 relaxed-split certificate groups. Prove the 21 remaining cells
+empty through the first failed search constraint recorded by the prefix census.
+Then derive the computed-key inclusion and wire `pinnedSurplusCOMPGBankBridge`
+through it. Require a direct `#print axioms` probe of the bridge to report only
+`propext`, `Classical.choice`, and `Quot.sound`. Stop and record the first row
+whose certificate data does not fit a shared schema rather than replacing its
+native check with another evaluator.
 
 ## Objective and boundaries
 

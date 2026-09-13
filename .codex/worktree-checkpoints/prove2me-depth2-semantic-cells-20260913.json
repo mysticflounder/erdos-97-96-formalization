@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-depth2-semantic-cells-20260913",
+  "base_head": "3327717134617f7ec5da0557a44bc883429f53b8",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-depth2-semantic-cells-20260913.json",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean",
+    "prove2me/native-bank-replacement-plan.md",
+    "scripts/surplus-compg-shadow.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-depth2-semantic-cells",
+  "created_utc": "2026-09-13T10:52:00Z",
+  "manifest_sha256": "70bcf0192b9e7bf28dc18da2317f81d178c290089b04c3db7b7b614769488e47"
+}
