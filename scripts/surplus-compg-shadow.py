@@ -991,7 +991,7 @@ def Label.bit (label : Label) : Nat :=
 
 @[simp] theorem Label.beq_eq_decide_eq (left right : Label) :
     (left == right) = decide (left = right) := by
-  cases left <;> cases right <;> native_decide
+  cases left <;> cases right <;> rfl
 
 def maskOfLabels : List Label -> Nat
   | [] => 0
@@ -1786,11 +1786,149 @@ theorem mem_allNormalizedMasks_of_maskNormalized {{mask : Nat}}
   rw [allNormalizedMasks]
   exact List.mem_range.mpr (of_decide_eq_true hdec)
 
+private theorem filter_range_eq_singleton_of_sorted
+    (p : Nat → Bool) :
+    ∀ n k, k < n →
+      (∀ i, i < k → p i = false) →
+      p k = true →
+      (∀ i, k < i → i < n → p i = false) →
+      (List.range n).filter p = [k] := by
+  intro n
+  induction n with
+  | zero =>
+      intro k hk
+      exact (Nat.not_lt_zero k hk).elim
+  | succ n ih =>
+      intro k hk hbefore h_at hafter
+      rw [List.range_succ, List.filter_append]
+      by_cases hkn : k < n
+      · have hprefix : (List.range n).filter p = [k] :=
+          ih k hkn hbefore h_at (fun i hi hin =>
+            hafter i hi (Nat.lt_trans hin (Nat.lt_succ_self n)))
+        have hlast : p n = false :=
+          hafter n (Nat.lt_of_lt_of_le hkn (Nat.le_refl n))
+            (Nat.lt_succ_self n)
+        simp [hprefix, hlast]
+      · have hnk : n ≤ k := Nat.le_of_not_gt hkn
+        have hkn_le : k ≤ n := Nat.le_of_lt_succ hk
+        have hkeq : k = n := Nat.le_antisymm hkn_le hnk
+        subst k
+        have hprefix : (List.range n).filter p = [] :=
+          (List.filter_eq_nil_iff).2 (fun a ha => by
+            intro htrue
+            have halt : a < n := List.mem_range.mp ha
+            exact Bool.noConfusion ((hbefore a halt).symm.trans htrue))
+        simp [hprefix, h_at]
+
+private theorem candidateMaskOK_s1_v_iff (mask : Nat) :
+    candidateMaskOK .s1 .v mask = true ↔ mask = 201 := by
+  constructor
+  · intro h
+    simp only [candidateMaskOK, Bool.and_eq_true] at h
+    simpa [expectedPinnedMask] using h.1.1.1.1.1.2
+  · intro h
+    subst mask
+    decide
+
+private theorem candidateMaskOK_s2_v_iff (mask : Nat) :
+    candidateMaskOK .s2 .v mask = true ↔ mask = 209 := by
+  constructor
+  · intro h
+    simp only [candidateMaskOK, Bool.and_eq_true] at h
+    simpa [expectedPinnedMask] using h.1.1.1.1.1.2
+  · intro h
+    subst mask
+    decide
+
+private theorem candidateMaskOK_s3_v_iff (mask : Nat) :
+    candidateMaskOK .s3 .v mask = true ↔ mask = 225 := by
+  constructor
+  · intro h
+    simp only [candidateMaskOK, Bool.and_eq_true] at h
+    simpa [expectedPinnedMask] using h.1.1.1.1.1.2
+  · intro h
+    subst mask
+    decide
+
+private theorem candidateMasks_s1_v_eq_filter :
+    candidateMasks .s1 .v = candidateMasksByFilter .s1 .v := by
+  change [201] = (List.range maskBound).filter (candidateMaskOK .s1 .v ·)
+  symm
+  apply filter_range_eq_singleton_of_sorted
+    (candidateMaskOK .s1 .v ·) maskBound 201
+  · decide
+  · intro i hi
+    have hnot : ¬ candidateMaskOK .s1 .v i = true := by
+      intro h
+      exact (Nat.ne_of_lt hi) ((candidateMaskOK_s1_v_iff i).mp h)
+    cases hvalue : candidateMaskOK .s1 .v i with
+    | false => rfl
+    | true => exact (hnot hvalue).elim
+  · rw [candidateMaskOK_s1_v_iff]
+  · intro i hi hin
+    have hnot : ¬ candidateMaskOK .s1 .v i = true := by
+      intro h
+      exact (Nat.ne_of_gt hi) ((candidateMaskOK_s1_v_iff i).mp h)
+    cases hvalue : candidateMaskOK .s1 .v i with
+    | false => rfl
+    | true => exact (hnot hvalue).elim
+
+private theorem candidateMasks_s2_v_eq_filter :
+    candidateMasks .s2 .v = candidateMasksByFilter .s2 .v := by
+  change [209] = (List.range maskBound).filter (candidateMaskOK .s2 .v ·)
+  symm
+  apply filter_range_eq_singleton_of_sorted
+    (candidateMaskOK .s2 .v ·) maskBound 209
+  · decide
+  · intro i hi
+    have hnot : ¬ candidateMaskOK .s2 .v i = true := by
+      intro h
+      exact (Nat.ne_of_lt hi) ((candidateMaskOK_s2_v_iff i).mp h)
+    cases hvalue : candidateMaskOK .s2 .v i with
+    | false => rfl
+    | true => exact (hnot hvalue).elim
+  · rw [candidateMaskOK_s2_v_iff]
+  · intro i hi hin
+    have hnot : ¬ candidateMaskOK .s2 .v i = true := by
+      intro h
+      exact (Nat.ne_of_gt hi) ((candidateMaskOK_s2_v_iff i).mp h)
+    cases hvalue : candidateMaskOK .s2 .v i with
+    | false => rfl
+    | true => exact (hnot hvalue).elim
+
+private theorem candidateMasks_s3_v_eq_filter :
+    candidateMasks .s3 .v = candidateMasksByFilter .s3 .v := by
+  change [225] = (List.range maskBound).filter (candidateMaskOK .s3 .v ·)
+  symm
+  apply filter_range_eq_singleton_of_sorted
+    (candidateMaskOK .s3 .v ·) maskBound 225
+  · decide
+  · intro i hi
+    have hnot : ¬ candidateMaskOK .s3 .v i = true := by
+      intro h
+      exact (Nat.ne_of_lt hi) ((candidateMaskOK_s3_v_iff i).mp h)
+    cases hvalue : candidateMaskOK .s3 .v i with
+    | false => rfl
+    | true => exact (hnot hvalue).elim
+  · rw [candidateMaskOK_s3_v_iff]
+  · intro i hi hin
+    have hnot : ¬ candidateMaskOK .s3 .v i = true := by
+      intro h
+      exact (Nat.ne_of_gt hi) ((candidateMaskOK_s3_v_iff i).mp h)
+    cases hvalue : candidateMaskOK .s3 .v i with
+    | false => rfl
+    | true => exact (hnot hvalue).elim
+
 theorem candidateMasks_eq_filter_of_isSurplusStar
     {{sstar center : Label}} (hs : isSurplusStar sstar = true) :
     candidateMasks sstar center = candidateMasksByFilter sstar center := by
   cases sstar <;> simp [isSurplusStar] at hs
-  all_goals cases center <;> native_decide
+  all_goals cases center
+  all_goals first
+    | exact candidateMasks_s1_v_eq_filter
+    | exact candidateMasks_s2_v_eq_filter
+    | exact candidateMasks_s3_v_eq_filter
+    | native_decide
 
 theorem mem_candidateMasks_of_candidateMaskOK
     {{sstar center : Label}} {{mask : Nat}}
@@ -1807,14 +1945,19 @@ theorem candidateMaskOK_of_isValidPinnedFragment
     {{sstar center : Label}} {{shadow : Shadow}}
     (h : isValidPinnedFragment sstar shadow = true) :
     candidateMaskOK sstar center (shadow.centerMask center) = true := by
-  cases sstar <;> cases center <;>
-    simp [isValidPinnedFragment, candidateMaskOK, Shadow.classesShapeOK,
+  have hbeq : ∀ left right : Label,
+      (left == right) = decide (left = right) := by
+    intro left right
+    cases left <;> cases right <;> rfl
+  cases sstar <;> simp [isValidPinnedFragment, isSurplusStar] at h
+  all_goals cases center <;>
+    simp [hbeq, candidateMaskOK, Shadow.classesShapeOK,
       Shadow.classShapeOKAt, Shadow.classHas, allLabels, pinnedClassOK,
       wSqueezeOK, oneHitOK, circumcenterOK, circumcenterOKAt,
       fragmentTriggersOK, triggerPrivateOKAt, previousSstarCenters,
-      localTriggerOKAt, isSurplusStar, isMoserLabel] at h ⊢ <;>
+      localTriggerOKAt, isMoserLabel] at h ⊢ <;>
     simp_all <;>
-    native_decide
+    constructor <;> constructor <;> rfl
 
 theorem isSurplusStar_of_isValidPinnedFragment
     {{sstar : Label}} {{shadow : Shadow}}

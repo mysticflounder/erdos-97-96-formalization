@@ -103,6 +103,29 @@ star/center pairs, and `candidateMaskOK_of_isValidPinnedFragment` across the
 three surplus-star cases. Those three families must first receive ordinary
 kernel proofs, or the computed-search producer must be reproved without them.
 
+The first structural replacement checkpoint removes two of those three native
+families completely. `Label.beq_eq_decide_eq` now closes by constructor
+reduction, and `candidateMaskOK_of_isValidPinnedFragment` derives the Boolean
+checks from the validity hypothesis. Direct axiom probes report no axioms for
+the equality lemma and only `propext` and `Quot.sound` for the validity lemma.
+
+The candidate-list family is partially structural. For center `v`, the three
+surplus-star cases now prove that the filter contains exactly the singleton
+masks 201, 209, and 225. A general recursive lemma isolates the unique true
+entry of a filtered natural-number range; each branch identifies its mask from
+the pinned-mask conjunct and proves the remaining Boolean check directly. This
+removes three of the 30 native branch axioms. The theorem still has 27 native
+branch axioms for the remaining centers, so the computed-search producer is
+still compiler-trusted. The source module now has 36 textual `native_decide`
+calls, and the three depth shards still contribute one each.
+
+The next useful extraction is a normalized-bitmask decomposition for the
+19-entry center-`u` tables: turn a mask below `2 ^ labelCount` into a duplicate-
+free list of labels, prove exact membership and reconstruction, and identify
+`maskCard` with the support length. That supplies the reusable representation
+needed to classify four-label supports; it does not by itself prove membership
+in the three explicit candidate tables.
+
 After that prerequisite, the bridge should route through the computed list and
 target the one-way coverage actually needed by the consumer:
 
