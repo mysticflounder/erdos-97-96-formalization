@@ -1,0 +1,16 @@
+{
+  "schema": "worktree-lane-checkpoint/v1",
+  "lane_id": "prove2me-finite10-later-surplus-center-classification-20260913",
+  "base_head": "4e2f370f86eb9249b980c606903263ab2c48780b",
+  "owned_paths": [
+    ".codex/worktree-checkpoints/prove2me-finite10-later-surplus-center-classification-20260913.json",
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean",
+    "prove2me/native-bank-replacement-plan.md",
+    "scripts/surplus-compg-shadow.py"
+  ],
+  "durable_paths": [],
+  "generated_roots": [],
+  "owner": "codex-prove2me-finite10-later-surplus-center-classification",
+  "created_utc": "2026-09-13T08:58:00Z",
+  "manifest_sha256": "302344835ff20aa872272aeb18a007744bc310cfb3e7cf2108d091f0118aea17"
+}

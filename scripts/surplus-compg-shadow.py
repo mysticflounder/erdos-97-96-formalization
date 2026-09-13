@@ -1012,13 +1012,14 @@ theorem candidateMaskOK_privateCenter_iff
       simp_all
   all_goals aesop
 
-private theorem candidateMaskOK_privateCenter_iff_mem_supportMasks
-    {sstar center : Label} {mask : Nat}
-    (hsstar : isSurplusStar sstar = true)
-    (hcenter : center = .Pw ∨ center = .Pu) :
-    candidateMaskOK sstar center mask = true ↔
+private theorem maskProperties_iff_mem_fourSupportMasks
+    {center : Label} {mask : Nat} :
+    (maskNormalized mask = true ∧
+      maskCard mask = 4 ∧
+      maskHas mask center = false ∧
+      ¬ (maskHas mask .u = true ∧ maskHas mask .v = true ∧
+        maskHas mask .w = true)) ↔
       mask ∈ fourSupportMasksAvoidingCenter center := by
-  rw [candidateMaskOK_privateCenter_iff hsstar hcenter]
   constructor
   · rintro ⟨hnormalized, hcard, hcenterAbsent, htriple⟩
     have hlt : mask < 2 ^ labelCount := by
@@ -1084,6 +1085,15 @@ private theorem candidateMaskOK_privateCenter_iff_mem_supportMasks
       · simpa [maskHas_supportMask] using hall.1
       · simpa [maskHas_supportMask] using hall.2.1
       · simpa [maskHas_supportMask] using hall.2.2
+
+private theorem candidateMaskOK_privateCenter_iff_mem_supportMasks
+    {sstar center : Label} {mask : Nat}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : center = .Pw ∨ center = .Pu) :
+    candidateMaskOK sstar center mask = true ↔
+      mask ∈ fourSupportMasksAvoidingCenter center :=
+  (candidateMaskOK_privateCenter_iff hsstar hcenter).trans
+    maskProperties_iff_mem_fourSupportMasks
 
 /-- The ascending list of admissible four-support masks for a center. -/
 def fourSupportMaskListAvoidingCenter (center : Label) : List Nat :=
@@ -1158,6 +1168,115 @@ theorem candidateMasks_privateCenter_eq_filter
     (fourSupportMaskListAvoidingCenter center)
     (fourSupportMaskList_sorted center) hbound hmatch
   simpa [candidateMasksByFilter, allNormalizedMasks] using hfilter.symm
+
+/-- A surplus center occurring strictly after its chosen surplus star in the
+ordered sequence s1, s2, s3. -/
+def IsLaterSurplusCenter (sstar center : Label) : Prop :=
+  (sstar = .s1 ∧ center = .s2) ∨
+    (sstar = .s1 ∧ center = .s3) ∨
+    (sstar = .s2 ∧ center = .s3)
+
+/-- The local trigger is vacuous when the surplus center occurs after the
+chosen surplus star. -/
+theorem localTriggerOKAt_laterSurplusCenter
+    {sstar center : Label} {mask : Nat}
+  (hcenter : IsLaterSurplusCenter sstar center) :
+    localTriggerOKAt sstar center mask = true := by
+  rcases hcenter with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+    simp [localTriggerOKAt, previousSstarCenters]
+
+/-- At a later surplus center, the candidate predicate asks exactly for a
+normalized four-element support which omits its center and does not contain
+all three Moser labels. -/
+theorem candidateMaskOK_laterSurplusCenter_iff
+    {sstar center : Label} {mask : Nat}
+    (hcenter : IsLaterSurplusCenter sstar center) :
+    candidateMaskOK sstar center mask = true ↔
+      maskNormalized mask = true ∧
+      maskCard mask = 4 ∧
+      maskHas mask center = false ∧
+      ¬ (maskHas mask .u = true ∧ maskHas mask .v = true ∧
+        maskHas mask .w = true) := by
+  rcases hcenter with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+    simp [candidateMaskOK, localTriggerOKAt, previousSstarCenters, isMoserLabel]
+  all_goals
+    cases hu : maskHas mask .u <;>
+      cases hv : maskHas mask .v <;>
+      cases hw : maskHas mask .w <;>
+      simp_all
+  all_goals aesop
+
+private theorem candidateMaskOK_laterSurplusCenter_iff_mem_supportMasks
+    {sstar center : Label} {mask : Nat}
+    (hcenter : IsLaterSurplusCenter sstar center) :
+    candidateMaskOK sstar center mask = true ↔
+      mask ∈ fourSupportMasksAvoidingCenter center :=
+  (candidateMaskOK_laterSurplusCenter_iff hcenter).trans
+    maskProperties_iff_mem_fourSupportMasks
+
+set_option maxRecDepth 100000 in
+private theorem fourSupportMasksAvoidingS2_eq_table :
+    fourSupportMasksAvoidingCenter .s2 =
+      (candidateMasks .s1 .s2).toFinset := by
+  decide
+
+set_option maxRecDepth 100000 in
+private theorem fourSupportMasksAvoidingS3_eq_table :
+    fourSupportMasksAvoidingCenter .s3 =
+      (candidateMasks .s1 .s3).toFinset := by
+  decide
+
+/-- For a later surplus center, the explicit candidate table is the ascending
+structural enumeration of four-element supports which omit the center and do
+not contain all three Moser labels. -/
+theorem candidateMasks_laterSurplusCenter_eq_fourSupportMasks
+    {sstar center : Label}
+    (hcenter : IsLaterSurplusCenter sstar center) :
+    candidateMasks sstar center = fourSupportMaskListAvoidingCenter center := by
+  rcases hcenter with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩
+  · symm
+    exact sort_eq_of_eq_toFinset fourSupportMasksAvoidingS2_eq_table (by decide)
+  · symm
+    exact sort_eq_of_eq_toFinset fourSupportMasksAvoidingS3_eq_table (by decide)
+  · change candidateMasks .s1 .s3 = fourSupportMaskListAvoidingCenter .s3
+    symm
+    exact sort_eq_of_eq_toFinset fourSupportMasksAvoidingS3_eq_table (by decide)
+
+/-- Every later-surplus-center table is the ordered filter of its candidate
+predicate. -/
+theorem candidateMasks_laterSurplusCenter_eq_filter
+    {sstar center : Label}
+    (hcenter : IsLaterSurplusCenter sstar center) :
+    candidateMasks sstar center = candidateMasksByFilter sstar center := by
+  rw [candidateMasks_laterSurplusCenter_eq_fourSupportMasks hcenter]
+  have hbound : ∀ mask ∈ fourSupportMaskListAvoidingCenter center, mask < maskBound := by
+    intro mask hmask
+    rw [fourSupportMaskListAvoidingCenter, Finset.mem_sort] at hmask
+    obtain ⟨support, _, rfl⟩ := Finset.mem_image.mp hmask
+    exact supportMask_lt_maskBound support
+  have hmatch : ∀ mask, mask < maskBound →
+      (candidateMaskOK sstar center mask = true ↔
+        mask ∈ fourSupportMaskListAvoidingCenter center) := by
+    intro mask _
+    rw [candidateMaskOK_laterSurplusCenter_iff_mem_supportMasks hcenter,
+      fourSupportMaskListAvoidingCenter, Finset.mem_sort]
+  have hfilter := filter_range_eq_of_strictSorted_bounded
+    (candidateMaskOK sstar center) maskBound
+    (fourSupportMaskListAvoidingCenter center)
+    (fourSupportMaskList_sorted center) hbound hmatch
+  simpa [candidateMasksByFilter, allNormalizedMasks] using hfilter.symm
+
+private theorem candidateMasks_s1_s2_eq_filter :
+    candidateMasks .s1 .s2 = candidateMasksByFilter .s1 .s2 :=
+  candidateMasks_laterSurplusCenter_eq_filter (Or.inl ⟨rfl, rfl⟩)
+
+private theorem candidateMasks_s1_s3_eq_filter :
+    candidateMasks .s1 .s3 = candidateMasksByFilter .s1 .s3 :=
+  candidateMasks_laterSurplusCenter_eq_filter (Or.inr (Or.inl ⟨rfl, rfl⟩))
+
+private theorem candidateMasks_s2_s3_eq_filter :
+    candidateMasks .s2 .s3 = candidateMasksByFilter .s2 .s3 :=
+  candidateMasks_laterSurplusCenter_eq_filter (Or.inr (Or.inr ⟨rfl, rfl⟩))
 
 end PrivateCenterSupport
 """
@@ -3299,6 +3418,9 @@ theorem candidateMasks_eq_filter_of_isSurplusStar
     | exact candidateMasks_s1_v_eq_filter
     | exact candidateMasks_s2_v_eq_filter
     | exact candidateMasks_s3_v_eq_filter
+    | exact candidateMasks_s1_s2_eq_filter
+    | exact candidateMasks_s1_s3_eq_filter
+    | exact candidateMasks_s2_s3_eq_filter
     | exact CenterWSupport.candidateMasks_eq_filter (by decide)
     | exact candidateMasks_privateCenter_eq_filter (by decide) (by decide)
     | native_decide
