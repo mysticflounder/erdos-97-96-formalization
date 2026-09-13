@@ -893,6 +893,276 @@ def lean_candidate_masks_match() -> str:
     return "\n".join(cases)
 
 
+def lean_private_center_support() -> str:
+    return r"""section PrivateCenterSupport
+
+open Label
+open scoped BigOperators
+
+private theorem label_index_injective : Function.Injective Label.index := by
+  intro a b h
+  cases a <;> cases b <;> simp [Label.index] at h ⊢
+
+/-- The binary mask encoded by a finite label support. -/
+def supportMask (support : Finset Label) : Nat :=
+  ∑ label ∈ support, 2 ^ label.index
+
+private theorem supportMask_eq_maskOfLabels_toList (support : Finset Label) :
+    supportMask support = maskOfLabels support.toList := by
+  rw [supportMask, maskOfLabels_eq_sum]
+  simp [Label.bit]
+  apply Finset.sum_congr rfl
+  intro label _
+  rfl
+
+private theorem maskHas_supportMask (support : Finset Label) (label : Label) :
+    maskHas (supportMask support) label = decide (label ∈ support) := by
+  have hsum :
+      (∑ label ∈ support, 2 ^ label.index) =
+        ∑ i ∈ support.image Label.index, 2 ^ i := by
+    rw [Finset.sum_image label_index_injective.injOn]
+  apply Bool.eq_iff_iff.mpr
+  simp only [maskHas, decide_eq_true_eq]
+  rw [← Nat.mem_bitIndices]
+  simp only [supportMask]
+  rw [hsum, ← List.mem_toFinset,
+    Finset.toFinset_bitIndices_sum_two_pow, Finset.mem_image]
+  constructor
+  · rintro ⟨a, ha, hindex⟩
+    have : a = label := label_index_injective hindex
+    simpa [this] using ha
+  · intro hp
+    exact ⟨label, hp, rfl⟩
+
+private theorem supportMask_lt_maskBound (support : Finset Label) :
+    supportMask support < maskBound := by
+  have h :
+      (∑ i ∈ support.image Label.index, 2 ^ i) < 2 ^ labelCount :=
+    Nat.geomSum_lt (by norm_num) (by
+      intro i hi
+      obtain ⟨label, _, rfl⟩ := Finset.mem_image.mp hi
+      cases label <;> decide)
+  rw [Finset.sum_image label_index_injective.injOn] at h
+  simpa [supportMask, maskBound] using h
+
+private theorem maskCard_supportMask (support : Finset Label) :
+    maskCard (supportMask support) = support.card := by
+  have hlt : supportMask support < 2 ^ labelCount := by
+    simpa [maskBound] using supportMask_lt_maskBound support
+  have hset : (labelsOfMaskBits (supportMask support)).toFinset = support := by
+    ext label
+    rw [List.mem_toFinset, mem_labelsOfMaskBits_iff hlt, maskHas_supportMask]
+    simp
+  rw [maskCard_eq_length_labelsOfMaskBits hlt]
+  calc
+    (labelsOfMaskBits (supportMask support)).length =
+        (labelsOfMaskBits (supportMask support)).toFinset.card :=
+      (List.toFinset_card_of_nodup (labelsOfMaskBits_nodup hlt)).symm
+    _ = support.card := by rw [hset]
+
+/-- Masks of four-element supports which omit a center and do not contain all
+three Moser labels. -/
+def fourSupportMasksAvoidingCenter (center : Label) : Finset Nat :=
+  ((((allLabels.toFinset.erase center).powersetCard 4).filter
+      fun support => ¬ ({.u, .v, .w} : Finset Label) ⊆ support).image supportMask)
+
+private theorem maskOfLabels_eq_of_same_support
+    {xs ys : List Label} (hxs : xs.Nodup) (hys : ys.Nodup)
+    (hset : xs.toFinset = ys.toFinset) :
+    maskOfLabels xs = maskOfLabels ys := by
+  have hp : List.Perm xs ys :=
+    (List.perm_ext_iff_of_nodup hxs hys).mpr (by
+      intro x
+      simpa only [List.mem_toFinset] using (Finset.ext_iff.mp hset x))
+  rw [maskOfLabels_eq_sum, maskOfLabels_eq_sum]
+  exact (hp.map (fun label => label.bit)).sum_eq
+
+/-- At either private center, the local trigger is vacuous for every surplus
+star, so it is independent of both the mask and the chosen surplus star. -/
+theorem localTriggerOKAt_privateCenter
+    {sstar center : Label} {mask : Nat}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : center = .Pw ∨ center = .Pu) :
+    localTriggerOKAt sstar center mask = true := by
+  rcases hcenter with rfl | rfl <;>
+    cases sstar <;>
+    simp [isSurplusStar, localTriggerOKAt, previousSstarCenters] at hsstar ⊢
+
+/-- At either private center, the candidate predicate asks exactly for a
+normalized four-element support which omits its center and does not contain
+all three Moser labels. -/
+theorem candidateMaskOK_privateCenter_iff
+    {sstar center : Label} {mask : Nat}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : center = .Pw ∨ center = .Pu) :
+    candidateMaskOK sstar center mask = true ↔
+      maskNormalized mask = true ∧
+      maskCard mask = 4 ∧
+      maskHas mask center = false ∧
+      ¬ (maskHas mask .u = true ∧ maskHas mask .v = true ∧
+        maskHas mask .w = true) := by
+  rcases hcenter with rfl | rfl <;>
+    cases sstar <;>
+    simp [isSurplusStar, candidateMaskOK, localTriggerOKAt,
+      previousSstarCenters, isMoserLabel] at hsstar ⊢
+  all_goals
+    cases hu : maskHas mask .u <;>
+      cases hv : maskHas mask .v <;>
+      cases hw : maskHas mask .w <;>
+      simp_all
+  all_goals aesop
+
+private theorem candidateMaskOK_privateCenter_iff_mem_supportMasks
+    {sstar center : Label} {mask : Nat}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : center = .Pw ∨ center = .Pu) :
+    candidateMaskOK sstar center mask = true ↔
+      mask ∈ fourSupportMasksAvoidingCenter center := by
+  rw [candidateMaskOK_privateCenter_iff hsstar hcenter]
+  constructor
+  · rintro ⟨hnormalized, hcard, hcenterAbsent, htriple⟩
+    have hlt : mask < 2 ^ labelCount := by
+      have hdec : decide (mask < maskBound) = true := by
+        simpa [maskNormalized] using hnormalized
+      have hltBound : mask < maskBound := of_decide_eq_true hdec
+      simpa [maskBound] using hltBound
+    let support := (labelsOfMaskBits mask).toFinset
+    have hsupportCard : support.card = 4 := by
+      calc
+        support.card = (labelsOfMaskBits mask).length :=
+          List.toFinset_card_of_nodup (labelsOfMaskBits_nodup hlt)
+        _ = maskCard mask := (maskCard_eq_length_labelsOfMaskBits hlt).symm
+        _ = 4 := hcard
+    have hsupportMem :
+        support ∈ ((allLabels.toFinset.erase center).powersetCard 4).filter
+          (fun labels => ¬ ({.u, .v, .w} : Finset Label) ⊆ labels) := by
+      apply Finset.mem_filter.mpr
+      refine ⟨Finset.mem_powersetCard.mpr ⟨?_, hsupportCard⟩, ?_⟩
+      · intro label hlabel
+        apply Finset.mem_erase.mpr
+        refine ⟨?_, ?_⟩
+        · intro h
+          subst label
+          have hset := (mem_labelsOfMaskBits_iff hlt center).mp
+            (List.mem_toFinset.mp hlabel)
+          simp [hcenterAbsent] at hset
+        · cases label <;> simp [allLabels]
+      · intro hsubset
+        apply htriple
+        refine ⟨?_, ?_, ?_⟩
+        · exact (mem_labelsOfMaskBits_iff hlt .u).mp
+            (List.mem_toFinset.mp (hsubset (by simp)))
+        · exact (mem_labelsOfMaskBits_iff hlt .v).mp
+            (List.mem_toFinset.mp (hsubset (by simp)))
+        · exact (mem_labelsOfMaskBits_iff hlt .w).mp
+            (List.mem_toFinset.mp (hsubset (by simp)))
+    apply Finset.mem_image.mpr
+    refine ⟨support, hsupportMem, ?_⟩
+    calc
+      supportMask support = maskOfLabels support.toList :=
+        supportMask_eq_maskOfLabels_toList support
+      _ = maskOfLabels (labelsOfMaskBits mask) :=
+        maskOfLabels_eq_of_same_support support.nodup_toList
+          (labelsOfMaskBits_nodup hlt) (by simp [support])
+      _ = mask := maskOfLabels_labelsOfMaskBits hlt
+  · intro hmask
+    obtain ⟨support, hsupportMem, rfl⟩ := Finset.mem_image.mp hmask
+    obtain ⟨hsupportPower, htriple⟩ := Finset.mem_filter.mp hsupportMem
+    obtain ⟨hsubset, hsupportCard⟩ := Finset.mem_powersetCard.mp hsupportPower
+    have hcenterAbsent : center ∉ support := by
+      intro hmem
+      exact (Finset.mem_erase.mp (hsubset hmem)).1 rfl
+    refine ⟨?_, (maskCard_supportMask support).trans hsupportCard, ?_, ?_⟩
+    · exact decide_eq_true_eq.mpr (supportMask_lt_maskBound support)
+    · rw [maskHas_supportMask]
+      simp [hcenterAbsent]
+    · intro hall
+      apply htriple
+      intro label hlabel
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hlabel
+      rcases hlabel with rfl | rfl | rfl
+      · simpa [maskHas_supportMask] using hall.1
+      · simpa [maskHas_supportMask] using hall.2.1
+      · simpa [maskHas_supportMask] using hall.2.2
+
+/-- The ascending list of admissible four-support masks for a center. -/
+def fourSupportMaskListAvoidingCenter (center : Label) : List Nat :=
+  (fourSupportMasksAvoidingCenter center).sort (fun left right => left ≤ right)
+
+private theorem sort_eq_of_eq_toFinset {s : Finset Nat} {xs : List Nat}
+    (hs : s = xs.toFinset) (hxs : xs.Pairwise (· < ·)) :
+    s.sort (· ≤ ·) = xs := by
+  rw [hs]
+  exact (List.toFinset_sort (r := (· ≤ ·)) hxs.nodup).mpr
+    hxs.sortedLT.sortedLE.pairwise
+
+set_option maxRecDepth 100000 in
+private theorem fourSupportMasksAvoidingPw_eq_table :
+    fourSupportMasksAvoidingCenter .Pw =
+      (candidateMasks .s1 .Pw).toFinset := by
+  decide
+
+set_option maxRecDepth 100000 in
+private theorem fourSupportMasksAvoidingPu_eq_table :
+    fourSupportMasksAvoidingCenter .Pu =
+      (candidateMasks .s1 .Pu).toFinset := by
+  decide
+
+/-- For every surplus star, the explicit private-center candidate table is the
+ascending structural enumeration of four-element supports which omit the
+center and do not contain all of the three Moser labels. -/
+theorem candidateMasks_privateCenter_eq_fourSupportMasks
+    {sstar center : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : center = .Pw ∨ center = .Pu) :
+    candidateMasks sstar center = fourSupportMaskListAvoidingCenter center := by
+  rcases hcenter with rfl | rfl
+  · have htable : candidateMasks sstar .Pw = candidateMasks .s1 .Pw := by
+      cases sstar <;> simp [isSurplusStar] at hsstar <;> rfl
+    rw [htable]
+    symm
+    exact sort_eq_of_eq_toFinset fourSupportMasksAvoidingPw_eq_table (by decide)
+  · have htable : candidateMasks sstar .Pu = candidateMasks .s1 .Pu := by
+      cases sstar <;> simp [isSurplusStar] at hsstar <;> rfl
+    rw [htable]
+    symm
+    exact sort_eq_of_eq_toFinset fourSupportMasksAvoidingPu_eq_table (by decide)
+
+private theorem fourSupportMaskList_sorted (center : Label) :
+    (fourSupportMaskListAvoidingCenter center).Pairwise (· < ·) := by
+  apply List.sortedLT_iff_pairwise.mp
+  rw [List.sortedLT_iff_nodup_and_sortedLE]
+  exact ⟨Finset.sort_nodup _ _, (Finset.pairwise_sort _ _).sortedLE⟩
+
+/-- Every surplus private-center table is the ordered filter of its candidate
+predicate. -/
+theorem candidateMasks_privateCenter_eq_filter
+    {sstar center : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hcenter : center = .Pw ∨ center = .Pu) :
+    candidateMasks sstar center = candidateMasksByFilter sstar center := by
+  rw [candidateMasks_privateCenter_eq_fourSupportMasks hsstar hcenter]
+  have hbound : ∀ mask ∈ fourSupportMaskListAvoidingCenter center, mask < maskBound := by
+    intro mask hmask
+    rw [fourSupportMaskListAvoidingCenter, Finset.mem_sort] at hmask
+    obtain ⟨support, _, rfl⟩ := Finset.mem_image.mp hmask
+    exact supportMask_lt_maskBound support
+  have hmatch : ∀ mask, mask < maskBound →
+      (candidateMaskOK sstar center mask = true ↔
+        mask ∈ fourSupportMaskListAvoidingCenter center) := by
+    intro mask _
+    rw [candidateMaskOK_privateCenter_iff_mem_supportMasks hsstar hcenter,
+      fourSupportMaskListAvoidingCenter, Finset.mem_sort]
+  have hfilter := filter_range_eq_of_strictSorted_bounded
+    (candidateMaskOK sstar center) maskBound
+    (fourSupportMaskListAvoidingCenter center)
+    (fourSupportMaskList_sorted center) hbound hmatch
+  simpa [candidateMasksByFilter, allNormalizedMasks] using hfilter.symm
+
+end PrivateCenterSupport
+"""
+
+
 def emit_lean_shadow(bank: dict[str, Any], path: Path) -> None:
     validate_shadow_signatures(bank["rows"])
     rows = ",\n".join(lean_row(row) for row in bank["rows"])
@@ -916,6 +1186,7 @@ def emit_lean_shadow(bank: dict[str, Any], path: Path) -> None:
         for sstar, masks in computed_fragment_entries
     )
     candidate_masks_match = lean_candidate_masks_match()
+    private_center_support = lean_private_center_support()
     label_pairs = [
         (left, right)
         for index, left in enumerate(LABELS)
@@ -948,6 +1219,9 @@ Authors: Adam McKenna
 
 import Mathlib.Data.Nat.BitIndices
 import Mathlib.Data.Finset.Card
+import Mathlib.Data.Finset.Powerset
+import Mathlib.Data.Finset.Sort
+import Mathlib.Combinatorics.Colex
 import Batteries.Data.List.Perm
 import Mathlib.Tactic.IntervalCases
 
@@ -2878,6 +3152,8 @@ theorem candidateMasks_eq_filter {{sstar : Label}} (hsstar : isSurplusStar sstar
 
 end CenterWSupport
 
+{private_center_support}
+
 private theorem filter_range_eq_singleton_of_sorted
     (p : Nat → Bool) :
     ∀ n k, k < n →
@@ -3024,6 +3300,7 @@ theorem candidateMasks_eq_filter_of_isSurplusStar
     | exact candidateMasks_s2_v_eq_filter
     | exact candidateMasks_s3_v_eq_filter
     | exact CenterWSupport.candidateMasks_eq_filter (by decide)
+    | exact candidateMasks_privateCenter_eq_filter (by decide) (by decide)
     | native_decide
 
 theorem mem_candidateMasks_of_candidateMaskOK
