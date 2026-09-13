@@ -465,6 +465,91 @@ def s3928TargetE : Label → Nat
 def s3928Targets : List (Label → Nat) :=
   [s3928TargetA, s3928TargetB, s3928TargetC, s3928TargetD, s3928TargetE]
 
+/-- Fixed masks for the `(s2, 864)` depth-two cell with six target rows. -/
+def s2864Fixed : List (Label × Nat) := [(.v, 209), (.w, 864)]
+
+/-- First target tuple for the `(s2, 864)` depth-two cell. -/
+def s2864TargetA : Label → Nat
+  | .u => 284
+  | .v => 209
+  | .w => 864
+  | .s1 => 291
+  | .s2 => 172
+  | .s3 => 533
+  | .Pw => 178
+  | .Pu => 105
+  | .Q1 => 582
+  | .Q2 => 394
+
+/-- Second target tuple for the `(s2, 864)` depth-two cell. -/
+def s2864TargetB : Label → Nat
+  | .u => 284
+  | .v => 209
+  | .w => 864
+  | .s1 => 291
+  | .s2 => 680
+  | .s3 => 533
+  | .Pw => 178
+  | .Pu => 105
+  | .Q1 => 582
+  | .Q2 => 394
+
+/-- Third target tuple for the `(s2, 864)` depth-two cell. -/
+def s2864TargetC : Label → Nat
+  | .u => 284
+  | .v => 209
+  | .w => 864
+  | .s1 => 102
+  | .s2 => 680
+  | .s3 => 533
+  | .Pw => 178
+  | .Pu => 75
+  | .Q1 => 646
+  | .Q2 => 297
+
+/-- Fourth target tuple for the `(s2, 864)` depth-two cell. -/
+def s2864TargetD : Label → Nat
+  | .u => 284
+  | .v => 209
+  | .w => 864
+  | .s1 => 294
+  | .s2 => 680
+  | .s3 => 533
+  | .Pw => 178
+  | .Pu => 105
+  | .Q1 => 582
+  | .Q2 => 267
+
+/-- Fifth target tuple for the `(s2, 864)` depth-two cell. -/
+def s2864TargetE : Label → Nat
+  | .u => 284
+  | .v => 209
+  | .w => 864
+  | .s1 => 294
+  | .s2 => 680
+  | .s3 => 533
+  | .Pw => 178
+  | .Pu => 105
+  | .Q1 => 582
+  | .Q2 => 394
+
+/-- Sixth target tuple for the `(s2, 864)` depth-two cell. -/
+def s2864TargetF : Label → Nat
+  | .u => 284
+  | .v => 209
+  | .w => 864
+  | .s1 => 294
+  | .s2 => 680
+  | .s3 => 533
+  | .Pw => 178
+  | .Pu => 105
+  | .Q1 => 646
+  | .Q2 => 267
+
+/-- The six target tuples admitted by the `(s2, 864)` compatibility certificate. -/
+def s2864Targets : List (Label → Nat) :=
+  [s2864TargetC, s2864TargetA, s2864TargetB, s2864TargetD, s2864TargetE, s2864TargetF]
+
 /-- Fixed masks for the `(s1, 912)` depth-two singleton cell. -/
 def s1912Fixed : List (Label × Nat) := [(.v, 201), (.w, 912)]
 

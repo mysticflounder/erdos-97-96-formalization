@@ -1,0 +1,23 @@
+{
+  "schema": "worktree-run-manifest/v1",
+  "lane_id": "prove2me-s2864-row-set-20260913",
+  "run_id": "prototype",
+  "root": "scratch/runs/prove2me-s2864-row-set-20260913/prototype",
+  "owner": "codex-prove2me-s2864-row-set-promotion",
+  "base_head": "64a87171fc69e17b34021fc1876df52118bc6409",
+  "output_classes": [
+    "artifacts",
+    "events",
+    "tmp"
+  ],
+  "source_digests": {
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBankCoverage.lean": "16d8b9bfadfca0b91063f1e93e244d362c44715136c408f313fdcf7a9ed18f31",
+    "scripts/surplus-compg-singleton-cnf.py": "234e89171b923253db605592ed37f7d426013c6c312990ae36390ec5f0dd7b7c",
+    "scratch/runs/prove2me-s2864-row-set-20260913/prototype/tmp/surplus-compg-s2864.py": "234e89171b923253db605592ed37f7d426013c6c312990ae36390ec5f0dd7b7c"
+  },
+  "input_digests": {
+    "lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean": "197631f1e75ef334fb98a46149b805aafd0d43e7b74b810701947abf8eb4e74e"
+  },
+  "created_utc": "2026-09-13T18:58:59Z",
+  "manifest_sha256": "84eef72610f1d2e379cfb79a62a13a7a8f01f3dd864db02fe91e5503acea1b51"
+}

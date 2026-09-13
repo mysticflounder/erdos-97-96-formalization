@@ -1,0 +1,44 @@
+import Erdos9796Proof.P97.SurplusCOMPGBankCoverage
+
+namespace Problem97.S2864TreeProof.Shard01
+
+open SurplusCOMPGBank SurplusCOMPGBankCoverage
+
+def certificate : CompatibilityCertificate :=
+  .split [
+    (30, .prune .u 46),
+    (43, .prune .u 46),
+    (45, .prune .u 46),
+    (46, .prune .u 46),
+    (54, .prune .u 46),
+    (58, .prune .u 46),
+    (60, .prune .u 46),
+    (78, .prune .u 46),
+    (102, .prune .u 46),
+    (106, .prune .u 46),
+    (108, .prune .u 46),
+    (142, .prune .u 46),
+    (166, .prune .u 46),
+    (170, .prune .u 46),
+    (172, .prune .u 46),
+    (523, .prune .u 46),
+    (525, .prune .u 46),
+    (526, .prune .u 46),
+    (534, .prune .u 46),
+    (538, .prune .u 46),
+    (540, .prune .u 46),
+    (582, .prune .u 46),
+    (586, .prune .u 46),
+    (588, .prune .u 46),
+    (646, .prune .u 46),
+    (650, .prune .u 46),
+    (652, .prune .u 46)
+  ]
+
+set_option maxRecDepth 100000 in
+theorem checked :
+    checkCompatibilityCertificateForTargets .s2 s2864Fixed s2864Targets
+      [.Q1, .Q2, .Pw, .Pu, .s1, .s3, .s2] [(.u, 46)] certificate = true := by
+  decide
+
+end Problem97.S2864TreeProof.Shard01
