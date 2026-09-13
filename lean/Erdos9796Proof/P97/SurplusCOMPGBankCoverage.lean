@@ -952,6 +952,184 @@ def s2864TargetF : Label → Nat
 def s2864Targets : List (Label → Nat) :=
   [s2864TargetC, s2864TargetA, s2864TargetB, s2864TargetD, s2864TargetE, s2864TargetF]
 
+/-- Fixed masks for the `(s2, 912)` depth-two cell with thirteen target rows. -/
+def s2912Fixed : List (Label × Nat) := [(.v, 209), (.w, 912)]
+
+/-- First target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetA : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 291
+  | .s2 => 556
+  | .s3 => 86
+  | .Pw => 29
+  | .Pu => 609
+  | .Q1 => 646
+  | .Q2 => 330
+
+/-- Second target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetB : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 306
+  | .s2 => 616
+  | .s3 => 86
+  | .Pw => 29
+  | .Pu => 579
+  | .Q1 => 549
+  | .Q2 => 267
+
+/-- Third target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetC : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 306
+  | .s2 => 549
+  | .s3 => 86
+  | .Pw => 29
+  | .Pu => 99
+  | .Q1 => 646
+  | .Q2 => 267
+
+/-- Fourth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetD : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 306
+  | .s2 => 556
+  | .s3 => 86
+  | .Pw => 29
+  | .Pu => 99
+  | .Q1 => 646
+  | .Q2 => 267
+
+/-- Fifth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetE : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 306
+  | .s2 => 556
+  | .s3 => 86
+  | .Pw => 29
+  | .Pu => 609
+  | .Q1 => 646
+  | .Q2 => 267
+
+/-- Sixth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetF : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 306
+  | .s2 => 556
+  | .s3 => 86
+  | .Pw => 29
+  | .Pu => 609
+  | .Q1 => 646
+  | .Q2 => 330
+
+/-- Seventh target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetG : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 278
+  | .s2 => 610
+  | .s3 => 92
+  | .Pw => 51
+  | .Pu => 585
+  | .Q1 => 549
+  | .Q2 => 267
+
+/-- Eighth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetH : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 534
+  | .s2 => 354
+  | .s3 => 92
+  | .Pw => 51
+  | .Pu => 585
+  | .Q1 => 549
+  | .Q2 => 267
+
+/-- Ninth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetI : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 534
+  | .s2 => 354
+  | .s3 => 92
+  | .Pw => 51
+  | .Pu => 585
+  | .Q1 => 549
+  | .Q2 => 270
+
+/-- Tenth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetJ : Label → Nat
+  | .u => 424
+  | .v => 209
+  | .w => 912
+  | .s1 => 534
+  | .s2 => 291
+  | .s3 => 92
+  | .Pw => 166
+  | .Pu => 609
+  | .Q1 => 525
+  | .Q2 => 330
+
+/-- Eleventh target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetK : Label → Nat
+  | .u => 616
+  | .v => 209
+  | .w => 912
+  | .s1 => 549
+  | .s2 => 170
+  | .s3 => 332
+  | .Pw => 29
+  | .Pu => 323
+  | .Q1 => 646
+  | .Q2 => 306
+
+/-- Twelfth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetL : Label → Nat
+  | .u => 680
+  | .v => 209
+  | .w => 912
+  | .s1 => 354
+  | .s2 => 549
+  | .s3 => 142
+  | .Pw => 51
+  | .Pu => 329
+  | .Q1 => 582
+  | .Q2 => 284
+
+/-- Thirteenth target tuple for the `(s2, 912)` depth-two cell. -/
+def s2912TargetM : Label → Nat
+  | .u => 680
+  | .v => 209
+  | .w => 912
+  | .s1 => 549
+  | .s2 => 354
+  | .s3 => 142
+  | .Pw => 51
+  | .Pu => 329
+  | .Q1 => 582
+  | .Q2 => 284
+
+/-- The thirteen target tuples admitted by the `(s2, 912)` compatibility certificate. -/
+def s2912Targets : List (Label → Nat) :=
+  [s2912TargetA, s2912TargetB, s2912TargetC, s2912TargetD, s2912TargetE,
+    s2912TargetF, s2912TargetG, s2912TargetH, s2912TargetI, s2912TargetJ,
+    s2912TargetK, s2912TargetL, s2912TargetM]
+
 /-- Fixed masks for the `(s1, 912)` depth-two singleton cell. -/
 def s1912Fixed : List (Label × Nat) := [(.v, 201), (.w, 912)]
 

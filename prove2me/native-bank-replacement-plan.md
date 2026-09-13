@@ -282,6 +282,12 @@ used the indexed Lean corpus at revision `8e6075c94`, with repository HEAD
 The next checkpoint should fit the first non-singleton live cell to a shared
 certificate schema before extending the remaining 11 live cells.
 
+For the 21 remaining cells, use a separate emptiness certificate that models
+pair-count and terminal-validity rejections. The pilot zero-target wrapper is not
+general: separation-compatible complete choices remain for `(s1, 771)` (53),
+`(s1, 785)` (217), `(s1, 801)` (597), `(s1, 898)` (231), `(s2, 771)` (450), and
+`(s2, 777)` (35). These cells remain outside the populated-cell promotion work.
+
 **First multiple-row pilot:** the 12 remaining live cells contain between two
 and 36 rows. The smallest is `(s1, 834)`, with exactly the stored rows `s1_000`
 and `s1_001`. The existing 17 relaxed-split groups partition already identified
@@ -400,6 +406,22 @@ The generated source contains none of `sorry`, `admit`, `axiom`, `unsafe`,
 `Lean.ofReduceNat`, or `Lean.trustCompiler`. Dispatcher integration extends structural
 coverage to eleven populated cells; empty cells remain outside this certificate family.
 Targeted `lake-build` completed all 1,681 jobs, and the governed Lean-ingress binding
+passed semantic validation with only `propext`, `Classical.choice`, and `Quot.sound`
+in the exported declarations' axiom closures.
+
+The `(s2, 912)` prototype covers the thirteen certified target rows `s2_052` through
+`s2_064` from pinned bank
+`a7c93a9c69a26271a8e75447d3b66c8f116fdde86c70c219380c5407d0f2457a`.
+With center order `u, Q1, Q2, Pw, Pu, s3, s1, s2`, its generated target-set tree has
+1,821 partial states, 1,808 splits, 67,825 separation prunes, and thirteen terminals.
+Two independent generations and a canonical-generator regeneration emitted 70
+matching Lean modules, totaling 2,533,949 bytes, with aggregate digest
+`37b8e69765bd1c5e59092c73c806b5f7f2ba4d4897131fb58a6e9dd2b380aa56`.
+The generated source contains none of `sorry`, `admit`, `axiom`, `unsafe`,
+`native_decide`, `partial`, `extern`, `implemented_by`, `Lean.ofReduceBool`,
+`Lean.ofReduceNat`, or `Lean.trustCompiler`. Dispatcher integration extends structural
+coverage to twelve populated cells; empty cells remain outside this certificate family.
+Targeted `lake-build` completed all 1,751 jobs, and the governed Lean-ingress binding
 passed semantic validation with only `propext`, `Classical.choice`, and `Quot.sound`
 in the exported declarations' axiom closures.
 

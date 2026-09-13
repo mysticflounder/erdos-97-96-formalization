@@ -13,13 +13,14 @@ import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1904TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1912TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S1928TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S2864TreeProof.Root
+import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S2912TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S3801TreeProof.Root
 import Erdos9796Proof.P97.SurplusCOMPGBankCoverage.S3928TreeProof.Root
 
 /-!
 # Coverage of singleton depth-two search cells
 
-This module collects eleven depth-two search cells whose valid results are structurally
+This module collects twelve depth-two search cells whose valid results are structurally
 determined and shows that every result from one of those cells occurs among the stored row masks.
 -/
 
@@ -46,6 +47,7 @@ inductive IsStructurallyCoveredDepthTwoCell : Label → Nat → Prop where
   | s1At904 : IsStructurallyCoveredDepthTwoCell .s1 904
   | s1At928 : IsStructurallyCoveredDepthTwoCell .s1 928
   | s2At864 : IsStructurallyCoveredDepthTwoCell .s2 864
+  | s2At912 : IsStructurallyCoveredDepthTwoCell .s2 912
   | s3At928 : IsStructurallyCoveredDepthTwoCell .s3 928
 
 /-- The unique result of the `(.s1, 777)` cell occurs among the stored row masks. -/
@@ -303,6 +305,71 @@ theorem s2864TargetF_mem_rowShadowKeys :
     [284, 209, 864, 294, 680, 533, 178, 105, 646, 267] ∈ rowShadowKeys := by
   simp [rowShadowKeys, rows, Row.shadowKey]
 
+/-- The certified target row `s2_053` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetA_mem_rowShadowKeys :
+    [424, 209, 912, 291, 556, 86, 29, 609, 646, 330] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_058` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetB_mem_rowShadowKeys :
+    [424, 209, 912, 306, 616, 86, 29, 579, 549, 267] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_059` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetC_mem_rowShadowKeys :
+    [424, 209, 912, 306, 549, 86, 29, 99, 646, 267] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_060` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetD_mem_rowShadowKeys :
+    [424, 209, 912, 306, 556, 86, 29, 99, 646, 267] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_061` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetE_mem_rowShadowKeys :
+    [424, 209, 912, 306, 556, 86, 29, 609, 646, 267] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_062` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetF_mem_rowShadowKeys :
+    [424, 209, 912, 306, 556, 86, 29, 609, 646, 330] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_054` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetG_mem_rowShadowKeys :
+    [424, 209, 912, 278, 610, 92, 51, 585, 549, 267] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_056` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetH_mem_rowShadowKeys :
+    [424, 209, 912, 534, 354, 92, 51, 585, 549, 267] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_057` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetI_mem_rowShadowKeys :
+    [424, 209, 912, 534, 354, 92, 51, 585, 549, 270] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_055` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetJ_mem_rowShadowKeys :
+    [424, 209, 912, 534, 291, 92, 166, 609, 525, 330] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_052` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetK_mem_rowShadowKeys :
+    [616, 209, 912, 549, 170, 332, 29, 323, 646, 306] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_064` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetL_mem_rowShadowKeys :
+    [680, 209, 912, 354, 549, 142, 51, 329, 582, 284] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
+/-- The certified target row `s2_063` for the `(.s2, 912)` cell is stored. -/
+theorem s2912TargetM_mem_rowShadowKeys :
+    [680, 209, 912, 549, 354, 142, 51, 329, 582, 284] ∈ rowShadowKeys := by
+  simp [rowShadowKeys, rows, Row.shadowKey]
+
 /-- The unique result of the `(.s1, 912)` cell occurs among the stored row masks. -/
 theorem s1912Target_mem_rowShadowKeys :
     [178, 201, 912, 531, 616, 142, 297, 326, 549, 284] ∈ rowShadowKeys := by
@@ -341,7 +408,7 @@ theorem depth2SubtreeResult_all_containsKey_rowShadowKeys_of_singletonCell
   exact containsKey_eq_true_of_mem
     (mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_singletonCell hcell hresult)
 
-/-- Every result in one of the eleven structurally covered depth-two cells occurs among the
+/-- Every result in one of the twelve structurally covered depth-two cells occurs among the
 stored rows. -/
 theorem mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell
     {sstar : Label} {wmask : Nat} {result : List Nat}
@@ -424,6 +491,24 @@ theorem mem_rowShadowKeys_of_mem_depth2SubtreeResult_of_structurallyCoveredCell
       · exact s2864TargetD_mem_rowShadowKeys
       · exact s2864TargetE_mem_rowShadowKeys
       · exact s2864TargetF_mem_rowShadowKeys
+  | s2At912 =>
+      have htargets := S2912TreeProof.memDepth2SubtreeResult_memTargets hresult
+      simp only [List.mem_cons, List.not_mem_nil, or_false] at htargets
+      rcases htargets with
+        rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+      · exact s2912TargetA_mem_rowShadowKeys
+      · exact s2912TargetB_mem_rowShadowKeys
+      · exact s2912TargetC_mem_rowShadowKeys
+      · exact s2912TargetD_mem_rowShadowKeys
+      · exact s2912TargetE_mem_rowShadowKeys
+      · exact s2912TargetF_mem_rowShadowKeys
+      · exact s2912TargetG_mem_rowShadowKeys
+      · exact s2912TargetH_mem_rowShadowKeys
+      · exact s2912TargetI_mem_rowShadowKeys
+      · exact s2912TargetJ_mem_rowShadowKeys
+      · exact s2912TargetK_mem_rowShadowKeys
+      · exact s2912TargetL_mem_rowShadowKeys
+      · exact s2912TargetM_mem_rowShadowKeys
   | s3At928 =>
       have htargets := S3928TreeProof.memDepth2SubtreeResult_memTargets hresult
       simp only [List.mem_cons, List.not_mem_nil, or_false] at htargets
