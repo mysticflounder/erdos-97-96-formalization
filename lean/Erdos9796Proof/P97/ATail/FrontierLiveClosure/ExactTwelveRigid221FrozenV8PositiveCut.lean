@@ -79,16 +79,16 @@ private theorem FrozenBoundaryOrder.false_of_kalmansonOrderAt_frozenV8
     CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw
       hconv order.boundary_injective
         order.boundary_image_eq_pointOf_image_frozenV8 order.boundary_ccw
-      (by simpa only [FrozenBoundaryOrder.position] using hOA)
-      (by simpa only [FrozenBoundaryOrder.position] using hAY)
-      (by simpa only [FrozenBoundaryOrder.position] using hYE)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hOA)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hAY)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hYE)
   have hAE_lt_AO :=
     CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
       hconv order.boundary_injective
         order.boundary_image_eq_pointOf_image_frozenV8 order.boundary_ccw
-      (by simpa only [FrozenBoundaryOrder.position] using hOA)
-      (by simpa only [FrozenBoundaryOrder.position] using hAY.trans hYE)
-      (by simpa only [FrozenBoundaryOrder.position] using hEC)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hOA)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hAY.trans hYE)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hEC)
   have hYRow := hreal.equidist y o hO_mem_y e hE_mem_y
   have hORow := hreal.equidist o e hE_mem_o c hC_mem_o
   have hARow := hreal.equidist a c hC_mem_a o hO_mem_a
@@ -113,9 +113,9 @@ private theorem FrozenBoundaryOrder.false_of_sharedLatePairOrderAt_frozenV8
     CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
       hconv order.boundary_injective
         order.boundary_image_eq_pointOf_image_frozenV8 order.boundary_ccw
-      (by simpa only [FrozenBoundaryOrder.position] using hAB)
-      (by simpa only [FrozenBoundaryOrder.position] using hBC)
-      (by simpa only [FrozenBoundaryOrder.position] using hCD)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hAB)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hBC)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hCD)
   have hAeq := hreal.equidist a c hC_mem_a d hD_mem_a
   have hBeq := hreal.equidist b c hC_mem_b d hD_mem_b
   simp only [order.point_eq] at hstrict

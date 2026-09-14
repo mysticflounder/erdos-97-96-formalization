@@ -228,16 +228,16 @@ private theorem FrozenBoundaryOrder.false_of_kalmansonOrderAt_nextRowCell3
     CapCrossingKalmansonBridge.complementary_dist_add_dist_lt_diagonal_sum_of_ccw
       hconv order.boundary_injective
         order.boundary_image_eq_pointOf_image_nextRowCell3 order.boundary_ccw
-      (by simpa only [FrozenBoundaryOrder.position] using hOA)
-      (by simpa only [FrozenBoundaryOrder.position] using hAY)
-      (by simpa only [FrozenBoundaryOrder.position] using hYE)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hOA)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hAY)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hYE)
   have hAE_lt_AO :=
     CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
       hconv order.boundary_injective
         order.boundary_image_eq_pointOf_image_nextRowCell3 order.boundary_ccw
-      (by simpa only [FrozenBoundaryOrder.position] using hOA)
-      (by simpa only [FrozenBoundaryOrder.position] using hAY.trans hYE)
-      (by simpa only [FrozenBoundaryOrder.position] using hEC)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hOA)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hAY.trans hYE)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hEC)
   have hYRow := hreal.equidist y o hO_mem_y e hE_mem_y
   have hORow := hreal.equidist o e hE_mem_o c hC_mem_o
   have hARow := hreal.equidist a c hC_mem_a o hO_mem_a

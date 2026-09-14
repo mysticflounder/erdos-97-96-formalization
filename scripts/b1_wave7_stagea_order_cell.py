@@ -198,7 +198,12 @@ def objective(parameters: Sequence[float]) -> float:
 
 
 def parameter_bounds() -> tuple[tuple[float, float], ...]:
-    return ((-8.0, 8.0),) * 5 + ((0.500001, 4.0), (-math.pi, math.pi)) * 3
+    row_bounds = (
+        (0.500001, 4.0),
+        (-math.pi, math.pi),
+        (-math.pi, math.pi),
+    )
+    return ((-8.0, 8.0),) * 5 + row_bounds * 3
 
 
 def run_optimization(

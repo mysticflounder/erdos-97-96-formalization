@@ -1,10 +1,6 @@
 import Mathlib
-#check Finset.card_union_of_disjoint
-#check Finset.disjoint_left
-#check Finset.card_union_le
-#check Finset.mem_image
-#check Finset.card_eq_two
-#check Finset.card_eq_two.mp
-#check Finset.subset_union
-#check Finset.inter_subset_left
-#check Finset.disjoint_left
+#check Nat.lt_of_le_of_ne
+#check Nat.lt_of_le_of_ne
+#check lt_of_le_of_ne
+#check Nat.le_pred_of_lt
+#check Nat.lt_of_le_of_ne

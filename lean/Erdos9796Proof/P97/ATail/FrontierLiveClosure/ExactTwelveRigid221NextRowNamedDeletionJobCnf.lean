@@ -156,7 +156,7 @@ theorem nextRowAssign_sat_namedDeletionCenterTwoUnit
       (canonicalV14Coordinate cell.1)
       (frozenPhysicalCycleCnfAddedConstraintsHold_of_nextRowOnlyHit hadded.1)
       (SafeCoverIndexBridge.coverIndex row) cell.2.blockerSourceIndex
-      (by simpa [blockerLayout] using hcenter)).1 htrue
+      (by simpa [blockerLayout, canonicalV14Coordinate] using hcenter)).1 htrue
     apply hadded.2.1
     apply Fin.ext
     exact heq.symm
@@ -241,7 +241,7 @@ theorem nextRowAssign_sat_namedDeletionBinaryClause
         (canonicalV14Coordinate cell.1)
         (frozenPhysicalCycleCnfAddedConstraintsHold_of_nextRowOnlyHit hadded.1)
         (SafeCoverIndexBridge.coverIndex row) cell.2.blockerSourceIndex
-        (by simpa [blockerLayout] using hcenter)).1 htrue
+        (by simpa [blockerLayout, canonicalV14Coordinate] using hcenter)).1 htrue
       exact hselected heq
     simp only [namedDeletionBinaryClause, evalClauseD, List.any_cons,
       evalLitD_negNat, hblockerFalse, Bool.not_false, Bool.true_or]

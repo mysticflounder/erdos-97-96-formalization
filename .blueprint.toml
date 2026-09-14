@@ -53,3 +53,75 @@ skip = [
   "*.SurplusCertificate.RowZeros.Product.*",
   "*.SurplusCertificate.RowZeros.Bank",
 ]
+
+[index]
+# The Census-554 BV placement bank (`prefixCore_of_pNdM`) discharges one
+# 46-antecedent / 42-core bitblast per file under `bv_decide` with
+# `maxHeartbeats 0`.  One file did not terminate in 8 h of CPU, so building
+# all twelve is not viable on any normal cycle.  They are an unreachable leaf
+# — `All.lean` gathers them, only `CapSelectedBVExperiment` imports that, and
+# nothing imports it — so no spine theorem depends on them and the P97 target
+# axiom closure is unaffected.  Skipping them here keeps `plan prepare` from
+# building them.  NOTE: unlike `[mining].skip`, an `[index].skip` file is not
+# scanned for `sorry` either; that is acceptable only because nothing on the
+# spine reaches these.
+skip = [
+  # --- the unreachable island -------------------------------------------
+  # None of the modules below is reachable from `defaultTargets`
+  # (["Erdos9796", "Erdos9796Proof", "Erdos9796BankSupport"]).  A `lean_lib`
+  # with no `globs` builds only its root's import closure, which is 5203 of
+  # the 6540 project modules on disk; the other 1337 are never compiled by
+  # `lake build` and so rotted unnoticed across the Mathlib v4.33.1 bump.
+  # `plan prepare` builds every *indexable* module, so it is the first thing
+  # that ever looked at them.
+  #
+  # Three groups, all excluded so `plan prepare` can complete:
+  #   1. the Census-554 BV placement bank — one 46-antecedent/42-core
+  #      bitblast per file under `bv_decide` with `maxHeartbeats 0`; one file
+  #      did not terminate in 8 h of CPU.
+  #   2. `ExactTwelveRigid221FiveOmissionSat` — kernel interpreter OOM at the
+  #      `-M16384` cap, Lean exits 134.
+  #   3. six modules needing real proof repair after the Mathlib bump, plus
+  #      the reverse-dependency closure that imports them (skipping a module
+  #      does not stop an indexed importer from dragging it back in).
+  #
+  # The P97 publish target and its axiom closure are unaffected.  NOTE: unlike
+  # `[mining].skip`, an `[index].skip` file is not scanned for `sorry`.
+  # Remove an entry once its proof is repaired and it builds.
+  "Erdos9796Proof/P97/Census554/CapSelectedBVPlacements/*.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221FiveOmissionFormulaSat.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221FiveOmissionSat.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221FiveOmissionTerminalBankConsumer.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/ExactTwelveRigid221StaticConvexSourceOrderConsumer.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitCommonRadiusFinitePayload.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitCommonRadiusReducedFinitePayload.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitCompleteFiniteSourceTheory.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitCompleteFiniteSourceTheoryBranches.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitCompleteFiniteSourceTheoryContext.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitCompleteFiniteSourceTheoryCore.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitFiniteBlockerFiber.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitFiniteHingressPayload.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitFiniteOverlapTerminal.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitIngressFiniteLanding.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitRetainedDeletionFinitePayload.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/FirstNonHitSourceTotalFiniteAssignment.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/GoodMutualOmissionDeletionOutcome.lean",
+  "Erdos9796Proof/P97/ATail/FrontierLiveClosure/Rigid221SourceRowCapBetweenness.lean",
+  "Erdos9796Proof/P97/ATail/GoodMutualOmissionTwoDeletionNetwork.lean",
+  "Erdos9796Proof/P97/ATail/SevenSourceCriticalShellDichotomy.lean",
+  "Erdos9796Proof/P97/ATail/SevenSourceCriticalShellMutualOmission.lean",
+  "Erdos9796Proof/P97/ATail/SevenSourcePaleyRelabel.lean",
+  "Erdos9796Proof/P97/ATail/SevenSourceTournament.lean",
+  "Erdos9796Proof/P97/FiniteN10.lean",
+  "Erdos9796Proof/P97/FiniteN11.lean",
+  "Erdos9796Proof/P97/MultiCenter/Certificate/ClassPermutationBridge.lean",
+  "Erdos9796Proof/P97/MultiCenter/Certificate/ClassPermutationTable.lean",
+  "Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumerator.lean",
+  "Erdos9796Proof/P97/MultiCenter/Certificate/LocalEnumeratorCertificate.lean",
+  "Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassCompletion.lean",
+  "Erdos9796Proof/P97/MultiCenter/Certificate/ProfileClassCoverageCertificate.lean",
+  "Erdos9796Proof/P97/MultiCenter/Certificate/ProfileSymmetry.lean",
+  "Erdos9796Proof/P97/Phase3StructuralConstraintBank.lean",
+  "Erdos9796Proof/P97/U1CardTenCapProfile.lean",
+  "scratch/check_finite11_axioms.lean",
+]

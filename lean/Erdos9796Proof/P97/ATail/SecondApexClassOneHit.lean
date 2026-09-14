@@ -52,16 +52,20 @@ at most once. -/
 theorem selectedClass_oppApex2_inter_surplusCap_card_le_one
     {D : CounterexampleData} (S : SurplusCapPacket D.A) (radius : ℝ) :
     (SelectedClass D.A S.oppApex2 radius ∩ S.surplusCap).card ≤ 1 := by
-  simpa [withPacket, SelectedClass, dist_comm] using
-    U2NonSurplusSqueeze.oppApex2_surplusCap_one_hit (withPacket D S) radius
+  have h := U2NonSurplusSqueeze.oppApex2_surplusCap_one_hit (withPacket D S) radius
+  simp only [withPacket, SelectedClass, dist_comm] at h ⊢
+  convert h using 3
+  congr!
 
 /-- An exact-radius class at the second apex meets the closed first
 opposite cap at most once. -/
 theorem selectedClass_oppApex2_inter_oppCap1_card_le_one
     {D : CounterexampleData} (S : SurplusCapPacket D.A) (radius : ℝ) :
     (SelectedClass D.A S.oppApex2 radius ∩ S.oppCap1).card ≤ 1 := by
-  simpa [withPacket, SelectedClass, dist_comm] using
-    U2NonSurplusSqueeze.oppApex2_otherCap_one_hit (withPacket D S) radius
+  have h := U2NonSurplusSqueeze.oppApex2_otherCap_one_hit (withPacket D S) radius
+  simp only [withPacket, SelectedClass, dist_comm] at h ⊢
+  convert h using 3
+  congr!
 
 /-- P97 ATail SecondApexClassOneHit theorem. -/
 private theorem false_of_pair_subset_card_le_one

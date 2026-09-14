@@ -9,6 +9,7 @@ from pathlib import Path
 
 import cardge13_exact13_fixed_base_k4_scan as fixed_scan
 import cardge13_exact13_fixed_base_planar_piqd as fixed_planar
+import cardge13_exact13_global_source_cell_csp_piqd as global_csp
 import cardge13_exact13_k4_prefix_cegar_piqd as subject
 import cardge13_exact13_kalmanson_cone_piqd as fixed_cone
 import cardge13_exact13_residual_domain_csp_piqd as residual_csp
@@ -537,3 +538,137 @@ def test_residual_csp_decodes_one_selected_row_per_center() -> None:
         "12": [1, 4, 5, 8],
         "3": [0, 1, 5, 9],
     }
+
+
+def source_valid_all_center_cell() -> dict[str, object]:
+    return {
+        "roles": {"b0": 9, "b1": 2, "s0": 4, "s1": 3, "d": 7, "z": 9},
+        "base_rows": {
+            "C0": [2, 4, 6, 11],
+            "C1": [0, 1, 3, 10],
+            "K": [5, 7, 8, 12],
+            "L": [2, 9, 10, 11],
+            "T": [0, 6, 7, 10],
+        },
+        "global_rows": {
+            "3": [0, 1, 5, 8],
+            "4": [0, 1, 5, 8],
+            "5": [0, 1, 4, 8],
+            "6": [0, 2, 4, 8],
+            "7": [1, 2, 4, 5],
+            "8": [2, 7, 9, 12],
+            "10": [8, 9, 11, 12],
+            "11": [3, 5, 7, 9],
+            "12": [1, 4, 5, 8],
+        },
+    }
+
+
+def test_global_source_cell_cardinality_encoder_is_exact_size() -> None:
+    names = tuple(f"x_{index}" for index in range(13))
+    commands = global_csp.cardinality_clauses(names, 4)
+    assert len(commands) == 1287 + 286
+    guarded = global_csp.cardinality_clauses(
+        names, 4, guard_disjuncts=("b0", "b1")
+    )
+    assert len(guarded) == len(commands)
+    assert all("b0" in command and "b1" in command for command in guarded)
+
+
+def test_global_source_cell_validates_replayed_candidate() -> None:
+    global_csp.validate_cell(source_valid_all_center_cell())
+
+
+def test_global_source_cell_conflict_bank_contains_candidate_terminal() -> None:
+    bank = global_csp.conflict_bank(global_csp.DIRECT_ORDER)
+    expected = tuple(
+        sorted(("m_G6_2", "m_G6_4", "m_G7_2", "m_G7_4"))
+    )
+    assert any(tuple(row["atoms"]) == expected for row in bank)
+    assert len(bank) == len(global_csp.conflict_bank(global_csp.MIRROR_ORDER))
+
+
+def test_global_source_cell_query_is_boolean_and_deterministic() -> None:
+    commands, bank = global_csp.build_commands(global_csp.DIRECT_ORDER, "strict")
+    assert commands[0] == "(set-logic QF_LRA)"
+    assert commands == global_csp.build_commands(global_csp.DIRECT_ORDER)[0]
+    assert bank
+    assert len(commands) > len(bank)
+    assert any("declare-const d_" in command for command in commands)
+
+
+def test_global_source_cell_metric_commands_encode_linear_obstruction() -> None:
+    commands = global_csp.distance_metric_commands(global_csp.DIRECT_ORDER, "strict")
+    assert len(commands) == 78 + (14 * 66) + (2 * 13 * 66) + 1430
+    assert "(declare-const d_0_1 Real)" in commands
+    assert "(assert (=> (and m_G6_2 m_G6_4) (= d_2_6 d_4_6)))" in commands
+    assert any(command.startswith("(assert (> (+ d_") for command in commands)
+    equality_commands, _bank = global_csp.build_commands(
+        global_csp.DIRECT_ORDER, "equality"
+    )
+    assert equality_commands[0] == "(set-logic QF_LIA)"
+    assert "(declare-const d_0_1 Int)" in equality_commands
+
+
+def test_global_source_cell_command_chunks_preserve_bounded_journal() -> None:
+    commands = ("(assert a)", "(assert long_name)", "(check-sat)")
+    chunks = global_csp.command_chunks(commands, max_bytes=31)
+    assert tuple(command for chunk in chunks for command in chunk) == commands
+    assert len(chunks) == 2
+    assert all(
+        len(("\n".join(chunk) + "\n").encode("ascii")) <= 31 for chunk in chunks
+    )
+
+
+def test_global_source_cell_extracts_source_pinned_transitive_conflict() -> None:
+    cell = source_valid_all_center_cell()
+    conflict = global_csp.minimal_transitive_conflict(cell, global_csp.DIRECT_ORDER)
+    assert conflict is not None
+    rows = conflict["rows"]
+    assert isinstance(rows, tuple)
+    assert len(rows) == 2
+    atoms = set(conflict["atoms"])
+    for row in rows:
+        assert isinstance(row, dict)
+        name = str(row["name"])
+        center = int(row["center"])
+        support = tuple(int(point) for point in row["support"])
+        assert set(global_csp.row_pin_atoms(name, center, support)) <= atoms
+    clause = global_csp.transitive_conflict_clause(conflict)
+    assert clause.startswith("(assert (or ")
+    assert all(f"(not {atom})" in clause for atom in atoms)
+
+
+def test_global_source_cell_extracts_two_form_cone_conflict() -> None:
+    conflict = global_csp.minimal_pair_cancellation_conflict(
+        source_valid_all_center_cell(), global_csp.DIRECT_ORDER
+    )
+    assert conflict is not None
+    assert conflict["kind"] == "two-form-cone-row-pin"
+    assert len(conflict["forms"]) == 2
+    assert conflict["atoms"]
+
+
+def test_global_source_cell_cone_projects_all_row_equalities() -> None:
+    cell = source_valid_all_center_cell()
+    forms = global_csp.projected_kalmanson_forms(cell, global_csp.DIRECT_ORDER)
+    assert forms
+    assert any(not form["vector"] for form in forms)
+    commands = global_csp.cone_commands(cell, global_csp.DIRECT_ORDER)
+    assert commands[0] == "(set-logic QF_LRA)"
+    assert any(command.startswith("(declare-const w_") for command in commands)
+    assert commands == global_csp.cone_commands(cell, global_csp.DIRECT_ORDER)
+
+
+def test_global_source_cell_planar_query_keeps_exact_and_equality_only_rows() -> None:
+    commands = global_csp.planar_commands(
+        source_valid_all_center_cell(), global_csp.DIRECT_ORDER
+    )
+    assert commands[0] == "(set-logic QF_NRA)"
+    assert len(commands) == 283
+    assert "(assert (distinct r2_K r2_L))" in commands
+    assert any("distinct" in command and "r2_K" in command for command in commands)
+    assert not any("distinct" in command and "r2_C0" in command for command in commands)
+    assert commands == global_csp.planar_commands(
+        source_valid_all_center_cell(), global_csp.DIRECT_ORDER
+    )

@@ -226,7 +226,7 @@ noncomputable def rigid221CommonLabeledEnrichment
     have hpoint := (selectedXvRow.mem_labels_iff roles.source2).mp hsource
     simpa [selectedXvSupport, roles.source2_point] using hpoint
   · apply (deletedCenterRow.mem_labels_iff roles.deletedCenter).mpr
-    simpa [deletedCenterSupport, roles.deletedCenter_point] using
+    simpa [deletedCenterSupport, roles.deletedCenter_point, deletedCenterVertex] using
       ((lateFirstApexSystem R).selectedAt
         (deletedCenterVertex source).1
         (deletedCenterVertex source).2).toCriticalFourShell.q_mem_support

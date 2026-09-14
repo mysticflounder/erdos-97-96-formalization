@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.Census554.CapSelectedBVCircuit
 import Mathlib.Tactic
+import Std.Tactic.BVDecide
 
 namespace Problem97.Census554.CapSelectedBVCircuit
 

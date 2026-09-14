@@ -20,6 +20,7 @@ def sample_parameters() -> list[float]:
 def test_fixed_order_and_parameterization() -> None:
     points = wave7.realize_points(sample_parameters())
     assert tuple(points) == wave7.ORDER
+    assert len(wave7.parameter_bounds()) == wave7.DIMENSION
     physical, rows = wave7.decode_parameters(sample_parameters())
     assert physical["u1"] == 0.0
     assert len(physical) == 6

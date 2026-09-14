@@ -159,10 +159,10 @@ theorem FrozenBoundaryOrder.false_of_selectedRowsKalmanson
     CapCrossingKalmansonBridge.false_of_five_ccw_three_shell_equalities_of_index_size
       hconv order.boundary_injective order.boundary_image_eq_pointOf_image
         order.boundary_ccw
-  · simpa only [FrozenBoundaryOrder.position] using hOA
-  · simpa only [FrozenBoundaryOrder.position] using hAY
-  · simpa only [FrozenBoundaryOrder.position] using hYE
-  · simpa only [FrozenBoundaryOrder.position] using hEC
+  · simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hOA
+  · simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hAY
+  · simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hYE
+  · simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hEC
   · simpa only [order.point_eq] using
       hreal.equidist y o hO_mem_y e hE_mem_y
   · simpa only [order.point_eq] using
@@ -188,9 +188,9 @@ theorem FrozenBoundaryOrder.false_of_twoRowsSharedLatePair
     CapCrossingKalmansonBridge.dist_add_dist_lt_diagonal_sum_of_ccw
       hconv order.boundary_injective order.boundary_image_eq_pointOf_image
         order.boundary_ccw
-      (by simpa only [FrozenBoundaryOrder.position] using hAB)
-      (by simpa only [FrozenBoundaryOrder.position] using hBC)
-      (by simpa only [FrozenBoundaryOrder.position] using hCD)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hAB)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hBC)
+      (by simpa only [FrozenBoundaryOrder.position, Fin.lt_def] using hCD)
   have hAeq : dist (pointOf a) (pointOf c) = dist (pointOf a) (pointOf d) :=
     hreal.equidist a c hC_mem_a d hD_mem_a
   have hBeq : dist (pointOf b) (pointOf c) = dist (pointOf b) (pointOf d) :=

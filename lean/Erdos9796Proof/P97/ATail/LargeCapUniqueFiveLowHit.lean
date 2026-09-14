@@ -37,9 +37,12 @@ private theorem oppApex2_mem_A
     S.oppApex2 ∈ A := by
   rcases hi : S.surplusIdx with ⟨i, hi3⟩
   interval_cases i
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
-  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]
+    exact S.triangle.v3_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]
+    exact S.triangle.v1_mem
+  · simp only [SurplusCapPacket.oppApex2, hi]
+    exact S.triangle.v2_mem
 
 /-- The actual retained row at the unused source has at most one physical
 exact-five strict-cap hit.  Two hits instantiate the direct contradiction

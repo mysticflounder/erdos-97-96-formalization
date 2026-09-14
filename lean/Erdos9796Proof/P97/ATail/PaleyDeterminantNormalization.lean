@@ -142,14 +142,18 @@ theorem paley_determinants_incompatible_of_basis_minors
     False := by
   let A := columns v₀ v₁ v₂ v₃
   let w := normalize A
+  have hcol₀ : A.col (0 : Fin 4) = v₀ := by funext i; simp [A, columns, Matrix.col]
+  have hcol₁ : A.col (1 : Fin 4) = v₁ := by funext i; simp [A, columns, Matrix.col]
+  have hcol₂ : A.col (2 : Fin 4) = v₂ := by funext i; simp [A, columns, Matrix.col]
+  have hcol₃ : A.col (3 : Fin 4) = v₃ := by funext i; simp [A, columns, Matrix.col]
   have hw₀ : w v₀ = Pi.single 0 1 := by
-    simpa [A, w, columns] using normalize_col A hA (0 : Fin 4)
+    simpa [w, hcol₀] using normalize_col A hA (0 : Fin 4)
   have hw₁ : w v₁ = Pi.single 1 1 := by
-    simpa [A, w, columns] using normalize_col A hA (1 : Fin 4)
+    simpa [w, hcol₁] using normalize_col A hA (1 : Fin 4)
   have hw₂ : w v₂ = Pi.single 2 1 := by
-    simpa [A, w, columns] using normalize_col A hA (2 : Fin 4)
+    simpa [w, hcol₂] using normalize_col A hA (2 : Fin 4)
   have hw₃ : w v₃ = Pi.single 3 1 := by
-    simpa [A, w, columns] using normalize_col A hA (3 : Fin 4)
+    simpa [w, hcol₃] using normalize_col A hA (3 : Fin 4)
   have ha : w v₄ 0 ≠ 0 := by
     exact normalized_coord_ne_zero_of_replacement_minor_ne_zero A hA v₄ 0 h₄₀
   have hb : w v₄ 1 ≠ 0 := by

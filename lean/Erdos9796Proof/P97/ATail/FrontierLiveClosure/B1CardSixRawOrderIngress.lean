@@ -230,12 +230,12 @@ private theorem ambientRoleIndex_injective
   apply Subtype.ext
   calc
     x.1 = B.boundary (B.indexOf (ambientCarrierLabel P hsubset x)) := by
-      simpa [ambientCarrierLabel] using
+      simpa [ambientCarrierLabel, pointOf] using
         (B.point_eq (ambientCarrierLabel P hsubset x)).symm
     _ = B.boundary (B.indexOf (ambientCarrierLabel P hsubset y)) :=
       congrArg B.boundary hxy
     _ = y.1 := by
-      simpa [ambientCarrierLabel] using
+      simpa [ambientCarrierLabel, pointOf] using
         B.point_eq (ambientCarrierLabel P hsubset y)
 
 /-- Frontier live-closure theorem. -/
