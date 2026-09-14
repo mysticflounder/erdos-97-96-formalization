@@ -13,6 +13,12 @@ echo "Disk usage before: $(du -sh . | cut -f1)"
 # Tracked .py and .md sources stay.
 git clean -fdx -- census
 
+# Some sealed run artifacts in scratch/ are read-only; restore owner write so
+# rm can remove them.
+if [ -d scratch ]; then
+  chmod -R u+w scratch
+fi
+
 rm -rf \
   scratch \
   certificates \
