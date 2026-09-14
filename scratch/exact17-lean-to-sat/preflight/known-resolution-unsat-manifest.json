@@ -1,5 +1,0 @@
-{
-  "schema": "p97-exact17-piqd-preflight/v1",
-  "expected": "UNSAT",
-  "purpose": "nontrivial LRAT retrieval and independent replay preflight"
-}

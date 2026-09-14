@@ -1,8 +1,0 @@
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceClosure
-
-open Problem97
-open Problem97.ATailFrontierLiveClosure
-
-#print axioms ATailThirdCenterCommonPair.selectedFourClass_inter_pair_card_le_one_of_two_saturated_centers
-#print axioms ATailSurvivalCover.actualBlockerFiber_card_le_four
-#print axioms Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.SixSurvivorExactRowsBoundary.physicalRows_inter_retainedPairs_card_le_one

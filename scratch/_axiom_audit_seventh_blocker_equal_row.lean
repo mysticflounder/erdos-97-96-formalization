@@ -1,3 +1,0 @@
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.TwoSourceFirstFiberCollision
-
-#print axioms Problem97.ATailFrontierLiveClosure.TwoSourceExactCollisionRowsTerminal.FirstFiberCrossedSeventhBlockerBoundary.escapeRow_support_eq_actualBlockerRow_of_center_eq

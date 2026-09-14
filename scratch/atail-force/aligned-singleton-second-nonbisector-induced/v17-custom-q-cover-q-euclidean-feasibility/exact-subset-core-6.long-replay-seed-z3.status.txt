@@ -1,3 +1,0 @@
-solver=z3
-command=z3 -smt2 -T:30 exact-subset-core-6.seed.smt2
-exit_code=0

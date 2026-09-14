@@ -1,2 +1,0 @@
-lean/scratch/axiom_audit/CheckExactFifteenSProfileMutualClassPair.lean
-lean/scratch/axiom_audit/CheckMutualShellPairSharedMember.lean

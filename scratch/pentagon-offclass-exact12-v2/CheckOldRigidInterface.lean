@@ -1,3 +1,0 @@
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221SourceHeavy
-
-#check Problem97.ATailFrontierLiveClosure.pentagonOffClassBlocker_exists_faithfulCarrierPattern_for_xuConcreteRows

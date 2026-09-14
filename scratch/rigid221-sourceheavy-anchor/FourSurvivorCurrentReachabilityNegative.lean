@@ -1,3 +1,0 @@
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure.Rigid221Placement
-
-#check Problem97.U5QDeletedK4Class.three_exact_classes_tetrahedron_incompatibility

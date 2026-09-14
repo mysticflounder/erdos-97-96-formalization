@@ -1,6 +1,0 @@
-import Erdos9796Proof.P97.ATail.CardElevenUniqueFourCertificate.Support.ExactFiveCommonShellV7.G3SelectedGlobalEqSliceLedger
-
-#print axioms Problem97.ExactFiveCommonShellV7.encoderSelectedGlobalEqOccurrences
-#print axioms Problem97.ExactFiveCommonShellV7.selectedGlobalEqOccurrenceArray
-#print axioms Problem97.ExactFiveCommonShellV7.selectedGlobalEqOccurrenceAt
-#print axioms Problem97.ExactFiveCommonShellV7.selectedGlobalEqOccurrenceAt_valid

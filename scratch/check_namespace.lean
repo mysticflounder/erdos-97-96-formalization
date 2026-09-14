@@ -1,5 +1,0 @@
-import Erdos9796Proof.P97.ATail.FrontierLiveClosure
-
-#check Problem97.ATAILSameRadiusDoubleErase.actual_blocker_ne_of_deletion_survives
-#check Problem97.ATailCriticalPairFrontier.actual_blocker_ne_of_deletion_survives
-#check ATAILSameRadiusDoubleErase.actual_blocker_ne_of_deletion_survives

@@ -1,5 +1,0 @@
-(set-logic QF_LIA)
-(declare-const smoke_x Int)
-(assert (! (= smoke_x 0) :named must_be_false))
-(assert (not (= smoke_x 0)))
-(check-sat)

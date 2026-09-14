@@ -1,3 +1,0 @@
-lean/Erdos9796Proof/P97/ATail/ExactFifteenSProfileMutualClassPair.lean
-lean/scratch/axiom_audit/CheckExactFifteenSProfileMutualClassPair.lean
-lean/scratch/axiom_audit/CheckMutualShellPairSharedMember.lean

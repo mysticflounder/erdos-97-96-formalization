@@ -1,6 +1,0 @@
-0
-0
-bs-bu-bw
-0
-0
--bs*bu+bu*bv+bs-bv

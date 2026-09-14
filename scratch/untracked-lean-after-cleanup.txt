@@ -1,1 +1,0 @@
-scratch/freshthird_api_check.lean

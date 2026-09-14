@@ -1,3 +1,0 @@
-theorem actualBlockerFiber_card_le_four
-
-Every actual-blocker fiber has at most four source vertices.

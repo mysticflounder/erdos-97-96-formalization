@@ -1,1 +1,0 @@
-3642:private theorem equilateral_inner_nonneg {a b c : ℝ²}

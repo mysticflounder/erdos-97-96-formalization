@@ -1,3 +1,0 @@
-__pycache__/
-artifacts/*.smt2
-!artifacts/smoke_*.smt2
